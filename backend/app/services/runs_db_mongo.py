@@ -2406,22 +2406,45 @@ def refresh_home_stats() -> int:
     return 1
 
 
+def _boards_newer_than(summary, table_at: datetime | None) -> set[str]:
+    """Keys of the stored boards written after the local leaderboard table."""
+    if table_at is None:
+        return set()
+    out: set[str] = set()
+    for doc in summary.find({}, {"updated_at": 1}):
+        stamp = doc.get("updated_at")
+        if stamp is None:
+            continue
+        if stamp.tzinfo is None:
+            stamp = stamp.replace(tzinfo=timezone.utc)
+        if stamp > table_at:
+            out.add(doc["_id"])
+    return out
+
+
 @_instrument("refresh_leaderboard_summary", collection="leaderboard_summary")
-def refresh_leaderboard_summary() -> int:
-    """Compute the hot (category, character) leaderboard combos and write
-    them to leaderboard_summary. Returns count of docs written. Called by
-    the leader-only loop alongside refresh_stats_summary."""
+def refresh_leaderboard_summary(build: bool = False) -> int:
+    """Write the hot (category, character) leaderboard combos to
+    leaderboard_summary. Returns count of docs written. The ingest stage
+    passes build=True to rebuild the lake leaderboard table first, and a
+    failure there raises so the stored boards stay on the previous
+    generation. The serving refresher re-cuts the boards from the stored
+    table, and falls back to the live query per combo only when there is no
+    table. A stored board newer than the serving box's table came from an
+    ingest whose table has not been pulled yet, so it is left alone."""
     summary = _leaderboard_summary_coll()
     written = 0
-    # One lake pass for all combos (seconds) instead of 24 Mongo
-    # aggregations (~10 minutes); per-combo live fallback keeps the boards
-    # fresh when the lake is unavailable.
     boards: dict[str, dict] | None = None
+    newer: set[str] = set()
     try:
         from . import lake_stats
 
-        boards = lake_stats.leaderboard_boards()
+        boards = lake_stats.leaderboard_boards(build=build)
+        if boards and not build:
+            newer = _boards_newer_than(summary, lake_stats.leaderboard_table_time())
     except Exception:
+        if build:
+            raise
         logger.warning("lake leaderboard boards failed", exc_info=True)
     for combo in HOT_LEADERBOARD_COMBOS:
         try:
@@ -2429,14 +2452,15 @@ def refresh_leaderboard_summary() -> int:
             character = combo.get("character")
             players = combo.get("players")
             game_mode = combo.get("game_mode")
-            result = (boards or {}).get(
-                _leaderboard_key(
-                    category=category,
-                    character=character,
-                    players=players,
-                    game_mode=game_mode,
-                )
-            ) or _leaderboard_live(
+            board_key = _leaderboard_key(
+                category=category,
+                character=character,
+                players=players,
+                game_mode=game_mode,
+            )
+            if board_key in newer:
+                continue
+            result = (boards or {}).get(board_key) or _leaderboard_live(
                 category=category,
                 character=character,
                 players=players,
@@ -2472,7 +2496,7 @@ def refresh_leaderboard_summary() -> int:
                         limit=warm_limit,
                     ),
                     sliced,
-                    ttl_seconds=app_cache.WARM_TTL_SECONDS,
+                    ttl_seconds=60,
                 )
             written += 1
         except Exception:
@@ -3345,34 +3369,46 @@ def leaderboard(
     """Wins-only leaderboard. Mirrors the /api/runs/leaderboard SQLite path.
 
     Read path:
-      1. Fast path -- if the request matches the materialized (category,
-         character) default view (page 1, limit 50, no today/players/
-         game_mode filter), serve from leaderboard_summary in a single
-         find_one. O(1).
-      2. Live path -- _leaderboard_live runs the count + find + sort
-         directly. The new sort indexes keep this at ~500ms even when the
-         summary doesn't cover the combo.
+      1. A stored board from leaderboard_summary when the request is one of
+         the hot combos and the page fits in its rows: one find_one.
+      2. Any other filter combination or page as a slice of the lake
+         leaderboard table (lake_stats.leaderboard_slice).
+      3. The live query, for today's daily board (it changes by the minute)
+         and for a box that has no table yet.
+    Runs hidden or deleted since the boards were built are dropped on read.
     """
-    # Fast path: serve from the materialized summary when the combo is one
-    # we materialize (find_one misses otherwise and we fall to live). Docs
-    # store LEADERBOARD_BOARD_ROWS rows, so any page that fits inside them
-    # is a slice. An ascension_min / winrate_min / build_id filter isn't
-    # materialized, so skip to live.
-    if ascension_min is None and winrate_min is None and build_id is None and not today:
+    plain = ascension_min is None and winrate_min is None and build_id is None
+    if not today:
+        if plain:
+            try:
+                key = _leaderboard_key(
+                    category=category,
+                    character=character,
+                    players=players,
+                    game_mode=game_mode,
+                )
+                doc = _leaderboard_summary_coll().find_one({"_id": key})
+                sliced = _slice_board(doc, page, limit) if doc else None
+                if sliced is not None and not _gone_board_hashes(sliced["runs"]):
+                    return sliced
+            except Exception:
+                pass
         try:
-            key = _leaderboard_key(
+            sliced = _lake_board(
                 category=category,
                 character=character,
                 players=players,
                 game_mode=game_mode,
+                page=page,
+                limit=limit,
+                ascension_min=ascension_min,
+                winrate_min=winrate_min,
+                build_id=build_id,
             )
-            doc = _leaderboard_summary_coll().find_one({"_id": key})
-            if doc:
-                sliced = _slice_board(doc, page, limit)
-                if sliced is not None:
-                    return sliced
+            if sliced is not None:
+                return sliced
         except Exception:
-            pass
+            logger.warning("lake leaderboard slice failed", exc_info=True)
 
     return _leaderboard_live(
         category=category,
@@ -3386,6 +3422,53 @@ def leaderboard(
         winrate_min=winrate_min,
         build_id=build_id,
     )
+
+
+def _gone_board_hashes(runs: list[dict]) -> list[str]:
+    """Run hashes on a stored board page (party seats included) that were
+    hidden or deleted since the board was built, so a hidden run leaves
+    every board on the next read instead of the next ingest."""
+    hashes = {r.get("run_hash") for r in runs}
+    for r in runs:
+        hashes.update(m.get("run_hash") for m in r.get("party") or [])
+    hashes.discard(None)
+    if not hashes:
+        return []
+    visible = {
+        d["_id"]
+        for d in _get_collection().find(
+            {
+                "_id": {"$in": sorted(hashes)},
+                "hidden": {"$ne": True},
+                "deleted_at": None,
+            },
+            {"_id": 1},
+        )
+    }
+    return sorted(hashes - visible)
+
+
+def _lake_board(**filters) -> dict | None:
+    from . import lake_stats
+
+    exclude: list[str] = []
+    sliced = None
+    for _ in range(4):
+        sliced = lake_stats.leaderboard_slice(**filters, exclude=exclude)
+        if sliced is None:
+            return None
+        gone = _gone_board_hashes(sliced["runs"])
+        if not gone:
+            return sliced
+        exclude.extend(gone)
+    gone_set = set(exclude)
+    sliced["runs"] = [
+        r
+        for r in sliced["runs"]
+        if not gone_set
+        & {r["run_hash"], *(m["run_hash"] for m in r.get("party") or [])}
+    ]
+    return sliced
 
 
 def _slice_board(doc: dict, page: int, limit: int) -> dict | None:
@@ -3485,16 +3568,34 @@ def _leaderboard_live(
     # hidden: {$ne: True} disqualifies the covering index and fetches every
     # candidate doc, a cost refresh_leaderboard_summary pays for all 24
     # combos every cycle.
-    total, total_is_lower_bound = count_with_budget(coll, q, max_time_ms=max_time_ms)
     per_page = max(1, min(limit, 100))
     offset = (max(page, 1) - 1) * per_page
-    cursor = (
-        coll.find(q, _projection_row(), max_time_ms=max(max_time_ms, LIST_MAX_TIME_MS))
-        .sort(sort_clause)
-        .skip(offset)
-        .limit(per_page)
-    )
-    runs = [_row_to_dict(r) for r in cursor]
+    list_max_time_ms = max(max_time_ms, LIST_MAX_TIME_MS)
+    if players in ("single", "1"):
+        total, total_is_lower_bound = count_with_budget(
+            coll, q, max_time_ms=max_time_ms
+        )
+        cursor = (
+            coll.find(q, _projection_row(), max_time_ms=list_max_time_ms)
+            .sort(sort_clause)
+            .skip(offset)
+            .limit(per_page)
+        )
+        runs = [_row_to_dict(r) for r in cursor]
+    else:
+        total, total_is_lower_bound = 0, False
+        coop_q = q
+        if "player_count" not in q:
+            total, total_is_lower_bound = count_with_budget(
+                coll, {**q, "player_count": 1}, max_time_ms=max_time_ms
+            )
+            coop_q = {**q, "player_count": {"$gt": 1}}
+        coop_total, coop_lb = _count_coop_runs(coll, coop_q, max_time_ms)
+        total += coop_total
+        total_is_lower_bound = total_is_lower_bound or coop_lb
+        runs = _collapsed_live_page(
+            coll, q, sort_clause, offset, per_page, list_max_time_ms
+        )
 
     return {
         "runs": runs,
@@ -3505,6 +3606,115 @@ def _leaderboard_live(
         "total_is_lower_bound": total_is_lower_bound,
         "category": category,
     }
+
+
+_COOP_KEY_FIELDS = ("seed", "played_at", "run_time", "player_count")
+
+
+def _coop_run_key(doc: dict):
+    """One key per run: a co-op run is stored as one document per seat, and
+    the seats share seed, start time, run time and party size."""
+    if (doc.get("player_count") or 1) <= 1:
+        return doc.get("_id")
+    return tuple(doc.get(f) for f in _COOP_KEY_FIELDS)
+
+
+def _count_coop_runs(coll, query: dict, max_time_ms: int) -> tuple[int, bool]:
+    """Distinct co-op runs matching the query. When the grouping runs out of
+    time, seat documents over the party size come back flagged as a lower
+    bound (a run never has more matching seats than players)."""
+    pipeline = [
+        {"$match": query},
+        {"$group": {"_id": {f: f"${f}" for f in _COOP_KEY_FIELDS}}},
+        {"$count": "n"},
+    ]
+    try:
+        rows = list(coll.aggregate(pipeline, maxTimeMS=max_time_ms, allowDiskUse=True))
+        return (int(rows[0]["n"]) if rows else 0, False)
+    except ExecutionTimeout:
+        pass
+    except OperationFailure as exc:
+        if getattr(exc, "code", None) != 50:
+            raise
+    docs, _ = count_with_budget(coll, query, max_time_ms=max_time_ms)
+    size = query.get("player_count")
+    return docs // (size if isinstance(size, int) and size > 1 else 4), True
+
+
+def _collapsed_live_page(
+    coll,
+    q: dict,
+    sort_clause: list,
+    offset: int,
+    per_page: int,
+    max_time_ms: int = LIST_MAX_TIME_MS,
+) -> list[dict]:
+    """A page of the live ladder with each co-op run listed once (its first
+    seat in ladder order, a named seat when one ties) and its party."""
+    keys_only = {"username": 1, "ascension": 1, **{f: 1 for f in _COOP_KEY_FIELDS}}
+    need = offset + per_page
+    order: list = []
+    chosen: dict = {}
+    last = None
+    scan = (
+        coll.find(q, keys_only, max_time_ms=max_time_ms)
+        .sort(sort_clause)
+        .limit(need * 8 + 64)
+    )
+    for doc in scan:
+        key = _coop_run_key(doc)
+        place = (doc.get("ascension"), doc.get("run_time"))
+        if key in chosen:
+            if not chosen[key].get("username") and doc.get("username"):
+                chosen[key] = doc
+            continue
+        if len(order) >= need and place != last:
+            break
+        if len(order) < need:
+            order.append(key)
+            chosen[key] = doc
+            last = place
+    ids = [chosen[k]["_id"] for k in order[offset:]]
+    projection = {**_projection_row(), "seed": 1, "played_at": 1, "player_count": 1}
+    full = {d["_id"]: d for d in coll.find({"_id": {"$in": ids}}, projection)}
+    picked = [full[i] for i in ids if i in full]
+    parties = _live_parties(
+        coll, [d for d in picked if (d.get("player_count") or 1) > 1]
+    )
+    runs = []
+    for doc in picked:
+        key = _coop_run_key(doc)
+        row = _row_to_dict(doc)
+        row.pop("seed", None)
+        row.pop("played_at", None)
+        if key in parties:
+            row["party"] = parties[key]
+        runs.append(row)
+    return runs
+
+
+def _live_parties(coll, docs: list[dict]) -> dict:
+    if not docs:
+        return {}
+    clauses = [
+        {"win": {"$in": [True, 1]}, **{f: d.get(f) for f in _COOP_KEY_FIELDS}}
+        for d in docs
+    ]
+    parties: dict = {}
+    for seat in coll.find(
+        {"$or": clauses, "hidden": {"$ne": True}},
+        {"_id": 1, "character": 1, "username": 1, **{f: 1 for f in _COOP_KEY_FIELDS}},
+    ):
+        parties.setdefault(_coop_run_key(seat), []).append(
+            {
+                "run_hash": seat["_id"],
+                "character": seat.get("character"),
+                "username": seat.get("username"),
+            }
+        )
+    for party in parties.values():
+        party.sort(key=lambda m: m["run_hash"])
+    return parties
 
 
 def _ensure_hidden_wins_index(coll) -> None:
@@ -3595,41 +3805,73 @@ def _count_visible(coll, query: dict) -> int:
     return total - coll.count_documents(hidden_query)
 
 
+def _own_bucket(row: dict) -> dict | None:
+    """The leaderboard pool a run competes in: its character, party size
+    (four or more is one pool), game mode and the official ascensions.
+    None when the run is on no board."""
+    asc = row.get("ascension") or 0
+    if not 0 <= asc <= 10:
+        return None
+    size = row.get("player_count") or 1
+    mode = row.get("game_mode")
+    return {
+        "character": row.get("character"),
+        "player_count": {"$gte": 4} if size >= 4 else size,
+        "game_mode": mode if mode else {"$in": [None, "standard"]},
+        "ascension": {"$gte": 0, "$lte": 10},
+    }
+
+
 @_instrument("get_run_rank")
 def get_run_rank(run_hash: str, category: str = "fastest") -> dict:
-    """Rank of a single winning run within its character's leaderboard.
-    Hidden runs neither rank nor count as ahead, matching /leaderboard."""
+    """Rank of a single winning run on the board it appears on: its
+    character, party size and game mode, ascensions 0 to 10. Hidden runs
+    neither rank nor count as ahead, matching /leaderboard. Reads the lake
+    leaderboard table when the run is in it (co-op runs count once there),
+    else counts live."""
     coll = _get_collection()
     row = coll.find_one(
         {"_id": run_hash},
-        {"win": 1, "character": 1, "run_time": 1, "ascension": 1, "hidden": 1},
+        {
+            "win": 1,
+            "character": 1,
+            "run_time": 1,
+            "ascension": 1,
+            "hidden": 1,
+            "player_count": 1,
+            "game_mode": 1,
+        },
     )
     if not row or not row.get("win") or row.get("hidden"):
         return {"rank": None}
+    bucket = _own_bucket(row)
+    if bucket is None:
+        return {"rank": None}
+    try:
+        from . import lake_stats
 
+        rank = lake_stats.leaderboard_rank(run_hash, category)
+        if rank is not None:
+            return {"rank": rank, "category": category}
+    except Exception:
+        logger.warning("lake rank failed", exc_info=True)
+
+    scope = {"win": {"$in": [True, 1]}, **bucket}
+    asc = row.get("ascension") or 0
     if category == "highest_ascension":
         ahead = _count_visible(
             coll,
             {
-                "win": {"$in": [True, 1]},
-                "character": row["character"],
+                **{k: v for k, v in scope.items() if k != "ascension"},
                 "$or": [
-                    {"ascension": {"$gt": row.get("ascension", 0)}},
-                    {
-                        "ascension": row.get("ascension", 0),
-                        "run_time": {"$lt": row.get("run_time", 0)},
-                    },
+                    {"ascension": {"$gt": asc, "$lte": 10}},
+                    {"ascension": asc, "run_time": {"$lt": row.get("run_time", 0)}},
                 ],
             },
         )
     else:
         ahead = _count_visible(
-            coll,
-            {
-                "win": {"$in": [True, 1]},
-                "character": row["character"],
-                "run_time": {"$lt": row.get("run_time", 0)},
-            },
+            coll, {**scope, "run_time": {"$lt": row.get("run_time", 0)}}
         )
     return {"rank": ahead + 1, "category": category}
 

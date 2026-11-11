@@ -162,3 +162,37 @@ def test_player_count_slices_are_built_from_the_same_pass(tiny_lake, monkeypatch
         _tables(doc, {"players": "2", "character": "SILENT"})["top_cards"][0]["count"]
         == 1
     )
+
+
+def test_potion_use_counts_seats_from_the_use_events(tiny_lake, monkeypatch):
+    import json
+
+    con = duckdb.connect()
+    con.execute(
+        f"""COPY (SELECT * FROM (VALUES
+        ('r1', 0, 3, 1, 'FIRE_POTION', 'used', 3.0),
+        ('r1', 1, 4, 1, 'FIRE_POTION', 'used', 21.0),
+        ('r2', 0, 5, 1, 'FIRE_POTION', 'used', 5.0),
+        ('r2', 0, 6, 1, 'BLOCK_POTION', 'discarded', 6.0),
+        ('r3', 0, 2, 1, 'FIRE_POTION', 'used', 2.0))
+        t(run_hash, act, floor_idx, player_idx, potion, kind, floor))
+        TO '{tiny_lake}/potion_events.parquet' (FORMAT parquet)"""
+    )
+    con.execute(
+        f"""COPY (SELECT * FROM (VALUES
+        ('r1', 1, 'FIRE_POTION', 'IRONCLAD', false),
+        ('r2', 1, 'FIRE_POTION', 'SILENT', false))
+        t(run_hash, player_idx, potion, character, was_used))
+        TO '{tiny_lake}/potions.parquet' (FORMAT parquet)"""
+    )
+    con.close()
+    monkeypatch.setattr(ls, "available", lambda *a: True)
+    ls.build_deep_tables()
+    doc = json.loads((tiny_lake / "deep_tables.json").read_text())
+    pots = {r["potion_id"]: r for r in _tables(doc, {})["top_potions"]}
+    assert pots["FIRE_POTION"]["used"] == 2
+    assert pots["BLOCK_POTION"]["used"] == 0
+    silent = {
+        r["potion_id"]: r for r in _tables(doc, {"character": "SILENT"})["top_potions"]
+    }
+    assert silent["FIRE_POTION"]["used"] == 1
