@@ -104,13 +104,13 @@ class RecordingColl:
     def __init__(self):
         self.query = None
 
-    def count_documents(self, q, limit=None, maxTimeMS=None):
+    def count_documents(self, q, limit=None, maxTimeMS=None, hint=None):
         return 0
 
     def estimated_document_count(self):
         return 0
 
-    def find(self, q, proj=None):
+    def find(self, q, proj=None, max_time_ms=None):
         self.query = q
         return self
 

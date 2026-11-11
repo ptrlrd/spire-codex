@@ -258,7 +258,7 @@ function LiveRoster() {
     ),
   );
 
-  usePoll(async () => {
+  usePoll(async (isCurrent) => {
     try {
       // Cap the roster: the page shows recent cards + relics per player, which
       // means one detail fetch each (an N+1). Capping the roster bounds that
@@ -282,9 +282,11 @@ function LiveRoster() {
           }
         }),
       );
+      if (!isCurrent()) return;
       setPlayers(detailed);
       setStale(false);
     } catch {
+      if (!isCurrent()) return;
       setStale(true);
       setPlayers((prev) => prev ?? []);
     }

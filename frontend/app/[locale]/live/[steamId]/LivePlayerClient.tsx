@@ -847,7 +847,7 @@ function LivePlayerBody() {
     );
   }, []);
 
-  usePoll(async () => {
+  usePoll(async (isCurrent) => {
     if (!steamId) {
       setStatus("missing");
       return;
@@ -855,6 +855,7 @@ function LivePlayerBody() {
     try {
       const r = await fetch(`${API}/api/presence/${steamId}`);
       if (r.status === 404) {
+        if (!isCurrent()) return;
         // Keep the last snapshot on screen when a watched run ends, so the
         // viewer sees the final state instead of a sudden blank.
         setStatus((prev) =>
@@ -863,7 +864,9 @@ function LivePlayerBody() {
         return;
       }
       if (!r.ok) throw new Error(`presence ${r.status}`);
-      setPlayer((await r.json()) as LivePlayer);
+      const next = (await r.json()) as LivePlayer;
+      if (!isCurrent()) return;
+      setPlayer(next);
       setStatus("live");
     } catch {
       // Network blip: keep whatever we had; the next beat will recover.

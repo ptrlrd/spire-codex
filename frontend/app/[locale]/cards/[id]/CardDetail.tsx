@@ -33,9 +33,11 @@ import { imageUrl, fullCardUrl, enchantedCardUrl } from "@/lib/image-url";
 import EntityRunStats, {
   type EntityStats,
 } from "@/app/components/EntityRunStats";
+import { resolveBracket } from "@/lib/entity-cohort";
 import EntityVersionSelect from "@/app/components/EntityVersionSelect";
 import HoverTooltip from "@/app/components/HoverTooltip";
 import { useChannel, useBetaPrefix } from "@/lib/api/prefix.client";
+import { useBetaRenderVersion } from "@/app/components/BetaRenderVersionProvider";
 import BetaDiffNotice from "@/app/components/BetaDiffNotice";
 import "@/app/card-revamp.css";
 import { useBracketParam } from "@/lib/use-bracket-param";
@@ -61,6 +63,7 @@ interface MiniBracket {
   picks: number;
   win_rate: number;
   pick_rate: number;
+  hold_rate?: number | null;
   score: number | null;
   elo: number | null;
 }
@@ -284,6 +287,7 @@ export default function CardDetail({
 
   const bp = useBetaPrefix();
   const channel = useChannel();
+  const betaRenderVersion = useBetaRenderVersion();
   const [card, setCard] = useState<Card | null>(initialCard ?? null);
   const [spawnedCards, setSpawnedCards] = useState<RelatedCard[]>(
     initialCatalogs?.spawnedCards ?? [],
@@ -584,10 +588,17 @@ export default function CardDetail({
         isUpgraded,
         channel,
         lang,
+        betaRenderVersion,
       )
     : betaArt || variantImg || cardImgFailed
       ? imageUrl(imgUrl)
-      : fullCardUrl(card.id.toLowerCase(), isUpgraded, channel, lang);
+      : fullCardUrl(
+          card.id.toLowerCase(),
+          isUpgraded,
+          channel,
+          lang,
+          betaRenderVersion,
+        );
 
   const partners = initialPairings?.partners;
   const serverToc = TOC_IDS.filter((sid) => {
@@ -735,7 +746,12 @@ export default function CardDetail({
           {/* Description */}
           <section id="description">
             <h2>{t("Description")}</h2>
-            <EntitySummary name={card.name} data={summary} />
+            <EntitySummary
+              name={card.name}
+              data={summary}
+              stats={initialStats}
+              bracket={statsBracket}
+            />
 
             {/* Type variant toggle (re-scopes description + render) */}
             {hasVariants && card.type_variants && (
@@ -1011,6 +1027,7 @@ export default function CardDetail({
                       false,
                       channel,
                       lang,
+                      betaRenderVersion,
                     );
                   }
                 } else if (!betaArt && !variantImg) {
@@ -1130,7 +1147,9 @@ export default function CardDetail({
             {/* Community mini-stats — scoped to the bracket picked in the
                 Community section (falls back to the all-runs figures). */}
             {(() => {
-              const mini = miniStats?.brackets?.[statsBracket] ?? miniStats;
+              const mini = miniStats
+                ? (resolveBracket(miniStats, statsBracket).block ?? miniStats)
+                : null;
               if (!mini || mini.picks <= 0) return null;
               return (
                 <div className="mini">
@@ -1149,8 +1168,10 @@ export default function CardDetail({
                       <div className="ml">{t("Win rate")}</div>
                     </div>
                     <div>
-                      <div className="mv">{mini.pick_rate}%</div>
-                      <div className="ml">{t("Pick rate")}</div>
+                      <div className="mv">
+                        {mini.hold_rate ?? mini.pick_rate}%
+                      </div>
+                      <div className="ml">{t("Hold rate")}</div>
                     </div>
                     {mini.score != null && (
                       <div>

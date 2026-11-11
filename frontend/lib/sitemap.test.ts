@@ -95,6 +95,44 @@ describe("sitemap", () => {
     );
   });
 
+  it("dates tier list variants by the stats cursor, and leaves them undated without one", async () => {
+    stubApi((url) =>
+      url.endsWith("/api/runs/pulse")
+        ? ok({ data_through: "2026-11-10 18:27:31.631000" })
+        : healthyApi(url),
+    );
+    let byUrl = new Map((await sitemap()).map((e) => [e.url, e]));
+    const cursor = new Date("2026-11-10T18:27:31.631Z");
+    expect(
+      byUrl.get(`${SITE}/tier-list/relics?ancient=neow`)?.lastModified,
+    ).toEqual(cursor);
+    expect(
+      byUrl.get(`${SITE}/tier-list/cards?color=silent`)?.lastModified,
+    ).toEqual(cursor);
+    expect(
+      byUrl.get(`${SITE}/tier-list/relics?act=1&amp;ancient=neow`)
+        ?.lastModified,
+    ).toEqual(cursor);
+
+    stubApi((url) =>
+      url.endsWith("/api/runs/pulse")
+        ? new Response("", { status: 503 })
+        : healthyApi(url),
+    );
+    byUrl = new Map((await sitemap()).map((e) => [e.url, e]));
+    expect(byUrl.has(`${SITE}/tier-list/relics?ancient=neow`)).toBe(true);
+    expect(
+      byUrl.get(`${SITE}/tier-list/relics?ancient=neow`)?.lastModified,
+    ).toBeUndefined();
+  });
+
+  it("lists the tool pages that only had localized entries", async () => {
+    stubApi(healthyApi);
+    const urls = new Set((await sitemap()).map((e) => e.url));
+    for (const path of ["/seed-finder", "/deck-builder", "/tier-list-maker"])
+      expect(urls.has(`${SITE}${path}`), path).toBe(true);
+  });
+
   it("leaves out the noindex localized copies of guides and mechanics", async () => {
     stubApi(healthyApi);
     const urls = new Set((await sitemap()).map((e) => e.url));
