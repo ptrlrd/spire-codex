@@ -133,7 +133,7 @@ export default function LocaleSuggestToast() {
   return (
     <div
       role="status"
-      className="fixed bottom-4 right-4 z-50 max-w-xs rounded-lg border border-[var(--accent-gold)] bg-[var(--bg-secondary)] p-3 pr-8 text-sm text-[var(--text-primary)] shadow-lg"
+      className="fixed bottom-20 right-4 z-50 max-w-xs rounded-lg border border-[var(--accent-gold)] bg-[var(--bg-secondary)] p-3 pr-8 text-sm text-[var(--text-primary)] shadow-lg"
     >
       <p className="mb-2">{copy.text}</p>
       {suggested === "eng" ? (

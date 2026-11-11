@@ -231,9 +231,10 @@ export default function BetaChanges({
               ))}
               {other.length > 0 && (
                 <div className="text-[var(--text-muted)]">
-                  {t("Also changed: {fields}", {
-                    fields: other.map((f) => label(f, t)).join(", "),
-                  })}{" "}
+                  {other.length < shown.length &&
+                    `${t("Also changed: {fields}", {
+                      fields: other.map((f) => label(f, t)).join(", "),
+                    })} `}
                   <Link
                     href={`/beta/${type}/${id.toLowerCase()}`}
                     className="text-success hover:underline"

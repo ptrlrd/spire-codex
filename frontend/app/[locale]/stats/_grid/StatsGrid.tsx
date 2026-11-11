@@ -29,18 +29,12 @@ import {
   parseGridQuery,
 } from "@/lib/grid-query";
 import type { GridData, GridRow } from "./types";
+import { CHARACTER_ORDER } from "@/lib/character-order";
 
 const SMALL_SAMPLE = 20;
 const HIDDEN_SAMPLE = 5;
 
-const CARD_COLORS = [
-  "ironclad",
-  "silent",
-  "defect",
-  "necrobinder",
-  "regent",
-  "colorless",
-];
+const CARD_COLORS = [...CHARACTER_ORDER, "colorless"];
 const ENTITY_GROUPS = ["cards", "relics", "potions"];
 const CHARACTER_COLORS = new Set([
   "ironclad",
@@ -1013,7 +1007,16 @@ export default function StatsGrid({ data }: { data: GridData }) {
           </button>
         </div>
         {groups.length > 0 && (
-          <div className="flex flex-wrap gap-1.5">
+          <div className="flex flex-wrap items-center gap-1.5">
+            <span className="mr-1 text-xs text-[var(--text-muted)]">
+              {t(
+                cfg.groupFilter === "color"
+                  ? "Card pool"
+                  : cfg.groupFilter === "entity"
+                    ? "Type"
+                    : "Pool",
+              )}
+            </span>
             <button
               type="button"
               onClick={() => setGroup("")}
@@ -1119,6 +1122,11 @@ export default function StatsGrid({ data }: { data: GridData }) {
               onChange={(e) => setOffColor(e.target.checked)}
             />
             {t("Other characters' cards")}
+            {!offColorActive && (
+              <span>
+                ({t("Needs a Played by character or the Per character view.")})
+              </span>
+            )}
           </label>
         )}
       </div>

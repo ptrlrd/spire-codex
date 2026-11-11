@@ -1,3 +1,5 @@
+import { CHARACTER_ORDER } from "@/lib/character-order";
+
 export type TFn = (
   key: string,
   values?: Record<string, string | number>,
@@ -23,13 +25,7 @@ export const MODE_AXIS = [
   { key: "daily", label: "Daily" },
   { key: "custom", label: "Custom" },
 ];
-export const CHARACTERS = [
-  "IRONCLAD",
-  "SILENT",
-  "DEFECT",
-  "NECROBINDER",
-  "REGENT",
-];
+export const CHARACTERS = CHARACTER_ORDER.map((c) => c.toUpperCase());
 
 const PLAYER_KEYS = PLAYER_AXIS.map((a) => a.key).filter(Boolean);
 const SKILL_KEYS = SKILL_AXIS.map((a) => a.key).filter(Boolean);

@@ -166,7 +166,7 @@ export default async function RootLayout({ children, params }: LayoutProps) {
         </>
       )}
       <body
-        className={`${kreon.variable} ${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
+        className={`${kreon.variable} ${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
         <script
           dangerouslySetInnerHTML={{
@@ -185,7 +185,7 @@ export default async function RootLayout({ children, params }: LayoutProps) {
                 <AuthNotice />
                 <Navbar />
                 <LocaleSuggestToast />
-                <div className="pt-16">
+                <div className="pt-16 flex-1 flex flex-col min-w-0">
                   <AlertTicker />
                   {/* tabIndex=-1 lets Navbar's main.focus() (PR #142) clear
                     focus-within from the dropdown after route changes. The
@@ -194,7 +194,7 @@ export default async function RootLayout({ children, params }: LayoutProps) {
                     the entire content area, which read as a stray "tab" line
                     underneath the donation banner on every navigation. */}
                   <BetaChrome />
-                  <main tabIndex={-1} className="outline-none min-h-screen">
+                  <main tabIndex={-1} className="outline-none flex-1 min-w-0">
                     {children}
                   </main>
                 </div>
