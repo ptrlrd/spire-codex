@@ -4,7 +4,7 @@ import { useT } from "@/lib/i18n";
 import { useState, useEffect } from "react";
 import { Link } from "@/i18n/navigation";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { useBetaPrefix } from "@/lib/api/prefix.client";
+import { changelogPath, versionTag } from "@/lib/changelog";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -95,12 +95,16 @@ function ChangeValue({ raw, color }: { raw: string; color: string }) {
   );
 }
 
+function changelogHref(version: string): string {
+  const tag = versionTag(version);
+  return tag ? changelogPath(tag) : "/changelog";
+}
+
 export default function EntityHistory({
   entityType,
   entityId,
 }: EntityHistoryProps) {
   const t = useT();
-  const bp = useBetaPrefix();
   const [history, setHistory] = useState<HistoryEntry[] | null>(null);
 
   // Fetch on mount and render the full timeline directly (no drawer) so the
@@ -131,7 +135,7 @@ export default function EntityHistory({
                 <div>
                   <div className="flex items-center gap-2 text-xs">
                     <Link
-                      href={`${bp}/changelog#${entry.version}`}
+                      href={changelogHref(entry.version)}
                       className="font-semibold text-[var(--text-primary)] hover:text-[var(--accent-gold)] transition-colors"
                     >
                       v{entry.version}
@@ -225,7 +229,7 @@ export default function EntityHistory({
       )}
 
       <Link
-        href={`${bp}/changelog`}
+        href="/changelog"
         className="mt-4 inline-block text-xs text-[var(--text-secondary)] hover:text-[var(--accent-gold)] transition-colors"
       >
         {t("View the full changelog")} &rarr;

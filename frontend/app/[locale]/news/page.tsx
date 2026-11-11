@@ -14,6 +14,7 @@ import {
 } from "@/lib/steam-news";
 import { ANNOUNCEMENTS, type Announcement } from "@/lib/announcements";
 import MarkAnnouncementsSeen from "./MarkAnnouncementsSeen";
+import { changelogPath, fetchLatestPatch, versionLabel } from "@/lib/changelog";
 
 async function loadCodexNews(): Promise<{
   items: Announcement[];
@@ -119,6 +120,7 @@ export default async function NewsPage({ params, searchParams }: Props) {
     : await loadNews(tabConfig.feedType);
   const items = data.items;
   const latest = items[0];
+  const latestPatch = await fetchLatestPatch();
 
   const jsonLd = [
     buildBreadcrumbJsonLd([
@@ -143,6 +145,19 @@ export default async function NewsPage({ params, searchParams }: Props) {
         <span className="text-[var(--accent-gold)]">{gameName(locale)}</span>{" "}
         {t("Patch Notes")} &amp; {t("News")}
       </h1>
+      {latestPatch && (
+        <p className="text-sm mb-3">
+          <Link
+            href={changelogPath(latestPatch.tag)}
+            className="text-[var(--accent-gold)] hover:underline"
+          >
+            {t("Latest patch notes: {version}", {
+              version: versionLabel(latestPatch.game_version),
+            })}{" "}
+            →
+          </Link>
+        </p>
+      )}
       <p className="text-sm text-[var(--text-muted)] mb-6">
         Every Slay the Spire 2 (sts2) patch note, dev update, and announcement
         from Mega Crit, mirrored from Steam the moment it posts, plus press

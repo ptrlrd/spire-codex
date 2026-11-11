@@ -24,7 +24,10 @@ const ok = (body: unknown) =>
 const entity = (id: string) => ({ id, name: id, image_url: null });
 
 function healthyApi(url: string): Response {
-  if (url.endsWith("/api/changelogs")) return ok([{ date: "2026-08-14" }]);
+  if (url.endsWith("/api/changelogs"))
+    return ok([{ tag: "1.3.1", date: "2026-08-14" }]);
+  if (url.endsWith("/api/changelogs?channel=beta"))
+    return ok([{ tag: "0.111.0", date: "2026-08-13" }]);
   if (url.endsWith("/api/mechanics/sections"))
     return ok([{ slug: "score-formula" }]);
   if (url.endsWith("/api/glossary")) return ok([entity("STRENGTH")]);
@@ -128,6 +131,28 @@ describe("sitemap", () => {
     );
     await expect(sitemap()).rejects.toThrow(
       "/api/relics returned a malformed list",
+    );
+  });
+
+  it("lists game patch pages in every locale and site releases in English only", async () => {
+    stubApi(healthyApi);
+    const byUrl = new Map((await sitemap()).map((e) => [e.url, e]));
+    expect(byUrl.get(`${SITE}/changelog/0.111.0`)?.lastModified).toEqual(
+      new Date("2026-08-13"),
+    );
+    expect(byUrl.has(`${SITE}/jpn/changelog/0.111.0`)).toBe(true);
+    expect(byUrl.has(`${SITE}/changelog/1.3.1`)).toBe(true);
+    expect(byUrl.has(`${SITE}/jpn/changelog/1.3.1`)).toBe(false);
+  });
+
+  it("fails the build when the game patch list errors", async () => {
+    stubApi((url) =>
+      url.endsWith("/api/changelogs?channel=beta")
+        ? new Response("", { status: 502 })
+        : healthyApi(url),
+    );
+    await expect(sitemap()).rejects.toThrow(
+      "/api/changelogs?channel=beta returned 502",
     );
   });
 
