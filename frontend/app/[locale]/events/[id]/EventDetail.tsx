@@ -179,20 +179,20 @@ export default function EventDetail({
   const [activeSection, setActiveSection] = useState<string>("description");
 
   useEffect(() => {
-    if (!id) return;
+    if (!id || (initialEvent && !bp)) return;
     cachedFetch<GameEvent>(`${API}/api/events/${id}?lang=${lang}`)
       .then((data) => setEvent(data))
       .catch(() => {
         if (!initialEvent) setNotFound(true);
       })
       .finally(() => setLoading(false));
-  }, [id, lang]);
+  }, [id, lang, initialEvent, bp]);
 
   useEffect(() => {
     if (initialRelics?.length) return;
-    cachedFetch<RelicEntry[]>(`${API}/api/relics?lang=${lang}`).then((relics) =>
-      setRelicMap(indexById(relics)),
-    );
+    cachedFetch<RelicEntry[]>(`${API}/api/relics?lang=${lang}`)
+      .then((relics) => setRelicMap(indexById(relics)))
+      .catch(() => {});
   }, [lang, initialRelics]);
 
   const ancientId = event?.type === "Ancient" ? event.id.toUpperCase() : null;
