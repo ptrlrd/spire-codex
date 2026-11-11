@@ -1,5 +1,11 @@
 import type { EntityStats } from "@/app/components/EntityRunStats";
 import { DEFAULT_SOLO_BRACKET } from "@/lib/content-brackets";
+import {
+  metricsUrl,
+  offerStatsFrom,
+  resolveBracket,
+  type MetricsTable,
+} from "@/lib/entity-cohort";
 
 const API_INTERNAL =
   process.env.API_INTERNAL_URL ||
@@ -8,14 +14,13 @@ const API_INTERNAL =
 
 /**
  * Server-side fetch of an entity's community run stats, so the numbers (win
- * rate, pick rate, Codex Score, tier, per-character) render into the initial
- * SSR HTML instead of a client-only "Loading" placeholder — the whole point
- * being that this is unique data crawlers should see.
+ * rate, hold rate, Codex Score, tier, per-character) render into the initial
+ * SSR HTML instead of a client-only "Loading" placeholder.
  *
  * Returns null on any error or for entities with no runs yet (the endpoint
- * hands back a zero-filled stub in that case). A null just falls back to the
- * existing client-only behavior, since EntityRunStats still re-fetches on
- * mount for freshness.
+ * hands back a zero-filled stub in that case). The metrics table of the
+ * cohort the page opens on rides along as `metrics`: its baseline, the
+ * pick-when-offered rate and the data-through time.
  */
 export async function fetchEntityStats(
   entityType: "relics" | "cards" | "potions",
@@ -29,43 +34,30 @@ export async function fetchEntityStats(
     if (!res.ok) return null;
     const stats = (await res.json()) as EntityStats;
     if (!stats || !(stats.picks > 0)) return null;
-    const row = await fetchMetricsRow(entityType, entityId);
+    const { key } = resolveBracket(stats, DEFAULT_SOLO_BRACKET);
     return {
       ...stats,
-      lift: row?.lift ?? null,
-      lift_n: row?.lift_n ?? null,
-      hold_rate: row?.hold_rate ?? null,
+      metrics: offerStatsFrom(
+        await fetchMetricsTable(entityType, key),
+        entityId,
+        key,
+      ),
     };
   } catch {
     return null;
   }
 }
 
-interface MetricsRow {
-  id: string;
-  upgraded?: boolean;
-  lift?: number | null;
-  lift_n?: number | null;
-  hold_rate?: number | null;
-}
-
-async function fetchMetricsRow(
+async function fetchMetricsTable(
   entityType: "relics" | "cards" | "potions",
-  entityId: string,
-): Promise<MetricsRow | null> {
+  bracket: string,
+): Promise<MetricsTable | null> {
   try {
-    const res = await fetch(
-      `${API_INTERNAL}/api/runs/metrics/${entityType}?bracket=${DEFAULT_SOLO_BRACKET}`,
-      { next: { revalidate: 300 } },
-    );
+    const res = await fetch(metricsUrl(API_INTERNAL, entityType, bracket), {
+      next: { revalidate: 300 },
+    });
     if (!res.ok) return null;
-    const data = (await res.json()) as { rows?: MetricsRow[] };
-    const id = entityId.toUpperCase();
-    return (
-      (data.rows || []).find(
-        (r) => (r.id || "").toUpperCase() === id && !r.upgraded,
-      ) ?? null
-    );
+    return (await res.json()) as MetricsTable;
   } catch {
     return null;
   }

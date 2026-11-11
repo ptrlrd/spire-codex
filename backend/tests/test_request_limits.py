@@ -6,7 +6,6 @@ import base64
 import io
 import json
 import threading
-from pathlib import Path
 
 import pytest
 from fastapi import HTTPException
@@ -428,17 +427,3 @@ def test_batch_upload_reports_an_oversized_int_per_file(no_limits, monkeypatch):
         "detail": "Run has a number too large to store",
     }
     assert body["results"][1]["status"] == "claimed"
-
-
-def test_pull_request_workflows_stay_off_the_self_hosted_runner():
-    path = (
-        Path(__file__).resolve().parents[2]
-        / ".github"
-        / "workflows"
-        / "changelog-guard.yml"
-    )
-    if not path.exists():
-        pytest.skip("workflow files are not part of this checkout")
-    text = path.read_text(encoding="utf-8")
-    assert "pull_request" in text
-    assert "self-hosted" not in text

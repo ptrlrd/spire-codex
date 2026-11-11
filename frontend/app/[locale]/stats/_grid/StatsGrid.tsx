@@ -5,6 +5,7 @@ import { Link, useRouter } from "@/i18n/navigation";
 import type { NumberFormatter } from "@/lib/number-format";
 import { useT, useGameLocale, useFormatNumber } from "@/lib/i18n";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
+import { dataThroughLabel } from "@/lib/data-through";
 import { colorTextClass } from "@/lib/character-colors";
 import { fullCardUrl, imageUrl } from "@/lib/image-url";
 import { useBetaRenderVersion } from "@/app/components/BetaRenderVersionProvider";
@@ -690,6 +691,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
 
   const cohort = cohortLabel(bracket, t, character);
   const scoreBaseline = totals.baselineWinRate;
+  const dataThrough = dataThroughLabel(totals.dataThrough, t, lang);
   const scoped = !!character && totals.characterRuns !== null;
   const seatBaseline = scoped
     ? totals.characterWins !== null && totals.characterRuns
@@ -943,6 +945,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
             : ""}
           {" · "}
           {t("{count} rows shown", { count: visible.length })}
+          {dataThrough && ` · ${dataThrough}`}
           {" · "}
           <button
             type="button"

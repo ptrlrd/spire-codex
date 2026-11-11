@@ -18,12 +18,22 @@ import {
   parseWinrate,
 } from "@/lib/run-query";
 import { PlayerBadge } from "@/app/components/SupporterBadge";
+import { useFilterFetch, useFilterPage } from "@/lib/use-filter-fetch";
+import LoadFailed from "@/app/components/LoadFailed";
 import KeyPicks, {
   type KeyBoss,
   type KeyCard,
 } from "@/app/components/KeyPicks";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+
+interface BrowseResponse {
+  runs?: BrowseRun[];
+  total?: number;
+  total_pages?: number;
+  total_is_lower_bound?: boolean;
+  per_page?: number;
+}
 
 interface BrowseRun {
   run_hash: string;
@@ -138,14 +148,21 @@ function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
       return v;
     return "date";
   });
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useFilterPage(
+    JSON.stringify([
+      query,
+      character,
+      win,
+      user,
+      seed,
+      buildId,
+      mode,
+      gameMode,
+      ascension,
+      sort,
+    ]),
+  );
 
-  const [runs, setRuns] = useState<BrowseRun[]>([]);
-  const [total, setTotal] = useState(0);
-  const [totalPages, setTotalPages] = useState(0);
-  const [totalIsLowerBound, setTotalIsLowerBound] = useState(false);
-  const [perPage, setPerPage] = useState(0);
-  const [loading, setLoading] = useState(false);
   const [versions, setVersions] = useState<string[]>([]);
   const [charNames, setCharNames] = useState<Record<string, string>>({});
 
@@ -211,22 +228,6 @@ function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
   const effectiveShop = queryFilters.shop || "";
   const effectiveWinrate = queryFilters.winrate || "";
 
-  // Reset page when any filter changes
-  useEffect(() => {
-    setPage(1);
-  }, [
-    query,
-    character,
-    win,
-    user,
-    seed,
-    buildId,
-    mode,
-    gameMode,
-    ascension,
-    sort,
-  ]);
-
   // Sync state to URL for shareable links
   useEffect(() => {
     const params = new URLSearchParams();
@@ -258,83 +259,55 @@ function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
     sort,
   ]);
 
-  // Fetch runs
-  useEffect(() => {
-    setLoading(true);
-    const controller = new AbortController();
-    const params = new URLSearchParams();
-    if (effectiveChar) params.set("character", effectiveChar);
-    if (effectiveWin) params.set("win", effectiveWin);
-    if (effectiveUser) params.set("username", effectiveUser);
-    if (effectiveSeed) params.set("seed", effectiveSeed);
-    if (effectiveBuildId) {
-      if (effectiveBuildId.includes("-") && versions.length > 0) {
-        params.set(
-          "build_ids",
-          expandVersionRange(effectiveBuildId, versions).join(","),
-        );
-      } else {
-        params.set("build_id", effectiveBuildId);
-      }
+  // No cache-buster: the API sends Cache-Control max-age=30, so the edge
+  // and browser absorb repeat hits; new runs appear within seconds anyway.
+  const params = new URLSearchParams();
+  if (effectiveChar) params.set("character", effectiveChar);
+  if (effectiveWin) params.set("win", effectiveWin);
+  if (effectiveUser) params.set("username", effectiveUser);
+  if (effectiveSeed) params.set("seed", effectiveSeed);
+  if (effectiveBuildId) {
+    if (effectiveBuildId.includes("-") && versions.length > 0) {
+      params.set(
+        "build_ids",
+        expandVersionRange(effectiveBuildId, versions).join(","),
+      );
+    } else {
+      params.set("build_id", effectiveBuildId);
     }
-    if (effectivePlayers) params.set("players", effectivePlayers);
-    if (effectiveAscension) {
-      const asc = parseAscension(effectiveAscension);
-      if (asc.exact !== undefined) params.set("ascension", String(asc.exact));
-      if (asc.min !== undefined) params.set("ascension_min", String(asc.min));
-      if (asc.max !== undefined) params.set("ascension_max", String(asc.max));
-    }
-    if (effectiveCard) params.set("card", effectiveCard);
-    if (effectiveRelic) params.set("relic", effectiveRelic);
-    if (effectiveShop) params.set("shop", effectiveShop);
-    if (effectiveWinrate) {
-      const wr = parseWinrate(effectiveWinrate);
-      if (wr.min !== undefined) params.set("winrate_min", String(wr.min));
-      if (wr.max !== undefined) params.set("winrate_max", String(wr.max));
-    }
-    if (effectiveGameMode === "daily_today") {
-      params.set("game_mode", "daily");
-      params.set("today", "true");
-    } else if (effectiveGameMode) {
-      params.set("game_mode", effectiveGameMode);
-    }
-    params.set("sort", sort);
-    params.set("page", String(page));
-    // No cache-buster: the API sends Cache-Control max-age=30, so the edge
-    // and browser absorb repeat hits; new runs appear within seconds anyway.
-    fetch(`${API}${config.endpoint}?${params}`, { signal: controller.signal })
-      .then((r) => (r.ok ? r.json() : { runs: [], total: 0, total_pages: 0 }))
-      .then((data) => {
-        if (controller.signal.aborted) return;
-        setRuns(data.runs || []);
-        setTotal(data.total || 0);
-        setTotalPages(data.total_pages || 0);
-        setTotalIsLowerBound(!!data.total_is_lower_bound);
-        setPerPage(data.per_page || 0);
-      })
-      .catch(() => {})
-      .finally(() => {
-        if (!controller.signal.aborted) setLoading(false);
-      });
-    return () => controller.abort();
-  }, [
-    effectiveChar,
-    effectiveWin,
-    effectiveUser,
-    effectiveSeed,
-    effectiveBuildId,
-    effectivePlayers,
-    effectiveGameMode,
-    effectiveAscension,
-    effectiveCard,
-    effectiveRelic,
-    effectiveShop,
-    effectiveWinrate,
-    versions,
-    sort,
-    page,
-    config.endpoint,
-  ]);
+  }
+  if (effectivePlayers) params.set("players", effectivePlayers);
+  if (effectiveAscension) {
+    const asc = parseAscension(effectiveAscension);
+    if (asc.exact !== undefined) params.set("ascension", String(asc.exact));
+    if (asc.min !== undefined) params.set("ascension_min", String(asc.min));
+    if (asc.max !== undefined) params.set("ascension_max", String(asc.max));
+  }
+  if (effectiveCard) params.set("card", effectiveCard);
+  if (effectiveRelic) params.set("relic", effectiveRelic);
+  if (effectiveShop) params.set("shop", effectiveShop);
+  if (effectiveWinrate) {
+    const wr = parseWinrate(effectiveWinrate);
+    if (wr.min !== undefined) params.set("winrate_min", String(wr.min));
+    if (wr.max !== undefined) params.set("winrate_max", String(wr.max));
+  }
+  if (effectiveGameMode === "daily_today") {
+    params.set("game_mode", "daily");
+    params.set("today", "true");
+  } else if (effectiveGameMode) {
+    params.set("game_mode", effectiveGameMode);
+  }
+  params.set("sort", sort);
+  params.set("page", String(page));
+  const list = useFilterFetch<BrowseResponse>(
+    `${API}${config.endpoint}?${params}`,
+  );
+  const loading = list.loading;
+  const runs = list.data?.runs ?? [];
+  const total = list.data?.total || 0;
+  const totalPages = list.data?.total_pages || 0;
+  const totalIsLowerBound = !!list.data?.total_is_lower_bound;
+  const perPage = list.data?.per_page || 0;
 
   function clearAll() {
     setQuery("");
@@ -551,13 +524,17 @@ function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
         )}
       </div>
 
-      <p className="text-xs text-[var(--text-muted)] mb-3">
-        {totalIsLowerBound
-          ? t("More than 10,000 runs")
-          : `${fmtN(total)} ${t(config.totalLabel)}`}
-      </p>
+      {!list.error && (
+        <p className="text-xs text-[var(--text-muted)] mb-3">
+          {totalIsLowerBound
+            ? t("More than 10,000 runs")
+            : `${fmtN(total)} ${t(config.totalLabel)}`}
+        </p>
+      )}
 
-      {loading ? (
+      {list.error ? (
+        <LoadFailed onRetry={list.retry} />
+      ) : loading ? (
         <div className="space-y-2">
           {[...Array(8)].map((_, i) => (
             <div
@@ -634,7 +611,7 @@ function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
           {totalPages > 1 && (
             <div className="flex items-center justify-center gap-2 mt-4">
               <button
-                onClick={() => setPage((p) => Math.max(1, p - 1))}
+                onClick={() => setPage(Math.max(1, page - 1))}
                 disabled={page <= 1}
                 className="text-xs px-3 py-1.5 rounded-lg border border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
               >
@@ -644,7 +621,7 @@ function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
                 {t("Page")} {fmtN(page)} {t("of")} {fmtN(totalPages)}
               </span>
               <button
-                onClick={() => setPage((p) => p + 1)}
+                onClick={() => setPage(page + 1)}
                 disabled={
                   page >= totalPages &&
                   !(totalIsLowerBound && perPage > 0 && runs.length >= perPage)

@@ -2,7 +2,7 @@
 
 import { useT } from "@/lib/i18n";
 // "Drafted next" — the offer-conditioned recommendations. Given you already
-// hold this card/relic, the cards players most often take from rewards when
+// hold this card/relic, the cards players take more often than usual when
 // offered them, ranked by lift over each card's usual take-rate. Stronger than
 // co-occurrence: it's conditioned on the card actually being offered. Reads
 // /api/draft-recs/{kind}/{id}; renders nothing until the cache is built.
@@ -20,7 +20,13 @@ const pct = (x: number) => `${Math.round((x ?? 0) * 100)}%`;
 const uplift = (lift: number) =>
   `${lift >= 1 ? "+" : ""}${Math.round((lift - 1) * 100)}%`;
 
-import type { DraftRecs as Recs } from "@/lib/entity-links";
+import {
+  draftMinPicks,
+  draftRecsHaveFloor,
+  draftTakeRate,
+  listedDraftRecs,
+  type DraftRecs as Recs,
+} from "@/lib/entity-links";
 
 export default function EntityDraftRecs({
   kind,
@@ -59,17 +65,17 @@ export default function EntityDraftRecs({
     };
   }, [kind, id, lang, initial]);
 
-  const recs = (data?.recommends || []).slice(0, TOP);
+  const recs = listedDraftRecs(data).slice(0, TOP);
   if (!loaded || recs.length === 0) return null;
+  const floor = draftMinPicks(data);
+  const intro = draftRecsHaveFloor(data)
+    ? "draft_recs_intro"
+    : "draft_recs_intro_thin";
 
   return (
     <section id="draft-recs">
       <h2>{t("Drafted next")}</h2>
-      <p className="h-note">
-        {t("Cards players take most from rewards when they already have")}{" "}
-        {name}
-        {t(", vs how often they take each card in general.")}
-      </p>
+      <p className="h-note">{t(intro, { name, min: floor })}</p>
       <ul className="pair-list">
         {recs.map((r) => (
           <li key={r.id} className="pair-row">
@@ -83,12 +89,24 @@ export default function EntityDraftRecs({
                 </Link>
               </CardHover>
               <span className="pair-wr">
-                {pct(r.winrate)} {t("win rate")}
+                {(r.picks ?? 0) >= floor
+                  ? t("{pct} win rate over {n} picks", {
+                      pct: pct(r.winrate),
+                      n: (r.picks ?? 0).toLocaleString(),
+                    })
+                  : t("{n} picks, too few for a win rate", {
+                      n: (r.picks ?? 0).toLocaleString(),
+                    })}
               </span>
             </div>
             <span className="pair-stats">
               <span>
-                {t("picked")} {pct(r.pref)} {t("of the time")}
+                {t("picked")} {pct(draftTakeRate(r))} {t("of the time")} (
+                {t("taken {picked} of {offered} times offered", {
+                  picked: (r.picks ?? 0).toLocaleString(),
+                  offered: r.offers.toLocaleString(),
+                })}
+                )
               </span>
               <span className="draft-lift">
                 {uplift(r.lift)} {t("vs usual")}

@@ -292,7 +292,7 @@ Examples:
     args = parser.parse_args()
 
     system = platform.system()
-    print(f"Spire Codex Update Pipeline")
+    print("Spire Codex Update Pipeline")
     print(f"  OS: {system} ({platform.machine()})")
     print(f"  Python: {sys.version.split()[0]}")
     print(f"  Project: {ROOT}")
@@ -303,7 +303,7 @@ Examples:
         beta_dir = ROOT / "data-beta" / "eng"
         if not beta_dir.exists():
             print(f"\n  ERROR: {beta_dir} not found. Parse beta data first:")
-            print(f"  cd backend/app/parsers && EXTRACTION_DIR=extraction/beta DATA_DIR=data-beta python3 parse_all.py")
+            print("  cd backend/app/parsers && EXTRACTION_DIR=extraction/beta DATA_DIR=data-beta python3 parse_all.py")
             sys.exit(1)
         run([sys.executable, str(ROOT / "tools" / "diff_data.py"), str(stable_dir), str(beta_dir), "--format", "md"], cwd=ROOT)
         return
