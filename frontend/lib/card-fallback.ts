@@ -22,6 +22,7 @@ export interface CardImageChainOptions {
   channel?: "stable" | "beta";
   lang?: string;
   art?: string | null;
+  betaVersion?: string;
 }
 
 export function cardImageChain(
@@ -32,21 +33,42 @@ export function cardImageChain(
     channel = "stable",
     lang,
     art,
+    betaVersion,
   }: CardImageChainOptions = {},
 ): string[] {
   const urls: string[] = [];
   if (safeCardId(id)) {
     const lower = id.toLowerCase();
     if (enchantment && safeCardId(enchantment)) {
-      urls.push(enchantedCardUrl(lower, enchantment, upgraded, channel, lang));
+      urls.push(
+        enchantedCardUrl(
+          lower,
+          enchantment,
+          upgraded,
+          channel,
+          lang,
+          betaVersion,
+        ),
+      );
       if (lang)
-        urls.push(enchantedCardUrl(lower, enchantment, upgraded, channel));
+        urls.push(
+          enchantedCardUrl(
+            lower,
+            enchantment,
+            upgraded,
+            channel,
+            undefined,
+            betaVersion,
+          ),
+        );
     }
-    urls.push(fullCardUrl(lower, upgraded, channel, lang));
-    if (lang) urls.push(fullCardUrl(lower, upgraded, channel));
+    urls.push(fullCardUrl(lower, upgraded, channel, lang, betaVersion));
+    if (lang)
+      urls.push(fullCardUrl(lower, upgraded, channel, undefined, betaVersion));
     if (channel === "stable") {
-      urls.push(fullCardUrl(lower, upgraded, "beta", lang));
-      if (lang) urls.push(fullCardUrl(lower, upgraded, "beta"));
+      urls.push(fullCardUrl(lower, upgraded, "beta", lang, betaVersion));
+      if (lang)
+        urls.push(fullCardUrl(lower, upgraded, "beta", undefined, betaVersion));
     }
   }
   if (art) urls.push(imageUrl(art));

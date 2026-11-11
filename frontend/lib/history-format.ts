@@ -94,6 +94,7 @@ export function displayValue(raw: unknown): string | null {
   if (EMPTY_VALUES.has(text.toLowerCase())) return null;
   if (text === "True") return "yes";
   if (text === "False") return "no";
+  if (text === "1 fields") return "1 field";
   if (/^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$/.test(text) && text.length > 1) {
     return titleCase(text);
   }

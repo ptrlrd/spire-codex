@@ -255,8 +255,7 @@ def get_my_runs(
     shop: str | None = None,
 ):
     user = require_user(request)
-    if limit > 100:
-        limit = 100
+    limit = max(1, min(limit, 100))
     if page < 1:
         page = 1
 
@@ -587,6 +586,9 @@ async def overwolf_link(request: Request):
         raise HTTPException(status_code=400, detail="token is required")
     try:
         result = supporters.link_overwolf(user["_id"], token)
+    except supporters.OverwolfConflict as exc:
+        logger.warning("overwolf link refused for %s: %s", user["_id"], exc)
+        raise HTTPException(status_code=409, detail=str(exc))
     except supporters.OverwolfError as exc:
         logger.warning("overwolf link rejected for %s: %s", user["_id"], exc)
         raise HTTPException(status_code=401, detail=str(exc))

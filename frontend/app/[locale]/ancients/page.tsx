@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 import AncientsClient from "./AncientsClient";
+import { fetchAncientsInitial } from "./server-data";
 
 export const revalidate = 3600;
 
@@ -24,6 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function AncientsPage({ params }: Props) {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
+  const initial = await fetchAncientsInitial(locale);
   const jsonLd = [
     buildBreadcrumbJsonLd([
       { name: t("Home"), href: localePath(locale, "/") },
@@ -40,7 +42,7 @@ export default async function AncientsPage({ params }: Props) {
   return (
     <>
       <JsonLd data={jsonLd} />
-      <AncientsClient />
+      <AncientsClient initial={initial} />
     </>
   );
 }

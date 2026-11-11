@@ -2,12 +2,8 @@ import type { MetadataRoute } from "next";
 import { ALL_BROWSE_SLUGS } from "@/app/[locale]/cards/browse/slug-map";
 import { SUPPORTED_LANGS } from "@/lib/languages";
 import { imageUrl } from "@/lib/image-url";
-import {
-  TIER_CARD_COLORS,
-  TIER_RELIC_ACTS,
-  TIER_RELIC_ANCIENTS,
-  TIER_RELIC_POOLS,
-} from "@/lib/tier-list-filters";
+import { tierListVariantPaths } from "@/lib/tier-list-filters";
+import { gameDataLastMod } from "@/lib/content-dates";
 
 // Regenerate at most every 30 minutes: crawler fetches between ticks are
 // served from cache instead of re-running ~21 API list fetches each hit.
@@ -206,6 +202,13 @@ const STATIC_PAGES = [
   { path: "/unlocks", priority: 0.6, changeFrequency: "weekly" as const },
   { path: "/runs", priority: 0.7, changeFrequency: "daily" as const },
   { path: "/replays", priority: 0.6, changeFrequency: "daily" as const },
+  { path: "/seed-finder", priority: 0.7, changeFrequency: "weekly" as const },
+  { path: "/deck-builder", priority: 0.7, changeFrequency: "weekly" as const },
+  {
+    path: "/tier-list-maker",
+    priority: 0.6,
+    changeFrequency: "monthly" as const,
+  },
   { path: "/stats/charts", priority: 0.6, changeFrequency: "daily" as const },
   {
     path: "/stats/chart-builder",
@@ -381,16 +384,20 @@ const fetchEntities = (endpoint: string) => fetchList(endpoint, isEntity);
 // which is when entity pages last changed. Hub and community pages carry no
 // lastmod: a synthetic "today" or "this hour" on every fetch tells Google
 // the page changed when it didn't, and it stops trusting the field.
-async function contentLastMod(): Promise<Date | undefined> {
+const contentLastMod = gameDataLastMod;
+
+const xmlSafe = (path: string) => path.replace(/&/g, "&amp;");
+
+async function scoresLastMod(): Promise<Date | undefined> {
   try {
-    const res = await fetch(`${API}/api/changelogs`, {
+    const res = await fetch(`${API}/api/runs/pulse`, {
       next: { revalidate: 1800 },
     });
     if (!res.ok) return undefined;
-    const log = (await res.json()) as Array<{ date?: string }>;
-    const latest = log.find((e) => e.date);
-    if (!latest?.date) return undefined;
-    const parsed = new Date(latest.date);
+    const body = (await res.json()) as { data_through?: unknown };
+    if (typeof body.data_through !== "string") return undefined;
+    const raw = body.data_through.trim().replace(" ", "T");
+    const parsed = new Date(/(Z|[+-]\d\d:?\d\d)$/.test(raw) ? raw : `${raw}Z`);
     return Number.isNaN(parsed.getTime()) ? undefined : parsed;
   } catch {
     return undefined;
@@ -501,35 +508,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // its own generateMetadata title + canonical, so they need their
   // own sitemap entries to surface in search. Targets long-tail
   // queries like "ironclad tier list", "necrobinder relic tier list".
-  const tierListVariants: MetadataRoute.Sitemap = [
-    ...TIER_CARD_COLORS.map((c) => ({
-      url: `${SITE_URL}/tier-list/cards?color=${c}`,
+  const scoresDate = await scoresLastMod();
+  const tierListVariants: MetadataRoute.Sitemap = tierListVariantPaths().map(
+    (v) => ({
+      url: `${SITE_URL}${xmlSafe(v.path)}`,
+      lastModified: scoresDate,
       changeFrequency: "daily" as const,
-      priority: 0.8,
-    })),
-    ...TIER_RELIC_POOLS.map((p) => ({
-      url: `${SITE_URL}/tier-list/relics?pool=${p}`,
-      changeFrequency: "daily" as const,
-      priority: 0.8,
-    })),
-    ...TIER_RELIC_ACTS.map((a) => ({
-      url: `${SITE_URL}/tier-list/relics?act=${a}`,
-      changeFrequency: "daily" as const,
-      priority: 0.7,
-    })),
-    ...TIER_RELIC_ANCIENTS.map((a) => ({
-      url: `${SITE_URL}/tier-list/relics?ancient=${a}`,
-      changeFrequency: "daily" as const,
-      priority: 0.8,
-    })),
-    ...TIER_RELIC_ACTS.flatMap((act) =>
-      TIER_RELIC_ANCIENTS.map((a) => ({
-        url: `${SITE_URL}/tier-list/relics?act=${act}&amp;ancient=${a}`,
-        changeFrequency: "daily" as const,
-        priority: 0.6,
-      })),
-    ),
-  ];
+      priority: v.priority,
+    }),
+  );
 
   // Card browse pages (programmatic SEO)
   const browseEntries: MetadataRoute.Sitemap = ALL_BROWSE_SLUGS.map((slug) => ({

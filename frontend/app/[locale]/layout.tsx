@@ -24,6 +24,8 @@ import AuthNotice from "@/app/components/AuthNotice";
 import LocaleSuggestToast from "@/app/components/LocaleSuggestToast";
 import { SITE_NAME, SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
 import ApiConfigProvider from "../contexts/api/ApiConfigProvider";
+import BetaRenderVersionProvider from "@/app/components/BetaRenderVersionProvider";
+import { fetchBetaRenderVersion } from "@/lib/beta-render-version.server";
 
 // Self-hosted Umami analytics. Both values are public-by-design, the
 // browser fetches the script + sends the website ID on every page
@@ -134,6 +136,7 @@ export default async function RootLayout({ children, params }: LayoutProps) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
+  const betaRenderVersion = await fetchBetaRenderVersion();
   return (
     <html lang={hreflangOf(locale)} className="dark">
       {/* React hoists these into <head>. Preconnecting to the CDN saves a
@@ -180,31 +183,33 @@ export default async function RootLayout({ children, params }: LayoutProps) {
             reads window.location instead now. */}
         <IntlProvider locale={locale} messages={clientMessagesFor(locale)}>
           <ApiConfigProvider>
-            <AuthProvider>
-              <ToastProvider>
-                <AuthNotice />
-                <Navbar />
-                <LocaleSuggestToast />
-                <div className="pt-16 flex-1 flex flex-col min-w-0">
-                  <AlertTicker />
-                  {/* tabIndex=-1 lets Navbar's main.focus() (PR #142) clear
+            <BetaRenderVersionProvider version={betaRenderVersion}>
+              <AuthProvider>
+                <ToastProvider>
+                  <AuthNotice />
+                  <Navbar />
+                  <LocaleSuggestToast />
+                  <div className="pt-16 flex-1 min-w-0">
+                    <AlertTicker />
+                    {/* tabIndex=-1 lets Navbar's main.focus() (PR #142) clear
                     focus-within from the dropdown after route changes. The
                     outline-none is required because the programmatic focus
                     would otherwise paint a visible browser focus ring around
                     the entire content area, which read as a stray "tab" line
                     underneath the donation banner on every navigation. */}
-                  <BetaChrome />
-                  <main tabIndex={-1} className="outline-none flex-1 min-w-0">
-                    {children}
-                  </main>
-                </div>
-                <Footer />
-                <GlobalSearch />
-                <FloatingFeedback />
-                {process.env.NODE_ENV === "production" && <NitroAnchor />}
-                <HighlightFeedback />
-              </ToastProvider>
-            </AuthProvider>
+                    <BetaChrome />
+                    <main tabIndex={-1} className="outline-none min-w-0">
+                      {children}
+                    </main>
+                  </div>
+                  <Footer />
+                  <GlobalSearch />
+                  <FloatingFeedback />
+                  {process.env.NODE_ENV === "production" && <NitroAnchor />}
+                  <HighlightFeedback />
+                </ToastProvider>
+              </AuthProvider>
+            </BetaRenderVersionProvider>
           </ApiConfigProvider>
         </IntlProvider>
         {UMAMI_SRC && UMAMI_WEBSITE_ID && (

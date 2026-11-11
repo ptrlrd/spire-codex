@@ -11,7 +11,9 @@ import {
   stripTagsFlat,
 } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
+import { kindPhrase } from "@/lib/kind-phrase";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
+import { gameDataLastModIso } from "@/lib/content-dates";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
 import { betaOnlyVersion, fetchEntityRes } from "@/lib/entity-fetch";
 import BetaOnlyScope from "@/app/components/BetaOnlyScope";
@@ -91,7 +93,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: clipMetaDescription(
         t("event_meta_description", {
           name: event.name,
-          type: event.type ?? "",
+          kind: kindPhrase("event", event.type),
           act: event.act ? ` (${event.act})` : "",
           desc,
           hasDesc: desc ? "yes" : "no",
@@ -132,6 +134,7 @@ export default async function Page({ params }: Props) {
         path: localePath(locale, `/events/${id}`),
         imageUrl: event.image_url ? imageUrl(event.image_url) : undefined,
         category: "Event",
+        dateModified: await gameDataLastModIso(),
         inLanguage: inLanguageOf(locale),
         breadcrumbs: [
           { name: uiText(locale, "Home"), href: localePath(locale, "/") },
@@ -149,7 +152,7 @@ export default async function Page({ params }: Props) {
         },
         {
           question: `What type of event is ${event.name}?`,
-          answer: `${event.name} is a ${event.type} event${event.act ? ` found in ${event.act}` : ""}.`,
+          answer: `${event.name} is ${kindPhrase("event", event.type)}${event.act ? ` found in ${event.act}` : ""}.`,
         },
       ];
       if (event.options?.length) {

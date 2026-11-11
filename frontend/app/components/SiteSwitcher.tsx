@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Link } from "@/i18n/navigation";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { setBetaRenderVersion } from "@/lib/image-url";
+import { setBetaRenderVersion } from "@/lib/beta-render-version";
 import { useChannel } from "@/lib/api/prefix.client";
 import { LANG_PREFIXES } from "@/lib/languages";
 import { useT } from "@/lib/i18n";

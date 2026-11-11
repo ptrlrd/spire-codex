@@ -605,6 +605,10 @@ def submit_run(
     # of N runs does a single user lookup rather than N. Steam is checked
     # first since that's what the game clients send; discord_id is here for
     # parity so any client that knows it links the same way.
+    from .runs_db import INT_OVERFLOW_ERROR, has_oversized_int
+
+    if has_oversized_int(data):
+        return {"error": INT_OVERFLOW_ERROR, "int_overflow": True}
     linked_user_id = None
     linked_username = None
     owner = None
@@ -2966,7 +2970,7 @@ def list_runs(
             "runs": [],
             "total": 0,
             "page": max(page, 1),
-            "per_page": min(limit, 100),
+            "per_page": max(1, min(limit, 100)),
             "total_pages": 0,
             "total_is_lower_bound": False,
         }
@@ -2988,7 +2992,7 @@ def list_runs(
     else:
         total = coll.estimated_document_count()
         total_is_lower_bound = False
-    per_page = min(limit, 100)
+    per_page = max(1, min(limit, 100))
     offset = (max(page, 1) - 1) * per_page
     cursor = (
         coll.find(q, _projection_row()).sort(sort_clause).skip(offset).limit(per_page)
@@ -3354,7 +3358,7 @@ def _leaderboard_live(
     else:
         total = coll.estimated_document_count()
         total_is_lower_bound = False
-    per_page = min(limit, 100)
+    per_page = max(1, min(limit, 100))
     offset = (max(page, 1) - 1) * per_page
     cursor = (
         coll.find(q, _projection_row()).sort(sort_clause).skip(offset).limit(per_page)
@@ -4161,9 +4165,20 @@ def delete_run_permanently(run_hash: str, user: dict) -> dict:
     if not owns_run(run, user):
         return {"error": "You do not own this run"}
 
+    if not _remove_run(run):
+        return {"error": "Run not found"}
+    return {"success": True}
+
+
+def _remove_run(run: dict, guard: dict | None = None) -> bool:
+    """Drop a run doc and everything stored beside it. The guard narrows the
+    delete so a doc that changed since it was read is left alone."""
+    run_hash = run["_id"]
+    removed = _get_collection().delete_one({"_id": run_hash, **(guard or {})})
+    if not removed.deleted_count:
+        return False
     if not run.get("hidden") and not run.get("deleted_at"):
         bump_stats_counters(run, -1)
-    coll.delete_one({"_id": run_hash})
     _blob_collection().delete_one({"_id": run_hash})
     try:
         from .replays_db import _coll as _replays
@@ -4176,7 +4191,7 @@ def delete_run_permanently(run_hash: str, user: dict) -> dict:
     except OSError:
         logger.warning("run file delete failed for %s", run_hash, exc_info=True)
     evict_run_pages([run_hash])
-    return {"success": True}
+    return True
 
 
 # ── saved charts (chart builder) ─────────────────────────────────────────

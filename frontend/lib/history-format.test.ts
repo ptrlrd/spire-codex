@@ -48,6 +48,8 @@ describe("history values", () => {
     expect(displayValue("Deal 10 damage.")).toBe("Deal 10 damage.");
     expect(displayValue("3")).toBe("3");
     expect(displayValue("A")).toBe("A");
+    expect(displayValue("1 fields")).toBe("1 field");
+    expect(displayValue("2 fields")).toBe("2 fields");
   });
 
   it("drops hidden and unchanged rows", () => {

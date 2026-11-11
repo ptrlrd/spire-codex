@@ -6,6 +6,7 @@ import { cachedFetch } from "@/lib/fetch-cache";
 import { fullCardUrl } from "@/lib/image-url";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { useGameLocale, useT, type TFn } from "@/lib/i18n";
+import { useBetaRenderVersion } from "./BetaRenderVersionProvider";
 import RichDescription from "./RichDescription";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -80,6 +81,7 @@ export default function BetaChanges({
 }) {
   const t = useT();
   const lang = useGameLocale();
+  const betaRenderVersion = useBetaRenderVersion();
   const [diff, setDiff] = useState<BetaDiff | null>(null);
   const [pair, setPair] = useState<{ main: Entity; beta: Entity } | null>(null);
   const inBetaSection = useBetaPrefix() === "/beta";
@@ -155,7 +157,13 @@ export default function BetaChanges({
                 {(["stable", "beta"] as const).map((channel) => (
                   <figure key={channel} className="w-[112px]">
                     <img
-                      src={fullCardUrl(id, false, channel, lang)}
+                      src={fullCardUrl(
+                        id,
+                        false,
+                        channel,
+                        lang,
+                        betaRenderVersion,
+                      )}
                       alt={`${String(pair.main.name ?? id)} (${
                         channel === "beta" ? t("Beta") : t("Main")
                       })`}

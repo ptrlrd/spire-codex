@@ -11,6 +11,7 @@ import { buildPageMetadata, pageHeading } from "@/lib/seo";
 import type { CSSProperties } from "react";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
+import { gameDataLastModIso } from "@/lib/content-dates";
 import { imageUrl } from "@/lib/image-url";
 import MerchantToc from "./MerchantToc";
 import "@/app/card-revamp.css";
@@ -284,6 +285,7 @@ export default async function MerchantPage({ params }: Props) {
       path: localePath(locale, "/merchant"),
       inLanguage: inLanguageOf(locale),
       category: "Guide",
+      dateModified: await gameDataLastModIso(),
       breadcrumbs: [
         { name: t("Home"), href: localePath(locale, "/") },
         { name: t("Merchant Guide"), href: localePath(locale, "/merchant") },
