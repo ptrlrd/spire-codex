@@ -1,5 +1,13 @@
 import { describe, expect, it } from "vitest";
-import { buildEntitySummary, pct } from "./entity-summary";
+import {
+  LIST_SLOT,
+  buildEntitySummary,
+  listParts,
+  pct,
+  splitAtSlot,
+} from "./entity-summary";
+import { messagesFor } from "@/i18n/messages";
+import { SUPPORTED_LANGS } from "@/lib/languages";
 import type { EntityStats } from "@/app/components/EntityRunStats";
 
 const stats: EntityStats = {
@@ -86,5 +94,48 @@ describe("entity summary", () => {
   it("formats percentages to one decimal", () => {
     expect(pct(41.666)).toBe("41.7%");
     expect(pct(50)).toBe("50%");
+  });
+});
+
+function joined(locale: string, names: string[]): string {
+  return listParts(locale, names.length)
+    .map((part) => ("text" in part ? part.text : names[part.item]))
+    .join("");
+}
+
+describe("entity summary sentences", () => {
+  it("keeps the English list wording", () => {
+    expect(joined("eng", ["A"])).toBe("A");
+    expect(joined("eng", ["A", "B"])).toBe("A and B");
+    expect(joined("eng", ["A", "B", "C"])).toBe("A, B and C");
+  });
+
+  it("joins lists the way each language does", () => {
+    expect(joined("deu", ["A", "B", "C"])).toBe("A, B und C");
+    expect(joined("jpn", ["A", "B", "C"])).toBe("A、B、C");
+    expect(joined("zhs", ["A", "B", "C"])).toBe("A、B和C");
+  });
+
+  it("splits a sentence around the list", () => {
+    expect(splitAtSlot(`before ${LIST_SLOT} after.`)).toEqual([
+      "before ",
+      " after.",
+    ]);
+    expect(splitAtSlot("no list")).toEqual(["no list", ""]);
+  });
+
+  it("has one list slot in every language", () => {
+    for (const lang of ["eng", ...SUPPORTED_LANGS] as const) {
+      const ui = messagesFor(lang);
+      for (const key of ["entity_summary_partners", "entity_summary_drafted"])
+        expect(ui[key].split("{list}").length, `${lang} ${key}`).toBe(2);
+    }
+    const eng = messagesFor("eng");
+    expect(eng.entity_summary_partners).toBe(
+      "It is most often run alongside {list}.",
+    );
+    expect(eng.entity_summary_drafted).toBe(
+      "Players who already have it most often draft {list} next.",
+    );
   });
 });

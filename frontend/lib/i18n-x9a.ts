@@ -23,7 +23,7 @@ export const X9A: Record<string, Record<string, string>> = {
     esp: "Seleccionar la partida de {character} que llegó al piso {floor}",
     fra: "Sélectionner la partie de {character} arrivée à l'étage {floor}",
     ita: "Seleziona la partita di {character} arrivata al piano {floor}",
-    jpn: "フロア{floor}まで到達した{character}のランを選択",
+    jpn: "{floor}階まで到達した{character}のランを選択",
     kor: "{floor}층에 도달한 {character} 런 선택",
     pol: "Zaznacz przebieg postaci {character}, który dotarł na piętro {floor}",
     ptb: "Selecionar a partida de {character} que chegou ao andar {floor}",

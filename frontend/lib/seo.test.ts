@@ -53,7 +53,7 @@ describe("entity titles", () => {
       ),
     ).toBe("Fire Potion - Common Potion - Slay the Spire 2 | Spire Codex");
     expect(entityTitle("fra", "Attiser", "Carte", qualifier)).toBe(
-      "Attiser - Slay the Spire 2 Carte | Spire Codex (Francais)",
+      "Attiser - Slay the Spire 2 Carte | Spire Codex (Français)",
     );
   });
   it("skips colors and rarities that are not words a player searches", () => {

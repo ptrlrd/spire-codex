@@ -2,11 +2,14 @@
 
 import { Fragment } from "react";
 import { Link } from "@/i18n/navigation";
-import { useT } from "@/lib/i18n";
+import { useGameLocale, useT } from "@/lib/i18n";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { characterName } from "@/app/components/CharacterTag";
 import {
+  LIST_SLOT,
+  listParts,
   pct,
+  splitAtSlot,
   type EntitySummaryData,
   type SummaryLink,
 } from "@/lib/entity-summary";
@@ -20,20 +23,31 @@ export default function EntitySummary({
 }) {
   const t = useT();
   const bp = useBetaPrefix();
+  const locale = useGameLocale();
   if (!data) return null;
 
-  const links = (items: SummaryLink[]) =>
-    items.map((it, i) => (
-      <Fragment key={it.id}>
-        {i > 0 && (i === items.length - 1 ? ` ${t("and")} ` : ", ")}
-        <Link
-          href={`${bp}/${it.kind}/${it.id.toLowerCase()}`}
-          className="summary-link"
-        >
-          {it.name}
-        </Link>
-      </Fragment>
-    ));
+  const sentence = (key: string, items: SummaryLink[]) => {
+    const [before, after] = splitAtSlot(t(key, { list: LIST_SLOT }));
+    return (
+      <>
+        {before}
+        {listParts(locale, items.length).map((part, i) =>
+          "text" in part ? (
+            <Fragment key={i}>{part.text}</Fragment>
+          ) : (
+            <Link
+              key={i}
+              href={`${bp}/${items[part.item].kind}/${items[part.item].id.toLowerCase()}`}
+              className="summary-link"
+            >
+              {items[part.item].name}
+            </Link>
+          ),
+        )}
+        {after}
+      </>
+    );
+  };
 
   const hasStats =
     data.runs !== null && data.winRate !== null && data.baseline !== null;
@@ -67,14 +81,13 @@ export default function EntitySummary({
       {data.partners.length > 0 && (
         <>
           {hasStats && " "}
-          {t("entity_summary_partners_before")} {links(data.partners)}.
+          {sentence("entity_summary_partners", data.partners)}
         </>
       )}
       {data.draftedNext.length > 0 && (
         <>
           {(hasStats || data.partners.length > 0) && " "}
-          {t("entity_summary_drafted_before")} {links(data.draftedNext)}{" "}
-          {t("entity_summary_drafted_after")}.
+          {sentence("entity_summary_drafted", data.draftedNext)}
         </>
       )}
     </p>
