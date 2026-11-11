@@ -290,6 +290,25 @@ def test_seed_rank_reuses_the_cached_global_total(monkeypatch, cache_store):
     assert cache_store[runs_db_mongo._GLOBAL_WINS_KEY] == 0
 
 
+class SlowestWinColl:
+    def find_one(self, q, projection=None, **kwargs):
+        return {"run_time": 9000}
+
+    def count_documents(self, q, **kwargs):
+        if q.get("hidden") is True:
+            return 0
+        return 107 if "run_time" in q else 5
+
+
+def test_seed_rank_never_outranks_a_stale_global_total(monkeypatch, cache_store):
+    cache_store[runs_db_mongo._GLOBAL_WINS_KEY] = 100
+    monkeypatch.setattr(runs_db_mongo, "_get_collection", lambda: SlowestWinColl())
+    out = runs_db_mongo.seed_rank_for("7656119", "SEEDX")
+    assert out["global_rank"] == 108
+    assert out["global_total"] == 108
+    assert out["percentile"] == 100.0
+
+
 def test_seed_rank_route_caches_per_seed_and_player(mongo_env, monkeypatch):
     calls = []
 

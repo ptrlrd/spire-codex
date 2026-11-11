@@ -2068,7 +2068,7 @@ def get_community_stats(
                 status_code=503,
                 detail=(
                     "Stats for this filter combination took too long to "
-                    "compute. Try again later or with fewer filters."
+                    "compute. Try again later."
                 ),
                 headers={"Retry-After": "120"},
             )
