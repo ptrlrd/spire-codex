@@ -8,9 +8,8 @@ touches that account's row groups. Serving folds the rows that match the
 profile filters, so lift stays exact under any filter combination:
 lift = wins/xn - xs/xn over the seats that had an expectation.
 
-A run belongs to the account that uploaded it. The seat is the only seat
-of a solo run, or in co-op the seat whose player id appears in more of
-that account's runs than any other (ties count no co-op seat).
+A run belongs to the account that uploaded it. The lake keeps one seat per
+run document, the document's own, so that is the account's seat.
 
     docker compose -f docker-compose.prod.yml run --rm --entrypoint python lake-ingest /lab/player_stats.py
 """
@@ -24,12 +23,14 @@ sys.path.insert(0, "/app")
 
 LAKE = pathlib.Path(os.environ.get("LAKE_DIR", "/lake"))
 OUT_NAME = "player_stats.parquet"
-OFFICIAL = "('IRONCLAD','SILENT','DEFECT','NECROBINDER','REGENT')"
 MIN_OWN_CURVE = 5
 
 
 def _sql(lake: str) -> list[str]:
     from app.services.lake_stats import _excluded_runs_sql
+    from app.services.official_content import official_characters_sql
+
+    OFFICIAL = official_characters_sql()
 
     p = lambda name: f"read_parquet('{lake}/{name}.parquet')"  # noqa: E731
     exp = f"""
@@ -72,23 +73,9 @@ def _sql(lake: str) -> list[str]:
         LATERAL (SELECT unnest(generate_series(0, d.reached)) AS f) g
         GROUP BY 1, 2""",
         f"""CREATE TEMP TABLE own_players AS
-        SELECT e.run_hash, e.user_id, p.player_idx, p.player_id, p.character,
-          count(*) OVER (PARTITION BY e.run_hash) AS n_seats
+        SELECT e.run_hash, e.user_id, p.player_idx, p.character
         FROM eligible e JOIN {p("players")} p USING (run_hash)
         WHERE e.user_id IS NOT NULL""",
-        """CREATE TEMP TABLE user_pid AS
-        SELECT coalesce(g.user_id, k.user_id) AS user_id, coalesce(k.steam, g.pid) AS pid
-        FROM (
-          SELECT user_id, arg_max(player_id, c) AS pid
-          FROM (
-            SELECT user_id, player_id, count(DISTINCT run_hash) AS c
-            FROM own_players WHERE player_id IS NOT NULL AND n_seats > 1
-            GROUP BY 1, 2
-          )
-          GROUP BY 1
-          HAVING max(c) > coalesce(list_sort(list(c), 'DESC')[2], 0)
-        ) g
-        FULL JOIN user_steam k ON g.user_id = k.user_id""",
         f"""CREATE TEMP TABLE seats AS
         SELECT o.run_hash, o.player_idx, o.user_id, e.win, e.a10, e.ascension,
           e.version, e.players, coalesce(nullif(o.character, ''), e.run_char) AS character,
@@ -96,9 +83,7 @@ def _sql(lake: str) -> list[str]:
         FROM own_players o
         JOIN eligible e USING (run_hash)
         LEFT JOIN depth d USING (run_hash)
-        LEFT JOIN user_pid u ON u.user_id = o.user_id
-        WHERE (o.n_seats = 1 OR o.player_id = u.pid)
-          AND coalesce(nullif(o.character, ''), e.run_char) IN {OFFICIAL}""",
+        WHERE coalesce(nullif(o.character, ''), e.run_char) IN {OFFICIAL}""",
         """CREATE TEMP TABLE user_curve AS
         SELECT s.user_id, s.a10, g.f AS floor, count(*) AS n, count(*) FILTER (s.win) AS w
         FROM seats s,
@@ -114,7 +99,7 @@ def _sql(lake: str) -> list[str]:
         )
         SELECT fl.run_hash, fl.player_idx, fl.floor, fl.is_shop, fl.events, fl.rests, fl.cards
         FROM (
-          SELECT f.run_hash, ps.i AS player_idx, ao.floor_offset + f.floor_idx AS floor,
+          SELECT f.run_hash, f.player_idx, ao.floor_offset + f.floor_idx AS floor,
             list_contains(f.room_types, 'shop') AS is_shop,
             ps.u.event_choices AS events, ps.u.rest_site_choices AS rests,
             ps.u.card_choices AS cards
@@ -122,7 +107,7 @@ def _sql(lake: str) -> list[str]:
             SELECT f.* FROM {p("floors")} f SEMI JOIN seats s ON f.run_hash = s.run_hash
           ) f
           JOIN act_off ao ON f.run_hash = ao.run_hash AND f.act = ao.act,
-          LATERAL (SELECT unnest(f.players) AS u, generate_subscripts(f.players, 1) AS i) ps
+          LATERAL (SELECT unnest(f.players) AS u) ps
         ) fl
         JOIN seats s ON fl.run_hash = s.run_hash AND fl.player_idx = s.player_idx""",
         "CREATE TEMP TABLE parts AS "
@@ -205,28 +190,6 @@ def _potion_source(lake: str) -> str:
           {events}"""
 
 
-def _account_steam_ids() -> list[tuple[str, int]]:
-    """(account id, SteamID64) for every account with a linked Steam id,
-    so a co-op seat is matched by the uploader's own id rather than the
-    lake guess. Empty without Mongo."""
-    if not os.environ.get("MONGO_URL", "").strip():
-        return []
-    try:
-        from app.services.users_db import _get_collection
-
-        out = []
-        for doc in _get_collection().find(
-            {"steam_id": {"$nin": [None, ""]}}, {"steam_id": 1}
-        ):
-            sid = str(doc.get("steam_id") or "")
-            if sid.isdigit():
-                out.append((str(doc["_id"]), int(sid)))
-        return out
-    except Exception as e:
-        print(f"player stats: steam ids unavailable ({e})", flush=True)
-        return []
-
-
 def _connect():
     import duckdb
 
@@ -251,12 +214,6 @@ def build(con=None) -> dict:
     own = con is None
     con = con or _connect()
     try:
-        con.execute(
-            "CREATE OR REPLACE TEMP TABLE user_steam (user_id VARCHAR, steam BIGINT)"
-        )
-        steam = _account_steam_ids()
-        if steam:
-            con.executemany("INSERT INTO user_steam VALUES (?, ?)", steam)
         for stmt in _sql(lake):
             con.execute(stmt.replace("{potions}", _potion_source(lake)))
         out = LAKE / OUT_NAME

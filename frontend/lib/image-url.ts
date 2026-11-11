@@ -1,3 +1,5 @@
+import { getBetaRenderVersion } from "./beta-render-version";
+
 const CDN_URL = process.env.NEXT_PUBLIC_CDN_URL?.replace(/\/$/, "") || "";
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -11,15 +13,6 @@ export function imageUrl(path: string | null | undefined): string {
 }
 
 export const CDN_BASE = CDN_URL || "https://cdn.spire-codex.com";
-
-// The current beta version for render paths ("0.107.0" shape, no leading v).
-// The literal here is only a first-paint fallback: SiteSwitcher refreshes it
-// from /api/beta/version on every page, so a new beta drop doesn't need a
-// code change to resolve its renders.
-let _betaRenderVersion = "0.111.0";
-export function setBetaRenderVersion(v: string | null | undefined) {
-  if (v) _betaRenderVersion = v.replace(/^v/, "").replace(/-beta$/, "");
-}
 
 /**
  * Languages we have generated full card renders for. The renders are baked
@@ -64,8 +57,12 @@ export function fullCardUrl(
   upgraded = false,
   channel: "stable" | "beta" = "stable",
   lang = "eng",
+  betaVersion?: string,
 ): string {
-  const seg = channel === "beta" ? `beta/${_betaRenderVersion}` : "stable";
+  const seg =
+    channel === "beta"
+      ? `beta/${betaVersion || getBetaRenderVersion()}`
+      : "stable";
   // Only route to a localized folder for languages we've actually rendered;
   // everything else uses the English base path.
   const langSeg =
@@ -90,8 +87,12 @@ export function enchantedCardUrl(
   upgraded = false,
   channel: "stable" | "beta" = "stable",
   lang = "eng",
+  betaVersion?: string,
 ): string {
-  const seg = channel === "beta" ? `beta/${_betaRenderVersion}` : "stable";
+  const seg =
+    channel === "beta"
+      ? `beta/${betaVersion || getBetaRenderVersion()}`
+      : "stable";
   const langSeg =
     lang !== "eng" && CARD_RENDER_LANGS.has(lang) ? `${lang}/` : "";
   return `${CDN_BASE}/cards-full/${seg}/${langSeg}ench/${enchantment.toLowerCase()}/${id.toLowerCase()}${upgraded ? "_upg" : ""}.webp`;
@@ -115,6 +116,7 @@ export function cardOgImages(
   card: OgCard,
   lang = "eng",
   channel: "stable" | "beta" = "stable",
+  betaVersion?: string,
 ): { url: string; width?: number; height?: number; alt?: string }[] {
   const id = card.id.toLowerCase();
   // image_url_card is null when there's no full render (e.g. mad_science).
@@ -123,7 +125,7 @@ export function cardOgImages(
   }
   const imgs = [
     {
-      url: fullCardUrl(id, false, channel, lang),
+      url: fullCardUrl(id, false, channel, lang, betaVersion),
       width: 400,
       height: 520,
       alt: card.name,
@@ -131,7 +133,7 @@ export function cardOgImages(
   ];
   if (card.image_url_card_upg) {
     imgs.push({
-      url: fullCardUrl(id, true, channel, lang),
+      url: fullCardUrl(id, true, channel, lang, betaVersion),
       width: 400,
       height: 520,
       alt: `${card.name}+`,

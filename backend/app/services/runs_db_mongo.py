@@ -51,14 +51,21 @@ from typing import Any
 
 from pymongo import ASCENDING, DESCENDING, MongoClient
 from pymongo import ReturnDocument
-from pymongo.errors import DuplicateKeyError, ExecutionTimeout, OperationFailure
+from pymongo.errors import (
+    DuplicateKeyError,
+    ExecutionTimeout,
+    OperationFailure,
+    PyMongoError,
+)
 
-from ..metrics import db_operations, db_operation_duration
+from ..metrics import count_budget_timeouts, db_operations, db_operation_duration
 from . import cache as app_cache
+from .official_content import official_characters
 
 logger = logging.getLogger(__name__)
 
-OFFICIAL_CHARACTERS = {"IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT"}
+OFFICIAL_CHARACTERS = official_characters()
+_CAST = tuple(sorted(OFFICIAL_CHARACTERS))
 HIDDEN_WINS_INDEX = "hidden_wins"
 _hidden_wins_hint_warned = False
 _HIDDEN_WINS_FIELDS = {
@@ -69,6 +76,27 @@ _HIDDEN_WINS_FIELDS = {
     "ascension",
     "run_time",
 }
+HIDDEN_BROWSE_INDEX = "hidden_browse"
+BACKGROUND_INDEX_THREAD = "runs-background-indexes"
+_HIDDEN_BROWSE_KEYS = (
+    "win",
+    "character",
+    "game_mode",
+    "player_count",
+    "ascension",
+    "build_id",
+    "username_lower",
+    "seed",
+    "has_replay",
+    "was_abandoned",
+)
+_HIDDEN_BROWSE_FIELDS = frozenset(_HIDDEN_BROWSE_KEYS)
+STEAM_BEST_WIN_INDEX = "steam_win_runtime"
+USER_PLAYED_INDEX = "user_played_submitted"
+LIST_MAX_TIME_MS = 4000
+COUNT_FALLBACK_MAX_TIME_MS = 3000
+_GLOBAL_WINS_KEY = "seed_rank:global_wins"
+_GLOBAL_WINS_TTL_SECONDS = 300
 
 
 def _today_daily_seed_match() -> dict:
@@ -134,6 +162,7 @@ _data_dir = Path(os.environ.get("DATA_DIR", "/data"))
 
 _client: MongoClient | None = None
 _coll = None  # lazy — set by _get_collection
+_coll_lock = threading.Lock()
 
 
 def _get_collection():
@@ -146,23 +175,27 @@ def _get_collection():
     if _coll is not None:
         return _coll
 
-    url = os.environ.get("MONGO_URL", "").strip()
-    if not url:
-        raise RuntimeError("MONGO_URL not set — runs_db_mongo imported in error")
+    with _coll_lock:
+        if _coll is not None:
+            return _coll
+        url = os.environ.get("MONGO_URL", "").strip()
+        if not url:
+            raise RuntimeError("MONGO_URL not set: runs_db_mongo imported in error")
 
-    _client = MongoClient(
-        url,
-        w="majority",
-        wtimeoutms=5000,
-        retryWrites=True,
-        connectTimeoutMS=5000,
-        serverSelectionTimeoutMS=5000,
-    )
-    # Database name comes from the connection string's default db.
-    _coll = _client.get_default_database().runs
-    _ensure_indexes(_coll)
-    _ensure_run_validator(_coll)
-    return _coll
+        client = MongoClient(
+            url,
+            w="majority",
+            wtimeoutms=5000,
+            retryWrites=True,
+            connectTimeoutMS=5000,
+            serverSelectionTimeoutMS=5000,
+        )
+        coll = client.get_default_database().runs
+        _client = client
+        _coll = coll
+        _ensure_indexes(coll)
+        _ensure_run_validator(coll)
+    return coll
 
 
 def _ensure_indexes(coll) -> None:
@@ -233,10 +266,10 @@ def _ensure_indexes(coll) -> None:
     # still scans the whole collection, so it runs off the startup path;
     # _count_visible counts unhinted until it exists.
     threading.Thread(
-        target=_ensure_hidden_wins_index,
+        target=_ensure_background_indexes,
         args=(coll,),
         daemon=True,
-        name="hidden-wins-index",
+        name=BACKGROUND_INDEX_THREAD,
     ).start()
     coll.create_index([("ascension", DESCENDING), ("run_time", ASCENDING)])
     coll.create_index([("character", ASCENDING), ("submitted_at", DESCENDING)])
@@ -359,33 +392,46 @@ def _ensure_run_validator(coll) -> None:
     ``submitted_at`` in the import, or temporarily set ``validationAction``
     to ``"warn"`` for that window.
     """
+    validator = {
+        "$jsonSchema": {
+            "required": ["submitted_at"],
+            "properties": {
+                "submitted_at": {
+                    "bsonType": "date",
+                    "description": (
+                        "must be a BSON date; keyset export ordering depends on it"
+                    ),
+                }
+            },
+        }
+    }
+    message = (
+        "could not apply the runs submitted_at validator; inserts are NOT "
+        "being schema-checked. New-run ordering relies on the submit path "
+        "alone until collMod succeeds on a later startup"
+    )
+    try:
+        options = coll.options()
+    except Exception:
+        options = {}
+    if (
+        options.get("validator") == validator
+        and options.get("validationLevel") == "moderate"
+        and options.get("validationAction", "error") == "error"
+    ):
+        return
     try:
         coll.database.command(
             "collMod",
             coll.name,
-            validator={
-                "$jsonSchema": {
-                    "required": ["submitted_at"],
-                    "properties": {
-                        "submitted_at": {
-                            "bsonType": "date",
-                            "description": (
-                                "must be a BSON date; keyset export ordering "
-                                "depends on it"
-                            ),
-                        }
-                    },
-                }
-            },
+            validator=validator,
             validationLevel="moderate",
             validationAction="error",
         )
+    except PyMongoError:
+        logger.warning(message, exc_info=True)
     except Exception:
-        logger.exception(
-            "could not apply the runs submitted_at validator; inserts are NOT "
-            "being schema-checked — new-run ordering relies on the submit path "
-            "alone until collMod succeeds on a later startup"
-        )
+        logger.exception(message)
 
 
 # ── helpers (mirrors of the sqlite module) ──────────────────────────────
@@ -605,6 +651,10 @@ def submit_run(
     # of N runs does a single user lookup rather than N. Steam is checked
     # first since that's what the game clients send; discord_id is here for
     # parity so any client that knows it links the same way.
+    from .runs_db import INT_OVERFLOW_ERROR, has_oversized_int
+
+    if has_oversized_int(data):
+        return {"error": INT_OVERFLOW_ERROR, "int_overflow": True}
     linked_user_id = None
     linked_username = None
     owner = None
@@ -2059,7 +2109,7 @@ def _filter_key(
     if game_mode:
         parts.append(f"game_mode:{game_mode}")
     if players:
-        parts.append(f"players:{players}")
+        parts.append(f"players:{'1' if players == 'single' else players}")
     if username:
         # Lowercased so PeTeR and peter share one summary doc (the match is
         # case-insensitive, so the cache key must be too).
@@ -2127,14 +2177,7 @@ def read_stats_summary(
 # game_mode, players, username). Refresher iterates this list and
 # writes a doc per combo. Add to it when a new common filter combo
 # emerges in production traffic.
-HOT_FILTER_COMBOS: list[dict] = [
-    {},
-    {"character": "IRONCLAD"},
-    {"character": "SILENT"},
-    {"character": "DEFECT"},
-    {"character": "NECROBINDER"},
-    {"character": "REGENT"},
-]
+HOT_FILTER_COMBOS: list[dict] = [{}, *({"character": c} for c in _CAST)]
 
 # Second tier: every ascension slice (A0-A10, alone and per character). Their
 # live aggregation outgrew the gateway timeout at ~1.2M runs (issue #868), so
@@ -2144,7 +2187,7 @@ HOT_FILTER_COMBOS: list[dict] = [
 ASCENSION_FILTER_COMBOS: list[dict] = [
     {**({"character": c} if c else {}), "ascension": str(a)}
     for a in range(0, 11)
-    for c in (None, "IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT")
+    for c in (None, *_CAST)
 ]
 # Throttled after the 2026-08-20 load incident: 6 per cycle kept Mongo in a
 # continuous disk-spilling aggregation storm. 2 per cycle = full coverage in
@@ -2161,7 +2204,7 @@ _ASCENSION_COMBOS_PER_CYCLE = 2
 PLAYERS_FILTER_COMBOS: list[dict] = [
     {**({"character": c} if c else {}), "players": p}
     for p in ("1", "2", "3", "4")
-    for c in (None, "IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT")
+    for c in (None, *_CAST)
 ] + [
     {"players": p, "ascension": str(a)}
     for p in ("1", "2", "3", "4")
@@ -2746,6 +2789,40 @@ def _refresh_user_winrates(token: str) -> None:
         _user_winrates_inflight.release()
 
 
+def _is_time_limit(exc: Exception) -> bool:
+    return isinstance(exc, ExecutionTimeout) or getattr(exc, "code", None) == 50
+
+
+def _count_within(coll, query: dict, max_time_ms: int) -> int:
+    """Exact count under a time limit. A public filter carries
+    hidden: {$ne: True}, which no index holds, so counting it directly
+    fetches every candidate doc. When the hidden_browse partial index holds
+    every other field of the filter, count the filter without the clause and
+    subtract the hidden subset, which that index answers on its own."""
+    if query.get("hidden") != {"$ne": True}:
+        return coll.count_documents(query, maxTimeMS=max_time_ms)
+    base = {k: v for k, v in query.items() if k != "hidden"}
+    if not set(base) <= _HIDDEN_BROWSE_FIELDS:
+        return coll.count_documents(query, maxTimeMS=max_time_ms)
+    if base:
+        total = coll.count_documents(base, maxTimeMS=max_time_ms)
+    else:
+        total = coll.estimated_document_count()
+    if not total:
+        return 0
+    hidden_query = {**base, "hidden": True}
+    try:
+        hidden = coll.count_documents(
+            hidden_query, maxTimeMS=max_time_ms, hint=HIDDEN_BROWSE_INDEX
+        )
+    except OperationFailure as exc:
+        if _is_time_limit(exc):
+            raise
+        hidden = coll.count_documents(hidden_query, maxTimeMS=max_time_ms)
+    return max(total - hidden, 0)
+
+
+@_instrument("count_with_budget")
 def count_with_budget(
     coll,
     query: dict,
@@ -2756,15 +2833,15 @@ def count_with_budget(
     """Exact count for a browse query, without the multi-second scan an
     unfiltered count over millions of heavyweight docs costs.
 
-    count_documents runs with maxTimeMS; a server timeout (code 50) means
-    the exact count is too expensive right now, so the capped count comes
-    back instead: (cap-capped total, True) — a lower bound, enough to keep
-    pagination working. Exact answers are (n, False).
+    The count runs with maxTimeMS; a server timeout (code 50) means the
+    exact count is too expensive right now, so the capped count comes back
+    instead: (cap-capped total, True), a lower bound, enough to keep
+    pagination working. Exact answers are (n, False). The capped count is
+    time-limited too, and its timeout propagates to the caller.
 
-    Filtered results are cached in Redis for 120s under a stable hash of
-    the collection name and the normalized query, so repeated pages of the
-    same browse never re-count. Unfiltered totals keep the instant
-    estimated_document_count and never reach this helper.
+    Results are cached in Redis for 120s under a stable hash of the
+    collection name and the normalized query, so repeated pages of the
+    same browse never re-count.
     """
     coll_name = getattr(coll, "name", "") or ""
     key = (
@@ -2779,18 +2856,24 @@ def count_with_budget(
     if cached is not None:
         return int(cached[0]), bool(cached[1])
     try:
-        out = (coll.count_documents(query, maxTimeMS=max_time_ms), False)
-    except ExecutionTimeout:
-        out = (coll.count_documents(query, limit=cap), True)
+        out = (_count_within(coll, query, max_time_ms), False)
     except OperationFailure as exc:
-        if getattr(exc, "code", None) != 50:
+        if not _is_time_limit(exc):
             raise
-        out = (coll.count_documents(query, limit=cap), True)
+        count_budget_timeouts.labels(stage="exact").inc()
+        try:
+            capped = coll.count_documents(
+                query, limit=cap, maxTimeMS=COUNT_FALLBACK_MAX_TIME_MS
+            )
+        except OperationFailure as capped_exc:
+            if _is_time_limit(capped_exc):
+                count_budget_timeouts.labels(stage="capped").inc()
+            raise
+        out = (capped, True)
     app_cache.set_json(key, list(out), ttl_seconds=120)
     return out
 
 
-@_instrument("list_runs")
 def _run_filter(
     character: str | None = None,
     win: str | None = None,
@@ -2916,6 +2999,7 @@ def _run_filter(
     return q
 
 
+@_instrument("list_runs")
 def list_runs(
     character: str | None = None,
     win: str | None = None,
@@ -2971,7 +3055,7 @@ def list_runs(
             "runs": [],
             "total": 0,
             "page": max(page, 1),
-            "per_page": min(limit, 100),
+            "per_page": max(1, min(limit, 100)),
             "total_pages": 0,
             "total_is_lower_bound": False,
         }
@@ -2993,10 +3077,13 @@ def list_runs(
     else:
         total = coll.estimated_document_count()
         total_is_lower_bound = False
-    per_page = min(limit, 100)
+    per_page = max(1, min(limit, 100))
     offset = (max(page, 1) - 1) * per_page
     cursor = (
-        coll.find(q, _projection_row()).sort(sort_clause).skip(offset).limit(per_page)
+        coll.find(q, _projection_row(), max_time_ms=LIST_MAX_TIME_MS)
+        .sort(sort_clause)
+        .skip(offset)
+        .limit(per_page)
     )
     runs = [_row_to_dict(r) for r in cursor]
 
@@ -3318,6 +3405,7 @@ def _slice_board(doc: dict, page: int, limit: int) -> dict | None:
     return out
 
 
+@_instrument("leaderboard_live")
 def _leaderboard_live(
     category: str = "fastest",
     character: str | None = None,
@@ -3397,21 +3485,14 @@ def _leaderboard_live(
     # hidden: {$ne: True} disqualifies the covering index and fetches every
     # candidate doc, a cost refresh_leaderboard_summary pays for all 24
     # combos every cycle.
-    if q:
-        base_q = {k: v for k, v in q.items() if k != "hidden"}
-        visible, visible_lb = count_with_budget(coll, base_q, max_time_ms=max_time_ms)
-        hidden_count, hidden_lb = count_with_budget(
-            coll, {**base_q, "hidden": True}, max_time_ms=max_time_ms
-        )
-        total = max(visible - hidden_count, 0)
-        total_is_lower_bound = visible_lb or hidden_lb
-    else:
-        total = coll.estimated_document_count()
-        total_is_lower_bound = False
-    per_page = min(limit, 100)
+    total, total_is_lower_bound = count_with_budget(coll, q, max_time_ms=max_time_ms)
+    per_page = max(1, min(limit, 100))
     offset = (max(page, 1) - 1) * per_page
     cursor = (
-        coll.find(q, _projection_row()).sort(sort_clause).skip(offset).limit(per_page)
+        coll.find(q, _projection_row(), max_time_ms=max(max_time_ms, LIST_MAX_TIME_MS))
+        .sort(sort_clause)
+        .skip(offset)
+        .limit(per_page)
     )
     runs = [_row_to_dict(r) for r in cursor]
 
@@ -3442,6 +3523,37 @@ def _ensure_hidden_wins_index(coll) -> None:
         )
     except Exception:
         logger.warning("hidden_wins index build failed", exc_info=True)
+
+
+def _background_index_specs() -> list[tuple[list, dict]]:
+    return [
+        (
+            [("hidden", ASCENDING)]
+            + [(field, ASCENDING) for field in _HIDDEN_BROWSE_KEYS],
+            {"name": HIDDEN_BROWSE_INDEX, "partialFilterExpression": {"hidden": True}},
+        ),
+        (
+            [("steam_id", ASCENDING), ("win", ASCENDING), ("run_time", ASCENDING)],
+            {"name": STEAM_BEST_WIN_INDEX},
+        ),
+        (
+            [
+                ("user_id", ASCENDING),
+                ("played_at", DESCENDING),
+                ("submitted_at", DESCENDING),
+            ],
+            {"name": USER_PLAYED_INDEX},
+        ),
+    ]
+
+
+def _ensure_background_indexes(coll) -> None:
+    _ensure_hidden_wins_index(coll)
+    for keys, options in _background_index_specs():
+        try:
+            coll.create_index(keys, **options)
+        except Exception:
+            logger.warning("%s index build failed", options["name"], exc_info=True)
 
 
 def _covered_by_hidden_wins(query: dict) -> bool:
@@ -3522,6 +3634,15 @@ def get_run_rank(run_hash: str, category: str = "fastest") -> dict:
     return {"rank": ahead + 1, "category": category}
 
 
+def _global_win_total(coll) -> int:
+    cached = app_cache.get_json(_GLOBAL_WINS_KEY)
+    if isinstance(cached, int) and not isinstance(cached, bool):
+        return cached
+    total = _count_visible(coll, {"win": {"$in": [True, 1]}})
+    app_cache.set_json(_GLOBAL_WINS_KEY, total, ttl_seconds=_GLOBAL_WINS_TTL_SECONDS)
+    return total
+
+
 @_instrument("seed_rank_for")
 def seed_rank_for(steam_id: str | None, seed: str) -> dict:
     """The mod's seed + global standing (F9 panel and post-run card).
@@ -3569,7 +3690,7 @@ def seed_rank_for(steam_id: str | None, seed: str) -> dict:
             {"run_time": 1},
             sort=[("run_time", 1)],
         )
-        global_total = _count_visible(coll, {"win": {"$in": [True, 1]}})
+        global_total = _global_win_total(coll)
         if best and global_total:
             global_rank = (
                 _count_visible(
@@ -3581,9 +3702,10 @@ def seed_rank_for(steam_id: str | None, seed: str) -> dict:
                 )
                 + 1
             )
+            global_total = max(global_total, global_rank)
             percentile = round(global_rank * 100.0 / global_total, 1)
     else:
-        global_total = _count_visible(coll, {"win": {"$in": [True, 1]}})
+        global_total = _global_win_total(coll)
 
     return {
         "seed": seed,
@@ -3602,7 +3724,7 @@ def distinct_build_ids() -> list[str]:
     return sorted([v for v in coll.distinct("build_id") if v], reverse=True)
 
 
-@_instrument("get_user_run_rows")
+@_instrument("count_user_runs")
 def count_user_runs(user_id: str) -> int:
     """How many visible runs an account has claimed; the profile's building
     placeholder shows it so a fresh bulk upload isn't a dead spinner."""
@@ -3620,6 +3742,7 @@ def count_user_runs(user_id: str) -> int:
         return 0
 
 
+@_instrument("get_user_run_rows")
 def get_user_run_rows(user_id: str, limit: int = 2000) -> list[dict]:
     """One account's claimed run rows (newest first) for the profile insights
     walk: just the fields the community-stats accumulator needs per run.
@@ -3829,7 +3952,6 @@ def get_user_picks(steam_id: str) -> dict[str, dict]:
     return {"cards": tally(cards), "ancients": tally(ancients)}
 
 
-@_instrument("primary_share_hash")
 def player_index_for_hash(data: dict, run_hash: str) -> int | None:
     """Which players[] entry a per-player share hash belongs to. Co-op runs
     store one doc per player and every sibling serves the same blob, so the
@@ -4090,6 +4212,8 @@ def get_user_runs(
         return {"runs": [], "total": 0, "page": page, "limit": limit}
     match = {**q, "user_id": ObjectId(user_id), "deleted_at": None}
     total = coll.count_documents(match)
+    page = max(1, page)
+    limit = max(1, limit)
     skip = (page - 1) * limit
 
     # Include-projection of exactly the fields emitted below — the old
@@ -4268,9 +4392,20 @@ def delete_run_permanently(run_hash: str, user: dict) -> dict:
             },
             upsert=True,
         )
+    if not _remove_run(run):
+        return {"error": "Run not found"}
+    return {"success": True}
+
+
+def _remove_run(run: dict, guard: dict | None = None) -> bool:
+    """Drop a run doc and everything stored beside it. The guard narrows the
+    delete so a doc that changed since it was read is left alone."""
+    run_hash = run["_id"]
+    removed = _get_collection().delete_one({"_id": run_hash, **(guard or {})})
+    if not removed.deleted_count:
+        return False
     if not run.get("hidden") and not run.get("deleted_at"):
         bump_stats_counters(run, -1)
-    coll.delete_one({"_id": run_hash})
     _blob_collection().delete_one({"_id": run_hash})
     try:
         from .replays_db import _coll as _replays
@@ -4283,7 +4418,7 @@ def delete_run_permanently(run_hash: str, user: dict) -> dict:
     except OSError:
         logger.warning("run file delete failed for %s", run_hash, exc_info=True)
     evict_run_pages([run_hash])
-    return {"success": True}
+    return True
 
 
 # ── saved charts (chart builder) ─────────────────────────────────────────

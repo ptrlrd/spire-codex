@@ -19,7 +19,9 @@ import {
   entityQualifier,
 } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
+import { kindPhrase } from "@/lib/kind-phrase";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
+import { gameDataLastModIso } from "@/lib/content-dates";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
 import { betaOnlyVersion, fetchEntityRes } from "@/lib/entity-fetch";
 import BetaOnlyScope from "@/app/components/BetaOnlyScope";
@@ -65,7 +67,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: clipMetaDescription(
         t("potion_meta_description", {
           name: potion.name,
-          rarity: potion.rarity ?? "",
+          kind: kindPhrase("potion", potion.rarity),
           desc,
           hasDesc: desc ? "yes" : "no",
         }),
@@ -105,6 +107,7 @@ export default async function Page({ params }: Props) {
         path: localePath(locale, `/potions/${id}`),
         imageUrl: potion.image_url ? imageUrl(potion.image_url) : undefined,
         category: "Potion",
+        dateModified: await gameDataLastModIso(),
         inLanguage: inLanguageOf(locale),
         breadcrumbs: [
           { name: uiText(locale, "Home"), href: localePath(locale, "/") },
@@ -122,7 +125,7 @@ export default async function Page({ params }: Props) {
         },
         {
           question: `How rare is ${potion.name}?`,
-          answer: `${potion.name} is a ${potion.rarity} potion.`,
+          answer: `${potion.name} is ${kindPhrase("potion", potion.rarity)}.`,
         },
       ];
       jsonLd =

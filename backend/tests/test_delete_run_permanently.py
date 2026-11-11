@@ -2,6 +2,8 @@
 gives the run back to the live counters, and only ever touches the caller's
 own run."""
 
+from types import SimpleNamespace
+
 import pytest
 
 from app.services import replays_db, runs_db_mongo
@@ -26,7 +28,7 @@ class FakeColl:
     def delete_one(self, query):
         key = query.get("_id")
         self.deleted.append(key)
-        self.docs.pop(key, None)
+        return SimpleNamespace(deleted_count=int(self.docs.pop(key, None) is not None))
 
 
 class FakeTombstones:

@@ -51,7 +51,6 @@ import subprocess
 import tempfile
 import shutil
 from pathlib import Path
-from collections import defaultdict
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -264,7 +263,7 @@ def entity_name(entity: dict) -> str:
 
 def print_text(results: dict, old_label: str, new_label: str):
     """Print changelog in plain text."""
-    print(f"Spire Codex Data Changelog")
+    print("Spire Codex Data Changelog")
     print(f"  {old_label}  →  {new_label}")
     print(f"{'=' * 60}\n")
 
@@ -321,7 +320,7 @@ def print_text(results: dict, old_label: str, new_label: str):
 
 def print_markdown(results: dict, old_label: str, new_label: str):
     """Print changelog in markdown."""
-    print(f"# Spire Codex Changelog")
+    print("# Spire Codex Changelog")
     print(f"**{old_label}** → **{new_label}**\n")
 
     total_added = total_removed = total_changed = 0
