@@ -50,8 +50,9 @@ def _seat(pid, offers, cards):
     }
 
 
-def _floor(rh, act, idx, kind, model, room_type, seats):
+def _floor(rh, act, idx, kind, model, room_type, seats, player_idx=1):
     return {
+        "player_idx": player_idx,
         "run_hash": rh,
         "act": act,
         "floor_idx": idx,
@@ -263,23 +264,24 @@ def lake(tmp_path, monkeypatch):
                 [_seat(1, [], ["DEMON_FORM"])],
             ),
         ]
-    for rh in ("r4", "r5"):
-        seats = [
-            _seat(1, ["NEW_LEAF"], ["BACKFLIP"]),
-            _seat(2, ["MEAL_TICKET"], ["ZAP"]),
-        ]
+    # Each sibling document carries only its own seat.
+    for rh, pidx, seat in (
+        ("r4", 1, _seat(1, ["NEW_LEAF"], ["BACKFLIP"])),
+        ("r5", 2, _seat(2, ["MEAL_TICKET"], ["ZAP"])),
+    ):
         floors += [
-            _floor(rh, 0, 1, "ancient", "EVENT.NEOW", "event", seats),
-            _floor(rh, 0, 2, "monster", "ENCOUNTER.JAW_WORM", "monster", seats),
-            _floor(rh, 0, 16, "boss", "ENCOUNTER.VANTOM_BOSS", "boss", seats),
+            _floor(rh, 0, 1, "ancient", "EVENT.NEOW", "event", [seat], pidx),
+            _floor(rh, 0, 2, "monster", "ENCOUNTER.JAW_WORM", "monster", [seat], pidx),
+            _floor(rh, 0, 16, "boss", "ENCOUNTER.VANTOM_BOSS", "boss", [seat], pidx),
         ]
     con.execute(
         "CREATE TABLE floors (run_hash VARCHAR, act BIGINT, floor_idx BIGINT, map_point_type VARCHAR, "
-        f"players {PLAYER_TYPE}, room_models VARCHAR[], room_type VARCHAR, room_model VARCHAR, room_turns BIGINT)"
+        f"players {PLAYER_TYPE}, room_models VARCHAR[], room_type VARCHAR, room_model VARCHAR, room_turns BIGINT, "
+        "player_idx BIGINT)"
     )
     for f in floors:
         con.execute(
-            f"INSERT INTO floors SELECT ?, ?, ?, ?, ?::{PLAYER_TYPE}, ?, ?, ?, ?",
+            f"INSERT INTO floors SELECT ?, ?, ?, ?, ?::{PLAYER_TYPE}, ?, ?, ?, ?, ?",
             [
                 f["run_hash"],
                 f["act"],
@@ -290,6 +292,7 @@ def lake(tmp_path, monkeypatch):
                 f["room_type"],
                 f["room_model"],
                 f["room_turns"],
+                f["player_idx"],
             ],
         )
     con.execute(f"COPY floors TO '{lake}/floors.parquet' (FORMAT parquet)")
@@ -298,13 +301,23 @@ def lake(tmp_path, monkeypatch):
         "upper(split_part(room_model, '.', -1)) AS encounter, room_turns AS turns, 0 AS damage_taken, "
         "70 AS p1_hp, 80 AS p1_max_hp, 99 AS p1_gold FROM floors"
     )
+    con.execute(
+        "CREATE TABLE party AS SELECT run_hash, CASE WHEN player_count = 2 THEN [character, character] "
+        "ELSE [character] END AS characters, []::VARCHAR[] AS cards, []::VARCHAR[] AS relics FROM runs"
+    )
+    con.execute(f"COPY party TO '{lake}/party.parquet' (FORMAT parquet)")
+    con.execute(
+        "CREATE TABLE players AS SELECT run_hash, CASE WHEN run_hash = 'r5' THEN 2 ELSE 1 END::BIGINT AS player_idx, "
+        "character FROM runs"
+    )
+    con.execute(f"COPY players TO '{lake}/players.parquet' (FORMAT parquet)")
     con.execute(f"COPY floor_events TO '{lake}/floor_events.parquet' (FORMAT parquet)")
     con.execute(
         "CREATE TABLE relics (run_hash VARCHAR, player_idx BIGINT, relic VARCHAR, floor_added BIGINT, character VARCHAR)"
     )
     con.execute(
         "INSERT INTO relics VALUES ('r1', 1, 'ANCHOR', 4, 'IRONCLAD'), ('r2', 1, 'ANCHOR', 9, 'IRONCLAD'), "
-        "('r4', 1, 'MEAL_TICKET', 3, 'SILENT'), ('r4', 2, 'ANCHOR', 3, 'SILENT'), ('r5', 1, 'MEAL_TICKET', 3, 'SILENT'), ('r5', 2, 'ANCHOR', 3, 'SILENT'), "
+        "('r4', 1, 'MEAL_TICKET', 3, 'SILENT'), ('r5', 2, 'ANCHOR', 3, 'SILENT'), "
         "('r9', 1, 'ANCHOR', 2, 'DEFECT')"
     )
     con.execute(f"COPY relics TO '{lake}/relics.parquet' (FORMAT parquet)")
@@ -318,8 +331,6 @@ def lake(tmp_path, monkeypatch):
     ]
     rows += [
         ("r4", 1, "SILENT", "BACKFLIP", 2),
-        ("r4", 2, "SILENT", "ZAP", 2),
-        ("r5", 1, "SILENT", "BACKFLIP", 2),
         ("r5", 2, "SILENT", "ZAP", 2),
     ]
     rows += [
@@ -394,6 +405,26 @@ def test_stage_keys_seeds_by_version_lobby_and_ordered_party(lake):
         f"SELECT n FROM read_parquet('{lake_dir}/seed_facts.parquet') WHERE kind = 'deck' AND id = 'STRIKE' AND seed_key LIKE 'AAAA|v0.107.1%' ORDER BY n DESC"
     ).fetchall()
     assert deck[0][0] == 4
+
+
+def test_modded_runs_never_enter_the_index(lake):
+    lake_dir, _meta = lake
+    con = duckdb.connect()
+
+    def runs_by_seed():
+        return dict(
+            con.execute(
+                f"SELECT seed_key, runs FROM read_parquet('{lake_dir}/seed_profiles.parquet')"
+            ).fetchall()
+        )
+
+    assert runs_by_seed()["EEEE|v0.107.1|1|DEFECT"] == 2
+    con.execute(
+        f"COPY (SELECT 'r8' AS run_hash, 'cards' AS kind) TO '{lake_dir}/modded.parquet'"
+        " (FORMAT parquet)"
+    )
+    stage.build()
+    assert runs_by_seed()["EEEE|v0.107.1|1|DEFECT"] == 1
 
 
 def test_full_match_needs_one_run_that_showed_everything(lake):

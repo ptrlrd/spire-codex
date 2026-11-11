@@ -25,6 +25,7 @@ import type { DraftRecs, Pairings, RelatedGroup } from "@/lib/entity-links";
 import EntityRunStats, {
   type EntityStats,
 } from "@/app/components/EntityRunStats";
+import { resolveBracket } from "@/lib/entity-cohort";
 import EntityVersionSelect from "@/app/components/EntityVersionSelect";
 import { imageUrl } from "@/lib/image-url";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
@@ -44,6 +45,7 @@ interface MiniBracket {
   picks: number;
   win_rate: number;
   pick_rate: number;
+  hold_rate?: number | null;
   score: number | null;
   elo: number | null;
 }
@@ -293,7 +295,12 @@ export default function RelicDetail({
           {/* Description */}
           <section id="description">
             <h2>{t("Description")}</h2>
-            <EntitySummary name={relic.name} data={summary} />
+            <EntitySummary
+              name={relic.name}
+              data={summary}
+              stats={initialStats}
+              bracket={statsBracket}
+            />
             <div className="desc-quote">
               <RichDescription
                 text={relic.description}
@@ -502,7 +509,9 @@ export default function RelicDetail({
             {/* Community mini-stats — scoped to the bracket picked in the
                 Community section (falls back to the all-runs figures). */}
             {(() => {
-              const mini = miniStats?.brackets?.[statsBracket] ?? miniStats;
+              const mini = miniStats
+                ? (resolveBracket(miniStats, statsBracket).block ?? miniStats)
+                : null;
               if (!mini || mini.picks <= 0) return null;
               return (
                 <div className="mini">
@@ -521,8 +530,10 @@ export default function RelicDetail({
                       <div className="ml">{t("Win rate")}</div>
                     </div>
                     <div>
-                      <div className="mv">{mini.pick_rate}%</div>
-                      <div className="ml">{t("Pick rate")}</div>
+                      <div className="mv">
+                        {mini.hold_rate ?? mini.pick_rate}%
+                      </div>
+                      <div className="ml">{t("Hold rate")}</div>
                     </div>
                     {mini.score != null && (
                       <div>

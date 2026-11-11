@@ -14,6 +14,10 @@ import { cleanId, displayName } from "@/lib/display-name";
 import type { CardInfo, PotionInfo, RelicInfo } from "../runs/[hash]/RunPills";
 import TwitchIcon from "@/app/components/TwitchIcon";
 import CardImage from "@/app/components/CardImage";
+import { createPoller, type PollRound } from "@/lib/poll";
+import { useIdMap } from "@/lib/use-id-map";
+
+export { useIdMap };
 
 export const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -410,27 +414,6 @@ export function namedOr(
   );
 }
 
-/** Lazy id -> item map from a localized list endpoint; refetches on a locale
- * change and only once enabled. */
-export function useIdMap<T extends { id: string }>(
-  path: string,
-  enabled = true,
-): Record<string, T> {
-  const lang = useGameLocale();
-  const [map, setMap] = useState<Record<string, T>>({});
-  useEffect(() => {
-    if (!enabled) return;
-    cachedFetch<T[]>(`${API}${path}?lang=${lang}&channel=all`)
-      .then((items) => {
-        const m: Record<string, T> = {};
-        for (const x of items) m[x.id] = x;
-        setMap(m);
-      })
-      .catch(() => {});
-  }, [enabled, lang, path]);
-  return map;
-}
-
 export function useCharacterNames(): Record<string, string> {
   const lang = useGameLocale();
   const [names, setNames] = useState<Record<string, string>>({});
@@ -615,20 +598,24 @@ export function WatchOnTwitch({
   );
 }
 
-/** Poll on an interval, skipping beats while the tab is hidden and firing
- * immediately when it becomes visible again. `fn` must only close over
- * stable values (setState, constants, route params). */
-export function usePoll(fn: () => void, ms: number) {
+/** Poll on an interval, one round at a time: a beat is skipped while the tab
+ * is hidden or the last round is still in flight, and a round fires as soon
+ * as the tab becomes visible again. `fn` must only close over stable values
+ * (setState, constants, route params) and should check `isCurrent()` before
+ * it stores a result. */
+export function usePoll(fn: PollRound, ms: number) {
   useEffect(() => {
-    fn();
+    const poller = createPoller(fn, ms);
+    poller.tick();
     const t = setInterval(() => {
-      if (!document.hidden) fn();
+      if (!document.hidden) poller.tick();
     }, ms);
     const onVis = () => {
-      if (!document.hidden) fn();
+      if (!document.hidden) poller.tick();
     };
     document.addEventListener("visibilitychange", onVis);
     return () => {
+      poller.stop();
       clearInterval(t);
       document.removeEventListener("visibilitychange", onVis);
     };

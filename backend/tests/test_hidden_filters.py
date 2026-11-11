@@ -106,7 +106,7 @@ def test_index_pass_builds_the_covering_hidden_wins_index():
     coll = IndexColl()
     runs_db_mongo._ensure_indexes(coll)
     for t in threading.enumerate():
-        if t.name == "hidden-wins-index":
+        if t.name == runs_db_mongo.BACKGROUND_INDEX_THREAD:
             t.join(5)
     keys, kwargs = coll.created[runs_db_mongo.HIDDEN_WINS_INDEX]
     assert [k for k, _ in keys] == [

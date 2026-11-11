@@ -1,6 +1,6 @@
 "use client";
 
-import { useT, useGameLocale } from "@/lib/i18n";
+import { useT } from "@/lib/i18n";
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { Link } from "@/i18n/navigation";
@@ -8,7 +8,7 @@ import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { useAuth } from "@/app/contexts/AuthContext";
 import { useToast } from "@/app/components/Toast";
 import { authHeaders } from "@/app/[locale]/admin/shared";
-import { cachedFetch } from "@/lib/fetch-cache";
+import { useIdMap } from "@/lib/use-id-map";
 import { useTryGameTranslations } from "@/lib/game-i18n";
 import type { RawRun, Run } from "@/lib/api/run/types";
 import { cleanRun } from "@/lib/api/run/util";
@@ -63,7 +63,6 @@ export default function SharedRunClient({
 }) {
   const { hash } = useParams<{ hash: string }>();
   const bp = useBetaPrefix();
-  const lang = useGameLocale();
   const t = useT();
   const gt = useTryGameTranslations();
   const { user } = useAuth();
@@ -80,9 +79,9 @@ export default function SharedRunClient({
   >("idle");
   const [reportError, setReportError] = useState<string | null>(null);
   const [unhiding, setUnhiding] = useState(false);
-  const [cardData, setCardData] = useState<Record<string, CardInfo>>({});
-  const [relicData, setRelicData] = useState<Record<string, RelicInfo>>({});
-  const [potionData, setPotionData] = useState<Record<string, PotionInfo>>({});
+  const cardData = useIdMap<CardInfo>("/api/cards");
+  const relicData = useIdMap<RelicInfo>("/api/relics");
+  const potionData = useIdMap<PotionInfo>("/api/potions");
   const [showDetails, setShowDetails] = useState(false);
 
   useEffect(() => {
@@ -98,69 +97,7 @@ export default function SharedRunClient({
         .catch(() => setNotFound(true))
         .finally(() => setLoading(false));
     }
-
-    cachedFetch<CardInfo[]>(`${API}/api/cards?lang=${lang}`).then((cards) => {
-      const m: Record<string, CardInfo> = {};
-      for (const c of cards) m[c.id] = c;
-      setCardData(m);
-    });
-    cachedFetch<RelicInfo[]>(`${API}/api/relics?lang=${lang}`).then(
-      (relics) => {
-        const m: Record<string, RelicInfo> = {};
-        for (const r of relics) m[r.id] = r;
-        setRelicData(m);
-      },
-    );
-    cachedFetch<PotionInfo[]>(`${API}/api/potions?lang=${lang}`).then(
-      (potions) => {
-        const m: Record<string, PotionInfo> = {};
-        for (const p of potions) m[p.id] = p;
-        setPotionData(m);
-      },
-    );
-  }, [hash, lang]);
-
-  // Beta-build runs reference cards/relics/potions that only exist in the beta
-  // data tree. Merge the beta catalog over the main maps so those resolve (name
-  // + image); main wins for shared ids, and entities in neither channel still
-  // show nothing. is_beta is flagged server-side from the run's build_id.
-  useEffect(() => {
-    if (!run?.is_beta) return;
-    let cancelled = false;
-    cachedFetch<CardInfo[]>(`${API}/api/cards?lang=${lang}&channel=beta`).then(
-      (cards) => {
-        if (cancelled) return;
-        setCardData((prev) => {
-          const m = { ...prev };
-          for (const c of cards) if (!(c.id in m)) m[c.id] = c;
-          return m;
-        });
-      },
-    );
-    cachedFetch<RelicInfo[]>(
-      `${API}/api/relics?lang=${lang}&channel=beta`,
-    ).then((relics) => {
-      if (cancelled) return;
-      setRelicData((prev) => {
-        const m = { ...prev };
-        for (const r of relics) if (!(r.id in m)) m[r.id] = r;
-        return m;
-      });
-    });
-    cachedFetch<PotionInfo[]>(
-      `${API}/api/potions?lang=${lang}&channel=beta`,
-    ).then((potions) => {
-      if (cancelled) return;
-      setPotionData((prev) => {
-        const m = { ...prev };
-        for (const p of potions) if (!(p.id in m)) m[p.id] = p;
-        return m;
-      });
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, [run?.is_beta, lang]);
+  }, [hash]);
 
   const cardTitle = (id: string) =>
     gt(`cards.${id}.title`) ?? cardData[id]?.name ?? displayName(`CARD.${id}`);

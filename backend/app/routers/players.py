@@ -70,6 +70,24 @@ def players_profiles(
     return {"profiles": public_profile_names(u, supporters.FLAIR_MAX_NAMES)}
 
 
+@router.get("/{username}/profile", tags=["Players"])
+@limiter.limit(rate_limit_config.endpoint_limit("players.profile", "120/minute"))
+def player_profile(username: str, request: Request, response: Response):
+    """Whether a public profile exists for this username, and the name as the
+    account spells it. One indexed lookup, no stats. 404 for unknown
+    usernames and for private profiles, same as /insights."""
+    if not os.environ.get("MONGO_URL", "").strip():
+        raise HTTPException(status_code=404, detail="Player not found")
+
+    from ..services.users_db import get_user_by_username
+
+    user = get_user_by_username(username)
+    if not user or user.get("profile_private"):
+        raise HTTPException(status_code=404, detail="Player not found")
+    response.headers["Cache-Control"] = "public, max-age=60"
+    return {"username": user.get("username")}
+
+
 @router.get("/{username}/insights", tags=["Players"])
 @limiter.limit(rate_limit_config.endpoint_limit("players.insights", "30/minute"))
 def player_insights(

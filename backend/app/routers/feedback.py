@@ -6,7 +6,7 @@ import re
 
 import httpx
 from fastapi import APIRouter, HTTPException, Request
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from ..dependencies import shared_limiter
 from ..services import rate_limit_config
@@ -22,10 +22,30 @@ WEBHOOK_URL = os.environ.get("FEEDBACK_WEBHOOK_URL", "")
 limiter = shared_limiter
 
 
+FEEDBACK_TYPES = (
+    "Bug",
+    "Feature Request",
+    "Localization",
+    "Correction",
+    "Feedback",
+    "Suggestion",
+)
+_TYPE_BY_KEY = {t.lower(): t for t in FEEDBACK_TYPES}
+_MENTION_RE = re.compile(r"@(?=[A-Za-z0-9])")
+
+
+def _known_type(raw: str) -> str | None:
+    return _TYPE_BY_KEY.get(raw.strip().lower())
+
+
+def _no_mentions(text: str) -> str:
+    return _MENTION_RE.sub("@\u200b", text)
+
+
 class FeedbackRequest(BaseModel):
-    type: str
-    contact: str
-    contents: str
+    type: str = Field(max_length=100)
+    contact: str = Field(max_length=1024)
+    contents: str = Field(max_length=6000)
 
 
 @router.post("")
@@ -37,7 +57,8 @@ async def submit_feedback(request: Request, body: FeedbackRequest):
     if not body.contents.strip() or not body.contact.strip():
         raise HTTPException(status_code=422, detail="Contact and contents are required")
 
-    feedback_type = body.type.strip() or "Feedback"
+    known_type = _known_type(body.type)
+    feedback_type = known_type or "Feedback"
     contact = body.contact.strip()
     contents = body.contents.strip()
 
@@ -64,32 +85,37 @@ async def submit_feedback(request: Request, body: FeedbackRequest):
     # just a Discord scrollback. Best effort by design.
     from ..services.admin_db import record_feedback
 
-    record_feedback("feedback", body.model_dump())
+    record_feedback(
+        "feedback",
+        {
+            **body.model_dump(),
+            "user_agent": request.headers.get("user-agent", "")[:300],
+        },
+    )
 
     # ── GitHub issue (best-effort, non-blocking failure) ───────
     if github_issues.is_configured():
         try:
-            referer = request.headers.get("referer", "unknown")
-            user_agent = request.headers.get("user-agent", "unknown")
-            issue_body = (
+            referer = request.headers.get("referer", "unknown")[:300]
+            issue_body = _no_mentions(
                 f"{contents}\n\n"
                 f"---\n"
                 f"**Type:** {feedback_type}\n"
-                f"**Contact:** {contact}\n"
                 f"**Page:** {referer}\n"
-                f"**User-Agent:** `{user_agent}`\n"
                 f"\n_Submitted via the Spire Codex feedback form._"
             )
             label = "bug" if feedback_type.lower() == "bug" else "feedback"
             await github_issues.create_issue(
-                title=f"[{feedback_type}] {contents.splitlines()[0][:80]}",
+                title=_no_mentions(
+                    f"[{feedback_type}] {contents.splitlines()[0][:80]}"
+                ),
                 body=issue_body,
                 labels=[label, "from-website"],
             )
         except Exception as e:
             logger.warning("Failed to create GitHub issue from feedback: %s", e)
 
-    feedback_submissions.labels(type=feedback_type).inc()
+    feedback_submissions.labels(type=known_type or "other").inc()
     return {"ok": True}
 
 

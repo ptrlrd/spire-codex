@@ -10,6 +10,8 @@ import time
 from pathlib import Path
 from typing import Any
 
+from .official_content import official_characters
+
 logger = logging.getLogger(__name__)
 
 
@@ -28,7 +30,7 @@ def _vec_dir() -> Path:
     )
 
 
-_OFFICIAL_CHARACTERS = ("IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT")
+_OFFICIAL_CHARACTERS = tuple(sorted(official_characters()))
 
 _lock = threading.Lock()
 _vocab: dict[str, int] | None = None

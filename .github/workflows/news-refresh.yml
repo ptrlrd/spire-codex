@@ -83,7 +83,10 @@ jobs:
         # appear on spire-codex.com until the host's working tree is
         # up-to-date with main. Normally that happens during the CI
         # deploy step, but news commits use `[skip ci]` so we have to
-        # ssh in and `git pull` ourselves. No `docker compose down/up`
+        # ssh in and fetch them ourselves. Only `data/news` is checked
+        # out from main: a plain `git pull` would also ship whatever else
+        # merged under data/, lab/ and the compose file without a
+        # release. No `docker compose down/up`
         # here — the lru_cache on news loaders is gone, so the running
         # container picks up the new files on the next request.
         if: steps.commit.outputs.committed == 'true'
@@ -95,5 +98,6 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /var/www/spire-codex
-            git pull --ff-only
+            git fetch origin main
+            git checkout origin/main -- data/news
             echo "News pulled at $(date)"

@@ -21,13 +21,16 @@ Document shape:
 
 from __future__ import annotations
 
+import logging
 import os
 import re
 from datetime import datetime, timedelta, timezone
 
 from bson import ObjectId
 from pymongo import ASCENDING, MongoClient
-from pymongo.errors import DuplicateKeyError, OperationFailure
+from pymongo.errors import DuplicateKeyError, OperationFailure, PyMongoError
+
+logger = logging.getLogger("spire-codex.users")
 
 _client: MongoClient | None = None
 _coll = None
@@ -72,6 +75,8 @@ def _ensure_indexes(coll) -> None:
     _ensure_partial_unique(coll, "discord_id")
     _ensure_partial_unique(coll, "twitch_id")
     _ensure_partial_unique(coll, "username_lower")
+    _ensure_lookup_index(coll, "overwolf_id", unique=True)
+    _ensure_lookup_index(coll, "patreon_id", unique=False)
 
 
 def _ensure_partial_unique(coll, field: str) -> None:
@@ -93,6 +98,26 @@ def _ensure_partial_unique(coll, field: str) -> None:
         unique=True,
         partialFilterExpression={field: {"$type": "string"}},
     )
+
+
+def _ensure_lookup_index(coll, field: str, unique: bool) -> None:
+    """Index `field` for lookups. The unique form covers set values only,
+    skipping null, missing and the empty string an unlink leaves behind.
+    A failed build is logged and never blocks the collection: duplicates
+    already in the data would fail a unique build, and the check in the
+    link code still covers those."""
+    name = f"{field}_unique" if unique else f"{field}_lookup"
+    options = (
+        {"unique": True, "partialFilterExpression": {field: {"$gt": ""}}}
+        if unique
+        else {}
+    )
+    try:
+        if name in {idx["name"] for idx in coll.list_indexes()}:
+            return
+        coll.create_index([(field, ASCENDING)], name=name, **options)
+    except PyMongoError as exc:
+        logger.warning("users index %s was not created: %s", name, exc)
 
 
 def sanitize_username(raw: str) -> str | None:

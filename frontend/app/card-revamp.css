@@ -281,7 +281,7 @@
 /* ── stat tiles ── */
 .card-rvmp .tiles {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 12px;
 }
 .card-rvmp .tile {
@@ -359,6 +359,15 @@
 }
 .card-rvmp .bar-row .num b {
   color: var(--text);
+}
+.card-rvmp .event-votes .bar-row {
+  grid-template-columns: 92px 1fr 168px;
+}
+.card-rvmp .vote-outcome {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  white-space: nowrap;
 }
 .card-rvmp .insight {
   margin-top: 16px;
@@ -855,6 +864,13 @@ a.kw {
   }
   .card-rvmp .bar-row {
     grid-template-columns: 78px 1fr 100px;
+  }
+  .card-rvmp .event-votes .bar-row {
+    grid-template-columns: 78px 1fr 124px;
+  }
+  .card-rvmp .vote-outcome {
+    flex-direction: column;
+    gap: 0;
   }
   .card-rvmp .hero-art {
     display: none;

@@ -23,19 +23,37 @@ function pathChannel(): "beta" | null {
   return null;
 }
 
+function paramKey(param: string): string {
+  const eq = param.indexOf("=");
+  return eq === -1 ? param : param.slice(0, eq);
+}
+
+/** One spelling per API read: on a /beta page a read with no channel comes
+ *  from the beta channel, elsewhere the default `channel=stable` is dropped,
+ *  and the query is ordered by key so the session cache and the CDN see the
+ *  same URL for the same data. */
 export function buildApiUrl(url: string): string {
-  let out = url;
-  // On a /beta page every API read should come from the beta channel; doing
-  // it here makes every cachedFetch caller channel-aware without edits.
-  if (
-    pathChannel() === "beta" &&
-    out.includes("/api/") &&
-    !/[?&]channel=/.test(out)
-  ) {
-    const sep = out.includes("?") ? "&" : "?";
-    out = `${out}${sep}channel=beta`;
+  if (!url.includes("/api/")) return url;
+  const q = url.indexOf("?");
+  const base = q === -1 ? url : url.slice(0, q);
+  let params =
+    q === -1
+      ? []
+      : url
+          .slice(q + 1)
+          .split("&")
+          .filter(Boolean);
+  if (pathChannel() === "beta") {
+    if (!params.some((p) => paramKey(p) === "channel"))
+      params.push("channel=beta");
+  } else {
+    params = params.filter((p) => p !== "channel=stable");
   }
-  return out;
+  const ordered = params
+    .map((param, i) => ({ param, key: paramKey(param), i }))
+    .sort((a, b) => (a.key < b.key ? -1 : a.key > b.key ? 1 : a.i - b.i))
+    .map((x) => x.param);
+  return ordered.length ? `${base}?${ordered.join("&")}` : base;
 }
 
 export function clearCache() {
