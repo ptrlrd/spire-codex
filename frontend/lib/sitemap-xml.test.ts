@@ -18,8 +18,8 @@ describe("sitemap URLs stay valid XML", () => {
         const url = String(input);
         const body = url.endsWith("/api/mechanics/sections")
           ? [{ slug: "score-formula" }]
-          : url.endsWith("/api/changelogs")
-            ? [{ date: "2026-08-14" }]
+          : /\/api\/changelogs(\?channel=beta)?$/.test(url)
+            ? [{ tag: "1.3.1", date: "2026-08-14" }]
             : [{ id: "ALPHA", name: "Alpha", image_url: null }];
         return new Response(JSON.stringify(body), { status: 200 });
       }),
