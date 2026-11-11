@@ -36,6 +36,7 @@ import EntityRunStats, {
 import EntityVersionSelect from "@/app/components/EntityVersionSelect";
 import HoverTooltip from "@/app/components/HoverTooltip";
 import { useChannel, useBetaPrefix } from "@/lib/api/prefix.client";
+import { useBetaRenderVersion } from "@/app/components/BetaRenderVersionProvider";
 import BetaDiffNotice from "@/app/components/BetaDiffNotice";
 import "@/app/card-revamp.css";
 import { useBracketParam } from "@/lib/use-bracket-param";
@@ -284,6 +285,7 @@ export default function CardDetail({
 
   const bp = useBetaPrefix();
   const channel = useChannel();
+  const betaRenderVersion = useBetaRenderVersion();
   const [card, setCard] = useState<Card | null>(initialCard ?? null);
   const [spawnedCards, setSpawnedCards] = useState<RelatedCard[]>(
     initialCatalogs?.spawnedCards ?? [],
@@ -584,10 +586,17 @@ export default function CardDetail({
         isUpgraded,
         channel,
         lang,
+        betaRenderVersion,
       )
     : betaArt || variantImg || cardImgFailed
       ? imageUrl(imgUrl)
-      : fullCardUrl(card.id.toLowerCase(), isUpgraded, channel, lang);
+      : fullCardUrl(
+          card.id.toLowerCase(),
+          isUpgraded,
+          channel,
+          lang,
+          betaRenderVersion,
+        );
 
   const partners = initialPairings?.partners;
   const serverToc = TOC_IDS.filter((sid) => {
@@ -1011,6 +1020,7 @@ export default function CardDetail({
                       false,
                       channel,
                       lang,
+                      betaRenderVersion,
                     );
                   }
                 } else if (!betaArt && !variantImg) {
