@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-# Hourly auto-deploy for spire-codex prod. Polls origin/main; if HEAD
+# Manual deploy for spire-codex prod. Checks origin/main; if HEAD
 # advanced, pulls Docker images and recreates the backend+frontend
 # containers, waits for their healthchecks, and reloads nginx. Code
 # deploys purge nothing at Cloudflare (see the purge block for why);
 # news-data-only commits purge just the news URLs.
 #
-# Installed by playbooks/install-autodeploy.yml. Triggered by
-# /etc/cron.d/spire-codex-autodeploy. Manual run: just exec this script.
+# Installed by playbooks/install-autodeploy.yml. No cron runs it: deploys
+# are manual, through ./tools/startup.sh release or by running this script.
 #
 # Idempotent: same-HEAD ticks no-op and don't log unless DEBUG=1.
 # `--force` overrides that: full deploy (pull, recreate, health wait, nginx

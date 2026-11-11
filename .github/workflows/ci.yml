@@ -119,7 +119,7 @@ jobs:
 
   frontend-build:
     name: Frontend build without the API
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     needs: changes
     if: github.event_name == 'pull_request' && needs.changes.outputs.frontend == 'true'
     defaults:
@@ -243,7 +243,7 @@ jobs:
             GIT_SHA=${{ github.sha }}
           tags: ptrlrd/spire-codex-backend:${{ github.sha }}
 
-      - name: Move backend :latest unless main has a newer backend commit
+      - name: Move backend :latest unless a newer backend image is already pushed
         if: needs.changes.outputs.backend == 'true'
         run: .github/scripts/promote-latest.sh ptrlrd/spire-codex-backend backend
 
@@ -262,7 +262,7 @@ jobs:
             NEXT_DEPLOYMENT_ID=${{ github.sha }}
           tags: ptrlrd/spire-codex-frontend:${{ github.sha }}
 
-      - name: Move frontend :latest unless main has a newer frontend commit
+      - name: Move frontend :latest unless a newer frontend image is already pushed
         if: needs.changes.outputs.frontend == 'true'
         run: .github/scripts/promote-latest.sh ptrlrd/spire-codex-frontend frontend
 

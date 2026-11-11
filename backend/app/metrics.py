@@ -256,7 +256,6 @@ cache_errors = Counter(
     ["namespace", "operation"],
 )
 
-# ── Lake ingest ──────────────────────────────────────────────
 lake_generation_published = Gauge(
     "spire_codex_lake_generation_published_timestamp_seconds",
     "Unix time the newest complete lake generation was published (0 = none)",
