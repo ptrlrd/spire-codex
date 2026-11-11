@@ -39,6 +39,7 @@ import HoverTooltip from "@/app/components/HoverTooltip";
 import { useChannel, useBetaPrefix } from "@/lib/api/prefix.client";
 import { useBetaRenderVersion } from "@/app/components/BetaRenderVersionProvider";
 import BetaDiffNotice from "@/app/components/BetaDiffNotice";
+import { characterHref } from "@/lib/link-targets";
 import "@/app/card-revamp.css";
 import { useBracketParam } from "@/lib/use-bracket-param";
 import { SPINE_TEXT } from "@/lib/character-colors";
@@ -564,6 +565,18 @@ export default function CardDetail({
   const characterLabel = card.color
     ? t(card.color.charAt(0).toUpperCase() + card.color.slice(1))
     : "—";
+  const characterPath = characterHref(card.color);
+  const characterNode = characterPath ? (
+    <Link
+      prefetch={false}
+      href={`${bp}${characterPath}`}
+      className="entity-inline-link"
+    >
+      {t(characterLabel)}
+    </Link>
+  ) : (
+    characterLabel
+  );
   const costLabel = card.is_x_cost
     ? "X"
     : cost != null && cost < 0
@@ -653,7 +666,7 @@ export default function CardDetail({
           <div className="hero">
             <p className="eyebrow">
               <span className="dot">&#9670;</span>
-              <span>{characterLabel}</span>
+              <span>{characterNode}</span>
               <span className="sep">&middot;</span>
               <span>{card.rarity}</span>
               <span className="sep">&middot;</span>
@@ -1087,7 +1100,7 @@ export default function CardDetail({
                 </div>
                 <div className="frow">
                   <dt>{t("Character")}</dt>
-                  <dd style={{ color: SPINE_TEXT }}>{characterLabel}</dd>
+                  <dd style={{ color: SPINE_TEXT }}>{characterNode}</dd>
                 </div>
                 {targetLabel && (
                   <div className="frow">

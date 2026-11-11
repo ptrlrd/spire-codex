@@ -1,6 +1,7 @@
 "use client";
 
-import { useGameLocale } from "@/lib/i18n";
+import { useGameLocale, useT } from "@/lib/i18n";
+import { poolLabel } from "@/lib/link-targets";
 import { Fragment, type ReactNode } from "react";
 import { getCardProseFacts } from "@/lib/card-display";
 import {
@@ -186,13 +187,14 @@ function listNodes(items: ReactNode[]): ReactNode {
 
 export default function EntityProse(props: Props) {
   const lang = useGameLocale();
+  const t = useT();
   const isEnglish = lang === "eng";
 
   if (props.kind === "relic") {
     const r = props.relic;
     const name = r.name;
     const rarity = r.rarity;
-    const pool = r.pool || "shared";
+    const pool = poolLabel(r.pool || "shared", t);
 
     if (!isEnglish) {
       // Non-English: single sentence using ONLY localized API fields.

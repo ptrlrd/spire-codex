@@ -15,6 +15,7 @@ import {
   bracketListParams,
 } from "@/lib/content-brackets";
 import { PlayerBadge } from "@/app/components/SupporterBadge";
+import PlayerLink from "@/app/components/PlayerLink";
 import CharacterTag from "@/app/components/CharacterTag";
 import { textColor } from "@/lib/character-colors";
 import { useFilterFetch, useFilterPage } from "@/lib/use-filter-fetch";
@@ -626,19 +627,16 @@ export default function LeaderboardBrowseClient() {
                           <td className="py-2.5 px-2 sm:px-3 font-medium text-[var(--accent-gold)]">
                             #{entry.rank}
                           </td>
-                          <td className="text-[var(--text-primary)] max-w-[7rem] sm:max-w-[10rem]">
-                            <Link
-                              prefetch={false}
-                              href={`${bp}/runs/${entry.run_hash}`}
-                              onClick={(e) => e.stopPropagation()}
-                              className="block truncate py-2.5 px-2 sm:px-3"
-                            >
-                              {entry.username || t("Anonymous")}
-                              <PlayerBadge
-                                username={entry.username}
-                                className="ml-1"
-                              />
-                            </Link>
+                          <td className="py-2.5 px-2 sm:px-3 text-[var(--text-primary)] truncate max-w-[7rem] sm:max-w-[10rem]">
+                            {entry.username ? (
+                              <PlayerLink username={entry.username} />
+                            ) : (
+                              t("Anonymous")
+                            )}
+                            <PlayerBadge
+                              username={entry.username}
+                              className="ml-1"
+                            />
                           </td>
                           <td
                             className="py-2.5 px-2 sm:px-3"
@@ -671,8 +669,7 @@ export default function LeaderboardBrowseClient() {
                               onClick={(e) => e.stopPropagation()}
                               className="text-[var(--accent-gold)] hover:underline text-xs"
                               title={t("View run")}
-                              aria-hidden
-                              tabIndex={-1}
+                              aria-label={t("View run")}
                             >
                               &#x2197;
                             </Link>
@@ -818,9 +815,11 @@ export default function LeaderboardBrowseClient() {
                         A{r.ascension}
                       </span>
                       {r.username && (
-                        <span className="text-xs text-[var(--accent-gold)] truncate">
-                          {r.username}
-                        </span>
+                        <PlayerLink
+                          nested
+                          username={r.username}
+                          className="text-xs text-[var(--accent-gold)] truncate"
+                        />
                       )}
                       <PlayerBadge username={r.username} />
                     </div>

@@ -3886,14 +3886,15 @@ def _global_win_total(coll) -> int:
 
 
 @_instrument("seed_rank_for")
-def seed_rank_for(steam_id: str | None, seed: str) -> dict:
+def seed_rank_for(steam_id: str | None, seed: str, run_hash: str | None = None) -> dict:
     """The mod's seed + global standing (F9 panel and post-run card).
 
     Seed pool = completed (non-abandoned) runs sharing the seed; ranking is
     winning runs by run_time ASC, cross-character (a seed ladder is "who did
     best on this exact seed"). Global = the caller's best winning run on the
     all-runs fastest ladder. Rank fields are null when the caller has no
-    winning run in that pool.
+    winning run in that pool. With `run_hash`, `seed_rank` is that run's own
+    place on the seed instead of the caller's best.
     """
     coll = _get_collection()
     base = {"seed": seed, "was_abandoned": {"$ne": True}}
@@ -3948,6 +3949,30 @@ def seed_rank_for(steam_id: str | None, seed: str) -> dict:
             percentile = round(global_rank * 100.0 / global_total, 1)
     else:
         global_total = _global_win_total(coll)
+
+    if run_hash:
+        seed_rank = None
+        run = coll.find_one(
+            {
+                "_id": run_hash,
+                "seed": seed,
+                "win": {"$in": [True, 1]},
+                "hidden": {"$ne": True},
+            },
+            {"run_time": 1},
+        )
+        if run:
+            seed_rank = (
+                _count_visible(
+                    coll,
+                    {
+                        "seed": seed,
+                        "win": {"$in": [True, 1]},
+                        "run_time": {"$lt": run.get("run_time", 0)},
+                    },
+                )
+                + 1
+            )
 
     return {
         "seed": seed,

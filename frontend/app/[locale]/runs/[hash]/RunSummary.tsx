@@ -43,6 +43,9 @@ import { stackCards } from "@/lib/deck-stack";
 import { fmtDateTime, fmtDateTimePacific } from "@/lib/pacific";
 import { PlayerBadge } from "@/app/components/SupporterBadge";
 import { OwnerTheme } from "@/app/components/OwnerTheme";
+import PlayerLink from "@/app/components/PlayerLink";
+import { playerRunsHref } from "@/lib/player-pages";
+import { RankChip, SeedStanding, useRunStanding } from "./RunStanding";
 const ICON_BASE = imageUrl("/static/images/ui/run_history");
 
 const RARITY_ORDER = [
@@ -181,6 +184,7 @@ function iconFor(
 
 interface Props {
   run: Run;
+  hash?: string;
   player: Player;
   cardData: Record<string, CardInfo>;
   relicData: Record<string, RelicInfo>;
@@ -194,6 +198,7 @@ interface Props {
 
 export default function RunSummary({
   run,
+  hash,
   player,
   cardData,
   relicData,
@@ -212,6 +217,11 @@ export default function RunSummary({
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
   const finalStats = lastPlayerStats(run);
+  const standing = useRunStanding(
+    run.hidden ? undefined : hash,
+    run.players.length > 1 ? undefined : run.seed,
+    run.win,
+  );
   const totalFloors = run.floor_history.reduce(
     (sum, act) => sum + act.length,
     0,
@@ -313,17 +323,22 @@ export default function RunSummary({
           <OwnerTheme username={run.username} />
           {run.username && (
             <div className="truncate">
+              <span className="text-[var(--text-secondary)]">{t("by")} </span>
+              <PlayerLink
+                username={run.username}
+                fallback="runs"
+                className="font-medium text-[var(--text-primary)]"
+              />
+              <PlayerBadge username={run.username} className="ml-1" />
+              <span className="mx-1">·</span>
               <Link
-                href={`${bp}/runs?username=${encodeURIComponent(run.username)}`}
+                prefetch={false}
+                href={playerRunsHref(bp, run.username)}
                 className="text-[var(--text-secondary)] hover:text-[var(--accent-gold)] hover:underline"
                 title={t("View all runs by this player")}
               >
-                {t("by")}{" "}
-                <span className="font-medium text-[var(--text-primary)]">
-                  {run.username}
-                </span>
+                {t("Runs")}
               </Link>
-              <PlayerBadge username={run.username} className="ml-1" />
             </div>
           )}
           {run.start_time && (
@@ -331,11 +346,7 @@ export default function RunSummary({
               {formatDate(run.start_time, mounted, dateLocale)}
             </div>
           )}
-          {run.seed && (
-            <div className="truncate">
-              {t("Seed")}: <span className="font-mono">{run.seed}</span>
-            </div>
-          )}
+          {run.seed && <SeedStanding seed={run.seed} standing={standing} />}
           <div className="truncate">
             {t(modeLabel(run.game_mode))}
             {run.build_id && <span className="ml-1">· {run.build_id}</span>}
@@ -343,8 +354,14 @@ export default function RunSummary({
         </div>
       </div>
 
-      <div className="mb-4 italic text-sm text-[var(--text-secondary)]">
-        &ldquo;{deathQuote}&rdquo;
+      <div className="mb-4 flex flex-wrap items-center gap-x-3 gap-y-1 italic text-sm text-[var(--text-secondary)]">
+        <span>&ldquo;{deathQuote}&rdquo;</span>
+        <RankChip
+          rank={standing.rank}
+          character={player.character}
+          charName={charName.replace(/^The /, "")}
+          bp={bp}
+        />
       </div>
 
       {/* Act rows with hover popovers */}

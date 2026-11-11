@@ -17,6 +17,7 @@ import { cachedFetch } from "@/lib/fetch-cache";
 import { imageUrl, fullCardUrl } from "@/lib/image-url";
 import FullCardGrid from "@/app/components/FullCardGrid";
 import EntityProse from "@/app/components/EntityProse";
+import { comparePairs, isCompareCharacter } from "@/lib/link-targets";
 import "@/app/card-revamp.css";
 import "@/app/character-extra.css";
 
@@ -450,6 +451,60 @@ export default function CharacterDetail({
             <h1>{char.name}</h1>
             <EntityProse kind="character" character={char} lead />
           </div>
+
+          <nav className="deeper" aria-label={t("Go deeper")}>
+            <span className="toc-label">{t("Go deeper")}</span>
+            <div className="chips">
+              {isCompareCharacter(char.id) && (
+                <Link
+                  prefetch={false}
+                  className="chip"
+                  href={`/tier-list/cards?color=${char.id.toLowerCase()}`}
+                >
+                  {t("Card Tier List")}
+                </Link>
+              )}
+              <Link
+                prefetch={false}
+                className="chip"
+                href={`/stats/cards?character=${char.id.toUpperCase()}`}
+              >
+                {t("Card Stats")}
+              </Link>
+              {isCompareCharacter(char.id) && (
+                <Link
+                  prefetch={false}
+                  className="chip"
+                  href={`/guides?search=${char.id.toLowerCase()}`}
+                >
+                  {t("Guides")}
+                </Link>
+              )}
+              {comparePairs(char.id).map((pair) => (
+                <Link
+                  prefetch={false}
+                  key={pair.slug}
+                  className="chip"
+                  href={`/compare/${pair.slug}`}
+                >
+                  <span>{t("vs")}</span>
+                  <img
+                    src={imageUrl(
+                      `/static/images/characters/character_icon_${pair.other}.webp`,
+                    )}
+                    alt=""
+                    width={16}
+                    height={16}
+                  />
+                  <span>
+                    {t(
+                      pair.other.charAt(0).toUpperCase() + pair.other.slice(1),
+                    )}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </nav>
 
           {/* Sticky ToC */}
           <nav className="toc" aria-label={t("On this page")}>

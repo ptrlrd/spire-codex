@@ -50,6 +50,26 @@ def players_flair(
     return supporters.flair(u)
 
 
+@router.get("/profiles", tags=["Players"])
+@limiter.limit(rate_limit_config.endpoint_limit("players.profiles", "120/minute"))
+def players_profiles(
+    request: Request,
+    response: Response,
+    u: list[str] = Query(default=[], description="Usernames, up to 100"),
+):
+    """Which of a batch of usernames have a public player page, as
+    lowercased usernames. Unknown and private accounts are left out."""
+    if len(u) > supporters.FLAIR_MAX_NAMES:
+        raise HTTPException(status_code=400, detail="Too many names")
+    response.headers["Cache-Control"] = "public, max-age=300"
+    if not os.environ.get("MONGO_URL", "").strip():
+        return {"profiles": []}
+
+    from ..services.users_db import public_profile_names
+
+    return {"profiles": public_profile_names(u, supporters.FLAIR_MAX_NAMES)}
+
+
 @router.get("/{username}/profile", tags=["Players"])
 @limiter.limit(rate_limit_config.endpoint_limit("players.profile", "120/minute"))
 def player_profile(username: str, request: Request, response: Response):

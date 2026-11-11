@@ -18,6 +18,16 @@ import { fullCardUrl } from "@/lib/image-url";
 import { gridCard } from "@/lib/card-display";
 import { fetchBetaAdditions } from "@/lib/beta-additions.server";
 import { inCharacterOrder } from "@/lib/character-order";
+import { SLUG_MAP } from "./browse/slug-map";
+
+const BROWSE_SHORTCUTS = [
+  "attacks",
+  "skills",
+  "powers",
+  "common",
+  "uncommon",
+  "rare",
+];
 
 const API =
   process.env.API_INTERNAL_URL ||
@@ -338,6 +348,25 @@ export default async function CardsPage({ params }: Props) {
               </li>
             ))}
           </ul>
+          <div className="flex flex-wrap items-center gap-2 mt-4 text-sm">
+            {BROWSE_SHORTCUTS.map((slug) => (
+              <Link
+                key={slug}
+                prefetch={false}
+                href={`/cards/browse/${slug}`}
+                className="px-3 py-1 rounded-full border border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--accent-gold)] hover:text-[var(--accent-gold)] transition-colors"
+              >
+                {t(SLUG_MAP[slug].label)}
+              </Link>
+            ))}
+            <Link
+              prefetch={false}
+              href="/cards/browse"
+              className="px-3 py-1 text-[var(--accent-gold)] hover:underline"
+            >
+              {t("Browse Cards by Category")} &rarr;
+            </Link>
+          </div>
           {locale === "eng" && (
             <p className="text-sm text-[var(--text-muted)] mt-4">
               Looking for tier rankings? See the full{" "}

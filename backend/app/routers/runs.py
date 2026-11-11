@@ -778,12 +778,18 @@ def get_leaderboard(
 
 @router.get("/leaderboard/seed-rank", tags=["Runs"])
 @limiter.limit(rate_limit_config.endpoint_limit("runs.get_seed_rank", "120/minute"))
-def get_seed_rank(request: Request, seed: str, steam_id: str | None = None):
+def get_seed_rank(
+    request: Request,
+    seed: str,
+    steam_id: str | None = None,
+    run_hash: str | None = None,
+):
     """Seed + global standing for the in-game mod (F9 panel, post-run card).
 
     Pool = completed runs sharing the seed; ranking = winning runs by run_time,
     cross-character. `seed_rank`/`global_rank`/`percentile` are null when the
     caller has no winning run in that pool (the mod hides those lines).
+    `run_hash` makes `seed_rank` the place of that one run on the seed.
     """
     seed = (seed or "").strip()
     if not seed or len(seed) > 64:
@@ -796,11 +802,18 @@ def get_seed_rank(request: Request, seed: str, steam_id: str | None = None):
     if os.environ.get("MONGO_URL", "").strip():
         from ..services.runs_db_mongo import seed_rank_for
 
-        cache_key = "seed_rank:" + json.dumps([seed, clean_steam])
+        clean_hash = (run_hash or "").strip()[:128] or None
+        rank_args = [seed, clean_steam]
+        if clean_hash:
+            rank_args.append(clean_hash)
+        cache_key = "seed_rank:" + json.dumps(rank_args)
         cached = app_cache.get_json(cache_key)
         if cached is not None:
             return cached
-        result = seed_rank_for(clean_steam, seed)
+        if clean_hash:
+            result = seed_rank_for(clean_steam, seed, clean_hash)
+        else:
+            result = seed_rank_for(clean_steam, seed)
         app_cache.set_json(cache_key, result, ttl_seconds=_SEED_RANK_CACHE_TTL_SECONDS)
         return result
 

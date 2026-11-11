@@ -29,6 +29,7 @@ import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityUpdateHistory from "@/app/components/EntityUpdateHistory";
 import EntityProse from "@/app/components/EntityProse";
 import { imageUrl } from "@/lib/image-url";
+import { ActLinks } from "@/app/components/ActLink";
 import "@/app/card-revamp.css";
 import "@/app/monster-encounter-extra.css";
 import MonsterEncounterStats from "./MonsterEncounterStats";
@@ -615,7 +616,9 @@ export default function MonsterDetail({
               <span className="dot">&#9670;</span>
               {acts.length > 0 && (
                 <>
-                  <span>{acts.join(", ")}</span>
+                  <span>
+                    <ActLinks acts={acts} bp={bp} />
+                  </span>
                   <span className="sep">&middot;</span>
                 </>
               )}
@@ -1063,7 +1066,9 @@ export default function MonsterDetail({
                 {acts.length > 0 && (
                   <div className="frow">
                     <dt>{t("Act")}</dt>
-                    <dd>{acts.join(", ")}</dd>
+                    <dd>
+                      <ActLinks acts={acts} bp={bp} />
+                    </dd>
                   </div>
                 )}
                 {hasMoves && (

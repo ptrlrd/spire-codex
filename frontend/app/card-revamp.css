@@ -949,3 +949,14 @@ a.kw {
 .card-rvmp section#relations:not(:has(.rel > *)) {
   display: none;
 }
+
+.card-rvmp a.entity-inline-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--border-2);
+  text-underline-offset: 3px;
+}
+.card-rvmp a.entity-inline-link:hover {
+  color: var(--gold);
+  text-decoration-color: var(--gold);
+}

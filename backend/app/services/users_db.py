@@ -357,6 +357,20 @@ def get_user_by_username(username: str) -> dict | None:
     return doc
 
 
+def public_profile_names(usernames: list[str], limit: int = 100) -> list[str]:
+    """Which of these usernames (lowercased) have a public player page."""
+    keys = sorted(
+        {u.strip().lower() for u in usernames if isinstance(u, str) and u.strip()}
+    )[:limit]
+    if not keys:
+        return []
+    cursor = _get_collection().find(
+        {"username_lower": {"$in": keys}, "profile_private": {"$ne": True}},
+        {"username_lower": 1},
+    )
+    return sorted(d["username_lower"] for d in cursor if d.get("username_lower"))
+
+
 def set_profile_private(user_id: str, private: bool) -> dict:
     """Flip the public-profile flag. Runs stay on leaderboards either way
     (they're public by design); this only controls the /players page."""

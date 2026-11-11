@@ -151,7 +151,6 @@ export default function HomeLeaderboardLive({
   // On beta, point all in-page links at stable's absolute URL, the data
   // shown in this section came from stable, so the run-detail / browse /
   // submit pages need to live there too. On stable, stay relative so
-  const lbBase = `${runsHost}/leaderboards`;
   const runsBase = `${runsHost}/runs`;
   const ascLabel =
     fastest.ascension === TARGET_ASCENSION
@@ -173,7 +172,7 @@ export default function HomeLeaderboardLive({
             <Link
               prefetch={false}
               className="viewmore"
-              href={`${lbBase}/submit`}
+              href={`${runsBase}/submit`}
             >
               {t("Upload your runs")} {ARROW}
             </Link>
