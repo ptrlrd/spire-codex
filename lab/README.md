@@ -34,13 +34,24 @@ Stages, from `run_stage.py`:
 | `deep_tables` | Per-combo deep item tables for the materialized stats docs (`build_deep_tables`) |
 | `charts_blob` | The charts blob (`charts_blob_lake.build_charts_blob`) |
 | `stats_core` | Refreshes the Mongo `stats_summary` docs from the lake (`refresh_stats_core`) |
-| `leaderboard_summary` | Leaderboard boards (`runs_db_mongo.refresh_leaderboard_summary`) |
+| `leaderboard_summary` | `leaderboard.parquet` (every winning run, one row per seat with its co-op party) and the hot boards cut from it (`runs_db_mongo.refresh_leaderboard_summary`) |
 | `frame` | The charts frame as parquet (`charts_stats.store_frame_parquet`) |
 | `history` | Daily Codex Score + Elo history per entity (`archive_entity_metric_history_from_lake`) |
 | `profiles` | Profile insights for every linked account (`precompute_insights.py`) |
 | `replay_guard` | Save-reload detection over replays (`replay_guard.py`) |
 | `player_elo` | Nightly player Elo board (`player_elo_board.py`) |
 | `player_stats` | Per-player stats tables for the profile (`player_stats.py`) |
+
+The table lists what each stage builds, not the order. The cycle runs
+`leaderboard_summary` first (it only needs the parquet tables) and
+`stats_core` right after `deep_tables`, so the ladders and the headline
+totals are fresh before the hours of `charts_blob` work. Both count as store
+stages: if either fails, the generation is not published.
+
+Any leaderboard filter the page can send (party size, game mode, character,
+A10, the win rate tiers, game version, any page) is a slice of
+`leaderboard.parquet`, read by `lake_stats.leaderboard_slice`. Only today's
+daily board is queried live.
 
 Run one stage on its own with the same lock the cycle holds:
 

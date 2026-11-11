@@ -26,6 +26,7 @@ SERVE_FILES = (
     "runs_export.jsonl.gz",
     "runs_export.json",
     "player_elo.json",
+    "leaderboard.parquet",
     "player_stats.parquet",
     "seed_facts.parquet",
     "seed_profiles.parquet",

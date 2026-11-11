@@ -646,7 +646,10 @@ def get_leaderboard(
     `ascension_min`: only runs at this ascension or higher (e.g. 10 for the
     A10 fastest-wins board); without it the board spans every ascension, so a
     low-ascension speedrun can outrank an A10 win.
-    `players`: `single` (player_count == 1) or `multi` (player_count > 1).
+    `players`: `single` or `1` (player_count == 1), `2`, `3`, `4` (four or
+    more), or `multi` (player_count > 1). A co-op run is one row: the row is
+    one of its seats, and `party` lists every seat's `run_hash`, `character`
+    and `username`.
     `game_mode`: `standard`, `daily`, or `custom`. Custom runs ride on
     custom seeds so their times aren't comparable to the standard
     ladder; the frontend defaults to `standard` and exposes mode
@@ -811,12 +814,14 @@ def get_seed_rank(request: Request, seed: str, steam_id: str | None = None):
 @router.get("/leaderboard/rank/{run_hash}", tags=["Runs"])
 @limiter.limit(rate_limit_config.endpoint_limit("runs.get_run_rank", "120/minute"))
 def get_run_rank(request: Request, run_hash: str, category: str = "fastest"):
-    """Rank of a single winning run within its character's leaderboard.
+    """Rank of a single winning run on the leaderboard it appears on: its
+    character, its party size (solo, 2, 3, or 4 and up), its game mode, and
+    ascensions 0 to 10. A co-op run counts once.
 
     Ordering matches `/leaderboard`:
-    - `fastest`: `run_time ASC` — rank = (wins by char with run_time < this) + 1
-    - `highest_ascension`: `ascension DESC, run_time ASC` — rank = (wins by char
-      with higher ascension, or same ascension and faster) + 1
+    - `fastest`: `run_time ASC`, rank = (wins on that board with run_time < this) + 1
+    - `highest_ascension`: `ascension DESC, run_time ASC`, rank = (wins on that
+      board with higher ascension, or same ascension and faster) + 1
 
     Returns `{"rank": None}` for losses, missing hashes, or abandoned runs so
     the caller can render "DNF" / "—" uniformly.

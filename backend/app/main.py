@@ -863,12 +863,6 @@ def health(request: Request):
             lake[label] = datetime.fromtimestamp(ts, tz=timezone.utc).isoformat()
         except OSError:
             lake[label] = None
-    data_through = None
-    try:
-        state = json.loads((lake_dir / "staging" / "state.json").read_text())
-        data_through = state.get("submitted_at")
-    except Exception:
-        pass
     # The ingest publishes this manifest last, after every artifact of a
     # cycle landed, so it names the newest COMPLETE generation; individual
     # store mtimes above can run ahead of it mid-cycle.
@@ -877,6 +871,7 @@ def health(request: Request):
         generation = json.loads((lake_dir / "generation.json").read_text())
     except Exception:
         pass
+    data_through = (generation or {}).get("source_watermark")
     # The newest ATTEMPT, complete or not — a failing cron would otherwise
     # be invisible here (the manifest only ever shows the last success).
     latest_attempt = None
