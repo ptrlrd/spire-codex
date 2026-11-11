@@ -119,6 +119,59 @@ def test_unchanged_strings_come_from_the_beta_translation(trees):
     assert scare["name"] == "Scare"
 
 
+def test_lists_the_beta_reordered_pair_by_id(trees):
+    main, beta = trees
+    burn = {"id": "BURN", "name": "Burn"}
+    knight = {"id": "MECHA_KNIGHT", "name": "Mecha Knight"}
+    subject = {"id": "TEST_SUBJECT", "name": "Test Subject #C14"}
+    slime = {"id": "SLIME", "name": "Slime"}
+    _write(
+        main / "eng" / "cards.json",
+        [{**burn, "sources": [knight, subject, slime], "tags": ["Status", "Burn"]}],
+    )
+    _write(
+        beta / "v9.9.9" / "eng" / "cards.json",
+        [
+            {
+                **burn,
+                "sources": [knight, {**subject, "name": "Test Subject #C{Count}"}],
+                "tags": ["Status", "Burn"],
+            }
+        ],
+    )
+    _write(
+        beta / "v9.9.9" / "zht" / "cards.json",
+        [
+            {
+                "id": "BURN",
+                "name": "灼傷",
+                "sources": [
+                    {"id": "TEST_SUBJECT", "name": "實驗體 #C{Count}"},
+                    {"id": "MECHA_KNIGHT", "name": "機甲騎士"},
+                ],
+                "tags": ["狀態", "灼傷"],
+            }
+        ],
+    )
+    card = _load("stable", "zht")[0]
+    assert card["name"] == "灼傷"
+    assert card["sources"] == [
+        {"id": "MECHA_KNIGHT", "name": "機甲騎士"},
+        subject,
+        slime,
+    ]
+    assert card["tags"] == ["狀態", "灼傷"]
+
+
+def test_rows_with_mismatched_ids_stay_english():
+    main = [{"id": "A", "name": "Same"}, {"id": "A", "name": "Same"}]
+    lang = [{"id": "B", "name": "乙"}, {"id": "A", "name": "甲"}]
+    assert data_service._borrow_text(main, main, lang) == [
+        {"id": "A", "name": "Same"},
+        {"id": "A", "name": "甲"},
+    ]
+
+
 def test_strings_the_beta_changed_stay_english(trees):
     bash = _load("stable", "zht")[0]
     assert bash["description"] == "Deal 8 damage."

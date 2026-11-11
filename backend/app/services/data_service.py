@@ -240,22 +240,45 @@ def _read_beta_file(beta_version: str, lang: str, name: str) -> list | dict | No
         return None
 
 
+def _rows_by_id(rows: list) -> dict | None:
+    by_id = {}
+    for row in rows:
+        if not isinstance(row, dict):
+            return None
+        key = row.get("id")
+        if not isinstance(key, (str, int)) or key in by_id:
+            return None
+        by_id[key] = row
+    return by_id
+
+
 def _borrow_text(main_eng, beta_eng, beta_lang):
     """Swap an English string for the beta tree's translation of it, only
-    where the beta English at the same place is the identical string."""
+    where the beta English at the same place is the identical string. Rows
+    that carry an id are paired by it, since the beta sorts some lists by
+    localized name."""
     if isinstance(main_eng, dict):
         if not (isinstance(beta_eng, dict) and isinstance(beta_lang, dict)):
+            return main_eng
+        if "id" in main_eng and not (
+            main_eng["id"] == beta_eng.get("id") == beta_lang.get("id")
+        ):
             return main_eng
         return {
             k: _borrow_text(v, beta_eng.get(k), beta_lang.get(k))
             for k, v in main_eng.items()
         }
     if isinstance(main_eng, list):
-        if not (
-            isinstance(beta_eng, list)
-            and isinstance(beta_lang, list)
-            and len(main_eng) == len(beta_eng) == len(beta_lang)
-        ):
+        if not (isinstance(beta_eng, list) and isinstance(beta_lang, list)):
+            return main_eng
+        eng_by_id = _rows_by_id(beta_eng)
+        lang_by_id = _rows_by_id(beta_lang)
+        if main_eng and eng_by_id and lang_by_id and _rows_by_id(main_eng):
+            return [
+                _borrow_text(row, eng_by_id.get(row["id"]), lang_by_id.get(row["id"]))
+                for row in main_eng
+            ]
+        if not len(main_eng) == len(beta_eng) == len(beta_lang):
             return main_eng
         return [_borrow_text(*t) for t in zip(main_eng, beta_eng, beta_lang)]
     if (
