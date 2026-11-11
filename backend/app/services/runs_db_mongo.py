@@ -2966,7 +2966,7 @@ def list_runs(
             "runs": [],
             "total": 0,
             "page": max(page, 1),
-            "per_page": min(limit, 100),
+            "per_page": max(1, min(limit, 100)),
             "total_pages": 0,
             "total_is_lower_bound": False,
         }
@@ -2988,7 +2988,7 @@ def list_runs(
     else:
         total = coll.estimated_document_count()
         total_is_lower_bound = False
-    per_page = min(limit, 100)
+    per_page = max(1, min(limit, 100))
     offset = (max(page, 1) - 1) * per_page
     cursor = (
         coll.find(q, _projection_row()).sort(sort_clause).skip(offset).limit(per_page)
@@ -3354,7 +3354,7 @@ def _leaderboard_live(
     else:
         total = coll.estimated_document_count()
         total_is_lower_bound = False
-    per_page = min(limit, 100)
+    per_page = max(1, min(limit, 100))
     offset = (max(page, 1) - 1) * per_page
     cursor = (
         coll.find(q, _projection_row()).sort(sort_clause).skip(offset).limit(per_page)
