@@ -407,6 +407,26 @@ def test_stage_keys_seeds_by_version_lobby_and_ordered_party(lake):
     assert deck[0][0] == 4
 
 
+def test_modded_runs_never_enter_the_index(lake):
+    lake_dir, _meta = lake
+    con = duckdb.connect()
+
+    def runs_by_seed():
+        return dict(
+            con.execute(
+                f"SELECT seed_key, runs FROM read_parquet('{lake_dir}/seed_profiles.parquet')"
+            ).fetchall()
+        )
+
+    assert runs_by_seed()["EEEE|v0.107.1|1|DEFECT"] == 2
+    con.execute(
+        f"COPY (SELECT 'r8' AS run_hash, 'cards' AS kind) TO '{lake_dir}/modded.parquet'"
+        " (FORMAT parquet)"
+    )
+    stage.build()
+    assert runs_by_seed()["EEEE|v0.107.1|1|DEFECT"] == 1
+
+
 def test_full_match_needs_one_run_that_showed_everything(lake):
     both = svc.search(
         [svc.Predicate("neow", "POMANDER"), svc.Predicate("relic", "ANCHOR")],

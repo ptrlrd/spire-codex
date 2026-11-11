@@ -57,7 +57,7 @@ SELECT r.run_hash, r.seed, coalesce(r.build_id, '') AS build_id,
   r.start_time, r.played_at, r.username, s.floors_reached
 FROM read_parquet('{lake}/runs.parquet') r
 LEFT JOIN read_parquet('{lake}/run_scalars.parquet') s USING (run_hash)
-ANTI JOIN read_parquet('{lake}/excluded.parquet') x ON r.run_hash = x.run_hash
+ANTI JOIN {unlisted} x ON r.run_hash = x.run_hash
 WHERE r.seed IS NOT NULL AND r.seed <> ''
   AND coalesce(r.hidden, false) = false AND coalesce(r.deleted, false) = false
   AND NOT r.has_modifiers
@@ -308,6 +308,7 @@ def build() -> dict:
             ELIGIBLE_SQL.format(
                 lake=lake,
                 max_asc=MAX_ASCENSION,
+                unlisted=lake_stats._unlisted_runs_sql(lake),
                 official=official_characters_sql(),
             )
         )

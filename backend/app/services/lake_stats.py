@@ -84,17 +84,24 @@ _payload_cache: dict[str, tuple[float, dict]] = {}
 SHORT_ABANDON_MAX_FLOOR = 5
 
 
-def _excluded_runs_sql(lake) -> str:
-    """Runs every stat leaves out: hidden or deleted runs, runs carrying
+def _unlisted_runs_sql(lake) -> str:
+    """Runs no surface counts: hidden or deleted runs and runs carrying
     modded content (any seat's character, card or relic that is in no
-    official catalog; build_lake.py writes modded.parquet), plus runs
-    abandoned by floor 5 (Neow rerolls and quick restarts that were never
-    really played). Headline totals read the raw runs instead."""
+    official catalog; build_lake.py writes modded.parquet)."""
     sql = f"SELECT run_hash FROM read_parquet('{lake}/excluded.parquet')"
     if (Path(lake) / "modded.parquet").exists():
         sql += f"""
   UNION ALL
   SELECT run_hash FROM read_parquet('{lake}/modded.parquet')"""
+    return f"({sql})"
+
+
+def _excluded_runs_sql(lake) -> str:
+    """Runs every stat leaves out: the unlisted runs plus runs abandoned by
+    floor 5 (Neow rerolls and quick restarts that were never really
+    played). Headline totals keep those abandons and read
+    _unlisted_runs_sql instead."""
+    sql = _unlisted_runs_sql(lake)[1:-1]
     if (Path(lake) / "run_scalars.parquet").exists():
         sql += f"""
   UNION ALL
@@ -2842,7 +2849,7 @@ def _stats_core_results() -> list[tuple[dict, dict]]:
               count(*) AS n, count(*) FILTER (r.win) AS w,
               count(*) FILTER (r.was_abandoned) AS ab
             FROM read_parquet('{LAKE_DIR}/runs.parquet') r
-            ANTI JOIN read_parquet('{LAKE_DIR}/excluded.parquet') x
+            ANTI JOIN {_unlisted_runs_sql(LAKE_DIR)} x
               ON r.run_hash = x.run_hash
             WHERE r.ascension BETWEEN 0 AND 10
             GROUP BY 1, 2, 3
