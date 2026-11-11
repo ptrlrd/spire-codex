@@ -33,6 +33,8 @@ jobs:
     outputs:
       frontend: ${{ steps.filter.outputs.frontend }}
       backend: ${{ steps.filter.outputs.backend }}
+      python_lint: ${{ steps.filter.outputs.python_lint }}
+      python_tests: ${{ steps.filter.outputs.python_tests }}
     steps:
       - uses: actions/checkout@v7
       - uses: dorny/paths-filter@f3360c560367c9daf72b88c0e6164162034c5721 # v3
@@ -43,6 +45,14 @@ jobs:
               - 'frontend/**'
             backend:
               - 'backend/**'
+            python_lint:
+              - 'backend/**'
+              - 'lab/**'
+              - 'tools/**/*.py'
+              - 'ruff.toml'
+            python_tests:
+              - 'backend/**'
+              - 'lab/**'
 
   # ── Secrets check ──────────────────────────────────────
   secrets-check:
@@ -104,12 +114,41 @@ jobs:
       - name: Prettier
         run: npm run format:check
 
+      - name: Vitest
+        run: npm test
+
+  frontend-build:
+    name: Frontend build without the API
+    runs-on: ubuntu-latest
+    needs: changes
+    if: github.event_name == 'pull_request' && needs.changes.outputs.frontend == 'true'
+    defaults:
+      run:
+        working-directory: frontend
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+      NEXT_PUBLIC_API_URL: ""
+      NEXT_PUBLIC_SITE_URL: https://spire-codex.com
+      NEXT_PUBLIC_CDN_URL: https://cdn.spire-codex.com
+      API_INTERNAL_URL: http://127.0.0.1:9
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 26
+
+      - run: npm ci
+
+      - name: Next build
+        run: npm run build
+
   # ── Backend checks ─────────────────────────────────────
   backend-lint:
     name: Backend lint
     runs-on: ${{ github.event_name == 'pull_request' && 'ubuntu-latest' || 'self-hosted' }}
     needs: changes
-    if: needs.changes.outputs.backend == 'true'
+    if: needs.changes.outputs.python_lint == 'true'
     defaults:
       run:
         working-directory: backend
@@ -126,16 +165,19 @@ jobs:
         run: pip install "ruff==0.15.14"
 
       - name: Ruff lint
-        run: ruff check app/
+        run: ruff check app/ scripts/ tests/ ../lab ../tools
 
       - name: Ruff format check
         run: ruff format --check app/
+
+      - name: Compile lab
+        run: python -m compileall -q ../lab
 
   backend-tests:
     name: Backend tests
     runs-on: ${{ github.event_name == 'pull_request' && 'ubuntu-latest' || 'self-hosted' }}
     needs: changes
-    if: needs.changes.outputs.backend == 'true'
+    if: needs.changes.outputs.python_tests == 'true'
     defaults:
       run:
         working-directory: backend
@@ -199,9 +241,11 @@ jobs:
           push: true
           build-args: |
             GIT_SHA=${{ github.sha }}
-          tags: |
-            ptrlrd/spire-codex-backend:latest
-            ptrlrd/spire-codex-backend:${{ github.sha }}
+          tags: ptrlrd/spire-codex-backend:${{ github.sha }}
+
+      - name: Move backend :latest unless main has a newer backend commit
+        if: needs.changes.outputs.backend == 'true'
+        run: .github/scripts/promote-latest.sh ptrlrd/spire-codex-backend backend
 
       - name: Build & push frontend
         if: needs.changes.outputs.frontend == 'true'
@@ -216,15 +260,17 @@ jobs:
             NEXT_PUBLIC_UMAMI_WEBSITE_ID=${{ secrets.UMAMI_WEBSITE_ID }}
             NEXT_PUBLIC_CDN_URL=https://cdn.spire-codex.com
             NEXT_DEPLOYMENT_ID=${{ github.sha }}
-          tags: |
-            ptrlrd/spire-codex-frontend:latest
-            ptrlrd/spire-codex-frontend:${{ github.sha }}
+          tags: ptrlrd/spire-codex-frontend:${{ github.sha }}
+
+      - name: Move frontend :latest unless main has a newer frontend commit
+        if: needs.changes.outputs.frontend == 'true'
+        run: .github/scripts/promote-latest.sh ptrlrd/spire-codex-frontend frontend
 
   # ── Deploy ──────────────────────────────────────────────
   # Deploys are intentionally MANUAL via Ansible until we wire the
   # toolkit into CI properly (needs a runner with SSH key + 1Password
-  # access, which we don't have yet). The hourly autodeploy cron on the
-  # box also picks up merged changes on its own.
+  # access, which we don't have yet). Nothing on the box deploys on its
+  # own: ./tools/startup.sh release there is the usual path.
   #
   # After this workflow's build job publishes new images to Docker Hub,
   # run from your laptop:

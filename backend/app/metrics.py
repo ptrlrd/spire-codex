@@ -1,7 +1,10 @@
 """Prometheus metrics for Spire Codex."""
 
+import calendar
+import json
 import os
 import time
+from pathlib import Path
 
 from prometheus_client import Counter, Gauge, Histogram, multiprocess
 
@@ -252,3 +255,89 @@ cache_errors = Counter(
     "Application cache errors (treated as misses)",
     ["namespace", "operation"],
 )
+
+# ── Lake ingest ──────────────────────────────────────────────
+lake_generation_published = Gauge(
+    "spire_codex_lake_generation_published_timestamp_seconds",
+    "Unix time the newest complete lake generation was published (0 = none)",
+    multiprocess_mode="mostrecent",
+)
+
+lake_last_attempt = Gauge(
+    "spire_codex_lake_last_attempt_timestamp_seconds",
+    "Unix time the newest lake ingest attempt was recorded (0 = none)",
+    multiprocess_mode="mostrecent",
+)
+
+lake_last_attempt_complete = Gauge(
+    "spire_codex_lake_last_attempt_complete",
+    "1 when the newest lake ingest record is a complete generation",
+    multiprocess_mode="mostrecent",
+)
+
+lake_ingest_running = Gauge(
+    "spire_codex_lake_ingest_running",
+    "1 when the newest lake ingest record is a cycle start with no result yet",
+    multiprocess_mode="mostrecent",
+)
+
+
+def read_lake_generation(lake_dir: Path) -> dict | None:
+    try:
+        return json.loads((lake_dir / "generation.json").read_text())
+    except Exception:
+        return None
+
+
+def _last_ingest_record(lake_dir: Path) -> dict | None:
+    try:
+        with open(lake_dir / "ingest_metrics.jsonl", "rb") as f:
+            f.seek(0, 2)
+            f.seek(max(0, f.tell() - 8192))
+            lines = f.read().splitlines()
+        return json.loads(lines[-1]) if lines else None
+    except Exception:
+        return None
+
+
+def read_lake_latest_attempt(lake_dir: Path) -> dict | None:
+    rec = _last_ingest_record(lake_dir)
+    if not isinstance(rec, dict):
+        return None
+    return {
+        k: rec.get(k)
+        for k in (
+            "generation_id",
+            "cycle_started_at",
+            "published_at",
+            "complete",
+            "failed_stage",
+        )
+    }
+
+
+def _epoch(stamp) -> float:
+    try:
+        return float(calendar.timegm(time.strptime(stamp, "%Y-%m-%dT%H:%M:%SZ")))
+    except (TypeError, ValueError):
+        return 0.0
+
+
+def refresh_lake_gauges() -> None:
+    """Mirror the lake freshness /health reports into gauges so a stale or
+    failing ingest can be alerted on. Called from the /metrics scrape path."""
+    lake_dir = Path(os.environ.get("LAKE_DIR", "/lake"))
+    generation = read_lake_generation(lake_dir)
+    if not isinstance(generation, dict):
+        generation = {}
+    attempt = _last_ingest_record(lake_dir)
+    if not isinstance(attempt, dict):
+        attempt = {}
+    lake_generation_published.set(_epoch(generation.get("published_at")))
+    lake_last_attempt.set(
+        _epoch(attempt.get("published_at") or attempt.get("cycle_started_at"))
+    )
+    lake_last_attempt_complete.set(1 if attempt.get("complete") else 0)
+    lake_ingest_running.set(
+        1 if attempt.get("started") and not attempt.get("complete") else 0
+    )

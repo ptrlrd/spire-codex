@@ -46,16 +46,34 @@ log() { echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] $*" >> "$LOG"; }
 
 cd "$REPO"
 
-# Every deploy tags the images it is about to replace as :previous, so a bad
-# release is one command away from being undone without touching git or
-# waiting for CI: spire-codex-autodeploy --rollback (or
-# ./tools/startup.sh rollback). The next deploy overwrites :previous again.
+# A deploy that pulls a different image than the one running tags the running
+# pair as :previous, so a bad release is one command away from being undone
+# without touching git or waiting for CI: spire-codex-autodeploy --rollback
+# (or ./tools/startup.sh rollback). Re-running a deploy of the same images
+# leaves :previous alone, so it still points at the last different pair.
 IMAGES="ptrlrd/spire-codex-backend ptrlrd/spire-codex-frontend"
+running_image() {
+  docker inspect --format '{{.Image}}' "${1#ptrlrd/}" 2>/dev/null || true
+}
 keep_previous() {
+  local img running changed=0
   for img in $IMAGES; do
-    id=$(docker image inspect --format '{{.Id}}' "$img:latest" 2>/dev/null || true)
-    [ -n "$id" ] && docker tag "$id" "$img:previous" >> "$LOG" 2>&1 || true
+    running=$(running_image "$img")
+    if [ -n "$running" ] && [ "$running" != "$(docker image inspect --format '{{.Id}}' "$img:latest" 2>/dev/null || true)" ]; then
+      changed=1
+    fi
   done
+  if [ "$changed" != "1" ]; then
+    log "  pulled images match the running ones, :previous left as is"
+    return 0
+  fi
+  for img in $IMAGES; do
+    running=$(running_image "$img")
+    if [ -n "$running" ]; then
+      docker tag "$running" "$img:previous" >> "$LOG" 2>&1 || true
+    fi
+  done
+  log "  running images kept as :previous"
 }
 if [ "$ROLLBACK" = "1" ]; then
   log "==== rollback to :previous images ===="
@@ -68,7 +86,7 @@ if [ "$ROLLBACK" = "1" ]; then
   done
   docker compose -f "$COMPOSE_FILE" up -d --force-recreate --no-build --pull never backend frontend >> "$LOG" 2>&1
   for name in spire-codex-backend spire-codex-frontend; do
-    for i in $(seq 1 60); do
+    for _ in $(seq 1 60); do
       st=$(docker inspect --format '{{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}}' "$name" 2>/dev/null)
       [ "$st" = "healthy" ] && break
       sleep 2
@@ -137,8 +155,8 @@ if [ "$RECREATE" = "1" ]; then
   # this stack (served at /beta from the same containers), so the old
   # second pass over docker-compose.beta.yml is gone.
   log "  deploying $COMPOSE_FILE"
-  keep_previous
   docker compose -f "$COMPOSE_FILE" pull backend frontend >> "$LOG" 2>&1
+  keep_previous
 
   docker compose -f "$COMPOSE_FILE" up -d --force-recreate backend frontend >> "$LOG" 2>&1
 
