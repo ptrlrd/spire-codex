@@ -11,6 +11,7 @@ import {
 } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
+import { gameDataLastModIso } from "@/lib/content-dates";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
 import { fetchEntityRes } from "@/lib/entity-fetch";
 
@@ -83,6 +84,7 @@ export default async function Page({ params }: Props) {
           entityFallbackDescription(locale, affliction.name, "affliction"),
         path: localePath(locale, `/afflictions/${id}`),
         category: "Affliction",
+        dateModified: await gameDataLastModIso(),
         inLanguage: inLanguageOf(locale),
         breadcrumbs: [
           { name: uiText(locale, "Home"), href: localePath(locale, "/") },

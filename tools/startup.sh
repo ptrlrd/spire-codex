@@ -43,17 +43,22 @@ if [ "$BYPASS" != "1" ] && [ -x /usr/local/bin/spire-codex-autodeploy ]; then
         echo "installing the checkout's autodeploy script"
         sudo install -m 755 "$SCRIPT_SRC" /usr/local/bin/spire-codex-autodeploy
     fi
+    tail_pid=""
+    stop_follow() {
+        [ -n "$tail_pid" ] || return 0
+        sleep 1
+        sudo pkill -P "$tail_pid" 2>/dev/null || true
+        sudo kill "$tail_pid" 2>/dev/null || true
+        wait "$tail_pid" 2>/dev/null || true
+        tail_pid=""
+    }
+    trap stop_follow EXIT
     run_and_follow() {
         sudo touch "$LOG"
         sudo tail -n 0 -f "$LOG" &
-        local tail_pid=$!
+        tail_pid=$!
         sudo /usr/local/bin/spire-codex-autodeploy "$@"
-        local rc=$?
-        sleep 1
-        sudo pkill -P "$tail_pid" 2>/dev/null
-        sudo kill "$tail_pid" 2>/dev/null
-        wait "$tail_pid" 2>/dev/null
-        return $rc
+        stop_follow
     }
     if [ "$MODE" = "release" ]; then
         echo "forcing a full deploy via spire-codex-autodeploy --force"
@@ -79,17 +84,28 @@ fi
 # including Redis, which wipes the response cache and serves a hard 502
 # window while nothing is running. force-recreate swaps backend and
 # frontend in place and leaves Redis (and its cache) untouched.
-for img in ptrlrd/spire-codex-backend ptrlrd/spire-codex-frontend; do
-    id=$(docker image inspect --format '{{.Id}}' "$img:latest" 2>/dev/null || true)
-    [ -n "$id" ] && docker tag "$id" "$img:previous" || true
-done
 docker compose -f docker-compose.prod.yml pull backend frontend
+changed=0
+for img in ptrlrd/spire-codex-backend ptrlrd/spire-codex-frontend; do
+    running=$(docker inspect --format '{{.Image}}' "${img#ptrlrd/}" 2>/dev/null || true)
+    if [ -n "$running" ] && [ "$running" != "$(docker image inspect --format '{{.Id}}' "$img:latest" 2>/dev/null || true)" ]; then
+        changed=1
+    fi
+done
+if [ "$changed" = "1" ]; then
+    for img in ptrlrd/spire-codex-backend ptrlrd/spire-codex-frontend; do
+        running=$(docker inspect --format '{{.Image}}' "${img#ptrlrd/}" 2>/dev/null || true)
+        if [ -n "$running" ]; then
+            docker tag "$running" "$img:previous" || true
+        fi
+    done
+fi
 docker compose -f docker-compose.prod.yml up -d --force-recreate backend frontend
 
 # Wait for both healthchecks before nginx re-resolves the new container
 # addresses; reloading onto a booting container is the 502 window.
 for name in spire-codex-backend spire-codex-frontend; do
-    for i in $(seq 1 60); do
+    for _ in $(seq 1 60); do
         st=$(docker inspect --format '{{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}}' "$name" 2>/dev/null)
         [ "$st" = "healthy" ] && break
         sleep 2

@@ -4,9 +4,11 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useRouter } from "@/i18n/navigation";
 import { useT, useGameLocale } from "@/lib/i18n";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
+import { dataThroughLabel } from "@/lib/data-through";
 import { colorTextClass } from "@/lib/character-colors";
 import { fullCardUrl, imageUrl } from "@/lib/image-url";
 import { replaceQuery } from "@/lib/replace-query";
+import { useBetaRenderVersion } from "@/app/components/BetaRenderVersionProvider";
 import BetaBadge from "@/app/components/BetaBadge";
 import StatsRebuildingNotice from "@/app/components/StatsRebuildingNotice";
 import BracketPicker from "./BracketPicker";
@@ -224,6 +226,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
   const t = useT();
   const bp = useBetaPrefix();
   const lang = useGameLocale();
+  const betaRenderVersion = useBetaRenderVersion();
   const router = useRouter();
   const byCharacter =
     kind === "cards" &&
@@ -696,6 +699,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
 
   const cohort = cohortLabel(bracket, t, character);
   const scoreBaseline = totals.baselineWinRate;
+  const dataThrough = dataThroughLabel(totals.dataThrough, t, lang);
   const scoped = !!character && totals.characterRuns !== null;
   const seatBaseline = scoped
     ? totals.characterWins !== null && totals.characterRuns
@@ -949,6 +953,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
             : ""}
           {" · "}
           {t("{count} rows shown", { count: visible.length })}
+          {dataThrough && ` · ${dataThrough}`}
           {" · "}
           <button
             type="button"
@@ -1277,6 +1282,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
             preview.upgraded,
             preview.beta ? "beta" : "stable",
             lang,
+            betaRenderVersion,
           )}
           alt=""
           width={180}
