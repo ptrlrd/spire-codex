@@ -9,6 +9,7 @@ import RichDescription from "@/app/components/RichDescription";
 import { useChannel, useBetaPrefix } from "@/lib/api/prefix.client";
 import { useBetaAdditions } from "@/lib/use-beta-additions";
 import BetaBadge from "@/app/components/BetaBadge";
+import { inCharacterOrder } from "@/lib/character-order";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 import { imageUrl, fullCardUrl } from "@/lib/image-url";
@@ -45,10 +46,10 @@ export default function CharactersClient({
   const initialRender = useRef(true);
   const betaAdditions = useBetaAdditions<Character>("characters", lang);
   const betaIds = new Set(betaAdditions.map((c) => c.id));
-  const allCharacters = [
-    ...characters.filter((c) => !betaIds.has(c.id)),
-    ...betaAdditions,
-  ];
+  const allCharacters = inCharacterOrder(
+    [...characters.filter((c) => !betaIds.has(c.id)), ...betaAdditions],
+    (c) => c.id,
+  );
 
   useEffect(() => {
     // Skip the first fetch if we have server data and lang is English.
@@ -103,7 +104,7 @@ export default function CharactersClient({
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-sm:overflow-x-clip">
       {allCharacters.map((char) => {
         const style =
           colorStyles[char.color || ""] ||

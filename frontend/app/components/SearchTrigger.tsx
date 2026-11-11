@@ -71,9 +71,13 @@ export default function SearchTrigger({
         <span className="flex-1 text-base text-[var(--text-muted)] truncate">
           {placeholder ?? t("Find your next card, relic, or potion...")}
         </span>
-        <kbd className="hidden sm:inline-block text-xs text-[var(--text-muted)] border border-[var(--border-subtle)] rounded px-1.5 py-0.5 shrink-0">
-          {t("Press .")}
-        </kbd>
+        <span className="hidden sm:inline-flex items-center gap-1.5 text-xs text-[var(--text-muted)] shrink-0">
+          {t("Press")}
+          <kbd className="border border-[var(--border-subtle)] rounded px-1.5 py-0.5">
+            .
+          </kbd>
+          {t("to search")}
+        </span>
       </button>
     );
   }

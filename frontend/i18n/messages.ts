@@ -43,6 +43,7 @@ import { X9Z } from "@/lib/i18n-x9z";
 import { X10 } from "@/lib/i18n-x10";
 import { X11A } from "@/lib/i18n-x11a";
 import { X11 } from "@/lib/i18n-x11";
+import { X11U } from "@/lib/i18n-x11u";
 import { X11C } from "@/lib/i18n-x11c";
 import { UI_TRANSLATIONS } from "@/lib/ui-translations";
 import { safeKey, unsafeKey } from "@/lib/i18n-keys";
@@ -100,6 +101,7 @@ const TABLES = [
   X10,
   X11A,
   X11,
+  X11U,
   X11C,
 ];
 const cache = new Map<string, Record<string, string>>();
