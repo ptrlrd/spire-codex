@@ -27,7 +27,7 @@ permissions:
 jobs:
   guard:
     name: Block edits to historical changelogs
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
         with:
