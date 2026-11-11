@@ -2827,6 +2827,8 @@ def _run_filter(
         # Case-insensitive exact match on the normalized field (replaces the old
         # unanchored, unescaped $regex substring match that bled peter->peter123).
         q["username_lower"] = username.lower()
+        if not include_hidden:
+            q["deleted_at"] = None
     if winrate_min is not None or winrate_max is not None:
         # Filter runs by their submitter's overall win rate. The per-user map is
         # one cached aggregation keyed by username_lower; restrict the query to
