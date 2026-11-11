@@ -127,6 +127,25 @@ def test_moderator_hidden_run_leaves_a_tombstone(monkeypatch, tmp_path):
     assert runs_db_mongo.moderation_tombstone("abc") == "mod:edited"
 
 
+def test_purging_a_moderator_hidden_run_leaves_a_tombstone(monkeypatch, tmp_path):
+    doc = {
+        "_id": "abc",
+        "hidden": True,
+        "hidden_reason": "mod:edited",
+        "deleted_at": "2026-01-01",
+    }
+    runs, *_ = _wire(monkeypatch, tmp_path, doc)
+    assert runs_db_mongo._remove_run(doc)
+    assert runs.docs == {}
+    assert runs_db_mongo.moderation_tombstone("abc") == "mod:edited"
+
+
+def test_purge_reads_the_hide_reason():
+    from scripts import purge_soft_deleted_runs
+
+    assert purge_soft_deleted_runs.FIELDS["hidden_reason"] == 1
+
+
 def test_moderator_unhide_forgets_the_tombstone(monkeypatch, tmp_path):
     runs, *_ = _wire(
         monkeypatch,
