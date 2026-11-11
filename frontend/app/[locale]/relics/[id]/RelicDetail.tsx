@@ -279,7 +279,12 @@ export default function RelicDetail({
           {/* Description */}
           <section id="description">
             <h2>{t("Description")}</h2>
-            <EntitySummary name={relic.name} data={summary} />
+            <EntitySummary
+              name={relic.name}
+              data={summary}
+              stats={initialStats}
+              bracket={statsBracket}
+            />
             <div className="desc-quote">
               <RichDescription
                 text={relic.description}
@@ -508,7 +513,7 @@ export default function RelicDetail({
                     </div>
                     <div>
                       <div className="mv">{mini.pick_rate}%</div>
-                      <div className="ml">{t("Pick rate")}</div>
+                      <div className="ml">{t("Hold rate")}</div>
                     </div>
                     {mini.score != null && (
                       <div>

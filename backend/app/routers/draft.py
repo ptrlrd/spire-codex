@@ -19,8 +19,9 @@ def get_recs(item_type: str, item_id: str, lang: str = "eng"):
     """Given a card/relic you already have, the cards players most often draft
     when offered them, ranked by lift over each card's baseline take-rate. Each
     entry carries `pref` (take-rate given this context), `pref_base` (the card's
-    overall take-rate), `lift`, `offers` (sample size), and `winrate`. Empty
-    `recommends` until the build job has run."""
+    overall take-rate), `lift`, `offers` and `picks` (sample sizes), and
+    `winrate` (of the runs that picked it). Pairs with fewer than `min_picks`
+    picks are left out. Empty `recommends` until the build job has run."""
     if item_type not in ("cards", "relics"):
         raise HTTPException(status_code=400, detail="bad item_type")
     doc = get_draft_recs(item_type, item_id, lang)

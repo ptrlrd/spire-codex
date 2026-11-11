@@ -788,6 +788,10 @@ def test_entity_stats_carries_the_lift_family(lake, monkeypatch):
     assert solo["hold_rate"] == 62.5
     assert (solo["removed"], solo["removed_rate"]) == (1, 20.0)
     assert solo["win_rate_ci"] == stats_math.wilson_interval(sentry[1], sentry[0])
+    solo_table = res.get_entity_metrics_table("relics", "solo")
+    assert solo["baseline_win_rate"] == solo_table["baseline_win_rate"]
+    assert "baseline_win_rate" in out["brackets"]["all"]
+    assert "baseline_win_rate" in out["brackets"]["a10"]
 
 
 def test_entity_stats_without_cube_keeps_the_lift_family_null(lake, monkeypatch):

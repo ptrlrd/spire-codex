@@ -735,7 +735,12 @@ export default function CardDetail({
           {/* Description */}
           <section id="description">
             <h2>{t("Description")}</h2>
-            <EntitySummary name={card.name} data={summary} />
+            <EntitySummary
+              name={card.name}
+              data={summary}
+              stats={initialStats}
+              bracket={statsBracket}
+            />
 
             {/* Type variant toggle (re-scopes description + render) */}
             {hasVariants && card.type_variants && (
@@ -1150,7 +1155,7 @@ export default function CardDetail({
                     </div>
                     <div>
                       <div className="mv">{mini.pick_rate}%</div>
-                      <div className="ml">{t("Pick rate")}</div>
+                      <div className="ml">{t("Hold rate")}</div>
                     </div>
                     {mini.score != null && (
                       <div>

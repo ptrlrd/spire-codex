@@ -32,10 +32,24 @@ export type DraftRec = {
   pref_base: number;
   lift: number;
   offers: number;
+  picks?: number;
   winrate: number;
 };
 
-export type DraftRecs = { recommends?: DraftRec[] };
+export type DraftRecs = { recommends?: DraftRec[]; min_picks?: number };
+
+export const DRAFT_MIN_PICKS = 50;
+
+export function draftMinPicks(recs: DraftRecs | null | undefined): number {
+  return Math.max(DRAFT_MIN_PICKS, recs?.min_picks ?? 0);
+}
+
+export function rankedDraftRecs(
+  recs: DraftRecs | null | undefined,
+): DraftRec[] {
+  const floor = draftMinPicks(recs);
+  return (recs?.recommends ?? []).filter((r) => (r.picks ?? 0) >= floor);
+}
 
 export interface RelatedEntity {
   id: string;

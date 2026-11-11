@@ -260,7 +260,12 @@ export default function PotionDetail({
           {/* Description */}
           <section id="description">
             <h2>{t("Description")}</h2>
-            <EntitySummary name={potion.name} data={summary} />
+            <EntitySummary
+              name={potion.name}
+              data={summary}
+              stats={initialStats}
+              bracket={statsBracket}
+            />
             <div className="desc-quote">
               <RichDescription text={potion.description} />
             </div>
@@ -401,7 +406,7 @@ export default function PotionDetail({
                     </div>
                     <div>
                       <div className="mv">{mini.pick_rate}%</div>
-                      <div className="ml">{t("Pick rate")}</div>
+                      <div className="ml">{t("Hold rate")}</div>
                     </div>
                     {mini.score != null && (
                       <div>
