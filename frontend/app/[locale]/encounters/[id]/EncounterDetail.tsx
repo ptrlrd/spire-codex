@@ -17,6 +17,7 @@ import EntityUpdateHistory from "@/app/components/EntityUpdateHistory";
 import EntityProse from "@/app/components/EntityProse";
 import type { EncounterStat } from "@/lib/encounter-stats";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
+import ActLink from "@/app/components/ActLink";
 import "@/app/card-revamp.css";
 import "@/app/monster-encounter-extra.css";
 
@@ -150,7 +151,9 @@ export default function EncounterDetail({
               <span className="dot">&#9670;</span>
               {encounter.act && (
                 <>
-                  <span>{encounter.act}</span>
+                  <span>
+                    <ActLink act={encounter.act} bp={bp} />
+                  </span>
                   <span className="sep">&middot;</span>
                 </>
               )}
@@ -224,7 +227,7 @@ export default function EncounterDetail({
                   <Link
                     prefetch={false}
                     key={m.id}
-                    href={`${bp}/monsters/${m.id}`}
+                    href={`${bp}/monsters/${m.id.toLowerCase()}`}
                     className="chip"
                   >
                     <span className="pip" />
@@ -275,7 +278,9 @@ export default function EncounterDetail({
                 {encounter.act && (
                   <div className="frow">
                     <dt>{t("Act")}</dt>
-                    <dd>{encounter.act}</dd>
+                    <dd>
+                      <ActLink act={encounter.act} bp={bp} />
+                    </dd>
                   </div>
                 )}
                 {hasMonsters && (

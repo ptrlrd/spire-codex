@@ -9,6 +9,7 @@ import { Link } from "@/i18n/navigation";
 import SearchFilter from "@/app/components/SearchFilter";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { replaceQuery } from "@/lib/replace-query";
+import { startHereGuides } from "@/lib/link-targets";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -119,8 +120,33 @@ function GuidesClientInner({
     return result;
   }, [guides, search, category, difficulty, sort]);
 
+  const startHere = useMemo(() => startHereGuides(guides), [guides]);
+
   return (
     <>
+      {startHere.length > 0 && (
+        <section className="mb-6" aria-label={t("Start here")}>
+          <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">
+            {t("Start here")}
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            {startHere.map((guide) => (
+              <Link
+                key={guide.slug}
+                href={`${bp}/guides/${guide.slug}`}
+                className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-accent)] p-4 hover:bg-[var(--bg-card-hover)] transition-all block"
+              >
+                <h3 className="font-semibold text-[var(--accent-gold)] mb-1">
+                  {guide.title}
+                </h3>
+                <p className="text-xs text-[var(--text-secondary)] leading-relaxed line-clamp-2">
+                  {guide.summary}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
       <SearchFilter
         search={search}
         onSearchChange={(v) => setFilterAndUrl("search", v, setSearch)}

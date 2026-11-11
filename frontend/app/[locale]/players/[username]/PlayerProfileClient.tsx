@@ -15,6 +15,8 @@ import {
 import { PlayerBadge } from "@/app/components/SupporterBadge";
 import { OwnerTheme } from "@/app/components/OwnerTheme";
 import YourStats from "./YourStats";
+import { Link } from "@/i18n/navigation";
+import { playerRunsHref } from "@/lib/player-pages";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -101,6 +103,15 @@ export default function PlayerProfileClient({
         <p className="text-[var(--text-secondary)]">
           {t("Player not found, or this profile is private.")}
         </p>
+        <p className="mt-3">
+          <Link
+            prefetch={false}
+            href={playerRunsHref("", username)}
+            className="text-[var(--accent-gold)] hover:underline"
+          >
+            {t("View all runs by this player")}
+          </Link>
+        </p>
       </div>
     );
   }
@@ -124,6 +135,14 @@ export default function PlayerProfileClient({
               : ""}
             {" · "}
             {t("Compared with all community-submitted runs.")}
+            {" · "}
+            <Link
+              prefetch={false}
+              href={playerRunsHref("", data.username || username)}
+              className="text-[var(--accent-gold)] hover:underline"
+            >
+              {t("View all runs by this player")}
+            </Link>
           </p>
         </div>
         <InsightsFilterBar value={filters} onChange={setFilters} lang={lang} />

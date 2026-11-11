@@ -776,12 +776,18 @@ def get_leaderboard(
 
 @router.get("/leaderboard/seed-rank", tags=["Runs"])
 @limiter.limit(rate_limit_config.endpoint_limit("runs.get_seed_rank", "120/minute"))
-def get_seed_rank(request: Request, seed: str, steam_id: str | None = None):
+def get_seed_rank(
+    request: Request,
+    seed: str,
+    steam_id: str | None = None,
+    run_hash: str | None = None,
+):
     """Seed + global standing for the in-game mod (F9 panel, post-run card).
 
     Pool = completed runs sharing the seed; ranking = winning runs by run_time,
     cross-character. `seed_rank`/`global_rank`/`percentile` are null when the
     caller has no winning run in that pool (the mod hides those lines).
+    `run_hash` makes `seed_rank` the place of that one run on the seed.
     """
     seed = (seed or "").strip()
     if not seed or len(seed) > 64:
@@ -794,7 +800,8 @@ def get_seed_rank(request: Request, seed: str, steam_id: str | None = None):
     if os.environ.get("MONGO_URL", "").strip():
         from ..services.runs_db_mongo import seed_rank_for
 
-        return seed_rank_for(clean_steam, seed)
+        clean_hash = (run_hash or "").strip()[:128] or None
+        return seed_rank_for(clean_steam, seed, clean_hash)
 
     # SQLite fallback: enough shape for the mod to degrade cleanly.
     return {

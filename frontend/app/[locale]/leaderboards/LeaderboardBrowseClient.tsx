@@ -15,6 +15,7 @@ import {
   bracketListParams,
 } from "@/lib/content-brackets";
 import { PlayerBadge } from "@/app/components/SupporterBadge";
+import PlayerLink from "@/app/components/PlayerLink";
 import CharacterTag from "@/app/components/CharacterTag";
 import { textColor } from "@/lib/character-colors";
 
@@ -640,7 +641,11 @@ export default function LeaderboardBrowseClient() {
                             #{entry.rank}
                           </td>
                           <td className="py-2.5 px-2 sm:px-3 text-[var(--text-primary)] truncate max-w-[7rem] sm:max-w-[10rem]">
-                            {entry.username || t("Anonymous")}
+                            {entry.username ? (
+                              <PlayerLink username={entry.username} />
+                            ) : (
+                              t("Anonymous")
+                            )}
                             <PlayerBadge
                               username={entry.username}
                               className="ml-1"
@@ -810,9 +815,11 @@ export default function LeaderboardBrowseClient() {
                         A{r.ascension}
                       </span>
                       {r.username && (
-                        <span className="text-xs text-[var(--accent-gold)] truncate">
-                          {r.username}
-                        </span>
+                        <PlayerLink
+                          nested
+                          username={r.username}
+                          className="text-xs text-[var(--accent-gold)] truncate"
+                        />
                       )}
                       <PlayerBadge username={r.username} />
                     </div>

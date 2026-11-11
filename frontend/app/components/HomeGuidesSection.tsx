@@ -1,5 +1,6 @@
 import { getT } from "@/lib/i18n-server";
 import { Link } from "@/i18n/navigation";
+import { startHereGuides } from "@/lib/link-targets";
 
 const API =
   process.env.API_INTERNAL_URL ||
@@ -40,17 +41,18 @@ const ARROW = (
   </svg>
 );
 
-async function loadLatestGuides(): Promise<GuideStub[]> {
+async function loadHomeGuides(): Promise<GuideStub[]> {
   try {
     const res = await fetch(`${API}/api/guides`, {
       next: { revalidate: REVALIDATE },
     });
     if (!res.ok) return [];
     const all = (await res.json()) as GuideStub[];
-    // Newest first by date string (ISO yyyy-mm-dd sorts lexically).
-    return [...all]
-      .sort((a, b) => (b.date ?? "").localeCompare(a.date ?? ""))
-      .slice(0, 3);
+    const picks = startHereGuides(all);
+    const newest = [...all]
+      .filter((g) => !picks.includes(g))
+      .sort((a, b) => (b.date ?? "").localeCompare(a.date ?? ""));
+    return [...picks, ...newest].slice(0, 3);
   } catch {
     return [];
   }
@@ -62,7 +64,7 @@ export default async function HomeGuidesSection({
   lang?: string;
 }) {
   const t = await getT();
-  const guides = await loadLatestGuides();
+  const guides = await loadHomeGuides();
   if (guides.length === 0) return null;
   const guidesBase = `/guides`;
 

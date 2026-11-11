@@ -31,6 +31,7 @@ import { useBetaPrefix } from "@/lib/api/prefix.client";
 import BetaDiffNotice from "@/app/components/BetaDiffNotice";
 import { keywordLinkWords, type EntityNameLink } from "@/lib/rich-links";
 import type { KeywordEntry } from "@/lib/entity-catalogs";
+import { characterHref, poolLabel } from "@/lib/link-targets";
 import "@/app/card-revamp.css";
 import "@/app/relic-potion-extra.css";
 import { useBracketParam } from "@/lib/use-bracket-param";
@@ -180,6 +181,19 @@ export default function RelicDetail({
   }
 
   const renderSrc = selectedVariant || relic.image_url;
+  const poolName = poolLabel(relic.pool, t);
+  const poolPath = characterHref(relic.pool);
+  const poolNode = poolPath ? (
+    <Link
+      prefetch={false}
+      href={`${bp}${poolPath}`}
+      className="entity-inline-link"
+    >
+      {poolName}
+    </Link>
+  ) : (
+    poolName
+  );
   // Plain-text lede from the relic effect (rich tags + newlines stripped).
   const ledeText = relic.description
     ? relic.description
@@ -234,7 +248,7 @@ export default function RelicDetail({
               <span className="dot">&#9670;</span>
               <span>{relic.rarity}</span>
               <span className="sep">&middot;</span>
-              <span>{relic.pool}</span>
+              <span>{poolNode}</span>
               <span className="sep">&middot;</span>
               <span>{t("Relic")}</span>
             </p>
@@ -344,7 +358,7 @@ export default function RelicDetail({
               heading="Related Relics"
               groups={[
                 {
-                  label: t("{pool} relics", { pool: relic.pool }),
+                  label: t("{pool} relics", { pool: poolName }),
                   path: `/api/relics?pool=${encodeURIComponent(relic.pool)}&lang=${lang}`,
                 },
                 {
@@ -459,7 +473,7 @@ export default function RelicDetail({
                 </div>
                 <div className="frow">
                   <dt>{t("Pool")}</dt>
-                  <dd style={{ textTransform: "capitalize" }}>{relic.pool}</dd>
+                  <dd>{poolNode}</dd>
                 </div>
                 <div className="frow">
                   <dt>{t("Merchant Price")}</dt>

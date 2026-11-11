@@ -477,6 +477,7 @@ export default function SharedRunClient({
       {/* In-game-style run summary */}
       <RunSummary
         run={run}
+        hash={run.primary_hash || hash}
         player={player}
         cardData={cardData}
         relicData={relicData}

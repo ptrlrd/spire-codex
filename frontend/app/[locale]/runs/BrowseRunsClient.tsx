@@ -18,6 +18,7 @@ import {
   parseWinrate,
 } from "@/lib/run-query";
 import { PlayerBadge } from "@/app/components/SupporterBadge";
+import PlayerLink from "@/app/components/PlayerLink";
 import KeyPicks, {
   type KeyBoss,
   type KeyCard,
@@ -598,9 +599,11 @@ function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
                     A{r.ascension}
                   </span>
                   {r.username && (
-                    <span className="text-xs text-[var(--accent-gold)] truncate">
-                      {r.username}
-                    </span>
+                    <PlayerLink
+                      nested
+                      username={r.username}
+                      className="text-xs text-[var(--accent-gold)] truncate"
+                    />
                   )}
                   <PlayerBadge username={r.username} />
                 </div>

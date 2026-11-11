@@ -171,6 +171,32 @@ def test_seed_rank_for_stays_index_only(monkeypatch):
         assert q.get("hidden") == {"$ne": True}, q
 
 
+def test_seed_rank_for_places_one_run(monkeypatch):
+    fake = FakeColl({"run_time": 90}, counts=[12, 0, 5, 0, 40, 0, 3, 1])
+    monkeypatch.setattr(runs_db_mongo, "_get_collection", lambda: fake)
+    out = runs_db_mongo.seed_rank_for(None, "SEEDX", "h1")
+    assert out["seed_total"] == 12
+    assert out["seed_wins"] == 5
+    assert out["seed_rank"] == 3
+    assert fake.find_one_queries == [
+        {
+            "_id": "h1",
+            "seed": "SEEDX",
+            "win": {"$in": [True, 1]},
+            "hidden": {"$ne": True},
+        }
+    ]
+    _assert_subtractive_pairs(fake.count_queries)
+
+
+def test_seed_rank_for_leaves_a_losing_run_unplaced(monkeypatch):
+    fake = FakeColl(None, counts=[12, 0, 5, 0, 40, 0])
+    monkeypatch.setattr(runs_db_mongo, "_get_collection", lambda: fake)
+    out = runs_db_mongo.seed_rank_for(None, "SEEDX", "h1")
+    assert out["seed_total"] == 12
+    assert out["seed_rank"] is None
+
+
 class _FakeCursor:
     def sort(self, *a, **k):
         return self
