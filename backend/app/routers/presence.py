@@ -11,8 +11,10 @@ GET  /api/presence/{steam_id} — one player's full live doc (deck/relics/potion
 import os
 import time
 
-from fastapi import APIRouter, HTTPException, Request
+from fastapi import APIRouter, HTTPException, Request, Response
 from starlette.concurrency import run_in_threadpool
+
+from ..services import cache as app_cache
 
 router = APIRouter(prefix="/api/presence", tags=["Presence"])
 
@@ -646,6 +648,10 @@ def _clean_events(raw) -> list[dict]:
     return events
 
 
+_ACTIVE_COUNT_KEY = "presence:active_count"
+_ACTIVE_COUNT_TTL_SECONDS = 10
+
+
 def _require_mongo():
     if not os.environ.get("MONGO_URL", "").strip():
         raise HTTPException(status_code=503, detail="presence unavailable")
@@ -884,6 +890,22 @@ def get_active(limit: int = 50):
     players = presence_db.active(max(1, min(limit, 100)))
     _enrich_twitch(players)
     return {"count": len(players), "players": players}
+
+
+@router.get("/count")
+def get_active_count(response: Response):
+    """How many players are in a run right now. A cheap number for badges
+    that poll; the roster itself is /api/presence/active."""
+    _require_mongo()
+    response.headers["Cache-Control"] = f"public, max-age={_ACTIVE_COUNT_TTL_SECONDS}"
+    cached = app_cache.get_json(_ACTIVE_COUNT_KEY)
+    if isinstance(cached, dict) and isinstance(cached.get("count"), int):
+        return cached
+    from ..services import presence_db
+
+    out = {"count": presence_db.active_count()}
+    app_cache.set_json(_ACTIVE_COUNT_KEY, out, ttl_seconds=_ACTIVE_COUNT_TTL_SECONDS)
+    return out
 
 
 @router.get("/{steam_id}")

@@ -11,8 +11,8 @@ measures how much having B shifts the take-rate of A:
   lift(A|B)   pref(A|B) / pref(A)             >1 => B makes players want A more
 
 Small (A,B) samples are shrunk toward A's baseline (empirical Bayes) so a
-handful of offers can't scream 100%, and pairs below a hard offer floor are
-dropped. Reads the flattened `card_choices` + `deck`/`relics` (with floor_added)
+handful of offers can't scream 100%, and pairs below a hard offer floor or a
+hard pick floor are dropped. Reads the flattened `card_choices` + `deck`/`relics` (with floor_added)
 off the run doc — a temporal replay, but no map_point_history needed.
 
 Decoupled and infrequent like item_pairings (draft patterns move on patches):
@@ -35,6 +35,7 @@ DRAFT_RECS_COLLECTION_NAME = "draft_recs"
 # Minimum offers(A,B) before a recommendation is reported — kills thin-sample
 # noise (conditioning already handles rarity, but rare x rare is still sparse).
 _MIN_OFFERS = 100
+MIN_PICKS = 50
 # Empirical-Bayes shrinkage strength: pref(A|B) is pulled toward pref(A) with
 # this many pseudo-observations, so small samples sit near baseline.
 _SHRINK_ALPHA = 30
@@ -147,8 +148,10 @@ def _score(offers, picks, picks_win, offers_base, picks_base, n_runs) -> dict[st
     for (a_id, b), off_ab in offers.items():
         if off_ab < _MIN_OFFERS:
             continue
-        pb = pref_base.get(a_id, 0.0)
         pk = picks[(a_id, b)]
+        if pk < MIN_PICKS:
+            continue
+        pb = pref_base.get(a_id, 0.0)
         # Empirical-Bayes shrinkage toward the baseline take-rate.
         pref = (pk + _SHRINK_ALPHA * pb) / (off_ab + _SHRINK_ALPHA)
         lift = pref / pb if pb > 0 else 0.0
@@ -175,6 +178,7 @@ def _score(offers, picks, picks_win, offers_base, picks_base, n_runs) -> dict[st
                 "kind": bkind,
                 "item_id": bid,
                 "recommends": recs[:_TOP_N],
+                "min_picks": MIN_PICKS,
                 "built_at": now,
             }
         )
@@ -245,11 +249,18 @@ def _enrich(recs: list[dict], lang: str) -> list[dict]:
     return recs
 
 
+def _ranks(rec: dict) -> bool:
+    return (rec.get("picks") or 0) >= MIN_PICKS
+
+
 def get_draft_recs(
     item_type: str, item_id: str, lang: str = "eng"
 ) -> dict[str, Any] | None:
     """Given a context item you already have (card/relic), the offered cards
-    players draft most given it, ranked by lift. Names/descs enriched."""
+    players draft most given it, ranked by lift. Names/descs enriched. A doc
+    built with the pick floor carries `min_picks` and holds only rows at or
+    above it. A doc from before the floor has no `min_picks` and is returned
+    as stored until the next build replaces it."""
     if not os.environ.get("MONGO_URL", "").strip():
         return None
     from .runs_db_mongo import _get_collection
@@ -259,7 +270,11 @@ def get_draft_recs(
     if not doc:
         return None
     doc.pop("_id", None)
-    doc["recommends"] = _enrich(doc.get("recommends") or [], lang)
+    recs = doc.get("recommends") or []
+    if doc.get("min_picks") is not None:
+        recs = [r for r in recs if _ranks(r)]
+        doc["min_picks"] = MIN_PICKS
+    doc["recommends"] = _enrich(recs, lang)
     return doc
 
 

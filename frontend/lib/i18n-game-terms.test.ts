@@ -135,15 +135,18 @@ describe("core game terms in the UI tables", () => {
     for (const lang of SUPPORTED_LANGS) {
       const ui = messagesFor(lang as LangCode);
       for (const key of [
-        "entity_summary_stats",
-        "entity_summary_stats_no_pick",
+        "entity_summary_cohort_won",
+        "entity_summary_cohort_baseline",
+        "entity_summary_cohort_held",
         "entity_summary_best_character",
         "entity_summary_partners",
-        "entity_summary_drafted",
+        "entity_summary_lifted",
       ]) {
         expect(ui[key], `${lang} ${key}`).not.toBe(eng[key]);
         expect(ui[key], `${lang} ${key}`).toMatch(
-          key.endsWith("character") ? /\{character\}/ : /\{(list|name)\}/,
+          key.endsWith("character")
+            ? /\{character\}/
+            : /\{(list|name|baseline)\}/,
         );
       }
     }

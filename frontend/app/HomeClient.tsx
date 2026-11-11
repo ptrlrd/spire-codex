@@ -112,10 +112,12 @@ export default function HomeClient({
       initialRender.current = false;
       if (lang === "eng" && initialStats) return;
     }
-    cachedFetch<Stats>(`${API}/api/stats?lang=${lang}`).then(setStats);
-    cachedFetch<Translations>(`${API}/api/translations?lang=${lang}`).then(
-      setTranslations,
-    );
+    cachedFetch<Stats>(`${API}/api/stats?lang=${lang}`)
+      .then(setStats)
+      .catch(() => {});
+    cachedFetch<Translations>(`${API}/api/translations?lang=${lang}`)
+      .then(setTranslations)
+      .catch(() => {});
   }, [lang]);
 
   // Section name: use game translations if actually translated, otherwise our UI translations

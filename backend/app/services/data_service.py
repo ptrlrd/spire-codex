@@ -150,7 +150,7 @@ def _load_json_beta(lang: str, entity: str, beta_version: str) -> list | dict:
     if not filepath.exists():
         filepath = base / DEFAULT_LANG / f"{entity}.json"
     if not filepath.exists():
-        return _load_json_versioned(lang, entity, None)
+        return _load_main(lang, entity, beta_version)
     start = time.perf_counter()
     with open(filepath, "r", encoding="utf-8") as f:
         data = json.load(f)
@@ -194,7 +194,7 @@ def _inherit_stable_image_urls(rows: list[dict], lang: str, entity: str) -> None
 def _load_json_all(lang: str, entity: str, beta_version: str) -> list | dict:
     """Main catalog plus the rows that exist only in the current beta, for
     surfaces that join community data (which counts beta runs) to names."""
-    stable = _load_json_versioned(lang, entity, None)
+    stable = _load_main(lang, entity, beta_version)
     beta = _load_json_beta(lang, entity, beta_version)
     if not isinstance(stable, list) or not isinstance(beta, list):
         return stable
@@ -225,16 +225,223 @@ def beta_only_ids(entity: str) -> frozenset[str]:
     return _beta_only_ids(entity, beta_version) if beta_version else frozenset()
 
 
-def _load_json(lang: str, entity: str) -> list[dict]:
-    """Load JSON using the channel + version from the current request context."""
+@lru_cache(maxsize=1024)
+def _main_file_missing(lang: str, name: str) -> bool:
+    return not (_resolve_base(None) / lang / f"{name}.json").exists()
+
+
+def _read_beta_file(beta_version: str, lang: str, name: str) -> list | dict | None:
+    try:
+        with open(
+            BETA_DATA_DIR / beta_version / lang / f"{name}.json", "r", encoding="utf-8"
+        ) as f:
+            return json.load(f)
+    except (OSError, ValueError):
+        return None
+
+
+def _rows_by_id(rows: list) -> dict | None:
+    by_id = {}
+    for row in rows:
+        if not isinstance(row, dict):
+            return None
+        key = row.get("id")
+        if not isinstance(key, (str, int)) or key in by_id:
+            return None
+        by_id[key] = row
+    return by_id
+
+
+def _borrow_text(main_eng, beta_eng, beta_lang):
+    """Swap an English string for the beta tree's translation of it, only
+    where the beta English at the same place is the identical string. Rows
+    that carry an id are paired by it, since the beta sorts some lists by
+    localized name."""
+    if isinstance(main_eng, dict):
+        if not (isinstance(beta_eng, dict) and isinstance(beta_lang, dict)):
+            return main_eng
+        if "id" in main_eng and not (
+            main_eng["id"] == beta_eng.get("id") == beta_lang.get("id")
+        ):
+            return main_eng
+        return {
+            k: _borrow_text(v, beta_eng.get(k), beta_lang.get(k))
+            for k, v in main_eng.items()
+        }
+    if isinstance(main_eng, list):
+        if not (isinstance(beta_eng, list) and isinstance(beta_lang, list)):
+            return main_eng
+        eng_by_id = _rows_by_id(beta_eng)
+        lang_by_id = _rows_by_id(beta_lang)
+        if main_eng and eng_by_id and lang_by_id and _rows_by_id(main_eng):
+            return [
+                _borrow_text(row, eng_by_id.get(row["id"]), lang_by_id.get(row["id"]))
+                for row in main_eng
+            ]
+        if not len(main_eng) == len(beta_eng) == len(beta_lang):
+            return main_eng
+        return [_borrow_text(*t) for t in zip(main_eng, beta_eng, beta_lang)]
+    if (
+        isinstance(main_eng, str)
+        and main_eng
+        and main_eng == beta_eng
+        and isinstance(beta_lang, str)
+        and beta_lang
+    ):
+        return beta_lang
+    return main_eng
+
+
+_FILTER_FIELDS = {
+    "cards": (
+        ("type", "type_key", "card_types"),
+        ("rarity", "rarity_key", "card_rarities"),
+    ),
+    "relics": (("rarity", "rarity_key", "relic_rarities"),),
+    "potions": (("rarity", "rarity_key", "potion_rarities"),),
+}
+
+
+@lru_cache(maxsize=64)
+def _borrowed_translation_maps(lang: str, beta_version: str) -> dict:
+    english = _load_translation_maps_versioned(DEFAULT_LANG, None)
+    beta_eng = _read_beta_file(beta_version, DEFAULT_LANG, "translations")
+    beta_lang = _read_beta_file(beta_version, lang, "translations")
+    return _borrow_text(english, beta_eng, beta_lang)
+
+
+@lru_cache(maxsize=256)
+def _load_main_borrowed(lang: str, entity: str, beta_version: str) -> list | dict:
+    """Main rows for a language the main game build has no text for yet
+    (Traditional Chinese arrived in v0.109): the English main rows, with each
+    string the beta did not change taken from the beta tree's translation."""
+    english = _load_json_versioned(DEFAULT_LANG, entity, None)
+    beta_eng = _read_beta_file(beta_version, DEFAULT_LANG, entity)
+    beta_lang = _read_beta_file(beta_version, lang, entity)
+    if not (
+        isinstance(english, list)
+        and isinstance(beta_eng, list)
+        and isinstance(beta_lang, list)
+    ):
+        return english
+    eng_by_id = {r.get("id"): r for r in beta_eng if isinstance(r, dict)}
+    lang_by_id = {r.get("id"): r for r in beta_lang if isinstance(r, dict)}
+    fields = _FILTER_FIELDS.get(entity, ())
+    maps = _borrowed_translation_maps(lang, beta_version) if fields else {}
+    rows = []
+    for row in english:
+        if not isinstance(row, dict):
+            rows.append(row)
+            continue
+        out = _borrow_text(
+            row, eng_by_id.get(row.get("id")), lang_by_id.get(row.get("id"))
+        )
+        for field, key_field, map_name in fields:
+            localized = (maps.get(map_name) or {}).get(row.get(key_field))
+            if localized and field in out:
+                out[field] = localized
+        rows.append(out)
+    return rows
+
+
+def _load_main(lang: str, entity: str, beta_version: str | None) -> list | dict:
+    if beta_version and lang != DEFAULT_LANG and _main_file_missing(lang, entity):
+        return _load_main_borrowed(lang, entity, beta_version)
+    return _load_json_versioned(lang, entity, None)
+
+
+_ENGLISH_FALLBACK_FIELDS = {
+    "badges": (),
+    "characters": ("description", "dialogues", "quotes"),
+    "encounters": ("loss_text",),
+    "epochs": ("title", "era_name", "description", "unlock_info", "unlock_text"),
+    "events": ("description", "epithet", "pages", "dialogue"),
+    "glossary": (),
+    "monsters": ("quotes",),
+}
+
+
+def _fill_row(row: dict, english: dict, fields: tuple[str, ...]) -> dict:
+    out = None
+    for field in fields:
+        fallback = english.get(field)
+        if not fallback:
+            continue
+        value = row.get(field)
+        if not value:
+            filled = fallback
+        elif isinstance(value, dict) and isinstance(fallback, dict):
+            gaps = {k: v for k, v in fallback.items() if v and not value.get(k)}
+            if not gaps:
+                continue
+            filled = {**value, **gaps}
+        else:
+            continue
+        if out is None:
+            out = dict(row)
+        out[field] = filled
+    return row if out is None else out
+
+
+def _fill_from_english(rows: list, english: list, fields: tuple[str, ...]) -> list:
+    """Rows with the text a language leaves blank, and the rows it lacks
+    altogether, taken from English (Thai ships without several tables)."""
+    eng_by_id = {r.get("id"): r for r in english if isinstance(r, dict)}
+    seen = set()
+    out = []
+    for row in rows:
+        if isinstance(row, dict):
+            seen.add(row.get("id"))
+            eng_row = eng_by_id.get(row.get("id"))
+            if eng_row is not None:
+                row = _fill_row(row, eng_row, fields)
+        out.append(row)
+    out.extend(r for i, r in eng_by_id.items() if i not in seen)
+    return out
+
+
+def _source(lang: str, entity: str) -> tuple[str, str | None]:
     channel = get_channel()
-    if channel in ("beta", "all") and not (channel == "all" and _get_version()):
+    version = _get_version()
+    if channel in ("beta", "all") and not (channel == "all" and version):
         beta_version = get_beta_version()
         if beta_version:
-            if channel == "all":
-                return _load_json_all(lang, entity, beta_version)
-            return _load_json_beta(lang, entity, beta_version)
-    return _load_json_versioned(lang, entity, _get_version())
+            return channel, beta_version
+    if version is None and lang != DEFAULT_LANG and _main_file_missing(lang, entity):
+        beta_version = get_beta_version()
+        if beta_version:
+            return "borrowed", beta_version
+    return "stable", version
+
+
+def _load_source(lang: str, entity: str, source: tuple[str, str | None]) -> list | dict:
+    kind, version = source
+    if kind == "all":
+        return _load_json_all(lang, entity, version)
+    if kind == "beta":
+        return _load_json_beta(lang, entity, version)
+    if kind == "borrowed":
+        return _load_main_borrowed(lang, entity, version)
+    return _load_json_versioned(lang, entity, version)
+
+
+@lru_cache(maxsize=512)
+def _load_filled(lang: str, entity: str, source: tuple[str, str | None]) -> list | dict:
+    rows = _load_source(lang, entity, source)
+    if source[0] == "borrowed":
+        return rows
+    english = _load_source(DEFAULT_LANG, entity, source)
+    if not isinstance(rows, list) or not isinstance(english, list):
+        return rows
+    return _fill_from_english(rows, english, _ENGLISH_FALLBACK_FIELDS[entity])
+
+
+def _load_json(lang: str, entity: str) -> list[dict]:
+    """Load JSON using the channel + version from the current request context."""
+    source = _source(lang, entity)
+    if lang != DEFAULT_LANG and entity in _ENGLISH_FALLBACK_FIELDS:
+        return _load_filled(lang, entity, source)
+    return _load_source(lang, entity, source)
 
 
 def load_cards(lang: str = DEFAULT_LANG) -> list[dict]:
@@ -310,21 +517,7 @@ def load_glossary(lang: str = DEFAULT_LANG) -> list[dict]:
 
 
 def load_epochs(lang: str = DEFAULT_LANG) -> list[dict]:
-    """Epochs for a language, with any title the game leaves untranslated
-    (Thai has none) filled from the English entry so every row is valid."""
-    epochs = _load_json(lang, "epochs")
-    if lang == DEFAULT_LANG or all(e.get("title") for e in epochs):
-        return epochs
-    english = {e.get("id"): e for e in _load_json(DEFAULT_LANG, "epochs")}
-    return [
-        e
-        if e.get("title")
-        else {
-            **e,
-            "title": (english.get(e.get("id")) or {}).get("title") or e.get("id"),
-        }
-        for e in epochs
-    ]
+    return _load_json(lang, "epochs")
 
 
 def load_stories(lang: str = DEFAULT_LANG) -> list[dict]:
@@ -406,7 +599,7 @@ def _load_translation_maps_versioned(lang: str, version: str | None) -> dict:
 @lru_cache(maxsize=64)
 def _load_translation_maps_all(lang: str, beta_version: str) -> dict:
     """Main translation maps with keys that only the current beta has."""
-    stable = _load_translation_maps_versioned(lang, None)
+    stable = _load_translation_maps_main(lang, beta_version)
     filepath = BETA_DATA_DIR / beta_version / lang / "translations.json"
     if not filepath.exists():
         filepath = BETA_DATA_DIR / beta_version / DEFAULT_LANG / "translations.json"
@@ -423,13 +616,23 @@ def _load_translation_maps_all(lang: str, beta_version: str) -> dict:
     return out
 
 
+def _load_translation_maps_main(lang: str, beta_version: str | None) -> dict:
+    if lang != DEFAULT_LANG and _main_file_missing(lang, "translations"):
+        beta_version = beta_version or get_beta_version()
+        if beta_version:
+            return _borrowed_translation_maps(lang, beta_version)
+    return _load_translation_maps_versioned(lang, None)
+
+
 def load_translation_maps(lang: str = DEFAULT_LANG) -> dict:
     version = _get_version()
-    if get_channel() == "all" and not version:
+    if version:
+        return _load_translation_maps_versioned(lang, version)
+    if get_channel() == "all":
         beta_version = get_beta_version()
         if beta_version:
             return _load_translation_maps_all(lang, beta_version)
-    return _load_translation_maps_versioned(lang, version)
+    return _load_translation_maps_main(lang, None)
 
 
 @lru_cache(maxsize=1)

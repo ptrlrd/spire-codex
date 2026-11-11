@@ -11,7 +11,8 @@ import {
 import { useParams } from "next/navigation";
 import { Link, useRouter } from "@/i18n/navigation";
 import type { GameEvent, EventPage } from "@/lib/api/types";
-import type { EventVotes } from "@/lib/event-votes";
+import { EVENT_VOTES_BRACKET, type EventVotes } from "@/lib/event-votes";
+import { dataThroughLabel } from "@/lib/data-through";
 import RichDescription from "@/app/components/RichDescription";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { keywordLinkWords, type EntityNameLink } from "@/lib/rich-links";
@@ -179,20 +180,20 @@ export default function EventDetail({
   const [activeSection, setActiveSection] = useState<string>("description");
 
   useEffect(() => {
-    if (!id) return;
+    if (!id || (initialEvent && !bp)) return;
     cachedFetch<GameEvent>(`${API}/api/events/${id}?lang=${lang}`)
       .then((data) => setEvent(data))
       .catch(() => {
         if (!initialEvent) setNotFound(true);
       })
       .finally(() => setLoading(false));
-  }, [id, lang]);
+  }, [id, lang, initialEvent, bp]);
 
   useEffect(() => {
     if (initialRelics?.length) return;
-    cachedFetch<RelicEntry[]>(`${API}/api/relics?lang=${lang}`).then((relics) =>
-      setRelicMap(indexById(relics)),
-    );
+    cachedFetch<RelicEntry[]>(`${API}/api/relics?lang=${lang}`)
+      .then((relics) => setRelicMap(indexById(relics)))
+      .catch(() => {});
   }, [lang, initialRelics]);
 
   const ancientId = event?.type === "Ancient" ? event.id.toUpperCase() : null;
@@ -433,10 +434,42 @@ export default function EventDetail({
                         </span>
                         <span className="num">
                           <b>{o.pct}%</b> · {o.count.toLocaleString()}
+                          {typeof o.winRate === "number" && (
+                            <span className="vote-outcome">
+                              <span>
+                                {t("Win%")} <b>{o.winRate.toFixed(1)}%</b>
+                              </span>
+                              {typeof o.lift === "number" && (
+                                <span>
+                                  {t("Lift")}{" "}
+                                  <b>
+                                    {o.lift > 0 ? "+" : ""}
+                                    {o.lift.toFixed(1)}
+                                  </b>
+                                </span>
+                              )}
+                            </span>
+                          )}
                         </span>
                       </div>
                     ))}
                   </div>
+                  {(voteStats.hasOutcomes || voteStats.dataThrough) && (
+                    <p className="stat-note">
+                      {voteStats.hasOutcomes && (
+                        <>
+                          {t("event_votes_outcomes_note")}{" "}
+                          <Link
+                            prefetch={false}
+                            href={`${bp}/stats/events?q=${encodeURIComponent(event.name)}&bracket=${EVENT_VOTES_BRACKET}`}
+                          >
+                            {t("See in Event Metrics")} →
+                          </Link>{" "}
+                        </>
+                      )}
+                      {dataThroughLabel(voteStats.dataThrough, t, lang)}
+                    </p>
+                  )}
                 </div>
               )}
 

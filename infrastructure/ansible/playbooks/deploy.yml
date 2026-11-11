@@ -41,9 +41,9 @@
       register: git_pull
       changed_when: git_pull.before != git_pull.after
 
-    - name: Pull latest backend image
+    - name: Pull latest backend + frontend images
       become: true
-      command: docker compose -f {{ compose_file }} pull backend frontend rebuilder
+      command: docker compose -f {{ compose_file }} pull backend frontend
       args:
         chdir: "{{ spire_codex_dir }}"
       register: pull_result
@@ -51,7 +51,7 @@
 
     - name: Recreate backend + frontend containers
       become: true
-      command: docker compose -f {{ compose_file }} up -d --force-recreate backend frontend rebuilder
+      command: docker compose -f {{ compose_file }} up -d --force-recreate backend frontend
       args:
         chdir: "{{ spire_codex_dir }}"
 
