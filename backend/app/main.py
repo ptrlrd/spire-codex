@@ -12,6 +12,7 @@ from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.staticfiles import StaticFiles
+from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.middleware.base import BaseHTTPMiddleware
 from pathlib import Path
 from slowapi import Limiter, _rate_limit_exceeded_handler
@@ -966,10 +967,20 @@ def root(request: Request):
 _BETA_ASSETS_DIR = Path(
     os.environ.get("DATA_DIR", Path(__file__).resolve().parents[1] / "data")
 )
+_BETA_ASSET_SUFFIXES = {".webp", ".png", ".jpg", ".jpeg", ".gif", ".svg", ".avif"}
+
+
+class _ImageOnlyStaticFiles(StaticFiles):
+    async def get_response(self, path: str, scope):
+        if Path(path).suffix.lower() not in _BETA_ASSET_SUFFIXES:
+            raise StarletteHTTPException(status_code=404)
+        return await super().get_response(path, scope)
+
+
 if _BETA_ASSETS_DIR.exists():
     app.mount(
         "/static/data-beta",
-        StaticFiles(directory=str(_BETA_ASSETS_DIR)),
+        _ImageOnlyStaticFiles(directory=str(_BETA_ASSETS_DIR)),
         name="data-beta-static",
     )
 
