@@ -605,6 +605,10 @@ def submit_run(
     # of N runs does a single user lookup rather than N. Steam is checked
     # first since that's what the game clients send; discord_id is here for
     # parity so any client that knows it links the same way.
+    from .runs_db import INT_OVERFLOW_ERROR, has_oversized_int
+
+    if has_oversized_int(data):
+        return {"error": INT_OVERFLOW_ERROR, "int_overflow": True}
     linked_user_id = None
     linked_username = None
     owner = None

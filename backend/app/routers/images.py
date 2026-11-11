@@ -16,6 +16,7 @@ import json
 import logging
 import os
 import re
+import threading
 import time
 import urllib.request
 import zipfile
@@ -26,7 +27,11 @@ from pathlib import Path
 from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import StreamingResponse
 
+from ..dependencies import shared_limiter
+from ..services import rate_limit_config
+
 router = APIRouter(prefix="/api/images", tags=["Images"])
+limiter = shared_limiter
 logger = logging.getLogger(__name__)
 
 VERSION_RE = re.compile(r"^v\d+\.\d+\.\d+(?:-beta)?$")
@@ -64,6 +69,14 @@ _GAME_PREVIEW_COUNT = 60
 # folders are downloaded subfolder by subfolder.
 _ZIP_MAX_FILES = 2000
 _ZIP_FETCH_WORKERS = 16
+_ZIP_MAX_BYTES = int(os.environ.get("IMAGE_ZIP_MAX_BYTES", "") or 400 * 1024 * 1024)
+_ZIP_MAX_CONCURRENT = 2
+_ZIP_WAIT_SECONDS = 20.0
+_zip_slots = threading.BoundedSemaphore(_ZIP_MAX_CONCURRENT)
+
+
+class _ZipTooLarge(Exception):
+    pass
 
 
 @lru_cache(maxsize=1)
@@ -270,9 +283,30 @@ def _build_game_zip(version: str, category: str, path: str) -> tuple[bytes, str]
         )
     prefix = f"{clean_path}/" if clean_path else ""
     urls = [(f, _game_url(version, category, f"{prefix}{f}")) for f in files]
+    fetched = 0
+    fetched_lock = threading.Lock()
+
+    def fetch(fu: tuple[str, str]) -> bytes:
+        nonlocal fetched
+        with fetched_lock:
+            if fetched > _ZIP_MAX_BYTES:
+                raise _ZipTooLarge()
+        blob = _fetch_game_file(fu[1])
+        with fetched_lock:
+            fetched += len(blob)
+            if fetched > _ZIP_MAX_BYTES:
+                raise _ZipTooLarge()
+        return blob
+
     try:
         with ThreadPoolExecutor(max_workers=_ZIP_FETCH_WORKERS) as ex:
-            blobs = list(ex.map(lambda fu: _fetch_game_file(fu[1]), urls))
+            blobs = list(ex.map(fetch, urls))
+    except _ZipTooLarge:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Folder is over {_ZIP_MAX_BYTES // (1024 * 1024)} MB; "
+            "download its subfolders individually",
+        )
     except Exception:
         logger.warning(
             "game zip fetch failed: %s/%s/%s",
@@ -292,10 +326,22 @@ def _build_game_zip(version: str, category: str, path: str) -> tuple[bytes, str]
 
 
 @router.get("/game/{version}/{category}/download", tags=["Images"])
-def download_game_folder(version: str, category: str, path: str = ""):
+@limiter.limit(
+    rate_limit_config.endpoint_limit("images.download_game_folder", "10/minute")
+)
+def download_game_folder(request: Request, version: str, category: str, path: str = ""):
     """Zip of one dump folder's files (not its subfolders); folders above
     the size cap are downloaded subfolder by subfolder."""
-    data, zip_name = _build_game_zip(version, category, path)
+    _validated_folder(version, category, path)
+    if not _zip_slots.acquire(timeout=_ZIP_WAIT_SECONDS):
+        raise HTTPException(
+            status_code=503,
+            detail="Too many downloads are being built; try again shortly",
+        )
+    try:
+        data, zip_name = _build_game_zip(version, category, path)
+    finally:
+        _zip_slots.release()
     return StreamingResponse(
         io.BytesIO(data),
         media_type="application/zip",

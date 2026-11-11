@@ -190,6 +190,23 @@ def clean_id(raw_id: str) -> str:
     return raw_id
 
 
+BSON_INT_MIN, BSON_INT_MAX = -(2**63), 2**63 - 1
+INT_OVERFLOW_ERROR = "Run has a number too large to store"
+
+
+def has_oversized_int(data) -> bool:
+    stack = [data]
+    while stack:
+        v = stack.pop()
+        if isinstance(v, dict):
+            stack.extend(v.values())
+        elif isinstance(v, list):
+            stack.extend(v)
+        elif isinstance(v, int) and not BSON_INT_MIN <= v <= BSON_INT_MAX:
+            return True
+    return False
+
+
 def submit_run(
     data: dict,
     username: str | None = None,
@@ -209,6 +226,8 @@ def submit_run(
     # a debugger — previously every rejection collapsed to the same
     # "missing required fields" message regardless of which field was
     # actually the problem.
+    if has_oversized_int(data):
+        return {"error": INT_OVERFLOW_ERROR, "int_overflow": True}
     missing: list[str] = []
     if not data.get("players"):
         missing.append("players")
