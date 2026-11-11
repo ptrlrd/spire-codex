@@ -17,6 +17,7 @@ from pathlib import Path
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 from slowapi.middleware import SlowAPIMiddleware
+from pymongo.errors import ExecutionTimeout
 
 from .routers import (
     cards,
@@ -182,6 +183,17 @@ app = FastAPI(
 
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+
+
+async def _query_time_limit_handler(request: Request, exc: ExecutionTimeout):
+    logger.warning("query hit its time limit: %s", request.url.path)
+    return JSONResponse(
+        status_code=503,
+        content={"detail": "This query took too long. Try again shortly."},
+    )
+
+
+app.add_exception_handler(ExecutionTimeout, _query_time_limit_handler)
 # Without SlowAPIMiddleware, slowapi's `default_limits` is a no-op
 # — it only applies to routes that explicitly use `@limiter.limit()`.
 # Roughly 70/85 routes (every entity GET route, exports, news, mechanics

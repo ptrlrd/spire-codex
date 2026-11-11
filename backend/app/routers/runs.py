@@ -794,7 +794,13 @@ def get_seed_rank(request: Request, seed: str, steam_id: str | None = None):
     if os.environ.get("MONGO_URL", "").strip():
         from ..services.runs_db_mongo import seed_rank_for
 
-        return seed_rank_for(clean_steam, seed)
+        cache_key = "seed_rank:" + json.dumps([seed, clean_steam])
+        cached = app_cache.get_json(cache_key)
+        if cached is not None:
+            return cached
+        result = seed_rank_for(clean_steam, seed)
+        app_cache.set_json(cache_key, result, ttl_seconds=_SEED_RANK_CACHE_TTL_SECONDS)
+        return result
 
     # SQLite fallback: enough shape for the mod to degrade cleanly.
     return {
@@ -1678,7 +1684,17 @@ def get_top_for_character(
 # In-process LRU caches those for the duration of the worker so
 # repeated rare queries still benefit.
 _STATS_FALLBACK_TTL_SECONDS = 300
+_STATS_FALLBACK_MAX_ENTRIES = 256
+_SEED_RANK_CACHE_TTL_SECONDS = 30
 _stats_fallback_cache: dict[tuple, tuple[float, dict]] = {}
+
+
+def _remember_stats_fallback(cache_key: tuple, result: dict) -> None:
+    _stats_fallback_cache.pop(cache_key, None)
+    while len(_stats_fallback_cache) >= _STATS_FALLBACK_MAX_ENTRIES:
+        del _stats_fallback_cache[next(iter(_stats_fallback_cache))]
+    _stats_fallback_cache[cache_key] = (time.monotonic(), result)
+
 
 _REFRESHER_INTERVAL_SECONDS = 60
 _SUMMARY_INTERVAL_SECONDS = max(
@@ -2052,12 +2068,12 @@ def get_community_stats(
             raise HTTPException(
                 status_code=503,
                 detail=(
-                    "Stats for this filter combination are being computed "
-                    "in the background; retry in a few minutes."
+                    "Stats for this filter combination took too long to "
+                    "compute. Try again later or with fewer filters."
                 ),
                 headers={"Retry-After": "120"},
             )
-        _stats_fallback_cache[cache_key] = (time.monotonic(), result)
+        _remember_stats_fallback(cache_key, result)
         app_cache.set_json(redis_key, result, ttl_seconds=60)
 
         # Lazy write-through to stats_summary so subsequent requests for this

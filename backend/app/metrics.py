@@ -228,7 +228,13 @@ db_operation_duration = Histogram(
     "spire_codex_db_operation_seconds",
     "SQLite operation duration",
     ["operation"],
-    buckets=[0.001, 0.005, 0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 1.0, 2.0],
+    buckets=[0.001, 0.005, 0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 1.0, 2.0, 5.0, 10.0],
+)
+
+count_budget_timeouts = Counter(
+    "spire_codex_count_budget_timeouts_total",
+    "Run counts that hit their server-side time limit",
+    ["stage"],
 )
 
 # ── Application cache (Redis) ────────────────────────────────
