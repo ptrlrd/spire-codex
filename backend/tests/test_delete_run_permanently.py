@@ -2,6 +2,8 @@
 gives the run back to the live counters, and only ever touches the caller's
 own run."""
 
+import pytest
+
 from app.services import replays_db, runs_db_mongo
 
 OWNER = {"_id": "u1", "steam_id": "7656"}
@@ -27,8 +29,21 @@ class FakeColl:
         self.docs.pop(key, None)
 
 
+class FakeTombstones:
+    def __init__(self):
+        self.docs: dict[str, dict] = {}
+
+    def update_one(self, query, update, upsert=False):
+        self.docs.setdefault(query["_id"], {"_id": query["_id"]}).update(update["$set"])
+
+    def find_one(self, query, projection=None):
+        return self.docs.get(query["_id"])
+
+
 def _wire(monkeypatch, tmp_path, run_doc):
     runs = FakeColl([run_doc] if run_doc else [])
+    runs.tombstones = FakeTombstones()
+    monkeypatch.setattr(runs_db_mongo, "_tombstones", lambda: runs.tombstones)
     blobs = FakeColl([{"_id": "abc", "blob": {}}])
     replays = FakeColl([{"_id": "abc"}])
     bumps: list[tuple[str, int]] = []
@@ -92,3 +107,49 @@ def test_missing_run(monkeypatch, tmp_path):
     assert runs_db_mongo.delete_run_permanently("abc", OWNER) == {
         "error": "Run not found"
     }
+
+
+def test_moderator_hidden_run_leaves_a_tombstone(monkeypatch, tmp_path):
+    runs, *_ = _wire(
+        monkeypatch,
+        tmp_path,
+        {"_id": "abc", "user_id": "u1", "hidden": True, "hidden_reason": "mod:edited"},
+    )
+    assert runs_db_mongo.delete_run_permanently("abc", OWNER)["success"]
+    assert runs.docs == {}
+    assert runs.tombstones.docs["abc"]["reason"] == "mod:edited"
+    assert runs_db_mongo.moderation_tombstone("abc") == "mod:edited"
+
+
+def test_reasonless_moderator_hide_still_leaves_a_tombstone(monkeypatch, tmp_path):
+    runs, *_ = _wire(
+        monkeypatch, tmp_path, {"_id": "abc", "user_id": "u1", "hidden": True}
+    )
+    assert runs_db_mongo.delete_run_permanently("abc", OWNER)["success"]
+    assert runs.tombstones.docs["abc"]["reason"] == "moderator"
+
+
+@pytest.mark.parametrize("reason", ["owner", "auto:impossible_time:200s"])
+def test_owner_and_auto_hides_leave_no_tombstone(monkeypatch, tmp_path, reason):
+    runs, *_ = _wire(
+        monkeypatch,
+        tmp_path,
+        {"_id": "abc", "user_id": "u1", "hidden": True, "hidden_reason": reason},
+    )
+    assert runs_db_mongo.delete_run_permanently("abc", OWNER)["success"]
+    assert runs.tombstones.docs == {}
+    assert runs_db_mongo.moderation_tombstone("abc") is None
+
+
+def test_visible_run_leaves_no_tombstone(monkeypatch, tmp_path):
+    runs, *_ = _wire(monkeypatch, tmp_path, {"_id": "abc", "user_id": "u1"})
+    assert runs_db_mongo.delete_run_permanently("abc", OWNER)["success"]
+    assert runs.tombstones.docs == {}
+
+
+def test_tombstone_lookup_failure_reads_as_none(monkeypatch):
+    def boom():
+        raise RuntimeError("mongo down")
+
+    monkeypatch.setattr(runs_db_mongo, "_tombstones", boom)
+    assert runs_db_mongo.moderation_tombstone("abc") is None

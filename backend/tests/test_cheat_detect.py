@@ -97,23 +97,31 @@ def test_detect_cheats_carries_the_coop_solo_signal(monkeypatch):
     assert "coop_card_solo:MIDNIGHT" in detect_cheats(data)
 
 
-def test_five_minute_win_is_impossible_time():
-    data = {"win": True, "run_time": 340, "floors_reached": 49}
+def test_win_under_five_minutes_is_impossible_time():
+    data = {"win": True, "run_time": 280, "floors_reached": 49}
     reasons = detect_cheats(data)
-    assert "impossible_time:340s" in reasons
-    assert "impossible_pace:340s/49fl" in reasons
+    assert "impossible_time:280s" in reasons
+    assert "impossible_pace:280s/49fl" in reasons
 
 
-def test_fast_but_plausible_win_is_clean():
-    data = {"win": True, "run_time": 1500, "floors_reached": 49}
-    assert not [r for r in detect_cheats(data) if r.startswith("impossible_")]
+def test_win_past_five_minutes_is_clean():
+    for run_time in (300, 340, 899, 1500):
+        data = {"win": True, "run_time": run_time, "floors_reached": 49}
+        assert not [r for r in detect_cheats(data) if r.startswith("impossible_")]
 
 
 def test_pace_rule_catches_long_runs_with_too_many_floors():
-    data = {"win": True, "run_time": 950, "floors_reached": 70}
+    data = {"win": True, "run_time": 400, "floors_reached": 70}
     reasons = detect_cheats(data)
-    assert "impossible_pace:950s/70fl" in reasons
+    assert "impossible_pace:400s/70fl" in reasons
     assert not [r for r in reasons if r.startswith("impossible_time")]
+
+
+def test_pace_rule_counts_floors_from_the_uploaded_history():
+    act = [{"rooms": [{"room_type": "monster", "turns_taken": 3}]}] * 22
+    boss = [{"rooms": [{"room_type": "boss", "turns_taken": 5}]}]
+    data = {"win": True, "run_time": 400, "map_point_history": [act + boss] * 3}
+    assert "impossible_pace:400s/69fl" in detect_cheats(data)
 
 
 def test_losses_and_unknown_times_never_flag_time():

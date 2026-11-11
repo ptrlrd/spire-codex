@@ -67,6 +67,7 @@ from .routers import (
     admin_rate_limits,
     admin_api_keys,
     admin_replays,
+    admin_cheat_review,
     api_keys,
     glossary,
     guides,
@@ -774,6 +775,7 @@ app.include_router(mentions_ingest.router, include_in_schema=False)
 app.include_router(thanks.router)
 app.include_router(admin_api_keys.router, include_in_schema=False)
 app.include_router(admin_replays.router, include_in_schema=False)
+app.include_router(admin_cheat_review.router, include_in_schema=False)
 # Key management (create/list/revoke) is session-authed and site-internal, so
 # it stays out of /docs; only the public tier info (/api/rate-limits) shows.
 app.include_router(api_keys.router, include_in_schema=False)
