@@ -1,5 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { filterFetchView, startFilterFetch } from "./use-filter-fetch";
+import {
+  filterFetchView,
+  filterPageFor,
+  startFilterFetch,
+} from "./use-filter-fetch";
 
 interface Call {
   url: string;
@@ -162,5 +166,26 @@ describe("filterFetchView", () => {
       loading: true,
       error: false,
     });
+  });
+});
+
+describe("filterPageFor", () => {
+  it("keeps the page while the filters are unchanged", () => {
+    const state = { key: "a", page: 3 };
+    expect(filterPageFor(state, "a")).toBe(state);
+  });
+
+  it("goes back to page 1 when the filters change", () => {
+    expect(filterPageFor({ key: "a", page: 3 }, "b")).toEqual({
+      key: "b",
+      page: 1,
+    });
+  });
+
+  it("does not restore an old page when earlier filters come back", () => {
+    let state = { key: "a", page: 3 };
+    state = filterPageFor(state, "b");
+    state = filterPageFor(state, "a");
+    expect(state).toEqual({ key: "a", page: 1 });
   });
 });

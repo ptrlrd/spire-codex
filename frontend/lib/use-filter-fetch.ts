@@ -84,15 +84,31 @@ export function useFilterFetch<T>(
   return { ...filterFetchView(settled, key), retry };
 }
 
+export interface FilterPageState {
+  key: string;
+  page: number;
+}
+
+export function filterPageFor(
+  state: FilterPageState,
+  filterKey: string,
+): FilterPageState {
+  return state.key === filterKey ? state : { key: filterKey, page: 1 };
+}
+
 export function useFilterPage(
   filterKey: string,
   initialPage = 1,
 ): [number, (page: number) => void] {
-  const [state, setState] = useState({ key: filterKey, page: initialPage });
-  const page = state.key === filterKey ? state.page : 1;
+  const [state, setState] = useState<FilterPageState>({
+    key: filterKey,
+    page: initialPage,
+  });
+  const current = filterPageFor(state, filterKey);
+  if (current !== state) setState(current);
   const setPage = useCallback(
     (next: number) => setState({ key: filterKey, page: next }),
     [filterKey],
   );
-  return [page, setPage];
+  return [current.page, setPage];
 }

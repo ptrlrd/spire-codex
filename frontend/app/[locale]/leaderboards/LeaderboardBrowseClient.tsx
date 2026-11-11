@@ -761,10 +761,11 @@ export default function LeaderboardBrowseClient() {
             </select>
           </div>
 
-          {/* Total count */}
-          <p className="text-xs text-[var(--text-muted)] mb-3">
-            {browseTotal} {t("runs total")}
-          </p>
+          {!browse.error && (
+            <p className="text-xs text-[var(--text-muted)] mb-3">
+              {browseTotal} {t("runs total")}
+            </p>
+          )}
 
           {browse.error ? (
             <LoadFailed onRetry={browse.retry} />
