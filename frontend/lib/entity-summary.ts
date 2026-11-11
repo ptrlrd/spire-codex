@@ -6,6 +6,7 @@ import {
   type DraftRecs,
   type Pairings,
 } from "@/lib/entity-links";
+import { LANG_HREFLANG, type LangCode } from "@/lib/languages";
 
 export interface SummaryLink {
   id: string;
@@ -30,6 +31,28 @@ export interface EntitySummaryData extends SummaryStats {
 
 const MIN_PICKS = 200;
 const MIN_CHARACTER_PICKS = 100;
+
+export const LIST_SLOT = "\u0001";
+
+export function splitAtSlot(sentence: string): [string, string] {
+  const at = sentence.indexOf(LIST_SLOT);
+  if (at < 0) return [sentence, ""];
+  return [sentence.slice(0, at), sentence.slice(at + LIST_SLOT.length)];
+}
+
+export type ListPart = { item: number } | { text: string };
+
+export function listParts(locale: string, count: number): ListPart[] {
+  const tag =
+    locale === "eng" ? "en-GB" : (LANG_HREFLANG[locale as LangCode] ?? "en-GB");
+  const slots = Array.from({ length: count }, (_, i) => String(i));
+  let next = 0;
+  return new Intl.ListFormat(tag, { style: "long", type: "conjunction" })
+    .formatToParts(slots)
+    .map((part) =>
+      part.type === "element" ? { item: next++ } : { text: part.value },
+    );
+}
 
 export function pct(x: number): string {
   return `${Math.round(x * 10) / 10}%`;

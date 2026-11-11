@@ -100,8 +100,8 @@ export const X9T: Record<string, Record<string, string>> = {
     spa: "Hogueras",
     tha: "แคมป์ไฟ",
     tur: "Kamp Ateşleri",
-    zhs: "篝火",
-    zht: "營火",
+    zhs: "休息处",
+    zht: "休息處",
   },
   Bracket: {
     eng: "Bracket",

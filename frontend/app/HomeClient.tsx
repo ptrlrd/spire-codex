@@ -23,6 +23,13 @@ const CHARACTERS = CHARACTER_ORDER.map((id) => ({
   cssColor: `var(--color-${id})`,
 }));
 
+const ENGLISH_GAME_DESCS = new Set([
+  "View all of the cards you have encountered throughout the Spire.",
+  "Examine the various trinkets and artifacts obtained throughout your runs.",
+  "View all of the enemies you have encountered throughout the Spire.",
+  "Observe the numerous potions found climbing the Spire.",
+]);
+
 const FALLBACK_DESCS: Record<string, string> = {
   cards:
     "Browse all Slay the Spire 2 cards. Filter by character, type, rarity, and keywords.",
@@ -151,13 +158,10 @@ export default function HomeClient({
   };
   const sectionDesc = (key: string) => {
     const gameDesc = translations.section_descs?.[key];
-    if (gameDesc) return gameDesc;
-    // Use our UI translations for description if available, otherwise English fallback
-    const uiKey = SECTION_LABEL_MAP[key];
-    if (uiKey && lang !== "eng") {
-      return `${t(uiKey)}, Spire Codex`;
-    }
-    return FALLBACK_DESCS[key] ?? "";
+    if (gameDesc && (lang === "eng" || !ENGLISH_GAME_DESCS.has(gameDesc)))
+      return gameDesc;
+    const fallback = FALLBACK_DESCS[key];
+    return fallback ? t(fallback) : "";
   };
 
   const sections = [

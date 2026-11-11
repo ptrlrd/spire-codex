@@ -2,11 +2,14 @@
 
 import { Fragment } from "react";
 import { Link } from "@/i18n/navigation";
-import { useT, useFormatNumber } from "@/lib/i18n";
+import { useFormatNumber, useGameLocale, useT } from "@/lib/i18n";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { characterName } from "@/app/components/CharacterTag";
 import {
+  LIST_SLOT,
+  listParts,
   pct,
+  splitAtSlot,
   summaryStats,
   type EntitySummaryData,
   type SummaryLink,
@@ -32,6 +35,7 @@ export default function EntitySummary({
   const t = useT();
   const fmtN = useFormatNumber();
   const bp = useBetaPrefix();
+  const locale = useGameLocale();
   const s = stats && bracket ? summaryStats(stats, bracket) : data;
   const partners = data?.partners ?? [];
   const draftedNext = data?.draftedNext ?? [];
@@ -39,18 +43,28 @@ export default function EntitySummary({
   if (!hasStats && partners.length === 0 && draftedNext.length === 0)
     return null;
 
-  const links = (items: SummaryLink[]) =>
-    items.map((it, i) => (
-      <Fragment key={it.id}>
-        {i > 0 && (i === items.length - 1 ? ` ${t("and")} ` : ", ")}
-        <Link
-          href={`${bp}/${it.kind}/${it.id.toLowerCase()}`}
-          className="summary-link"
-        >
-          {it.name}
-        </Link>
-      </Fragment>
-    ));
+  const sentence = (key: string, items: SummaryLink[]) => {
+    const [before, after] = splitAtSlot(t(key, { list: LIST_SLOT }));
+    return (
+      <>
+        {before}
+        {listParts(locale, items.length).map((part, i) =>
+          "text" in part ? (
+            <Fragment key={i}>{part.text}</Fragment>
+          ) : (
+            <Link
+              key={i}
+              href={`${bp}/${items[part.item].kind}/${items[part.item].id.toLowerCase()}`}
+              className="summary-link"
+            >
+              {items[part.item].name}
+            </Link>
+          ),
+        )}
+        {after}
+      </>
+    );
+  };
 
   return (
     <p className="entity-summary">
@@ -101,14 +115,13 @@ export default function EntitySummary({
       {partners.length > 0 && (
         <>
           {hasStats && " "}
-          {t("entity_summary_partners_before")} {links(partners)}.
+          {sentence("entity_summary_partners", partners)}
         </>
       )}
       {draftedNext.length > 0 && (
         <>
           {(hasStats || partners.length > 0) && " "}
-          {t("entity_summary_lifted_before")} {links(draftedNext)}{" "}
-          {t("entity_summary_lifted_after")}.
+          {sentence("entity_summary_lifted", draftedNext)}
         </>
       )}
     </p>

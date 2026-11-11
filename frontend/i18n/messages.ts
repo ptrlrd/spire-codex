@@ -44,6 +44,7 @@ import { X10 } from "@/lib/i18n-x10";
 import { X11L } from "@/lib/i18n-x11l";
 import { X11A } from "@/lib/i18n-x11a";
 import { X11 } from "@/lib/i18n-x11";
+import { X11B } from "@/lib/i18n-x11b";
 import { X11U } from "@/lib/i18n-x11u";
 import { X11C } from "@/lib/i18n-x11c";
 import { UI_TRANSLATIONS } from "@/lib/ui-translations";
@@ -103,6 +104,7 @@ const TABLES = [
   X11L,
   X11A,
   X11,
+  X11B,
   X11U,
   X11C,
 ];
