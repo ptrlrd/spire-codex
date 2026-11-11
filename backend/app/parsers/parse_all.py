@@ -19,6 +19,7 @@ from pool_parser import main as parse_pools
 from translation_parser import main as parse_translations
 from news_parser import main as parse_news
 from localization_parser import main as parse_localizations
+from parser_paths import loc_dir
 
 LANGUAGES = [
     "deu",
@@ -39,6 +40,12 @@ LANGUAGES = [
     # with English fallback for strings not yet translated.
     "zht",
 ]
+
+
+def languages_with_text(languages: list[str]) -> list[str]:
+    """The languages this game build ships localization for. Parsing one it
+    lacks would write rows named after C# classes over that language's data."""
+    return [lang for lang in languages if loc_dir(lang).is_dir()]
 
 
 def parse_language(lang: str):
@@ -82,7 +89,11 @@ if __name__ == "__main__":
         languages = [lang_arg]
 
     print("=== Parsing Slay the Spire 2 Game Data ===\n")
+    parseable = languages_with_text(languages)
     for lang in languages:
+        if lang not in parseable:
+            print(f"\n--- Language: {lang} skipped, no localization in this build ---")
+            continue
         print(f"\n--- Language: {lang} ---")
         parse_language(lang)
     # Guides are language-independent

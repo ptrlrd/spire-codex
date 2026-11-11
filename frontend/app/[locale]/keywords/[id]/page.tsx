@@ -13,6 +13,7 @@ import JsonLd from "@/app/components/JsonLd";
 import BetaOnlyScope from "@/app/components/BetaOnlyScope";
 import { betaOnlyVersion, fetchEntityRes } from "@/lib/entity-fetch";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
+import { gameDataLastModIso } from "@/lib/content-dates";
 import {
   buildPageMetadata,
   clipMetaDescription,
@@ -116,6 +117,7 @@ export default async function Page({ params }: Props) {
         description: `${desc} All cards with the ${data.name} keyword in Slay the Spire 2.`,
         path: localePath(locale, `/keywords/${id}`),
         category: "Keyword",
+        dateModified: await gameDataLastModIso(),
         inLanguage: inLanguageOf(locale),
         breadcrumbs: [
           { name: uiText(locale, "Home"), href: localePath(locale, "/") },
@@ -143,6 +145,7 @@ export default async function Page({ params }: Props) {
         description: `${desc} Game term definition for Slay the Spire 2.`,
         path: `/keywords/${id}`,
         category: "Game Term",
+        dateModified: await gameDataLastModIso(),
         breadcrumbs: [
           { name: uiText(locale, "Home"), href: "/" },
           { name: uiText(locale, "Keywords & Game Terms"), href: "/keywords" },

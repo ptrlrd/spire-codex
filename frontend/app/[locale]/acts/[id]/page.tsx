@@ -8,6 +8,7 @@ import { redirectMissingEntity } from "@/lib/redirect-helpers";
 import { betaOnlyVersion, fetchEntityRes } from "@/lib/entity-fetch";
 import BetaOnlyScope from "@/app/components/BetaOnlyScope";
 import { buildDetailPageJsonLd } from "@/lib/jsonld";
+import { gameDataLastModIso } from "@/lib/content-dates";
 import { clipMetaDescription, buildPageMetadata } from "@/lib/seo";
 
 export const dynamic = "force-static";
@@ -84,6 +85,7 @@ export default async function Page({ params }: Props) {
         description: `${act.name} act in Slay the Spire 2 with ${act.encounters.length} encounters and ${act.bosses.length} bosses.`,
         path: localePath(locale, `/acts/${id}`),
         category: "Act",
+        dateModified: await gameDataLastModIso(),
         inLanguage: inLanguageOf(locale),
         breadcrumbs: [
           { name: uiText(locale, "Home"), href: localePath(locale, "/") },

@@ -3,8 +3,9 @@
 -- site HP lookback runs here once per page instead of as a window over
 -- every floor of the lake. Absolute floors use the same numbering as
 -- floor_added_to_deck: floors of earlier acts plus the index in its act.
--- Seats unnest in the select list, in lockstep with their index: a LATERAL
--- unnest plans a delim join that hashes every nested players list.
+-- players holds the document's own seat only and player_idx is its index.
+-- The seat unnests in the select list: a LATERAL unnest plans a delim join
+-- that hashes every nested players list.
 CREATE OR REPLACE TEMP TABLE ft_off AS
 SELECT run_hash, act,
   coalesce(sum(n) OVER (PARTITION BY run_hash ORDER BY act
@@ -16,8 +17,7 @@ FROM (SELECT run_hash, act, count(*) AS n
 -- is_card marks ids in the CARD namespace, the set the pick Elo rates.
 COPY (
 WITH seats AS (
-  SELECT run_hash, act, floor_idx,
-    unnest(range(1, len(players) + 1)) AS player_idx,
+  SELECT run_hash, act, floor_idx, player_idx,
     unnest([p.card_choices FOR p IN players]) AS cc
   FROM read_parquet('__OUT__/floors.parquet')
 ),
@@ -41,8 +41,7 @@ WHERE s.x.card.id IS NOT NULL AND s.x.card.id <> ''
 -- floor with a known HP, else the floor's own.
 COPY (
 WITH seats AS (
-  SELECT run_hash, act, floor_idx,
-    unnest(range(1, len(players) + 1)) AS player_idx,
+  SELECT run_hash, act, floor_idx, player_idx,
     unnest([struct_pack(player_id := p.player_id, hp := p.current_hp,
       mx := p.max_hp, rest := p.rest_site_choices) FOR p IN players]) AS s
   FROM read_parquet('__OUT__/floors.parquet')
@@ -93,8 +92,7 @@ WHERE upper(split_part(u.card_id, '.', 1)) = 'CARD'
 -- Event options a seat chose.
 COPY (
 WITH seats AS (
-  SELECT run_hash, act, floor_idx,
-    unnest(range(1, len(players) + 1)) AS player_idx,
+  SELECT run_hash, act, floor_idx, player_idx,
     unnest([p.event_choices FOR p IN players]) AS ec
   FROM read_parquet('__OUT__/floors.parquet')
 ),

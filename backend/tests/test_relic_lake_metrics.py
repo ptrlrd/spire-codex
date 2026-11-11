@@ -190,7 +190,8 @@ def write_lake(tmp_path):
         f"""COPY (SELECT run_hash, act, floor_idx, map_point_type,
           json_transform(players_json, '{PLAYERS_T}') AS players,
           []::VARCHAR[] AS room_models, 'event' AS room_type,
-          NULL::VARCHAR AS room_model, NULL::BIGINT AS room_turns
+          NULL::VARCHAR AS room_model, NULL::BIGINT AS room_turns,
+          1::BIGINT AS player_idx
         FROM (VALUES {vals}) t(run_hash, act, floor_idx, map_point_type, players_json))
         TO '{tmp_path}/floors.parquet' (FORMAT parquet)"""
     )
@@ -575,7 +576,8 @@ def _add_modded_rows(tmp_path):
         SELECT run_hash, act, floor_idx, map_point_type,
           json_transform(players_json, '{PLAYERS_T}') AS players,
           []::VARCHAR[] AS room_models, 'event' AS room_type,
-          NULL::VARCHAR AS room_model, NULL::BIGINT AS room_turns
+          NULL::VARCHAR AS room_model, NULL::BIGINT AS room_turns,
+          1::BIGINT AS player_idx
         FROM (VALUES {vals}) t(run_hash, act, floor_idx, map_point_type, players_json))
         TO '{tmp_path}/floors.modded.parquet' (FORMAT parquet)"""
     )
@@ -788,6 +790,10 @@ def test_entity_stats_carries_the_lift_family(lake, monkeypatch):
     assert solo["hold_rate"] == 62.5
     assert (solo["removed"], solo["removed_rate"]) == (1, 20.0)
     assert solo["win_rate_ci"] == stats_math.wilson_interval(sentry[1], sentry[0])
+    solo_table = res.get_entity_metrics_table("relics", "solo")
+    assert solo["baseline_win_rate"] == solo_table["baseline_win_rate"]
+    assert "baseline_win_rate" in out["brackets"]["all"]
+    assert "baseline_win_rate" in out["brackets"]["a10"]
 
 
 def test_entity_stats_without_cube_keeps_the_lift_family_null(lake, monkeypatch):

@@ -15,7 +15,13 @@ from starlette.requests import ClientDisconnect
 from ..dependencies import get_lang, shared_limiter
 from ..models.schemas import ArchetypesResponse
 from ..services import rate_limit_config
-from ..services.runs_db import submit_run, get_stats, claim_runs
+from ..services.runs_db import (
+    INT_OVERFLOW_ERROR,
+    claim_runs,
+    get_stats,
+    has_oversized_int,
+    submit_run,
+)
 from ..services import cache as app_cache
 from ..services.run_entity_stats import (
     UnknownBracket,
@@ -100,22 +106,6 @@ def _load_run_blob_cached(run_hash: str) -> str:
     raise FileNotFoundError(run_hash)
 
 
-BSON_INT_MIN, BSON_INT_MAX = -(2**63), 2**63 - 1
-
-
-def _has_oversized_int(data) -> bool:
-    stack = [data]
-    while stack:
-        v = stack.pop()
-        if isinstance(v, dict):
-            stack.extend(v.values())
-        elif isinstance(v, list):
-            stack.extend(v)
-        elif isinstance(v, int) and not BSON_INT_MIN <= v <= BSON_INT_MAX:
-            return True
-    return False
-
-
 def _load_run_blob(run_hash: str) -> str | None:
     try:
         return _load_run_blob_cached(run_hash)
@@ -164,6 +154,13 @@ async def submit_run_endpoint(
             status_code=403,
             detail="Run submissions are disabled on the beta site. Submit to spire-codex.com instead.",
         )
+    declared = request.headers.get("content-length") or ""
+    if declared.isdigit() and int(declared) > MAX_BODY_SIZE:
+        run_errors.labels(reason="too_large").inc()
+        raise HTTPException(
+            status_code=413,
+            detail=f"Request too large. Max {MAX_BODY_SIZE // 1024} KB.",
+        )
     try:
         body = await request.body()
     except ClientDisconnect:
@@ -182,11 +179,9 @@ async def submit_run_endpoint(
     except Exception:
         run_errors.labels(reason="invalid_json").inc()
         raise HTTPException(status_code=400, detail="Invalid JSON body")
-    if _has_oversized_int(data):
+    if has_oversized_int(data):
         run_errors.labels(reason="int_overflow").inc()
-        raise HTTPException(
-            status_code=400, detail="Run has a number too large to store"
-        )
+        raise HTTPException(status_code=400, detail=INT_OVERFLOW_ERROR)
 
     # Sanitize username — alphanumeric, underscores, hyphens, spaces only
     clean_username = None
@@ -259,7 +254,11 @@ async def submit_run_endpoint(
             }
         else:
             run_submissions.labels(status="error").inc()
-            run_errors.labels(reason="missing_fields").inc()
+            run_errors.labels(
+                reason="int_overflow"
+                if result.get("int_overflow")
+                else "missing_fields"
+            ).inc()
             raise HTTPException(status_code=400, detail=result["error"])
 
     # Enrich for the in-game post-run card: the shareable page URL, and (when this
@@ -794,7 +793,13 @@ def get_seed_rank(request: Request, seed: str, steam_id: str | None = None):
     if os.environ.get("MONGO_URL", "").strip():
         from ..services.runs_db_mongo import seed_rank_for
 
-        return seed_rank_for(clean_steam, seed)
+        cache_key = "seed_rank:" + json.dumps([seed, clean_steam])
+        cached = app_cache.get_json(cache_key)
+        if cached is not None:
+            return cached
+        result = seed_rank_for(clean_steam, seed)
+        app_cache.set_json(cache_key, result, ttl_seconds=_SEED_RANK_CACHE_TTL_SECONDS)
+        return result
 
     # SQLite fallback: enough shape for the mod to degrade cleanly.
     return {
@@ -1173,6 +1178,9 @@ def get_entity_run_stats(
     floor), `lift_n` the seats with a known expectation, `win_rate_ci`
     the Wilson 95% interval in percent, and `hold_rate` the share of the
     bracket's seats that held the entity (null when seats are unknown).
+    Each `brackets` entry has its own `baseline_win_rate`, the win rate of
+    the average held entity of that type inside the bracket, so a bracket's
+    win rate is compared with its own cohort and not the all-runs figure.
     Relic blocks also carry `removed` (seats whose copy left before run
     end) and `removed_rate`."""
     if entity_type not in _ENTITY_STATS_TYPES:
@@ -1678,7 +1686,17 @@ def get_top_for_character(
 # In-process LRU caches those for the duration of the worker so
 # repeated rare queries still benefit.
 _STATS_FALLBACK_TTL_SECONDS = 300
+_STATS_FALLBACK_MAX_ENTRIES = 256
+_SEED_RANK_CACHE_TTL_SECONDS = 30
 _stats_fallback_cache: dict[tuple, tuple[float, dict]] = {}
+
+
+def _remember_stats_fallback(cache_key: tuple, result: dict) -> None:
+    _stats_fallback_cache.pop(cache_key, None)
+    while len(_stats_fallback_cache) >= _STATS_FALLBACK_MAX_ENTRIES:
+        del _stats_fallback_cache[next(iter(_stats_fallback_cache))]
+    _stats_fallback_cache[cache_key] = (time.monotonic(), result)
+
 
 _REFRESHER_INTERVAL_SECONDS = 60
 _SUMMARY_INTERVAL_SECONDS = max(
@@ -2052,12 +2070,12 @@ def get_community_stats(
             raise HTTPException(
                 status_code=503,
                 detail=(
-                    "Stats for this filter combination are being computed "
-                    "in the background; retry in a few minutes."
+                    "Stats for this filter combination took too long to "
+                    "compute. Try again later."
                 ),
                 headers={"Retry-After": "120"},
             )
-        _stats_fallback_cache[cache_key] = (time.monotonic(), result)
+        _remember_stats_fallback(cache_key, result)
         app_cache.set_json(redis_key, result, ttl_seconds=60)
 
         # Lazy write-through to stats_summary so subsequent requests for this

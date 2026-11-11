@@ -9,6 +9,29 @@ export interface OverwolfLinkResult {
   adFree: boolean;
 }
 
+export class OverwolfLinkError extends Error {
+  status: number;
+
+  constructor(status: number, detail?: string) {
+    super(`${status}${detail ? `: ${detail}` : ""}`);
+    this.status = status;
+  }
+}
+
+export function overwolfIdFromToken(token: string): string | null {
+  try {
+    const part = token.split(".")[1];
+    if (!part) return null;
+    const base64 = part.replace(/-/g, "+").replace(/_/g, "/");
+    const bytes = Uint8Array.from(atob(base64), (c) => c.charCodeAt(0));
+    const claims = JSON.parse(new TextDecoder().decode(bytes));
+    const sub = claims?.sub;
+    return typeof sub === "string" && sub.trim() ? sub.trim() : null;
+  } catch {
+    return null;
+  }
+}
+
 export function savePendingOverwolfToken(token: string): void {
   try {
     sessionStorage.setItem(KEY, JSON.stringify({ token, at: Date.now() }));
@@ -46,7 +69,10 @@ export async function linkOverwolf(token: string): Promise<OverwolfLinkResult> {
   });
   if (!res.ok) {
     const body = await res.json().catch(() => null);
-    throw new Error(`${res.status}${body?.detail ? `: ${body.detail}` : ""}`);
+    throw new OverwolfLinkError(
+      res.status,
+      typeof body?.detail === "string" ? body.detail : undefined,
+    );
   }
   const data = await res.json();
   return { tier: data.tier ?? null, adFree: Boolean(data.ad_free) };

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useGameLocale, useT } from "@/lib/i18n";
 import { cardImageChain, humanizeCardId } from "@/lib/card-fallback";
+import { useBetaRenderVersion } from "./BetaRenderVersionProvider";
 
 export function CardFallback({
   id,
@@ -68,12 +69,14 @@ export default function CardImage({
 }) {
   const routeLang = useGameLocale();
   const lang = langOverride ?? routeLang;
+  const betaVersion = useBetaRenderVersion();
   const chain = cardImageChain(id, {
     upgraded,
     enchantment,
     channel,
     lang,
     art,
+    betaVersion,
   });
   const key = chain.join("|");
   const [failed, setFailed] = useState<{ key: string; index: number }>({

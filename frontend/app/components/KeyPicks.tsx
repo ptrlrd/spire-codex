@@ -1,12 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 import CardImage from "@/app/components/CardImage";
-import { cachedFetch } from "@/lib/fetch-cache";
 import { CDN_BASE } from "@/lib/image-url";
-import { useGameLocale, useT } from "@/lib/i18n";
-
-const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+import { useT } from "@/lib/i18n";
+import { useIdMap } from "@/lib/use-id-map";
 
 export interface KeyCard {
   id: string;
@@ -26,18 +24,14 @@ interface Named {
 function useNames(
   kind: "cards" | "relics" | "encounters",
 ): Record<string, string> {
-  const lang = useGameLocale();
-  const [names, setNames] = useState<Record<string, string>>({});
-  useEffect(() => {
-    cachedFetch<Named[]>(`${API}/api/${kind}?lang=${lang}`)
-      .then((rows) =>
-        setNames(
-          Object.fromEntries(rows.map((r) => [r.id.toUpperCase(), r.name])),
-        ),
-      )
-      .catch(() => {});
-  }, [kind, lang]);
-  return names;
+  const rows = useIdMap<Named>(`/api/${kind}`);
+  return useMemo(
+    () =>
+      Object.fromEntries(
+        Object.values(rows).map((r) => [r.id.toUpperCase(), r.name]),
+      ),
+    [rows],
+  );
 }
 
 function pretty(id: string): string {
