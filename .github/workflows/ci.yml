@@ -119,7 +119,7 @@ jobs:
 
   frontend-build:
     name: Frontend build without the API
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: changes
     if: github.event_name == 'pull_request' && needs.changes.outputs.frontend == 'true'
     defaults:
