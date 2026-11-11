@@ -6,6 +6,7 @@ import { useT, useGameLocale } from "@/lib/i18n";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { colorTextClass } from "@/lib/character-colors";
 import { fullCardUrl, imageUrl } from "@/lib/image-url";
+import { useBetaRenderVersion } from "@/app/components/BetaRenderVersionProvider";
 import BetaBadge from "@/app/components/BetaBadge";
 import StatsRebuildingNotice from "@/app/components/StatsRebuildingNotice";
 import BracketPicker from "./BracketPicker";
@@ -222,6 +223,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
   const t = useT();
   const bp = useBetaPrefix();
   const lang = useGameLocale();
+  const betaRenderVersion = useBetaRenderVersion();
   const router = useRouter();
   const byCharacter =
     kind === "cards" &&
@@ -1267,6 +1269,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
             preview.upgraded,
             preview.beta ? "beta" : "stable",
             lang,
+            betaRenderVersion,
           )}
           alt=""
           width={180}

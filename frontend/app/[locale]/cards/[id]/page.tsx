@@ -25,6 +25,7 @@ import { redirectMissingEntity } from "@/lib/redirect-helpers";
 import { betaOnlyVersion, fetchEntityRes } from "@/lib/entity-fetch";
 import BetaOnlyScope from "@/app/components/BetaOnlyScope";
 import { cardOgImages } from "@/lib/image-url";
+import { fetchBetaRenderVersion } from "@/lib/beta-render-version.server";
 import { enchantmentsForCard } from "@/lib/card-enchantments";
 import {
   fetchCardCatalog,
@@ -82,10 +83,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ? ` Keywords: ${card.keywords.join(", ")}.`
       : "";
     // Full game-rendered card (base + upgraded) as the share image, English.
+    const betaOnly = betaOnlyVersion(res) !== null;
     const ogImages = cardOgImages(
       card,
       "eng",
-      betaOnlyVersion(res) ? "beta" : "stable",
+      betaOnly ? "beta" : "stable",
+      betaOnly ? await fetchBetaRenderVersion() : undefined,
     );
     return buildPageMetadata({
       locale,
@@ -145,8 +148,12 @@ export default async function Page({ params }: Props) {
         description:
           desc || entityFallbackDescription(locale, card.name, "card"),
         path: localePath(locale, `/cards/${id}`),
-        imageUrl: cardOgImages(card, "eng", betaVersion ? "beta" : "stable")[0]
-          ?.url,
+        imageUrl: cardOgImages(
+          card,
+          "eng",
+          betaVersion ? "beta" : "stable",
+          betaVersion ? await fetchBetaRenderVersion() : undefined,
+        )[0]?.url,
         category: "Card",
         inLanguage: inLanguageOf(locale),
         breadcrumbs: [
