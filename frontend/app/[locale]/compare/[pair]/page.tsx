@@ -3,6 +3,7 @@ import { permanentRedirect } from "next/navigation";
 import type { Character, Card } from "@/lib/api/types";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd } from "@/lib/jsonld";
+import { gameDataLastModIso } from "@/lib/content-dates";
 import { getT } from "@/lib/i18n-server";
 import {
   gameNameFor,
@@ -179,6 +180,7 @@ export default async function Page({ params }: Props) {
       description: `Side-by-side comparison of ${nameA} and ${nameB} in ${gameName}.`,
       path: localePath(locale, `/compare/${pair}`),
       category: "Character Comparison",
+      dateModified: await gameDataLastModIso(),
       breadcrumbs: [
         { name: uiText(locale, "Home"), href: localePath(locale, "/") },
         {

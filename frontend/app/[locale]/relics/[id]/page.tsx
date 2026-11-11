@@ -20,7 +20,9 @@ import {
   entityQualifier,
 } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
+import { kindPhrase } from "@/lib/kind-phrase";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
+import { gameDataLastModIso } from "@/lib/content-dates";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
 import { betaOnlyVersion, fetchEntityRes } from "@/lib/entity-fetch";
 import BetaOnlyScope from "@/app/components/BetaOnlyScope";
@@ -77,7 +79,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: clipMetaDescription(
         t("relic_meta_description", {
           name: relic.name,
-          rarity: relic.rarity ?? "",
+          kind: kindPhrase("relic", relic.rarity),
           desc,
           hasDesc: desc ? "yes" : "no",
         }),
@@ -120,6 +122,7 @@ export default async function Page({ params }: Props) {
         path: localePath(locale, `/relics/${id}`),
         imageUrl: relic.image_url ? imageUrl(relic.image_url) : undefined,
         category: "Relic",
+        dateModified: await gameDataLastModIso(),
         inLanguage: inLanguageOf(locale),
         breadcrumbs: [
           { name: uiText(locale, "Home"), href: localePath(locale, "/") },
@@ -137,7 +140,7 @@ export default async function Page({ params }: Props) {
         },
         {
           question: `How rare is ${relic.name}?`,
-          answer: `${relic.name} is a ${relic.rarity} relic.`,
+          answer: `${relic.name} is ${kindPhrase("relic", relic.rarity)}.`,
         },
         {
           question: `Which characters can find ${relic.name}?`,

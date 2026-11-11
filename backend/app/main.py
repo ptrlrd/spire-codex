@@ -327,6 +327,9 @@ class VersionMiddleware(BaseHTTPMiddleware):
         return response
 
 
+_NOINDEX_PATHS = frozenset(("/docs", "/redoc", "/openapi.json"))
+
+
 class CORSStaticMiddleware(BaseHTTPMiddleware):
     """Add CORS + Cache-Control headers.
 
@@ -392,7 +395,8 @@ class CORSStaticMiddleware(BaseHTTPMiddleware):
         response = await call_next(request)
         response.headers["Access-Control-Allow-Origin"] = "*"
         response.headers["X-Content-Type-Options"] = "nosniff"
-        if request.url.path.startswith("/api/"):
+        path = request.url.path
+        if path.startswith("/api/") or path in _NOINDEX_PATHS:
             response.headers["X-Robots-Tag"] = "noindex"
         response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
         response.headers["Strict-Transport-Security"] = (

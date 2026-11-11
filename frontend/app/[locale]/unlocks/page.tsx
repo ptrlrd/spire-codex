@@ -4,7 +4,29 @@ import { buildPageMetadata, pageHeading } from "@/lib/seo";
 import type { Metadata } from "next";
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
-import UnlocksClient from "./UnlocksClient";
+import { API_INTERNAL } from "@/lib/api/endpoint.common";
+import UnlocksClient, { type UnlocksData } from "./UnlocksClient";
+
+async function fetchUnlocks(locale: string): Promise<UnlocksData | null> {
+  try {
+    const res = await fetch(`${API_INTERNAL}/api/unlocks?lang=${locale}`, {
+      next: { revalidate: 3600 },
+    });
+    if (!res.ok) return null;
+    const body = (await res.json()) as Partial<UnlocksData> | null;
+    if (
+      !body ||
+      !Array.isArray(body.characters) ||
+      !Array.isArray(body.cards) ||
+      !Array.isArray(body.relics) ||
+      !Array.isArray(body.potions)
+    )
+      return null;
+    return body as UnlocksData;
+  } catch {
+    return null;
+  }
+}
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -22,6 +44,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Page({ params }: Props) {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
+  const initial = await fetchUnlocks(locale);
   const jsonLd = [
     buildBreadcrumbJsonLd([
       { name: t("Home"), href: localePath(locale, "/") },
@@ -37,7 +60,7 @@ export default async function Page({ params }: Props) {
   return (
     <>
       <JsonLd data={jsonLd} />
-      <UnlocksClient />
+      <UnlocksClient initial={initial} />
     </>
   );
 }
