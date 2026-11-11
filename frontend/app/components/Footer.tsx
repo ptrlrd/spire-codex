@@ -177,7 +177,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="border-t border-[var(--border-subtle)] mt-12">
+    <footer className="border-t border-[var(--border-subtle)] mt-12 pb-16 sm:pb-0">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-[var(--text-muted)]">
         <a
           href={`${API_BASE}/docs`}

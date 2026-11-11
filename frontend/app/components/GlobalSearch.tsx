@@ -4,6 +4,7 @@ import { useT, useGameLocale } from "@/lib/i18n";
 import { useRouter } from "@/i18n/navigation";
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { buildApiUrl } from "@/lib/fetch-cache";
+import { subtitleLabels } from "@/lib/search-subtitle";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 const RECENT_KEY = "spire-codex:recent-searches";
@@ -509,7 +510,11 @@ export default function GlobalSearch() {
                       </span>
                       {item.subtitle && (
                         <span className="text-xs text-[var(--text-muted)] truncate shrink-0 max-w-[45%]">
-                          {item.subtitle}
+                          {section.kind === "page"
+                            ? item.subtitle
+                            : subtitleLabels(item.subtitle)
+                                .map((part) => t(part))
+                                .join(" · ")}
                         </span>
                       )}
                       {item.external && (
@@ -532,7 +537,7 @@ export default function GlobalSearch() {
                 ? t("{n} result", { n: 1 })
                 : t("{n} results", { n: totalResults })}
             </span>
-            <span className="ml-auto flex items-center gap-1">
+            <span className="ml-auto hidden sm:flex items-center gap-1">
               <kbd className="border border-[var(--border-subtle)] rounded px-1 py-0.5">
                 &uarr;
               </kbd>

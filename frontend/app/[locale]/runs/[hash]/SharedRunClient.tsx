@@ -188,10 +188,10 @@ export default function SharedRunClient({
       <div className="max-w-4xl mx-auto px-4 py-12 text-center">
         <p className="text-[var(--text-muted)] mb-4">{t("Run not found.")}</p>
         <Link
-          href={`${bp}/leaderboards`}
+          href={`${bp}/runs`}
           className="text-[var(--accent-gold)] hover:underline"
         >
-          &larr; {t("Back to")}
+          &larr; {t("Back to")} {t("Runs")}
         </Link>
       </div>
     );
@@ -223,10 +223,10 @@ export default function SharedRunClient({
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="flex items-center justify-between mb-4">
         <Link
-          href={`${bp}/leaderboards`}
+          href={`${bp}/runs`}
           className="text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
         >
-          &larr; {t("Back to")}
+          &larr; {t("Back to")} {t("Runs")}
         </Link>
         <div className="flex items-center gap-2">
           {run.has_replay && (

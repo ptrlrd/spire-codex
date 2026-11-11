@@ -217,7 +217,7 @@ function RelicsClientInner({
         ]}
       />
 
-      <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
         {sortedRelics.map((relic) => {
           const style =
             rarityColors[relic.rarity] ||
@@ -227,7 +227,7 @@ function RelicsClientInner({
               prefetch={false}
               key={relic.id}
               href={`${bp}/relics/${relic.id.toLowerCase()}`}
-              className={`bg-[var(--bg-card)] rounded-lg border ${style.split(" ")[0]} p-4 hover:bg-[var(--bg-card-hover)] transition-all cursor-pointer block [content-visibility:auto] [contain-intrinsic-size:auto_190px] lg:[contain-intrinsic-size:auto_140px]`}
+              className={`bg-[var(--bg-card)] rounded-lg border ${style.split(" ")[0]} p-4 hover:bg-[var(--bg-card-hover)] transition-all cursor-pointer block [content-visibility:auto] [contain-intrinsic-size:auto_140px] sm:[contain-intrinsic-size:auto_190px] lg:[contain-intrinsic-size:auto_140px]`}
             >
               <div className="flex gap-3">
                 {relic.image_url && (

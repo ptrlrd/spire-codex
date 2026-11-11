@@ -18,6 +18,7 @@ import CardGrid from "@/app/components/CardGrid";
 import FullCardGrid from "@/app/components/FullCardGrid";
 import SearchFilter from "@/app/components/SearchFilter";
 import { CDN_BASE } from "@/lib/image-url";
+import { inCharacterOrder } from "@/lib/character-order";
 import { useChannel } from "@/lib/api/prefix.client";
 import { useEntityScores } from "@/lib/use-entity-scores";
 import { useBetaAdditions } from "@/lib/use-beta-additions";
@@ -34,14 +35,17 @@ const sortOptions = [
   { label: "Compendium", value: "compendium" },
 ];
 
-const colorOptions = [
-  { label: "Ironclad", value: "ironclad" },
-  { label: "Silent", value: "silent" },
-  { label: "Defect", value: "defect" },
-  { label: "Necrobinder", value: "necrobinder" },
-  { label: "Regent", value: "regent" },
-  { label: "Colorless", value: "colorless" },
-];
+const colorOptions = inCharacterOrder(
+  [
+    { label: "Ironclad", value: "ironclad" },
+    { label: "Silent", value: "silent" },
+    { label: "Defect", value: "defect" },
+    { label: "Necrobinder", value: "necrobinder" },
+    { label: "Regent", value: "regent" },
+    { label: "Colorless", value: "colorless" },
+  ],
+  (o) => o.value,
+);
 
 const typeOptions = [
   { label: "Attack", value: "Attack" },

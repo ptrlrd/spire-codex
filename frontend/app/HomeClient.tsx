@@ -10,6 +10,7 @@ import { useAuth } from "./contexts/AuthContext";
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 import { imageUrl } from "@/lib/image-url";
 import { pct } from "@/lib/pct";
+import { CHARACTER_ORDER } from "@/lib/character-order";
 
 interface Translations {
   sections?: Record<string, string>;
@@ -17,13 +18,10 @@ interface Translations {
   character_names?: Record<string, string>;
 }
 
-const CHARACTERS = [
-  { id: "ironclad", cssColor: "var(--color-ironclad)" },
-  { id: "silent", cssColor: "var(--color-silent)" },
-  { id: "regent", cssColor: "var(--color-regent)" },
-  { id: "necrobinder", cssColor: "var(--color-necrobinder)" },
-  { id: "defect", cssColor: "var(--color-defect)" },
-];
+const CHARACTERS = CHARACTER_ORDER.map((id) => ({
+  id,
+  cssColor: `var(--color-${id})`,
+}));
 
 const ENGLISH_GAME_DESCS = new Set([
   "View all of the cards you have encountered throughout the Spire.",

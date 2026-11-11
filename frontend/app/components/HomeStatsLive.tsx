@@ -6,6 +6,7 @@ import { Link } from "@/i18n/navigation";
 import { characterHex, textColor } from "@/lib/character-colors";
 import type { CommunityStats } from "./HomeStatsSection";
 import { pct } from "@/lib/pct";
+import { inCharacterOrder } from "@/lib/character-order";
 
 const POLL_MS = 20_000;
 
@@ -163,37 +164,40 @@ export default function HomeStatsLive({
           {stats.characters.length > 0 && (
             <div>
               <div className="wr-title">{t("Character Win Rates")}</div>
-              {stats.characters.map((c) => {
-                const charColor = characterHex(c.character) || "var(--text-3)";
-                const relPct = (c.win_rate / maxWinRate) * 100;
-                return (
-                  <div key={c.character} className="wr-row wr-stat">
-                    <span
-                      className="wr-name"
-                      style={{ color: textColor(charColor) }}
-                    >
-                      {characterLabel(c.character, characterNames)}
-                    </span>
-                    <span className="wr-track">
+              {inCharacterOrder(stats.characters, (c) => c.character).map(
+                (c) => {
+                  const charColor =
+                    characterHex(c.character) || "var(--text-3)";
+                  const relPct = (c.win_rate / maxWinRate) * 100;
+                  return (
+                    <div key={c.character} className="wr-row wr-stat">
                       <span
-                        className="wr-fill"
-                        style={{ width: `${relPct}%`, background: charColor }}
-                      />
-                    </span>
-                    <span className="wr-wl">
-                      {fmtN(c.wins)}W /{" "}
-                      {fmtN(c.total - c.wins - (c.abandoned || 0))}L
-                      {c.abandoned ? ` / ${fmtN(c.abandoned)}A` : ""}
-                    </span>
-                    <span
-                      className="wr-num"
-                      style={{ color: winRateColor(c.win_rate) }}
-                    >
-                      {pct(c.win_rate)}%
-                    </span>
-                  </div>
-                );
-              })}
+                        className="wr-name"
+                        style={{ color: textColor(charColor) }}
+                      >
+                        {characterLabel(c.character, characterNames)}
+                      </span>
+                      <span className="wr-track">
+                        <span
+                          className="wr-fill"
+                          style={{ width: `${relPct}%`, background: charColor }}
+                        />
+                      </span>
+                      <span className="wr-wl">
+                        {fmtN(c.wins)}W /{" "}
+                        {fmtN(c.total - c.wins - (c.abandoned || 0))}L
+                        {c.abandoned ? ` / ${fmtN(c.abandoned)}A` : ""}
+                      </span>
+                      <span
+                        className="wr-num"
+                        style={{ color: winRateColor(c.win_rate) }}
+                      >
+                        {pct(c.win_rate)}%
+                      </span>
+                    </div>
+                  );
+                },
+              )}
             </div>
           )}
         </section>
