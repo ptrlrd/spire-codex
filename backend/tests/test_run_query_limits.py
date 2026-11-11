@@ -60,6 +60,9 @@ class CountColl:
             raise ExecutionTimeout("operation exceeded time limit", 50)
         return self.counts.pop(0) if self.counts else 0
 
+    def aggregate(self, pipeline, **kwargs):
+        return iter([])
+
     def find(self, q, proj=None, **kwargs):
         self.finds.append((q, kwargs))
         return self

@@ -1,6 +1,6 @@
 "use client";
 
-import { useT, useGameLocale } from "@/lib/i18n";
+import { useT, useGameLocale, useFormatNumber } from "@/lib/i18n";
 // API key manager (settings page, "API Key" tab). One key per account:
 // create it (the raw key is shown
 // exactly once, with a copy button), list your keys, revoke them. Keys are sent
@@ -38,6 +38,7 @@ function fmtDate(iso: string | null, never: string): string {
 export default function ApiKeysSection() {
   const lang = useGameLocale();
   const t = useT();
+  const fmtN = useFormatNumber();
   const [keys, setKeys] = useState<ApiKey[] | null>(null);
   const [label, setLabel] = useState("");
   const [newKey, setNewKey] = useState<string | null>(null);
@@ -168,11 +169,11 @@ export default function ApiKeysSection() {
               </div>
               <div className="shrink-0 text-right tabular-nums text-xs">
                 <div className="text-[var(--text-primary)]">
-                  {(k.requests_today ?? 0).toLocaleString()} {t("today")}
+                  {fmtN(k.requests_today ?? 0)} {t("today")}
                 </div>
                 <div className="text-[var(--text-muted)]">
                   {t("{n} / 7d", {
-                    n: (k.requests_week ?? 0).toLocaleString(),
+                    n: fmtN(k.requests_week ?? 0),
                   })}
                 </div>
               </div>

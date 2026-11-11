@@ -148,7 +148,7 @@ export default async function NewsPage({ params, searchParams }: Props) {
         from Mega Crit, mirrored from Steam the moment it posts, plus press
         coverage from PCGamesN, RPS, and more.
         {latest
-          ? ` The most recent update is ${latest.title} (${formatNewsDate(latest.date)}).`
+          ? ` The most recent update is ${latest.title} (${formatNewsDate(latest.date, locale)}).`
           : ""}
       </p>
 
@@ -213,7 +213,7 @@ export default async function NewsPage({ params, searchParams }: Props) {
       ) : (
         <ul className="space-y-3">
           {items.map((n) => (
-            <NewsRow key={n.gid} article={n} basePath="/news" />
+            <NewsRow key={n.gid} article={n} basePath="/news" locale={locale} />
           ))}
         </ul>
       )}
@@ -232,11 +232,13 @@ const STEAM_INTERNAL_TAG = /^(patchnotes$|mod_|modact_)/i;
 export function NewsRow({
   article,
   basePath,
+  locale,
 }: {
   article: NewsArticle;
   basePath: string;
+  locale: string;
 }) {
-  const date = formatNewsDate(article.date);
+  const date = formatNewsDate(article.date, locale);
   const excerpt = newsExcerpt(article.contents ?? "", 220);
   const tagBadges = (article.tags ?? [])
     .filter((tag) => !STEAM_INTERNAL_TAG.test(tag))

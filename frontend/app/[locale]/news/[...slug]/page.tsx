@@ -120,7 +120,7 @@ export default async function NewsArticlePage({ params }: Props) {
   if (!article) notFound();
 
   const html = sanitizeSteamNews(article.contents ?? "");
-  const date = formatNewsDate(article.date);
+  const date = formatNewsDate(article.date, locale);
   const description = newsExcerpt(article.contents ?? "", 250);
   const publishedIso = new Date(article.date * 1000).toISOString();
   const onSitePath = localePath(locale, newsSlugForArticle(article.gid));

@@ -74,6 +74,7 @@ def test_serve_set_covers_request_path_reads():
         "frame.parquet",
         "generation.json",
         "ingest_metrics.jsonl",
+        "leaderboard.parquet",
     ):
         assert name in publish_lake.SERVE_FILES
 

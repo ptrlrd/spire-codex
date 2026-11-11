@@ -1,5 +1,5 @@
 import { inLanguageOf, langQuery, localePath, type Locale } from "@/lib/locale";
-import { getT } from "@/lib/i18n-server";
+import { getT, getFormatNumber } from "@/lib/i18n-server";
 import { Link } from "@/i18n/navigation";
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
@@ -280,6 +280,7 @@ export async function CommunityStatsBody({
   bracket: string;
 }) {
   const t = await getT(lang);
+  const fmtN = await getFormatNumber();
   const [
     stats,
     charNames,
@@ -360,14 +361,14 @@ export async function CommunityStatsBody({
       name: r.name,
       value: r.count,
       display: `${r.pct}%`,
-      detail: `${r.count.toLocaleString()} · ${r.pct}%`,
+      detail: `${fmtN(r.count)} · ${r.pct}%`,
     }));
   const rankCount = (rows: Ranked[]) =>
     rows.map((r) => ({
       name: r.name,
       value: r.count,
-      display: r.count.toLocaleString(),
-      detail: `${r.count.toLocaleString()} · ${r.pct}%`,
+      display: fmtN(r.count),
+      detail: `${fmtN(r.count)} · ${r.pct}%`,
     }));
 
   return (
@@ -381,7 +382,7 @@ export async function CommunityStatsBody({
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-8">
         {t("How the community actually plays")} <em>Slay the Spire 2</em>
-        {t(", drawn from")} {stats.total_runs.toLocaleString()}{" "}
+        {t(", drawn from")} {fmtN(stats.total_runs)}{" "}
         {t(
           "submitted runs. A naive snapshot of the data, not a verdict on what is correct.",
         )}
@@ -398,21 +399,12 @@ export async function CommunityStatsBody({
       {/* Headline numbers */}
       <section className="mb-10">
         <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
-          <StatCard
-            label={t("Runs")}
-            value={stats.total_runs.toLocaleString()}
-          />
-          <StatCard
-            label={t("Wins")}
-            value={stats.total_wins.toLocaleString()}
-          />
-          <StatCard
-            label={t("Losses")}
-            value={stats.total_losses.toLocaleString()}
-          />
+          <StatCard label={t("Runs")} value={fmtN(stats.total_runs)} />
+          <StatCard label={t("Wins")} value={fmtN(stats.total_wins)} />
+          <StatCard label={t("Losses")} value={fmtN(stats.total_losses)} />
           <StatCard
             label={t("Abandoned")}
-            value={(stats.total_abandoned ?? 0).toLocaleString()}
+            value={fmtN(stats.total_abandoned ?? 0)}
           />
           <StatCard label={t("Win rate")} value={`${stats.win_rate}%`} />
         </div>
@@ -450,7 +442,7 @@ export async function CommunityStatsBody({
               name: `A${a.ascension}`,
               value: a.win_rate,
               display: `${a.win_rate}%`,
-              detail: `${a.win_rate}% ${t("win rate")} · ${a.runs.toLocaleString()} ${t("runs")}`,
+              detail: `${a.win_rate}% ${t("win rate")} · ${fmtN(a.runs)} ${t("runs")}`,
             }))}
           />
         </div>
@@ -674,7 +666,7 @@ export async function CommunityStatsBody({
                       {e.name}
                     </span>
                     <span className="text-[10px] text-[var(--text-muted)] tabular-nums shrink-0">
-                      {e.total.toLocaleString()}
+                      {fmtN(e.total)}
                     </span>
                   </div>
                   <ul className="space-y-0.5">
@@ -758,7 +750,7 @@ export async function CommunityStatsBody({
                     </span>
                   </span>
                   <span className="text-[var(--text-secondary)] tabular-nums">
-                    {e.count.toLocaleString()} {t("kills")}
+                    {fmtN(e.count)} {t("kills")}
                   </span>
                 </div>
               ))}
@@ -810,7 +802,7 @@ export async function CommunityStatsBody({
               name: restLabel(r.id),
               value: r.count,
               display: `${r.pct}%`,
-              detail: `${r.count.toLocaleString()} · ${r.pct}%`,
+              detail: `${fmtN(r.count)} · ${r.pct}%`,
             }))}
           />
         </div>

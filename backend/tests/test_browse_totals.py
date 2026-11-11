@@ -49,6 +49,9 @@ class FakeColl:
     def estimated_document_count(self):
         return len(self.docs)
 
+    def aggregate(self, pipeline, **kwargs):
+        return iter([])
+
     def find(self, q, proj=None, max_time_ms=None):
         return self
 
@@ -178,7 +181,7 @@ def test_refresh_summary_uses_larger_budget(monkeypatch, cache_store):
         budgets.append(kw.get("max_time_ms"))
         return originals(**kw)
 
-    def no_boards():
+    def no_boards(build=False):
         raise RuntimeError("lake unavailable")
 
     class FakeSummary:

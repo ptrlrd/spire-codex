@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { Link } from "@/i18n/navigation";
-import { useGameLocale, useT } from "@/lib/i18n";
+import { useGameLocale, useT, useFormatNumber } from "@/lib/i18n";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { fmtDateTimePacific } from "@/lib/pacific";
 import CharacterTag, { characterName } from "@/app/components/CharacterTag";
@@ -34,6 +34,7 @@ function rankTone(rank: number): string {
 
 export default function EloBoardClient() {
   const t = useT();
+  const fmtN = useFormatNumber();
   const lang = useGameLocale();
   const searchParams = useSearchParams();
   const [board, setBoard] = useState<EloBoard | null>(null);
@@ -109,9 +110,7 @@ export default function EloBoardClient() {
           </span>
         )}
         {board && board.total_rated > 0 && (
-          <span>
-            {t("{n} rated players", { n: board.total_rated.toLocaleString() })}
-          </span>
+          <span>{t("{n} rated players", { n: fmtN(board.total_rated) })}</span>
         )}
         <span className="inline-flex items-center gap-2 ml-auto">
           <span>{t("Sort by")}</span>

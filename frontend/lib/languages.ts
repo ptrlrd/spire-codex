@@ -107,17 +107,17 @@ export const LANG_OG_LOCALE: Record<LangCode, string> = {
 /** Human-readable native language names */
 export const LANG_NAMES: Record<LangCode, string> = {
   deu: "Deutsch",
-  esp: "Espanol (ES)",
-  fra: "Francais",
+  esp: "Español (ES)",
+  fra: "Français",
   ita: "Italiano",
   jpn: "日本語",
   kor: "한국어",
   pol: "Polski",
-  ptb: "Portugues (BR)",
+  ptb: "Português (BR)",
   rus: "Русский",
-  spa: "Espanol (LA)",
+  spa: "Español (LA)",
   tha: "ไทย",
-  tur: "Turkce",
+  tur: "Türkçe",
   zhs: "简体中文",
   zht: "繁體中文",
 };

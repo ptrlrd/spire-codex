@@ -20,7 +20,7 @@ import {
   relicTierListCanonical,
 } from "@/lib/tier-list-filters";
 import { gradePool } from "@/lib/pool-tiers";
-import { getT } from "@/lib/i18n-server";
+import { getT, getFormatNumber } from "@/lib/i18n-server";
 import type { TFn } from "@/lib/i18n";
 import {
   gameNameFor,
@@ -238,6 +238,7 @@ export default async function RelicsTierListPage({
 }: PageProps) {
   const locale: Locale = localeOf((await params).locale);
   const t = await getT(locale);
+  const fmtN = await getFormatNumber();
   const sp = await searchParams;
   const pool = sp.pool?.toLowerCase();
   const rarity = sp.rarity?.toLowerCase();
@@ -321,7 +322,7 @@ export default async function RelicsTierListPage({
           <span className="text-[var(--accent-gold)]">{heading}</span>
         </h1>
         <span className="text-sm text-[var(--text-muted)]">
-          {t("{n} relics", { n: entities.length.toLocaleString() })}
+          {t("{n} relics", { n: fmtN(entities.length) })}
         </span>
       </div>
       <p className="text-sm text-[var(--text-muted)] mb-6">

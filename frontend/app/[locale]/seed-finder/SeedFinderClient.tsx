@@ -1,6 +1,6 @@
 "use client";
 
-import { useT } from "@/lib/i18n";
+import { useT, useFormatNumber } from "@/lib/i18n";
 import { useRouter } from "@/i18n/navigation";
 import { Link } from "@/i18n/navigation";
 import { useSearchParams } from "next/navigation";
@@ -132,6 +132,7 @@ function formatTime(seconds: number | null | undefined): string {
 
 export default function SeedFinderClient() {
   const t = useT();
+  const fmtN = useFormatNumber();
   const router = useRouter();
   const searchParams = useSearchParams();
   const [state, setState] = useState<SeedFinderState>(() =>
@@ -596,7 +597,7 @@ export default function SeedFinderClient() {
           "Main and beta hash seeds differently, so pick the version you play. Recorded matches appear before predictions. Predicted rewards and shops assume the displayed reward order.",
         )}
         {indexInfo?.seeds
-          ? ` ${t("{n} seeds indexed.", { n: indexInfo.seeds.toLocaleString() })}`
+          ? ` ${t("{n} seeds indexed.", { n: fmtN(indexInfo.seeds) })}`
           : ""}
       </p>
 

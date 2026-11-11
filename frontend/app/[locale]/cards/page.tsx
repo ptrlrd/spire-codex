@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { inLanguageOf, localeOf, localePath } from "@/lib/locale";
 import { buildPageMetadata, pageHeading } from "@/lib/seo";
-import { getT } from "@/lib/i18n-server";
+import { getT, getFormatNumber } from "@/lib/i18n-server";
 import { Suspense } from "react";
 import { Link } from "@/i18n/navigation";
 import type { Card } from "@/lib/api/types";
@@ -106,6 +106,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function CardsPage({ params }: Props) {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
+  const fmtN = await getFormatNumber();
   const heading = pageHeading(locale, t("Cards"));
   // The base /cards route renders in English; localized visitors get
   // app/[lang]/cards. Thread eng through t() so the wrapped UI strings
@@ -158,7 +159,7 @@ export default async function CardsPage({ params }: Props) {
   const faq = [
     {
       question: t("How many cards are in Slay the Spire 2?"),
-      answer: `Slay the Spire 2 has ${totalCards.toLocaleString()} cards across the five characters, Ironclad, Silent, Defect, Necrobinder, and Regent, plus colorless, event, and token cards. Spire Codex updates the catalog automatically with each patch by re-parsing the decompiled game source.`,
+      answer: `Slay the Spire 2 has ${fmtN(totalCards)} cards across the five characters, Ironclad, Silent, Defect, Necrobinder, and Regent, plus colorless, event, and token cards. Spire Codex updates the catalog automatically with each patch by re-parsing the decompiled game source.`,
     },
     {
       question: t("Which sts2 cards have the best win rates?"),
@@ -212,7 +213,7 @@ export default async function CardsPage({ params }: Props) {
         <section className="mb-8 space-y-3 text-[var(--text-default)] max-w-3xl">
           <p>
             Every <strong>Slay the Spire 2</strong> card in one place, all{" "}
-            {totalCards.toLocaleString()} cards from the five characters (
+            {fmtN(totalCards)} cards from the five characters (
             {CHARACTERS.map((c) => t(c.name)).join(", ")}), with live pick
             rates, win rates, and tier scores aggregated from community-tracked
             runs. The card catalog is parsed directly from the game on every
@@ -267,7 +268,12 @@ export default async function CardsPage({ params }: Props) {
                   className="block group"
                 >
                   <img
-                    src={fullCardUrl(card.id.toLowerCase())}
+                    src={fullCardUrl(
+                      card.id.toLowerCase(),
+                      false,
+                      "stable",
+                      locale,
+                    )}
                     alt={t("{name} - Slay the Spire 2 card", {
                       name: card.name,
                     })}
@@ -281,7 +287,7 @@ export default async function CardsPage({ params }: Props) {
                       {score.win_rate.toFixed(0)}% {t("WR")}
                     </span>
                     <span className="text-[var(--text-muted)] whitespace-nowrap">
-                      {score.picks.toLocaleString()} {t("picks")}
+                      {fmtN(score.picks)} {t("picks")}
                     </span>
                     {score.score != null && (
                       <ScoreBadge score={score.score} size="sm" />
