@@ -52,7 +52,7 @@ def _stages():
     def leaderboard_summary():
         from app.services.runs_db_mongo import refresh_leaderboard_summary
 
-        return refresh_leaderboard_summary()
+        return refresh_leaderboard_summary(build=True)
 
     def replay_guard():
         import replay_guard as guard

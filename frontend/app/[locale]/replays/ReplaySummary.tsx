@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useT } from "@/lib/i18n";
+import { useT, useFormatNumber } from "@/lib/i18n";
 import CharacterTag from "@/app/components/CharacterTag";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -17,6 +17,7 @@ export default function ReplaySummary({
   charName: (id: string) => string;
 }) {
   const t = useT();
+  const fmtN = useFormatNumber();
   const [summary, setSummary] = useState<Summary | null>(null);
 
   useEffect(() => {
@@ -39,7 +40,7 @@ export default function ReplaySummary({
   return (
     <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-4 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] px-3 sm:px-4 py-2.5 text-xs">
       <span className="font-semibold text-[var(--text-primary)]">
-        {t("{n} watchable replays", { n: summary.total.toLocaleString() })}
+        {t("{n} watchable replays", { n: fmtN(summary.total) })}
       </span>
       {entries.map(([id, n]) => (
         <span
@@ -53,7 +54,7 @@ export default function ReplaySummary({
             name={charName(id)}
           />
           <span className="text-[var(--text-primary)]">{charName(id)}</span>
-          <span>{n.toLocaleString()}</span>
+          <span>{fmtN(n)}</span>
         </span>
       ))}
     </div>

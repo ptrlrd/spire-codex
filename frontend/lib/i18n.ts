@@ -2,6 +2,7 @@
 
 import { useLocale, useTranslations } from "next-intl";
 import { useCallback } from "react";
+import { numberLocale, type NumberFormatter } from "./number-format";
 import { safeKey } from "./i18n-keys";
 import type { Locale } from "@/i18n/routing";
 
@@ -20,4 +21,12 @@ export function useT(): TFn {
 /** The page's locale as the game code the API and asset paths use. */
 export function useGameLocale(): Locale {
   return useLocale() as Locale;
+}
+
+export function useFormatNumber(): NumberFormatter {
+  const tag = numberLocale(useLocale());
+  return useCallback<NumberFormatter>(
+    (n, opts) => n.toLocaleString(tag, opts),
+    [tag],
+  );
 }
