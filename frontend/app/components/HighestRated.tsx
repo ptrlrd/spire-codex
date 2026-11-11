@@ -86,6 +86,7 @@ export default async function HighestRated({
           </h2>
         </div>
         <Link
+          prefetch={false}
           href={tierHref}
           className="text-xs text-[var(--accent-gold)] hover:underline whitespace-nowrap"
         >
@@ -105,7 +106,7 @@ export default async function HighestRated({
               className={
                 isCards
                   ? "block group"
-                  : "block group rounded-lg border border-[var(--border-subtle)] hover:border-[var(--accent-gold)] transition-colors p-3"
+                  : "block group h-full rounded-lg border border-[var(--border-subtle)] hover:border-[var(--accent-gold)] transition-colors p-3"
               }
             >
               {isCards ? (
