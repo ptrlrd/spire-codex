@@ -101,7 +101,7 @@ export function RankChip({
   return (
     <Link
       prefetch={false}
-      href={`${bp}/leaderboards?character=${encodeURIComponent(character.toUpperCase())}`}
+      href={`${bp}/leaderboards?character=${encodeURIComponent(character.toUpperCase())}&mode=all&game_mode=all`}
       className="inline-flex items-center rounded-full border border-[var(--accent-gold)]/50 px-2 py-0.5 text-xs font-semibold not-italic text-[var(--accent-gold)] hover:bg-[var(--accent-gold)]/10 transition-colors whitespace-nowrap"
     >
       {t("#{rank} fastest {char} win", {

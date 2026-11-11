@@ -219,7 +219,7 @@ export default function RunSummary({
   const finalStats = lastPlayerStats(run);
   const standing = useRunStanding(
     run.hidden ? undefined : hash,
-    run.seed,
+    run.players.length > 1 ? undefined : run.seed,
     run.win,
   );
   const totalFloors = run.floor_history.reduce(
