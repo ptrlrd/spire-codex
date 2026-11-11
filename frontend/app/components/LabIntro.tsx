@@ -10,9 +10,9 @@ export default function LabIntro({
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="flex items-center gap-3 mb-2">
-        <h1 className="text-3xl font-bold">
+        <div className="text-3xl font-bold">
           <span className="text-[var(--accent-gold)]">{title}</span>
-        </h1>
+        </div>
         <span className="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full border border-[var(--accent-gold)]/40 text-[var(--accent-gold)]">
           {badge}
         </span>

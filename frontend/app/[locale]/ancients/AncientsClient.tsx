@@ -51,19 +51,35 @@ function AncientSection({
   );
 }
 
-export default function AncientsClient() {
+export interface AncientsInitial {
+  ancients: AncientPool[];
+  names: GameNames;
+  ancientNames: Record<string, string>;
+}
+
+const NO_NAMES: GameNames = {
+  relics: {},
+  enchants: {},
+  modifiers: {},
+  cards: {},
+};
+
+export default function AncientsClient({
+  initial = null,
+}: {
+  initial?: AncientsInitial | null;
+}) {
   const t = useT();
   const lang = useGameLocale();
   const bp = useBetaPrefix();
-  const [ancients, setAncients] = useState<AncientPool[]>([]);
-  const [names, setNames] = useState<GameNames>({
-    relics: {},
-    enchants: {},
-    modifiers: {},
-    cards: {},
-  });
-  const [ancientNames, setAncientNames] = useState<Record<string, string>>({});
-  const [loading, setLoading] = useState(true);
+  const [ancients, setAncients] = useState<AncientPool[]>(
+    initial?.ancients ?? [],
+  );
+  const [names, setNames] = useState<GameNames>(initial?.names ?? NO_NAMES);
+  const [ancientNames, setAncientNames] = useState<Record<string, string>>(
+    initial?.ancientNames ?? {},
+  );
+  const [loading, setLoading] = useState(!initial);
   const ancientName = (a: AncientPool) => ancientNames[a.id] ?? a.name;
   // Scroll-spy: which Ancient section is currently in view. Drives both the ToC
   // highlight AND the infobox art/background, so the "At a glance" image tracks
@@ -71,6 +87,7 @@ export default function AncientsClient() {
   const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
+    if (initial) return;
     Promise.all([
       cachedFetch<AncientPool[]>(`${API}/api/ancient-pools`),
       cachedFetch<RelicInfo[]>(`${API}/api/relics?lang=${lang}`),
@@ -90,7 +107,7 @@ export default function AncientsClient() {
       })
       .catch(() => {})
       .finally(() => setLoading(false));
-  }, [lang]);
+  }, [lang, initial]);
 
   // Highlight the Ancient the reader has scrolled to in the ToC submenu.
   useEffect(() => {

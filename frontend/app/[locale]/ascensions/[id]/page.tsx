@@ -7,6 +7,7 @@ import JsonLd from "@/app/components/JsonLd";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
 import { fetchEntityRes } from "@/lib/entity-fetch";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
+import { gameDataLastModIso } from "@/lib/content-dates";
 import {
   stripTags,
   stripTagsFlat,
@@ -91,6 +92,7 @@ export default async function Page({ params }: Props) {
         description: `${desc} Ascension level ${asc.level} in Slay the Spire 2.`,
         path: localePath(locale, `/ascensions/${id}`),
         category: "Ascension",
+        dateModified: await gameDataLastModIso(),
         inLanguage: inLanguageOf(locale),
         breadcrumbs: [
           { name: uiText(locale, "Home"), href: localePath(locale, "/") },

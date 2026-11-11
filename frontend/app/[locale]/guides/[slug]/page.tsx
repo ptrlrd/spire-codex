@@ -6,7 +6,7 @@ import {
   clipMetaDescription,
 } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
-import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
+import { buildGuideArticleJsonLd } from "@/lib/jsonld";
 import GuideDetail from "./GuideDetail";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
 import { fetchEntityRes } from "@/lib/entity-fetch";
@@ -79,31 +79,20 @@ export default async function GuideDetailPage({ params }: Props) {
   if (!guide) redirectMissingEntity("guides", slug, locale);
 
   const jsonLd = guide
-    ? [
-        ...buildDetailPageJsonLd({
-          name: guide.title,
-          description: guide.summary,
-          path: `/guides/${slug}`,
-          category: guide.category,
-          breadcrumbs: [
-            { name: uiText(locale, "Home"), href: "/" },
-            { name: uiText(locale, "Guides"), href: "/guides" },
-            { name: guide.title, href: `/guides/${slug}` },
-          ],
-        }),
-        buildFAQPageJsonLd([
-          {
-            question: `What does "${guide.title}" cover?`,
-            answer:
-              guide.summary || `A Slay the Spire 2 guide on ${guide.category}.`,
-          },
-          {
-            question: "Where can I find more Slay the Spire 2 guides?",
-            answer:
-              "Browse all community guides at spire-codex.com/guides, filtered by category, difficulty, and character.",
-          },
-        ]),
-      ]
+    ? buildGuideArticleJsonLd({
+        title: guide.title,
+        summary: guide.summary,
+        path: `/guides/${slug}`,
+        author: guide.author,
+        date: guide.date,
+        updated: guide.updated,
+        category: guide.category,
+        breadcrumbs: [
+          { name: uiText(locale, "Home"), href: "/" },
+          { name: uiText(locale, "Guides"), href: "/guides" },
+          { name: guide.title, href: `/guides/${slug}` },
+        ],
+      })
     : [];
 
   return (

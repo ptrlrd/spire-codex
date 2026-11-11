@@ -8,6 +8,7 @@ import {
   useCallback,
   ReactNode,
 } from "react";
+import { acceptsUrlToken } from "@/lib/url-token";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -106,10 +107,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const token = params.get("token");
+    const urlToken = params.get("token");
+    const token =
+      urlToken && acceptsUrlToken(API_BASE, window.location.origin)
+        ? urlToken
+        : null;
 
     // Clean auth-related params from the URL
-    if (token || params.get("linked") || params.get("auth")) {
+    if (urlToken || params.get("linked") || params.get("auth")) {
       params.delete("token");
       params.delete("auth");
       params.delete("linked");
