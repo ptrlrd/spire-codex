@@ -178,6 +178,7 @@ def _score(offers, picks, picks_win, offers_base, picks_base, n_runs) -> dict[st
                 "kind": bkind,
                 "item_id": bid,
                 "recommends": recs[:_TOP_N],
+                "min_picks": MIN_PICKS,
                 "built_at": now,
             }
         )
@@ -256,9 +257,10 @@ def get_draft_recs(
     item_type: str, item_id: str, lang: str = "eng"
 ) -> dict[str, Any] | None:
     """Given a context item you already have (card/relic), the offered cards
-    players draft most given it, ranked by lift. Names/descs enriched. Rows
-    under the pick floor are left out, which also covers docs built before
-    the floor existed."""
+    players draft most given it, ranked by lift. Names/descs enriched. A doc
+    built with the pick floor carries `min_picks` and holds only rows at or
+    above it. A doc from before the floor has no `min_picks` and is returned
+    as stored until the next build replaces it."""
     if not os.environ.get("MONGO_URL", "").strip():
         return None
     from .runs_db_mongo import _get_collection
@@ -268,9 +270,11 @@ def get_draft_recs(
     if not doc:
         return None
     doc.pop("_id", None)
-    recs = [r for r in doc.get("recommends") or [] if _ranks(r)]
+    recs = doc.get("recommends") or []
+    if doc.get("min_picks") is not None:
+        recs = [r for r in recs if _ranks(r)]
+        doc["min_picks"] = MIN_PICKS
     doc["recommends"] = _enrich(recs, lang)
-    doc["min_picks"] = MIN_PICKS
     return doc
 
 
@@ -305,7 +309,7 @@ def score_offer(
     lo, hi = _LIFT_CLAMP
     for cdoc in coll.find({"_id": {"$in": ids}}):
         for rec in cdoc.get("recommends") or []:
-            if rec["id"] in offered_set and _ranks(rec):
+            if rec["id"] in offered_set:
                 lift = min(hi, max(lo, rec.get("lift", 1.0)))
                 scores[rec["id"]] *= lift
                 reasons[rec["id"]].append(

@@ -41,6 +41,15 @@ export const X11: Record<string, Record<string, string>> = {
   draft_recs_intro: {
     eng: "Cards players take more often than usual from rewards when they already have {name}, ranked by how far the take rate rises. A card needs at least {min} picks to be listed.",
   },
+  draft_recs_intro_thin: {
+    eng: "Cards players take more often than usual from rewards when they already have {name}, ranked by how far the take rate rises. A card needs at least {min} picks to show a win rate.",
+  },
+  "{n} picks, too few for a win rate": {
+    eng: "{n} picks, too few for a win rate",
+  },
+  "Hold rate over time": {
+    eng: "Hold rate over time",
+  },
   "{pct} win rate over {n} picks": {
     eng: "{pct} win rate over {n} picks",
   },

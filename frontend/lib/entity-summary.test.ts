@@ -1,7 +1,11 @@
 import { describe, expect, it } from "vitest";
 import { buildEntitySummary, pct, summaryStats } from "./entity-summary";
 import { offerStatsFrom, resolveBracket } from "./entity-cohort";
-import { rankedDraftRecs } from "./entity-links";
+import {
+  draftTakeRate,
+  listedDraftRecs,
+  rankedDraftRecs,
+} from "./entity-links";
 import { withOutcomes } from "./event-votes";
 import type { EntityStats } from "@/app/components/EntityRunStats";
 
@@ -207,7 +211,7 @@ describe("entity summary", () => {
     });
   });
 
-  it("keeps thin draft rows out of the list and the sentence", () => {
+  it("keeps thin draft rows out of the ranking and the sentence", () => {
     const rec = (id: string, picks?: number) => ({
       id,
       name: id,
@@ -226,6 +230,26 @@ describe("entity summary", () => {
     expect(
       rankedDraftRecs({ ...recs, min_picks: 80 }).map((r) => r.id),
     ).toEqual([]);
+  });
+
+  it("lists stored rows until the draft cache is rebuilt with the floor", () => {
+    const rec = (id: string, picks?: number) => ({
+      id,
+      name: id,
+      pref: 0.29,
+      pref_base: 0.2,
+      lift: 1.4,
+      offers: 174,
+      picks,
+      winrate: 0.5,
+    });
+    const recs = { recommends: [rec("THIN", 9), rec("OLD"), rec("REAL", 57)] };
+    expect(listedDraftRecs(recs).map((r) => r.id)).toEqual(["THIN", "REAL"]);
+    expect(
+      listedDraftRecs({ ...recs, min_picks: 50 }).map((r) => r.id),
+    ).toEqual(["REAL"]);
+    expect(draftTakeRate(rec("REAL", 57))).toBeCloseTo(57 / 174);
+    expect(draftTakeRate(rec("OLD"))).toBe(0.29);
   });
 
   it("lays win rate and lift over an event's vote split", () => {

@@ -31,24 +31,15 @@ def test_thin_pick_counts_never_rank():
     assert recs[0]["winrate"] == round(20 / floor, 4)
 
 
-def test_stored_docs_from_before_the_floor_are_filtered_on_read(monkeypatch):
-    floor = draft_recs.MIN_PICKS
-    stored = {
-        "_id": "cards:OFFERING",
-        "kind": "cards",
-        "item_id": "OFFERING",
-        "recommends": [
-            {"id": "THIN", "lift": 2.2, "offers": 438, "picks": 9, "winrate": 0.89},
-            {"id": "OLD", "lift": 1.9, "offers": 400, "winrate": 0.5},
-            {"id": "REAL", "lift": 1.4, "offers": 900, "picks": floor, "winrate": 0.4},
-        ],
-    }
-
+def _read(monkeypatch, stored):
     class Coll:
         database = {}
 
         def find_one(self, query):
             return dict(stored) if query["_id"] == stored["_id"] else None
+
+        def find(self, query):
+            return [dict(stored)] if stored["_id"] in query["_id"]["$in"] else []
 
     coll = Coll()
     coll.database = {draft_recs.DRAFT_RECS_COLLECTION_NAME: coll}
@@ -57,6 +48,42 @@ def test_stored_docs_from_before_the_floor_are_filtered_on_read(monkeypatch):
     monkeypatch.setenv("MONGO_URL", "mongodb://unused")
     monkeypatch.setattr(runs_db_mongo, "_get_collection", lambda: coll)
     monkeypatch.setattr(draft_recs, "_card_meta", lambda lang: {})
+
+
+def _stored(**extra):
+    floor = draft_recs.MIN_PICKS
+    return {
+        "_id": "cards:OFFERING",
+        "kind": "cards",
+        "item_id": "OFFERING",
+        "recommends": [
+            {"id": "THIN", "lift": 2.2, "offers": 438, "picks": 9, "winrate": 0.89},
+            {"id": "REAL", "lift": 1.4, "offers": 900, "picks": floor, "winrate": 0.4},
+        ],
+        **extra,
+    }
+
+
+def test_built_docs_carry_the_floor():
+    out = draft_recs._score(*_counts([("REAL", 900, 60, 20)]), n_runs=10)
+    assert out["docs"][0]["min_picks"] == draft_recs.MIN_PICKS
+
+
+def test_docs_built_with_the_floor_are_filtered_on_read(monkeypatch):
+    _read(monkeypatch, _stored(min_picks=draft_recs.MIN_PICKS))
     doc = draft_recs.get_draft_recs("cards", "offering")
     assert [r["id"] for r in doc["recommends"]] == ["REAL"]
-    assert doc["min_picks"] == floor
+    assert doc["min_picks"] == draft_recs.MIN_PICKS
+
+
+def test_docs_from_before_the_floor_are_served_as_stored(monkeypatch):
+    _read(monkeypatch, _stored())
+    doc = draft_recs.get_draft_recs("cards", "offering")
+    assert [r["id"] for r in doc["recommends"]] == ["THIN", "REAL"]
+    assert "min_picks" not in doc
+
+
+def test_offer_scoring_still_uses_every_stored_row(monkeypatch):
+    _read(monkeypatch, _stored())
+    out = draft_recs.score_offer(["cards:OFFERING"], ["THIN"])
+    assert out["ranked"][0]["reasons"][0]["lift"] == 2.2

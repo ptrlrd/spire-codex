@@ -22,7 +22,9 @@ const uplift = (lift: number) =>
 
 import {
   draftMinPicks,
-  rankedDraftRecs,
+  draftRecsHaveFloor,
+  draftTakeRate,
+  listedDraftRecs,
   type DraftRecs as Recs,
 } from "@/lib/entity-links";
 
@@ -63,15 +65,17 @@ export default function EntityDraftRecs({
     };
   }, [kind, id, lang, initial]);
 
-  const recs = rankedDraftRecs(data).slice(0, TOP);
+  const recs = listedDraftRecs(data).slice(0, TOP);
   if (!loaded || recs.length === 0) return null;
+  const floor = draftMinPicks(data);
+  const intro = draftRecsHaveFloor(data)
+    ? "draft_recs_intro"
+    : "draft_recs_intro_thin";
 
   return (
     <section id="draft-recs">
       <h2>{t("Drafted next")}</h2>
-      <p className="h-note">
-        {t("draft_recs_intro", { name, min: draftMinPicks(data) })}
-      </p>
+      <p className="h-note">{t(intro, { name, min: floor })}</p>
       <ul className="pair-list">
         {recs.map((r) => (
           <li key={r.id} className="pair-row">
@@ -85,15 +89,19 @@ export default function EntityDraftRecs({
                 </Link>
               </CardHover>
               <span className="pair-wr">
-                {t("{pct} win rate over {n} picks", {
-                  pct: pct(r.winrate),
-                  n: (r.picks ?? 0).toLocaleString(),
-                })}
+                {(r.picks ?? 0) >= floor
+                  ? t("{pct} win rate over {n} picks", {
+                      pct: pct(r.winrate),
+                      n: (r.picks ?? 0).toLocaleString(),
+                    })
+                  : t("{n} picks, too few for a win rate", {
+                      n: (r.picks ?? 0).toLocaleString(),
+                    })}
               </span>
             </div>
             <span className="pair-stats">
               <span>
-                {t("picked")} {pct(r.pref)} {t("of the time")} (
+                {t("picked")} {pct(draftTakeRate(r))} {t("of the time")} (
                 {t("taken {picked} of {offered} times offered", {
                   picked: (r.picks ?? 0).toLocaleString(),
                   offered: r.offers.toLocaleString(),

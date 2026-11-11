@@ -20,8 +20,10 @@ def get_recs(item_type: str, item_id: str, lang: str = "eng"):
     when offered them, ranked by lift over each card's baseline take-rate. Each
     entry carries `pref` (take-rate given this context), `pref_base` (the card's
     overall take-rate), `lift`, `offers` and `picks` (sample sizes), and
-    `winrate` (of the runs that picked it). Pairs with fewer than `min_picks`
-    picks are left out. Empty `recommends` until the build job has run."""
+    `winrate` (of the runs that picked it). When `min_picks` is present, pairs
+    with fewer picks than that are left out; a cache built before the pick
+    floor has no `min_picks` and can hold thinner rows. Empty `recommends`
+    until the build job has run."""
     if item_type not in ("cards", "relics"):
         raise HTTPException(status_code=400, detail="bad item_type")
     doc = get_draft_recs(item_type, item_id, lang)

@@ -11,16 +11,16 @@ import {
 
 export const SMALL_SAMPLE_ROWS = 5;
 
-export interface ResolvedBracket {
+export interface ResolvedBracket<B = BracketStat> {
   key: string;
-  block: BracketStat | null;
+  block: B | null;
   requested: string | null;
 }
 
-export function resolveBracket(
-  stats: Pick<EntityStats, "brackets">,
+export function resolveBracket<B = BracketStat>(
+  stats: { brackets?: Record<string, B> },
   selected: string,
-): ResolvedBracket {
+): ResolvedBracket<B> {
   const brackets = stats.brackets ?? {};
   const { skill, version } = splitBracket(selected);
   for (const key of [selected, combineBracket("", skill, version), "all"]) {

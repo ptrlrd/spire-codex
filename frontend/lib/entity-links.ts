@@ -51,6 +51,25 @@ export function rankedDraftRecs(
   return (recs?.recommends ?? []).filter((r) => (r.picks ?? 0) >= floor);
 }
 
+export function draftRecsHaveFloor(
+  recs: DraftRecs | null | undefined,
+): boolean {
+  return typeof recs?.min_picks === "number";
+}
+
+export function listedDraftRecs(
+  recs: DraftRecs | null | undefined,
+): DraftRec[] {
+  if (draftRecsHaveFloor(recs)) return rankedDraftRecs(recs);
+  return (recs?.recommends ?? []).filter((r) => typeof r.picks === "number");
+}
+
+export function draftTakeRate(rec: DraftRec): number {
+  return rec.picks != null && rec.offers > 0
+    ? rec.picks / rec.offers
+    : rec.pref;
+}
+
 export interface RelatedEntity {
   id: string;
   name: string;
