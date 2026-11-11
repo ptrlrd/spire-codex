@@ -11,6 +11,7 @@ import { useState } from "react";
 import { useT } from "@/lib/i18n";
 import { imageUrl } from "@/lib/image-url";
 import { RichDescriptionSimple } from "@/app/components/RichDescription";
+import Modal from "@/app/components/Modal";
 import LiveMap from "../LiveMap";
 import {
   CardPill,
@@ -413,6 +414,8 @@ export default function LiveScene({
     ids: string[];
   } | null>(null);
   const [showMap, setShowMap] = useState(false);
+  const closeCards = () => setOpenCards(null);
+  const closeMap = () => setShowMap(false);
   const groupCards = (ids: string[]): [string, number][] => {
     const m = new Map<string, number>();
     for (const raw of ids) m.set(raw, (m.get(raw) ?? 0) + 1);
@@ -923,105 +926,105 @@ export default function LiveScene({
 
       {/* Deck / pile viewer (the Deck button + the pile buttons open this). */}
       {openCards && (
-        <div
-          className="fixed inset-0 z-[60] flex items-start justify-center overflow-y-auto bg-scrim/60 p-4"
-          onClick={() => setOpenCards(null)}
+        <Modal
+          onClose={closeCards}
+          labelledBy="live-scene-cards-title"
+          overlayClassName="fixed inset-0 z-[60] flex items-start justify-center overflow-y-auto bg-scrim/60 p-4"
+          className="my-8 w-full max-w-3xl rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4"
         >
-          <div
-            className="my-8 w-full max-w-3xl rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4"
-            onClick={(ev) => ev.stopPropagation()}
-          >
-            <div className="mb-3 flex items-center justify-between">
-              <h3 className="text-sm font-semibold text-[var(--accent-gold)]">
-                {openCards.title} ({openCards.ids.length})
-              </h3>
-              <button
-                type="button"
-                onClick={() => setOpenCards(null)}
-                aria-label={t("Close")}
-                className="px-1 text-[var(--text-muted)] hover:text-[var(--text-primary)]"
-              >
-                ✕
-              </button>
-            </div>
-            {openCards.ids.length === 0 ? (
-              <p className="text-sm text-[var(--text-muted)]">
-                {t("No cards on this beat.")}
-              </p>
-            ) : (
-              <div className="flex flex-wrap gap-2">
-                {groupCards(openCards.ids).map(([raw, count]) => {
-                  const { id, upgraded } = parseDeckId(raw);
-                  return (
-                    <CardPill
-                      key={raw}
-                      cardId={id}
-                      upgraded={upgraded}
-                      cardData={cat.cards}
-                      bp={bp}
-                      className="relative block w-24 shrink-0"
-                    >
-                      <LiveCardImg
-                        id={id}
-                        upgraded={upgraded}
-                        alt={cat.cards[id]?.name || displayName(`CARD.${id}`)}
-                        className="h-auto w-24 rounded-sm"
-                        portrait={cat.cards[id]?.image_url}
-                      />
-                      {count > 1 && (
-                        <span className="absolute -top-1 -right-1 rounded bg-[var(--accent-gold)] px-1 text-[10px] font-bold text-[var(--bg-primary)]">
-                          ×{count}
-                        </span>
-                      )}
-                    </CardPill>
-                  );
-                })}
-              </div>
-            )}
+          <div className="mb-3 flex items-center justify-between">
+            <h3
+              id="live-scene-cards-title"
+              className="text-sm font-semibold text-[var(--accent-gold)]"
+            >
+              {openCards.title} ({openCards.ids.length})
+            </h3>
+            <button
+              type="button"
+              onClick={closeCards}
+              aria-label={t("Close")}
+              className="px-1 text-[var(--text-muted)] hover:text-[var(--text-primary)]"
+            >
+              ✕
+            </button>
           </div>
-        </div>
+          {openCards.ids.length === 0 ? (
+            <p className="text-sm text-[var(--text-muted)]">
+              {t("No cards on this beat.")}
+            </p>
+          ) : (
+            <div className="flex flex-wrap gap-2">
+              {groupCards(openCards.ids).map(([raw, count]) => {
+                const { id, upgraded } = parseDeckId(raw);
+                return (
+                  <CardPill
+                    key={raw}
+                    cardId={id}
+                    upgraded={upgraded}
+                    cardData={cat.cards}
+                    bp={bp}
+                    className="relative block w-24 shrink-0"
+                  >
+                    <LiveCardImg
+                      id={id}
+                      upgraded={upgraded}
+                      alt={cat.cards[id]?.name || displayName(`CARD.${id}`)}
+                      className="h-auto w-24 rounded-sm"
+                      portrait={cat.cards[id]?.image_url}
+                    />
+                    {count > 1 && (
+                      <span className="absolute -top-1 -right-1 rounded bg-[var(--accent-gold)] px-1 text-[10px] font-bold text-[var(--bg-primary)]">
+                        ×{count}
+                      </span>
+                    )}
+                  </CardPill>
+                );
+              })}
+            </div>
+          )}
+        </Modal>
       )}
 
       {/* Map viewer (the Map button opens this). */}
       {showMap && (
-        <div
-          className="fixed inset-0 z-[60] flex items-start justify-center overflow-y-auto bg-scrim/60 p-4"
-          onClick={() => setShowMap(false)}
+        <Modal
+          onClose={closeMap}
+          labelledBy="live-scene-map-title"
+          overlayClassName="fixed inset-0 z-[60] flex items-start justify-center overflow-y-auto bg-scrim/60 p-4"
+          className="my-8 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4"
         >
-          <div
-            className="my-8 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4"
-            onClick={(ev) => ev.stopPropagation()}
-          >
-            <div className="mb-3 flex items-center justify-between">
-              <h3 className="text-sm font-semibold text-[var(--accent-gold)]">
-                {p.map?.act != null
-                  ? t("Map · Act {n}", { n: p.map.act })
-                  : t("Map")}
-              </h3>
-              <button
-                type="button"
-                onClick={() => setShowMap(false)}
-                aria-label={t("Close")}
-                className="px-1 text-[var(--text-muted)] hover:text-[var(--text-primary)]"
-              >
-                ✕
-              </button>
-            </div>
-            <LiveMap
-              map={p.map}
-              path={p.path}
-              pos={p.pos}
-              reveals={p.reveals}
-              route={p.route}
-              monsters={monsters}
-              encounters={encounters}
-              floorHistory={p.floor_history}
-              cat={cat}
-              actName={p.act_name}
-              character={p.character}
-            />
+          <div className="mb-3 flex items-center justify-between">
+            <h3
+              id="live-scene-map-title"
+              className="text-sm font-semibold text-[var(--accent-gold)]"
+            >
+              {p.map?.act != null
+                ? t("Map · Act {n}", { n: p.map.act })
+                : t("Map")}
+            </h3>
+            <button
+              type="button"
+              onClick={closeMap}
+              aria-label={t("Close")}
+              className="px-1 text-[var(--text-muted)] hover:text-[var(--text-primary)]"
+            >
+              ✕
+            </button>
           </div>
-        </div>
+          <LiveMap
+            map={p.map}
+            path={p.path}
+            pos={p.pos}
+            reveals={p.reveals}
+            route={p.route}
+            monsters={monsters}
+            encounters={encounters}
+            floorHistory={p.floor_history}
+            cat={cat}
+            actName={p.act_name}
+            character={p.character}
+          />
+        </Modal>
       )}
     </div>
   );

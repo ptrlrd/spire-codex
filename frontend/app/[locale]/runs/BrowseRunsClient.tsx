@@ -423,6 +423,7 @@ function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
+          aria-label={t("Search")}
           placeholder={t('Try: "{example}"', {
             example: "char:ironclad asc:10 relic:burning_blood",
           })}
@@ -448,6 +449,7 @@ function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
         <select
           value={character}
           onChange={(e) => setCharacter(e.target.value)}
+          aria-label={t("Character")}
           className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]"
         >
           <option value="">{t("All Characters")}</option>
@@ -461,6 +463,7 @@ function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
         <select
           value={win}
           onChange={(e) => setWin(e.target.value as WinFilter)}
+          aria-label={t("Result")}
           className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]"
         >
           <option value="">{t("All Runs")}</option>
@@ -471,6 +474,7 @@ function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
         <select
           value={mode}
           onChange={(e) => setMode(e.target.value as Mode)}
+          aria-label={t("Players")}
           className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]"
         >
           <option value="">{t("All Modes")}</option>
@@ -481,6 +485,7 @@ function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
         <select
           value={gameMode}
           onChange={(e) => setGameMode(e.target.value as GameMode)}
+          aria-label={t("Mode")}
           className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]"
         >
           <option value="">{t("Any Type")}</option>
@@ -494,6 +499,7 @@ function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
           type="text"
           value={ascension}
           onChange={(e) => setAscension(e.target.value)}
+          aria-label={t("Ascension")}
           placeholder={t("Ascension (e.g. 10, 3-7)")}
           className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]"
         />
@@ -502,6 +508,7 @@ function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
           type="text"
           value={user}
           onChange={(e) => setUser(e.target.value)}
+          aria-label={t("Username...")}
           placeholder={t("Username...")}
           className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]"
         />
@@ -510,6 +517,7 @@ function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
           type="text"
           value={seed}
           onChange={(e) => setSeed(e.target.value)}
+          aria-label={t("Seed...")}
           placeholder={t("Seed...")}
           className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]"
         />
@@ -518,6 +526,7 @@ function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
           <select
             value={buildId}
             onChange={(e) => setBuildId(e.target.value)}
+            aria-label={t("Game version")}
             className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]"
           >
             <option value="">{t("All Versions")}</option>
@@ -532,6 +541,7 @@ function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
         <select
           value={sort}
           onChange={(e) => setSort(e.target.value as Sort)}
+          aria-label={t("Sort by")}
           className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]"
         >
           <option value="date">{t("Newest")}</option>

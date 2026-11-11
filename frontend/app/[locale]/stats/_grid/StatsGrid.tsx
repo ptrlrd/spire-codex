@@ -1001,6 +1001,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
             value={search}
             onChange={(e) => onSearch(e.target.value)}
             placeholder={t("Search or filter, e.g. lift>2 win>55")}
+            aria-label={t("Search")}
             className="w-72 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] px-3 py-1.5 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:border-[var(--accent-gold)] focus:outline-none"
           />
           <button
@@ -1174,6 +1175,13 @@ export default function StatsGrid({ data }: { data: GridData }) {
                 <th
                   key={col.key}
                   title={t(col.title)}
+                  aria-sort={
+                    col.key === sortKey
+                      ? dir === -1
+                        ? "descending"
+                        : "ascending"
+                      : undefined
+                  }
                   onClick={() => onSort(col)}
                   draggable={col.key !== "name"}
                   onDragStart={(e) => {
@@ -1203,7 +1211,16 @@ export default function StatsGrid({ data }: { data: GridData }) {
                         : "text-left"
                   } ${col.key === sortKey ? "text-[var(--accent-gold)]" : ""}`}
                 >
-                  {t(col.label)}
+                  {col.sortField ? (
+                    <button
+                      type="button"
+                      className="pointer-events-none rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-gold)]"
+                    >
+                      {t(col.label)}
+                    </button>
+                  ) : (
+                    t(col.label)
+                  )}
                   {col.key === sortKey ? (dir === -1 ? " ▾" : " ▴") : ""}
                 </th>
               ))}
