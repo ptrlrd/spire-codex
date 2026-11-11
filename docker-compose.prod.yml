@@ -191,11 +191,11 @@ services:
       # to node_exporter (`node_cpu_*`, `node_memory_*`) or cAdvisor
       # (`container_cpu_*`, `container_memory_*`).
       PROMETHEUS_MULTIPROC_DIR: /tmp/prom_multiproc
-      # The heavy stats walk runs only in the rebuilder service below, so a
-      # web deploy recreating this container no longer kills an in-flight
-      # rebuild (which is how the snapshot sat stale for days). Set
-      # BACKEND_STATS_REFRESHER=on in the box .env to revert to the old
-      # single-container behavior.
+      # off = no web worker takes the stats-refresh lease, so the in-process
+      # materialized stats walk never runs in this container. There is no
+      # separate rebuilder service any more: stats stores come from the
+      # lake-ingest job below. Set BACKEND_STATS_REFRESHER=on in the box
+      # .env to run the in-process refresher again.
       STATS_REFRESHER: "${BACKEND_STATS_REFRESHER:-off}"
       # Workers AI credentials for /api/search/semantic and the
       # build_embeddings corpus script; unset leaves semantic search off.

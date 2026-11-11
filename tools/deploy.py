@@ -137,7 +137,7 @@ def main():
     cross = needs_cross_compile() or platform.system() == "Darwin"
     machine = platform.machine()
 
-    print(f"Spire Codex Deploy")
+    print("Spire Codex Deploy")
     print(f"  Platform: {platform.system()} ({machine})")
     print(f"  Cross-compile: {'yes (arm64 → amd64)' if cross else 'no'}")
     print(f"  Tags: {', '.join(tags)}")
@@ -181,9 +181,9 @@ def main():
         print(f"  ✓ Frontend {'pushed' if push else 'built'}")
 
     print(f"\n{'='*60}")
-    print(f"  Done!")
+    print("  Done!")
     if push:
-        print(f"  Images pushed to Docker Hub:")
+        print("  Images pushed to Docker Hub:")
         if build_backend:
             for t in tags:
                 print(f"    {BACKEND_IMAGE}:{t}")
