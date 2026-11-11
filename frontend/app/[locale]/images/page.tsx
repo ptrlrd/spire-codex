@@ -269,12 +269,14 @@ export default function ImagesPage() {
                 key={cat.id}
                 className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] overflow-hidden"
               >
-                <div
-                  className="flex items-center justify-between px-4 py-3 cursor-pointer hover:bg-[var(--bg-card-hover)] transition-colors"
+                <button
+                  type="button"
+                  aria-expanded={isOpen}
+                  className="flex w-full items-center justify-between px-4 py-3 text-left cursor-pointer hover:bg-[var(--bg-card-hover)] transition-colors"
                   onClick={() => toggleCategory(cat.id)}
                 >
-                  <div className="min-w-0">
-                    <div className="flex flex-wrap items-center gap-2">
+                  <span className="block min-w-0">
+                    <span className="flex flex-wrap items-center gap-2">
                       <span
                         className={`inline-block transition-transform text-[var(--text-muted)] text-xs ${isOpen ? "rotate-90" : ""}`}
                       >
@@ -286,17 +288,17 @@ export default function ImagesPage() {
                       <span className="text-xs text-[var(--text-muted)]">
                         {t("{n} images", { n: cat.count })}
                       </span>
-                    </div>
+                    </span>
                     {description && (
-                      <p className="mt-0.5 pl-5 text-xs text-[var(--text-muted)]">
+                      <span className="mt-0.5 block pl-5 text-xs text-[var(--text-muted)]">
                         {description}
-                      </p>
+                      </span>
                     )}
-                  </div>
+                  </span>
                   <span className="shrink-0 pl-3 text-[10px] uppercase tracking-wider text-[var(--text-muted)]">
                     {channel}
                   </span>
-                </div>
+                </button>
 
                 {isOpen && (
                   <div className="border-t border-[var(--border-subtle)] px-4 pb-4 pt-3">

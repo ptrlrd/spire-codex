@@ -626,12 +626,19 @@ export default function LeaderboardBrowseClient() {
                           <td className="py-2.5 px-2 sm:px-3 font-medium text-[var(--accent-gold)]">
                             #{entry.rank}
                           </td>
-                          <td className="py-2.5 px-2 sm:px-3 text-[var(--text-primary)] truncate max-w-[7rem] sm:max-w-[10rem]">
-                            {entry.username || t("Anonymous")}
-                            <PlayerBadge
-                              username={entry.username}
-                              className="ml-1"
-                            />
+                          <td className="text-[var(--text-primary)] max-w-[7rem] sm:max-w-[10rem]">
+                            <Link
+                              prefetch={false}
+                              href={`${bp}/runs/${entry.run_hash}`}
+                              onClick={(e) => e.stopPropagation()}
+                              className="block truncate py-2.5 px-2 sm:px-3"
+                            >
+                              {entry.username || t("Anonymous")}
+                              <PlayerBadge
+                                username={entry.username}
+                                className="ml-1"
+                              />
+                            </Link>
                           </td>
                           <td
                             className="py-2.5 px-2 sm:px-3"
@@ -664,7 +671,8 @@ export default function LeaderboardBrowseClient() {
                               onClick={(e) => e.stopPropagation()}
                               className="text-[var(--accent-gold)] hover:underline text-xs"
                               title={t("View run")}
-                              aria-label={t("View run details")}
+                              aria-hidden
+                              tabIndex={-1}
                             >
                               &#x2197;
                             </Link>
@@ -698,6 +706,7 @@ export default function LeaderboardBrowseClient() {
             <select
               value={browseChar}
               onChange={(e) => setBrowseChar(e.target.value)}
+              aria-label={t("Character")}
               className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)] w-full sm:w-auto"
             >
               <option value="">{t("All Characters")}</option>
@@ -711,6 +720,7 @@ export default function LeaderboardBrowseClient() {
             <select
               value={browseWin}
               onChange={(e) => setBrowseWin(e.target.value)}
+              aria-label={t("Result")}
               className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)] w-full sm:w-auto"
             >
               <option value="">{t("All Runs")}</option>
@@ -723,6 +733,7 @@ export default function LeaderboardBrowseClient() {
               value={browseUser}
               onChange={(e) => setBrowseUser(e.target.value)}
               placeholder={t("Username...")}
+              aria-label={t("Username...")}
               className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)] w-full sm:w-44"
             />
 
@@ -731,6 +742,7 @@ export default function LeaderboardBrowseClient() {
               value={browseSeed}
               onChange={(e) => setBrowseSeed(e.target.value)}
               placeholder={t("Seed...")}
+              aria-label={t("Seed...")}
               className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)] w-full sm:w-36"
             />
 
@@ -738,6 +750,7 @@ export default function LeaderboardBrowseClient() {
               <select
                 value={browseBuildId}
                 onChange={(e) => setBrowseBuildId(e.target.value)}
+                aria-label={t("Game version")}
                 className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)] w-full sm:w-auto"
               >
                 <option value="">{t("All Versions")}</option>
@@ -752,6 +765,7 @@ export default function LeaderboardBrowseClient() {
             <select
               value={browseSort}
               onChange={(e) => setBrowseSort(e.target.value)}
+              aria-label={t("Sort by")}
               className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)] w-full sm:w-auto"
             >
               <option value="date">{t("Newest")}</option>

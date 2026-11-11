@@ -297,7 +297,13 @@ function EventsClientInner({
                   )}
                   <div>
                     <h3 className="font-semibold text-[var(--text-primary)]">
-                      {event.name}
+                      <Link
+                        prefetch={false}
+                        href={`${bp}/events/${event.id.toLowerCase()}`}
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        {event.name}
+                      </Link>
                       {betaIds.has(event.id) && (
                         <span className="ml-2 align-middle">
                           <BetaBadge />

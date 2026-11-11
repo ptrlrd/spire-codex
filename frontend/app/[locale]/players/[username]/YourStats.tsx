@@ -503,12 +503,24 @@ function PersonalStatsTable<T>({
                 <th
                   key={col.key}
                   title={col.title}
+                  aria-sort={
+                    col.key === sortKey
+                      ? dir === -1
+                        ? "descending"
+                        : "ascending"
+                      : undefined
+                  }
                   onClick={() => onSort(col)}
                   className={`cursor-help px-3 py-2 font-medium select-none hover:text-[var(--accent-gold)] ${
                     col.align === "right" ? "text-right" : "text-left"
                   } ${col.key === sortKey ? "text-[var(--accent-gold)]" : ""}`}
                 >
-                  {col.label}
+                  <button
+                    type="button"
+                    className="pointer-events-none rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-gold)]"
+                  >
+                    {col.label}
+                  </button>
                   {col.key === sortKey ? (dir === -1 ? " ▾" : " ▴") : ""}
                 </th>
               ))}
