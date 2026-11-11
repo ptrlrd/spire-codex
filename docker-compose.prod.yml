@@ -235,6 +235,7 @@ services:
     env_file: .env
     environment:
       DATA_DIR: /data
+      BETA_DATA_DIR: /data-beta
       # Build frame.parquet from the lake (one COPY) instead of the 3h Mongo
       # doc walk. Flip in .env after lab/validate_frame_lake.py passes.
       FRAME_FROM_LAKE: ${FRAME_FROM_LAKE:-}
@@ -252,6 +253,7 @@ services:
     volumes:
       - ./lab:/lab:ro
       - ./data:/data:ro
+      - ./data-beta:/data-beta:ro
       - ./lake:/lake
       - /opt/spire-sim:/opt/spire-sim:ro
     networks:

@@ -50,6 +50,7 @@ UNION ALL SELECT 'floor_events', count(*) FROM read_parquet('__NEXT__/floor_even
 UNION ALL SELECT 'deck', count(*) FROM read_parquet('__NEXT__/deck.parquet')
 UNION ALL SELECT 'floors', count(*) FROM read_parquet('__NEXT__/floors.parquet')
 UNION ALL SELECT 'players', count(*) FROM read_parquet('__NEXT__/players.parquet')
+UNION ALL SELECT 'party', count(*) FROM read_parquet('__NEXT__/party.parquet')
 UNION ALL SELECT 'relics', count(*) FROM read_parquet('__NEXT__/relics.parquet')
 UNION ALL SELECT 'potions', count(*) FROM read_parquet('__NEXT__/potions.parquet')
 UNION ALL SELECT 'relics_removed', count(*) FROM read_parquet('__NEXT__/relics_removed.parquet')

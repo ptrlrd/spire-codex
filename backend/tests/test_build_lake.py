@@ -2,6 +2,7 @@
 a cycle with one new page parses only that page."""
 
 import gzip
+import hashlib
 import importlib.util
 import json
 import os
@@ -84,18 +85,34 @@ def lake(tmp_path):
     (tmp_path / "staging").mkdir()
     with gzip.open(tmp_path / "excluded_current.jsonl.gz", "wt") as f:
         f.write(json.dumps({"run_hash": "gone"}) + "\n")
-    with gzip.open(tmp_path / "run_scalars_current.jsonl.gz", "wt") as f:
-        f.write(json.dumps({"run_hash": "a", "floors_reached": 2}) + "\n")
+    _docs(tmp_path, ["a", "b", "c"])
     return tmp_path
 
 
-def _build(mod, lake):
+def _docs(lake: pathlib.Path, hashes: list[str]) -> None:
+    with gzip.open(lake / "run_scalars_current.jsonl.gz", "wt") as f:
+        for h in hashes:
+            f.write(json.dumps({"run_hash": h, "floors_reached": 2}) + "\n")
+
+
+_OFFICIAL = {
+    "characters": ["IRONCLAD", "SILENT"],
+    "cards": ["BASH", "NEUTRALIZE", "SURVIVOR"],
+    "relics": ["ANCHOR", "RING_OF_THE_SNAKE"],
+}
+
+
+def _build(mod, lake, official=None):
     con = duckdb.connect(str(lake / "build.duckdb"))
     con.execute(f"SET temp_directory='{lake}/tmp'")
     try:
-        return mod.build(con, lake)
+        return mod.build(con, lake, official or _OFFICIAL)
     finally:
         con.close()
+
+
+def _rows(lake, sql):
+    return duckdb.sql(sql.format(lake=lake)).fetchall()
 
 
 def _count(lake, table):
@@ -239,11 +256,249 @@ def test_unreadable_manifest_reparses_everything(lake):
     assert _build(mod, lake)["parsed"] == 2
 
 
-def test_run_in_two_pages_is_reported(lake):
+def test_run_in_two_pages_keeps_the_newest(lake):
     mod = _load()
-    _page(lake, 0, [_run("a", "ace", True)])
-    _page(lake, 1, [_run("a", "ace", True)])
+    old = _run("a", "ace", False)
+    new = _run("a", "ace", True)
+    new["_meta"]["submitted_at"] = "2026-10-07T12:00:00"
+    new["players"][0]["deck"].append({"id": "CARD.SURVIVOR"})
+    _page(lake, 0, [old, _run("b", "bee", True)])
+    _page(lake, 1, [new])
     assert _build(mod, lake)["shared_runs"] == 1
+    assert _rows(
+        lake, "SELECT run_hash, win FROM read_parquet('{lake}/runs.parquet') ORDER BY 1"
+    ) == [("a", True), ("b", True)]
+    assert _rows(
+        lake,
+        "SELECT run_hash, count(*) FROM read_parquet('{lake}/deck.parquet')"
+        " GROUP BY 1 ORDER BY 1",
+    ) == [("a", 2), ("b", 1)]
+    assert _count(lake, "floors") == 4
+    assert _count(lake, "card_choices") == 4
+
+
+def test_run_twice_in_one_page_keeps_the_newest(lake):
+    mod = _load()
+    new = _run("a", "ace", True)
+    new["_meta"]["submitted_at"] = "2026-10-07T12:00:00"
+    _page(lake, 0, [_run("a", "ace", False), new])
+    _build(mod, lake)
+    assert _rows(
+        lake, "SELECT run_hash, win FROM read_parquet('{lake}/runs.parquet')"
+    ) == [("a", True)]
+    assert _count(lake, "deck") == 1
+
+
+def test_run_without_a_document_is_left_out(lake):
+    mod = _load()
+    deleted = _run("deleted", "bee", True)
+    deleted["_meta"]["submitted_at"] = "2026-10-01T12:00:00"
+    recent = _run("recent", "ace", True)
+    recent["_meta"]["submitted_at"] = "2026-10-06T11:30:00"
+    late = _run("late", "ace", True)
+    late["_meta"]["submitted_at"] = "2026-10-08T12:00:00"
+    _page(lake, 0, [_run("a", "ace", True), deleted, recent, late])
+    out = _build(mod, lake)
+    assert out["gone_runs"] == 1
+    kept = [("a",), ("late",), ("recent",)]
+    assert (
+        _rows(
+            lake, "SELECT run_hash FROM read_parquet('{lake}/runs.parquet') ORDER BY 1"
+        )
+        == kept
+    )
+    assert (
+        _rows(
+            lake,
+            "SELECT DISTINCT run_hash FROM read_parquet('{lake}/deck.parquet')"
+            " ORDER BY 1",
+        )
+        == kept
+    )
+    assert _count(lake, "user_rollup") == 1
+
+    _docs(lake, ["a", "deleted", "recent", "late"])
+    assert _build(mod, lake)["gone_runs"] == 0
+    assert _count(lake, "runs") == 4
+
+
+def test_a_sidecar_missing_most_runs_stops_the_build(lake, monkeypatch):
+    mod = _load()
+    monkeypatch.setattr(mod, "GONE_GUARD_MIN_RUNS", 0)
+    newest = _run("a", "ace", True)
+    newest["_meta"]["submitted_at"] = "2026-10-09T12:00:00"
+    _page(lake, 0, [newest, _run("x", "bee", True), _run("y", "bee", True)])
+    with pytest.raises(RuntimeError, match="refusing to drop"):
+        _build(mod, lake)
+    assert not (lake / "runs.parquet").exists()
+
+
+def _seat_hash(run: dict, idx: int) -> str:
+    p = run["players"][idx]
+    key = (
+        f"{run.get('seed', '')}:{p['character']}:{run.get('start_time', '')}:"
+        f"{run.get('run_time', 0)}:{len(p.get('deck', []))}:{idx}"
+    )
+    return hashlib.sha256(key.encode()).hexdigest()[:16]
+
+
+def _party_run() -> dict:
+    run = _run("x", "ace", True)
+    run.update(seed="SEED1", start_time=1700000000, run_time=1234)
+    host = run["players"][0]
+    guest = {
+        "id": 2,
+        "character": "CHARACTER.SILENT",
+        "deck": [{"id": "CARD.NEUTRALIZE"}, {"id": "CARD.SURVIVOR"}],
+        "relics": [{"id": "RELIC.RING_OF_THE_SNAKE", "floor_added_to_deck": 1}],
+        "potions": [],
+    }
+    run["players"] = [host, guest]
+    for floor in run["map_point_history"][0]:
+        mine = dict(floor["player_stats"][0])
+        theirs = dict(
+            mine,
+            player_id=2,
+            card_choices=[{"was_picked": False, "card": {"id": "CARD.SURVIVOR"}}],
+            relic_choices=[],
+            potion_used=[],
+        )
+        floor["player_stats"] = [mine, theirs]
+    run["_meta"]["player_count"] = 2
+    return run
+
+
+def _siblings(run: dict, meta_index: bool) -> list[dict]:
+    docs = []
+    for idx in range(len(run["players"])):
+        doc = json.loads(json.dumps(run))
+        doc["run_hash"] = _seat_hash(run, idx)
+        doc["_meta"]["character"] = None
+        if meta_index:
+            doc["run_hash"] = f"doc{idx}"
+            doc["_meta"]["player_index"] = idx
+        docs.append(doc)
+    return docs
+
+
+@pytest.mark.parametrize("meta_index", [True, False])
+def test_party_document_keeps_only_its_own_seat(lake, meta_index):
+    mod = _load()
+    docs = _siblings(_party_run(), meta_index)
+    host, guest = (d["run_hash"] for d in docs)
+    _docs(lake, [host, guest])
+    _page(lake, 0, docs)
+    _build(mod, lake)
+    assert _rows(
+        lake,
+        "SELECT run_hash, player_idx, character, deck_size"
+        " FROM read_parquet('{lake}/players.parquet') ORDER BY 2",
+    ) == [(host, 1, "IRONCLAD", 1), (guest, 2, "SILENT", 2)]
+    assert _rows(
+        lake,
+        "SELECT run_hash, character FROM read_parquet('{lake}/runs.parquet')"
+        " ORDER BY 2",
+    ) == [(host, "IRONCLAD"), (guest, "SILENT")]
+    assert _rows(
+        lake,
+        "SELECT run_hash, player_idx, card FROM read_parquet('{lake}/deck.parquet')"
+        " ORDER BY 2, 3",
+    ) == [(host, 1, "BASH"), (guest, 2, "NEUTRALIZE"), (guest, 2, "SURVIVOR")]
+    assert _rows(
+        lake,
+        "SELECT run_hash, player_idx, relic FROM read_parquet('{lake}/relics.parquet')"
+        " ORDER BY 2",
+    ) == [(host, 1, "ANCHOR"), (guest, 2, "RING_OF_THE_SNAKE")]
+    assert _rows(
+        lake,
+        "SELECT run_hash, player_idx, len(players), players[1].player_id"
+        " FROM read_parquet('{lake}/floors.parquet') GROUP BY ALL ORDER BY 2",
+    ) == [(host, 1, 1, 1), (guest, 2, 1, 2)]
+    assert _rows(
+        lake,
+        "SELECT run_hash, player_idx, card, count(*)"
+        " FROM read_parquet('{lake}/card_choices.parquet') GROUP BY ALL ORDER BY 2",
+    ) == [(host, 1, "BASH", 2), (guest, 2, "SURVIVOR", 2)]
+    assert _rows(
+        lake,
+        "SELECT run_hash, player_idx, count(*)"
+        " FROM read_parquet('{lake}/shop_items.parquet') GROUP BY ALL ORDER BY 2",
+    ) == [(host, 1, 2), (guest, 2, 1)]
+    for table, n in (
+        ("relic_choices", 2),
+        ("potions", 1),
+        ("potion_events", 2),
+    ):
+        assert _rows(
+            lake,
+            f"SELECT DISTINCT run_hash, player_idx FROM read_parquet('{{lake}}/{table}.parquet')",
+        ) == [(host, 1)], table
+        assert _count(lake, table) == n, table
+    assert (
+        _rows(
+            lake,
+            "SELECT characters, list_sort(cards), list_sort(relics)"
+            " FROM read_parquet('{lake}/party.parquet')",
+        )
+        == [
+            (
+                ["IRONCLAD", "SILENT"],
+                ["BASH", "NEUTRALIZE", "SURVIVOR"],
+                ["ANCHOR", "RING_OF_THE_SNAKE"],
+            )
+        ]
+        * 2
+    )
+
+
+def test_seat_falls_back_to_the_document_character(lake):
+    mod = _load()
+    doc = _party_run()
+    doc["run_hash"] = "c"
+    doc["_meta"]["character"] = "SILENT"
+    _page(lake, 0, [doc])
+    _build(mod, lake)
+    assert _rows(
+        lake, "SELECT player_idx, character FROM read_parquet('{lake}/players.parquet')"
+    ) == [(2, "SILENT")]
+
+
+def test_modded_runs_are_listed_for_every_sibling(lake):
+    mod = _load()
+    party = _party_run()
+    party["players"][1]["relics"].append({"id": "RELIC.ALL_IN_RUNE"})
+    docs = _siblings(party, True)
+    card = _run("a", "ace", True)
+    card["players"][0]["deck"].append({"id": "CARD.ANGER_C"})
+    cast = _run("b", "bee", True)
+    cast["players"][0]["character"] = "CHARACTER.WATCHER"
+    clean = _run("c", "sea", True)
+    _docs(lake, ["a", "b", "c", "doc0", "doc1"])
+    _page(lake, 0, [*docs, card, cast, clean])
+    assert _build(mod, lake)["modded_runs"] == 4
+    assert _rows(
+        lake,
+        "SELECT run_hash, kind FROM read_parquet('{lake}/modded.parquet') ORDER BY 1",
+    ) == [
+        ("a", "cards"),
+        ("b", "characters"),
+        ("doc0", "relics"),
+        ("doc1", "relics"),
+    ]
+
+
+def test_modded_list_is_empty_without_catalogs(lake, monkeypatch):
+    mod = _load()
+    monkeypatch.setattr(mod, "_official_ids", lambda: None)
+    run = _run("a", "ace", True)
+    run["players"][0]["deck"].append({"id": "CARD.ANGER_C"})
+    _page(lake, 0, [run])
+    con = duckdb.connect(str(lake / "build.duckdb"))
+    try:
+        assert mod.build(con, lake)["modded_runs"] is None
+    finally:
+        con.close()
+    assert _count(lake, "modded") == 0
 
 
 def test_floor_tables(lake):
@@ -396,7 +651,13 @@ def test_floor_tables_keep_choices_with_their_seat(lake):
             },
         ]
     ]
-    _page(lake, 0, [run])
+    docs = []
+    for idx, run_hash in enumerate(("a", "b", "c")):
+        doc = json.loads(json.dumps(run))
+        doc["run_hash"] = run_hash
+        doc["_meta"]["player_index"] = idx
+        docs.append(doc)
+    _page(lake, 0, docs)
     _build(mod, lake)
 
     def rows(table, cols):
@@ -418,6 +679,7 @@ def test_floor_tables_keep_choices_with_their_seat(lake):
 
 def test_a_duplicated_run_does_not_multiply_card_rows(lake):
     mod = _load()
-    _page(lake, 0, [_run("dup", "ace", True), _run("dup", "ace", True)])
+    _page(lake, 0, [_run("a", "ace", True), _run("a", "ace", True)])
     _build(mod, lake)
-    assert _count(lake, "card_choices") == 4
+    assert _count(lake, "runs") == 1
+    assert _count(lake, "card_choices") == 2
