@@ -39,6 +39,10 @@ class FakeTombstones:
     def find_one(self, query, projection=None):
         return self.docs.get(query["_id"])
 
+    def delete_many(self, query):
+        gone = [h for h in query["_id"]["$in"] if self.docs.pop(h, None)]
+        return type("R", (), {"deleted_count": len(gone)})()
+
 
 def _wire(monkeypatch, tmp_path, run_doc):
     runs = FakeColl([run_doc] if run_doc else [])
@@ -119,6 +123,27 @@ def test_moderator_hidden_run_leaves_a_tombstone(monkeypatch, tmp_path):
     assert runs.docs == {}
     assert runs.tombstones.docs["abc"]["reason"] == "mod:edited"
     assert runs_db_mongo.moderation_tombstone("abc") == "mod:edited"
+
+
+def test_moderator_unhide_forgets_the_tombstone(monkeypatch, tmp_path):
+    runs, *_ = _wire(
+        monkeypatch,
+        tmp_path,
+        {"_id": "abc", "user_id": "u1", "hidden": True, "hidden_reason": "mod:edited"},
+    )
+    runs_db_mongo.delete_run_permanently("abc", OWNER)
+    assert runs_db_mongo.moderation_tombstone("abc") == "mod:edited"
+    assert runs_db_mongo.drop_moderation_tombstones(["abc", "other", ""]) == 1
+    assert runs_db_mongo.moderation_tombstone("abc") is None
+    assert runs_db_mongo.drop_moderation_tombstones([]) == 0
+
+
+def test_tombstone_cleanup_failure_is_swallowed(monkeypatch):
+    def boom():
+        raise RuntimeError("down")
+
+    monkeypatch.setattr(runs_db_mongo, "_tombstones", boom)
+    assert runs_db_mongo.drop_moderation_tombstones(["abc"]) == 0
 
 
 def test_reasonless_moderator_hide_still_leaves_a_tombstone(monkeypatch, tmp_path):

@@ -3033,7 +3033,7 @@ def set_run_hidden(run_hash: str, hidden: bool, reason: str | None = None) -> di
         if reason:
             update["$set"]["hidden_reason"] = reason
     else:
-        update = {"$unset": {"hidden": "", "hidden_reason": ""}}
+        update = {"$unset": {"hidden": "", "hidden_reason": "", "hidden_before": ""}}
     result = coll.update_many(query, update)
     for row in rows:
         if bool(row.get("hidden")) != hidden:
@@ -4181,6 +4181,19 @@ def moderation_tombstone(run_hash: str) -> str | None:
     if not doc:
         return None
     return str(doc.get("reason") or MODERATOR_HIDDEN)
+
+
+def drop_moderation_tombstones(run_hashes: list[str]) -> int:
+    """Forget the tombstones for runs a moderator has let back in, so a later
+    delete and upload of the same file is treated as a new run."""
+    hashes = [h for h in run_hashes if h]
+    if not hashes:
+        return 0
+    try:
+        return _tombstones().delete_many({"_id": {"$in": hashes}}).deleted_count
+    except Exception:
+        logger.warning("tombstone cleanup failed for %s", hashes, exc_info=True)
+        return 0
 
 
 def _is_moderator_hidden(run: dict) -> bool:

@@ -18,6 +18,10 @@ NOW = datetime(2026, 11, 1, tzinfo=timezone.utc)
 
 def _match(doc, flt):
     for key, want in flt.items():
+        if key == "$or":
+            if not any(_match(doc, alt) for alt in want):
+                return False
+            continue
         have = doc.get(key)
         if isinstance(want, dict):
             if "$in" in want and have not in want["$in"]:
@@ -121,6 +125,13 @@ def store(monkeypatch):
             lambda row, delta=1: bumps.append((row["_id"], delta)),
         )
         monkeypatch.setattr(runs_db_mongo, "evict_run_pages", evicted.extend)
+        dropped: list[str] = []
+        monkeypatch.setattr(
+            runs_db_mongo,
+            "drop_moderation_tombstones",
+            lambda hashes: dropped.extend(hashes) or len(hashes),
+        )
+        coll.dropped = dropped
         coll.bumps = bumps
         coll.evicted = evicted
         return coll
@@ -210,26 +221,54 @@ def test_undo_only_gives_back_what_the_tool_hid(store):
     assert "hidden" not in coll.docs["mine"]
     assert coll.docs["auto"]["hidden"] and coll.docs["own"]["hidden"]
     assert coll.bumps == [("mine", -1), ("mine", 1)]
+    assert coll.dropped == ["mine"]
 
 
-def test_hide_player_takes_every_visible_run_and_undoes_exactly_those(store):
+def test_hide_player_takes_every_run_and_undoes_exactly_those(store):
     coll = store(
         [
             _win("a", 400, user_id="cheater"),
             _win("b", 2400, user_id="cheater", win=False),
             _win("c", 500, user_id="cheater", hidden=True, hidden_reason="owner"),
             _win("d", 450, user_id="someone-else"),
+            _win(
+                "e",
+                100,
+                user_id="cheater",
+                hidden=True,
+                hidden_reason="auto:impossible_time:100s",
+            ),
         ]
     )
     out = cheat_review.set_player_hidden("a", True, "speedhack")
-    assert out["changed"] == 2 and out["matched_on"] == "account"
+    assert out["changed"] == 3 and out["matched_on"] == "account"
     assert coll.docs["a"]["hidden_reason"] == "mod:player: speedhack"
     assert coll.docs["b"]["hidden"] and "hidden" not in coll.docs["d"]
-    assert coll.docs["c"]["hidden_reason"] == "owner"
+    assert coll.docs["c"]["hidden_reason"] == "mod:player: speedhack"
+    assert coll.docs["e"]["hidden_reason"] == "auto:impossible_time:100s"
+    assert coll.bumps == [("a", -1), ("b", -1)]
+    assert "c" in coll.evicted
     undo = cheat_review.set_player_hidden("a", False, "speedhack")
-    assert undo["changed"] == 2
+    assert undo["changed"] == 3
     assert "hidden" not in coll.docs["a"] and "hidden" not in coll.docs["b"]
-    assert coll.docs["c"]["hidden_reason"] == "owner"
+    assert coll.docs["c"]["hidden"] and coll.docs["c"]["hidden_reason"] == "owner"
+    assert "hidden_before" not in coll.docs["c"]
+    assert coll.bumps == [("a", -1), ("b", -1), ("a", 1), ("b", 1)]
+    assert sorted(coll.dropped) == ["a", "b"]
+
+
+def test_owner_cannot_unhide_a_run_taken_by_hide_player(store, monkeypatch):
+    from app.services import replays_db
+
+    coll = store(
+        [_win("c", 500, user_id="cheater", hidden=True, hidden_reason="owner")]
+    )
+    cheat_review.set_player_hidden("c", True, None)
+    monkeypatch.setattr(runs_db_mongo, "_get_collection", lambda: coll)
+    monkeypatch.setattr(replays_db, "owns_run", lambda run, user: True)
+    out = runs_db_mongo.set_run_hidden_by_owner("c", {"_id": "cheater"}, False)
+    assert out == {"error": "This run was hidden by a moderator"}
+    assert runs_db_mongo._is_moderator_hidden(coll.docs["c"])
 
 
 def test_hide_player_needs_a_player(store):

@@ -19,6 +19,7 @@ import {
 const BASE = "/api/admin/cheat-review";
 const BATCH = 200;
 const REFILL_BELOW = 8;
+const MOVE_KEYS = new Set(["j", "k", "arrowdown", "arrowup"]);
 
 type Undo =
   | { kind: "hide" | "clear"; hashes: string[]; rows: QueueRow[] }
@@ -464,6 +465,7 @@ export default function CheatReviewClient() {
     if (e.metaKey || e.ctrlKey || e.altKey || isTyping(e.target)) return;
     const focused = rows.find((r) => r.id === focusId);
     const key = e.key.toLowerCase();
+    if (e.repeat && !MOVE_KEYS.has(key)) return;
     if (key === "j" || key === "arrowdown") setFocusId(step(rows, focusId, 1));
     else if (key === "k" || key === "arrowup")
       setFocusId(step(rows, focusId, -1));

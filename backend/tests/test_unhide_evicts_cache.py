@@ -43,7 +43,9 @@ def test_set_run_hidden_evicts_all_sibling_pages(monkeypatch):
     assert out["hashes"] == ["2db1cc858adc2465", "7d81bfe17b82f5c7"]
     assert deleted == ["run:2db1cc858adc2465", "run:7d81bfe17b82f5c7"]
     assert bumps == [1, 1]
-    assert coll.updates[0][1] == {"$unset": {"hidden": "", "hidden_reason": ""}}
+    assert coll.updates[0][1] == {
+        "$unset": {"hidden": "", "hidden_reason": "", "hidden_before": ""}
+    }
 
 
 def test_eviction_failure_never_breaks_the_flag_change(monkeypatch):

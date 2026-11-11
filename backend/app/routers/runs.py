@@ -2910,10 +2910,16 @@ def set_hidden_from_run_page(request: Request, run_hash: str, body: dict | None 
     if not os.environ.get("MONGO_URL", "").strip():
         raise HTTPException(status_code=503, detail="run hiding needs MongoDB")
     hidden = bool((body or {}).get("hidden", True))
-    from ..services.runs_db_mongo import set_run_hidden, set_run_hidden_by_owner
+    from ..services.runs_db_mongo import (
+        drop_moderation_tombstones,
+        set_run_hidden,
+        set_run_hidden_by_owner,
+    )
 
     if is_admin(user):
         result = set_run_hidden(run_hash.strip(), hidden)
+        if not hidden:
+            drop_moderation_tombstones(result.get("hashes") or [run_hash.strip()])
         logger.info(
             "admin set hidden=%s on run %s from its page: %s", hidden, run_hash, result
         )

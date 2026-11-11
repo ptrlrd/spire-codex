@@ -23,6 +23,7 @@ BOARD_DEPTH = 10
 COOP_SIZES = (2, 3, 4)
 PLAYER_HIDE_MAX = 5000
 MOD_PREFIX = "mod:"
+OWNER_HIDDEN = "owner"
 
 _WINS = {"$in": [True, 1]}
 _FAST_HINT = "win_runtime"
@@ -60,6 +61,7 @@ _STATE_FIELDS = {
     "run_time": 1,
     "hidden": 1,
     "hidden_reason": 1,
+    "hidden_before": 1,
     "deleted_at": 1,
     "character": 1,
     "win": 1,
@@ -444,19 +446,38 @@ def _with_seats(coll, hashes: list[str]) -> list[dict]:
 
 
 def _apply_hidden(coll, docs: list[dict], hidden: bool, reason: str | None) -> list:
-    from .runs_db_mongo import bump_stats_counters, evict_run_pages
+    from .runs_db_mongo import (
+        bump_stats_counters,
+        drop_moderation_tombstones,
+        evict_run_pages,
+    )
 
     changed = [d for d in docs if bool(d.get("hidden")) != hidden]
     ids = [d["_id"] for d in changed]
     if hidden:
-        update: dict = {"$set": {"hidden": True, "hidden_reason": reason}}
+        update: dict = {
+            "$set": {"hidden": True, "hidden_reason": reason},
+            "$unset": {"hidden_before": ""},
+        }
     else:
-        update = {"$unset": {"hidden": "", "hidden_reason": ""}}
+        update = {"$unset": {"hidden": "", "hidden_reason": "", "hidden_before": ""}}
     for start in range(0, len(ids), 500):
         coll.update_many({"_id": {"$in": ids[start : start + 500]}}, update)
     for doc in changed:
         if not doc.get("deleted_at"):
             bump_stats_counters(doc, -1 if hidden else 1)
+    evict_run_pages([str(i) for i in ids])
+    if not hidden:
+        drop_moderation_tombstones([str(i) for i in ids])
+    return ids
+
+
+def _restamp(coll, docs: list[dict], update: dict) -> list:
+    from .runs_db_mongo import evict_run_pages
+
+    ids = [d["_id"] for d in docs]
+    for start in range(0, len(ids), 500):
+        coll.update_many({"_id": {"$in": ids[start : start + 500]}}, update)
     evict_run_pages([str(i) for i in ids])
     return ids
 
@@ -512,8 +533,10 @@ def _player_query(doc: dict) -> tuple[dict, str] | None:
 
 
 def set_player_hidden(run_hash: str, hidden: bool, reason: str | None) -> dict:
-    """Hide every visible run by the player behind one run, or undo exactly
-    that: the undo only touches runs carrying the same player reason."""
+    """Hide every run by the player behind one run, or undo exactly that:
+    the undo only touches runs carrying the same player reason. Runs the
+    player hid themselves take the moderator reason so they cannot unhide
+    them, and the undo hands those back as owner-hidden."""
     coll = _coll()
     doc = coll.find_one({"_id": run_hash}, _STATE_FIELDS)
     if not doc:
@@ -524,16 +547,39 @@ def set_player_hidden(run_hash: str, hidden: bool, reason: str | None) -> dict:
     query, matched_on = found
     stamp = mod_reason(f"player: {' '.join(str(reason or '').split()) or 'cheated'}")
     if hidden:
-        query = {**query, "hidden": {"$ne": True}}
+        wanted = {
+            **query,
+            "$or": [{"hidden": {"$ne": True}}, {"hidden_reason": OWNER_HIDDEN}],
+        }
     else:
-        query = {**query, "hidden": True, "hidden_reason": stamp}
+        wanted = {**query, "hidden": True, "hidden_reason": stamp}
     docs = list(
-        coll.find(query, _STATE_FIELDS)
+        coll.find(wanted, _STATE_FIELDS)
         .limit(PLAYER_HIDE_MAX + 1)
         .max_time_ms(QUERY_MS * 5)
     )
     truncated = len(docs) > PLAYER_HIDE_MAX
-    ids = _apply_hidden(coll, docs[:PLAYER_HIDE_MAX], hidden, stamp)
+    docs = docs[:PLAYER_HIDE_MAX]
+    if hidden:
+        owned = [d for d in docs if d.get("hidden")]
+        ids = _apply_hidden(coll, [d for d in docs if not d.get("hidden")], True, stamp)
+        ids += _restamp(
+            coll,
+            owned,
+            {"$set": {"hidden_reason": stamp, "hidden_before": OWNER_HIDDEN}},
+        )
+    else:
+        owned = [d for d in docs if d.get("hidden_before") == OWNER_HIDDEN]
+        rest = [d for d in docs if d.get("hidden_before") != OWNER_HIDDEN]
+        ids = _apply_hidden(coll, rest, False, None)
+        ids += _restamp(
+            coll,
+            owned,
+            {
+                "$set": {"hidden_reason": OWNER_HIDDEN},
+                "$unset": {"hidden_before": ""},
+            },
+        )
     return {
         "hidden": hidden,
         "changed": len(ids),
