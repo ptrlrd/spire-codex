@@ -222,6 +222,13 @@ def active(limit: int = 50) -> list[dict]:
     return [_public(d) for d in docs]
 
 
+def active_count() -> int:
+    """How many players have a fresh heartbeat, counted on the updated_at
+    index without reading any presence doc."""
+    cutoff = datetime.now(timezone.utc) - timedelta(seconds=PRESENCE_TTL_SECONDS)
+    return _presence_coll().count_documents({"updated_at": {"$gte": cutoff}})
+
+
 def get(steam_id: str) -> dict | None:
     """One player's full live doc (incl. deck/relics/potions), or None when not live."""
     cutoff = datetime.now(timezone.utc) - timedelta(seconds=PRESENCE_TTL_SECONDS)

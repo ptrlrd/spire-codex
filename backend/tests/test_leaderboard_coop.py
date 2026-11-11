@@ -66,7 +66,7 @@ class Coll:
         self.finds = []
         self.counts = []
 
-    def find(self, q, projection=None):
+    def find(self, q, projection=None, max_time_ms=None):
         self.finds.append(q)
         return Cursor([dict(d) for d in self.docs if _matches(d, q)])
 

@@ -39,9 +39,9 @@ class FakeColl:
     def _count(self, q):
         return sum(1 for d in self.docs if self._match(d, q))
 
-    def count_documents(self, q, limit=None, maxTimeMS=None):
+    def count_documents(self, q, limit=None, maxTimeMS=None, hint=None):
         self.count_calls.append((q, limit, maxTimeMS))
-        if maxTimeMS is not None and self.timeout_on_budget:
+        if limit is None and self.timeout_on_budget:
             raise ExecutionTimeout("timed out")
         n = self._count(q)
         return min(n, limit) if limit else n
@@ -52,7 +52,7 @@ class FakeColl:
     def aggregate(self, pipeline, **kwargs):
         return iter([])
 
-    def find(self, q, proj=None):
+    def find(self, q, proj=None, max_time_ms=None):
         return self
 
     def sort(self, spec):
@@ -90,7 +90,7 @@ def test_operation_failure_code_50_is_lower_bound(cache_store):
     original = coll.count_documents
 
     def fail_budget(q, limit=None, maxTimeMS=None):
-        if maxTimeMS is not None:
+        if limit is None:
             raise OperationFailure("exceeded time limit", 50)
         return original(q, limit=limit)
 
@@ -151,8 +151,8 @@ def test_leaderboard_live_exact(monkeypatch, cache_store):
 
 def test_leaderboard_live_lower_bound_if_hidden_count_trips(monkeypatch, cache_store):
     class TimeoutHiddenFake(FakeColl):
-        def count_documents(self, q, limit=None, maxTimeMS=None):
-            if "hidden" in q and maxTimeMS is not None:
+        def count_documents(self, q, limit=None, maxTimeMS=None, hint=None):
+            if q.get("hidden") is True:
                 raise ExecutionTimeout("timed out")
             return super().count_documents(q, limit=limit, maxTimeMS=maxTimeMS)
 

@@ -1,9 +1,11 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { useT } from "@/lib/i18n";
 import type { Card } from "@/lib/api/types";
-import { cachedFetch } from "@/lib/fetch-cache";
+import { buildApiUrl } from "@/lib/fetch-cache";
+import { useFilterFetch } from "@/lib/use-filter-fetch";
+import LoadFailed from "@/app/components/LoadFailed";
 import FullCardGrid from "@/app/components/FullCardGrid";
 import SearchFilter from "@/app/components/SearchFilter";
 
@@ -62,7 +64,6 @@ export default function BrowseDetail({
   fixedParams,
 }: BrowseDetailProps) {
   const t = useT();
-  const [cards, setCards] = useState<Card[]>(initialCards);
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("az");
 
@@ -78,8 +79,11 @@ export default function BrowseDetail({
   const showRarityFilter = !fixedParams.rarity;
   const showKeywordFilter = !fixedParams.keyword;
 
-  useEffect(() => {
-    // Build params combining fixed + additional
+  const narrowed =
+    !!(color || type || rarity || keyword || search) ||
+    initialCards.length === 0;
+  let url: string | null = null;
+  if (narrowed) {
     const params = new URLSearchParams();
     for (const [key, value] of Object.entries(fixedParams)) {
       params.set(key, value);
@@ -90,9 +94,13 @@ export default function BrowseDetail({
     if (keyword) params.set("keyword", keyword);
     if (search) params.set("search", search);
     params.set("lang", "eng");
-
-    cachedFetch<Card[]>(`${API}/api/cards?${params}`).then(setCards);
-  }, [color, type, rarity, keyword, search, fixedParams]);
+    url = buildApiUrl(`${API}/api/cards?${params}`);
+  }
+  const filtered = useFilterFetch<Card[]>(url);
+  const cards = useMemo(
+    () => (narrowed ? (filtered.data ?? initialCards) : initialCards),
+    [narrowed, filtered.data, initialCards],
+  );
 
   const sortedCards = useMemo(() => {
     const sorted = [...cards];
@@ -147,13 +155,17 @@ export default function BrowseDetail({
         search={search}
         onSearchChange={setSearch}
         placeholder={t("Search within these cards...")}
-        resultCount={sortedCards.length}
+        resultCount={filtered.error ? undefined : sortedCards.length}
         sortOptions={sortOptions.map((o) => ({ ...o, label: t(o.label) }))}
         sortValue={sort}
         onSortChange={setSort}
         filters={filters}
       />
-      <FullCardGrid cards={sortedCards} />
+      {filtered.error ? (
+        <LoadFailed onRetry={filtered.retry} />
+      ) : (
+        <FullCardGrid cards={sortedCards} />
+      )}
     </>
   );
 }

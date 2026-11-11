@@ -1,22 +1,23 @@
 """Spire Codex API - FastAPI Application."""
 
-import json
 import logging
 import os
 import re
 import time
 from datetime import datetime, timezone
 
-from fastapi import Depends, FastAPI, Request
+from fastapi import Depends, FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.staticfiles import StaticFiles
+from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.middleware.base import BaseHTTPMiddleware
 from pathlib import Path
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 from slowapi.middleware import SlowAPIMiddleware
+from pymongo.errors import ExecutionTimeout
 
 from .routers import (
     cards,
@@ -98,6 +99,7 @@ from .services.data_service import (
 )
 from .dependencies import get_lang, VALID_LANGUAGES, LANGUAGE_NAMES
 from .services import rate_limit_config
+from .services.replays_db import MAX_GZ_BYTES as REPLAY_MAX_GZ_BYTES
 from prometheus_fastapi_instrumentator import Instrumentator
 
 from .metrics import (
@@ -112,6 +114,9 @@ from .metrics import (
     version_usage,
     widget_loads,
     compare_views,
+    read_lake_generation,
+    read_lake_latest_attempt,
+    refresh_lake_gauges,
     sweep_dead_worker_gauges,
 )
 
@@ -182,6 +187,17 @@ app = FastAPI(
 
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+
+
+async def _query_time_limit_handler(request: Request, exc: ExecutionTimeout):
+    logger.warning("query hit its time limit: %s", request.url.path)
+    return JSONResponse(
+        status_code=503,
+        content={"detail": "This query took too long. Try again shortly."},
+    )
+
+
+app.add_exception_handler(ExecutionTimeout, _query_time_limit_handler)
 # Without SlowAPIMiddleware, slowapi's `default_limits` is a no-op
 # — it only applies to routes that explicitly use `@limiter.limit()`.
 # Roughly 70/85 routes (every entity GET route, exports, news, mechanics
@@ -325,6 +341,9 @@ class VersionMiddleware(BaseHTTPMiddleware):
         return response
 
 
+_NOINDEX_PATHS = frozenset(("/docs", "/redoc", "/openapi.json"))
+
+
 class CORSStaticMiddleware(BaseHTTPMiddleware):
     """Add CORS + Cache-Control headers.
 
@@ -390,7 +409,8 @@ class CORSStaticMiddleware(BaseHTTPMiddleware):
         response = await call_next(request)
         response.headers["Access-Control-Allow-Origin"] = "*"
         response.headers["X-Content-Type-Options"] = "nosniff"
-        if request.url.path.startswith("/api/"):
+        path = request.url.path
+        if path.startswith("/api/") or path in _NOINDEX_PATHS:
             response.headers["X-Robots-Tag"] = "noindex"
         response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
         response.headers["Strict-Transport-Security"] = (
@@ -477,6 +497,25 @@ _ENTITY_TYPES = frozenset(
 )
 
 
+_KNOWN_VERSIONS_TTL = 300.0
+_known_versions: tuple[float, frozenset[str]] = (0.0, frozenset())
+
+
+def _version_label(version: str) -> str:
+    """Prometheus label for a ?version= value: only versions the data tree
+    can serve get their own series."""
+    global _known_versions
+    if version == "latest":
+        return version
+    loaded_at, known = _known_versions
+    if not known or time.monotonic() - loaded_at > _KNOWN_VERSIONS_TTL:
+        from .services.data_service import list_data_versions
+
+        known = frozenset(list_data_versions())
+        _known_versions = (time.monotonic(), known)
+    return version if version in known else "other"
+
+
 def _normalize_path(request: Request) -> str:
     """Collapse a request path to a bounded label for Prometheus.
 
@@ -521,6 +560,7 @@ class RequestLoggingMiddleware(BaseHTTPMiddleware):
         if request.url.path in _SKIP_PATHS:
             if request.url.path == "/metrics":
                 sweep_dead_worker_gauges()
+                refresh_lake_gauges()
             return await call_next(request)
 
         # Resolve the rate-limit tier BEFORE SlowAPIMiddleware runs (this
@@ -548,13 +588,14 @@ class RequestLoggingMiddleware(BaseHTTPMiddleware):
                 endpoint=normalized,
             ).observe(int(content_length))
 
-        # Track language and version usage
         lang = request.query_params.get("lang")
         if lang:
-            language_usage.labels(lang=lang).inc()
+            language_usage.labels(
+                lang=lang if lang in VALID_LANGUAGES else "other"
+            ).inc()
         version = request.query_params.get("version")
         if version:
-            version_usage.labels(version=version).inc()
+            version_usage.labels(version=_version_label(version)).inc()
         elif IS_BETA_BACKEND:
             # No explicit ?version= on a beta-deployment request means
             # the client is browsing whatever `latest` points at right
@@ -594,7 +635,7 @@ class RequestLoggingMiddleware(BaseHTTPMiddleware):
                         search_queries.labels(entity_type=etype).inc()
 
             # Compare views
-            if len(parts) == 3 and parts[1] == "compare":
+            if len(parts) == 3 and parts[1] == "compare" and response.status_code < 400:
                 compare_views.labels(pair=parts[2]).inc()
 
         # Widget script loads
@@ -646,20 +687,97 @@ class RequestLoggingMiddleware(BaseHTTPMiddleware):
         return response
 
 
-# Reject oversized bodies by Content-Length before Starlette parses them:
-# the upload route's per-file/file-count checks only run after the whole
-# multipart body has been read. The cap must clear the route's own maximum
-# (100 files x 512KB) plus multipart overhead — a 16MB cap shipped on
-# 2026-09-02 and 413'd every batch upload over ~30 runs.
+# The large cap must clear the batch upload route's own maximum (100 files x
+# 512KB) plus multipart overhead: a 16MB cap shipped on 2026-09-02 and 413'd
+# every batch upload over ~30 runs. Every other route gets the small default
+# unless it is listed in _BODY_LIMITS.
 _MAX_BODY_BYTES = int(os.environ.get("MAX_REQUEST_BODY_BYTES", "") or 64 * 1024 * 1024)
+_DEFAULT_BODY_BYTES = int(
+    os.environ.get("DEFAULT_REQUEST_BODY_BYTES", "") or 1024 * 1024
+)
+_BODY_LIMITS: tuple[tuple[re.Pattern[str], int], ...] = (
+    (re.compile(r"^/api/auth/runs/upload/?$"), _MAX_BODY_BYTES),
+    (
+        re.compile(r"^/api/runs/[^/]+/replay/?$"),
+        max(_DEFAULT_BODY_BYTES, 2 * REPLAY_MAX_GZ_BYTES),
+    ),
+    (re.compile(r"^/api/tierlists/[^/]+/?$"), 6 * 1024 * 1024),
+    (
+        re.compile(r"^/api/admin/thanks/supporters/(?:preview|import)/?$"),
+        8 * 1024 * 1024,
+    ),
+)
+_BODY_TOO_LARGE = "request body too large"
 
 
-class BodyLimitMiddleware(BaseHTTPMiddleware):
-    async def dispatch(self, request: Request, call_next):
-        length = request.headers.get("content-length")
-        if length and length.isdigit() and int(length) > _MAX_BODY_BYTES:
-            return JSONResponse({"detail": "request body too large"}, status_code=413)
-        return await call_next(request)
+def _body_limit(path: str) -> int:
+    for pattern, limit in _BODY_LIMITS:
+        if pattern.match(path):
+            return limit
+    return _DEFAULT_BODY_BYTES
+
+
+class BodyLimitMiddleware:
+    """Cap request bodies per route: by Content-Length before anything is
+    parsed, and by counting bytes as they arrive for bodies sent without one.
+    Inner middleware can turn the abort into some other error, so once the
+    cap is passed whatever response comes back is replaced with the 413."""
+
+    def __init__(self, app):
+        self.app = app
+
+    async def __call__(self, scope, receive, send):
+        if scope["type"] != "http":
+            await self.app(scope, receive, send)
+            return
+        limit = _body_limit(scope.get("path", ""))
+        declared = b""
+        for name, value in scope.get("headers") or ():
+            if name == b"content-length":
+                declared = value
+                break
+        if declared.isdigit() and int(declared) > limit:
+            await self._reject(scope, receive, send)
+            return
+
+        seen = 0
+        exceeded = False
+        started = False
+        rejected = False
+
+        async def limited_receive():
+            nonlocal seen, exceeded
+            message = await receive()
+            if message["type"] == "http.request":
+                seen += len(message.get("body") or b"")
+                if seen > limit:
+                    exceeded = True
+                    raise HTTPException(status_code=413, detail=_BODY_TOO_LARGE)
+            return message
+
+        async def guarded_send(message):
+            nonlocal started, rejected
+            if exceeded and not started:
+                if not rejected:
+                    rejected = True
+                    await self._reject(scope, receive, send)
+                return
+            if message["type"] == "http.response.start":
+                started = True
+            await send(message)
+
+        try:
+            await self.app(scope, limited_receive, guarded_send)
+        except Exception:
+            if not exceeded or started:
+                raise
+            if not rejected:
+                await self._reject(scope, receive, send)
+
+    @staticmethod
+    async def _reject(scope, receive, send):
+        response = JSONResponse({"detail": _BODY_TOO_LARGE}, status_code=413)
+        await response(scope, receive, send)
 
 
 # /metrics is scraped over the public URL. With METRICS_TOKEN set, the
@@ -866,34 +984,11 @@ def health(request: Request):
     # The ingest publishes this manifest last, after every artifact of a
     # cycle landed, so it names the newest COMPLETE generation; individual
     # store mtimes above can run ahead of it mid-cycle.
-    generation = None
-    try:
-        generation = json.loads((lake_dir / "generation.json").read_text())
-    except Exception:
-        pass
+    generation = read_lake_generation(lake_dir)
     data_through = (generation or {}).get("source_watermark")
     # The newest ATTEMPT, complete or not — a failing cron would otherwise
     # be invisible here (the manifest only ever shows the last success).
-    latest_attempt = None
-    try:
-        with open(lake_dir / "ingest_metrics.jsonl", "rb") as f:
-            f.seek(0, 2)
-            f.seek(max(0, f.tell() - 8192))
-            lines = f.read().splitlines()
-        if lines:
-            rec = json.loads(lines[-1])
-            latest_attempt = {
-                k: rec.get(k)
-                for k in (
-                    "generation_id",
-                    "cycle_started_at",
-                    "published_at",
-                    "complete",
-                    "failed_stage",
-                )
-            }
-    except Exception:
-        pass
+    latest_attempt = read_lake_latest_attempt(lake_dir)
 
     return {
         "status": "ok" if data_ok else "degraded",
@@ -961,10 +1056,20 @@ def root(request: Request):
 _BETA_ASSETS_DIR = Path(
     os.environ.get("DATA_DIR", Path(__file__).resolve().parents[1] / "data")
 )
+_BETA_ASSET_SUFFIXES = {".webp", ".png", ".jpg", ".jpeg", ".gif", ".svg", ".avif"}
+
+
+class _ImageOnlyStaticFiles(StaticFiles):
+    async def get_response(self, path: str, scope):
+        if Path(path).suffix.lower() not in _BETA_ASSET_SUFFIXES:
+            raise StarletteHTTPException(status_code=404)
+        return await super().get_response(path, scope)
+
+
 if _BETA_ASSETS_DIR.exists():
     app.mount(
         "/static/data-beta",
-        StaticFiles(directory=str(_BETA_ASSETS_DIR)),
+        _ImageOnlyStaticFiles(directory=str(_BETA_ASSETS_DIR)),
         name="data-beta-static",
     )
 

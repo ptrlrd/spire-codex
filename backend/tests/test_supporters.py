@@ -24,6 +24,8 @@ class _Coll:
         self.docs = {d["_id"]: d for d in (docs or [])}
 
     def find_one(self, flt, proj=None):
+        if isinstance(flt.get("_id"), dict):
+            return next(iter(self.find(flt)), None)
         d = self.docs.get(flt.get("_id"))
         return dict(d) if d else None
 
@@ -194,6 +196,97 @@ def test_overwolf_without_store_records_identity_but_no_flag(env, monkeypatch):
     out = supporters.link_overwolf(UID, "a.b.c")
     assert out["active"] is False and out["state"] == "unconfigured"
     assert _user(users)["overwolf_id"] == "ow-2"
+
+
+def _overwolf_token_for(monkeypatch, ow_id):
+    monkeypatch.setenv("OVERWOLF_STORE_ID", "store-1")
+    monkeypatch.setattr(
+        supporters, "verify_overwolf_token", lambda t: {"overwolf_user_id": ow_id}
+    )
+    monkeypatch.setattr(
+        supporters,
+        "fetch_overwolf_subscription",
+        lambda t: {"state": "active", "package_id": 7700984, "tier": "rare"},
+    )
+
+
+def test_overwolf_link_refuses_an_id_on_another_account(env, monkeypatch):
+    users, _ = env
+    other = ObjectId("5f1d7f9a3b2c4d5e6f708193")
+    users.docs[other] = {"_id": other, "username": "Rex", "overwolf_id": "ow-rex"}
+    _overwolf_token_for(monkeypatch, "ow-rex")
+    with pytest.raises(supporters.OverwolfConflict):
+        supporters.link_overwolf(UID, "a.b.c")
+    assert "overwolf_id" not in _user(users)
+    _login(users, monkeypatch)
+    r = client.post("/api/auth/overwolf/link", json={"token": "x.y.z"})
+    assert r.status_code == 409
+    assert "overwolf_id" not in _user(users)
+
+
+def test_overwolf_link_refuses_a_second_id_but_renews_the_same_one(env, monkeypatch):
+    users, _ = env
+    _overwolf_token_for(monkeypatch, "ow-1")
+    assert supporters.link_overwolf(UID, "a.b.c")["overwolf_id"] == "ow-1"
+    assert supporters.link_overwolf(UID, "a.b.c")["active"] is True
+    _overwolf_token_for(monkeypatch, "ow-2")
+    with pytest.raises(supporters.OverwolfConflict):
+        supporters.link_overwolf(UID, "a.b.c")
+    assert _user(users)["overwolf_id"] == "ow-1"
+    assert supporters.unlink_overwolf(UID).get("error")
+    _user(users)["steam_id"] = "7656119"
+    assert supporters.unlink_overwolf(UID) == {"overwolf_id": None, "active": False}
+    assert supporters.link_overwolf(UID, "a.b.c")["overwolf_id"] == "ow-2"
+
+
+def test_overwolf_link_turns_a_duplicate_key_into_a_conflict(env, monkeypatch):
+    from pymongo.errors import DuplicateKeyError
+
+    users, _ = env
+    _overwolf_token_for(monkeypatch, "ow-1")
+
+    def boom(*a, **k):
+        raise DuplicateKeyError("E11000")
+
+    monkeypatch.setattr(users, "update_one", boom)
+    with pytest.raises(supporters.OverwolfConflict):
+        supporters.link_overwolf(UID, "a.b.c")
+    assert supporters.link_overwolf_oauth(UID, "ow-1", "tok", None, [])["error"]
+
+
+def test_user_indexes_cover_overwolf_and_patreon_and_survive_a_failed_build():
+    from pymongo.errors import OperationFailure
+
+    class _Idx:
+        def __init__(self, fail=False):
+            self.made = {}
+            self.fail = fail
+
+        def list_indexes(self):
+            return [{"name": n} for n in self.made]
+
+        def drop_index(self, name):
+            pass
+
+        def create_index(self, keys, name=None, **kw):
+            if self.fail and name == "overwolf_id_unique":
+                raise OperationFailure("E11000 duplicate key")
+            self.made[name] = (keys, kw)
+
+    coll = _Idx()
+    users_db._ensure_indexes(coll)
+    keys, kw = coll.made["overwolf_id_unique"]
+    assert keys == [("overwolf_id", 1)] and kw["unique"] is True
+    assert kw["partialFilterExpression"] == {"overwolf_id": {"$gt": ""}}
+    assert coll.made["patreon_id_lookup"] == ([("patreon_id", 1)], {})
+    made = dict(coll.made)
+    users_db._ensure_indexes(coll)
+    assert coll.made == made
+
+    broken = _Idx(fail=True)
+    users_db._ensure_indexes(broken)
+    assert "overwolf_id_unique" not in broken.made
+    assert "patreon_id_lookup" in broken.made
 
 
 def test_bad_overwolf_token_is_rejected(env):

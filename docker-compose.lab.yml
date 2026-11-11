@@ -17,6 +17,7 @@ services:
     volumes:
       - ./lab:/lab:ro
       - ./data:/data:ro
+      - ./data-beta:/data-beta:ro
       - ./lake:/lake
     networks:
       - nginx_web-network

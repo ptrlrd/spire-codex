@@ -12,14 +12,13 @@ import os
 import threading
 from pathlib import Path
 
+from .official_content import official_characters, official_characters_sql
+
 logger = logging.getLogger(__name__)
 
 LAKE_DIR = Path(os.environ.get("LAKE_DIR", "/lake"))
 # "serve": /api/runs/community-stats builds its payload from the lake (the
 # snapshot stays as automatic fallback for unsupported brackets and errors).
-
-_OFFICIAL = "('IRONCLAD','SILENT','DEFECT','NECROBINDER','REGENT')"
-
 
 _SERVE_FILES = (
     "runs.parquet",
@@ -85,11 +84,24 @@ _payload_cache: dict[str, tuple[float, dict]] = {}
 SHORT_ABANDON_MAX_FLOOR = 5
 
 
-def _excluded_runs_sql(lake) -> str:
-    """Runs every stat leaves out: hidden or deleted runs, plus runs
-    abandoned by floor 5 (Neow rerolls and quick restarts that were never
-    really played). Headline totals read the raw runs instead."""
+def _unlisted_runs_sql(lake) -> str:
+    """Runs no surface counts: hidden or deleted runs and runs carrying
+    modded content (any seat's character, card or relic that is in no
+    official catalog; build_lake.py writes modded.parquet)."""
     sql = f"SELECT run_hash FROM read_parquet('{lake}/excluded.parquet')"
+    if (Path(lake) / "modded.parquet").exists():
+        sql += f"""
+  UNION ALL
+  SELECT run_hash FROM read_parquet('{lake}/modded.parquet')"""
+    return f"({sql})"
+
+
+def _excluded_runs_sql(lake) -> str:
+    """Runs every stat leaves out: the unlisted runs plus runs abandoned by
+    floor 5 (Neow rerolls and quick restarts that were never really
+    played). Headline totals keep those abandons and read
+    _unlisted_runs_sql instead."""
+    sql = _unlisted_runs_sql(lake)[1:-1]
     if (Path(lake) / "run_scalars.parquet").exists():
         sql += f"""
   UNION ALL
@@ -101,7 +113,11 @@ def _excluded_runs_sql(lake) -> str:
 
 
 def _eligible_sql(lake) -> str:
-    return _ELIGIBLE_SQL.format(lake=lake, excluded=_excluded_runs_sql(lake))
+    return _ELIGIBLE_SQL.format(
+        lake=lake,
+        excluded=_excluded_runs_sql(lake),
+        official=official_characters_sql(),
+    )
 
 
 def _cells_sql(lake) -> str:
@@ -110,11 +126,14 @@ def _cells_sql(lake) -> str:
 
 def _headline_eligible_sql(lake) -> str:
     """The eligible view for headline totals: every official run that is not
-    hidden or deleted. Runs abandoned by floor 5 stay in and count as
-    abandons; only the stats leave them out. The home page totals and the
-    community cube's totals both read this."""
-    hidden = f"(SELECT run_hash FROM read_parquet('{lake}/excluded.parquet'))"
-    return _ELIGIBLE_SQL.format(lake=lake, excluded=hidden)
+    hidden, deleted or modded (_unlisted_runs_sql). Runs abandoned by floor
+    5 stay in and count as abandons; only the stats leave them out. The home
+    page totals and the community cube's totals both read this."""
+    return _ELIGIBLE_SQL.format(
+        lake=lake,
+        excluded=_unlisted_runs_sql(lake),
+        official=official_characters_sql(),
+    )
 
 
 def _headline_cell_rows(lake) -> list[tuple]:
@@ -140,7 +159,7 @@ SELECT r.*
 FROM read_parquet('{lake}/runs.parquet') r
 ANTI JOIN {excluded} x ON r.run_hash = x.run_hash
 WHERE r.ascension BETWEEN 0 AND 10
-  AND r.character IN ('IRONCLAD','SILENT','DEFECT','NECROBINDER','REGENT')
+  AND r.character IN {official}
 """
 
 _PFLOORS_SQL = """
@@ -675,7 +694,7 @@ def _parse_lake_bracket(bracket: str | None):
     return (mode, player, skill, version)
 
 
-_CHARACTER_KEYS = frozenset(("ironclad", "silent", "defect", "necrobinder", "regent"))
+_CHARACTER_KEYS = frozenset(c.lower() for c in official_characters())
 
 
 def _split_character(bracket: str | None) -> tuple[str | None, str | None]:
@@ -1419,14 +1438,15 @@ def upgrade_pair_counts(con=None) -> dict[tuple[str, str], int]:
               WHERE player_id IS NOT NULL
             ),
             nplayers AS (
-              -- Solo is the BLOB's player count, not the runs doc's scalar:
-              -- they disagree on some co-op runs, and the walk trusts the blob.
-              SELECT run_hash, count(*) AS np
+              -- players.parquet holds the document's own seat, and upgrades
+              -- only that seat's smiths, so a lone row is the seat whatever
+              -- player id the floor stats carry.
+              SELECT run_hash, count(*) AS np, min(player_idx) AS only_idx
               FROM read_parquet('{LAKE_DIR}/players.parquet') GROUP BY 1
             ),
             smith AS (
               SELECT u.run_hash,
-                CASE WHEN n.np = 1 THEN 1 ELSE pm.player_idx END AS pidx,
+                CASE WHEN n.np = 1 THEN n.only_idx ELSE pm.player_idx END AS pidx,
                 u.floor AS gfloor, u.card
               FROM read_parquet('{LAKE_DIR}/upgrades.parquet') u
               JOIN eligible e ON u.run_hash = e.run_hash
@@ -3240,7 +3260,7 @@ WITH user_rate AS (
       / count(*) AS wr
   FROM read_parquet('{lake}/runs.parquet') r
   JOIN read_parquet('{lake}/run_scalars.parquet') s USING (run_hash)
-  ANTI JOIN read_parquet('{lake}/excluded.parquet') x
+  ANTI JOIN {unlisted} x
     ON r.run_hash = x.run_hash
   WHERE s.username IS NOT NULL AND s.username <> ''
     AND r.ascension BETWEEN 0 AND 10
@@ -3259,7 +3279,7 @@ seats AS (
 gone AS (
   SELECT DISTINCT t.run_key
   FROM seats t
-  JOIN read_parquet('{lake}/excluded.parquet') x ON t.run_hash = x.run_hash
+  JOIN {unlisted} x ON t.run_hash = x.run_hash
 ),
 wins AS (
   SELECT r.run_hash, upper(r.character) AS character,
@@ -3314,7 +3334,10 @@ def build_leaderboard_table() -> int:
         con.execute(
             "COPY ("
             + _LEADERBOARD_SQL.format(
-                lake=LAKE_DIR, official=_OFFICIAL, min_runs=int(WINRATE_MIN_RUNS)
+                lake=LAKE_DIR,
+                official=official_characters_sql(),
+                unlisted=_unlisted_runs_sql(LAKE_DIR),
+                min_runs=int(WINRATE_MIN_RUNS),
             )
             + f") TO '{tmp}' (FORMAT parquet, COMPRESSION zstd,"
             " ROW_GROUP_SIZE 20000)"

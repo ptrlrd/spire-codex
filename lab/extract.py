@@ -13,6 +13,10 @@ pages glob) -- the
 full current hidden/deleted id set -- because runs mutate (hide/unhide,
 deletes) after their page was written.
 
+Party runs store one document per player over the same shared blob, so
+_meta.player_index says which players[] entry this document is. The lake
+keeps only that seat's rows for the document.
+
     docker compose -f docker-compose.lab.yml run --rm extract
     docker compose -f docker-compose.lab.yml run --rm extract --bootstrap
       (one-time: derive state.json from existing pages that predate it)
@@ -26,7 +30,11 @@ import time
 
 sys.path.insert(0, "/app")
 
-from app.services.runs_db_mongo import _get_collection, get_run_blobs
+from app.services.runs_db_mongo import (
+    _get_collection,
+    get_run_blobs,
+    player_index_for_hash,
+)
 
 STAGING = pathlib.Path("/lake/staging")
 STATE = STAGING / "state.json"
@@ -196,6 +204,7 @@ def main() -> tuple[int, int]:
                     # blob's players[1] is only right for player 1 — every
                     # sibling was being credited to it.
                     "character": r.get("character"),
+                    "player_index": player_index_for_hash(obj, h),
                 }
                 out.write(json.dumps(obj, separators=(",", ":")) + "\n")
                 written += 1

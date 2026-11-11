@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useT, useGameLocale } from "@/lib/i18n";
 import { useSearchParams } from "next/navigation";
 import { Link } from "@/i18n/navigation";
@@ -14,6 +14,8 @@ import {
 } from "@/lib/content-brackets";
 import { cohortLabel } from "@/app/[locale]/stats/_grid/bracket";
 import { replaceQuery } from "@/lib/replace-query";
+import { useFilterFetch, useFilterPage } from "@/lib/use-filter-fetch";
+import LoadFailed from "@/app/components/LoadFailed";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -36,6 +38,11 @@ interface EncounterRow {
   avg_damage: number;
   avg_turns: number;
   characters: CharacterStat[];
+}
+
+function pageFromParam(value: string | null): number {
+  const n = Number(value);
+  return Number.isInteger(n) && n > 1 ? n : 1;
 }
 
 interface EncounterResponse {
@@ -130,13 +137,6 @@ export default function EncounterStatsClient() {
       .then((d) => setStatVersions(d?.stat_versions || []))
       .catch(() => {});
   }, []);
-  const [page, setPage] = useState(() => {
-    const n = Number(searchParams.get("page"));
-    return Number.isInteger(n) && n > 1 ? n : 1;
-  });
-
-  const [data, setData] = useState<EncounterResponse | null>(null);
-  const [loading, setLoading] = useState(true);
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
 
   // Encounter metadata lookup, populates display names for the IDs the
@@ -155,38 +155,34 @@ export default function EncounterStatsClient() {
       .catch(() => setMeta({}));
   }, [lang]);
 
+  // Back to page 1 whenever the filter set changes, paging through a
+  // previous query's results after a filter change would be confusing.
+  const [page, setPage] = useFilterPage(
+    JSON.stringify([
+      Array.from(acts).sort(),
+      Array.from(roomTypes).sort(),
+      multiplayer,
+      bracket,
+      version,
+    ]),
+    pageFromParam(searchParams.get("page")),
+  );
+
   // Refetch when filters or page change. Aggregation is server-side; the
   // backend computes all encounters and slices for the current page.
-  useEffect(() => {
-    setLoading(true);
-    const params = new URLSearchParams();
-    if (acts.size) params.set("act", Array.from(acts).join(","));
-    if (roomTypes.size)
-      params.set("room_type", Array.from(roomTypes).join(","));
-    if (multiplayer !== "any") params.set("multiplayer", multiplayer);
-    if (bracket !== "all") params.set("bracket", bracket);
-    if (version) params.set("build_id", version);
-    params.set("page", String(page));
-    params.set("limit", "50");
-    fetch(`${API}/api/runs/encounter-stats?${params}`)
-      .then((r) => r.json())
-      .then((d: EncounterResponse) => setData(d))
-      .catch(() =>
-        setData({ encounters: [], page, limit: 50, total: 0, has_next: false }),
-      )
-      .finally(() => setLoading(false));
-  }, [acts, roomTypes, multiplayer, bracket, version, page]);
-
-  // Reset to page 1 whenever the filter set changes, paging through a
-  // previous query's results after a filter change would be confusing.
-  const hydratedRef = useRef(false);
-  useEffect(() => {
-    if (!hydratedRef.current) {
-      hydratedRef.current = true;
-      return;
-    }
-    setPage(1);
-  }, [acts, roomTypes, multiplayer, bracket]);
+  const statsParams = new URLSearchParams();
+  if (acts.size) statsParams.set("act", Array.from(acts).join(","));
+  if (roomTypes.size)
+    statsParams.set("room_type", Array.from(roomTypes).join(","));
+  if (multiplayer !== "any") statsParams.set("multiplayer", multiplayer);
+  if (bracket !== "all") statsParams.set("bracket", bracket);
+  if (version) statsParams.set("build_id", version);
+  statsParams.set("page", String(page));
+  statsParams.set("limit", "50");
+  const stats = useFilterFetch<EncounterResponse>(
+    `${API}/api/runs/encounter-stats?${statsParams}`,
+  );
+  const { data, loading } = stats;
 
   const totalPages = useMemo(() => {
     if (!data) return 1;
@@ -392,7 +388,9 @@ export default function EncounterStatsClient() {
         )}
       </div>
 
-      {loading ? (
+      {stats.error ? (
+        <LoadFailed onRetry={stats.retry} />
+      ) : loading ? (
         <div className="text-center py-12 text-[var(--text-muted)]">
           {t("Loading…")}
         </div>

@@ -163,6 +163,10 @@ def create_tierlist(
     raise RuntimeError("could not allocate a unique share_id")
 
 
+def count_user_tierlists(user_id: str) -> int:
+    return _get_collection().count_documents({"user_id": ObjectId(user_id)})
+
+
 def list_user_tierlists(user_id: str) -> list[dict]:
     coll = _get_collection()
     docs = coll.find({"user_id": ObjectId(user_id)}).sort("updated_at", DESCENDING)

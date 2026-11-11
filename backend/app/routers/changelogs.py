@@ -2,6 +2,7 @@
 
 import json
 from datetime import date, datetime, timedelta
+import re
 from pathlib import Path
 
 from fastapi import APIRouter, HTTPException, Request
@@ -15,6 +16,9 @@ from ..services.data_service import (
 )
 
 router = APIRouter(prefix="/api/changelogs", tags=["Changelogs"])
+
+
+_TAG_RE = re.compile(r"[A-Za-z0-9][A-Za-z0-9._-]{0,63}")
 
 
 def _changelogs_dir() -> Path:
@@ -142,6 +146,8 @@ def recent_additions(
 def get_changelog(tag: str, request: Request):
     """Return full changelog for a specific tag (e.g. '1.0.3'). On the beta
     channel any archived game patch resolves, not just the current one."""
+    if not _TAG_RE.fullmatch(tag) or ".." in tag:
+        raise HTTPException(status_code=404, detail="Changelog not found")
     path = _changelogs_dir() / f"{tag}.json"
     if path.exists():
         with open(path, "r", encoding="utf-8") as f:

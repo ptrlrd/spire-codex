@@ -1,7 +1,6 @@
-"""Per-player stats: a run counts for the account that uploaded it, on
-the only seat of a solo run or the co-op seat with the account's Steam id
-(the lake guess when no id is linked, never on a tie), and the serve fold
-sums the filter slices into the profile grids."""
+"""Per-player stats: a run counts for the account that uploaded it, on the
+document's own seat (the lake keeps one seat per run document), and the
+serve fold sums the filter slices into the profile grids."""
 
 import sys
 from pathlib import Path
@@ -30,12 +29,9 @@ RUNS = [
 SEATS = [
     ("r1", 1, 1, "IRONCLAD"),
     ("r2", 1, 1, "IRONCLAD"),
-    ("r3", 1, 200, "DEFECT"),
     ("r3", 2, 100, "SILENT"),
     ("r4", 1, 400, "DEFECT"),
-    ("r4", 2, 300, "SILENT"),
     ("r5", 1, 400, "DEFECT"),
-    ("r5", 2, 300, "SILENT"),
     ("r6", 1, 1, "REGENT"),
     ("r7", 1, 1, "IRONCLAD"),
 ]
@@ -44,7 +40,6 @@ DECK = [
     ("r1", 1, "ANGER", 2),
     ("r1", 1, "ANGER", 3),
     ("r2", 1, "ANGER", 1),
-    ("r3", 1, "ZAP", 0),
     ("r3", 2, "NEUTRALIZE", 0),
     ("r4", 1, "ZAP", 0),
     ("r6", 1, "VENERATE", 0),
@@ -102,20 +97,20 @@ def lake(tmp_path, monkeypatch):
         ["SMITH"],
         [("ANGER", True), ("ZAP", False)],
     )
-    other = _player([], [], [])
+    own_idx = {h: i for h, i, _p, _c in SEATS}
     floor_rows = []
-    for h, _c, _w, _a, pc, _u in RUNS:
+    for h, _c, _w, _a, _pc, _u in RUNS:
         for i in range(3):
-            seats = [solo] if pc == 1 else [other, solo]
             floor_rows.append(
-                f"('{h}', 0::BIGINT, {i}::BIGINT, [{', '.join(seats)}], "
-                f"{'[' + repr('shop') + ']' if i == 2 else '[]::VARCHAR[]'})"
+                f"('{h}', 0::BIGINT, {i}::BIGINT, [{solo}], "
+                f"{'[' + repr('shop') + ']' if i == 2 else '[]::VARCHAR[]'}, "
+                f"{own_idx[h]}::BIGINT)"
             )
     w(
         "floors",
         "SELECT * FROM (VALUES "
         + ", ".join(floor_rows)
-        + ") t(run_hash, act, floor_idx, players, room_types)",
+        + ") t(run_hash, act, floor_idx, players, room_types, player_idx)",
     )
     w(
         "relics",
@@ -142,8 +137,7 @@ def lake(tmp_path, monkeypatch):
     return tmp_path
 
 
-def _build(monkeypatch, steam=()):
-    monkeypatch.setattr(stage, "_account_steam_ids", lambda: list(steam))
+def _build(monkeypatch):
     return stage.build()
 
 
@@ -151,8 +145,8 @@ def _ids(rows):
     return {r["id"]: r for r in rows}
 
 
-def test_solo_and_linked_coop_seats(lake, monkeypatch):
-    _build(monkeypatch, [("a", 100)])
+def test_solo_and_coop_seats(lake, monkeypatch):
+    _build(monkeypatch)
     a = svc.get_player_stats("a")
     assert (a["runs"], a["wins"]) == (3, 2)
     cards = _ids(a["tables"]["cards"])
@@ -161,23 +155,20 @@ def test_solo_and_linked_coop_seats(lake, monkeypatch):
     assert cards["ANGER"]["offered"] == 6 and cards["ANGER"]["taken"] == 6
 
 
-def test_unlinked_coop_tie_counts_only_solo(lake, monkeypatch):
+def test_coop_runs_count_on_the_document_seat(lake, monkeypatch):
     _build(monkeypatch)
     b = svc.get_player_stats("b")
-    assert (b["runs"], b["wins"]) == (1, 0)
-    assert set(_ids(b["tables"]["cards"])) == {"VENERATE"}
-    svc._cache.clear()
-    _build(monkeypatch, [("b", 400)])
-    assert svc.get_player_stats("b")["runs"] == 3
+    assert (b["runs"], b["wins"]) == (3, 1)
+    assert set(_ids(b["tables"]["cards"])) == {"VENERATE", "ZAP"}
 
 
 def test_runs_without_an_account_are_skipped(lake, monkeypatch):
-    out = _build(monkeypatch, [("a", 100)])
+    out = _build(monkeypatch)
     assert out["users"] == 2
 
 
 def test_filters_fold_slices(lake, monkeypatch):
-    _build(monkeypatch, [("a", 100)])
+    _build(monkeypatch)
     ic = svc.get_player_stats("a", character="IRONCLAD")
     assert (ic["runs"], ic["wins"]) == (2, 1)
     a10 = svc.get_player_stats("a", ascension=10)
@@ -187,7 +178,7 @@ def test_filters_fold_slices(lake, monkeypatch):
 
 
 def test_other_grids(lake, monkeypatch):
-    _build(monkeypatch, [("a", 100)])
+    _build(monkeypatch)
     t = svc.get_player_stats("a")["tables"]
     ev = t["events"][0]
     assert (ev["event"], ev["option"], ev["chosen"]) == ("NEOW", "GOLD", 9)
@@ -241,7 +232,7 @@ def test_endpoint_without_file(client, monkeypatch, tmp_path):
 
 
 def test_endpoint_serves_and_validates(lake, client, monkeypatch):
-    _build(monkeypatch, [("a", 100)])
+    _build(monkeypatch)
     _user(monkeypatch, {"_id": "a", "username": "A"})
     r = client.get("/api/players/A/stats?character=ironclad")
     body = r.json()
@@ -259,7 +250,7 @@ def test_own_stats_need_sign_in(client, monkeypatch):
 def test_own_stats_serve_a_private_profile_uncached(lake, client, monkeypatch):
     import app.routers.auth as auth_router
 
-    _build(monkeypatch, [("a", 100)])
+    _build(monkeypatch)
     owner = {"_id": "a", "username": "A", "profile_private": True}
     monkeypatch.setattr(auth_router, "require_user", lambda request: owner)
     r = client.get("/api/auth/player-stats?character=ironclad")
@@ -272,7 +263,7 @@ def test_own_stats_serve_a_private_profile_uncached(lake, client, monkeypatch):
 
 
 def test_public_stats_cache_headers(lake, client, monkeypatch):
-    _build(monkeypatch, [("a", 100)])
+    _build(monkeypatch)
     _user(monkeypatch, {"_id": "a", "username": "A"})
     r = client.get("/api/players/A/stats")
     assert r.status_code == 200 and r.json()["available"]
@@ -280,7 +271,7 @@ def test_public_stats_cache_headers(lake, client, monkeypatch):
 
 
 def test_filter_validation_precedes_user_lookup(lake, client, monkeypatch):
-    _build(monkeypatch, [("a", 100)])
+    _build(monkeypatch)
     _user(monkeypatch, {"_id": "a", "username": "A"})
     existing = client.get("/api/players/A/stats?players=9")
     ghost = client.get("/api/players/GHOST/stats?players=9")

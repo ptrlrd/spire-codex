@@ -75,15 +75,6 @@ export function buildCollectionPageJsonLd({
   return jsonLd;
 }
 
-// Stable site launch date used as the default `datePublished` for
-// detail pages. Schema.org Article requires `datePublished`, and
-// Google's rich-results validator flags its absence. Per-entity data
-// doesn't carry its own publication timestamp (the data is parsed from
-// game files, not authored), so we anchor every entity page to the
-// codex launch date, accurate for "when did Spire Codex publish a
-// page about this entity" and stable across re-renders.
-const SITE_LAUNCH_DATE = "2026-01-01T00:00:00.000Z";
-
 export function buildDetailPageJsonLd({
   name,
   description,
@@ -114,8 +105,8 @@ export function buildDetailPageJsonLd({
     description,
     url: `${SITE_URL}${path}`,
     image,
-    datePublished: datePublished ?? SITE_LAUNCH_DATE,
-    dateModified: dateModified ?? datePublished ?? SITE_LAUNCH_DATE,
+    ...(datePublished ? { datePublished } : {}),
+    ...(dateModified ? { dateModified } : {}),
     publisher: PUBLISHER_ORG,
     isPartOf: {
       "@type": "WebSite",
@@ -134,6 +125,56 @@ export function buildDetailPageJsonLd({
   };
 
   return [page, buildBreadcrumbJsonLd(breadcrumbs)];
+}
+
+function isoDate(raw: string | null | undefined): string | undefined {
+  if (!raw) return undefined;
+  const parsed = new Date(raw);
+  return Number.isNaN(parsed.getTime()) ? undefined : parsed.toISOString();
+}
+
+export function buildGuideArticleJsonLd({
+  title,
+  summary,
+  path,
+  author,
+  date,
+  updated,
+  category,
+  breadcrumbs,
+}: {
+  title: string;
+  summary: string;
+  path: string;
+  author: string;
+  date: string;
+  updated?: string | null;
+  category?: string;
+  breadcrumbs: BreadcrumbItem[];
+}) {
+  const published = isoDate(date);
+  const modified = isoDate(updated) ?? published;
+  const siteAuthored = !author || author === SITE_NAME;
+  const article: Record<string, unknown> = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "@id": `${SITE_URL}${path}`,
+    headline: title,
+    description: summary,
+    url: `${SITE_URL}${path}`,
+    mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}${path}` },
+    image: DEFAULT_OG_IMAGE,
+    ...(published ? { datePublished: published } : {}),
+    ...(modified ? { dateModified: modified } : {}),
+    author: siteAuthored
+      ? { "@type": "Organization", name: SITE_NAME, url: SITE_URL }
+      : { "@type": "Person", name: author },
+    publisher: PUBLISHER_ORG,
+    ...(category ? { articleSection: category } : {}),
+    inLanguage: "en",
+    about: { "@type": "Thing", name: "Slay the Spire 2" },
+  };
+  return [article, buildBreadcrumbJsonLd(breadcrumbs)];
 }
 
 export function buildWebSiteJsonLd() {

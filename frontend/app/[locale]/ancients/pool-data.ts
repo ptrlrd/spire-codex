@@ -31,7 +31,7 @@ interface NoteTemplate {
   vars?: Record<string, string>;
 }
 
-const NOTES: Record<string, NoteTemplate> = {
+export const NOTES: Record<string, NoteTemplate> = {
   "Offers one relic from each of three pools. Pool 1 includes a chance for Prismatic Gem or Sea Glass.":
     {
       key: "Offers one relic from each of three pools. Pool 1 includes a chance for {relic} or {relic2}.",
