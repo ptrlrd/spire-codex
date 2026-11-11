@@ -1178,6 +1178,9 @@ def get_entity_run_stats(
     floor), `lift_n` the seats with a known expectation, `win_rate_ci`
     the Wilson 95% interval in percent, and `hold_rate` the share of the
     bracket's seats that held the entity (null when seats are unknown).
+    Each `brackets` entry has its own `baseline_win_rate`, the win rate of
+    the average held entity of that type inside the bracket, so a bracket's
+    win rate is compared with its own cohort and not the all-runs figure.
     Relic blocks also carry `removed` (seats whose copy left before run
     end) and `removed_rate`."""
     if entity_type not in _ENTITY_STATS_TYPES:

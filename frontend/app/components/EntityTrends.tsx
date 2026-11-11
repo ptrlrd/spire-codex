@@ -225,7 +225,7 @@ export default function EntityTrends({
           <figure className="et-trend">
             <figcaption>
               <span className="et-dot" style={{ background: "#38bdf8" }} />{" "}
-              {t("Pick rate over time")}
+              {t("Hold rate over time")}
             </figcaption>
             <div className="et-canvas">
               <Line data={pickData} options={makeOpts()} />
