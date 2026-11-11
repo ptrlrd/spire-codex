@@ -35,6 +35,10 @@ const API =
 // the next cache slot.
 export const revalidate = 60;
 
+export function generateStaticParams() {
+  return [];
+}
+
 type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

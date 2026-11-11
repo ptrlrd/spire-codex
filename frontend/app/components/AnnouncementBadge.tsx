@@ -8,6 +8,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { useT } from "@/lib/i18n";
+import { cachedFetch } from "@/lib/fetch-cache";
 import {
   ANNOUNCEMENT_SEEN_KEY,
   LATEST_ANNOUNCEMENT_ID,
@@ -35,8 +36,7 @@ export function useAnnouncementUnread() {
     check();
     // Admin-published entries beat the committed seed list: ask the API for
     // the newest id so publishing lights the megaphone without a deploy.
-    fetch(`${API}/api/news/codex`)
-      .then((r) => (r.ok ? r.json() : null))
+    cachedFetch<{ latest_id?: string }>(`${API}/api/news/codex`)
       .then((d) => {
         if (d?.latest_id) {
           current = d.latest_id;

@@ -1,19 +1,11 @@
 "use client";
 
 // "Live" nav item. A green pulse + "Live", linking to /live; when players are
-// actually online it appends the live count. Polls /api/presence/active.
-//
-// Self-contained on purpose: the navbar mounts on every page, so this keeps
-// its own tiny poll rather than pulling in the live-page module chain.
+// actually online it appends the live count.
 
-import { useEffect, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { useT } from "@/lib/i18n";
-
-const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
-// Gentle: this runs on every page for every visitor, and a live count does
-// not need to be second-accurate.
-const POLL_MS = 60_000;
+import { usePresenceCount } from "@/lib/presence-count";
 
 function LiveCircle() {
   return (
@@ -30,35 +22,7 @@ export default function LiveNavButton({
   variant?: "desktop" | "mobile";
 }) {
   const t = useT();
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    let cancelled = false;
-    async function poll() {
-      if (document.hidden) return;
-      try {
-        const r = await fetch(`${API}/api/presence/active`);
-        if (!r.ok) return;
-        const d = await r.json();
-        const n =
-          typeof d.count === "number" ? d.count : (d.players?.length ?? 0);
-        if (!cancelled) setCount(n);
-      } catch {
-        // Leave the last known count; the next beat recovers.
-      }
-    }
-    poll();
-    const t = setInterval(poll, POLL_MS);
-    const onVis = () => {
-      if (!document.hidden) poll();
-    };
-    document.addEventListener("visibilitychange", onVis);
-    return () => {
-      cancelled = true;
-      clearInterval(t);
-      document.removeEventListener("visibilitychange", onVis);
-    };
-  }, []);
+  const count = usePresenceCount();
 
   if (variant === "mobile") {
     return (

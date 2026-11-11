@@ -1,7 +1,7 @@
 "use client";
 
 import { useT, type TFn } from "@/lib/i18n";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { Link } from "@/i18n/navigation";
 import { imageUrl } from "@/lib/image-url";
 import { characterHex, textColor } from "@/lib/character-colors";
@@ -58,10 +58,30 @@ function formatRunTime(seconds: number): string {
   return m > 0 ? `${m}m ${s.toString().padStart(2, "0")}s` : `${s}s`;
 }
 
-function formatRelativeDate(submittedAt: string, t: TFn): string {
+const CLOCK_MS = 30_000;
+
+function subscribeClock(notify: () => void) {
+  const timer = setInterval(notify, CLOCK_MS);
+  return () => clearInterval(timer);
+}
+
+function clockNow(): number {
+  return Math.floor(Date.now() / CLOCK_MS) * CLOCK_MS;
+}
+
+function noClock(): null {
+  return null;
+}
+
+function formatRelativeDate(
+  submittedAt: string,
+  now: number | null,
+  t: TFn,
+): string {
+  if (now === null) return "";
   // submitted_at is `YYYY-MM-DD HH:MM:SS` UTC. Treat as UTC then diff.
   const d = new Date(submittedAt.replace(" ", "T") + "Z");
-  const diffMs = Date.now() - d.getTime();
+  const diffMs = now - d.getTime();
   const sec = Math.floor(diffMs / 1000);
   if (sec < 60) return t("just now");
   const min = Math.floor(sec / 60);
@@ -104,6 +124,7 @@ export default function HomeLeaderboardLive({
   pollBase: string;
 }) {
   const t = useT();
+  const now = useSyncExternalStore(subscribeClock, clockNow, noClock);
   const [fastest, setFastest] = useState<FastestBlock>(initialFastest);
   const [daily, setDaily] = useState<RunRow[]>(initialDaily);
   const [recent, setRecent] = useState<RunRow[]>(initialRecent);
@@ -435,7 +456,7 @@ export default function HomeLeaderboardLive({
                             )}
                           </td>
                           <td className="num dim">
-                            {formatRelativeDate(r.submitted_at, t)}
+                            {formatRelativeDate(r.submitted_at, now, t)}
                           </td>
                         </tr>
                       );

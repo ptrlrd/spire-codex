@@ -272,7 +272,8 @@ export default async function CardsPage({ params }: Props) {
                       name: card.name,
                     })}
                     className="w-full h-auto aspect-[400/520] transition-transform group-hover:scale-[1.04] drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
-                    loading="lazy"
+                    loading="eager"
+                    fetchPriority="high"
                     crossOrigin="anonymous"
                   />
                   <div className="mt-1.5 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-xs">

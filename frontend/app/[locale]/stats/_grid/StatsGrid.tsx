@@ -6,6 +6,7 @@ import { useT, useGameLocale } from "@/lib/i18n";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { colorTextClass } from "@/lib/character-colors";
 import { fullCardUrl, imageUrl } from "@/lib/image-url";
+import { replaceQuery } from "@/lib/replace-query";
 import BetaBadge from "@/app/components/BetaBadge";
 import StatsRebuildingNotice from "@/app/components/StatsRebuildingNotice";
 import BracketPicker from "./BracketPicker";
@@ -455,13 +456,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
   const upgradedCount = rows.filter((r) => r.upgraded).length;
   const canSplitByCharacter =
     kind === "cards" && cfg.showCharacter && !character;
-  const setOffColor = (on: boolean) => {
-    setOffColorState(on);
-    router.replace(gridUrl(byCharacter, search, bracket, character, on), {
-      scroll: false,
-    });
-  };
-  const gridUrl = (
+  const gridQuery = (
     on: boolean,
     q: string,
     b: string = bracket,
@@ -476,7 +471,13 @@ export default function StatsGrid({ data }: { data: GridData }) {
     if (q.trim()) params.set("q", q.trim());
     if (off && kind === "cards") params.set("offcolor", "1");
     writeGridView(params, view);
-    return `${bp}${cfg.path}?${params.toString()}`;
+    return params.toString();
+  };
+  const gridUrl = (...args: Parameters<typeof gridQuery>) =>
+    `${bp}${cfg.path}?${gridQuery(...args)}`;
+  const setOffColor = (on: boolean) => {
+    setOffColorState(on);
+    replaceQuery(gridQuery(byCharacter, search, bracket, character, on));
   };
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -566,41 +567,38 @@ export default function StatsGrid({ data }: { data: GridData }) {
   };
   const setTiny = (on: boolean) => {
     setShowTiny(on);
-    router.replace(
-      gridUrl(byCharacter, search, bracket, character, offColor, {
+    replaceQuery(
+      gridQuery(byCharacter, search, bracket, character, offColor, {
         sort: sortKey,
         dir,
         samples: on,
         wax: showWax,
         upg: showUpgraded,
       }),
-      { scroll: false },
     );
   };
   const setWax = (on: boolean) => {
     setShowWax(on);
-    router.replace(
-      gridUrl(byCharacter, search, bracket, character, offColor, {
+    replaceQuery(
+      gridQuery(byCharacter, search, bracket, character, offColor, {
         sort: sortKey,
         dir,
         samples: showTiny,
         wax: on,
         upg: showUpgraded,
       }),
-      { scroll: false },
     );
   };
   const setUpgraded = (on: boolean) => {
     setShowUpgraded(on);
-    router.replace(
-      gridUrl(byCharacter, search, bracket, character, offColor, {
+    replaceQuery(
+      gridQuery(byCharacter, search, bracket, character, offColor, {
         sort: sortKey,
         dir,
         samples: showTiny,
         wax: showWax,
         upg: on,
       }),
-      { scroll: false },
     );
   };
   const resetColumns = () => setOrder([]);
@@ -622,7 +620,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
     setSearch(q);
     if (searchTimer.current) clearTimeout(searchTimer.current);
     searchTimer.current = setTimeout(() => {
-      router.replace(gridUrl(byCharacter, q), { scroll: false });
+      replaceQuery(gridQuery(byCharacter, q));
     }, 400);
   };
   useEffect(
@@ -649,15 +647,14 @@ export default function StatsGrid({ data }: { data: GridData }) {
       setSortKey(col.key);
       setDir(nextDir);
     }
-    router.replace(
-      gridUrl(byCharacter, search, bracket, character, offColor, {
+    replaceQuery(
+      gridQuery(byCharacter, search, bracket, character, offColor, {
         sort: nextSort,
         dir: nextDir,
         samples: showTiny,
         wax: showWax,
         upg: showUpgraded,
       }),
-      { scroll: false },
     );
   };
 

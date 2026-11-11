@@ -15,6 +15,7 @@ import { useT, useGameLocale } from "@/lib/i18n";
 import { useState, useEffect, type ReactNode } from "react";
 import { Link } from "@/i18n/navigation";
 import { imageUrl } from "@/lib/image-url";
+import { cachedFetch } from "@/lib/fetch-cache";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 const MOD_URL =
@@ -77,11 +78,8 @@ export default function AlertTicker() {
   const [paused, setPaused] = useState(false);
 
   useEffect(() => {
-    fetch(`${API}/api/announcements`)
-      .then((r) => (r.ok ? r.json() : null))
-      .then((d: { items?: Announcement[] } | null) =>
-        setAnnouncements(d?.items ?? []),
-      )
+    cachedFetch<{ items?: Announcement[] }>(`${API}/api/announcements`)
+      .then((d) => setAnnouncements(d?.items ?? []))
       .catch(() => {});
   }, []);
 

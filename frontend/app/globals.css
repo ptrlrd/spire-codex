@@ -1,20 +1,21 @@
 @import "tailwindcss";
 
-/* Kreon — the exact font Slay the Spire 2 uses for card text (extracted from
-   the game files). Used by the 1:1 card renderer. */
+/* Kreon, the exact font Slay the Spire 2 uses (extracted from the game files).
+   It shares its family name with the next/font Kreon in the layout, so these
+   two faces draw the site's regular and bold text. */
 @font-face {
   font-family: "Kreon";
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-  src: url("/fonts/kreon_regular.ttf") format("truetype");
+  src: url("/fonts/kreon_regular.woff2") format("woff2");
 }
 @font-face {
   font-family: "Kreon";
   font-weight: 700;
   font-style: normal;
   font-display: swap;
-  src: url("/fonts/kreon_bold.ttf") format("truetype");
+  src: url("/fonts/kreon_bold.woff2") format("woff2");
 }
 
 /* Kreon's regular "…" glyph overlaps its dots into "..", so this face swaps in U+2026 only. */
