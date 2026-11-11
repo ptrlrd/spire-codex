@@ -210,6 +210,23 @@ def test_slice_drops_a_run_when_any_seat_is_excluded(coop_lake):
     assert out["total"] == 3
 
 
+def test_build_drops_a_run_when_any_seat_is_excluded(coop_lake):
+    runs = duckdb.execute(
+        f"SELECT * EXCLUDE (submitted_at, was_abandoned)"
+        f" FROM read_parquet('{coop_lake}/runs.parquet')"
+    ).fetchall()
+    scalars = duckdb.execute(
+        f"SELECT * FROM read_parquet('{coop_lake}/run_scalars.parquet')"
+    ).fetchall()
+    _write_lake(coop_lake, runs, scalars, excluded=("h1", "c1a"))
+    ls.build_leaderboard_table()
+    trio = ls.leaderboard_slice(players="3", game_mode="standard")
+    assert trio["runs"] == [] and trio["total"] == 0
+    assert ls.leaderboard_rank("c1b") is None
+    assert ls.leaderboard_slice(players="multi")["total"] == 2
+    assert ls.leaderboard_slice(players="1", game_mode="standard")["total"] > 0
+
+
 def test_no_table_means_no_slice(tmp_path, monkeypatch):
     monkeypatch.setattr(ls, "LAKE_DIR", tmp_path)
     assert ls.leaderboard_slice() is None

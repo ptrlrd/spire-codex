@@ -3121,9 +3121,6 @@ def build_deep_tables() -> int:
         relics = item_rows("relics", "relic")
         potions_owned = item_rows("potions", "potion")
 
-        # Seats that used the potion at least once. The use events are the
-        # record; potions.parquet is the end-of-run belt, where was_used is
-        # never set. Lakes from before potion_events fall back to the belt.
         used = []
         if _potion_events_available() or "was_used" in _parquet_columns(con, "potions"):
             used = con.execute(
@@ -3250,6 +3247,20 @@ WITH user_rate AS (
     AND upper(r.character) IN {official}
   GROUP BY 1 HAVING count(*) >= {min_runs}
 ),
+seats AS (
+  SELECT r.*,
+    CASE WHEN coalesce(r.player_count, 1) > 1
+      THEN concat_ws('|', coalesce(r.seed, ''),
+        coalesce(r.start_time::VARCHAR, ''), coalesce(r.run_time::VARCHAR, ''),
+        r.player_count::VARCHAR)
+      ELSE r.run_hash END AS run_key
+  FROM read_parquet('{lake}/runs.parquet') r
+),
+gone AS (
+  SELECT DISTINCT t.run_key
+  FROM seats t
+  JOIN read_parquet('{lake}/excluded.parquet') x ON t.run_hash = x.run_hash
+),
 wins AS (
   SELECT r.run_hash, upper(r.character) AS character,
     coalesce(r.ascension, 0)::INT AS ascension,
@@ -3258,17 +3269,11 @@ wins AS (
     s.floors_reached, s.deck_size, s.relic_count, s.username,
     r.submitted_at, r.build_id,
     coalesce(r.was_abandoned, false) AS was_abandoned,
-    CASE WHEN coalesce(r.player_count, 1) > 1
-      THEN concat_ws('|', coalesce(r.seed, ''),
-        coalesce(r.start_time::VARCHAR, ''), coalesce(r.run_time::VARCHAR, ''),
-        r.player_count::VARCHAR)
-      ELSE r.run_hash END AS run_key,
-    u.wr AS user_wr
-  FROM read_parquet('{lake}/runs.parquet') r
+    r.run_key, u.wr AS user_wr
+  FROM seats r
   LEFT JOIN read_parquet('{lake}/run_scalars.parquet') s USING (run_hash)
   LEFT JOIN user_rate u ON lower(s.username) = u.uname
-  ANTI JOIN read_parquet('{lake}/excluded.parquet') x
-    ON r.run_hash = x.run_hash
+  ANTI JOIN gone g ON r.run_key = g.run_key
   WHERE coalesce(try_cast(r.win AS BOOLEAN), false)
     AND r.ascension BETWEEN 0 AND 10
 ),
@@ -3507,6 +3512,17 @@ def leaderboard_slice(
     finally:
         con.close()
     return _board_doc(runs, total, category, page, per_page)
+
+
+def leaderboard_table_time():
+    """When the stored leaderboard table was written (UTC), None without one."""
+    from datetime import datetime, timezone
+
+    try:
+        mtime = (LAKE_DIR / _LEADERBOARD_NAME).stat().st_mtime
+    except OSError:
+        return None
+    return datetime.fromtimestamp(mtime, tz=timezone.utc)
 
 
 def leaderboard_rank(run_hash: str, category: str = "fastest") -> int | None:

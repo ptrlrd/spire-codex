@@ -283,6 +283,49 @@ def test_ingest_refresh_fails_loudly_and_serving_refresh_falls_back(live, monkey
     assert written == len(runs_db_mongo.HOT_LEADERBOARD_COMBOS) == len(summary.written)
 
 
+def test_serving_refresh_keeps_boards_newer_than_its_table(live, monkeypatch):
+    from datetime import datetime, timedelta, timezone
+
+    from app.services import cache as app_cache
+
+    keys = [
+        runs_db_mongo._leaderboard_key(
+            category=c.get("category", "fastest"),
+            character=c.get("character"),
+            players=c.get("players"),
+            game_mode=c.get("game_mode"),
+        )
+        for c in runs_db_mongo.HOT_LEADERBOARD_COMBOS
+    ]
+    table_at = datetime(2026, 11, 9, 12, 0, tzinfo=timezone.utc)
+    fresh, stale = keys[0], keys[1]
+
+    class Stamped(Summary):
+        def find(self, q, proj=None):
+            return [
+                {"_id": fresh, "updated_at": datetime(2026, 11, 10, 0, 1)},
+                {"_id": stale, "updated_at": table_at - timedelta(hours=1)},
+            ]
+
+    cut = {"runs": [], "total": 0}
+    monkeypatch.setattr(
+        lake_stats, "leaderboard_boards", lambda build=True: {k: cut for k in keys}
+    )
+    monkeypatch.setattr(lake_stats, "leaderboard_table_time", lambda: table_at)
+    monkeypatch.setattr(runs_db_mongo, "_leaderboard_live", _no_live)
+    monkeypatch.setattr(app_cache, "set_json", lambda *a, **k: None)
+    summary = Stamped()
+    monkeypatch.setattr(runs_db_mongo, "_leaderboard_summary_coll", lambda: summary)
+    written = runs_db_mongo.refresh_leaderboard_summary()
+    assert fresh not in summary.written and stale in summary.written
+    assert written == len(keys) - 1
+
+    summary = Stamped()
+    monkeypatch.setattr(runs_db_mongo, "_leaderboard_summary_coll", lambda: summary)
+    assert runs_db_mongo.refresh_leaderboard_summary(build=True) == len(keys)
+    assert fresh in summary.written
+
+
 def test_rank_pool_is_the_runs_own_board(live, monkeypatch):
     monkeypatch.setattr(lake_stats, "leaderboard_rank", lambda h, c: None)
     live.docs = DOCS + [

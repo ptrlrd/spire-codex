@@ -2358,6 +2358,22 @@ def refresh_home_stats() -> int:
     return 1
 
 
+def _boards_newer_than(summary, table_at: datetime | None) -> set[str]:
+    """Keys of the stored boards written after the local leaderboard table."""
+    if table_at is None:
+        return set()
+    out: set[str] = set()
+    for doc in summary.find({}, {"updated_at": 1}):
+        stamp = doc.get("updated_at")
+        if stamp is None:
+            continue
+        if stamp.tzinfo is None:
+            stamp = stamp.replace(tzinfo=timezone.utc)
+        if stamp > table_at:
+            out.add(doc["_id"])
+    return out
+
+
 @_instrument("refresh_leaderboard_summary", collection="leaderboard_summary")
 def refresh_leaderboard_summary(build: bool = False) -> int:
     """Write the hot (category, character) leaderboard combos to
@@ -2366,14 +2382,18 @@ def refresh_leaderboard_summary(build: bool = False) -> int:
     failure there raises so the stored boards stay on the previous
     generation. The serving refresher re-cuts the boards from the stored
     table, and falls back to the live query per combo only when there is no
-    table."""
+    table. A stored board newer than the serving box's table came from an
+    ingest whose table has not been pulled yet, so it is left alone."""
     summary = _leaderboard_summary_coll()
     written = 0
     boards: dict[str, dict] | None = None
+    newer: set[str] = set()
     try:
         from . import lake_stats
 
         boards = lake_stats.leaderboard_boards(build=build)
+        if boards and not build:
+            newer = _boards_newer_than(summary, lake_stats.leaderboard_table_time())
     except Exception:
         if build:
             raise
@@ -2384,14 +2404,15 @@ def refresh_leaderboard_summary(build: bool = False) -> int:
             character = combo.get("character")
             players = combo.get("players")
             game_mode = combo.get("game_mode")
-            result = (boards or {}).get(
-                _leaderboard_key(
-                    category=category,
-                    character=character,
-                    players=players,
-                    game_mode=game_mode,
-                )
-            ) or _leaderboard_live(
+            board_key = _leaderboard_key(
+                category=category,
+                character=character,
+                players=players,
+                game_mode=game_mode,
+            )
+            if board_key in newer:
+                continue
+            result = (boards or {}).get(board_key) or _leaderboard_live(
                 category=category,
                 character=character,
                 players=players,
