@@ -13,9 +13,10 @@ from app.services.runs_db_mongo import (
 
 
 def test_every_player_count_slice_is_materialized():
-    assert len(PLAYERS_FILTER_COMBOS) == 4 * 6 + 4 * 11
+    cast = runs_db_mongo._CAST
+    assert len(PLAYERS_FILTER_COMBOS) == 4 * (len(cast) + 1) + 4 * 11
     for p in ("1", "2", "3", "4"):
-        for c in (None, "IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT"):
+        for c in (None, *cast):
             assert _filter_key(character=c, players=p) in MATERIALIZED_STATS_KEYS
         for a in range(11):
             assert _filter_key(players=p, ascension=str(a)) in MATERIALIZED_STATS_KEYS

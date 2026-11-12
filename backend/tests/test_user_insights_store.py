@@ -79,7 +79,7 @@ def test_invalidate_clears_prewarmed_fresh_markers(monkeypatch):
     assert (
         f"user_insights:fresh:u1{ui._filters_suffix(None, None, None, None)}" in deleted
     )
-    assert len(deleted) == 8
+    assert len(deleted) == 3 + len(ui.official_characters_ordered())
 
 
 def test_hollow_payloads_are_never_stored_or_served(monkeypatch):

@@ -382,14 +382,10 @@ def test_prewarm_slices_match_on_demand_computes(monkeypatch):
     slices = user_insights._compute_insights_all_slices(
         "507f1f77bcf86cd799439011", None
     )
-    # Unfiltered + 5 characters + A10 + Solo, keyed by cache suffix.
+    # Unfiltered + every character + A10 + Solo, keyed by cache suffix.
     assert set(slices) == {
         ":",
-        ":IRONCLAD",
-        ":SILENT",
-        ":DEFECT",
-        ":NECROBINDER",
-        ":REGENT",
+        *(f":{c}" for c in user_insights.official_characters_ordered()),
         "::a10:v:p",
         "::a:v:p1",
     }
