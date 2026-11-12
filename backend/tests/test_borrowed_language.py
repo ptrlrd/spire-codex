@@ -186,6 +186,11 @@ def test_filter_fields_follow_the_translation_maps(trees):
     assert scare["rarity"] == maps["card_rarities"]["Rare"]
 
 
+def test_borrowing_leaves_the_english_rows_alone(trees):
+    _load("stable", "zht")
+    assert _load("stable", "eng") == MAIN_CARDS
+
+
 def test_all_channel_uses_the_borrowed_rows(trees):
     assert _load("all", "zht")[0]["name"] == "猛擊"
 

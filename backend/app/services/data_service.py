@@ -336,6 +336,8 @@ def _load_main_borrowed(lang: str, entity: str, beta_version: str) -> list | dic
         out = _borrow_text(
             row, eng_by_id.get(row.get("id")), lang_by_id.get(row.get("id"))
         )
+        if out is row:
+            out = dict(row)
         for field, key_field, map_name in fields:
             localized = (maps.get(map_name) or {}).get(row.get(key_field))
             if localized and field in out:
