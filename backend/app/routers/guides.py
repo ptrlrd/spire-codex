@@ -16,7 +16,7 @@ from ..services.published_guides import (
     MAX_SUMMARY,
     MAX_TITLE,
     VALID_CATEGORIES,
-    VALID_CHARACTERS,
+    valid_characters,
     VALID_DIFFICULTIES,
     all_guides,
     sanitize as _sanitize,
@@ -116,7 +116,7 @@ async def submit_guide(request: Request, body: GuideSubmission):
     )
     character = (
         body.character
-        if body.character and body.character.lower() in VALID_CHARACTERS
+        if body.character and body.character.lower() in valid_characters()
         else None
     )
     tags = _sanitize(body.tags, MAX_SUMMARY)

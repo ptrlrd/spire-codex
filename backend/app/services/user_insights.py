@@ -18,6 +18,7 @@ import time
 from typing import Any
 
 from . import community_stats
+from .official_content import official_characters_ordered
 from .run_entity_stats import get_community_stats, get_entity_metrics_table
 
 logger = logging.getLogger(__name__)
@@ -593,7 +594,7 @@ def _prewarm_slices() -> list[tuple]:
     """The filter slices with durable standing: the unfiltered profile plus
     the dropdown picks the prewarmer builds (each character, A10, Solo)."""
     slices: list[tuple] = [(None, None, None, None)]
-    slices += [(c, None, None, None) for c in _PREWARM_CHARACTERS]
+    slices += [(c, None, None, None) for c in official_characters_ordered()]
     slices += [(None, 10, None, None), (None, None, None, 1)]
     return slices
 
@@ -869,9 +870,6 @@ def _compute_insights(
     return payload
 
 
-_PREWARM_CHARACTERS = ("IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT")
-
-
 def _require_blob_coverage(
     rows: list[dict], blobs: dict[str, dict], read_failed: bool = False
 ) -> bool:
@@ -971,7 +969,7 @@ def _compute_insights_all_slices(user_id: str, username: str | None) -> dict[str
     t2 = time.time()
 
     slices: list[tuple[tuple, list[dict]]] = [((None, None, None, None), rows)]
-    for c in _PREWARM_CHARACTERS:
+    for c in official_characters_ordered():
         slices.append(
             ((c, None, None, None), _apply_row_filters(rows, c, None, None, None))
         )

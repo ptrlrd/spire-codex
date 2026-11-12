@@ -543,16 +543,10 @@ def get_frame(wait: bool = False) -> int:
 
 def _official_characters() -> dict[str, str]:
     """id -> display name (without the leading "The") for official characters."""
-    from . import data_service
+    from . import official_content
 
     try:
-        out = {}
-        for c in data_service.load_characters():
-            cid = (c.get("id") or "").upper()
-            if cid:
-                name = c.get("name") or cid.title()
-                out[cid] = name.removeprefix("The ").strip()
-        return out
+        return dict(official_content.official_character_names())
     except Exception:
         logger.warning("charts character load failed", exc_info=True)
         return {}

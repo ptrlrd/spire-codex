@@ -2222,7 +2222,7 @@ MATERIALIZED_STATS_KEYS = frozenset(
 # filter -- the default ladder view. Other combos fall through to the live
 # query, which the new sort indexes already keep at ~500ms.
 _LEADERBOARD_CATEGORIES = ("fastest", "highest_ascension")
-_LEADERBOARD_CHARACTERS = ("IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT")
+_LEADERBOARD_CHARACTERS = _CAST
 # Two variants per (category, character): the bare API default, and the
 # players=single + game_mode=standard combo the frontend always sends.
 # Every party size the page can pick, on the standard ladder, plus the bare

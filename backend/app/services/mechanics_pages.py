@@ -36,6 +36,8 @@ from .data_service import (
     load_monsters,
 )
 
+from .official_content import official_characters_ordered
+
 logger = logging.getLogger(__name__)
 
 
@@ -162,7 +164,7 @@ def _resolve_value_token(expression: str, constants: dict) -> str:
 
 def _resolve_table_character_stats() -> str:
     chars = load_characters("eng")
-    order = ["IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT"]
+    order = official_characters_ordered()
     by_id = {c.get("id"): c for c in chars}
     rows = [by_id[c] for c in order if c in by_id]
     lines = [
