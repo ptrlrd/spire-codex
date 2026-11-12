@@ -28,6 +28,7 @@ export const CHARACTER_HUES: Record<
   defect: { base: "#3873a9", hue: 210, sat: 0.34 },
   necrobinder: { base: "#bf5a85", hue: 318, sat: 0.26 },
   regent: { base: "#f07c1e", hue: 28, sat: 0.3 },
+  fool: { base: "#d9cf3c", hue: 56, sat: 0.3 },
 };
 
 const HEX = /^#[0-9a-f]{6}$/i;

@@ -2,6 +2,7 @@ import { getT } from "@/lib/i18n-server";
 import JsonLd from "./JsonLd";
 import { buildFAQPageJsonLd } from "@/lib/jsonld";
 import type { Stats } from "@/lib/api/types";
+import { CHARACTER_LABELS, CHARACTER_ORDER } from "@/lib/character-order";
 
 /** Plain-English answers to the questions a first-time visitor most often
  * lands on the home page asking. The visible copy doubles as the source
@@ -15,6 +16,12 @@ function buildFaqs(
   const characters = stats?.characters ?? 5;
   const relics = stats?.relics ?? "hundreds of";
   const monsters = stats?.monsters ?? "100+";
+  const cast = new Intl.ListFormat("en", { type: "conjunction" }).format(
+    CHARACTER_ORDER.slice(
+      0,
+      typeof characters === "number" ? characters : 5,
+    ).map((id) => CHARACTER_LABELS[id]),
+  );
   return [
     {
       question: "What is Slay the Spire 2?",
@@ -38,7 +45,7 @@ function buildFaqs(
     },
     {
       question: "How many characters and cards are in Slay the Spire 2?",
-      answer: `Slay the Spire 2 currently has ${characters} playable characters, Ironclad, Silent, Defect, Necrobinder, and Regent, with ${cards} cards, ${relics} relics, and ${monsters} monsters tracked in the Spire Codex database. Counts grow with every Major Update from Mega Crit.`,
+      answer: `Slay the Spire 2 currently has ${characters} playable characters, ${cast}, with ${cards} cards, ${relics} relics, and ${monsters} monsters tracked in the Spire Codex database. Counts grow with every Major Update from Mega Crit.`,
     },
     {
       question: "Where can I find Slay the Spire 2 patch notes?",

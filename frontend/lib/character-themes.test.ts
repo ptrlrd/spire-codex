@@ -3,7 +3,14 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 
 const css = readFileSync(join(__dirname, "..", "app", "globals.css"), "utf8");
-const THEMES = ["ironclad", "silent", "defect", "necrobinder", "regent"];
+const THEMES = [
+  "ironclad",
+  "silent",
+  "defect",
+  "necrobinder",
+  "regent",
+  "fool",
+];
 
 function block(theme: string): Record<string, string> {
   const m = css.match(
