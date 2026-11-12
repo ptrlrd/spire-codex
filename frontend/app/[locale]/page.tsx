@@ -70,7 +70,7 @@ export default async function Home({ params }: Props) {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
   const [stats, translations, communityStats] = await Promise.all([
-    fetchJSON<Stats>(`${API}/api/stats?lang=${locale}`),
+    fetchJSON<Stats>(`${API}/api/stats?channel=all&lang=${locale}`),
     fetchJSON<Translations>(`${API}/api/translations?lang=${locale}`),
     loadStats(),
   ]);

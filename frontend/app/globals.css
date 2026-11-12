@@ -259,6 +259,24 @@
   --shadow-card: none;
 }
 
+:root[data-theme="fool"] {
+  --bg-primary: #12120a;
+  --bg-secondary: #1b1a0e;
+  --bg-card: #242314;
+  --bg-card-hover: #32301b;
+  --scrim: #000000;
+  --text-primary: #e2e1d5;
+  --text-secondary: #c6c5b3;
+  --text-muted: #b3b19e;
+  --text-on-accent: #12120a;
+  --text-on-fill: #ffffff;
+  --border-subtle: #3f3e27;
+  --border-accent: #595636;
+  --accent-gold: #d9cf3c;
+  --accent-gold-light: #d9cf3c;
+  --shadow-card: none;
+}
+
 :root {
   --text-ironclad: #e67663;
   --text-silent: #56a677;
@@ -341,6 +359,18 @@
   --text-ancient: #958aad;
   --text-colorless: #8b919c;
   --text-lift: 26%;
+  --lift-to: #ffffff;
+}
+:root[data-theme="fool"] {
+  --text-ironclad: #e77865;
+  --text-silent: #59a879;
+  --text-defect: #749cc4;
+  --text-necrobinder: #d180a0;
+  --text-regent: #f07c1e;
+  --text-fool: #d9cf3c;
+  --text-ancient: #9d93b4;
+  --text-colorless: #9399a3;
+  --text-lift: 30%;
   --lift-to: #ffffff;
 }
 

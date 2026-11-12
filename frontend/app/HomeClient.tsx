@@ -126,7 +126,7 @@ export default function HomeClient({
       initialRender.current = false;
       if (lang === "eng" && initialStats) return;
     }
-    cachedFetch<Stats>(`${API}/api/stats?lang=${lang}`)
+    cachedFetch<Stats>(`${API}/api/stats?channel=all&lang=${lang}`)
       .then(setStats)
       .catch(() => {});
     cachedFetch<Translations>(`${API}/api/translations?lang=${lang}`)

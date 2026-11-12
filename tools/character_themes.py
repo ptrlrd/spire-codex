@@ -35,6 +35,7 @@ CHARS = {
     "defect": ("#3873a9", 210, 0.34),
     "necrobinder": ("#bf5a85", 318, 0.26),
     "regent": ("#f07c1e", 28, 0.30),
+    "fool": ("#d9cf3c", 56, 0.30),
 }
 STATUS = {"--success":"#34d399","--danger":"#f87171","--warning":"#fbbf24","--info":"#38bdf8","--special":"#c084fc","--accent-teal":"#45cfd8"}
 out=[]; report=[]

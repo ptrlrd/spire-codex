@@ -22,6 +22,7 @@ export const CHARACTER_THEMES = [
   "defect",
   "necrobinder",
   "regent",
+  "fool",
 ] as const;
 export type CharacterTheme = (typeof CHARACTER_THEMES)[number];
 type Mode = "light" | "dark" | "character" | "custom";
@@ -32,6 +33,7 @@ const CHARACTER_NAMES: Record<CharacterTheme, string> = {
   defect: "Defect",
   necrobinder: "Necrobinder",
   regent: "Regent",
+  fool: "Fool",
 };
 const DEFAULT_CUSTOM = "#e8b830";
 
@@ -343,7 +345,7 @@ export default function ThemeToggle({
             <span className="block text-sm text-[var(--text-secondary)]">
               {CHARACTER_NAMES[character]}
             </span>
-            <div className="grid grid-cols-5 gap-2 [&>div]:contents [&_button]:h-11 [&_button]:w-full">
+            <div className="grid grid-cols-6 gap-2 [&>div]:contents [&_button]:h-11 [&_button]:w-full">
               {characterRow}
             </div>
           </div>

@@ -14,8 +14,9 @@ from app.services.runs_db_mongo import (
 
 
 def test_every_ascension_slice_is_materialized():
-    assert len(ASCENSION_FILTER_COMBOS) == 66  # 11 ascensions x (5 chars + alone)
-    for c in (None, "IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT"):
+    cast = runs_db_mongo._CAST
+    assert len(ASCENSION_FILTER_COMBOS) == 11 * (len(cast) + 1)
+    for c in (None, *cast):
         for a in range(11):
             assert _filter_key(character=c, ascension=str(a)) in MATERIALIZED_STATS_KEYS
 

@@ -370,6 +370,7 @@ def test_thank_you_lists_only_active_opted_in_supporters(env, monkeypatch):
 
 def test_theme_values_are_presets_or_hex():
     assert supporters.normalize_theme("Ironclad") == "ironclad"
+    assert supporters.normalize_theme("Fool") == "fool"
     assert supporters.normalize_theme("#FF8800") == "#ff8800"
     assert supporters.normalize_theme("#ff8") is None
     assert supporters.normalize_theme("red") is None
