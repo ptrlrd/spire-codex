@@ -52,6 +52,7 @@ from .routers import (
     update_history,
     ancient_pools,
     runs,
+    sandbox,
     pairings,
     draft,
     charts,
@@ -876,6 +877,7 @@ app.include_router(entity_history.router)
 app.include_router(update_history.router)
 app.include_router(ancient_pools.router)
 app.include_router(runs.router)
+app.include_router(sandbox.router)
 app.include_router(pairings.router)
 app.include_router(draft.router)
 app.include_router(charts.router)
