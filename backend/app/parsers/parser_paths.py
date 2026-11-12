@@ -13,6 +13,8 @@ isn't present.
 """
 
 import os
+import re
+from functools import lru_cache
 from pathlib import Path
 
 # Project root (spire-codex/)
@@ -65,6 +67,35 @@ def _detect_beta_version() -> str | None:
 
 
 BETA_VERSION = _detect_beta_version()
+
+
+_FALLBACK_CHARACTERS = ("Ironclad", "Silent", "Regent", "Necrobinder", "Defect")
+_LAUNCH_ORDER = ("Ironclad", "Silent", "Defect", "Necrobinder", "Regent")
+
+
+@lru_cache(maxsize=1)
+def playable_characters() -> tuple[str, ...]:
+    """Character class names from ModelDb.AllCharacters, in the game's order."""
+    model_db = DECOMPILED / "MegaCrit.Sts2.Core.Models" / "ModelDb.cs"
+    if model_db.exists():
+        block = re.search(
+            r"IEnumerable<CharacterModel> AllCharacters\b.*?\{(.*?)\}\);",
+            model_db.read_text(encoding="utf-8"),
+            re.DOTALL,
+        )
+        if block:
+            names = re.findall(r"Character<(\w+)>\(\)", block.group(1))
+            if names:
+                return tuple(names)
+    return _FALLBACK_CHARACTERS
+
+
+def site_characters() -> tuple[str, ...]:
+    """The cast with the launch five in the order the data files already use,
+    then any later character in the game's order."""
+    cast = playable_characters()
+    first = [name for name in _LAUNCH_ORDER if name in cast]
+    return tuple(first + [name for name in cast if name not in _LAUNCH_ORDER])
 
 
 def loc_dir(lang: str) -> Path:

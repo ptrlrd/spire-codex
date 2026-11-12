@@ -8,6 +8,7 @@ from parser_paths import (
     DECOMPILED,
     loc_dir as _loc_dir,
     data_dir as _data_dir,
+    playable_characters,
     resolve_animation_url,
 )
 
@@ -92,7 +93,7 @@ def parse_character(
     content = filepath.read_text(encoding="utf-8")
     class_name = filepath.stem
 
-    if class_name in ("RandomCharacter", "Deprived", "DeprecatedCharacter"):
+    if class_name not in playable_characters():
         return None
 
     char_id = class_name_to_id(class_name)

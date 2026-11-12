@@ -6,7 +6,13 @@ from pathlib import Path
 from description_resolver import resolve_description, extract_vars_from_source
 
 from orphan_filter import is_orphan
-from parser_paths import BASE, DECOMPILED, loc_dir as _loc_dir, data_dir as _data_dir
+from parser_paths import (
+    BASE,
+    DECOMPILED,
+    loc_dir as _loc_dir,
+    data_dir as _data_dir,
+    site_characters,
+)
 
 EVENTS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.Events"
 ACTS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.Acts"
@@ -768,7 +774,7 @@ def extract_preconditions(content: str, vars_dict: dict) -> list[str] | None:
     return conditions if conditions else None
 
 
-CHARACTERS = ["IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT"]
+CHARACTERS = [name.upper() for name in site_characters()]
 
 
 def parse_ancient_dialogue(event_id: str, localization: dict) -> dict[str, list[dict]]:
