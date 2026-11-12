@@ -11,6 +11,8 @@ from parser_paths import (
     DECOMPILED,
     loc_dir as _loc_dir,
     data_dir as _data_dir,
+    playable_characters,
+    site_characters,
     resolve_image_url,
 )
 
@@ -78,11 +80,7 @@ def parse_relic_pools() -> dict[str, str]:
     """Map relic class names to character pools."""
     relic_to_pool = {}
     pool_map = {
-        "IroncladRelicPool.cs": "ironclad",
-        "SilentRelicPool.cs": "silent",
-        "DefectRelicPool.cs": "defect",
-        "NecrobinderRelicPool.cs": "necrobinder",
-        "RegentRelicPool.cs": "regent",
+        **{f"{name}RelicPool.cs": name.lower() for name in playable_characters()},
         "SharedRelicPool.cs": "shared",
     }
     for filename, pool_name in pool_map.items():
@@ -155,13 +153,7 @@ def parse_single_relic(
     # `<RELIC>.<CHAR>.title` in `relics.json`. Surfaced as
     # `name_variants` so detail pages can list alternate names without
     # parsing localization at render time.
-    NAME_VARIANT_CHARS = {
-        "IRONCLAD": "Ironclad",
-        "SILENT": "Silent",
-        "DEFECT": "Defect",
-        "NECROBINDER": "Necrobinder",
-        "REGENT": "Regent",
-    }
+    NAME_VARIANT_CHARS = {name.upper(): name for name in site_characters()}
     name_variants: dict[str, str] = {}
     for char_key, char_label in NAME_VARIANT_CHARS.items():
         variant_title = localization.get(f"{relic_id}.{char_key}.title")
@@ -215,13 +207,7 @@ def parse_single_relic(
     image_url = resolve_image_url("relics", relic_base)
 
     # Character-specific image variants (e.g., Yummy Cookie has 5 variants)
-    VARIANT_SUFFIXES = {
-        "ironclad": "Ironclad",
-        "silent": "Silent",
-        "defect": "Defect",
-        "necrobinder": "Necrobinder",
-        "regent": "Regent",
-    }
+    VARIANT_SUFFIXES = {name.lower(): name for name in site_characters()}
     image_variants = {}
     for suffix, char_name in VARIANT_SUFFIXES.items():
         variant_url = resolve_image_url("relics", f"{relic_base}_{suffix}")

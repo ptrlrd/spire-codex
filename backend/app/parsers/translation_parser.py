@@ -2,7 +2,7 @@
 
 import json
 
-from parser_paths import loc_dir as _loc_dir, data_dir as _data_dir
+from parser_paths import loc_dir as _loc_dir, data_dir as _data_dir, site_characters
 
 
 def main(lang: str = "eng"):
@@ -114,7 +114,7 @@ def main(lang: str = "eng"):
 
     # Character names
     character_names = {}
-    for cid in ("IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT"):
+    for cid in (name.upper() for name in site_characters()):
         name = characters_loc.get(f"{cid}.title", cid.title())
         # Strip "The " prefix if present
         if name.startswith("The "):

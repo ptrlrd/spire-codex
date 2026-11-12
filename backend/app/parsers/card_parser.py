@@ -14,6 +14,7 @@ from parser_paths import (
     DECOMPILED,
     loc_dir as _loc_dir,
     data_dir as _data_dir,
+    playable_characters,
     resolve_image_url,
 )
 
@@ -111,11 +112,7 @@ def load_localization(loc_dir: Path) -> dict:
 
 # Compendium pool order (matches AllCharacterCardPools + AllSharedCardPools in ModelDb.cs)
 POOL_ORDER = [
-    "ironclad",
-    "silent",
-    "regent",
-    "necrobinder",
-    "defect",
+    *(name.lower() for name in playable_characters()),
     "colorless",
     "curse",
     "deprecated",
@@ -147,11 +144,7 @@ def parse_card_pools() -> dict[str, str]:
     """Parse card pool files to map card class names to character colors."""
     card_to_color = {}
     pool_map = {
-        "IroncladCardPool.cs": "ironclad",
-        "SilentCardPool.cs": "silent",
-        "DefectCardPool.cs": "defect",
-        "NecrobinderCardPool.cs": "necrobinder",
-        "RegentCardPool.cs": "regent",
+        **{f"{name}CardPool.cs": name.lower() for name in playable_characters()},
         "ColorlessCardPool.cs": "colorless",
         "CurseCardPool.cs": "curse",
         "StatusCardPool.cs": "status",
