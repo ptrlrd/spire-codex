@@ -239,6 +239,7 @@ const CHAR_COLOR: Record<string, string> = {
   DEFECT: "var(--color-defect)",
   NECROBINDER: "var(--color-necrobinder)",
   REGENT: "var(--color-regent)",
+  FOOL: "var(--color-fool)",
 };
 
 function relativeTime(iso: string | null, t: TFn): string {

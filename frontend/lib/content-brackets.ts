@@ -43,6 +43,7 @@ export const CHARACTER_BRACKETS: ContentBracket[] = [
   { key: "defect", param: "defect", label: "Defect" },
   { key: "necrobinder", param: "necrobinder", label: "Necrobinder" },
   { key: "regent", param: "regent", label: "Regent" },
+  { key: "fool", param: "fool", label: "Fool" },
 ];
 
 // Both axes are valid ?bracket= values, so normalizeBracket must recognize them.

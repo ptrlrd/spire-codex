@@ -81,6 +81,7 @@ const CHARACTER_ORDER = [
   "DEFECT",
   "NECROBINDER",
   "REGENT",
+  "FOOL",
 ];
 
 function characterLabel(c: string): string {

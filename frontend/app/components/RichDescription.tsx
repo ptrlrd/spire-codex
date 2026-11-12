@@ -31,6 +31,7 @@ const COLOR_CLASSES: Record<string, string> = {
   orange: "text-warning",
   pink: "text-special",
   aqua: "text-info",
+  yellow: "text-[var(--text-fool)]",
 };
 
 const EFFECT_CLASSES: Record<string, string> = {
@@ -271,7 +272,7 @@ function renderNode(
  * into styled React nodes.
  *
  * Supported tags:
- * - Colors: [gold], [red], [blue], [green], [purple], [orange], [pink], [aqua]
+ * - Colors: [gold], [red], [blue], [green], [purple], [orange], [pink], [aqua], [yellow]
  * - Effects: [sine] (wavy), [jitter] (shake), [b] (bold)
  * - Icons: [energy:N], [star:N]
  * - Placeholders: [Card], [Relic], [Potion] (runtime-dynamic)
@@ -286,6 +287,7 @@ const VALID_TAGS = new Set([
   "orange",
   "pink",
   "aqua",
+  "yellow",
   "sine",
   "jitter",
   "b",
@@ -298,6 +300,7 @@ const VALID_TAGS = new Set([
   "/orange",
   "/pink",
   "/aqua",
+  "/yellow",
   "/sine",
   "/jitter",
   "/b",

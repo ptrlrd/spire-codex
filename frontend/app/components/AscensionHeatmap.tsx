@@ -4,6 +4,7 @@ import { useT, useFormatNumber } from "@/lib/i18n";
 import { Fragment } from "react";
 
 import CharacterTag, { characterName } from "@/app/components/CharacterTag";
+import { COMPARE_CHARACTERS } from "@/lib/link-targets";
 
 // Character x ascension win-rate heatmap. Rendered by the community page and
 // embedded by the profile, which is a client component, so this has to be one
@@ -16,7 +17,7 @@ export type AscensionMatrix = Record<
   Record<string, { runs: number; wins: number; win_rate: number }>
 >;
 
-const CHARS = ["ironclad", "silent", "defect", "necrobinder", "regent"];
+const CHARS = COMPARE_CHARACTERS;
 
 // Same ramp as the tier heat treatment: near-ink -> gold -> pale gold.
 const ANCHORS: [number, [number, number, number]][] = [

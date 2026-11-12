@@ -55,6 +55,8 @@ async function fetchJSON<T>(url: string, fallback: T): Promise<T> {
   }
 }
 
+const LAUNCH_CHARACTERS = 5;
+
 // Character anchors for the "Browse cards by character" hub section.
 // Tagline is short and factual to give Google additional substring
 // matches for character-specific long-tail queries (e.g. "silent cards
@@ -89,6 +91,11 @@ const CHARACTERS = inCharacterOrder<{
       id: "regent",
       name: "Regent",
       tagline: "Court attendants, decree powers, prestige scaling.",
+    },
+    {
+      id: "fool",
+      name: "Fool",
+      tagline: "Arrows, Joy and Sadness, song-fuelled turns.",
     },
   ],
   (c) => c.id,
@@ -151,12 +158,16 @@ export default async function CardsPage({ params }: Props) {
   );
 
   const totalCards = cards.length;
-  const cardsByCharacter = CHARACTERS.map((char) => ({
-    ...char,
-    count: cards.filter(
-      (c) => (c.color || "").toLowerCase() === char.id.toLowerCase(),
-    ).length,
-  }));
+  const mainIds = new Set(cards.map((c) => c.id));
+  const withBeta = [...cards, ...betaCards.filter((c) => !mainIds.has(c.id))];
+  const cardsByCharacter = CHARACTERS.map((char, i) => {
+    const pool = i < LAUNCH_CHARACTERS ? cards : withBeta;
+    return {
+      ...char,
+      count: pool.filter((c) => (c.color || "").toLowerCase() === char.id)
+        .length,
+    };
+  }).filter((char, i) => i < LAUNCH_CHARACTERS || char.count > 0);
 
   // Top-6 by Codex Score, only cards that have stats (so the section
   // never renders empty placeholders during a fresh deploy when the
@@ -233,10 +244,12 @@ export default async function CardsPage({ params }: Props) {
             <p>
               Every <strong>Slay the Spire 2</strong> card in one place, all{" "}
               {fmtN(totalCards)} cards from the five characters (
-              {CHARACTERS.map((c) => t(c.name)).join(", ")}), with live pick
-              rates, win rates, and tier scores aggregated from
-              community-tracked runs. The card catalog is parsed directly from
-              the game on every patch, so values stay canonical, and stats
+              {CHARACTERS.slice(0, LAUNCH_CHARACTERS)
+                .map((c) => t(c.name))
+                .join(", ")}
+              ), with live pick rates, win rates, and tier scores aggregated
+              from community-tracked runs. The card catalog is parsed directly
+              from the game on every patch, so values stay canonical, and stats
               update continuously as players upload runs from the Overwolf
               overlay.
             </p>
@@ -328,7 +341,9 @@ export default async function CardsPage({ params }: Props) {
           <h2 className="text-xl font-semibold mb-3">
             {t("Browse cards by character")}
           </h2>
-          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+          <ul
+            className={`grid grid-cols-1 sm:grid-cols-2 gap-3 ${cardsByCharacter.length > 5 ? "lg:grid-cols-3 xl:grid-cols-6" : "lg:grid-cols-5"}`}
+          >
             {cardsByCharacter.map((char) => (
               <li key={char.id}>
                 <Link

@@ -42,6 +42,7 @@ const colorOptions = inCharacterOrder(
     { label: "Defect", value: "defect" },
     { label: "Necrobinder", value: "necrobinder" },
     { label: "Regent", value: "regent" },
+    { label: "Fool", value: "fool" },
     { label: "Colorless", value: "colorless" },
   ],
   (o) => o.value,

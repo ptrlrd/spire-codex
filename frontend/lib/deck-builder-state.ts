@@ -4,6 +4,7 @@ export const DECK_BUILDER_CHARACTERS = [
   "DEFECT",
   "NECROBINDER",
   "REGENT",
+  "FOOL",
 ] as const;
 
 export const MAX_OFFER = 5;

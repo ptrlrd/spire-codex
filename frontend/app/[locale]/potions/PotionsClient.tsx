@@ -43,6 +43,7 @@ const poolOptions = [
   { label: "Defect", value: "defect" },
   { label: "Necrobinder", value: "necrobinder" },
   { label: "Regent", value: "regent" },
+  { label: "Fool", value: "fool" },
   { label: "Event", value: "event" },
 ];
 

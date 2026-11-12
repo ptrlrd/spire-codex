@@ -30,6 +30,7 @@ const ENGLISH_CHARACTER_LABELS: Record<string, string> = {
   DEFECT: "Defect",
   NECROBINDER: "Necrobinder",
   REGENT: "Regent",
+  FOOL: "Fool",
 };
 
 function characterLabel(c: string, names?: Record<string, string>): string {

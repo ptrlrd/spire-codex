@@ -2,6 +2,8 @@
 // everywhere a character or card-color is tinted, instead of redefining the
 // hexes per component.
 
+import { CHARACTER_LABELS, CHARACTER_ORDER } from "./character-order";
+
 /** Canonical character hex colors, keyed by lowercase character/color id. */
 export const CHARACTER_HEX: Record<string, string> = {
   ironclad: "#d53b27",
@@ -9,7 +11,15 @@ export const CHARACTER_HEX: Record<string, string> = {
   defect: "#3873a9",
   necrobinder: "#bf5a85",
   regent: "#f07c1e",
+  fool: "#d9cf3c",
 };
+
+export const CHARACTERS = CHARACTER_ORDER.map((id) => ({
+  id,
+  upper: id.toUpperCase(),
+  label: CHARACTER_LABELS[id],
+  hex: CHARACTER_HEX[id],
+}));
 
 /**
  * Tailwind text-color class for a card/character color key (any casing).
@@ -28,6 +38,8 @@ export function colorTextClass(color: string | null | undefined): string {
       return "text-[var(--text-necrobinder)]";
     case "regent":
       return "text-[var(--text-regent)]";
+    case "fool":
+      return "text-[var(--text-fool)]";
     case "colorless":
       return "text-[var(--text-secondary)]";
     case "curse":
@@ -54,6 +66,7 @@ const TEXT_VARS: Record<string, string> = {
   "#3873a9": "var(--text-defect)",
   "#bf5a85": "var(--text-necrobinder)",
   "#f07c1e": "var(--text-regent)",
+  "#d9cf3c": "var(--text-fool)",
   "#6b5b8a": "var(--text-ancient)",
   "#6b7280": "var(--text-colorless)",
 };

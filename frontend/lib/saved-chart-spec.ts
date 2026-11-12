@@ -37,6 +37,7 @@ export const CHART_CHARACTERS = [
   "DEFECT",
   "NECROBINDER",
   "REGENT",
+  "FOOL",
 ] as const;
 
 export interface ChartFilters {

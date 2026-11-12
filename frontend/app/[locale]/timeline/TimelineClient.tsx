@@ -27,6 +27,7 @@ const storyColors: Record<string, string> = {
   defect: "border-info/40",
   necrobinder: "border-special/40",
   regent: "border-warning/40",
+  fool: "border-[var(--color-fool)]/40",
   magnumopus: "border-special/40",
   talesfromthespire: "border-info/40",
   reopening: "border-warning/40",
@@ -38,6 +39,7 @@ const storyAccent: Record<string, string> = {
   defect: "text-info",
   necrobinder: "text-special",
   regent: "text-warning",
+  fool: "text-[var(--text-fool)]",
   magnumopus: "text-special",
   talesfromthespire: "text-info",
   reopening: "text-warning",
@@ -49,6 +51,7 @@ const storyBorderLeft: Record<string, string> = {
   defect: "border-l-info/60",
   necrobinder: "border-l-special/60",
   regent: "border-l-warning/60",
+  fool: "border-l-[var(--color-fool)]/60",
   magnumopus: "border-l-special/60",
   talesfromthespire: "border-l-info/60",
   reopening: "border-l-warning/60",
@@ -63,6 +66,7 @@ const storyOptions = [
   { label: "The Defect", value: "Defect" },
   { label: "The Regent", value: "Regent" },
   { label: "The Necrobinder", value: "Necrobinder" },
+  { label: "The Fool", value: "Fool" },
 ];
 
 function UnlockBadge({

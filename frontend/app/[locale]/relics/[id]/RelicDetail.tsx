@@ -424,6 +424,7 @@ export default function RelicDetail({
                   "Defect",
                   "Necrobinder",
                   "Regent",
+                  "Fool",
                 ]);
                 const variantKeys = Object.keys(relic.image_variants!);
                 const isCharacterVariants = variantKeys.every((k) =>

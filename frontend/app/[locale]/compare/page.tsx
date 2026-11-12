@@ -12,6 +12,7 @@ const CHARACTERS = [
   { id: "defect", name: "Defect", color: "blue" },
   { id: "necrobinder", name: "Necrobinder", color: "purple" },
   { id: "regent", name: "Regent", color: "orange" },
+  { id: "fool", name: "Fool", color: "yellow" },
 ];
 
 const colorBorder: Record<string, string> = {
@@ -20,6 +21,7 @@ const colorBorder: Record<string, string> = {
   blue: "border-[var(--color-defect)]/40",
   purple: "border-[var(--color-necrobinder)]/40",
   orange: "border-[var(--color-regent)]/40",
+  yellow: "border-[var(--color-fool)]/40",
 };
 
 const colorText: Record<string, string> = {
@@ -28,6 +30,7 @@ const colorText: Record<string, string> = {
   blue: "text-[var(--color-defect)]",
   purple: "text-[var(--color-necrobinder)]",
   orange: "text-[var(--color-regent)]",
+  yellow: "text-[var(--text-fool)]",
 };
 
 function generatePairs() {

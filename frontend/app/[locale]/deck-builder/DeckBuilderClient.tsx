@@ -27,6 +27,7 @@ import {
   type DeckBuilderState,
 } from "@/lib/deck-builder-state";
 import { replaceQuery } from "@/lib/replace-query";
+import { needsMergedCatalog } from "@/lib/character-order";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 const UNDO_WINDOW_MS = 8000;
@@ -169,9 +170,9 @@ export default function DeckBuilderClient() {
       setCardCatalog([]);
       try {
         const [own, colorless, rel] = await Promise.all([
-          fetch(`${API}/api/cards?color=${state.character.toLowerCase()}`).then(
-            (r) => (r.ok ? r.json() : Promise.reject(r.status)),
-          ),
+          fetch(
+            `${API}/api/cards?color=${state.character.toLowerCase()}${needsMergedCatalog(state.character) ? "&channel=all" : ""}`,
+          ).then((r) => (r.ok ? r.json() : Promise.reject(r.status))),
           fetch(`${API}/api/cards?color=colorless`).then((r) =>
             r.ok ? r.json() : Promise.reject(r.status),
           ),

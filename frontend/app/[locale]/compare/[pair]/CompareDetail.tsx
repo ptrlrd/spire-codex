@@ -5,16 +5,11 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "@/i18n/navigation";
 import type { Character, Card } from "@/lib/api/types";
 import { cachedFetch } from "@/lib/fetch-cache";
+import { CHARACTER_LABELS } from "@/lib/character-order";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
-const CHAR_NAMES: Record<string, string> = {
-  ironclad: "Ironclad",
-  silent: "Silent",
-  defect: "Defect",
-  necrobinder: "Necrobinder",
-  regent: "Regent",
-};
+const CHAR_NAMES: Record<string, string> = CHARACTER_LABELS;
 
 const CHAR_COLORS: Record<string, string> = {
   ironclad: "Red",
@@ -22,6 +17,7 @@ const CHAR_COLORS: Record<string, string> = {
   defect: "Blue",
   necrobinder: "Purple",
   regent: "Orange",
+  fool: "Yellow",
 };
 
 const colorTextClass: Record<string, string> = {
@@ -30,6 +26,7 @@ const colorTextClass: Record<string, string> = {
   blue: "text-[var(--color-defect)]",
   purple: "text-[var(--color-necrobinder)]",
   orange: "text-[var(--color-regent)]",
+  yellow: "text-[var(--text-fool)]",
 };
 
 const colorBgClass: Record<string, string> = {
@@ -39,6 +36,7 @@ const colorBgClass: Record<string, string> = {
   purple:
     "bg-[var(--color-necrobinder)]/20 border-[var(--color-necrobinder)]/40",
   orange: "bg-[var(--color-regent)]/20 border-[var(--color-regent)]/40",
+  yellow: "bg-[var(--color-fool)]/20 border-[var(--color-fool)]/40",
 };
 
 const KEYWORDS = [
@@ -148,6 +146,7 @@ function BarComparison({
     blue: "bg-info/70",
     purple: "bg-special/70",
     orange: "bg-warning/70",
+    yellow: "bg-[var(--color-fool)]/70",
   };
   const barColorB: Record<string, string> = {
     red: "bg-danger/70",
@@ -155,18 +154,19 @@ function BarComparison({
     blue: "bg-info/70",
     purple: "bg-special/70",
     orange: "bg-warning/70",
+    yellow: "bg-[var(--color-fool)]/70",
   };
 
   return (
     <div className="mb-3">
       <div className="flex items-center justify-between mb-1">
-        <span className={`text-xs font-medium ${colorTextClass[colorA]}`}>
+        <span className={`text-xs font-medium ${colorTextClass[colorA] ?? ""}`}>
           {countA}
         </span>
         <span className="text-xs text-[var(--text-muted)] font-semibold">
           {label}
         </span>
-        <span className={`text-xs font-medium ${colorTextClass[colorB]}`}>
+        <span className={`text-xs font-medium ${colorTextClass[colorB] ?? ""}`}>
           {countB}
         </span>
       </div>
@@ -244,12 +244,20 @@ export default function CompareDetail({
     if (!parsed) return;
 
     Promise.all([
-      cachedFetch<Character>(`${API}/api/characters/${parsed.a}?lang=${lang}`),
-      cachedFetch<Character>(`${API}/api/characters/${parsed.b}?lang=${lang}`),
-      cachedFetch<Card[]>(`${API}/api/cards?color=${parsed.a}&lang=${lang}`),
-      cachedFetch<Card[]>(`${API}/api/cards?color=${parsed.b}&lang=${lang}`),
+      cachedFetch<Character>(
+        `${API}/api/characters/${parsed.a}?lang=${lang}&channel=all`,
+      ),
+      cachedFetch<Character>(
+        `${API}/api/characters/${parsed.b}?lang=${lang}&channel=all`,
+      ),
+      cachedFetch<Card[]>(
+        `${API}/api/cards?color=${parsed.a}&lang=${lang}&channel=all`,
+      ),
+      cachedFetch<Card[]>(
+        `${API}/api/cards?color=${parsed.b}&lang=${lang}&channel=all`,
+      ),
       cachedFetch<{ id: string; name: string }[]>(
-        `${API}/api/relics?lang=${lang}`,
+        `${API}/api/relics?lang=${lang}&channel=all`,
       ),
     ])
       .then(([cA, cB, crdsA, crdsB, relics]) => {
@@ -391,13 +399,13 @@ export default function CompareDetail({
         <div className="flex items-center justify-center gap-6 mt-2 text-xs text-[var(--text-muted)]">
           <span className="flex items-center gap-1">
             <span
-              className={`inline-block w-2 h-2 rounded-full ${colorA === "red" ? "bg-danger-fill" : colorA === "green" ? "bg-success-fill" : colorA === "blue" ? "bg-info-fill" : colorA === "purple" ? "bg-special-fill" : "bg-warning-fill"}`}
+              className={`inline-block w-2 h-2 rounded-full ${colorA === "red" ? "bg-danger-fill" : colorA === "green" ? "bg-success-fill" : colorA === "blue" ? "bg-info-fill" : colorA === "purple" ? "bg-special-fill" : colorA === "yellow" ? "bg-[var(--color-fool)]" : "bg-warning-fill"}`}
             />
             {nameA}
           </span>
           <span className="flex items-center gap-1">
             <span
-              className={`inline-block w-2 h-2 rounded-full ${colorB === "red" ? "bg-danger-fill" : colorB === "green" ? "bg-success-fill" : colorB === "blue" ? "bg-info-fill" : colorB === "purple" ? "bg-special-fill" : "bg-warning-fill"}`}
+              className={`inline-block w-2 h-2 rounded-full ${colorB === "red" ? "bg-danger-fill" : colorB === "green" ? "bg-success-fill" : colorB === "blue" ? "bg-info-fill" : colorB === "purple" ? "bg-special-fill" : colorB === "yellow" ? "bg-[var(--color-fool)]" : "bg-warning-fill"}`}
             />
             {nameB}
           </span>
@@ -504,7 +512,7 @@ export default function CompareDetail({
             className={`rounded-xl border ${colorBgClass[colorA] || "border-[var(--border-subtle)]"} p-5`}
           >
             <h3
-              className={`text-sm font-semibold ${colorTextClass[colorA]} mb-3`}
+              className={`text-sm font-semibold ${colorTextClass[colorA] ?? ""} mb-3`}
             >
               {nameA} ({charA.starting_deck.length} {t("cards")})
             </h3>
@@ -523,7 +531,7 @@ export default function CompareDetail({
             className={`rounded-xl border ${colorBgClass[colorB] || "border-[var(--border-subtle)]"} p-5`}
           >
             <h3
-              className={`text-sm font-semibold ${colorTextClass[colorB]} mb-3`}
+              className={`text-sm font-semibold ${colorTextClass[colorB] ?? ""} mb-3`}
             >
               {nameB} ({charB.starting_deck.length} {t("cards")})
             </h3>
@@ -551,7 +559,7 @@ export default function CompareDetail({
             className={`rounded-xl border ${colorBgClass[colorA] || "border-[var(--border-subtle)]"} p-5`}
           >
             <h3
-              className={`text-sm font-semibold ${colorTextClass[colorA]} mb-3`}
+              className={`text-sm font-semibold ${colorTextClass[colorA] ?? ""} mb-3`}
             >
               {nameA}
             </h3>
@@ -570,7 +578,7 @@ export default function CompareDetail({
             className={`rounded-xl border ${colorBgClass[colorB] || "border-[var(--border-subtle)]"} p-5`}
           >
             <h3
-              className={`text-sm font-semibold ${colorTextClass[colorB]} mb-3`}
+              className={`text-sm font-semibold ${colorTextClass[colorB] ?? ""} mb-3`}
             >
               {nameB}
             </h3>

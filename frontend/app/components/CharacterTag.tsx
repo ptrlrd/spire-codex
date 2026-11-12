@@ -12,6 +12,7 @@ const NAMES: Record<string, string> = {
   defect: "Defect",
   necrobinder: "Necrobinder",
   regent: "Regent",
+  fool: "Fool",
 };
 
 export function characterName(id: string): string {

@@ -88,6 +88,13 @@ export const SLUG_MAP: Record<string, SlugEntry> = {
       "All Regent character cards in Slay the Spire 2. The Regent commands powerful abilities with unique mechanics.",
     category: "character",
   },
+  fool: {
+    params: { color: "fool" },
+    label: "Fool Cards",
+    description:
+      "All Fool character cards in Slay the Spire 2. The Fool fires arrows and plays off Joy and Sadness.",
+    category: "character",
+  },
 
   // --- By Keyword ---
   exhaust: {
@@ -302,6 +309,27 @@ export const SLUG_MAP: Record<string, SlugEntry> = {
     label: "Regent Power Cards",
     description:
       "All Regent Power cards in Slay the Spire 2. Every power in the Regent's card pool.",
+    category: "combo",
+  },
+  "fool-attacks": {
+    params: { color: "fool", type: "Attack" },
+    label: "Fool Attack Cards",
+    description:
+      "All Fool Attack cards in Slay the Spire 2. Every attack in the Fool's card pool.",
+    category: "combo",
+  },
+  "fool-skills": {
+    params: { color: "fool", type: "Skill" },
+    label: "Fool Skill Cards",
+    description:
+      "All Fool Skill cards in Slay the Spire 2. Every skill in the Fool's card pool.",
+    category: "combo",
+  },
+  "fool-powers": {
+    params: { color: "fool", type: "Power" },
+    label: "Fool Power Cards",
+    description:
+      "All Fool Power cards in Slay the Spire 2. Every power in the Fool's card pool.",
     category: "combo",
   },
 };

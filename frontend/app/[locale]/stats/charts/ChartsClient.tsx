@@ -89,6 +89,7 @@ const CHAR_VARS: Record<string, string> = {
   DEFECT: "var(--color-defect)",
   NECROBINDER: "var(--color-necrobinder)",
   REGENT: "var(--color-regent)",
+  FOOL: "var(--color-fool)",
 };
 
 // Fixed colors for non-character series ids (splits, outcome curves, entity

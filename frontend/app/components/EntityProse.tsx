@@ -261,6 +261,7 @@ export default function EntityProse(props: Props) {
       defect: "Defect",
       necrobinder: "Necrobinder",
       regent: "Regent",
+      fool: "Fool",
     };
     if (!isEnglish) {
       return (

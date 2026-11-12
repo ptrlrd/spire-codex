@@ -24,6 +24,7 @@ const storyAccent: Record<string, string> = {
   defect: "text-info",
   necrobinder: "text-special",
   regent: "text-warning",
+  fool: "text-[var(--text-fool)]",
   magnumopus: "text-special",
   talesfromthespire: "text-info",
   reopening: "text-warning",
