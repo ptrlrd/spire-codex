@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { useRouter as useNextRouter, useSearchParams } from "next/navigation";
+import { useRouter as useNextRouter } from "next/navigation";
 import { useGameLocale, useT } from "@/lib/i18n";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { routing, type Locale } from "@/i18n/routing";
@@ -45,7 +45,6 @@ export default function LanguageSelector({
   const router = useRouter();
   const nextRouter = useNextRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   useEffect(() => {
     function handleClick(e: MouseEvent) {
@@ -65,8 +64,7 @@ export default function LanguageSelector({
 
   function handleLangChange(locale: Locale) {
     setOpen(false);
-    const query = searchParams.toString();
-    const href = query ? `${pathname}?${query}` : pathname;
+    const href = `${pathname}${window.location.search}`;
     // English lives at the bare path; next-intl would prefix it with /eng and
     // rely on a redirect, so go straight to the canonical URL instead.
     if (locale === routing.defaultLocale) nextRouter.replace(href);

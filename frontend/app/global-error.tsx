@@ -1,5 +1,7 @@
 "use client";
 
+import * as Sentry from "@sentry/nextjs";
+import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { LANG_HREFLANG, type LangCode } from "@/lib/languages";
 
@@ -44,6 +46,9 @@ export default function GlobalError({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  useEffect(() => {
+    Sentry.captureException(error);
+  }, [error]);
   const code = (usePathname() ?? "").split("/")[1] ?? "";
   const [title, fallback, retry] = COPY[code] ?? COPY.eng;
   return (

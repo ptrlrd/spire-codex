@@ -66,8 +66,7 @@ const geistMono = Geist_Mono({
 });
 
 // The site typeface: Kreon, the serif Slay the Spire 2 uses, self-hosted via
-// next/font (woff2, weights 300-700). Geist stays loaded as the fallback. The
-// 1:1 card renderer keeps its own exact local Kreon @font-face for pixel match.
+// next/font (woff2, weights 300-700). Geist stays loaded as the fallback.
 const kreon = Kreon({
   variable: "--font-kreon",
   subsets: ["latin"],

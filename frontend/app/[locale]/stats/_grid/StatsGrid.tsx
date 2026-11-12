@@ -8,6 +8,7 @@ import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { dataThroughLabel } from "@/lib/data-through";
 import { colorTextClass } from "@/lib/character-colors";
 import { fullCardUrl, imageUrl } from "@/lib/image-url";
+import { replaceQuery } from "@/lib/replace-query";
 import { useBetaRenderVersion } from "@/app/components/BetaRenderVersionProvider";
 import BetaBadge from "@/app/components/BetaBadge";
 import StatsRebuildingNotice from "@/app/components/StatsRebuildingNotice";
@@ -19,6 +20,7 @@ import {
   loadPrefs,
   moveColumn,
   orderColumns,
+  parseGridView,
   savePrefs,
   writeGridView,
   type GridViewState,
@@ -454,13 +456,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
   const upgradedCount = rows.filter((r) => r.upgraded).length;
   const canSplitByCharacter =
     kind === "cards" && cfg.showCharacter && !character;
-  const setOffColor = (on: boolean) => {
-    setOffColorState(on);
-    router.replace(gridUrl(byCharacter, search, bracket, character, on), {
-      scroll: false,
-    });
-  };
-  const gridUrl = (
+  const gridQuery = (
     on: boolean,
     q: string,
     b: string = bracket,
@@ -475,27 +471,45 @@ export default function StatsGrid({ data }: { data: GridData }) {
     if (q.trim()) params.set("q", q.trim());
     if (off && kind === "cards") params.set("offcolor", "1");
     writeGridView(params, view);
-    return `${bp}${cfg.path}?${params.toString()}`;
+    return params.toString();
+  };
+  const gridUrl = (...args: Parameters<typeof gridQuery>) =>
+    `${bp}${cfg.path}?${gridQuery(...args)}`;
+  const setOffColor = (on: boolean) => {
+    setOffColorState(on);
+    replaceQuery(gridQuery(byCharacter, search, bracket, character, on));
   };
   useEffect(() => {
     const timer = setTimeout(() => {
+      const sp = new URLSearchParams(window.location.search);
+      const view = parseGridView(Object.fromEntries(sp), cfg.columns);
+      const fromUrl = data.fromUrl || sp.size > 0;
+      if (sp.size > 0) {
+        setSearch((sp.get("q") ?? "").slice(0, 80));
+        setOffColorState(sp.get("offcolor") === "1");
+        setSortKey(view.sort ?? first);
+        setDir(view.dir ?? -1);
+        setShowTiny(!!view.samples);
+        setShowWax(!!view.wax);
+        setShowUpgraded(!!view.upg);
+      }
       const saved = loadPrefs(kind);
       if (saved) {
         if (
-          data.sort === undefined &&
+          view.sort === undefined &&
           saved.sortKey &&
           saved.sortKey in COLUMN_DEFS
         )
           setSortKey(saved.sortKey);
-        if (data.dir === undefined && (saved.dir === 1 || saved.dir === -1))
+        if (view.dir === undefined && (saved.dir === 1 || saved.dir === -1))
           setDir(saved.dir);
-        if (data.samples === undefined && typeof saved.showTiny === "boolean")
+        if (view.samples === undefined && typeof saved.showTiny === "boolean")
           setShowTiny(saved.showTiny);
-        if (data.wax === undefined && typeof saved.showWax === "boolean")
+        if (view.wax === undefined && typeof saved.showWax === "boolean")
           setShowWax(saved.showWax);
-        if (data.upg === undefined && typeof saved.showUpgraded === "boolean")
+        if (view.upg === undefined && typeof saved.showUpgraded === "boolean")
           setShowUpgraded(saved.showUpgraded);
-        if (!data.fromUrl) {
+        if (!fromUrl) {
           if (typeof saved.query === "string") setSearch(saved.query);
           const b = saved.bracket || bracket;
           const ch = saved.character || "";
@@ -565,41 +579,38 @@ export default function StatsGrid({ data }: { data: GridData }) {
   };
   const setTiny = (on: boolean) => {
     setShowTiny(on);
-    router.replace(
-      gridUrl(byCharacter, search, bracket, character, offColor, {
+    replaceQuery(
+      gridQuery(byCharacter, search, bracket, character, offColor, {
         sort: sortKey,
         dir,
         samples: on,
         wax: showWax,
         upg: showUpgraded,
       }),
-      { scroll: false },
     );
   };
   const setWax = (on: boolean) => {
     setShowWax(on);
-    router.replace(
-      gridUrl(byCharacter, search, bracket, character, offColor, {
+    replaceQuery(
+      gridQuery(byCharacter, search, bracket, character, offColor, {
         sort: sortKey,
         dir,
         samples: showTiny,
         wax: on,
         upg: showUpgraded,
       }),
-      { scroll: false },
     );
   };
   const setUpgraded = (on: boolean) => {
     setShowUpgraded(on);
-    router.replace(
-      gridUrl(byCharacter, search, bracket, character, offColor, {
+    replaceQuery(
+      gridQuery(byCharacter, search, bracket, character, offColor, {
         sort: sortKey,
         dir,
         samples: showTiny,
         wax: showWax,
         upg: on,
       }),
-      { scroll: false },
     );
   };
   const resetColumns = () => setOrder([]);
@@ -621,7 +632,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
     setSearch(q);
     if (searchTimer.current) clearTimeout(searchTimer.current);
     searchTimer.current = setTimeout(() => {
-      router.replace(gridUrl(byCharacter, q), { scroll: false });
+      replaceQuery(gridQuery(byCharacter, q));
     }, 400);
   };
   useEffect(
@@ -648,15 +659,14 @@ export default function StatsGrid({ data }: { data: GridData }) {
       setSortKey(col.key);
       setDir(nextDir);
     }
-    router.replace(
-      gridUrl(byCharacter, search, bracket, character, offColor, {
+    replaceQuery(
+      gridQuery(byCharacter, search, bracket, character, offColor, {
         sort: nextSort,
         dir: nextDir,
         samples: showTiny,
         wax: showWax,
         upg: showUpgraded,
       }),
-      { scroll: false },
     );
   };
 

@@ -27,13 +27,11 @@ const API =
 // next visitor triggers a background regen and gets the still-fresh
 // stale-while-revalidate copy. Backend reads are now sub-25ms via
 // the materialized stats_summary, so a re-render is cheap.
-//
-// The earlier `force-dynamic` was a workaround for build-time
-// fetches caching `null` when the backend was unreachable. The
-// fetchJSON helper below now returns a safe placeholder on error
-// rather than null, so an unreachable-backend regen doesn't poison
-// the next cache slot.
 export const revalidate = 60;
+
+export function generateStaticParams() {
+  return [];
+}
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -76,6 +74,7 @@ export default async function Home({ params }: Props) {
     fetchJSON<Translations>(`${API}/api/translations?lang=${locale}`),
     loadStats(),
   ]);
+  if (!stats || !translations) throw new Error("Home data unavailable");
   const characterWinRates = Object.fromEntries(
     (communityStats?.characters ?? []).map((c) => [
       c.character.toLowerCase(),

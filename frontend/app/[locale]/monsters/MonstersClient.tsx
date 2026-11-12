@@ -185,7 +185,7 @@ function MonstersClientInner({
       />
 
       <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-        {filtered.map((monster) => (
+        {filtered.map((monster, i) => (
           <Link
             prefetch={false}
             key={monster.id}
@@ -202,7 +202,8 @@ function MonstersClientInner({
                     name: monster.name,
                   })}
                   className="w-full h-40 object-contain rounded-t-lg"
-                  loading="lazy"
+                  loading={i < 3 ? "eager" : "lazy"}
+                  fetchPriority={i < 3 ? "high" : undefined}
                   crossOrigin="anonymous"
                 />
               </div>
