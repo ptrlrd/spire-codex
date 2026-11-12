@@ -20,7 +20,9 @@ describe("entity links", () => {
       { other: "silent", slug: "silent-vs-defect" },
       { other: "necrobinder", slug: "defect-vs-necrobinder" },
       { other: "regent", slug: "defect-vs-regent" },
+      { other: "fool", slug: "defect-vs-fool" },
     ]);
+    expect(characterHref("FOOL")).toBe("/characters/fool");
     expect(comparePairs("watcher")).toEqual([]);
   });
 

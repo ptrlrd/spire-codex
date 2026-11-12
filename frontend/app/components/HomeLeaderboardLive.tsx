@@ -38,6 +38,7 @@ const ENGLISH_CHARACTER_LABELS: Record<string, string> = {
   DEFECT: "Defect",
   NECROBINDER: "Necrobinder",
   REGENT: "Regent",
+  FOOL: "Fool",
 };
 
 /** Resolve a character key (uppercase from the runs API: `IRONCLAD`,

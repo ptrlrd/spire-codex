@@ -16,6 +16,9 @@ import {
 import { uiText } from "@/lib/locale-server";
 import { buildPageMetadata } from "@/lib/seo";
 import CompareDetail from "./CompareDetail";
+import { CHARACTER_LABELS } from "@/lib/character-order";
+import { fetchEntityRes } from "@/lib/entity-fetch";
+import { COMPARE_CHARACTERS } from "@/lib/link-targets";
 
 export const dynamic = "force-static";
 export const revalidate = 3600;
@@ -25,23 +28,9 @@ const API_INTERNAL =
   process.env.NEXT_PUBLIC_API_URL ||
   "http://localhost:8000";
 
-const CHARACTERS = ["ironclad", "silent", "defect", "necrobinder", "regent"];
+const CHARACTERS = COMPARE_CHARACTERS;
 
-const CHAR_NAMES: Record<string, string> = {
-  ironclad: "Ironclad",
-  silent: "Silent",
-  defect: "Defect",
-  necrobinder: "Necrobinder",
-  regent: "Regent",
-};
-
-const CHAR_COLORS: Record<string, string> = {
-  ironclad: "Red",
-  silent: "Green",
-  defect: "Blue",
-  necrobinder: "Purple",
-  regent: "Orange",
-};
+const CHAR_NAMES: Record<string, string> = CHARACTER_LABELS;
 
 function entityIdOf(camel: string): string {
   return camel.replace(/([a-z0-9])([A-Z])/g, "$1_$2").toUpperCase();
@@ -64,7 +53,7 @@ async function fetchCharacterName(
   locale: Locale,
 ): Promise<string> {
   try {
-    const res = await fetch(
+    const res = await fetchEntityRes(
       `${API_INTERNAL}/api/characters/${charId}${langQuery(locale)}`,
       { next: { revalidate: 300 } },
     );
@@ -81,9 +70,10 @@ async function fetchRelicNames(
   locale: Locale,
 ): Promise<Record<string, string>> {
   try {
-    const res = await fetch(`${API_INTERNAL}/api/relics${langQuery(locale)}`, {
-      next: { revalidate: 300 },
-    });
+    const res = await fetch(
+      `${API_INTERNAL}/api/relics?lang=${locale}&channel=all`,
+      { next: { revalidate: 300 } },
+    );
     if (!res.ok) return {};
     const relics: { id: string; name: string }[] = await res.json();
     const wanted = new Set(ids);
@@ -128,15 +118,15 @@ async function fetchCharacterAndCards(
   locale: Locale,
 ): Promise<{ character: Character; cards: Card[] } | null> {
   try {
-    const [charRes, cardsRes] = await Promise.all([
-      fetch(`${API_INTERNAL}/api/characters/${charId}${langQuery(locale)}`, {
-        next: { revalidate: 300 },
-      }),
-      fetch(`${API_INTERNAL}/api/cards?color=${charId}&lang=${locale}`, {
-        next: { revalidate: 300 },
-      }),
-    ]);
+    const charRes = await fetchEntityRes(
+      `${API_INTERNAL}/api/characters/${charId}${langQuery(locale)}`,
+      { next: { revalidate: 300 } },
+    );
     if (!charRes.ok) return null;
+    const cardsRes = await fetch(
+      `${API_INTERNAL}/api/cards?color=${charId}&lang=${locale}&channel=all`,
+      { next: { revalidate: 300 } },
+    );
     const character: Character = await charRes.json();
     const cards: Card[] = cardsRes.ok ? await cardsRes.json() : [];
     return { character, cards };

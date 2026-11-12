@@ -47,6 +47,7 @@ const CHARACTER_COLORS = new Set([
   "defect",
   "necrobinder",
   "regent",
+  "fool",
 ]);
 
 interface Column {

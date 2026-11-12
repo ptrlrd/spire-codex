@@ -76,6 +76,7 @@ const CHARACTERS = [
   "defect",
   "necrobinder",
   "regent",
+  "fool",
 ];
 
 function slugify(text: string): string {

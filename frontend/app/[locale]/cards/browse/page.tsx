@@ -25,6 +25,7 @@ const characterColors: Record<string, string> = {
   defect: "border-info/40 hover:border-info",
   necrobinder: "border-special/40 hover:border-special",
   regent: "border-warning/40 hover:border-warning",
+  fool: "border-[var(--color-fool)]/40 hover:border-[var(--color-fool)]",
 };
 
 const characterTextColors: Record<string, string> = {
@@ -33,6 +34,7 @@ const characterTextColors: Record<string, string> = {
   defect: "text-info",
   necrobinder: "text-special",
   regent: "text-warning",
+  fool: "text-[var(--text-fool)]",
 };
 
 const rarityColors: Record<string, string> = {

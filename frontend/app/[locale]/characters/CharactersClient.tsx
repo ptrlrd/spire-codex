@@ -28,6 +28,7 @@ const colorStyles: Record<string, string> = {
   blue: "border-info/60 from-info/10",
   purple: "border-special/60 from-special/10",
   orange: "border-warning/60 from-warning/10",
+  yellow: "border-[var(--color-fool)]/60 from-[var(--color-fool)]/10",
 };
 
 export default function CharactersClient({

@@ -7,6 +7,7 @@ export const TIER_CARD_COLORS = [
   "defect",
   "necrobinder",
   "regent",
+  "fool",
   "colorless",
 ] as const;
 export const TIER_RELIC_POOLS = [
@@ -16,6 +17,7 @@ export const TIER_RELIC_POOLS = [
   "defect",
   "necrobinder",
   "regent",
+  "fool",
 ] as const;
 export const TIER_RELIC_ANCIENTS = [
   "neow",

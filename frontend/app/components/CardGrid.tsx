@@ -20,6 +20,7 @@ const colorMap: Record<string, string> = {
   necrobinder:
     "border-[var(--color-necrobinder)]/60 hover:border-[var(--color-necrobinder)]",
   regent: "border-[var(--color-regent)]/60 hover:border-[var(--color-regent)]",
+  fool: "border-[var(--color-fool)]/60 hover:border-[var(--color-fool)]",
   colorless:
     "border-[var(--color-colorless)]/60 hover:border-[var(--color-colorless)]",
   curse: "border-[var(--color-curse)]/60 hover:border-[var(--color-curse)]",
@@ -45,6 +46,7 @@ const energyIconMap: Record<string, string> = {
   defect: "defect",
   necrobinder: "necrobinder",
   regent: "regent",
+  fool: "fool",
   colorless: "colorless",
 };
 

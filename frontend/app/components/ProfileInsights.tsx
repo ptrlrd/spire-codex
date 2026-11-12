@@ -24,7 +24,7 @@ import AscensionHeatmap, {
 } from "@/app/components/AscensionHeatmap";
 import EloTrajectory, { type EloPoint } from "@/app/components/EloTrajectory";
 import CharacterTag from "@/app/components/CharacterTag";
-import { textColor } from "@/lib/character-colors";
+import { CHARACTER_HEX, textColor } from "@/lib/character-colors";
 
 ChartJS.register(
   BarElement,
@@ -201,23 +201,16 @@ export interface EntityInfo {
   pool?: string | null;
 }
 
-const CHARACTER_HEX: Record<string, string> = {
-  ironclad: "#d53b27",
-  silent: "#23935b",
-  defect: "#3873a9",
-  necrobinder: "#bf5a85",
-  regent: "#f07c1e",
-};
-
 const CHARACTERS = [
   "ironclad",
   "silent",
   "defect",
   "necrobinder",
   "regent",
+  "fool",
 ] as const;
 // Same canonical order the stats page uses, so both lists line up.
-const CHAR_ORDER = ["IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT"];
+const CHAR_ORDER = CHARACTERS.map((c) => c.toUpperCase());
 
 // Insight scope filters: character (icon dropdown), ascension, players, and
 // game version, all defaulting to All. Each change re-fetches the whole

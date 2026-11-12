@@ -52,6 +52,7 @@ type CharFilter =
   | "defect"
   | "regent"
   | "necrobinder"
+  | "fool"
   | "shared";
 
 const CHAR_COLORS: Record<string, string> = {
@@ -59,6 +60,7 @@ const CHAR_COLORS: Record<string, string> = {
   Silent: "var(--color-silent)",
   Defect: "var(--color-defect)",
   Regent: "var(--color-regent)",
+  Fool: "var(--color-fool)",
   Necrobinder: "var(--color-necrobinder)",
   Shared: "var(--text-muted)",
 };
@@ -201,6 +203,7 @@ export default function UnlocksClient({
     { key: "defect", label: "Defect" },
     { key: "regent", label: "Regent" },
     { key: "necrobinder", label: "Necrobinder" },
+    { key: "fool", label: "Fool" },
     { key: "shared", label: "Shared" },
   ];
 

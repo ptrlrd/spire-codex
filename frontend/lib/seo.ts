@@ -59,6 +59,7 @@ const TITLE_CHARACTERS = new Set([
   "silent",
   "defect",
   "regent",
+  "fool",
   "necrobinder",
   "colorless",
 ]);

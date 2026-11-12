@@ -62,6 +62,7 @@ const COLOR_FILTERS = [
   { value: "defect", label: "Defect" },
   { value: "necrobinder", label: "Necrobinder" },
   { value: "regent", label: "Regent" },
+  { value: "fool", label: "Fool" },
   { value: "colorless", label: "Colorless" },
 ];
 

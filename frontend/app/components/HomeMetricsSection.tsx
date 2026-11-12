@@ -30,6 +30,8 @@ function cardHex(color: string): string {
       return "#bf5a85";
     case "regent":
       return "#f07c1e";
+    case "fool":
+      return "#d9cf3c";
     case "curse":
       return "#9b6bd6";
     case "colorless":

@@ -53,6 +53,7 @@ const SPINE_COLOR: Record<string, string> = {
   defect: "var(--color-defect)",
   necrobinder: "var(--color-necrobinder)",
   regent: "var(--color-regent)",
+  fool: "var(--color-fool)",
   colorless: "var(--color-colorless)",
   curse: "var(--color-curse)",
   status: "var(--text-muted)",
@@ -223,6 +224,7 @@ const energyIconMap: Record<string, string> = {
   defect: "defect",
   necrobinder: "necrobinder",
   regent: "regent",
+  fool: "fool",
   colorless: "colorless",
 };
 

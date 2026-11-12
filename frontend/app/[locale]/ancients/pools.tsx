@@ -31,8 +31,14 @@ function RelicPill({
       .replace(/_/g, " ")
       .toLowerCase()
       .replace(/\b\w/g, (c) => c.toUpperCase());
-  // Order matches how the game iterates ModelDb.AllCharacters.
-  const charOrder = ["Ironclad", "Silent", "Defect", "Necrobinder", "Regent"];
+  const charOrder = [
+    "Ironclad",
+    "Silent",
+    "Defect",
+    "Necrobinder",
+    "Regent",
+    "Fool",
+  ];
   const variants = info?.name_variants
     ? charOrder
         .filter((c) => info.name_variants && info.name_variants[c])

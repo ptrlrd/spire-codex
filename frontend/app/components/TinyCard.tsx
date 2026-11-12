@@ -27,6 +27,7 @@ export const TINY_CARD_POOL_COLOR: Record<string, string> = {
   defect: "#3EB3ED",
   necrobinder: "#CD4EED",
   regent: "#E36600",
+  fool: "#D9CF3C",
   colorless: "#A3A3A3",
   event: "#A3A3A3",
   curse: "#585B61",

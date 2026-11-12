@@ -106,6 +106,7 @@
   --color-defect: #3873a9;
   --color-necrobinder: #bf5a85;
   --color-regent: #f07c1e;
+  --color-fool: #d9cf3c;
   --color-colorless: #6b7280;
   --color-curse: #8b1a1a;
   --color-ancient: #6b5b8a;
@@ -264,6 +265,7 @@
   --text-defect: #729bc3;
   --text-necrobinder: #d07f9f;
   --text-regent: #f07c1e;
+  --text-fool: #d9cf3c;
   --text-ancient: #9c92b2;
   --text-colorless: #9196a1;
   --text-lift: 27%;
@@ -275,6 +277,7 @@
   --text-defect: #346b9e;
   --text-necrobinder: #a14b6f;
   --text-regent: #a05110;
+  --text-fool: #756c0a;
   --text-ancient: #6b5b8a;
   --text-colorless: #616774;
   --text-lift: 28%;
@@ -286,6 +289,7 @@
   --text-defect: #608ebb;
   --text-necrobinder: #c86e93;
   --text-regent: #f07c1e;
+  --text-fool: #d9cf3c;
   --text-ancient: #9085a9;
   --text-colorless: #858b97;
   --text-lift: 22%;
@@ -297,6 +301,7 @@
   --text-defect: #729bc3;
   --text-necrobinder: #cf7d9d;
   --text-regent: #f07c1e;
+  --text-fool: #d9cf3c;
   --text-ancient: #9c92b2;
   --text-colorless: #9196a1;
   --text-lift: 31%;
@@ -308,6 +313,7 @@
   --text-defect: #6491bd;
   --text-necrobinder: #ca7295;
   --text-regent: #f07c1e;
+  --text-fool: #d9cf3c;
   --text-ancient: #9388ab;
   --text-colorless: #878d98;
   --text-lift: 24%;
@@ -319,6 +325,7 @@
   --text-defect: #6290bc;
   --text-necrobinder: #c86e93;
   --text-regent: #f07c1e;
+  --text-fool: #d9cf3c;
   --text-ancient: #9085a9;
   --text-colorless: #858b97;
   --text-lift: 23%;
@@ -330,6 +337,7 @@
   --text-defect: #6894be;
   --text-necrobinder: #cc7598;
   --text-regent: #f07c1e;
+  --text-fool: #d9cf3c;
   --text-ancient: #958aad;
   --text-colorless: #8b919c;
   --text-lift: 26%;
@@ -399,6 +407,7 @@
   --color-defect: var(--color-defect);
   --color-necrobinder: var(--color-necrobinder);
   --color-regent: var(--color-regent);
+  --color-fool: var(--color-fool);
   --color-ancient: var(--color-ancient);
   --color-merchant: var(--color-merchant);
   --color-spire: var(--color-spire);

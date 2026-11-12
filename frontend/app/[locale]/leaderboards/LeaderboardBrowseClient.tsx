@@ -59,6 +59,7 @@ const CHARACTERS = [
   "Defect",
   "Necrobinder",
   "Regent",
+  "Fool",
 ] as const;
 
 const CHARACTER_COLORS: Record<string, string> = {
@@ -67,6 +68,7 @@ const CHARACTER_COLORS: Record<string, string> = {
   Defect: "var(--color-defect)",
   Necrobinder: "var(--color-necrobinder)",
   Regent: "var(--color-regent)",
+  Fool: "var(--color-fool)",
 };
 
 interface LeaderboardEntry {

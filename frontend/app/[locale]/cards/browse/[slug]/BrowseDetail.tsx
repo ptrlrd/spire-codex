@@ -8,6 +8,7 @@ import { useFilterFetch } from "@/lib/use-filter-fetch";
 import LoadFailed from "@/app/components/LoadFailed";
 import FullCardGrid from "@/app/components/FullCardGrid";
 import SearchFilter from "@/app/components/SearchFilter";
+import { needsMergedCatalog } from "@/lib/character-order";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -23,6 +24,7 @@ const colorOptions = [
   { label: "Defect", value: "defect" },
   { label: "Necrobinder", value: "necrobinder" },
   { label: "Regent", value: "regent" },
+  { label: "Fool", value: "fool" },
   { label: "Colorless", value: "colorless" },
 ];
 
@@ -94,6 +96,7 @@ export default function BrowseDetail({
     if (keyword) params.set("keyword", keyword);
     if (search) params.set("search", search);
     params.set("lang", "eng");
+    if (needsMergedCatalog(params.get("color"))) params.set("channel", "all");
     url = buildApiUrl(`${API}/api/cards?${params}`);
   }
   const filtered = useFilterFetch<Card[]>(url);

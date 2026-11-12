@@ -61,6 +61,7 @@ const POOL_FILTERS = [
   { value: "defect", label: "Defect" },
   { value: "necrobinder", label: "Necrobinder" },
   { value: "regent", label: "Regent" },
+  { value: "fool", label: "Fool" },
 ];
 
 // Rarity / source — matches the relic rarity_key. "Starter" relics are the

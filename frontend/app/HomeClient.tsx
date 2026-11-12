@@ -3,7 +3,7 @@
 import { useT, useGameLocale } from "@/lib/i18n";
 import { useState, useEffect, useRef, type CSSProperties } from "react";
 import { Link } from "@/i18n/navigation";
-import type { Stats } from "@/lib/api/types";
+import type { Character, Stats } from "@/lib/api/types";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { useAuth } from "./contexts/AuthContext";
 
@@ -11,6 +11,8 @@ const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 import { imageUrl } from "@/lib/image-url";
 import { pct } from "@/lib/pct";
 import { CHARACTER_ORDER } from "@/lib/character-order";
+import { useBetaAdditions } from "@/lib/use-beta-additions";
+import BetaBadge from "./components/BetaBadge";
 
 interface Translations {
   sections?: Record<string, string>;
@@ -22,6 +24,8 @@ const CHARACTERS = CHARACTER_ORDER.map((id) => ({
   id,
   cssColor: `var(--color-${id})`,
 }));
+const LAUNCH_CHARACTERS = 5;
+const CHARACTER_IMAGES = "/static/images/characters/";
 
 const ENGLISH_GAME_DESCS = new Set([
   "View all of the cards you have encountered throughout the Spire.",
@@ -86,6 +90,18 @@ export default function HomeClient({
   const { user, loginSteam } = useAuth();
   const initialRender = useRef(true);
   const gsTrack = useRef<HTMLDivElement>(null);
+  const betaCharacters = useBetaAdditions<Character>("characters", lang);
+  const characterBar = CHARACTERS.flatMap((char, i) => {
+    const beta = betaCharacters.find((c) => c.id.toLowerCase() === char.id);
+    if (beta) {
+      const images = (beta.image_url ?? CHARACTER_IMAGES).replace(/[^/]*$/, "");
+      return [{ ...char, beta: true, images }];
+    }
+    if (i < LAUNCH_CHARACTERS || translations.character_names?.[char.id]) {
+      return [{ ...char, beta: false, images: CHARACTER_IMAGES }];
+    }
+    return [];
+  });
   const [gsIndex, setGsIndex] = useState(0);
   const gsCount = (user ? 0 : 1) + 5;
 
@@ -450,8 +466,12 @@ export default function HomeClient({
             {t("All characters")} {ARROW}
           </Link>
         </div>
-        <div className="charbar">
-          {CHARACTERS.map((char, i) => {
+        <div
+          className="charbar"
+          style={{ ["--chars"]: characterBar.length } as CSSProperties}
+        >
+          {characterBar.map((char, i) => {
+            const images = char.images;
             const charName =
               translations.character_names?.[char.id] ??
               char.id.charAt(0).toUpperCase() + char.id.slice(1);
@@ -469,9 +489,7 @@ export default function HomeClient({
                       hint the browser to fetch them ahead of the below-fold art. */}
                   <img
                     className="charp-combat"
-                    src={imageUrl(
-                      `/static/images/characters/combat_${char.id}.webp`,
-                    )}
+                    src={imageUrl(`${images}combat_${char.id}.webp`)}
                     alt={t("{name} - Slay the Spire 2 Character", {
                       name: charName,
                     })}
@@ -482,9 +500,7 @@ export default function HomeClient({
                   />
                   <img
                     className="charp-icon"
-                    src={imageUrl(
-                      `/static/images/characters/character_icon_${char.id}.webp`,
-                    )}
+                    src={imageUrl(`${images}character_icon_${char.id}.webp`)}
                     alt=""
                     aria-hidden="true"
                     width={88}
@@ -493,7 +509,14 @@ export default function HomeClient({
                   />
                 </span>
                 <span className="charp-meta">
-                  <span className="charp-name">{charName}</span>
+                  <span className="charp-name">
+                    {charName}
+                    {char.beta && (
+                      <span className="ml-2 inline-flex align-middle">
+                        <BetaBadge />
+                      </span>
+                    )}
+                  </span>
                   {characterWinRates?.[char.id] !== undefined && (
                     <span className="charp-wr">
                       {pct(characterWinRates[char.id])}% {t("win rate")}

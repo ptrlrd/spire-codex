@@ -67,6 +67,7 @@ const CHARACTERS = [
   "Defect",
   "Necrobinder",
   "Regent",
+  "Fool",
 ] as const;
 
 function cleanId(id: string): string {

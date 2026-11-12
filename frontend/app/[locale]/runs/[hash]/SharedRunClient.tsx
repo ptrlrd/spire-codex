@@ -40,6 +40,7 @@ const CHAR_CSS_VAR: Record<string, string> = {
   DEFECT: "var(--color-defect)",
   NECROBINDER: "var(--color-necrobinder)",
   REGENT: "var(--color-regent)",
+  FOOL: "var(--color-fool)",
 };
 
 const ROOM_COLORS: Record<string, string> = {

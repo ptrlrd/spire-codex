@@ -18,6 +18,7 @@ import { imageUrl, fullCardUrl } from "@/lib/image-url";
 import FullCardGrid from "@/app/components/FullCardGrid";
 import EntityProse from "@/app/components/EntityProse";
 import { comparePairs, isCompareCharacter } from "@/lib/link-targets";
+import { needsMergedCatalog } from "@/lib/character-order";
 import "@/app/card-revamp.css";
 import "@/app/character-extra.css";
 
@@ -32,6 +33,7 @@ const SPINE_COLOR: Record<string, string> = {
   blue: "var(--color-defect)",
   purple: "var(--color-necrobinder)",
   orange: "var(--color-regent)",
+  yellow: "var(--color-fool)",
 };
 
 function toUpperSnake(s: string): string {
@@ -153,6 +155,7 @@ export default function CharacterDetail({
 
   useEffect(() => {
     if (!id) return;
+    const merged = needsMergedCatalog(id) ? "&channel=all" : "";
     Promise.all([
       cachedFetch<Character>(`${API}/api/characters/${id}?lang=${lang}`).catch(
         () => {
@@ -160,14 +163,14 @@ export default function CharacterDetail({
           return null;
         },
       ),
-      cachedFetch<Card[]>(`${API}/api/cards?lang=${lang}`),
-      cachedFetch<Relic[]>(`${API}/api/relics?lang=${lang}`),
-      cachedFetch<Card[]>(`${API}/api/cards?color=${id}&lang=${lang}`).catch(
-        () => [] as Card[],
-      ),
-      cachedFetch<Relic[]>(`${API}/api/relics?pool=${id}&lang=${lang}`).catch(
-        () => [] as Relic[],
-      ),
+      cachedFetch<Card[]>(`${API}/api/cards?lang=${lang}${merged}`),
+      cachedFetch<Relic[]>(`${API}/api/relics?lang=${lang}${merged}`),
+      cachedFetch<Card[]>(
+        `${API}/api/cards?color=${id}&lang=${lang}${merged}`,
+      ).catch(() => [] as Card[]),
+      cachedFetch<Relic[]>(
+        `${API}/api/relics?pool=${id}&lang=${lang}${merged}`,
+      ).catch(() => [] as Relic[]),
     ])
       .then(
         ([charData, cardsData, relicsData, charCards, charRelics]: [

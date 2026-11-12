@@ -6,6 +6,7 @@ export const COMPARE_CHARACTERS = [
   "defect",
   "necrobinder",
   "regent",
+  "fool",
 ];
 
 export function isCompareCharacter(id: string | null | undefined): boolean {

@@ -9,6 +9,7 @@ import { SLUG_MAP } from "../slug-map";
 import BrowseDetail from "./BrowseDetail";
 import { getT } from "@/lib/i18n-server";
 import { localeOf, localePath } from "@/lib/locale";
+import { needsMergedCatalog } from "@/lib/character-order";
 
 // On-demand ISR: HTML caches for 1h at CF edge / Next.js memory.
 // First visitor per slug per hour triggers regen against the live
@@ -59,6 +60,7 @@ async function fetchFilteredCards(
   try {
     const params = new URLSearchParams(filterParams);
     params.set("lang", "eng");
+    if (needsMergedCatalog(filterParams.color)) params.set("channel", "all");
     const res = await fetch(`${API}/api/cards?${params}`, {
       next: { revalidate: 300 },
     });

@@ -20,6 +20,7 @@
   --defect: var(--color-defect);
   --necro: var(--color-necrobinder);
   --regent: var(--color-regent);
+  --fool: var(--color-fool);
   --good: var(--success);
   --warn: var(--warning);
   --serif:

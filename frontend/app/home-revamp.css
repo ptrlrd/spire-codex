@@ -18,6 +18,7 @@
   --defect: var(--color-defect);
   --necro: var(--color-necrobinder);
   --regent: var(--color-regent);
+  --fool: var(--color-fool);
   --serif:
     "Kreon Ellipsis", var(--font-kreon), Georgia, "Times New Roman", serif;
   --sans:
@@ -239,7 +240,7 @@
 }
 .rvmp .charbar {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(var(--chars, 5), 1fr);
   gap: 12px;
 }
 .rvmp .charp {
@@ -726,7 +727,7 @@
 @media (max-width: 560px) {
   /* Characters collapse to a single clean row of icon chips on phones. */
   .rvmp .charbar {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(var(--chars, 5), 1fr);
     gap: 8px;
   }
   .rvmp .charp {
