@@ -1,0 +1,3828 @@
+{
+  "app_id": 2868840,
+  "game_version": "0.113.0",
+  "build_id": "26625880",
+  "tag": "0.113.0",
+  "date": "2026-11-12",
+  "title": "Beta Patch Notes - v0.113.0",
+  "from_ref": "data-beta/v0.111.0/eng",
+  "to_ref": "data-beta/v0.113.0/eng",
+  "summary": {
+    "added": 198,
+    "removed": 1,
+    "changed": 69
+  },
+  "categories": [
+    {
+      "id": "cards",
+      "name": "Cards",
+      "old_count": 595,
+      "new_count": 716,
+      "added": [
+        {
+          "id": "ALL_IS_WELL",
+          "name": "All Is Well",
+          "cost": 1,
+          "type": "Power",
+          "rarity": "Uncommon"
+        },
+        {
+          "id": "AMNESIA",
+          "name": "Amnesia",
+          "cost": -1,
+          "type": "Status",
+          "rarity": "Status"
+        },
+        {
+          "id": "ANGUISH",
+          "name": "Anguish",
+          "cost": 1,
+          "damage": 6,
+          "type": "Attack",
+          "rarity": "Uncommon"
+        },
+        {
+          "id": "ARCHERY",
+          "name": "Archery",
+          "cost": 1,
+          "type": "Power",
+          "rarity": "Uncommon"
+        },
+        {
+          "id": "ARROW_STAB",
+          "name": "Arrow Stab",
+          "cost": 1,
+          "damage": 9,
+          "type": "Attack",
+          "rarity": "Common"
+        },
+        {
+          "id": "BLOSSOM_SHOT",
+          "name": "Blossom Shot",
+          "cost": 2,
+          "damage": 11,
+          "type": "Attack",
+          "rarity": "Uncommon"
+        },
+        {
+          "id": "BLOT_OUT_THE_SKY",
+          "name": "Blot out the Sky",
+          "cost": 1,
+          "type": "Skill",
+          "rarity": "Uncommon"
+        },
+        {
+          "id": "BOUNCE",
+          "name": "Bounce",
+          "cost": 1,
+          "type": "Skill",
+          "rarity": "Rare"
+        },
+        {
+          "id": "BOW_SMACK",
+          "name": "Bow Smack",
+          "cost": 1,
+          "damage": 8,
+          "type": "Attack",
+          "rarity": "Common"
+        },
+        {
+          "id": "BRACE",
+          "name": "Brace",
+          "cost": 0,
+          "type": "Skill",
+          "rarity": "Uncommon"
+        },
+        {
+          "id": "BRIGHTEN_UP",
+          "name": "Brighten Up",
+          "cost": 1,
+          "type": "Skill",
+          "rarity": "Rare"
+        },
+        {
+          "id": "CHO_BARBS",
+          "name": "Cho Barbs",
+          "cost": 1,
+          "block": 7,
+          "type": "Skill",
+          "rarity": "Common"
+        },
+        {
+          "id": "CHO_CHORUS",
+          "name": "Cho Chorus",
+          "cost": 3,
+          "block": 12,
+          "type": "Skill",
+          "rarity": "Rare"
+        },
+        {
+          "id": "CHO_FIRM",
+          "name": "Cho Firm",
+          "cost": 1,
+          "block": 6,
+          "type": "Skill",
+          "rarity": "Common"
+        },
+        {
+          "id": "CHO_KI",
+          "name": "Cho Ki",
+          "cost": 1,
+          "block": 8,
+          "type": "Skill",
+          "rarity": "Uncommon"
+        },
+        {
+          "id": "CHO_LIMBS",
+          "name": "Cho Limbs",
+          "cost": 2,
+          "block": 5,
+          "type": "Skill",
+          "rarity": "Uncommon"
+        },
+        {
+          "id": "CHO_READY",
+          "name": "Cho Ready",
+          "cost": 1,
+          "block": 8,
+          "type": "Skill",
+          "rarity": "Common"
+        },
+        {
+          "id": "CODA",
+          "name": "Coda",
+          "cost": 6,
+          "damage": 40,
+          "type": "Attack",
+          "rarity": "Rare"
+        },
+        {
+          "id": "COMPOST",
+          "name": "Compost",
+          "cost": 0,
+          "type": "Power",
+          "rarity": "Uncommon"
+        },
+        {
+          "id": "COVERING_FIRE",
+          "name": "Covering Fire",
+          "cost": 1,
+          "type": "Power",
+          "rarity": "Rare"
+        },
+        {
+          "id": "DEATH",
+          "name": "Death",
+          "cost": 0,
+          "type": "Skill",
+          "rarity": "Token"
+        },
+        {
+          "id": "DEEP_STRETCH",
+          "name": "Deep Stretch",
+          "cost": 1,
+          "type": "Skill",
+          "rarity": "Common"
+        },
+        {
+          "id": "DEFEND_FOOL",
+          "name": "Defend",
+          "cost": 1,
+          "block": 5,
+          "type": "Skill",
+          "rarity": "Basic"
+        },
+        {
+          "id": "DINGY_DAGGER",
+          "name": "DingyDagger",
+          "cost": 0,
+          "damage": 7,
+          "type": "Attack",
+          "rarity": "Event"
+        },
+        {
+          "id": "DISLIKE_YOU",
+          "name": "Dislike You",
+          "cost": 1,
+          "damage": 8,
+          "type": "Attack",
+          "rarity": "Uncommon"
+        },
+        {
+          "id": "DIVINE_SHOT",
+          "name": "Divine Shot",
+          "cost": 0,
+          "damage": 40,
+          "type": "Attack",
+          "rarity": "Ancient"
+        },
+        {
+          "id": "ECSTASY",
+          "name": "Ecstasy",
+          "cost": 2,
+          "type": "Power",
+          "rarity": "Rare"
+        },
+        {
+          "id": "ENCORE",
+          "name": "Encore",
+          "cost": 0,
+          "type": "Skill",
+          "rarity": "Rare"
+        },
+        {
+          "id": "ENNUI",
+          "name": "Ennui",
+          "cost": 1,
+          "type": "Power",
+          "rarity": "Rare"
+        },
+        {
+          "id": "ENRAPTURE",
+          "name": "Enrapture",
+          "cost": 1,
+          "type": "Skill",
+          "rarity": "Uncommon"
+        },
+        {
+          "id": "ENSEMBLE",
+          "name": "Ensemble",
+          "cost": 3,
+          "type": "Skill",
+          "rarity": "Rare"
+        },
+        {
+          "id": "EPIC_RETRIEVAL",
+          "name": "Epic Retrieval",
+          "cost": 2,
+          "damage": 15,
+          "type": "Attack",
+          "rarity": "Uncommon"
+        },
+        {
+          "id": "EXPLOSIVE_ARROWS",
+          "name": "Explosive Arrows",
+          "cost": 1,
+          "type": "Power",
+          "rarity": "Rare"
+        },
+        {
+          "id": "FLORESCENCE",
+          "name": "Florescence",
+          "cost": 0,
+          "type": "Skill",
+          "rarity": "Rare"
+        },
+        {
+          "id": "FOOLISH_SHOT",
+          "name": "Foolish Shot",
+          "cost": 1,
+          "damage": 15,
+          "type": "Attack",
+          "rarity": "Basic"
+        },
+        {
+          "id": "GOD_BYRD",
+          "name": "God Byrd",
+          "cost": 0,
+          "damage": 30,
+          "type": "Skill",
+          "rarity": "Event"
+        },
+        {
+          "id": "GROWTH",
+          "name": "Growth",
+          "cost": 1,
+          "damage": 0,
+          "type": "Skill",
+          "rarity": "Uncommon"
+        },
+        {
+          "id": "HARMONIC_SHIELD",
+          "name": "Harmonic Shield",
+          "cost": 1,
+          "block": 0,
+          "type": "Skill",
+          "rarity": "Uncommon"
+        },
+        {
+          "id": "HEAVY_SHOT",
+          "name": "Heavy Shot",
+          "cost": 2,
+          "damage": 20,
+          "type": "Attack",
+          "rarity": "Common"
+        },
+        {
+          "id": "HIDDEN_ROOTS",
+          "name": "Hidden Roots",
+          "cost": 1,
+          "type": "Power",
+          "rarity": "Uncommon"
+        },
+        {
+          "id": "HOBBLING_SHOT",
+          "name": "Hobbling Shot",
+          "cost": 1,
+          "damage": 13,
+          "type": "Attack",
+          "rarity": "Uncommon"
+        },
+        {
+          "id": "HONING",
+          "name": "Honing",
+          "cost": 3,
+          "type": "Power",
+          "rarity": "Rare"
+        },
+        {
+          "id": "JEST",
+          "name": "Jest",
+          "cost": 2,
+          "block": 14,
+          "type": "Skill",
+          "rarity": "Common"
+        },
+        {
+          "id": "JOY",
+          "name": "Joy",
+          "cost": 0,
+          "type": "Skill",
+          "rarity": "Token"
+        },
+        {
+          "id": "JUDGEMENT",
+          "name": "Judgement",
+          "cost": 0,
+          "type": "Skill",
+          "rarity": "Token"
+        },
+        {
+          "id": "JUSTICE",
+          "name": "Justice",
+          "cost": 0,
+          "damage": 30,
+          "type": "Attack",
+          "rarity": "Token"
+        },
+        {
+          "id": "KI_CHANT",
+          "name": "Ki Chant",
+          "cost": 1,
+          "type": "Skill",
+          "rarity": "Common"
+        },
+        {
+          "id": "KI_HOP",
+          "name": "Ki Hop",
+          "cost": 1,
+          "damage": 7,
+          "type": "Attack",
+          "rarity": "Common"
+        },
+        {
+          "id": "KI_REST",
+          "name": "Ki Rest",
+          "cost": 2,
+          "type": "Skill",
+          "rarity": "Uncommon"
+        },
+        {
+          "id": "KI_VERSE",
+          "name": "Ki Verse",
+          "cost": 1,
+          "type": "Skill",
+          "rarity": "Rare"
+        },
+        {
+          "id": "KI_WHIP",
+          "name": "Ki Whip",
+          "cost": 1,
+          "damage": 5,
+          "type": "Attack",
+          "rarity": "Common"
+        },
+        {
+          "id": "LOCKED_IN",
+          "name": "Locked In",
+          "cost": 1,
+          "type": "Skill",
+          "rarity": "Uncommon"
+        },
+        {
+          "id": "LOST_LUTE",
+          "name": "Lost Lute",
+          "cost": 3,
+          "type": "Power",
+          "rarity": "Ancient"
+        },
+        {
+          "id": "LULLABY",
+          "name": "Lullaby",
+          "cost": 0,
+          "type": "Power",
+          "rarity": "Rare"
+        },
+        {
+          "id": "MELODIC_SHOT",
+          "name": "Melodic Shot",
+          "cost": 1,
+          "damage": 12,
+          "type": "Attack",
+          "rarity": "Rare"
+        },
+        {
+          "id": "MIGHTY_SHIELD",
+          "name": "Mighty Shield",
+          "cost": 1,
+          "block": 20,
+          "type": "Skill",
+          "rarity": "Event"
+        },
+        {
+          "id": "MIGHTY_WEAPON",
+          "name": "Mighty Weapon",
+          "cost": 1,
+          "damage": 25,
+          "type": "Attack",
+          "rarity": "Event"
+        },
+        {
+          "id": "MOTIF",
+          "name": "Motif",
+          "cost": 2,
+          "type": "Power",
+          "rarity": "Uncommon"
+        },
+        {
+          "id": "MOURNING_BLOW",
+          "name": "Mourning Blow",
+          "cost": 0,
+          "damage": 10,
+          "type": "Attack",
+          "rarity": "Common"
+        },
+        {
+          "id": "MYTHIC_FORM",
+          "name": "Mythic Form",
+          "cost": 3,
+          "type": "Power",
+          "rarity": "Rare"
+        },
+        {
+          "id": "MY_SHINIES",
+          "name": "My Shinies",
+          "cost": 1,
+          "damage": 1,
+          "type": "Attack",
+          "rarity": "Rare"
+        },
+        {
+          "id": "NAIL",
+          "name": "Nail",
+          "cost": 2,
+          "damage": 20,
+          "type": "Attack",
+          "rarity": "Rare"
+        },
+        {
+          "id": "NOCK",
+          "name": "Nock",
+          "cost": 0,
+          "type": "Skill",
+          "rarity": "Common"
+        },
+        {
+          "id": "PUNCH_OF_JOY",
+          "name": "Punch of Joy",
+          "cost": 2,
+          "damage": 13,
+          "type": "Attack",
+          "rarity": "Uncommon"
+        },
+        {
+          "id": "QUICK_SHOT",
+          "name": "Quick Shot",
+          "cost": 0,
+          "damage": 10,
+          "type": "Attack",
+          "rarity": "Common"
+        },
+        {
+          "id": "QUIETUS",
+          "name": "Quietus",
+          "cost": 1,
+          "type": "Skill",
+          "rarity": "Rare"
+        },
+        {
+          "id": "QUIVER",
+          "name": "Quiver",
+          "cost": 1,
+          "type": "Power",
+          "rarity": "Rare"
+        },
+        {
+          "id": "RAIN_SHOT",
+          "name": "Rain Shot",
+          "cost": 1,
+          "damage": 12,
+          "type": "Attack",
+          "rarity": "Common"
+        },
+        {
+          "id": "RAPID_SHOT",
+          "name": "Rapid Shot",
+          "cost": 1,
+          "damage": 3,
+          "type": "Attack",
+          "rarity": "Uncommon"
+        },
+        {
+          "id": "RECALL",
+          "name": "Recall",
+          "cost": 1,
+          "type": "Skill",
+          "rarity": "Common"
+        },
+        {
+          "id": "REPEAT_SHOT",
+          "name": "Repeat Shot",
+          "cost": 0,
+          "damage": 15,
+          "type": "Attack",
+          "rarity": "Rare"
+        },
+        {
+          "id": "RHYTHM_STRIKE",
+          "name": "Rhythm Strike",
+          "cost": 0,
+          "damage": 4,
+          "type": "Attack",
+          "rarity": "Uncommon"
+        },
+        {
+          "id": "RUMMAGE",
+          "name": "Rummage",
+          "cost": 1,
+          "type": "Skill",
+          "rarity": "Uncommon"
+        },
+        {
+          "id": "SADNESS",
+          "name": "Sadness",
+          "cost": -1,
+          "type": "Status",
+          "rarity": "Status"
+        },
+        {
+          "id": "SELF_DEPRECATE",
+          "name": "Self Deprecate",
+          "cost": 1,
+          "type": "Skill",
+          "rarity": "Rare"
+        },
+        {
+          "id": "SERRATED_ARROWS",
+          "name": "Serrated Arrows",
+          "cost": 1,
+          "type": "Power",
+          "rarity": "Uncommon"
+        },
+        {
+          "id": "SHOW_OFF",
+          "name": "Show Off",
+          "cost": 1,
+          "type": "Skill",
+          "rarity": "Rare"
+        },
+        {
+          "id": "SIMPLETON",
+          "name": "Simpleton",
+          "cost": 2,
+          "type": "Power",
+          "rarity": "Rare"
+        },
+        {
+          "id": "SKY_SHOT",
+          "name": "Sky Shot",
+          "cost": 1,
+          "damage": 30,
+          "type": "Attack",
+          "rarity": "Rare"
+        },
+        {
+          "id": "SONG_PATH",
+          "name": "Song Path",
+          "cost": 1,
+          "type": "Power",
+          "rarity": "Uncommon"
+        },
+        {
+          "id": "SORROWFUL_STRIKE",
+          "name": "Sorrowful Strike",
+          "cost": 1,
+          "damage": 13,
+          "type": "Attack",
+          "rarity": "Common"
+        },
+        {
+          "id": "STEADY_CADENCE",
+          "name": "Steady Cadence",
+          "cost": 1,
+          "damage": 10,
+          "type": "Attack",
+          "rarity": "Uncommon"
+        },
+        {
+          "id": "STRENGTH",
+          "name": "Strength",
+          "cost": 0,
+          "type": "Skill",
+          "rarity": "Token"
+        },
+        {
+          "id": "STRIKE_FOOL",
+          "name": "Strike",
+          "cost": 1,
+          "damage": 6,
+          "type": "Attack",
+          "rarity": "Basic"
+        },
+        {
+          "id": "TEMPERANCE",
+          "name": "Temperance",
+          "cost": 0,
+          "block": 30,
+          "type": "Skill",
+          "rarity": "Token"
+        },
+        {
+          "id": "THE_CHARIOT",
+          "name": "The Chariot",
+          "cost": 0,
+          "damage": 25,
+          "type": "Attack",
+          "rarity": "Token"
+        },
+        {
+          "id": "THE_DEVIL",
+          "name": "The Devil",
+          "cost": 0,
+          "type": "Skill",
+          "rarity": "Token"
+        },
+        {
+          "id": "THE_EMPEROR",
+          "name": "The Emperor",
+          "cost": 0,
+          "type": "Skill",
+          "rarity": "Token"
+        },
+        {
+          "id": "THE_EMPRESS",
+          "name": "The Empress",
+          "cost": 0,
+          "type": "Skill",
+          "rarity": "Token"
+        },
+        {
+          "id": "THE_FOOL",
+          "name": "The Fool",
+          "cost": 0,
+          "type": "Skill",
+          "rarity": "Token"
+        },
+        {
+          "id": "THE_HANGED_MAN",
+          "name": "The Hanged Man",
+          "cost": 0,
+          "type": "Skill",
+          "rarity": "Token"
+        },
+        {
+          "id": "THE_HERMIT",
+          "name": "The Hermit",
+          "cost": 0,
+          "type": "Skill",
+          "rarity": "Token"
+        },
+        {
+          "id": "THE_HIEROPHANT",
+          "name": "The Hierophant",
+          "cost": 0,
+          "type": "Skill",
+          "rarity": "Token"
+        },
+        {
+          "id": "THE_HIGH_PRIESTESS",
+          "name": "The High Priestess",
+          "cost": 0,
+          "type": "Skill",
+          "rarity": "Token"
+        },
+        {
+          "id": "THE_LOVERS",
+          "name": "The Lovers",
+          "cost": 0,
+          "type": "Skill",
+          "rarity": "Token"
+        },
+        {
+          "id": "THE_MAGICIAN",
+          "name": "The Magician",
+          "cost": 0,
+          "type": "Skill",
+          "rarity": "Token"
+        },
+        {
+          "id": "THE_MOON",
+          "name": "The Moon",
+          "cost": 0,
+          "type": "Skill",
+          "rarity": "Token"
+        },
+        {
+          "id": "THE_SHOT",
+          "name": "The Shot",
+          "cost": 1,
+          "damage": 0,
+          "type": "Attack",
+          "rarity": "Token"
+        },
+        {
+          "id": "THE_STAR",
+          "name": "The Star",
+          "cost": 0,
+          "type": "Skill",
+          "rarity": "Token"
+        },
+        {
+          "id": "THE_SUN",
+          "name": "The Sun",
+          "cost": 0,
+          "type": "Skill",
+          "rarity": "Token"
+        },
+        {
+          "id": "THE_TOWER",
+          "name": "The Tower",
+          "cost": 0,
+          "damage": 0,
+          "type": "Attack",
+          "rarity": "Token"
+        },
+        {
+          "id": "THE_WORLD",
+          "name": "The World",
+          "cost": 0,
+          "type": "Skill",
+          "rarity": "Token"
+        },
+        {
+          "id": "TIMBER",
+          "name": "Timber",
+          "cost": 3,
+          "damage": 20,
+          "type": "Attack",
+          "rarity": "Uncommon"
+        },
+        {
+          "id": "TRICK_SHOT",
+          "name": "Trick Shot",
+          "cost": 1,
+          "damage": 12,
+          "type": "Attack",
+          "rarity": "Uncommon"
+        },
+        {
+          "id": "TUNE",
+          "name": "Tune",
+          "cost": 2,
+          "type": "Power",
+          "rarity": "Uncommon"
+        },
+        {
+          "id": "UPROOT",
+          "name": "Uproot",
+          "cost": 1,
+          "type": "Skill",
+          "rarity": "Uncommon"
+        },
+        {
+          "id": "VIOLENT_CHORD",
+          "name": "Violent Chord",
+          "cost": 1,
+          "type": "Power",
+          "rarity": "Uncommon"
+        },
+        {
+          "id": "VITRIOL",
+          "name": "Vitriol",
+          "cost": 0,
+          "type": "Skill",
+          "rarity": "Uncommon"
+        },
+        {
+          "id": "WAH_BLAST",
+          "name": "Wah Blast",
+          "cost": 2,
+          "damage": 14,
+          "type": "Attack",
+          "rarity": "Uncommon"
+        },
+        {
+          "id": "WAH_CHO",
+          "name": "Wah Cho",
+          "cost": 0,
+          "damage": 3,
+          "block": 3,
+          "type": "Attack",
+          "rarity": "Uncommon"
+        },
+        {
+          "id": "WAH_CHO_KI",
+          "name": "Wah Cho Ki",
+          "cost": 1,
+          "damage": 9,
+          "block": 9,
+          "type": "Attack",
+          "rarity": "Rare"
+        },
+        {
+          "id": "WAH_HAMMER",
+          "name": "Wah Hammer",
+          "cost": 1,
+          "damage": 9,
+          "type": "Attack",
+          "rarity": "Common"
+        },
+        {
+          "id": "WAH_KI",
+          "name": "Wah Ki",
+          "cost": 1,
+          "damage": 2,
+          "type": "Attack",
+          "rarity": "Uncommon"
+        },
+        {
+          "id": "WAH_SWEEP",
+          "name": "Wah Sweep",
+          "cost": 1,
+          "damage": 8,
+          "type": "Attack",
+          "rarity": "Common"
+        },
+        {
+          "id": "WAH_SYMPHONY",
+          "name": "Wah Symphony",
+          "cost": 2,
+          "damage": 6,
+          "type": "Attack",
+          "rarity": "Rare"
+        },
+        {
+          "id": "WAH_TOUCH",
+          "name": "Wah Touch",
+          "cost": 1,
+          "damage": 6,
+          "type": "Attack",
+          "rarity": "Common"
+        },
+        {
+          "id": "WHEEL_OF_FORTUNE",
+          "name": "Wheel of Fortune",
+          "cost": 0,
+          "type": "Skill",
+          "rarity": "Token"
+        },
+        {
+          "id": "WHISTLING_ARROWS",
+          "name": "Whistling Arrows",
+          "cost": 0,
+          "block": 3,
+          "type": "Skill",
+          "rarity": "Uncommon"
+        },
+        {
+          "id": "WREST",
+          "name": "Wrest",
+          "cost": 0,
+          "type": "Skill",
+          "rarity": "Uncommon"
+        },
+        {
+          "id": "YAH",
+          "name": "Yah!",
+          "cost": 1,
+          "type": "Power",
+          "rarity": "Rare"
+        },
+        {
+          "id": "YOGA",
+          "name": "Yoga",
+          "cost": 1,
+          "type": "Skill",
+          "rarity": "Uncommon"
+        }
+      ],
+      "changed": [
+        {
+          "id": "ASTRAL_PULSE",
+          "name": "Astral Pulse",
+          "changes": [
+            {
+              "field": "description_raw",
+              "old": "Deal {Damage:diff()} damage to ALL enemies twice.",
+              "new": "Deal {Damage:diff()} damage to ALL enemies {HitCount:choose(2):twice|{HitCoun..."
+            },
+            {
+              "field": "hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "vars.HitCount",
+              "old": "none",
+              "new": "2"
+            }
+          ]
+        },
+        {
+          "id": "CELESTIAL_MIGHT",
+          "name": "Celestial Might",
+          "changes": [
+            {
+              "field": "description_raw",
+              "old": "Deal {Damage:diff()} damage {Repeat:diff()} {Repeat:plural:time|times}.",
+              "new": "Deal {Damage:diff()} damage {HitCount:diff()} {HitCount:plural:time|times}."
+            },
+            {
+              "field": "hit_count",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "upgrade.hitcount",
+              "old": "none",
+              "new": "+1"
+            },
+            {
+              "field": "upgrade.repeat",
+              "old": "+1",
+              "new": "none"
+            },
+            {
+              "field": "vars.HitCount",
+              "old": "none",
+              "new": "3"
+            },
+            {
+              "field": "vars.Repeat",
+              "old": "3",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "CONFLAGRATION",
+          "name": "Conflagration",
+          "changes": [
+            {
+              "field": "description_raw",
+              "old": "Deal {Damage:diff()} damage to ALL enemies {Repeat:diff()} {Repeat:plural:tim...",
+              "new": "Deal {Damage:diff()} damage to ALL enemies {HitCount:diff()} {HitCount:plural..."
+            },
+            {
+              "field": "hit_count",
+              "old": "4",
+              "new": "none"
+            },
+            {
+              "field": "upgrade.hitcount",
+              "old": "none",
+              "new": "+1"
+            },
+            {
+              "field": "upgrade.repeat",
+              "old": "+1",
+              "new": "none"
+            },
+            {
+              "field": "vars.HitCount",
+              "old": "none",
+              "new": "4"
+            },
+            {
+              "field": "vars.Repeat",
+              "old": "4",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "DAGGER_SPRAY",
+          "name": "Dagger Spray",
+          "changes": [
+            {
+              "field": "description_raw",
+              "old": "Deal {Damage:diff()} damage to ALL enemies twice.",
+              "new": "Deal {Damage:diff()} damage to ALL enemies {HitCount:choose(2):twice|{HitCoun..."
+            },
+            {
+              "field": "hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "vars.HitCount",
+              "old": "none",
+              "new": "2"
+            }
+          ]
+        },
+        {
+          "id": "DISMANTLE",
+          "name": "Dismantle",
+          "changes": [
+            {
+              "field": "description_raw",
+              "old": "Deal {Damage:diff()} damage.\nIf the enemy is [gold]Vulnerable[/gold], hits tw...",
+              "new": "Deal {Damage:diff()} damage.\nIf the enemy is [gold]Vulnerable[/gold], hits {H..."
+            },
+            {
+              "field": "vars.HitCount",
+              "old": "none",
+              "new": "2"
+            }
+          ]
+        },
+        {
+          "id": "DOWSING",
+          "name": "Dowsing",
+          "changes": [
+            {
+              "field": "description",
+              "old": "After entering 5 more [gold]?[/gold] rooms, transforms into an [gold]Abundanc...",
+              "new": "After entering 4 more [gold]?[/gold] rooms, transforms into an [gold]Abundanc..."
+            },
+            {
+              "field": "vars.Rooms",
+              "old": "5",
+              "new": "4"
+            }
+          ]
+        },
+        {
+          "id": "ENLIGHTENMENT",
+          "name": "Enlightenment",
+          "changes": [
+            {
+              "field": "keywords[0]",
+              "old": "Exhaust",
+              "new": "none"
+            },
+            {
+              "field": "keywords_key[0]",
+              "old": "Exhaust",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "EXPECT_A_FIGHT",
+          "name": "Expect a Fight",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Gain 15 [gold]Block[/gold].\nGains 5 additional [gold]Block[/gold] for each [g...",
+              "new": "Gain 15 [gold]Block[/gold].\nAttacks in your [gold]Hand[/gold] cost 1 less [en..."
+            },
+            {
+              "field": "description_raw",
+              "old": "Gain {CalculatedBlock:diff()} [gold]Block[/gold].\nGains {CalculationExtra:dif...",
+              "new": "Gain {Block:diff()} [gold]Block[/gold].\nAttacks in your [gold]Hand[/gold] cos..."
+            },
+            {
+              "field": "energy_gain",
+              "old": "none",
+              "new": "1"
+            },
+            {
+              "field": "upgrade.block",
+              "old": "none",
+              "new": "+5"
+            },
+            {
+              "field": "upgrade.calculationbase",
+              "old": "+1",
+              "new": "none"
+            },
+            {
+              "field": "upgrade.calculationextra",
+              "old": "+3",
+              "new": "none"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Gain 16 [gold]Block[/gold].\nGains 8 additional [gold]Block[/gold] for each [g...",
+              "new": "Gain 20 [gold]Block[/gold].\nAttacks in your [gold]Hand[/gold] cost 1 less [en..."
+            },
+            {
+              "field": "vars.Block",
+              "old": "none",
+              "new": "15"
+            },
+            {
+              "field": "vars.CalculationBase",
+              "old": "15",
+              "new": "none"
+            },
+            {
+              "field": "vars.CalculationExtra",
+              "old": "5",
+              "new": "none"
+            },
+            {
+              "field": "vars.Energy",
+              "old": "none",
+              "new": "1"
+            }
+          ]
+        },
+        {
+          "id": "EXPERTISE",
+          "name": "Expertise",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Draw 2 cards.\nThey gain [gold]Retain[/gold] this turn.",
+              "new": "Draw 2 cards.\n[gold]Retain[/gold] your [gold]Hand[/gold] this turn."
+            },
+            {
+              "field": "description_raw",
+              "old": "Draw {Cards:diff()} cards.\nThey gain [gold]Retain[/gold] this turn.",
+              "new": "Draw {Cards:diff()} cards.\n[gold]Retain[/gold] your [gold]Hand[/gold] this turn."
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Draw 3 cards.\nThey gain [gold]Retain[/gold] this turn.",
+              "new": "Draw 3 cards.\n[gold]Retain[/gold] your [gold]Hand[/gold] this turn."
+            }
+          ]
+        },
+        {
+          "id": "EXTERMINATE",
+          "name": "Exterminate",
+          "changes": [
+            {
+              "field": "description_raw",
+              "old": "Deal {Damage:diff()} damage to ALL enemies {Repeat:diff()} times.",
+              "new": "Deal {Damage:diff()} damage to ALL enemies {HitCount:diff()} times."
+            },
+            {
+              "field": "hit_count",
+              "old": "4",
+              "new": "none"
+            },
+            {
+              "field": "vars.HitCount",
+              "old": "none",
+              "new": "4"
+            },
+            {
+              "field": "vars.Repeat",
+              "old": "4",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "FIEND_FIRE",
+          "name": "Fiend Fire",
+          "changes": [
+            {
+              "field": "description_raw",
+              "old": "[gold]Exhaust[/gold] your [gold]Hand[/gold].\nDeal {Damage:diff()} damage for ...",
+              "new": "[gold]Exhaust[/gold] your [gold]Hand[/gold].\nDeal {Damage:diff()} damage for ..."
+            },
+            {
+              "field": "vars.CalculationBase",
+              "old": "none",
+              "new": "0"
+            },
+            {
+              "field": "vars.CalculationExtra",
+              "old": "none",
+              "new": "1"
+            }
+          ]
+        },
+        {
+          "id": "FIGHT_ME",
+          "name": "Fight Me!",
+          "changes": [
+            {
+              "field": "description_raw",
+              "old": "Deal {Damage:diff()} damage twice.\nGain {StrengthPower:diff()} [gold]Strength...",
+              "new": "Deal {Damage:diff()} damage {HitCount:choose(2):twice|{HitCount:diff()} times..."
+            },
+            {
+              "field": "hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "vars.HitCount",
+              "old": "none",
+              "new": "2"
+            },
+            {
+              "field": "vars.Repeat",
+              "old": "2",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "FORGOTTEN_RITUAL",
+          "name": "Forgotten Ritual",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Gain [energy:3].",
+              "new": "If you [gold]Exhausted[/gold] a card this turn, gain [energy:3]."
+            },
+            {
+              "field": "description_raw",
+              "old": "Gain {Energy:energyIcons()}.",
+              "new": "If you [gold]Exhausted[/gold] a card this turn, gain {Energy:energyIcons()}."
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Gain [energy:4].",
+              "new": "If you [gold]Exhausted[/gold] a card this turn, gain [energy:4]."
+            }
+          ]
+        },
+        {
+          "id": "GUNK_UP",
+          "name": "Gunk Up",
+          "changes": [
+            {
+              "field": "description_raw",
+              "old": "Deal {Damage:diff()} damage {Repeat:diff()} {Repeat:plural:time|times}.\nAdd a...",
+              "new": "Deal {Damage:diff()} damage {HitCount:diff()} {HitCount:plural:time|times}.\nA..."
+            },
+            {
+              "field": "hit_count",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "vars.HitCount",
+              "old": "none",
+              "new": "3"
+            },
+            {
+              "field": "vars.Repeat",
+              "old": "3",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "KNOCKOUT_BLOW",
+          "name": "Knockout Blow",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Deal 30 damage.\nIf this kills an enemy, gain [star:5].",
+              "new": "Deal 30 damage.\nIf this kills an enemy, gain\n[star:5]."
+            },
+            {
+              "field": "description_raw",
+              "old": "Deal {Damage:diff()} damage.\nIf this kills an enemy, gain {Stars:starIcons()}.",
+              "new": "Deal {Damage:diff()} damage.\nIf this kills an enemy, gain\n{Stars:starIcons()}."
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Deal 38 damage.\nIf this kills an enemy, gain [star:5].",
+              "new": "Deal 38 damage.\nIf this kills an enemy, gain\n[star:5]."
+            }
+          ]
+        },
+        {
+          "id": "MAD_SCIENCE",
+          "name": "Mad Science",
+          "changes": [
+            {
+              "field": "type_variants.attack.image_url",
+              "old": "/static/images/beta/v0.111.0/cards/mad_science_attack.webp",
+              "new": "/static/images/beta/v0.113.0/cards/mad_science_attack.webp"
+            },
+            {
+              "field": "type_variants.power.image_url",
+              "old": "/static/images/beta/v0.111.0/cards/mad_science_power.webp",
+              "new": "/static/images/beta/v0.113.0/cards/mad_science_power.webp"
+            },
+            {
+              "field": "type_variants.skill.image_url",
+              "old": "/static/images/beta/v0.111.0/cards/mad_science_skill.webp",
+              "new": "/static/images/beta/v0.113.0/cards/mad_science_skill.webp"
+            }
+          ]
+        },
+        {
+          "id": "MAUL",
+          "name": "Maul",
+          "changes": [
+            {
+              "field": "description_raw",
+              "old": "Deal {Damage:diff()} damage twice.\nIncrease the damage of ALL Maul cards by {...",
+              "new": "Deal {Damage:diff()} damage {HitCount:choose(2):twice|{HitCount:diff()} times..."
+            },
+            {
+              "field": "hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "vars.HitCount",
+              "old": "none",
+              "new": "2"
+            }
+          ]
+        },
+        {
+          "id": "MEMENTO_MORI",
+          "name": "Memento Mori",
+          "changes": [
+            {
+              "field": "cost",
+              "old": "1",
+              "new": "3"
+            },
+            {
+              "field": "damage",
+              "old": "9",
+              "new": "19"
+            },
+            {
+              "field": "description",
+              "old": "Deal 9 damage.\nDeals 4 additional damage for each card discarded this turn.",
+              "new": "Deal 19 damage to the enemy with the lowest HP."
+            },
+            {
+              "field": "description_raw",
+              "old": "Deal {CalculatedDamage:diff()} damage.\nDeals {ExtraDamage:diff()} additional ...",
+              "new": "Deal {Damage:diff()} damage to the enemy with the lowest HP."
+            },
+            {
+              "field": "keywords[0]",
+              "old": "none",
+              "new": "Sly"
+            },
+            {
+              "field": "keywords_key[0]",
+              "old": "none",
+              "new": "Sly"
+            },
+            {
+              "field": "target",
+              "old": "AnyEnemy",
+              "new": "RandomEnemy"
+            },
+            {
+              "field": "upgrade.calculationbase",
+              "old": "+2",
+              "new": "none"
+            },
+            {
+              "field": "upgrade.damage",
+              "old": "none",
+              "new": "+4"
+            },
+            {
+              "field": "upgrade.extradamage",
+              "old": "+1",
+              "new": "none"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Deal 9 damage.\nDeals 5 additional damage for each card discarded this turn.",
+              "new": "Deal 23 damage to the enemy with the lowest HP."
+            },
+            {
+              "field": "vars.CalculatedDamage",
+              "old": "9",
+              "new": "none"
+            },
+            {
+              "field": "vars.CalculationBase",
+              "old": "9",
+              "new": "none"
+            },
+            {
+              "field": "vars.Damage",
+              "old": "none",
+              "new": "19"
+            },
+            {
+              "field": "vars.ExtraDamage",
+              "old": "4",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "MINION_DIVE_BOMB",
+          "name": "Minion Dive Bomb",
+          "changes": [
+            {
+              "field": "damage",
+              "old": "13",
+              "new": "11"
+            },
+            {
+              "field": "description",
+              "old": "Deal 13 damage.",
+              "new": "Deal 11 damage."
+            },
+            {
+              "field": "upgrade.damage",
+              "old": "+3",
+              "new": "+2"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Deal 16 damage.",
+              "new": "Deal 13 damage."
+            },
+            {
+              "field": "vars.Damage",
+              "old": "13",
+              "new": "11"
+            }
+          ]
+        },
+        {
+          "id": "MIRAGE",
+          "name": "Mirage",
+          "changes": [
+            {
+              "field": "description_raw",
+              "old": "Gain [gold]Block[/gold] equal to [gold]Poison[/gold] on ALL enemies.{InCombat...",
+              "new": "Gain [gold]Block[/gold] equal to [gold]Poison[/gold] on ALL enemies.{InCombat..."
+            }
+          ]
+        },
+        {
+          "id": "PECK",
+          "name": "Peck",
+          "changes": [
+            {
+              "field": "description_raw",
+              "old": "Deal {Damage:diff()} damage {Repeat:diff()} times.",
+              "new": "Deal {Damage:diff()} damage {HitCount:diff()} times."
+            },
+            {
+              "field": "hit_count",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "upgrade.hitcount",
+              "old": "none",
+              "new": "+1"
+            },
+            {
+              "field": "upgrade.repeat",
+              "old": "+1",
+              "new": "none"
+            },
+            {
+              "field": "vars.HitCount",
+              "old": "none",
+              "new": "3"
+            },
+            {
+              "field": "vars.Repeat",
+              "old": "3",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "PHANTOM_BLADES",
+          "name": "Phantom Blades",
+          "changes": [
+            {
+              "field": "description",
+              "old": "[gold]Shivs[/gold] gain [gold]Retain[/gold].\nThe first [gold]Shiv[/gold] you ...",
+              "new": "[gold]Shivs[/gold] gain [gold]Retain[/gold].\nThe first [gold]Shiv[/gold] you ..."
+            },
+            {
+              "field": "powers_applied[0].amount",
+              "old": "9",
+              "new": "8"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "[gold]Shivs[/gold] gain [gold]Retain[/gold].\nThe first [gold]Shiv[/gold] you ...",
+              "new": "[gold]Shivs[/gold] gain [gold]Retain[/gold].\nThe first [gold]Shiv[/gold] you ..."
+            },
+            {
+              "field": "vars.PhantomBlades",
+              "old": "9",
+              "new": "8"
+            },
+            {
+              "field": "vars.PhantomBladesPower",
+              "old": "9",
+              "new": "8"
+            }
+          ]
+        },
+        {
+          "id": "PLOT",
+          "name": "Plot",
+          "changes": [
+            {
+              "field": "description_raw",
+              "old": "Next turn, ALL players draw {Cards} cards.",
+              "new": "Next turn, ALL players draw {Cards:diff()} cards."
+            }
+          ]
+        },
+        {
+          "id": "REFRACT",
+          "name": "Refract",
+          "changes": [
+            {
+              "field": "description_raw",
+              "old": "Deal {Damage:diff()} damage twice.\n[gold]Channel[/gold] {Repeat:diff()} [gold...",
+              "new": "Deal {Damage:diff()} damage {HitCount:choose(2):twice|{HitCount:diff()} times..."
+            },
+            {
+              "field": "vars.HitCount",
+              "old": "none",
+              "new": "2"
+            }
+          ]
+        },
+        {
+          "id": "RICOCHET",
+          "name": "Ricochet",
+          "changes": [
+            {
+              "field": "description_raw",
+              "old": "Deal {Damage:diff()} damage to a random enemy {Repeat:diff()} times.",
+              "new": "Deal {Damage:diff()} damage to a random enemy {HitCount:diff()} times."
+            },
+            {
+              "field": "hit_count",
+              "old": "4",
+              "new": "none"
+            },
+            {
+              "field": "upgrade.hitcount",
+              "old": "none",
+              "new": "+1"
+            },
+            {
+              "field": "upgrade.repeat",
+              "old": "+1",
+              "new": "none"
+            },
+            {
+              "field": "vars.HitCount",
+              "old": "none",
+              "new": "4"
+            },
+            {
+              "field": "vars.Repeat",
+              "old": "4",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "RIP_AND_TEAR",
+          "name": "Rip and Tear",
+          "changes": [
+            {
+              "field": "description_raw",
+              "old": "Deal {Damage:diff()} damage to a random enemy twice.",
+              "new": "Deal {Damage:diff()} damage to a random enemy {HitCount:choose(2):twice|{HitC..."
+            },
+            {
+              "field": "hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "vars.HitCount",
+              "old": "none",
+              "new": "2"
+            }
+          ]
+        },
+        {
+          "id": "SALVO",
+          "name": "Salvo",
+          "changes": [
+            {
+              "field": "damage",
+              "old": "12",
+              "new": "10"
+            },
+            {
+              "field": "description",
+              "old": "Deal 12 damage.\n[gold]Retain[/gold] your [gold]Hand[/gold] this turn.",
+              "new": "Deal 10 damage.\n[gold]Retain[/gold] your [gold]Hand[/gold] this turn."
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Deal 16 damage.\n[gold]Retain[/gold] your [gold]Hand[/gold] this turn.",
+              "new": "Deal 14 damage.\n[gold]Retain[/gold] your [gold]Hand[/gold] this turn."
+            },
+            {
+              "field": "vars.Damage",
+              "old": "12",
+              "new": "10"
+            }
+          ]
+        },
+        {
+          "id": "SEVEN_STARS",
+          "name": "Seven Stars",
+          "changes": [
+            {
+              "field": "description_raw",
+              "old": "Deal {Damage:diff()} damage to ALL enemies {Repeat:diff()} {Repeat:plural:tim...",
+              "new": "Deal {Damage:diff()} damage to ALL enemies {HitCount:diff()} {HitCount:plural..."
+            },
+            {
+              "field": "hit_count",
+              "old": "7",
+              "new": "none"
+            },
+            {
+              "field": "vars.HitCount",
+              "old": "none",
+              "new": "7"
+            },
+            {
+              "field": "vars.Repeat",
+              "old": "7",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "SOVEREIGN_BLADE",
+          "name": "Sovereign Blade",
+          "changes": [
+            {
+              "field": "description_raw",
+              "old": "Deal {Damage:diff()} damage{TargetType:choose(AllEnemies): to ALL enemies|}{R...",
+              "new": "Deal {Damage:diff()} damage{TargetType:choose(AllEnemies): to ALL enemies|}{H..."
+            },
+            {
+              "field": "hit_count",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "vars.HitCount",
+              "old": "none",
+              "new": "1"
+            },
+            {
+              "field": "vars.Repeat",
+              "old": "1",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "SPEEDSTER",
+          "name": "Speedster",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Whenever you draw a card during your turn, deal 2 damage to ALL enemies.",
+              "new": "Whenever you draw a card during your turn, deal 3 damage to ALL enemies."
+            },
+            {
+              "field": "powers_applied[0].amount",
+              "old": "2",
+              "new": "3"
+            },
+            {
+              "field": "vars.Speedster",
+              "old": "2",
+              "new": "3"
+            },
+            {
+              "field": "vars.SpeedsterPower",
+              "old": "2",
+              "new": "3"
+            }
+          ]
+        },
+        {
+          "id": "SPITE",
+          "name": "Spite",
+          "changes": [
+            {
+              "field": "description_raw",
+              "old": "Deal {Damage:diff()} damage.\nIf you lost HP this turn,\nhits {Repeat:diff()} t...",
+              "new": "Deal {Damage:diff()} damage.\nIf you lost HP this turn,\nhits {HitCount:diff()}..."
+            },
+            {
+              "field": "hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "upgrade.hitcount",
+              "old": "none",
+              "new": "+1"
+            },
+            {
+              "field": "upgrade.repeat",
+              "old": "+1",
+              "new": "none"
+            },
+            {
+              "field": "vars.HitCount",
+              "old": "none",
+              "new": "2"
+            },
+            {
+              "field": "vars.Repeat",
+              "old": "2",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "SWORD_BOOMERANG",
+          "name": "Sword Boomerang",
+          "changes": [
+            {
+              "field": "description_raw",
+              "old": "Deal {Damage:diff()} damage to a random enemy {Repeat:diff()} times.",
+              "new": "Deal {Damage:diff()} damage to a random enemy {HitCount:diff()} times."
+            },
+            {
+              "field": "hit_count",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "upgrade.hitcount",
+              "old": "none",
+              "new": "+1"
+            },
+            {
+              "field": "upgrade.repeat",
+              "old": "+1",
+              "new": "none"
+            },
+            {
+              "field": "vars.HitCount",
+              "old": "none",
+              "new": "3"
+            },
+            {
+              "field": "vars.Repeat",
+              "old": "3",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "THRASH",
+          "name": "Thrash",
+          "changes": [
+            {
+              "field": "description_raw",
+              "old": "Deal {Damage:diff()} damage twice.\n[gold]Exhaust[/gold] a random Attack in yo...",
+              "new": "Deal {Damage:diff()} damage {HitCount:choose(2):twice|{HitCount:diff()} times..."
+            },
+            {
+              "field": "hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "vars.HitCount",
+              "old": "none",
+              "new": "2"
+            }
+          ]
+        },
+        {
+          "id": "TRACKING",
+          "name": "Tracking",
+          "changes": [
+            {
+              "field": "description",
+              "old": "[gold]Weak[/gold] enemies take 50% more damage from Attacks.",
+              "new": "[gold]Weak[/gold] enemies take 50% more damage from your Attacks."
+            },
+            {
+              "field": "description_raw",
+              "old": "[gold]Weak[/gold] enemies take 50% more damage from Attacks.",
+              "new": "[gold]Weak[/gold] enemies take 50% more damage from your Attacks."
+            }
+          ]
+        },
+        {
+          "id": "TWIN_STRIKE",
+          "name": "Twin Strike",
+          "changes": [
+            {
+              "field": "description_raw",
+              "old": "Deal {Damage:diff()} damage twice.",
+              "new": "Deal {Damage:diff()} damage {HitCount:choose(2):twice|{HitCount:diff()} times}."
+            },
+            {
+              "field": "hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "vars.HitCount",
+              "old": "none",
+              "new": "2"
+            }
+          ]
+        },
+        {
+          "id": "UPROAR",
+          "name": "Uproar",
+          "changes": [
+            {
+              "field": "description_raw",
+              "old": "Deal {Damage:diff()} damage twice.\nPlay a random Attack from your [gold]Draw ...",
+              "new": "Deal {Damage:diff()} damage {HitCount:choose(2):twice|{HitCount:diff()} times..."
+            },
+            {
+              "field": "hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "vars.HitCount",
+              "old": "none",
+              "new": "2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "characters",
+      "name": "Characters",
+      "old_count": 5,
+      "new_count": 6,
+      "added": [
+        {
+          "id": "FOOL",
+          "name": "The Fool"
+        }
+      ]
+    },
+    {
+      "id": "relics",
+      "name": "Relics",
+      "old_count": 298,
+      "new_count": 315,
+      "added": [
+        {
+          "id": "BATH_ROBES",
+          "name": "Bath Robes",
+          "rarity": "Event Relic"
+        },
+        {
+          "id": "BATH_TOWEL",
+          "name": "Bath Towel",
+          "rarity": "Event Relic"
+        },
+        {
+          "id": "BIZARRE_LAMP",
+          "name": "Bizarre Lamp",
+          "rarity": "Shop Relic"
+        },
+        {
+          "id": "BYRDINE",
+          "name": "Byrdine",
+          "rarity": "Event Relic"
+        },
+        {
+          "id": "CONDUCTORS_BATON",
+          "name": "Conductor's Baton",
+          "rarity": "Rare Relic"
+        },
+        {
+          "id": "EXERCISE_MAT",
+          "name": "Exercise Mat",
+          "rarity": "Common Relic"
+        },
+        {
+          "id": "FERTILIZER",
+          "name": "Fertilizer",
+          "rarity": "Rare Relic"
+        },
+        {
+          "id": "MIGHTY_WINGS",
+          "name": "Mighty Wings",
+          "rarity": "Event Relic"
+        },
+        {
+          "id": "OBSIDIAN_VICE",
+          "name": "Obsidian Vice",
+          "rarity": "Event Relic"
+        },
+        {
+          "id": "OCARINA",
+          "name": "Ocarina",
+          "rarity": "Uncommon Relic"
+        },
+        {
+          "id": "SONG_BOW",
+          "name": "Song Bow",
+          "rarity": "Starter Relic"
+        },
+        {
+          "id": "STORYTELLER",
+          "name": "Storyteller",
+          "rarity": "Starter Relic"
+        },
+        {
+          "id": "THUMBSCREW",
+          "name": "Thumbscrew",
+          "rarity": "Event Relic"
+        },
+        {
+          "id": "TORMENTOUS_COLLAR",
+          "name": "Tormentous Collar",
+          "rarity": "Event Relic"
+        },
+        {
+          "id": "TWINE",
+          "name": "Twine",
+          "rarity": "Rare Relic"
+        },
+        {
+          "id": "WHITTLING_KNIFE",
+          "name": "Whittling Knife",
+          "rarity": "Uncommon Relic"
+        },
+        {
+          "id": "WUPPY",
+          "name": "Wuppy",
+          "rarity": "Event Relic"
+        }
+      ],
+      "changed": [
+        {
+          "id": "BRILLIANT_SCARF",
+          "name": "Brilliant Scarf",
+          "changes": [
+            {
+              "field": "description",
+              "old": "The [blue]5th[/blue] card you play from your hand each turn is free.",
+              "new": "The [blue]6th[/blue] card you play from your hand each turn is free."
+            },
+            {
+              "field": "description_raw",
+              "old": "The [blue]5th[/blue] card you play from your hand each turn is free.",
+              "new": "The [blue]6th[/blue] card you play from your hand each turn is free."
+            }
+          ]
+        },
+        {
+          "id": "BYRDPIP",
+          "name": "Byrdpip",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Upon pickup, gain the card [gold]Byrd Swoop[/gold]. A [gold]Byrdpip[/gold] wi...",
+              "new": "Upon pickup, gain the card [gold]Byrd Swoop[/gold]. A [gold]Byrdpip[/gold] wi..."
+            },
+            {
+              "field": "description_raw",
+              "old": "Upon pickup, gain the card [gold]Byrd Swoop[/gold]. A [gold]Byrdpip[/gold] wi...",
+              "new": "Upon pickup, gain the card [gold]Byrd Swoop[/gold]. A [gold]Byrdpip[/gold] wi..."
+            }
+          ]
+        },
+        {
+          "id": "LAVA_ROCK",
+          "name": "Lava Rock",
+          "changes": [
+            {
+              "field": "description",
+              "old": "The Act 1 Boss drops [blue]2[/blue] [gold]Relics[/gold].",
+              "new": "The [gold]Act[/gold] [blue]1[/blue] Boss drops [blue]2[/blue] [gold]Relics[/g..."
+            },
+            {
+              "field": "description_raw",
+              "old": "The Act 1 Boss drops [blue]{Relics}[/blue] [gold]Relics[/gold].",
+              "new": "The [gold]Act[/gold] [blue]1[/blue] Boss drops [blue]{Relics}[/blue] [gold]Re..."
+            }
+          ]
+        },
+        {
+          "id": "LOOMING_FRUIT",
+          "name": "Looming Fruit",
+          "changes": [
+            {
+              "field": "image_variants.Cornucopia",
+              "old": "/static/images/beta/v0.111.0/relics/looming_fruit.webp",
+              "new": "/static/images/beta/v0.113.0/relics/looming_fruit.webp"
+            },
+            {
+              "field": "image_variants.Fruit",
+              "old": "/static/images/beta/v0.111.0/relics/looming_fruit_2.webp",
+              "new": "/static/images/beta/v0.113.0/relics/looming_fruit_2.webp"
+            }
+          ]
+        },
+        {
+          "id": "REGAL_PILLOW",
+          "name": "Regal Pillow",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Whenever you [gold]Rest[/gold], heal an additional [blue]15[/blue] HP.",
+              "new": "Whenever you [gold]Rest[/gold], heal an additional [green]15[/green] HP."
+            },
+            {
+              "field": "description_raw",
+              "old": "Whenever you [gold]Rest[/gold], heal an additional [blue]{Heal}[/blue] HP.",
+              "new": "Whenever you [gold]Rest[/gold], heal an additional [green]{Heal}[/green] HP."
+            }
+          ]
+        },
+        {
+          "id": "SEA_GLASS",
+          "name": "Sea Glass",
+          "changes": [
+            {
+              "field": "name_variants.Fool",
+              "old": "none",
+              "new": "Tangled Glass"
+            }
+          ]
+        },
+        {
+          "id": "YUMMY_COOKIE",
+          "name": "Yummy Cookie",
+          "changes": [
+            {
+              "field": "image_variants.Defect",
+              "old": "/static/images/beta/v0.111.0/relics/yummy_cookie_defect.webp",
+              "new": "/static/images/beta/v0.113.0/relics/yummy_cookie_defect.webp"
+            },
+            {
+              "field": "image_variants.Fool",
+              "old": "none",
+              "new": "/static/images/beta/v0.113.0/relics/yummy_cookie_fool.webp"
+            },
+            {
+              "field": "image_variants.Ironclad",
+              "old": "/static/images/beta/v0.111.0/relics/yummy_cookie_ironclad.webp",
+              "new": "/static/images/beta/v0.113.0/relics/yummy_cookie_ironclad.webp"
+            },
+            {
+              "field": "image_variants.Regent",
+              "old": "/static/images/beta/v0.111.0/relics/yummy_cookie_regent.webp",
+              "new": "/static/images/beta/v0.113.0/relics/yummy_cookie_regent.webp"
+            },
+            {
+              "field": "image_variants.Silent",
+              "old": "/static/images/beta/v0.111.0/relics/yummy_cookie_silent.webp",
+              "new": "/static/images/beta/v0.113.0/relics/yummy_cookie_silent.webp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "monsters",
+      "name": "Monsters",
+      "old_count": 115,
+      "new_count": 117,
+      "added": [
+        {
+          "id": "BYRDINE_MONSTER",
+          "name": "Byrdine",
+          "min_hp": 9999,
+          "max_hp": 9999
+        },
+        {
+          "id": "WUPPY",
+          "name": "Wuppy",
+          "min_hp": 50,
+          "max_hp": 50
+        }
+      ],
+      "changed": [
+        {
+          "id": "AXEBOT",
+          "name": "Axebot",
+          "changes": [
+            {
+              "field": "max_hp",
+              "old": "78",
+              "new": "none"
+            },
+            {
+              "field": "max_hp_ascension",
+              "old": "86",
+              "new": "none"
+            },
+            {
+              "field": "min_hp_ascension",
+              "old": "76",
+              "new": "80"
+            }
+          ]
+        },
+        {
+          "id": "CEREMONIAL_BEAST",
+          "name": "Ceremonial Beast",
+          "changes": [
+            {
+              "field": "moves[PLOW].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[PLOW].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[PLOW].powers[0].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "DEVOTED_SCULPTOR",
+          "name": "Devoted Sculptor",
+          "changes": [
+            {
+              "field": "moves[FORBIDDEN_INCANTATION].powers[0].amount",
+              "old": "none",
+              "new": "9"
+            },
+            {
+              "field": "moves[FORBIDDEN_INCANTATION].powers[0].power_id",
+              "old": "none",
+              "new": "RITUAL"
+            },
+            {
+              "field": "moves[FORBIDDEN_INCANTATION].powers[0].target",
+              "old": "none",
+              "new": "self"
+            }
+          ]
+        },
+        {
+          "id": "FOGMOG",
+          "name": "Fogmog",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Starts with Illusory Spores, then random: Swipe Random (no repeat, 40%), Head...",
+              "new": "Opens with Illusory Spores. Every turn after that it picks Swipe Random 40 pe..."
+            }
+          ]
+        },
+        {
+          "id": "GREMLIN_MERC",
+          "name": "Gremlin Merc",
+          "changes": [
+            {
+              "field": "quotes[1].key",
+              "old": "none",
+              "new": "banter"
+            },
+            {
+              "field": "quotes[1].move",
+              "old": "none",
+              "new": "Gimme Blitz"
+            },
+            {
+              "field": "quotes[1].text",
+              "old": "none",
+              "new": "Wha - this one's got no money!"
+            }
+          ]
+        },
+        {
+          "id": "INFESTED_PRISM",
+          "name": "Infested Prism",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Jab → Radiate → Whirlwind → Pulsate → repeat",
+              "new": "Jab → Jab Move 2 → Whirlwind → Pulsate → repeat"
+            },
+            {
+              "field": "attack_pattern.states[JAB_MOVE].next",
+              "old": "RADIATE_MOVE",
+              "new": "JAB_MOVE_2"
+            },
+            {
+              "field": "attack_pattern.states[JAB_MOVE_2].id",
+              "old": "none",
+              "new": "JAB_MOVE_2"
+            },
+            {
+              "field": "attack_pattern.states[JAB_MOVE_2].move_id",
+              "old": "none",
+              "new": "JAB_MOVE_2"
+            },
+            {
+              "field": "attack_pattern.states[JAB_MOVE_2].next",
+              "old": "none",
+              "new": "WHIRLWIND_MOVE"
+            },
+            {
+              "field": "attack_pattern.states[JAB_MOVE_2].type",
+              "old": "none",
+              "new": "move"
+            },
+            {
+              "field": "attack_pattern.states[RADIATE_MOVE].id",
+              "old": "RADIATE_MOVE",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[RADIATE_MOVE].move_id",
+              "old": "RADIATE",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[RADIATE_MOVE].next",
+              "old": "WHIRLWIND_MOVE",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[RADIATE_MOVE].type",
+              "old": "move",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.Radiate.ascension",
+              "old": "13",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.Radiate.normal",
+              "old": "11",
+              "new": "none"
+            },
+            {
+              "field": "moves[JAB_MOVE_2].damage.ascension",
+              "old": "none",
+              "new": "17"
+            },
+            {
+              "field": "moves[JAB_MOVE_2].damage.normal",
+              "old": "none",
+              "new": "15"
+            },
+            {
+              "field": "moves[JAB_MOVE_2].id",
+              "old": "none",
+              "new": "JAB_MOVE_2"
+            },
+            {
+              "field": "moves[JAB_MOVE_2].intent",
+              "old": "none",
+              "new": "Attack"
+            },
+            {
+              "field": "moves[JAB_MOVE_2].name",
+              "old": "none",
+              "new": "Jab Move 2"
+            },
+            {
+              "field": "moves[PULSATE].block",
+              "old": "20",
+              "new": "none"
+            },
+            {
+              "field": "moves[PULSATE].intent",
+              "old": "Attack + Buff + Defend",
+              "new": "Attack + Debuff + Buff"
+            },
+            {
+              "field": "moves[PULSATE].powers[0].amount",
+              "old": "2",
+              "new": "1"
+            },
+            {
+              "field": "moves[PULSATE].powers[0].power_id",
+              "old": "VITAL_SPARK",
+              "new": "VULNERABLE"
+            },
+            {
+              "field": "moves[PULSATE].powers[0].target",
+              "old": "self",
+              "new": "player"
+            },
+            {
+              "field": "moves[PULSATE].powers[1].amount",
+              "old": "none",
+              "new": "2"
+            },
+            {
+              "field": "moves[PULSATE].powers[1].power_id",
+              "old": "none",
+              "new": "VITAL_SPARK"
+            },
+            {
+              "field": "moves[PULSATE].powers[1].target",
+              "old": "none",
+              "new": "self"
+            },
+            {
+              "field": "moves[RADIATE].block",
+              "old": "11",
+              "new": "none"
+            },
+            {
+              "field": "moves[RADIATE].damage.ascension",
+              "old": "13",
+              "new": "none"
+            },
+            {
+              "field": "moves[RADIATE].damage.normal",
+              "old": "11",
+              "new": "none"
+            },
+            {
+              "field": "moves[RADIATE].id",
+              "old": "RADIATE",
+              "new": "none"
+            },
+            {
+              "field": "moves[RADIATE].intent",
+              "old": "Attack + Defend",
+              "new": "none"
+            },
+            {
+              "field": "moves[RADIATE].name",
+              "old": "Radiate",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "KIN_FOLLOWER",
+          "name": "Kin Follower",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Power Dance → Quick Slash → Boomerang → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "POWER_DANCE",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "QUEEN",
+          "name": "Queen",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Starts: Puppet Strings → You Are Mine; then conditional: Burn Bright for Me (...",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "PUPPET_STRINGS",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[DREAD_INITIAL_MOVE].id",
+              "old": "none",
+              "new": "DREAD_INITIAL_MOVE"
+            },
+            {
+              "field": "attack_pattern.states[DREAD_INITIAL_MOVE].move_id",
+              "old": "none",
+              "new": "DREAD_INITIAL"
+            },
+            {
+              "field": "attack_pattern.states[DREAD_INITIAL_MOVE].next",
+              "old": "none",
+              "new": "YOURE_MINE_NOW_BRANCH"
+            },
+            {
+              "field": "attack_pattern.states[DREAD_INITIAL_MOVE].type",
+              "old": "none",
+              "new": "move"
+            },
+            {
+              "field": "moves[DREAD_INITIAL].id",
+              "old": "none",
+              "new": "DREAD_INITIAL"
+            },
+            {
+              "field": "moves[DREAD_INITIAL].intent",
+              "old": "none",
+              "new": "Debuff"
+            },
+            {
+              "field": "moves[DREAD_INITIAL].name",
+              "old": "none",
+              "new": "Dread Initial"
+            },
+            {
+              "field": "moves[DREAD_INITIAL].powers[0].amount",
+              "old": "none",
+              "new": "99"
+            },
+            {
+              "field": "moves[DREAD_INITIAL].powers[0].power_id",
+              "old": "none",
+              "new": "FRAIL"
+            },
+            {
+              "field": "moves[DREAD_INITIAL].powers[0].target",
+              "old": "none",
+              "new": "player"
+            },
+            {
+              "field": "moves[DREAD_INITIAL].powers[1].amount",
+              "old": "none",
+              "new": "99"
+            },
+            {
+              "field": "moves[DREAD_INITIAL].powers[1].power_id",
+              "old": "none",
+              "new": "WEAK"
+            },
+            {
+              "field": "moves[DREAD_INITIAL].powers[1].target",
+              "old": "none",
+              "new": "player"
+            },
+            {
+              "field": "moves[DREAD_INITIAL].powers[2].amount",
+              "old": "none",
+              "new": "99"
+            },
+            {
+              "field": "moves[DREAD_INITIAL].powers[2].power_id",
+              "old": "none",
+              "new": "VULNERABLE"
+            },
+            {
+              "field": "moves[DREAD_INITIAL].powers[2].target",
+              "old": "none",
+              "new": "player"
+            },
+            {
+              "field": "moves[DREAD_INITIAL].powers[3].amount",
+              "old": "none",
+              "new": "3"
+            },
+            {
+              "field": "moves[DREAD_INITIAL].powers[3].power_id",
+              "old": "none",
+              "new": "CHAINS_OF_BINDING"
+            },
+            {
+              "field": "moves[DREAD_INITIAL].powers[3].target",
+              "old": "none",
+              "new": "player"
+            }
+          ]
+        },
+        {
+          "id": "ROCKET",
+          "name": "Rocket",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Targeting Reticle → Precision Beam → Charge Up → Laser → Recharge → repeat",
+              "new": "Calculating → Precise Smash → Charge Up → Rocket Claw → Recharge → repeat"
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "TARGETING_RETICLE",
+              "new": "CALCULATING"
+            },
+            {
+              "field": "attack_pattern.states[CALCULATING_MOVE].id",
+              "old": "none",
+              "new": "CALCULATING_MOVE"
+            },
+            {
+              "field": "attack_pattern.states[CALCULATING_MOVE].move_id",
+              "old": "none",
+              "new": "CALCULATING"
+            },
+            {
+              "field": "attack_pattern.states[CALCULATING_MOVE].next",
+              "old": "none",
+              "new": "PRECISE_SMASH_MOVE"
+            },
+            {
+              "field": "attack_pattern.states[CALCULATING_MOVE].type",
+              "old": "none",
+              "new": "move"
+            },
+            {
+              "field": "attack_pattern.states[CHARGE_UP_MOVE].next",
+              "old": "LASER_MOVE",
+              "new": "ROCKET_CLAW_MOVE"
+            },
+            {
+              "field": "attack_pattern.states[LASER_MOVE].id",
+              "old": "LASER_MOVE",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[LASER_MOVE].move_id",
+              "old": "LASER",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[LASER_MOVE].next",
+              "old": "RECHARGE_MOVE",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[LASER_MOVE].type",
+              "old": "move",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[PRECISE_SMASH_MOVE].id",
+              "old": "none",
+              "new": "PRECISE_SMASH_MOVE"
+            },
+            {
+              "field": "attack_pattern.states[PRECISE_SMASH_MOVE].move_id",
+              "old": "none",
+              "new": "PRECISE_SMASH"
+            },
+            {
+              "field": "attack_pattern.states[PRECISE_SMASH_MOVE].next",
+              "old": "none",
+              "new": "CHARGE_UP_MOVE"
+            },
+            {
+              "field": "attack_pattern.states[PRECISE_SMASH_MOVE].type",
+              "old": "none",
+              "new": "move"
+            },
+            {
+              "field": "attack_pattern.states[PRECISE_SMASH_MOVE_2].id",
+              "old": "none",
+              "new": "PRECISE_SMASH_MOVE_2"
+            },
+            {
+              "field": "attack_pattern.states[PRECISE_SMASH_MOVE_2].move_id",
+              "old": "none",
+              "new": "PRECISE_SMASH_MOVE_2"
+            },
+            {
+              "field": "attack_pattern.states[PRECISE_SMASH_MOVE_2].type",
+              "old": "none",
+              "new": "move"
+            },
+            {
+              "field": "attack_pattern.states[PRECISION_BEAM_MOVE].id",
+              "old": "PRECISION_BEAM_MOVE",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[PRECISION_BEAM_MOVE].move_id",
+              "old": "PRECISION_BEAM",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[PRECISION_BEAM_MOVE].next",
+              "old": "CHARGE_UP_MOVE",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[PRECISION_BEAM_MOVE].type",
+              "old": "move",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[RECHARGE_MOVE].next",
+              "old": "TARGETING_RETICLE_MOVE",
+              "new": "CALCULATING_MOVE"
+            },
+            {
+              "field": "attack_pattern.states[ROCKET_CLAW_MOVE].id",
+              "old": "none",
+              "new": "ROCKET_CLAW_MOVE"
+            },
+            {
+              "field": "attack_pattern.states[ROCKET_CLAW_MOVE].move_id",
+              "old": "none",
+              "new": "ROCKET_CLAW"
+            },
+            {
+              "field": "attack_pattern.states[ROCKET_CLAW_MOVE].next",
+              "old": "none",
+              "new": "RECHARGE_MOVE"
+            },
+            {
+              "field": "attack_pattern.states[ROCKET_CLAW_MOVE].type",
+              "old": "none",
+              "new": "move"
+            },
+            {
+              "field": "attack_pattern.states[TARGETING_RETICLE_MOVE].id",
+              "old": "TARGETING_RETICLE_MOVE",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[TARGETING_RETICLE_MOVE].move_id",
+              "old": "TARGETING_RETICLE",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[TARGETING_RETICLE_MOVE].next",
+              "old": "PRECISION_BEAM_MOVE",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[TARGETING_RETICLE_MOVE].type",
+              "old": "move",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.Calculating.ascension",
+              "old": "none",
+              "new": "4"
+            },
+            {
+              "field": "damage_values.Calculating.normal",
+              "old": "none",
+              "new": "3"
+            },
+            {
+              "field": "damage_values.Laser.ascension",
+              "old": "35",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.Laser.normal",
+              "old": "31",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.PreciseSmash.ascension",
+              "old": "none",
+              "new": "20"
+            },
+            {
+              "field": "damage_values.PreciseSmash.normal",
+              "old": "none",
+              "new": "18"
+            },
+            {
+              "field": "damage_values.PrecisionBeam.ascension",
+              "old": "20",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.PrecisionBeam.normal",
+              "old": "18",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.RocketClaw.ascension",
+              "old": "none",
+              "new": "35"
+            },
+            {
+              "field": "damage_values.RocketClaw.normal",
+              "old": "none",
+              "new": "31"
+            },
+            {
+              "field": "damage_values.TargetingReticle.ascension",
+              "old": "4",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.TargetingReticle.normal",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[CALCULATING].damage.ascension",
+              "old": "none",
+              "new": "4"
+            },
+            {
+              "field": "moves[CALCULATING].damage.normal",
+              "old": "none",
+              "new": "3"
+            },
+            {
+              "field": "moves[CALCULATING].id",
+              "old": "none",
+              "new": "CALCULATING"
+            },
+            {
+              "field": "moves[CALCULATING].intent",
+              "old": "none",
+              "new": "Attack"
+            },
+            {
+              "field": "moves[CALCULATING].name",
+              "old": "none",
+              "new": "Calculating"
+            },
+            {
+              "field": "moves[LASER].damage.ascension",
+              "old": "35",
+              "new": "none"
+            },
+            {
+              "field": "moves[LASER].damage.normal",
+              "old": "31",
+              "new": "none"
+            },
+            {
+              "field": "moves[LASER].id",
+              "old": "LASER",
+              "new": "none"
+            },
+            {
+              "field": "moves[LASER].intent",
+              "old": "Attack",
+              "new": "none"
+            },
+            {
+              "field": "moves[LASER].name",
+              "old": "Laser",
+              "new": "none"
+            },
+            {
+              "field": "moves[PRECISE_SMASH].damage.ascension",
+              "old": "none",
+              "new": "20"
+            },
+            {
+              "field": "moves[PRECISE_SMASH].damage.normal",
+              "old": "none",
+              "new": "18"
+            },
+            {
+              "field": "moves[PRECISE_SMASH].id",
+              "old": "none",
+              "new": "PRECISE_SMASH"
+            },
+            {
+              "field": "moves[PRECISE_SMASH].intent",
+              "old": "none",
+              "new": "Attack"
+            },
+            {
+              "field": "moves[PRECISE_SMASH].name",
+              "old": "none",
+              "new": "Precise Smash"
+            },
+            {
+              "field": "moves[PRECISE_SMASH_MOVE_2].damage.ascension",
+              "old": "none",
+              "new": "20"
+            },
+            {
+              "field": "moves[PRECISE_SMASH_MOVE_2].damage.normal",
+              "old": "none",
+              "new": "18"
+            },
+            {
+              "field": "moves[PRECISE_SMASH_MOVE_2].id",
+              "old": "none",
+              "new": "PRECISE_SMASH_MOVE_2"
+            },
+            {
+              "field": "moves[PRECISE_SMASH_MOVE_2].intent",
+              "old": "none",
+              "new": "Attack"
+            },
+            {
+              "field": "moves[PRECISE_SMASH_MOVE_2].name",
+              "old": "none",
+              "new": "Precise Smash Move 2"
+            },
+            {
+              "field": "moves[PRECISION_BEAM].damage.ascension",
+              "old": "20",
+              "new": "none"
+            },
+            {
+              "field": "moves[PRECISION_BEAM].damage.normal",
+              "old": "18",
+              "new": "none"
+            },
+            {
+              "field": "moves[PRECISION_BEAM].id",
+              "old": "PRECISION_BEAM",
+              "new": "none"
+            },
+            {
+              "field": "moves[PRECISION_BEAM].intent",
+              "old": "Attack",
+              "new": "none"
+            },
+            {
+              "field": "moves[PRECISION_BEAM].name",
+              "old": "Precision Beam",
+              "new": "none"
+            },
+            {
+              "field": "moves[ROCKET_CLAW].damage.ascension",
+              "old": "none",
+              "new": "35"
+            },
+            {
+              "field": "moves[ROCKET_CLAW].damage.normal",
+              "old": "none",
+              "new": "31"
+            },
+            {
+              "field": "moves[ROCKET_CLAW].id",
+              "old": "none",
+              "new": "ROCKET_CLAW"
+            },
+            {
+              "field": "moves[ROCKET_CLAW].intent",
+              "old": "none",
+              "new": "Attack"
+            },
+            {
+              "field": "moves[ROCKET_CLAW].name",
+              "old": "none",
+              "new": "Rocket Claw"
+            },
+            {
+              "field": "moves[TARGETING_RETICLE].damage.ascension",
+              "old": "4",
+              "new": "none"
+            },
+            {
+              "field": "moves[TARGETING_RETICLE].damage.normal",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[TARGETING_RETICLE].id",
+              "old": "TARGETING_RETICLE",
+              "new": "none"
+            },
+            {
+              "field": "moves[TARGETING_RETICLE].intent",
+              "old": "Attack",
+              "new": "none"
+            },
+            {
+              "field": "moves[TARGETING_RETICLE].name",
+              "old": "Targeting Reticle",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "TUNNELER",
+          "name": "Tunneler",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Bite → Burrow → Attack from Below → repeat",
+              "new": "Bite → Burrow → From Below → repeat"
+            },
+            {
+              "field": "attack_pattern.states[BELOW_MOVE].id",
+              "old": "BELOW_MOVE",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[BELOW_MOVE].move_id",
+              "old": "BELOW",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[BELOW_MOVE].next",
+              "old": "BELOW_MOVE",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[BELOW_MOVE].type",
+              "old": "move",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[BURROW_MOVE].next",
+              "old": "BELOW_MOVE",
+              "new": "FROM_BELOW_MOVE"
+            },
+            {
+              "field": "attack_pattern.states[FROM_BELOW_MOVE].id",
+              "old": "none",
+              "new": "FROM_BELOW_MOVE"
+            },
+            {
+              "field": "attack_pattern.states[FROM_BELOW_MOVE].move_id",
+              "old": "none",
+              "new": "FROM_BELOW"
+            },
+            {
+              "field": "attack_pattern.states[FROM_BELOW_MOVE].next",
+              "old": "none",
+              "new": "FROM_BELOW_MOVE"
+            },
+            {
+              "field": "attack_pattern.states[FROM_BELOW_MOVE].type",
+              "old": "none",
+              "new": "move"
+            },
+            {
+              "field": "damage_values.Below.ascension",
+              "old": "26",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.Below.normal",
+              "old": "23",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.FromBelow.ascension",
+              "old": "none",
+              "new": "28"
+            },
+            {
+              "field": "damage_values.FromBelow.normal",
+              "old": "none",
+              "new": "24"
+            },
+            {
+              "field": "moves[BELOW].damage.ascension",
+              "old": "26",
+              "new": "none"
+            },
+            {
+              "field": "moves[BELOW].damage.normal",
+              "old": "23",
+              "new": "none"
+            },
+            {
+              "field": "moves[BELOW].id",
+              "old": "BELOW",
+              "new": "none"
+            },
+            {
+              "field": "moves[BELOW].intent",
+              "old": "Attack",
+              "new": "none"
+            },
+            {
+              "field": "moves[BELOW].name",
+              "old": "Attack from Below",
+              "new": "none"
+            },
+            {
+              "field": "moves[FROM_BELOW].damage.ascension",
+              "old": "none",
+              "new": "28"
+            },
+            {
+              "field": "moves[FROM_BELOW].damage.normal",
+              "old": "none",
+              "new": "24"
+            },
+            {
+              "field": "moves[FROM_BELOW].id",
+              "old": "none",
+              "new": "FROM_BELOW"
+            },
+            {
+              "field": "moves[FROM_BELOW].intent",
+              "old": "none",
+              "new": "Attack"
+            },
+            {
+              "field": "moves[FROM_BELOW].name",
+              "old": "none",
+              "new": "From Below"
+            }
+          ]
+        },
+        {
+          "id": "VANTOM",
+          "name": "Vantom",
+          "changes": [
+            {
+              "field": "moves[PREPARE].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[PREPARE].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[PREPARE].powers[0].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "WATERFALL_GIANT",
+          "name": "Waterfall Giant",
+          "changes": [
+            {
+              "field": "moves[PRESSURE_GUN].powers[0].amount",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[PRESSURE_GUN].powers[0].power_id",
+              "old": "STEAM_ERUPTION",
+              "new": "none"
+            },
+            {
+              "field": "moves[PRESSURE_GUN].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[PRESSURE_UP].powers[0].amount",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[PRESSURE_UP].powers[0].power_id",
+              "old": "STEAM_ERUPTION",
+              "new": "none"
+            },
+            {
+              "field": "moves[PRESSURE_UP].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[RAM].powers[0].amount",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[RAM].powers[0].power_id",
+              "old": "STEAM_ERUPTION",
+              "new": "none"
+            },
+            {
+              "field": "moves[RAM].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[SIPHON].powers[0].amount",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[SIPHON].powers[0].power_id",
+              "old": "STEAM_ERUPTION",
+              "new": "none"
+            },
+            {
+              "field": "moves[SIPHON].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[STOMP].powers[1].amount",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[STOMP].powers[1].power_id",
+              "old": "STEAM_ERUPTION",
+              "new": "none"
+            },
+            {
+              "field": "moves[STOMP].powers[1].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "potions",
+      "name": "Potions",
+      "old_count": 64,
+      "new_count": 67,
+      "added": [
+        {
+          "id": "BOTTLED_SONG",
+          "name": "Bottled Song",
+          "rarity": "Uncommon"
+        },
+        {
+          "id": "CRYSTALLINE_EUPHORIA",
+          "name": "Crystalline Euphoria",
+          "rarity": "Rare"
+        },
+        {
+          "id": "PRECISION_POTION",
+          "name": "Precision Potion",
+          "rarity": "Common"
+        }
+      ]
+    },
+    {
+      "id": "events",
+      "name": "Events",
+      "old_count": 66,
+      "new_count": 71,
+      "added": [
+        {
+          "id": "MUSEUM_OF_TORTURE",
+          "name": "Museum of Torture",
+          "type": "Shared"
+        },
+        {
+          "id": "SHRINE_OF_THE_WARLORD",
+          "name": "Shrine of the Warlord",
+          "type": "Event"
+        },
+        {
+          "id": "THERMAE_NONUPEIPE",
+          "name": "Thermae Nonupeipe",
+          "type": "Event"
+        },
+        {
+          "id": "WATERFALL_OF_OBVIOUS_SECRETS",
+          "name": "Waterfall of Obvious Secrets",
+          "type": "Event"
+        },
+        {
+          "id": "WUPPY_IN_TROUBLE",
+          "name": "Wuppy in Trouble",
+          "type": "Event"
+        }
+      ],
+      "changed": [
+        {
+          "id": "COLORFUL_PHILOSOPHERS",
+          "name": "Colorful Philosophers",
+          "changes": [
+            {
+              "field": "options[FOOL].description",
+              "old": "none",
+              "new": "Obtain [blue]3[/blue] Fool cards."
+            },
+            {
+              "field": "options[FOOL].id",
+              "old": "none",
+              "new": "FOOL"
+            },
+            {
+              "field": "options[FOOL].title",
+              "old": "none",
+              "new": "Yellow"
+            },
+            {
+              "field": "pages[INITIAL].options[FOOL].description",
+              "old": "none",
+              "new": "Obtain [blue]3[/blue] Fool cards."
+            },
+            {
+              "field": "pages[INITIAL].options[FOOL].id",
+              "old": "none",
+              "new": "FOOL"
+            },
+            {
+              "field": "pages[INITIAL].options[FOOL].title",
+              "old": "none",
+              "new": "Yellow"
+            },
+            {
+              "field": "preconditions[0]",
+              "old": "Requires more than one character unlocked",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "DOORS_OF_LIGHT_AND_DARK",
+          "name": "Doors of Light and Dark",
+          "changes": [
+            {
+              "field": "options[LIGHT].description",
+              "old": "[gold]Upgrade[/gold] [blue]2[/blue] random cards.",
+              "new": "[gold]Upgrade[/gold] a card."
+            },
+            {
+              "field": "pages[INITIAL].options[LIGHT].description",
+              "old": "[gold]Upgrade[/gold] [blue]2[/blue] random cards.",
+              "new": "[gold]Upgrade[/gold] a card."
+            }
+          ]
+        },
+        {
+          "id": "ROUND_TEA_PARTY",
+          "name": "The Round Tea Party",
+          "changes": [
+            {
+              "field": "pages[CONTINUE_FIGHT].description",
+              "old": "The patrons stare wide-eyed at the corpse of one of their regulars... then [j...",
+              "new": "The patrons stare wide-eyed at the corpse of one of their regulars... then [j..."
+            },
+            {
+              "field": "pages[ENJOY_TEA].description",
+              "old": "You grab a teacup and down it one go.\nIt's [jitter][red]SCALDING HOT[/red][/j...",
+              "new": "You grab a teacup and down it in one go.\nIt's [jitter][red]SCALDING HOT[/red]..."
+            }
+          ]
+        },
+        {
+          "id": "THE_ARCHITECT",
+          "name": "The Architect",
+          "changes": [
+            {
+              "field": "dialogue.Fool[0].order",
+              "old": "none",
+              "new": "0-0r"
+            },
+            {
+              "field": "dialogue.Fool[0].speaker",
+              "old": "none",
+              "new": "ancient"
+            },
+            {
+              "field": "dialogue.Fool[0].text",
+              "old": "none",
+              "new": "TEMP: Who are you supposed to be?"
+            },
+            {
+              "field": "dialogue.Fool[1].order",
+              "old": "none",
+              "new": "0-1r"
+            },
+            {
+              "field": "dialogue.Fool[1].speaker",
+              "old": "none",
+              "new": "character"
+            },
+            {
+              "field": "dialogue.Fool[1].text",
+              "old": "none",
+              "new": "TEMP: ..."
+            },
+            {
+              "field": "dialogue.Fool[2].order",
+              "old": "none",
+              "new": "0-2r"
+            },
+            {
+              "field": "dialogue.Fool[2].speaker",
+              "old": "none",
+              "new": "ancient"
+            },
+            {
+              "field": "dialogue.Fool[2].text",
+              "old": "none",
+              "new": "TEMP: Come back again later."
+            }
+          ]
+        },
+        {
+          "id": "WATERLOGGED_SCRIPTORIUM",
+          "name": "Waterlogged Scriptorium",
+          "changes": [
+            {
+              "field": "options[PRICKLY_SPONGE].description",
+              "old": "Pay [red]99[/red] [gold]Gold[/gold]. [gold]Enchant[/gold] [blue]2[/blue] card...",
+              "new": "Pay [red]120[/red] [gold]Gold[/gold]. [gold]Enchant[/gold] [blue]2[/blue] car..."
+            },
+            {
+              "field": "options[PRICKLY_SPONGE_LOCKED].description",
+              "old": "Requires [blue]99[/blue] [gold]Gold[/gold].",
+              "new": "Requires [blue]120[/blue] [gold]Gold[/gold]."
+            },
+            {
+              "field": "pages[INITIAL].options[PRICKLY_SPONGE].description",
+              "old": "Pay [red]99[/red] [gold]Gold[/gold]. [gold]Enchant[/gold] [blue]2[/blue] card...",
+              "new": "Pay [red]120[/red] [gold]Gold[/gold]. [gold]Enchant[/gold] [blue]2[/blue] car..."
+            },
+            {
+              "field": "pages[INITIAL].options[PRICKLY_SPONGE_LOCKED].description",
+              "old": "Requires [blue]99[/blue] [gold]Gold[/gold].",
+              "new": "Requires [blue]120[/blue] [gold]Gold[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "ZEN_WEAVER",
+          "name": "Zen Weaver",
+          "changes": [
+            {
+              "field": "options[BREATHING_TECHNIQUES].description",
+              "old": "Pay [red]50[/red] [gold]Gold[/gold]. Add [blue]2[/blue] [gold]Enlightenment[/...",
+              "new": "Pay [red]25[/red] [gold]Gold[/gold]. Add an [gold]Enlightenment[/gold] to you..."
+            },
+            {
+              "field": "pages[INITIAL].options[BREATHING_TECHNIQUES].description",
+              "old": "Pay [red]50[/red] [gold]Gold[/gold]. Add [blue]2[/blue] [gold]Enlightenment[/...",
+              "new": "Pay [red]25[/red] [gold]Gold[/gold]. Add an [gold]Enlightenment[/gold] to you..."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "powers",
+      "name": "Powers",
+      "old_count": 265,
+      "new_count": 303,
+      "added": [
+        {
+          "id": "AEONGLASS_DOMINION",
+          "name": "Aeonglass Dominion",
+          "type": "Debuff"
+        },
+        {
+          "id": "AIM",
+          "name": "Aim",
+          "type": "Buff"
+        },
+        {
+          "id": "ALL_IS_WELL",
+          "name": "All Is Well",
+          "type": "Buff"
+        },
+        {
+          "id": "AMNESIA",
+          "name": "Amnesia",
+          "type": "Debuff"
+        },
+        {
+          "id": "ARCHERY",
+          "name": "Archery",
+          "type": "Buff"
+        },
+        {
+          "id": "COMPOST",
+          "name": "Compost",
+          "type": "Buff"
+        },
+        {
+          "id": "CONDUCTORS_BATON",
+          "name": "Conductor's Baton",
+          "type": "Buff"
+        },
+        {
+          "id": "COVERING_FIRE",
+          "name": "Covering Fire",
+          "type": "Buff"
+        },
+        {
+          "id": "DISLIKE_YOU",
+          "name": "Dislike You",
+          "type": "Debuff"
+        },
+        {
+          "id": "ECSTASY",
+          "name": "Ecstasy",
+          "type": "Buff"
+        },
+        {
+          "id": "ENCORE",
+          "name": "Encore",
+          "type": "Debuff"
+        },
+        {
+          "id": "ENNUI",
+          "name": "Ennui",
+          "type": "Buff"
+        },
+        {
+          "id": "ENSEMBLE",
+          "name": "Ensemble",
+          "type": "Buff"
+        },
+        {
+          "id": "EXPLOSIVE",
+          "name": "Explosive",
+          "type": "Buff"
+        },
+        {
+          "id": "EXPLOSIVE_ARROWS",
+          "name": "Explosive Arrows",
+          "type": "Buff"
+        },
+        {
+          "id": "EXTRA_TURN",
+          "name": "Extra Turn",
+          "type": "Buff"
+        },
+        {
+          "id": "FREE_CARD",
+          "name": "Free Card",
+          "type": "Buff"
+        },
+        {
+          "id": "GOD_BYRD",
+          "name": "God Byrd",
+          "type": "Buff"
+        },
+        {
+          "id": "HIDDEN_ROOTS",
+          "name": "Hidden Roots",
+          "type": "Buff"
+        },
+        {
+          "id": "HONING",
+          "name": "Honing",
+          "type": "Buff"
+        },
+        {
+          "id": "IMPALED",
+          "name": "Impaled",
+          "type": "None"
+        },
+        {
+          "id": "INSATIABLE_DOMINION",
+          "name": "Insatiable Dominion",
+          "type": "Debuff"
+        },
+        {
+          "id": "KI_VERSE",
+          "name": "Ki Verse",
+          "type": "Buff"
+        },
+        {
+          "id": "LAGAVULIN_MATRIARCH_DOMINION",
+          "name": "Lagavulin Matriarch Dominion",
+          "type": "Debuff"
+        },
+        {
+          "id": "LOST_LUTE",
+          "name": "Lost Lute",
+          "type": "Buff"
+        },
+        {
+          "id": "LULLABY",
+          "name": "Lullaby",
+          "type": "Buff"
+        },
+        {
+          "id": "MOTIF",
+          "name": "Motif",
+          "type": "Buff"
+        },
+        {
+          "id": "MYTHIC_FORM",
+          "name": "Mythic Form",
+          "type": "Buff"
+        },
+        {
+          "id": "QUIETUS",
+          "name": "Quietus",
+          "type": "Buff"
+        },
+        {
+          "id": "SERRATED_ARROWS",
+          "name": "Serrated Arrows",
+          "type": "Buff"
+        },
+        {
+          "id": "SHOW_OFF",
+          "name": "Show Off",
+          "type": "Buff"
+        },
+        {
+          "id": "SIMPLETON",
+          "name": "Simpleton",
+          "type": "Buff"
+        },
+        {
+          "id": "SONG_PATH",
+          "name": "Song Path",
+          "type": "Buff"
+        },
+        {
+          "id": "STRETCH",
+          "name": "Stretch",
+          "type": "Buff"
+        },
+        {
+          "id": "TUNE",
+          "name": "Tune",
+          "type": "Buff"
+        },
+        {
+          "id": "VIOLENT_CHORD",
+          "name": "Violent Chord",
+          "type": "Buff"
+        },
+        {
+          "id": "WUPPYS_LOYALTY",
+          "name": "Wuppy's Loyalty",
+          "type": "Buff"
+        },
+        {
+          "id": "YAH",
+          "name": "Yah!",
+          "type": "Buff"
+        },
+        {
+          "id": "YOU_ARE_MINE",
+          "name": "You Are Mine",
+          "type": "Debuff"
+        }
+      ],
+      "removed": [
+        {
+          "id": "AMBERGRIS",
+          "name": "Ambergris"
+        }
+      ],
+      "changed": [
+        {
+          "id": "CHAINS_OF_BINDING",
+          "name": "Chains of Binding",
+          "changes": [
+            {
+              "field": "description",
+              "old": "The first [blue]3[/blue] cards drawn each turn are Afflicted with [gold]Bound...",
+              "new": "The first [blue][Amount][/blue] cards drawn each turn are Afflicted with [gol..."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "The first [blue]{Amount}[/blue] cards drawn each turn are Afflicted with [gol..."
+            }
+          ]
+        },
+        {
+          "id": "DISINTEGRATION",
+          "name": "Disintegration",
+          "changes": [
+            {
+              "field": "description",
+              "old": "At the end of your turn, take [blue]5[/blue] damage.",
+              "new": "At the end of your turn, take [blue][Amount][/blue] damage."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "At the end of your turn, take [blue]{Amount}[/blue] damage."
+            }
+          ]
+        },
+        {
+          "id": "PHANTOM_BLADES",
+          "name": "Phantom Blades",
+          "changes": [
+            {
+              "field": "description",
+              "old": "[gold]Shivs[/gold] gain [gold]Retain[/gold].\nThe first [gold]Shiv[/gold] you ...",
+              "new": "[gold]Shivs[/gold] gain [gold]Retain[/gold].\nThe first [gold]Shiv[/gold] you ..."
+            }
+          ]
+        },
+        {
+          "id": "SPEEDSTER",
+          "name": "Speedster",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Whenever you draw a card during your turn, deal [blue]1[/blue] damage to ALL ...",
+              "new": "Whenever you draw a card during your turn, deal [blue]3[/blue] damage to ALL ..."
+            }
+          ]
+        },
+        {
+          "id": "TRACKING",
+          "name": "Tracking",
+          "changes": [
+            {
+              "field": "description",
+              "old": "[gold]Weak[/gold] enemies take [blue]50%[/blue] more damage from Attacks.",
+              "new": "[gold]Weak[/gold] enemies take [blue]50%[/blue] more damage from your Attacks."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "epochs",
+      "name": "Epochs",
+      "old_count": 57,
+      "new_count": 66,
+      "added": [
+        {
+          "id": "BLITZ_EPOCH",
+          "name": "Green Lightning",
+          "title": "Green Lightning",
+          "era": "Invitation4"
+        },
+        {
+          "id": "DREAD_EPOCH",
+          "name": "Dread",
+          "title": "Dread",
+          "era": "Peace0"
+        },
+        {
+          "id": "FOOL1_EPOCH",
+          "name": "Escape Artist",
+          "title": "Escape Artist",
+          "era": "Invitation0"
+        },
+        {
+          "id": "FOOL2_EPOCH",
+          "name": "What Am I?",
+          "title": "What Am I?",
+          "era": "Invitation2"
+        },
+        {
+          "id": "FOOL3_EPOCH",
+          "name": "Shapes That Kill",
+          "title": "Shapes That Kill",
+          "era": "Invitation4"
+        },
+        {
+          "id": "FOOL4_EPOCH",
+          "name": "Drifting Adrift",
+          "title": "Drifting Adrift",
+          "era": "Flourish2"
+        },
+        {
+          "id": "FOOL5_EPOCH",
+          "name": "Lonely Fools",
+          "title": "Lonely Fools",
+          "era": "Seeds1"
+        },
+        {
+          "id": "FOOL6_EPOCH",
+          "name": "They Never Saw Her Again",
+          "title": "They Never Saw Her Again",
+          "era": "Flourish3"
+        },
+        {
+          "id": "FOOL7_EPOCH",
+          "name": "Excited. Ignited.",
+          "title": "Excited. Ignited.",
+          "era": "Invitation7"
+        }
+      ],
+      "changed": [
+        {
+          "id": "DEFECT1_EPOCH",
+          "name": "Booting Up",
+          "changes": [
+            {
+              "field": "expands_timeline[6]",
+              "old": "none",
+              "new": "FOOL1_EPOCH"
+            }
+          ]
+        },
+        {
+          "id": "NEOW_EPOCH",
+          "name": "Neow",
+          "changes": [
+            {
+              "field": "expands_timeline[0]",
+              "old": "COLORLESS1_EPOCH",
+              "new": "BLITZ_EPOCH"
+            },
+            {
+              "field": "expands_timeline[1]",
+              "old": "CUSTOM_AND_SEEDS_EPOCH",
+              "new": "COLORLESS1_EPOCH"
+            },
+            {
+              "field": "expands_timeline[2]",
+              "old": "DAILY_RUN_EPOCH",
+              "new": "CUSTOM_AND_SEEDS_EPOCH"
+            },
+            {
+              "field": "expands_timeline[3]",
+              "old": "DARV_EPOCH",
+              "new": "DAILY_RUN_EPOCH"
+            },
+            {
+              "field": "expands_timeline[4]",
+              "old": "IRONCLAD2_EPOCH",
+              "new": "DARV_EPOCH"
+            },
+            {
+              "field": "expands_timeline[5]",
+              "old": "IRONCLAD3_EPOCH",
+              "new": "IRONCLAD2_EPOCH"
+            },
+            {
+              "field": "expands_timeline[6]",
+              "old": "IRONCLAD4_EPOCH",
+              "new": "IRONCLAD3_EPOCH"
+            },
+            {
+              "field": "expands_timeline[7]",
+              "old": "IRONCLAD5_EPOCH",
+              "new": "IRONCLAD4_EPOCH"
+            },
+            {
+              "field": "expands_timeline[8]",
+              "old": "IRONCLAD6_EPOCH",
+              "new": "IRONCLAD5_EPOCH"
+            },
+            {
+              "field": "expands_timeline[9]",
+              "old": "IRONCLAD7_EPOCH",
+              "new": "IRONCLAD6_EPOCH"
+            },
+            {
+              "field": "expands_timeline[10]",
+              "old": "OROBAS_EPOCH",
+              "new": "IRONCLAD7_EPOCH"
+            },
+            {
+              "field": "expands_timeline[11]",
+              "old": "SILENT1_EPOCH",
+              "new": "OROBAS_EPOCH"
+            },
+            {
+              "field": "expands_timeline[12]",
+              "old": "none",
+              "new": "SILENT1_EPOCH"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stories",
+      "name": "Stories",
+      "old_count": 8,
+      "new_count": 9,
+      "added": [
+        {
+          "id": "FOOL",
+          "name": "The Fool"
+        }
+      ],
+      "changed": [
+        {
+          "id": "TALES_FROM_THE_SPIRE",
+          "name": "Tales from the Spire",
+          "changes": [
+            {
+              "field": "epochs[5]",
+              "old": "DAILY_RUN_EPOCH",
+              "new": "BLITZ_EPOCH"
+            },
+            {
+              "field": "epochs[6]",
+              "old": "none",
+              "new": "DAILY_RUN_EPOCH"
+            },
+            {
+              "field": "epochs[7]",
+              "old": "none",
+              "new": "DREAD_EPOCH"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

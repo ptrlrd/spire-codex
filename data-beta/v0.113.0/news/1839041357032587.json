@@ -1,0 +1,16 @@
+{
+  "gid": "1839041357032587",
+  "title": "Beta Hotfix Patch Notes - v0.109.1",
+  "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1839041357032587",
+  "is_external_url": true,
+  "author": "demileaf",
+  "contents": "Got a tiny patch today with one important hotfix for players playing in Traditional Chinese!\n\n[h3]BUG FIXES:[/h3]\n[list]\n[*] Synced corrected Traditional Chinese translations to fix broken plural evaluation\n[/list]",
+  "feedlabel": "Community Announcements",
+  "feedname": "steam_community_announcements",
+  "feed_type": 1,
+  "tags": [
+    "patchnotes"
+  ],
+  "date": 1785004925,
+  "appid": 2868840
+}
