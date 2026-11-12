@@ -651,6 +651,12 @@ def _name_maps(version: str | None = None) -> dict[str, dict[str, str]]:
     out["characters"] = {
         k.lower(): v for k, v in _index(data_service.load_characters).items()
     }
+    if out["characters"] and not pinned:
+        from . import official_content
+
+        cast = official_content.official_character_names(strip_article=False)
+        for cid, cname in cast.items():
+            out["characters"].setdefault(cid.lower(), cname)
     # Per-event option id -> title ("TAKE" -> "Take the Egg"), plus the full
     # option-id allowlist per event (see _harvest_option_ids).
     event_opts: dict[str, dict[str, str]] = {}

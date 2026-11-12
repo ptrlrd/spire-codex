@@ -18,6 +18,7 @@ from bson.errors import InvalidId
 from pymongo.errors import DuplicateKeyError
 
 from . import data_service
+from .official_content import official_characters
 from .admin_db import _GUIDE_SUBMISSIONS_COLLECTION, _db, _enabled
 
 logger = logging.getLogger(__name__)
@@ -35,7 +36,12 @@ VALID_CATEGORIES = {
     "advanced",
 }
 VALID_DIFFICULTIES = {"beginner", "intermediate", "advanced"}
-VALID_CHARACTERS = {"ironclad", "silent", "defect", "necrobinder", "regent", ""}
+
+
+def valid_characters() -> set[str]:
+    return {c.lower() for c in official_characters()} | {""}
+
+
 MAX_TITLE = 200
 MAX_SUMMARY = 500
 MAX_CONTENT = 50_000
@@ -119,7 +125,9 @@ def clean_guide(raw: dict[str, Any]) -> dict[str, Any]:
         "author": author,
         "category": category if category in VALID_CATEGORIES else "general",
         "difficulty": difficulty if difficulty in VALID_DIFFICULTIES else "beginner",
-        "character": character if character in VALID_CHARACTERS and character else None,
+        "character": character
+        if character in valid_characters() and character
+        else None,
         "tags": _tags(raw.get("tags")),
         "summary": sanitize(raw.get("summary") or "", MAX_SUMMARY),
         "content": content,

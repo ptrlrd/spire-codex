@@ -15,6 +15,7 @@ from starlette.requests import ClientDisconnect
 from ..dependencies import get_lang, shared_limiter
 from ..models.schemas import ArchetypesResponse
 from ..services import rate_limit_config
+from ..services.official_content import official_characters
 from ..services.runs_db import (
     INT_OVERFLOW_ERROR,
     claim_runs,
@@ -2666,10 +2667,7 @@ def get_seed_profile(
     )
     if characters and (
         not 1 <= len(characters) <= 4
-        or any(
-            ch not in {"IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT"}
-            for ch in characters
-        )
+        or any(ch not in official_characters() for ch in characters)
     ):
         raise HTTPException(status_code=422, detail="unsupported party")
     if not seed_profiles.available() and not (build_id and characters):

@@ -17,12 +17,13 @@ import re
 import time
 
 from fastapi import APIRouter, HTTPException, Query, Request, Response
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 from typing import Literal
 from ..dependencies import shared_limiter
 from ..services import rate_limit_config
 from ..services import cache as app_cache
 from ..services import charts_stats as cs
+from ..services.official_content import official_characters
 
 from ..services.run_entity_stats import (
     _BRACKET_KEYS,
@@ -691,9 +692,7 @@ class SavedChartSpec(BaseModel):
 
     source: Literal["cards", "relics", "potions", "shops", "events", "campfires"]
     bracket: str = Field(max_length=80)
-    character: (
-        Literal["IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT"] | None
-    ) = None
+    character: str | None = Field(default=None, max_length=40)
     chart: Literal["bar", "scatter", "hbar"]
     x: str = Field(max_length=80)
     y: Literal[
@@ -711,6 +710,13 @@ class SavedChartSpec(BaseModel):
     filters: SavedChartFilters = Field(default_factory=SavedChartFilters)
     top: int = Field(25, ge=5, le=100)
     sort: Literal["asc", "desc"]
+
+    @field_validator("character")
+    @classmethod
+    def _official_character(cls, value: str | None) -> str | None:
+        if value is not None and value not in official_characters():
+            raise ValueError("unknown character")
+        return value
 
 
 class SavedChartCreate(BaseModel):

@@ -20,14 +20,20 @@ LAUNCH_CAST = ("IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT")
 FALLBACK_CHARACTERS = frozenset(LAUNCH_CAST)
 
 
-def _ids(base: Path, entity: str) -> set[str]:
+def _rows(base: Path, entity: str) -> list[dict]:
     path = base / data_service.DEFAULT_LANG / f"{entity}.json"
     try:
         with open(path, "r", encoding="utf-8") as f:
             rows = json.load(f)
     except (OSError, ValueError):
-        return set()
-    return {str(r["id"]).upper() for r in rows if isinstance(r, dict) and r.get("id")}
+        return []
+    if not isinstance(rows, list):
+        return []
+    return [r for r in rows if isinstance(r, dict) and r.get("id")]
+
+
+def _ids(base: Path, entity: str) -> set[str]:
+    return {str(r["id"]).upper() for r in _rows(base, entity)}
 
 
 def archived_versions() -> list[str]:
@@ -66,6 +72,29 @@ def official_characters_ordered() -> tuple[str, ...]:
     cast = official_characters()
     first = [c for c in LAUNCH_CAST if c in cast]
     return tuple(first + sorted(cast - set(first)))
+
+
+@lru_cache(maxsize=None)
+def official_character_names(strip_article: bool = True) -> dict[str, str]:
+    """id -> English display name for the whole cast, in display order.
+    The main catalog names a character first, then the current beta, then
+    the archives, so a beta-only character is still named."""
+    bases = [data_service._resolve_base(v) for v in archived_versions()]
+    beta = data_service.get_beta_version()
+    if beta:
+        bases.append(data_service.BETA_DATA_DIR / beta)
+    bases.append(data_service._resolve_base(None))
+    names: dict[str, str] = {}
+    for base in bases:
+        for row in _rows(base, "characters"):
+            name = str(row.get("name") or "").strip()
+            if name:
+                names[str(row["id"]).upper()] = name
+    out = {}
+    for cid in official_characters_ordered():
+        name = names.get(cid) or cid.replace("_", " ").title()
+        out[cid] = name.removeprefix("The ").strip() if strip_article else name
+    return out
 
 
 def official_characters_sql() -> str:

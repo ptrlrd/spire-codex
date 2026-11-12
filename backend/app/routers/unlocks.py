@@ -14,13 +14,23 @@ from ..dependencies import get_lang
 
 router = APIRouter(prefix="/api/unlocks", tags=["Unlocks"])
 
-# Character unlock epochs (character ID → epoch that unlocks them)
-CHARACTER_UNLOCK_EPOCHS = {
-    "SILENT": "SILENT1_EPOCH",
-    "DEFECT": "DEFECT1_EPOCH",
-    "REGENT": "REGENT1_EPOCH",
-    "NECROBINDER": "NECROBINDER1_EPOCH",
-}
+_UNLOCK_ORDER = ("SILENT", "DEFECT", "REGENT", "NECROBINDER")
+
+
+def _character_unlock_epochs(chars_map: dict, epoch_map: dict) -> dict[str, str]:
+    """Character id -> the epoch that unlocks it, for every character the
+    catalog says needs unlocking."""
+    later = [
+        cid
+        for cid, char in chars_map.items()
+        if cid not in _UNLOCK_ORDER
+        and char.get("unlocks_after")
+        and f"{cid}1_EPOCH" in epoch_map
+    ]
+    return {
+        cid: f"{cid}1_EPOCH" for cid in (*_UNLOCK_ORDER, *later) if cid in chars_map
+    }
+
 
 # Score thresholds from GetScoreThreshold() — 18 score-based unlocks
 SCORE_THRESHOLDS = [
@@ -77,7 +87,7 @@ def get_unlocks(request: Request, lang: str = Depends(get_lang)):
         )
 
     # Characters (only those that require unlocking)
-    for char_id, epoch_id in CHARACTER_UNLOCK_EPOCHS.items():
+    for char_id, epoch_id in _character_unlock_epochs(chars_map, epoch_map).items():
         epoch = epoch_map.get(epoch_id, {})
         char = chars_map.get(char_id, {})
         if char:
@@ -105,7 +115,7 @@ def get_unlocks(request: Request, lang: str = Depends(get_lang)):
         # Determine character association from story
         story_lower = story.lower() if story else ""
         character = None
-        for char_name in ["ironclad", "silent", "defect", "regent", "necrobinder"]:
+        for char_name in (cid.lower() for cid in chars_map):
             if char_name in story_lower:
                 character = char_name.capitalize()
                 break

@@ -11,12 +11,12 @@ from fastapi import APIRouter, Request, Response
 from ..dependencies import shared_limiter
 from ..services import cache as app_cache
 from ..services import rate_limit_config
+from ..services.official_content import official_characters_ordered
 
 router = APIRouter(prefix="/api/replays", tags=["Replays"])
 limiter = shared_limiter
 
 CACHE_CONTROL = "public, max-age=30, stale-while-revalidate=120"
-CHARACTERS = ("IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT")
 
 
 def _mongo() -> bool:
@@ -139,7 +139,8 @@ def replays_summary(request: Request, response: Response):
     out = {
         "total": coll.count_documents(base),
         "by_character": {
-            c: coll.count_documents({**base, "character": c}) for c in CHARACTERS
+            c: coll.count_documents({**base, "character": c})
+            for c in official_characters_ordered()
         },
     }
     app_cache.set_json("replays_summary", out, ttl_seconds=300)
