@@ -47,6 +47,8 @@ const MODE_COLORS: Record<string, string> = {
   coop: "#3873a9",
   daily: "#23935b",
   custom: "#6b5b8a",
+  blitz: "#f07c1e",
+  dread: "#d53b27",
 };
 
 const REST_COLORS: Record<string, string> = {
@@ -126,6 +128,8 @@ interface ActivityWeek {
   coop: number;
   daily: number;
   custom: number;
+  blitz?: number;
+  dread?: number;
 }
 
 interface CharacterRow {
@@ -153,6 +157,8 @@ export interface PersonalBests {
   highest_ascension?: PersonalBest;
   todays_daily?: PersonalBest;
   fastest_daily?: PersonalBest;
+  fastest_blitz?: PersonalBest;
+  fastest_dread?: PersonalBest;
 }
 
 export interface Insights {
@@ -594,22 +600,31 @@ function RelicDeltaList({
 function ActivityChart({ rows, lang }: { rows: ActivityWeek[]; lang: string }) {
   const t = useT();
   const labels = rows.map((r) => r.week.slice(5));
-  const modeKeys = ["solo", "coop", "daily", "custom"] as const;
+  const modeKeys = [
+    "solo",
+    "coop",
+    "daily",
+    "custom",
+    "blitz",
+    "dread",
+  ] as const;
   const modeLabels: Record<string, string> = {
     solo: t("Solo"),
     coop: t("Co-op"),
     daily: t("Daily"),
     custom: t("Custom"),
+    blitz: t("Blitz"),
+    dread: t("Dread"),
   };
   const data = {
     labels,
     datasets: [
       ...modeKeys
-        .filter((k) => rows.some((r) => r[k] > 0))
+        .filter((k) => rows.some((r) => (r[k] ?? 0) > 0))
         .map((k) => ({
           type: "bar" as const,
           label: modeLabels[k],
-          data: rows.map((r) => r[k]),
+          data: rows.map((r) => r[k] ?? 0),
           backgroundColor: MODE_COLORS[k],
           stack: "runs",
           yAxisID: "y",
@@ -679,7 +694,7 @@ function ActivityChart({ rows, lang }: { rows: ActivityWeek[]; lang: string }) {
       </div>
       <div className="flex flex-wrap gap-3 mt-2">
         {modeKeys
-          .filter((k) => rows.some((r) => r[k] > 0))
+          .filter((k) => rows.some((r) => (r[k] ?? 0) > 0))
           .map((k) => (
             <span
               key={k}
@@ -1208,6 +1223,24 @@ export function InsightsPanels({
                 label={t("Fastest Daily (All Time)")}
                 sub={displayCharacter(bests.fastest_daily.character)}
                 rank={personalRanks?.fastest_daily}
+              />
+            )}
+            {bests?.fastest_blitz && (
+              <BestTile
+                href={`${bp}/runs/${bests.fastest_blitz.run_hash}`}
+                value={formatTime(bests.fastest_blitz.run_time)}
+                label={t("Fastest Blitz")}
+                sub={displayCharacter(bests.fastest_blitz.character)}
+                rank={personalRanks?.fastest_blitz}
+              />
+            )}
+            {bests?.fastest_dread && (
+              <BestTile
+                href={`${bp}/runs/${bests.fastest_dread.run_hash}`}
+                value={formatTime(bests.fastest_dread.run_time)}
+                label={t("Fastest Dread")}
+                sub={displayCharacter(bests.fastest_dread.character)}
+                rank={personalRanks?.fastest_dread}
               />
             )}
             {!bests?.fastest_solo && records.fastest_win && (

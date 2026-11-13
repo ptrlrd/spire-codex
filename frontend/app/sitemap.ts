@@ -132,6 +132,7 @@ const STATIC_PAGES = [
   { path: "/merchant", priority: 0.7, changeFrequency: "monthly" as const },
   { path: "/ancients", priority: 0.7, changeFrequency: "weekly" as const },
   { path: "/modifiers", priority: 0.6, changeFrequency: "weekly" as const },
+  { path: "/game-modes", priority: 0.6, changeFrequency: "weekly" as const },
   { path: "/leaderboards", priority: 0.7, changeFrequency: "daily" as const },
   {
     path: "/runs/submit",

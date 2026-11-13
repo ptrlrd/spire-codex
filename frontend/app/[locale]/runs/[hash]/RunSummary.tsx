@@ -46,6 +46,7 @@ import { OwnerTheme } from "@/app/components/OwnerTheme";
 import PlayerLink from "@/app/components/PlayerLink";
 import { playerRunsHref } from "@/lib/player-pages";
 import { RankChip, SeedStanding, useRunStanding } from "./RunStanding";
+import { gameModeLabel } from "@/lib/game-modes";
 const ICON_BASE = imageUrl("/static/images/ui/run_history");
 
 const RARITY_ORDER = [
@@ -113,7 +114,10 @@ const DATE_STYLE = {
 // paint is Pacific; after hydration it becomes the viewer's local time.
 function modeLabel(mode: string | undefined): string {
   if (!mode) return "Standard";
-  return mode.charAt(0).toUpperCase() + mode.slice(1).toLowerCase();
+  return (
+    gameModeLabel(mode) ||
+    mode.charAt(0).toUpperCase() + mode.slice(1).toLowerCase()
+  );
 }
 
 function formatDate(

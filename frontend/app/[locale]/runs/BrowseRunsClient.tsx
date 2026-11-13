@@ -21,6 +21,7 @@ import { PlayerBadge } from "@/app/components/SupporterBadge";
 import PlayerLink from "@/app/components/PlayerLink";
 import { useFilterFetch, useFilterPage } from "@/lib/use-filter-fetch";
 import LoadFailed from "@/app/components/LoadFailed";
+import { GAME_MODES, isGameMode, type GameModeId } from "@/lib/game-modes";
 import KeyPicks, {
   type KeyBoss,
   type KeyCard,
@@ -93,7 +94,7 @@ function formatTimeShort(s: number): string {
 }
 
 type Mode = "" | "single" | "multi";
-type GameMode = "" | "standard" | "daily" | "daily_today" | "custom";
+type GameMode = "" | GameModeId | "daily_today";
 type WinFilter = "" | "true" | "false";
 type Sort = "date" | "time_asc" | "time_desc" | "ascension_desc";
 
@@ -127,13 +128,7 @@ function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
   });
   const [gameMode, setGameMode] = useState<GameMode>(() => {
     const v = searchParams.get("game_mode");
-    if (
-      v === "daily" ||
-      v === "custom" ||
-      v === "standard" ||
-      v === "daily_today"
-    )
-      return v;
+    if (v === "daily_today" || isGameMode(v)) return v;
     return "";
   });
   const [ascension, setAscension] = useState(
@@ -219,12 +214,7 @@ function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
       ? queryFilters.players
       : "");
   const effectiveGameMode =
-    gameMode ||
-    (queryFilters.mode === "daily" ||
-    queryFilters.mode === "custom" ||
-    queryFilters.mode === "standard"
-      ? queryFilters.mode
-      : "");
+    gameMode || (isGameMode(queryFilters.mode) ? queryFilters.mode : "");
   const effectiveCard = queryFilters.card || "";
   const effectiveRelic = queryFilters.relic || "";
   const effectiveShop = queryFilters.shop || "";
@@ -465,10 +455,18 @@ function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
           className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]"
         >
           <option value="">{t("Any Type")}</option>
-          <option value="standard">{t("Standard")}</option>
-          <option value="daily">{t("Daily")}</option>
-          <option value="daily_today">{t("Today’s Daily")}</option>
-          <option value="custom">{t("Custom")}</option>
+          {GAME_MODES.flatMap((m) => [
+            <option key={m.id} value={m.id}>
+              {t(m.label)}
+            </option>,
+            ...(m.id === "daily"
+              ? [
+                  <option key="daily_today" value="daily_today">
+                    {t("Today’s Daily")}
+                  </option>,
+                ]
+              : []),
+          ])}
         </select>
 
         <input

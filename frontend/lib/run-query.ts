@@ -1,3 +1,5 @@
+import { isGameMode } from "./game-modes";
+
 // Parse an ascension value: "20" → exact, "3-4" → range, "3+" → min.
 // Tolerates the in-game "A10" spelling ("a10", "a3-a7").
 export function parseAscension(value: string): {
@@ -155,12 +157,7 @@ export function queryParams(
   }
   if (filters.players === "single" || filters.players === "multi")
     params.set("players", filters.players);
-  if (
-    filters.mode === "daily" ||
-    filters.mode === "custom" ||
-    filters.mode === "standard"
-  )
-    params.set("game_mode", filters.mode);
+  if (isGameMode(filters.mode)) params.set("game_mode", filters.mode);
   if (filters.asc) {
     const asc = parseAscension(filters.asc);
     if (asc.exact !== undefined) params.set("ascension", String(asc.exact));

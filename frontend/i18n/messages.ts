@@ -48,6 +48,7 @@ import { X11B } from "@/lib/i18n-x11b";
 import { X11U } from "@/lib/i18n-x11u";
 import { X11C } from "@/lib/i18n-x11c";
 import { X12F } from "@/lib/i18n-x12f";
+import { X12G } from "@/lib/i18n-x12g";
 import { UI_TRANSLATIONS } from "@/lib/ui-translations";
 import { safeKey, unsafeKey } from "@/lib/i18n-keys";
 import SERVER_ONLY_KEYS from "@/lib/i18n-server-only-keys.json";
@@ -109,6 +110,7 @@ const TABLES = [
   X11U,
   X11C,
   X12F,
+  X12G,
 ];
 const cache = new Map<string, Record<string, string>>();
 

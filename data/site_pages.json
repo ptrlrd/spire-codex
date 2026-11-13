@@ -94,6 +94,20 @@
   { "path": "/events", "name": "Events", "keywords": ["events", "event"] },
   { "path": "/exporter", "name": "Exporter", "keywords": ["exporter"] },
   {
+    "path": "/game-modes",
+    "name": "Game Modes",
+    "keywords": [
+      "game",
+      "modes",
+      "game mode",
+      "blitz",
+      "dread",
+      "dominion",
+      "daily",
+      "standard"
+    ]
+  },
+  {
     "path": "/guides",
     "name": "Guides",
     "keywords": [

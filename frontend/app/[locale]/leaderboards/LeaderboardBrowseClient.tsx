@@ -20,6 +20,7 @@ import CharacterTag from "@/app/components/CharacterTag";
 import { textColor } from "@/lib/character-colors";
 import { useFilterFetch, useFilterPage } from "@/lib/use-filter-fetch";
 import LoadFailed from "@/app/components/LoadFailed";
+import { GAME_MODES, isGameMode, type GameModeId } from "@/lib/game-modes";
 
 function cleanId(id: string): string {
   return id.replace(
@@ -118,7 +119,7 @@ type Mode = "" | "1" | "2" | "3" | "4";
 // `gameMode` mirrors the backend `game_mode` column. Empty string = no
 // filter (all modes). Default is "standard" since custom-seed and daily
 // runs aren't time-comparable to the canonical ladder.
-type GameMode = "" | "standard" | "daily" | "daily_today" | "custom";
+type GameMode = "" | GameModeId | "daily_today";
 
 function tabFromParam(value: string | null): Tab {
   if (value === "browse" || value === "highest_ascension") return value;
@@ -138,15 +139,9 @@ function modeFromParam(value: string | null): Mode {
 }
 
 function gameModeFromParam(value: string | null): GameMode {
-  if (
-    value === "daily" ||
-    value === "daily_today" ||
-    value === "custom" ||
-    value === ""
-  )
-    return value;
+  if (value === "daily_today" || value === "") return value;
   if (value === "all") return "";
-  return "standard";
+  return isGameMode(value) ? value : "standard";
 }
 
 export default function LeaderboardBrowseClient() {
@@ -409,11 +404,12 @@ export default function LeaderboardBrowseClient() {
             daily runs aren't comparable to the canonical pool (different
             seed pool / different rules), so we surface them as opt-in
             ladders. Empty value = no filter (show all modes). */}
-        <div className="inline-flex gap-1 p-1 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)]">
+        <div className="inline-flex flex-wrap gap-1 p-1 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)]">
           {[
-            { value: "standard" as GameMode, label: t("Standard") },
-            { value: "daily" as GameMode, label: t("Daily") },
-            { value: "custom" as GameMode, label: t("Custom") },
+            ...GAME_MODES.map((m) => ({
+              value: m.id as GameMode,
+              label: t(m.label),
+            })),
             { value: "" as GameMode, label: t("All Modes") },
           ].map(({ value, label }) => (
             <button
