@@ -1272,6 +1272,12 @@ console.log(relics.map(r => r.name));`}</code>
                 label: "Regent / Attack / Uncommon",
               },
               {
+                color: "fool",
+                type: "Attack",
+                rarity: "Rare",
+                label: "Fool / Attack / Rare",
+              },
+              {
                 color: "curse",
                 type: "Curse",
                 rarity: "Curse",
