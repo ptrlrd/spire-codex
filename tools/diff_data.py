@@ -79,6 +79,8 @@ CATEGORY_NAMES = {
     "achievements": "Achievements",
     "epochs": "Epochs",
     "stories": "Stories",
+    "glossary": "Glossary",
+    "rest_site_options": "Rest Site Options",
 }
 
 # Key fields to show in "changed" summaries (beyond just the id)

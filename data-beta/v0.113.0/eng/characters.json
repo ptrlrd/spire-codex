@@ -451,6 +451,7 @@
     "starting_gold": 99,
     "max_energy": 3,
     "orb_slots": null,
+    "arrow_slots": 1,
     "starting_deck": [
       "StrikeFool",
       "StrikeFool",

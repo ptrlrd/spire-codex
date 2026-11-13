@@ -132,6 +132,9 @@ def parse_character(
     orb_match = re.search(r"BaseOrbSlotCount\s*=>\s*(\d+)", content)
     orb_slots = int(orb_match.group(1)) if orb_match else None
 
+    arrow_match = re.search(r"BaseArrowSlotCount\s*=>\s*(\d+)", content)
+    arrow_slots = int(arrow_match.group(1)) if arrow_match else None
+
     # Unlocks after
     unlock_match = re.search(
         r"UnlocksAfterRunAs\s*=>\s*ModelDb\.Character<(\w+)>", content
@@ -186,6 +189,7 @@ def parse_character(
         "starting_gold": starting_gold,
         "max_energy": max_energy,
         "orb_slots": orb_slots,
+        **({"arrow_slots": arrow_slots} if arrow_slots is not None else {}),
         "starting_deck": starting_deck,
         "starting_relics": starting_relics,
         "unlocks_after": unlocks_after,

@@ -154,6 +154,7 @@ class Character(BaseModel):
     starting_gold: int | None = None
     max_energy: int | None = None
     orb_slots: int | None = None
+    arrow_slots: int | None = None
     starting_deck: list[str]
     starting_relics: list[str]
     unlocks_after: str | None = None

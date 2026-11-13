@@ -2,8 +2,8 @@
   {
     "id": "ARROW",
     "name": "Arrow",
-    "description": "Arrows can be shot with cards to [gold]Impale[/gold] a target.|}",
-    "category": "other"
+    "description": "Arrows can be shot with cards to [gold]Impale[/gold] a target.",
+    "category": "mechanics"
   },
   {
     "id": "BLOCK",
@@ -27,7 +27,7 @@
     "id": "CHO_MELODY",
     "name": "Cho Melody",
     "description": "Activates if you played a “Cho” card this turn.",
-    "category": "other"
+    "category": "mechanics"
   },
   {
     "id": "COOK",
@@ -57,7 +57,7 @@
     "id": "DREAD_ROTATION",
     "name": "Rotating Streak",
     "description": "In a [gold]Rotating Streak[/gold], each win advances you one character to the right.\nWins are tracked in a separate streak, and no longer count towards individual characters'.",
-    "category": "other"
+    "category": "progression"
   },
   {
     "id": "ENERGY",
@@ -99,7 +99,7 @@
     "id": "KI_MELODY",
     "name": "Ki Melody",
     "description": "Activates if you played a “Ki” card this turn.",
-    "category": "other"
+    "category": "mechanics"
   },
   {
     "id": "LINKED_REWARDS",
@@ -189,7 +189,7 @@
     "id": "TAROT",
     "name": "Tarot",
     "description": "Unique cards with special effects.",
-    "category": "other"
+    "category": "mechanics"
   },
   {
     "id": "TRANSFORM",
@@ -201,6 +201,6 @@
     "id": "WAH_MELODY",
     "name": "Wah Melody",
     "description": "Activates if you played a “Wah” card this turn.",
-    "category": "other"
+    "category": "mechanics"
   }
 ]
