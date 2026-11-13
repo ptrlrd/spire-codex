@@ -2,6 +2,7 @@
 
 import json
 import re
+from functools import lru_cache
 from pathlib import Path
 from description_resolver import (
     resolve_description as shared_resolve_description,
@@ -21,6 +22,66 @@ from parser_paths import (
 CARDS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.Cards"
 POOLS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.CardPools"
 MONSTERS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.Monsters"
+POWERS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.Powers"
+CARD_ENTITIES_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Entities.Cards"
+
+LEGACY_TAGS = ("Strike", "Defend", "Minion", "OstyAttack", "Shiv")
+TAROT_TAG = "Tarot"
+
+
+@lru_cache(maxsize=1)
+def card_tags() -> tuple[str, ...]:
+    """Members of the game's CardTag enum, in declaration order."""
+    path = CARD_ENTITIES_DIR / "CardTag.cs"
+    if not path.exists():
+        return LEGACY_TAGS
+    body = re.search(
+        r"enum\s+CardTag\s*\{(.*)\}", path.read_text(encoding="utf-8"), re.DOTALL
+    )
+    if not body:
+        return LEGACY_TAGS
+    text = re.sub(r"///[^\n]*", "", body.group(1))
+    names = [n for n in re.findall(r"\b([A-Z]\w*)\b", text) if n != "None"]
+    return tuple(names) or LEGACY_TAGS
+
+
+def declared_tags(content: str) -> set[str]:
+    """Tags a card declares for itself through CanonicalTags or Tags."""
+    found: set[str] = set()
+    for block in re.finditer(
+        r"\b(?:CanonicalTags|Tags)\s*=>\s*(.*?);", content, re.DOTALL
+    ):
+        found.update(re.findall(r"CardTag\.(\w+)", block.group(1)))
+    return found
+
+
+@lru_cache(maxsize=1)
+def tarot_cards() -> tuple[str, ...]:
+    """Class names in the game's TarotCards.All list."""
+    path = CARD_ENTITIES_DIR / "TarotCards.cs"
+    if not path.exists():
+        return ()
+    return tuple(
+        dict.fromkeys(
+            re.findall(r"ModelDb\.Card<(\w+)>", path.read_text(encoding="utf-8"))
+        )
+    )
+
+
+@lru_cache(maxsize=None)
+def temporary_stat(power_class: str) -> str | None:
+    """The stat a Temporary<Stat>Power subclass grants, e.g. Thorns for
+    ChoBarbsPower, or None when the power is not one of those."""
+    path = POWERS_DIR / f"{power_class}.cs"
+    if not path.exists():
+        return None
+    parent = re.search(
+        rf"class\s+{re.escape(power_class)}\s*:\s*Temporary(\w+)Power\b",
+        path.read_text(encoding="utf-8"),
+    )
+    return parent.group(1) if parent else None
+
+
 STATIC_IMAGES = BASE / "backend" / "static" / "images" / "cards"
 
 CARD_TYPE_MAP = {
@@ -207,11 +268,19 @@ def parse_single_card(
 
     # PowerVar patterns - collect for structured output
     powers_applied = []
-    for pm in re.finditer(r"new PowerVar<(\w+)>\((\d+)m\)", content):
+    for pm in re.finditer(r"new PowerVar<(\w+)>\((?:(\d+)m|[A-Z]\w*)\)", content):
         power_name = pm.group(1)
-        power_val = int(pm.group(2))
+        if pm.group(2):
+            power_val = int(pm.group(2))
+        elif power_name in all_vars:
+            power_val = all_vars[power_name]
+        else:
+            continue
         powers_applied.append(
-            {"power": power_name.replace("Power", ""), "amount": power_val}
+            {
+                "power": temporary_stat(power_name) or power_name.replace("Power", ""),
+                "amount": power_val,
+            }
         )
 
     # Extract explicit Damage/Block from vars
@@ -327,11 +396,16 @@ def parse_single_card(
     ):
         keywords.append("Eternal")
 
-    # Tags (Strike, Defend, Minion, OstyAttack, Shiv)
+    own_tags = declared_tags(content)
     tags = []
-    for tag in ("Strike", "Defend", "Minion", "OstyAttack", "Shiv"):
-        if re.search(rf"CardTag\.{tag}", content):
+    for tag in card_tags():
+        if tag in LEGACY_TAGS:
+            if re.search(rf"CardTag\.{tag}", content):
+                tags.append(tag)
+        elif tag in own_tags:
             tags.append(tag)
+    if class_name in tarot_cards():
+        tags.append(TAROT_TAG)
 
     # Related/spawned cards — detect via multiple patterns
     related = set()
@@ -353,6 +427,8 @@ def parse_single_card(
         if m.group(1) in all_card_files:
             related.add(m.group(1))
     # Remove self-references
+    if "StaticHoverTip.Tarot" in content:
+        related.update(tarot_cards())
     related.discard(class_name)
     spawns_cards = sorted(class_name_to_id(s) for s in related) if related else None
 
@@ -525,14 +601,14 @@ def parse_single_card(
     for pm in re.finditer(r"(\w+)\.UpgradeValueBy\((-?\d+)m\)", content):
         var_name = pm.group(1)
         val = int(pm.group(2))
-        if var_name not in ("Damage", "Block"):
+        if val and var_name not in ("Damage", "Block"):
             card["upgrade"][var_name.lower()] = f"{val:+d}"
 
     # Upgrade vars — dictionary access: ["VarName"].UpgradeValueBy(Nm)
     for pm in re.finditer(r'\["(\w+)"\]\.UpgradeValueBy\((-?\d+)m\)', content):
         var_name = pm.group(1)
         val = int(pm.group(2))
-        if var_name.lower() not in card["upgrade"]:
+        if val and var_name.lower() not in card["upgrade"]:
             card["upgrade"][var_name.lower()] = f"{val:+d}"
 
     # Keyword upgrades: AddKeyword/RemoveKeyword inside OnUpgrade

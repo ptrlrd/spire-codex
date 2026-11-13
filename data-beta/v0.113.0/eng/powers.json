@@ -340,6 +340,16 @@
     "image_url": "/static/images/beta/v0.113.0/powers/child_of_the_stars_power.webp"
   },
   {
+    "id": "CHO_BARBS",
+    "name": "Temporary Thorns",
+    "description": "Gain [gold]Thorns[/gold] this turn.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/cho_barbs_power.webp"
+  },
+  {
     "id": "CLARITY",
     "name": "Clarity",
     "description": "At the start of your next [blue]2[/blue] turns, draw [blue]1[/blue] additional card.",
@@ -522,8 +532,8 @@
   {
     "id": "CRIMSON_MANTLE",
     "name": "Crimson Mantle",
-    "description": "At the start of your turn, lose [blue]0[/blue] HP and gain [blue][Amount][/blue] [gold]Block[/gold].",
-    "description_raw": "At the start of your turn, lose [blue]{SelfDamage}[/blue] HP and gain [blue]{Amount}[/blue] [gold]Block[/gold].",
+    "description": "At the start of your turn, lose HP and gain [gold]Block[/gold].",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -772,8 +782,8 @@
   {
     "id": "ENCORE",
     "name": "Encore",
-    "description": "You can only play [blue]0[/blue] more cards this turn.",
-    "description_raw": "You can only play [blue]{PlaysRemaining}[/blue] more {PlaysRemaining:plural:card|cards} this turn.",
+    "description": "You can only play [blue]1[/blue] more card this turn.",
+    "description_raw": null,
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -802,8 +812,8 @@
   {
     "id": "ENNUI",
     "name": "Ennui",
-    "description": "At the start of your turn, add [blue]0[/blue] [gold]Sadness[/gold] to your [gold]Hand[/gold] and draw [blue][Amount][/blue] additional cards.",
-    "description_raw": "At the start of your turn, add [blue]{Cards}[/blue] [gold]Sadness[/gold] to your [gold]Hand[/gold] and draw [blue]{Amount}[/blue] additional {Amount:plural:card|cards}.",
+    "description": "At the start of your turn, add [blue]1[/blue] [gold]Sadness[/gold] to your [gold]Hand[/gold] and draw [blue]2[/blue] additional cards.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1392,8 +1402,8 @@
   {
     "id": "INFERNO",
     "name": "Inferno",
-    "description": "At the start of your turn, lose [blue]0[/blue] HP. Whenever you lose HP on your turn, deal [blue][Amount][/blue] damage to ALL enemies.",
-    "description_raw": "At the start of your turn, lose [blue]{SelfDamage}[/blue] HP. Whenever you lose HP on your turn, deal [blue]{Amount}[/blue] damage to ALL enemies.",
+    "description": "At the start of your turn, lose [blue]1[/blue] HP. Whenever you lose HP on your turn, deal [blue]4[/blue] damage to ALL enemies.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1662,8 +1672,8 @@
   {
     "id": "MONOLOGUE",
     "name": "Monologue",
-    "description": "Whenever you play a card this turn, gain [blue]1[/blue] [gold]Strength[/gold] this turn.\nCurrently granting [blue]0[/blue] [gold]Strength[/gold].",
-    "description_raw": "Whenever you play a card this turn, gain [blue]{StrengthPower}[/blue] [gold]Strength[/gold] this turn.\nCurrently granting [blue]{StrengthApplied}[/blue] [gold]Strength[/gold].",
+    "description": "Whenever you play a card this turn, gain [blue]1[/blue] [gold]Strength[/gold] this turn.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "None",
     "allow_negative": null,
@@ -1682,8 +1692,8 @@
   {
     "id": "MYTHIC_FORM",
     "name": "Mythic Form",
-    "description": "At the start of your turn, add [blue]{}[/blue] random [gold]Tarots[/gold] into your [gold]Hand[/gold].",
-    "description_raw": "At the start of your turn, add {Amount:choose(1):a random [gold]Tarot[/gold]|[blue]{}[/blue] random [gold]Tarots[/gold]} into your [gold]Hand[/gold].",
+    "description": "At the start of your turn, add [blue]1[/blue] random [gold]Tarot[/gold] into your [gold]Hand[/gold].",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -2373,7 +2383,7 @@
     "id": "SLOW",
     "name": "Slow",
     "description": "Whenever you play a card, this enemy receives [blue]10%[/blue] more damage from Attacks this turn.",
-    "description_raw": "Whenever you play a card, {OnPlayer:you receive|this enemy receives} [blue]10%[/blue] more damage from Attacks this turn.{SlowAmount:cond:>0? (Receives [blue]{DisplayAmount}%[/blue] more damage)|}",
+    "description_raw": null,
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,

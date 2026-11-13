@@ -2379,7 +2379,9 @@
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
-    "tags": null,
+    "tags": [
+      "Shoot"
+    ],
     "spawns_cards": null,
     "vars": {
       "Damage": 11
@@ -4434,16 +4436,18 @@
     "hit_count": null,
     "powers_applied": [
       {
-        "power": "ChoBarbs",
+        "power": "Thorns",
         "amount": 3,
-        "power_key": "ChoBarbs"
+        "power_key": "Thorns"
       }
     ],
     "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
-    "tags": null,
+    "tags": [
+      "Cho"
+    ],
     "spawns_cards": null,
     "vars": {
       "Block": 7,
@@ -4484,7 +4488,9 @@
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
-    "tags": null,
+    "tags": [
+      "Cho"
+    ],
     "spawns_cards": null,
     "vars": {
       "Block": 12
@@ -4522,7 +4528,9 @@
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
-    "tags": null,
+    "tags": [
+      "Cho"
+    ],
     "spawns_cards": null,
     "vars": {
       "Block": 6
@@ -4560,7 +4568,10 @@
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
-    "tags": null,
+    "tags": [
+      "Cho",
+      "Ki"
+    ],
     "spawns_cards": null,
     "vars": {
       "Block": 8
@@ -4598,7 +4609,9 @@
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
-    "tags": null,
+    "tags": [
+      "Cho"
+    ],
     "spawns_cards": null,
     "vars": {
       "Block": 5,
@@ -4643,7 +4656,9 @@
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
-    "tags": null,
+    "tags": [
+      "Cho"
+    ],
     "spawns_cards": null,
     "vars": {
       "Block": 8,
@@ -6551,7 +6566,9 @@
     "keywords": [
       "Exhaust"
     ],
-    "tags": null,
+    "tags": [
+      "Tarot"
+    ],
     "spawns_cards": null,
     "vars": {
       "DoomPower": 75,
@@ -7956,7 +7973,9 @@
     "keywords": [
       "Retain"
     ],
-    "tags": null,
+    "tags": [
+      "Shoot"
+    ],
     "spawns_cards": null,
     "vars": {
       "Damage": 40
@@ -10794,7 +10813,9 @@
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
-    "tags": null,
+    "tags": [
+      "Shoot"
+    ],
     "spawns_cards": null,
     "vars": {
       "Damage": 15
@@ -12634,7 +12655,9 @@
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
-    "tags": null,
+    "tags": [
+      "Shoot"
+    ],
     "spawns_cards": null,
     "vars": {
       "AimMultiplier": 2,
@@ -13162,7 +13185,9 @@
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
-    "tags": null,
+    "tags": [
+      "Shoot"
+    ],
     "spawns_cards": null,
     "vars": {
       "Power": 1,
@@ -14314,7 +14339,9 @@
     "keywords": [
       "Exhaust"
     ],
-    "tags": null,
+    "tags": [
+      "Tarot"
+    ],
     "spawns_cards": null,
     "vars": {
       "Threshold": 30
@@ -14438,7 +14465,9 @@
     "keywords": [
       "Exhaust"
     ],
-    "tags": null,
+    "tags": [
+      "Tarot"
+    ],
     "spawns_cards": null,
     "vars": {
       "Damage": 30
@@ -14479,7 +14508,9 @@
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
-    "tags": null,
+    "tags": [
+      "Ki"
+    ],
     "spawns_cards": null,
     "vars": {
       "Cards": 3
@@ -14517,7 +14548,9 @@
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
-    "tags": null,
+    "tags": [
+      "Ki"
+    ],
     "spawns_cards": null,
     "vars": {
       "Damage": 7,
@@ -14557,7 +14590,9 @@
     "energy_gain": 5,
     "hp_loss": null,
     "keywords": null,
-    "tags": null,
+    "tags": [
+      "Ki"
+    ],
     "spawns_cards": null,
     "vars": {
       "Energy": 5
@@ -14601,7 +14636,9 @@
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
-    "tags": null,
+    "tags": [
+      "Ki"
+    ],
     "spawns_cards": null,
     "vars": {
       "KiVersePower": 1,
@@ -14640,7 +14677,9 @@
     "energy_gain": 2,
     "hp_loss": null,
     "keywords": null,
-    "tags": null,
+    "tags": [
+      "Ki"
+    ],
     "spawns_cards": null,
     "vars": {
       "Damage": 5,
@@ -16082,7 +16121,9 @@
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
-    "tags": null,
+    "tags": [
+      "Shoot"
+    ],
     "spawns_cards": null,
     "vars": {
       "Damage": 12,
@@ -17178,7 +17219,30 @@
     "hp_loss": null,
     "keywords": null,
     "tags": null,
-    "spawns_cards": null,
+    "spawns_cards": [
+      "DEATH",
+      "JUDGEMENT",
+      "JUSTICE",
+      "STRENGTH",
+      "TEMPERANCE",
+      "THE_CHARIOT",
+      "THE_DEVIL",
+      "THE_EMPEROR",
+      "THE_EMPRESS",
+      "THE_FOOL",
+      "THE_HANGED_MAN",
+      "THE_HERMIT",
+      "THE_HIEROPHANT",
+      "THE_HIGH_PRIESTESS",
+      "THE_LOVERS",
+      "THE_MAGICIAN",
+      "THE_MOON",
+      "THE_STAR",
+      "THE_SUN",
+      "THE_TOWER",
+      "THE_WORLD",
+      "WHEEL_OF_FORTUNE"
+    ],
     "vars": null,
     "upgrade": {
       "description_changed": true
@@ -19955,7 +20019,9 @@
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
-    "tags": null,
+    "tags": [
+      "Shoot"
+    ],
     "spawns_cards": null,
     "vars": {
       "Damage": 10
@@ -20160,7 +20226,9 @@
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
-    "tags": null,
+    "tags": [
+      "Shoot"
+    ],
     "spawns_cards": null,
     "vars": {
       "Damage": 12
@@ -20317,7 +20385,9 @@
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
-    "tags": null,
+    "tags": [
+      "Shoot"
+    ],
     "spawns_cards": null,
     "vars": {
       "Damage": 3,
@@ -20967,7 +21037,9 @@
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
-    "tags": null,
+    "tags": [
+      "Shoot"
+    ],
     "spawns_cards": null,
     "vars": {
       "Damage": 15
@@ -22751,7 +22823,7 @@
   {
     "id": "SHOW_OFF",
     "name": "Show Off",
-    "description": "Gain X [gold]Aim[/gold].\nIf a non-minion enemy dies this turn, permanently increase this card's [gold]Aim[/gold] by 2.",
+    "description": "Gain 5 [gold]Aim[/gold].\nIf a non-minion enemy dies this turn, permanently increase this card's [gold]Aim[/gold] by 2.",
     "description_raw": "Gain {AimPower:diff()} [gold]Aim[/gold].\nIf a non-minion enemy dies this turn, permanently increase this card's [gold]Aim[/gold] by {ShowOffPower:diff()}.",
     "cost": 1,
     "is_x_cost": null,
@@ -22765,6 +22837,11 @@
     "block": null,
     "hit_count": null,
     "powers_applied": [
+      {
+        "power": "Aim",
+        "amount": 5,
+        "power_key": "Aim"
+      },
       {
         "power": "Show Off",
         "amount": 2,
@@ -22783,17 +22860,18 @@
       "BaseAim": 5,
       "ShowOffPower": 2,
       "ShowOff": 2,
+      "AimPower": 5,
+      "Aim": 5,
       "baseAim": 5
     },
     "upgrade": {
-      "showoffpower": "+1",
-      "aimpower": "+0"
+      "showoffpower": "+1"
     },
     "image_url": "/static/images/beta/v0.113.0/cards/show_off.webp",
     "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
-    "upgrade_description": "Gain X [gold]Aim[/gold].\nIf a non-minion enemy dies this turn, permanently increase this card's [gold]Aim[/gold] by 3.",
+    "upgrade_description": "Gain 5 [gold]Aim[/gold].\nIf a non-minion enemy dies this turn, permanently increase this card's [gold]Aim[/gold] by 3.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -23161,7 +23239,9 @@
       "Exhaust",
       "Innate"
     ],
-    "tags": null,
+    "tags": [
+      "Shoot"
+    ],
     "spawns_cards": null,
     "vars": {
       "Damage": 30
@@ -24905,7 +24985,9 @@
     "keywords": [
       "Exhaust"
     ],
-    "tags": null,
+    "tags": [
+      "Tarot"
+    ],
     "spawns_cards": null,
     "vars": {
       "StrengthPower": 4,
@@ -26024,7 +26106,9 @@
     "keywords": [
       "Exhaust"
     ],
-    "tags": null,
+    "tags": [
+      "Tarot"
+    ],
     "spawns_cards": null,
     "vars": {
       "Block": 30
@@ -26265,7 +26349,9 @@
     "keywords": [
       "Exhaust"
     ],
-    "tags": null,
+    "tags": [
+      "Tarot"
+    ],
     "spawns_cards": null,
     "vars": {
       "Damage": 25
@@ -26308,7 +26394,9 @@
     "keywords": [
       "Exhaust"
     ],
-    "tags": null,
+    "tags": [
+      "Tarot"
+    ],
     "spawns_cards": null,
     "vars": null,
     "upgrade": {
@@ -26349,7 +26437,9 @@
     "keywords": [
       "Exhaust"
     ],
-    "tags": null,
+    "tags": [
+      "Tarot"
+    ],
     "spawns_cards": null,
     "vars": {
       "Energy": 7
@@ -26392,7 +26482,9 @@
     "keywords": [
       "Exhaust"
     ],
-    "tags": null,
+    "tags": [
+      "Tarot"
+    ],
     "spawns_cards": null,
     "vars": {
       "Power": 3
@@ -26435,7 +26527,9 @@
     "keywords": [
       "Exhaust"
     ],
-    "tags": null,
+    "tags": [
+      "Tarot"
+    ],
     "spawns_cards": null,
     "vars": {
       "Cards": 2
@@ -26516,7 +26610,9 @@
     "keywords": [
       "Exhaust"
     ],
-    "tags": null,
+    "tags": [
+      "Tarot"
+    ],
     "spawns_cards": null,
     "vars": {
       "HpLoss": 6
@@ -26559,7 +26655,9 @@
     "keywords": [
       "Exhaust"
     ],
-    "tags": null,
+    "tags": [
+      "Tarot"
+    ],
     "spawns_cards": null,
     "vars": {
       "Cards": 2
@@ -26602,7 +26700,9 @@
     "keywords": [
       "Exhaust"
     ],
-    "tags": null,
+    "tags": [
+      "Tarot"
+    ],
     "spawns_cards": null,
     "vars": {
       "Cards": 3
@@ -26646,7 +26746,9 @@
       "Exhaust",
       "Retain"
     ],
-    "tags": null,
+    "tags": [
+      "Tarot"
+    ],
     "spawns_cards": null,
     "vars": {
       "Cards": 4
@@ -26733,7 +26835,9 @@
     "keywords": [
       "Exhaust"
     ],
-    "tags": null,
+    "tags": [
+      "Tarot"
+    ],
     "spawns_cards": null,
     "vars": null,
     "upgrade": {
@@ -26774,7 +26878,9 @@
     "keywords": [
       "Exhaust"
     ],
-    "tags": null,
+    "tags": [
+      "Tarot"
+    ],
     "spawns_cards": null,
     "vars": {
       "Repeat": 3
@@ -26817,7 +26923,9 @@
     "keywords": [
       "Exhaust"
     ],
-    "tags": null,
+    "tags": [
+      "Tarot"
+    ],
     "spawns_cards": [
       "SHIV"
     ],
@@ -26941,7 +27049,9 @@
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
-    "tags": null,
+    "tags": [
+      "Shoot"
+    ],
     "spawns_cards": [
       "FLORESCENCE"
     ],
@@ -27024,7 +27134,9 @@
     "keywords": [
       "Exhaust"
     ],
-    "tags": null,
+    "tags": [
+      "Tarot"
+    ],
     "spawns_cards": null,
     "vars": {
       "Cards": 3,
@@ -27069,7 +27181,9 @@
     "keywords": [
       "Exhaust"
     ],
-    "tags": null,
+    "tags": [
+      "Tarot"
+    ],
     "spawns_cards": [
       "SOOT"
     ],
@@ -27116,7 +27230,9 @@
     "keywords": [
       "Exhaust"
     ],
-    "tags": null,
+    "tags": [
+      "Tarot"
+    ],
     "spawns_cards": null,
     "vars": {
       "CalculationBase": 0,
@@ -27161,7 +27277,9 @@
     "keywords": [
       "Exhaust"
     ],
-    "tags": null,
+    "tags": [
+      "Tarot"
+    ],
     "spawns_cards": null,
     "vars": {
       "Cards": 5
@@ -27781,7 +27899,9 @@
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
-    "tags": null,
+    "tags": [
+      "Shoot"
+    ],
     "spawns_cards": null,
     "vars": {
       "Damage": 12
@@ -28877,7 +28997,9 @@
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
-    "tags": null,
+    "tags": [
+      "Wah"
+    ],
     "spawns_cards": null,
     "vars": {
       "Damage": 14
@@ -28915,7 +29037,10 @@
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
-    "tags": null,
+    "tags": [
+      "Wah",
+      "Cho"
+    ],
     "spawns_cards": null,
     "vars": {
       "Damage": 3,
@@ -28955,7 +29080,11 @@
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
-    "tags": null,
+    "tags": [
+      "Wah",
+      "Cho",
+      "Ki"
+    ],
     "spawns_cards": null,
     "vars": {
       "Damage": 9,
@@ -28997,7 +29126,9 @@
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
-    "tags": null,
+    "tags": [
+      "Wah"
+    ],
     "spawns_cards": null,
     "vars": {
       "Damage": 9
@@ -29035,7 +29166,10 @@
     "energy_gain": 1,
     "hp_loss": null,
     "keywords": null,
-    "tags": null,
+    "tags": [
+      "Wah",
+      "Ki"
+    ],
     "spawns_cards": null,
     "vars": {
       "Damage": 2,
@@ -29076,7 +29210,9 @@
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
-    "tags": null,
+    "tags": [
+      "Wah"
+    ],
     "spawns_cards": null,
     "vars": {
       "Damage": 8
@@ -29114,7 +29250,9 @@
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
-    "tags": null,
+    "tags": [
+      "Wah"
+    ],
     "spawns_cards": null,
     "vars": {
       "CalculationBase": 6,
@@ -29160,7 +29298,9 @@
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
-    "tags": null,
+    "tags": [
+      "Wah"
+    ],
     "spawns_cards": null,
     "vars": {
       "Damage": 6,
@@ -29282,7 +29422,9 @@
     "keywords": [
       "Exhaust"
     ],
-    "tags": null,
+    "tags": [
+      "Tarot"
+    ],
     "spawns_cards": null,
     "vars": {
       "Cards": 7

@@ -8,7 +8,7 @@
   "from_ref": "data-beta/v0.111.0/eng",
   "to_ref": "data-beta/v0.113.0/eng",
   "summary": {
-    "added": 198,
+    "added": 207,
     "removed": 1,
     "changed": 69
   },
@@ -3371,7 +3371,7 @@
       "id": "powers",
       "name": "Powers",
       "old_count": 265,
-      "new_count": 303,
+      "new_count": 304,
       "added": [
         {
           "id": "AEONGLASS_DOMINION",
@@ -3396,6 +3396,11 @@
         {
           "id": "ARCHERY",
           "name": "Archery",
+          "type": "Buff"
+        },
+        {
+          "id": "CHO_BARBS",
+          "name": "Temporary Thorns",
           "type": "Buff"
         },
         {
@@ -3821,6 +3826,54 @@
               "new": "DREAD_EPOCH"
             }
           ]
+        }
+      ]
+    },
+    {
+      "id": "glossary",
+      "name": "Glossary",
+      "old_count": 28,
+      "new_count": 34,
+      "added": [
+        {
+          "id": "ARROW",
+          "name": "Arrow"
+        },
+        {
+          "id": "CHO_MELODY",
+          "name": "Cho Melody"
+        },
+        {
+          "id": "DREAD_ROTATION",
+          "name": "Rotating Streak"
+        },
+        {
+          "id": "KI_MELODY",
+          "name": "Ki Melody"
+        },
+        {
+          "id": "TAROT",
+          "name": "Tarot"
+        },
+        {
+          "id": "WAH_MELODY",
+          "name": "Wah Melody"
+        }
+      ]
+    },
+    {
+      "id": "rest_site_options",
+      "name": "Rest Site Options",
+      "old_count": 9,
+      "new_count": 11,
+      "added": [
+        {
+          "id": "EVOLVE",
+          "name": "Evolve"
+        },
+        {
+          "id": "RESTORE",
+          "name": "Restore"
         }
       ]
     }

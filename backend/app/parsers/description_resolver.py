@@ -398,6 +398,22 @@ def extract_vars_from_source(content: str) -> dict[str, int]:
         all_vars[f"{power_name}Power"] = power_val
         all_vars[power_name] = power_val
 
+    # Pattern: new PowerVar<XxxPower>(PropertyName) — the amount lives in a
+    # private field behind the property (Show Off: CurrentAim -> _currentAim = 5)
+    for m in re.finditer(r"new\s+PowerVar<(\w+)>\(([A-Z]\w*)\)", content):
+        power_name = m.group(1).removesuffix("Power")
+        if f"{power_name}Power" in all_vars:
+            continue
+        prop_name = m.group(2)
+        field_name = "_" + prop_name[0].lower() + prop_name[1:]
+        field_match = re.search(
+            rf"private\s+(?:const\s+)?int\s+{re.escape(field_name)}\s*=\s*(\d+)",
+            content,
+        )
+        if field_match:
+            all_vars[f"{power_name}Power"] = int(field_match.group(1))
+            all_vars.setdefault(power_name, int(field_match.group(1)))
+
     # Pattern: new DynamicVar("Name", Nm) — named dynamic vars
     for m in re.finditer(
         r'new\s+DynamicVar\(\s*"(\w+)"\s*,\s*(\d+(?:\.\d+)?)m?\)', content

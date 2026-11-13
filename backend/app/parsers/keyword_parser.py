@@ -524,6 +524,12 @@ GLOSSARY_CATEGORIES = {
     "SUMMON": "mechanics",
     "TRANSFORM": "mechanics",
     "COOK": "mechanics",
+    "ARROW": "mechanics",
+    "WAH_MELODY": "mechanics",
+    "CHO_MELODY": "mechanics",
+    "KI_MELODY": "mechanics",
+    "TAROT": "mechanics",
+    "DREAD_ROTATION": "progression",
     "DISCARD_PILE": "zones",
     "DRAW_PILE": "zones",
     "EXHAUST_PILE": "zones",
@@ -577,7 +583,9 @@ def parse_glossary(loc_dir: Path) -> list[dict]:
         title = re.sub(r"  +", " ", title).strip()
         desc = clean_description(desc)
         # Clean unresolvable template variables
-        desc = re.sub(r"\{[^}]+\}", "", desc).strip()
+        while re.search(r"\{[^{}]*\}", desc):
+            desc = re.sub(r"\{[^{}]*\}", "", desc)
+        desc = desc.strip()
         # Normalize whitespace
         desc = re.sub(r"  +", " ", desc)
 

@@ -630,7 +630,7 @@ def load_translation_maps(lang: str = DEFAULT_LANG) -> dict:
     version = _get_version()
     if version:
         return _load_translation_maps_versioned(lang, version)
-    if get_channel() == "all":
+    if get_channel() in ("all", "beta"):
         beta_version = get_beta_version()
         if beta_version:
             return _load_translation_maps_all(lang, beta_version)

@@ -107,6 +107,11 @@ TEMPORARY_POWER_BASES = {
         "pos_key": "TEMPORARY_FOCUS_POWER",
         "neg_key": "TEMPORARY_FOCUS_DOWN",
     },
+    "TemporaryThornsPower": {
+        "stat": "Thorns",
+        "pos_key": "TEMPORARY_THORNS_POWER",
+        "neg_key": "TEMPORARY_THORNS_POWER",
+    },
 }
 
 
@@ -269,8 +274,18 @@ def parse_single_power(filepath: Path, localization: dict) -> dict | None:
         has_unresolved_stringvars = bool(
             re.search(r"\[(?:AfflictionTitle|Covering)\]", description_resolved)
         )
-        if (has_artifacts and plain_is_useful and not smart_has_resolved_vars) or (
-            has_unresolved_stringvars and plain_is_useful
+        # A counter the power only fills in at runtime starts at 0 in the
+        # source, and a bare {} left behind by a choose() branch has nothing
+        # to print; the game's static description is the honest text for both.
+        prints_runtime_zero = any(
+            value == 0 and re.search(rf"\{{{re.escape(name)}[}}:]", smart_raw)
+            for name, value in all_vars.items()
+        )
+        has_stray_braces = bool(re.search(r"[{}]", description_resolved))
+        if (
+            (has_artifacts and plain_is_useful and not smart_has_resolved_vars)
+            or (has_unresolved_stringvars and plain_is_useful)
+            or ((prints_runtime_zero or has_stray_braces) and plain_is_useful)
         ):
             description_raw = plain_raw
             description_resolved = resolve_description(plain_raw, all_vars)
