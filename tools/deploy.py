@@ -203,6 +203,36 @@ SITE_URL = f"https://{SITE_HOST}"
 DATA_DIR = ROOT / "data"
 
 
+LAUNCH_CAST = ["ironclad", "silent", "defect", "necrobinder", "regent"]
+
+
+def _character_ids(base: Path) -> list[str]:
+    try:
+        with open(base / "eng" / "characters.json", "r", encoding="utf-8") as f:
+            rows = json.load(f)
+    except (OSError, ValueError):
+        return []
+    return [str(r["id"]).lower() for r in rows if isinstance(r, dict) and r.get("id")]
+
+
+def site_cast(data_dir: Path | None = None, beta_dir: Path | None = None) -> list[str]:
+    """The cast in the site's order: the launch five, then every later
+    character from the main catalog and the current beta."""
+    data_dir = data_dir or DATA_DIR
+    beta_dir = beta_dir or ROOT / "data-beta"
+    found = _character_ids(data_dir)
+    pointer = beta_dir / "latest"
+    try:
+        beta = pointer.resolve().name if pointer.is_dir() else pointer.read_text().strip()
+    except OSError:
+        beta = ""
+    if beta:
+        found += _character_ids(beta_dir / beta)
+    first = [c for c in LAUNCH_CAST if c in found] or list(LAUNCH_CAST)
+    later = sorted({c for c in found if c not in LAUNCH_CAST})
+    return first + later
+
+
 def build_indexnow_urls() -> list[str]:
     """Build the full list of URLs to submit to IndexNow from parsed data."""
     urls = [
@@ -257,12 +287,10 @@ def build_indexnow_urls() -> list[str]:
         "common-attacks", "common-skills", "common-powers",
         "uncommon-attacks", "uncommon-skills", "uncommon-powers",
         "rare-attacks", "rare-skills", "rare-powers",
-        "ironclad-attacks", "ironclad-skills", "ironclad-powers",
-        "silent-attacks", "silent-skills", "silent-powers",
-        "defect-attacks", "defect-skills", "defect-powers",
-        "necrobinder-attacks", "necrobinder-skills", "necrobinder-powers",
-        "regent-attacks", "regent-skills", "regent-powers",
     ]
+    cast = site_cast()
+    for char in cast:
+        browse_slugs += [f"{char}-attacks", f"{char}-skills", f"{char}-powers"]
     for slug in browse_slugs:
         urls.append(f"{SITE_URL}/cards/browse/{slug}")
 
@@ -303,10 +331,13 @@ def build_indexnow_urls() -> list[str]:
                 pass
 
     # Comparison pages
-    chars = ["ironclad", "silent", "defect", "necrobinder", "regent"]
-    for i, a in enumerate(chars):
-        for b in chars[i + 1:]:
+    for i, a in enumerate(cast):
+        for b in cast[i + 1:]:
             urls.append(f"{SITE_URL}/compare/{a}-vs-{b}")
+    for char in cast:
+        page = f"{SITE_URL}/characters/{char}"
+        if page not in urls:
+            urls.append(page)
 
     # Keyword detail pages
     for kw in ["exhaust", "ethereal", "innate", "retain", "sly", "eternal", "unplayable"]:

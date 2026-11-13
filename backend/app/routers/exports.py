@@ -17,7 +17,7 @@ from ..dependencies import VALID_LANGUAGES, shared_limiter
 from ..services import rate_limit_config
 from ..metrics import data_exports, run_export_pages, run_exports
 from ..services.data_service import DATA_DIR
-from ..services.official_content import official_characters
+from ..services.official_content import LIVE_CAST
 
 logger = logging.getLogger(__name__)
 
@@ -49,7 +49,7 @@ _RUNS_DIR = (
     / "runs"
 )
 
-OFFICIAL_CHARACTERS = official_characters()
+OFFICIAL_CHARACTERS = LIVE_CAST
 
 # Upper bound on a single page so one request can't ask for the whole corpus
 # while still claiming the cheap (paginated) rate-limit cost.

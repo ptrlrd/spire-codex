@@ -12,9 +12,9 @@ import sqlite3
 from contextlib import contextmanager
 from pathlib import Path
 
-from .official_content import official_characters
+from .official_content import LIVE_CAST
 
-OFFICIAL_CHARACTERS = official_characters()
+OFFICIAL_CHARACTERS = LIVE_CAST
 
 # Use DATA_DIR env var (Docker) or fall back to project data/
 _data_dir = Path(

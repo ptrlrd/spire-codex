@@ -13,7 +13,7 @@ FROM read_parquet('/lake/runs.parquet') r
 ANTI JOIN read_parquet('/lake/excluded.parquet') x ON r.run_hash = x.run_hash
 WHERE NOT r.win
   AND r.ascension BETWEEN 0 AND 10
-  AND r.character IN ('IRONCLAD','SILENT','DEFECT','NECROBINDER','REGENT');
+  AND r.character IN ('IRONCLAD','SILENT','DEFECT','NECROBINDER','REGENT','FOOL');
 
 COPY (
 SELECT killed_by_encounter AS id, count(*) AS count

@@ -60,11 +60,11 @@ from pymongo.errors import (
 
 from ..metrics import count_budget_timeouts, db_operations, db_operation_duration
 from . import cache as app_cache
-from .official_content import official_characters
+from .official_content import LIVE_CAST
 
 logger = logging.getLogger(__name__)
 
-OFFICIAL_CHARACTERS = official_characters()
+OFFICIAL_CHARACTERS = LIVE_CAST
 _CAST = tuple(sorted(OFFICIAL_CHARACTERS))
 HIDDEN_WINS_INDEX = "hidden_wins"
 _hidden_wins_hint_warned = False

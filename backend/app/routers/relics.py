@@ -37,7 +37,7 @@ def get_relics(
     ),
     pool: str | None = Query(
         None,
-        description="Filter by character pool (ironclad, silent, defect, necrobinder, regent, shared)",
+        description="Filter by relic pool: a character id such as ironclad or silent, or shared",
     ),
     ancient: str | None = Query(
         None,

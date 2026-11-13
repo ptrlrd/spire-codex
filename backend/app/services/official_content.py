@@ -9,6 +9,7 @@ removed still counts as official.
 
 import json
 import logging
+import time
 from functools import lru_cache
 from pathlib import Path
 
@@ -44,20 +45,47 @@ def archived_versions() -> list[str]:
         return []
 
 
+_BETA_CHECK_SECONDS = 30.0
+_beta_seen: tuple[float, str | None] | None = None
+
+
+def _current_beta() -> str | None:
+    """The beta version, re-read at most every 30 seconds, so a new beta
+    pulled onto a running box changes the cast without a restart."""
+    global _beta_seen
+    now = time.monotonic()
+    if _beta_seen is None or now - _beta_seen[0] > _BETA_CHECK_SECONDS:
+        _beta_seen = (now, data_service.get_beta_version())
+    return _beta_seen[1]
+
+
 @lru_cache(maxsize=None)
-def official_ids(entity: str) -> frozenset[str]:
-    """Uppercase ids of one catalog file (cards, relics, characters...)
-    across main, the current beta and every archived version. Empty when
-    the main catalog cannot be read, which callers treat as "don't filter"."""
+def _official_ids(entity: str, beta: str | None) -> frozenset[str]:
     ids = _ids(data_service._resolve_base(None), entity)
     if not ids:
         return frozenset()
-    beta = data_service.get_beta_version()
     if beta:
         ids |= _ids(data_service.BETA_DATA_DIR / beta, entity)
     for version in archived_versions():
         ids |= _ids(data_service._resolve_base(version), entity)
     return frozenset(ids)
+
+
+def official_ids(entity: str) -> frozenset[str]:
+    """Uppercase ids of one catalog file (cards, relics, characters...)
+    across main, the current beta and every archived version. Empty when
+    the main catalog cannot be read, which callers treat as "don't filter"."""
+    return _official_ids(entity, _current_beta())
+
+
+def _forget_catalogs() -> None:
+    global _beta_seen
+    _beta_seen = None
+    _official_ids.cache_clear()
+    _character_names.cache_clear()
+
+
+official_ids.cache_clear = _forget_catalogs
 
 
 def official_characters() -> frozenset[str]:
@@ -74,13 +102,19 @@ def official_characters_ordered() -> tuple[str, ...]:
     return tuple(first + sorted(cast - set(first)))
 
 
-@lru_cache(maxsize=None)
 def official_character_names(strip_article: bool = True) -> dict[str, str]:
     """id -> English display name for the whole cast, in display order.
     The main catalog names a character first, then the current beta, then
     the archives, so a beta-only character is still named."""
+    return _character_names(strip_article, _current_beta())
+
+
+official_character_names.cache_clear = _forget_catalogs
+
+
+@lru_cache(maxsize=None)
+def _character_names(strip_article: bool, beta: str | None) -> dict[str, str]:
     bases = [data_service._resolve_base(v) for v in archived_versions()]
-    beta = data_service.get_beta_version()
     if beta:
         bases.append(data_service.BETA_DATA_DIR / beta)
     bases.append(data_service._resolve_base(None))
@@ -101,3 +135,31 @@ def official_characters_sql() -> str:
     """The cast as a SQL list literal for an IN clause."""
     names = sorted(c for c in official_characters() if c.replace("_", "").isalnum())
     return "(" + ", ".join(f"'{c}'" for c in names) + ")"
+
+
+class LiveCast:
+    """The official cast as a set-like value that is read from the catalogs
+    each time it is used, for modules that used to copy it at import."""
+
+    def __contains__(self, item: object) -> bool:
+        return item in official_characters()
+
+    def __iter__(self):
+        return iter(official_characters())
+
+    def __len__(self) -> int:
+        return len(official_characters())
+
+    def __eq__(self, other: object) -> bool:
+        try:
+            return frozenset(self) == frozenset(other)  # type: ignore[call-overload]
+        except TypeError:
+            return NotImplemented
+
+    __hash__ = None  # type: ignore[assignment]
+
+    def __repr__(self) -> str:
+        return f"LiveCast({sorted(official_characters())})"
+
+
+LIVE_CAST = LiveCast()

@@ -59,7 +59,7 @@ def get_cards(
     request: Request,
     color: str | None = Query(
         None,
-        description="Filter by character color (ironclad, silent, defect, necrobinder, regent, colorless)",
+        description="Filter by card color: a character id such as ironclad or silent, or colorless",
     ),
     type: str | None = Query(
         None, description="Filter by card type (Attack, Skill, Power, Status, Curse)"

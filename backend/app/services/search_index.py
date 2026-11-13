@@ -270,13 +270,43 @@ def _subtitle_of(row: dict, fields: tuple[str, ...]) -> str:
     return " · ".join(str(row[f]) for f in fields if row.get(f))
 
 
+def _load_in(channel: str, loader: Callable, lang: str) -> list[dict]:
+    token = data_service.current_channel.set(channel)
+    try:
+        return list(loader(lang))
+    finally:
+        data_service.current_channel.reset(token)
+
+
+def _merged_rows(loader_name: str, lang: str) -> tuple[list[dict], set[str]]:
+    """Main rows plus the rows only the current beta has, and the ids of
+    those beta-only rows."""
+    loader: Callable = getattr(data_service, loader_name)
+    try:
+        main = _load_in("stable", loader, lang)
+        if not data_service.get_beta_version():
+            return main, set()
+        merged = _load_in("all", loader, lang)
+    except Exception as exc:
+        raise BuildError(f"{loader_name}({lang}) failed: {exc}") from exc
+    main_ids = {str(r.get("id") or r.get("name") or "") for r in main}
+    beta_only = {
+        str(r.get("id") or r.get("name") or "")
+        for r in merged
+        if str(r.get("id") or r.get("name") or "") not in main_ids
+    }
+    return merged, beta_only
+
+
+def _beta_subtitle(subtitle: str, beta: bool) -> str:
+    if not beta:
+        return subtitle
+    return f"Beta · {subtitle}" if subtitle else "Beta"
+
+
 def _entity_docs(lang: str) -> Iterator[dict[str, Any]]:
     for kind, _label, loader_name, prefix, sub_fields, text_fields, _w in _ENTITY_KINDS:
-        loader: Callable = getattr(data_service, loader_name)
-        try:
-            rows = loader(lang)
-        except Exception as exc:
-            raise BuildError(f"{loader_name}({lang}) failed: {exc}") from exc
+        rows, beta_only = _merged_rows(loader_name, lang)
         for row in rows:
             name = str(row.get("name") or "").strip()
             rid = str(row.get("id") or "").strip()
@@ -288,15 +318,13 @@ def _entity_docs(lang: str) -> Iterator[dict[str, Any]]:
                 lang=lang,
                 name=name,
                 path=f"{prefix}/{rid.lower()}",
-                subtitle=_subtitle_of(row, sub_fields),
+                subtitle=_beta_subtitle(
+                    _subtitle_of(row, sub_fields), rid in beta_only
+                ),
                 text=_text_of(row, text_fields),
             )
     for loader_name, ref_kind, path in _REFERENCE_KINDS:
-        loader = getattr(data_service, loader_name)
-        try:
-            rows = loader(lang)
-        except Exception as exc:
-            raise BuildError(f"{loader_name}({lang}) failed: {exc}") from exc
+        rows, _beta_only = _merged_rows(loader_name, lang)
         for row in rows:
             name = str(row.get("name") or "").strip()
             rid = str(row.get("id") or name).strip()
@@ -452,6 +480,10 @@ def source_fingerprint() -> str:
     base = data_service.DATA_DIR
     for lang in languages():
         parts.append((lang, _stat_sig(base, sorted((base / lang).glob("*.json")))))
+    beta = data_service.get_beta_version()
+    if beta:
+        beta_base = data_service.BETA_DATA_DIR / beta
+        parts.append((beta, _stat_sig(beta_base, sorted(beta_base.glob("*/*.json")))))
     parts.append(
         _stat_sig(
             base,
