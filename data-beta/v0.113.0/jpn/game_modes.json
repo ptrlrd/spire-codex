@@ -1,0 +1,269 @@
+[
+  {
+    "id": "STANDARD",
+    "name": "スタンダード",
+    "description": "スパイアを攻略する冒険へ出かけよう！",
+    "multiplayer_description": "スパイアを攻略する冒険へ出かけよう！……フレンドと共に！",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": null,
+    "max_ascension": 10
+  },
+  {
+    "id": "DAILY",
+    "name": "デイリー",
+    "description": "1日に1回、新たなチャレンジに挑戦できる。\n\n世界中のプレイヤーと最高スコアを競い合おう！",
+    "multiplayer_description": "1日に1回、新たなチャレンジに挑戦できる。\n\n他のグループと最高スコアを競い合おう！",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "全キャラクターで1回ずつプレイし、第3層をクリアすると、デイリーチャレンジがアンロックされる。",
+    "max_ascension": 10
+  },
+  {
+    "id": "DREAD",
+    "name": "ドレッド",
+    "description": "アーキテクトが用意した最高難度。\n\nスパイアで培った実力を試したい者へ。",
+    "multiplayer_description": "アーキテクトが用意した最高難度。\n\nスパイアで培った実力を試したい者たちへ。",
+    "intro": "[gold]ドレッド[/gold]は『Slay the Spire』で挑戦できる\n最高難度のモードだ。",
+    "rules": [
+      "全アセンションの変更要素が有効になる。",
+      "各層のクリア時、[purple]アセンダーの災厄[/purple]を\n1枚[gold]デッキ[/gold]に追加する。",
+      "敵は次に登場するボスの能力を追加で得る。",
+      "ボスがさらに強くなる。"
+    ],
+    "epoch_id": "DREAD_EPOCH",
+    "unlock_text": "アンロックしたゲームモード：ドレッド",
+    "unlock_info": "すべてのキャラクターで[red]アセンション[/red][blue]10[/blue]に到達すると、この断章が明らかになる。",
+    "max_ascension": 10,
+    "dominions": [
+      {
+        "id": "AEONGLASS_DOMINION",
+        "encounter_id": "AEONGLASS_BOSS",
+        "boss_name": "永劫の砂時計",
+        "name": "永劫の砂時計の権能",
+        "description": "ターン開始時、[gold]衰微[/gold]を[blue]1[/blue]枚[gold]山札[/gold]の一番上に加える。"
+      },
+      {
+        "id": "CEREMONIAL_BEAST_DOMINION",
+        "encounter_id": "CEREMONIAL_BEAST_BOSS",
+        "boss_name": "儀式の獣",
+        "name": "儀式の獣の権能",
+        "description": "すべての敵が[gold]儀式[/gold][blue]1[/blue]を得る。"
+      },
+      {
+        "id": "INSATIABLE_DOMINION",
+        "encounter_id": "THE_INSATIABLE_BOSS",
+        "boss_name": "貪りの獣",
+        "name": "貪りの獣の権能",
+        "description": "ターン終了時、経過ターン数に応じたダメージを受ける。"
+      },
+      {
+        "id": "KAISER_CRAB_DOMINION",
+        "encounter_id": "KAISER_CRAB_BOSS",
+        "boss_name": "カイザークラブ",
+        "name": "カイザークラブの権能",
+        "description": "すべての敵が[gold]プレート[/gold][blue]7[/blue]を得る。"
+      },
+      {
+        "id": "KIN_DOMINION",
+        "encounter_id": "THE_KIN_BOSS",
+        "boss_name": "血族",
+        "name": "血族の権能",
+        "description": "戦闘開始時、[gold]脱力[/gold]と[gold]脆弱[/gold]をそれぞれ[red]2[/red]得る。"
+      },
+      {
+        "id": "KNOWLEDGE_DEMON_DOMINION",
+        "encounter_id": "KNOWLEDGE_DEMON_BOSS",
+        "boss_name": "知識の悪魔",
+        "name": "知識の悪魔の権能",
+        "description": "戦闘開始時、[blue]2[/blue]つの「権能の[red]災厄[/red]」から[blue]1[/blue]つを選ぶ。"
+      },
+      {
+        "id": "LAGAVULIN_MATRIARCH_DOMINION",
+        "encounter_id": "LAGAVULIN_MATRIARCH_BOSS",
+        "boss_name": "ラガヴーリン・メイトリアーク",
+        "name": "ラガヴーリン・メイトリアークの権能",
+        "description": "最初のターン終了時、[gold]筋力[/gold]と[gold]敏捷[/gold]をそれぞれ[red]1[/red]失う。"
+      },
+      {
+        "id": "QUEEN_DOMINION",
+        "encounter_id": "QUEEN_BOSS",
+        "boss_name": "クイーン",
+        "name": "クイーンの権能",
+        "description": "2ターン目の開始時、[gold]脱力[/gold]、[gold]弱体[/gold]、[gold]脆弱[/gold]をそれぞれ[red]3[/red]得る。"
+      },
+      {
+        "id": "SOUL_FYSH_DOMINION",
+        "encounter_id": "SOUL_FYSH_BOSS",
+        "boss_name": "ソウルフィッシュ",
+        "name": "ソウルフィッシュの権能",
+        "description": "戦闘開始時、[gold]誘い[/gold]を1枚[gold]山札[/gold]に加えてシャッフルする。"
+      },
+      {
+        "id": "TEST_SUBJECT_DOMINION",
+        "encounter_id": "TEST_SUBJECT_BOSS",
+        "boss_name": "実験体",
+        "name": "実験体の権能",
+        "description": "すべての敵が[gold]筋力[/gold][blue]3[/blue]を得る。"
+      },
+      {
+        "id": "VANTOM_DOMINION",
+        "encounter_id": "VANTOM_BOSS",
+        "boss_name": "ヴァントム",
+        "name": "ヴァントムの権能",
+        "description": "通常の敵が[gold]スリップ[/gold][blue]1[/blue]を得る。エリートは[gold]スリップ[/gold][blue]2[/blue]を得る。"
+      },
+      {
+        "id": "WATERFALL_GIANT_DOMINION",
+        "encounter_id": "WATERFALL_GIANT_BOSS",
+        "boss_name": "滝の巨人",
+        "name": "滝の巨人の権能",
+        "description": "敵は死亡すると爆発し、ダメージを与える。"
+      }
+    ],
+    "rotating_streak": {
+      "name": "ローテーション",
+      "description": "[gold]ローテーション連勝[/gold]では、勝利するたびに使用キャラクターが右隣のキャラクターへ切り替わる。\n勝利数は別枠の連勝記録にカウントされ、各キャラクター個別の連勝記録には加算されない。"
+    }
+  },
+  {
+    "id": "BLITZ",
+    "name": "ブリッツ",
+    "description": "短い冒険を求めるプレイヤー向け。短時間で濃密なスパイア攻略に挑むモード。",
+    "multiplayer_description": "短い冒険を求めるグループ向け。短時間で濃密なスパイア攻略に挑むモード。",
+    "intro": "[green]ブリッツ[/green]モードへようこそ！ 短時間で楽しめるこのモードでは、通常とは別のアセンション難易度が全キャラクター共通で適用される。また、デッキ構築重視の大幅な変更が加えられている。",
+    "rules": [
+      "冒険の開始時にカードを受け取る。",
+      "各層では[blue]4[/blue]回の戦闘が発生する。",
+      "[blue]商人[/blue]の様子が[sine]おかしい[/sine]。",
+      "[gold]宝箱[/gold]から追加のレリックを1個獲得できる。",
+      "マップが存在しない。"
+    ],
+    "epoch_id": "BLITZ_EPOCH",
+    "unlock_text": "アンロックしたゲームモード：ブリッツ",
+    "unlock_info": "アセンションを1回プレイすると、ブリッツがアンロックされる。",
+    "max_ascension": 5,
+    "ascension_levels": [
+      "WearyTraveler",
+      "TightBelt",
+      "ToughEnemies",
+      "DeadlyEnemies",
+      "AscendersBane"
+    ],
+    "neow": {
+      "name": "ブリッツ",
+      "description": "[gold]デッキ[/gold]に追加するカードを[blue]3[/blue]枚選ぶ。"
+    },
+    "merchant_entries": [
+      {
+        "id": "CARD_ENCHANT",
+        "name": "Enchantment",
+        "description": "カード1枚に[purple]Enchantment[/purple]を[gold]付与[/gold]する。"
+      },
+      {
+        "id": "CARD_PACKS",
+        "name": "カードパック",
+        "description": "[blue]2[/blue]つのカードパックから[blue]1[/blue]つを選び、[gold]デッキ[/gold]に追加する。"
+      },
+      {
+        "id": "CARD_REMOVAL",
+        "name": "カード削除サービス",
+        "description": "[gold]デッキ[/gold]からカードを1枚削除する。"
+      },
+      {
+        "id": "CARD_REWARD_OF_EACH_RARITY",
+        "name": "呪いのカード報酬",
+        "description": "ランダムな[red]呪い[/red]を[red]1[/red]枚受け取る。\n[gold]コモン[/gold]、[gold]アンコモン[/gold]、[gold]レア[/gold]のカード報酬をそれぞれ[blue]1[/blue]回受け取る。"
+      },
+      {
+        "id": "CARD_REWARDS",
+        "name": "カード報酬",
+        "description": "カード報酬を[blue]2[/blue]回受け取る。"
+      },
+      {
+        "id": "CARD_TRANSFORM",
+        "name": "カード変化サービス",
+        "description": "[gold]デッキ[/gold]のカードを1枚[gold]変化[/gold]させる。"
+      },
+      {
+        "id": "CARD_UPGRADE",
+        "name": "カードアップグレードサービス",
+        "description": "[gold]デッキ[/gold]のカードを1枚[gold]アップグレード[/gold]する。"
+      },
+      {
+        "id": "COLORLESS_CARD_REWARD",
+        "name": "無色カード報酬",
+        "description": "[gold]無色[/gold]のカード報酬を[blue]1[/blue]回受け取る。"
+      },
+      {
+        "id": "ENCHANTED_CARD_REWARD",
+        "name": "エンチャント済みカード報酬",
+        "description": "[gold]エンチャント[/gold]済みカード報酬を[blue]1[/blue]回受け取る。"
+      },
+      {
+        "id": "FULL_HEAL_AND_MAX_HP",
+        "name": "呪いの回復",
+        "description": "ランダムな[red]呪い[/red]を[red]1[/red]枚受け取る。\n最大HPを[blue]6[/blue]増加させ、HPをすべて回復する。"
+      },
+      {
+        "id": "GLAM",
+        "name": "呪いのEnchantment",
+        "description": "ランダムな[red]呪い[/red]を[red]1[/red]枚受け取る。\nカード1枚に[purple]Enchantment[/purple]を[gold]付与[/gold]する。"
+      },
+      {
+        "id": "POTIONS",
+        "name": "ポーション",
+        "description": "ポーションスロットを[blue]1[/blue]つ増やし、ランダムなポーションを[blue]2[/blue]個入手する。"
+      },
+      {
+        "id": "PRISMATIC_CARD_REWARD",
+        "name": "Characterのカード報酬",
+        "description": "[gold]Character[/gold]のカード報酬を[blue]1[/blue]回受け取る。"
+      },
+      {
+        "id": "RANDOM_UPGRADES",
+        "name": "ランダムアップグレード",
+        "description": "[gold]デッキ[/gold]のランダムなカード[blue]2[/blue]枚をアップグレードする。"
+      },
+      {
+        "id": "RARE_CARD_REWARD",
+        "name": "レアカード報酬",
+        "description": "レアカード報酬を[blue]1[/blue]回受け取る。"
+      },
+      {
+        "id": "RELIC",
+        "name": "レリック",
+        "description": "ランダムな[gold]レリック[/gold]を[blue]1[/blue]個獲得する。"
+      },
+      {
+        "id": "TWO_MORE_CHOICES",
+        "name": "呪いの選択肢",
+        "description": "ランダムな[red]呪い[/red]を[red]1[/red]枚受け取る。\n商人からさらに2点の商品を購入できるようになる。"
+      },
+      {
+        "id": "TWO_RELICS",
+        "name": "呪いのレリック",
+        "description": "ランダムな[red]呪い[/red]を[red]1[/red]枚受け取る。\nランダムな[gold]レリック[/gold]を[blue]2[/blue]個獲得する。"
+      },
+      {
+        "id": "UPGRADED_CARD_REWARD",
+        "name": "アップグレード済みカード報酬",
+        "description": "[gold]アップグレード済み[/gold]カード報酬を[blue]1[/blue]回受け取る。"
+      },
+      {
+        "id": "UPGRADED_RARE_CARD",
+        "name": "アップグレード済みレアカード",
+        "description": "ランダムな[gold]アップグレード済み[/gold]のレアカードを[blue]1[/blue]枚受け取る。"
+      },
+      {
+        "id": "UPGRADED_RARE_CARD_REWARD",
+        "name": "呪いのアップグレード済みレアカード報酬",
+        "description": "ランダムな[red]呪い[/red]を[red]1[/red]枚受け取る。\n[gold]アップグレード済み[/gold]レアカードの報酬を[blue]1[/blue]回受け取る。"
+      }
+    ]
+  }
+]

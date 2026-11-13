@@ -1,0 +1,269 @@
+[
+  {
+    "id": "STANDARD",
+    "name": "Wyprawa",
+    "description": "Wyrusz na misję zdobycia Iglicy!",
+    "multiplayer_description": "Wyrusz na misję zdobycia Iglicy... ze znajomymi!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": null,
+    "max_ascension": 10
+  },
+  {
+    "id": "DAILY",
+    "name": "Wyzwanie Dnia",
+    "description": "Codziennie nowe wyzwanie.\n\nRywalizuj z innymi graczami o najwyższy wynik!",
+    "multiplayer_description": "Codziennie nowe wyzwanie.\n\nRywalizuj z innymi grupami graczy o najwyższy wynik!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "Ukończ Akt 3. i zagraj raz wszystkimi postaciami, aby odblokować Wyzwanie Dnia.",
+    "max_ascension": 10
+  },
+  {
+    "id": "DREAD",
+    "name": "Groza",
+    "description": "The apex difficulty laid forth by the Architect.\n\nOnly for those who wish to test their mastery over the Spire.",
+    "multiplayer_description": "The apex difficulty laid forth by the Architect.\n\nOnly for parties who wish to test their mastery over the Spire.",
+    "intro": "[gold]Groza[/gold] to najtrudniejsze wyzwanie w Slay the Spire.",
+    "rules": [
+      "All Ascension modifiers are enabled.",
+      "At the end of each Act, an [purple]Ascender's Bane[/purple] is added to your [gold]Deck[/gold].",
+      "Enemies gain additional abilities from the upcoming boss.",
+      "Bosses are even stronger."
+    ],
+    "epoch_id": "DREAD_EPOCH",
+    "unlock_text": "Odblokowano tryb gry: Groza.",
+    "unlock_info": "Reach [red]Ascension[/red] [blue]10[/blue] on all characters to reveal this Epoch.",
+    "max_ascension": 10,
+    "dominions": [
+      {
+        "id": "AEONGLASS_DOMINION",
+        "encounter_id": "AEONGLASS_BOSS",
+        "boss_name": "Wieczny Obserwator",
+        "name": "Wieczny Obserwator's Dominion",
+        "description": "At the start of your turn, add [blue]1[/blue] [gold]Wither[/gold] to the top of your [gold]Draw Pile[/gold]."
+      },
+      {
+        "id": "CEREMONIAL_BEAST_DOMINION",
+        "encounter_id": "CEREMONIAL_BEAST_BOSS",
+        "boss_name": "Leśny Stróż",
+        "name": "Leśny Stróż's Dominion",
+        "description": "All enemies gain [blue]1[/blue] [gold]Ritual[/gold]."
+      },
+      {
+        "id": "INSATIABLE_DOMINION",
+        "encounter_id": "THE_INSATIABLE_BOSS",
+        "boss_name": "Nienasycony",
+        "name": "Nienasycony's Dominion",
+        "description": "At the end of your turn, take damage based on the turn count."
+      },
+      {
+        "id": "KAISER_CRAB_DOMINION",
+        "encounter_id": "KAISER_CRAB_BOSS",
+        "boss_name": "Krab Cesarski",
+        "name": "Krab Cesarski's Dominion",
+        "description": "All enemies gain [blue]7[/blue] [gold]Plating[/gold]."
+      },
+      {
+        "id": "KIN_DOMINION",
+        "encounter_id": "THE_KIN_BOSS",
+        "boss_name": "Kapłan",
+        "name": "Kapłan's Dominion",
+        "description": "You start combat with [red]2[/red] [gold]Weak[/gold] and [gold]Frail[/gold]."
+      },
+      {
+        "id": "KNOWLEDGE_DEMON_DOMINION",
+        "encounter_id": "KNOWLEDGE_DEMON_BOSS",
+        "boss_name": "Demon Wiedzy",
+        "name": "Demon Wiedzy's Dominion",
+        "description": "At the start of combat, choose [blue]1[/blue] of [blue]2[/blue] Dominion [red]Banes[/red]."
+      },
+      {
+        "id": "LAGAVULIN_MATRIARCH_DOMINION",
+        "encounter_id": "LAGAVULIN_MATRIARCH_BOSS",
+        "boss_name": "Matka Lagavulinów",
+        "name": "Matka Lagavulinów's Dominion",
+        "description": "At the end of your first turn, lose [red]1[/red] [gold]Strength[/gold] and [gold]Dexterity[/gold]."
+      },
+      {
+        "id": "QUEEN_DOMINION",
+        "encounter_id": "QUEEN_BOSS",
+        "boss_name": "Królowa",
+        "name": "Królowa's Dominion",
+        "description": "At the start of turn 2, gain [red]3[/red] [gold]Weak[/gold], [gold]Vulnerable[/gold] and [gold]Frail[/gold]."
+      },
+      {
+        "id": "SOUL_FYSH_DOMINION",
+        "encounter_id": "SOUL_FYSH_BOSS",
+        "boss_name": "Dusza Rypki",
+        "name": "Dusza Rypki's Dominion",
+        "description": "At the start of each combat, shuffle a [gold]Beckon[/gold] into your [gold]Draw Pile[/gold]."
+      },
+      {
+        "id": "TEST_SUBJECT_DOMINION",
+        "encounter_id": "TEST_SUBJECT_BOSS",
+        "boss_name": "Eksperyment",
+        "name": "Eksperyment's Dominion",
+        "description": "All enemies gain [blue]3[/blue] [gold]Strength[/gold]."
+      },
+      {
+        "id": "VANTOM_DOMINION",
+        "encounter_id": "VANTOM_BOSS",
+        "boss_name": "Fantom",
+        "name": "Fantom's Dominion",
+        "description": "Normal enemies gain [blue]1[/blue] [gold]Slippery[/gold]. Elites gain [blue]2[/blue] [gold]Slippery[/gold]."
+      },
+      {
+        "id": "WATERFALL_GIANT_DOMINION",
+        "encounter_id": "WATERFALL_GIANT_BOSS",
+        "boss_name": "Kaskadowy Olbrzym",
+        "name": "Kaskadowy Olbrzym's Dominion",
+        "description": "Enemies explode on death, dealing damage."
+      }
+    ],
+    "rotating_streak": {
+      "name": "Rotating Streak",
+      "description": "In a [gold]Rotating Streak[/gold], each win advances you one character to the right.\nWins are tracked in a separate streak, and no longer count towards individual characters'."
+    }
+  },
+  {
+    "id": "BLITZ",
+    "name": "Sztorm",
+    "description": "Dynamiczne, skrócone wyprawy dla tych, którzy poszukują krótszej przygody.",
+    "multiplayer_description": "Dynamiczne, skrócone wyprawy dla tych, którzy poszukują krótszej przygody.",
+    "intro": "Witaj w trybie [green]Sztormu[/green]! Wyprawy w tym trybie skupiają się głównie na budowaniu talii i mają osobne poziomy Wyniesienia, które są współdzielone między wszystkimi postaciami.",
+    "rules": [
+      "Otrzymujesz karty na początku każdej tury.",
+      "Toczysz [blue]4[/blue] walki w każdym Akcie.",
+      "[blue]Handlarz[/blue] zachowuje się [sine]dziwnie[/sine].",
+      "[gold]Skarby[/gold] zawierają dodatkowy artefakt.",
+      "Nie ma mapy."
+    ],
+    "epoch_id": "BLITZ_EPOCH",
+    "unlock_text": "Odblokowano nowy tryb gry: Sztorm",
+    "unlock_info": "Rozegraj jedną wyprawę z Wyniesieniem, aby odblokować Sztorm.",
+    "max_ascension": 5,
+    "ascension_levels": [
+      "WearyTraveler",
+      "TightBelt",
+      "ToughEnemies",
+      "DeadlyEnemies",
+      "AscendersBane"
+    ],
+    "neow": {
+      "name": "Sztorm",
+      "description": "Choose [blue]3[/blue] cards to add to your [gold]Deck[/gold]."
+    },
+    "merchant_entries": [
+      {
+        "id": "CARD_ENCHANT",
+        "name": "Enchantment",
+        "description": "[gold]Enchant[/gold] a card with [purple]Enchantment[/purple]."
+      },
+      {
+        "id": "CARD_PACKS",
+        "name": "Card Packs",
+        "description": "Choose [blue]1[/blue] of [blue]2[/blue] packs of cards to add to your [gold]Deck[/gold]."
+      },
+      {
+        "id": "CARD_REMOVAL",
+        "name": "Card Removal Service",
+        "description": "Remove a card from your [gold]Deck[/gold]."
+      },
+      {
+        "id": "CARD_REWARD_OF_EACH_RARITY",
+        "name": "Cursed Card Rewards",
+        "description": "Receive [red]1[/red] random [red]Curse[/red].\nReceive [blue]1[/blue] [gold]Common[/gold], [gold]Uncommon[/gold] and [gold]Rare[/gold] card reward."
+      },
+      {
+        "id": "CARD_REWARDS",
+        "name": "Card Rewards",
+        "description": "Receive [blue]2[/blue] card rewards."
+      },
+      {
+        "id": "CARD_TRANSFORM",
+        "name": "Card Transform Service",
+        "description": "[gold]Transform[/gold] a card in your [gold]Deck[/gold]."
+      },
+      {
+        "id": "CARD_UPGRADE",
+        "name": "Card Upgrade Service",
+        "description": "[gold]Upgrade[/gold] a card in your [gold]Deck[/gold]."
+      },
+      {
+        "id": "COLORLESS_CARD_REWARD",
+        "name": "Colorless Card Reward",
+        "description": "Receive [blue]1[/blue] [gold]Colorless[/gold] card reward."
+      },
+      {
+        "id": "ENCHANTED_CARD_REWARD",
+        "name": "Enchanted Card Reward",
+        "description": "Receive [blue]1[/blue] [gold]Enchanted[/gold] card reward."
+      },
+      {
+        "id": "FULL_HEAL_AND_MAX_HP",
+        "name": "Cursed Heal",
+        "description": "Receive [red]1[/red] random [red]Curse[/red].\nRaise your Max HP by [blue]6[/blue] and heal all of your HP."
+      },
+      {
+        "id": "GLAM",
+        "name": "Cursed Enchantment",
+        "description": "Receive [red]1[/red] random [red]Curse[/red].\n[gold]Enchant[/gold] a card with [purple]Enchantment[/purple]."
+      },
+      {
+        "id": "POTIONS",
+        "name": "Potions",
+        "description": "Gain [blue]1[/blue] potion slot and procure [blue]2[/blue] random potions."
+      },
+      {
+        "id": "PRISMATIC_CARD_REWARD",
+        "name": "Character Card Reward",
+        "description": "Receive [blue]1[/blue] [gold]Character[/gold] card reward."
+      },
+      {
+        "id": "RANDOM_UPGRADES",
+        "name": "Random Upgrades",
+        "description": "Upgrade [blue]2[/blue] random cards in your [gold]Deck[/gold]."
+      },
+      {
+        "id": "RARE_CARD_REWARD",
+        "name": "Rare Card Reward",
+        "description": "Receive [blue]1[/blue] rare card reward."
+      },
+      {
+        "id": "RELIC",
+        "name": "Relic",
+        "description": "Obtain [blue]1[/blue] random [gold]Relic[/gold]."
+      },
+      {
+        "id": "TWO_MORE_CHOICES",
+        "name": "Cursed Choices",
+        "description": "Receive [red]1[/red] random [red]Curse[/red].\nThe Merchant allows you to purchase two more wares."
+      },
+      {
+        "id": "TWO_RELICS",
+        "name": "Cursed Relics",
+        "description": "Receive [red]1[/red] random [red]Curse[/red].\nObtain [blue]2[/blue] random [gold]Relics[/gold]."
+      },
+      {
+        "id": "UPGRADED_CARD_REWARD",
+        "name": "Upgraded Card Reward",
+        "description": "Receive [blue]1[/blue] [gold]Upgraded[/gold] card reward."
+      },
+      {
+        "id": "UPGRADED_RARE_CARD",
+        "name": "Upgraded Rare Card",
+        "description": "Receive [blue]1[/blue] random [gold]Upgraded[/gold] rare card."
+      },
+      {
+        "id": "UPGRADED_RARE_CARD_REWARD",
+        "name": "Cursed Upgraded Rare Card Reward",
+        "description": "Receive [red]1[/red] random [red]Curse[/red].\nReceive [blue]1[/blue] [gold]Upgraded[/gold] rare card reward."
+      }
+    ]
+  }
+]

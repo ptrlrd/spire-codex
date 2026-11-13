@@ -1,0 +1,269 @@
+[
+  {
+    "id": "STANDARD",
+    "name": "Padrão",
+    "description": "Embarque em uma jornada para Destruir o Pináculo!",
+    "multiplayer_description": "Embarque em uma jornada para Destruir o Pináculo... com amigos!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": null,
+    "max_ascension": 10
+  },
+  {
+    "id": "DAILY",
+    "name": "Partida Diária",
+    "description": "Um novo desafio fica disponível uma vez por dia.\n\nDispute com outros jogadores pela maior pontuação!",
+    "multiplayer_description": "Um novo desafio fica disponível uma vez por dia.\n\nDispute com outros grupos pela maior pontuação!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "Jogue uma partida com cada personagem e conclua o Ato 3 para desbloquear Partidas Diárias.",
+    "max_ascension": 10
+  },
+  {
+    "id": "DREAD",
+    "name": "Pesadelo",
+    "description": "O ápice da dificuldade, planejado pelo Arquiteto.\n\nSomente para aqueles que desejam testar sua maestria no Pináculo.",
+    "multiplayer_description": "O ápice da dificuldade, planejado pelo Arquiteto.\n\nSomente para grupos que desejam testar sua maestria no Pináculo.",
+    "intro": "O modo [gold]Pesadelo[/gold] é o desafio de maior dificuldade em Slay the Spire.",
+    "rules": [
+      "Todos os modificadores de Ascensão são habilitados.",
+      "No final de cada Ato, uma [purple]Ruína do Ascendente[/purple] é adicionada ao seu [gold]Baralho[/gold].",
+      "Inimigos recebem habilidades adicionais baseadas no próximo Chefe.",
+      "Chefes são ainda mais fortes."
+    ],
+    "epoch_id": "DREAD_EPOCH",
+    "unlock_text": "Modo de jogo desbloqueado: Pesadelo.",
+    "unlock_info": "Alcance [red]Ascensão[/red] [blue]10[/blue] com todos os personagens para revelar esta Época.",
+    "max_ascension": 10,
+    "dominions": [
+      {
+        "id": "AEONGLASS_DOMINION",
+        "encounter_id": "AEONGLASS_BOSS",
+        "boss_name": "Ampulheta Eônica",
+        "name": "Domínio de Ampulheta Eônica",
+        "description": "No início do seu turno, adiciona [blue]1[/blue] [gold]Definhar[/gold] no topo da sua [gold]Pilha de Compra[/gold]."
+      },
+      {
+        "id": "CEREMONIAL_BEAST_DOMINION",
+        "encounter_id": "CEREMONIAL_BEAST_BOSS",
+        "boss_name": "Besta Cerimonial",
+        "name": "Domínio de Besta Cerimonial",
+        "description": "Todos os inimigos recebem [blue]1[/blue] de [gold]Ritual[/gold]."
+      },
+      {
+        "id": "INSATIABLE_DOMINION",
+        "encounter_id": "THE_INSATIABLE_BOSS",
+        "boss_name": "O Insaciável",
+        "name": "Domínio de O Insaciável",
+        "description": "No final do seu turno, sofra dano baseado na contagem de turnos."
+      },
+      {
+        "id": "KAISER_CRAB_DOMINION",
+        "encounter_id": "KAISER_CRAB_BOSS",
+        "boss_name": "Caranguejo Imperador",
+        "name": "Domínio de Caranguejo Imperador",
+        "description": "Todos os inimigos recebem [blue]7[/blue] de [gold]Blindagem[/gold]."
+      },
+      {
+        "id": "KIN_DOMINION",
+        "encounter_id": "THE_KIN_BOSS",
+        "boss_name": "A Tribo",
+        "name": "Domínio de A Tribo",
+        "description": "Você inicia o combate com [red]2[/red] de [gold]Fraqueza[/gold] e [gold]Frágil[/gold]."
+      },
+      {
+        "id": "KNOWLEDGE_DEMON_DOMINION",
+        "encounter_id": "KNOWLEDGE_DEMON_BOSS",
+        "boss_name": "Demônio do Conhecimento",
+        "name": "Domínio de Demônio do Conhecimento",
+        "description": "No início do combate, escolha [blue]1[/blue] entre [blue]2[/blue] [red]Ruínas[/red] de Domínio."
+      },
+      {
+        "id": "LAGAVULIN_MATRIARCH_DOMINION",
+        "encounter_id": "LAGAVULIN_MATRIARCH_BOSS",
+        "boss_name": "Matriarca Lagavulin",
+        "name": "Domínio de Matriarca Lagavulin",
+        "description": "No final do seu primeiro turno, perca [red]1[/red] de [gold]Força[/gold] e [gold]Destreza[/gold]."
+      },
+      {
+        "id": "QUEEN_DOMINION",
+        "encounter_id": "QUEEN_BOSS",
+        "boss_name": "Rainha",
+        "name": "Domínio de Rainha",
+        "description": "No início do turno 2, receba [red]3[/red] de [gold]Fraqueza[/gold], [gold]Vulnerável[/gold] e [gold]Frágil[/gold]."
+      },
+      {
+        "id": "SOUL_FYSH_DOMINION",
+        "encounter_id": "SOUL_FYSH_BOSS",
+        "boss_name": "Peyxe Espectral",
+        "name": "Domínio de Peyxe Espectral",
+        "description": "No início de cada combate, embaralhe um [gold]Instigar[/gold] na sua [gold]Pilha de Compra[/gold]."
+      },
+      {
+        "id": "TEST_SUBJECT_DOMINION",
+        "encounter_id": "TEST_SUBJECT_BOSS",
+        "boss_name": "Cobaia",
+        "name": "Domínio de Cobaia",
+        "description": "Todos os inimigos recebem [blue]3[/blue] de [gold]Força[/gold]."
+      },
+      {
+        "id": "VANTOM_DOMINION",
+        "encounter_id": "VANTOM_BOSS",
+        "boss_name": "Vantasma",
+        "name": "Domínio de Vantasma",
+        "description": "Inimigos normais recebem [blue]1[/blue] de [gold]Escorregadio[/gold]. Elites recebem [blue]2[/blue] de [gold]Escorregadio[/gold]."
+      },
+      {
+        "id": "WATERFALL_GIANT_DOMINION",
+        "encounter_id": "WATERFALL_GIANT_BOSS",
+        "boss_name": "Cachoeira Titânica",
+        "name": "Domínio de Cachoeira Titânica",
+        "description": "Inimigos explodem ao serem derrotados, causando dano."
+      }
+    ],
+    "rotating_streak": {
+      "name": "Sequência de Rodízio",
+      "description": "Em uma [gold]Sequência de Rodízio[/gold], cada vitória faz você avançar para o próximo personagem à direita.\nVitórias são contabilizadas em uma sequência separada, e não contam mais para personagens individuais."
+    }
+  },
+  {
+    "id": "BLITZ",
+    "name": "Blitz",
+    "description": "Partidas rápidas e condensadas para aqueles que buscam jornadas mais curtas.",
+    "multiplayer_description": "Partidas rápidas e condensadas para grupos que buscam jornadas mais curtas.",
+    "intro": "Bem-vindo ao modo [green]Blitz[/green]! Estas partidas rápidas possuem sua própria escala de Ascensão que é compartilhada entre todos os personagens, além de modificadores mais focados em construção de baralhos.",
+    "rules": [
+      "Receba cartas no início de cada partida.",
+      "Enfrente [blue]4[/blue] encontros por Ato.",
+      "O [blue]Mercador[/blue] fica [sine]esquisito[/sine].",
+      "[gold]Baús de Tesouro[/gold] contêm uma relíquia adicional.",
+      "Não há mapa."
+    ],
+    "epoch_id": "BLITZ_EPOCH",
+    "unlock_text": "Modo de jogo desbloqueado: Blitz.",
+    "unlock_info": "Jogue uma partida de Ascensão para desbloquear o modo Blitz.",
+    "max_ascension": 5,
+    "ascension_levels": [
+      "WearyTraveler",
+      "TightBelt",
+      "ToughEnemies",
+      "DeadlyEnemies",
+      "AscendersBane"
+    ],
+    "neow": {
+      "name": "Blitz",
+      "description": "Escolha [blue]3[/blue] cartas para adicionar ao seu [gold]Baralho[/gold]."
+    },
+    "merchant_entries": [
+      {
+        "id": "CARD_ENCHANT",
+        "name": "Enchantment",
+        "description": "[gold]Encante[/gold] uma carta com [purple]Enchantment[/purple]."
+      },
+      {
+        "id": "CARD_PACKS",
+        "name": "Conjuntos de Cartas",
+        "description": "Escolha [blue]1[/blue] entre [blue]2[/blue] conjuntos de cartas para adicionar ao seu [gold]Baralho[/gold]."
+      },
+      {
+        "id": "CARD_REMOVAL",
+        "name": "Serviço de Remoção de Carta",
+        "description": "Remova uma carta do seu [gold]Baralho[/gold]."
+      },
+      {
+        "id": "CARD_REWARD_OF_EACH_RARITY",
+        "name": "Recompensa de Carta Amaldiçoada",
+        "description": "Receba [red]1[/red] [red]Maldição[/red] aleatória.\nReceba[blue]1[/blue] recompensa de cartas [gold]Comum[/gold], [gold]Incomum[/gold] e [gold]Rara[/gold]."
+      },
+      {
+        "id": "CARD_REWARDS",
+        "name": "Recompensas de Carta",
+        "description": "Receba[blue]2[/blue] recompensas de carta."
+      },
+      {
+        "id": "CARD_TRANSFORM",
+        "name": "Serviço de Transformação de Carta",
+        "description": "[gold]Transforme[/gold] uma carta no seu [gold]Baralho[/gold]."
+      },
+      {
+        "id": "CARD_UPGRADE",
+        "name": "Serviço de Aprimoramento de Carta",
+        "description": "[gold]Aprimore[/gold] uma carta no seu [gold]Baralho[/gold]."
+      },
+      {
+        "id": "COLORLESS_CARD_REWARD",
+        "name": "Recompensa de Carta Incolor",
+        "description": "Receba [blue]1[/blue] recompensa de carta [gold]Incolor[/gold]."
+      },
+      {
+        "id": "ENCHANTED_CARD_REWARD",
+        "name": "Recompensa de Carta Encantada",
+        "description": "Receba [blue]1[/blue] recompensa de cartas [gold]Encantada[/gold]."
+      },
+      {
+        "id": "FULL_HEAL_AND_MAX_HP",
+        "name": "Cura Amaldiçoada",
+        "description": "Receba [red]1[/red] [red]Maldição[/red] aleatória.\nAumente seus PV Máximos em [blue]6[/blue] e cure todos os seus PV."
+      },
+      {
+        "id": "GLAM",
+        "name": "Enchantment Amaldiçoado",
+        "description": "Receba [red]1[/red] [red]Maldição[/red] aleatória.\n[gold]Encante[/gold] uma carta com [purple]Enchantment[/purple]."
+      },
+      {
+        "id": "POTIONS",
+        "name": "Poções",
+        "description": "Receba [blue]1[/blue] espaço de poção e [blue]2[/blue] poções aleatórias."
+      },
+      {
+        "id": "PRISMATIC_CARD_REWARD",
+        "name": "Recompensa de Carta de Character",
+        "description": "Receba [blue]1[/blue] recompensa de carta de [gold]Character[/gold]."
+      },
+      {
+        "id": "RANDOM_UPGRADES",
+        "name": "Aprimoramentos Aleatórios",
+        "description": "Aprimore [blue]2[/blue] cartas aleatórias no seu [gold]Baralho[/gold]."
+      },
+      {
+        "id": "RARE_CARD_REWARD",
+        "name": "Recompensa de Carta Rara",
+        "description": "Receba [blue]1[/blue] recompensa de carta rara."
+      },
+      {
+        "id": "RELIC",
+        "name": "Relíquia",
+        "description": "Receba [blue]1[/blue] [gold]Relíquia[/gold] aleatória."
+      },
+      {
+        "id": "TWO_MORE_CHOICES",
+        "name": "Escolhas Amaldiçoadas",
+        "description": "Receba [red]1[/red] [red]Maldição[/red] aleatória.\nO Mercador permite que você compre dois produtos adicionais."
+      },
+      {
+        "id": "TWO_RELICS",
+        "name": "Relíquias Amaldiçoadas",
+        "description": "Receba [red]1[/red] [red]Maldição[/red] aleatória.\nReceba [blue]2[/blue] [gold]Relíquias[/gold] aleatórias."
+      },
+      {
+        "id": "UPGRADED_CARD_REWARD",
+        "name": "Recompensa de Carta Aprimorada",
+        "description": "Receba [blue]1[/blue] recompensa de carta [gold]Aprimorada[/gold]."
+      },
+      {
+        "id": "UPGRADED_RARE_CARD",
+        "name": "Carta Rara Aprimorada",
+        "description": "Receba [blue]1[/blue] recompensa de carta rara [gold]Aprimorada[/gold]."
+      },
+      {
+        "id": "UPGRADED_RARE_CARD_REWARD",
+        "name": "Recompensa de Carta Rara Aprimorada Amaldiçoada",
+        "description": "Receba [red]1[/red] [red]Maldição[/red] aleatória.\nReceba [blue]1[/blue] recompensa de carta rara [gold]Aprimorada[/gold]."
+      }
+    ]
+  }
+]

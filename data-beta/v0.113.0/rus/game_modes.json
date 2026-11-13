@@ -1,0 +1,269 @@
+[
+  {
+    "id": "STANDARD",
+    "name": "Стандартная",
+    "description": "Отправьтесь в приключение и покорите Шпиль!",
+    "multiplayer_description": "Отправьтесь в приключение и покорите Шпиль… вместе с друзьями!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": null,
+    "max_ascension": 10
+  },
+  {
+    "id": "DAILY",
+    "name": "Ежедневная",
+    "description": "Новое испытание доступно каждый день!\n\nСоревнуйтесь с другими игроками за наибольшее количество очков!",
+    "multiplayer_description": "Новое испытание доступно каждый день!\n\nСоревнуйтесь с другими командами за наибольшее количество очков!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "Сыграйте вылазку за каждого персонажа и пройдите 3-й акт, чтобы открыть ежедневные вылазки.",
+    "max_ascension": 10
+  },
+  {
+    "id": "DREAD",
+    "name": "Кошмар",
+    "description": "Пик сложности, спроектированный Архитектором.\n\nДля опытных знатоков, желающих доказать свое мастерство над Шпилем.",
+    "multiplayer_description": "Пик сложности, спроектированный Архитектором.\n\nДля опытных команд, желающих доказать свое мастерство над Шпилем.",
+    "intro": "[gold]Кошмар[/gold] это сложнейшее испытание в Slay the Spire.",
+    "rules": [
+      "Включены все модификаторы Возвышения.",
+      "В конце каждого акта [gold]колоду[/gold] добавляется [purple]«Бремя возвышения»[/purple].",
+      "Враги получают дополнительные способности от боссов текущего акта.",
+      "Боссы еще сильнее."
+    ],
+    "epoch_id": "DREAD_EPOCH",
+    "unlock_text": "Открыт игровой режим: Кошмар.",
+    "unlock_info": "Откройте [red]Возвышение[/red] [blue]10[/blue] на всех персонажах, чтобы открыть эту эпоху.",
+    "max_ascension": 10,
+    "dominions": [
+      {
+        "id": "AEONGLASS_DOMINION",
+        "encounter_id": "AEONGLASS_BOSS",
+        "boss_name": "Вечные часы",
+        "name": "Всевластие, Вечные часы",
+        "description": "Добавляет [blue]1[/blue] [gold]«Усыхание»[/gold] на верх [gold]стопки добора[/gold] в начале хода."
+      },
+      {
+        "id": "CEREMONIAL_BEAST_DOMINION",
+        "encounter_id": "CEREMONIAL_BEAST_BOSS",
+        "boss_name": "Хранитель обряда",
+        "name": "Всевластие, Хранитель обряда",
+        "description": "Все враги получают [blue]1[/blue] [gold]ритуал[/gold]."
+      },
+      {
+        "id": "INSATIABLE_DOMINION",
+        "encounter_id": "THE_INSATIABLE_BOSS",
+        "boss_name": "Проглот",
+        "name": "Всевластие, Проглот",
+        "description": "Вы получаете урон в конце хода, зависящий от количества прошедших ходов."
+      },
+      {
+        "id": "KAISER_CRAB_DOMINION",
+        "encounter_id": "KAISER_CRAB_BOSS",
+        "boss_name": "Царь-краб",
+        "name": "Всевластие, Царь-краб",
+        "description": "Все враги получают [blue]7[/blue] [gold]панциря[/gold]."
+      },
+      {
+        "id": "KIN_DOMINION",
+        "encounter_id": "THE_KIN_BOSS",
+        "boss_name": "Стая",
+        "name": "Всевластие, Стая",
+        "description": "Вы начинаете бой с [red]2[/red] [gold]слабости[/gold] и [gold]хрупкости[/gold]."
+      },
+      {
+        "id": "KNOWLEDGE_DEMON_DOMINION",
+        "encounter_id": "KNOWLEDGE_DEMON_BOSS",
+        "boss_name": "Всезнающий демон",
+        "name": "Всевластие, Всезнающий демон",
+        "description": "Вы выбираете [blue]1[/blue] из [blue]2[/blue] [red]бремен[/red] Всевластия в начале боя."
+      },
+      {
+        "id": "LAGAVULIN_MATRIARCH_DOMINION",
+        "encounter_id": "LAGAVULIN_MATRIARCH_BOSS",
+        "boss_name": "Праматерь лагавулинов",
+        "name": "Всевластие, Праматерь лагавулинов",
+        "description": "Вы теряете [red]1[/red] [gold]силы[/gold] и [gold]ловкости[/gold] в конце первого хода."
+      },
+      {
+        "id": "QUEEN_DOMINION",
+        "encounter_id": "QUEEN_BOSS",
+        "boss_name": "Королева",
+        "name": "Всевластие, Королева",
+        "description": "Вы получаете [red]3[/red] [gold]слабости[/gold], [gold]уязвимости[/gold] и [gold]хрупкости[/gold] в начале 2-го хода."
+      },
+      {
+        "id": "SOUL_FYSH_DOMINION",
+        "encounter_id": "SOUL_FYSH_BOSS",
+        "boss_name": "Призрачный рыб",
+        "name": "Всевластие, Призрачный рыб",
+        "description": "Вы замешиваете [gold]«Приворот»[/gold] в [gold]стопку добора[/gold] в начале каждого боя."
+      },
+      {
+        "id": "TEST_SUBJECT_DOMINION",
+        "encounter_id": "TEST_SUBJECT_BOSS",
+        "boss_name": "Подопытный",
+        "name": "Всевластие, Подопытный",
+        "description": "Все враги получают [blue]3[/blue] [gold]силы[/gold]."
+      },
+      {
+        "id": "VANTOM_DOMINION",
+        "encounter_id": "VANTOM_BOSS",
+        "boss_name": "Вантом",
+        "name": "Всевластие, Вантом",
+        "description": "Обычные враги получают [blue]1[/blue] [gold]изворотливости[/gold]. Элитные враги получают [blue]2[/blue] [gold]изворотливости[/gold]."
+      },
+      {
+        "id": "WATERFALL_GIANT_DOMINION",
+        "encounter_id": "WATERFALL_GIANT_BOSS",
+        "boss_name": "Рифовый великан",
+        "name": "Всевластие, Рифовый великан",
+        "description": "Враги взрываются при смерти, нанося урон."
+      }
+    ],
+    "rotating_streak": {
+      "name": "Марафон кошмаров",
+      "description": "Играемый персонаж в [gold]Марафоне кошмаров[/gold] сменяется после каждой победы, слева направо в порядке очереди.\nЧереда побед учитывается отдельно и не влияет на череду побед за отдельных персонажей."
+    }
+  },
+  {
+    "id": "BLITZ",
+    "name": "Блиц",
+    "description": "Укороченные вылазки для тех, кто ищет короткий путь.",
+    "multiplayer_description": "Укороченные вылазки для команд, которые ищут короткий путь.",
+    "intro": "Добро пожаловать в режим [green]Блиц[/green]: короткие вылазки, сбалансированные вокруг колодостроения, у которых отдельный режим Возвышения, общий для всех персонажей.",
+    "rules": [
+      "Вы получаете карты в начале каждой вылазки.",
+      "[blue]4[/blue] боя в каждом акте.",
+      "[blue]Торговец[/blue] [sine]причудливый[/sine].",
+      "В [gold]сундуках[/gold] дополнительная реликвия.",
+      "Выбирать комнаты не требуется."
+    ],
+    "epoch_id": "BLITZ_EPOCH",
+    "unlock_text": "Открыт игровой режим: Блиц.",
+    "unlock_info": "Завершите одну вылазку на Возвышении, чтобы открыть Блиц.",
+    "max_ascension": 5,
+    "ascension_levels": [
+      "WearyTraveler",
+      "TightBelt",
+      "ToughEnemies",
+      "DeadlyEnemies",
+      "AscendersBane"
+    ],
+    "neow": {
+      "name": "Блиц",
+      "description": "Выберите [blue]3[/blue] карты, чтобы добавить в [gold]колоду[/gold]."
+    },
+    "merchant_entries": [
+      {
+        "id": "CARD_ENCHANT",
+        "name": "Enchantment",
+        "description": "Наложить на карту [gold]чары[/gold] [purple]«Enchantment»[/purple]."
+      },
+      {
+        "id": "CARD_PACKS",
+        "name": "Наборы карт",
+        "description": "Выберите [blue]1[/blue] из [blue]2[/blue] наборов карт, который хотите добавить в [gold]колоду[/gold]."
+      },
+      {
+        "id": "CARD_REMOVAL",
+        "name": "Удаление карт",
+        "description": "Удалить карту из [gold]колоды[/gold]."
+      },
+      {
+        "id": "CARD_REWARD_OF_EACH_RARITY",
+        "name": "Проклятые наградные наборы",
+        "description": "Получить [red]1[/red] случайное [red]проклятие[/red].\nПолучить [blue]1[/blue] [gold]обычный[/gold], [blue]1[/blue] [gold]необычный[/gold] и [blue]1[/blue] [gold]редкий[/gold] наградной набор."
+      },
+      {
+        "id": "CARD_REWARDS",
+        "name": "Наградные наборы",
+        "description": "Получить [blue]2[/blue] наградных набора."
+      },
+      {
+        "id": "CARD_TRANSFORM",
+        "name": "Преобразование карт",
+        "description": "[gold]Преобразовать[/gold] карту в [gold]колоде[/gold]."
+      },
+      {
+        "id": "CARD_UPGRADE",
+        "name": "Улучшение карт",
+        "description": "[gold]Улучшить[/gold] карту в [gold]колоде[/gold]."
+      },
+      {
+        "id": "COLORLESS_CARD_REWARD",
+        "name": "Бесцветный наградной набор",
+        "description": "Получить [blue]1[/blue] [gold]бесцветный[/gold] наградной набор."
+      },
+      {
+        "id": "ENCHANTED_CARD_REWARD",
+        "name": "Зачарованный наградной набор",
+        "description": "Получить [blue]1[/blue] [gold]зачарованный[/gold] наградной набор."
+      },
+      {
+        "id": "FULL_HEAL_AND_MAX_HP",
+        "name": "Проклятое излечение",
+        "description": "Получить[red]1[/red] случайное [red]проклятие[/red].\nПовысить максимальные ОЗ на [blue]6[/blue] и полностью восполнить ОЗ."
+      },
+      {
+        "id": "GLAM",
+        "name": "Проклятые чары Enchantment",
+        "description": "Получить [red]1[/red] случайное [red]проклятие[/red].\nНаложить на карту [gold]чары[/gold] [purple]Enchantment[/purple]."
+      },
+      {
+        "id": "POTIONS",
+        "name": "Зелья",
+        "description": "Получить[blue]1[/blue] место для зелий и [blue]2[/blue] случайных зелья."
+      },
+      {
+        "id": "PRISMATIC_CARD_REWARD",
+        "name": "Наградной набор: Character",
+        "description": "Получить [blue]1[/blue] наградной набор персонажа [gold]Character[/gold]."
+      },
+      {
+        "id": "RANDOM_UPGRADES",
+        "name": "Случайные улучшения",
+        "description": "Улучшить [blue]2[/blue] случайные карты в [gold]колоде[/gold]."
+      },
+      {
+        "id": "RARE_CARD_REWARD",
+        "name": "Редкий наградной набор",
+        "description": "Получить [blue]1[/blue] редкий наградной набор."
+      },
+      {
+        "id": "RELIC",
+        "name": "Реликвия",
+        "description": "Получить [blue]1[/blue] случайную [gold]реликвию[/gold]."
+      },
+      {
+        "id": "TWO_MORE_CHOICES",
+        "name": "Проклятый выбор",
+        "description": "Получить [red]1[/red] случайное [red]проклятие[/red].\nТорговец позволит вам купить еще 2 вещи."
+      },
+      {
+        "id": "TWO_RELICS",
+        "name": "Проклятые реликвии",
+        "description": "Получить [red]1[/red] случайное [red]проклятие[/red].\nПолучить [blue]2[/blue] случайные [gold]реликвии[/gold]."
+      },
+      {
+        "id": "UPGRADED_CARD_REWARD",
+        "name": "Улучшенный наградной набор",
+        "description": "Получить [blue]1[/blue] [gold]улучшенный[/gold] наградной набор."
+      },
+      {
+        "id": "UPGRADED_RARE_CARD",
+        "name": "Улучшенная редкая карта",
+        "description": "Получить [blue]1[/blue] случайную [gold]улучшенную[/gold] редкую карту."
+      },
+      {
+        "id": "UPGRADED_RARE_CARD_REWARD",
+        "name": "Проклятый улучшенный редкий наградной набор",
+        "description": "Получить [red]1[/red] случайное [red]проклятие[/red].\nПолучить [blue]1[/blue] [gold]улучшенный[/gold] редкий наградной набор."
+      }
+    ]
+  }
+]
