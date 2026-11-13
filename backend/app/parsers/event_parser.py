@@ -384,14 +384,17 @@ def extract_event_vars(
     if vars_dict.get("EntrantNumber") == -1:
         vars_dict["EntrantNumber"] = "???"
 
-    # StringVar with DynamicDescription from relics:
-    # e.g. new StringVar("BoneTeaDescription", ModelDb.Relic<BoneTea>().DynamicDescription.GetFormattedText())
+    # StringVar filled with a relic's description, either where it is declared
+    # (new StringVar("BoneTeaDescription", ModelDb.Relic<BoneTea>()...)) or
+    # later in CalculateVars (["BathTowelDescription"]).StringValue = ...).
+    relic_text = r"ModelDb\.Relic<([^>]+)>\(\)\.Dynamic(?:Event)?Description\.GetFormattedText\(\)"
     for m in re.finditer(
-        r'new\s+StringVar\("(\w+)",\s*ModelDb\.Relic<([^>]+)>\(\)\.DynamicDescription\.GetFormattedText\(\)\)',
+        rf'(?:new\s+StringVar\("(\w+)",\s*{relic_text}\)'
+        rf'|DynamicVars\["(\w+)"\]\)\.StringValue\s*=\s*{relic_text})',
         content,
     ):
-        var_name = m.group(1)
-        class_name = m.group(2)
+        var_name = m.group(1) or m.group(3)
+        class_name = m.group(2) or m.group(4)
         if "." in class_name:
             class_name = class_name.rsplit(".", 1)[1]
         entity_id = class_name_to_id(class_name)

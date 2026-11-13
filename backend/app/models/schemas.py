@@ -480,6 +480,8 @@ class GameMode(BaseModel):
     epoch_id: str | None = None
     unlock_text: str | None = None
     unlock_info: str | None = None
+    max_ascension: int | None = None
+    ascension_levels: list[str] | None = None
     neow: GameModeEntry | None = None
     merchant_entries: list[GameModeEntry] | None = None
     dominions: list[GameModeDominion] | None = None

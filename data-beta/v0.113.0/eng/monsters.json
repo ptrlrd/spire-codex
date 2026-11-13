@@ -945,7 +945,7 @@
       },
       {
         "id": "SLEEP_MOVE_2",
-        "name": "Sleep Move 2",
+        "name": "Sleep",
         "intent": "Sleep"
       },
       {
@@ -1839,7 +1839,7 @@
       },
       {
         "id": "REPEATER_BLAST_MOVE_2",
-        "name": "Repeater Blast Move 2",
+        "name": "Repeater Blast",
         "intent": "Attack + Buff",
         "powers": [
           {
@@ -1927,7 +1927,7 @@
           "next": "REPEATER_BLAST_MOVE"
         }
       ],
-      "description": "Charge Up → Repeater Blast → Repeater Blast Move 2 → Expel → repeat"
+      "description": "Charge Up → Repeater Blast → Repeater Blast → Expel → repeat"
     },
     "quotes": null,
     "image_url": "/static/images/monsters/cubex_construct.webp",
@@ -4069,7 +4069,7 @@
       },
       {
         "id": "JAB_MOVE_2",
-        "name": "Jab Move 2",
+        "name": "Jab",
         "intent": "Attack",
         "damage": {
           "normal": 15,
@@ -4169,7 +4169,7 @@
           "next": "JAB_MOVE"
         }
       ],
-      "description": "Jab → Jab Move 2 → Whirlwind → Pulsate → repeat"
+      "description": "Jab → Jab → Whirlwind → Pulsate → repeat"
     },
     "quotes": null,
     "image_url": "/static/images/monsters/infested_prism.webp",
@@ -6855,7 +6855,7 @@
       },
       {
         "id": "PRECISE_SMASH_MOVE_2",
-        "name": "Precise Smash Move 2",
+        "name": "Precise Smash",
         "intent": "Attack",
         "damage": {
           "normal": 18,
@@ -7355,7 +7355,7 @@
       },
       {
         "id": "ZOOM_MOVE_2",
-        "name": "Zoom Move 2",
+        "name": "Zoom",
         "intent": "Attack",
         "damage": {
           "normal": 14,
@@ -7449,7 +7449,7 @@
           "next": "ZOOM_MOVE"
         }
       ],
-      "description": "Zoom → Zoom Move 2 → Inertia → Piercing Stabs → repeat"
+      "description": "Zoom → Zoom → Inertia → Piercing Stabs → repeat"
     },
     "quotes": null,
     "image_url": "/static/images/monsters/skulkling_colomy.webp",
@@ -9172,7 +9172,7 @@
       },
       {
         "id": "THRASH_MOVE_2",
-        "name": "Thrash Move 2",
+        "name": "Thrash",
         "intent": "Attack",
         "damage": {
           "normal": 8,
@@ -9259,7 +9259,7 @@
           "next": "THRASH_MOVE_2"
         }
       ],
-      "description": "Liquify Ground → Thrash → Lunging Bite → Salivate → Thrash Move 2 → repeat"
+      "description": "Liquify Ground → Thrash → Lunging Bite → Salivate → Thrash → repeat"
     },
     "quotes": null,
     "image_url": "/static/images/monsters/the_insatiable.webp",
@@ -10073,7 +10073,7 @@
       },
       {
         "id": "UNLOAD_MOVE_2",
-        "name": "Unload Move 2",
+        "name": "Unload!",
         "intent": "Attack",
         "damage": {
           "normal": 3,
@@ -10135,7 +10135,7 @@
           "next": "UNLOAD_MOVE"
         }
       ],
-      "description": "Unload! → Unload Move 2 → Reload → repeat"
+      "description": "Unload! → Unload! → Reload → repeat"
     },
     "quotes": null,
     "image_url": "/static/images/monsters/turret_operator.webp",

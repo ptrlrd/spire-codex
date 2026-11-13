@@ -8,6 +8,10 @@ from pathlib import Path
 from parser_paths import DECOMPILED, loc_dir as _loc_dir, data_dir as _data_dir
 
 GAME_MODE_FILE = DECOMPILED / "MegaCrit.Sts2.Core.Runs" / "GameMode.cs"
+ASCENSION_MANAGER_FILE = (
+    DECOMPILED / "MegaCrit.Sts2.Core.Entities.Ascension" / "AscensionManager.cs"
+)
+ASCENSION_HELPER_FILE = DECOMPILED / "MegaCrit.Sts2.Core.Helpers" / "AscensionHelper.cs"
 MERCHANT_PREFIX = "MERCHANT.blitz."
 DOMINION_PREFIX = "DREAD."
 
@@ -52,6 +56,36 @@ def game_mode_ids(path: Path = GAME_MODE_FILE) -> list[str]:
         return []
     text = re.sub(r"///[^\n]*", "", body.group(1))
     return [n.upper() for n in re.findall(r"\b([A-Z]\w*)\b", text) if n != "None"]
+
+
+def max_ascensions(path: Path = ASCENSION_MANAGER_FILE) -> dict[str, int]:
+    """Highest Ascension per mode: the default under "" and any mode with a
+    cap of its own (maxAscensionAllowedBlitz) under its upper-case id."""
+    if not path.exists():
+        return {}
+    found = re.findall(
+        r"const\s+int\s+maxAscensionAllowed(\w*)\s*=\s*(\d+)",
+        path.read_text(encoding="utf-8"),
+    )
+    return {mode.upper(): int(level) for mode, level in found}
+
+
+def mode_ascension_levels(mode: str, path: Path = ASCENSION_HELPER_FILE) -> list[str]:
+    """The Ascension modifiers a mode steps through when it has its own
+    ladder (GetLevelForBlitz), in level order."""
+    if not path.exists():
+        return []
+    body = re.search(
+        rf"GetLevelFor{mode.title()}\(int \w+\)\s*\{{(.*?)\n\t\}}",
+        path.read_text(encoding="utf-8"),
+        re.DOTALL,
+    )
+    if not body:
+        return []
+    steps = re.findall(r"(\d+)\s*=>\s*AscensionLevel\.(\w+)", body.group(1))
+    return [
+        name for level, name in sorted(steps, key=lambda s: int(s[0])) if int(level)
+    ]
 
 
 def _rules(ascension: dict, menu: dict, mode: str) -> list[str]:
@@ -131,6 +165,7 @@ def parse_game_modes(loc_dir: Path, mode_ids: list[str] | None = None) -> list[d
     merchant = _load(loc_dir, "merchant_room")
     tips = _load(loc_dir, "static_hover_tips")
 
+    caps = max_ascensions()
     modes = []
     for mode in game_mode_ids() if mode_ids is None else mode_ids:
         name = _plain(history.get(f"GAME_MODE.{mode.lower()}")) or menu.get(
@@ -150,6 +185,11 @@ def parse_game_modes(loc_dir: Path, mode_ids: list[str] | None = None) -> list[d
         }
         if row["intro"]:
             row["intro"] = row["intro"].split("\n\n")[0]
+        if caps:
+            row["max_ascension"] = caps.get(mode, caps.get(""))
+        ladder = mode_ascension_levels(mode)
+        if ladder:
+            row["ascension_levels"] = ladder
         if mode == "BLITZ":
             if "BLITZ.NEOW.description" in ascension:
                 row["neow"] = {
