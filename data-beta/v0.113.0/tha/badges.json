@@ -1,0 +1,450 @@
+[
+  {
+    "id": "BIG_DECK",
+    "name": "กองการ์ดใหญ่",
+    "description": "ชนะด้วยกองการ์ด [blue]40[/blue] ใบขึ้นไป",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "กองการ์ดใหญ่",
+        "description": "ชนะด้วยกองการ์ด [blue]40[/blue] ใบขึ้นไป"
+      },
+      {
+        "rarity": "silver",
+        "title": "กองการ์ดมหึมา",
+        "description": "ชนะด้วยกองการ์ด [blue]60[/blue] ใบขึ้นไป"
+      },
+      {
+        "rarity": "gold",
+        "title": "กองการ์ดมหากาฬ",
+        "description": "ชนะด้วยกองการ์ด [blue]100[/blue] ใบขึ้นไป"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_big_deck.png"
+  },
+  {
+    "id": "CCCCOMBO",
+    "name": "ค-ค-ค-คอมโบ",
+    "description": "เล่นการ์ด [blue]20[/blue] ใบในเทิร์นเดียว",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "ค-ค-ค-คอมโบ",
+        "description": "เล่นการ์ด [blue]20[/blue] ใบในเทิร์นเดียว"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_ccccombo.png"
+  },
+  {
+    "id": "CURSES",
+    "name": "เวรกรรม!",
+    "description": "ชนะด้วย[red]คำสาป[/red] [blue]5[/blue] ใบขึ้นไป",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "เวรกรรม!",
+        "description": "ชนะด้วย[red]คำสาป[/red] [blue]5[/blue] ใบขึ้นไป"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_curses.png"
+  },
+  {
+    "id": "DAMAGE_LEADER",
+    "name": "ผู้นำพาความเสียหาย",
+    "description": "สร้างความเสียหายใส่ศัตรูมากที่สุดในโหมดหลายคน",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "ผู้นำพาความเสียหาย",
+        "description": "สร้างความเสียหายใส่ศัตรูมากที่สุดในโหมดหลายคน"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": true,
+    "image_url": "/static/images/badges/badge_damage_leader.png"
+  },
+  {
+    "id": "DEBUFFER",
+    "name": "ผู้สร้างผลผิดปกติ",
+    "description": "สร้างผลผิดปกติมากที่สุดในโหมดหลายคน",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "ผู้สร้างผลผิดปกติ",
+        "description": "สร้างผลผิดปกติมากที่สุดในโหมดหลายคน"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": true,
+    "image_url": "/static/images/badges/badge_debuffer.png"
+  },
+  {
+    "id": "DOUBLE_SNECKO",
+    "name": "งุกแกคู่",
+    "description": "ได้รับดวงตางุกแกทั้งของจริงและของปลอม",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "งุกแกคู่",
+        "description": "ได้รับดวงตางุกแกทั้งของจริงและของปลอม"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_double_snecko.png"
+  },
+  {
+    "id": "ELITE",
+    "name": "นักล่าลูกพี่",
+    "description": "กำจัดลูกพี่ [blue]3[/blue] ตัวขึ้นไป",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "นักล่าลูกพี่",
+        "description": "กำจัดลูกพี่ [blue]3[/blue] ตัวขึ้นไป"
+      },
+      {
+        "rarity": "silver",
+        "title": "นักฆ่าลูกพี่",
+        "description": "กำจัดลูกพี่ [blue]6[/blue] ตัวขึ้นไป"
+      },
+      {
+        "rarity": "gold",
+        "title": "นักสังหารลูกพี่",
+        "description": "กำจัดลูกพี่ [blue]9[/blue] ตัวขึ้นไป"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_elite.png"
+  },
+  {
+    "id": "FAMISHED",
+    "name": "หิวโซ",
+    "description": "ชนะโดยมี HP สูงสุดลดลงเหลือต่ำกว่าครึ่งหนึ่งของ HP เริ่มต้น",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "หิวโซ",
+        "description": "ชนะโดยมี HP สูงสุดลดลงเหลือต่ำกว่าครึ่งหนึ่งของ HP เริ่มต้น"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_famished.png"
+  },
+  {
+    "id": "GLUTTON",
+    "name": "อิ่มท้อง",
+    "description": "ชนะการเดินทางโดยมี HP สูงสุดเพิ่มขึ้น [blue]15[/blue] ขึ้นไป",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "อิ่มท้อง",
+        "description": "ชนะการเดินทางโดยมี HP สูงสุดเพิ่มขึ้น [blue]15[/blue] ขึ้นไป"
+      },
+      {
+        "rarity": "silver",
+        "title": "แน่นท้อง",
+        "description": "ชนะการเดินทางโดยมี HP สูงสุดเพิ่มขึ้น [blue]30[/blue] ขึ้นไป"
+      },
+      {
+        "rarity": "gold",
+        "title": "ตะกละ",
+        "description": "ชนะการเดินทางโดยมี HP สูงสุดในระดับบ้าบอ (เพิ่มขึ้น [blue]50[/blue] ขึ้นไป)"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_glutton.png"
+  },
+  {
+    "id": "HEALER",
+    "name": "ผู้ปฐมพยาบาล",
+    "description": "รักษาพันธมิตร 1 ครั้ง",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "ผู้ปฐมพยาบาล",
+        "description": "รักษาพันธมิตร 1 ครั้ง"
+      },
+      {
+        "rarity": "silver",
+        "title": "แพทย์สนาม",
+        "description": "รักษาพันธมิตร 2 ครั้ง"
+      },
+      {
+        "rarity": "gold",
+        "title": "อาจารย์แพทย์",
+        "description": "รักษาพันธมิตรซ้ำแล้วซ้ำเล่า (อย่างน้อย [blue]3[/blue] ครั้ง)"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": true,
+    "image_url": "/static/images/badges/badge_healer.png"
+  },
+  {
+    "id": "HIGHLANDER",
+    "name": "หนึ่งเดียวเท่านั้น",
+    "description": "ชนะด้วยกองการ์ดที่ไม่มีการ์ดซ้ำเลย (ยกเว้นการ์ดเริ่มต้น)",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "หนึ่งเดียวเท่านั้น",
+        "description": "ชนะด้วยกองการ์ดที่ไม่มีการ์ดซ้ำเลย (ยกเว้นการ์ดเริ่มต้น)"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_highlander.png"
+  },
+  {
+    "id": "HONED",
+    "name": "มากวิชา",
+    "description": "ชนะด้วยกองการ์ดที่มีการ์ดเดียวกันซ้ำกัน [blue]5[/blue] ใบขึ้นไป (ยกเว้นการ์ดเริ่มต้น)",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "มากวิชา",
+        "description": "ชนะด้วยกองการ์ดที่มีการ์ดเดียวกันซ้ำกัน [blue]5[/blue] ใบขึ้นไป (ยกเว้นการ์ดเริ่มต้น)"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_honed.png"
+  },
+  {
+    "id": "ILIKESHINY",
+    "name": "ข้าชอบของแวววาว",
+    "description": "สะสมเครื่องราง [blue]25[/blue] ชิ้นขึ้นไป",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "ข้าชอบของแวววาว",
+        "description": "สะสมเครื่องราง [blue]25[/blue] ชิ้นขึ้นไป"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_ilikeshiny.png"
+  },
+  {
+    "id": "KACHING",
+    "name": "กรุ๊งกริ๊ง!",
+    "description": "ใช้จ่ายมากกว่า [blue]1,000[/blue] [gold]ทอง[/gold]ที่ร้านค้า",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "กรุ๊งกริ๊ง!",
+        "description": "ใช้จ่ายมากกว่า [blue]1,000[/blue] [gold]ทอง[/gold]ที่ร้านค้า"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_kaching.png"
+  },
+  {
+    "id": "MONEY_MONEY",
+    "name": "เงินจ๋าเงิน",
+    "description": "ชนะโดยมี [blue]200[/blue] [gold]ทอง[/gold]ขึ้นไป",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "เงินจ๋าเงิน",
+        "description": "ชนะโดยมี [blue]200[/blue] [gold]ทอง[/gold]ขึ้นไป"
+      },
+      {
+        "rarity": "silver",
+        "title": "มีเงินนับเป็นน้อง",
+        "description": "ชนะโดยมี [blue]400[/blue] [gold]ทอง[/gold]ขึ้นไป"
+      },
+      {
+        "rarity": "gold",
+        "title": "มีทองนับเป็นพี่",
+        "description": "ชนะโดยมี [blue]600[/blue] [gold]ทอง[/gold]ขึ้นไป"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_money_money.png"
+  },
+  {
+    "id": "MYSTERY_MACHINE",
+    "name": "จอมปริศนา",
+    "description": "เดินทางเข้าห้อง ? จำนวน [blue]15[/blue] ห้องขึ้นไป",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "จอมปริศนา",
+        "description": "เดินทางเข้าห้อง ? จำนวน [blue]15[/blue] ห้องขึ้นไป"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_mystery_machine.png"
+  },
+  {
+    "id": "PERFECT",
+    "name": "ไร้ที่ติ",
+    "description": "กำจัดบอสได้โดยไม่เสีย HP",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "ไร้ที่ติ",
+        "description": "กำจัดบอสได้โดยไม่เสีย HP"
+      },
+      {
+        "rarity": "silver",
+        "title": "ปรมาจารย์",
+        "description": "กำจัดบอส [blue]2[/blue] ตัวได้โดยไม่เสีย HP"
+      },
+      {
+        "rarity": "gold",
+        "title": "สมบูรณ์แบบ",
+        "description": "กำจัดบอส [blue]3[/blue] ตัวได้โดยไม่เสีย HP"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_perfect.png"
+  },
+  {
+    "id": "RESTFUL",
+    "name": "พักฉ่ำ",
+    "description": "ชนะการเดินทางโดยพักผ่อนที่จุดพักทุกจุด",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "พักฉ่ำ",
+        "description": "ชนะการเดินทางโดยพักผ่อนที่จุดพักทุกจุด"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_restful.png"
+  },
+  {
+    "id": "RESTLESS",
+    "name": "ร้อนใจ",
+    "description": "ชนะการเดินทางโดยไม่พักผ่อนเลย",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "ร้อนใจ",
+        "description": "ชนะการเดินทางโดยไม่พักผ่อนเลย"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_restless.png"
+  },
+  {
+    "id": "SPEEDY",
+    "name": "รวดเร็ว",
+    "description": "ชนะการเดินทางภายใน [blue]50[/blue] นาที",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "รวดเร็ว",
+        "description": "ชนะการเดินทางภายใน [blue]50[/blue] นาที"
+      },
+      {
+        "rarity": "silver",
+        "title": "รวดเร็วกว่า",
+        "description": "ชนะการเดินทางภายใน [blue]40[/blue] นาที"
+      },
+      {
+        "rarity": "gold",
+        "title": "รวดเร็วที่สุด",
+        "description": "ชนะการเดินทางภายใน [blue]30[/blue] นาที"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_speedy.png"
+  },
+  {
+    "id": "TABLET",
+    "name": "แผ่นจารึกแห่งความจริง",
+    "description": "ชนะด้วย HP เพียงแค่ [blue]1[/blue]",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "แผ่นจารึกแห่งความจริง",
+        "description": "ชนะด้วย HP เพียงแค่ [blue]1[/blue]"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_tablet.png"
+  },
+  {
+    "id": "TEAM_PLAYER",
+    "name": "ผู้ทำงานเป็นทีม",
+    "description": "มีการ์ดสำหรับโหมดหลายคน [blue]3[/blue] ใบขึ้นไปในกองการ์ด",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "ผู้ทำงานเป็นทีม",
+        "description": "มีการ์ดสำหรับโหมดหลายคน [blue]3[/blue] ใบขึ้นไปในกองการ์ด"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": true,
+    "image_url": "/static/images/badges/badge_team_player.png"
+  },
+  {
+    "id": "TINY_DECK",
+    "name": "กองการ์ดเล็ก",
+    "description": "ชนะโดยมีการ์ดไม่เกิน [blue]20[/blue] ใบในกองการ์ด",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "กองการ์ดเล็ก",
+        "description": "ชนะโดยมีการ์ดไม่เกิน [blue]20[/blue] ใบในกองการ์ด"
+      },
+      {
+        "rarity": "silver",
+        "title": "กองการ์ดเล็กมาก",
+        "description": "ชนะโดยมีการ์ดไม่เกิน [blue]10[/blue] ใบในกองการ์ด"
+      },
+      {
+        "rarity": "gold",
+        "title": "กองการ์ดเล็กจิ๋ว",
+        "description": "ชนะโดยมีการ์ดไม่เกิน [blue]5[/blue] ใบในกองการ์ด"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_tiny_deck.png"
+  }
+]

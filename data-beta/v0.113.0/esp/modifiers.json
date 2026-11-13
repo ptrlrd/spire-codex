@@ -1,0 +1,149 @@
+[
+  {
+    "id": "ALL_STAR",
+    "name": "Superestrella",
+    "description": "Comienzas con [blue]5[/blue] cartas [gold]incoloras[/gold].",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "BIG_GAME_HUNTER",
+    "name": "Caza mayor",
+    "description": "Los enemigos élite abundan en la Torre y sueltan cartas recompensa [gold]raras[/gold].",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "CURSED_RUN",
+    "name": "Partida maldita",
+    "description": "Al comienzo de cada acto, agregas una [red]maldición[/red] al azar a tu mazo.",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "DEADLY_EVENTS",
+    "name": "Eventos mortales",
+    "description": "Las salas desconocidas ahora pueden contener enemigos élite, pero también hay mayor posibilidad de encontrar salas de tesoro.",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "DRAFT",
+    "name": "A elección",
+    "description": "Eliges [blue]10[/blue] cartas recompensa para reemplazar tu mazo inicial.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "FLIGHT",
+    "name": "Sobrevuelo",
+    "description": "Puedes ignorar ciertos puntos al elegir hacia qué sala dirigirte.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "HOARDER",
+    "name": "Acumulación",
+    "description": "Al agregar una carta a tu mazo, agregas [blue]2[/blue] copias adicionales. Ya no puedes quitar cartas de tu mazo con el Comerciante.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "INSANITY",
+    "name": "Locura",
+    "description": "Comienzas con un mazo de [blue]30[/blue] cartas al azar.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "MIDAS",
+    "name": "El toque de Midas",
+    "description": "Los enemigos sueltan un [blue]200 %[/blue] más de oro, pero no podrás forjar en los [gold]puntos de descanso[/gold].",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "MURDEROUS",
+    "name": "Homicida",
+    "description": "Comienzas cada combate con [blue]3[/blue] de [gold]fuerza[/gold]. Todos los enemigos comienzan el combate con [blue]3[/blue] de [gold]fuerza[/gold].",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "NIGHT_TERRORS",
+    "name": "Terrores nocturnos",
+    "description": "Al descansar en los [gold]puntos de descanso[/gold], recuperas todos los PV, pero pierdes [red]5[/red] PV máx.",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "SEALED_DECK",
+    "name": "Mazo sellado",
+    "description": "Eliges [blue]10[/blue] de [blue]30[/blue] cartas para reemplazar tu mazo inicial.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "SPECIALIZED",
+    "name": "Especialista",
+    "description": "Comienzas con [blue]5[/blue] copias de una misma carta.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "TERMINAL",
+    "name": "Terminal",
+    "description": "Al entrar a una nueva sala, pierdes [red]1[/red] PV máx. Comienzas cada combate con [blue]5[/blue] puntos de [gold]revestimiento[/gold].",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "VINTAGE",
+    "name": "Antiguo",
+    "description": "Los enemigos normales sueltan reliquias en lugar de cartas.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "CHARACTER_CARDS_IRONCLAD",
+    "name": "Cartas de El Blindado",
+    "description": "Las cartas de El Blindado ahora aparecerán en recompensas y tiendas.",
+    "kind": "good",
+    "character": "IRONCLAD"
+  },
+  {
+    "id": "CHARACTER_CARDS_SILENT",
+    "name": "Cartas de La Silenciosa",
+    "description": "Las cartas de La Silenciosa ahora aparecerán en recompensas y tiendas.",
+    "kind": "good",
+    "character": "SILENT"
+  },
+  {
+    "id": "CHARACTER_CARDS_DEFECT",
+    "name": "Cartas de El Defectuoso",
+    "description": "Las cartas de El Defectuoso ahora aparecerán en recompensas y tiendas.",
+    "kind": "good",
+    "character": "DEFECT"
+  },
+  {
+    "id": "CHARACTER_CARDS_NECROBINDER",
+    "name": "Cartas de La Necrodescarte",
+    "description": "Las cartas de La Necrodescarte ahora aparecerán en recompensas y tiendas.",
+    "kind": "good",
+    "character": "NECROBINDER"
+  },
+  {
+    "id": "CHARACTER_CARDS_REGENT",
+    "name": "Cartas de El Monarca",
+    "description": "Las cartas de El Monarca ahora aparecerán en recompensas y tiendas.",
+    "kind": "good",
+    "character": "REGENT"
+  },
+  {
+    "id": "CHARACTER_CARDS_FOOL",
+    "name": "Cartas de El Juglar",
+    "description": "Las cartas de El Juglar aparecerán ahora en las recompensas y en las tiendas.",
+    "kind": "good",
+    "character": "FOOL"
+  }
+]

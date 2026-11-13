@@ -12,8 +12,12 @@ and falls back to the stable canonical tree at
 isn't present.
 """
 
+import atexit
+import json
 import os
 import re
+import shutil
+import tempfile
 from functools import lru_cache
 from pathlib import Path
 
@@ -98,9 +102,33 @@ def site_characters() -> tuple[str, ...]:
     return tuple(first + [name for name in cast if name not in _LAUNCH_ORDER])
 
 
+@lru_cache(maxsize=None)
 def loc_dir(lang: str) -> Path:
-    """Return the localization directory for a given language."""
-    return RAW_DIR / "localization" / lang
+    """Localization directory for a language. The game shows English for any
+    string a language lacks, so other languages get their tables laid over
+    the English ones."""
+    own = RAW_DIR / "localization" / lang
+    english = RAW_DIR / "localization" / "eng"
+    if lang == "eng" or not own.is_dir() or not english.is_dir():
+        return own
+    merged = Path(tempfile.mkdtemp(prefix=f"loc-{lang}-"))
+    atexit.register(shutil.rmtree, merged, ignore_errors=True)
+    names = {f.name for f in english.glob("*.json")} | {
+        f.name for f in own.glob("*.json")
+    }
+    for name in sorted(names):
+        tables = []
+        for source in (english / name, own / name):
+            if source.exists():
+                tables.append(json.loads(source.read_text(encoding="utf-8")))
+        if all(isinstance(table, dict) for table in tables):
+            table = {key: value for part in tables for key, value in part.items()}
+        else:
+            table = tables[-1]
+        (merged / name).write_text(
+            json.dumps(table, ensure_ascii=False), encoding="utf-8"
+        )
+    return merged
 
 
 def data_dir(lang: str) -> Path:

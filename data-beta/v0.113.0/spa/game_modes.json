@@ -1,0 +1,269 @@
+[
+  {
+    "id": "STANDARD",
+    "name": "Estándar",
+    "description": "¡Embárcate en una misión para completar la Torre!",
+    "multiplayer_description": "¡Embárcate en una misión para completar la Torre... con amigos!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": null,
+    "max_ascension": 10
+  },
+  {
+    "id": "DAILY",
+    "name": "Diaria",
+    "description": "Cada día te espera un nuevo desafío.\n\n¡Compite contra otros jugadores para ascender en la clasificación!",
+    "multiplayer_description": "Cada día te espera un nuevo desafío.\n\n¡Compite contra otros grupos para ascender en la clasificación!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "Juega una partida con todos los personajes y completa el Acto 3 para desbloquear la partida diaria.",
+    "max_ascension": 10
+  },
+  {
+    "id": "DREAD",
+    "name": "Pesadilla",
+    "description": "La dificultad máxima, ideada por el Arquitecto.\n\nSolo para aquellos que deseen poner a prueba su maestría en la Torre.",
+    "multiplayer_description": "La dificultad máxima, ideada por el Arquitecto.\n\nSolo para grupos que deseen poner a prueba su maestría en la Torre.",
+    "intro": "El modo [gold]Pesadilla[/gold] es el desafío más duro disponible en Slay the Spire 2.",
+    "rules": [
+      "Todos los modificadores de Ascensión están activados.",
+      "Al final de cada Acto, se añade una [purple]Perdición del ascendente[/purple] a tu [gold]Mazo[/gold].",
+      "Los enemigos obtienen habilidades adicionales del próximo jefe.",
+      "Los jefes son aún más fuertes."
+    ],
+    "epoch_id": "DREAD_EPOCH",
+    "unlock_text": "Modo de juego desbloqueado: Pesadilla.",
+    "unlock_info": "Alcanza la [red]Ascensión[/red] [blue]10[/blue] con todos los personajes para revelar esta Época.",
+    "max_ascension": 10,
+    "dominions": [
+      {
+        "id": "AEONGLASS_DOMINION",
+        "encounter_id": "AEONGLASS_BOSS",
+        "boss_name": "Clepsamia eónica",
+        "name": "Dominio de Clepsamia eónica",
+        "description": "Al comienzo de tu turno, añade [blue]1[/blue] [gold]Deteriorar[/gold] a la parte superior de tu [gold]Pila de robo[/gold]."
+      },
+      {
+        "id": "CEREMONIAL_BEAST_DOMINION",
+        "encounter_id": "CEREMONIAL_BEAST_BOSS",
+        "boss_name": "Bestia ceremonial",
+        "name": "Dominio de Bestia ceremonial",
+        "description": "Todos los enemigos ganan [blue]1[/blue] de [gold]Ritual[/gold]."
+      },
+      {
+        "id": "INSATIABLE_DOMINION",
+        "encounter_id": "THE_INSATIABLE_BOSS",
+        "boss_name": "El Insaciable",
+        "name": "Dominio de El Insaciable",
+        "description": "Al final de tu turno, recibes daño igual al número de turnos."
+      },
+      {
+        "id": "KAISER_CRAB_DOMINION",
+        "encounter_id": "KAISER_CRAB_BOSS",
+        "boss_name": "Cangrejo káiser",
+        "name": "Dominio de Cangrejo káiser",
+        "description": "Todos los enemigos ganan [blue]7[/blue] de [gold]Blindaje[/gold]."
+      },
+      {
+        "id": "KIN_DOMINION",
+        "encounter_id": "THE_KIN_BOSS",
+        "boss_name": "La Estirpe",
+        "name": "Dominio de La Estirpe",
+        "description": "Comienza cada combate con [red]2[/red] de [gold]Debilidad[/gold] y [gold]Fragilidad[/gold]."
+      },
+      {
+        "id": "KNOWLEDGE_DEMON_DOMINION",
+        "encounter_id": "KNOWLEDGE_DEMON_BOSS",
+        "boss_name": "Demonio del saber",
+        "name": "Dominio de Demonio del saber",
+        "description": "Al comienzo del combate, elige [blue]1[/blue] de entre [blue]2[/blue] [red]Perdiciones[/red] de dominio."
+      },
+      {
+        "id": "LAGAVULIN_MATRIARCH_DOMINION",
+        "encounter_id": "LAGAVULIN_MATRIARCH_BOSS",
+        "boss_name": "Matriarca lagavulín",
+        "name": "Dominio de Matriarca lagavulín",
+        "description": "Al final de tu primer turno, pierde [red]1[/red] de [gold]Fuerza[/gold] y [gold]Destreza[/gold]."
+      },
+      {
+        "id": "QUEEN_DOMINION",
+        "encounter_id": "QUEEN_BOSS",
+        "boss_name": "La Reina",
+        "name": "Dominio de La Reina",
+        "description": "Al comienzo del turno 2, obtén [red]3[/red] de [gold]Debilidad[/gold], [gold]Vulnerabilidad[/gold] y [gold]Fragilidad[/gold]."
+      },
+      {
+        "id": "SOUL_FYSH_DOMINION",
+        "encounter_id": "SOUL_FYSH_BOSS",
+        "boss_name": "Peth alma",
+        "name": "Dominio de Peth alma",
+        "description": "Al comienzo de cada combate, baraja una carta de [gold]Llamada[/gold] en tu [gold]Pila de robo[/gold]."
+      },
+      {
+        "id": "TEST_SUBJECT_DOMINION",
+        "encounter_id": "TEST_SUBJECT_BOSS",
+        "boss_name": "Sujeto de pruebas",
+        "name": "Dominio de Sujeto de pruebas",
+        "description": "Todos los enemigos ganan [blue]3[/blue] de [gold]Fuerza[/gold]."
+      },
+      {
+        "id": "VANTOM_DOMINION",
+        "encounter_id": "VANTOM_BOSS",
+        "boss_name": "Tintasma",
+        "name": "Dominio de Tintasma",
+        "description": "Los enemigos normales ganan [blue]1[/blue] de [gold]Escurridizo[/gold]. Los élites ganan [blue]2[/blue] de [gold]Escurridizo[/gold]."
+      },
+      {
+        "id": "WATERFALL_GIANT_DOMINION",
+        "encounter_id": "WATERFALL_GIANT_BOSS",
+        "boss_name": "Cataronte",
+        "name": "Dominio de Cataronte",
+        "description": "Los enemigos explotan al morir, infligiendo daño."
+      }
+    ],
+    "rotating_streak": {
+      "name": "Racha de rotación",
+      "description": "En una [gold]Racha de rotación[/gold], cada victoria supone avanzar al personaje a la derecha.\nLa victorias se cuentan en una racha distinta, y ya no cuentan para rachas individuales de cada personaje."
+    }
+  },
+  {
+    "id": "BLITZ",
+    "name": "Relámpago",
+    "description": "Partidas rápidas e intensas para aquellos que buscan una aventura más corta.",
+    "multiplayer_description": "Partidas rápidas e intensas para grupos que buscan una aventura más corta.",
+    "intro": "¡Te damos la bienvenida al modo [green]Relámpago[/green]! Estas partidas rápidas tienen sus propios niveles de dificultad de Ascensión compartidos entre todos los personajes, y cuentan con cambios importantes que se centran más en la construcción de mazos.",
+    "rules": [
+      "Recibes cartas al comienzo de cada partida.",
+      "Te enfrentas a [blue]4[/blue] encuentros por cada Acto.",
+      "El [blue]Comerciante[/blue] es algo [sine]rarete[/sine].",
+      "Los [gold]cofres del tesoro[/gold] contienen una reliquia adicional.",
+      "No hay mapa."
+    ],
+    "epoch_id": "BLITZ_EPOCH",
+    "unlock_text": "Modo de juego desbloqueado: Relámpago.",
+    "unlock_info": "Juega una partida de Ascensión para desbloquear el modo Relámpago.",
+    "max_ascension": 5,
+    "ascension_levels": [
+      "WearyTraveler",
+      "TightBelt",
+      "ToughEnemies",
+      "DeadlyEnemies",
+      "AscendersBane"
+    ],
+    "neow": {
+      "name": "Relámpago",
+      "description": "Elige [blue]3[/blue] cartas y añádelas a tu [gold]Mazo[/gold]."
+    },
+    "merchant_entries": [
+      {
+        "id": "CARD_ENCHANT",
+        "name": "Enchantment",
+        "description": "[gold]Encanta[/gold] una carta con [purple]Enchantment[/purple]."
+      },
+      {
+        "id": "CARD_PACKS",
+        "name": "Paquetes de cartas",
+        "description": "Elige [blue]1[/blue] de entre [blue]2[/blue] paquetes de cartas y añádelo a tu [gold]Mazo[/gold]."
+      },
+      {
+        "id": "CARD_REMOVAL",
+        "name": "Servicio de eliminación de cartas",
+        "description": "Elimina una carta de tu [gold]Mazo[/gold]."
+      },
+      {
+        "id": "CARD_REWARD_OF_EACH_RARITY",
+        "name": "Recompensa de cartas maldita",
+        "description": "Recibe [red]1[/red] [red]Maldición[/red] aleatoria.\nRecibe [blue]1[/blue] recompensa de cartas [gold]común[/gold], [gold]infrecuente[/gold] y [gold]rara[/gold]."
+      },
+      {
+        "id": "CARD_REWARDS",
+        "name": "Recompensas de cartas",
+        "description": "Recibe [blue]2[/blue] recompensas de cartas."
+      },
+      {
+        "id": "CARD_TRANSFORM",
+        "name": "Servicio de transformación de cartas",
+        "description": "[gold]Transforma[/gold] una carta de tu [gold]Mazo[/gold]."
+      },
+      {
+        "id": "CARD_UPGRADE",
+        "name": "Servicio de mejora de cartas",
+        "description": "[gold]Mejora[/gold] una carta de tu [gold]Mazo[/gold]."
+      },
+      {
+        "id": "COLORLESS_CARD_REWARD",
+        "name": "Recompensa de cartas incolora",
+        "description": "Recibe [blue]1[/blue] recompensa de cartas [gold]Incolora[/gold]."
+      },
+      {
+        "id": "ENCHANTED_CARD_REWARD",
+        "name": "Recompensa de cartas encantadas",
+        "description": "Recibe [blue]1[/blue] recompensa de cartas [gold]Encantada[/gold]."
+      },
+      {
+        "id": "FULL_HEAL_AND_MAX_HP",
+        "name": "Curación maldita",
+        "description": "Recibe [red]1[/red] [red]Maldición[/red] aleatoria.\nAumenta tus PV máx. en [blue]6[/blue] y recupera todos tus PV."
+      },
+      {
+        "id": "GLAM",
+        "name": "Enchantment con Maldición",
+        "description": "Recibe [red]1[/red] [red]Maldición[/red] aleatoria.\n[gold]Encanta[/gold] una carta con [purple]Enchantment[/purple]."
+      },
+      {
+        "id": "POTIONS",
+        "name": "Pociones",
+        "description": "Gana [blue]1[/blue] espacio de poción y obtén [blue]2[/blue] pociones aleatorias."
+      },
+      {
+        "id": "PRISMATIC_CARD_REWARD",
+        "name": "Recompensa de cartas de Character",
+        "description": "Recibe [blue]1[/blue] recompensa de cartas de [gold]Character[/gold]."
+      },
+      {
+        "id": "RANDOM_UPGRADES",
+        "name": "Mejoras aleatorias",
+        "description": "Mejora [blue]2[/blue] cartas aleatorias de tu [gold]Mazo[/gold]."
+      },
+      {
+        "id": "RARE_CARD_REWARD",
+        "name": "Recompensa de cartas rara",
+        "description": "Recibe [blue]1[/blue] recompensa de cartas rara."
+      },
+      {
+        "id": "RELIC",
+        "name": "Reliquia",
+        "description": "Obtén [blue]1[/blue] [gold]Reliquia[/gold] aleatoria."
+      },
+      {
+        "id": "TWO_MORE_CHOICES",
+        "name": "Elecciones malditas",
+        "description": "Recibe [red]1[/red] [red]Maldición[/red] aleatoria.\nEl Comerciante te permite comprar dos artículos más."
+      },
+      {
+        "id": "TWO_RELICS",
+        "name": "Reliquias malditas",
+        "description": "Recibe [red]1[/red] [red]Maldición[/red] aleatoria.\nObtén [blue]2[/blue] [gold]Reliquias[/gold] aleatorias."
+      },
+      {
+        "id": "UPGRADED_CARD_REWARD",
+        "name": "Recompensa de cartas mejorada",
+        "description": "Recibe [blue]1[/blue] recompensa de cartas [gold]Mejorada[/gold]."
+      },
+      {
+        "id": "UPGRADED_RARE_CARD",
+        "name": "Carta rara mejorada",
+        "description": "Recibe [blue]1[/blue] carta rara [gold]Mejorada[/gold] aleatoria."
+      },
+      {
+        "id": "UPGRADED_RARE_CARD_REWARD",
+        "name": "Recompensa de cartas raras mejoradas maldita",
+        "description": "Recibe [red]1[/red] [red]Maldición[/red] aleatoria.\nRecibe [blue]1[/blue] recompensa de cartas raras [gold]Mejorada[/gold]."
+      }
+    ]
+  }
+]

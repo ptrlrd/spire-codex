@@ -1,0 +1,149 @@
+[
+  {
+    "id": "ALL_STAR",
+    "name": "Gwiazdor",
+    "description": "Zaczynasz z [blue]5[/blue] [gold]bezbarwnymi[/gold] kartami.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "BIG_GAME_HUNTER",
+    "name": "Gruba zwierzyna",
+    "description": "W Iglicy roi się od Elitarnych przeciwników, którzy upuszczają [gold]rzadkie[/gold] karty.",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "CURSED_RUN",
+    "name": "Przeklęta wyprawa",
+    "description": "Na początku każdego Aktu dodaj losową [red]Klątwę[/red] do talii.",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "DEADLY_EVENTS",
+    "name": "Zabójcze wydarzenia",
+    "description": "W nieznanych pokojach mogą przebywać Elitarni przeciwnicy, ale masz też większą szansę na znalezienie skarbów.",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "DRAFT",
+    "name": "Plan",
+    "description": "Wybierz [blue]10[/blue] kart i zastąp nimi swoją talię startową.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "FLIGHT",
+    "name": "Lot",
+    "description": "Możesz ignorować ścieżki w podróży po Iglicy.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "HOARDER",
+    "name": "Syllogmania",
+    "description": "Za każdym razem gdy dodasz kartę do talii, dodaj jeszcze [blue]2[/blue] kopie. Nie możesz już usuwać kart u Handlarza.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "INSANITY",
+    "name": "Szaleństwo",
+    "description": "Rozpoczynasz z talią [blue]30[/blue] losowych kart.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "MIDAS",
+    "name": "Midas",
+    "description": "Przeciwnicy upuszczają [blue]200%[/blue] więcej złota, ale nie można Ulepszać kart w [gold]Obozowiskach[/gold].",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "MURDEROUS",
+    "name": "Mordercza walka",
+    "description": "Zaczynasz każdą walkę z [blue]3[/blue] pkt. [gold]Siły[/gold]. Twoi przeciwnicy również.",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "NIGHT_TERRORS",
+    "name": "Koszmary",
+    "description": "Odpoczynek w [gold]Obozowiskach[/gold] przywraca wszystkie PŻ, ale tracisz [red]5[/red] maks. PŻ.",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "SEALED_DECK",
+    "name": "Zapieczętowana talia",
+    "description": "Stwórz talię startową, wybierając [blue]10[/blue] z [blue]30[/blue] losowych kart.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "SPECIALIZED",
+    "name": "Specjalista",
+    "description": "Rozpoczynasz z [blue]5[/blue] kopiami jednej karty",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "TERMINAL",
+    "name": "Śmiertelna choroba",
+    "description": "Kiedykolwiek wejdziesz do nowego pomieszczenia, utrać [red]1[/red] maks. PŻ. Rozpoczynasz walkę z [blue]5[/blue] pkt. [gold]Pancerza[/gold].",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "VINTAGE",
+    "name": "Starocie",
+    "description": "Zwykli przeciwnicy upuszczają po sobie artefakty zamiast kart.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "CHARACTER_CARDS_IRONCLAD",
+    "name": "Karty Pancernika",
+    "description": "Karty Pancernika będą od teraz dostępne w sklepach oraz w łupach.",
+    "kind": "good",
+    "character": "IRONCLAD"
+  },
+  {
+    "id": "CHARACTER_CARDS_SILENT",
+    "name": "Karty Zjawy",
+    "description": "Karty Zjawy będą od teraz dostępne w sklepach oraz w łupach.",
+    "kind": "good",
+    "character": "SILENT"
+  },
+  {
+    "id": "CHARACTER_CARDS_DEFECT",
+    "name": "Karty Defekta",
+    "description": "Karty Defekta będą od teraz dostępne w sklepach oraz w łupach.",
+    "kind": "good",
+    "character": "DEFECT"
+  },
+  {
+    "id": "CHARACTER_CARDS_NECROBINDER",
+    "name": "Karty Nekromantki",
+    "description": "Karty Nekromantki będą od teraz dostępne w sklepach oraz w łupach.",
+    "kind": "good",
+    "character": "NECROBINDER"
+  },
+  {
+    "id": "CHARACTER_CARDS_REGENT",
+    "name": "Karty Monarchy",
+    "description": "Karty Monarchy będą od teraz dostępne w sklepach oraz w łupach.",
+    "kind": "good",
+    "character": "REGENT"
+  },
+  {
+    "id": "CHARACTER_CARDS_FOOL",
+    "name": "Karty Błazna",
+    "description": "Karty Błazna będą od teraz dostępne w sklepach oraz w łupach.",
+    "kind": "good",
+    "character": "FOOL"
+  }
+]

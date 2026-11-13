@@ -1,0 +1,149 @@
+[
+  {
+    "id": "ALL_STAR",
+    "name": "Звездный состав",
+    "description": "Вы начнете игру с [blue]5[/blue] [gold]бесцветными[/gold] картами.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "BIG_GAME_HUNTER",
+    "name": "Сезон охоты",
+    "description": "Элитные враги заполонят Шпиль, а в награду за победу над ними вам дадут [gold]редкие[/gold] наградные наборы.",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "CURSED_RUN",
+    "name": "Проклятая вылазка",
+    "description": "В начале каждого акта вы получите [red]проклятие[/red].",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "DEADLY_EVENTS",
+    "name": "Опасные тайны",
+    "description": "В неизведанных комнатах можно будет встретить элитных врагов, но и шанс найти там сокровища станет выше.",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "DRAFT",
+    "name": "Отбор",
+    "description": "Выберите карты из [blue]10[/blue] наград, они станут вашей стартовой колодой.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "FLIGHT",
+    "name": "Полет",
+    "description": "При переходе на следующий этаж вы можете выбрать любую комнату без оглядки на маршрут.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "HOARDER",
+    "name": "Барахольщик",
+    "description": "Добавляя карту в колоду, вы также получите [blue]2[/blue] ее копии. Вы больше не сможете удалять карты у Торговца.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "INSANITY",
+    "name": "Сумасшествие",
+    "description": "Вы начнете игру с колодой из [blue]30[/blue] случайных карт.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "MIDAS",
+    "name": "Мидас",
+    "description": "Поверженные враги дают [blue]в 3 раза[/blue] больше золота, но вы больше не сможете ковать в [gold]лагере[/gold].",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "MURDEROUS",
+    "name": "Резня",
+    "description": "Вы начинаете каждый бой с [blue]+3[/blue] [gold]силы[/gold]. Все враги начинают бой с [blue]+3[/blue] [gold]силы[/gold].",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "NIGHT_TERRORS",
+    "name": "Ночные кошмары",
+    "description": "Отдых в [gold]лагере[/gold] будет восполнять все ОЗ, но отнимать [red]5[/red] максимальных ОЗ.",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "SEALED_DECK",
+    "name": "Запечатанная колода",
+    "description": "Выберите [blue]10[/blue] из [blue]30[/blue] карт, они станут вашей стартовой колодой.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "SPECIALIZED",
+    "name": "Специализация",
+    "description": "Вы начинаете игру с [blue]5[/blue] копиями одной карты.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "TERMINAL",
+    "name": "Лепра",
+    "description": "Заходя в новую комнату, вы теряете [red]1[/red] макс. ОЗ и начинаете каждый бой с [blue]5[/blue] [gold]панциря[/gold].",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "VINTAGE",
+    "name": "Раритет",
+    "description": "В награду за бой с обычными врагами вы получаете реликвии, а не карты.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "CHARACTER_CARDS_IRONCLAD",
+    "name": "Карты Латоносца",
+    "description": "Карты Латоносца теперь могут появляться в наградах и у Торговца.",
+    "kind": "good",
+    "character": "IRONCLAD"
+  },
+  {
+    "id": "CHARACTER_CARDS_SILENT",
+    "name": "Карты Безмолвной",
+    "description": "Карты Безмолвной теперь могут появляться в наградах и у Торговца.",
+    "kind": "good",
+    "character": "SILENT"
+  },
+  {
+    "id": "CHARACTER_CARDS_DEFECT",
+    "name": "Карты Дефекта",
+    "description": "Карты Дефекта теперь могут появляться в наградах и у Торговца.",
+    "kind": "good",
+    "character": "DEFECT"
+  },
+  {
+    "id": "CHARACTER_CARDS_NECROBINDER",
+    "name": "Карты Призывающей",
+    "description": "Карты Призывающей теперь могут появляться в наградах и у Торговца.",
+    "kind": "good",
+    "character": "NECROBINDER"
+  },
+  {
+    "id": "CHARACTER_CARDS_REGENT",
+    "name": "Карты Наследника",
+    "description": "Карты Наследника теперь могут появляться в наградах и у Торговца.",
+    "kind": "good",
+    "character": "REGENT"
+  },
+  {
+    "id": "CHARACTER_CARDS_FOOL",
+    "name": "Карты Шута",
+    "description": "Карты Шута теперь могут появляться в наградах и у Торговца.",
+    "kind": "good",
+    "character": "FOOL"
+  }
+]

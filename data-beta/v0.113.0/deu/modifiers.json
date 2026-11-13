@@ -1,0 +1,149 @@
+[
+  {
+    "id": "ALL_STAR",
+    "name": "Alleskönner",
+    "description": "Beginne mit [blue]5[/blue] [gold]Farblosen[/gold] Karten.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "BIG_GAME_HUNTER",
+    "name": "Großwildjäger",
+    "description": "Elitegegner schwärmen den Spire und hinterlassen [gold]Seltene[/gold] Kartenbelohnungen.",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "CURSED_RUN",
+    "name": "Verflucht",
+    "description": "Nimm zu Beginn jedes Aktes einen zufälligen [red]Fluch[/red] in dein Deck .",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "DEADLY_EVENTS",
+    "name": "Tödliche Ereignisse",
+    "description": "In unbekannten Räumen können jetzt Elitegegner sein, aber dort findest du auch häufiger Schatzräume.",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "DRAFT",
+    "name": "Draft",
+    "description": "Wähle [blue]10[/blue] Kartenbelohnungen, die dein Startdeck ersetzen.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "FLIGHT",
+    "name": "Fliegen",
+    "description": "Du kannst Pfade ignorieren, wenn du entscheidest, zu welchem Raum du reist.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "HOARDER",
+    "name": "Sammler",
+    "description": "Immer wenn eine Karte in dein Deck nimmst, bekommst du [blue]2[/blue] weitere Exemplare. Du kannst beim Händler keine Karten mehr entfernen.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "INSANITY",
+    "name": "Wahnsinn",
+    "description": "Beginne mit einem zufälligen Deck aus [blue]30[/blue] Karten.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "MIDAS",
+    "name": "Midas",
+    "description": "Gegner hinterlassen [blue]200%[/blue] mehr Gold, aber du kannst an [gold]Lagerfeuern[/gold] nicht schmieden.",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "MURDEROUS",
+    "name": "Mörderisch",
+    "description": "Du beginnst jeden Kampf mit [blue]3[/blue] [gold]Stärke[/gold]. Alle Gegner beginnen den Kampf mit [blue]3[/blue] [gold]Stärke[/gold].",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "NIGHT_TERRORS",
+    "name": "Nachtangst",
+    "description": "Ausruhen an [gold]Lagerfeuern[/gold] heilt alle deine TP, aber kostet [red]5[/red] max. TP.",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "SEALED_DECK",
+    "name": "Sealed-Deck",
+    "description": "Wähle [blue]10[/blue] aus [blue]30[/blue] Karten, die dein Startdeck ersetzen.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "SPECIALIZED",
+    "name": "Spezialisiert",
+    "description": "Beginne mit [blue]5[/blue] Exemplaren einer einzelnen Karte.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "TERMINAL",
+    "name": "Das Ende naht",
+    "description": "Wenn du einen neuen Raum betrittst, verliere [red]1[/red] max. TP. Beginne jeden Kampf mit [blue]5[/blue] [gold]Panzerung[/gold].",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "VINTAGE",
+    "name": "Gebrauchtwaren",
+    "description": "Normale Gegner hinterlassen Relikte anstatt Karten.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "CHARACTER_CARDS_IRONCLAD",
+    "name": "Eiserner-Karten",
+    "description": "Eiserner-Karten tauchen nun in Belohnungen und Läden auf.",
+    "kind": "good",
+    "character": "IRONCLAD"
+  },
+  {
+    "id": "CHARACTER_CARDS_SILENT",
+    "name": "Stille-Karten",
+    "description": "Stille-Karten tauchen nun in Belohnungen und Läden auf.",
+    "kind": "good",
+    "character": "SILENT"
+  },
+  {
+    "id": "CHARACTER_CARDS_DEFECT",
+    "name": "Defekte-Karten",
+    "description": "Defekte-Karten tauchen nun in Belohnungen und Läden auf.",
+    "kind": "good",
+    "character": "DEFECT"
+  },
+  {
+    "id": "CHARACTER_CARDS_NECROBINDER",
+    "name": "Totenbinderin-Karten",
+    "description": "Totenbinderin-Karten tauchen nun in Belohnungen und Läden auf.",
+    "kind": "good",
+    "character": "NECROBINDER"
+  },
+  {
+    "id": "CHARACTER_CARDS_REGENT",
+    "name": "Regent-Karten",
+    "description": "Regent-Karten tauchen nun in Belohnungen und Läden auf.",
+    "kind": "good",
+    "character": "REGENT"
+  },
+  {
+    "id": "CHARACTER_CARDS_FOOL",
+    "name": "Narren-Karten",
+    "description": "Narren-Karten tauchen jetzt in Belohnungen und Läden auf.",
+    "kind": "good",
+    "character": "FOOL"
+  }
+]

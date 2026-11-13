@@ -1,0 +1,149 @@
+[
+  {
+    "id": "ALL_STAR",
+    "name": "オールスター",
+    "description": "[gold]無色[/gold]カードを[blue]5[/blue]枚所持して開始する。",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "BIG_GAME_HUNTER",
+    "name": "大物狙い",
+    "description": "エリートがスパイアに多数出現し、[gold]レア[/gold]カード報酬をドロップする。",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "CURSED_RUN",
+    "name": "呪われし旅路",
+    "description": "各層の開始時、ランダムな[red]呪い[/red]を1枚デッキに追加する。",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "DEADLY_EVENTS",
+    "name": "命がけのイベント",
+    "description": "？部屋にエリートが出現するようになるが、宝箱の部屋である確率も上がる。",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "DRAFT",
+    "name": "ドラフト",
+    "description": "カード報酬を[blue]10[/blue]回選択し、開始デッキと入れ替える。",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "FLIGHT",
+    "name": "飛翔",
+    "description": "次に進む部屋を選ぶ際、道を無視できる。",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "HOARDER",
+    "name": "収集癖",
+    "description": "デッキにカードを追加するたび、そのコピーを[blue]2[/blue]枚加える。商人でカードの削除ができない。",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "INSANITY",
+    "name": "狂気の沙汰",
+    "description": "ランダムな[blue]30[/blue]枚のカードで構成されたデッキで開始する。",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "MIDAS",
+    "name": "ミダス",
+    "description": "敵のドロップするゴールドが[blue]200%[/blue]増加するが、[gold]休憩所[/gold]で鍛冶が行えなくなる。",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "MURDEROUS",
+    "name": "殺意",
+    "description": "戦闘開始時、[gold]筋力[/gold][blue]3[/blue]を得る。すべての敵は[gold]筋力[/gold][blue]3[/blue]を得る。",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "NIGHT_TERRORS",
+    "name": "夜の恐怖",
+    "description": "[gold]休憩所[/gold]で休憩するとHPが全回復するが、最大HPを[red]5[/red]失う。",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "SEALED_DECK",
+    "name": "シールドデッキ",
+    "description": "[blue]30[/blue]枚のカードの中から[blue]10[/blue]枚を選び、開始デッキと入れ替える。",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "SPECIALIZED",
+    "name": "特化",
+    "description": "1種類のカード[blue]5[/blue]枚を所持して開始する。",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "TERMINAL",
+    "name": "ターミナル",
+    "description": "新たな部屋に入るたび、最大HPを[red]1[/red]失う。 戦闘開始時、[gold]プレート[/gold][blue]5[/blue]を得る。",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "VINTAGE",
+    "name": "ヴィンテージ",
+    "description": "通常の敵がカードの代わりにレリックをドロップする。",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "CHARACTER_CARDS_IRONCLAD",
+    "name": "アイアンクラッドのカード",
+    "description": "報酬やショップにアイアンクラッドのカードが出現するようになる。",
+    "kind": "good",
+    "character": "IRONCLAD"
+  },
+  {
+    "id": "CHARACTER_CARDS_SILENT",
+    "name": "サイレントのカード",
+    "description": "報酬やショップにサイレントのカードが出現するようになる。",
+    "kind": "good",
+    "character": "SILENT"
+  },
+  {
+    "id": "CHARACTER_CARDS_DEFECT",
+    "name": "ディフェクトのカード",
+    "description": "報酬やショップにディフェクトのカードが出現するようになる。",
+    "kind": "good",
+    "character": "DEFECT"
+  },
+  {
+    "id": "CHARACTER_CARDS_NECROBINDER",
+    "name": "ネクロバインダーのカード",
+    "description": "報酬やショップにネクロバインダーのカードが出現するようになる。",
+    "kind": "good",
+    "character": "NECROBINDER"
+  },
+  {
+    "id": "CHARACTER_CARDS_REGENT",
+    "name": "リージェントのカード",
+    "description": "報酬やショップにリージェントのカードが出現するようになる。",
+    "kind": "good",
+    "character": "REGENT"
+  },
+  {
+    "id": "CHARACTER_CARDS_FOOL",
+    "name": "フールのカード",
+    "description": "報酬やショップにフールのカードが出現するようになる。",
+    "kind": "good",
+    "character": "FOOL"
+  }
+]
