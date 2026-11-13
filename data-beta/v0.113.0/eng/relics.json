@@ -5671,7 +5671,7 @@
   {
     "id": "WUPPY",
     "name": "Wuppy",
-    "description": "[gold]Wuppy[/gold] has [blue]0[/blue]/[blue]0[/blue] HP. [gold]Wuppy[/gold] absorbs ALL attack damage in combat.",
+    "description": "[gold]Wuppy[/gold] has [blue]60[/blue]/[blue]60[/blue] HP. [gold]Wuppy[/gold] absorbs ALL attack damage in combat.",
     "description_raw": "[gold]Wuppy[/gold] has [blue]{CurrentHp}[/blue]/[blue]{MaxHp}[/blue] HP. [gold]Wuppy[/gold] absorbs ALL attack damage in combat.",
     "flavor": "[red]Details for this relic will be revealed in the future...[/red]",
     "rarity": "Event Relic",

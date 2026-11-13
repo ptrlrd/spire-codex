@@ -32,6 +32,21 @@ def power_class_to_id(name: str) -> str:
     return s.upper()
 
 
+def move_title(localization: dict, monster_id: str, move_id: str) -> str:
+    """Localized title of a move. A repeat state such as JAB_MOVE_2 has no
+    title of its own and takes the title of the move it repeats."""
+    loc_move = re.sub(r"_MOVE$", "", move_id)
+    title = localization.get(f"{monster_id}.moves.{loc_move}.title")
+    if title:
+        return title
+    repeat = re.fullmatch(r"(.+?)(?:_MOVE)?_\d+", loc_move)
+    if repeat:
+        title = localization.get(f"{monster_id}.moves.{repeat.group(1)}.title")
+        if title:
+            return title
+    return loc_move.replace("_", " ").title()
+
+
 def load_localization(loc_dir: Path) -> dict:
     loc_file = loc_dir / "monsters.json"
     if loc_file.exists():
@@ -585,9 +600,7 @@ def extract_attack_pattern(
 
     # --- Build move name lookup ---
     def _move_name(move_id: str) -> str:
-        loc_move = re.sub(r"_MOVE$", "", move_id)
-        loc_key = f"{monster_id}.moves.{loc_move}.title"
-        return localization.get(loc_key, loc_move.replace("_", " ").title())
+        return move_title(localization, monster_id, move_id)
 
     # --- Generate human-readable description ---
     description = _build_pattern_description(states, initial_var, _move_name)
@@ -1096,8 +1109,7 @@ def parse_single_monster(
     for move in moves:
         # Localization keys omit the _MOVE suffix (e.g. "INCANTATION" not "INCANTATION_MOVE")
         loc_move = re.sub(r"_MOVE$", "", move)
-        loc_key = f"{monster_id}.moves.{loc_move}.title"
-        move_title = localization.get(loc_key, loc_move.replace("_", " ").title())
+        move_label = move_title(localization, monster_id, move)
 
         # Merge effects into move detail
         effects = move_effects.get(move, {})
@@ -1105,7 +1117,7 @@ def parse_single_monster(
         # Categorize the move
         intent_label = _intent_label(intents)
 
-        move_entry: dict = {"id": loc_move, "name": move_title, "intent": intent_label}
+        move_entry: dict = {"id": loc_move, "name": move_label, "intent": intent_label}
         if effects.get("powers"):
             move_entry["powers"] = effects["powers"]
         if effects.get("block"):

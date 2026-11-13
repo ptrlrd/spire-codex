@@ -4579,12 +4579,12 @@
       {
         "id": "THERMAL_BATHS",
         "title": "Thermal Baths",
-        "description": "Pay [red]88[/red] [gold]Gold[/gold]. Bath Towel Description"
+        "description": "Pay [red]88[/red] [gold]Gold[/gold]. At the start of each combat, heal [green]8[/green] HP."
       },
       {
         "id": "PRIVATE_OASIS",
         "title": "Private Oasis",
-        "description": "Lose [red]ALL[/red] your [gold]Gold[/gold]. Bath Robes Description"
+        "description": "Lose [red]ALL[/red] your [gold]Gold[/gold]. At the start of the next [gold]Boss[/gold] combat, heal all of your HP."
       },
       {
         "id": "DRINK_WATERS",
@@ -4604,12 +4604,12 @@
           {
             "id": "THERMAL_BATHS",
             "title": "Thermal Baths",
-            "description": "Pay [red]88[/red] [gold]Gold[/gold]. Bath Towel Description"
+            "description": "Pay [red]88[/red] [gold]Gold[/gold]. At the start of each combat, heal [green]8[/green] HP."
           },
           {
             "id": "PRIVATE_OASIS",
             "title": "Private Oasis",
-            "description": "Lose [red]ALL[/red] your [gold]Gold[/gold]. Bath Robes Description"
+            "description": "Lose [red]ALL[/red] your [gold]Gold[/gold]. At the start of the next [gold]Boss[/gold] combat, heal all of your HP."
           },
           {
             "id": "DRINK_WATERS",

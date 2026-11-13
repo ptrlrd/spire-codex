@@ -100,6 +100,41 @@ def parse_relic_pools() -> dict[str, str]:
     return relic_to_pool
 
 
+def obtained_defaults(content: str, all_vars: dict) -> dict:
+    """Values a relic gives its zero-initialised vars the moment it is obtained
+    (Wuppy starts at 0/0 HP in the catalog and sets 60/60 in AfterObtained)."""
+    body = re.search(
+        r"override\s+async\s+Task\s+AfterObtained\(\)\s*\{(.*?)\n\t\}",
+        content,
+        re.DOTALL,
+    )
+    if not body:
+        return {}
+    var_of: dict[str, str] = {}
+    for prop in re.finditer(
+        r"public\s+int\s+(\w+)\s*\{(.*?)\n\t\}", content, re.DOTALL
+    ):
+        bound = re.search(
+            r'DynamicVars(?:\.(\w+)|\["(\w+)"\])\.BaseValue\s*=\s*value',
+            prop.group(2),
+        )
+        if bound:
+            var_of[prop.group(1)] = bound.group(1) or bound.group(2)
+    values: dict[str, int] = {}
+    for m in re.finditer(
+        r"if\s*\((\w+)\s*==\s*0\)\s*\{\s*\1\s*=\s*(\d+);", body.group(1)
+    ):
+        values[m.group(1)] = int(m.group(2))
+    for m in re.finditer(r"\b(\w+)\s*=\s*(\w+);", body.group(1)):
+        if m.group(2) in values and m.group(1) in var_of:
+            values.setdefault(m.group(1), values[m.group(2)])
+    return {
+        var_of[prop]: value
+        for prop, value in values.items()
+        if prop in var_of and all_vars.get(var_of[prop]) in (0, 0.0, "0", None)
+    }
+
+
 def parse_single_relic(
     filepath: Path, localization: dict, relic_pools: dict, ench_loc: dict | None = None
 ) -> dict | None:
@@ -126,6 +161,8 @@ def parse_single_relic(
 
     # Extract variable values from source
     all_vars = extract_vars_from_source(content)
+
+    all_vars.update(obtained_defaults(content, all_vars))
 
     # Resolve StringVar references to enchantment names
     # Pattern: StringVar("EnchantmentName", ModelDb.Enchantment<Goopy>().Title.GetFormattedText())

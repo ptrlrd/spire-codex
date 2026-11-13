@@ -8,7 +8,8 @@
     "rules": null,
     "epoch_id": null,
     "unlock_text": null,
-    "unlock_info": null
+    "unlock_info": null,
+    "max_ascension": 10
   },
   {
     "id": "DAILY",
@@ -19,7 +20,8 @@
     "rules": null,
     "epoch_id": null,
     "unlock_text": null,
-    "unlock_info": "Play a single run with all characters and beat Act 3 to unlock the Daily Run."
+    "unlock_info": "Play a single run with all characters and beat Act 3 to unlock the Daily Run.",
+    "max_ascension": 10
   },
   {
     "id": "DREAD",
@@ -125,7 +127,8 @@
     "rotating_streak": {
       "name": "Rotating Streak",
       "description": "In a [gold]Rotating Streak[/gold], each win advances you one character to the right.\nWins are tracked in a separate streak, and no longer count towards individual characters'."
-    }
+    },
+    "max_ascension": 10
   },
   {
     "id": "BLITZ",
@@ -253,6 +256,14 @@
         "name": "Cursed Upgraded Rare Card Reward",
         "description": "Receive [red]1[/red] random [red]Curse[/red].\nReceive [blue]1[/blue] [gold]Upgraded[/gold] rare card reward."
       }
+    ],
+    "max_ascension": 5,
+    "ascension_levels": [
+      "WearyTraveler",
+      "TightBelt",
+      "ToughEnemies",
+      "DeadlyEnemies",
+      "AscendersBane"
     ]
   }
 ]
