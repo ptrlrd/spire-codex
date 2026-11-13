@@ -2,81 +2,148 @@
   {
     "id": "ALL_STAR",
     "name": "All Star",
-    "description": "Start with [blue]5[/blue] [gold]Colorless[/gold] cards."
+    "description": "Start with [blue]5[/blue] [gold]Colorless[/gold] cards.",
+    "kind": "good",
+    "character": null
   },
   {
     "id": "BIG_GAME_HUNTER",
     "name": "Big Game Hunter",
-    "description": "Elite enemies swarm the Spire and drop [gold]Rare[/gold] card rewards."
-  },
-  {
-    "id": "BINARY",
-    "name": "Binary",
-    "description": "Card rewards now contain only [blue]2[/blue] cards."
+    "description": "Elite enemies swarm the Spire and drop [gold]Rare[/gold] card rewards.",
+    "kind": "bad",
+    "character": null
   },
   {
     "id": "CURSED_RUN",
     "name": "Cursed Run",
-    "description": "At the start of each Act, add a random [red]Curse[/red] to your deck."
+    "description": "At the start of each Act, add a random [red]Curse[/red] to your deck.",
+    "kind": "bad",
+    "character": null
   },
   {
     "id": "DEADLY_EVENTS",
     "name": "Deadly Events",
-    "description": "Unknown rooms can now contain Elites, but are also more likely to contain Treasure rooms."
+    "description": "Unknown rooms can now contain Elites, but are also more likely to contain Treasure rooms.",
+    "kind": "bad",
+    "character": null
   },
   {
     "id": "DRAFT",
     "name": "Draft",
-    "description": "Choose [blue]10[/blue] card rewards to replace your starting deck."
+    "description": "Choose [blue]10[/blue] card rewards to replace your starting deck.",
+    "kind": "good",
+    "character": null
   },
   {
     "id": "FLIGHT",
     "name": "Flight",
-    "description": "You may ignore paths when choosing the next room to travel to."
+    "description": "You may ignore paths when choosing the next room to travel to.",
+    "kind": "good",
+    "character": null
   },
   {
     "id": "HOARDER",
     "name": "Hoarder",
-    "description": "Whenever you add a card to your deck, add [blue]2[/blue] additional copies. You can no longer remove cards from your deck at the Merchant."
+    "description": "Whenever you add a card to your deck, add [blue]2[/blue] additional copies. You can no longer remove cards from your deck at the Merchant.",
+    "kind": "good",
+    "character": null
   },
   {
     "id": "INSANITY",
     "name": "Insanity",
-    "description": "Start with a random deck of [blue]30[/blue] cards."
+    "description": "Start with a random deck of [blue]30[/blue] cards.",
+    "kind": "good",
+    "character": null
   },
   {
     "id": "MIDAS",
     "name": "Midas",
-    "description": "Enemies drop [blue]200%[/blue] more gold, but you can no longer Smith at [gold]Rest Sites[/gold]."
+    "description": "Enemies drop [blue]200%[/blue] more gold, but you can no longer Smith at [gold]Rest Sites[/gold].",
+    "kind": "bad",
+    "character": null
   },
   {
     "id": "MURDEROUS",
     "name": "Murderous",
-    "description": "You start each combat with [blue]3[/blue] [gold]Strength[/gold]. All enemies start combat with [blue]3[/blue] [gold]Strength[/gold]."
+    "description": "You start each combat with [blue]3[/blue] [gold]Strength[/gold]. All enemies start combat with [blue]3[/blue] [gold]Strength[/gold].",
+    "kind": "bad",
+    "character": null
   },
   {
     "id": "NIGHT_TERRORS",
     "name": "Night Terrors",
-    "description": "Resting at [gold]Rest Sites[/gold] heals all of your HP, but costs [red]5[/red] Max HP."
+    "description": "Resting at [gold]Rest Sites[/gold] heals all of your HP, but costs [red]5[/red] Max HP.",
+    "kind": "bad",
+    "character": null
   },
   {
     "id": "SEALED_DECK",
     "name": "Sealed Deck",
-    "description": "Choose [blue]10[/blue] out of [blue]30[/blue] cards to replace your starting deck."
+    "description": "Choose [blue]10[/blue] out of [blue]30[/blue] cards to replace your starting deck.",
+    "kind": "good",
+    "character": null
   },
   {
     "id": "SPECIALIZED",
     "name": "Specialized",
-    "description": "Start with [blue]5[/blue] copies of a single card."
+    "description": "Start with [blue]5[/blue] copies of a single card.",
+    "kind": "good",
+    "character": null
   },
   {
     "id": "TERMINAL",
     "name": "Terminal",
-    "description": "Whenever you enter a new room, lose [red]1[/red] Max HP. Start each combat with [blue]5[/blue] [gold]Plating[/gold]."
+    "description": "Whenever you enter a new room, lose [red]1[/red] Max HP. Start each combat with [blue]5[/blue] [gold]Plating[/gold].",
+    "kind": "bad",
+    "character": null
   },
   {
     "id": "VINTAGE",
     "name": "Vintage",
-    "description": "Normal enemies drop relics instead of cards."
+    "description": "Normal enemies drop relics instead of cards.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "CHARACTER_CARDS_IRONCLAD",
+    "name": "Ironclad Cards",
+    "description": "Ironclad cards will now appear in rewards and shops.",
+    "kind": "good",
+    "character": "IRONCLAD"
+  },
+  {
+    "id": "CHARACTER_CARDS_SILENT",
+    "name": "Silent Cards",
+    "description": "Silent cards will now appear in rewards and shops.",
+    "kind": "good",
+    "character": "SILENT"
+  },
+  {
+    "id": "CHARACTER_CARDS_DEFECT",
+    "name": "Defect Cards",
+    "description": "Defect cards will now appear in rewards and shops.",
+    "kind": "good",
+    "character": "DEFECT"
+  },
+  {
+    "id": "CHARACTER_CARDS_NECROBINDER",
+    "name": "Necrobinder Cards",
+    "description": "Necrobinder cards will now appear in rewards and shops.",
+    "kind": "good",
+    "character": "NECROBINDER"
+  },
+  {
+    "id": "CHARACTER_CARDS_REGENT",
+    "name": "Regent Cards",
+    "description": "Regent cards will now appear in rewards and shops.",
+    "kind": "good",
+    "character": "REGENT"
+  },
+  {
+    "id": "CHARACTER_CARDS_FOOL",
+    "name": "Fool Cards",
+    "description": "Fool cards will now appear in rewards and shops.",
+    "kind": "good",
+    "character": "FOOL"
   }
 ]
