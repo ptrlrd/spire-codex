@@ -237,6 +237,13 @@ def _ensure_indexes(coll) -> None:
     # Multikey over the small per-run shop-purchase list; backs the run
     # browser's shop: filter.
     coll.create_index([("bought", ASCENDING)])
+    # Newest-first lists filtered by a card, relic or shop purchase. The
+    # single-field indexes above find the runs but leave Mongo to sort every
+    # match or walk the date index, which ran past the list time limit for
+    # anything rarer than a starter card. Pre-build on the box before deploying.
+    coll.create_index([("deck.id", ASCENDING), ("submitted_at", DESCENDING)])
+    coll.create_index([("relics.id", ASCENDING), ("submitted_at", DESCENDING)])
+    coll.create_index([("bought", ASCENDING), ("submitted_at", DESCENDING)])
     coll.create_index([("killed_by", ASCENDING)])
     # /api/runs/list hot shapes: filter+sort compounds so Mongo never
     # in-memory-sorts a 40k-doc subset, plus seed for anchored prefix search.
