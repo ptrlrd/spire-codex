@@ -12,6 +12,8 @@ import {
   buildFAQPageJsonLd,
 } from "@/lib/jsonld";
 import ScoreBadge from "@/app/components/ScoreBadge";
+import BetaBadge from "@/app/components/BetaBadge";
+import CardImage from "@/app/components/CardImage";
 import RecentlyAdded from "@/app/components/RecentlyAdded";
 import CardsClient from "./CardsClient";
 import { fullCardUrl } from "@/lib/image-url";
@@ -178,7 +180,7 @@ export default async function CardsPage({ params }: Props) {
   // Top-6 by Codex Score, only cards that have stats (so the section
   // never renders empty placeholders during a fresh deploy when the
   // entity_stats_snapshot is still warming).
-  const cardById = new Map(cards.map((c) => [c.id.toLowerCase(), c]));
+  const cardById = new Map(withBeta.map((c) => [c.id.toLowerCase(), c]));
   const topByScore = scores
     .filter((s) => s.score != null && s.picks > 0)
     .sort((a, b) => (b.score ?? 0) - (a.score ?? 0))
@@ -303,22 +305,37 @@ export default async function CardsPage({ params }: Props) {
                     href={`/cards/${card.id.toLowerCase()}`}
                     className="block group"
                   >
-                    <img
-                      src={fullCardUrl(
-                        card.id.toLowerCase(),
-                        false,
-                        "stable",
-                        locale,
-                      )}
-                      alt={t("{name} - Slay the Spire 2 card", {
-                        name: card.name,
-                      })}
-                      className="w-full h-auto aspect-[400/520] transition-transform group-hover:scale-[1.04] drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
-                      loading="eager"
-                      fetchPriority={i < 2 ? "high" : "auto"}
-                      crossOrigin="anonymous"
-                    />
+                    {mainIds.has(card.id) ? (
+                      <img
+                        src={fullCardUrl(
+                          card.id.toLowerCase(),
+                          false,
+                          "stable",
+                          locale,
+                        )}
+                        alt={t("{name} - Slay the Spire 2 card", {
+                          name: card.name,
+                        })}
+                        className="w-full h-auto aspect-[400/520] transition-transform group-hover:scale-[1.04] drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
+                        loading="eager"
+                        fetchPriority={i < 2 ? "high" : "auto"}
+                        crossOrigin="anonymous"
+                      />
+                    ) : (
+                      <CardImage
+                        id={card.id}
+                        channel="beta"
+                        art={card.image_url}
+                        lang={locale}
+                        alt={t("{name} - Slay the Spire 2 card", {
+                          name: card.name,
+                        })}
+                        className="w-full h-auto aspect-[400/520] transition-transform group-hover:scale-[1.04] drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
+                        eager
+                      />
+                    )}
                     <div className="mt-1.5 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-xs">
+                      {!mainIds.has(card.id) && <BetaBadge />}
                       <span className="font-semibold text-[var(--accent-gold)] whitespace-nowrap">
                         {score.win_rate.toFixed(0)}% {t("WR")}
                       </span>
