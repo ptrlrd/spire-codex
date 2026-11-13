@@ -32,6 +32,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterable
 
+from .game_modes import normalize_game_mode
 from .runs_db import get_conn
 from .stats_math import lift_of, padded_counts, wilson_interval
 
@@ -199,13 +200,9 @@ def _run_extra_brackets(player_count: int, ascension: int, game_mode: str) -> li
         out.append("4p")
     if (ascension or 0) >= 10:
         out.append("a10")
-    gm = (game_mode or "standard").lower()
-    if gm == "daily":
-        out.append("daily")
-    elif gm == "custom":
-        out.append("custom")
-    else:
-        out.append("standard")
+    gm = normalize_game_mode(game_mode)
+    if gm in _MODE_BRACKET_KEYS:
+        out.append(gm)
     return out
 
 

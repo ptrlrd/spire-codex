@@ -18,6 +18,7 @@ import time
 from typing import Any
 
 from . import community_stats
+from .game_modes import SEPARATE_MODES, normalize_game_mode
 from .official_content import official_characters_ordered
 from .run_entity_stats import get_community_stats, get_entity_metrics_table
 
@@ -245,12 +246,11 @@ _ACTIVITY_WEEKS = 26
 
 
 def _run_mode(r: dict) -> str:
-    """solo / coop / daily / custom, matching the leaderboard mode split."""
-    gm = (r.get("game_mode") or "standard").lower()
-    if gm == "daily":
-        return "daily"
-    if gm == "custom":
-        return "custom"
+    """solo / coop for the standard ladder, else the run's own mode (daily,
+    custom, blitz, dread), matching the leaderboard mode split."""
+    gm = normalize_game_mode(r.get("game_mode"))
+    if gm in SEPARATE_MODES:
+        return gm
     return "coop" if (r.get("player_count") or 1) > 1 else "solo"
 
 
@@ -278,8 +278,7 @@ def _activity(rows: list[dict]) -> list[dict]:
                 "wins": 0,
                 "solo": 0,
                 "coop": 0,
-                "daily": 0,
-                "custom": 0,
+                **{mode: 0 for mode in SEPARATE_MODES},
             },
         )
         b["runs"] += 1
