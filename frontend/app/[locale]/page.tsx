@@ -93,7 +93,7 @@ export default async function Home({ params }: Props) {
       <div className="rvmp">
         <main className="home">
           <section className="hero">
-            <h1 className="wordmark">
+            <h1 className="wordmark" dir="ltr">
               SPIRE <span>CODEX</span>
             </h1>
             <p className="htag">{t("home_tagline")}</p>
