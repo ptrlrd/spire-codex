@@ -1,0 +1,269 @@
+[
+  {
+    "id": "STANDARD",
+    "name": "Standar",
+    "description": "Mulai perjalanan menaklukkan Spire!",
+    "multiplayer_description": "Mulai perjalanan menaklukkan Spire... bersama teman!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": null,
+    "max_ascension": 10
+  },
+  {
+    "id": "DAILY",
+    "name": "Harian",
+    "description": "Tantangan baru tersedia sehari sekali.\n\nBersaing dengan pemain lain untuk mendapat skor tertinggi!",
+    "multiplayer_description": "Tantangan baru tersedia sehari sekali.\n\nBersaing dengan pemain lain untuk mendapat skor tertinggi!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "Main sekali sebagai semua karakter dan kalahkan Babak 3 untuk membuka Harian.",
+    "max_ascension": 10
+  },
+  {
+    "id": "DREAD",
+    "name": "Kelam",
+    "description": "Kesulitan tertinggi yang dihadirkan oleh sang Arsitek.\n\nHanya untuk mereka yang ingin menguji kemahiran mereka atas Spire.",
+    "multiplayer_description": "Kesulitan tertinggi yang dihadirkan oleh sang Arsitek.\n\nHanya untuk kelompok yang ingin menguji kemahiran mereka atas Spire.",
+    "intro": "[gold]Kelam[/gold] adalah tantangan tersulit yang ada di Slay the Spire.",
+    "rules": [
+      "Semua efek angkatan aktif.",
+      "Pada akhir setiap babak, sebuah [purple]Kutukan Pendaki[/purple] ditambahkan ke [gold]Dekmu[/gold].",
+      "Musuh mendapat kemampuan tambahan dari bos mendatang.",
+      "Bos lebih kuat lagi."
+    ],
+    "epoch_id": "DREAD_EPOCH",
+    "unlock_text": "Mode permainan terbuka: Kelam.",
+    "unlock_info": "Capai [red]Angkatan[/red] [blue]10[/blue] pada semua karakter untuk mengungkap Zaman ini.",
+    "max_ascension": 10,
+    "dominions": [
+      {
+        "id": "AEONGLASS_DOMINION",
+        "encounter_id": "AEONGLASS_BOSS",
+        "boss_name": "Aeonglass",
+        "name": "Kekuasaan Aeonglass",
+        "description": "Pada awal giliranmu, tambahkan [blue]1[/blue] [gold]Layu[/gold] ke atas [gold]Tumpukan Ambil[/gold] kamu."
+      },
+      {
+        "id": "CEREMONIAL_BEAST_DOMINION",
+        "encounter_id": "CEREMONIAL_BEAST_BOSS",
+        "boss_name": "Binatang Seremonial",
+        "name": "Kekuasaan Binatang Seremonial",
+        "description": "Semua musuh mendapat [blue]1[/blue] [gold]Ritual[/gold]."
+      },
+      {
+        "id": "INSATIABLE_DOMINION",
+        "encounter_id": "THE_INSATIABLE_BOSS",
+        "boss_name": "Yang Tak Terpuaskan",
+        "name": "Kekuasaan Yang Tak Terpuaskan",
+        "description": "Pada akhir giliranmu, dapatkan kerusakan berdasarkan jumlah giliran."
+      },
+      {
+        "id": "KAISER_CRAB_DOMINION",
+        "encounter_id": "KAISER_CRAB_BOSS",
+        "boss_name": "Kepiting Kaisar",
+        "name": "Kekuasaan Kepiting Kaisar",
+        "description": "Semua musuh mendapat [blue]7[/blue] [gold]Lapisan[/gold]."
+      },
+      {
+        "id": "KIN_DOMINION",
+        "encounter_id": "THE_KIN_BOSS",
+        "boss_name": "Sang Kin",
+        "name": "Kekuasaan Sang Kin",
+        "description": "Kamu memulai perlawanan dengan [red]2[/red] [gold]Lemah[/gold] dan [gold]Retak[/gold]."
+      },
+      {
+        "id": "KNOWLEDGE_DEMON_DOMINION",
+        "encounter_id": "KNOWLEDGE_DEMON_BOSS",
+        "boss_name": "Iblis Pengetahuan",
+        "name": "Kekuasaan Iblis Pengetahuan",
+        "description": "Pada awal perlawanan, pilih [blue]1[/blue] dari [blue]2[/blue] [red]Kutukan[/red] Kekuasaan."
+      },
+      {
+        "id": "LAGAVULIN_MATRIARCH_DOMINION",
+        "encounter_id": "LAGAVULIN_MATRIARCH_BOSS",
+        "boss_name": "Pemimpin Lagavulin",
+        "name": "Kekuasaan Pemimpin Lagavulin",
+        "description": "Pada akhir giliran pertamamu, [red]1[/red] [gold]Kekuatan[/gold] dan [gold]Ketangkasan[/gold] hilang."
+      },
+      {
+        "id": "QUEEN_DOMINION",
+        "encounter_id": "QUEEN_BOSS",
+        "boss_name": "Ratu",
+        "name": "Kekuasaan Ratu",
+        "description": "Pada awal giliran 2, dapatkan [red]3[/red] [gold]Lemah[/gold], [gold]Rentan[/gold] dan [gold]Retak[/gold]."
+      },
+      {
+        "id": "SOUL_FYSH_DOMINION",
+        "encounter_id": "SOUL_FYSH_BOSS",
+        "boss_name": "Ykan Jiwa",
+        "name": "Kekuasaan Ykan Jiwa",
+        "description": "Pada awal setiap perlawanan, kocok sebuah [gold]Hasut[/gold] ke [gold]Tumpukan Ambil[/gold] kamu."
+      },
+      {
+        "id": "TEST_SUBJECT_DOMINION",
+        "encounter_id": "TEST_SUBJECT_BOSS",
+        "boss_name": "Subjek Eksperimen",
+        "name": "Kekuasaan Subjek Eksperimen",
+        "description": "Semua musuh mendapat [gold]3[/gold] [gold]Kekuatan[/gold]."
+      },
+      {
+        "id": "VANTOM_DOMINION",
+        "encounter_id": "VANTOM_BOSS",
+        "boss_name": "Vantom",
+        "name": "Kekuasaan Vantom",
+        "description": "Musuh normal mendapat [blue]1[/blue] [gold]Licin[/gold]. Elit mendapat [blue]2[/blue] [gold]Licin[/gold]."
+      },
+      {
+        "id": "WATERFALL_GIANT_DOMINION",
+        "encounter_id": "WATERFALL_GIANT_BOSS",
+        "boss_name": "Raksasa Air Terjun",
+        "name": "Kekuasaan Raksasa Air Terjun",
+        "description": "Musuh meledak saat mati, melakukan kerusakan."
+      }
+    ],
+    "rotating_streak": {
+      "name": "Rentetan Bergantian",
+      "description": "Dalam sebuah [gold]Rentetan Bergantian[/gold], karakter berganti ke kanan setiap kali kamu menang.\nKemenangan dihitung dalam rentetan terpisah, dan tidak lagi terhitung pada masing-masing karakter."
+    }
+  },
+  {
+    "id": "BLITZ",
+    "name": "Kilat",
+    "description": "Perjalanan padat dan cepat bagi mereka yang ingin perjalanan lebih singkat.",
+    "multiplayer_description": "Perjalanan padat dan cepat bagi kelompok yang ingin perjalanan lebih singkat.",
+    "intro": "Selamat datang di mode [green]Kilat[/green]! Perjalanan cepat ini memiliki kesulitan Angkatan terpisah yang dimiliki semua karakter dan perubahan besar yang lebih berfokus pada penyusunan dek.",
+    "rules": [
+      "Terima kartu pada awal setiap perjalanan.",
+      "Hadapi [blue]4[/blue] perlawanan setiap Babak.",
+      "Si [blue]Pedagang[/blue] agak [sine]aneh[/sine].",
+      "[gold]Peti Harta[/gold] memiliki pusaka tambahan.",
+      "Tidak ada peta."
+    ],
+    "epoch_id": "BLITZ_EPOCH",
+    "unlock_text": "Mode permainan terbuka: Kilat.",
+    "unlock_info": "Mainkan satu Angkatan untuk membuka Kilat.",
+    "max_ascension": 5,
+    "ascension_levels": [
+      "WearyTraveler",
+      "TightBelt",
+      "ToughEnemies",
+      "DeadlyEnemies",
+      "AscendersBane"
+    ],
+    "neow": {
+      "name": "Kilat",
+      "description": "Pilih [blue]3[/blue] kartu untuk ditambahkan ke [gold]Dekmu[/gold]."
+    },
+    "merchant_entries": [
+      {
+        "id": "CARD_ENCHANT",
+        "name": "Enchantment",
+        "description": "Tambahkan [gold]Efek[/gold] [purple]Enchantment[/purple] ke sebuah kartu."
+      },
+      {
+        "id": "CARD_PACKS",
+        "name": "Paket Kartu",
+        "description": "Pilih [blue]1[/blue] dari [blue]2[/blue] paket kartu untuk ditambahkan ke [gold]Dekmu[/gold]."
+      },
+      {
+        "id": "CARD_REMOVAL",
+        "name": "Jasa Pembuangan Kartu",
+        "description": "Buang sebuah kartu dari [gold]Dekmu[/gold]."
+      },
+      {
+        "id": "CARD_REWARD_OF_EACH_RARITY",
+        "name": "Pilihan Kartu Terkutuk",
+        "description": "Dapatkan [red]1[/red] [red]Kutukan[/red] acak.\nDapatkan [blue]1[/blue] pilihan kartu [gold]Biasa[/gold], [gold]Tidak Biasa[/gold] dan [gold]Langka[/gold]."
+      },
+      {
+        "id": "CARD_REWARDS",
+        "name": "Pilihan Kartu",
+        "description": "Dapatkan [blue]2[/blue] pilihan kartu."
+      },
+      {
+        "id": "CARD_TRANSFORM",
+        "name": "Jasa Transformasi Kartu",
+        "description": "[gold]Transformasikan[/gold] sebuah kartu dalam [gold]Dekmu[/gold]."
+      },
+      {
+        "id": "CARD_UPGRADE",
+        "name": "Jasa Peningkatan Kartu",
+        "description": "[gold]Tingkatkan[/gold] sebuah kartu dalam [gold]Dekmu[/gold]."
+      },
+      {
+        "id": "COLORLESS_CARD_REWARD",
+        "name": "Pilihan Kartu Tak Berwarna",
+        "description": "Dapatkan [blue]1[/blue] pilihan kartu [gold]Tak Berwarna[/gold]."
+      },
+      {
+        "id": "ENCHANTED_CARD_REWARD",
+        "name": "Pilihan Kartu Dengan Efek",
+        "description": "Dapatkan [blue]1[/blue] pilihan kartu dengan [gold]Efek[/gold]."
+      },
+      {
+        "id": "FULL_HEAL_AND_MAX_HP",
+        "name": "Penyembuhan Terkutuk",
+        "description": "Dapatkan [red]1[/red] [red]Kutukan[/red] acak.\nNaikkan HP Maksimalmu sebesar [blue]6[/blue] dan sembuhkan semua HP kamu."
+      },
+      {
+        "id": "GLAM",
+        "name": "Efek Enchantment Terkutuk",
+        "description": "Dapatkan [red]1[/red] [red]Kutukan[/red] acak.\nTambahkan [gold]Efek[/gold] [purple]Enchantment[/purple] ke sebuah kartu."
+      },
+      {
+        "id": "POTIONS",
+        "name": "Ramuan",
+        "description": "Dapatkan [blue]1[/blue] tempat ramuan dan dapatkan [blue]2[/blue] ramuan acak."
+      },
+      {
+        "id": "PRISMATIC_CARD_REWARD",
+        "name": "Pilihan Kartu Character",
+        "description": "Dapatkan [blue]1[/blue] pilihan kartu [gold]Character[/gold]."
+      },
+      {
+        "id": "RANDOM_UPGRADES",
+        "name": "Peningkatan Acak",
+        "description": "Tingkatkan [blue]2[/blue] kartu acak dalam [gold]Dekmu[/gold]."
+      },
+      {
+        "id": "RARE_CARD_REWARD",
+        "name": "Pilihan Kartu Langka",
+        "description": "Dapatkan [blue]1[/blue] pilihan kartu langka."
+      },
+      {
+        "id": "RELIC",
+        "name": "Pusaka",
+        "description": "Dapatkan [blue]1[/blue] [gold]Pusaka[/gold] acak."
+      },
+      {
+        "id": "TWO_MORE_CHOICES",
+        "name": "Opsi Terkutuk",
+        "description": "Dapatkan [red]1[/red] [red]Kutukan[/red] acak.\nSi Pedagang mengizinkanmu membeli dua barangnya lagi."
+      },
+      {
+        "id": "TWO_RELICS",
+        "name": "Pusaka Terkutuk",
+        "description": "Dapatkan [red]1[/red] [red]Kutukan[/red] acak.\nDapatkan [blue]2[/blue] [gold]Pusaka[/gold] acak."
+      },
+      {
+        "id": "UPGRADED_CARD_REWARD",
+        "name": "Pilihan Kartu Ditingkatkan",
+        "description": "Dapatkan [blue]1[/blue] pilihan kartu [gold]Ditingkatkan[/gold]"
+      },
+      {
+        "id": "UPGRADED_RARE_CARD",
+        "name": "Kartu Langka Ditingkatkan",
+        "description": "Dapatkan [blue]1[/blue] kartu langka [gold]Ditingkatkan[/gold] acak."
+      },
+      {
+        "id": "UPGRADED_RARE_CARD_REWARD",
+        "name": "Pilihan Kartu Langka Ditingkatkan Terkutuk",
+        "description": "Dapatkan [red]1[/red] [red]Kutukan[/red] acak.\nDapatkan [blue]1[/blue] pilihan kartu langka [gold]Ditingkatkan[/gold]."
+      }
+    ]
+  }
+]

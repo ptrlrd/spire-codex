@@ -16,6 +16,8 @@ export const X8D: Record<string, Record<string, string>> = {
     tur: "Kart Nadirlik Oranları",
     zhs: "卡牌稀有度概率",
     zht: "卡牌稀有度機率",
+    ara: "احتمالات ندرة البطاقات",
+    ind: "Peluang Kelangkaan Kartu",
   },
   "Card rarity probabilities for normal fights, elite fights, boss fights, and shops. Includes rare card pity system and ascension modifiers.":
     {
@@ -34,6 +36,8 @@ export const X8D: Record<string, Record<string, string>> = {
       tur: "Normal savaşlar, elit savaşlar, boss savaşları ve dükkanlar için kart nadirlik olasılıkları. Nadide kartlar için telafi sistemini ve yükseliş değiştiricilerini içerir.",
       zhs: "普通战斗、精英战斗、Boss战斗和商店的卡牌稀有度概率。包含稀有卡牌的保底机制与进阶修正。",
       zht: "普通戰鬥、精英戰鬥、頭目戰鬥和商店的卡牌稀有度機率。包含稀有卡牌的保底機制與晉階修正。",
+      ara: "احتمالات ندرة البطاقات في المعارك العادية ومعارك النخبة ومعارك الزعماء والمتاجر. تشمل نظام ضمان البطاقة النادرة ومعدلات الصعود.",
+      ind: "Peluang kelangkaan kartu untuk pertarungan biasa, pertarungan Elit, pertarungan Bos, dan Toko. Termasuk sistem pity kartu Langka dan pengubah Angkatan.",
     },
   "Relic Rarity Distribution": {
     eng: "Relic Rarity Distribution",
@@ -51,6 +55,8 @@ export const X8D: Record<string, Record<string, string>> = {
     tur: "Kalıntı Nadirlik Dağılımı",
     zhs: "遗物稀有度分布",
     zht: "遺物稀有度分佈",
+    ara: "توزيع ندرة الآثار",
+    ind: "Distribusi Kelangkaan Pusaka",
   },
   "Relic rarity chances from elite fights, treasure rooms, and shops. Common 50%, Uncommon 33%, Rare 17%.":
     {
@@ -69,6 +75,8 @@ export const X8D: Record<string, Record<string, string>> = {
       tur: "Elit savaşlardan, hazine odalarından ve dükkanlardan kalıntı nadirlik şansları. Yaygın 50%, Nadir 33%, Nadide 17%.",
       zhs: "来自精英战斗、宝箱房间和商店的遗物稀有度概率。普通50%，罕见33%，稀有17%。",
       zht: "來自精英戰鬥、財寶房間和商店的遺物稀有度機率。普通50%，罕見33%，稀有17%。",
+      ara: "فرص ندرة الآثار من معارك النخبة وغرف الكنز والمتاجر. عادي 50%، غير شائع 33%، نادر 17%.",
+      ind: "Peluang kelangkaan pusaka dari pertarungan Elit, Ruang Harta, dan Toko. Biasa 50%, Tidak Biasa 33%, Langka 17%.",
     },
   "Potion Drop Rates": {
     eng: "Potion Drop Rates",
@@ -86,6 +94,8 @@ export const X8D: Record<string, Record<string, string>> = {
     tur: "İksir Düşme Oranları",
     zhs: "药水掉落率",
     zht: "藥水掉落率",
+    ara: "معدلات سقوط الجرعات",
+    ind: "Peluang Jatuh Ramuan",
   },
   "Potion drop chances from combat with an adaptive pity system. Starts at 40%, ±10% per combat (down on a drop, up on a miss), no hard cap. Elites add a 12.5% effective drop bonus, but any drop still moves pity down 10%.":
     {
@@ -104,6 +114,8 @@ export const X8D: Record<string, Record<string, string>> = {
       tur: "Uyarlanabilir telafi sistemiyle savaşlardan iksir düşme şansları. 40% ile başlar, savaş başına ±10% değişir (düşerse azalır, düşmezse artar), katı bir üst sınır yoktur. Elitler 12.5% etkin düşme bonusu ekler, ancak herhangi bir düşüş telafi değerini yine 10% azaltır.",
       zhs: "战斗中的药水掉落概率，带自适应保底机制。初始40%，每场战斗±10%（掉落后下调，未掉落上调），没有硬性上限。精英额外提供12.5%的实际掉落加成，但只要掉落，保底值仍会下调10%。",
       zht: "戰鬥中的藥水掉落機率，帶自適應保底機制。初始40%，每場戰鬥±10%（掉落後下調，未掉落上調），沒有硬性上限。精英額外提供12.5%的實際掉落加成，但只要掉落，保底值仍會下調10%。",
+      ara: "فرص سقوط الجرعات من القتال مع نظام ضمان متكيف. تبدأ عند 40%، ±10% لكل قتال (تنخفض عند السقوط وترتفع عند عدمه)، بلا حد أقصى ثابت. النخب تضيف علاوة سقوط فعلية بمقدار 12.5%، لكن أي سقوط يخفض الضمان 10%.",
+      ind: "Peluang ramuan jatuh dari pertarungan dengan sistem pity adaptif. Mulai dari 40%, ±10% per pertarungan (turun saat jatuh, naik saat tidak), tanpa batas keras. Elit menambah bonus jatuh efektif 12.5%, tapi setiap ramuan yang jatuh tetap menurunkan pity 10%.",
     },
   "Gold Rewards": {
     eng: "Gold Rewards",
@@ -121,6 +133,8 @@ export const X8D: Record<string, Record<string, string>> = {
     tur: "Altın Ödülleri",
     zhs: "金币奖励",
     zht: "金幣獎勵",
+    ara: "مكافآت الذهب",
+    ind: "Hadiah Emas",
   },
   "Exact gold reward ranges for normal fights (10-20), elite fights (35-45), boss fights (100), and treasure rooms (42-52).":
     {
@@ -139,6 +153,8 @@ export const X8D: Record<string, Record<string, string>> = {
       tur: "Normal savaşlar (10-20), elit savaşlar (35-45), boss savaşları (100) ve hazine odaları (42-52) için kesin altın ödül aralıkları.",
       zhs: "普通战斗 (10-20)、精英战斗 (35-45)、Boss战斗 (100) 和宝箱房间 (42-52) 的确切金币奖励区间。",
       zht: "普通戰鬥 (10-20)、精英戰鬥 (35-45)、頭目戰鬥 (100) 和財寶房間 (42-52) 的確切金幣獎勵區間。",
+      ara: "النطاقات الدقيقة لمكافآت الذهب في المعارك العادية (10-20) ومعارك النخبة (35-45) ومعارك الزعماء (100) وغرف الكنز (42-52).",
+      ind: "Rentang hadiah Emas yang tepat untuk pertarungan biasa (10-20), pertarungan Elit (35-45), pertarungan Bos (100), dan Ruang Harta (42-52).",
     },
   "Shop Inventory": {
     eng: "Shop Inventory",
@@ -156,6 +172,8 @@ export const X8D: Record<string, Record<string, string>> = {
     tur: "Dükkan Envanteri",
     zhs: "商店库存",
     zht: "商店庫存",
+    ara: "مخزون المتجر",
+    ind: "Isi Toko",
   },
   "Shop layout — 5 character cards, 2 colorless, 3 relics, 3 potions, card removal scaling (75 + 25n gold).":
     {
@@ -174,6 +192,8 @@ export const X8D: Record<string, Record<string, string>> = {
       tur: "Dükkan düzeni — 5 karakter kartı, 2 renksiz, 3 kalıntı, 3 iksir, artan kart çıkarma ücreti (75 + 25n altın).",
       zhs: "商店构成：5张角色卡牌、2张无色卡牌、3件遗物、3瓶药水，以及递增的移除卡牌费用 (75 + 25n 金币)。",
       zht: "商店構成：5張角色卡牌、2張無色卡牌、3件遺物、3瓶藥水，以及遞增的移除卡牌費用 (75 + 25n 金幣)。",
+      ara: "تخطيط المتجر: 5 بطاقات للشخصية، بطاقتان عديمتا اللون، 3 آثار، 3 جرعات، وتصاعد سعر إزالة البطاقات (75 + 25n ذهب).",
+      ind: "Susunan Toko: 5 kartu karakter, 2 Tak Berwarna, 3 pusaka, 3 ramuan, harga pembuangan kartu yang naik (75 + 25n Emas).",
     },
   "Map Generation": {
     eng: "Map Generation",
@@ -191,6 +211,8 @@ export const X8D: Record<string, Record<string, string>> = {
     tur: "Harita Üretimi",
     zhs: "地图生成",
     zht: "地圖生成",
+    ara: "توليد الخريطة",
+    ind: "Pembuatan Peta",
   },
   "How the map is built — act structure, room counts, elite placement rules, and room distribution.":
     {
@@ -209,6 +231,8 @@ export const X8D: Record<string, Record<string, string>> = {
       tur: "Haritanın nasıl oluşturulduğu — perde yapısı, oda sayıları, elit yerleştirme kuralları ve oda dağılımı.",
       zhs: "地图的生成方式：阶段结构、房间数量、精英放置规则以及房间分布。",
       zht: "地圖的生成方式：幕結構、房間數量、精英放置規則以及房間分佈。",
+      ara: "كيف تُبنى الخريطة: بنية الفصول، أعداد الغرف، قواعد وضع النخب، وتوزيع الغرف.",
+      ind: "Cara peta dibuat: struktur babak, jumlah ruangan, aturan penempatan Elit, dan distribusi ruangan.",
     },
   "Unknown Room Probabilities": {
     eng: "Unknown Room Probabilities",
@@ -226,6 +250,8 @@ export const X8D: Record<string, Record<string, string>> = {
     tur: "Bilinmeyen Oda Olasılıkları",
     zhs: "未知房间概率",
     zht: "未知房間機率",
+    ara: "احتمالات الغرفة غير المعروفة",
+    ind: "Peluang Ruangan Tidak Diketahui",
   },
   'What happens when you enter a "?" room, including the adaptive odds for events, fights, shops, and treasure, and the between-acts reset.':
     {
@@ -244,6 +270,8 @@ export const X8D: Record<string, Record<string, string>> = {
       tur: 'Bir "?" odasına girdiğinde ne olduğu; etkinlikler, savaşlar, dükkanlar ve hazineler için uyarlanabilir olasılıklar ve perdeler arası sıfırlama dahil.',
       zhs: '进入 "?" 房间时会发生什么，包括事件、战斗、商店和宝箱的自适应概率，以及阶段之间的重置。',
       zht: '進入 "?" 房間時會發生什麼，包括事件、戰鬥、商店和財寶的自適應機率，以及幕之間的重置。',
+      ara: 'ما يحدث عند دخول غرفة "?"، بما في ذلك الاحتمالات المتكيفة للأحداث والمعارك والمتاجر والكنوز، وإعادة الضبط بين الفصول.',
+      ind: 'Apa yang terjadi saat masuk ruangan "?", termasuk peluang adaptif untuk Event, pertarungan, Toko, dan Harta, serta reset antarbabak.',
     },
   "Bosses & Elites by Act": {
     eng: "Bosses & Elites by Act",
@@ -261,6 +289,8 @@ export const X8D: Record<string, Record<string, string>> = {
     tur: "Perdeye Göre Bosslar ve Elitler",
     zhs: "各阶段的Boss与精英",
     zht: "各幕的頭目與精英",
+    ara: "الزعماء والنخب حسب الفصل",
+    ind: "Bos & Elit per Babak",
   },
   "Which 3 bosses and 3 elites can appear in each act — Overgrowth, Underdocks, Hive, and Glory.":
     {
@@ -279,6 +309,8 @@ export const X8D: Record<string, Record<string, string>> = {
       tur: "Her perdede çıkabilecek 3 boss ve 3 elit — Aşırı Yeşerme, Dip Rıhtımlar, Kovan ve İhtişam.",
       zhs: "每个阶段可能出现的3个Boss与3个精英：密林、暗港、巢穴与荣耀。",
       zht: "每一幕可能出現的3個頭目與3個精英：Overgrowth、Underdocks、Hive 與 Glory。",
+      ara: "أي 3 زعماء و3 نخب يمكن أن يظهروا في كل فصل: فرط النمو، الأرصفة السفلية، الخلية، والمجد.",
+      ind: "3 Bos dan 3 Elit mana yang bisa muncul di tiap babak: Rerimbunan, Pelabuhan, Sarang, dan Kejayaan.",
     },
   "Combat Mechanics": {
     eng: "Combat Mechanics",
@@ -296,6 +328,8 @@ export const X8D: Record<string, Record<string, string>> = {
     tur: "Savaş Mekanikleri",
     zhs: "战斗机制",
     zht: "戰鬥機制",
+    ara: "آليات القتال",
+    ind: "Mekanik Pertarungan",
   },
   "Hand size (5 draw, 10 max), energy (3 base), block decay, damage formulas — Strength, Dexterity, Vulnerable, Weak, Frail.":
     {
@@ -314,6 +348,8 @@ export const X8D: Record<string, Record<string, string>> = {
       tur: "El boyutu (5 çekiş, 10 maks), enerji (3 temel), blok kaybı, hasar formülleri — Güç, Çeviklik, Savunmasız, Zayıf, Kırılgan.",
       zhs: "手牌上限 (抽5张，最多10张)、能量 (基础3点)、格挡消退、伤害公式：力量、敏捷、易伤、虚弱、脆弱。",
       zht: "手牌上限 (抽5張，最多10張)、能量 (基礎3點)、格擋消退、傷害公式：力量、敏捷、易傷、虛弱、脆弱。",
+      ara: "حجم اليد (سحب 5، حد أقصى 10)، الطاقة (3 أساسية)، زوال الصد، ومعادلات الضرر: قوة، رشاقة، وَهن، ضَعْف، هشاشة.",
+      ind: "Ukuran tangan (ambil 5, maksimal 10), Energi (dasar 3), hilangnya Blok, rumus kerusakan: Kekuatan, Ketangkasan, Rentan, Lemah, Retak.",
     },
   "Character Starting Stats": {
     eng: "Character Starting Stats",
@@ -331,6 +367,8 @@ export const X8D: Record<string, Record<string, string>> = {
     tur: "Karakter Başlangıç Değerleri",
     zhs: "角色初始属性",
     zht: "角色初始屬性",
+    ara: "الإحصائيات الابتدائية للشخصيات",
+    ind: "Statistik Awal Karakter",
   },
   "Starting HP, gold, deck size, and orb slots for Ironclad, Silent, Defect, Necrobinder, and Regent.":
     {
@@ -349,6 +387,8 @@ export const X8D: Record<string, Record<string, string>> = {
       tur: "Demirkaplı, Sessiz, Arıza, Ölübağlayan ve Naip için başlangıç HP'si, altını, deste boyutu ve küre yuvaları.",
       zhs: "铁甲战士、静默猎手、故障机器人、亡灵契约师和储君的初始生命值、金币、牌组大小与充能球槽位。",
       zht: "Ironclad、Silent、Defect、Necrobinder 與 Regent 的初始生命值、金幣、牌組大小與充能球槽位。",
+      ara: "الصحة الابتدائية والذهب وحجم المجموعة وخانات الأجرام لكل من المدرع والصامتة والمعيب ورابطة الموتى والوصي.",
+      ind: "HP awal, Emas, ukuran dek, dan Tempat Bola untuk Ironclad, Silent, Defect, Necrobinder, dan Regent.",
     },
   "Orb Mechanics": {
     eng: "Orb Mechanics",
@@ -366,6 +406,8 @@ export const X8D: Record<string, Record<string, string>> = {
     tur: "Küre Mekanikleri",
     zhs: "充能球机制",
     zht: "充能球機制",
+    ara: "آليات الأجرام",
+    ind: "Mekanik Bola",
   },
   "Defect orb system — Lightning, Frost, Dark, Plasma, and Glass passive and evoke values. 3 starting slots, 10 max.":
     {
@@ -384,6 +426,8 @@ export const X8D: Record<string, Record<string, string>> = {
       tur: "Arıza'nın küre sistemi — Yıldırım, Buz, Karanlık, Plazma ve Cam için pasif ve boşaltma değerleri. 3 başlangıç yuvası, en fazla 10.",
       zhs: "故障机器人的充能球系统：闪电、冰霜、黑暗、等离子和玻璃的被动值与激发值。初始3个槽位，最多10个。",
       zht: "Defect 的充能球系統：Lightning、Frost、Dark、Plasma 和 Glass 的被動值與激發值。初始3個槽位，最多10個。",
+      ara: "نظام أجرام المعيب: القيم الخاملة وقيم الإثارة لأجرام برق وصقيع وظلام وبلازما وزجاج. 3 خانات ابتدائية، و10 كحد أقصى.",
+      ind: "Sistem Bola milik Defect: nilai pasif dan Picu untuk Petir, Es, Gelap, Plasma, dan Kaca. 3 tempat awal, maksimal 10.",
     },
   "Campfire Options": {
     eng: "Campfire Options",
@@ -401,6 +445,8 @@ export const X8D: Record<string, Record<string, string>> = {
     tur: "Kamp Ateşi Seçenekleri",
     zhs: "休息处选项",
     zht: "休息處選項",
+    ara: "خيارات موقع الراحة",
+    ind: "Opsi Peristirahatan",
   },
   "All 9 rest site choices - Rest, Smith, Dig, Lift, Cook, Clone, Hatch, Mend, and Kindle. Some require specific relics or cards.":
     {
@@ -419,6 +465,8 @@ export const X8D: Record<string, Record<string, string>> = {
       tur: "Dinlenme alanındaki 9 seçeneğin tamamı - Dinlen, Döv, Kaz, Kaldır, Pişir, Klonla, Kuluçkaya Yatır, İyileştir ve Yak. Bazıları belirli kalıntılar veya kartlar gerektirir.",
       zhs: "休息处的全部9个选项 - 休息、冶炼、挖掘、举重、烹饪、复制、孵化、治愈、点燃。部分选项需要特定遗物或卡牌。",
       zht: "休息處的全部9個選項 - 休息、冶煉、挖掘、舉重、烹飪、複製、孵化、治癒、點燃。部分選項需要特定遺物或卡牌。",
+      ara: "كل خيارات موقع الراحة الـ 9: راحة، حدادة، حفر، رفع، طهو، استنساخ، فقس، ترميم، وإشعال. بعضها يتطلب آثاراً أو بطاقات محددة.",
+      ind: "Semua 9 pilihan Peristirahatan: Istirahat, Tingkatkan, Gali, Angkat, Masak, Klona, Menetas, Rawat, dan Sulut. Beberapa butuh pusaka atau kartu tertentu.",
     },
   "Neow Offerings": {
     eng: "Neow Offerings",
@@ -436,6 +484,8 @@ export const X8D: Record<string, Record<string, string>> = {
     tur: "Neow'un Teklifleri",
     zhs: "涅奥的馈赠",
     zht: "Neow 的饋贈",
+    ara: "عروض Neow",
+    ind: "Tawaran Neow",
   },
   "Starting Ancient Neow offers 3 relics — 2 positive and 1 curse. Full relic pools and conflict prevention rules.":
     {
@@ -454,6 +504,8 @@ export const X8D: Record<string, Record<string, string>> = {
       tur: "Başlangıçtaki Kadim Neow 3 kalıntı sunar — 2 olumlu ve 1 lanet. Tam kalıntı havuzları ve çakışma önleme kuralları.",
       zhs: "初始远古者涅奥会提供3件遗物：2件正面遗物和1个诅咒。完整遗物池与冲突规避规则。",
       zht: "初始遠古者 Neow 會提供3件遺物：2件正面遺物和1個詛咒。完整遺物池與衝突規避規則。",
+      ara: "العتيق الأول Neow يعرض 3 آثار: 2 إيجابيان و1 عبء. مجموعات الآثار الكاملة وقواعد منع التعارض.",
+      ind: "Ancient pembuka, Neow, menawarkan 3 pusaka: 2 positif dan 1 kutukan. Kumpulan pusaka lengkap dan aturan pencegah konflik.",
     },
   "Ascension Modifiers": {
     eng: "Ascension Modifiers",
@@ -471,6 +523,8 @@ export const X8D: Record<string, Record<string, string>> = {
     tur: "Yükseliş Değiştiricileri",
     zhs: "进阶修正",
     zht: "晉階修正",
+    ara: "معدلات الصعود",
+    ind: "Pengubah Angkatan",
   },
   "All 10 ascension levels and their effects — from Swarming Elites (A1) to Double Boss (A10).":
     {
@@ -489,6 +543,8 @@ export const X8D: Record<string, Record<string, string>> = {
       tur: "10 yükseliş seviyesinin tamamı ve etkileri — Elit Yağmuru (A1) seviyesinden Çifte Boss (A10) seviyesine.",
       zhs: "全部10个进阶等级及其效果：从精英蜂拥 (A1) 到双重Boss (A10)。",
       zht: "全部10個晉階等級及其效果：從 Swarming Elites (A1) 到 Double Boss (A10)。",
+      ara: "كل مستويات الصعود الـ 10 وتأثيراتها: من النخب المحتشدة (A1) إلى زعيمان (A10).",
+      ind: "Semua 10 tingkat Angkatan dan efeknya: dari Gerombolan Elit (A1) sampai Bos Ganda (A10).",
     },
   "Enemy Ascension Scaling": {
     eng: "Enemy Ascension Scaling",
@@ -506,6 +562,8 @@ export const X8D: Record<string, Record<string, string>> = {
     tur: "Düşmanların Yükselişe Göre Ölçeklenmesi",
     zhs: "敌人的进阶成长",
     zht: "敵人的晉階成長",
+    ara: "تصاعد قوة الأعداء مع الصعود",
+    ind: "Skala Musuh per Angkatan",
   },
   "Per-monster HP and damage bumps applied at ToughEnemies (A8) and DeadlyEnemies (A9). Sortable table covering every monster in the bestiary.":
     {
@@ -524,6 +582,8 @@ export const X8D: Record<string, Record<string, string>> = {
       tur: "ToughEnemies (A8) ve DeadlyEnemies (A9) seviyelerinde uygulanan canavar başına HP ve hasar artışları. Bestiyerdeki her canavarı kapsayan sıralanabilir tablo.",
       zhs: "在 ToughEnemies (A8) 和 DeadlyEnemies (A9) 时对每个怪物生效的生命值与伤害提升。可排序表格，涵盖图鉴中的所有怪物。",
       zht: "在 ToughEnemies (A8) 和 DeadlyEnemies (A9) 時對每個怪物生效的生命值與傷害提升。可排序表格，涵蓋圖鑑中的所有怪物。",
+      ara: "زيادات الصحة والضرر لكل وحش عند ToughEnemies (A8) و DeadlyEnemies (A9). جدول قابل للفرز يغطي كل وحش في دليل الوحوش.",
+      ind: "Kenaikan HP dan kerusakan tiap monster yang berlaku di ToughEnemies (A8) dan DeadlyEnemies (A9). Tabel yang bisa diurutkan dan mencakup semua monster di Kitab.",
     },
   "Scoring & Daily Leaderboards": {
     eng: "Scoring & Daily Leaderboards",
@@ -541,6 +601,8 @@ export const X8D: Record<string, Record<string, string>> = {
     tur: "Puanlama ve Günlük Liderlik Tabloları",
     zhs: "计分与每日排行榜",
     zht: "計分與每日排行榜",
+    ara: "احتساب النتيجة ولوحات المتصدرين اليومية",
+    ind: "Penilaian & Papan Peringkat Harian",
   },
   "How your run score is calculated — 10 points per room, act multipliers, elite/boss/gold bonuses, and ascension scaling. Plus the packed daily-leaderboard score format added in Major Update":
     {
@@ -559,6 +621,8 @@ export const X8D: Record<string, Record<string, string>> = {
       tur: "Bir koşunun puanının nasıl hesaplandığı — oda başına 10 puan, perde çarpanları, elit/boss/altın bonusları ve yükseliş ölçeklemesi. Ayrıca Major Update ile eklenen paketlenmiş günlük liderlik tablosu puan biçimi",
       zhs: "本局分数的计算方式：每个房间10分、阶段倍率、精英/Boss/金币加成，以及进阶缩放。另有 Major Update 中新增的每日排行榜压缩分数格式",
       zht: "本局分數的計算方式：每個房間10分、幕倍率、精英/頭目/金幣加成，以及晉階縮放。另有 Major Update 中新增的每日排行榜壓縮分數格式",
+      ara: "كيف تُحسب نتيجة جولتك: 10 نقاط لكل غرفة، مضاعفات الفصول، علاوات النخب والزعماء والذهب، وتصاعد الصعود. إضافة إلى صيغة النتيجة المضغوطة للوحة المتصدرين اليومية التي أضيفت في التحديث الرئيسي",
+      ind: "Cara skor perjalanan dihitung: 10 poin per ruangan, pengali babak, bonus Elit/Bos/Emas, dan skala Angkatan. Ditambah format skor ringkas papan peringkat harian yang ditambahkan di Pembaruan Besar",
     },
   "The Foul Potion Has 3 Uses": {
     eng: "The Foul Potion Has 3 Uses",
@@ -576,6 +640,8 @@ export const X8D: Record<string, Record<string, string>> = {
     tur: "İğrenç İksir'in 3 kullanımı var",
     zhs: "污浊药水有3种用途",
     zht: "Foul Potion 有3種用途",
+    ara: "للجرعة النتنة 3 استخدامات",
+    ind: "Ramuan Busuk Punya 3 Kegunaan",
   },
   "The most context-sensitive item in the game — combat damage, merchant gold, and Fake Merchant boss trigger.":
     {
@@ -594,6 +660,8 @@ export const X8D: Record<string, Record<string, string>> = {
       tur: "Oyundaki bağlama en duyarlı eşya — savaş hasarı, tüccar altını ve Sahte Tüccar boss tetikleyicisi.",
       zhs: "游戏中最依赖情境的道具：战斗伤害、商人金币，以及触发假商人Boss。",
       zht: "遊戲中最依賴情境的道具：戰鬥傷害、商人金幣，以及觸發假商人頭目。",
+      ara: "أكثر عنصر في اللعبة يتأثر بالسياق: ضرر في القتال، ذهب من التاجر، وإطلاق قتال زعيم التاجر المزيف.",
+      ind: "Item yang paling bergantung pada konteks di game ini: kerusakan saat pertarungan, Emas dari Pedagang, dan pemicu bos Pedagang Palsu.",
     },
   "Wongo's Cross-Run Loyalty Points": {
     eng: "Wongo's Cross-Run Loyalty Points",
@@ -611,6 +679,8 @@ export const X8D: Record<string, Record<string, string>> = {
     tur: "Wongo'nun Koşular Arası Sadakat Puanları",
     zhs: "旺购跨局累积的忠诚点数",
     zht: "Wongo 跨局累積的忠誠點數",
+    ara: "نقاط ولاء Wongo العابرة للجولات",
+    ind: "Poin Loyalitas Wongo Lintas Perjalanan",
   },
   "A hidden loyalty system that persists across runs. Earn points toward a badge relic, but leaving without buying downgrades a card.":
     {
@@ -629,6 +699,8 @@ export const X8D: Record<string, Record<string, string>> = {
       tur: "Koşular arasında korunan gizli bir sadakat sistemi. Rozet kalıntısı için puan biriktir, ama satın almadan ayrılırsan bir kartın kalitesi düşer.",
       zhs: "一套跨局保留的隐藏忠诚系统。累积点数可换取徽章遗物，但不买就离开会让一张卡牌降级。",
       zht: "一套跨局保留的隱藏忠誠系統。累積點數可換取徽章遺物，但不買就離開會讓一張卡牌降級。",
+      ara: "نظام ولاء خفي يستمر عبر الجولات. اكسب نقاطاً نحو أثر شارة، لكن المغادرة دون شراء تخفض ترقية بطاقة.",
+      ind: "Sistem loyalitas tersembunyi yang bertahan lintas run. Kumpulkan poin untuk pusaka lencana, tapi pergi tanpa membeli menurunkan tingkat satu kartu.",
     },
   "Crystal Sphere Minesweeper": {
     eng: "Crystal Sphere Minesweeper",
@@ -646,6 +718,8 @@ export const X8D: Record<string, Record<string, string>> = {
     tur: "Kristal Küre Mayın Tarlası",
     zhs: "水晶球扫雷",
     zht: "Crystal Sphere 掃雷",
+    ara: "كاسحة ألغام الكرة البلورية",
+    ind: "Minesweeper Bola Kristal",
   },
   "The Crystal Sphere event is a hidden-object minigame on an 11x11 grid with relics, potions, cards, and a hidden curse.":
     {
@@ -664,6 +738,8 @@ export const X8D: Record<string, Record<string, string>> = {
       tur: "Kristal Küre etkinliği, kalıntılar, iksirler, kartlar ve gizli bir lanet içeren 11x11 ızgarada oynanan bir gizli nesne mini oyunudur.",
       zhs: "水晶球事件是一个在 11x11 网格上进行的寻宝小游戏，格中藏有遗物、药水、卡牌和一个隐藏诅咒。",
       zht: "Crystal Sphere 事件是一個在 11x11 網格上進行的尋寶小遊戲，格中藏有遺物、藥水、卡牌和一個隱藏詛咒。",
+      ara: "حدث الكرة البلورية لعبة مصغرة للبحث عن الأشياء المخفية على شبكة 11x11 فيها آثار وجرعات وبطاقات وعبء مخفي.",
+      ind: "Event Bola Kristal adalah minigame benda tersembunyi di petak 11x11 berisi pusaka, ramuan, kartu, dan satu kutukan tersembunyi.",
     },
   "The Reflections Event Can Double Your Deck": {
     eng: "The Reflections Event Can Double Your Deck",
@@ -681,6 +757,8 @@ export const X8D: Record<string, Record<string, string>> = {
     tur: "Yansımalar etkinliği desteni ikiye katlayabilir",
     zhs: "镜中倒影事件可以让你的牌组翻倍",
     zht: "Reflections 事件可以讓你的牌組翻倍",
+    ara: "حدث انعكاسات قد يضاعف مجموعتك",
+    ind: "Event Refleksi Bisa Menggandakan Dekmu",
   },
   "The Shatter option clones every card in your deck 1:1, doubling its size. The catch — a Bad Luck curse.":
     {
@@ -699,6 +777,8 @@ export const X8D: Record<string, Record<string, string>> = {
       tur: "Parçala seçeneği destedeki her kartı 1:1 klonlar ve deste boyutunu ikiye katlar. İşin püf noktası — bir Kötü Şans laneti.",
       zhs: "「粉碎」选项会以 1:1 复制牌组中的每一张牌，让牌组翻倍。代价是一张霉运诅咒。",
       zht: "「Shatter」選項會以 1:1 複製牌組中的每一張牌，讓牌組翻倍。代價是一張 Bad Luck 詛咒。",
+      ara: "خيار حطّم يستنسخ كل بطاقة في مجموعتك 1:1 فيضاعف حجمها. الثمن: عبء سوء حظ.",
+      ind: "Opsi Pecahkan mengklona setiap kartu di dekmu 1:1 sehingga ukurannya berlipat dua. Bayarannya: kutukan Kesialan.",
     },
   "The Architect Can't Fight You": {
     eng: "The Architect Can't Fight You",
@@ -716,6 +796,8 @@ export const X8D: Record<string, Record<string, string>> = {
     tur: "Mimar seninle savaşamaz",
     zhs: "建筑师无法与你战斗",
     zht: "The Architect 無法與你戰鬥",
+    ara: "المعماري لا يستطيع قتالك",
+    ind: "Sang Arsitek Tidak Bisa Melawanmu",
   },
   "The final encounter has 9,999 HP but can't attack. It's a dialogue scene where your score determines the visual damage.":
     {
@@ -734,6 +816,8 @@ export const X8D: Record<string, Record<string, string>> = {
       tur: "Son karşılaşmanın 9,999 HP'si var ama saldıramaz. Puanının görsel hasarı belirlediği bir diyalog sahnesidir.",
       zhs: "最终对决拥有 9,999 生命值，却无法攻击。这是一段对话场景，你的分数决定画面上的伤害表现。",
       zht: "最終對決擁有 9,999 生命值，卻無法攻擊。這是一段對話場景，你的分數決定畫面上的傷害表現。",
+      ara: "المواجهة الأخيرة لها 9,999 HP لكنها لا تستطيع الهجوم. إنها مشهد حواري تحدد فيه نتيجتك الضرر الظاهر.",
+      ind: "Pertemuan terakhir punya 9,999 HP tapi tidak bisa menyerang. Ini adegan dialog, dan skormu menentukan kerusakan yang terlihat.",
     },
   "Orobas and the Prismatic Gem": {
     eng: "Orobas and the Prismatic Gem",
@@ -751,6 +835,8 @@ export const X8D: Record<string, Record<string, string>> = {
     tur: "Orobas ve Prizmatik Cevher",
     zhs: "欧洛巴斯与棱彩宝石",
     zht: "Orobas 與 Prismatic Gem",
+    ara: "Orobas والجوهرة المنشورية",
+    ind: "Orobas dan Permata Prisma",
   },
   "The Ancient Orobas in Act 2 has a ~8% chance to offer the Prismatic Gem — 33% chance it enters the pool, then 1-in-4 to be picked.":
     {
@@ -769,6 +855,8 @@ export const X8D: Record<string, Record<string, string>> = {
       tur: "2. perdedeki Kadim Orobas'ın Prizmatik Cevher sunma ihtimali ~8% — havuza girme şansı 33%, ardından seçilme şansı 4'te 1.",
       zhs: "第2阶段的远古者欧洛巴斯提供棱彩宝石的概率为 ~8%：有 33% 的概率进入奖池，之后有 1/4 的概率被抽中。",
       zht: "第2幕的遠古者 Orobas 提供 Prismatic Gem 的機率為 ~8%：有 33% 的機率進入獎池，之後有 1/4 的機率被抽中。",
+      ara: "العتيق Orobas في الفصل 2 لديه فرصة ~8% لعرض جوهرة منشورية: فرصة 33% لدخولها المجموعة، ثم 1 من 4 لاختيارها.",
+      ind: "Ancient Orobas di Babak 2 punya peluang ~8% menawarkan Permata Prisma: peluang 33% masuk ke kumpulan, lalu 1 banding 4 untuk terpilih.",
     },
   "Byrdpip Is Invincible and Does Nothing": {
     eng: "Byrdpip Is Invincible and Does Nothing",
@@ -786,6 +874,8 @@ export const X8D: Record<string, Record<string, string>> = {
     tur: "Guşçuk yenilmezdir ve hiçbir şey yapmaz",
     zhs: "异鸟宝宝无敌且什么都不做",
     zht: "Byrdpip 無敵且什麼都不做",
+    ara: "بيردبيب لا يُقهر ولا يفعل شيئاً",
+    ind: "Unggyas Tak Terkalahkan dan Tidak Melakukan Apa-Apa",
   },
   "The Byrdpip pet has 9,999 HP, a hidden health bar, and its only move is NOTHING_MOVE. It has 4 random skins.":
     {
@@ -804,6 +894,8 @@ export const X8D: Record<string, Record<string, string>> = {
       tur: "Guşçuk adlı evcil hayvanın 9,999 HP'si ve gizli bir can çubuğu vardır; tek hamlesi NOTHING_MOVE'dur. 4 rastgele görünümü bulunur.",
       zhs: "宠物异鸟宝宝拥有 9,999 生命值和隐藏的血条，唯一的行动是 NOTHING_MOVE。它有4种随机皮肤。",
       zht: "寵物 Byrdpip 擁有 9,999 生命值和隱藏的血條，唯一的行動是 NOTHING_MOVE。牠有4種隨機造型。",
+      ara: "الحيوان الأليف بيردبيب له 9,999 HP وشريط صحة مخفي، وحركته الوحيدة هي NOTHING_MOVE. وله 4 مظاهر عشوائية.",
+      ind: "Peliharaan Unggyas punya 9,999 HP, bilah HP tersembunyi, dan satu-satunya gerakannya adalah NOTHING_MOVE. Ada 4 skin acak.",
     },
   "Five Relics Are Banned From Shops": {
     eng: "Five Relics Are Banned From Shops",
@@ -821,6 +913,8 @@ export const X8D: Record<string, Record<string, string>> = {
     tur: "Beş kalıntı dükkanlardan men edilmiştir",
     zhs: "五件遗物被禁止出现在商店",
     zht: "五件遺物被禁止出現在商店",
+    ara: "خمسة آثار محظورة من المتاجر",
+    ind: "Lima Pusaka Dilarang Masuk Toko",
   },
   "The Courier, Old Coin, Lucky Fysh, Bowler Hat, and Amethyst Aubergine are hardcoded into the merchant blacklist, so they can never appear in shops.":
     {
@@ -839,6 +933,8 @@ export const X8D: Record<string, Record<string, string>> = {
       tur: "Kurye, Eski Sikke, Şanslı Baluk, Melon Şapka ve Ametist Patlıcan tüccarın kara listesine sabit olarak yazılmıştır, bu yüzden dükkanlarda asla görünmezler.",
       zhs: "送货员、古钱币、招财异鱼、圆顶礼帽和紫水晶茄子被硬编码进商人黑名单，因此永远不会出现在商店里。",
       zht: "The Courier、Old Coin、Lucky Fysh、Bowler Hat 和 Amethyst Aubergine 被硬編碼進商人黑名單，因此永遠不會出現在商店裡。",
+      ara: "الساعي، عملة قديمة، Fysh المحظوظ، قبعة بولر، وباذنجانة جمشتية مدرجة في القائمة السوداء للتاجر داخل الكود، فلا يمكن أن تظهر في المتاجر أبداً.",
+      ind: "Sang Kurir, Koin Tua, Ykan Keberuntungan, Topi Bowling, dan Terong Ametis ditanam langsung di daftar hitam Pedagang, jadi tidak akan pernah muncul di Toko.",
     },
   "The Game Has a Built-In AI Player": {
     eng: "The Game Has a Built-In AI Player",
@@ -856,6 +952,8 @@ export const X8D: Record<string, Record<string, string>> = {
     tur: "Oyunun yerleşik bir yapay zekâ oyuncusu var",
     zhs: "游戏内置了一个AI玩家",
     zht: "遊戲內建了一個AI玩家",
+    ara: "في اللعبة لاعب آلي مدمج",
+    ind: "Game Ini Punya Pemain AI Bawaan",
   },
   "AutoSlay is a full automated player for CI testing — picks a random character, plays to floor 49 with a 25-minute timeout.":
     {
@@ -874,6 +972,8 @@ export const X8D: Record<string, Record<string, string>> = {
       tur: "AutoSlay, CI testleri için tam otomatik bir oyuncudur — rastgele bir karakter seçer ve 25 dakikalık zaman aşımıyla 49. kata kadar oynar.",
       zhs: "AutoSlay 是用于 CI 测试的全自动玩家：随机选择一名角色，在25分钟超时限制内打到第49层。",
       zht: "AutoSlay 是用於 CI 測試的全自動玩家：隨機選擇一名角色，在25分鐘逾時限制內打到第49層。",
+      ara: "AutoSlay لاعب آلي كامل لاختبارات CI: يختار شخصية عشوائية ويلعب حتى الطابق 49 بمهلة 25 دقيقة.",
+      ind: "AutoSlay adalah pemain otomatis penuh untuk pengujian CI: memilih karakter acak, bermain sampai lantai 49 dengan batas waktu 25 menit.",
     },
   "Dev Console God Mode": {
     eng: "Dev Console God Mode",
@@ -891,6 +991,8 @@ export const X8D: Record<string, Record<string, string>> = {
     tur: "Geliştirici Konsolu Tanrı Modu",
     zhs: "开发者控制台的上帝模式",
     zht: "開發者主控台的上帝模式",
+    ara: "وضع الخلود في لوحة المطور",
+    ind: "God Mode Konsol Developer",
   },
   "39 developer console commands including godmode (~1 billion (999,999,999) Strength + Buffer + Regen), instant death, and trailer mode.":
     {
@@ -909,6 +1011,8 @@ export const X8D: Record<string, Record<string, string>> = {
       tur: "39 geliştirici konsol komutu; godmode (~1 milyar (999,999,999) Güç + Tampon + Yenilenme), anında ölüm ve fragman modu dahil.",
       zhs: "39 条开发者控制台命令，包括 godmode (约10亿 (999,999,999) 力量 + 缓冲 + 再生)、即死和预告片模式。",
       zht: "39 條開發者主控台命令，包括 godmode (約10億 (999,999,999) 力量 + 緩衝 + 再生)、即死和預告片模式。",
+      ara: "39 أمراً في لوحة المطور، منها godmode (نحو مليار (999,999,999) قوة + عازل + تجديد الصحة)، والموت الفوري، ووضع العرض الترويجي.",
+      ind: "39 perintah konsol developer termasuk godmode (~1 miliar (999,999,999) Kekuatan + Pengaman + Regenerasi), mati instan, dan mode trailer.",
     },
   "The Deprived: A Hidden Test Character": {
     eng: "The Deprived: A Hidden Test Character",
@@ -926,6 +1030,8 @@ export const X8D: Record<string, Record<string, string>> = {
     tur: "The Deprived: gizli bir test karakteri",
     zhs: "The Deprived：隐藏的测试角色",
     zht: "The Deprived：隱藏的測試角色",
+    ara: "المحروم: شخصية اختبار مخفية",
+    ind: "Terlantar: Karakter Uji Tersembunyi",
   },
   "A debug character with 1,000 HP, 100 energy, an empty deck, and no relics. Purple color scheme, neutral gender.":
     {
@@ -944,5 +1050,7 @@ export const X8D: Record<string, Record<string, string>> = {
       tur: "1,000 HP, 100 enerji, boş bir deste ve hiç kalıntısı olmayan bir hata ayıklama karakteri. Mor renk şeması, nötr cinsiyet.",
       zhs: "一个调试用角色，拥有 1,000 生命值、100 点能量、空牌组且没有遗物。紫色配色，性别中立。",
       zht: "一個除錯用角色，擁有 1,000 生命值、100 點能量、空牌組且沒有遺物。紫色配色，性別中立。",
+      ara: "شخصية تصحيح لها 1,000 HP و100 طاقة ومجموعة فارغة وبلا آثار. ألوانها بنفسجية وجنسها محايد.",
+      ind: "Karakter debug dengan 1,000 HP, 100 Energi, dek kosong, dan tanpa pusaka. Skema warna ungu, gender netral.",
     },
 };

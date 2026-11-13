@@ -16,6 +16,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "A10",
     zhs: "进阶10",
     zht: "晉階10",
+    ara: "A10",
+    ind: "A10",
   },
   "A10 >30% WR": {
     eng: "A10 >30% WR",
@@ -33,6 +35,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "A10 >%30 galibiyet",
     zhs: "进阶10 胜率>30%",
     zht: "晉階10 勝率>30%",
+    ara: "A10 >30% WR",
+    ind: "A10 >30% WR",
   },
   "A10 >50% WR": {
     eng: "A10 >50% WR",
@@ -50,6 +54,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "A10 >%50 galibiyet",
     zhs: "进阶10 胜率>50%",
     zht: "晉階10 勝率>50%",
+    ara: "A10 >50% WR",
+    ind: "A10 >50% WR",
   },
   "A10 >75% WR": {
     eng: "A10 >75% WR",
@@ -67,6 +73,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "A10 >%75 galibiyet",
     zhs: "进阶10 胜率>75%",
     zht: "晉階10 勝率>75%",
+    ara: "A10 >75% WR",
+    ind: "A10 >75% WR",
   },
   "Rest Site": {
     eng: "Rest Site",
@@ -84,6 +92,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Dinlenme Yeri",
     zhs: "休息处",
     zht: "休息處",
+    ara: "موقع راحة",
+    ind: "Peristirahatan",
   },
   "Solo only": {
     eng: "Solo only",
@@ -101,6 +111,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Yalnızca solo",
     zhs: "仅单人",
     zht: "僅單人",
+    ara: "فردي فقط",
+    ind: "Khusus solo",
   },
   clear: {
     eng: "clear",
@@ -118,6 +130,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "temizle",
     zhs: "清除",
     zht: "清除",
+    ara: "مسح",
+    ind: "hapus",
   },
   "Act:": {
     eng: "Act:",
@@ -135,6 +149,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Perde:",
     zhs: "阶段：",
     zht: "幕：",
+    ara: "الفصل:",
+    ind: "Babak:",
   },
   "Type:": {
     eng: "Type:",
@@ -152,6 +168,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Tür:",
     zhs: "类型：",
     zht: "類型：",
+    ara: "النوع:",
+    ind: "Tipe:",
   },
   "Players:": {
     eng: "Players:",
@@ -169,6 +187,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Oyuncular:",
     zhs: "玩家：",
     zht: "玩家：",
+    ara: "اللاعبون:",
+    ind: "Pemain:",
   },
   "Bracket:": {
     eng: "Bracket:",
@@ -186,6 +206,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Kategori:",
     zhs: "分组：",
     zht: "分組：",
+    ara: "الفئة:",
+    ind: "Kelompok:",
   },
   "Version:": {
     eng: "Version:",
@@ -203,6 +225,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Sürüm:",
     zhs: "版本：",
     zht: "版本：",
+    ara: "الإصدار:",
+    ind: "Versi:",
   },
   "Avg Dmg": {
     eng: "Avg Dmg",
@@ -220,6 +244,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Ort. Hasar",
     zhs: "平均伤害",
     zht: "平均傷害",
+    ara: "متوسط الضرر",
+    ind: "Rata-rata Dmg",
   },
   "Avg Turns": {
     eng: "Avg Turns",
@@ -237,6 +263,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Ort. Tur",
     zhs: "平均回合",
     zht: "平均回合",
+    ara: "متوسط الأدوار",
+    ind: "Rata-rata Giliran",
   },
   "Fatal counts, average damage taken, and average turns for every Slay the Spire 2 encounter across submitted community runs. Click any row to expand the per-character breakdown.":
     {
@@ -255,6 +283,8 @@ export const X6C: Record<string, Record<string, string>> = {
       tur: "Topluluğun gönderdiği koşulara göre her Slay the Spire 2 karşılaşması için ölüm sayısı, ortalama alınan hasar ve ortalama tur. Karakter bazlı dökümü açmak için bir satıra tıkla.",
       zhs: "根据社区提交的对局统计的 Slay the Spire 2 每场遭遇的死亡次数、平均承受伤害和平均回合数。点击任意一行展开按角色的明细。",
       zht: "根據社群提交的對局統計的 Slay the Spire 2 每場遭遇的死亡次數、平均承受傷害和平均回合數。點擊任一列展開按角色的明細。",
+      ara: "أعداد الوفيات ومتوسط الضرر المتلقى ومتوسط الأدوار لكل مواجهة في Slay the Spire 2 عبر جولات المجتمع المرسلة. انقر على أي صف لعرض التفصيل حسب الشخصية.",
+      ind: "Jumlah kematian, rata-rata damage yang diterima, dan rata-rata giliran untuk tiap pertemuan Slay the Spire 2 dari perjalanan kiriman komunitas. Klik baris mana saja untuk melihat rincian per karakter.",
     },
   "No encounters match the current filters.": {
     eng: "No encounters match the current filters.",
@@ -272,6 +302,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Mevcut filtrelerle eşleşen karşılaşma yok.",
     zhs: "没有符合当前筛选条件的遭遇。",
     zht: "沒有符合目前篩選條件的遭遇。",
+    ara: "لا توجد مواجهات تطابق عوامل التصفية الحالية.",
+    ind: "Tidak ada pertemuan yang cocok dengan filter saat ini.",
   },
   "No per-character breakdown available.": {
     eng: "No per-character breakdown available.",
@@ -289,6 +321,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Karakter bazlı döküm yok.",
     zhs: "没有按角色的明细。",
     zht: "沒有按角色的明細。",
+    ara: "لا يتوفر تفصيل حسب الشخصية.",
+    ind: "Rincian per karakter tidak tersedia.",
   },
   "Page {page} of {total} ({n} encounters)": {
     eng: "Page {page} of {total} ({n} encounters)",
@@ -306,6 +340,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Sayfa {page} / {total} ({n} karşılaşma)",
     zhs: "第 {page} / {total} 页（{n} 场遭遇）",
     zht: "第 {page} / {total} 頁（{n} 場遭遇）",
+    ara: "الصفحة {page} من {total} ({n} مواجهات)",
+    ind: "Halaman {page} dari {total} ({n} pertemuan)",
   },
   "Sign in to automatically associate runs with your account.": {
     eng: "Sign in to automatically associate runs with your account.",
@@ -323,6 +359,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Koşuları hesabınla otomatik ilişkilendirmek için giriş yap.",
     zhs: "登录后对局会自动关联到你的账户。",
     zht: "登入後對局會自動關聯到你的帳戶。",
+    ara: "سجّل الدخول لربط الجولات بحسابك تلقائيا.",
+    ind: "Masuk untuk otomatis mengaitkan perjalanan dengan akunmu.",
   },
   "Your Runs": {
     eng: "Your Runs",
@@ -340,6 +378,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Koşuların",
     zhs: "你的对局",
     zht: "你的對局",
+    ara: "جولاتك",
+    ind: "Perjalanan Kamu",
   },
   "View all": {
     eng: "View all",
@@ -357,6 +397,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Tümünü gör",
     zhs: "查看全部",
     zht: "查看全部",
+    ara: "عرض الكل",
+    ind: "Lihat semua",
   },
   "No runs yet. Upload .run files above to get started.": {
     eng: "No runs yet. Upload .run files above to get started.",
@@ -374,6 +416,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Henüz koşu yok. Başlamak için yukarıdan .run dosyalarını yükle.",
     zhs: "还没有对局。在上方上传 .run 文件即可开始。",
     zht: "還沒有對局。在上方上傳 .run 檔案即可開始。",
+    ara: "لا توجد جولات بعد. ارفع ملفات .run أعلاه للبدء.",
+    ind: "Belum ada run. Unggah file .run di atas untuk mulai.",
   },
   "Find any run.": {
     eng: "Find any run.",
@@ -391,6 +435,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Herhangi bir koşuyu bul.",
     zhs: "查找任意对局。",
     zht: "尋找任意對局。",
+    ara: "اعثر على أي جولة.",
+    ind: "Temukan perjalanan apa pun.",
   },
   "Type filters into the search bar or use the dropdowns below. Combine anything:":
     {
@@ -409,6 +455,8 @@ export const X6C: Record<string, Record<string, string>> = {
       tur: "Arama çubuğuna filtre yaz ya da aşağıdaki menüleri kullan. İstediğini birleştir:",
       zhs: "在搜索栏输入筛选条件，或使用下方的下拉菜单。可以任意组合：",
       zht: "在搜尋列輸入篩選條件，或使用下方的下拉選單。可以任意組合：",
+      ara: "اكتب عوامل التصفية في شريط البحث أو استخدم القوائم المنسدلة أدناه. اجمع ما تشاء:",
+      ind: "Ketik filter di kolom pencarian atau pakai dropdown di bawah. Gabungkan sesukamu:",
     },
   "finds high-ascension Ironclad runs that had Akabeko.": {
     eng: "finds high-ascension Ironclad runs that had Akabeko.",
@@ -426,6 +474,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Akabeko'su olan yüksek yükseliş Ironclad koşularını bulur.",
     zhs: "可找到持有赤牛的高进阶铁甲战士对局。",
     zht: "可找到持有赤牛的高晉階鐵甲戰士對局。",
+    ara: "يعثر على جولات المدرع عالية الصعود التي تضمنت Akabeko.",
+    ind: "menemukan perjalanan Ironclad Angkatan tinggi yang punya Akabeko.",
   },
   "requires multiple cards.": {
     eng: "requires multiple cards.",
@@ -443,6 +493,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "birden fazla kart gerektirir.",
     zhs: "要求同时包含多张卡牌。",
     zht: "要求同時包含多張卡牌。",
+    ara: "يشترط عدة بطاقات.",
+    ind: "mewajibkan beberapa kartu.",
   },
   "matches a range.": {
     eng: "matches a range.",
@@ -460,6 +512,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "bir aralıkla eşleşir.",
     zhs: "匹配一个范围。",
     zht: "匹配一個範圍。",
+    ara: "يطابق نطاقا.",
+    ind: "cocok dengan satu rentang.",
   },
   "spans patches.": {
     eng: "spans patches.",
@@ -477,6 +531,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "birden fazla yamayı kapsar.",
     zhs: "跨越多个版本。",
     zht: "跨越多個版本。",
+    ara: "يشمل عدة تحديثات.",
+    ind: "mencakup beberapa patch.",
   },
   "Click any run to see the full breakdown.": {
     eng: "Click any run to see the full breakdown.",
@@ -494,6 +550,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Tam dökümü görmek için bir koşuya tıkla.",
     zhs: "点击任意对局查看完整明细。",
     zht: "點擊任意對局查看完整明細。",
+    ara: "انقر على أي جولة لعرض التفصيل الكامل.",
+    ind: "Klik perjalanan mana saja untuk melihat rincian lengkap.",
   },
   'Try: "{example}"': {
     eng: 'Try: "{example}"',
@@ -511,6 +569,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: 'Dene: "{example}"',
     zhs: '试试："{example}"',
     zht: '試試："{example}"',
+    ara: 'جرّب: "{example}"',
+    ind: 'Coba: "{example}"',
   },
   "Expressions:": {
     eng: "Expressions:",
@@ -528,6 +588,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "İfadeler:",
     zhs: "表达式：",
     zht: "運算式：",
+    ara: "التعابير:",
+    ind: "Ekspresi:",
   },
   "(combine for AND)": {
     eng: "(combine for AND)",
@@ -545,6 +607,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "(VE için birleştir)",
     zhs: "（组合表示且）",
     zht: "（組合表示且）",
+    ara: "(اجمعها للحصول على AND)",
+    ind: "(gabungkan untuk AND)",
   },
   "(bought at a shop: cards, relics, or potions)": {
     eng: "(bought at a shop: cards, relics, or potions)",
@@ -562,6 +626,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "(dükkândan alınan: kart, kalıntı veya iksir)",
     zhs: "（在商店购买：卡牌、遗物或药水）",
     zht: "（在商店購買：卡牌、遺物或藥水）",
+    ara: "(اشتُريت من متجر: بطاقات أو آثار أو جرعات)",
+    ind: "(dibeli di toko: kartu, pusaka, atau ramuan)",
   },
   "(submitter win rate, min 5 runs)": {
     eng: "(submitter win rate, min 5 runs)",
@@ -579,6 +645,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "(gönderenin galibiyet oranı, en az 5 koşu)",
     zhs: "（提交者胜率，至少 5 场对局）",
     zht: "（提交者勝率，至少 5 場對局）",
+    ara: "(معدل فوز المرسِل، 5 جولات على الأقل)",
+    ind: "(tingkat kemenangan pengirim, min 5 perjalanan)",
   },
   "Today’s Daily": {
     eng: "Today’s Daily",
@@ -596,6 +664,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Bugünün Günlüğü",
     zhs: "今日每日挑战",
     zht: "今日每日挑戰",
+    ara: "التحدي اليومي لهذا اليوم",
+    ind: "Harian Hari Ini",
   },
   "Ascension (e.g. 10, 3-7)": {
     eng: "Ascension (e.g. 10, 3-7)",
@@ -613,6 +683,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Yükseliş (örn. 10, 3-7)",
     zhs: "进阶（如 10、3-7）",
     zht: "晉階（如 10、3-7）",
+    ara: "الصعود (مثلا 10، 3-7)",
+    ind: "Angkatan (mis. 10, 3-7)",
   },
   "Floor {n}": {
     eng: "Floor {n}",
@@ -630,6 +702,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Kat {n}",
     zhs: "第 {n} 层",
     zht: "第 {n} 層",
+    ara: "الطابق {n}",
+    ind: "Lantai {n}",
   },
   "chose {choice}": {
     eng: "chose {choice}",
@@ -647,6 +721,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "{choice} seçildi",
     zhs: "选择了 {choice}",
     zht: "選擇了 {choice}",
+    ara: "اختار {choice}",
+    ind: "memilih {choice}",
   },
   "Based on community win-rate data, {name} (Codex Score {score}) is currently the highest-rated card across all characters. Tier rankings update every 30 minutes as new runs are submitted.":
     {
@@ -665,6 +741,8 @@ export const X6C: Record<string, Record<string, string>> = {
       tur: "Topluluk galibiyet verilerine göre {name} (Codex Score {score}) şu anda tüm karakterler arasında en yüksek puanlı kart. Kademe sıralamaları yeni koşular gönderildikçe her 30 dakikada bir güncellenir.",
       zhs: "根据社区胜率数据，{name}（Codex Score {score}）是目前所有角色中评分最高的卡牌。梯度排名会随着新对局的提交每 30 分钟更新一次。",
       zht: "根據社群勝率資料，{name}（Codex Score {score}）是目前所有角色中評分最高的卡牌。梯度排名會隨著新對局的提交每 30 分鐘更新一次。",
+      ara: "بناء على بيانات معدل الفوز من المجتمع، {name} (Codex Score {score}) هي حاليا البطاقة الأعلى تقييما بين كل الشخصيات. تتحدث تصنيفات الفئات كل 30 دقيقة مع إرسال جولات جديدة.",
+      ind: "Berdasarkan data tingkat kemenangan komunitas, {name} (Codex Score {score}) saat ini adalah kartu dengan nilai tertinggi di semua karakter. Peringkat tier diperbarui tiap 30 menit seiring perjalanan baru dikirim.",
     },
   "{name} sits at the top of the relic tier list with a Codex Score of {score}, derived from community-submitted run win rates with Bayesian shrinkage so low-pick outliers don't dominate the rankings.":
     {
@@ -683,6 +761,8 @@ export const X6C: Record<string, Record<string, string>> = {
       tur: "{name}, topluluk koşularının galibiyet oranlarından Bayes küçültmesiyle türetilen {score} Codex Score ile kalıntı kademe listesinin en üstünde; böylece az seçilen uç değerler sıralamayı ele geçirmez.",
       zhs: "{name} 以 {score} 的 Codex Score 位居遗物梯度榜首。该分数由社区提交对局的胜率经贝叶斯收缩得出，避免选取次数少的异常值主导排名。",
       zht: "{name} 以 {score} 的 Codex Score 位居遺物梯度榜首。該分數由社群提交對局的勝率經貝氏收縮得出，避免選取次數少的異常值主導排名。",
+      ara: "{name} يتصدر قائمة تصنيف الآثار بقيمة Codex Score تبلغ {score}، مستمدة من معدلات فوز الجولات التي يرسلها المجتمع مع تقريب بايزي حتى لا تهيمن القيم الشاذة قليلة الاختيار على الترتيب.",
+      ind: "{name} ada di puncak tier list pusaka dengan Codex Score {score}, diturunkan dari tingkat kemenangan perjalanan kiriman komunitas dengan penyusutan Bayesian supaya outlier yang jarang dipilih tidak mendominasi peringkat.",
     },
   "{name} (Codex Score {score}) is the top-rated potion based on the win rate of runs that included it.":
     {
@@ -701,6 +781,8 @@ export const X6C: Record<string, Record<string, string>> = {
       tur: "{name} (Codex Score {score}), onu içeren koşuların galibiyet oranına göre en yüksek puanlı iksir.",
       zhs: "{name}（Codex Score {score}）是根据包含它的对局胜率评出的最高分药水。",
       zht: "{name}（Codex Score {score}）是根據包含它的對局勝率評出的最高分藥水。",
+      ara: "{name} (Codex Score {score}) هي الجرعة الأعلى تقييما بناء على معدل فوز الجولات التي ضمتها.",
+      ind: "{name} (Codex Score {score}) adalah ramuan dengan nilai tertinggi berdasarkan tingkat kemenangan perjalanan yang memakainya.",
     },
   "Tiers are derived from the Codex Score, a Bayesian-shrunk metric that compares each entity's win rate to the global baseline, so a 5-pick perfect-record card doesn't outrank a 500-pick reliable one.":
     {
@@ -719,6 +801,8 @@ export const X6C: Record<string, Record<string, string>> = {
       tur: "Kademeler, her öğenin galibiyet oranını genel taban çizgisiyle karşılaştıran Bayes küçültmeli bir ölçüt olan Codex Score'dan türetilir; böylece 5 seçimle kusursuz sicili olan bir kart, 500 seçimli güvenilir bir kartı geçmez.",
       zhs: "梯度来自 Codex Score，这是一个经贝叶斯收缩的指标，将每个条目的胜率与全局基线比较，使 5 次选取全胜的卡牌不会超过 500 次选取的稳定卡牌。",
       zht: "梯度來自 Codex Score，這是一個經貝氏收縮的指標，將每個條目的勝率與全域基線比較，使 5 次選取全勝的卡牌不會超過 500 次選取的穩定卡牌。",
+      ara: "الفئات مستمدة من Codex Score، وهو مقياس مقرَّب بطريقة بايزية يقارن معدل فوز كل عنصر بالمتوسط العام، فلا تتقدم بطاقة بسجل مثالي من 5 اختيارات على بطاقة موثوقة من 500 اختيار.",
+      ind: "Tier diturunkan dari Codex Score, metrik dengan penyusutan Bayesian yang membandingkan tingkat kemenangan tiap entitas dengan rata-rata global, jadi kartu dengan rekor sempurna dari 5 pilihan tidak mengalahkan kartu andal dari 500 pilihan.",
     },
   "Click any tier list below to see the full ranking with character or pool filters.":
     {
@@ -737,6 +821,8 @@ export const X6C: Record<string, Record<string, string>> = {
       tur: "Karakter veya havuz filtreleriyle tam sıralamayı görmek için aşağıdaki bir kademe listesine tıkla.",
       zhs: "点击下方任意梯度列表，查看带角色或卡池筛选的完整排名。",
       zht: "點擊下方任意梯度列表，查看帶角色或卡池篩選的完整排名。",
+      ara: "انقر على أي قائمة تصنيف أدناه لعرض الترتيب الكامل مع عوامل تصفية الشخصية أو المجموعة.",
+      ind: "Klik tier list mana saja di bawah untuk melihat peringkat lengkap dengan filter karakter atau pool.",
     },
   "Each entity is given a 0–100 Codex Score based on the win rate of runs that included it, shrunk toward the global baseline so a 5-pick perfect-record card doesn't outrank a 500-pick reliable one. Scores map to letter grades:":
     {
@@ -755,6 +841,8 @@ export const X6C: Record<string, Record<string, string>> = {
       tur: "Her öğeye, onu içeren koşuların galibiyet oranına dayanan 0–100 arası bir Codex Score verilir; genel taban çizgisine doğru küçültülür, böylece 5 seçimle kusursuz sicili olan bir kart 500 seçimli güvenilir bir kartı geçmez. Puanlar harf notlarına karşılık gelir:",
       zhs: "每个条目根据包含它的对局胜率获得 0–100 的 Codex Score，并向全局基线收缩，使 5 次选取全胜的卡牌不会超过 500 次选取的稳定卡牌。分数对应字母等级：",
       zht: "每個條目根據包含它的對局勝率獲得 0–100 的 Codex Score，並向全域基線收縮，使 5 次選取全勝的卡牌不會超過 500 次選取的穩定卡牌。分數對應字母等級：",
+      ara: "يحصل كل عنصر على Codex Score من 0 إلى 100 بناء على معدل فوز الجولات التي ضمته، مع تقريبه نحو المتوسط العام حتى لا تتقدم بطاقة بسجل مثالي من 5 اختيارات على بطاقة موثوقة من 500 اختيار. تتحول النتائج إلى درجات:",
+      ind: "Tiap entitas diberi Codex Score 0–100 berdasarkan tingkat kemenangan perjalanan yang memakainya, ditarik ke rata-rata global supaya kartu dengan rekor sempurna dari 5 pilihan tidak mengalahkan kartu andal dari 500 pilihan. Skor diubah menjadi nilai huruf:",
     },
   "top of the win-rate signal": {
     eng: "top of the win-rate signal",
@@ -772,6 +860,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "galibiyet sinyalinin zirvesi",
     zhs: "胜率信号的顶端",
     zht: "勝率訊號的頂端",
+    ara: "قمة إشارة معدل الفوز",
+    ind: "puncak sinyal tingkat kemenangan",
   },
   "wins above baseline reliably": {
     eng: "wins above baseline reliably",
@@ -789,6 +879,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "taban çizgisinin üzerinde güvenilir şekilde kazanır",
     zhs: "稳定高于基线",
     zht: "穩定高於基線",
+    ara: "يفوز فوق المتوسط العام بثبات",
+    ind: "konsisten menang di atas rata-rata",
   },
   "above-average": {
     eng: "above-average",
@@ -806,6 +898,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "ortalamanın üstünde",
     zhs: "高于平均",
     zht: "高於平均",
+    ara: "فوق المتوسط",
+    ind: "di atas rata-rata",
   },
   average: {
     eng: "average",
@@ -823,6 +917,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "ortalama",
     zhs: "平均",
     zht: "平均",
+    ara: "متوسط",
+    ind: "rata-rata",
   },
   "below average, often niche": {
     eng: "below average, often niche",
@@ -840,6 +936,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "ortalamanın altında, çoğu zaman niş",
     zhs: "低于平均，通常较小众",
     zht: "低於平均，通常較小眾",
+    ara: "دون المتوسط، وغالبا لاستخدامات محدودة",
+    ind: "di bawah rata-rata, sering kali niche",
   },
   "bottom of the signal, often a high-exposure staple": {
     eng: "bottom of the signal, often a high-exposure staple",
@@ -857,6 +955,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "sinyalin dibi, çoğu zaman çok oynanan temel bir kart",
     zhs: "信号的底端，通常是高曝光的常用牌",
     zht: "訊號的底端，通常是高曝光的常用牌",
+    ara: "قاع الإشارة، وغالبا عنصر أساسي كثير الظهور",
+    ind: "dasar sinyal, sering kali andalan yang sangat sering muncul",
   },
   'This is a naive win-rate signal, not a ruling. It carries known biases, heavily-used staples sink even when they\'re fine, and late-game rares float because they only show up in runs already going well. Read a low grade as "high exposure" as often as "weak."':
     {
@@ -875,6 +975,8 @@ export const X6C: Record<string, Record<string, string>> = {
       tur: 'Bu basit bir galibiyet sinyali, bir hüküm değil. Bilinen önyargıları var: çok oynanan temel kartlar iyi olsalar bile düşer, geç oyun nadirleri ise yalnızca zaten iyi giden koşularda göründükleri için yükselir. Düşük bir notu "zayıf" kadar "çok oynanan" olarak da oku.',
       zhs: '这只是一个简单的胜率信号，不是定论。它有已知偏差：高频使用的常用牌即使不错也会下沉，后期稀有牌只出现在已经顺利的对局中所以会上浮。低评级既可能意味着"弱"，也同样可能意味着"曝光高"。',
       zht: '這只是一個簡單的勝率訊號，不是定論。它有已知偏差：高頻使用的常用牌即使不錯也會下沉，後期稀有牌只出現在已經順利的對局中所以會上浮。低評級既可能意味著"弱"，也同樣可能意味著"曝光高"。',
+      ara: 'هذه إشارة معدل فوز بسيطة وليست حكما نهائيا. فيها انحيازات معروفة: العناصر الأساسية كثيرة الاستخدام تهبط حتى لو كانت جيدة، والنوادر المتأخرة ترتفع لأنها لا تظهر إلا في جولات تسير جيدا أصلا. اقرأ الدرجة المنخفضة على أنها "كثرة ظهور" بقدر ما هي "ضعف."',
+      ind: 'Ini sinyal tingkat kemenangan yang naif, bukan vonis. Ada bias yang sudah diketahui: andalan yang sering dipakai tenggelam walau sebenarnya bagus, dan kartu langka akhir game terangkat karena hanya muncul di perjalanan yang memang sudah berjalan baik. Baca nilai rendah sebagai "sering muncul" sesering "lemah."',
     },
   "{char} Cards": {
     eng: "{char} Cards",
@@ -892,6 +994,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "{char} Kartları",
     zhs: "{char}卡牌",
     zht: "{char}卡牌",
+    ara: "بطاقات {char}",
+    ind: "Kartu {char}",
   },
   "{scope} Tier List": {
     eng: "{scope} Tier List",
@@ -909,6 +1013,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "{scope} Kademe Listesi",
     zhs: "{scope}梯度列表",
     zht: "{scope}梯度列表",
+    ara: "قائمة تصنيف {scope}",
+    ind: "Tier List {scope}",
   },
   "{char} Card Tier List": {
     eng: "{char} Card Tier List",
@@ -926,6 +1032,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "{char} Kart Kademe Listesi",
     zhs: "{char}卡牌梯度列表",
     zht: "{char}卡牌梯度列表",
+    ara: "قائمة تصنيف بطاقات {char}",
+    ind: "Tier List Kartu {char}",
   },
   "{char} card tier list for {game}. Every {char} card ranked S through F based on community win-rate data.":
     {
@@ -944,6 +1052,8 @@ export const X6C: Record<string, Record<string, string>> = {
       tur: "{game} için {char} kart kademe listesi. Her {char} kartı topluluk galibiyet verilerine göre S'den F'ye sıralandı.",
       zhs: "{game} {char}卡牌梯度列表。根据社区胜率数据将每张{char}卡牌评为 S 到 F。",
       zht: "{game} {char}卡牌梯度列表。根據社群勝率資料將每張{char}卡牌評為 S 到 F。",
+      ara: "قائمة تصنيف بطاقات {char} في {game}. كل بطاقات {char} مرتبة من S إلى F بناء على بيانات معدل الفوز من المجتمع.",
+      ind: "Tier list kartu {char} untuk {game}. Semua kartu {char} diurutkan S sampai F berdasarkan data tingkat kemenangan komunitas.",
     },
   "Every {game} card ranked S through F. Tier list driven by Codex Score, community-submitted run win rates with Bayesian shrinkage.":
     {
@@ -962,6 +1072,8 @@ export const X6C: Record<string, Record<string, string>> = {
       tur: "Her {game} kartı S'den F'ye sıralandı. Codex Score'a, yani Bayes küçültmeli topluluk koşu galibiyet oranlarına dayalı kademe listesi.",
       zhs: "{game} 全部卡牌评为 S 到 F。梯度列表基于 Codex Score，即经贝叶斯收缩的社区提交对局胜率。",
       zht: "{game} 全部卡牌評為 S 到 F。梯度列表基於 Codex Score，即經貝氏收縮的社群提交對局勝率。",
+      ara: "كل بطاقات {game} مرتبة من S إلى F. قائمة تصنيف تعتمد على Codex Score، أي معدلات فوز الجولات التي يرسلها المجتمع مع تقريب بايزي.",
+      ind: "Semua kartu {game} diurutkan S sampai F. Tier list berbasis Codex Score, yaitu tingkat kemenangan perjalanan kiriman komunitas dengan penyusutan Bayesian.",
     },
   "{game} {heading} ranked by {metric} from community-submitted run data.": {
     eng: "{game} {heading} ranked by {metric} from community-submitted run data.",
@@ -979,6 +1091,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Topluluk koşu verilerinden {metric} ile sıralanan {game} {heading}.",
     zhs: "{game} {heading}，根据社区提交的对局数据按 {metric} 排序。",
     zht: "{game} {heading}，根據社群提交的對局資料按 {metric} 排序。",
+    ara: "{heading} في {game} مرتبة حسب {metric} من بيانات الجولات التي يرسلها المجتمع.",
+    ind: "{heading} {game} diurutkan menurut {metric} dari data perjalanan kiriman komunitas.",
   },
   "Ranked by Codex Elo, a revealed-preference rating from which cards players take over the ones they skip. Banded by percentile, so S is the most-drafted slice. Skill-agnostic and not exposure-weighted, so it dodges the biases the win-rate Score carries.":
     {
@@ -997,6 +1111,8 @@ export const X6C: Record<string, Record<string, string>> = {
       tur: "Oyuncuların atladıkları yerine aldıkları kartlardan türetilen, açığa çıkan tercih derecesi Codex Elo'ya göre sıralandı. Yüzdelik dilimlere ayrıldı, yani S en çok seçilen dilim. Beceriden bağımsız ve maruziyetle ağırlıklandırılmadığı için galibiyet oranı Score'unun taşıdığı önyargılardan kaçınır.",
       zhs: "按 Codex Elo 排序，这是根据玩家选取而非跳过的卡牌得出的显示偏好评分。按百分位分档，因此 S 是被选取最多的一档。与水平无关且不按曝光加权，因此避开了胜率 Score 的偏差。",
       zht: "按 Codex Elo 排序，這是根據玩家選取而非跳過的卡牌得出的顯示偏好評分。按百分位分檔，因此 S 是被選取最多的一檔。與水準無關且不按曝光加權，因此避開了勝率 Score 的偏差。",
+      ara: "مرتبة حسب Codex Elo، وهو تقييم للتفضيل الفعلي مبني على البطاقات التي يأخذها اللاعبون مقابل التي يتخطونها. الفئات مقسمة حسب الشرائح المئوية، لذا تضم S الشريحة الأكثر اختيارا. لا يتأثر بمهارة اللاعب وغير مرجح بمدة الظهور، فيتجنب الانحيازات التي يحملها Score المبني على نسبة الفوز.",
+      ind: "Diurutkan menurut Codex Elo, rating preferensi nyata dari kartu yang diambil pemain dibanding yang mereka lewati. Dibagi per persentil, jadi S adalah kelompok yang paling sering diambil. Tidak bergantung pada skill dan tidak dibobot paparan, jadi terhindar dari bias yang dibawa Score berbasis tingkat kemenangan.",
     },
   "Ranked by Codex Score, community-submitted run win rates, Bayesian-shrunk so low-pick cards stay near neutral. It's a naive win-rate signal with known biases (high-exposure staples sink, late rares float), not a verdict, switch to Codex Elo for the less-confounded view. Click any card for full stats.":
     {
@@ -1015,6 +1131,8 @@ export const X6C: Record<string, Record<string, string>> = {
       tur: "Az seçilen kartların nötre yakın kalması için Bayes küçültmesi uygulanmış topluluk koşu galibiyet oranları olan Codex Score'a göre sıralandı. Bilinen önyargıları olan (çok oynanan temel kartlar düşer, geç nadirler yükselir) basit bir galibiyet sinyali, bir hüküm değil; daha az karışık görünüm için Codex Elo'ya geç. Tüm istatistikler için bir karta tıkla.",
       zhs: "按 Codex Score 排序，即经贝叶斯收缩的社区提交对局胜率，使选取少的卡牌保持接近中性。这是一个带有已知偏差的简单胜率信号（高曝光常用牌下沉，后期稀有牌上浮），不是定论；切换到 Codex Elo 可查看偏差更小的视图。点击任意卡牌查看完整数据。",
       zht: "按 Codex Score 排序，即經貝氏收縮的社群提交對局勝率，使選取少的卡牌保持接近中性。這是一個帶有已知偏差的簡單勝率訊號（高曝光常用牌下沉，後期稀有牌上浮），不是定論；切換到 Codex Elo 可查看偏差更小的視圖。點擊任意卡牌查看完整資料。",
+      ara: "مرتبة حسب Codex Score، أي نسب الفوز في الجولات التي يرسلها المجتمع، مع انكماش بايزي يبقي البطاقات قليلة الاختيار قرب الحياد. إنها إشارة نسبة فوز بسيطة ذات انحيازات معروفة (البطاقات الأساسية كثيرة الظهور تهبط، والنادرة المتأخرة ترتفع) وليست حكما نهائيا، انتقل إلى Codex Elo لرؤية أقل تأثرا بالعوامل الخارجية. انقر أي بطاقة لعرض الإحصائيات الكاملة.",
+      ind: "Diurutkan menurut Codex Score, tingkat kemenangan dari perjalanan kiriman komunitas, dengan penyusutan Bayesian agar kartu yang jarang diambil tetap dekat netral. Ini sinyal tingkat kemenangan yang naif dengan bias yang sudah diketahui (kartu andalan berpaparan tinggi turun, kartu langka akhir permainan naik), bukan vonis, beralihlah ke Codex Elo untuk tampilan yang lebih sedikit terdistorsi. Klik kartu mana pun untuk statistik lengkap.",
     },
   "Known biases": {
     eng: "Known biases",
@@ -1032,6 +1150,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Bilinen önyargılar",
     zhs: "已知偏差",
     zht: "已知偏差",
+    ara: "انحيازات معروفة",
+    ind: "Bias yang diketahui",
   },
   "Rank by": {
     eng: "Rank by",
@@ -1049,6 +1169,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Sıralama",
     zhs: "排序依据",
     zht: "排序依據",
+    ara: "الترتيب حسب",
+    ind: "Urutkan menurut",
   },
   "All 63 Potions Ranked": {
     eng: "All 63 Potions Ranked",
@@ -1066,6 +1188,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "63 İksirin Tamamı Sıralandı",
     zhs: "全部 63 种药水排名",
     zht: "全部 63 種藥水排名",
+    ara: "ترتيب جميع الجرعات الـ63",
+    ind: "Peringkat Semua 63 Ramuan",
   },
   "Every {game} potion ranked S through F by community win rate. Codex Score with Bayesian shrinkage. Updated every 30 minutes.":
     {
@@ -1084,6 +1208,8 @@ export const X6C: Record<string, Record<string, string>> = {
       tur: "Her {game} iksiri topluluk galibiyet oranına göre S'den F'ye sıralandı. Bayes küçültmeli Codex Score. Her 30 dakikada güncellenir.",
       zhs: "{game} 全部药水按社区胜率评为 S 到 F。经贝叶斯收缩的 Codex Score。每 30 分钟更新。",
       zht: "{game} 全部藥水按社群勝率評為 S 到 F。經貝氏收縮的 Codex Score。每 30 分鐘更新。",
+      ara: "كل جرعات {game} مرتبة من S إلى F حسب نسبة فوز المجتمع. Codex Score مع انكماش بايزي. تحديث كل 30 دقيقة.",
+      ind: "Semua ramuan {game} diperingkat dari S sampai F menurut tingkat kemenangan komunitas. Codex Score dengan penyusutan Bayesian. Diperbarui setiap 30 menit.",
     },
   "Every {game} potion ranked S through F by community win-rate data.": {
     eng: "Every {game} potion ranked S through F by community win-rate data.",
@@ -1101,6 +1227,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Her {game} iksiri topluluk galibiyet verilerine göre S'den F'ye sıralandı.",
     zhs: "{game} 全部药水根据社区胜率数据评为 S 到 F。",
     zht: "{game} 全部藥水根據社群勝率資料評為 S 到 F。",
+    ara: "كل جرعات {game} مرتبة من S إلى F حسب بيانات نسبة فوز المجتمع.",
+    ind: "Semua ramuan {game} diperingkat dari S sampai F menurut data tingkat kemenangan komunitas.",
   },
   "Every {game} potion ranked by Codex Score from community-submitted run win rates.":
     {
@@ -1119,6 +1247,8 @@ export const X6C: Record<string, Record<string, string>> = {
       tur: "Topluluk koşu galibiyet oranlarından türetilen Codex Score ile sıralanan her {game} iksiri.",
       zhs: "{game} 全部药水，根据社区提交对局胜率得出的 Codex Score 排序。",
       zht: "{game} 全部藥水，根據社群提交對局勝率得出的 Codex Score 排序。",
+      ara: "كل جرعات {game} مرتبة حسب Codex Score من نسب الفوز في الجولات التي يرسلها المجتمع.",
+      ind: "Semua ramuan {game} diperingkat menurut Codex Score dari tingkat kemenangan perjalanan kiriman komunitas.",
     },
   "Ranked by Codex Score, community win-rate data with Bayesian shrinkage. Click any potion for full stats.":
     {
@@ -1137,6 +1267,8 @@ export const X6C: Record<string, Record<string, string>> = {
       tur: "Bayes küçültmeli topluluk galibiyet verileri olan Codex Score'a göre sıralandı. Tüm istatistikler için bir iksire tıkla.",
       zhs: "按 Codex Score 排序，即经贝叶斯收缩的社区胜率数据。点击任意药水查看完整数据。",
       zht: "按 Codex Score 排序，即經貝氏收縮的社群勝率資料。點擊任意藥水查看完整資料。",
+      ara: "مرتبة حسب Codex Score، أي بيانات نسبة فوز المجتمع مع انكماش بايزي. انقر أي جرعة لعرض الإحصائيات الكاملة.",
+      ind: "Diurutkan menurut Codex Score, data tingkat kemenangan komunitas dengan penyusutan Bayesian. Klik ramuan mana pun untuk statistik lengkap.",
     },
   "{scope} Relic Tier List": {
     eng: "{scope} Relic Tier List",
@@ -1154,6 +1286,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "{scope} Kalıntı Kademe Listesi",
     zhs: "{scope}遗物梯度列表",
     zht: "{scope}遺物梯度列表",
+    ara: "قائمة تصنيف الآثار: {scope}",
+    ind: "Tier List Pusaka {scope}",
   },
   "{ancient} relic tier list for {game}. Every relic {ancient} can offer ranked S through F by community win rate, so you know which pick wins runs.":
     {
@@ -1172,6 +1306,8 @@ export const X6C: Record<string, Record<string, string>> = {
       tur: "{game} için {ancient} kalıntı kademe listesi. {ancient}'ın sunabileceği her kalıntı, hangi seçimin koşu kazandırdığını bilmen için topluluk galibiyet oranına göre S'den F'ye sıralandı.",
       zhs: "{game} {ancient}遗物梯度列表。{ancient}可提供的每件遗物按社区胜率评为 S 到 F，让你知道哪个选择能赢下对局。",
       zht: "{game} {ancient}遺物梯度列表。{ancient}可提供的每件遺物按社群勝率評為 S 到 F，讓你知道哪個選擇能贏下對局。",
+      ara: "قائمة تصنيف آثار {ancient} في {game}. كل أثر يمكن أن يعرضه {ancient} مرتب من S إلى F حسب نسبة فوز المجتمع، لتعرف أي اختيار يكسب الجولات.",
+      ind: "Tier list pusaka {ancient} untuk {game}. Semua pusaka yang bisa ditawarkan {ancient} diperingkat dari S sampai F menurut tingkat kemenangan komunitas, jadi kamu tahu pilihan mana yang memenangkan perjalanan.",
     },
   "{game} relics ranked by the win rate of runs that picked them up in Act {act}, graded against other Act {act} pickups.":
     {
@@ -1190,6 +1326,8 @@ export const X6C: Record<string, Record<string, string>> = {
       tur: "{game} kalıntıları, onları Perde {act}'te alan koşuların galibiyet oranına göre sıralandı ve diğer Perde {act} alımlarına karşı notlandı.",
       zhs: "{game} 遗物按在第 {act} 阶段拾取它们的对局胜率排序，并与其他第 {act} 阶段拾取比较评级。",
       zht: "{game} 遺物按在第 {act} 幕拾取它們的對局勝率排序，並與其他第 {act} 幕拾取比較評級。",
+      ara: "آثار {game} مرتبة حسب نسبة فوز الجولات التي حصلت عليها في الفصل {act}، ومقيّمة مقارنة بما يُحصل عليه في الفصل {act}.",
+      ind: "Pusaka {game} diperingkat menurut tingkat kemenangan perjalanan yang mendapatkannya di Babak {act}, dinilai terhadap perolehan lain di Babak {act}.",
     },
   "{pool} relic tier list for {game}. Every relic in the {pool} pool ranked S through F by community win rate.":
     {
@@ -1208,6 +1346,8 @@ export const X6C: Record<string, Record<string, string>> = {
       tur: "{game} için {pool} kalıntı kademe listesi. {pool} havuzundaki her kalıntı topluluk galibiyet oranına göre S'den F'ye sıralandı.",
       zhs: "{game} {pool}遗物梯度列表。{pool}池中的每件遗物按社区胜率评为 S 到 F。",
       zht: "{game} {pool}遺物梯度列表。{pool}池中的每件遺物按社群勝率評為 S 到 F。",
+      ara: "قائمة تصنيف آثار مجموعة {pool} في {game}. كل أثر في مجموعة {pool} مرتب من S إلى F حسب نسبة فوز المجتمع.",
+      ind: "Tier list pusaka {pool} untuk {game}. Semua pusaka di kumpulan {pool} diperingkat dari S sampai F menurut tingkat kemenangan komunitas.",
     },
   "Every {game} relic ranked S through F. Codex Score from community-submitted run win rates with Bayesian shrinkage.":
     {
@@ -1226,6 +1366,8 @@ export const X6C: Record<string, Record<string, string>> = {
       tur: "Her {game} kalıntısı S'den F'ye sıralandı. Bayes küçültmeli topluluk koşu galibiyet oranlarından Codex Score.",
       zhs: "{game} 全部遗物评为 S 到 F。经贝叶斯收缩的社区提交对局胜率得出的 Codex Score。",
       zht: "{game} 全部遺物評為 S 到 F。經貝氏收縮的社群提交對局勝率得出的 Codex Score。",
+      ara: "كل آثار {game} مرتبة من S إلى F. Codex Score من نسب الفوز في الجولات التي يرسلها المجتمع مع انكماش بايزي.",
+      ind: "Semua pusaka {game} diperingkat dari S sampai F. Codex Score dari tingkat kemenangan perjalanan kiriman komunitas dengan penyusutan Bayesian.",
     },
   "{game} {heading} ranked by Codex Score from community-submitted run win rates.":
     {
@@ -1244,6 +1386,8 @@ export const X6C: Record<string, Record<string, string>> = {
       tur: "Topluluk koşu galibiyet oranlarından türetilen Codex Score ile sıralanan {game} {heading}.",
       zhs: "{game} {heading}，根据社区提交对局胜率得出的 Codex Score 排序。",
       zht: "{game} {heading}，根據社群提交對局勝率得出的 Codex Score 排序。",
+      ara: "{heading} في {game} مرتبة حسب Codex Score من نسب الفوز في الجولات التي يرسلها المجتمع.",
+      ind: "{heading} {game} diperingkat menurut Codex Score dari tingkat kemenangan perjalanan kiriman komunitas.",
     },
   "Graded within {ancient}'s pool: S is the best of these offers and F the worst, relative to each other rather than the whole game. You always pick from exactly these options, so relative placement answers the actual decision. Tiles still show the absolute Codex Score. Click any relic for full stats.":
     {
@@ -1262,6 +1406,8 @@ export const X6C: Record<string, Record<string, string>> = {
       tur: "{ancient} havuzu içinde notlandı: S bu tekliflerin en iyisi, F en kötüsü; tüm oyuna değil birbirlerine göre. Her zaman tam olarak bu seçenekler arasından seçersin, bu yüzden göreli yerleşim asıl kararı yanıtlar. Karolar yine mutlak Codex Score'u gösterir. Tüm istatistikler için bir kalıntıya tıkla.",
       zhs: "在{ancient}的池内评级：S 是这些提供中最好的，F 是最差的，相对彼此而非整个游戏。你总是恰好从这些选项中选择，所以相对位置回答了实际的决策。方块仍显示绝对 Codex Score。点击任意遗物查看完整数据。",
       zht: "在{ancient}的池內評級：S 是這些提供中最好的，F 是最差的，相對彼此而非整個遊戲。你總是恰好從這些選項中選擇，所以相對位置回答了實際的決策。方塊仍顯示絕對 Codex Score。點擊任意遺物查看完整資料。",
+      ara: "التقييم ضمن مجموعة {ancient}: S أفضل هذه العروض و F أسوؤها، مقارنة ببعضها لا باللعبة كلها. أنت تختار دائما من هذه الخيارات بالذات، لذا فالترتيب النسبي يجيب عن القرار الفعلي. البطاقات المصغرة ما زالت تعرض Codex Score المطلق. انقر أي أثر لعرض الإحصائيات الكاملة.",
+      ind: "Dinilai di dalam kumpulan {ancient}: S adalah tawaran terbaik dan F yang terburuk, relatif satu sama lain, bukan terhadap seluruh game. Kamu selalu memilih dari opsi-opsi ini saja, jadi posisi relatif menjawab keputusan yang sebenarnya. Petak tetap menampilkan Codex Score absolut. Klik pusaka mana pun untuk statistik lengkap.",
     },
   "Graded within {ancient}'s pool by win rate when chosen: S is the best of these offers and F the worst, relative to each other rather than the whole game. You always pick from exactly these options, and Codex Score does not apply to forced early picks, so tiles show each relic's win rate. Click any relic for full stats.":
     {
@@ -1280,6 +1426,8 @@ export const X6C: Record<string, Record<string, string>> = {
       tur: "{ancient} havuzu içinde seçildiğindeki kazanma oranına göre notlandı: S bu tekliflerin en iyisi, F en kötüsü; tüm oyuna değil birbirlerine göre. Her zaman tam olarak bu seçenekler arasından seçersin ve Codex Score zorunlu erken seçimlere uygulanmaz, bu yüzden karolar her kalıntının kazanma oranını gösterir. Tüm istatistikler için bir kalıntıya tıkla.",
       zhs: "在{ancient}的池内按选取后的胜率评级：S 是这些提供中最好的，F 是最差的，相对彼此而非整个游戏。你总是恰好从这些选项中选择，而 Codex Score 不适用于被迫的早期选择，所以方块显示每件遗物的胜率。点击任意遗物查看完整数据。",
       zht: "在{ancient}的池內按選取後的勝率評級：S 是這些提供中最好的，F 是最差的，相對彼此而非整個遊戲。你總是恰好從這些選項中選擇，而 Codex Score 不適用於被迫的早期選擇，所以方塊顯示每件遺物的勝率。點擊任意遺物查看完整資料。",
+      ara: "التقييم ضمن مجموعة {ancient} حسب نسبة الفوز عند الاختيار: S أفضل هذه العروض و F أسوؤها، مقارنة ببعضها لا باللعبة كلها. أنت تختار دائما من هذه الخيارات بالذات، و Codex Score لا ينطبق على الاختيارات المبكرة الإجبارية، لذا تعرض البطاقات المصغرة نسبة فوز كل أثر. انقر أي أثر لعرض الإحصائيات الكاملة.",
+      ind: "Dinilai di dalam kumpulan {ancient} menurut tingkat kemenangan saat dipilih: S adalah tawaran terbaik dan F yang terburuk, relatif satu sama lain, bukan terhadap seluruh game. Kamu selalu memilih dari opsi-opsi ini saja, dan Codex Score tidak berlaku untuk pilihan awal yang wajib, jadi petak menampilkan tingkat kemenangan tiap pusaka. Klik pusaka mana pun untuk statistik lengkap.",
     },
   "Ranked by the win rate of runs that picked each relic up during Act {act}, Bayesian-shrunk and graded against other Act {act} pickups, so reaching a later act doesn't inflate a relic by itself. Smaller samples than the all-acts view. Click any relic for full stats.":
     {
@@ -1298,6 +1446,8 @@ export const X6C: Record<string, Record<string, string>> = {
       tur: "Her kalıntıyı Perde {act} sırasında alan koşuların galibiyet oranına göre sıralandı, Bayes küçültmesi uygulandı ve diğer Perde {act} alımlarına karşı notlandı; böylece daha ileri bir perdeye ulaşmak tek başına bir kalıntıyı şişirmez. Tüm perdeler görünümünden daha küçük örneklemler. Tüm istatistikler için bir kalıntıya tıkla.",
       zhs: "按在第 {act} 阶段拾取每件遗物的对局胜率排序，经贝叶斯收缩并与其他第 {act} 阶段拾取比较评级，因此仅仅到达后期阶段不会抬高遗物评分。样本比全阶段视图更小。点击任意遗物查看完整数据。",
       zht: "按在第 {act} 幕拾取每件遺物的對局勝率排序，經貝氏收縮並與其他第 {act} 幕拾取比較評級，因此僅僅到達後期幕不會抬高遺物評分。樣本比全幕視圖更小。點擊任意遺物查看完整資料。",
+      ara: "مرتبة حسب نسبة فوز الجولات التي حصلت على كل أثر خلال الفصل {act}، مع انكماش بايزي وتقييم مقارنة بما يُحصل عليه في الفصل {act}، حتى لا يرفع الوصول إلى فصل متأخر قيمة الأثر بحد ذاته. العينات أصغر من عرض كل الفصول. انقر أي أثر لعرض الإحصائيات الكاملة.",
+      ind: "Diurutkan menurut tingkat kemenangan perjalanan yang mendapatkan tiap pusaka selama Babak {act}, dengan penyusutan Bayesian dan dinilai terhadap perolehan lain di Babak {act}, jadi mencapai babak akhir tidak otomatis mengangkat sebuah pusaka. Sampelnya lebih kecil daripada tampilan semua babak. Klik pusaka mana pun untuk statistik lengkap.",
     },
   "Ranked by Codex Score, community win-rate data with Bayesian shrinkage so a 5-pick relic doesn't outrank a 500-pick one. Click any relic for full stats.":
     {
@@ -1316,6 +1466,8 @@ export const X6C: Record<string, Record<string, string>> = {
       tur: "5 seçimli bir kalıntının 500 seçimli olanı geçmemesi için Bayes küçültmeli topluluk galibiyet verileri olan Codex Score'a göre sıralandı. Tüm istatistikler için bir kalıntıya tıkla.",
       zhs: "按 Codex Score 排序，即经贝叶斯收缩的社区胜率数据，使 5 次选取的遗物不会超过 500 次选取的遗物。点击任意遗物查看完整数据。",
       zht: "按 Codex Score 排序，即經貝氏收縮的社群勝率資料，使 5 次選取的遺物不會超過 500 次選取的遺物。點擊任意遺物查看完整資料。",
+      ara: "مرتبة حسب Codex Score، أي بيانات نسبة فوز المجتمع مع انكماش بايزي حتى لا يتقدم أثر اختير 5 مرات على أثر اختير 500 مرة. انقر أي أثر لعرض الإحصائيات الكاملة.",
+      ind: "Diurutkan menurut Codex Score, data tingkat kemenangan komunitas dengan penyusutan Bayesian agar pusaka dengan 5 pilihan tidak mengungguli yang punya 500 pilihan. Klik pusaka mana pun untuk statistik lengkap.",
     },
   "All relics": {
     eng: "All relics",
@@ -1333,6 +1485,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Tüm kalıntılar",
     zhs: "全部遗物",
     zht: "全部遺物",
+    ara: "كل الآثار",
+    ind: "Semua pusaka",
   },
   "Starter (Neow)": {
     eng: "Starter (Neow)",
@@ -1350,6 +1504,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Başlangıç (Neow)",
     zhs: "初始（尼奥）",
     zht: "初始（尼奧）",
+    ara: "أساسي (Neow)",
+    ind: "Awalan (Neow)",
   },
   "All acts": {
     eng: "All acts",
@@ -1367,6 +1523,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Tüm perdeler",
     zhs: "全部阶段",
     zht: "全部幕",
+    ara: "كل الفصول",
+    ind: "Semua babak",
   },
   Before: {
     eng: "Before",
@@ -1384,6 +1542,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Önce",
     zhs: "变更前",
     zht: "變更前",
+    ara: "قبل",
+    ind: "Sebelum",
   },
   After: {
     eng: "After",
@@ -1401,6 +1561,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Sonra",
     zhs: "变更后",
     zht: "變更後",
+    ara: "بعد",
+    ind: "Sesudah",
   },
   Added: {
     eng: "Added",
@@ -1418,6 +1580,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Eklendi",
     zhs: "新增",
     zht: "新增",
+    ara: "مضاف",
+    ind: "Ditambahkan",
   },
   Removed: {
     eng: "Removed",
@@ -1435,6 +1599,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Kaldırıldı",
     zhs: "移除",
     zht: "移除",
+    ara: "تمت الإزالة",
+    ind: "Dibuang",
   },
   Changed: {
     eng: "Changed",
@@ -1452,6 +1618,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Değiştirildi",
     zhs: "变更",
     zht: "變更",
+    ara: "معدّل",
+    ind: "Diubah",
   },
   Unrated: {
     eng: "Unrated",
@@ -1469,6 +1637,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Derecesiz",
     zhs: "未评级",
     zht: "未評級",
+    ara: "غير مصنف",
+    ind: "Belum dinilai",
   },
   "No data available, submit a run to seed this tier list.": {
     eng: "No data available, submit a run to seed this tier list.",
@@ -1486,6 +1656,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Veri yok, bu kademe listesini başlatmak için bir koşu gönder.",
     zhs: "暂无数据，提交一场对局来填充这个梯度列表。",
     zht: "暫無資料，提交一場對局來填充這個梯度列表。",
+    ara: "لا توجد بيانات، أرسل جولة لبدء قائمة التصنيف هذه.",
+    ind: "Belum ada data, kirim perjalanan untuk mengisi tier list ini.",
   },
   "Top tier · live": {
     eng: "Top tier · live",
@@ -1503,6 +1675,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "En üst kademe · canlı",
     zhs: "顶级 · 实时",
     zht: "頂級 · 即時",
+    ara: "الفئة العليا · مباشر",
+    ind: "Tier teratas · live",
   },
   "Highest-rated sts2 {label} right now": {
     eng: "Highest-rated sts2 {label} right now",
@@ -1520,6 +1694,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Şu anda en yüksek puanlı sts2 {label}",
     zhs: "当前评分最高的 sts2 {label}",
     zht: "目前評分最高的 sts2 {label}",
+    ara: "أعلى {label} تقييما في sts2 الآن",
+    ind: "{label} sts2 dengan nilai tertinggi saat ini",
   },
   "Top picks by Codex Score, a Bayesian-shrunk win rate that adjusts for sample size, so a 60% win rate over 5 runs doesn't outrank a 55% win rate over 5,000. Updates continuously from submitted runs.":
     {
@@ -1538,6 +1714,8 @@ export const X6C: Record<string, Record<string, string>> = {
       tur: "Örneklem büyüklüğüne göre ayarlanan Bayes küçültmeli bir galibiyet oranı olan Codex Score'a göre en iyi seçimler; böylece 5 koşuda %60 galibiyet, 5.000 koşuda %55'i geçmez. Gönderilen koşulardan sürekli güncellenir.",
       zhs: "按 Codex Score 排出的最佳选择，这是一个按样本量调整的贝叶斯收缩胜率，因此 5 场对局 60% 的胜率不会超过 5,000 场 55% 的胜率。根据提交的对局持续更新。",
       zht: "按 Codex Score 排出的最佳選擇，這是一個按樣本量調整的貝氏收縮勝率，因此 5 場對局 60% 的勝率不會超過 5,000 場 55% 的勝率。根據提交的對局持續更新。",
+      ara: "أفضل الاختيارات حسب Codex Score، وهو نسبة فوز بانكماش بايزي تراعي حجم العينة، فلا تتقدم نسبة فوز 60% على 5 جولات على نسبة فوز 55% على 5,000 جولة. يتحدث باستمرار من الجولات المرسلة.",
+      ind: "Pilihan teratas menurut Codex Score, tingkat kemenangan dengan penyusutan Bayesian yang menyesuaikan ukuran sampel, jadi tingkat kemenangan 60% dari 5 perjalanan tidak mengungguli 55% dari 5.000 perjalanan. Diperbarui terus dari perjalanan yang dikirim.",
     },
   "{name} - Slay the Spire 2": {
     eng: "{name} - Slay the Spire 2",
@@ -1555,6 +1733,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "{name} - Slay the Spire 2",
     zhs: "{name} - Slay the Spire 2",
     zht: "{name} - Slay the Spire 2",
+    ara: "{name} - Slay the Spire 2",
+    ind: "{name} - Slay the Spire 2",
   },
   Result: {
     eng: "Result",
@@ -1572,6 +1752,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Sonuç",
     zhs: "结果",
     zht: "結果",
+    ara: "النتيجة",
+    ind: "Hasil",
   },
   When: {
     eng: "When",
@@ -1589,6 +1771,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Ne zaman",
     zhs: "时间",
     zht: "時間",
+    ara: "الوقت",
+    ind: "Kapan",
   },
   Win: {
     eng: "Win",
@@ -1606,6 +1790,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Galibiyet",
     zhs: "胜利",
     zht: "勝利",
+    ara: "فوز",
+    ind: "Menang",
   },
   Loss: {
     eng: "Loss",
@@ -1623,6 +1809,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Mağlubiyet",
     zhs: "失败",
     zht: "失敗",
+    ara: "خسارة",
+    ind: "Kalah",
   },
   "died to {name}": {
     eng: "died to {name}",
@@ -1640,6 +1828,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "{name} tarafından öldürüldü",
     zhs: "死于 {name}",
     zht: "死於 {name}",
+    ara: "مات أمام {name}",
+    ind: "tewas oleh {name}",
   },
   "just now": {
     eng: "just now",
@@ -1657,6 +1847,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "az önce",
     zhs: "刚刚",
     zht: "剛剛",
+    ara: "الآن",
+    ind: "baru saja",
   },
   "{n}m ago": {
     eng: "{n}m ago",
@@ -1674,6 +1866,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "{n} dk önce",
     zhs: "{n} 分钟前",
     zht: "{n} 分鐘前",
+    ara: "منذ {n} د",
+    ind: "{n} mnt lalu",
   },
   "{n}h ago": {
     eng: "{n}h ago",
@@ -1691,6 +1885,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "{n} sa önce",
     zhs: "{n} 小时前",
     zht: "{n} 小時前",
+    ara: "منذ {n} س",
+    ind: "{n} jam lalu",
   },
   "{n}d ago": {
     eng: "{n}d ago",
@@ -1708,6 +1904,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "{n} gün önce",
     zhs: "{n} 天前",
     zht: "{n} 天前",
+    ara: "منذ {n} ي",
+    ind: "{n} hr lalu",
   },
   "{n}mo ago": {
     eng: "{n}mo ago",
@@ -1725,6 +1923,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "{n} ay önce",
     zhs: "{n} 个月前",
     zht: "{n} 個月前",
+    ara: "منذ {n} شهر",
+    ind: "{n} bln lalu",
   },
   "{n}y ago": {
     eng: "{n}y ago",
@@ -1742,6 +1942,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "{n} yıl önce",
     zhs: "{n} 年前",
     zht: "{n} 年前",
+    ara: "منذ {n} سنة",
+    ind: "{n} thn lalu",
   },
   "Stats bracket": {
     eng: "Stats bracket",
@@ -1759,6 +1961,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "İstatistik kategorisi",
     zhs: "数据分组",
     zht: "資料分組",
+    ara: "شريحة الإحصائيات",
+    ind: "Kelompok statistik",
   },
   "Player count": {
     eng: "Player count",
@@ -1776,6 +1980,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Oyuncu sayısı",
     zhs: "玩家数",
     zht: "玩家數",
+    ara: "عدد اللاعبين",
+    ind: "Jumlah pemain",
   },
   "{name} hasn't appeared in any submitted community run yet (across {n} tracked).":
     {
@@ -1794,6 +2000,8 @@ export const X6C: Record<string, Record<string, string>> = {
       tur: "{name} henüz gönderilen hiçbir topluluk koşusunda görünmedi ({n} takip edilen koşu arasında).",
       zhs: "{name} 尚未出现在任何社区提交的对局中（共追踪 {n} 场）。",
       zht: "{name} 尚未出現在任何社群提交的對局中（共追蹤 {n} 場）。",
+      ara: "لم يظهر {name} بعد في أي جولة أرسلها المجتمع (من أصل {n} جولة مسجلة).",
+      ind: "{name} belum muncul di perjalanan komunitas mana pun yang dikirim (dari {n} yang tercatat).",
     },
   "Submit a run to seed this section.": {
     eng: "Submit a run to seed this section.",
@@ -1811,6 +2019,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Bu bölümü başlatmak için bir koşu gönder.",
     zhs: "提交一场对局来填充这个部分。",
     zht: "提交一場對局來填充這個部分。",
+    ara: "أرسل جولة لبدء هذا القسم.",
+    ind: "Kirim perjalanan untuk mengisi bagian ini.",
   },
   "{name} hasn't appeared in any submitted community run yet (across {n} total runs tracked).":
     {
@@ -1829,6 +2039,8 @@ export const X6C: Record<string, Record<string, string>> = {
       tur: "{name} henüz gönderilen hiçbir topluluk koşusunda görünmedi (toplam {n} takip edilen koşu arasında).",
       zhs: "{name} 尚未出现在任何社区提交的对局中（共追踪 {n} 场对局）。",
       zht: "{name} 尚未出現在任何社群提交的對局中（共追蹤 {n} 場對局）。",
+      ara: "لم يظهر {name} بعد في أي جولة أرسلها المجتمع (من أصل {n} جولة مسجلة إجمالا).",
+      ind: "{name} belum muncul di perjalanan komunitas mana pun yang dikirim (dari total {n} perjalanan yang tercatat).",
     },
   "Submit a run that includes it to seed this section.": {
     eng: "Submit a run that includes it to seed this section.",
@@ -1846,6 +2058,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Bu bölümü başlatmak için onu içeren bir koşu gönder.",
     zhs: "提交包含它的对局来填充这个部分。",
     zht: "提交包含它的對局來填充這個部分。",
+    ara: "أرسل جولة تتضمنه لبدء هذا القسم.",
+    ind: "Kirim perjalanan yang memuatnya untuk mengisi bagian ini.",
   },
   "New in beta {version}": {
     eng: "New in beta {version}",
@@ -1863,6 +2077,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Beta {version} ile yeni",
     zhs: "测试版 {version} 新增",
     zht: "測試版 {version} 新增",
+    ara: "جديد في بيتا {version}",
+    ind: "Baru di beta {version}",
   },
   "Not in main yet. Numbers and text can change before it ships.": {
     eng: "Not in main yet. Numbers and text can change before it ships.",
@@ -1880,6 +2096,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Henüz main'de değil. Sayılar ve metinler yayınlanmadan önce değişebilir.",
     zhs: "尚未进入主版本。数值和文本在正式发布前可能变动。",
     zht: "尚未進入主版本。數值和文字在正式發佈前可能變動。",
+    ara: "ليس في النسخة الرئيسية بعد. قد تتغير الأرقام والنصوص قبل صدوره.",
+    ind: "Belum ada di main. Angka dan teks bisa berubah sebelum dirilis.",
   },
   "Everything new in beta": {
     eng: "Everything new in beta",
@@ -1897,6 +2115,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Betadaki tüm yenilikler",
     zhs: "测试版全部新增内容",
     zht: "測試版全部新增內容",
+    ara: "كل جديد في بيتا",
+    ind: "Semua yang baru di beta",
   },
   "Changing in beta {version}": {
     eng: "Changing in beta {version}",
@@ -1914,6 +2134,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Beta {version} sürümünde değişiyor",
     zhs: "测试版 {version} 中有变动",
     zht: "測試版 {version} 中有變動",
+    ara: "يتغير في بيتا {version}",
+    ind: "Berubah di beta {version}",
   },
   "Removed in beta {version}": {
     eng: "Removed in beta {version}",
@@ -1931,6 +2153,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Beta {version} sürümünde kaldırıldı",
     zhs: "测试版 {version} 中已移除",
     zht: "測試版 {version} 中已移除",
+    ara: "محذوف في بيتا {version}",
+    ind: "Dihapus di beta {version}",
   },
   "Also changed: {fields}": {
     eng: "Also changed: {fields}",
@@ -1948,6 +2172,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Ayrıca değişti: {fields}",
     zhs: "其他变动：{fields}",
     zht: "其他變動：{fields}",
+    ara: "تغيّر أيضا: {fields}",
+    ind: "Juga berubah: {fields}",
   },
   "See the full beta version": {
     eng: "See the full beta version",
@@ -1965,6 +2191,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Tam beta sürümünü gör",
     zhs: "查看完整测试版",
     zht: "查看完整測試版",
+    ara: "عرض نسخة بيتا الكاملة",
+    ind: "Lihat versi beta lengkap",
   },
   "Beta changes": {
     eng: "Beta changes",
@@ -1982,6 +2210,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Beta değişiklikleri",
     zhs: "测试版变动",
     zht: "測試版變動",
+    ara: "تغييرات بيتا",
+    ind: "Perubahan beta",
   },
   "View beta content": {
     eng: "View beta content",
@@ -1999,6 +2229,8 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Beta içeriğini gör",
     zhs: "查看测试版内容",
     zht: "查看測試版內容",
+    ara: "عرض محتوى بيتا",
+    ind: "Lihat konten beta",
   },
   "Back to main": {
     eng: "Back to main",
@@ -2016,5 +2248,7 @@ export const X6C: Record<string, Record<string, string>> = {
     tur: "Main'e dön",
     zhs: "返回主版本",
     zht: "返回主版本",
+    ara: "العودة إلى الرئيسية",
+    ind: "Kembali ke main",
   },
 };

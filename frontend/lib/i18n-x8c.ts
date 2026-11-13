@@ -16,6 +16,8 @@ export const X8C: Record<string, Record<string, string>> = {
     tur: "Ölümcül",
     zhs: "致命",
     zht: "致命",
+    ara: "قاتل",
+    ind: "Mematikan",
   },
   "Card debuff": {
     eng: "Card debuff",
@@ -33,6 +35,8 @@ export const X8C: Record<string, Record<string, string>> = {
     tur: "Kart zayıflatma",
     zhs: "卡牌削弱",
     zht: "卡牌削弱",
+    ara: "إضعاف بطاقات",
+    ind: "Debuff kartu",
   },
   Escape: {
     eng: "Escape",
@@ -50,6 +54,8 @@ export const X8C: Record<string, Record<string, string>> = {
     tur: "Kaçış",
     zhs: "逃跑",
     zht: "逃跑",
+    ara: "هروب",
+    ind: "Kabur",
   },
   Summon: {
     eng: "Summon",
@@ -67,6 +73,8 @@ export const X8C: Record<string, Record<string, string>> = {
     tur: "Çağırma",
     zhs: "召唤",
     zht: "召喚",
+    ara: "استدعاء",
+    ind: "Panggil",
   },
   Sleep: {
     eng: "Sleep",
@@ -84,6 +92,8 @@ export const X8C: Record<string, Record<string, string>> = {
     tur: "Uyku",
     zhs: "睡眠",
     zht: "睡眠",
+    ara: "سبات",
+    ind: "Tidur",
   },
   Hidden: {
     eng: "Hidden",
@@ -101,5 +111,7 @@ export const X8C: Record<string, Record<string, string>> = {
     tur: "Gizli",
     zhs: "隐藏",
     zht: "隱藏",
+    ara: "مخفي",
+    ind: "Tersembunyi",
   },
 };

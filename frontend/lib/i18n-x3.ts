@@ -16,6 +16,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: ", şuradan alındı:",
     zhs: "，取自",
     zht: "，取自",
+    ara: "، مأخوذة من",
+    ind: ", diambil dari",
   },
   ". Treat anything you submit as public.": {
     eng: ". Treat anything you submit as public.",
@@ -33,6 +35,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: ". Gönderdiğiniz her şeyi herkese açık kabul edin.",
     zhs: "。请将您提交的任何内容视为公开信息。",
     zht: "。請將您提交的任何內容視為公開資訊。",
+    ara: ". اعتبر كل ما ترسله علنيًا.",
+    ind: ". Anggap semua yang kamu kirim bersifat publik.",
   },
   "A very special thank you to those who've donated on": {
     eng: "A very special thank you to those who've donated on",
@@ -50,6 +54,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Bağış yapan herkese çok özel teşekkürler",
     zhs: "特别感谢在此捐赠支持的各位",
     zht: "特別感謝在此捐贈支援的各位",
+    ara: "شكر خاص جدًا لمن تبرعوا عبر",
+    ind: "Terima kasih yang sangat khusus untuk mereka yang sudah berdonasi di",
   },
   "Acceptable use": {
     eng: "Acceptable use",
@@ -67,6 +73,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Kabul edilebilir kullanım",
     zhs: "可接受的使用",
     zht: "可接受的使用",
+    ara: "الاستخدام المقبول",
+    ind: "Penggunaan yang diperbolehkan",
   },
   "Add tier": {
     eng: "Add tier",
@@ -84,6 +92,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Seviye ekle",
     zhs: "添加等级",
     zht: "新增等級",
+    ara: "إضافة فئة",
+    ind: "Tambah tier",
   },
   "All rarities": {
     eng: "All rarities",
@@ -101,6 +111,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Tüm nadirlikler",
     zhs: "所有稀有度",
     zht: "所有稀有度",
+    ara: "كل درجات الندرة",
+    ind: "Semua kelangkaan",
   },
   "Any feedback you want to share...": {
     eng: "Any feedback you want to share...",
@@ -118,6 +130,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Paylaşmak istediğiniz geri bildirim...",
     zhs: "想分享的任何反馈...",
     zht: "想分享的任何反饋...",
+    ara: "أي ملاحظات تود مشاركتها...",
+    ind: "Masukan apa pun yang ingin kamu sampaikan...",
   },
   Available: {
     eng: "Available",
@@ -135,6 +149,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Mevcut",
     zhs: "可用",
     zht: "可用",
+    ara: "متاح",
+    ind: "Tersedia",
   },
   "Base Stats": {
     eng: "Base Stats",
@@ -152,6 +168,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Temel istatistikler",
     zhs: "基础属性",
     zht: "基礎屬性",
+    ara: "الإحصائيات الأساسية",
+    ind: "Statistik Dasar",
   },
   "Built from community-submitted runs, refreshed periodically. See the": {
     eng: "Built from community-submitted runs, refreshed periodically. See the",
@@ -169,6 +187,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Topluluğun gönderdiği koşulardan oluşturulur, düzenli olarak yenilenir. Şuraya bakın:",
     zhs: "基于社区提交的通关数据构建，定期刷新。请参阅",
     zht: "基於社群提交的通關資料構建，定期重新整理。請參閱",
+    ara: "مبنية على جولات أرسلها المجتمع، وتُحدَّث دوريًا. راجع",
+    ind: "Dibangun dari perjalanan kiriman komunitas, diperbarui berkala. Lihat",
   },
   "Card Pool by Rarity": {
     eng: "Card Pool by Rarity",
@@ -186,6 +206,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Nadirliğe göre kart havuzu",
     zhs: "按稀有度划分的卡池",
     zht: "按稀有度劃分的卡池",
+    ara: "مجموعة البطاقات حسب الندرة",
+    ind: "Kumpulan Kartu per Kelangkaan",
   },
   "Card language": {
     eng: "Card language",
@@ -203,6 +225,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Kart dili",
     zhs: "卡牌语言",
     zht: "卡牌語言",
+    ara: "لغة البطاقات",
+    ind: "Bahasa kartu",
   },
   "Checking your entry status...": {
     eng: "Checking your entry status...",
@@ -220,6 +244,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Katılım durumunuz kontrol ediliyor...",
     zhs: "正在检查您的参与状态...",
     zht: "正在檢查您的參與狀態...",
+    ara: "جارٍ التحقق من حالة مشاركتك...",
+    ind: "Memeriksa status entrimu...",
   },
   "Close editor": {
     eng: "Close editor",
@@ -237,6 +263,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Düzenleyiciyi kapat",
     zhs: "关闭编辑器",
     zht: "關閉編輯器",
+    ara: "إغلاق المحرر",
+    ind: "Tutup editor",
   },
   "Community Stats": {
     eng: "Community Stats",
@@ -254,6 +282,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Topluluk istatistikleri",
     zhs: "社区统计",
     zht: "社群統計",
+    ara: "إحصائيات المجتمع",
+    ind: "Statistik Komunitas",
   },
   "Connect Twitch to show a “Watch on Twitch” link on your live run when you are streaming.":
     {
@@ -272,6 +302,8 @@ export const X3: Record<string, Record<string, string>> = {
       tur: "Yayın yaparken canlı koşunuzda “Twitch’te izle” bağlantısını göstermek için Twitch’i bağlayın.",
       zhs: "连接 Twitch，在您直播时于实时通关中显示“在 Twitch 观看”链接。",
       zht: "連線 Twitch，在您直播時於實時通關中顯示“在 Twitch 觀看”連結。",
+      ara: "اربط Twitch لإظهار رابط «شاهد على Twitch» على جولتك المباشرة أثناء البث.",
+      ind: "Hubungkan Twitch untuk menampilkan tautan “Tonton di Twitch” di perjalanan langsungmu saat sedang streaming.",
     },
   "Connected Accounts": {
     eng: "Connected Accounts",
@@ -289,6 +321,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Bağlı hesaplar",
     zhs: "已连接的账户",
     zht: "已連線的帳戶",
+    ara: "الحسابات المرتبطة",
+    ind: "Akun Terhubung",
   },
   "Could not load chart list": {
     eng: "Could not load chart list",
@@ -306,6 +340,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Grafik listesi yüklenemedi",
     zhs: "无法加载图表列表",
     zht: "無法載入圖表列表",
+    ara: "تعذر تحميل قائمة المخططات",
+    ind: "Daftar grafik gagal dimuat",
   },
   "Create tier list": {
     eng: "Create tier list",
@@ -323,6 +359,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Seviye listesi oluştur",
     zhs: "创建等级榜",
     zht: "建立等級榜",
+    ara: "إنشاء قائمة تصنيف",
+    ind: "Buat tier list",
   },
   "Dates:": {
     eng: "Dates:",
@@ -340,6 +378,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Tarihler:",
     zhs: "日期：",
     zht: "日期：",
+    ara: "التواريخ:",
+    ind: "Tanggal:",
   },
   Deaths: {
     eng: "Deaths",
@@ -357,6 +397,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Ölümler",
     zhs: "死亡次数",
     zht: "死亡次數",
+    ara: "الوفيات",
+    ind: "Kematian",
   },
   Defect: {
     eng: "Defect",
@@ -374,6 +416,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Arıza",
     zhs: "故障机器人",
     zht: "Defect",
+    ara: "المعيب",
+    ind: "Defect",
   },
   Disconnect: {
     eng: "Disconnect",
@@ -391,6 +435,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Bağlantıyı kes",
     zhs: "断开连接",
     zht: "斷開連線",
+    ara: "قطع الاتصال",
+    ind: "Putuskan",
   },
   "Download on Overwolf": {
     eng: "Download on Overwolf",
@@ -408,6 +454,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Overwolf’ta indir",
     zhs: "在 Overwolf 上下载",
     zht: "在 Overwolf 上下載",
+    ara: "نزّل من Overwolf",
+    ind: "Unduh di Overwolf",
   },
   "Eligibility:": {
     eng: "Eligibility:",
@@ -425,6 +473,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Uygunluk:",
     zhs: "参与资格：",
     zht: "參與資格：",
+    ara: "الأهلية:",
+    ind: "Kelayakan:",
   },
   "Enter email address": {
     eng: "Enter email address",
@@ -442,6 +492,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "E-posta adresini girin",
     zhs: "输入电子邮件地址",
     zht: "輸入電子郵件地址",
+    ara: "أدخل عنوان البريد الإلكتروني",
+    ind: "Masukkan alamat email",
   },
   "Entries outside this window are not eligible.": {
     eng: "Entries outside this window are not eligible.",
@@ -459,6 +511,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Bu aralığın dışındaki katılımlar geçerli değildir.",
     zhs: "此时间窗口之外的参与无效。",
     zht: "此時間視窗之外的參與無效。",
+    ara: "المشاركات خارج هذه الفترة غير مؤهلة.",
+    ind: "Entri di luar periode ini tidak memenuhi syarat.",
   },
   "Exact ascension and mode don't apply here; use the Bracket to slice by skill.":
     {
@@ -477,6 +531,8 @@ export const X3: Record<string, Record<string, string>> = {
       tur: "Kesin ascension ve mod burada geçerli değildir; beceriye göre ayırmak için Bracket’ı kullanın.",
       zhs: "此处不适用具体的进阶等级和模式；请使用 Bracket 按水平筛选。",
       zht: "此處不適用具體的晉階等級和模式；請使用 Bracket 按水平篩選。",
+      ara: "الصعود المحدد والطور لا ينطبقان هنا؛ استخدم الشريحة للتقسيم حسب المهارة.",
+      ind: "Angkatan dan mode persis tidak berlaku di sini; pakai Kelompok untuk memilah menurut kemampuan.",
     },
   "Failed to disconnect": {
     eng: "Failed to disconnect",
@@ -494,6 +550,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Bağlantı kesilemedi",
     zhs: "断开连接失败",
     zht: "斷開連線失敗",
+    ara: "فشل قطع الاتصال",
+    ind: "Gagal memutuskan",
   },
   "Fastest Co-op": {
     eng: "Fastest Co-op",
@@ -511,6 +569,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "En hızlı Co-op",
     zhs: "最快合作",
     zht: "最快合作",
+    ara: "أسرع لعب جماعي",
+    ind: "Multi Pemain Tercepat",
   },
   "Favorite ancient relics": {
     eng: "Favorite ancient relics",
@@ -528,6 +588,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Favori kadim kalıntılar",
     zhs: "最爱的远古遗物",
     zht: "最愛的遠古遺物",
+    ara: "آثار القدماء المفضلة",
+    ind: "Pusaka ancient favorit",
   },
   "Filter by rarity": {
     eng: "Filter by rarity",
@@ -545,6 +607,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Nadirliğe göre filtrele",
     zhs: "按稀有度筛选",
     zht: "按稀有度篩選",
+    ara: "فلتر حسب الندرة",
+    ind: "Filter menurut kelangkaan",
   },
   "Free mail-in entry (no purchase necessary)": {
     eng: "Free mail-in entry (no purchase necessary)",
@@ -562,6 +626,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Posta ile ücretsiz katılım (satın alma gerekmez)",
     zhs: "免费邮寄参与（无需购买）",
     zht: "免費郵寄參與（無需購買）",
+    ara: "مشاركة مجانية بالبريد (لا يلزم الشراء)",
+    ind: "Entri gratis lewat pos (tanpa perlu membeli)",
   },
   "From the beta branch": {
     eng: "From the beta branch",
@@ -579,6 +645,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "beta dalından",
     zhs: "来自 beta 分支",
     zht: "來自 beta 分支",
+    ara: "من فرع بيتا",
+    ind: "Dari cabang beta",
   },
   "Get it on the Steam Workshop with in-game stats contribution, auto uploads, and route planner":
     {
@@ -597,6 +665,8 @@ export const X3: Record<string, Record<string, string>> = {
       tur: "Steam Workshop’tan edinin: oyun içi istatistik katkısı, otomatik yüklemeler ve rota planlayıcı ile",
       zhs: "在 Steam 创意工坊获取，支持游戏内统计贡献、自动上传和路线规划器",
       zht: "在 Steam 創意工坊獲取，支援遊戲內統計貢獻、自動上傳和路線規劃器",
+      ara: "احصل عليه من Steam Workshop مع المساهمة بالإحصائيات داخل اللعبة والرفع التلقائي ومخطط المسار",
+      ind: "Dapatkan di Steam Workshop dengan kontribusi statistik dalam game, unggah otomatis, dan perencana rute",
     },
   "Go to your profile": {
     eng: "Go to your profile",
@@ -614,6 +684,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Profilinize gidin",
     zhs: "前往你的个人资料",
     zht: "前往你的個人資料",
+    ara: "اذهب إلى ملفك الشخصي",
+    ind: "Buka profilmu",
   },
   "Highest-rated sts2 cards right now": {
     eng: "Highest-rated sts2 cards right now",
@@ -631,6 +703,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Şu anda en yüksek puanlı sts2 kartları",
     zhs: "当前评分最高的 sts2 卡牌",
     zht: "當前評分最高的 sts2 卡牌",
+    ara: "بطاقات sts2 الأعلى تقييمًا حاليًا",
+    ind: "Kartu sts2 dengan rating tertinggi saat ini",
   },
   "How often a potion is bought when it appears on a shop shelf. Combat-drop potions are excluded: with an open slot you take almost every free potion, so drop pick-rate just measures slot availability, not quality. A shop buy is a real gold decision.":
     {
@@ -649,6 +723,8 @@ export const X3: Record<string, Record<string, string>> = {
       tur: "Bir iksir mağaza rafında göründüğünde ne sıklıkla satın alındığı. Savaşta düşen iksirler hariç tutulur: boş bir yuvanız varsa neredeyse her ücretsiz iksiri alırsınız, bu yüzden düşen iksirlerin seçilme oranı kaliteyi değil yalnızca yuva uygunluğunu ölçer. Mağazadan satın almak gerçek bir altın kararıdır.",
       zhs: "药水出现在商店货架上时被购买的频率。战斗掉落的药水已排除：有空槽时你几乎会捡起每一瓶免费药水，因此掉落药水的选取率只反映槽位空余情况，而非品质。在商店购买才是真正的金币决策。",
       zht: "藥水出現在商店貨架上時被購買的頻率。戰鬥掉落的藥水已排除：有空槽時你幾乎會撿起每一瓶免費藥水，因此掉落藥水的選取率只反映槽位空餘情況，而非品質。在商店購買才是真正的金幣決策。",
+      ara: "عدد مرات شراء الجرعة عند ظهورها على رف المتجر. تُستثنى الجرعات التي تسقط بعد القتال: مع وجود خانة فارغة تأخذ تقريبًا كل جرعة مجانية، فمعدل اختيارها يقيس توفر الخانات لا الجودة. أما الشراء من المتجر فقرار حقيقي بالذهب.",
+      ind: "Seberapa sering ramuan dibeli saat muncul di rak toko. Ramuan hasil pertarungan tidak dihitung: kalau ada tempat kosong, hampir semua ramuan gratis diambil, jadi tingkat pilihnya cuma mengukur ketersediaan tempat, bukan kualitas. Membeli di toko adalah keputusan emas yang nyata.",
     },
   "How the rankings work": {
     eng: "How the rankings work",
@@ -666,6 +742,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Sıralamalar nasıl çalışır",
     zhs: "排名如何运作",
     zht: "排名如何運作",
+    ara: "كيف يعمل الترتيب",
+    ind: "Cara kerja peringkatnya",
   },
   "How we use it": {
     eng: "How we use it",
@@ -683,6 +761,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Bunu nasıl kullanırız",
     zhs: "我们如何使用这些信息",
     zht: "我們如何使用這些資訊",
+    ara: "كيف نستخدمها",
+    ind: "Cara kami memakainya",
   },
   "Invite to Server": {
     eng: "Invite to Server",
@@ -700,6 +780,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Sunucuya davet et",
     zhs: "邀请至服务器",
     zht: "邀請至伺服器",
+    ara: "دعوة إلى الخادم",
+    ind: "Undang ke Server",
   },
   "Just wanted to say thank you to everyone that has supported the project. Thanks to those who've been using the site, reporting bugs, and helping make it better. This project wouldn't be where it is without the community. If you've been enjoying the project, please make sure to share it on social media!":
     {
@@ -718,6 +800,8 @@ export const X3: Record<string, Record<string, string>> = {
       tur: "Projeyi destekleyen herkese teşekkür etmek istedim. Siteyi kullanan, hata bildiren ve daha iyi olmasına yardım eden herkese teşekkürler. Bu proje, topluluk olmadan bugünkü yerinde olamazdı. Projeden keyif aldıysanız, lütfen sosyal medyada paylaşmayı unutmayın!",
       zhs: "只想向所有支持这个项目的人道声谢谢。感谢一直在使用本站、报告漏洞并帮助改进的各位。没有社区，这个项目不会有今天。如果你喜欢这个项目，请一定在社交媒体上分享它！",
       zht: "只想向所有支援這個專案的人道聲謝謝。感謝一直在使用本站、報告漏洞並幫助改進的各位。沒有社群，這個專案不會有今天。如果你喜歡這個專案，請一定在社交媒體上分享它！",
+      ara: "أردت فقط أن أشكر كل من دعم المشروع. شكرًا لمن يستخدمون الموقع ويبلّغون عن الأخطاء ويساعدون في تحسينه. ما كان هذا المشروع ليصل إلى ما هو عليه لولا المجتمع. إن كان المشروع يعجبك، فشاركه على وسائل التواصل الاجتماعي!",
+      ind: "Cuma mau bilang terima kasih untuk semua yang sudah mendukung proyek ini. Terima kasih untuk yang memakai situsnya, melaporkan bug, dan membantu membuatnya lebih baik. Proyek ini tidak akan sampai di sini tanpa komunitas. Kalau kamu menikmati proyek ini, jangan lupa bagikan di media sosial!",
     },
   "Last updated:": {
     eng: "Last updated:",
@@ -735,6 +819,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Son güncelleme:",
     zhs: "最后更新：",
     zht: "最後更新：",
+    ara: "آخر تحديث:",
+    ind: "Terakhir diperbarui:",
   },
   "Link, source, or reference (optional)": {
     eng: "Link, source, or reference (optional)",
@@ -752,6 +838,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Bağlantı, kaynak veya referans (isteğe bağlı)",
     zhs: "链接、来源或参考（可选）",
     zht: "連結、來源或參考（可選）",
+    ara: "رابط أو مصدر أو مرجع (اختياري)",
+    ind: "Tautan, sumber, atau referensi (opsional)",
   },
   Moderation: {
     eng: "Moderation",
@@ -769,6 +857,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Moderasyon",
     zhs: "内容审核",
     zht: "內容稽核",
+    ara: "الإشراف",
+    ind: "Moderasi",
   },
   "Most Used Relics": {
     eng: "Most Used Relics",
@@ -786,6 +876,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "En çok kullanılan kalıntılar",
     zhs: "使用最多的遗物",
     zht: "使用最多的遺物",
+    ara: "الآثار الأكثر استخدامًا",
+    ind: "Pusaka Paling Sering Dipakai",
   },
   "Network error": {
     eng: "Network error",
@@ -803,6 +895,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Ağ hatası",
     zhs: "网络错误",
     zht: "網路錯誤",
+    ara: "خطأ في الشبكة",
+    ind: "Galat jaringan",
   },
   "No card data yet.": {
     eng: "No card data yet.",
@@ -820,6 +914,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Henüz kart verisi yok.",
     zhs: "暂无卡牌数据。",
     zht: "暫無卡牌資料。",
+    ara: "لا توجد بيانات بطاقات بعد.",
+    ind: "Belum ada data kartu.",
   },
   "No payment information. Donations are handled by Ko-fi on its own site.": {
     eng: "No payment information. Donations are handled by Ko-fi on its own site.",
@@ -837,6 +933,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Ödeme bilgisi yok. Bağışlar Ko-fi tarafından kendi sitesinde işlenir.",
     zhs: "无支付信息。捐赠由 Ko-fi 在其自有网站上处理。",
     zht: "無支付資訊。捐贈由 Ko-fi 在其自有網站上處理。",
+    ara: "لا معلومات دفع. التبرعات تُدار عبر Ko-fi على موقعه الخاص.",
+    ind: "Tanpa informasi pembayaran. Donasi ditangani Ko-fi di situsnya sendiri.",
   },
   "No relic data yet.": {
     eng: "No relic data yet.",
@@ -854,6 +952,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Henüz kalıntı verisi yok.",
     zhs: "暂无遗物数据。",
     zht: "暫無遺物資料。",
+    ara: "لا توجد بيانات آثار بعد.",
+    ind: "Belum ada data pusaka.",
   },
   "No stats yet. Upload runs to see your personal stats here.": {
     eng: "No stats yet. Upload runs to see your personal stats here.",
@@ -871,6 +971,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Henüz istatistik yok. Kişisel istatistiklerinizi burada görmek için koşu yükleyin.",
     zhs: "暂无统计数据。上传通关记录即可在此查看你的个人统计。",
     zht: "暫無統計資料。上傳通關記錄即可在此檢視你的個人統計。",
+    ara: "لا توجد إحصائيات بعد. ارفع جولاتك لترى إحصائياتك الشخصية هنا.",
+    ind: "Belum ada statistik. Unggah perjalanan untuk melihat statistik pribadimu di sini.",
   },
   "Note / rationale": {
     eng: "Note / rationale",
@@ -888,6 +990,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Not / gerekçe",
     zhs: "备注 / 理由",
     zht: "備註 / 理由",
+    ara: "ملاحظة / مبرر",
+    ind: "Catatan / alasan",
   },
   "One winner chosen at random from all eligible entries after the end date, and notified by Steam ID within 7 days. If a winner does not respond within 7 days, an alternate may be selected.":
     {
@@ -906,6 +1010,8 @@ export const X3: Record<string, Record<string, string>> = {
       tur: "Bitiş tarihinden sonra tüm geçerli katılımlar arasından rastgele bir kazanan seçilir ve 7 gün içinde Steam ID üzerinden bilgilendirilir. Bir kazanan 7 gün içinde yanıt vermezse yedek biri seçilebilir.",
       zhs: "结束日期后将从所有有效参与者中随机抽取一名获奖者，并在 7 天内通过 Steam ID 通知。如果获奖者在 7 天内未回应，可能会另选替补。",
       zht: "結束日期後將從所有有效參與者中隨機抽取一名獲獎者，並在 7 天內透過 Steam ID 通知。如果獲獎者在 7 天內未回應，可能會另選替補。",
+      ara: "يتم اختيار فائز واحد عشوائيا من بين جميع المشاركات المؤهلة بعد تاريخ الانتهاء، ويتم إبلاغه عبر معرف Steam خلال 7 أيام. إذا لم يرد الفائز خلال 7 أيام، فقد يتم اختيار فائز بديل.",
+      ind: "Satu pemenang dipilih secara acak dari semua entri yang memenuhi syarat setelah tanggal berakhir, dan diberi tahu lewat Steam ID dalam 7 hari. Jika pemenang tidak merespons dalam 7 hari, pemenang pengganti bisa dipilih.",
     },
   "Optional, not required": {
     eng: "Optional, not required",
@@ -923,6 +1029,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "İsteğe bağlı, zorunlu değil",
     zhs: "可选，非必填",
     zht: "可選，非必填",
+    ara: "اختياري، غير مطلوب",
+    ind: "Opsional, tidak wajib",
   },
   Overlay: {
     eng: "Overlay",
@@ -940,6 +1048,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Bindirme",
     zhs: "叠加层",
     zht: "疊加層",
+    ara: "واجهة التراكب",
+    ind: "Overlay",
   },
   "Pick %": {
     eng: "Pick %",
@@ -957,6 +1067,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Seçim %",
     zhs: "选取率 %",
     zht: "選取率 %",
+    ara: "% الاختيار",
+    ind: "% Pilih",
   },
   "Potion Stats": {
     eng: "Potion Stats",
@@ -974,6 +1086,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "İksir istatistikleri",
     zhs: "药水统计",
     zht: "藥水統計",
+    ara: "إحصائيات الجرعات",
+    ind: "Statistik Ramuan",
   },
   "Prima Codex LLC, operator of Spire Codex.": {
     eng: "Prima Codex LLC, operator of Spire Codex.",
@@ -991,6 +1105,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Prima Codex LLC, Spire Codex işletmecisi.",
     zhs: "Prima Codex LLC，Spire Codex 的运营方。",
     zht: "Prima Codex LLC，Spire Codex 的運營方。",
+    ara: "Prima Codex LLC، الجهة المشغلة لموقع Spire Codex.",
+    ind: "Prima Codex LLC, operator Spire Codex.",
   },
   "Probe, scan, or attack the Service, its underlying infrastructure, or other users.":
     {
@@ -1009,6 +1125,8 @@ export const X3: Record<string, Record<string, string>> = {
       tur: "Hizmeti, altında yatan altyapısını veya diğer kullanıcıları yoklamak, taramak veya bunlara saldırmak.",
       zhs: "探测、扫描或攻击本服务、其底层基础设施或其他用户。",
       zht: "探測、掃描或攻擊本服務、其底層基礎設施或其他使用者。",
+      ara: "فحص الخدمة أو بنيتها التحتية أو مستخدميها الآخرين أو مسحهم أو مهاجمتهم.",
+      ind: "Menyelidiki, memindai, atau menyerang Layanan, infrastruktur di baliknya, atau pengguna lain.",
     },
   Regent: {
     eng: "Regent",
@@ -1026,6 +1144,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Naip",
     zhs: "储君",
     zht: "Regent",
+    ara: "الوصي",
+    ind: "Regent",
   },
   "Render the cards in this language": {
     eng: "Render the cards in this language",
@@ -1043,6 +1163,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Kartları bu dilde göster",
     zhs: "以此语言渲染卡牌",
     zht: "以此語言渲染卡牌",
+    ara: "عرض البطاقات بهذه اللغة",
+    ind: "Render kartu dalam bahasa ini",
   },
   "Rest-site choices": {
     eng: "Rest-site choices",
@@ -1060,6 +1182,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Dinlenme alanı seçimleri",
     zhs: "休息处选择",
     zht: "休息點選擇",
+    ara: "خيارات موقع الراحة",
+    ind: "Pilihan di Peristirahatan",
   },
   "Run data.": {
     eng: "Run data.",
@@ -1077,6 +1201,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Koşu verileri.",
     zhs: "通关数据。",
     zht: "通關資料。",
+    ara: "بيانات الجولات.",
+    ind: "Data perjalanan.",
   },
   "Sampled from": {
     eng: "Sampled from",
@@ -1094,6 +1220,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Şuradan örneklendi:",
     zhs: "取样自",
     zht: "取樣自",
+    ara: "عينة مأخوذة من",
+    ind: "Sampel diambil dari",
   },
   "Saving…": {
     eng: "Saving…",
@@ -1111,6 +1239,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Kaydediliyor…",
     zhs: "正在保存…",
     zht: "正在儲存…",
+    ara: "جارٍ الحفظ…",
+    ind: "Menyimpan…",
   },
   "Search…": {
     eng: "Search…",
@@ -1128,6 +1258,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Ara…",
     zhs: "搜索…",
     zht: "搜尋…",
+    ara: "بحث…",
+    ind: "Cari…",
   },
   "Server logs are used to debug issues, monitor performance, and stop abuse.":
     {
@@ -1146,6 +1278,8 @@ export const X3: Record<string, Record<string, string>> = {
       tur: "Sunucu günlükleri sorunları ayıklamak, performansı izlemek ve kötüye kullanımı önlemek için kullanılır.",
       zhs: "服务器日志用于调试问题、监控性能和阻止滥用。",
       zht: "伺服器日誌用於除錯問題、監控效能和阻止濫用。",
+      ara: "تُستخدم سجلات الخادم لتصحيح الأخطاء ومراقبة الأداء ومنع إساءة الاستخدام.",
+      ind: "Log server dipakai untuk melacak masalah, memantau performa, dan menghentikan penyalahgunaan.",
     },
   "Sign in to view your profile": {
     eng: "Sign in to view your profile",
@@ -1163,6 +1297,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Profilinizi görmek için oturum açın",
     zhs: "登录以查看你的个人资料",
     zht: "登入以檢視你的個人資料",
+    ara: "سجل الدخول لعرض ملفك الشخصي",
+    ind: "Masuk untuk melihat profilmu",
   },
   "Signed in as": {
     eng: "Signed in as",
@@ -1180,6 +1316,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Oturum açan:",
     zhs: "已登录为",
     zht: "已登入為",
+    ara: "تم تسجيل الدخول باسم",
+    ind: "Masuk sebagai",
   },
   "Slay the Spire 2 lookups": {
     eng: "Slay the Spire 2 lookups",
@@ -1197,6 +1335,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 aramaları",
     zhs: "Slay the Spire 2 查询",
     zht: "Slay the Spire 2 查詢",
+    ara: "عمليات بحث Slay the Spire 2",
+    ind: "Pencarian Slay the Spire 2",
   },
   "Spire Codex is now on Overwolf.": {
     eng: "Spire Codex is now on Overwolf.",
@@ -1214,6 +1354,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Spire Codex artık Overwolf’ta.",
     zhs: "Spire Codex 现已登陆 Overwolf。",
     zht: "Spire Codex 現已登陸 Overwolf。",
+    ara: "Spire Codex متاح الآن على Overwolf.",
+    ind: "Spire Codex sekarang ada di Overwolf.",
   },
   "Standard server logs (timestamp, request path, HTTP status, user-agent) and the source IP address. IPs are used for rate limiting and abuse prevention.":
     {
@@ -1232,6 +1374,8 @@ export const X3: Record<string, Record<string, string>> = {
       tur: "Standart sunucu günlükleri (zaman damgası, istek yolu, HTTP durumu, user-agent) ve kaynak IP adresi. IP’ler hız sınırlama ve kötüye kullanımı önleme için kullanılır.",
       zhs: "标准服务器日志（时间戳、请求路径、HTTP 状态、user-agent）以及来源 IP 地址。IP 用于限流和防止滥用。",
       zht: "標準伺服器日誌（時間戳、請求路徑、HTTP 狀態、user-agent）以及來源 IP 地址。IP 用於限流和防止濫用。",
+      ara: "سجلات الخادم القياسية (الطابع الزمني، مسار الطلب، حالة HTTP، وكيل المستخدم) وعنوان IP المصدر. تُستخدم عناوين IP لتحديد معدل الطلبات ومنع إساءة الاستخدام.",
+      ind: "Log server standar (stempel waktu, path permintaan, status HTTP, user-agent) dan alamat IP sumber. IP dipakai untuk pembatasan laju dan pencegahan penyalahgunaan.",
     },
   "Steam identifiers.": {
     eng: "Steam identifiers.",
@@ -1249,6 +1393,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Steam tanımlayıcıları.",
     zhs: "Steam 标识符。",
     zht: "Steam 識別符號。",
+    ara: "معرفات Steam.",
+    ind: "Pengenal Steam.",
   },
   "Submit content that is illegal, harassing, hateful, sexually explicit, or that contains another person’s private information.":
     {
@@ -1267,6 +1413,8 @@ export const X3: Record<string, Record<string, string>> = {
       tur: "Yasa dışı, taciz edici, nefret içeren, cinsel açıdan müstehcen içerik veya başka bir kişinin özel bilgilerini içeren içerik göndermek.",
       zhs: "提交违法、骚扰、仇恨、露骨色情或包含他人私人信息的内容。",
       zht: "提交違法、騷擾、仇恨、露骨色情或包含他人私人資訊的內容。",
+      ara: "إرسال محتوى غير قانوني أو فيه مضايقة أو كراهية أو محتوى جنسي صريح أو يتضمن معلومات خاصة بشخص آخر.",
+      ind: "Mengirim konten yang ilegal, melecehkan, penuh kebencian, eksplisit secara seksual, atau yang memuat informasi pribadi orang lain.",
     },
   "Subscribe to the": {
     eng: "Subscribe to the",
@@ -1284,6 +1432,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Şuna abone olun:",
     zhs: "订阅",
     zht: "訂閱",
+    ara: "اشترك في",
+    ind: "Berlangganan ke",
   },
   Taken: {
     eng: "Taken",
@@ -1301,6 +1451,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Alındı",
     zhs: "已占用",
     zht: "已佔用",
+    ara: "مستخدم بالفعل",
+    ind: "Sudah dipakai",
   },
   "Terms governing use of the Spire Codex website, API, embeddable widgets, and Overwolf overlay.":
     {
@@ -1319,6 +1471,8 @@ export const X3: Record<string, Record<string, string>> = {
       tur: "Spire Codex web sitesinin, API’nin, gömülebilir widget’ların ve Overwolf bindirmesinin kullanımını düzenleyen koşullar.",
       zhs: "管辖 Spire Codex 网站、API、可嵌入小组件以及 Overwolf 叠加层使用的条款。",
       zht: "管轄 Spire Codex 網站、API、可嵌入小元件以及 Overwolf 疊加層使用的條款。",
+      ara: "الشروط التي تحكم استخدام موقع Spire Codex وواجهة API والأدوات القابلة للتضمين وواجهة تراكب Overwolf.",
+      ind: "Ketentuan yang mengatur penggunaan situs web Spire Codex, API, widget yang bisa disematkan, dan overlay Overwolf.",
     },
   "The Service is not directed to children under 13. We do not knowingly collect data from children. If you believe a child has submitted data to the Service, contact us and we will remove it.":
     {
@@ -1337,6 +1491,8 @@ export const X3: Record<string, Record<string, string>> = {
       tur: "Hizmet 13 yaşından küçük çocuklara yönelik değildir. Çocuklardan bilerek veri toplamayız. Bir çocuğun Hizmete veri gönderdiğini düşünüyorsanız bizimle iletişime geçin, veriyi kaldıralım.",
       zhs: "本服务不面向 13 岁以下儿童。我们不会有意收集儿童的数据。如果您认为有儿童向本服务提交了数据，请联系我们，我们将予以删除。",
       zht: "本服務不面向 13 歲以下兒童。我們不會有意收集兒童的資料。如果您認為有兒童向本服務提交了資料，請聯絡我們，我們將予以刪除。",
+      ara: "الخدمة غير موجهة للأطفال دون 13 عاما. لا نجمع عن علم بيانات من الأطفال. إذا كنت تعتقد أن طفلا أرسل بيانات إلى الخدمة، فتواصل معنا وسنحذفها.",
+      ind: "Layanan ini tidak ditujukan untuk anak di bawah 13 tahun. Kami tidak dengan sengaja mengumpulkan data dari anak-anak. Jika kamu yakin seorang anak telah mengirim data ke Layanan, hubungi kami dan kami akan menghapusnya.",
     },
   "The public API and embeddable widgets are free to use, including in commercial projects. Reasonable rate limits apply (currently 60–120 requests/minute per IP on common endpoints) and may be adjusted without notice. Don’t use the API or widgets in ways that materially degrade the Service for others. Attribution back to":
     {
@@ -1355,6 +1511,8 @@ export const X3: Record<string, Record<string, string>> = {
       tur: "Herkese açık API ve gömülebilir widget’lar, ticari projeler dahil ücretsizdir. Makul hız sınırları geçerlidir (şu anda yaygın uç noktalarda IP başına dakikada 60–120 istek) ve bunlar önceden bildirilmeden ayarlanabilir. API’yi veya widget’ları başkaları için Hizmeti önemli ölçüde bozacak şekilde kullanmayın. Şuraya atıf:",
       zhs: "公开 API 和可嵌入小组件均可免费使用，包括在商业项目中。适用合理的速率限制（目前常用端点每 IP 每分钟 60–120 次请求），并可能在不另行通知的情况下调整。请勿以严重影响他人使用本服务的方式使用 API 或小组件。请注明出处指向",
       zht: "公開 API 和可嵌入小元件均可免費使用，包括在商業專案中。適用合理的速率限制（目前常用端點每 IP 每分鐘 60–120 次請求），並可能在不另行通知的情況下調整。請勿以嚴重影響他人使用本服務的方式使用 API 或小元件。請註明出處指向",
+      ara: "واجهة API العامة والأدوات القابلة للتضمين مجانية الاستخدام، بما في ذلك في المشاريع التجارية. تُطبق حدود معقولة لمعدل الطلبات (حاليا 60–120 طلبا في الدقيقة لكل IP على نقاط النهاية الشائعة) وقد تُعدل دون إشعار. لا تستخدم API أو الأدوات بطرق تضر فعليا بالخدمة للآخرين. نسبة المصدر إلى",
+      ind: "API publik dan widget yang bisa disematkan gratis dipakai, termasuk untuk proyek komersial. Batas laju yang wajar berlaku (saat ini 60–120 permintaan/menit per IP pada endpoint umum) dan bisa diubah tanpa pemberitahuan. Jangan pakai API atau widget dengan cara yang menurunkan kualitas Layanan secara nyata bagi orang lain. Atribusi balik ke",
     },
   "These terms are governed by the laws of the State of California, United States, without regard to its conflict-of-laws principles. Any disputes will be resolved in the state or federal courts located in California, and you consent to that venue.":
     {
@@ -1373,6 +1531,8 @@ export const X3: Record<string, Record<string, string>> = {
       tur: "Bu koşullar, kanunlar ihtilafı ilkeleri dikkate alınmaksızın California, United States eyaleti yasalarına tabidir. Her türlü uyuşmazlık California’da bulunan eyalet veya federal mahkemelerde çözülecektir ve bu yargı yerini kabul edersiniz.",
       zhs: "本条款受 United States California 州法律管辖，不考虑其法律冲突原则。任何争议将在位于 California 的州法院或联邦法院解决，且您同意接受该管辖地。",
       zht: "本條款受 United States California 州法律管轄，不考慮其法律衝突原則。任何爭議將在位於 California 的州法院或聯邦法院解決，且您同意接受該管轄地。",
+      ara: "تخضع هذه الشروط لقوانين ولاية كاليفورنيا، الولايات المتحدة، بصرف النظر عن مبادئ تنازع القوانين فيها. تُحل أي نزاعات في محاكم الولاية أو المحاكم الفيدرالية الواقعة في كاليفورنيا، وأنت توافق على هذا الاختصاص المكاني.",
+      ind: "Ketentuan ini diatur oleh hukum Negara Bagian California, Amerika Serikat, tanpa memperhatikan prinsip pertentangan hukumnya. Setiap sengketa akan diselesaikan di pengadilan negara bagian atau federal yang berlokasi di California, dan kamu menyetujui tempat tersebut.",
     },
   "This promotion is in no way sponsored, endorsed, administered by, or associated with Valve, Steam, Mega Crit, Overwolf, or Artovision.":
     {
@@ -1391,6 +1551,8 @@ export const X3: Record<string, Record<string, string>> = {
       tur: "Bu promosyon hiçbir şekilde Valve, Steam, Mega Crit, Overwolf veya Artovision tarafından desteklenmez, onaylanmaz, yönetilmez ya da bunlarla ilişkili değildir.",
       zhs: "本促销活动绝无任何形式的赞助、认可、管理，也不与 Valve、Steam、Mega Crit、Overwolf 或 Artovision 存在关联。",
       zht: "本促銷活動絕無任何形式的贊助、認可、管理，也不與 Valve、Steam、Mega Crit、Overwolf 或 Artovision 存在關聯。",
+      ara: "هذا العرض الترويجي غير مرعي أو مدعوم أو مدار من قبل Valve أو Steam أو Mega Crit أو Overwolf أو Artovision، ولا يرتبط بها بأي شكل.",
+      ind: "Promosi ini sama sekali tidak disponsori, didukung, dikelola oleh, atau terkait dengan Valve, Steam, Mega Crit, Overwolf, atau Artovision.",
     },
   "Tier label": {
     eng: "Tier label",
@@ -1408,6 +1570,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Seviye etiketi",
     zhs: "等级标签",
     zht: "等級標籤",
+    ara: "تسمية الفئة",
+    ind: "Label tier",
   },
   "To the maximum extent permitted by law, Spire Codex and its operators are not liable for any indirect, incidental, consequential, or punitive damages arising out of or related to your use of the Service. Aggregate liability for any claim related to the Service will not exceed USD $50.":
     {
@@ -1426,6 +1590,8 @@ export const X3: Record<string, Record<string, string>> = {
       tur: "Yasaların izin verdiği azami ölçüde, Spire Codex ve işletmecileri, Hizmeti kullanmanızdan doğan veya bununla ilgili dolaylı, arızi, sonuçsal ya da cezai zararlardan sorumlu değildir. Hizmetle ilgili herhangi bir talep için toplam sorumluluk USD $50 tutarını aşmayacaktır.",
       zhs: "在法律允许的最大范围内，Spire Codex 及其运营方对因您使用本服务而产生或与之相关的任何间接、附带、后果性或惩罚性损害概不负责。与本服务相关的任何索赔的赔偿责任总额不超过 USD $50。",
       zht: "在法律允許的最大範圍內，Spire Codex 及其運營方對因您使用本服務而產生或與之相關的任何間接、附帶、後果性或懲罰性損害概不負責。與本服務相關的任何索賠的賠償責任總額不超過 USD $50。",
+      ara: "إلى أقصى حد يسمح به القانون، لا يتحمل Spire Codex ومشغلوه المسؤولية عن أي أضرار غير مباشرة أو عرضية أو تبعية أو عقابية ناشئة عن استخدامك للخدمة أو متعلقة به. لن تتجاوز المسؤولية الإجمالية عن أي مطالبة متعلقة بالخدمة 50 دولارا أمريكيا.",
+      ind: "Sejauh diizinkan oleh hukum, Spire Codex dan operatornya tidak bertanggung jawab atas kerugian tidak langsung, insidental, konsekuensial, atau punitif yang timbul dari atau terkait dengan penggunaan Layanan olehmu. Total tanggung jawab atas klaim apa pun terkait Layanan tidak akan melebihi USD $50.",
     },
   "Top-tier Cards right now": {
     eng: "Top-tier Cards right now",
@@ -1443,6 +1609,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Şu anda en üst seviye kartlar",
     zhs: "当前顶级卡牌",
     zht: "當前頂級卡牌",
+    ara: "بطاقات الفئة العليا حاليا",
+    ind: "Kartu tier teratas saat ini",
   },
   Updated: {
     eng: "Updated",
@@ -1460,6 +1628,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Güncellendi",
     zhs: "已更新",
     zht: "已更新",
+    ara: "تم التحديث",
+    ind: "Diperbarui",
   },
   "Upload failed": {
     eng: "Upload failed",
@@ -1477,6 +1647,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Yükleme başarısız",
     zhs: "上传失败",
     zht: "上傳失敗",
+    ara: "فشل الرفع",
+    ind: "Gagal mengunggah",
   },
   Used: {
     eng: "Used",
@@ -1494,6 +1666,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Kullanıldı",
     zhs: "已使用",
     zht: "已使用",
+    ara: "مستخدمة",
+    ind: "Digunakan",
   },
   "View full list": {
     eng: "View full list",
@@ -1511,6 +1685,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Tam listeyi görüntüle",
     zhs: "查看完整列表",
     zht: "檢視完整列表",
+    ara: "عرض القائمة الكاملة",
+    ind: "Lihat daftar lengkap",
   },
   "We are giving away an": {
     eng: "We are giving away an",
@@ -1528,6 +1704,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Şunu hediye ediyoruz:",
     zhs: "我们正在赠送",
     zht: "我們正在贈送",
+    ara: "نقدم كجائزة",
+    ind: "Kami membagikan",
   },
   "We may update this policy as the Service evolves. Material changes will be noted by updating the “Last updated” date at the top of this page. Continued use of the Service after a change indicates acceptance of the revised policy.":
     {
@@ -1546,6 +1724,8 @@ export const X3: Record<string, Record<string, string>> = {
       tur: "Hizmet geliştikçe bu politikayı güncelleyebiliriz. Önemli değişiklikler, bu sayfanın üst kısmındaki “Son güncelleme” tarihi güncellenerek belirtilir. Bir değişikliğin ardından Hizmeti kullanmaya devam etmeniz, güncellenen politikayı kabul ettiğiniz anlamına gelir.",
       zhs: "随着本服务的发展，我们可能会更新本政策。重大变更将通过更新本页顶部的“最后更新”日期来标注。变更后继续使用本服务即表示接受修订后的政策。",
       zht: "隨著本服務的發展，我們可能會更新本政策。重大變更將透過更新本頁頂部的“最後更新”日期來標註。變更後繼續使用本服務即表示接受修訂後的政策。",
+      ara: "قد نحدث هذه السياسة مع تطور الخدمة. سيُشار إلى التغييرات الجوهرية بتحديث تاريخ “آخر تحديث” أعلى هذه الصفحة. استمرارك في استخدام الخدمة بعد أي تغيير يعني قبولك للسياسة المعدلة.",
+      ind: "Kami bisa memperbarui kebijakan ini seiring berkembangnya Layanan. Perubahan penting akan ditandai dengan memperbarui tanggal “Terakhir diperbarui” di bagian atas halaman ini. Terus memakai Layanan setelah perubahan berarti menerima kebijakan yang direvisi.",
     },
   "What is the best relic in Slay the Spire 2?": {
     eng: "What is the best relic in Slay the Spire 2?",
@@ -1563,6 +1743,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2’deki en iyi kalıntı hangisi?",
     zhs: "Slay the Spire 2 中最好的遗物是什么？",
     zht: "Slay the Spire 2 中最好的遺物是什麼？",
+    ara: "ما أفضل أثر في Slay the Spire 2؟",
+    ind: "Apa pusaka terbaik di Slay the Spire 2?",
   },
   "What we don’t collect": {
     eng: "What we don’t collect",
@@ -1580,6 +1762,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Toplamadıklarımız",
     zhs: "我们不收集的信息",
     zht: "我們不收集的資訊",
+    ara: "ما لا نجمعه",
+    ind: "Yang tidak kami kumpulkan",
   },
   "When you sign in with Steam, we receive your 64-bit SteamID and your public persona name from Steam’s OpenID endpoint. We use these to attribute submitted runs and to surface your name on leaderboards.":
     {
@@ -1598,6 +1782,8 @@ export const X3: Record<string, Record<string, string>> = {
       tur: "Steam ile oturum açtığınızda, Steam’in OpenID uç noktasından 64-bit SteamID’nizi ve herkese açık persona adınızı alırız. Bunları, gönderilen koşuları ilişkilendirmek ve adınızı liderlik tablolarında göstermek için kullanırız.",
       zhs: "当你使用 Steam 登录时，我们会从 Steam 的 OpenID 端点接收你的 64-bit SteamID 和公开的 persona 名称。我们用它们来归属提交的通关记录，并在排行榜上显示你的名字。",
       zht: "當你使用 Steam 登入時，我們會從 Steam 的 OpenID 端點接收你的 64-bit SteamID 和公開的 persona 名稱。我們用它們來歸屬提交的通關記錄，並在排行榜上顯示你的名字。",
+      ara: "عند تسجيل الدخول عبر Steam، نتلقى معرف SteamID الخاص بك بصيغة 64 بت واسمك العلني من نقطة OpenID التابعة لـ Steam. نستخدمهما لنسبة الجولات المرسلة إليك ولإظهار اسمك في لوحة المتصدرين.",
+      ind: "Saat kamu masuk dengan Steam, kami menerima SteamID 64-bit dan nama persona publikmu dari endpoint OpenID Steam. Kami memakainya untuk mengaitkan perjalanan yang dikirim dan menampilkan namamu di papan peringkat.",
     },
   "Which sts2 cards have the best win rates?": {
     eng: "Which sts2 cards have the best win rates?",
@@ -1615,6 +1801,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Hangi sts2 kartları en iyi kazanma oranlarına sahip?",
     zhs: "哪些 sts2 卡牌的胜率最高？",
     zht: "哪些 sts2 卡牌的勝率最高？",
+    ara: "أي بطاقات sts2 لديها أفضل معدلات فوز؟",
+    ind: "Kartu sts2 mana yang punya tingkat kemenangan terbaik?",
   },
   "Win Rate vs Community": {
     eng: "Win Rate vs Community",
@@ -1632,6 +1820,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Kazanma oranı: topluluğa karşı",
     zhs: "胜率对比社区",
     zht: "勝率對比社群",
+    ara: "معدل الفوز مقارنة بالمجتمع",
+    ind: "Tingkat Kemenangan vs Komunitas",
   },
   "Wins / Losses (runs)": {
     eng: "Wins / Losses (runs)",
@@ -1649,6 +1839,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Galibiyet / Mağlubiyet (koşu)",
     zhs: "胜 / 负（通关）",
     zht: "勝 / 負（通關）",
+    ara: "انتصارات / هزائم (جولات)",
+    ind: "Menang / Kalah (perjalanan)",
   },
   "You agree that you will not:": {
     eng: "You agree that you will not:",
@@ -1666,6 +1858,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Şunları yapmayacağınızı kabul edersiniz:",
     zhs: "你同意不会：",
     zht: "你同意不會：",
+    ara: "أنت توافق على ألا تقوم بما يلي:",
+    ind: "Kamu setuju untuk tidak:",
   },
   "Your Profile": {
     eng: "Your Profile",
@@ -1683,6 +1877,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "Profiliniz",
     zhs: "你的个人资料",
     zht: "你的個人資料",
+    ara: "ملفك الشخصي",
+    ind: "Profilmu",
   },
   "baseline win rate": {
     eng: "baseline win rate",
@@ -1700,6 +1896,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "temel kazanma oranı",
     zhs: "基准胜率",
     zht: "基準勝率",
+    ara: "معدل الفوز الأساسي",
+    ind: "tingkat kemenangan dasar",
   },
   claimed: {
     eng: "claimed",
@@ -1717,6 +1915,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "sahiplenildi",
     zhs: "已认领",
     zht: "已認領",
+    ara: "تمت المطالبة بها",
+    ind: "diklaim",
   },
   disconnected: {
     eng: "disconnected",
@@ -1734,6 +1934,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "bağlantı kesildi",
     zhs: "已断开连接",
     zht: "已斷開連線",
+    ara: "غير متصل",
+    ind: "terputus",
   },
   "file from your profile.": {
     eng: "file from your profile.",
@@ -1751,6 +1953,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "dosyasını profilinizden.",
     zhs: "文件从你的个人资料中。",
     zht: "檔案從你的個人資料中。",
+    ara: "من ملفك الشخصي.",
+    ind: "dari profilmu.",
   },
   "grades win rate (does the card win games).": {
     eng: "grades win rate (does the card win games).",
@@ -1768,6 +1972,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "kazanma oranını değerlendirir (kart oyun kazandırıyor mu).",
     zhs: "评定胜率（这张卡能否赢得对局）。",
     zht: "評定勝率（這張卡能否贏得對局）。",
+    ara: "يقيّم معدل الفوز (هل تفوز البطاقة بالجولات).",
+    ind: "menilai tingkat kemenangan (apakah kartu ini memenangkan permainan).",
   },
   kills: {
     eng: "kills",
@@ -1785,6 +1991,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "öldürme",
     zhs: "击杀数",
     zht: "擊殺數",
+    ara: "عمليات قتل",
+    ind: "kill",
   },
   "of card rewards skipped": {
     eng: "of card rewards skipped",
@@ -1802,6 +2010,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "kart ödülü atlandı",
     zhs: "的卡牌奖励被跳过",
     zht: "的卡牌獎勵被跳過",
+    ara: "من مكافآت البطاقات تم تخطيها",
+    ind: "pilihan kartu dilewati",
   },
   or: {
     eng: "or",
@@ -1819,6 +2029,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "veya",
     zhs: "或",
     zht: "或",
+    ara: "أو",
+    ind: "atau",
   },
   runs: {
     eng: "runs",
@@ -1836,6 +2048,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "koşu",
     zhs: "对局",
     zht: "對局",
+    ara: "جولات",
+    ind: "perjalanan",
   },
   "scoring methodology": {
     eng: "scoring methodology",
@@ -1853,6 +2067,8 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "puanlama yöntemi",
     zhs: "评分方法",
     zht: "評分方法",
+    ara: "منهجية التقييم",
+    ind: "metodologi penilaian",
   },
   "★ Top tier · live": {
     eng: "★ Top tier · live",
@@ -1870,5 +2086,7 @@ export const X3: Record<string, Record<string, string>> = {
     tur: "★ En üst seviye · canlı",
     zhs: "★ 顶级 · 直播",
     zht: "★ 頂級 · 直播",
+    ara: "★ الفئة العليا · مباشر",
+    ind: "★ Tier teratas · live",
   },
 };

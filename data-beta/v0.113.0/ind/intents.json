@@ -1,0 +1,86 @@
+[
+  {
+    "id": "ATTACK",
+    "name": "Agresif",
+    "description": "Musuh ini ingin [gold]Menyerang[/gold] {IsMultiplayer:kalian semua |}sebesar [blue]{Damage}[/blue]{Repeat:choose(1):| sebanyak [blue]{}[/blue] kali}.",
+    "image_url": "/static/images/intents/attack.png"
+  },
+  {
+    "id": "BUFF",
+    "name": "Perkuat",
+    "description": "Musuh ini ingin menggunakan [gold]Efek[/gold].",
+    "image_url": "/static/images/intents/buff.png"
+  },
+  {
+    "id": "CARD_DEBUFF",
+    "name": "Niat Jahat",
+    "description": "Musuh ini ingin menerapkan [gold]Penyakit[/gold] ke kartumu.",
+    "image_url": "/static/images/intents/card_debuff.png"
+  },
+  {
+    "id": "DEATH_BLOW",
+    "name": "Ledakan Kematian",
+    "description": "Makhluk ini mencoba mati bersamamu. Akan menyerang sebesar [blue]{Damage}[/blue] kerusakan sebelum hancur.",
+    "image_url": "/static/images/intents/death_blow.png"
+  },
+  {
+    "id": "DEBUFF",
+    "name": "Strategis",
+    "description": "Musuh ini ingin menerapkan sebuah [gold]Efek[/gold] kepadamu.",
+    "image_url": "/static/images/intents/debuff.png"
+  },
+  {
+    "id": "DEBUFF_STRONG",
+    "name": "Strategis",
+    "description": "Musuh ini ingin menerapkan [gold]Efek[/gold] yang kuat kepadamu.",
+    "image_url": "/static/images/intents/debuff_strong.png"
+  },
+  {
+    "id": "DEFEND",
+    "name": "Defensif",
+    "description": "Musuh ini ingin [gold]Blok[/gold] waktu gilirannya.",
+    "image_url": "/static/images/intents/defend.png"
+  },
+  {
+    "id": "ESCAPE",
+    "name": "Penakut",
+    "description": "Musuh ini ingin [gold]Lari[/gold].",
+    "image_url": "/static/images/intents/escape.png"
+  },
+  {
+    "id": "HEAL",
+    "name": "Menyembuhkan",
+    "description": "Musuh ini ingin [gold]Menyembuhkan[/gold].",
+    "image_url": "/static/images/intents/heal.png"
+  },
+  {
+    "id": "SLEEP",
+    "name": "Tidur",
+    "description": "Musuh ini tidak melakukan apa-apa giliran ini.",
+    "image_url": "/static/images/intents/sleep.png"
+  },
+  {
+    "id": "STATUS",
+    "name": "Strategis",
+    "description": "Musuh ini ingin memberimu [blue]{CardCount}[/blue] {CardCount:plural:kartu|kartu} [gold]Status[/gold].",
+    "image_url": "/static/images/intents/status.png"
+  },
+  {
+    "id": "STUN",
+    "name": "Linglung",
+    "description": "Musuh ini tidak bisa apa-apa waktu gilirannya.",
+    "image_url": "/static/images/intents/stun.png"
+  },
+  {
+    "id": "SUMMON",
+    "name": "Panggil",
+    "description": "Musuh ini ingin memanggil [gold]Monster[/gold].",
+    "image_url": "/static/images/intents/summon.png"
+  },
+  {
+    "id": "UNKNOWN",
+    "name": "Tak Diketahui",
+    "description": "Niat musuh ini [gold]Tak Diketahui[/gold].",
+    "image_url": "/static/images/intents/unknown.png"
+  }
+]

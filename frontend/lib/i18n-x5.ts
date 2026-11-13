@@ -16,6 +16,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Kartlar ve Savaş",
     zhs: "卡牌与战斗",
     zht: "卡牌與戰鬥",
+    ara: "البطاقات والقتال",
+    ind: "Kartu & Perlawanan",
   },
   "The Run": {
     eng: "The Run",
@@ -33,6 +35,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Koşu",
     zhs: "本局旅程",
     zht: "本局旅程",
+    ara: "الجولة",
+    ind: "Perjalanan",
   },
   "Systems & Meta": {
     eng: "Systems & Meta",
@@ -50,6 +54,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Sistemler ve Meta",
     zhs: "系统与进度",
     zht: "系統與進度",
+    ara: "الأنظمة والميتا",
+    ind: "Sistem & Meta",
   },
   Rankings: {
     eng: "Rankings",
@@ -67,6 +73,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Sıralamalar",
     zhs: "排名",
     zht: "排名",
+    ara: "التصنيفات",
+    ind: "Peringkat",
   },
   "Aggregate data": {
     eng: "Aggregate data",
@@ -84,6 +92,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Toplu veriler",
     zhs: "汇总数据",
     zht: "彙總資料",
+    ara: "بيانات مجمعة",
+    ind: "Data gabungan",
   },
   "Make & share": {
     eng: "Make & share",
@@ -101,6 +111,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Oluştur ve paylaş",
     zhs: "创作与分享",
     zht: "創作與分享",
+    ara: "اصنع وشارك",
+    ind: "Buat & bagikan",
   },
   "Companion apps": {
     eng: "Companion apps",
@@ -118,6 +130,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Yardımcı uygulamalar",
     zhs: "配套应用",
     zht: "配套應用",
+    ara: "التطبيقات المرافقة",
+    ind: "Aplikasi pendamping",
   },
   "Build with the data": {
     eng: "Build with the data",
@@ -135,6 +149,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Verilerle geliştir",
     zhs: "用数据开发",
     zht: "用資料開發",
+    ara: "ابنِ باستخدام البيانات",
+    ind: "Bangun dengan datanya",
   },
   Project: {
     eng: "Project",
@@ -152,6 +168,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Proje",
     zhs: "项目",
     zht: "專案",
+    ara: "المشروع",
+    ind: "Proyek",
   },
   Support: {
     eng: "Support",
@@ -169,6 +187,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Destek",
     zhs: "支持",
     zht: "支持",
+    ara: "الدعم",
+    ind: "Dukungan",
   },
   Elsewhere: {
     eng: "Elsewhere",
@@ -186,6 +206,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Diğer",
     zhs: "其他",
     zht: "其他",
+    ara: "في أماكن أخرى",
+    ind: "Di tempat lain",
   },
   Scoring: {
     eng: "Scoring",
@@ -203,6 +225,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Puanlama",
     zhs: "评分",
     zht: "評分",
+    ara: "التقييم",
+    ind: "Penilaian",
   },
   Charts: {
     eng: "Charts",
@@ -220,6 +244,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Grafikler",
     zhs: "图表",
     zht: "圖表",
+    ara: "المخططات",
+    ind: "Grafik",
   },
   "Overlay (Overwolf)": {
     eng: "Overlay (Overwolf)",
@@ -237,6 +263,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Yer paylaşımı (Overwolf)",
     zhs: "叠加层 (Overwolf)",
     zht: "疊加層 (Overwolf)",
+    ara: "واجهة التراكب (Overwolf)",
+    ind: "Overlay (Overwolf)",
   },
   "Page Not Found": {
     eng: "Page Not Found",
@@ -254,6 +282,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Sayfa bulunamadı",
     zhs: "页面未找到",
     zht: "找不到頁面",
+    ara: "الصفحة غير موجودة",
+    ind: "Halaman Tidak Ditemukan",
   },
   "The page you were looking for doesn't exist on Spire Codex.": {
     eng: "The page you were looking for doesn't exist on Spire Codex.",
@@ -271,6 +301,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Aradığınız sayfa Spire Codex'te yok.",
     zhs: "你要找的页面在 Spire Codex 上不存在。",
     zht: "你要找的頁面在 Spire Codex 上不存在。",
+    ara: "الصفحة التي تبحث عنها غير موجودة على Spire Codex.",
+    ind: "Halaman yang kamu cari tidak ada di Spire Codex.",
   },
   "Take me home": {
     eng: "Take me home",
@@ -288,6 +320,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Ana sayfaya dön",
     zhs: "回到首页",
     zht: "回到首頁",
+    ara: "خذني إلى الرئيسية",
+    ind: "Ke beranda",
   },
   "Or browse the database:": {
     eng: "Or browse the database:",
@@ -305,6 +339,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Ya da veritabanına göz atın:",
     zhs: "或浏览数据库：",
     zht: "或瀏覽資料庫：",
+    ara: "أو تصفح قاعدة البيانات:",
+    ind: "Atau jelajahi database:",
   },
   "% of runs holding it": {
     eng: "% of runs holding it",
@@ -322,6 +358,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Ona sahip koşuların yüzdesi",
     zhs: "持有它的对局占比",
     zht: "持有它的對局佔比",
+    ara: "% من الجولات التي تحمله",
+    ind: "% perjalanan yang memilikinya",
   },
   "Commonly seen with": {
     eng: "Commonly seen with",
@@ -339,6 +377,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Sık birlikte görülen",
     zhs: "常与之同时出现",
     zht: "常與之同時出現",
+    ara: "يظهر غالبا مع",
+    ind: "Sering terlihat bersama",
   },
   "Current version": {
     eng: "Current version",
@@ -356,6 +396,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Güncel sürüm",
     zhs: "当前版本",
     zht: "目前版本",
+    ara: "النسخة الحالية",
+    ind: "Versi saat ini",
   },
   "View this entity's data and stats as of a game version": {
     eng: "View this entity's data and stats as of a game version",
@@ -373,6 +415,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Bu öğenin verilerini ve istatistiklerini bir oyun sürümüne göre gör",
     zhs: "查看该条目在某个游戏版本下的数据与统计",
     zht: "查看該條目在某個遊戲版本下的資料與統計",
+    ara: "عرض بيانات هذا العنصر وإحصائياته كما كانت في نسخة معينة من اللعبة",
+    ind: "Lihat data dan statistik entitas ini per versi game tertentu",
   },
   "Win rate with it": {
     eng: "Win rate with it",
@@ -390,6 +434,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Onunla kazanma oranı",
     zhs: "持有时的胜率",
     zht: "持有時的勝率",
+    ara: "معدل الفوز معه",
+    ind: "Tingkat kemenangan dengannya",
   },
   "Win rate over time": {
     eng: "Win rate over time",
@@ -407,6 +453,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Zaman içindeki kazanma oranı",
     zhs: "胜率走势",
     zht: "勝率走勢",
+    ara: "معدل الفوز عبر الزمن",
+    ind: "Tingkat kemenangan dari waktu ke waktu",
   },
   weeks: {
     eng: "weeks",
@@ -424,6 +472,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "hafta",
     zhs: "周",
     zht: "週",
+    ara: "أسابيع",
+    ind: "minggu",
   },
   Weekly: {
     eng: "Weekly",
@@ -441,6 +491,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Haftalık",
     zhs: "每周",
     zht: "每週",
+    ara: "أسبوعي",
+    ind: "Mingguan",
   },
   "Trends over time": {
     eng: "Trends over time",
@@ -458,6 +510,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Zaman içindeki eğilimler",
     zhs: "趋势变化",
     zht: "趨勢變化",
+    ara: "الاتجاهات عبر الزمن",
+    ind: "Tren dari waktu ke waktu",
   },
   "Pick rate over time": {
     eng: "Pick rate over time",
@@ -475,6 +529,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Zaman içindeki seçilme oranı",
     zhs: "选取率走势",
     zht: "選取率走勢",
+    ara: "معدل الاختيار عبر الزمن",
+    ind: "Tingkat pilih dari waktu ke waktu",
   },
   "Overall win rate": {
     eng: "Overall win rate",
@@ -492,6 +548,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Genel kazanma oranı",
     zhs: "总体胜率",
     zht: "總體勝率",
+    ara: "معدل الفوز الإجمالي",
+    ind: "Tingkat kemenangan keseluruhan",
   },
   last: {
     eng: "last",
@@ -509,6 +567,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "son",
     zhs: "最近",
     zht: "最近",
+    ara: "آخر",
+    ind: "terakhir",
   },
   "all ascensions and modes": {
     eng: "all ascensions and modes",
@@ -526,6 +586,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "tüm yükselişler ve modlar",
     zhs: "所有进阶与模式",
     zht: "所有晉階與模式",
+    ara: "كل مستويات الصعود والأوضاع",
+    ind: "semua angkatan dan mode",
   },
   "How often each shows up in the same community runs as": {
     eng: "How often each shows up in the same community runs as",
@@ -543,6 +605,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Her birinin topluluk koşularında şununla birlikte görülme sıklığı:",
     zhs: "各项与之出现在同一社区对局中的频率：",
     zht: "各項與之出現在同一社群對局中的頻率：",
+    ara: "كم مرة يظهر كل منها في جولات المجتمع نفسها مع",
+    ind: "Seberapa sering masing-masing muncul di perjalanan komunitas yang sama dengan",
   },
   "Often drafted with": {
     eng: "Often drafted with",
@@ -560,6 +624,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Sık birlikte seçilen",
     zhs: "常一起选取",
     zht: "常一起選取",
+    ara: "يُختار غالبا مع",
+    ind: "Sering diambil bersama",
   },
   "also had": {
     eng: "also had",
@@ -577,6 +643,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "ayrıca şuna sahipti",
     zhs: "同时持有",
     zht: "同時持有",
+    ara: "لديها أيضا",
+    ind: "juga punya",
   },
   "also run": {
     eng: "also run",
@@ -594,6 +662,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "ayrıca şunu kullanıyor",
     zhs: "同时使用",
     zht: "同時使用",
+    ara: "تلعب أيضا",
+    ind: "juga memakai",
   },
   decks: {
     eng: "decks",
@@ -611,6 +681,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "deste",
     zhs: "套牌",
     zht: "套牌",
+    ara: "مجموعات",
+    ind: "dek",
   },
   "win rate together": {
     eng: "win rate together",
@@ -628,6 +700,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "birlikte kazanma oranı",
     zhs: "同时使用时的胜率",
     zht: "同時使用時的勝率",
+    ara: "معدل الفوز معا",
+    ind: "tingkat kemenangan bersama",
   },
   "Cards players take most from rewards when they already have": {
     eng: "Cards players take most from rewards when they already have",
@@ -645,6 +719,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Oyuncuların zaten şuna sahipken ödüllerden en çok aldığı kartlar:",
     zhs: "玩家已拥有它时最常从奖励中选取的卡牌：",
     zht: "玩家已擁有它時最常從獎勵中選取的卡牌：",
+    ara: "البطاقات التي يأخذها اللاعبون أكثر من المكافآت عندما يكون لديهم بالفعل",
+    ind: "Kartu yang paling sering diambil pemain dari hadiah saat mereka sudah punya",
   },
   ", vs how often they take each card in general.": {
     eng: ", vs how often they take each card in general.",
@@ -662,6 +738,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: ", genel olarak her kartı alma sıklığına kıyasla.",
     zhs: "，并与其一般选取频率对比。",
     zht: "，並與其一般選取頻率對比。",
+    ara: "، مقارنة بعدد مرات أخذهم لكل بطاقة عموما.",
+    ind: ", dibanding seberapa sering mereka mengambil tiap kartu secara umum.",
   },
   "Drafted next": {
     eng: "Drafted next",
@@ -679,6 +757,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Sonraki seçim",
     zhs: "接下来选取",
     zht: "接下來選取",
+    ara: "يُختار بعدها",
+    ind: "Diambil berikutnya",
   },
   "of the time": {
     eng: "of the time",
@@ -696,6 +776,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "oranında",
     zhs: "的概率",
     zht: "的機率",
+    ara: "من المرات",
+    ind: "dari seluruh kesempatan",
   },
   picked: {
     eng: "picked",
@@ -713,6 +795,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "seçildi",
     zhs: "被选取",
     zht: "被選取",
+    ara: "تم اختيارها",
+    ind: "dipilih",
   },
   "vs usual": {
     eng: "vs usual",
@@ -730,6 +814,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "normale kıyasla",
     zhs: "对比常规",
     zht: "對比常規",
+    ara: "مقارنة بالمعتاد",
+    ind: "vs biasanya",
   },
   "Avg damage": {
     eng: "Avg damage",
@@ -747,6 +833,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Ort. hasar",
     zhs: "平均伤害",
     zht: "平均傷害",
+    ara: "متوسط الضرر",
+    ind: "Rata-rata damage",
   },
   "Avg turns": {
     eng: "Avg turns",
@@ -764,6 +852,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Ort. tur",
     zhs: "平均回合",
     zht: "平均回合",
+    ara: "متوسط الأدوار",
+    ind: "Rata-rata giliran",
   },
   Fatal: {
     eng: "Fatal",
@@ -781,6 +871,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Ölümcül",
     zhs: "致命",
     zht: "致命",
+    ara: "قاتل",
+    ind: "Fatal",
   },
   "Fatal rate by character": {
     eng: "Fatal rate by character",
@@ -798,6 +890,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Karaktere göre ölüm oranı",
     zhs: "各角色致死率",
     zht: "各角色致死率",
+    ara: "معدل الوفيات حسب الشخصية",
+    ind: "Tingkat fatal per karakter",
   },
   "Fatal rate by game version": {
     eng: "Fatal rate by game version",
@@ -815,6 +909,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Oyun sürümüne göre ölüm oranı",
     zhs: "各游戏版本致死率",
     zht: "各遊戲版本致死率",
+    ara: "معدل الوفيات حسب نسخة اللعبة",
+    ind: "Tingkat fatal per versi game",
   },
   "Fatal rate by party size": {
     eng: "Fatal rate by party size",
@@ -832,6 +928,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Grup boyutuna göre ölüm oranı",
     zhs: "各队伍人数致死率",
     zht: "各隊伍人數致死率",
+    ara: "معدل الوفيات حسب حجم الفريق",
+    ind: "Tingkat fatal per ukuran tim",
   },
   "Fatal rate by skill tier": {
     eng: "Fatal rate by skill tier",
@@ -849,6 +947,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Beceri seviyesine göre ölüm oranı",
     zhs: "各水平层级致死率",
     zht: "各水準層級致死率",
+    ara: "معدل الوفيات حسب مستوى المهارة",
+    ind: "Tingkat fatal per tingkat kemampuan",
   },
   "Game version": {
     eng: "Game version",
@@ -866,6 +966,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Oyun sürümü",
     zhs: "游戏版本",
     zht: "遊戲版本",
+    ara: "نسخة اللعبة",
+    ind: "Versi game",
   },
   Loading: {
     eng: "Loading",
@@ -883,6 +985,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Yükleniyor",
     zhs: "加载中",
     zht: "載入中",
+    ara: "جارٍ التحميل",
+    ind: "Memuat",
   },
   "Loading…": {
     eng: "Loading…",
@@ -900,6 +1004,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Yükleniyor…",
     zhs: "加载中…",
     zht: "載入中…",
+    ara: "جارٍ التحميل…",
+    ind: "Memuat…",
   },
   "No community data for this selection yet.": {
     eng: "No community data for this selection yet.",
@@ -917,6 +1023,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Bu seçim için henüz topluluk verisi yok.",
     zhs: "该筛选条件下暂无社区数据。",
     zht: "該篩選條件下暫無社群資料。",
+    ara: "لا توجد بيانات من المجتمع لهذا الاختيار بعد.",
+    ind: "Belum ada data komunitas untuk pilihan ini.",
   },
   "No deaths recorded in this selection": {
     eng: "No deaths recorded in this selection",
@@ -934,6 +1042,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Bu seçimde kayıtlı ölüm yok",
     zhs: "该筛选条件下没有死亡记录",
     zht: "該篩選條件下沒有死亡記錄",
+    ara: "لا وفيات مسجلة في هذا الاختيار",
+    ind: "Tidak ada kematian tercatat di pilihan ini",
   },
   Repeats: {
     eng: "Repeats",
@@ -951,6 +1061,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Tekrarlar",
     zhs: "重复",
     zht: "重複",
+    ara: "التكرارات",
+    ind: "Pengulangan",
   },
   "Ranked by deaths per encounter — the share of parties that die to a fight, not raw death count.":
     {
@@ -969,6 +1081,8 @@ export const X5: Record<string, Record<string, string>> = {
       tur: "Karşılaşma başına ölüme göre sıralı: ham ölüm sayısı değil, bir savaşta ölen grupların payı.",
       zhs: "按每次遭遇的死亡率排序：指在该战斗中阵亡的队伍占比，而非原始死亡次数。",
       zht: "按每次遭遇的死亡率排序：指在該戰鬥中陣亡的隊伍佔比，而非原始死亡次數。",
+      ara: "الترتيب حسب الوفيات لكل مواجهة، أي نسبة الفرق التي تموت في معركة، لا العدد الخام للوفيات.",
+      ind: "Diurutkan menurut kematian per pertemuan, yaitu porsi tim yang mati di sebuah pertarungan, bukan jumlah kematian mentah.",
     },
   'Elo and Pick% come from card-reward picks, so starter cards and non-offered cards show "·" there.':
     {
@@ -987,6 +1101,8 @@ export const X5: Record<string, Record<string, string>> = {
       tur: 'Elo ve Seçim% kart ödülü seçimlerinden gelir, bu yüzden başlangıç kartları ve sunulmayan kartlar orada "·" gösterir.',
       zhs: 'Elo 和选取率来自卡牌奖励的选择，因此初始卡和不会被提供的卡显示为"·"。',
       zht: 'Elo 和選取率來自卡牌獎勵的選擇，因此初始卡和不會被提供的卡顯示為"·"。',
+      ara: 'قيمتا Elo و Pick% تأتيان من اختيارات مكافآت البطاقات، لذا تظهر البطاقات الأساسية والبطاقات غير المعروضة بعلامة "·" هناك.',
+      ind: 'Elo dan Pick% berasal dari pilihan kartu, jadi kartu awalan dan kartu yang tidak ditawarkan menampilkan "·" di sana.',
     },
   "Elo here is the average across player counts. Pick a player count to see its own.":
     {
@@ -1005,6 +1121,8 @@ export const X5: Record<string, Record<string, string>> = {
       tur: "Buradaki Elo, oyuncu sayılarının ortalamasıdır. Kendi değerini görmek için bir oyuncu sayısı seçin.",
       zhs: "此处的 Elo 是各玩家人数的平均值。选择玩家人数可查看其单独的数值。",
       zht: "此處的 Elo 是各玩家人數的平均值。選擇玩家人數可查看其單獨的數值。",
+      ara: "قيمة Elo هنا هي المتوسط عبر أعداد اللاعبين. اختر عدد لاعبين لترى قيمته الخاصة.",
+      ind: "Elo di sini adalah rata-rata lintas jumlah pemain. Pilih jumlah pemain untuk melihat nilainya sendiri.",
     },
   "All versions": {
     eng: "All versions",
@@ -1022,6 +1140,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Tüm sürümler",
     zhs: "所有版本",
     zht: "所有版本",
+    ara: "كل النسخ",
+    ind: "Semua versi",
   },
   "Run Charts": {
     eng: "Run Charts",
@@ -1039,6 +1159,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Koşu grafikleri",
     zhs: "对局图表",
     zht: "對局圖表",
+    ara: "مخططات الجولات",
+    ind: "Grafik Perjalanan",
   },
   "How scoring works": {
     eng: "How scoring works",
@@ -1056,6 +1178,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Puanlama nasıl çalışır",
     zhs: "评分机制",
     zht: "評分機制",
+    ara: "كيف يعمل التقييم",
+    ind: "Cara kerja penilaian",
   },
   Modifiers: {
     eng: "Modifiers",
@@ -1073,6 +1197,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Değiştiriciler",
     zhs: "修正规则",
     zht: "修正規則",
+    ara: "المعدلات",
+    ind: "Efek",
   },
   "Added to your deck in combat by:": {
     eng: "Added to your deck in combat by:",
@@ -1090,6 +1216,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Savaşta destenize şunlarla eklenir:",
     zhs: "在战斗中由以下来源加入牌组：",
     zht: "在戰鬥中由以下來源加入卡組：",
+    ara: "تُضاف إلى مجموعتك أثناء المعركة عبر:",
+    ind: "Ditambahkan ke dekmu saat perlawanan oleh:",
   },
   Sources: {
     eng: "Sources",
@@ -1107,6 +1235,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Kaynaklar",
     zhs: "来源",
     zht: "來源",
+    ara: "المصادر",
+    ind: "Sumber",
   },
   "Similar winning runs": {
     eng: "Similar winning runs",
@@ -1124,6 +1254,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Benzer kazanan koşular",
     zhs: "相似的胜利对局",
     zht: "相似的勝利對局",
+    ara: "جولات فائزة مشابهة",
+    ind: "Perjalanan menang yang mirip",
   },
   "The closest winning decks to this one, by cards and relics.": {
     eng: "The closest winning decks to this one, by cards and relics.",
@@ -1141,6 +1273,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Kartlara ve kalıntılara göre buna en yakın kazanan desteler.",
     zhs: "按卡牌与遗物计算，与此最接近的胜利牌组。",
     zht: "按卡牌與遺物計算，與此最接近的勝利卡組。",
+    ara: "أقرب المجموعات الفائزة إلى هذه المجموعة، حسب البطاقات والآثار.",
+    ind: "Dek pemenang yang paling mirip dengan dek ini, dilihat dari kartu dan pusaka.",
   },
   "Winners with decks like this also took": {
     eng: "Winners with decks like this also took",
@@ -1158,6 +1292,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Böyle destelerle kazananlar ayrıca şunları aldı",
     zhs: "使用类似牌组获胜的玩家还选取了",
     zht: "使用類似卡組獲勝的玩家還選取了",
+    ara: "الفائزون بمجموعات كهذه أخذوا أيضا",
+    ind: "Pemenang dengan dek seperti ini juga mengambil",
   },
   New: {
     eng: "New",
@@ -1175,6 +1311,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Yeni",
     zhs: "新",
     zht: "新",
+    ara: "جديد",
+    ind: "Baru",
   },
   Uploading: {
     eng: "Uploading",
@@ -1192,6 +1330,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Yükleniyor",
     zhs: "上传中",
     zht: "上傳中",
+    ara: "جارٍ الرفع",
+    ind: "Mengunggah",
   },
   "1 is awful, 10 is great.": {
     eng: "1 is awful, 10 is great.",
@@ -1209,6 +1349,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "1 berbat, 10 harika.",
     zhs: "1 表示很糟，10 表示很棒。",
     zht: "1 表示很糟，10 表示很棒。",
+    ara: "1 سيئ جدا، 10 ممتاز.",
+    ind: "1 buruk sekali, 10 bagus sekali.",
   },
   "Can we email you if we have a question?": {
     eng: "Can we email you if we have a question?",
@@ -1226,6 +1368,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Bir sorumuz olursa size e-posta gönderebilir miyiz?",
     zhs: "如果我们有问题，可以给你发邮件吗？",
     zht: "如果我們有問題，可以寄電子郵件給你嗎？",
+    ara: "هل يمكننا مراسلتك بالبريد الإلكتروني إذا كان لدينا سؤال؟",
+    ind: "Boleh kami kirim email kalau ada pertanyaan?",
   },
   "Did you read the FAQ and re-import your save?": {
     eng: "Did you read the FAQ and re-import your save?",
@@ -1243,6 +1387,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "SSS'yi okuyup kaydınızı yeniden içe aktardınız mı?",
     zhs: "你阅读了常见问题并重新导入存档了吗？",
     zht: "你閱讀了常見問題並重新匯入存檔了嗎？",
+    ara: "هل قرأت الأسئلة الشائعة وأعدت استيراد ملف الحفظ؟",
+    ind: "Sudah baca FAQ dan mengimpor ulang simpananmu?",
   },
   "Help us improve.": {
     eng: "Help us improve.",
@@ -1260,6 +1406,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Gelişmemize yardım edin.",
     zhs: "帮助我们改进。",
     zht: "幫助我們改進。",
+    ara: "ساعدنا على التحسن.",
+    ind: "Bantu kami jadi lebih baik.",
   },
   "How was your overall experience?": {
     eng: "How was your overall experience?",
@@ -1277,6 +1425,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Genel deneyiminiz nasıldı?",
     zhs: "你的整体体验如何？",
     zht: "你的整體體驗如何？",
+    ara: "كيف كانت تجربتك بشكل عام؟",
+    ind: "Bagaimana pengalamanmu secara keseluruhan?",
   },
   "Lost your characters, runs, or unlocks?": {
     eng: "Lost your characters, runs, or unlocks?",
@@ -1294,6 +1444,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Karakterleriniz, koşularınız veya açtığınız içerikler mi kayboldu?",
     zhs: "角色、对局或解锁内容丢失了？",
     zht: "角色、對局或解鎖內容遺失了？",
+    ara: "هل فقدت شخصياتك أو جولاتك أو ما فتحته؟",
+    ind: "Kehilangan karakter, perjalanan, atau unlock?",
   },
   "Open the save importer": {
     eng: "Open the save importer",
@@ -1311,6 +1463,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Kayıt içe aktarıcıyı aç",
     zhs: "打开存档导入工具",
     zht: "開啟存檔匯入工具",
+    ara: "افتح مستورد ملفات الحفظ",
+    ind: "Buka pengimpor simpanan",
   },
   "Optional, but this is the answer we read most closely.": {
     eng: "Optional, but this is the answer we read most closely.",
@@ -1328,6 +1482,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "İsteğe bağlı, ama en dikkatle okuduğumuz cevap bu.",
     zhs: "选填，但这是我们最认真阅读的回答。",
     zht: "選填，但這是我們最認真閱讀的回答。",
+    ara: "اختياري، لكنه الجواب الذي نقرؤه بأكبر عناية.",
+    ind: "Opsional, tapi ini jawaban yang paling kami perhatikan.",
   },
   "Slay the Spire 2 keeps modded and unmodded play in separate save folders, so the first launch with a mod starts you on a fresh profile. Nothing is deleted: your original save is still where it always was, in":
     {
@@ -1346,6 +1502,8 @@ export const X5: Record<string, Record<string, string>> = {
       tur: "Slay the Spire 2 modlu ve modsuz oyunları ayrı kayıt klasörlerinde tutar, bu yüzden bir modla ilk açılış sizi yeni bir profille başlatır. Hiçbir şey silinmedi: orijinal kaydınız her zamanki yerinde, şurada:",
       zhs: "Slay the Spire 2 会把有模组和无模组的存档放在不同文件夹，因此首次带模组启动会从一个新档案开始。没有任何内容被删除：你的原始存档仍在原来的位置，位于",
       zht: "Slay the Spire 2 會把有模組和無模組的存檔放在不同資料夾，因此首次帶模組啟動會從一個新檔案開始。沒有任何內容被刪除：你的原始存檔仍在原來的位置，位於",
+      ara: "تحتفظ Slay the Spire 2 باللعب المعدل وغير المعدل في مجلدي حفظ منفصلين، لذا يبدأ أول تشغيل مع مود بملف جديد. لم يُحذف شيء: ملف حفظك الأصلي ما زال في مكانه المعتاد، في",
+      ind: "Slay the Spire 2 menyimpan permainan dengan mod dan tanpa mod di folder simpanan terpisah, jadi peluncuran pertama dengan mod memulai profil baru. Tidak ada yang dihapus: simpanan aslimu masih di tempat biasanya, di",
     },
   "Sorry to see you go. Thirty seconds of answers shape what we fix next. If you need support we are always available via":
     {
@@ -1364,6 +1522,8 @@ export const X5: Record<string, Record<string, string>> = {
       tur: "Ayrıldığınız için üzgünüz. Otuz saniyelik cevaplar sırada neyi düzelteceğimizi belirler. Desteğe ihtiyacınız olursa her zaman şuradan ulaşabilirsiniz:",
       zhs: "很遗憾你要离开。三十秒的回答将决定我们接下来修复什么。如需支持，随时可以通过以下方式联系我们：",
       zht: "很遺憾你要離開。三十秒的回答將決定我們接下來修復什麼。如需支援，隨時可以透過以下方式聯絡我們：",
+      ara: "يؤسفنا رحيلك. ثلاثون ثانية من الإجابات تحدد ما نصلحه لاحقا. إذا احتجت إلى دعم فنحن متاحون دائما عبر",
+      ind: "Sayang sekali kamu pergi. Tiga puluh detik jawabanmu menentukan apa yang kami perbaiki berikutnya. Kalau butuh bantuan, kami selalu bisa dihubungi lewat",
     },
   "Thanks for using Spire Codex.": {
     eng: "Thanks for using Spire Codex.",
@@ -1381,6 +1541,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Spire Codex'i kullandığınız için teşekkürler.",
     zhs: "感谢你使用 Spire Codex。",
     zht: "感謝你使用 Spire Codex。",
+    ara: "شكرا لاستخدامك Spire Codex.",
+    ind: "Terima kasih sudah memakai Spire Codex.",
   },
   "To bring your progress across, use the import save menu under F5 in the mod menu, or use the community save importer and it does the move for you. Back up both folders first, and copy rather than move.":
     {
@@ -1399,6 +1561,8 @@ export const X5: Record<string, Record<string, string>> = {
       tur: "İlerlemenizi taşımak için mod menüsünde F5 altındaki kayıt içe aktarma menüsünü kullanın ya da topluluk kayıt içe aktarıcısını kullanın, taşımayı sizin için yapar. Önce iki klasörü de yedekleyin ve taşımak yerine kopyalayın.",
       zhs: "要转移进度，请使用模组菜单中 F5 下的导入存档菜单，或使用社区存档导入工具，它会替你完成迁移。请先备份两个文件夹，并且用复制而不是移动。",
       zht: "要轉移進度，請使用模組選單中 F5 下的匯入存檔選單，或使用社群存檔匯入工具，它會替你完成搬移。請先備份兩個資料夾，並且用複製而不是移動。",
+      ara: "لنقل تقدمك، استخدم قائمة استيراد الحفظ تحت F5 في قائمة المود، أو استخدم مستورد الحفظ الذي أعده المجتمع وسيتولى النقل عنك. انسخ المجلدين احتياطيا أولا، وانسخ بدلا من أن تنقل.",
+      ind: "Untuk membawa progresmu, pakai menu impor simpanan di bawah F5 pada menu mod, atau pakai pengimpor simpanan buatan komunitas dan alat itu yang memindahkannya. Cadangkan kedua folder dulu, dan salin, jangan pindahkan.",
     },
   "What's one thing we could do better?": {
     eng: "What's one thing we could do better?",
@@ -1416,6 +1580,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Daha iyi yapabileceğimiz bir şey nedir?",
     zhs: "我们有哪一点可以做得更好？",
     zht: "我們有哪一點可以做得更好？",
+    ara: "ما الشيء الوحيد الذي يمكننا تحسينه؟",
+    ind: "Apa satu hal yang bisa kami perbaiki?",
   },
   "What's the main reason you uninstalled?": {
     eng: "What's the main reason you uninstalled?",
@@ -1433,6 +1599,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Kaldırmanızın ana nedeni nedir?",
     zhs: "你卸载的主要原因是什么？",
     zht: "你解除安裝的主要原因是什麼？",
+    ara: "ما السبب الرئيسي لإلغاء التثبيت؟",
+    ind: "Apa alasan utama kamu menghapusnya?",
   },
   "Would you try it again if that were fixed?": {
     eng: "Would you try it again if that were fixed?",
@@ -1450,6 +1618,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Bu düzeltilse tekrar dener miydiniz?",
     zhs: "如果这个问题修复了，你会再试一次吗？",
     zht: "如果這個問題修復了，你會再試一次嗎？",
+    ara: "هل ستجربه مجددا إذا أُصلح ذلك؟",
+    ind: "Mau coba lagi kalau itu sudah diperbaiki?",
   },
   "Your answers go straight into what we fix and build next.": {
     eng: "Your answers go straight into what we fix and build next.",
@@ -1467,6 +1637,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Cevaplarınız doğrudan sırada neyi düzeltip geliştireceğimize yansır.",
     zhs: "你的回答将直接决定我们接下来修复和开发的内容。",
     zht: "你的回答將直接決定我們接下來修復和開發的內容。",
+    ara: "إجاباتك تحدد مباشرة ما نصلحه ونبنيه لاحقا.",
+    ind: "Jawabanmu langsung menentukan apa yang kami perbaiki dan buat berikutnya.",
   },
   "Your save is still there. The notice above shows where it lives and how to bring it across.":
     {
@@ -1485,6 +1657,8 @@ export const X5: Record<string, Record<string, string>> = {
       tur: "Kaydınız hâlâ orada. Yukarıdaki bildirim nerede olduğunu ve nasıl taşınacağını gösterir.",
       zhs: "你的存档还在。上方的提示说明了它的位置以及如何转移。",
       zht: "你的存檔還在。上方的提示說明了它的位置以及如何轉移。",
+      ara: "ملف الحفظ ما زال موجودا. الإشعار أعلاه يوضح مكانه وطريقة نقله.",
+      ind: "Data simpananmu masih ada. Pemberitahuan di atas menunjukkan lokasinya dan cara memindahkannya.",
     },
   "All modes": {
     eng: "All modes",
@@ -1502,6 +1676,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Tüm modlar",
     zhs: "所有模式",
     zht: "所有模式",
+    ara: "كل الأوضاع",
+    ind: "Semua mode",
   },
   "Cost, type, rarity, damage, keywords, upgrade text": {
     eng: "Cost, type, rarity, damage, keywords, upgrade text",
@@ -1519,6 +1695,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Maliyet, tür, nadirlik, hasar, anahtar kelimeler, yükseltme metni",
     zhs: "费用、类型、稀有度、伤害、关键词、升级文本",
     zht: "費用、類型、稀有度、傷害、關鍵字、升級文字",
+    ara: "التكلفة، النوع، الندرة، الضرر، الكلمات المفتاحية، نص الترقية",
+    ind: "Biaya, tipe, kelangkaan, damage, kata kunci, teks peningkatan",
   },
   "Rarity, pool, description, shop price": {
     eng: "Rarity, pool, description, shop price",
@@ -1536,6 +1714,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Nadirlik, havuz, açıklama, dükkan fiyatı",
     zhs: "稀有度、卡池、描述、商店价格",
     zht: "稀有度、卡池、描述、商店價格",
+    ara: "الندرة، المجموعة، الوصف، سعر المتجر",
+    ind: "Kelangkaan, pool, deskripsi, harga toko",
   },
   "HP ranges, moves, innate powers, attack patterns": {
     eng: "HP ranges, moves, innate powers, attack patterns",
@@ -1553,6 +1733,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "HP aralıkları, hareketler, doğuştan güçler, saldırı kalıpları",
     zhs: "生命范围、行动、固有能力、攻击模式",
     zht: "生命範圍、行動、固有能力、攻擊模式",
+    ara: "نطاقات نقاط الصحة، الحركات، القوى الفطرية، أنماط الهجوم",
+    ind: "Rentang HP, gerakan, kuasa bawaan, pola serangan",
   },
   "Rarity, pool, resolved description": {
     eng: "Rarity, pool, resolved description",
@@ -1570,6 +1752,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Nadirlik, havuz, değerleri yerleştirilmiş açıklama",
     zhs: "稀有度、卡池、已解析的描述",
     zht: "稀有度、卡池、已解析的描述",
+    ara: "الندرة، المجموعة، الوصف الكامل",
+    ind: "Kelangkaan, pool, deskripsi lengkap",
   },
   "Starting deck, relics, HP, energy": {
     eng: "Starting deck, relics, HP, energy",
@@ -1587,6 +1771,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Başlangıç destesi, kalıntılar, HP, enerji",
     zhs: "初始牌组、遗物、生命、能量",
     zht: "初始卡組、遺物、生命、能量",
+    ara: "مجموعة البداية، الآثار، نقاط الصحة، الطاقة",
+    ind: "Dek awal, pusaka, HP, energi",
   },
   "Multi-page choices and branching outcomes": {
     eng: "Multi-page choices and branching outcomes",
@@ -1604,6 +1790,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Çok sayfalı seçimler ve dallanan sonuçlar",
     zhs: "多页选项与分支结果",
     zht: "多頁選項與分支結果",
+    ara: "خيارات متعددة الصفحات ونتائج متفرعة",
+    ind: "Pilihan multi-halaman dan hasil bercabang",
   },
   "Buff / debuff descriptions and stack behavior": {
     eng: "Buff / debuff descriptions and stack behavior",
@@ -1621,6 +1809,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Buff/debuff açıklamaları ve yığılma davranışı",
     zhs: "增益/减益描述与叠加规则",
     zht: "增益/減益描述與疊加規則",
+    ara: "أوصاف التعزيز / الإضعاف وسلوك التراكم",
+    ind: "Deskripsi buff / debuff dan perilaku tumpukan",
   },
   "Card-type restrictions and stackability": {
     eng: "Card-type restrictions and stackability",
@@ -1638,6 +1828,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Kart türü kısıtlamaları ve yığılabilirlik",
     zhs: "卡牌类型限制与可叠加性",
     zht: "卡牌類型限制與可疊加性",
+    ara: "قيود نوع البطاقة وقابلية التراكم",
+    ind: "Batasan tipe kartu dan bisa tidaknya ditumpuk",
   },
   "Cross-category fuzzy search across everything": {
     eng: "Cross-category fuzzy search across everything",
@@ -1655,6 +1847,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Tüm kategorilerde bulanık arama",
     zhs: "跨类别模糊搜索",
     zht: "跨類別模糊搜尋",
+    ara: "بحث تقريبي في كل الفئات دفعة واحدة",
+    ind: "Pencarian fuzzy lintas kategori di semua data",
   },
   "Live counts and patch info pulled from Spire Codex": {
     eng: "Live counts and patch info pulled from Spire Codex",
@@ -1672,6 +1866,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Spire Codex'ten çekilen canlı sayımlar ve yama bilgileri",
     zhs: "来自 Spire Codex 的实时计数与补丁信息",
     zht: "來自 Spire Codex 的即時計數與更新資訊",
+    ara: "أعداد مباشرة ومعلومات التحديثات من Spire Codex",
+    ind: "Jumlah terkini dan info patch dari Spire Codex",
   },
   "All cards": {
     eng: "All cards",
@@ -1689,6 +1885,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Tüm kartlar",
     zhs: "所有卡牌",
     zht: "所有卡牌",
+    ara: "كل البطاقات",
+    ind: "Semua kartu",
   },
   Colorless: {
     eng: "Colorless",
@@ -1706,6 +1904,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Renksiz",
     zhs: "无色",
     zht: "無色",
+    ara: "عديمة اللون",
+    ind: "Tak Berwarna",
   },
   "Card name": {
     eng: "Card name",
@@ -1723,6 +1923,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Kart adı",
     zhs: "卡牌名称",
     zht: "卡牌名稱",
+    ara: "اسم البطاقة",
+    ind: "Nama kartu",
   },
   "Codex Score (0-100, Bayesian win rate)": {
     eng: "Codex Score (0-100, Bayesian win rate)",
@@ -1740,6 +1942,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Codex Puanı (0-100, Bayesçi kazanma oranı)",
     zhs: "Codex 评分（0-100，贝叶斯胜率）",
     zht: "Codex 評分（0-100，貝氏勝率）",
+    ara: "Codex Score (0-100، معدل فوز بايزي)",
+    ind: "Codex Score (0-100, tingkat kemenangan Bayesian)",
   },
   "Codex Elo (revealed preference). Base rows: card-reward picks. + rows: rest-site Smith upgrade choices.":
     {
@@ -1758,6 +1962,8 @@ export const X5: Record<string, Record<string, string>> = {
       tur: "Codex Elo (açığa çıkan tercih). Temel satırlar: kart ödülü seçimleri. + satırları: dinlenme yeri demirci yükseltme seçimleri.",
       zhs: "Codex Elo（显示性偏好）。基础行：卡牌奖励选择。+ 行：休息处锻造升级选择。",
       zht: "Codex Elo（顯示性偏好）。基礎行：卡牌獎勵選擇。+ 行：營地鍛造升級選擇。",
+      ara: "Codex Elo (التفضيل الفعلي). الصفوف الأساسية: اختيارات مكافأة البطاقة. صفوف +: اختيارات الترقية بالحدادة في موقع الراحة.",
+      ind: "Codex Elo (preferensi nyata). Baris dasar: pilihan dari Pilihan Kartu. Baris +: pilihan peningkatan Tingkatkan di Peristirahatan.",
     },
   "Win%": {
     eng: "Win%",
@@ -1775,6 +1981,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Kazanma%",
     zhs: "胜率",
     zht: "勝率",
+    ara: "فوز%",
+    ind: "Menang%",
   },
   "Win rate of runs containing this card": {
     eng: "Win rate of runs containing this card",
@@ -1792,6 +2000,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Bu kartı içeren koşuların kazanma oranı",
     zhs: "包含此卡的对局胜率",
     zht: "包含此卡的對局勝率",
+    ara: "معدل فوز الجولات التي تضم هذه البطاقة",
+    ind: "Tingkat kemenangan perjalanan yang berisi kartu ini",
   },
   "Pick%": {
     eng: "Pick%",
@@ -1809,6 +2019,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Seçim%",
     zhs: "选取率",
     zht: "選取率",
+    ara: "اختيار%",
+    ind: "Ambil%",
   },
   "How often this card is taken when offered": {
     eng: "How often this card is taken when offered",
@@ -1826,6 +2038,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Bu kartın sunulduğunda alınma sıklığı",
     zhs: "此卡被提供时的选取频率",
     zht: "此卡被提供時的選取頻率",
+    ara: "عدد مرات أخذ هذه البطاقة عند عرضها",
+    ind: "Seberapa sering kartu ini diambil saat ditawarkan",
   },
   Seen: {
     eng: "Seen",
@@ -1843,6 +2057,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Görülme",
     zhs: "出现次数",
     zht: "出現次數",
+    ara: "عُرضت",
+    ind: "Dilihat",
   },
   "Times offered in a card reward": {
     eng: "Times offered in a card reward",
@@ -1860,6 +2076,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Kart ödülünde sunulma sayısı",
     zhs: "在卡牌奖励中出现的次数",
     zht: "在卡牌獎勵中出現的次數",
+    ara: "مرات العرض في مكافأة بطاقة",
+    ind: "Berapa kali ditawarkan di Pilihan Kartu",
   },
   "Runs that included this card": {
     eng: "Runs that included this card",
@@ -1877,6 +2095,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Bu kartı içeren koşular",
     zhs: "包含此卡的对局",
     zht: "包含此卡的對局",
+    ara: "الجولات التي ضمت هذه البطاقة",
+    ind: "Perjalanan yang berisi kartu ini",
   },
   "All 576 cards ranked S → F. Filter by character (Ironclad, Silent, Defect, Necrobinder, Regent).":
     {
@@ -1895,6 +2115,8 @@ export const X5: Record<string, Record<string, string>> = {
       tur: "576 kartın tamamı S'den F'ye sıralandı. Karaktere göre filtreleyin (Ironclad, Silent, Defect, Necrobinder, Regent).",
       zhs: "全部 576 张卡牌按 S 到 F 排名。可按角色筛选（铁甲战士、静默猎手、故障机器人、缚灵者、摄政者）。",
       zht: "全部 576 張卡牌按 S 到 F 排名。可按角色篩選（鐵甲戰士、靜默獵手、故障機器人、縛靈者、攝政者）。",
+      ara: "كل البطاقات الـ576 مرتبة من S إلى F. صفِّ حسب الشخصية (المدرع، الصامتة، المعيب، رابطة الموتى، الوصي).",
+      ind: "Semua 576 kartu diurutkan S → F. Filter per karakter (Ironclad, Silent, Defect, Necrobinder, Regent).",
     },
   "289 relics ranked across every pool. Filter by Shared, Boss, Shop, Event, or character.":
     {
@@ -1913,6 +2135,8 @@ export const X5: Record<string, Record<string, string>> = {
       tur: "Tüm havuzlardaki 289 kalıntı sıralandı. Ortak, Boss, Dükkan, Olay veya karaktere göre filtreleyin.",
       zhs: "289 件遗物按各卡池排名。可按共享、Boss、商店、事件或角色筛选。",
       zht: "289 件遺物按各卡池排名。可按共享、Boss、商店、事件或角色篩選。",
+      ara: "289 أثرا مرتبة عبر كل المجموعات. صفِّ حسب مشترك، زعيم، متجر، حدث أو الشخصية.",
+      ind: "289 pusaka diurutkan dari semua pool. Filter menurut Bersama, Bos, Toko, Event, atau karakter.",
     },
   "All 63 potions ranked. Smaller pool, easier to memorize the top picks.": {
     eng: "All 63 potions ranked. Smaller pool, easier to memorize the top picks.",
@@ -1930,6 +2154,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "63 iksirin tamamı sıralandı. Daha küçük havuz, en iyileri ezberlemek daha kolay.",
     zhs: "全部 63 种药水已排名。池子更小，更容易记住最佳选择。",
     zht: "全部 63 種藥水已排名。池子更小，更容易記住最佳選擇。",
+    ara: "كل الجرعات الـ63 مرتبة. مجموعة أصغر، وحفظ أفضل الخيارات أسهل.",
+    ind: "Semua 63 ramuan diurutkan. Pool lebih kecil, pilihan terbaik lebih gampang dihafal.",
   },
   "Every card, relic, and potion gets a 0–100 Codex Score based on the win rate of submitted runs that included it, shrunk toward the global baseline using Bayesian methods so a 5-pick perfect record doesn't outrank a 500-pick reliable one. Scores then map to letter grades S through F.":
     {
@@ -1948,6 +2174,8 @@ export const X5: Record<string, Record<string, string>> = {
       tur: "Her kart, kalıntı ve iksir, onu içeren gönderilmiş koşuların kazanma oranına dayanan 0-100 arası bir Codex Puanı alır; 5 seçimlik kusursuz bir sicilin 500 seçimlik güvenilir bir sicili geçmemesi için Bayesçi yöntemlerle genel ortalamaya doğru çekilir. Puanlar daha sonra S'den F'ye harf notlarına dönüştürülür.",
       zhs: "每张卡牌、每件遗物和每种药水都会根据包含它的已提交对局的胜率获得 0-100 的 Codex 评分，并用贝叶斯方法向全局基线收缩，这样 5 次选取的完美记录不会压过 500 次选取的可靠记录。评分随后映射为 S 到 F 的等级。",
       zht: "每張卡牌、每件遺物和每種藥水都會根據包含它的已提交對局的勝率獲得 0-100 的 Codex 評分，並用貝氏方法向全域基線收縮，這樣 5 次選取的完美紀錄不會壓過 500 次選取的可靠紀錄。評分隨後對應為 S 到 F 的等級。",
+      ara: "تحصل كل بطاقة وأثر وجرعة على Codex Score من 0 إلى 100 بناء على معدل فوز الجولات المرسلة التي ضمتها، مع تقريبه نحو المتوسط العام بطرق بايزية حتى لا يتقدم سجل مثالي من 5 اختيارات على سجل موثوق من 500 اختيار. ثم تتحول النتائج إلى درجات من S إلى F.",
+      ind: "Setiap kartu, pusaka, dan ramuan mendapat Codex Score 0–100 berdasarkan tingkat kemenangan perjalanan kiriman yang memakainya, lalu ditarik ke rata-rata global dengan metode Bayesian supaya rekor sempurna dari 5 pilihan tidak mengalahkan rekor andal dari 500 pilihan. Skor lalu diubah menjadi nilai huruf S sampai F.",
     },
   "Scores rebuild every 30 minutes as new community runs are submitted. The tier list reflects the current meta after the most recent game patch.":
     {
@@ -1966,6 +2194,8 @@ export const X5: Record<string, Record<string, string>> = {
       tur: "Puanlar yeni topluluk koşuları gönderildikçe her 30 dakikada bir yeniden hesaplanır. Sıralama listesi en son oyun yamasından sonraki güncel metayı yansıtır.",
       zhs: "随着社区新对局的提交，评分每 30 分钟重新计算一次。梯度榜反映最近一次游戏更新后的当前环境。",
       zht: "隨著社群新對局的提交，評分每 30 分鐘重新計算一次。梯度榜反映最近一次遊戲更新後的目前環境。",
+      ara: "يُعاد حساب النتائج كل 30 دقيقة مع إرسال المجتمع جولات جديدة. تعكس قائمة التصنيف الميتا الحالية بعد آخر تحديث للعبة.",
+      ind: "Skor dihitung ulang tiap 30 menit seiring perjalanan komunitas baru dikirim. Tier list mencerminkan meta saat ini setelah patch game terbaru.",
     },
   "Yes, the cards tier list filters to Ironclad, Silent, Defect, Necrobinder, Regent, or Colorless. The relics tier list filters by pool. Each filtered view is its own page targeting that character or pool specifically.":
     {
@@ -1984,6 +2214,8 @@ export const X5: Record<string, Record<string, string>> = {
       tur: "Evet, kart sıralama listesi Ironclad, Silent, Defect, Necrobinder, Regent veya Renksiz olarak filtrelenir. Kalıntı sıralama listesi havuza göre filtrelenir. Her filtrelenmiş görünüm, o karaktere veya havuza özel ayrı bir sayfadır.",
       zhs: "是的，卡牌梯度榜可按铁甲战士、静默猎手、故障机器人、缚灵者、摄政者或无色筛选。遗物梯度榜按卡池筛选。每个筛选视图都是专门针对该角色或卡池的独立页面。",
       zht: "是的，卡牌梯度榜可按鐵甲戰士、靜默獵手、故障機器人、縛靈者、攝政者或無色篩選。遺物梯度榜按卡池篩選。每個篩選視圖都是專門針對該角色或卡池的獨立頁面。",
+      ara: "نعم، يمكن تصفية قائمة تصنيف البطاقات حسب المدرع، الصامتة، المعيب، رابطة الموتى، الوصي أو عديمة اللون. وتُصفى قائمة تصنيف الآثار حسب المجموعة. كل عرض مصفى له صفحته الخاصة بتلك الشخصية أو المجموعة.",
+      ind: "Ya, tier list kartu bisa difilter ke Ironclad, Silent, Defect, Necrobinder, Regent, atau Tak Berwarna. Tier list pusaka difilter per pool. Tiap tampilan terfilter punya halaman sendiri khusus untuk karakter atau pool itu.",
     },
   "Every card, relic, and potion in Slay the Spire 2 ranked S through F using community win-rate data.":
     {
@@ -2002,6 +2234,8 @@ export const X5: Record<string, Record<string, string>> = {
       tur: "Slay the Spire 2'deki her kart, kalıntı ve iksir, topluluk kazanma oranı verileriyle S'den F'ye sıralandı.",
       zhs: "Slay the Spire 2 中的每张卡牌、每件遗物和每种药水，依据社区胜率数据按 S 到 F 排名。",
       zht: "Slay the Spire 2 中的每張卡牌、每件遺物和每種藥水，依據社群勝率資料按 S 到 F 排名。",
+      ara: "كل بطاقة وأثر وجرعة في Slay the Spire 2 مرتبة من S إلى F باستخدام بيانات معدل الفوز من المجتمع.",
+      ind: "Setiap kartu, pusaka, dan ramuan di Slay the Spire 2 diurutkan S sampai F memakai data tingkat kemenangan komunitas.",
     },
   Seed: {
     eng: "Seed",
@@ -2019,6 +2253,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Tohum",
     zhs: "种子",
     zht: "種子",
+    ara: "البذرة",
+    ind: "Seed",
   },
   "{char} ascended.": {
     eng: "{char} ascended.",
@@ -2036,6 +2272,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "{char} zirveye ulaştı.",
     zhs: "{char}登顶了。",
     zht: "{char}登頂了。",
+    ara: "{char} أتم الصعود.",
+    ind: "{char} berhasil naik.",
   },
   "{char} fell to {encounter}.": {
     eng: "{char} fell to {encounter}.",
@@ -2053,6 +2291,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "{char}, {encounter} karşısında düştü.",
     zhs: "{char}败给了{encounter}。",
     zht: "{char}敗給了{encounter}。",
+    ara: "{char} سقط أمام {encounter}.",
+    ind: "{char} tumbang oleh {encounter}.",
   },
   "{char} fell.": {
     eng: "{char} fell.",
@@ -2070,6 +2310,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "{char} düştü.",
     zhs: "{char}倒下了。",
     zht: "{char}倒下了。",
+    ara: "{char} سقط.",
+    ind: "{char} tumbang.",
   },
   "Act {n}": {
     eng: "Act {n}",
@@ -2087,6 +2329,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "{n}. Perde",
     zhs: "第{n}阶段",
     zht: "第{n}幕",
+    ara: "الفصل {n}",
+    ind: "Babak {n}",
   },
   turns: {
     eng: "turns",
@@ -2104,6 +2348,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "tur",
     zhs: "回合",
     zht: "回合",
+    ara: "أدوار",
+    ind: "giliran",
   },
   "Manage Consent": {
     eng: "Manage Consent",
@@ -2121,6 +2367,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Onayı yönet",
     zhs: "管理同意设置",
     zht: "管理同意設定",
+    ara: "إدارة الموافقة",
+    ind: "Kelola Persetujuan",
   },
   "Do Not Sell My Personal Information": {
     eng: "Do Not Sell My Personal Information",
@@ -2138,6 +2386,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Kişisel bilgilerimi satmayın",
     zhs: "请勿出售我的个人信息",
     zht: "請勿出售我的個人資料",
+    ara: "لا تبيعوا معلوماتي الشخصية",
+    ind: "Jangan Jual Informasi Pribadi Saya",
   },
   "Strength and heavy block, grindy attack chains.": {
     eng: "Strength and heavy block, grindy attack chains.",
@@ -2155,6 +2405,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Güç ve ağır blok, yıpratıcı saldırı zincirleri.",
     zhs: "力量与厚重格挡，磨人的攻击连击。",
     zht: "力量與厚重格擋，磨人的攻擊連擊。",
+    ara: "قوة وصد ثقيل، وسلاسل هجوم طويلة النفس.",
+    ind: "Kekuatan dan Blok tebal, rantai serangan yang menguras.",
   },
   "Poison, shivs, discard-fuel combos.": {
     eng: "Poison, shivs, discard-fuel combos.",
@@ -2172,6 +2424,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Zehir, bıçaklar, atma destekli kombolar.",
     zhs: "毒素、小刀、以弃牌为燃料的连击。",
     zht: "毒素、小刀、以棄牌為燃料的連擊。",
+    ara: "سم، شفرات، وتركيبات تتغذى على التخلص.",
+    ind: "Racun, Belati, kombo berbahan bakar Singkirkan.",
   },
   "Orb stacking, Lightning, Frost, Plasma, Dark.": {
     eng: "Orb stacking, Lightning, Frost, Plasma, Dark.",
@@ -2189,6 +2443,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Küre yığma: Yıldırım, Buz, Plazma, Karanlık.",
     zhs: "充能球叠加：闪电、冰霜、等离子、黑暗。",
     zht: "充能球疊加：閃電、冰霜、電漿、黑暗。",
+    ara: "تكديس الأجرام: برق، صقيع، بلازما، ظلام.",
+    ind: "Menumpuk Bola: Petir, Es, Plasma, Gelap.",
   },
   "Bone tokens, summons, sacrifice loops.": {
     eng: "Bone tokens, summons, sacrifice loops.",
@@ -2206,6 +2462,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Kemik jetonları, çağırmalar, kurban döngüleri.",
     zhs: "骨骼代币、召唤、献祭循环。",
     zht: "骨骼代幣、召喚、獻祭循環。",
+    ara: "رموز العظام، الاستدعاءات، حلقات التضحية.",
+    ind: "Token tulang, panggilan, putaran pengorbanan.",
   },
   "Court attendants, decree powers, prestige scaling.": {
     eng: "Court attendants, decree powers, prestige scaling.",
@@ -2223,6 +2481,8 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Saray hizmetkârları, ferman güçleri, prestij ölçeklenmesi.",
     zhs: "宫廷侍从、法令能力、威望成长。",
     zht: "宮廷侍從、法令能力、威望成長。",
+    ara: "حاشية البلاط، قوى المراسيم، تصاعد الهيبة.",
+    ind: "Pengiring istana, kuasa dekret, skala prestise.",
   },
   "Site updates & new features": {
     eng: "Site updates & new features",
@@ -2240,5 +2500,7 @@ export const X5: Record<string, Record<string, string>> = {
     tur: "Site güncellemeleri ve yeni özellikler",
     zhs: "站点更新与新功能",
     zht: "站點更新與新功能",
+    ara: "تحديثات الموقع والميزات الجديدة",
+    ind: "Pembaruan situs & fitur baru",
   },
 };

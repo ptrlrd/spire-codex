@@ -1,0 +1,450 @@
+[
+  {
+    "id": "BIG_DECK",
+    "name": "مجموعة كبيرة",
+    "description": "فزت بمجموعة تحتوي على [blue]40[/blue] بطاقة أو أكثر.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "مجموعة كبيرة",
+        "description": "فزت بمجموعة تحتوي على [blue]40[/blue] بطاقة أو أكثر."
+      },
+      {
+        "rarity": "silver",
+        "title": "مجموعة ضخمة",
+        "description": "فزت بمجموعة تحتوي على [blue]60[/blue] بطاقة أو أكثر."
+      },
+      {
+        "rarity": "gold",
+        "title": "مجموعة وحشية",
+        "description": "فزت بمجموعة تحتوي على [blue]100[/blue] بطاقة أو أكثر."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_big_deck.png"
+  },
+  {
+    "id": "CCCCOMBO",
+    "name": "كومبووو!",
+    "description": "لعبت [blue]20[/blue] بطاقة في دور واحد.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "كومبووو!",
+        "description": "لعبت [blue]20[/blue] بطاقة في دور واحد."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_ccccombo.png"
+  },
+  {
+    "id": "CURSES",
+    "name": "أعباء!",
+    "description": "فزت ومعك [blue]5[/blue] [red]أعباء[/red] أو أكثر.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "أعباء!",
+        "description": "فزت ومعك [blue]5[/blue] [red]أعباء[/red] أو أكثر."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_curses.png"
+  },
+  {
+    "id": "DAMAGE_LEADER",
+    "name": "قائد الضرر",
+    "description": "سببت أكبر قدر من الضرر للأعداء في اللعب الجماعي.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "قائد الضرر",
+        "description": "سببت أكبر قدر من الضرر للأعداء في اللعب الجماعي."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": true,
+    "image_url": "/static/images/badges/badge_damage_leader.png"
+  },
+  {
+    "id": "DEBUFFER",
+    "name": "مُضعِف",
+    "description": "طبّقت أكبر عدد من الإضعافات في اللعب الجماعي.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "مُضعِف",
+        "description": "طبّقت أكبر عدد من الإضعافات في اللعب الجماعي."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": true,
+    "image_url": "/static/images/badges/badge_debuffer.png"
+  },
+  {
+    "id": "DOUBLE_SNECKO",
+    "name": "Snecko مزدوج",
+    "description": "حصلت على عيني Snecko المزيفة والحقيقية معًا.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Snecko مزدوج",
+        "description": "حصلت على عيني Snecko المزيفة والحقيقية معًا."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_double_snecko.png"
+  },
+  {
+    "id": "ELITE",
+    "name": "صياد النخب",
+    "description": "قتلت [blue]3[/blue] من النخب أو أكثر.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "صياد النخب",
+        "description": "قتلت [blue]3[/blue] من النخب أو أكثر."
+      },
+      {
+        "rarity": "silver",
+        "title": "مبيد النخب",
+        "description": "قتلت [blue]6[/blue] من النخب أو أكثر."
+      },
+      {
+        "rarity": "gold",
+        "title": "قاتل النخب",
+        "description": "قتلت [blue]9[/blue] من النخب أو أكثر."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_elite.png"
+  },
+  {
+    "id": "FAMISHED",
+    "name": "جائع حد الهزال",
+    "description": "فزت بعد أن انخفض الحد الأقصى للـ HP إلى أقل من نصف HP البداية.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "جائع حد الهزال",
+        "description": "فزت بعد أن انخفض الحد الأقصى للـ HP إلى أقل من نصف HP البداية."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_famished.png"
+  },
+  {
+    "id": "GLUTTON",
+    "name": "مشبع",
+    "description": "فزت بجولة بعد زيادة الحد الأقصى للـ HP بمقدار [blue]15[/blue] أو أكثر.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "مشبع",
+        "description": "فزت بجولة بعد زيادة الحد الأقصى للـ HP بمقدار [blue]15[/blue] أو أكثر."
+      },
+      {
+        "rarity": "silver",
+        "title": "ممتلئ",
+        "description": "فزت بجولة بعد زيادة الحد الأقصى للـ HP بمقدار [blue]30[/blue] أو أكثر."
+      },
+      {
+        "rarity": "gold",
+        "title": "نهم",
+        "description": "فزت بجولة بحد أقصى هائل للـ HP، زاد بمقدار [blue]50[/blue] أو أكثر."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_glutton.png"
+  },
+  {
+    "id": "HEALER",
+    "name": "المُرمّم",
+    "description": "عالجت حليفًا مرة واحدة.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "المُرمّم",
+        "description": "عالجت حليفًا مرة واحدة."
+      },
+      {
+        "rarity": "silver",
+        "title": "معالج",
+        "description": "عالجت حليفًا مرتين."
+      },
+      {
+        "rarity": "gold",
+        "title": "طبيب",
+        "description": "عالجت الحلفاء مرارًا وتكرارًا، على الأقل [blue]3[/blue] مرات."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": true,
+    "image_url": "/static/images/badges/badge_healer.png"
+  },
+  {
+    "id": "HIGHLANDER",
+    "name": "المتفرد",
+    "description": "فزت بمجموعة لا توجد فيها بطاقتان متشابهتان، باستثناء بطاقات البداية.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "المتفرد",
+        "description": "فزت بمجموعة لا توجد فيها بطاقتان متشابهتان، باستثناء بطاقات البداية."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_highlander.png"
+  },
+  {
+    "id": "HONED",
+    "name": "مصقول",
+    "description": "فزت بمجموعة تحتوي على [blue]5[/blue] نسخ أو أكثر من نفس البطاقة، باستثناء بطاقات البداية.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "مصقول",
+        "description": "فزت بمجموعة تحتوي على [blue]5[/blue] نسخ أو أكثر من نفس البطاقة، باستثناء بطاقات البداية."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_honed.png"
+  },
+  {
+    "id": "ILIKESHINY",
+    "name": "أحب اللامع",
+    "description": "جمعت [blue]25[/blue] أثرًا أو أكثر.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "أحب اللامع",
+        "description": "جمعت [blue]25[/blue] أثرًا أو أكثر."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_ilikeshiny.png"
+  },
+  {
+    "id": "KACHING",
+    "name": "كا-تشينغ!",
+    "description": "أنفقت أكثر من [blue]1,000[/blue] [gold]ذهب[/gold] عند التاجر.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "كا-تشينغ!",
+        "description": "أنفقت أكثر من [blue]1,000[/blue] [gold]ذهب[/gold] عند التاجر."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_kaching.png"
+  },
+  {
+    "id": "MONEY_MONEY",
+    "name": "فلوس فلوس",
+    "description": "فزت ومعك [blue]200[/blue] [gold]ذهب[/gold] أو أكثر.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "فلوس فلوس",
+        "description": "فزت ومعك [blue]200[/blue] [gold]ذهب[/gold] أو أكثر."
+      },
+      {
+        "rarity": "silver",
+        "title": "مطر فلوس",
+        "description": "فزت ومعك [blue]400[/blue] [gold]ذهب[/gold] أو أكثر."
+      },
+      {
+        "rarity": "gold",
+        "title": "أحب الذهب",
+        "description": "فزت ومعك [blue]600[/blue] [gold]ذهب[/gold] أو أكثر."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_money_money.png"
+  },
+  {
+    "id": "MYSTERY_MACHINE",
+    "name": "آلة الغموض",
+    "description": "سافرت إلى [blue]15[/blue] غرفة ? أو أكثر.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "آلة الغموض",
+        "description": "سافرت إلى [blue]15[/blue] غرفة ? أو أكثر."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_mystery_machine.png"
+  },
+  {
+    "id": "PERFECT",
+    "name": "بلا عيب",
+    "description": "هزمت زعيمًا دون فقدان HP.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "بلا عيب",
+        "description": "هزمت زعيمًا دون فقدان HP."
+      },
+      {
+        "rarity": "silver",
+        "title": "متفوق",
+        "description": "هزمت [blue]2[/blue] من الزعماء دون فقدان HP."
+      },
+      {
+        "rarity": "gold",
+        "title": "مثالي",
+        "description": "هزمت [blue]3[/blue] زعماء دون فقدان HP."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_perfect.png"
+  },
+  {
+    "id": "RESTFUL",
+    "name": "مرتاح",
+    "description": "فزت بجولة مع الراحة في كل موقع استراحة.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "مرتاح",
+        "description": "فزت بجولة مع الراحة في كل موقع استراحة."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_restful.png"
+  },
+  {
+    "id": "RESTLESS",
+    "name": "لا يعرف الراحة",
+    "description": "فزت بجولة دون أن ترتاح أبدًا.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "لا يعرف الراحة",
+        "description": "فزت بجولة دون أن ترتاح أبدًا."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_restless.png"
+  },
+  {
+    "id": "SPEEDY",
+    "name": "سريع",
+    "description": "فزت بجولة في أقل من [blue]50[/blue] دقيقة.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "سريع",
+        "description": "فزت بجولة في أقل من [blue]50[/blue] دقيقة."
+      },
+      {
+        "rarity": "silver",
+        "title": "أسرع",
+        "description": "فزت بجولة في أقل من [blue]40[/blue] دقيقة."
+      },
+      {
+        "rarity": "gold",
+        "title": "الأسرع",
+        "description": "فزت بجولة في أقل من [blue]30[/blue] دقيقة."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_speedy.png"
+  },
+  {
+    "id": "TABLET",
+    "name": "لوح الحقيقة",
+    "description": "فزت ومعك [blue]1[/blue] فقط من الحد الأقصى للـ HP.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "لوح الحقيقة",
+        "description": "فزت ومعك [blue]1[/blue] فقط من الحد الأقصى للـ HP."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_tablet.png"
+  },
+  {
+    "id": "TEAM_PLAYER",
+    "name": "لاعب جماعي",
+    "description": "احتوت مجموعتك على [blue]3[/blue] بطاقات أو أكثر مخصصة للعب الجماعي فقط.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "لاعب جماعي",
+        "description": "احتوت مجموعتك على [blue]3[/blue] بطاقات أو أكثر مخصصة للعب الجماعي فقط."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": true,
+    "image_url": "/static/images/badges/badge_team_player.png"
+  },
+  {
+    "id": "TINY_DECK",
+    "name": "مجموعة صغيرة",
+    "description": "فزت بمجموعة تحتوي على [blue]20[/blue] بطاقة أو أقل.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "مجموعة صغيرة",
+        "description": "فزت بمجموعة تحتوي على [blue]20[/blue] بطاقة أو أقل."
+      },
+      {
+        "rarity": "silver",
+        "title": "مجموعة ضئيلة",
+        "description": "فزت بمجموعة تحتوي على [blue]10[/blue] بطاقات أو أقل."
+      },
+      {
+        "rarity": "gold",
+        "title": "متناهية الصغر",
+        "description": "فزت بمجموعة تحتوي على [blue]5[/blue] بطاقات أو أقل."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_tiny_deck.png"
+  }
+]

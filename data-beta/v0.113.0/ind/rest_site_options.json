@@ -1,0 +1,46 @@
+[
+  {
+    "id": "CLONE",
+    "name": "Klona"
+  },
+  {
+    "id": "COOK",
+    "name": "Masak"
+  },
+  {
+    "id": "DIG",
+    "name": "Gali"
+  },
+  {
+    "id": "EVOLVE",
+    "name": "Evolusi"
+  },
+  {
+    "id": "HATCH",
+    "name": "Tetaskan"
+  },
+  {
+    "id": "HEAL",
+    "name": "Rehat"
+  },
+  {
+    "id": "KINDLE",
+    "name": "Sulut"
+  },
+  {
+    "id": "LIFT",
+    "name": "Latihan"
+  },
+  {
+    "id": "MEND",
+    "name": "Rawat"
+  },
+  {
+    "id": "RESTORE",
+    "name": "Pulihkan"
+  },
+  {
+    "id": "SMITH",
+    "name": "Tingkatkan"
+  }
+]

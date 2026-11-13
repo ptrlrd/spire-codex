@@ -1,0 +1,2457 @@
+[
+  {
+    "id": "DEFECT",
+    "name": "Si Defect",
+    "description": "Sebuah mesin yang selalu memperbarui dirinya untuk bertahan hidup.\nMengerahkan Teknologi Bola saat perlu bertarung.",
+    "starting_hp": 75,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": 3,
+    "starting_deck": [
+      "StrikeDefect",
+      "StrikeDefect",
+      "StrikeDefect",
+      "StrikeDefect",
+      "DefendDefect",
+      "DefendDefect",
+      "DefendDefect",
+      "DefendDefect",
+      "Zap",
+      "Dualcast"
+    ],
+    "starting_relics": [
+      "CrackedCore"
+    ],
+    "unlocks_after": "Necrobinder",
+    "gender": "Neutral",
+    "color": "blue",
+    "dialogue_color": "13446B",
+    "quotes": {
+      "event_death_prevention": "Aku harus hidup demi temanku!",
+      "gold_monologue": "[sine]Emas ini bisa ditukar untuk suku cadang...[/sine]",
+      "aroma_principle": "[sine][blue]1100 0011 1100 0011...[/blue][/sine]",
+      "banter_alive": "[jitter]0x54494D45 0x204C494D 0x49542045 0x58434545 0x00444544[/jitter]",
+      "banter_dead": "...",
+      "unlock_text": "Main sekali sebagai [pink]{Prerequisite}[/pink] untuk membuka karakter ini.",
+      "cards_modifier_title": "Kartu Defect",
+      "cards_modifier_description": "Kartu Defect sekarang akan muncul di pilihan dan toko."
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Kau rongsokan yang indah, kau tahu?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<3[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Masih terus lanjut, ya... Mari kita lihat apa yang bisa ditingkatkan!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Hei, temanmu, aku sebenarnya menyimpan ehm... um.\nLupakan, tidak jadi!!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<suara keingintahuan>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Demi rongsokan, lupakan aku bicara apa!"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]...ciptaan.. kamu...\n....telah.. ..menjadi.. apa...?[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]...dia.. dapat...\n....memperbaiki.. ..kamu.. ...semua....[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]...Aku.. tidak... ..bisa...\n...membuat.. ..kamu ..lupa....[/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<suara penuh keyakinan>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[sine]...bagus....[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Apakah sebuah ciptaan layak akan berkahku?\nMaju kemari, Defect. Engkau akan menjadi mesin yang paling indah."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Kasihan, mesinku yang rusak, izinkan aku memperbaiki engkau."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Aku biasanya tidak suka ciptaan Arsitek, tapi jujur, aku mulai menyukai engkau."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<malu-malu>[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Hah! Pelayan ciptaan?! Masih bekerja!!\nKenapa disini? Kenapa tidak di Pabrik??"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Bola berkilau! Bagaimana kerjanya?\n[jitter]Ow!![/jitter]"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Inti rusak? Neow menggunakan ciptaan rusak?\nDiotak-atik?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<suara berbisik>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Arsitek memperbaikimu?"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Mesin bermasalah, mencari temanmu?\nAku akan membantu...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Apakah mesin bisa bermimpi?\nLihat dan tiru aku...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Aku bermimpi temanmu...\nAyah bisa mengembalikan [aqua]Flaw[/aqua]...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "MESIN! TIDAK ADA SENJATA!? AMBIL INI!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "BOLA ITU BUKAN SENJATA!!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "LAWAN AKU, DEFECT!!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]Si Defect bertarung dengan berani.[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "BOLA [jitter]ITU[/jitter] SENJATA!?"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "[i][font_size=22]<suara salam>[/font_size][/i]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Tidak disini untuk menggangguku? Sungguh mesin yang [jitter][b]aneh[/b][/jitter]..."
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Betapa lucunya jika dia dikalahkan oleh sejenisnya?"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Kamu yakin kamu ingin diperbaiki?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<suara keingintahuan>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Baiklah, jika kamu benar-benar [jitter][b]yakin[/b][/jitter]."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Apa yang kau lakukan disini?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "<suara acak tidak jelas>"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Perbaiki kau? Paksa aku."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Kau kembali? Bukankah aku sudah membongkar kau?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "<suara acak tidak jelas>"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Perbaiki kau? Perbaiki temanmu? Konyol."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Bagaimana kau terus kembali? Ini ulah Neow?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "<suara acak tidak jelas>"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Bodoh"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Kau yang rusak, biarkan aku [sine]menyempurnakanmu[/sine]."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Apa kamu merasa janggal bahwa sesama mesin ingin kamu mati?"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Jika kamu memberiku jantung Sang Arsitek, aku akan memperbaiki [aqua]temanmu[/aqua]."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<suara penuh ketakutan>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Apa yang lebih penting? Pencipta atau temanmu?"
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_defect.webp",
+    "animation_url": null
+  },
+  {
+    "id": "FOOL",
+    "name": "Fool",
+    "description": "Musisi idola yang memeriahkan [blue]Ibu Kota[/blue].\nTerpaksa lari, [yellow]Fool[/yellow] pergi menuju [gold]Spire[/gold].",
+    "starting_hp": 77,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "arrow_slots": 1,
+    "starting_deck": [
+      "StrikeFool",
+      "StrikeFool",
+      "StrikeFool",
+      "StrikeFool",
+      "StrikeFool",
+      "DefendFool",
+      "DefendFool",
+      "DefendFool",
+      "DefendFool",
+      "FoolishShot"
+    ],
+    "starting_relics": [
+      "SongBow"
+    ],
+    "unlocks_after": "Defect",
+    "gender": "Tree",
+    "color": "yellow",
+    "dialogue_color": "590700",
+    "quotes": {
+      "banter_alive": "[i]Bersenandung ria...[/i]",
+      "banter_dead": "...",
+      "unlock_text": "Main sekali sebagai [blue]{Prerequisite}[/blue] untuk membuka karakter ini.",
+      "cards_modifier_title": "Kartu Fool",
+      "cards_modifier_description": "Kartu Fool sekarang akan muncul di pilihan dan toko."
+    },
+    "dialogues": null,
+    "image_url": "/static/images/characters/char_select_fool.webp",
+    "animation_url": null,
+    "pronoun_guesses": [
+      {
+        "speaker_id": "DARV",
+        "speaker_name": "Darv",
+        "guess": "feminine",
+        "subject": "dia",
+        "object": "dia",
+        "possessive": "nya"
+      },
+      {
+        "speaker_id": "NEOW",
+        "speaker_name": "Neow",
+        "guess": "it",
+        "subject": "dia",
+        "object": "dia",
+        "possessive": "dia"
+      },
+      {
+        "speaker_id": "NONUPEIPE",
+        "speaker_name": "Nonupeipe",
+        "guess": "feminine",
+        "subject": "dia",
+        "object": "dia",
+        "possessive": "nya"
+      },
+      {
+        "speaker_id": "OROBAS",
+        "speaker_name": "Orobas",
+        "guess": "it",
+        "subject": "dia",
+        "object": "dia",
+        "possessive": "dia"
+      },
+      {
+        "speaker_id": "PAEL",
+        "speaker_name": "Pael",
+        "guess": "neutral",
+        "subject": "dia",
+        "object": "dia",
+        "possessive": "nya"
+      },
+      {
+        "speaker_id": "REFLECTIONS",
+        "speaker_name": "Refleksi iskelfeR",
+        "guess": "it",
+        "subject": "dia",
+        "object": "dia",
+        "possessive": "dia"
+      },
+      {
+        "speaker_id": "THE_ARCHITECT",
+        "speaker_name": "Sang Arsitek",
+        "guess": "it",
+        "subject": "dia",
+        "object": "dia",
+        "possessive": "dia"
+      },
+      {
+        "speaker_id": "TANX",
+        "speaker_name": "Tanx",
+        "guess": "masculine",
+        "subject": "dia",
+        "object": "dia",
+        "possessive": "nya"
+      },
+      {
+        "speaker_id": "TEZCATARA",
+        "speaker_name": "Tezcatara",
+        "guess": "masculine",
+        "subject": "dia",
+        "object": "dia",
+        "possessive": "nya"
+      },
+      {
+        "speaker_id": "VAKUU",
+        "speaker_name": "Vakuu",
+        "guess": "neutral",
+        "subject": "dia",
+        "object": "dia",
+        "possessive": "nya"
+      }
+    ],
+    "pronoun_default": {
+      "guess": "neutral",
+      "subject": "dia",
+      "object": "dia",
+      "possessive": "nya"
+    }
+  },
+  {
+    "id": "IRONCLAD",
+    "name": "Si Ironclad",
+    "description": "Tentara terakhir dari bangsa Ironclad.\nSecara tak sadar meremuk musuh dengan pedang dan api.",
+    "starting_hp": 80,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "DefendIronclad",
+      "DefendIronclad",
+      "DefendIronclad",
+      "DefendIronclad",
+      "Bash"
+    ],
+    "starting_relics": [
+      "BurningBlood"
+    ],
+    "unlocks_after": null,
+    "gender": "Masculine",
+    "color": "red",
+    "dialogue_color": "590700",
+    "quotes": {
+      "event_death_prevention": "Mereka masih membutuhkanku.",
+      "gold_monologue": "[sine]Harta ini akan memperkuat persenjataan bangsaku...[/sine]",
+      "aroma_principle": "[sine][red]Sakit tak kupeduli. Musuhku harus mati.[/red][/sine]",
+      "banter_alive": "Cepat.",
+      "banter_dead": "...",
+      "cards_modifier_title": "Kartu Ironclad",
+      "cards_modifier_description": "Kartu Ironclad sekarang akan muncul di pilihan dan toko."
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Si kesatria api telah kembali!\nAku punya barang yang tepat untukmu!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Senang melihatmu masih memukuli mereka!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Aku masih menyimpan pedang berat milikmu itu... tapi tidak ada yang bisa memperbaikinya."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]Si Ironclad menatap Darv.[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Mungkin sang Arsitek tahu sesuatu."
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]..bangkit.. kesatria.. milikku...\n..saatnya... untuk kembali...bertarung...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]..masih.. dipenuhi.. amarah... bagus...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]..ingat.. pertama.. kali..\n...kamu ..menghadap...didepanku..[/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[sine]..penuh..amarah...[/sine]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[sine]...sangat..berguna...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Ah, si Ironclad akhirnya tiba di hadapanku.\nMajulah dan Aku akan mewarisi kuasaku."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Ironclad ironclad... apakah hadiah berhargaku belum cukup?"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Engkau kembali pahlawanku? sudah berapa kali?\nBukankah engkau cukup kuat untuk menghabisi semua orang sebelumnya?"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Seorang Ironclad!? Bagaimana bisa?? Seram. Seram banget!!"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Setuju akan kontrak? Kenapa!? Pilihan buruk? Ya. Kesalahan!"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Mendoakanmu bebas!! Berdoa!\nVakuu jahat. Jahat banget! Arsitek membebaskanmu?"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Kamu penuh amarah. Ambil bagian dariku dan temukan kedamaian...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Apakah kamu ingat bagaimana rasanya bermimpi?\nTidur itu nikmat...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Kamu harus memadamkan api amarahmu.\nAyah bisa membebaskanmu...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "PEDANG BAGUS, KESATRIA! KAMU PERLU SENJATA LAGI!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "SENJATA UNTUK SI KESATRIA! AMBIL SENJATA! AYO BERTARUNG!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "LAWAN AKU, IRONCLAD!!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]Si Ironclad melawan Tanx.[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "YAAAA!! PERTARUNGAN HEBAT, AMBIL SENJATA!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Kamu [jitter][b]menyala[/b][/jitter] dengan indah! Masuk, masuk!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Sungguh anak yang kuat! Sini dan makan sesuatu.\nTidak bisa [jitter][b]membunuh[/b][/jitter] kalau perut kosong!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Ohh, Arsitek masih hidup? Bunuh dia [jitter][b]cepat[/b][/jitter] kau bisa?\nAku akan menunggu disini!"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Jadi budak sang iblis telah kembali?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Musuh...\nBunuh..."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Terkutuk untuk bertarung selamanya, bukankah begitu?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Arsitek... musuh... terbesar!!"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Apakah kau tahu namamu sendiri?"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Kasihan."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Bunuh..."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Kembalilah ke bawah, Ironclad."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Tak kusangka [sine]melihatmu[/sine] lagi setelah sekian lama."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[jitter][b]IBLIS MULIA![/b][/jitter]\nApa yang telah kau lakukan kepadaku!?"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Tepat apa yang kau inginkan."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Apa bangsamu yang hilang memberatkanmu...?\n[i][font_size=22]Vakuu tertawa terbahak-bahak.[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Boneka kekuasaanku... mengapa kau belum membunuh Sang Arsitek?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Setelah aku membunuh Sang Artisek, Aku akan membunuh [jitter][b]ENGKAU![/b][/jitter]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[i][font_size=22][sine]Bosan[/sine][/font_size][/i]\nAku tak sabar melihatmu gagal."
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_ironclad.webp",
+    "animation_url": null
+  },
+  {
+    "id": "NECROBINDER",
+    "name": "Si Necrobinder",
+    "description": "Seorang mayat hidup dari Spire yang ingin balas dendam.\nMemanggil tangan kiri andalannya, [gold]Osty[/gold], ke perlawanan.",
+    "starting_hp": 66,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeNecrobinder",
+      "StrikeNecrobinder",
+      "StrikeNecrobinder",
+      "StrikeNecrobinder",
+      "DefendNecrobinder",
+      "DefendNecrobinder",
+      "DefendNecrobinder",
+      "DefendNecrobinder",
+      "Bodyguard",
+      "Unleash"
+    ],
+    "starting_relics": [
+      "BoundPhylactery"
+    ],
+    "unlocks_after": "Regent",
+    "gender": "Feminine",
+    "color": "purple",
+    "dialogue_color": "6B4658",
+    "quotes": {
+      "event_death_prevention": "Temanku tidak akan bisa menang tanpaku.",
+      "gold_monologue": "[sine]Mungkin akhirnya aku bisa beli sepatu...[/sine]",
+      "aroma_principle": "[sine][purple]Mereka akan terbalas... Aku tak akan gentar...[/purple][/sine]",
+      "banter_alive": "Setiap saat...",
+      "banter_dead": "...",
+      "unlock_text": "Main sekali sebagai [orange]{Prerequisite}[/orange] untuk membuka karakter ini.",
+      "cards_modifier_title": "Kartu Necrobinder",
+      "cards_modifier_description": "Kartu Necrobinder sekarang akan muncul di pilihan dan toko."
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Aku tahu kau sedang serius. Apa yang bisa aku bantu nyonya?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Apapun untuk membantuku membunuh pria hina itu."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Baiklah... coba lihat-lihat!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Masih bertempur? Aku tak akan menghentikanmu!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Buku ini sepertinya ada hubungannya denganmu, buku ini ada sebelum kamu."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Bagaimana kamu bisa mendapatkannya?"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Benda [sine]seram[/sine] selalu datang ke koleksiku."
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]...kita.... punya... ..tujuan... ..sama....[/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[jitter]DIA MEMBUNUH SEMUA YANG KUCINTAI!![/jitter]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[sine]...kekuatanku..... milikmu...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]Dia... masih.. ....bernafas...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "[sine]Apa... ini.. ...mungkin...?[/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[sine]... [red]Arsitek[/red].... ..melemah....\n..kita.... lebih kuat...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Para penjagamu sudah mati, dengar-dengar kamu bisa memberi berkah kepada mereka yang ingin sang Arsitek tewas."
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Aku suka seseorang yang handal dan akan kuberi kuasaku.\nLain kali, jangan bunuh penjagaku."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Seorang penyihir perlu peralatan bagus untuk bertarung. Majulah, Necrobinder."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Sang Arsitek tidak akan suka melihat [sine]peliharaanmu[/sine] itu."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Maksudmu Osty? Dia yang akan memberinya serangan terakhir."
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Mati! Belum! Kenapa boneka? Tangan besar!!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Aku bukan boneka. Ada pria yang aku harus bunuh.\nApa yang bisa kamu lakukan untukku?"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Membunuh itu buruk!! Ambil ini saja!"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Kamu yang tidak mati! Hadiah bagus untukmu!! Kekerasan itu buruk."
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Jangan berkelahi! Ambil barang berkilau saja... Kilau!!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Aku hanya akan berhenti saat sang Arsitek tewas.\nKekerasan tidak bisa dihindari."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Arsitek nggak jahat! Coba bicara? Bicara itu bagus!! Bagus banget!"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Dengki memenuhi hatimu.[/thinky_dots]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Kamu juga akan sepertiku bila kamu tahu apa yang kulalui."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Tidak ada kedamaian dalam perjalananmu.\nAmbil bagian dariku untuk menenangkanmu...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Ia yang bersama Tangan kembali.\nIngatan menyakitkan. Ambil kekuatanku dan pergi...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Membunuh [red]Ayah[/red] tidak akan membawa kedamaian.[/thinky_dots]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Kau sebut [jitter]benda[/jitter] itu ayahmu!?"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Kita tidak bisa memilih keluarga...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "SABIT YANG HEBAT!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Ya, ini dibuat untuk balas dendam."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "APA TANGAN ITU PERLU SENJATA!?"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "LAWAN AKU, OSTY!!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "LAWAN AKU, NECROBINDER!!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]Si Necrobinder dan Osty berpukulan dengan Tanx.[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "KERJA SAMA YANG HEBAT!! AMBIL SENJATA!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Apa yang dilakukan sebuah kerangka di dalam sini?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Tujuanku sederhana. Balas dendam untuk keluargaku.\nAku akan sampai di puncak dan membuat dia membayar."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[jitter][b]Luar biasa[/b][/jitter]!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Masuk, masuk! Mari buat apimu [jitter][b]menyala[/b][/jitter] terang."
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Api disekitarmu itu mengigatkanku kepada sesuatu yang terlarang."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Apa yang kau tahu?"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Aku tahu siapa yang menulis [jitter][b]buku[/b][/jitter] itu."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "ARSITEK! Kau bunuh orang tuaku. Kau bunuh temanku. Kau bunuh HIDUPKU! ...dan sekarang aku akan MEMBUNUHMU!"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Balas dendam? Tidak terima kasih."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "ARSITEK! Kau bunuh orang tuaku. Kau bunuh temanku. Kau bunuh-"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Kamu tidak bisa mengubas masa lalu dengan amarah."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "ARSITEK! Kau bunuh orang tuaku. Kau bunuh temanku. Kau bunuh HIDUPKU!"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Aku harus melakukannya untuk menjaga ketertiban."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "ARSITEK! Kau bunuh orang tuaku. Kau bunuh temanku. Kau bunuh-"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Hidupku"
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "Apa...?! Mati kau!"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Kita berdua ingin [sine]balas dendam[/sine]. Akan ada harga yang harus dibayar."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Aku bersedia membayar. Apapun untuk membunuhnya."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Aku tahu darimana kau dapat [sine]Tangan[/sine] itu."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Sang Arsitek telah melukai kita berdua."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Cepatlah, iblis. Tunjukan kesepakatanmu."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Langsung ke inti. Baiklah..."
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_necrobinder.webp",
+    "animation_url": null
+  },
+  {
+    "id": "REGENT",
+    "name": "Si Regent",
+    "description": "Pewaris Tahta Bintang.\nMenggunakan kekuatan kosmik tapi para budaknya melakukan semuanya.",
+    "starting_hp": 75,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeRegent",
+      "StrikeRegent",
+      "StrikeRegent",
+      "StrikeRegent",
+      "DefendRegent",
+      "DefendRegent",
+      "DefendRegent",
+      "DefendRegent",
+      "FallingStar",
+      "Venerate"
+    ],
+    "starting_relics": [
+      "DivineRight"
+    ],
+    "unlocks_after": "Silent",
+    "gender": "Masculine",
+    "color": "orange",
+    "dialogue_color": "52371D",
+    "quotes": {
+      "event_death_prevention": "Aku harus hidup untuk membantu timku!!",
+      "gold_monologue": "[sine]Aku bisa memerintahkan pasukan yang tidak bodoh...[/sine]",
+      "aroma_principle": "[sine][orange]Aku Raja Bintang selanjutnya...[/orange][/sine]",
+      "banter_alive": "KUTUNGGU!!",
+      "banter_dead": "...",
+      "unlock_text": "Main sekali sebagai [green]{Prerequisite}[/green] untuk membuka karakter ini.",
+      "cards_modifier_title": "Kartu Regent",
+      "cards_modifier_description": "Kartu Regent sekarang akan muncul di pilihan dan toko."
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Apa yang membuatmu datang kemari? Mau lihat koleksiku?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Aku memang suka barang bagus..."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Ya!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Kembali lagi yang mulia?!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Untuk teman baruku, aku punya sesuatu untukmu!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Aku tertarik!"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Aku mau berikan tapi sang Arsitek mencurinya dariku!!\nTolonglah temanmu ini! Lakukan sesuatu untukku ya?"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Makhluk biru besar, Aku adalah sang [orange]Raja[/orange] selanjutnya!"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[sine]..lucu...\n...kamu... akan.. ..menghadapku... ...lagi....[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]...lagi..?[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "[jitter]Kenapa aku tidak bisa menang?![/jitter]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[sine]...terima.. berkah... ..ini...[/sine]"
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "...ya, terima kasih Neow."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Aku ingin menghadap Nonupeipe!"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Sungguh jubah yang indah telah engkau bawa dari tempat jauh!\nPerintahkan budakmu untuk membawa engkau kemari dan aku akan memberkatimu."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Berkah bangsawan untuk pendatang bangsawan.\nPelayan! ambilkan kami teh."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Sang Arsitek telah menjadi gila seandainya ada seorang juara yang bisa menyelamatkan kami dari nasib ini..."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Jangan takut! Saya, Sang Regent, akan mengakhiri kegilaan ini!\nTapi pertama-tama, teh dulu!"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Penjelajah! Dari luar angkasa!? Dari mana?\nBagaimana? Kepala lancip! Teman mungil!!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]Si Regent bicara sendiri selama berjam-jam.[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Seru! Kagum!! Lagi! Lagi!!!"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Cerita lagi! Kutemukan ini untukmu!\nSekarang cerita lagi!!"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Penggemar nomor satuku! Orobas, temanku!\nSenang melihatmu masih hidup!"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Cerita?!"
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "Pasti pasti... tapi apakah kamu menemukan jimat untukku?"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Halo! Aku Regent.\nHallooo?? [jitter]HALO!?[/jitter]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Diamlah.\nAmbil bagian dariku dan pergi sana...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Aku kembali! Ah, kamu tidur tentunya.\nMari kita lihat..."
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Mengapa kamu memberi bagian darimu?"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Mengapa tidak memberi saat aku memiliki sangat banyak daging?[/thinky_dots]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Saat kamu kembali, aku akan kembali utuh.\nItulah manfaat tidur...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "ORANYE!? BAGAIMANA BISA MAKHLUK INI ORANYE!??"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Yang kutahu hanyalah oranye adalah warna yang paling mulia!"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "HEBAT! SANGAT KUAT!!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "KAU YANG ORANYE!! PILIH SENJATA YANG KUAT!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "LAWAN AKU, REGENT!!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Tidak! Kita bertarung terakhir kali aku disini!"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "LAWAN AKU LAGI!!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Ya ampun, sungguh pendatang yang [jitter][b]unik[/b][/jitter]! Siapa kamu, sayang?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Jangan panggil aku sayang! Panggil aku dengan kehormatan, raksasa... berserabut!"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Dimana tata kramaku?\n[i][font_size=22]Tezcatara tertawa terbahak-bahak.[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Kamu dan temanmu datang lagi?\nAku telah buat [jitter][b]makanan[/b][/jitter] buatmu!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Selamat datang lagi pangeran! Sepertinya kamu [jitter][b]baik-baik[/b][/jitter] saja di luar sana."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Tentunya! Hanya sedikit masalah di lantai atas... mati, salah satunya."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Kita perlu belajar dari kesalahan kita."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Aku telah datang! Kau disana, rakyat jelata! Apakah disini puncaknya?"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Aku perlu ketenangan..."
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "Aku akan ajari kau tata krama!"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Aku datang lagi!"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Si tolol berisik datang lagi?"
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "Aku tidak tolol atau berisik! Hadapi aku!"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Aku sudah muak akan perilakumu!"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Sesuatu yang kita berdua bisa setuju."
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "Mari dansa!"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Makhluk dari bintang? Di dalam sini?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Kau tahu aku?"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Ya, sepertinya kita bisa saling membantu."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Kekuatanku bisa menjadi milikmu dengan sedikit biaya."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Tidak ada yang kusuka. Perasaanku tidak enak."
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Kau baca kesepakatannya bukan?\nKau setuju penuh bukan?"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Kamu tidak akan memenuhi janjimu?\nBagaimana dengan kesepakatan lain? Bukankah itu lebih baik?"
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_regent.webp",
+    "animation_url": null
+  },
+  {
+    "id": "SILENT",
+    "name": "Si Silent",
+    "description": "Seorang pemburu dari luar Spire.\nSiap untuk menikam dan meracuni apapun dihadapannya.",
+    "starting_hp": 70,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeSilent",
+      "StrikeSilent",
+      "StrikeSilent",
+      "StrikeSilent",
+      "StrikeSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "Neutralize",
+      "Survivor"
+    ],
+    "starting_relics": [
+      "RingOfTheSnake"
+    ],
+    "unlocks_after": null,
+    "gender": "Feminine",
+    "color": "green",
+    "dialogue_color": "284719",
+    "quotes": {
+      "event_death_prevention": "Harus hidup untuk berburu lain hari...",
+      "gold_monologue": "[sine]Saudariku akan bangga dengan harta ini...[/sine]",
+      "aroma_principle": "[sine][green]...berburu... buktikan... layak...[/green][/sine]",
+      "banter_alive": "[sine]...[/sine]",
+      "banter_dead": "...",
+      "unlock_text": "Main sekali untuk membuka karakter ini.",
+      "cards_modifier_title": "Kartu Silent",
+      "cards_modifier_description": "Kartu Silent sekarang akan muncul di pilihan dan toko."
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Kau kembali ke Spire juga ya?\nTidak bisa tahan melihat semua harta itu bukan?!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Aku akan memberimu sesuatu yang bagus untuk piala yang kau punya itu!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Sayang kau tidak ingat semua kebaikanku!\nIya iya, kau tahu bagaimana si Neow itu..."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "..."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Oke! Mari kita siapkan engkau untuk pertarungan akhir itu!"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]...kembali.. dari... luar?\n..kutahu... kamu... akan kembali...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]...piala..\n ...milikmu.. menanti...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]..kau berdua...tahu..kesakitan..sebab..keluarga...[/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "..."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[sine]..masih...mencari..pujian...?\n...[jitter]BODOH[/jitter]...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Seorang pencuri telah masuk ke kediamanku?\nEngkau kira aku tak bisa melihatmu? Keluarlah!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]Si Silent keluar dari kegelapan...[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Seorang pemburu, apa yang membuatmu ingin kembali ke Spire?\nKemari dan gunakan berkah ini."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Aku telah menyiapkan hadiah untuk engkau, pemburu, jangan malu-malu."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Dari semua bonekanya, kamu yang paling mengejutkanku."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "..."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Apa yang merenggut nyawamu pertama kalinya? Apakah Neow [sine]menemukan[/sine] engkau?\nSayang engkau tidak berbicara."
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Infeksi...? [jitter]WABAH!?[/jitter] Ambil dan pergi!!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[sine]...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Tidak menular? Sekarat? Arsitek membantu?"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Mana saudarimu? saudari seram dan jahat!\nJadilah baik! Jangan seperti saudarimu!!"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Makhluk pembunuh, tidak perlu ada kekerasan disini.\nAmbil bagian dariku dan temukan kedamaian...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Memburu piala? Terserah, ambil bagian dariku...\nApapun untuk membuatmu nyaman...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Kamu meracuniku...?\nApa yang akan...? zZZzz...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "SEORANG PEMBURU! AKU AKAN MENAJAMKAN CAKARMU!!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "MENGAPA BELATI!! TIDAK HEBAT!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "LAWAN AKU, SILENT!!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]Si Silent kabur, mencuri sebuah senjata.[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "KEMANA KAMU PERGI!!!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Dekat sini, pendiam. Aku tidak bisa melihat jelas..."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "..."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Kamu bisa [jitter][b]percaya[/b][/jitter] kepadaku."
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Sungguh [jitter][b]penyakit[/b][/jitter] buruk yang kamu punya itu. Biarkan aku merawatmu."
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Kau tahu Aku pernah bertemu saudarimu? Sungguh wanita-wanita yang manis."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "..."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Ya ampun... kamu tidak baru saja [jitter][b]berkelahi[/b][/jitter] bukan?"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Tidak ada perkenalan?"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Darimana kau berasal?\nApa yang kau cari?"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[jitter]Hrrgh![/jitter]\n[jitter][red]MATI KAU!![/red][/jitter]"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Gelandangan sialan!\n[jitter]ENYAHLAH!![/jitter]"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Pembunuh."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[sine]...[/sine]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Ini tidak akan [jitter]berakhir[/jitter] baik buatmu."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[i][font_size=22]Vakuu menunjukkan kesepakatannya di depan Si Silent[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Sang Arsitek saja tidak cukup, bunuh saudarimu juga!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[sine]...[/sine]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Tidak perlu bicara, kita itu sama."
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_silent.webp",
+    "animation_url": null
+  }
+]

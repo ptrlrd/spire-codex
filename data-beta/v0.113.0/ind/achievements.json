@@ -1,0 +1,200 @@
+[
+  {
+    "id": "ALL_CARDS_UPGRADED",
+    "name": "Dek Sempurna",
+    "description": "Menang dengan dek yang ditingkatkan sepenuhnya.",
+    "category": "run",
+    "character": null,
+    "threshold": null,
+    "condition": "Win with a fully-upgraded deck"
+  },
+  {
+    "id": "CHARACTER_SKILL_IRONCLAD1",
+    "name": "Perjanjian Terpenuhi",
+    "description": "Hanguskan 20 kartu dalam satu perlawanan.",
+    "category": "character_skill",
+    "character": "Ironclad",
+    "threshold": 20,
+    "condition": "Exhaust 20 cards in a single combat"
+  },
+  {
+    "id": "CHARACTER_SKILL_IRONCLAD2",
+    "name": "Pedang Terberat",
+    "description": "Lakukan 999 Kerusakan dalam sekali serang.",
+    "category": "character_skill",
+    "character": "Ironclad",
+    "threshold": 999,
+    "condition": "Deal 999+ damage in a single hit"
+  },
+  {
+    "id": "CHARACTER_SKILL_NECROBINDER1",
+    "name": "Sudah Mati",
+    "description": "Terapkan 999 Maut ke satu musuh.",
+    "category": "character_skill",
+    "character": "Necrobinder",
+    "threshold": 999,
+    "condition": "Apply 999+ Doom to a single enemy"
+  },
+  {
+    "id": "CHARACTER_SKILL_NECROBINDER2",
+    "name": "Susu",
+    "description": "Terapkan 50 Kekuatan ke Osty.",
+    "category": "character_skill",
+    "character": "Necrobinder",
+    "threshold": 50,
+    "condition": "Apply 50+ Strength to Osty"
+  },
+  {
+    "id": "CHARACTER_SKILL_REGENT1",
+    "name": "Pedang yang Cocok Bagi Raja",
+    "description": "Tempa sebuah Pedang Penguasa yang melakukan setidaknya 999 kerusakan.",
+    "category": "character_skill",
+    "character": "Regent",
+    "threshold": 999,
+    "condition": "Forge a Sovereign Blade with 999+ base damage"
+  },
+  {
+    "id": "CHARACTER_SKILL_REGENT2",
+    "name": "Bintang di Langit",
+    "description": "Miliki 20 Bintang.",
+    "category": "character_skill",
+    "character": "Regent",
+    "threshold": 20,
+    "condition": "Have 20+ Stars at once"
+  },
+  {
+    "id": "CHARACTER_SKILL_SILENT1",
+    "name": "Cerdik dan Lihai",
+    "description": "Mainkan sebuah kartu yang memicu Lihai pada 5 kartu.",
+    "category": "character_skill",
+    "character": "Silent",
+    "threshold": 5,
+    "condition": "Play 5 cards via Sly off a single card play"
+  },
+  {
+    "id": "CHARACTER_SKILL_SILENT2",
+    "name": "Hanya Beberapa Tetes",
+    "description": "Terapkan 99 Racun ke satu musuh.",
+    "category": "character_skill",
+    "character": "Silent",
+    "threshold": 99,
+    "condition": "Apply 99+ Poison to a single enemy"
+  },
+  {
+    "id": "DEFEAT_GLORY_ENEMIES",
+    "name": "Kejayaan",
+    "description": "Kalahkan semua tipe musuh dalam Kejayaan.",
+    "category": "combat",
+    "character": null,
+    "threshold": null,
+    "condition": "Defeat every enemy in the Glory"
+  },
+  {
+    "id": "DEFEAT_HIVE_ENEMIES",
+    "name": "Sarang",
+    "description": "Kalahkan semua tipe musuh dalam Sarang.",
+    "category": "combat",
+    "character": null,
+    "threshold": null,
+    "condition": "Defeat every enemy in the Hive"
+  },
+  {
+    "id": "DEFEAT_ONE_BOSS",
+    "name": "Pertama dari Banyak",
+    "description": "Kalahkan satu Bos.",
+    "category": "combat",
+    "character": null,
+    "threshold": null,
+    "condition": "Defeat a boss"
+  },
+  {
+    "id": "DEFEAT_OVERGROWTH_ENEMIES",
+    "name": "Rerimbunan",
+    "description": "Kalahkan semua tipe musuh dalam Rerimbunan.",
+    "category": "combat",
+    "character": null,
+    "threshold": null,
+    "condition": "Defeat every enemy in the Overgrowth"
+  },
+  {
+    "id": "DEFEAT_UNDERDOCKS_ENEMIES",
+    "name": "Pelabuhan",
+    "description": "Kalahkan semua tipe musuh dalam Pelabuhan.",
+    "category": "combat",
+    "character": null,
+    "threshold": null,
+    "condition": "Defeat every enemy in the Underdocks"
+  },
+  {
+    "id": "DEFECT_WIN",
+    "name": "Sang Defect",
+    "description": "Menang sebagai Defect.",
+    "category": "character_win",
+    "character": "Defect",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "FLOOR_TEN_THOUSAND",
+    "name": "Sangat Banyak Tangga",
+    "description": "Naiki 10.000 lantai.",
+    "category": "collection",
+    "character": null,
+    "threshold": 10000,
+    "condition": "Climb 10,000 floors total"
+  },
+  {
+    "id": "IRONCLAD_WIN",
+    "name": "Sang Ironclad",
+    "description": "Menang sebagai Ironclad.",
+    "category": "character_win",
+    "character": "Ironclad",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "NECROBINDER_WIN",
+    "name": "Sang Necrobinder",
+    "description": "Menang sebagai Necrobinder.",
+    "category": "character_win",
+    "character": "Necrobinder",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "NO_RELIC_WIN",
+    "name": "Barang Tak Berguna",
+    "description": "Menang tanpa mendapat satupun Pusaka.",
+    "category": "run",
+    "character": null,
+    "threshold": null,
+    "condition": "Win without obtaining any relics"
+  },
+  {
+    "id": "PLAY20_CARDS_SINGLE_TURN",
+    "name": "Main Kartu Itu Seru",
+    "description": "Mainkan 20 kartu dalam satu giliran.",
+    "category": "combat",
+    "character": null,
+    "threshold": 20,
+    "condition": "Play 20 cards in a single turn"
+  },
+  {
+    "id": "REGENT_WIN",
+    "name": "Sang Regent",
+    "description": "Menang sebagai Regent.",
+    "category": "character_win",
+    "character": "Regent",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "SILENT_WIN",
+    "name": "Sang Silent",
+    "description": "Menang sebagai Silent.",
+    "category": "character_win",
+    "character": "Silent",
+    "threshold": null,
+    "condition": null
+  }
+]

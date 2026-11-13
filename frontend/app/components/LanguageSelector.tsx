@@ -8,10 +8,12 @@ import { routing, type Locale } from "@/i18n/routing";
 import { LANG_NAMES } from "@/lib/languages";
 
 const CODE_TO_SHORT: Record<string, string> = {
+  ara: "AR",
   deu: "DE",
   eng: "EN",
   esp: "ES",
   fra: "FR",
+  ind: "ID",
   ita: "IT",
   jpn: "JP",
   kor: "KR",

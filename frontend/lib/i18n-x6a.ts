@@ -16,6 +16,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Başarım bulunamadı.",
     zhs: "未找到该成就。",
     zht: "找不到該成就。",
+    ara: "الإنجاز غير موجود.",
+    ind: "Pencapaian tidak ditemukan.",
   },
   Achievement: {
     eng: "Achievement",
@@ -33,6 +35,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Başarım",
     zhs: "成就",
     zht: "成就",
+    ara: "إنجاز",
+    ind: "Pencapaian",
   },
   "Act not found.": {
     eng: "Act not found.",
@@ -50,6 +54,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Perde bulunamadı.",
     zhs: "未找到该阶段。",
     zht: "找不到該幕。",
+    ara: "الفصل غير موجود.",
+    ind: "Babak tidak ditemukan.",
   },
   "{n} rooms": {
     eng: "{n} rooms",
@@ -67,6 +73,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "{n} oda",
     zhs: "{n} 个房间",
     zht: "{n} 個房間",
+    ara: "{n} غرف",
+    ind: "{n} ruangan",
   },
   "Affliction not found.": {
     eng: "Affliction not found.",
@@ -84,6 +92,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Musibet bulunamadı.",
     zhs: "未找到该苦难。",
     zht: "找不到該苦難。",
+    ara: "العبء غير موجود.",
+    ind: "Penyakit tidak ditemukan.",
   },
   Stackable: {
     eng: "Stackable",
@@ -101,6 +111,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Yığılabilir",
     zhs: "可叠加",
     zht: "可疊加",
+    ara: "قابل للتراكم",
+    ind: "Bisa ditumpuk",
   },
   "Card Text": {
     eng: "Card Text",
@@ -118,6 +130,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Kart Metni",
     zhs: "卡牌文本",
     zht: "卡牌文字",
+    ara: "نص البطاقة",
+    ind: "Teks Kartu",
   },
   "Ascension level not found.": {
     eng: "Ascension level not found.",
@@ -135,6 +149,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Yükseliş seviyesi bulunamadı.",
     zhs: "未找到该进阶等级。",
     zht: "找不到該晉階等級。",
+    ara: "مستوى الصعود غير موجود.",
+    ind: "Level Angkatan tidak ditemukan.",
   },
   "Ascension levels": {
     eng: "Ascension levels",
@@ -152,6 +168,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Yükseliş seviyeleri",
     zhs: "进阶等级",
     zht: "晉階等級",
+    ara: "مستويات الصعود",
+    ind: "Level Angkatan",
   },
   "Level {n}": {
     eng: "Level {n}",
@@ -169,6 +187,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Seviye {n}",
     zhs: "第 {n} 级",
     zht: "第 {n} 級",
+    ara: "المستوى {n}",
+    ind: "Level {n}",
   },
   "Badge Not Found": {
     eng: "Badge Not Found",
@@ -186,6 +206,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Rozet Bulunamadı",
     zhs: "未找到该徽章",
     zht: "找不到該徽章",
+    ara: "الشارة غير موجودة",
+    ind: "Lencana Tidak Ditemukan",
   },
   Badge: {
     eng: "Badge",
@@ -203,6 +225,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Rozet",
     zhs: "徽章",
     zht: "徽章",
+    ara: "شارة",
+    ind: "Lencana",
   },
   Single: {
     eng: "Single",
@@ -220,6 +244,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Tek",
     zhs: "单一",
     zht: "單一",
+    ara: "فردي",
+    ind: "Tunggal",
   },
   Yes: {
     eng: "Yes",
@@ -237,6 +263,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Evet",
     zhs: "是",
     zht: "是",
+    ara: "نعم",
+    ind: "Ya",
   },
   No: {
     eng: "No",
@@ -254,6 +282,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Hayır",
     zhs: "否",
     zht: "否",
+    ara: "لا",
+    ind: "Tidak",
   },
   Multiplayer: {
     eng: "Multiplayer",
@@ -271,6 +301,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Çok oyunculu",
     zhs: "多人游戏",
     zht: "多人遊戲",
+    ara: "اللعب الجماعي",
+    ind: "Multi Pemain",
   },
   Only: {
     eng: "Only",
@@ -288,6 +320,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Yalnızca",
     zhs: "限定",
     zht: "限定",
+    ara: "فقط",
+    ind: "Khusus",
   },
   "Card Not Found": {
     eng: "Card Not Found",
@@ -305,6 +339,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Kart Bulunamadı",
     zhs: "未找到该卡牌",
     zht: "找不到該卡牌",
+    ara: "البطاقة غير موجودة",
+    ind: "Kartu Tidak Ditemukan",
   },
   "No card exists with ID “{id}”.": {
     eng: "No card exists with ID “{id}”.",
@@ -322,6 +358,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "“{id}” kimlikli bir kart yok.",
     zhs: "不存在 ID 为“{id}”的卡牌。",
     zht: "不存在 ID 為「{id}」的卡牌。",
+    ara: "لا توجد بطاقة بالمعرّف “{id}”.",
+    ind: "Tidak ada kartu dengan ID “{id}”.",
   },
   "{pct}% win · {n} picks": {
     eng: "{pct}% win · {n} picks",
@@ -339,6 +377,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "%{pct} galibiyet · {n} seçim",
     zhs: "胜率 {pct}% · {n} 次选择",
     zht: "勝率 {pct}% · {n} 次選擇",
+    ara: "{pct}% فوز · {n} اختيارات",
+    ind: "{pct}% menang · {n} pilihan",
   },
   "Character not found.": {
     eng: "Character not found.",
@@ -356,6 +396,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Karakter bulunamadı.",
     zhs: "未找到该角色。",
     zht: "找不到該角色。",
+    ara: "الشخصية غير موجودة.",
+    ind: "Karakter tidak ditemukan.",
   },
   "Unlocks after {name}": {
     eng: "Unlocks after {name}",
@@ -373,6 +415,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "{name} sonrası açılır",
     zhs: "在{name}之后解锁",
     zht: "在{name}之後解鎖",
+    ara: "تُفتح بعد {name}",
+    ind: "Terbuka setelah {name}",
   },
   "{n} cards": {
     eng: "{n} cards",
@@ -390,6 +434,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "{n} kart",
     zhs: "{n} 张卡牌",
     zht: "{n} 張卡牌",
+    ara: "{n} بطاقات",
+    ind: "{n} kartu",
   },
   "Top cards picked by {name}": {
     eng: "Top cards picked by {name}",
@@ -407,6 +453,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "{name} tarafından en çok seçilen kartlar",
     zhs: "{name}最常选择的卡牌",
     zht: "{name}最常選擇的卡牌",
+    ara: "أكثر البطاقات اختيارا لدى {name}",
+    ind: "Kartu teratas pilihan {name}",
   },
   "Most-included cards across community-tracked runs, excluding the starter deck.":
     {
@@ -425,6 +473,8 @@ export const X6A: Record<string, Record<string, string>> = {
       tur: "Topluluğun izlediği koşularda en çok yer alan kartlar, başlangıç destesi hariç.",
       zhs: "社区记录的旅程中最常出现的卡牌，不含初始牌组。",
       zht: "社群記錄的旅程中最常出現的卡牌，不含初始牌組。",
+      ara: "البطاقات الأكثر حضورا في جولات المجتمع المسجلة، باستثناء مجموعة البداية.",
+      ind: "Kartu yang paling sering dipakai di perjalanan komunitas yang terlacak, tidak termasuk dek awal.",
     },
   "Top relics picked by {name}": {
     eng: "Top relics picked by {name}",
@@ -442,6 +492,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "{name} tarafından en çok seçilen kalıntılar",
     zhs: "{name}最常选择的遗物",
     zht: "{name}最常選擇的遺物",
+    ara: "أكثر الآثار اختيارا لدى {name}",
+    ind: "Pusaka teratas pilihan {name}",
   },
   "Relics that show up most often in this character's runs, excluding the starting relic.":
     {
@@ -460,6 +512,8 @@ export const X6A: Record<string, Record<string, string>> = {
       tur: "Bu karakterin koşularında en sık görülen kalıntılar, başlangıç kalıntısı hariç.",
       zhs: "该角色旅程中最常出现的遗物，不含初始遗物。",
       zht: "該角色旅程中最常出現的遺物，不含初始遺物。",
+      ara: "الآثار الأكثر ظهورا في جولات هذه الشخصية، باستثناء أثر البداية.",
+      ind: "Pusaka yang paling sering muncul di perjalanan karakter ini, tidak termasuk pusaka awal.",
     },
   "Top potions picked by {name}": {
     eng: "Top potions picked by {name}",
@@ -477,6 +531,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "{name} tarafından en çok seçilen iksirler",
     zhs: "{name}最常选择的药水",
     zht: "{name}最常選擇的藥水",
+    ara: "أكثر الجرعات اختيارا لدى {name}",
+    ind: "Ramuan teratas pilihan {name}",
   },
   "Potions most commonly held in this character's runs.": {
     eng: "Potions most commonly held in this character's runs.",
@@ -494,6 +550,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Bu karakterin koşularında en sık taşınan iksirler.",
     zhs: "该角色旅程中最常持有的药水。",
     zht: "該角色旅程中最常持有的藥水。",
+    ara: "الجرعات الأكثر حملا في جولات هذه الشخصية.",
+    ind: "Ramuan yang paling sering dibawa di perjalanan karakter ini.",
   },
   "All {name} Cards": {
     eng: "All {name} Cards",
@@ -511,6 +569,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Tüm {name} Kartları",
     zhs: "{name}的全部卡牌",
     zht: "{name}的全部卡牌",
+    ara: "كل بطاقات {name}",
+    ind: "Semua Kartu {name}",
   },
   "{name} Relics": {
     eng: "{name} Relics",
@@ -528,6 +588,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "{name} Kalıntıları",
     zhs: "{name}的遗物",
     zht: "{name}的遺物",
+    ara: "آثار {name}",
+    ind: "Pusaka {name}",
   },
   "{n} relics": {
     eng: "{n} relics",
@@ -545,6 +607,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "{n} kalıntı",
     zhs: "{n} 件遗物",
     zht: "{n} 件遺物",
+    ara: "{n} آثار",
+    ind: "{n} pusaka",
   },
   "Inner Principle": {
     eng: "Inner Principle",
@@ -562,6 +626,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "İç İlke",
     zhs: "内心信条",
     zht: "內心信條",
+    ara: "المبدأ الداخلي",
+    ind: "Prinsip Batin",
   },
   "Death Prevention": {
     eng: "Death Prevention",
@@ -579,6 +645,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Ölümden Kurtulma",
     zhs: "免于死亡",
     zht: "免於死亡",
+    ara: "منع الموت",
+    ind: "Pencegahan Kematian",
   },
   "On Finding Gold": {
     eng: "On Finding Gold",
@@ -596,6 +664,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Altın Bulunca",
     zhs: "发现金币时",
     zht: "發現金幣時",
+    ara: "عند العثور على الذهب",
+    ind: "Saat Menemukan Emas",
   },
   "Combat Banter": {
     eng: "Combat Banter",
@@ -613,6 +683,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Savaş Sohbeti",
     zhs: "战斗台词",
     zht: "戰鬥台詞",
+    ara: "أحاديث المعركة",
+    ind: "Celoteh Pertarungan",
   },
   "Last Words": {
     eng: "Last Words",
@@ -630,6 +702,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Son Sözler",
     zhs: "遗言",
     zht: "遺言",
+    ara: "الكلمات الأخيرة",
+    ind: "Kata-kata Terakhir",
   },
   "{n} conversations": {
     eng: "{n} conversations",
@@ -647,6 +721,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "{n} konuşma",
     zhs: "{n} 段对话",
     zht: "{n} 段對話",
+    ara: "{n} محادثات",
+    ind: "{n} percakapan",
   },
   "Enchantment not found.": {
     eng: "Enchantment not found.",
@@ -664,6 +740,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Büyü bulunamadı.",
     zhs: "未找到该附魔。",
     zht: "找不到該附魔。",
+    ara: "التعزيز غير موجود.",
+    ind: "Efek tidak ditemukan.",
   },
   "{name} applied to {n} cards (showing {shown}).": {
     eng: "{name} applied to {n} cards (showing {shown}).",
@@ -681,6 +759,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "{name}, {n} karta uygulandı ({shown} gösteriliyor).",
     zhs: "{name}应用于 {n} 张卡牌（显示 {shown} 张）。",
     zht: "{name}套用於 {n} 張卡牌（顯示 {shown} 張）。",
+    ara: "{name} مطبق على {n} بطاقات (المعروض {shown}).",
+    ind: "{name} diterapkan ke {n} kartu (menampilkan {shown}).",
   },
   "{name} applied to {n} cards.": {
     eng: "{name} applied to {n} cards.",
@@ -698,6 +778,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "{name}, {n} karta uygulandı.",
     zhs: "{name}应用于 {n} 张卡牌。",
     zht: "{name}套用於 {n} 張卡牌。",
+    ara: "{name} مطبق على {n} بطاقات.",
+    ind: "{name} diterapkan ke {n} kartu.",
   },
   "Card type": {
     eng: "Card type",
@@ -715,6 +797,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Kart türü",
     zhs: "卡牌类型",
     zht: "卡牌類型",
+    ara: "نوع البطاقة",
+    ind: "Tipe kartu",
   },
   "Applies to": {
     eng: "Applies to",
@@ -732,6 +816,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Uygulandığı yer",
     zhs: "适用于",
     zht: "適用於",
+    ara: "يُطبق على",
+    ind: "Berlaku untuk",
   },
   "Encounter not found.": {
     eng: "Encounter not found.",
@@ -749,6 +835,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Karşılaşma bulunamadı.",
     zhs: "未找到该遭遇。",
     zht: "找不到該遭遇。",
+    ara: "المواجهة غير موجودة.",
+    ind: "Pertemuan tidak ditemukan.",
   },
   "Loss Text": {
     eng: "Loss Text",
@@ -766,6 +854,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Yenilgi Metni",
     zhs: "失败文本",
     zht: "失敗文字",
+    ara: "نص الهزيمة",
+    ind: "Teks Kekalahan",
   },
   Weak: {
     eng: "Weak",
@@ -783,6 +873,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Zayıf",
     zhs: "弱化",
     zht: "弱化",
+    ara: "ضعيفة",
+    ind: "Lemah",
   },
   "In community-submitted runs, {name} has been encountered {total} times and killed {fatal} players ({pct}% of the runs that reach it).":
     {
@@ -801,6 +893,8 @@ export const X6A: Record<string, Record<string, string>> = {
       tur: "Topluluğun gönderdiği koşularda {name} ile {total} kez karşılaşıldı ve {fatal} oyuncu öldü (ona ulaşan koşuların %{pct}'i).",
       zhs: "在社区提交的旅程中，{name}共被遭遇 {total} 次，击杀了 {fatal} 名玩家（占到达该战斗旅程的 {pct}%）。",
       zht: "在社群提交的旅程中，{name}共被遭遇 {total} 次，擊殺了 {fatal} 名玩家（佔到達該戰鬥旅程的 {pct}%）。",
+      ara: "في الجولات التي أرسلها المجتمع، تمت مواجهة {name} {total} مرة وقتلت {fatal} لاعبا ({pct}% من الجولات التي تصل إليها).",
+      ind: "Di perjalanan kiriman komunitas, {name} sudah dijumpai {total} kali dan membunuh {fatal} pemain ({pct}% dari perjalanan yang sampai ke sana).",
     },
   "It deals an average of {dmg} damage over {turns} turns.": {
     eng: "It deals an average of {dmg} damage over {turns} turns.",
@@ -818,6 +912,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "{turns} turda ortalama {dmg} hasar verir.",
     zhs: "平均在 {turns} 回合内造成 {dmg} 点伤害。",
     zht: "平均在 {turns} 回合內造成 {dmg} 點傷害。",
+    ara: "تُلحق في المتوسط {dmg} ضررا خلال {turns} أدوار.",
+    ind: "Rata-rata memberi {dmg} damage selama {turns} giliran.",
   },
   "The enemies you fight in this encounter.": {
     eng: "The enemies you fight in this encounter.",
@@ -835,6 +931,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Bu karşılaşmada savaştığınız düşmanlar.",
     zhs: "本次遭遇中你要对战的敌人。",
     zht: "本次遭遇中你要對戰的敵人。",
+    ara: "الأعداء الذين تقاتلهم في هذه المواجهة.",
+    ind: "Musuh yang kamu lawan di pertemuan ini.",
   },
   Variant: {
     eng: "Variant",
@@ -852,6 +950,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Varyant",
     zhs: "变体",
     zht: "變體",
+    ara: "نسخة",
+    ind: "Varian",
   },
   Tags: {
     eng: "Tags",
@@ -869,6 +969,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Etiketler",
     zhs: "标签",
     zht: "標籤",
+    ara: "الوسوم",
+    ind: "Tag",
   },
   Start: {
     eng: "Start",
@@ -886,6 +988,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Başlangıç",
     zhs: "开始",
     zht: "開始",
+    ara: "البداية",
+    ind: "Awal",
   },
   "Event not found.": {
     eng: "Event not found.",
@@ -903,6 +1007,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Olay bulunamadı.",
     zhs: "未找到该事件。",
     zht: "找不到該事件。",
+    ara: "الحدث غير موجود.",
+    ind: "Event tidak ditemukan.",
   },
   Choices: {
     eng: "Choices",
@@ -920,6 +1026,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Seçenekler",
     zhs: "选项",
     zht: "選項",
+    ara: "الخيارات",
+    ind: "Pilihan",
   },
   "Choices & outcomes": {
     eng: "Choices & outcomes",
@@ -937,6 +1045,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Seçenekler ve sonuçlar",
     zhs: "选项与结果",
     zht: "選項與結果",
+    ara: "الخيارات والنتائج",
+    ind: "Pilihan & hasil",
   },
   "Every option this event offers and what it does.": {
     eng: "Every option this event offers and what it does.",
@@ -954,6 +1064,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Bu olayın sunduğu her seçenek ve ne yaptığı.",
     zhs: "该事件提供的所有选项及其效果。",
     zht: "該事件提供的所有選項及其效果。",
+    ara: "كل خيار يقدمه هذا الحدث وما يفعله.",
+    ind: "Semua opsi yang ditawarkan event ini dan efeknya.",
   },
   "How the community votes": {
     eng: "How the community votes",
@@ -971,6 +1083,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Topluluk nasıl oy veriyor",
     zhs: "社区的选择",
     zht: "社群的選擇",
+    ara: "كيف يصوت المجتمع",
+    ind: "Pilihan komunitas",
   },
   "Across {n} community-submitted runs at {name}, players chose:": {
     eng: "Across {n} community-submitted runs at {name}, players chose:",
@@ -988,6 +1102,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "{name} olayındaki {n} topluluk koşusunda oyuncular şunu seçti:",
     zhs: "在社区提交的 {n} 次{name}旅程中，玩家的选择：",
     zht: "在社群提交的 {n} 次{name}旅程中，玩家的選擇：",
+    ara: "عبر {n} جولة أرسلها المجتمع في {name}، اختار اللاعبون:",
+    ind: "Dari {n} perjalanan kiriman komunitas di {name}, pemain memilih:",
   },
   "All pages": {
     eng: "All pages",
@@ -1005,6 +1121,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Tüm sayfalar",
     zhs: "全部页面",
     zht: "全部頁面",
+    ara: "كل الصفحات",
+    ind: "Semua halaman",
   },
   "Relics this event can offer.": {
     eng: "Relics this event can offer.",
@@ -1022,6 +1140,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Bu olayın sunabileceği kalıntılar.",
     zhs: "该事件可能提供的遗物。",
     zht: "該事件可能提供的遺物。",
+    ara: "الآثار التي قد يقدمها هذا الحدث.",
+    ind: "Pusaka yang bisa ditawarkan event ini.",
   },
   "Voice and story lines tied to this event.": {
     eng: "Voice and story lines tied to this event.",
@@ -1039,6 +1159,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Bu olaya bağlı seslendirme ve hikâye satırları.",
     zhs: "与该事件相关的语音和剧情台词。",
     zht: "與該事件相關的語音和劇情台詞。",
+    ara: "السطور الصوتية والقصصية المرتبطة بهذا الحدث.",
+    ind: "Dialog suara dan cerita yang terkait dengan event ini.",
   },
   "Intent not found.": {
     eng: "Intent not found.",
@@ -1056,6 +1178,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Niyet bulunamadı.",
     zhs: "未找到该意图。",
     zht: "找不到該意圖。",
+    ara: "النية غير موجودة.",
+    ind: "Niat tidak ditemukan.",
   },
   "Term Not Found": {
     eng: "Term Not Found",
@@ -1073,6 +1197,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Terim Bulunamadı",
     zhs: "未找到该术语",
     zht: "找不到該術語",
+    ara: "المصطلح غير موجود",
+    ind: "Istilah Tidak Ditemukan",
   },
   Combat: {
     eng: "Combat",
@@ -1090,6 +1216,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Savaş",
     zhs: "战斗",
     zht: "戰鬥",
+    ara: "معركة",
+    ind: "Perlawanan",
   },
   "Card Zones": {
     eng: "Card Zones",
@@ -1107,6 +1235,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Kart Bölgeleri",
     zhs: "卡牌区域",
     zht: "卡牌區域",
+    ara: "مناطق البطاقات",
+    ind: "Zona Kartu",
   },
   Progression: {
     eng: "Progression",
@@ -1124,6 +1254,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "İlerleme",
     zhs: "进度",
     zht: "進度",
+    ara: "التقدم",
+    ind: "Progresi",
   },
   "Map Rooms": {
     eng: "Map Rooms",
@@ -1141,6 +1273,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Harita Odaları",
     zhs: "地图房间",
     zht: "地圖房間",
+    ara: "غرف الخريطة",
+    ind: "Ruangan Peta",
   },
   "Game Term": {
     eng: "Game Term",
@@ -1158,6 +1292,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Oyun Terimi",
     zhs: "游戏术语",
     zht: "遊戲術語",
+    ara: "مصطلح لعبة",
+    ind: "Istilah Game",
   },
   "{n} cards with this keyword": {
     eng: "{n} cards with this keyword",
@@ -1175,6 +1311,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Bu anahtar kelimeye sahip {n} kart",
     zhs: "{n} 张带有该关键词的卡牌",
     zht: "{n} 張帶有該關鍵字的卡牌",
+    ara: "{n} بطاقات بهذه الكلمة المفتاحية",
+    ind: "{n} kartu dengan kata kunci ini",
   },
   "Search {name} cards...": {
     eng: "Search {name} cards...",
@@ -1192,6 +1330,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "{name} kartlarını ara...",
     zhs: "搜索{name}卡牌...",
     zht: "搜尋{name}卡牌...",
+    ara: "ابحث في بطاقات {name}...",
+    ind: "Cari kartu {name}...",
   },
   "Modifier not found.": {
     eng: "Modifier not found.",
@@ -1209,6 +1349,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Değiştirici bulunamadı.",
     zhs: "未找到该修改器。",
     zht: "找不到該修改器。",
+    ara: "المعدل غير موجود.",
+    ind: "Efek tidak ditemukan.",
   },
   Damage: {
     eng: "Damage",
@@ -1226,6 +1368,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Hasar",
     zhs: "伤害",
     zht: "傷害",
+    ara: "الضرر",
+    ind: "Damage",
   },
   Block: {
     eng: "Block",
@@ -1243,6 +1387,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Blok",
     zhs: "格挡",
     zht: "格擋",
+    ara: "الصد",
+    ind: "Blok",
   },
   Heal: {
     eng: "Heal",
@@ -1260,6 +1406,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "İyileşme",
     zhs: "治疗",
     zht: "治療",
+    ara: "علاج",
+    ind: "Penyembuhan",
   },
   Effects: {
     eng: "Effects",
@@ -1277,6 +1425,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Etkiler",
     zhs: "效果",
     zht: "效果",
+    ara: "التأثيرات",
+    ind: "Efek",
   },
   "Monster Not Found": {
     eng: "Monster Not Found",
@@ -1294,6 +1444,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Canavar Bulunamadı",
     zhs: "未找到该怪物",
     zht: "找不到該怪物",
+    ara: "الوحش غير موجود",
+    ind: "Monster Tidak Ditemukan",
   },
   "No monster with id “{id}” exists.": {
     eng: "No monster with id “{id}” exists.",
@@ -1311,6 +1463,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "“{id}” kimlikli bir canavar yok.",
     zhs: "不存在 ID 为“{id}”的怪物。",
     zht: "不存在 ID 為「{id}」的怪物。",
+    ara: "لا يوجد وحش بالمعرّف “{id}”.",
+    ind: "Tidak ada monster dengan id “{id}”.",
   },
   "Hit Points": {
     eng: "Hit Points",
@@ -1328,6 +1482,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Can Puanı",
     zhs: "生命值",
     zht: "生命值",
+    ara: "نقاط الصحة",
+    ind: "Hit Point",
   },
   "HP · Ascension": {
     eng: "HP · Ascension",
@@ -1345,6 +1501,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "CP · Yükseliş",
     zhs: "生命值 · 进阶",
     zht: "生命值 · 晉階",
+    ara: "نقاط الصحة · الصعود",
+    ind: "HP · Angkatan",
   },
   "Innate Powers": {
     eng: "Innate Powers",
@@ -1362,6 +1520,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Doğuştan Güçler",
     zhs: "固有能力",
     zht: "固有能力",
+    ara: "القوى الفطرية",
+    ind: "Kuasa Bawaan",
   },
   "Applied at the start of combat": {
     eng: "Applied at the start of combat",
@@ -1379,6 +1539,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Savaş başında uygulanır",
     zhs: "战斗开始时生效",
     zht: "戰鬥開始時生效",
+    ara: "تُطبق عند بداية القتال",
+    ind: "Diterapkan di awal pertarungan",
   },
   "Attack Pattern": {
     eng: "Attack Pattern",
@@ -1396,6 +1558,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Saldırı Düzeni",
     zhs: "攻击模式",
     zht: "攻擊模式",
+    ara: "نمط الهجوم",
+    ind: "Pola Serangan",
   },
   "Of each community build's runs that reach {name}, the share that die to it, next to that build's overall win rate.":
     {
@@ -1414,6 +1578,8 @@ export const X6A: Record<string, Record<string, string>> = {
       tur: "Her topluluk yapısının {name} noktasına ulaşan koşularından burada ölenlerin payı, yapının genel galibiyet oranıyla birlikte.",
       zhs: "各社区构筑到达{name}的旅程中死于此战的比例，以及该构筑的总体胜率。",
       zht: "各社群構築到達{name}的旅程中死於此戰的比例，以及該構築的整體勝率。",
+      ara: "من جولات كل بناء مجتمعي التي تصل إلى {name}، نسبة من يموت أمامه، بجانب معدل الفوز العام لذلك البناء.",
+      ind: "Dari perjalanan tiap build komunitas yang sampai ke {name}, porsi yang mati di sana, di samping tingkat kemenangan keseluruhan build itu.",
     },
   "{pct}% WR": {
     eng: "{pct}% WR",
@@ -1431,6 +1597,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "%{pct} galibiyet",
     zhs: "胜率 {pct}%",
     zht: "勝率 {pct}%",
+    ara: "{pct}% WR",
+    ind: "{pct}% WR",
   },
   "Where {name} shows up.": {
     eng: "Where {name} shows up.",
@@ -1448,6 +1616,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "{name} nerede ortaya çıkar.",
     zhs: "{name}出现的地方。",
     zht: "{name}出現的地方。",
+    ara: "أين يظهر {name}.",
+    ind: "Tempat {name} muncul.",
   },
   "In {total} community runs, the {name} fight was fatal to {pct}% of runs ({fatal}), dealing an average of {dmg} damage over {turns} turns.":
     {
@@ -1466,6 +1636,8 @@ export const X6A: Record<string, Record<string, string>> = {
       tur: "{total} topluluk koşusunda {name} savaşı koşuların %{pct}'i ({fatal}) için ölümcül oldu ve {turns} turda ortalama {dmg} hasar verdi.",
       zhs: "在 {total} 次社区旅程中，{name}之战对 {pct}% 的旅程（{fatal} 次）是致命的，平均在 {turns} 回合内造成 {dmg} 点伤害。",
       zht: "在 {total} 次社群旅程中，{name}之戰對 {pct}% 的旅程（{fatal} 次）是致命的，平均在 {turns} 回合內造成 {dmg} 點傷害。",
+      ara: "في {total} جولة مجتمعية، كان قتال {name} قاتلا في {pct}% من الجولات ({fatal})، بمتوسط {dmg} ضررا خلال {turns} أدوار.",
+      ind: "Dalam {total} perjalanan komunitas, pertarungan {name} fatal bagi {pct}% perjalanan ({fatal}), dengan rata-rata {dmg} damage selama {turns} giliran.",
     },
   "Show current art": {
     eng: "Show current art",
@@ -1483,6 +1655,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Güncel çizimi göster",
     zhs: "显示当前美术",
     zht: "顯示目前美術",
+    ara: "عرض الرسم الحالي",
+    ind: "Tampilkan art saat ini",
   },
   "Show concept art": {
     eng: "Show concept art",
@@ -1500,6 +1674,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Konsept çizimi göster",
     zhs: "显示概念美术",
     zht: "顯示概念美術",
+    ara: "عرض الرسم التصوري",
+    ind: "Tampilkan concept art",
   },
   "Current art": {
     eng: "Current art",
@@ -1517,6 +1693,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Güncel çizim",
     zhs: "当前美术",
     zht: "目前美術",
+    ara: "الرسم الحالي",
+    ind: "Art saat ini",
   },
   "Concept art": {
     eng: "Concept art",
@@ -1534,6 +1712,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Konsept çizim",
     zhs: "概念美术",
     zht: "概念美術",
+    ara: "الرسم التصوري",
+    ind: "Concept art",
   },
   ">30% WR": {
     eng: ">30% WR",
@@ -1551,6 +1731,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: ">%30 galibiyet",
     zhs: "胜率 >30%",
     zht: "勝率 >30%",
+    ara: ">30% WR",
+    ind: ">30% WR",
   },
   ">50% WR": {
     eng: ">50% WR",
@@ -1568,6 +1750,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: ">%50 galibiyet",
     zhs: "胜率 >50%",
     zht: "勝率 >50%",
+    ara: ">50% WR",
+    ind: ">50% WR",
   },
   ">75% WR": {
     eng: ">75% WR",
@@ -1585,6 +1769,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: ">%75 galibiyet",
     zhs: "胜率 >75%",
     zht: "勝率 >75%",
+    ara: ">75% WR",
+    ind: ">75% WR",
   },
   "{pct}% fatal · {runs} runs · {dmg} dmg": {
     eng: "{pct}% fatal · {runs} runs · {dmg} dmg",
@@ -1602,6 +1788,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "%{pct} ölümcül · {runs} koşu · {dmg} hasar",
     zhs: "致死率 {pct}% · {runs} 次旅程 · {dmg} 伤害",
     zht: "致死率 {pct}% · {runs} 次旅程 · {dmg} 傷害",
+    ara: "{pct}% قاتل · {runs} جولات · {dmg} ضرر",
+    ind: "{pct}% fatal · {runs} perjalanan · {dmg} dmg",
   },
   "Orb not found.": {
     eng: "Orb not found.",
@@ -1619,6 +1807,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Küre bulunamadı.",
     zhs: "未找到该法球。",
     zht: "找不到該法球。",
+    ara: "الجرم غير موجود.",
+    ind: "Bola tidak ditemukan.",
   },
   "Cards that Channel {name}": {
     eng: "Cards that Channel {name}",
@@ -1636,6 +1826,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "{name} Kanalize Eden Kartlar",
     zhs: "生成{name}的卡牌",
     zht: "生成{name}的卡牌",
+    ara: "بطاقات تستدعي {name}",
+    ind: "Kartu yang Salurkan {name}",
   },
   "Relics that Channel {name}": {
     eng: "Relics that Channel {name}",
@@ -1653,6 +1845,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "{name} Kanalize Eden Kalıntılar",
     zhs: "生成{name}的遗物",
     zht: "生成{name}的遺物",
+    ara: "آثار تستدعي {name}",
+    ind: "Pusaka yang Salurkan {name}",
   },
   "Potion not found.": {
     eng: "Potion not found.",
@@ -1670,6 +1864,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "İksir bulunamadı.",
     zhs: "未找到该药水。",
     zht: "找不到該藥水。",
+    ara: "الجرعة غير موجودة.",
+    ind: "Ramuan tidak ditemukan.",
   },
   "{n} Energy": {
     eng: "{n} Energy",
@@ -1687,6 +1883,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "{n} Enerji",
     zhs: "{n} 点能量",
     zht: "{n} 點能量",
+    ara: "{n} طاقة",
+    ind: "{n} Energi",
   },
   "{n} Star": {
     eng: "{n} Star",
@@ -1704,6 +1902,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "{n} Yıldız",
     zhs: "{n} 星",
     zht: "{n} 星",
+    ara: "{n} نجمة",
+    ind: "{n} Bintang",
   },
   "{rarity} potions": {
     eng: "{rarity} potions",
@@ -1721,6 +1921,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "{rarity} iksirler",
     zhs: "{rarity}药水",
     zht: "{rarity}藥水",
+    ara: "جرعات {rarity}",
+    ind: "Ramuan {rarity}",
   },
   "{pool} pool": {
     eng: "{pool} pool",
@@ -1738,6 +1940,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "{pool} havuzu",
     zhs: "{pool}池",
     zht: "{pool}池",
+    ara: "مجموعة {pool}",
+    ind: "Pool {pool}",
   },
   "Power not found.": {
     eng: "Power not found.",
@@ -1755,6 +1959,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Güç bulunamadı.",
     zhs: "未找到该能力。",
     zht: "找不到該能力。",
+    ara: "القوة غير موجودة.",
+    ind: "Kuasa tidak ditemukan.",
   },
   Neutral: {
     eng: "Neutral",
@@ -1772,6 +1978,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Nötr",
     zhs: "中性",
     zht: "中性",
+    ara: "محايد",
+    ind: "Netral",
   },
   "Cards that apply this power.": {
     eng: "Cards that apply this power.",
@@ -1789,6 +1997,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Bu gücü uygulayan kartlar.",
     zhs: "施加该能力的卡牌。",
     zht: "施加該能力的卡牌。",
+    ara: "البطاقات التي تطبق هذه القوة.",
+    ind: "Kartu yang menerapkan kuasa ini.",
   },
   Stacking: {
     eng: "Stacking",
@@ -1806,6 +2016,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Yığılma",
     zhs: "叠加",
     zht: "疊加",
+    ara: "التراكم",
+    ind: "Tumpukan",
   },
   "Negative allowed": {
     eng: "Negative allowed",
@@ -1823,6 +2035,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Negatife izin verilir",
     zhs: "允许负值",
     zht: "允許負值",
+    ara: "السالب مسموح",
+    ind: "Boleh negatif",
   },
   "Applied by": {
     eng: "Applied by",
@@ -1840,6 +2054,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Uygulayan",
     zhs: "施加来源",
     zht: "施加來源",
+    ara: "يطبقها",
+    ind: "Diterapkan oleh",
   },
   "Relic not found.": {
     eng: "Relic not found.",
@@ -1857,6 +2073,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Kalıntı bulunamadı.",
     zhs: "未找到该遗物。",
     zht: "找不到該遺物。",
+    ara: "الأثر غير موجود.",
+    ind: "Pusaka tidak ditemukan.",
   },
   "{pool} relics": {
     eng: "{pool} relics",
@@ -1874,6 +2092,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "{pool} kalıntıları",
     zhs: "{pool}遗物",
     zht: "{pool}遺物",
+    ara: "آثار {pool}",
+    ind: "Pusaka {pool}",
   },
   "{rarity} Relics": {
     eng: "{rarity} Relics",
@@ -1891,6 +2111,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "{rarity} Kalıntılar",
     zhs: "{rarity}遗物",
     zht: "{rarity}遺物",
+    ara: "آثار {rarity}",
+    ind: "Pusaka {rarity}",
   },
   "Epoch Not Found": {
     eng: "Epoch Not Found",
@@ -1908,6 +2130,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Çağ Bulunamadı",
     zhs: "未找到该纪元",
     zht: "找不到該紀元",
+    ara: "الحقبة غير موجودة",
+    ind: "Zaman Tidak Ditemukan",
   },
   "Expands timeline": {
     eng: "Expands timeline",
@@ -1925,6 +2149,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Zaman çizelgesini genişletir",
     zhs: "扩展时间线",
     zht: "擴展時間軸",
+    ara: "توسع الخط الزمني",
+    ind: "Memperluas linimasa",
   },
   Era: {
     eng: "Era",
@@ -1942,6 +2168,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Çağ",
     zhs: "时代",
     zht: "時代",
+    ara: "العصر",
+    ind: "Era",
   },
   Year: {
     eng: "Year",
@@ -1959,6 +2187,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "Yıl",
     zhs: "年份",
     zht: "年份",
+    ara: "السنة",
+    ind: "Tahun",
   },
   "Related Potions": {
     eng: "Related Potions",
@@ -1976,6 +2206,8 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "İlgili İksirler",
     zhs: "相关药水",
     zht: "相關藥水",
+    ara: "جرعات ذات صلة",
+    ind: "Ramuan Terkait",
   },
   "Related Relics": {
     eng: "Related Relics",
@@ -1993,5 +2225,7 @@ export const X6A: Record<string, Record<string, string>> = {
     tur: "İlgili Kalıntılar",
     zhs: "相关遗物",
     zht: "相關遺物",
+    ara: "آثار ذات صلة",
+    ind: "Pusaka Terkait",
   },
 };

@@ -728,6 +728,7 @@ PLURAL_SAFE_OPERATORS = frozenset(
 REPEAT_ICONS = {"energyIcons": "[E]", "starIcons": "[S]"}
 LANGUAGE_CODES = {
     "eng": "en",
+    "ara": "ar",
     "zhs": "zh",
     "zht": "zh",
     "deu": "de",

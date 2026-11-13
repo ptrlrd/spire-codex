@@ -14,6 +14,8 @@ const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 // API uses native names (Deutsch, 日本語, Português (BR)) and a string
 // match against LANG_NAMES can drift on diacritics.
 const API_NAME_TO_LANG: Record<string, LangCode> = {
+  العربية: "ara",
+  "Bahasa Indonesia": "ind",
   Deutsch: "deu",
   "Español (ES)": "esp",
   Français: "fra",

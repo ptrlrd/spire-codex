@@ -15,6 +15,8 @@ export const X9W: Record<string, Record<string, string>> = {
     tur: "Her sütunun anlamı",
     zhs: "每一列的含义",
     zht: "每一欄的含義",
+    ara: "معنى كل عمود",
+    ind: "Arti tiap kolom",
   },
   "Every stats table uses these columns. Hovering a column header on a table shows the same line.":
     {
@@ -33,6 +35,8 @@ export const X9W: Record<string, Record<string, string>> = {
       tur: "Tüm istatistik tabloları bu sütunları kullanır. Bir sütun başlığının üzerine gelince aynı açıklama görünür.",
       zhs: "所有统计表都使用这些列。将鼠标悬停在表格的列标题上会显示同样的说明。",
       zht: "所有統計表都使用這些欄位。將滑鼠停在表格的欄位標題上會顯示同樣的說明。",
+      ara: "كل جداول الإحصائيات تستخدم هذه الأعمدة. تمرير المؤشر فوق عنوان عمود في أي جدول يعرض السطر نفسه.",
+      ind: "Semua tabel statistik memakai kolom ini. Mengarahkan kursor ke judul kolom di tabel menampilkan baris yang sama.",
     },
   Score: {
     eng: "Score",
@@ -50,6 +54,8 @@ export const X9W: Record<string, Record<string, string>> = {
     tur: "Puan",
     zhs: "评分",
     zht: "評分",
+    ara: "النتيجة",
+    ind: "Skor",
   },
   Elo: {
     eng: "Elo",
@@ -67,6 +73,8 @@ export const X9W: Record<string, Record<string, string>> = {
     tur: "Elo",
     zhs: "Elo",
     zht: "Elo",
+    ara: "Elo",
+    ind: "Elo",
   },
   Offered: {
     eng: "Offered",
@@ -84,6 +92,8 @@ export const X9W: Record<string, Record<string, string>> = {
     tur: "Sunulan",
     zhs: "出现",
     zht: "出現",
+    ara: "معروض",
+    ind: "Ditawarkan",
   },
   "Sample size": {
     eng: "Sample size",
@@ -101,6 +111,8 @@ export const X9W: Record<string, Record<string, string>> = {
     tur: "Örneklem boyutu",
     zhs: "样本量",
     zht: "樣本數",
+    ara: "حجم العينة",
+    ind: "Ukuran sampel",
   },
   "Times offered on a choice screen": {
     eng: "Times offered on a choice screen",
@@ -118,5 +130,7 @@ export const X9W: Record<string, Record<string, string>> = {
     tur: "Seçim ekranında sunulma sayısı",
     zhs: "在选择界面出现的次数",
     zht: "在選擇畫面出現的次數",
+    ara: "مرات العرض في شاشة اختيار",
+    ind: "Jumlah ditawarkan di layar pilihan",
   },
 };

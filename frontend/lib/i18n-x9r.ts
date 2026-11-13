@@ -16,6 +16,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Kararlar",
     zhs: "决策",
     zht: "決策",
+    ara: "القرارات",
+    ind: "Keputusan",
   },
   Contribute: {
     eng: "Contribute",
@@ -33,6 +35,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Katkıda bulun",
     zhs: "贡献",
     zht: "貢獻",
+    ara: "ساهم",
+    ind: "Berkontribusi",
   },
   "Contribute a Run": {
     eng: "Contribute a Run",
@@ -50,6 +54,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Bir koşu katkısı yap",
     zhs: "贡献一局",
     zht: "貢獻一局",
+    ara: "ساهم بجولة",
+    ind: "Sumbangkan Perjalanan",
   },
   "Used%": {
     eng: "Used%",
@@ -67,6 +73,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Kullanıldı%",
     zhs: "已使用%",
     zht: "已使用%",
+    ara: "استُخدمت%",
+    ind: "Dipakai%",
   },
   "{n} chosen": {
     eng: "{n} chosen",
@@ -84,6 +92,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "{n} seçim",
     zhs: "{n}次选择",
     zht: "{n}次選擇",
+    ara: "تم اختيار {n}",
+    ind: "{n} dipilih",
   },
   potion_metrics_intro: {
     eng: "Every potion obtained during the run by the win rate of seats that held it, how often it was used, and Lift against what the same players were expected to win.",
@@ -101,6 +111,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Koşu sırasında edinilen her iksir ona sahip koltukların kazanma oranı, kullanım sıklığı ve aynı oyuncuların beklenen kazancına göre Lift ile.",
     zhs: "对局中获得的每种药水，按持有席位的胜率、使用频率，以及相对同一批玩家预期胜率的 Lift。",
     zht: "對局中獲得的每種藥水，按持有席位的勝率、使用頻率，以及相對同一批玩家預期勝率的 Lift。",
+    ara: "كل جرعة تم الحصول عليها خلال الجولة حسب معدل فوز المقاعد التي حملتها، وعدد مرات استخدامها، و Lift مقارنة بما كان متوقعًا أن يفوز به اللاعبون أنفسهم.",
+    ind: "Setiap ramuan yang didapat selama perjalanan menurut tingkat kemenangan kursi yang memegangnya, seberapa sering dipakai, dan Lift terhadap perkiraan kemenangan pemain yang sama.",
   },
   "Wax {name}": {
     eng: "Wax {name}",
@@ -118,6 +130,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Balmumu {name}",
     zhs: "蜡像{name}",
     zht: "蠟像{name}",
+    ara: "{name} شمعي",
+    ind: "{name} Lilin",
   },
   "95% interval: {lo} to {hi}": {
     eng: "95% interval: {lo} to {hi}",
@@ -135,6 +149,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "%95 aralık: {lo} ile {hi}",
     zhs: "95%区间：{lo} 至 {hi}",
     zht: "95%區間：{lo} 至 {hi}",
+    ara: "فاصل 95%: من {lo} إلى {hi}",
+    ind: "Interval 95%: {lo} sampai {hi}",
   },
   "A3+": {
     eng: "A3+",
@@ -152,6 +168,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "A3+",
     zhs: "第3阶段+",
     zht: "第3幕+",
+    ara: "A3+",
+    ind: "A3+",
   },
   "Enhance relic": {
     eng: "Enhance relic",
@@ -169,6 +187,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Kalıntıyı geliştir",
     zhs: "强化遗物",
     zht: "強化遺物",
+    ara: "تحسين أثر",
+    ind: "Tingkatkan pusaka",
   },
   "Times shown on a reward screen": {
     eng: "Times shown on a reward screen",
@@ -186,6 +206,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Ödül ekranında gösterilme sayısı",
     zhs: "在奖励界面出现的次数",
     zht: "在獎勵介面出現的次數",
+    ara: "مرات الظهور في شاشة المكافآت",
+    ind: "Jumlah tampil di layar rampasan",
   },
   "Times shown on a free relic choice (ancient offers, boss relics, events)": {
     eng: "Times shown on a free relic choice (ancient offers, boss relics, events)",
@@ -203,6 +225,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Serbest kalıntı seçiminde gösterilme sayısı (kadimler, boss kalıntıları, olaylar)",
     zhs: "在自由遗物选择中出现的次数（远古、Boss遗物、事件）",
     zht: "在自由遺物選擇中出現的次數（遠古、Boss遺物、事件）",
+    ara: "مرات الظهور في اختيار أثر مجاني (عروض العتقاء، آثار الزعماء، الأحداث)",
+    ind: "Jumlah tampil di pilihan pusaka gratis (tawaran ancient, pusaka bos, event)",
   },
   "Times shown on a choice screen": {
     eng: "Times shown on a choice screen",
@@ -220,6 +244,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Seçim ekranında gösterilme sayısı",
     zhs: "在选择界面出现的次数",
     zht: "在選擇介面出現的次數",
+    ara: "مرات الظهور في شاشة اختيار",
+    ind: "Jumlah tampil di layar pilihan",
   },
   "Times seen on a shop shelf": {
     eng: "Times seen on a shop shelf",
@@ -237,6 +263,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Dükkan rafında görülme sayısı",
     zhs: "在商店货架上出现的次数",
     zht: "在商店貨架上出現的次數",
+    ara: "مرات الظهور على رف المتجر",
+    ind: "Jumlah terlihat di rak toko",
   },
   "Score baseline: {rate}% ({what}).": {
     eng: "Score baseline: {rate}% ({what}).",
@@ -254,6 +282,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Puan tabanı: %{rate} ({what}).",
     zhs: "评分基准：{rate}%（{what}）。",
     zht: "評分基準：{rate}%（{what}）。",
+    ara: "خط أساس النتيجة: {rate}% ({what}).",
+    ind: "Baseline skor: {rate}% ({what}).",
   },
   "{rate}% of all seats in {cohort} won.": {
     eng: "{rate}% of all seats in {cohort} won.",
@@ -271,6 +301,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "{cohort} içindeki tüm koltukların %{rate}'i kazandı.",
     zhs: "{cohort}中所有席位的{rate}%获胜。",
     zht: "{cohort}中所有席位的{rate}%獲勝。",
+    ara: "فاز {rate}% من كل المقاعد في {cohort}.",
+    ind: "{rate}% dari semua kursi di {cohort} menang.",
   },
   "Lift is each row's win rate minus what the same players were expected to win from the floor where they got it, in percentage points.":
     {
@@ -289,6 +321,8 @@ export const X9R: Record<string, Record<string, string>> = {
       tur: "Lift, satırın kazanma oranından aynı oyuncuların onu aldıkları kattan itibaren beklenen kazancının çıkarılmasıdır, yüzde puanı olarak.",
       zhs: "Lift 是该行胜率减去同一批玩家从获得它的楼层起的预期胜率，以百分点计。",
       zht: "Lift 是該行勝率減去同一批玩家從獲得它的樓層起的預期勝率，以百分點計。",
+      ara: "Lift هو معدل فوز كل صف مطروحًا منه ما كان متوقعًا أن يفوز به اللاعبون أنفسهم من الطابق الذي حصلوا عليه فيه، بالنقاط المئوية.",
+      ind: "Lift adalah tingkat kemenangan tiap baris dikurangi perkiraan kemenangan pemain yang sama sejak lantai tempat mereka mendapatkannya, dalam poin persentase.",
     },
   "average win rate across every card held in this cohort": {
     eng: "average win rate across every card held in this cohort",
@@ -306,6 +340,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "bu kohortta tutulan her kartın ortalama kazanma oranı",
     zhs: "此分组中所持所有卡牌的平均胜率",
     zht: "此分組中所持所有卡牌的平均勝率",
+    ara: "متوسط معدل الفوز لكل بطاقة محمولة في هذه الفئة",
+    ind: "rata-rata tingkat kemenangan semua kartu yang dipegang di kohort ini",
   },
   "average win rate across every relic held in this cohort": {
     eng: "average win rate across every relic held in this cohort",
@@ -323,6 +359,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "bu kohortta tutulan her kalıntının ortalama kazanma oranı",
     zhs: "此分组中所持所有遗物的平均胜率",
     zht: "此分組中所持所有遺物的平均勝率",
+    ara: "متوسط معدل الفوز لكل أثر محمول في هذه الفئة",
+    ind: "rata-rata tingkat kemenangan semua pusaka yang dipegang di kohort ini",
   },
   "average win rate across every potion held in this cohort": {
     eng: "average win rate across every potion held in this cohort",
@@ -340,6 +378,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "bu kohortta tutulan her iksirin ortalama kazanma oranı",
     zhs: "此分组中所持所有药水的平均胜率",
     zht: "此分組中所持所有藥水的平均勝率",
+    ara: "متوسط معدل الفوز لكل جرعة محمولة في هذه الفئة",
+    ind: "rata-rata tingkat kemenangan semua ramuan yang dipegang di kohort ini",
   },
   "average win rate across every purchase in this cohort": {
     eng: "average win rate across every purchase in this cohort",
@@ -357,6 +397,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "bu kohorttaki her satın almanın ortalama kazanma oranı",
     zhs: "此分组中所有购买的平均胜率",
     zht: "此分組中所有購買的平均勝率",
+    ara: "متوسط معدل الفوز لكل عملية شراء في هذه الفئة",
+    ind: "rata-rata tingkat kemenangan semua pembelian di kohort ini",
   },
   "average win rate across every event choice in this cohort": {
     eng: "average win rate across every event choice in this cohort",
@@ -374,6 +416,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "bu kohorttaki her olay seçiminin ortalama kazanma oranı",
     zhs: "此分组中所有事件选择的平均胜率",
     zht: "此分組中所有事件選擇的平均勝率",
+    ara: "متوسط معدل الفوز لكل خيار حدث في هذه الفئة",
+    ind: "rata-rata tingkat kemenangan semua pilihan event di kohort ini",
   },
   "average win rate across every rest site action in this cohort": {
     eng: "average win rate across every rest site action in this cohort",
@@ -391,6 +435,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "bu kohorttaki her kamp ateşi eyleminin ortalama kazanma oranı",
     zhs: "此分组中所有休息处行动的平均胜率",
     zht: "此分組中所有休息處行動的平均勝率",
+    ara: "متوسط معدل الفوز لكل فعل في مواقع الراحة في هذه الفئة",
+    ind: "rata-rata tingkat kemenangan semua tindakan peristirahatan di kohort ini",
   },
   "Relic Metrics": {
     eng: "Relic Metrics",
@@ -408,6 +454,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Kalıntı Metrikleri",
     zhs: "遗物指标",
     zht: "遺物指標",
+    ara: "مقاييس الآثار",
+    ind: "Metrik Pusaka",
   },
   "Potion Metrics": {
     eng: "Potion Metrics",
@@ -425,6 +473,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "İksir Metrikleri",
     zhs: "药水指标",
     zht: "藥水指標",
+    ara: "مقاييس الجرعات",
+    ind: "Metrik Ramuan",
   },
   "Shop Stats": {
     eng: "Shop Stats",
@@ -442,6 +492,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Dükkan İstatistikleri",
     zhs: "商店统计",
     zht: "商店統計",
+    ara: "إحصائيات المتاجر",
+    ind: "Statistik Toko",
   },
   "Event Choices": {
     eng: "Event Choices",
@@ -459,6 +511,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Olay Seçimleri",
     zhs: "事件选择",
     zht: "事件選擇",
+    ara: "خيارات الأحداث",
+    ind: "Pilihan Event",
   },
   Campfires: {
     eng: "Campfires",
@@ -476,6 +530,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Kamp Ateşleri",
     zhs: "休息处",
     zht: "休息處",
+    ara: "نيران المخيم",
+    ind: "Api Unggun",
   },
   "View other stats": {
     eng: "View other stats",
@@ -493,6 +549,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Diğer istatistikler",
     zhs: "查看其他统计",
     zht: "查看其他統計",
+    ara: "عرض إحصائيات أخرى",
+    ind: "Lihat statistik lain",
   },
   Cohort: {
     eng: "Cohort",
@@ -510,6 +568,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Kohort",
     zhs: "分组",
     zht: "分組",
+    ara: "الفئة",
+    ind: "Kohort",
   },
   "all runs": {
     eng: "all runs",
@@ -527,6 +587,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "tüm koşular",
     zhs: "所有对局",
     zht: "所有對局",
+    ara: "كل الجولات",
+    ind: "semua perjalanan",
   },
   "Ascension 10": {
     eng: "Ascension 10",
@@ -544,6 +606,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Yükseliş 10",
     zhs: "进阶10",
     zht: "晉階10",
+    ara: "الصعود 10",
+    ind: "Angkatan 10",
   },
   "players above {pct}% win rate": {
     eng: "players above {pct}% win rate",
@@ -561,6 +625,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "%{pct} üzeri kazanma oranlı oyuncular",
     zhs: "胜率高于{pct}%的玩家",
     zht: "勝率高於{pct}%的玩家",
+    ara: "لاعبون بمعدل فوز أعلى من {pct}%",
+    ind: "pemain dengan tingkat kemenangan di atas {pct}%",
   },
   "played by {character}": {
     eng: "played by {character}",
@@ -578,6 +644,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "{character} ile oynanan",
     zhs: "使用{character}",
     zht: "使用{character}",
+    ara: "لعبها {character}",
+    ind: "dimainkan oleh {character}",
   },
   "Two players": {
     eng: "Two players",
@@ -595,6 +663,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "İki oyuncu",
     zhs: "双人",
     zht: "雙人",
+    ara: "لاعبان",
+    ind: "Dua pemain",
   },
   "Three players": {
     eng: "Three players",
@@ -612,6 +682,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Üç oyuncu",
     zhs: "三人",
     zht: "三人",
+    ara: "ثلاثة لاعبين",
+    ind: "Tiga pemain",
   },
   "Four players": {
     eng: "Four players",
@@ -629,6 +701,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Dört oyuncu",
     zhs: "四人",
     zht: "四人",
+    ara: "أربعة لاعبين",
+    ind: "Empat pemain",
   },
   "Standard mode": {
     eng: "Standard mode",
@@ -646,6 +720,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Standart mod",
     zhs: "标准模式",
     zht: "標準模式",
+    ara: "الوضع العادي",
+    ind: "Mode standar",
   },
   "Daily climb": {
     eng: "Daily climb",
@@ -663,6 +739,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Günlük tırmanış",
     zhs: "每日爬塔",
     zht: "每日爬塔",
+    ara: "التحدي اليومي",
+    ind: "Tantangan harian",
   },
   "Custom mode": {
     eng: "Custom mode",
@@ -680,6 +758,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Özel mod",
     zhs: "自定义模式",
     zht: "自訂模式",
+    ara: "الوضع المخصص",
+    ind: "Mode kustom",
   },
   "Lift is each row's win rate minus what the same players win on their other runs.":
     {
@@ -698,6 +778,8 @@ export const X9R: Record<string, Record<string, string>> = {
       tur: "Lift, satırın kazanma oranından aynı oyuncuların diğer koşularda kazandığının çıkarılmasıdır.",
       zhs: "Lift 是该行胜率减去同一批玩家在其他对局中的胜率。",
       zht: "Lift 是該行勝率減去同一批玩家在其他對局中的勝率。",
+      ara: "Lift هو معدل فوز كل صف مطروحًا منه ما يفوز به اللاعبون أنفسهم في جولاتهم الأخرى.",
+      ind: "Lift adalah tingkat kemenangan tiap baris dikurangi tingkat kemenangan pemain yang sama di perjalanan mereka yang lain.",
     },
   "This table has no data yet. Check back after the next stats build.": {
     eng: "This table has no data yet. Check back after the next stats build.",
@@ -715,6 +797,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Bu tabloda henüz veri yok. Bir sonraki istatistik derlemesinden sonra tekrar bakın.",
     zhs: "此表暂无数据。下次统计更新后再来查看。",
     zht: "此表暫無資料。下次統計更新後再來查看。",
+    ara: "لا توجد بيانات في هذا الجدول بعد. عد بعد بناء الإحصائيات القادم.",
+    ind: "Tabel ini belum punya data. Cek lagi setelah pembaruan statistik berikutnya.",
   },
   "{count} rows shown": {
     eng: "{count} rows shown",
@@ -732,6 +816,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "{count} satır gösteriliyor",
     zhs: "显示{count}行",
     zht: "顯示{count}行",
+    ara: "{count} صف معروض",
+    ind: "{count} baris ditampilkan",
   },
   "{n} seats": {
     eng: "{n} seats",
@@ -749,6 +835,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "{n} koltuk",
     zhs: "{n}个席位",
     zht: "{n}個席位",
+    ara: "{n} مقعد",
+    ind: "{n} kursi",
   },
   "{n} seats with a known player baseline": {
     eng: "{n} seats with a known player baseline",
@@ -766,6 +854,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Oyuncu tabanı bilinen {n} koltuk",
     zhs: "{n}个已知玩家基准的席位",
     zht: "{n}個已知玩家基準的席位",
+    ara: "{n} مقعد بخط أساس معروف للاعب",
+    ind: "{n} kursi dengan baseline pemain yang diketahui",
   },
   "Show {count} rows under {min} samples": {
     eng: "Show {count} rows under {min} samples",
@@ -783,6 +873,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "{min} örnek altındaki {count} satırı göster",
     zhs: "显示{count}行样本少于{min}的数据",
     zht: "顯示{count}行樣本少於{min}的資料",
+    ara: "إظهار {count} صف أقل من {min} عينة",
+    ind: "Tampilkan {count} baris di bawah {min} sampel",
   },
   "Small sample: fewer than {min} seats": {
     eng: "Small sample: fewer than {min} seats",
@@ -800,6 +892,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Küçük örnek: {min} koltuktan az",
     zhs: "样本过小：少于{min}个席位",
     zht: "樣本過小：少於{min}個席位",
+    ara: "عينة صغيرة: أقل من {min} مقعد",
+    ind: "Sampel kecil: kurang dari {min} kursi",
   },
   "Rows under {min} samples are greyed out; rows under {hidden} are hidden until you switch them on.":
     {
@@ -818,6 +912,8 @@ export const X9R: Record<string, Record<string, string>> = {
       tur: "{min} örnek altındaki satırlar soluk; {hidden} altındakiler siz açana kadar gizli.",
       zhs: "样本少于{min}的行显示为灰色；少于{hidden}的行在开启前隐藏。",
       zht: "樣本少於{min}的行顯示為灰色；少於{hidden}的行在開啟前隱藏。",
+      ara: "الصفوف الأقل من {min} عينة تظهر باهتة، والصفوف الأقل من {hidden} مخفية حتى تفعّل إظهارها.",
+      ind: "Baris di bawah {min} sampel diredupkan; baris di bawah {hidden} disembunyikan sampai kamu menampilkannya.",
     },
   "How the numbers are computed": {
     eng: "How the numbers are computed",
@@ -835,6 +931,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Sayılar nasıl hesaplanır",
     zhs: "数值如何计算",
     zht: "數值如何計算",
+    ara: "كيف تُحسب الأرقام",
+    ind: "Cara angka dihitung",
   },
   "Any rarity": {
     eng: "Any rarity",
@@ -852,6 +950,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Her nadirlik",
     zhs: "所有稀有度",
     zht: "所有稀有度",
+    ara: "أي ندرة",
+    ind: "Semua kelangkaan",
   },
   "Hold%": {
     eng: "Hold%",
@@ -869,6 +969,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Sahip%",
     zhs: "持有%",
     zht: "持有%",
+    ara: "الحمل%",
+    ind: "Pegang%",
   },
   "Buy%": {
     eng: "Buy%",
@@ -886,6 +988,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Satın alma%",
     zhs: "购买%",
     zht: "購買%",
+    ara: "الشراء%",
+    ind: "Beli%",
   },
   "Low HP": {
     eng: "Low HP",
@@ -903,6 +1007,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Düşük HP",
     zhs: "低血量",
     zht: "低血量",
+    ara: "صحة منخفضة",
+    ind: "HP rendah",
   },
   Sample: {
     eng: "Sample",
@@ -920,6 +1026,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Örnek",
     zhs: "样本",
     zht: "樣本",
+    ara: "العينة",
+    ind: "Sampel",
   },
   Chosen: {
     eng: "Chosen",
@@ -937,6 +1045,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Seçilen",
     zhs: "选择次数",
     zht: "選擇次數",
+    ara: "المختار",
+    ind: "Dipilih",
   },
   Choice: {
     eng: "Choice",
@@ -954,6 +1064,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Seçim",
     zhs: "选择",
     zht: "選擇",
+    ara: "الخيار",
+    ind: "Pilihan",
   },
   Item: {
     eng: "Item",
@@ -971,6 +1083,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Eşya",
     zhs: "物品",
     zht: "物品",
+    ara: "العنصر",
+    ind: "Item",
   },
   "W-L": {
     eng: "W-L",
@@ -988,6 +1102,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "G-M",
     zhs: "胜-负",
     zht: "勝-負",
+    ara: "ف-خ",
+    ind: "M-K",
   },
   "Relic name": {
     eng: "Relic name",
@@ -1005,6 +1121,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Kalıntı adı",
     zhs: "遗物名称",
     zht: "遺物名稱",
+    ara: "اسم الأثر",
+    ind: "Nama pusaka",
   },
   "Potion name": {
     eng: "Potion name",
@@ -1022,6 +1140,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "İksir adı",
     zhs: "药水名称",
     zht: "藥水名稱",
+    ara: "اسم الجرعة",
+    ind: "Nama ramuan",
   },
   "Shop item": {
     eng: "Shop item",
@@ -1039,6 +1159,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Dükkan eşyası",
     zhs: "商店物品",
     zht: "商店物品",
+    ara: "عنصر المتجر",
+    ind: "Item toko",
   },
   "Event and the option taken": {
     eng: "Event and the option taken",
@@ -1056,6 +1178,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Olay ve seçilen seçenek",
     zhs: "事件与所选选项",
     zht: "事件與所選選項",
+    ara: "الحدث والخيار المتخذ",
+    ind: "Event dan opsi yang diambil",
   },
   "Rest site action": {
     eng: "Rest site action",
@@ -1073,6 +1197,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Kamp ateşi eylemi",
     zhs: "休息处行动",
     zht: "休息處行動",
+    ara: "فعل موقع الراحة",
+    ind: "Tindakan peristirahatan",
   },
   "Seats whose deck held this card (sample size)": {
     eng: "Seats whose deck held this card (sample size)",
@@ -1090,6 +1216,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Destesinde bu kart olan koltuklar (örnek)",
     zhs: "牌组含此牌的席位数（样本）",
     zht: "牌組含此牌的席位數（樣本）",
+    ara: "المقاعد التي احتوت مجموعتها على هذه البطاقة (حجم العينة)",
+    ind: "Kursi yang deknya berisi kartu ini (ukuran sampel)",
   },
   "Seats that held this relic (sample size)": {
     eng: "Seats that held this relic (sample size)",
@@ -1107,6 +1235,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Bu kalıntıya sahip koltuklar (örnek)",
     zhs: "持有此遗物的席位数（样本）",
     zht: "持有此遺物的席位數（樣本）",
+    ara: "المقاعد التي حملت هذا الأثر (حجم العينة)",
+    ind: "Kursi yang memegang pusaka ini (ukuran sampel)",
   },
   "Seats that held this potion (sample size)": {
     eng: "Seats that held this potion (sample size)",
@@ -1124,6 +1254,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Bu iksire sahip koltuklar (örnek)",
     zhs: "持有此药水的席位数（样本）",
     zht: "持有此藥水的席位數（樣本）",
+    ara: "المقاعد التي حملت هذه الجرعة (حجم العينة)",
+    ind: "Kursi yang memegang ramuan ini (ukuran sampel)",
   },
   "Seats that bought this item (sample size)": {
     eng: "Seats that bought this item (sample size)",
@@ -1141,6 +1273,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Bu eşyayı satın alan koltuklar (örnek)",
     zhs: "购买此物品的席位数（样本）",
     zht: "購買此物品的席位數（樣本）",
+    ara: "المقاعد التي اشترت هذا العنصر (حجم العينة)",
+    ind: "Kursi yang membeli item ini (ukuran sampel)",
   },
   "Seats that took this option (sample size)": {
     eng: "Seats that took this option (sample size)",
@@ -1158,6 +1292,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Bu seçeneği seçen koltuklar (örnek)",
     zhs: "选择此选项的席位数（样本）",
     zht: "選擇此選項的席位數（樣本）",
+    ara: "المقاعد التي اتخذت هذا الخيار (حجم العينة)",
+    ind: "Kursi yang mengambil opsi ini (ukuran sampel)",
   },
   "Seats that took this action (sample size)": {
     eng: "Seats that took this action (sample size)",
@@ -1175,6 +1311,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Bu eylemi yapan koltuklar (örnek)",
     zhs: "执行此行动的席位数（样本）",
     zht: "執行此行動的席位數（樣本）",
+    ara: "المقاعد التي قامت بهذا الفعل (حجم العينة)",
+    ind: "Kursi yang melakukan tindakan ini (ukuran sampel)",
   },
   "No relics match your filters.": {
     eng: "No relics match your filters.",
@@ -1192,6 +1330,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Filtrelerinize uyan kalıntı yok.",
     zhs: "没有符合筛选条件的遗物。",
     zht: "沒有符合篩選條件的遺物。",
+    ara: "لا توجد آثار تطابق عوامل التصفية.",
+    ind: "Tidak ada pusaka yang cocok dengan filter.",
   },
   "No potions match your filters.": {
     eng: "No potions match your filters.",
@@ -1209,6 +1349,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Filtrelerinize uyan iksir yok.",
     zhs: "没有符合筛选条件的药水。",
     zht: "沒有符合篩選條件的藥水。",
+    ara: "لا توجد جرعات تطابق عوامل التصفية.",
+    ind: "Tidak ada ramuan yang cocok dengan filter.",
   },
   "No shop data yet.": {
     eng: "No shop data yet.",
@@ -1226,6 +1368,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Henüz dükkan verisi yok.",
     zhs: "暂无商店数据。",
     zht: "暫無商店資料。",
+    ara: "لا توجد بيانات متاجر بعد.",
+    ind: "Belum ada data toko.",
   },
   "No event data yet.": {
     eng: "No event data yet.",
@@ -1243,6 +1387,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Henüz olay verisi yok.",
     zhs: "暂无事件数据。",
     zht: "暫無事件資料。",
+    ara: "لا توجد بيانات أحداث بعد.",
+    ind: "Belum ada data event.",
   },
   "No campfire data yet.": {
     eng: "No campfire data yet.",
@@ -1260,6 +1406,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Henüz kamp ateşi verisi yok.",
     zhs: "暂无休息处数据。",
     zht: "暫無休息處資料。",
+    ara: "لا توجد بيانات نيران المخيم بعد.",
+    ind: "Belum ada data api unggun.",
   },
   "Search shop items...": {
     eng: "Search shop items...",
@@ -1277,6 +1425,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Dükkan eşyası ara...",
     zhs: "搜索商店物品...",
     zht: "搜尋商店物品...",
+    ara: "ابحث في عناصر المتجر...",
+    ind: "Cari item toko...",
   },
   "Search actions...": {
     eng: "Search actions...",
@@ -1294,6 +1444,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Eylem ara...",
     zhs: "搜索行动...",
     zht: "搜尋行動...",
+    ara: "ابحث في الأفعال...",
+    ind: "Cari tindakan...",
   },
   cards_metrics_intro: {
     eng: "Every card scored two ways: Codex Score grades the win rate of seats that held it, and Codex Elo rates what players take when offered. Lift compares each card against what the same players win on their other runs.",
@@ -1311,6 +1463,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Her kart iki şekilde puanlanır: Codex Score ona sahip koltukların kazanma oranını, Codex Elo sunulduğunda oyuncuların ne aldığını ölçer. Lift her kartı aynı oyuncuların diğer koşulardaki kazancıyla karşılaştırır.",
     zhs: "每张牌有两种评分：Codex Score 衡量持有该牌席位的胜率，Codex Elo 衡量玩家被提供时的选择倾向。Lift 将每张牌与同一批玩家在其他对局的胜率比较。",
     zht: "每張牌有兩種評分：Codex Score 衡量持有該牌席位的勝率，Codex Elo 衡量玩家被提供時的選擇傾向。Lift 將每張牌與同一批玩家在其他對局的勝率比較。",
+    ara: "كل بطاقة مقيّمة بطريقتين: Codex Score يقيّم معدل فوز المقاعد التي حملتها، و Codex Elo يصنّف ما يأخذه اللاعبون عند العرض. Lift يقارن كل بطاقة بما يفوز به اللاعبون أنفسهم في جولاتهم الأخرى.",
+    ind: "Setiap kartu dinilai dengan dua cara: Codex Score menilai tingkat kemenangan kursi yang memegangnya, dan Codex Elo memeringkat apa yang diambil pemain saat ditawarkan. Lift membandingkan tiap kartu dengan tingkat kemenangan pemain yang sama di perjalanan mereka yang lain.",
   },
   relic_metrics_intro: {
     eng: "Every relic scored two ways: Codex Score grades the win rate of seats that held it, and Codex Elo rates what players take on free relic choices (ancients, bosses, events). Shop shelves are not offers. Wax copies from Toy Box are split out.",
@@ -1328,6 +1482,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Her kalıntı iki şekilde puanlanır: Codex Score ona sahip koltukların kazanma oranını, Codex Elo serbest kalıntı seçimlerini (kadimler, bosslar, olaylar) ölçer. Dükkan rafları teklif sayılmaz. Oyuncak Kutusu balmumu kopyaları ayrı tutulur.",
     zhs: "每件遗物有两种评分：Codex Score 衡量持有席位的胜率，Codex Elo 衡量自由遗物选择（远古、Boss、事件）的倾向。商店货架不算提供。玩具箱的蜡像复制品单独统计。",
     zht: "每件遺物有兩種評分：Codex Score 衡量持有席位的勝率，Codex Elo 衡量自由遺物選擇（遠古、Boss、事件）的傾向。商店貨架不算提供。玩具箱的蠟像複製品單獨統計。",
+    ara: "كل أثر مقيّم بطريقتين: Codex Score يقيّم معدل فوز المقاعد التي حملته، و Codex Elo يصنّف ما يأخذه اللاعبون في اختيارات الآثار المجانية (العتقاء، الزعماء، الأحداث). رفوف المتاجر ليست عروضًا. النسخ الشمعية من صندوق ألعاب معروضة بشكل منفصل.",
+    ind: "Setiap pusaka dinilai dengan dua cara: Codex Score menilai tingkat kemenangan kursi yang memegangnya, dan Codex Elo memeringkat apa yang diambil pemain di pilihan pusaka gratis (ancient, bos, event). Rak toko bukan tawaran. Salinan lilin dari Kotak Mainan dipisahkan.",
   },
   shop_stats_intro: {
     eng: "What people buy when they see it on a shelf, and how runs go after the purchase.",
@@ -1345,6 +1501,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "İnsanların rafta görünce ne aldığı ve satın alma sonrası koşuların nasıl gittiği.",
     zhs: "人们在货架上看到时会买什么，以及购买后对局的走向。",
     zht: "人們在貨架上看到時會買什麼，以及購買後對局的走向。",
+    ara: "ما يشتريه الناس عند رؤيته على الرف، وكيف تسير الجولات بعد الشراء.",
+    ind: "Apa yang dibeli orang saat melihatnya di rak, dan bagaimana jalannya perjalanan setelah pembelian.",
   },
   event_choices_intro: {
     eng: "Every event option by how often it is taken and how runs go afterwards.",
@@ -1362,6 +1520,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Her olay seçeneğinin ne sıklıkla alındığı ve sonrasında koşuların nasıl gittiği.",
     zhs: "每个事件选项的选取频率及之后对局的走向。",
     zht: "每個事件選項的選取頻率及之後對局的走向。",
+    ara: "كل خيار حدث حسب عدد مرات اتخاذه وكيف تسير الجولات بعده.",
+    ind: "Setiap opsi event menurut seberapa sering diambil dan bagaimana jalannya perjalanan setelahnya.",
   },
   campfires_intro: {
     eng: "Rest site actions by how often they are taken, how runs go afterwards, and how often they are taken at low HP.",
@@ -1379,6 +1539,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Kamp ateşi eylemlerinin sıklığı, sonrasında koşuların gidişi ve düşük HP'de alınma sıklığı.",
     zhs: "休息处行动的选取频率、之后对局的走向，以及低血量时的选取频率。",
     zht: "休息處行動的選取頻率、之後對局的走向，以及低血量時的選取頻率。",
+    ara: "أفعال مواقع الراحة حسب عدد مرات اتخاذها، وكيف تسير الجولات بعدها، وعدد مرات اتخاذها عند انخفاض الصحة.",
+    ind: "Tindakan peristirahatan menurut seberapa sering diambil, bagaimana jalannya perjalanan setelahnya, dan seberapa sering diambil saat HP rendah.",
   },
   relic_metrics_meta_description: {
     eng: "Every Slay the Spire 2 relic ranked by Codex Score, Codex Elo, win rate, pick rate and Lift, from community-submitted runs.",
@@ -1396,6 +1558,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2'deki her kalıntı Codex Score, Codex Elo, kazanma oranı, seçilme oranı ve Lift'e göre, topluluk koşularından.",
     zhs: "Slay the Spire 2 全部遗物按 Codex Score、Codex Elo、胜率、选取率和 Lift 排名，基于社区提交的对局。",
     zht: "Slay the Spire 2 全部遺物按 Codex Score、Codex Elo、勝率、選取率和 Lift 排名，基於社群提交的對局。",
+    ara: "كل آثار Slay the Spire 2 مرتبة حسب Codex Score و Codex Elo ومعدل الفوز ومعدل الاختيار و Lift، من جولات رفعها المجتمع.",
+    ind: "Semua pusaka Slay the Spire 2 diurutkan menurut Codex Score, Codex Elo, tingkat kemenangan, tingkat pilih, dan Lift, dari perjalanan kiriman komunitas.",
   },
   potion_metrics_meta_description: {
     eng: "Every Slay the Spire 2 potion ranked by win rate, use rate and Lift, from community-submitted runs.",
@@ -1413,6 +1577,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2'deki her iksir kazanma oranı, kullanım oranı ve Lift'e göre, topluluk koşularından.",
     zhs: "Slay the Spire 2 全部药水按胜率、使用率和 Lift 排名，基于社区提交的对局。",
     zht: "Slay the Spire 2 全部藥水按勝率、使用率和 Lift 排名，基於社群提交的對局。",
+    ara: "كل جرعات Slay the Spire 2 مرتبة حسب معدل الفوز ومعدل الاستخدام و Lift، من جولات رفعها المجتمع.",
+    ind: "Semua ramuan Slay the Spire 2 diurutkan menurut tingkat kemenangan, tingkat pakai, dan Lift, dari perjalanan kiriman komunitas.",
   },
   shop_stats_meta_description: {
     eng: "What Slay the Spire 2 players buy at the merchant and how their runs go afterwards, from community-submitted runs.",
@@ -1430,6 +1596,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 oyuncularının tüccardan ne aldığı ve sonrasında koşularının nasıl gittiği, topluluk koşularından.",
     zhs: "Slay the Spire 2 玩家在商人处购买什么以及之后对局的走向，基于社区提交的对局。",
     zht: "Slay the Spire 2 玩家在商人處購買什麼以及之後對局的走向，基於社群提交的對局。",
+    ara: "ما يشتريه لاعبو Slay the Spire 2 من التاجر وكيف تسير جولاتهم بعد ذلك، من جولات رفعها المجتمع.",
+    ind: "Apa yang dibeli pemain Slay the Spire 2 di pedagang dan bagaimana jalannya perjalanan mereka setelahnya, dari perjalanan kiriman komunitas.",
   },
   event_choices_meta_description: {
     eng: "Every Slay the Spire 2 event option by how often it is taken and how runs go afterwards, from community-submitted runs.",
@@ -1447,6 +1615,8 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2'deki her olay seçeneğinin ne sıklıkla alındığı ve sonrasında koşuların nasıl gittiği, topluluk koşularından.",
     zhs: "Slay the Spire 2 每个事件选项的选取频率及之后对局的走向，基于社区提交的对局。",
     zht: "Slay the Spire 2 每個事件選項的選取頻率及之後對局的走向，基於社群提交的對局。",
+    ara: "كل خيار حدث في Slay the Spire 2 حسب عدد مرات اتخاذه وكيف تسير الجولات بعده، من جولات رفعها المجتمع.",
+    ind: "Setiap opsi event Slay the Spire 2 menurut seberapa sering diambil dan bagaimana jalannya perjalanan setelahnya, dari perjalanan kiriman komunitas.",
   },
   campfires_meta_description: {
     eng: "Slay the Spire 2 rest site actions by how often they are taken, how runs go afterwards, and how often they happen at low HP, from community-submitted runs.",
@@ -1464,5 +1634,7 @@ export const X9R: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 kamp ateşi eylemlerinin sıklığı, sonrasında koşuların gidişi ve düşük HP'de sıklığı, topluluk koşularından.",
     zhs: "Slay the Spire 2 休息处行动的选取频率、之后对局的走向以及低血量时的频率，基于社区提交的对局。",
     zht: "Slay the Spire 2 休息處行動的選取頻率、之後對局的走向以及低血量時的頻率，基於社群提交的對局。",
+    ara: "أفعال مواقع الراحة في Slay the Spire 2 حسب عدد مرات اتخاذها، وكيف تسير الجولات بعدها، وعدد مرات حدوثها عند انخفاض الصحة، من جولات رفعها المجتمع.",
+    ind: "Tindakan peristirahatan Slay the Spire 2 menurut seberapa sering diambil, bagaimana jalannya perjalanan setelahnya, dan seberapa sering terjadi saat HP rendah, dari perjalanan kiriman komunitas.",
   },
 };

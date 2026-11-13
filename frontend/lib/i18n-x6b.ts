@@ -16,6 +16,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Bir şeyler ters gitti",
     zhs: "出了点问题",
     zht: "出了點問題",
+    ara: "حدث خطأ ما",
+    ind: "Terjadi kesalahan",
   },
   "An unexpected error occurred.": {
     eng: "An unexpected error occurred.",
@@ -33,6 +35,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Beklenmeyen bir hata oluştu.",
     zhs: "发生了意外错误。",
     zht: "發生了意外錯誤。",
+    ara: "حدث خطأ غير متوقع.",
+    ind: "Terjadi kesalahan tak terduga.",
   },
   "Try again": {
     eng: "Try again",
@@ -50,6 +54,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Tekrar dene",
     zhs: "重试",
     zht: "重試",
+    ara: "حاول مجددا",
+    ind: "Coba lagi",
   },
   "Every enchantment, effects, card-type restrictions, stackability, and added card text.":
     {
@@ -68,6 +74,8 @@ export const X6B: Record<string, Record<string, string>> = {
       tur: "Her büyü, etkiler, kart türü kısıtlamaları, yığılabilirlik ve eklenen kart metni.",
       zhs: "所有附魔、效果、卡牌类型限制、可叠加性和附加卡牌文本。",
       zht: "所有附魔、效果、卡牌類型限制、可疊加性和附加卡牌文字。",
+      ara: "كل التعزيزات: التأثيرات، قيود نوع البطاقة، قابلية التراكم، ونص البطاقة المضاف.",
+      ind: "Semua Efek: pengaruhnya, batasan tipe kartu, bisa tidaknya ditumpuk, dan teks kartu tambahan.",
     },
   "Every potion by rarity and character pool, effects, shop prices, and use timing.":
     {
@@ -86,6 +94,8 @@ export const X6B: Record<string, Record<string, string>> = {
       tur: "Nadirlik ve karakter havuzuna göre her iksir, etkiler, dükkan fiyatları ve kullanım zamanı.",
       zhs: "按稀有度和角色池列出的所有药水、效果、商店价格和使用时机。",
       zht: "按稀有度和角色池列出的所有藥水、效果、商店價格和使用時機。",
+      ara: "كل الجرعات حسب الندرة ومجموعة الشخصية: التأثيرات، أسعار المتجر، وتوقيت الاستخدام.",
+      ind: "Semua ramuan per kelangkaan dan pool karakter: efek, harga toko, dan waktu pemakaian.",
     },
   "Every relic by rarity and character pool, effects, flavor text, shop prices, and upgraded starters.":
     {
@@ -104,6 +114,8 @@ export const X6B: Record<string, Record<string, string>> = {
       tur: "Nadirlik ve karakter havuzuna göre her kalıntı, etkiler, betimleme metni, dükkan fiyatları ve yükseltilmiş başlangıç kalıntıları.",
       zhs: "按稀有度和角色池列出的所有遗物、效果、风味文本、商店价格和升级版初始遗物。",
       zht: "按稀有度和角色池列出的所有遺物、效果、風味文字、商店價格和升級版初始遺物。",
+      ara: "كل الآثار حسب الندرة ومجموعة الشخصية: التأثيرات، النص الوصفي، أسعار المتجر، وآثار البداية المطورة.",
+      ind: "Semua pusaka per kelangkaan dan pool karakter: efek, teks cerita, harga toko, dan pusaka awal yang ditingkatkan.",
     },
   "Every buff, debuff, and neutral power with descriptions, icons, and stack behavior.":
     {
@@ -122,6 +134,8 @@ export const X6B: Record<string, Record<string, string>> = {
       tur: "Açıklamalar, simgeler ve yığılma davranışıyla her güçlendirme, zayıflatma ve nötr güç.",
       zhs: "所有增益、减益和中性能力，附带描述、图标和叠加规则。",
       zht: "所有增益、減益和中性能力，附帶描述、圖示和疊加規則。",
+      ara: "كل تعزيز وإضعاف وقوة محايدة مع الأوصاف والأيقونات وسلوك التراكم.",
+      ind: "Semua buff, debuff, dan kuasa netral dengan deskripsi, ikon, dan perilaku tumpukan.",
     },
   "Every monster, HP ranges, attack patterns, innate powers, and ascension scaling.":
     {
@@ -140,6 +154,8 @@ export const X6B: Record<string, Record<string, string>> = {
       tur: "Her canavar, HP aralıkları, saldırı kalıpları, doğuştan güçler ve yükseliş ölçeklenmesi.",
       zhs: "所有怪物、生命值范围、攻击模式、固有能力和进阶成长。",
       zht: "所有怪物、生命值範圍、攻擊模式、固有能力和晉階成長。",
+      ara: "كل الوحوش: نطاقات نقاط الصحة، أنماط الهجوم، القوى الفطرية، وتصاعد الصعود.",
+      ind: "Semua monster: rentang HP, pola serangan, kuasa bawaan, dan skala Angkatan.",
     },
   "Every shrine, Ancient, and story event, choices, dialogue, relic offerings, and outcomes.":
     {
@@ -158,6 +174,8 @@ export const X6B: Record<string, Record<string, string>> = {
       tur: "Her tapınak, Kadim ve hikaye olayı, seçimler, diyaloglar, sunulan kalıntılar ve sonuçlar.",
       zhs: "所有神龛、远古者和剧情事件、选项、对话、遗物提供和结果。",
       zht: "所有神龕、遠古者和劇情事件、選項、對話、遺物提供和結果。",
+      ara: "كل المزارات والقدماء وأحداث القصة: الخيارات، الحوارات، الآثار المعروضة، والنتائج.",
+      ind: "Semua kuil, Ancient, dan event cerita: pilihan, dialog, tawaran pusaka, dan hasil.",
     },
   "Every combat encounter, normal fights, elites, and bosses with monster compositions and act placement.":
     {
@@ -176,6 +194,8 @@ export const X6B: Record<string, Record<string, string>> = {
       tur: "Canavar bileşimleri ve perde yerleşimiyle her savaş karşılaşması, normal dövüşler, elitler ve bosslar.",
       zhs: "所有战斗遭遇、普通战斗、精英和Boss，附带怪物组成和所在阶段。",
       zht: "所有戰鬥遭遇、普通戰鬥、精英和頭目，附帶怪物組成和所在幕。",
+      ara: "كل مواجهات القتال: المعارك العادية والنخب والزعماء مع تشكيلات الوحوش وموضعها في الفصول.",
+      ind: "Semua pertemuan tempur: pertarungan biasa, elit, dan bos dengan komposisi monster dan penempatan babak.",
     },
   "Every card keyword and game term, with all cards using each.": {
     eng: "Every card keyword and game term, with all cards using each.",
@@ -193,6 +213,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Her kart anahtar kelimesi ve oyun terimi, her birini kullanan tüm kartlarla.",
     zhs: "所有卡牌关键词和游戏术语，以及使用它们的全部卡牌。",
     zht: "所有卡牌關鍵詞和遊戲術語，以及使用它們的全部卡牌。",
+    ara: "كل كلمات البطاقات المفتاحية ومصطلحات اللعبة، مع كل البطاقات التي تستخدمها.",
+    ind: "Semua kata kunci kartu dan istilah game, lengkap dengan kartu yang memakainya.",
   },
   "Keywords define special card behaviors. Game terms explain core mechanics referenced throughout Slay the Spire 2.":
     {
@@ -211,6 +233,8 @@ export const X6B: Record<string, Record<string, string>> = {
       tur: "Anahtar kelimeler özel kart davranışlarını tanımlar. Oyun terimleri Slay the Spire 2 boyunca atıfta bulunulan temel mekanikleri açıklar.",
       zhs: "关键词定义卡牌的特殊行为。游戏术语解释 Slay the Spire 2 中反复提到的核心机制。",
       zht: "關鍵詞定義卡牌的特殊行為。遊戲術語解釋 Slay the Spire 2 中反覆提到的核心機制。",
+      ara: "الكلمات المفتاحية تحدد سلوكيات خاصة للبطاقات. مصطلحات اللعبة تشرح الآليات الأساسية المذكورة في أنحاء Slay the Spire 2.",
+      ind: "Kata kunci menentukan perilaku khusus kartu. Istilah game menjelaskan mekanik inti yang disebut di seluruh Slay the Spire 2.",
     },
   "Every drop rate, reward chance, and game formula extracted from Slay the Spire 2's decompiled source code. All values are exact.":
     {
@@ -229,6 +253,8 @@ export const X6B: Record<string, Record<string, string>> = {
       tur: "Slay the Spire 2'nin derlemesi çözülmüş kaynak kodundan çıkarılan her düşme oranı, ödül şansı ve oyun formülü. Tüm değerler kesindir.",
       zhs: "从 Slay the Spire 2 反编译源码中提取的所有掉落率、奖励概率和游戏公式。所有数值均为精确值。",
       zht: "從 Slay the Spire 2 反編譯原始碼中提取的所有掉落率、獎勵機率和遊戲公式。所有數值均為精確值。",
+      ara: "كل نسب الظهور وفرص المكافآت ومعادلات اللعبة مستخرجة من الشيفرة المصدرية المفككة للعبة Slay the Spire 2. كل القيم دقيقة.",
+      ind: "Semua drop rate, peluang hadiah, dan rumus game diambil dari kode sumber Slay the Spire 2 hasil dekompilasi. Semua nilainya persis.",
     },
   "Compare all {game} characters side by side. Stats, card pools, keywords, and starting decks.":
     {
@@ -247,6 +273,8 @@ export const X6B: Record<string, Record<string, string>> = {
       tur: "Tüm {game} karakterlerini yan yana karşılaştırın. İstatistikler, kart havuzları, anahtar kelimeler ve başlangıç desteleri.",
       zhs: "并排比较 {game} 的所有角色。属性、卡池、关键词和初始牌组。",
       zht: "並排比較 {game} 的所有角色。屬性、卡池、關鍵詞和初始牌組。",
+      ara: "قارن كل شخصيات {game} جنبا إلى جنب. الإحصائيات، مجموعات البطاقات، الكلمات المفتاحية، ومجموعات البداية.",
+      ind: "Bandingkan semua karakter {game} berdampingan. Statistik, pool kartu, kata kunci, dan dek awal.",
     },
   "Stats, cards, keywords & starting decks": {
     eng: "Stats, cards, keywords & starting decks",
@@ -264,6 +292,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "İstatistikler, kartlar, anahtar kelimeler ve başlangıç desteleri",
     zhs: "属性、卡牌、关键词和初始牌组",
     zht: "屬性、卡牌、關鍵詞和初始牌組",
+    ara: "الإحصائيات، البطاقات، الكلمات المفتاحية ومجموعات البداية",
+    ind: "Statistik, kartu, kata kunci & dek awal",
   },
   "These badges can only be earned in multiplayer runs.": {
     eng: "These badges can only be earned in multiplayer runs.",
@@ -281,6 +311,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Bu rozetler yalnızca çok oyunculu koşularda kazanılabilir.",
     zhs: "这些徽章只能在多人游戏中获得。",
     zht: "這些徽章只能在多人遊戲中獲得。",
+    ara: "لا يمكن كسب هذه الشارات إلا في جولات اللعب الجماعي.",
+    ind: "Lencana ini hanya bisa didapat di perjalanan Multi Pemain.",
   },
   "Slay the Spire 2 {name} badge": {
     eng: "Slay the Spire 2 {name} badge",
@@ -298,6 +330,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 {name} rozeti",
     zhs: "Slay the Spire 2 徽章 {name}",
     zht: "Slay the Spire 2 徽章 {name}",
+    ara: "شارة {name} في Slay the Spire 2",
+    ind: "Lencana {name} Slay the Spire 2",
   },
   "{game} community projects": {
     eng: "{game} community projects",
@@ -315,6 +349,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "{game} topluluk projeleri",
     zhs: "{game} 社区项目",
     zht: "{game} 社群專案",
+    ara: "مشاريع مجتمع {game}",
+    ind: "Proyek komunitas {game}",
   },
   "Bots, widgets, apps, and tools built with the Spire Codex API by the Slay the Spire 2 community.":
     {
@@ -333,6 +369,8 @@ export const X6B: Record<string, Record<string, string>> = {
       tur: "Slay the Spire 2 topluluğunun Spire Codex API ile oluşturduğu botlar, widget'lar, uygulamalar ve araçlar.",
       zhs: "Slay the Spire 2 社区使用 Spire Codex API 构建的机器人、小组件、应用和工具。",
       zht: "Slay the Spire 2 社群使用 Spire Codex API 構建的機器人、小工具、應用程式和工具。",
+      ara: "بوتات وأدوات مصغرة وتطبيقات وأدوات بناها مجتمع Slay the Spire 2 باستخدام API الخاصة بـSpire Codex.",
+      ind: "Bot, widget, aplikasi, dan alat yang dibuat komunitas Slay the Spire 2 dengan API Spire Codex.",
     },
   "Projects and tools built with the Spire Codex API. Want to add yours? Share it in the":
     {
@@ -351,6 +389,8 @@ export const X6B: Record<string, Record<string, string>> = {
       tur: "Spire Codex API ile oluşturulan projeler ve araçlar. Seninkini eklemek ister misin? Şurada paylaş:",
       zhs: "使用 Spire Codex API 构建的项目和工具。想添加你的作品？请分享到",
       zht: "使用 Spire Codex API 構建的專案和工具。想加入你的作品？請分享到",
+      ara: "مشاريع وأدوات مبنية باستخدام API الخاصة بـSpire Codex. تريد إضافة مشروعك؟ شاركه في",
+      ind: "Proyek dan alat yang dibuat dengan API Spire Codex. Mau menambahkan punyamu? Bagikan di",
     },
   "and we'll get it listed here.": {
     eng: "and we'll get it listed here.",
@@ -368,6 +408,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "biz de buraya ekleyelim.",
     zhs: "我们会把它列在这里。",
     zht: "我們會把它列在這裡。",
+    ara: "وسندرجه هنا.",
+    ind: "dan kami akan mencantumkannya di sini.",
   },
   "No projects yet. Be the first!": {
     eng: "No projects yet. Be the first!",
@@ -385,6 +427,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Henüz proje yok. İlk sen ol!",
     zhs: "还没有项目。来做第一个吧！",
     zht: "還沒有專案。來做第一個吧！",
+    ara: "لا توجد مشاريع بعد. كن الأول!",
+    ind: "Belum ada proyek. Jadilah yang pertama!",
   },
   "by {author}": {
     eng: "by {author}",
@@ -402,6 +446,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "{author} tarafından",
     zhs: "作者：{author}",
     zht: "作者：{author}",
+    ara: "بواسطة {author}",
+    ind: "oleh {author}",
   },
   "Deck Archetypes": {
     eng: "Deck Archetypes",
@@ -419,6 +465,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Deste Arketipleri",
     zhs: "牌组流派",
     zht: "牌組流派",
+    ara: "أنماط المجموعات",
+    ind: "Arketipe Dek",
   },
   Archetypes: {
     eng: "Archetypes",
@@ -436,6 +484,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Arketipler",
     zhs: "流派",
     zht: "流派",
+    ara: "الأنماط",
+    ind: "Arketipe",
   },
   "Every deck archetype discovered from community runs: defining cards and relics, popularity, and real win rates per build.":
     {
@@ -454,6 +504,8 @@ export const X6B: Record<string, Record<string, string>> = {
       tur: "Topluluk koşularından keşfedilen her deste arketipi: belirleyici kartlar ve kalıntılar, popülerlik ve her yapı için gerçek kazanma oranları.",
       zhs: "从社区对局中发现的所有牌组流派：核心卡牌与遗物、热度，以及每种构筑的真实胜率。",
       zht: "從社群對局中發現的所有牌組流派：核心卡牌與遺物、熱度，以及每種構築的真實勝率。",
+      ara: "كل نمط مجموعة مكتشف من جولات المجتمع: البطاقات والآثار المميزة، الشعبية، ومعدلات الفوز الحقيقية لكل بناء.",
+      ind: "Semua arketipe dek yang ditemukan dari perjalanan komunitas: kartu dan pusaka penentu, popularitas, dan tingkat kemenangan nyata tiap build.",
     },
   "Builds discovered automatically from community-submitted runs: decks are clustered by their cards and relics, so every archetype below is something players actually pilot, with its real popularity and win rate. Rebuilt daily.":
     {
@@ -472,6 +524,8 @@ export const X6B: Record<string, Record<string, string>> = {
       tur: "Topluluğun gönderdiği koşulardan otomatik keşfedilen yapılar: desteler kartlarına ve kalıntılarına göre kümelenir, bu yüzden aşağıdaki her arketip oyuncuların gerçekten oynadığı bir şeydir ve gerçek popülerliği ile kazanma oranını taşır. Her gün yeniden oluşturulur.",
       zhs: "根据社区提交的对局自动发现的构筑：牌组按卡牌和遗物聚类，因此下面每个流派都是玩家真实在用的，附带真实热度和胜率。每日重建。",
       zht: "根據社群提交的對局自動發現的構築：牌組按卡牌和遺物聚類，因此下面每個流派都是玩家真實在用的，附帶真實熱度和勝率。每日重建。",
+      ara: "أبنية مكتشفة تلقائيا من الجولات التي يرسلها المجتمع: تُجمَّع المجموعات حسب بطاقاتها وآثارها، فكل نمط أدناه يلعبه اللاعبون فعلا، مع شعبيته ومعدل فوزه الحقيقيين. يُعاد البناء يوميا.",
+      ind: "Build yang ditemukan otomatis dari perjalanan kiriman komunitas: dek dikelompokkan menurut kartu dan pusakanya, jadi tiap arketipe di bawah memang dimainkan pemain, lengkap dengan popularitas dan tingkat kemenangan nyatanya. Dibangun ulang tiap hari.",
     },
   "Meta movers": {
     eng: "Meta movers",
@@ -489,6 +543,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Meta hareketleri",
     zhs: "环境变动",
     zht: "環境變動",
+    ara: "تحركات الميتا",
+    ind: "Pergerakan meta",
   },
   "Archetype data is still building. Check back shortly.": {
     eng: "Archetype data is still building. Check back shortly.",
@@ -506,6 +562,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Arketip verileri hâlâ oluşturuluyor. Kısa süre sonra tekrar bakın.",
     zhs: "流派数据仍在构建中。请稍后再来。",
     zht: "流派資料仍在構建中。請稍後再來。",
+    ara: "بيانات الأنماط ما زالت قيد البناء. عد بعد قليل.",
+    ind: "Data arketipe masih dibangun. Cek lagi sebentar lagi.",
   },
   "{share}% of {character} runs · {n} decks": {
     eng: "{share}% of {character} runs · {n} decks",
@@ -523,6 +581,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "{character} koşularının %{share}'i · {n} deste",
     zhs: "占 {character} 对局的 {share}% · {n} 套牌组",
     zht: "佔 {character} 對局的 {share}% · {n} 套牌組",
+    ara: "{share}% من جولات {character} · {n} مجموعات",
+    ind: "{share}% dari perjalanan {character} · {n} dek",
   },
   "Share change in {version} vs the previous version": {
     eng: "Share change in {version} vs the previous version",
@@ -540,6 +600,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Önceki sürüme göre {version} sürümündeki pay değişimi",
     zhs: "{version} 相比上一版本的占比变化",
     zht: "{version} 相比上一版本的佔比變化",
+    ara: "تغير الحصة في {version} مقارنة بالإصدار السابق",
+    ind: "Perubahan porsi di {version} dibanding versi sebelumnya",
   },
   "Examples:": {
     eng: "Examples:",
@@ -557,6 +619,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Örnekler:",
     zhs: "示例：",
     zht: "範例：",
+    ara: "أمثلة:",
+    ind: "Contoh:",
   },
   "Browse Cards by Category": {
     eng: "Browse Cards by Category",
@@ -574,6 +638,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Kartlara Kategoriye Göre Göz At",
     zhs: "按类别浏览卡牌",
     zht: "按類別瀏覽卡牌",
+    ara: "تصفح البطاقات حسب الفئة",
+    ind: "Jelajahi Kartu per Kategori",
   },
   "Explore Slay the Spire 2 cards organized by type, rarity, character, and keyword. Each category shows a filtered view of all matching cards.":
     {
@@ -592,6 +658,8 @@ export const X6B: Record<string, Record<string, string>> = {
       tur: "Tür, nadirlik, karakter ve anahtar kelimeye göre düzenlenmiş Slay the Spire 2 kartlarını keşfedin. Her kategori eşleşen tüm kartların filtrelenmiş görünümünü gösterir.",
       zhs: "按类型、稀有度、角色和关键词浏览 Slay the Spire 2 卡牌。每个类别都是所有匹配卡牌的筛选视图。",
       zht: "按類型、稀有度、角色和關鍵詞瀏覽 Slay the Spire 2 卡牌。每個類別都是所有匹配卡牌的篩選視圖。",
+      ara: "استكشف بطاقات Slay the Spire 2 مرتبة حسب النوع والندرة والشخصية والكلمة المفتاحية. كل فئة تعرض قائمة مصفاة بكل البطاقات المطابقة.",
+      ind: "Jelajahi kartu Slay the Spire 2 yang dikelompokkan menurut tipe, kelangkaan, karakter, dan kata kunci. Tiap kategori menampilkan semua kartu yang cocok.",
     },
   "Looking for the full card list?": {
     eng: "Looking for the full card list?",
@@ -609,6 +677,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Tam kart listesini mi arıyorsunuz?",
     zhs: "想看完整卡牌列表？",
     zht: "想看完整卡牌列表？",
+    ara: "تبحث عن قائمة البطاقات الكاملة؟",
+    ind: "Cari daftar kartu lengkap?",
   },
   "View all cards": {
     eng: "View all cards",
@@ -626,6 +696,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Tüm kartları gör",
     zhs: "查看所有卡牌",
     zht: "查看所有卡牌",
+    ara: "عرض كل البطاقات",
+    ind: "Lihat semua kartu",
   },
   "By Type": {
     eng: "By Type",
@@ -643,6 +715,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Türe Göre",
     zhs: "按类型",
     zht: "按類型",
+    ara: "حسب النوع",
+    ind: "Per Tipe",
   },
   "By Rarity": {
     eng: "By Rarity",
@@ -660,6 +734,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Nadirliğe Göre",
     zhs: "按稀有度",
     zht: "按稀有度",
+    ara: "حسب الندرة",
+    ind: "Per Kelangkaan",
   },
   "By Character": {
     eng: "By Character",
@@ -677,6 +753,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Karaktere Göre",
     zhs: "按角色",
     zht: "按角色",
+    ara: "حسب الشخصية",
+    ind: "Per Karakter",
   },
   "By Keyword": {
     eng: "By Keyword",
@@ -694,6 +772,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Anahtar Kelimeye Göre",
     zhs: "按关键词",
     zht: "按關鍵詞",
+    ara: "حسب الكلمة المفتاحية",
+    ind: "Per Kata Kunci",
   },
   Combinations: {
     eng: "Combinations",
@@ -711,6 +791,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Kombinasyonlar",
     zhs: "组合",
     zht: "組合",
+    ara: "التركيبات",
+    ind: "Kombinasi",
   },
   "({n} cards found)": {
     eng: "({n} cards found)",
@@ -728,6 +810,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "({n} kart bulundu)",
     zhs: "（找到 {n} 张卡牌）",
     zht: "（找到 {n} 張卡牌）",
+    ara: "(تم العثور على {n} بطاقات)",
+    ind: "({n} kartu ditemukan)",
   },
   "Search within these cards...": {
     eng: "Search within these cards...",
@@ -745,6 +829,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Bu kartlar içinde ara...",
     zhs: "在这些卡牌中搜索...",
     zht: "在這些卡牌中搜尋...",
+    ara: "ابحث ضمن هذه البطاقات...",
+    ind: "Cari di antara kartu ini...",
   },
   "Top picks by Codex Score, a Bayesian-shrunk win rate that adjusts for sample size, so a card with a 60% win rate over 5 runs doesn't outrank one with a 55% win rate over 5,000. Updates continuously from submitted runs.":
     {
@@ -763,6 +849,8 @@ export const X6B: Record<string, Record<string, string>> = {
       tur: "Codex Score'a göre en iyi seçimler; örneklem büyüklüğüne göre ayarlanan Bayesçi daraltılmış kazanma oranı sayesinde 5 koşuda %60 kazanan bir kart, 5.000 koşuda %55 kazanan bir kartın önüne geçmez. Gönderilen koşularla sürekli güncellenir.",
       zhs: "按 Codex Score 排序的热门选择。它是经贝叶斯收缩、考虑样本量的胜率，因此 5 局 60% 胜率的卡牌不会排在 5,000 局 55% 胜率的卡牌之上。随提交的对局持续更新。",
       zht: "按 Codex Score 排序的熱門選擇。它是經貝氏收縮、考慮樣本量的勝率，因此 5 局 60% 勝率的卡牌不會排在 5,000 局 55% 勝率的卡牌之上。隨提交的對局持續更新。",
+      ara: "أفضل الاختيارات حسب Codex Score، وهو معدل فوز مقرَّب بطريقة بايزية يراعي حجم العينة، فلا تتقدم بطاقة بمعدل فوز 60% في 5 جولات على بطاقة بمعدل 55% في 5,000 جولة. يتحدث باستمرار من الجولات المرسلة.",
+      ind: "Pilihan teratas menurut Codex Score, tingkat kemenangan dengan penyusutan Bayesian yang memperhitungkan ukuran sampel, jadi kartu dengan tingkat kemenangan 60% dari 5 perjalanan tidak mengalahkan kartu dengan 55% dari 5,000 run. Terus diperbarui dari perjalanan yang dikirim.",
     },
   "{name} - Slay the Spire 2 card": {
     eng: "{name} - Slay the Spire 2 card",
@@ -780,6 +868,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "{name} - Slay the Spire 2 kartı",
     zhs: "{name} - Slay the Spire 2 卡牌",
     zht: "{name} - Slay the Spire 2 卡牌",
+    ara: "{name} - بطاقة Slay the Spire 2",
+    ind: "{name} - kartu Slay the Spire 2",
   },
   WR: {
     eng: "WR",
@@ -797,6 +887,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "KO",
     zhs: "胜率",
     zht: "勝率",
+    ara: "WR",
+    ind: "WR",
   },
   "{name} - Slay the Spire 2 Character": {
     eng: "{name} - Slay the Spire 2 Character",
@@ -814,6 +906,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "{name} - Slay the Spire 2 karakteri",
     zhs: "{name} - Slay the Spire 2 角色",
     zht: "{name} - Slay the Spire 2 角色",
+    ara: "{name} - شخصية Slay the Spire 2",
+    ind: "{name} - Karakter Slay the Spire 2",
   },
   "Starting Deck ({n} cards)": {
     eng: "Starting Deck ({n} cards)",
@@ -831,6 +925,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Başlangıç Destesi ({n} kart)",
     zhs: "初始牌组（{n} 张）",
     zht: "初始牌組（{n} 張）",
+    ara: "مجموعة البداية ({n} بطاقات)",
+    ind: "Dek Awal ({n} kartu)",
   },
   "Server busy (HTTP {status})": {
     eng: "Server busy (HTTP {status})",
@@ -848,6 +944,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Sunucu meşgul (HTTP {status})",
     zhs: "服务器繁忙（HTTP {status}）",
     zht: "伺服器繁忙（HTTP {status}）",
+    ara: "الخادم مشغول (HTTP {status})",
+    ind: "Server sibuk (HTTP {status})",
   },
   "Server returned a non-JSON response": {
     eng: "Server returned a non-JSON response",
@@ -865,6 +963,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Sunucu JSON olmayan bir yanıt döndürdü",
     zhs: "服务器返回了非 JSON 响应",
     zht: "伺服器回傳了非 JSON 回應",
+    ara: "أعاد الخادم ردا ليس بصيغة JSON",
+    ind: "Server mengembalikan respons non-JSON",
   },
   Beta: {
     eng: "Beta",
@@ -882,6 +982,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Beta",
     zhs: "测试版",
     zht: "測試版",
+    ara: "Beta",
+    ind: "Beta",
   },
   "Search enchantments...": {
     eng: "Search enchantments...",
@@ -899,6 +1001,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Büyü ara...",
     zhs: "搜索附魔...",
     zht: "搜尋附魔...",
+    ara: "ابحث في التعزيزات...",
+    ind: "Cari Efek...",
   },
   "{name} enchantment icon": {
     eng: "{name} enchantment icon",
@@ -916,6 +1020,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "{name} büyü simgesi",
     zhs: "附魔 {name} 图标",
     zht: "附魔 {name} 圖示",
+    ara: "أيقونة تعزيز {name}",
+    ind: "Ikon Efek {name}",
   },
   "Card text:": {
     eng: "Card text:",
@@ -933,6 +1039,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Kart metni:",
     zhs: "卡牌文本：",
     zht: "卡牌文字：",
+    ara: "نص البطاقة:",
+    ind: "Teks kartu:",
   },
   "Search encounters...": {
     eng: "Search encounters...",
@@ -950,6 +1058,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Karşılaşma ara...",
     zhs: "搜索遭遇...",
     zht: "搜尋遭遇...",
+    ara: "ابحث في المواجهات...",
+    ind: "Cari pertemuan...",
   },
   "Weak Encounters": {
     eng: "Weak Encounters",
@@ -967,6 +1077,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Zayıf Karşılaşmalar",
     zhs: "弱敌遭遇",
     zht: "弱敵遭遇",
+    ara: "المواجهات الضعيفة",
+    ind: "Pertemuan Lemah",
   },
   Monster: {
     eng: "Monster",
@@ -984,6 +1096,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Canavar",
     zhs: "怪物",
     zht: "怪物",
+    ara: "وحش",
+    ind: "Monster",
   },
   Elite: {
     eng: "Elite",
@@ -1001,6 +1115,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Elit",
     zhs: "精英",
     zht: "精英",
+    ara: "نخبة",
+    ind: "Elit",
   },
   Boss: {
     eng: "Boss",
@@ -1018,6 +1134,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Boss",
     zhs: "Boss",
     zht: "頭目",
+    ara: "زعيم",
+    ind: "Bos",
   },
   "Search events...": {
     eng: "Search events...",
@@ -1035,6 +1153,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Olay ara...",
     zhs: "搜索事件...",
     zht: "搜尋事件...",
+    ara: "ابحث في الأحداث...",
+    ind: "Cari event...",
   },
   "{name} - Slay the Spire 2 Event": {
     eng: "{name} - Slay the Spire 2 Event",
@@ -1052,6 +1172,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "{name} - Slay the Spire 2 olayı",
     zhs: "{name} - Slay the Spire 2 事件",
     zht: "{name} - Slay the Spire 2 事件",
+    ara: "{name} - حدث Slay the Spire 2",
+    ind: "{name} - Event Slay the Spire 2",
   },
   "{n} pages": {
     eng: "{n} pages",
@@ -1069,6 +1191,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "{n} sayfa",
     zhs: "{n} 页",
     zht: "{n} 頁",
+    ara: "{n} صفحات",
+    ind: "{n} halaman",
   },
   "Show less": {
     eng: "Show less",
@@ -1086,6 +1210,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Daha az göster",
     zhs: "收起",
     zht: "收起",
+    ara: "عرض أقل",
+    ind: "Lebih sedikit",
   },
   "Show more...": {
     eng: "Show more...",
@@ -1103,6 +1229,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Daha fazla göster...",
     zhs: "展开...",
     zht: "展開...",
+    ara: "عرض المزيد...",
+    ind: "Lihat lainnya...",
   },
   "All Pages": {
     eng: "All Pages",
@@ -1120,6 +1248,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Tüm Sayfalar",
     zhs: "所有页面",
     zht: "所有頁面",
+    ara: "كل الصفحات",
+    ind: "Semua Halaman",
   },
   "Relic Offerings": {
     eng: "Relic Offerings",
@@ -1137,6 +1267,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Sunulan Kalıntılar",
     zhs: "提供的遗物",
     zht: "提供的遺物",
+    ara: "الآثار المعروضة",
+    ind: "Tawaran Pusaka",
   },
   "{name} - Slay the Spire 2 Relic": {
     eng: "{name} - Slay the Spire 2 Relic",
@@ -1154,6 +1286,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "{name} - Slay the Spire 2 kalıntısı",
     zhs: "{name} - Slay the Spire 2 遗物",
     zht: "{name} - Slay the Spire 2 遺物",
+    ara: "{name} - أثر Slay the Spire 2",
+    ind: "{name} - Pusaka Slay the Spire 2",
   },
   "Search guides...": {
     eng: "Search guides...",
@@ -1171,6 +1305,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Rehber ara...",
     zhs: "搜索攻略...",
     zht: "搜尋攻略...",
+    ara: "ابحث في الأدلة...",
+    ind: "Cari panduan...",
   },
   "No guides found matching your filters.": {
     eng: "No guides found matching your filters.",
@@ -1188,6 +1324,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Filtrelerinize uyan rehber bulunamadı.",
     zhs: "没有符合筛选条件的攻略。",
     zht: "沒有符合篩選條件的攻略。",
+    ara: "لا توجد أدلة تطابق عوامل التصفية.",
+    ind: "Tidak ada panduan yang cocok dengan filter.",
   },
   "Guide Not Found": {
     eng: "Guide Not Found",
@@ -1205,6 +1343,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Rehber Bulunamadı",
     zhs: "未找到攻略",
     zht: "未找到攻略",
+    ara: "الدليل غير موجود",
+    ind: "Panduan Tidak Ditemukan",
   },
   "This guide doesn't exist.": {
     eng: "This guide doesn't exist.",
@@ -1222,6 +1362,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Bu rehber mevcut değil.",
     zhs: "该攻略不存在。",
     zht: "該攻略不存在。",
+    ara: "هذا الدليل غير موجود.",
+    ind: "Panduan ini tidak ada.",
   },
   "Browse all guides": {
     eng: "Browse all guides",
@@ -1239,6 +1381,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Tüm rehberlere göz at",
     zhs: "浏览所有攻略",
     zht: "瀏覽所有攻略",
+    ara: "تصفح كل الأدلة",
+    ind: "Jelajahi semua panduan",
   },
   "Back to Guides": {
     eng: "Back to Guides",
@@ -1256,6 +1400,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Rehberlere Dön",
     zhs: "返回攻略",
     zht: "返回攻略",
+    ara: "العودة إلى الأدلة",
+    ind: "Kembali ke Panduan",
   },
   "Updated {date}": {
     eng: "Updated {date}",
@@ -1273,6 +1419,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "{date} tarihinde güncellendi",
     zhs: "更新于 {date}",
     zht: "更新於 {date}",
+    ara: "تم التحديث {date}",
+    ind: "Diperbarui {date}",
   },
   "Written by {author}": {
     eng: "Written by {author}",
@@ -1290,6 +1438,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "{author} tarafından yazıldı",
     zhs: "作者：{author}",
     zht: "作者：{author}",
+    ara: "بقلم {author}",
+    ind: "Ditulis oleh {author}",
   },
   "Recommend an edit": {
     eng: "Recommend an edit",
@@ -1307,6 +1457,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Düzenleme öner",
     zhs: "建议修改",
     zht: "建議修改",
+    ara: "اقترح تعديلا",
+    ind: "Usulkan suntingan",
   },
   Website: {
     eng: "Website",
@@ -1324,6 +1476,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Web sitesi",
     zhs: "网站",
     zht: "網站",
+    ara: "الموقع",
+    ind: "Situs web",
   },
   "Search monsters...": {
     eng: "Search monsters...",
@@ -1341,6 +1495,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Canavar ara...",
     zhs: "搜索怪物...",
     zht: "搜尋怪物...",
+    ara: "ابحث في الوحوش...",
+    ind: "Cari monster...",
   },
   "{name} - Slay the Spire 2 Monster": {
     eng: "{name} - Slay the Spire 2 Monster",
@@ -1358,6 +1514,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "{name} - Slay the Spire 2 canavarı",
     zhs: "{name} - Slay the Spire 2 怪物",
     zht: "{name} - Slay the Spire 2 怪物",
+    ara: "{name} - وحش Slay the Spire 2",
+    ind: "{name} - Monster Slay the Spire 2",
   },
   "A+ HP": {
     eng: "A+ HP",
@@ -1375,6 +1533,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "A+ HP",
     zhs: "进阶生命值",
     zht: "晉階生命值",
+    ara: "A+ HP",
+    ind: "A+ HP",
   },
   "Search potions...": {
     eng: "Search potions...",
@@ -1392,6 +1552,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "İksir ara...",
     zhs: "搜索药水...",
     zht: "搜尋藥水...",
+    ara: "ابحث في الجرعات...",
+    ind: "Cari ramuan...",
   },
   "{name} - Slay the Spire 2 Potion": {
     eng: "{name} - Slay the Spire 2 Potion",
@@ -1409,6 +1571,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "{name} - Slay the Spire 2 iksiri",
     zhs: "{name} - Slay the Spire 2 药水",
     zht: "{name} - Slay the Spire 2 藥水",
+    ara: "{name} - جرعة Slay the Spire 2",
+    ind: "{name} - Ramuan Slay the Spire 2",
   },
   "Search powers...": {
     eng: "Search powers...",
@@ -1426,6 +1590,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Güç ara...",
     zhs: "搜索能力...",
     zht: "搜尋能力...",
+    ara: "ابحث في القوى...",
+    ind: "Cari kuasa...",
   },
   "{bosses} bosses · {encounters} encounters": {
     eng: "{bosses} bosses · {encounters} encounters",
@@ -1443,6 +1609,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "{bosses} boss · {encounters} karşılaşma",
     zhs: "{bosses} 个Boss · {encounters} 场遭遇",
     zht: "{bosses} 個頭目 · {encounters} 場遭遇",
+    ara: "{bosses} زعماء · {encounters} مواجهات",
+    ind: "{bosses} bos · {encounters} pertemuan",
   },
   "{events} events · {ancients} ancients": {
     eng: "{events} events · {ancients} ancients",
@@ -1460,6 +1628,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "{events} olay · {ancients} Kadim",
     zhs: "{events} 个事件 · {ancients} 位远古者",
     zht: "{events} 個事件 · {ancients} 位遠古者",
+    ara: "{events} أحداث · {ancients} قدماء",
+    ind: "{events} event · {ancients} Ancient",
   },
   "Search relics...": {
     eng: "Search relics...",
@@ -1477,6 +1647,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Kalıntı ara...",
     zhs: "搜索遗物...",
     zht: "搜尋遺物...",
+    ara: "ابحث في الآثار...",
+    ind: "Cari pusaka...",
   },
   "{provider} disconnected": {
     eng: "{provider} disconnected",
@@ -1494,6 +1666,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "{provider} bağlantısı kesildi",
     zhs: "已断开 {provider}",
     zht: "已斷開 {provider}",
+    ara: "تم فصل {provider}",
+    ind: "{provider} diputuskan",
   },
   "Failed to disconnect {provider}": {
     eng: "Failed to disconnect {provider}",
@@ -1511,6 +1685,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "{provider} bağlantısı kesilemedi",
     zhs: "断开 {provider} 失败",
     zht: "斷開 {provider} 失敗",
+    ara: "تعذر فصل {provider}",
+    ind: "Gagal memutuskan {provider}",
   },
   "Search epochs...": {
     eng: "Search epochs...",
@@ -1528,6 +1704,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Çağ ara...",
     zhs: "搜索纪元...",
     zht: "搜尋紀元...",
+    ara: "ابحث في الحقب...",
+    ind: "Cari zaman...",
   },
   "{n} epochs": {
     eng: "{n} epochs",
@@ -1545,6 +1723,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "{n} çağ",
     zhs: "{n} 个纪元",
     zht: "{n} 個紀元",
+    ara: "{n} حقب",
+    ind: "{n} zaman",
   },
   "{name} epoch art": {
     eng: "{name} epoch art",
@@ -1562,6 +1742,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "{name} çağı görseli",
     zhs: "纪元 {name} 插画",
     zht: "紀元 {name} 插畫",
+    ara: "رسم حقبة {name}",
+    ind: "Art zaman {name}",
   },
   "Unlocks {items}": {
     eng: "Unlocks {items}",
@@ -1579,6 +1761,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "{items} açar",
     zhs: "解锁 {items}",
     zht: "解鎖 {items}",
+    ara: "تفتح {items}",
+    ind: "Membuka {items}",
   },
   "{n} potions": {
     eng: "{n} potions",
@@ -1596,6 +1780,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "{n} iksir",
     zhs: "{n} 瓶药水",
     zht: "{n} 瓶藥水",
+    ara: "{n} جرعات",
+    ind: "{n} ramuan",
   },
   "Expands timeline:": {
     eng: "Expands timeline:",
@@ -1613,6 +1799,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Zaman çizelgesini genişletir:",
     zhs: "扩展时间线：",
     zht: "擴展時間線：",
+    ara: "توسع الخط الزمني:",
+    ind: "Memperluas linimasa:",
   },
   "Failed to submit": {
     eng: "Failed to submit",
@@ -1630,6 +1818,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Gönderilemedi",
     zhs: "提交失败",
     zht: "提交失敗",
+    ara: "تعذر الإرسال",
+    ind: "Gagal mengirim",
   },
   "All unlockable content in Slay the Spire 2, earned through timeline progression.":
     {
@@ -1648,6 +1838,8 @@ export const X6B: Record<string, Record<string, string>> = {
       tur: "Slay the Spire 2'deki zaman çizelgesi ilerlemesiyle kazanılan tüm açılabilir içerik.",
       zhs: "Slay the Spire 2 中通过时间线进度获得的所有可解锁内容。",
       zht: "Slay the Spire 2 中透過時間線進度獲得的所有可解鎖內容。",
+      ara: "كل المحتوى القابل للفتح في Slay the Spire 2، ويُكسب عبر التقدم في الخط الزمني.",
+      ind: "Semua konten yang bisa dibuka di Slay the Spire 2, didapat lewat progres linimasa.",
     },
   "Spire Codex is a comprehensive database for Slay the Spire 2, commonly abbreviated StS2, built by reverse-engineering the game files. Every card, relic, monster, potion, event, and power on this site was extracted directly from the game's source code and localization data.":
     {
@@ -1666,6 +1858,8 @@ export const X6B: Record<string, Record<string, string>> = {
       tur: "Spire Codex, oyun dosyalarının tersine mühendisliğiyle oluşturulmuş, kısaca StS2 denen Slay the Spire 2 için kapsamlı bir veritabanıdır. Bu sitedeki her kart, kalıntı, canavar, iksir, olay ve güç doğrudan oyunun kaynak kodundan ve yerelleştirme verilerinden çıkarılmıştır.",
       zhs: "Spire Codex 是 Slay the Spire 2（常简称 StS2）的综合数据库，通过逆向工程游戏文件构建。本站的每张卡牌、遗物、怪物、药水、事件和能力都直接提取自游戏源码和本地化数据。",
       zht: "Spire Codex 是 Slay the Spire 2（常簡稱 StS2）的綜合資料庫，透過逆向工程遊戲檔案構建。本站的每張卡牌、遺物、怪物、藥水、事件和能力都直接提取自遊戲原始碼和在地化資料。",
+      ara: "Spire Codex قاعدة بيانات شاملة للعبة Slay the Spire 2، وتُختصر عادة إلى StS2، بُنيت عبر الهندسة العكسية لملفات اللعبة. كل بطاقة وأثر ووحش وجرعة وحدث وقوة في هذا الموقع استُخرجت مباشرة من الشيفرة المصدرية للعبة وبيانات الترجمة.",
+      ind: "Spire Codex adalah database lengkap untuk Slay the Spire 2, biasa disingkat StS2, yang dibuat dengan merekayasa balik file game. Setiap kartu, pusaka, monster, ramuan, event, dan kuasa di situs ini diambil langsung dari kode sumber dan data lokalisasi game.",
     },
   "The project started from curiosity about how StS2 was built, and grew into a full API and website. The goal is to provide the kind of detailed, searchable reference that the Spire community deserves.":
     {
@@ -1684,6 +1878,8 @@ export const X6B: Record<string, Record<string, string>> = {
       tur: "Proje, StS2'nin nasıl yapıldığına dair meraktan doğdu ve tam bir API ile web sitesine dönüştü. Amaç, Spire topluluğunun hak ettiği türden ayrıntılı, aranabilir bir başvuru kaynağı sunmaktır.",
       zhs: "这个项目源于对 StS2 如何构建的好奇，后来发展成完整的 API 和网站。目标是为 Spire 社区提供其应得的详尽、可搜索的参考资料。",
       zht: "這個專案源於對 StS2 如何構建的好奇，後來發展成完整的 API 和網站。目標是為 Spire 社群提供其應得的詳盡、可搜尋的參考資料。",
+      ara: "بدأ المشروع من فضول حول طريقة بناء StS2، ثم كبر ليصبح API وموقعا كاملين. الهدف هو تقديم مرجع مفصل وقابل للبحث يليق بمجتمع Spire.",
+      ind: "Proyek ini berawal dari rasa penasaran soal cara StS2 dibuat, lalu tumbuh jadi API dan situs web lengkap. Tujuannya menyediakan referensi detail dan mudah dicari yang layak untuk komunitas Spire.",
     },
   "If you're wanting to get involved, feel free to open a PR on": {
     eng: "If you're wanting to get involved, feel free to open a PR on",
@@ -1701,6 +1897,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Katkıda bulunmak istiyorsanız şuraya bir PR açabilirsiniz:",
     zhs: "如果你想参与，欢迎在这里提交 PR：",
     zht: "如果你想參與，歡迎在這裡提交 PR：",
+    ara: "إذا أردت المشاركة، يمكنك فتح PR على",
+    ind: "Kalau mau ikut terlibat, silakan buka PR di",
   },
   ". This repo is downstream of where the project is hosted, so it may take a bit before your PR gets fully merged. The project has an":
     {
@@ -1719,6 +1917,8 @@ export const X6B: Record<string, Record<string, string>> = {
       tur: ". Bu depo projenin barındırıldığı yerin alt akışındadır, bu yüzden PR'ınızın tamamen birleştirilmesi biraz zaman alabilir. Projenin",
       zhs: "。这个仓库是项目托管处的下游，所以你的 PR 可能需要一些时间才能完全合并。该项目提供",
       zht: "。這個儲存庫是專案託管處的下游，所以你的 PR 可能需要一些時間才能完全合併。該專案提供",
+      ara: ". هذا المستودع تابع للمكان الذي يُستضاف فيه المشروع، لذا قد يمر بعض الوقت قبل دمج طلبك بالكامل. يوفر المشروع",
+      ind: ". Repo ini adalah turunan dari tempat proyek di-host, jadi mungkin butuh waktu sampai PR-mu benar-benar digabung. Proyek ini punya",
     },
   "open API": {
     eng: "open API",
@@ -1736,6 +1936,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "açık API",
     zhs: "开放 API",
     zht: "開放 API",
+    ara: "API مفتوحة",
+    ind: "API terbuka",
   },
   "that is free to use and self-hostable. And if you're wanting to chat about the project, come visit the":
     {
@@ -1754,6 +1956,8 @@ export const X6B: Record<string, Record<string, string>> = {
       tur: "ücretsiz ve kendi sunucunuzda barındırılabilir. Proje hakkında sohbet etmek isterseniz şuraya uğrayın:",
       zhs: "，可免费使用并可自行托管。如果你想聊聊这个项目，欢迎来",
       zht: "，可免費使用並可自行託管。如果你想聊聊這個專案，歡迎來",
+      ara: "مجانية الاستخدام ويمكن استضافتها ذاتيا. وإذا أردت التحدث عن المشروع، تفضل بزيارة",
+      ind: "yang gratis dipakai dan bisa di-host sendiri. Dan kalau mau ngobrol soal proyek ini, mampir ke",
     },
   "where I send updates and discuss the project.": {
     eng: "where I send updates and discuss the project.",
@@ -1771,6 +1975,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "; güncellemeleri orada paylaşıyor ve projeyi orada tartışıyorum.",
     zhs: "，我在那里发布更新并讨论项目。",
     zht: "，我在那裡發布更新並討論專案。",
+    ara: "حيث أنشر التحديثات وأناقش المشروع.",
+    ind: "tempat saya mengirim kabar terbaru dan membahas proyek ini.",
   },
   "Big thanks to everyone supporting the project, see the": {
     eng: "Big thanks to everyone supporting the project, see the",
@@ -1788,6 +1994,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Projeyi destekleyen herkese çok teşekkürler, bkz.",
     zhs: "非常感谢支持本项目的每一位，请见",
     zht: "非常感謝支持本專案的每一位，請見",
+    ara: "شكرا جزيلا لكل من يدعم المشروع، راجع",
+    ind: "Terima kasih banyak untuk semua yang mendukung proyek ini, lihat",
   },
   "Thank You page": {
     eng: "Thank You page",
@@ -1805,6 +2013,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Teşekkür sayfası",
     zhs: "致谢页面",
     zht: "致謝頁面",
+    ara: "صفحة الشكر",
+    ind: "halaman Terima Kasih",
   },
   "for Ko-fi supporters and community contributors.": {
     eng: "for Ko-fi supporters and community contributors.",
@@ -1822,6 +2032,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Ko-fi destekçileri ve topluluk katkıcıları için.",
     zhs: "查看 Ko-fi 支持者和社区贡献者。",
     zht: "查看 Ko-fi 支持者和社群貢獻者。",
+    ara: "لمعرفة داعمي Ko-fi والمساهمين من المجتمع.",
+    ind: "untuk daftar pendukung Ko-fi dan kontributor komunitas.",
   },
   "What's Inside": {
     eng: "What's Inside",
@@ -1839,6 +2051,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "İçindekiler",
     zhs: "内容一览",
     zht: "內容一覽",
+    ara: "ماذا يوجد هنا",
+    ind: "Isi Situs",
   },
   "How It Works": {
     eng: "How It Works",
@@ -1856,6 +2070,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Nasıl Çalışır",
     zhs: "工作原理",
     zht: "運作原理",
+    ara: "كيف يعمل",
+    ind: "Cara Kerjanya",
   },
   "Slay the Spire 2 is built with Godot 4, but all game logic lives in a C#/.NET 8 DLL. The data pipeline:":
     {
@@ -1874,6 +2090,8 @@ export const X6B: Record<string, Record<string, string>> = {
       tur: "Slay the Spire 2, Godot 4 ile yapılmıştır ancak tüm oyun mantığı bir C#/.NET 8 DLL'inde yaşar. Veri hattı:",
       zhs: "Slay the Spire 2 基于 Godot 4 构建，但所有游戏逻辑都在一个 C#/.NET 8 DLL 中。数据流程：",
       zht: "Slay the Spire 2 基於 Godot 4 構建，但所有遊戲邏輯都在一個 C#/.NET 8 DLL 中。資料流程：",
+      ara: "Slay the Spire 2 مبنية بمحرك Godot 4، لكن كل منطق اللعبة موجود في ملف DLL بلغة C#/.NET 8. مسار معالجة البيانات:",
+      ind: "Slay the Spire 2 dibuat dengan Godot 4, tapi semua logika game ada di DLL C#/.NET 8. Alur datanya:",
     },
   Features: {
     eng: "Features",
@@ -1891,6 +2109,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Özellikler",
     zhs: "功能",
     zht: "功能",
+    ara: "الميزات",
+    ind: "Fitur",
   },
   "Tech Stack": {
     eng: "Tech Stack",
@@ -1908,6 +2128,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Teknoloji Yığını",
     zhs: "技术栈",
     zht: "技術堆疊",
+    ara: "التقنيات المستخدمة",
+    ind: "Teknologi",
   },
   "This project is for educational purposes. All game data belongs to Mega Crit Games. This should not be used to recompile or redistribute the game.":
     {
@@ -1926,6 +2148,8 @@ export const X6B: Record<string, Record<string, string>> = {
       tur: "Bu proje eğitim amaçlıdır. Tüm oyun verileri Mega Crit Games'e aittir. Oyunu yeniden derlemek veya dağıtmak için kullanılmamalıdır.",
       zhs: "本项目仅用于教育目的。所有游戏数据归 Mega Crit Games 所有。不得用于重新编译或再分发游戏。",
       zht: "本專案僅用於教育目的。所有遊戲資料歸 Mega Crit Games 所有。不得用於重新編譯或再散布遊戲。",
+      ara: "هذا المشروع لأغراض تعليمية. كل بيانات اللعبة ملك لشركة Mega Crit Games. لا يجوز استخدامه لإعادة تجميع اللعبة أو إعادة توزيعها.",
+      ind: "Proyek ini untuk tujuan edukasi. Semua data game milik Mega Crit Games. Tidak boleh dipakai untuk mengompilasi ulang atau menyebarkan ulang game.",
     },
   Epochs: {
     eng: "Epochs",
@@ -1943,6 +2167,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Çağlar",
     zhs: "纪元",
     zht: "紀元",
+    ara: "الحقب",
+    ind: "Zaman",
   },
   Achievements: {
     eng: "Achievements",
@@ -1960,6 +2186,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Başarımlar",
     zhs: "成就",
     zht: "成就",
+    ara: "الإنجازات",
+    ind: "Pencapaian",
   },
   Intents: {
     eng: "Intents",
@@ -1977,6 +2205,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Niyetler",
     zhs: "意图",
     zht: "意圖",
+    ara: "النوايا",
+    ind: "Niat",
   },
   "Ascension Levels": {
     eng: "Ascension Levels",
@@ -1994,6 +2224,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Yükseliş Seviyeleri",
     zhs: "进阶等级",
     zht: "晉階等級",
+    ara: "مستويات الصعود",
+    ind: "Level Angkatan",
   },
   Afflictions: {
     eng: "Afflictions",
@@ -2011,6 +2243,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Illetler",
     zhs: "苦难",
     zht: "苦難",
+    ara: "الأعباء",
+    ind: "Penyakit",
   },
   Orbs: {
     eng: "Orbs",
@@ -2028,6 +2262,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Küreler",
     zhs: "充能球",
     zht: "充能球",
+    ara: "الأجرام",
+    ind: "Bola",
   },
   "PCK Extraction": {
     eng: "PCK Extraction",
@@ -2045,6 +2281,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "PCK Çıkarma",
     zhs: "PCK 提取",
     zht: "PCK 提取",
+    ara: "استخراج PCK",
+    ind: "Ekstraksi PCK",
   },
   "GDRE Tools extracts the Godot .pck file, images, Spine animations, localization data (~9,947 files)":
     {
@@ -2063,6 +2301,8 @@ export const X6B: Record<string, Record<string, string>> = {
       tur: "GDRE Tools, Godot .pck dosyasını, görselleri, Spine animasyonlarını ve yerelleştirme verilerini çıkarır (~9.947 dosya)",
       zhs: "GDRE Tools 提取 Godot 的 .pck 文件、图片、Spine 动画和本地化数据（约 9,947 个文件）",
       zht: "GDRE Tools 提取 Godot 的 .pck 檔案、圖片、Spine 動畫和在地化資料（約 9,947 個檔案）",
+      ara: "GDRE Tools تستخرج ملف .pck الخاص بـGodot: الصور، رسوم Spine المتحركة، وبيانات الترجمة (~9,947 ملفا)",
+      ind: "GDRE Tools mengekstrak file .pck Godot: gambar, animasi Spine, dan data lokalisasi (~9,947 file)",
     },
   "DLL Decompilation": {
     eng: "DLL Decompilation",
@@ -2080,6 +2320,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "DLL Derleme Çözme",
     zhs: "DLL 反编译",
     zht: "DLL 反編譯",
+    ara: "تفكيك DLL",
+    ind: "Dekompilasi DLL",
   },
   "ILSpy decompiles sts2.dll into ~3,300 C# source files containing all game models":
     {
@@ -2098,6 +2340,8 @@ export const X6B: Record<string, Record<string, string>> = {
       tur: "ILSpy, sts2.dll'i tüm oyun modellerini içeren ~3.300 C# kaynak dosyasına çözer",
       zhs: "ILSpy 将 sts2.dll 反编译为约 3,300 个包含全部游戏模型的 C# 源文件",
       zht: "ILSpy 將 sts2.dll 反編譯為約 3,300 個包含全部遊戲模型的 C# 原始檔",
+      ara: "ILSpy يفكك sts2.dll إلى ~3,300 ملف مصدري C# تحتوي على كل نماذج اللعبة",
+      ind: "ILSpy mendekompilasi sts2.dll menjadi ~3,300 file sumber C# yang berisi semua model game",
     },
   "Data Parsing": {
     eng: "Data Parsing",
@@ -2115,6 +2359,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Veri Ayrıştırma",
     zhs: "数据解析",
     zht: "資料解析",
+    ara: "تحليل البيانات",
+    ind: "Parsing Data",
   },
   "17 Python parsers extract structured data from decompiled C# source + localization JSON":
     {
@@ -2133,6 +2379,8 @@ export const X6B: Record<string, Record<string, string>> = {
       tur: "17 Python ayrıştırıcısı, derlemesi çözülmüş C# kaynağından ve yerelleştirme JSON'undan yapılandırılmış veri çıkarır",
       zhs: "17 个 Python 解析器从反编译的 C# 源码和本地化 JSON 中提取结构化数据",
       zht: "17 個 Python 解析器從反編譯的 C# 原始碼和在地化 JSON 中提取結構化資料",
+      ara: "17 محللا بلغة Python تستخرج بيانات منظمة من شيفرة C# المفككة + ملفات الترجمة JSON",
+      ind: "17 parser Python mengambil data terstruktur dari sumber C# hasil dekompilasi + JSON lokalisasi",
     },
   "Spine Rendering": {
     eng: "Spine Rendering",
@@ -2150,6 +2398,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Spine Görselleştirme",
     zhs: "Spine 渲染",
     zht: "Spine 渲染",
+    ara: "تصيير Spine",
+    ind: "Rendering Spine",
   },
   "Headless Node.js renderer assembles skeletal animations into 512×512 portrait PNGs (130+ sprites)":
     {
@@ -2168,6 +2418,8 @@ export const X6B: Record<string, Record<string, string>> = {
       tur: "Başsız Node.js görselleştirici, iskelet animasyonlarını 512×512 portre PNG'lerine dönüştürür (130+ sprite)",
       zhs: "无头 Node.js 渲染器将骨骼动画合成为 512×512 的肖像 PNG（130 多个精灵）",
       zht: "無頭 Node.js 渲染器將骨骼動畫合成為 512×512 的肖像 PNG（130 多個精靈）",
+      ara: "مصيِّر Node.js بلا واجهة يجمع الرسوم الهيكلية المتحركة في صور PNG شخصية بحجم 512×512 (أكثر من 130 رسما)",
+      ind: "Renderer Node.js headless merakit animasi skeletal menjadi potret PNG 512×512 (130+ sprite)",
     },
   "API + Frontend": {
     eng: "API + Frontend",
@@ -2185,6 +2437,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "API + Ön Yüz",
     zhs: "API + 前端",
     zht: "API + 前端",
+    ara: "API + الواجهة الأمامية",
+    ind: "API + Frontend",
   },
   "FastAPI serves parsed data as a REST API with 20+ endpoints; Next.js frontend consumes it":
     {
@@ -2203,6 +2457,8 @@ export const X6B: Record<string, Record<string, string>> = {
       tur: "FastAPI, ayrıştırılan verileri 20+ uç noktalı bir REST API olarak sunar; Next.js ön yüzü bunu tüketir",
       zhs: "FastAPI 以 20 多个端点的 REST API 提供解析后的数据；Next.js 前端负责消费",
       zht: "FastAPI 以 20 多個端點的 REST API 提供解析後的資料；Next.js 前端負責消費",
+      ara: "FastAPI يقدم البيانات المحللة عبر REST API بأكثر من 20 نقطة وصول، وواجهة Next.js تستهلكها",
+      ind: "FastAPI menyajikan data hasil parsing sebagai REST API dengan 20+ endpoint; frontend Next.js memakainya",
     },
   "Detail Pages": {
     eng: "Detail Pages",
@@ -2220,6 +2476,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Ayrıntı Sayfaları",
     zhs: "详情页",
     zht: "詳情頁",
+    ara: "صفحات التفاصيل",
+    ind: "Halaman Detail",
   },
   "Click-through pages for cards, characters, relics, monsters, and potions with full stats":
     {
@@ -2238,6 +2496,8 @@ export const X6B: Record<string, Record<string, string>> = {
       tur: "Kartlar, karakterler, kalıntılar, canavarlar ve iksirler için tam istatistikli ayrıntı sayfaları",
       zhs: "卡牌、角色、遗物、怪物和药水的可点击详情页，附完整数据",
       zht: "卡牌、角色、遺物、怪物和藥水的可點擊詳情頁，附完整數據",
+      ara: "صفحات تفصيلية للبطاقات والشخصيات والآثار والوحوش والجرعات مع الإحصائيات الكاملة",
+      ind: "Halaman detail untuk kartu, karakter, pusaka, monster, dan ramuan dengan statistik lengkap",
     },
   "Global Search": {
     eng: "Global Search",
@@ -2255,6 +2515,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Genel Arama",
     zhs: "全局搜索",
     zht: "全域搜尋",
+    ara: "بحث شامل",
+    ind: "Pencarian Global",
   },
   "Press . anywhere to search across all categories instantly": {
     eng: "Press . anywhere to search across all categories instantly",
@@ -2272,6 +2534,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Tüm kategorilerde anında arama yapmak için herhangi bir yerde . tuşuna basın",
     zhs: "在任意位置按 . 即可即时搜索所有类别",
     zht: "在任意位置按 . 即可即時搜尋所有類別",
+    ara: "اضغط . في أي مكان للبحث فورا في كل الفئات",
+    ind: "Tekan . di mana saja untuk langsung mencari di semua kategori",
   },
   "Rich Text Rendering": {
     eng: "Rich Text Rendering",
@@ -2289,6 +2553,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Zengin Metin Görselleştirme",
     zhs: "富文本渲染",
     zht: "富文字渲染",
+    ara: "عرض النص المنسق",
+    ind: "Rendering Teks Kaya",
   },
   "Game BBCode tags rendered with colors, animations, and inline icons": {
     eng: "Game BBCode tags rendered with colors, animations, and inline icons",
@@ -2306,6 +2572,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Oyunun BBCode etiketleri renkler, animasyonlar ve satır içi simgelerle görselleştirilir",
     zhs: "游戏 BBCode 标签以颜色、动画和内联图标渲染",
     zht: "遊戲 BBCode 標籤以顏色、動畫和內嵌圖示渲染",
+    ara: "وسوم BBCode الخاصة باللعبة معروضة بالألوان والحركات والأيقونات المضمنة",
+    ind: "Tag BBCode game ditampilkan dengan warna, animasi, dan ikon sebaris",
   },
   "Character Dialogues": {
     eng: "Character Dialogues",
@@ -2323,6 +2591,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Karakter Diyalogları",
     zhs: "角色对话",
     zht: "角色對話",
+    ara: "حوارات الشخصيات",
+    ind: "Dialog Karakter",
   },
   "NPC conversation trees and character quotes from the game's localization": {
     eng: "NPC conversation trees and character quotes from the game's localization",
@@ -2340,6 +2610,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Oyunun yerelleştirmesinden NPC konuşma ağaçları ve karakter alıntıları",
     zhs: "来自游戏本地化数据的 NPC 对话树和角色台词",
     zht: "來自遊戲在地化資料的 NPC 對話樹和角色台詞",
+    ara: "أشجار محادثات الشخصيات غير اللاعبة واقتباسات الشخصيات من ملفات ترجمة اللعبة",
+    ind: "Pohon percakapan NPC dan kutipan karakter dari lokalisasi game",
   },
   "Spine Renders": {
     eng: "Spine Renders",
@@ -2357,6 +2629,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Spine Görselleri",
     zhs: "Spine 渲染图",
     zht: "Spine 渲染圖",
+    ara: "رسوم Spine",
+    ind: "Render Spine",
   },
   "130+ monster and character sprites rendered from skeletal animations": {
     eng: "130+ monster and character sprites rendered from skeletal animations",
@@ -2374,6 +2648,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "İskelet animasyonlarından görselleştirilen 130+ canavar ve karakter sprite'ı",
     zhs: "从骨骼动画渲染的 130 多个怪物和角色精灵图",
     zht: "從骨骼動畫渲染的 130 多個怪物和角色精靈圖",
+    ara: "أكثر من 130 رسما للوحوش والشخصيات مصيَّرة من الرسوم الهيكلية المتحركة",
+    ind: "130+ sprite monster dan karakter yang dirender dari animasi skeletal",
   },
   "REST API": {
     eng: "REST API",
@@ -2391,6 +2667,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "REST API",
     zhs: "REST API",
     zht: "REST API",
+    ara: "REST API",
+    ind: "REST API",
   },
   "Full API with filtering, search, and Swagger docs for your own projects": {
     eng: "Full API with filtering, search, and Swagger docs for your own projects",
@@ -2408,6 +2686,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Kendi projeleriniz için filtreleme, arama ve Swagger belgeleriyle tam API",
     zhs: "带筛选、搜索和 Swagger 文档的完整 API，供你自己的项目使用",
     zht: "帶篩選、搜尋和 Swagger 文件的完整 API，供你自己的專案使用",
+    ara: "API كاملة مع التصفية والبحث ووثائق Swagger لمشاريعك الخاصة",
+    ind: "API lengkap dengan filter, pencarian, dan dokumentasi Swagger untuk proyekmu sendiri",
   },
   "Changelog Tracking": {
     eng: "Changelog Tracking",
@@ -2425,6 +2705,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Değişiklik Günlüğü Takibi",
     zhs: "更新日志追踪",
     zht: "更新日誌追蹤",
+    ara: "تتبع سجل التغييرات",
+    ind: "Pelacakan Changelog",
   },
   "Field-level diffs between game updates across all categories": {
     eng: "Field-level diffs between game updates across all categories",
@@ -2442,6 +2724,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Tüm kategorilerde oyun güncellemeleri arasındaki alan düzeyinde farklar",
     zhs: "所有类别中游戏更新之间的字段级差异",
     zht: "所有類別中遊戲更新之間的欄位級差異",
+    ara: "فروقات على مستوى الحقول بين تحديثات اللعبة في كل الفئات",
+    ind: "Diff per kolom antar pembaruan game di semua kategori",
   },
   "Image Downloads": {
     eng: "Image Downloads",
@@ -2459,6 +2743,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Görsel İndirmeleri",
     zhs: "图片下载",
     zht: "圖片下載",
+    ara: "تنزيل الصور",
+    ind: "Unduhan Gambar",
   },
   "Browse and download all extracted game art by category": {
     eng: "Browse and download all extracted game art by category",
@@ -2476,6 +2762,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Çıkarılan tüm oyun görsellerine kategoriye göre göz atın ve indirin",
     zhs: "按类别浏览和下载所有提取的游戏美术",
     zht: "按類別瀏覽和下載所有提取的遊戲美術",
+    ara: "تصفح ونزّل كل رسوم اللعبة المستخرجة حسب الفئة",
+    ind: "Jelajahi dan unduh semua art game hasil ekstraksi per kategori",
   },
   Backend: {
     eng: "Backend",
@@ -2493,6 +2781,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Arka Uç",
     zhs: "后端",
     zht: "後端",
+    ara: "الواجهة الخلفية",
+    ind: "Backend",
   },
   Frontend: {
     eng: "Frontend",
@@ -2510,6 +2800,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Ön Uç",
     zhs: "前端",
     zht: "前端",
+    ara: "الواجهة الأمامية",
+    ind: "Frontend",
   },
   Rendering: {
     eng: "Rendering",
@@ -2527,6 +2819,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Görselleştirme",
     zhs: "渲染",
     zht: "渲染",
+    ara: "التصيير",
+    ind: "Rendering",
   },
   Infra: {
     eng: "Infra",
@@ -2544,6 +2838,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Altyapı",
     zhs: "基础设施",
     zht: "基礎設施",
+    ara: "البنية التحتية",
+    ind: "Infra",
   },
   "Warnings with escalation thresholds (mute, kick, ban)": {
     eng: "Warnings with escalation thresholds (mute, kick, ban)",
@@ -2561,6 +2857,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Kademeli eşikli uyarılar (susturma, atma, yasaklama)",
     zhs: "带升级阈值的警告（禁言、踢出、封禁）",
     zht: "帶升級閾值的警告（禁言、踢出、封鎖）",
+    ara: "تحذيرات مع عتبات تصعيد (كتم، طرد، حظر)",
+    ind: "Peringatan dengan ambang eskalasi (mute, kick, ban)",
   },
   "Automod for profile scanning and image spam detection": {
     eng: "Automod for profile scanning and image spam detection",
@@ -2578,6 +2876,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Profil tarama ve görsel spam tespiti için Automod",
     zhs: "用于扫描个人资料和检测图片刷屏的自动审核",
     zht: "用於掃描個人資料和偵測圖片洗版的自動審核",
+    ara: "إشراف آلي لفحص الملفات الشخصية وكشف سبام الصور",
+    ind: "Automod untuk pemindaian profil dan deteksi spam gambar",
   },
   "Audit logging (message edits / deletes, joins / leaves, role changes)": {
     eng: "Audit logging (message edits / deletes, joins / leaves, role changes)",
@@ -2595,6 +2895,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Denetim günlüğü (mesaj düzenleme / silme, katılma / ayrılma, rol değişiklikleri)",
     zhs: "审计日志（消息编辑/删除、加入/退出、角色变更）",
     zht: "稽核日誌（訊息編輯/刪除、加入/退出、身分組變更）",
+    ara: "سجل تدقيق (تعديل / حذف الرسائل، الانضمام / المغادرة، تغييرات الأدوار)",
+    ind: "Log audit (edit / hapus pesan, masuk / keluar, perubahan role)",
   },
   "Forum moderation rules": {
     eng: "Forum moderation rules",
@@ -2612,6 +2914,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Forum moderasyon kuralları",
     zhs: "论坛审核规则",
     zht: "論壇審核規則",
+    ara: "قواعد الإشراف على المنتدى",
+    ind: "Aturan moderasi forum",
   },
   "Welcome / leave messages": {
     eng: "Welcome / leave messages",
@@ -2629,6 +2933,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Karşılama / ayrılış mesajları",
     zhs: "欢迎/离开消息",
     zht: "歡迎/離開訊息",
+    ara: "رسائل الترحيب / المغادرة",
+    ind: "Pesan sambutan / keluar",
   },
   "Polls, suggestions, reminders, announcements": {
     eng: "Polls, suggestions, reminders, announcements",
@@ -2646,6 +2952,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Anketler, öneriler, hatırlatıcılar, duyurular",
     zhs: "投票、建议、提醒、公告",
     zht: "投票、建議、提醒、公告",
+    ara: "استطلاعات، اقتراحات، تذكيرات، إعلانات",
+    ind: "Polling, saran, pengingat, pengumuman",
   },
   "I'm just reinstalling, or I'll reinstall later": {
     eng: "I'm just reinstalling, or I'll reinstall later",
@@ -2663,6 +2971,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Sadece yeniden yüklüyorum ya da daha sonra yeniden yükleyeceğim",
     zhs: "我只是在重装，或者稍后会重装",
     zht: "我只是在重裝，或者稍後會重裝",
+    ara: "أعيد التثبيت فقط، أو سأعيد التثبيت لاحقا",
+    ind: "Saya cuma memasang ulang, atau akan memasang ulang nanti",
   },
   "Technical issues: crashes, bugs, or the app wouldn't open": {
     eng: "Technical issues: crashes, bugs, or the app wouldn't open",
@@ -2680,6 +2990,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Teknik sorunlar: çökmeler, hatalar veya uygulama açılmadı",
     zhs: "技术问题：崩溃、错误或应用无法打开",
     zht: "技術問題：崩潰、錯誤或應用程式無法開啟",
+    ara: "مشاكل تقنية: أعطال، أخطاء، أو التطبيق لا يفتح",
+    ind: "Masalah teknis: crash, bug, atau aplikasinya tidak mau terbuka",
   },
   "It hurt my game's performance": {
     eng: "It hurt my game's performance",
@@ -2697,6 +3009,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Oyunumun performansını düşürdü",
     zhs: "影响了我的游戏性能",
     zht: "影響了我的遊戲效能",
+    ara: "أضر بأداء لعبتي",
+    ind: "Performa game saya jadi turun",
   },
   "It wasn't useful for me": {
     eng: "It wasn't useful for me",
@@ -2714,6 +3028,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Benim için yararlı değildi",
     zhs: "对我没什么用",
     zht: "對我沒什麼用",
+    ara: "لم يكن مفيدا لي",
+    ind: "Tidak berguna buat saya",
   },
   "It was confusing or hard to use": {
     eng: "It was confusing or hard to use",
@@ -2731,6 +3047,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Kafa karıştırıcı veya kullanımı zordu",
     zhs: "令人困惑或难以使用",
     zht: "令人困惑或難以使用",
+    ara: "كان مربكا أو صعب الاستخدام",
+    ind: "Membingungkan atau susah dipakai",
   },
   "It's missing features I want": {
     eng: "It's missing features I want",
@@ -2748,6 +3066,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "İstediğim özellikler eksik",
     zhs: "缺少我想要的功能",
     zht: "缺少我想要的功能",
+    ara: "تنقصه ميزات أريدها",
+    ind: "Fitur yang saya mau belum ada",
   },
   "I don't play Slay the Spire 2 anymore": {
     eng: "I don't play Slay the Spire 2 anymore",
@@ -2765,6 +3085,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Artık Slay the Spire 2 oynamıyorum",
     zhs: "我不再玩 Slay the Spire 2 了",
     zht: "我不再玩 Slay the Spire 2 了",
+    ara: "لم أعد ألعب Slay the Spire 2",
+    ind: "Saya sudah tidak main Slay the Spire 2",
   },
   "I couldn't get it working": {
     eng: "I couldn't get it working",
@@ -2782,6 +3104,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Çalıştıramadım",
     zhs: "我没能让它正常运行",
     zht: "我沒能讓它正常運作",
+    ara: "لم أتمكن من تشغيله",
+    ind: "Saya tidak berhasil menjalankannya",
   },
   "My saves or runs went missing after installing the mod": {
     eng: "My saves or runs went missing after installing the mod",
@@ -2799,6 +3123,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Modu yükledikten sonra kayıtlarım veya koşularım kayboldu",
     zhs: "安装模组后我的存档或对局不见了",
     zht: "安裝模組後我的存檔或對局不見了",
+    ara: "اختفت ملفات الحفظ أو الجولات بعد تثبيت المود",
+    ind: "Data simpanan atau perjalanan saya hilang setelah memasang mod",
   },
   "What was bugged?": {
     eng: "What was bugged?",
@@ -2816,6 +3142,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Neyde hata vardı?",
     zhs: "哪里出了问题？",
     zht: "哪裡出了問題？",
+    ara: "ما الذي كان معطلا؟",
+    ind: "Apa yang bermasalah?",
   },
   "What features would make your experience better?": {
     eng: "What features would make your experience better?",
@@ -2833,6 +3161,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Hangi özellikler deneyiminizi iyileştirirdi?",
     zhs: "哪些功能会让你的体验更好？",
     zht: "哪些功能會讓你的體驗更好？",
+    ara: "ما الميزات التي ستجعل تجربتك أفضل؟",
+    ind: "Fitur apa yang bisa bikin pengalamanmu lebih baik?",
   },
   Maybe: {
     eng: "Maybe",
@@ -2850,6 +3180,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Belki",
     zhs: "也许",
     zht: "也許",
+    ara: "ربما",
+    ind: "Mungkin",
   },
   "2P": {
     eng: "2P",
@@ -2867,6 +3199,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "2 oyuncu",
     zhs: "双人",
     zht: "雙人",
+    ara: "2P",
+    ind: "2P",
   },
   "3P": {
     eng: "3P",
@@ -2884,6 +3218,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "3 oyuncu",
     zhs: "三人",
     zht: "三人",
+    ara: "3P",
+    ind: "3P",
   },
   "4P": {
     eng: "4P",
@@ -2901,6 +3237,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "4 oyuncu",
     zhs: "四人",
     zht: "四人",
+    ara: "4P",
+    ind: "4P",
   },
   "By character": {
     eng: "By character",
@@ -2918,6 +3256,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Karaktere göre",
     zhs: "按角色",
     zht: "按角色",
+    ara: "حسب الشخصية",
+    ind: "Per karakter",
   },
   "By player count": {
     eng: "By player count",
@@ -2935,6 +3275,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Oyuncu sayısına göre",
     zhs: "按玩家数",
     zht: "按玩家數",
+    ara: "حسب عدد اللاعبين",
+    ind: "Per jumlah pemain",
   },
   "Wins vs losses": {
     eng: "Wins vs losses",
@@ -2952,6 +3294,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Galibiyet vs mağlubiyet",
     zhs: "胜利 vs 失败",
     zht: "勝利 vs 失敗",
+    ara: "الانتصارات مقابل الهزائم",
+    ind: "Menang vs kalah",
   },
   "By ascension band": {
     eng: "By ascension band",
@@ -2969,6 +3313,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Yükseliş aralığına göre",
     zhs: "按进阶区间",
     zht: "按晉階區間",
+    ara: "حسب نطاق الصعود",
+    ind: "Per rentang Angkatan",
   },
   "A → Z": {
     eng: "A → Z",
@@ -2986,6 +3332,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "A → Z",
     zhs: "A → Z",
     zht: "A → Z",
+    ara: "A → Z",
+    ind: "A → Z",
   },
   "Z → A": {
     eng: "Z → A",
@@ -3003,6 +3351,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Z → A",
     zhs: "Z → A",
     zht: "Z → A",
+    ara: "Z → A",
+    ind: "Z → A",
   },
   Attack: {
     eng: "Attack",
@@ -3020,6 +3370,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Atak",
     zhs: "攻击",
     zht: "攻擊",
+    ara: "هجوم",
+    ind: "Serangan",
   },
   Power: {
     eng: "Power",
@@ -3037,6 +3389,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Güç",
     zhs: "能力",
     zht: "能力",
+    ara: "قدرة",
+    ind: "Kuasa",
   },
   Quest: {
     eng: "Quest",
@@ -3054,6 +3408,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Görev",
     zhs: "任务",
     zht: "任務",
+    ara: "مهمة",
+    ind: "Misi",
   },
   Curse: {
     eng: "Curse",
@@ -3071,6 +3427,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Lanet",
     zhs: "诅咒",
     zht: "詛咒",
+    ara: "عبء",
+    ind: "Kutukan",
   },
   Basic: {
     eng: "Basic",
@@ -3088,6 +3446,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Temel",
     zhs: "基础",
     zht: "基礎",
+    ara: "أساسي",
+    ind: "Dasar",
   },
   Token: {
     eng: "Token",
@@ -3105,6 +3465,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Jeton",
     zhs: "衍生牌",
     zht: "衍生牌",
+    ara: "رمز",
+    ind: "Token",
   },
   Exhaust: {
     eng: "Exhaust",
@@ -3122,6 +3484,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Tüket",
     zhs: "消耗",
     zht: "消耗",
+    ara: "استهلاك",
+    ind: "Hangus",
   },
   Innate: {
     eng: "Innate",
@@ -3139,6 +3503,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Doğuştan",
     zhs: "固有",
     zht: "固有",
+    ara: "فطرية",
+    ind: "Bawaan",
   },
   Ethereal: {
     eng: "Ethereal",
@@ -3156,6 +3522,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Uçucu",
     zhs: "虚无",
     zht: "虛無",
+    ara: "زائلة",
+    ind: "Rapuh",
   },
   Retain: {
     eng: "Retain",
@@ -3173,6 +3541,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Tut",
     zhs: "保留",
     zht: "保留",
+    ara: "احتفاظ",
+    ind: "Pertahankan",
   },
   Unplayable: {
     eng: "Unplayable",
@@ -3190,6 +3560,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Oynanamaz",
     zhs: "无法打出",
     zht: "無法打出",
+    ara: "غير قابلة للعب",
+    ind: "Nonaktif",
   },
   Sly: {
     eng: "Sly",
@@ -3207,6 +3579,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Kurnaz",
     zhs: "狡诈",
     zht: "狡詐",
+    ara: "مخادعة",
+    ind: "Lihai",
   },
   Eternal: {
     eng: "Eternal",
@@ -3224,6 +3598,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Ebedi",
     zhs: "永恒",
     zht: "永恆",
+    ara: "أبدية",
+    ind: "Abadi",
   },
   "Card View": {
     eng: "Card View",
@@ -3241,6 +3617,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Kart Görünümü",
     zhs: "卡牌视图",
     zht: "卡牌檢視",
+    ara: "عرض البطاقات",
+    ind: "Tampilan Kartu",
   },
   "Detail View": {
     eng: "Detail View",
@@ -3258,6 +3636,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Ayrıntı Görünümü",
     zhs: "详情视图",
     zht: "詳情檢視",
+    ara: "عرض التفاصيل",
+    ind: "Tampilan Detail",
   },
   Shared: {
     eng: "Shared",
@@ -3275,6 +3655,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Ortak",
     zhs: "共享",
     zht: "共享",
+    ara: "مشترك",
+    ind: "Bersama",
   },
   Buff: {
     eng: "Buff",
@@ -3292,6 +3674,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Güçlendirme",
     zhs: "增益",
     zht: "增益",
+    ara: "تعزيز",
+    ind: "Buff",
   },
   Debuff: {
     eng: "Debuff",
@@ -3309,6 +3693,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Zayıflatma",
     zhs: "减益",
     zht: "減益",
+    ara: "إضعاف",
+    ind: "Debuff",
   },
   None: {
     eng: "None",
@@ -3326,6 +3712,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Yok",
     zhs: "无",
     zht: "無",
+    ara: "لا شيء",
+    ind: "Tidak ada",
   },
   Counter: {
     eng: "Counter",
@@ -3343,6 +3731,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Sayaç",
     zhs: "计数",
     zht: "計數",
+    ara: "عداد",
+    ind: "Penghitung",
   },
   Shop: {
     eng: "Shop",
@@ -3360,6 +3750,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Dükkan",
     zhs: "商店",
     zht: "商店",
+    ara: "متجر",
+    ind: "Toko",
   },
   General: {
     eng: "General",
@@ -3377,6 +3769,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Genel",
     zhs: "综合",
     zht: "綜合",
+    ara: "عام",
+    ind: "Umum",
   },
   Strategy: {
     eng: "Strategy",
@@ -3394,6 +3788,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Strateji",
     zhs: "策略",
     zht: "策略",
+    ara: "استراتيجية",
+    ind: "Strategi",
   },
   Mechanic: {
     eng: "Mechanic",
@@ -3411,6 +3807,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Mekanik",
     zhs: "机制",
     zht: "機制",
+    ara: "آلية",
+    ind: "Mekanik",
   },
   Advanced: {
     eng: "Advanced",
@@ -3428,6 +3826,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "İleri",
     zhs: "进阶",
     zht: "晉階",
+    ara: "متقدم",
+    ind: "Mahir",
   },
   Beginner: {
     eng: "Beginner",
@@ -3445,6 +3845,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Başlangıç",
     zhs: "入门",
     zht: "入門",
+    ara: "مبتدئ",
+    ind: "Pemula",
   },
   Intermediate: {
     eng: "Intermediate",
@@ -3462,6 +3864,8 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "Orta",
     zhs: "中级",
     zht: "中級",
+    ara: "متوسط",
+    ind: "Menengah",
   },
   Oldest: {
     eng: "Oldest",
@@ -3479,5 +3883,7 @@ export const X6B: Record<string, Record<string, string>> = {
     tur: "En eski",
     zhs: "最早",
     zht: "最早",
+    ara: "الأقدم",
+    ind: "Terlama",
   },
 };

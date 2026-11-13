@@ -16,6 +16,8 @@ export const X9K: Record<string, Record<string, string>> = {
     tur: "GitHub katkıda bulunanlar",
     zhs: "GitHub 贡献者",
     zht: "GitHub 貢獻者",
+    ara: "المساهمون على GitHub",
+    ind: "Kontributor GitHub",
   },
   "Everyone whose code, docs or data landed in the repo.": {
     eng: "Everyone whose code, docs or data landed in the repo.",
@@ -33,6 +35,8 @@ export const X9K: Record<string, Record<string, string>> = {
     tur: "Kodu, dokümanı veya verisi depoya giren herkes.",
     zhs: "所有代码、文档或数据进入仓库的人。",
     zht: "所有程式碼、文件或資料進入儲存庫的人。",
+    ara: "كل من وصلت شيفرته أو وثائقه أو بياناته إلى المستودع.",
+    ind: "Semua orang yang kode, dokumen, atau datanya masuk ke repo.",
   },
   "{n} contributions": {
     eng: "{n} contributions",
@@ -50,6 +54,8 @@ export const X9K: Record<string, Record<string, string>> = {
     tur: "{n} katkı",
     zhs: "{n} 次贡献",
     zht: "{n} 次貢獻",
+    ara: "{n} مساهمة",
+    ind: "{n} kontribusi",
   },
   "Support on Ko-fi": {
     eng: "Support on Ko-fi",
@@ -67,6 +73,8 @@ export const X9K: Record<string, Record<string, string>> = {
     tur: "Ko-fi'de destekle",
     zhs: "在 Ko-fi 上支持",
     zht: "在 Ko-fi 上支持",
+    ara: "ادعمنا على Ko-fi",
+    ind: "Dukung di Ko-fi",
   },
   "Nothing to show yet. Check back soon.": {
     eng: "Nothing to show yet. Check back soon.",
@@ -84,6 +92,8 @@ export const X9K: Record<string, Record<string, string>> = {
     tur: "Henüz gösterilecek bir şey yok. Yakında tekrar bak.",
     zhs: "暂时没有内容，请稍后再来。",
     zht: "暫時沒有內容，請稍後再來。",
+    ara: "لا شيء للعرض بعد. عد قريبًا.",
+    ind: "Belum ada yang ditampilkan. Cek lagi nanti.",
   },
   "Supported {n} times": {
     eng: "Supported {n} times",
@@ -101,6 +111,8 @@ export const X9K: Record<string, Record<string, string>> = {
     tur: "{n} kez destekledi",
     zhs: "支持了 {n} 次",
     zht: "支持了 {n} 次",
+    ara: "دعم {n} مرة",
+    ind: "Mendukung {n} kali",
   },
   "Special Thanks": {
     eng: "Special Thanks",
@@ -118,6 +130,8 @@ export const X9K: Record<string, Record<string, string>> = {
     tur: "Özel teşekkürler",
     zhs: "特别感谢",
     zht: "特別感謝",
+    ara: "شكر خاص",
+    ind: "Terima Kasih Khusus",
   },
   "supporting us on {patreon} or {kofi}": {
     eng: "supporting us on {patreon} or {kofi}",
@@ -135,5 +149,7 @@ export const X9K: Record<string, Record<string, string>> = {
     tur: "bizi {patreon} veya {kofi} üzerinden desteklemeyi düşünün",
     zhs: "在 {patreon} 或 {kofi} 上支持我们",
     zht: "在 {patreon} 或 {kofi} 上支持我們",
+    ara: "دعمنا على {patreon} أو {kofi}",
+    ind: "mendukung kami di {patreon} atau {kofi}",
   },
 };

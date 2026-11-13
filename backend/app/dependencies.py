@@ -86,10 +86,12 @@ shared_limiter = _make_shared_limiter()
 
 
 VALID_LANGUAGES = {
+    "ara",
     "deu",
     "eng",
     "esp",
     "fra",
+    "ind",
     "ita",
     "jpn",
     "kor",
@@ -104,10 +106,12 @@ VALID_LANGUAGES = {
 }
 
 LANGUAGE_NAMES = {
+    "ara": "العربية",
     "deu": "Deutsch",
     "eng": "English",
     "esp": "Español (ES)",
     "fra": "Français",
+    "ind": "Bahasa Indonesia",
     "ita": "Italiano",
     "jpn": "日本語",
     "kor": "한국어",

@@ -23,4 +23,4 @@ Spire Codex serves Slay the Spire 2 game data (cards, relics, potions, monsters,
 - `GET /api/runs/community-stats` - event decisions, deadliest encounters, records
 - `GET /api/search?q=`: search every entity, reference entry, mechanics page and guide at once
 - `GET /api/exports/runs`: bulk run export as gzipped JSONL (`/api/exports/runs/manifest` for the daily dump)
-- 15 languages via `?lang=` (eng, deu, jpn, zhs, zht, ...)
+- 17 languages via `?lang=` (eng, deu, jpn, zhs, zht, ara, ind, ...)

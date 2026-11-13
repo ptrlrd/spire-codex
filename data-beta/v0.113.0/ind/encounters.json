@@ -1,0 +1,1586 @@
+[
+  {
+    "id": "AEONGLASS_BOSS",
+    "name": "Aeonglass",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "AEONGLASS",
+        "name": "Aeonglass"
+      }
+    ],
+    "loss_text": "[gold]Aeonglass[/gold] tidak suka gangguan [b]The Adventurer[/b]."
+  },
+  {
+    "id": "AXEBOTS_NORMAL",
+    "name": "Robot Kapak",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "AXEBOT",
+        "name": "Robot Kapak"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] dipotong-potong oleh [gold]Robot Kapak[/gold]."
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_ENCOUNTER",
+    "name": "Battleworn Dummy Event Encounter",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": null,
+    "loss_text": null
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_V1_ENCOUNTER",
+    "name": "Boneka Latihan Usang",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "BATTLE_FRIEND_V1",
+        "name": "Teman Bertarung V1.0"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] entah bagaimana terbunuh oleh [gold]Boneka Latihan Usang[/gold]???"
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_V2_ENCOUNTER",
+    "name": "Boneka Latihan Usang",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "BATTLE_FRIEND_V2",
+        "name": "Teman Bertarung V2.0"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] entah bagaimana terbunuh oleh [gold]Boneka Latihan Usang[/gold]???"
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_V3_ENCOUNTER",
+    "name": "Boneka Latihan Usang",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "BATTLE_FRIEND_V3",
+        "name": "Teman Bertarung V3.0"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] entah bagaimana terbunuh oleh [gold]Boneka Latihan Usang[/gold]???"
+  },
+  {
+    "id": "BOWLBUGS_NORMAL",
+    "name": "Kerumunan Kumbang Mangkok",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Workers"
+    ],
+    "monsters": [
+      {
+        "id": "BOWLBUG_EGG",
+        "name": "Kumbang Mangkok (Telur)"
+      },
+      {
+        "id": "BOWLBUG_NECTAR",
+        "name": "Kumbang Mangkok (Nektar)"
+      },
+      {
+        "id": "BOWLBUG_ROCK",
+        "name": "Kumbang Mangkok (Batu)"
+      },
+      {
+        "id": "BOWLBUG_SILK",
+        "name": "Kumbang Mangkok (Sutra)"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] ada dijalan sebuah [gold]Kerumunan Kumbang Mangkok[/gold]."
+  },
+  {
+    "id": "BOWLBUGS_WEAK",
+    "name": "Kumbang Mangkok",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Workers"
+    ],
+    "monsters": [
+      {
+        "id": "BOWLBUG_EGG",
+        "name": "Kumbang Mangkok (Telur)"
+      },
+      {
+        "id": "BOWLBUG_NECTAR",
+        "name": "Kumbang Mangkok (Nektar)"
+      },
+      {
+        "id": "BOWLBUG_ROCK",
+        "name": "Kumbang Mangkok (Batu)"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] ada dijalan beberapa [gold]Kumbang Mangkok[/gold]."
+  },
+  {
+    "id": "BYGONE_EFFIGY_ELITE",
+    "name": "Berhala Kuno",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "BYGONE_EFFIGY",
+        "name": "Berhala Kuno"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] terbagi dua karena [gold]Berhala Kuno[/gold]."
+  },
+  {
+    "id": "BYRDONIS_ELITE",
+    "name": "Byurungis",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "BYRDONIS",
+        "name": "Byurungis"
+      }
+    ],
+    "loss_text": "[gold]Byurungis[/gold] melindungi anak-anaknya dari [b]The Adventurer[/b]."
+  },
+  {
+    "id": "CEREMONIAL_BEAST_BOSS",
+    "name": "Binatang Seremonial",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CEREMONIAL_BEAST",
+        "name": "Binatang Seremonial"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] diistirahatkan oleh [gold]Binatang Seremonial[/gold]."
+  },
+  {
+    "id": "CHOMPERS_NORMAL",
+    "name": "Sepasang Mesin",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Chomper"
+    ],
+    "monsters": [
+      {
+        "id": "CHOMPER",
+        "name": "Penggigit"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] mati tergigit oleh [gold]Sepasang Mesin[/gold]."
+  },
+  {
+    "id": "CONSTRUCT_MENAGERIE_NORMAL",
+    "name": "Sekelompok Mesin",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CUBEX_CONSTRUCT",
+        "name": "Mesin Cubex"
+      },
+      {
+        "id": "PUNCH_CONSTRUCT",
+        "name": "Mesin Tinju"
+      }
+    ],
+    "loss_text": "[gold]Sekelompok Mesin[/gold] melumat [b]The Adventurer[/b]."
+  },
+  {
+    "id": "CORPSE_SLUGS_NORMAL",
+    "name": "Sekelompok Siput Mayat",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": [
+      "Slugs"
+    ],
+    "monsters": [
+      {
+        "id": "CORPSE_SLUG",
+        "name": "Siput Mayat"
+      }
+    ],
+    "loss_text": "[gold]Sekelompok Siput Mayat[/gold] memangsa [b]The Adventurer[/b]."
+  },
+  {
+    "id": "CORPSE_SLUGS_WEAK",
+    "name": "Siput Mayat",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Underdocks",
+    "tags": [
+      "Slugs"
+    ],
+    "monsters": [
+      {
+        "id": "CORPSE_SLUG",
+        "name": "Siput Mayat"
+      }
+    ],
+    "loss_text": "[gold]Siput Mayat[/gold] memangsa [b]The Adventurer[/b]."
+  },
+  {
+    "id": "CUBEX_CONSTRUCT_NORMAL",
+    "name": "Mesin Cubex",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CUBEX_CONSTRUCT",
+        "name": "Mesin Cubex"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] mati terlaser oleh [gold]Mesin Cubex[/gold]."
+  },
+  {
+    "id": "CULTISTS_NORMAL",
+    "name": "Kultus",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CALCIFIED_CULTIST",
+        "name": "Kultus Berkapur"
+      },
+      {
+        "id": "DAMP_CULTIST",
+        "name": "Kultus Lembab"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] dibunuh oleh beberapa [gold]Kultus[/gold]. [sine]Caaaaw[/sine]..."
+  },
+  {
+    "id": "DECIMILLIPEDE_ELITE",
+    "name": "Kaki Sepuluhribu",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "DECIMILLIPEDE_SEGMENT_BACK",
+        "name": "Decimillipede Segment Back"
+      },
+      {
+        "id": "DECIMILLIPEDE_SEGMENT_FRONT",
+        "name": "Decimillipede Segment Front"
+      },
+      {
+        "id": "DECIMILLIPEDE_SEGMENT_MIDDLE",
+        "name": "Decimillipede Segment Middle"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] tidak bisa bertahan di kediaman [gold]Kaki Sepuluhribu[/gold]."
+  },
+  {
+    "id": "DENSE_VEGETATION_EVENT_ENCOUNTER",
+    "name": "Penggeliat",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "WRIGGLER",
+        "name": "Penggeliat"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] dipenuhi oleh [gold]Penggeliat[/gold]."
+  },
+  {
+    "id": "DEVOTED_SCULPTOR_WEAK",
+    "name": "Pemahat Beriman",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "DEVOTED_SCULPTOR",
+        "name": "Pemahat Beriman"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] diremukkan oleh [gold]Pemahat Beriman[/gold]."
+  },
+  {
+    "id": "ENTOMANCER_ELITE",
+    "name": "Pawang Serangga",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "ENTOMANCER",
+        "name": "Pawang Serangga"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] mati disengat oleh [gold]Pawang Serangga[/gold]."
+  },
+  {
+    "id": "EXOSKELETONS_NORMAL",
+    "name": "Banyak Eksoskeleton",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Exoskeletons"
+    ],
+    "monsters": [
+      {
+        "id": "EXOSKELETON",
+        "name": "Eksoskeleton"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] dibersihkan isi perutnya oleh [gold]Banyak Eksoskeleton[/gold]."
+  },
+  {
+    "id": "EXOSKELETONS_WEAK",
+    "name": "Eksoskeleton",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Exoskeletons"
+    ],
+    "monsters": [
+      {
+        "id": "EXOSKELETON",
+        "name": "Eksoskeleton"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] dibersihkan isi perutnya oleh [gold]Eksoskeleton[/gold]."
+  },
+  {
+    "id": "FABRICATOR_NORMAL",
+    "name": "Fabrikator",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FABRICATOR",
+        "name": "Fabrikator"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] tersetrum oleh robot-robot [gold]Fabrikator[/gold]."
+  },
+  {
+    "id": "FAKE_MERCHANT_EVENT_ENCOUNTER",
+    "name": "Si Pedagang???",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FAKE_MERCHANT_MONSTER",
+        "name": "Si Pedagang???"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] menghadap kemarahan [gold]Si Pedagang???[/gold]"
+  },
+  {
+    "id": "FLYCONID_NORMAL",
+    "name": "Slime dan Jamur",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Mushroom",
+      "Slimes"
+    ],
+    "monsters": [
+      {
+        "id": "FLYCONID",
+        "name": "Jamur Lalat"
+      },
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "Slime Daun (M)"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "Slime Ranting (M)"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] diserap oleh [gold]Slime dan Jamur[/gold]."
+  },
+  {
+    "id": "FOGMOG_NORMAL",
+    "name": "Jamur Kabut",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "EYE_WITH_TEETH",
+        "name": "Mata Bergigi"
+      },
+      {
+        "id": "FOGMOG",
+        "name": "Jamur Kabut"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] teralihkan perhatiannya oleh ilusi [gold]Jamur Kabut[/gold]."
+  },
+  {
+    "id": "FOSSIL_STALKER_NORMAL",
+    "name": "Fosil Penguntit",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FOSSIL_STALKER",
+        "name": "Fosil Penguntit"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] dikejutkan oleh [gold]Fosil Penguntit[/gold]."
+  },
+  {
+    "id": "FROG_KNIGHT_NORMAL",
+    "name": "Kesatria Kodok",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FROG_KNIGHT",
+        "name": "Kesatria Kodok"
+      }
+    ],
+    "loss_text": "Seorang [gold]Kesatria Kodok[/gold] pemberani menang melawan [b]The Adventurer[/b]."
+  },
+  {
+    "id": "FUZZY_WURM_CRAWLER_WEAK",
+    "name": "Ulat Perayap Berbulu",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Crawler"
+    ],
+    "monsters": [
+      {
+        "id": "FUZZY_WURM_CRAWLER",
+        "name": "Ulat Perayap Berbulu"
+      }
+    ],
+    "loss_text": "Sebuah [gold]Ulat Perayap Berbulu[/gold] meludahi [b]The Adventurer[/b]."
+  },
+  {
+    "id": "GLOBE_HEAD_NORMAL",
+    "name": "Seorang Globe Head",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "GLOBE_HEAD",
+        "name": "Kepala Bohlam"
+      }
+    ],
+    "loss_text": "[gold]Seorang Globe Head[/gold] menyetrum [b]The Adventurer[/b]."
+  },
+  {
+    "id": "GREMLIN_MERC_NORMAL",
+    "name": "Dua Tuyul dalam Mantel",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FAT_GREMLIN",
+        "name": "Tuyul Gemuk"
+      },
+      {
+        "id": "GREMLIN_MERC",
+        "name": "Tuyul Petarung"
+      },
+      {
+        "id": "SNEAKY_GREMLIN",
+        "name": "Tuyul Cerdik"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] dirampok oleh [gold]Dua Tuyul dalam Mantel[/gold]."
+  },
+  {
+    "id": "HAUNTED_SHIP_NORMAL",
+    "name": "Kapal Berhantu",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "HAUNTED_SHIP",
+        "name": "Kapal Berhantu"
+      }
+    ],
+    "loss_text": "Sebuah [gold]Kapal Berhantu[/gold] menginjak-injak [b]The Adventurer[/b]."
+  },
+  {
+    "id": "HUNTER_KILLER_NORMAL",
+    "name": "Pembunuh Pemburu",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "HUNTER_KILLER",
+        "name": "Pembunuh Pemburu"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] telah dikeluarkan isi perutnya oleh [gold]Pembunuh Pemburu[/gold]."
+  },
+  {
+    "id": "INFESTED_PRISMS_ELITE",
+    "name": "Prisma Terinfeksi",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "INFESTED_PRISM",
+        "name": "Prisma Terinfeksi"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] dihentikan oleh [gold]Prisma Terinfeksi[/gold]."
+  },
+  {
+    "id": "INKLETS_NORMAL",
+    "name": "Inklet",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "INKLET",
+        "name": "Inklet"
+      }
+    ],
+    "loss_text": "Beberapa [gold]Inklet[/gold] tidak memperbolehkan [b]The Adventurer[/b] lewat."
+  },
+  {
+    "id": "KAISER_CRAB_BOSS",
+    "name": "Kepiting Kaisar",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CRUSHER",
+        "name": "Peremuk"
+      },
+      {
+        "id": "ROCKET",
+        "name": "Roket"
+      }
+    ],
+    "loss_text": "Sang [gold]Kepiting Kaisar[/gold] menyerang [b]The Adventurer[/b] dari semua sisi."
+  },
+  {
+    "id": "KNIGHTS_ELITE",
+    "name": "Geng Kesatria",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": [
+      "Knights"
+    ],
+    "monsters": [
+      {
+        "id": "FLAIL_KNIGHT",
+        "name": "Kesatria Gada"
+      },
+      {
+        "id": "MAGI_KNIGHT",
+        "name": "Kesatria Majus"
+      },
+      {
+        "id": "SPECTRAL_KNIGHT",
+        "name": "Kesatria Gaib"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] terbunuh oleh [gold]Geng Kesatria[/gold]."
+  },
+  {
+    "id": "KNOWLEDGE_DEMON_BOSS",
+    "name": "Iblis Pengetahuan",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "KNOWLEDGE_DEMON",
+        "name": "Iblis Pengetahuan"
+      }
+    ],
+    "loss_text": "Sang [gold]Iblis Pengetahuan[/gold] mengkutuk [b]The Adventurer[/b] dengan pengetahuan berlimpah."
+  },
+  {
+    "id": "LAGAVULIN_MATRIARCH_BOSS",
+    "name": "Pemimpin Lagavulin",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "LAGAVULIN_MATRIARCH",
+        "name": "Pemimpin Lagavulin"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] terbagi dua oleh [gold]Pemimpin Lagavulin[/gold]."
+  },
+  {
+    "id": "LIVING_FOG_NORMAL",
+    "name": "Kabut Berjiwa",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "GAS_BOMB",
+        "name": "Bom Gas"
+      },
+      {
+        "id": "LIVING_FOG",
+        "name": "Kabut Berjiwa"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] tidak bisa tahan menghirup [gold]Kabut Berjiwa[/gold]."
+  },
+  {
+    "id": "LOUSE_PROGENITOR_NORMAL",
+    "name": "Leluhur Kutu",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "LOUSE_PROGENITOR",
+        "name": "Leluhur Kutu"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] dilumpuhkan oleh [gold]Leluhur Kutu[/gold]."
+  },
+  {
+    "id": "MAWLER_NORMAL",
+    "name": "Penerkam",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MAWLER",
+        "name": "Penerkam"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] menjadi makanan enak bagi [gold]Penerkam[/gold]."
+  },
+  {
+    "id": "MECHA_KNIGHT_ELITE",
+    "name": "Kesatria Mesin",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MECHA_KNIGHT",
+        "name": "Kesatria Mesin"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] telah ditikam dan dibakar oleh [gold]Kesatria Mesin[/gold]."
+  },
+  {
+    "id": "MYSTERIOUS_KNIGHT_EVENT_ENCOUNTER",
+    "name": "Kesatria Misterius",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MYSTERIOUS_KNIGHT",
+        "name": "Kesatria Misterius"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] mencoba mengambil kunci milik [gold]Kesatria Misterius[/gold]."
+  },
+  {
+    "id": "MYTES_NORMAL",
+    "name": "Sekelompok Toengau",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MYTE",
+        "name": "Toengau"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] di kerumuni oleh [gold]Sekelompok Toengau[/gold]."
+  },
+  {
+    "id": "NIBBITS_NORMAL",
+    "name": "Sepasang Kadal Kelinci",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "NIBBIT",
+        "name": "Kadal Kelinci"
+      }
+    ],
+    "loss_text": "[gold]Sepasang Kadal Kelinci[/gold] memukuli [b]The Adventurer[/b]."
+  },
+  {
+    "id": "NIBBITS_WEAK",
+    "name": "Seekor Kadal Kelinci",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Nibbit"
+    ],
+    "monsters": [
+      {
+        "id": "NIBBIT",
+        "name": "Kadal Kelinci"
+      }
+    ],
+    "loss_text": "[gold]Seekor Kadal Kelinci[/gold] memukuli [b]The Adventurer[/b]."
+  },
+  {
+    "id": "OVERGROWTH_CRAWLERS",
+    "name": "Perayap Rerimbunan",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Shrinker",
+      "Crawler"
+    ],
+    "monsters": [
+      {
+        "id": "FUZZY_WURM_CRAWLER",
+        "name": "Ulat Perayap Berbulu"
+      },
+      {
+        "id": "SHRINKER_BEETLE",
+        "name": "Kumbang Penciut"
+      }
+    ],
+    "loss_text": "Beberapa [gold]Perayap Rerimbunan[/gold] memangsa [b]The Adventurer[/b]."
+  },
+  {
+    "id": "OVICOPTER_NORMAL",
+    "name": "Ovikopter",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "OVICOPTER",
+        "name": "Ovikopter"
+      },
+      {
+        "id": "TOUGH_EGG",
+        "name": "Telur Keras"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] menjadi makanan untuk anak-anak [gold]Ovikopter[/gold]."
+  },
+  {
+    "id": "OWL_MAGISTRATE_NORMAL",
+    "name": "Hakim Burung Hantu",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "OWL_MAGISTRATE",
+        "name": "Hakim Burung Hantu"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] telah divonis mati oleh [gold]Hakim Burung Hantu[/gold]."
+  },
+  {
+    "id": "PHANTASMAL_GARDENERS_ELITE",
+    "name": "Pengambil Jiwa",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PHANTASMAL_GARDENER",
+        "name": "Pengambil Jiwa"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] ditidurkan oleh [gold]Pengambil Jiwa[/gold]."
+  },
+  {
+    "id": "PHROG_PARASITE_ELITE",
+    "name": "Parasit Khodok",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PHROG_PARASITE",
+        "name": "Parasit Khodok"
+      },
+      {
+        "id": "WRIGGLER",
+        "name": "Penggeliat"
+      }
+    ],
+    "loss_text": "[gold]Parasit Khodok[/gold] menebar koloninya ke dalam [b]The Adventurer[/b]."
+  },
+  {
+    "id": "PUNCH_CONSTRUCT_NORMAL",
+    "name": "Mesin Tinju",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PUNCH_CONSTRUCT",
+        "name": "Mesin Tinju"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] bertinju dengan [gold]Mesin Tinju[/gold]."
+  },
+  {
+    "id": "PUNCH_OFF_EVENT_ENCOUNTER",
+    "name": "Mesin-Mesin Tinju",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PUNCH_CONSTRUCT",
+        "name": "Mesin Tinju"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] mengganggu perkelahian dua [gold]Mesin-Mesin Tinju[/gold]."
+  },
+  {
+    "id": "QUEEN_BOSS",
+    "name": "Ratu",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "QUEEN",
+        "name": "Ratu"
+      },
+      {
+        "id": "TORCH_HEAD_AMALGAM",
+        "name": "Makhluk Kepala Obor"
+      }
+    ],
+    "loss_text": "Sang [gold]Ratu[/gold] menambahkan secuil [b]The Adventurer[/b] ke koleksinya."
+  },
+  {
+    "id": "RUBY_RAIDERS_NORMAL",
+    "name": "Penjarah Rubi",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "ASSASSIN_RUBY_RAIDER",
+        "name": "Penjarah Pembunuh"
+      },
+      {
+        "id": "AXE_RUBY_RAIDER",
+        "name": "Penjarah Berkapak"
+      },
+      {
+        "id": "BRUTE_RUBY_RAIDER",
+        "name": "Penjarah Beringas"
+      },
+      {
+        "id": "CROSSBOW_RUBY_RAIDER",
+        "name": "Penjarah Crossbow"
+      },
+      {
+        "id": "TRACKER_RUBY_RAIDER",
+        "name": "Penjarah Pelacak"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] dikejutkan oleh sekelompok [gold]Penjarah Rubi[/gold]."
+  },
+  {
+    "id": "SCROLLS_OF_BITING_NORMAL",
+    "name": "Sekelompok Gulungan Penggigit",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": [
+      "Scrolls"
+    ],
+    "monsters": [
+      {
+        "id": "SCROLL_OF_BITING",
+        "name": "Gulungan Penggigit"
+      }
+    ],
+    "loss_text": "[gold]Sekelompok Gulungan Penggigit[/gold] merobek-robek [b]The Adventurer[/b]."
+  },
+  {
+    "id": "SCROLLS_OF_BITING_WEAK",
+    "name": "Gulungan Penggigit",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 3 - Glory",
+    "tags": [
+      "Scrolls"
+    ],
+    "monsters": [
+      {
+        "id": "SCROLL_OF_BITING",
+        "name": "Gulungan Penggigit"
+      }
+    ],
+    "loss_text": "Beberapa [gold]Gulungan Penggigit[/gold] merobek-robek [b]The Adventurer[/b]."
+  },
+  {
+    "id": "SEAPUNK_NORMAL",
+    "name": "Hewan Liar Pelabuhan",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": [
+      "Seapunk"
+    ],
+    "monsters": [
+      {
+        "id": "CALCIFIED_CULTIST",
+        "name": "Kultus Berkapur"
+      },
+      {
+        "id": "SEAPUNK",
+        "name": "Berandal Laut"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] telah dikalahkan oleh beberapa [gold]Hewan Liar Pelabuhan[/gold]."
+  },
+  {
+    "id": "SEAPUNK_WEAK",
+    "name": "Berandal Laut",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Underdocks",
+    "tags": [
+      "Seapunk"
+    ],
+    "monsters": [
+      {
+        "id": "SEAPUNK",
+        "name": "Berandal Laut"
+      }
+    ],
+    "loss_text": "Seekor [gold]Berandal Laut[/gold] memukuli [b]The Adventurer[/b]."
+  },
+  {
+    "id": "SEWER_CLAM_NORMAL",
+    "name": "Kerang Selokan",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SEWER_CLAM",
+        "name": "Kerang Selokan"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] telah dilahap oleh [gold]Kerang Selokan[/gold]."
+  },
+  {
+    "id": "SHRINKER_BEETLE_WEAK",
+    "name": "Kumbang Penciut",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Shrinker"
+    ],
+    "monsters": [
+      {
+        "id": "SHRINKER_BEETLE",
+        "name": "Kumbang Penciut"
+      }
+    ],
+    "loss_text": "Seekor [gold]Kumbang Penciut[/gold] memakan [b]The Adventurer[/b]."
+  },
+  {
+    "id": "SKULKING_COLONY_ELITE",
+    "name": "Koloni Pengendap",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SKULKING_COLONY",
+        "name": "Koloni Pengendap"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] telah diserap oleh [gold]Koloni Pengendap[/gold]"
+  },
+  {
+    "id": "SLIMED_BERSERKER_NORMAL",
+    "name": "Slime Pengamuk",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SLIMED_BERSERKER",
+        "name": "Slime Pengamuk"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] telah diserap ke dalam [gold]Slime Pengamuk[/gold]."
+  },
+  {
+    "id": "SLIMES_NORMAL",
+    "name": "Kerumunan Slime",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Slimes"
+    ],
+    "monsters": [
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "Slime Daun (M)"
+      },
+      {
+        "id": "LEAF_SLIME_S",
+        "name": "Slime Daun (S)"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "Slime Ranting (M)"
+      },
+      {
+        "id": "TWIG_SLIME_S",
+        "name": "Slime Ranting (S)"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] telah dikalahkan oleh [gold]Kerumunan Slime[/gold]."
+  },
+  {
+    "id": "SLIMES_WEAK",
+    "name": "Kelompok Slime",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Slimes"
+    ],
+    "monsters": [
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "Slime Daun (M)"
+      },
+      {
+        "id": "LEAF_SLIME_S",
+        "name": "Slime Daun (S)"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "Slime Ranting (M)"
+      },
+      {
+        "id": "TWIG_SLIME_S",
+        "name": "Slime Ranting (S)"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] telah dikalahkan oleh [gold]Kelompok Slime[/gold]."
+  },
+  {
+    "id": "SLITHERING_STRANGLER_NORMAL",
+    "name": "Pencekik dan Temannya",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Jaxfruit",
+      "Slimes"
+    ],
+    "monsters": [
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "Slime Daun (M)"
+      },
+      {
+        "id": "LEAF_SLIME_S",
+        "name": "Slime Daun (S)"
+      },
+      {
+        "id": "SLITHERING_STRANGLER",
+        "name": "Perayap Pencekik"
+      },
+      {
+        "id": "SNAPPING_JAXFRUIT",
+        "name": "Jaxfruit Penggigit"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "Slime Ranting (M)"
+      },
+      {
+        "id": "TWIG_SLIME_S",
+        "name": "Slime Ranting (S)"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] dicekik oleh [gold]Pencekik dan Temannya[/gold]."
+  },
+  {
+    "id": "SLUDGE_SPINNER_WEAK",
+    "name": "Cangkang Lendir",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SLUDGE_SPINNER",
+        "name": "Cangkang Lendir"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] tidak bisa mengalahkan seekor [gold]Cangkang Lendir[/gold]."
+  },
+  {
+    "id": "SLUMBERING_BEETLE_NORMAL",
+    "name": "Pesta Tidur",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Workers"
+    ],
+    "monsters": [
+      {
+        "id": "BOWLBUG_ROCK",
+        "name": "Kumbang Mangkok (Batu)"
+      },
+      {
+        "id": "BOWLBUG_SILK",
+        "name": "Kumbang Mangkok (Sutra)"
+      },
+      {
+        "id": "SLUMBERING_BEETLE",
+        "name": "Kumbang Tidur"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] mengganggu acara [gold]Pesta Tidur[/gold]."
+  },
+  {
+    "id": "SNAPPING_JAXFRUIT_NORMAL",
+    "name": "Tetumbuhan Rerimbunan",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Mushroom",
+      "Jaxfruit"
+    ],
+    "monsters": [
+      {
+        "id": "FLYCONID",
+        "name": "Jamur Lalat"
+      },
+      {
+        "id": "SNAPPING_JAXFRUIT",
+        "name": "Jaxfruit Penggigit"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] bercekcok dengan [gold]Tetumbuhan Rerimbunan[/gold]."
+  },
+  {
+    "id": "SOUL_FYSH_BOSS",
+    "name": "Ykan Jiwa",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SOUL_FYSH",
+        "name": "Ykan Jiwa"
+      }
+    ],
+    "loss_text": "[gold]Ykan Jiwa[/gold] menghasut [b]The Adventurer[/b] ke ajalnya."
+  },
+  {
+    "id": "SOUL_NEXUS_ELITE",
+    "name": "Sekumpulan Jiwa",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SOUL_NEXUS",
+        "name": "Sekumpulan Jiwa"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] mati karena [gold]Sekumpulan Jiwa[/gold] pada tempat yang terlupakan."
+  },
+  {
+    "id": "SPINY_TOAD_NORMAL",
+    "name": "Kodok Berduri",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SPINY_TOAD",
+        "name": "Kodok Berduri"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] tidak bisa menembus duri [gold]Kodok Berduri[/gold]."
+  },
+  {
+    "id": "TERROR_EEL_ELITE",
+    "name": "Belut Teror",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TERROR_EEL",
+        "name": "Belut Teror"
+      }
+    ],
+    "loss_text": "[gold]Belut Teror[/gold] terlalu menakutkan untuk [b]The Adventurer[/b]."
+  },
+  {
+    "id": "TEST_SUBJECT_BOSS",
+    "name": "Subjek Eksperimen",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TEST_SUBJECT",
+        "name": "Subjek Eksperimen #C{Count}"
+      }
+    ],
+    "loss_text": "[gold]Subjek Eksperimen[/gold] dengan setia menjaga majikannya dari [b]The Adventurer[/b]."
+  },
+  {
+    "id": "THE_ARCHITECT_EVENT_ENCOUNTER",
+    "name": "Sang Arsitek",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "ARCHITECT",
+        "name": "Sang Arsitek"
+      }
+    ],
+    "loss_text": "Kamu seharusnya tidak bisa melihat teks ini."
+  },
+  {
+    "id": "THE_INSATIABLE_BOSS",
+    "name": "Yang Tak Terpuaskan",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "THE_INSATIABLE",
+        "name": "Yang Tak Terpuaskan"
+      }
+    ],
+    "loss_text": "[gold]Yang Tak Terpuaskan[/gold] memangsa [b]The Adventurer[/b]. Tetapi, ia masih lapar..."
+  },
+  {
+    "id": "THE_KIN_BOSS",
+    "name": "Sang Kin",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "KIN_FOLLOWER",
+        "name": "Pengikut Kin"
+      },
+      {
+        "id": "KIN_PRIEST",
+        "name": "Pendeta Kin"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] dibinasakan oleh strategi [gold]Sang Kin[/gold]."
+  },
+  {
+    "id": "THE_LOST_AND_FORGOTTEN_NORMAL",
+    "name": "Hilang dan Terlupakan",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "THE_FORGOTTEN",
+        "name": "Yang Terlupakan"
+      },
+      {
+        "id": "THE_LOST",
+        "name": "Yang Tersesat"
+      }
+    ],
+    "loss_text": "Sang [gold]Hilang dan Terlupakan[/gold] mencuri semangat hidup [b]The Adventurer[/b]."
+  },
+  {
+    "id": "THE_OBSCURA_NORMAL",
+    "name": "Sang Obscura",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PARAFRIGHT",
+        "name": "Bayangan Teror"
+      },
+      {
+        "id": "THE_OBSCURA",
+        "name": "Sang Obscura"
+      }
+    ],
+    "loss_text": "[gold]Sang Obscura[/gold] dan ilusinya menghancurkan [b]The Adventurer[/b]."
+  },
+  {
+    "id": "THIEVING_HOPPER_WEAK",
+    "name": "Belalang Perampok",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Thieves"
+    ],
+    "monsters": [
+      {
+        "id": "THIEVING_HOPPER",
+        "name": "Belalang Perampok"
+      }
+    ],
+    "loss_text": "[gold]Belalang Perampok[/gold] merampok [b]The Adventurer[/b]."
+  },
+  {
+    "id": "TOADPOLES_WEAK",
+    "name": "Kecebong",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TOADPOLE",
+        "name": "Kecebong"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] tidak bisa menangani beberapa [gold]Kecebong[/gold]."
+  },
+  {
+    "id": "TUNNELER_NORMAL",
+    "name": "Dua Penggali",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": [
+      "Burrower",
+      "Chomper"
+    ],
+    "monsters": [
+      {
+        "id": "CHOMPER",
+        "name": "Penggigit"
+      },
+      {
+        "id": "TUNNELER",
+        "name": "Penggali"
+      }
+    ],
+    "loss_text": "[gold]Dua Penggali[/gold] mengakhiri [b]The Adventurer[/b]."
+  },
+  {
+    "id": "TUNNELER_WEAK",
+    "name": "Penggali",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Burrower"
+    ],
+    "monsters": [
+      {
+        "id": "TUNNELER",
+        "name": "Penggali"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] terpukul oleh [gold]Penggali[/gold]."
+  },
+  {
+    "id": "TURRET_OPERATOR_WEAK",
+    "name": "Operator Penembak",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "LIVING_SHIELD",
+        "name": "Tameng Berjiwa"
+      },
+      {
+        "id": "TURRET_OPERATOR",
+        "name": "Pengguna Turret"
+      }
+    ],
+    "loss_text": "[gold]Operator Penembak[/gold] memenuhi [b]The Adventurer[/b] dengan lubang."
+  },
+  {
+    "id": "TWO_TAILED_RATS_NORMAL",
+    "name": "Tikus Berekor Dua",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TWO_TAILED_RAT",
+        "name": "Tikus Berekor Dua"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] di kerumuni oleh [gold]Tikus Berekor Dua[/gold]."
+  },
+  {
+    "id": "VANTOM_BOSS",
+    "name": "Vantom",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "VANTOM",
+        "name": "Vantom"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] diubah menjadi sebuah Inklet oleh Sang [gold]Vantom[/gold]."
+  },
+  {
+    "id": "VINE_SHAMBLER_NORMAL",
+    "name": "Makhluk Rerambatan",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "VINE_SHAMBLER",
+        "name": "Makhluk Rerambatan"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] tidak bisa lari dari [gold]Makhluk Rerambatan[/gold]."
+  },
+  {
+    "id": "WATERFALL_GIANT_BOSS",
+    "name": "Raksasa Air Terjun",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "WATERFALL_GIANT",
+        "name": "Raksasa Air Terjun"
+      }
+    ],
+    "loss_text": "Sang [gold]Raksasa Air Terjun[/gold] membersihkan Pelabuhan dari [b]The Adventurer[/b]."
+  }
+]

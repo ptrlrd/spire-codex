@@ -16,6 +16,8 @@ export const X9E: Record<string, Record<string, string>> = {
     tur: "{move} ile başlar.",
     zhs: "以{move}开场。",
     zht: "以{move}開場。",
+    ara: "يبدأ بـ {move}.",
+    ind: "Membuka dengan {move}.",
   },
   "Every turn after that is an even random pick between {moves}.": {
     eng: "Every turn after that is an even random pick between {moves}.",
@@ -33,6 +35,8 @@ export const X9E: Record<string, Record<string, string>> = {
     tur: "Sonrasında her tur {moves} arasından eşit olasılıkla rastgele seçer.",
     zhs: "此后每回合在{moves}之间等概率随机选择。",
     zht: "此後每回合在{moves}之間等機率隨機選擇。",
+    ara: "كل دور بعد ذلك اختيار عشوائي متساوٍ بين {moves}.",
+    ind: "Tiap giliran setelah itu adalah pilihan acak yang merata antara {moves}.",
   },
   "Every turn is an even random pick between {moves}.": {
     eng: "Every turn is an even random pick between {moves}.",
@@ -50,6 +54,8 @@ export const X9E: Record<string, Record<string, string>> = {
     tur: "Her tur {moves} arasından eşit olasılıkla rastgele seçer.",
     zhs: "每回合在{moves}之间等概率随机选择。",
     zht: "每回合在{moves}之間等機率隨機選擇。",
+    ara: "كل دور اختيار عشوائي متساوٍ بين {moves}.",
+    ind: "Tiap giliran adalah pilihan acak yang merata antara {moves}.",
   },
   "Every turn after that it picks {choices}.": {
     eng: "Every turn after that it picks {choices}.",
@@ -67,6 +73,8 @@ export const X9E: Record<string, Record<string, string>> = {
     tur: "Sonrasında her tur {choices} seçer.",
     zhs: "此后每回合选择{choices}。",
     zht: "此後每回合選擇{choices}。",
+    ara: "في كل دور بعد ذلك يختار {choices}.",
+    ind: "Tiap giliran setelah itu ia memilih {choices}.",
   },
   "Every turn it picks {choices}.": {
     eng: "Every turn it picks {choices}.",
@@ -84,6 +92,8 @@ export const X9E: Record<string, Record<string, string>> = {
     tur: "Her tur {choices} seçer.",
     zhs: "每回合选择{choices}。",
     zht: "每回合選擇{choices}。",
+    ara: "في كل دور يختار {choices}.",
+    ind: "Tiap giliran ia memilih {choices}.",
   },
   "{move} {pct} percent of the time": {
     eng: "{move} {pct} percent of the time",
@@ -101,6 +111,8 @@ export const X9E: Record<string, Record<string, string>> = {
     tur: "yüzde {pct} olasılıkla {move}",
     zhs: "{pct}%的概率{move}",
     zht: "{pct}%的機率{move}",
+    ara: "{move} بنسبة {pct} بالمئة من المرات",
+    ind: "{move} {pct} persen dari waktu",
   },
   "An attack never repeats back to back.": {
     eng: "An attack never repeats back to back.",
@@ -118,6 +130,8 @@ export const X9E: Record<string, Record<string, string>> = {
     tur: "Bir saldırı asla art arda tekrarlanmaz.",
     zhs: "同一攻击不会连续使用两次。",
     zht: "同一攻擊不會連續使用兩次。",
+    ara: "لا يتكرر الهجوم مرتين متتاليتين أبداً.",
+    ind: "Serangan tidak pernah berulang dua kali berturut-turut.",
   },
   "{moves} never repeat back to back.": {
     eng: "{moves} never repeat back to back.",
@@ -135,6 +149,8 @@ export const X9E: Record<string, Record<string, string>> = {
     tur: "{moves} asla art arda tekrarlanmaz.",
     zhs: "{moves}不会连续使用两次。",
     zht: "{moves}不會連續使用兩次。",
+    ara: "{moves} لا تتكرر مرتين متتاليتين أبداً.",
+    ind: "{moves} tidak pernah berulang dua kali berturut-turut.",
   },
   "{move} happens once per fight.": {
     eng: "{move} happens once per fight.",
@@ -152,6 +168,8 @@ export const X9E: Record<string, Record<string, string>> = {
     tur: "{move} her savaşta bir kez olur.",
     zhs: "{move}每场战斗只出现一次。",
     zht: "{move}每場戰鬥只出現一次。",
+    ara: "{move} يحدث مرة واحدة في كل قتال.",
+    ind: "{move} terjadi sekali per pertarungan.",
   },
   "{move} happens at most {n} times in a row.": {
     eng: "{move} happens at most {n} times in a row.",
@@ -169,6 +187,8 @@ export const X9E: Record<string, Record<string, string>> = {
     tur: "{move} art arda en fazla {n} kez olur.",
     zhs: "{move}最多连续出现 {n} 次。",
     zht: "{move}最多連續出現 {n} 次。",
+    ara: "{move} يحدث {n} مرات متتالية على الأكثر.",
+    ind: "{move} terjadi paling banyak {n} kali berturut-turut.",
   },
   "Once {move} is spent, the rest of the fight alternates {a} and {b}.": {
     eng: "Once {move} is spent, the rest of the fight alternates {a} and {b}.",
@@ -186,6 +206,8 @@ export const X9E: Record<string, Record<string, string>> = {
     tur: "{move} kullanıldıktan sonra savaşın kalanı {a} ve {b} arasında gidip gelir.",
     zhs: "用掉{move}后，剩余战斗在{a}和{b}之间交替。",
     zht: "用掉{move}後，剩餘戰鬥在{a}和{b}之間交替。",
+    ara: "بعد استنفاد {move}، يتناوب باقي القتال بين {a} و {b}.",
+    ind: "Setelah {move} terpakai, sisa pertarungan bergantian antara {a} dan {b}.",
   },
   "Each row carries player_token, a stable pseudonymous id for the submitting account, null on anonymous runs.":
     {
@@ -204,6 +226,8 @@ export const X9E: Record<string, Record<string, string>> = {
       tur: "Her satırda gönderen hesabın sabit takma kimliği player_token bulunur; anonim koşularda null olur.",
       zhs: "每行包含 player_token，即提交账户的稳定化名 ID，匿名对局为 null。",
       zht: "每行包含 player_token，即提交帳戶的穩定化名 ID，匿名對局為 null。",
+      ara: "كل صف يحمل player_token، وهو معرف مستعار ثابت للحساب المرسِل، وقيمته null في الجولات المجهولة.",
+      ind: "Tiap baris membawa player_token, id pseudonim yang stabil untuk akun pengirim, null pada perjalanan anonim.",
     },
   "Need the whole corpus? A call with no parameters redirects to a static file rebuilt once a day, /exports/runs-latest.jsonl.gz, with the same line shape; /api/exports/runs/manifest reports when it was generated and how many runs it holds. Each line carries player_token, a stable pseudonymous id for the submitting account, null on anonymous runs.":
     {
@@ -222,5 +246,7 @@ export const X9E: Record<string, Record<string, string>> = {
       tur: "Tüm veriyi mi istiyorsunuz? Parametresiz bir çağrı, günde bir kez yeniden oluşturulan statik dosyaya, /exports/runs-latest.jsonl.gz, aynı satır biçimiyle yönlendirir; /api/exports/runs/manifest ne zaman üretildiğini ve kaç koşu içerdiğini bildirir. Her satırda gönderen hesabın sabit takma kimliği player_token bulunur; anonim koşularda null olur.",
       zhs: "需要完整数据？不带参数的调用会重定向到每天重建一次的静态文件 /exports/runs-latest.jsonl.gz，行格式相同；/api/exports/runs/manifest 给出生成时间和对局数量。每行包含 player_token，即提交账户的稳定化名 ID，匿名对局为 null。",
       zht: "需要完整資料？不帶參數的呼叫會重新導向到每天重建一次的靜態檔案 /exports/runs-latest.jsonl.gz，行格式相同；/api/exports/runs/manifest 給出產生時間和對局數量。每行包含 player_token，即提交帳戶的穩定化名 ID，匿名對局為 null。",
+      ara: "تحتاج إلى البيانات كاملة؟ الطلب بلا معاملات يحوّل إلى ملف ثابت يُعاد بناؤه مرة يومياً، /exports/runs-latest.jsonl.gz، بالشكل نفسه لكل سطر؛ ويذكر /api/exports/runs/manifest متى تم توليده وكم جولة يحتوي. كل سطر يحمل player_token، وهو معرف مستعار ثابت للحساب المرسِل، وقيمته null في الجولات المجهولة.",
+      ind: "Butuh seluruh datanya? Panggilan tanpa parameter dialihkan ke file statis yang dibuat ulang sekali sehari, /exports/runs-latest.jsonl.gz, dengan bentuk baris yang sama; /api/exports/runs/manifest melaporkan kapan file itu dibuat dan berapa perjalanan isinya. Tiap baris membawa player_token, id pseudonim yang stabil untuk akun pengirim, null pada perjalanan anonim.",
     },
 };

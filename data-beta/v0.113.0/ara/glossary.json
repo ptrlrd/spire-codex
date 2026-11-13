@@ -1,0 +1,206 @@
+[
+  {
+    "id": "ARROW",
+    "name": "Arrow",
+    "description": "Arrows can be shot with cards to [gold]Impale[/gold] a target.",
+    "category": "mechanics"
+  },
+  {
+    "id": "BLOCK",
+    "name": "الصد",
+    "description": "حتى الدور التالي، يمنع الضرر.",
+    "category": "combat"
+  },
+  {
+    "id": "CARD_REWARD",
+    "name": "مكافأة بطاقة",
+    "description": "حزمة من [blue]3[/blue] بطاقات عشوائية. يمكنك اختيار [blue]1[/blue] لإضافتها إلى [gold]رزمة[/gold] بطاقاتك.",
+    "category": "progression"
+  },
+  {
+    "id": "CHANNELING",
+    "name": "استدعاء",
+    "description": "استدعاء جرم يضعه في أول خانة فارغة لديك. إذا لم تكن لديك خانات فارغة، يتم [gold]إثارة[/gold] أول جرم تلقائيًا لإفساح المجال.",
+    "category": "combat"
+  },
+  {
+    "id": "CHO_MELODY",
+    "name": "Cho Melody",
+    "description": "Activates if you played a “Cho” card this turn.",
+    "category": "mechanics"
+  },
+  {
+    "id": "COOK",
+    "name": "طبخ",
+    "description": "[gold]أزل[/gold] [blue]2[/blue] بطاقات من [gold]رزمة[/gold] بطاقاتك واكسب [green]9[/green] نقاط صحة قصوى في [gold]موقع راحة[/gold].",
+    "category": "mechanics"
+  },
+  {
+    "id": "DECK",
+    "name": "الرزمة (D)",
+    "description": "اعرض كل البطاقات في رزمتك.",
+    "category": "zones"
+  },
+  {
+    "id": "DISCARD_PILE",
+    "name": "كومة المهملات (S)",
+    "description": "إذا كانت كومة السحب فارغة، تُخلط كومة المهملات داخل كومة السحب.\n\nاضغط لعرض البطاقات في كومة المهملات.",
+    "category": "zones"
+  },
+  {
+    "id": "DRAW_PILE",
+    "name": "كومة السحب (A)",
+    "description": "في بداية كل دور،\nيتم سحب [blue]5[/blue] بطاقات من هنا.\n\nاضغط لعرض البطاقات في كومة السحب الخاصة بك (مخلوطة).",
+    "category": "zones"
+  },
+  {
+    "id": "DREAD_ROTATION",
+    "name": "Rotating Streak",
+    "description": "In a [gold]Rotating Streak[/gold], each win advances you one character to the right.\nWins are tracked in a separate streak, and no longer count towards individual characters'.",
+    "category": "progression"
+  },
+  {
+    "id": "ENERGY",
+    "name": "الطاقة",
+    "description": "تُستخدم الطاقة للعب البطاقات من [gold]يدك[/gold].",
+    "category": "combat"
+  },
+  {
+    "id": "EVOKE",
+    "name": "إثارة",
+    "description": "استهلك الجرم الموجود في أقصى اليمين واستخدم تأثير إثارته.",
+    "category": "combat"
+  },
+  {
+    "id": "EXHAUST_PILE",
+    "name": "البطاقات المستنفدة (X)",
+    "description": "اضغط لعرض البطاقات المستنفدة في هذا القتال.",
+    "category": "zones"
+  },
+  {
+    "id": "FATAL",
+    "name": "قاتل",
+    "description": "يتفعّل كلما قتلت هذه البطاقة عدوًا غير تابع.",
+    "category": "combat"
+  },
+  {
+    "id": "FORGE",
+    "name": "صقل",
+    "description": "أول مرة تقوم فيها بـ[gold]الصقل[/gold] في كل قتال، أضف [gold]النصل السيادي[/gold] إلى [gold]يدك[/gold]. يضيف ضررًا إضافيًا إلى [gold]النصل السيادي[/gold].",
+    "category": "mechanics"
+  },
+  {
+    "id": "HIT_POINTS",
+    "name": "نقاط الصحة",
+    "description": "إذا نفدت نقاط صحتك، تموت.",
+    "category": "progression"
+  },
+  {
+    "id": "KI_MELODY",
+    "name": "Ki Melody",
+    "description": "Activates if you played a “Ki” card this turn.",
+    "category": "mechanics"
+  },
+  {
+    "id": "LINKED_REWARDS",
+    "name": "مكافآت مرتبطة",
+    "description": "يمكنك اختيار مكافأة [blue]1[/blue] فقط من هذه المجموعة.",
+    "category": "progression"
+  },
+  {
+    "id": "MONEY_POUCH",
+    "name": "الذهب",
+    "description": "كمية الذهب التي تملكها. الذهب هو العملة داخل البرج.",
+    "category": "progression"
+  },
+  {
+    "id": "POTION_SLOT",
+    "name": "خانة جرعة",
+    "description": "استخدم الجرعات أثناء القتال للحصول على [green]فوائد[/green] أو [red]إعاقة[/red] الأعداء.",
+    "category": "progression"
+  },
+  {
+    "id": "REPLAY",
+    "name": "إعادة اللعب",
+    "description": "تلعب هذه البطاقة مرة إضافية.",
+    "category": "mechanics"
+  },
+  {
+    "id": "ROOM_ANCIENT",
+    "name": "قديم",
+    "description": "يقيم القدماء في هذه الغرف.\n\nيمنحون مكافآت وكنوزًا ومعرفة عظيمة.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_BOSS",
+    "name": "زعيم",
+    "description": "أخطر خصم في المنطقة.\n\nهزيمته تسمح لك بالانتقال إلى الفصل التالي.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_ELITE",
+    "name": "نخبة",
+    "description": "توجد خصوم قوية في هذه الغرف.\n\nهزيمتهم ستكافئك بـ[gold]أثر[/gold].",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_ENEMY",
+    "name": "عدو",
+    "description": "توجد أعداء عدائية في هذه الغرف.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_EVENT",
+    "name": "حدث",
+    "description": "يحدث شيء غير معتاد في هذه الغرف...",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_MERCHANT",
+    "name": "متجر",
+    "description": "يبيع التاجر الغامض بضاعته في هذه الغرف.\n\nأنفق [gold]ذهبك[/gold] المستحق هنا!",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_REST",
+    "name": "موقع راحة",
+    "description": "توقف في هذه الغرف لـ[green]شفاء[/green] بعض نقاط الصحة أو [gold]ترقية[/gold] بطاقة.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_TREASURE",
+    "name": "غرفة كنز",
+    "description": "يمكن العثور على [gold]آثار[/gold] و[gold]ذهب[/gold] في هذه الغرف الثمينة.",
+    "category": "rooms"
+  },
+  {
+    "id": "STUN",
+    "name": "صعق",
+    "description": "يمنع العدو من التصرف في دوره التالي.",
+    "category": "combat"
+  },
+  {
+    "id": "SUMMON",
+    "name": "استدعاء",
+    "description": "استدعِ [gold]أوستي[/gold].\nإذا كان مستدعى بالفعل، ارفع نقاط صحته القصوى لهذا القتال.",
+    "category": "mechanics"
+  },
+  {
+    "id": "TAROT",
+    "name": "Tarot",
+    "description": "Unique cards with special effects.",
+    "category": "mechanics"
+  },
+  {
+    "id": "TRANSFORM",
+    "name": "تحويل",
+    "description": "البطاقات المتحوّلة تصبح بطاقة عشوائية من أي ندرة.",
+    "category": "mechanics"
+  },
+  {
+    "id": "WAH_MELODY",
+    "name": "Wah Melody",
+    "description": "Activates if you played a “Wah” card this turn.",
+    "category": "mechanics"
+  }
+]

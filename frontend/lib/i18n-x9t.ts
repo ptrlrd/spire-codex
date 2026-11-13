@@ -17,6 +17,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Grafik Oluşturucu",
     zhs: "图表构建器",
     zht: "圖表建構器",
+    ara: "منشئ المخططات",
+    ind: "Pembuat grafik",
   },
   chart_builder_meta_description: {
     eng: "Build charts from community run metrics, save them to your profile, and share them.",
@@ -34,6 +36,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Topluluk koşu metriklerinden grafikler oluşturun, profilinize kaydedin ve paylaşın.",
     zhs: "用社区对局数据构建图表，保存到个人资料并分享。",
     zht: "用社群對局數據建構圖表，儲存到個人資料並分享。",
+    ara: "أنشئ مخططات من مقاييس جولات المجتمع، واحفظها في ملفك الشخصي، وشاركها.",
+    ind: "Buat grafik dari metrik perjalanan komunitas, simpan ke profilmu, lalu bagikan.",
   },
   chart_builder_tagline: {
     eng: "Pick a source, a bracket and a metric, then save the chart to your profile to share it.",
@@ -51,6 +55,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Bir kaynak, bracket ve metrik seçin, ardından paylaşmak için grafiği profilinize kaydedin.",
     zhs: "选择来源、分段和指标，然后把图表保存到个人资料进行分享。",
     zht: "選擇來源、分段和指標，然後把圖表儲存到個人資料進行分享。",
+    ara: "اختر مصدرًا وشريحة ومقياسًا، ثم احفظ المخطط في ملفك الشخصي لمشاركته.",
+    ind: "Pilih sumber, bracket, dan metrik, lalu simpan grafik ke profilmu untuk membagikannya.",
   },
   Source: {
     eng: "Source",
@@ -68,6 +74,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Kaynak",
     zhs: "来源",
     zht: "來源",
+    ara: "المصدر",
+    ind: "Sumber",
   },
   Shops: {
     eng: "Shops",
@@ -85,6 +93,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Dükkânlar",
     zhs: "商店",
     zht: "商店",
+    ara: "المتاجر",
+    ind: "Toko",
   },
   Campfires: {
     eng: "Campfires",
@@ -102,6 +112,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Kamp Ateşleri",
     zhs: "休息处",
     zht: "休息處",
+    ara: "نيران المخيم",
+    ind: "Api Unggun",
   },
   Bracket: {
     eng: "Bracket",
@@ -119,6 +131,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Bracket",
     zhs: "分段",
     zht: "分段",
+    ara: "الشريحة",
+    ind: "Bracket",
   },
   Filters: {
     eng: "Filters",
@@ -136,6 +150,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Filtreler",
     zhs: "筛选",
     zht: "篩選",
+    ara: "عوامل التصفية",
+    ind: "Filter",
   },
   Search: {
     eng: "Search",
@@ -153,6 +169,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Ara",
     zhs: "搜索",
     zht: "搜尋",
+    ara: "بحث",
+    ind: "Cari",
   },
   Group: {
     eng: "Group",
@@ -170,6 +188,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Grup",
     zhs: "分组",
     zht: "分組",
+    ara: "المجموعة",
+    ind: "Grup",
   },
   Rarity: {
     eng: "Rarity",
@@ -187,6 +207,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Nadirlik",
     zhs: "稀有度",
     zht: "稀有度",
+    ara: "الندرة",
+    ind: "Kelangkaan",
   },
   "Min sample": {
     eng: "Min sample",
@@ -204,6 +226,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "En az örnek",
     zhs: "最小样本",
     zht: "最小樣本",
+    ara: "أدنى عينة",
+    ind: "Sampel min",
   },
   Metric: {
     eng: "Metric",
@@ -221,6 +245,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Metrik",
     zhs: "指标",
     zht: "指標",
+    ara: "المقياس",
+    ind: "Metrik",
   },
   "X metric": {
     eng: "X metric",
@@ -238,6 +264,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "X metriği",
     zhs: "X 轴指标",
     zht: "X 軸指標",
+    ara: "مقياس X",
+    ind: "Metrik X",
   },
   "Chart type": {
     eng: "Chart type",
@@ -255,6 +283,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Grafik türü",
     zhs: "图表类型",
     zht: "圖表類型",
+    ara: "نوع المخطط",
+    ind: "Jenis grafik",
   },
   Bar: {
     eng: "Bar",
@@ -272,6 +302,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Çubuk",
     zhs: "柱状",
     zht: "柱狀",
+    ara: "أعمدة",
+    ind: "Batang",
   },
   "Horizontal bars": {
     eng: "Horizontal bars",
@@ -289,6 +321,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Yatay çubuklar",
     zhs: "水平条形",
     zht: "水平條形",
+    ara: "أشرطة أفقية",
+    ind: "Batang horizontal",
   },
   Scatter: {
     eng: "Scatter",
@@ -306,6 +340,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Dağılım",
     zhs: "散点",
     zht: "散點",
+    ara: "مبعثر",
+    ind: "Sebar",
   },
   "Top N": {
     eng: "Top N",
@@ -323,6 +359,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "İlk N",
     zhs: "前 N 名",
     zht: "前 N 名",
+    ara: "أفضل N",
+    ind: "Top N",
   },
   Sort: {
     eng: "Sort",
@@ -340,6 +378,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Sıralama",
     zhs: "排序",
     zht: "排序",
+    ara: "الترتيب",
+    ind: "Urutkan",
   },
   Descending: {
     eng: "Descending",
@@ -357,6 +397,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Azalan",
     zhs: "降序",
     zht: "降序",
+    ara: "تنازلي",
+    ind: "Menurun",
   },
   Ascending: {
     eng: "Ascending",
@@ -374,6 +416,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Artan",
     zhs: "升序",
     zht: "升序",
+    ara: "تصاعدي",
+    ind: "Menaik",
   },
   Title: {
     eng: "Title",
@@ -391,6 +435,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Başlık",
     zhs: "标题",
     zht: "標題",
+    ara: "العنوان",
+    ind: "Judul",
   },
   "Untitled chart": {
     eng: "Untitled chart",
@@ -408,6 +454,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Başlıksız grafik",
     zhs: "未命名图表",
     zht: "未命名圖表",
+    ara: "مخطط بلا عنوان",
+    ind: "Grafik tanpa judul",
   },
   "Save to profile": {
     eng: "Save to profile",
@@ -425,6 +473,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Profile kaydet",
     zhs: "保存到个人资料",
     zht: "儲存到個人資料",
+    ara: "حفظ في الملف الشخصي",
+    ind: "Simpan ke profil",
   },
   "Save failed. Try again.": {
     eng: "Save failed. Try again.",
@@ -442,6 +492,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Kaydedilemedi. Tekrar deneyin.",
     zhs: "保存失败，请重试。",
     zht: "儲存失敗，請重試。",
+    ara: "فشل الحفظ. حاول مجددًا.",
+    ind: "Gagal menyimpan. Coba lagi.",
   },
   "to save charts to your profile.": {
     eng: "to save charts to your profile.",
@@ -459,6 +511,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "grafikleri profilinize kaydetmek için.",
     zhs: "即可将图表保存到个人资料。",
     zht: "即可將圖表儲存到個人資料。",
+    ara: "لحفظ المخططات في ملفك الشخصي.",
+    ind: "untuk menyimpan grafik ke profilmu.",
   },
   Copy: {
     eng: "Copy",
@@ -476,6 +530,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Kopyala",
     zhs: "复制",
     zht: "複製",
+    ara: "نسخ",
+    ind: "Salin",
   },
   Copied: {
     eng: "Copied",
@@ -493,6 +549,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Kopyalandı",
     zhs: "已复制",
     zht: "已複製",
+    ara: "تم النسخ",
+    ind: "Tersalin",
   },
   Public: {
     eng: "Public",
@@ -510,6 +568,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Herkese açık",
     zhs: "公开",
     zht: "公開",
+    ara: "عام",
+    ind: "Publik",
   },
   Private: {
     eng: "Private",
@@ -527,6 +587,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Özel",
     zhs: "私密",
     zht: "私密",
+    ara: "خاص",
+    ind: "Pribadi",
   },
   "Open share page": {
     eng: "Open share page",
@@ -544,6 +606,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Paylaşım sayfasını aç",
     zhs: "打开分享页",
     zht: "開啟分享頁",
+    ara: "فتح صفحة المشاركة",
+    ind: "Buka halaman berbagi",
   },
   "Recently shared": {
     eng: "Recently shared",
@@ -561,6 +625,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Yakında paylaşılanlar",
     zhs: "最近分享",
     zht: "最近分享",
+    ara: "تمت مشاركته مؤخرًا",
+    ind: "Baru dibagikan",
   },
   Loading: {
     eng: "Loading",
@@ -578,6 +644,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Yükleniyor",
     zhs: "加载中",
     zht: "載入中",
+    ara: "جارٍ التحميل",
+    ind: "Memuat",
   },
   "No data for this selection.": {
     eng: "No data for this selection.",
@@ -595,6 +663,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Bu seçim için veri yok.",
     zhs: "此选择没有数据。",
     zht: "此選擇沒有資料。",
+    ara: "لا توجد بيانات لهذا الاختيار.",
+    ind: "Tidak ada data untuk pilihan ini.",
   },
   "Saved Chart": {
     eng: "Saved Chart",
@@ -612,6 +682,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Kaydedilen grafik",
     zhs: "已保存的图表",
     zht: "已儲存的圖表",
+    ara: "مخطط محفوظ",
+    ind: "Grafik Tersimpan",
   },
   "Top {top} {source} by {metric} for {cohort}.": {
     eng: "Top {top} {source} by {metric} for {cohort}.",
@@ -629,6 +701,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "{cohort} için {metric} göre ilk {top} {source}.",
     zhs: "{cohort} 的 {source} 按 {metric} 排序的前 {top} 名。",
     zht: "{cohort} 的 {source} 按 {metric} 排序的前 {top} 名。",
+    ara: "أفضل {top} من {source} حسب {metric} لفئة {cohort}.",
+    ind: "Top {top} {source} menurut {metric} untuk {cohort}.",
   },
   "Saved by": {
     eng: "Saved by",
@@ -646,6 +720,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Kaydeden",
     zhs: "保存者",
     zht: "儲存者",
+    ara: "حفظه",
+    ind: "Disimpan oleh",
   },
   "Open in chart builder": {
     eng: "Open in chart builder",
@@ -663,6 +739,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Grafik oluşturucuda aç",
     zhs: "在图表构建器中打开",
     zht: "在圖表建構器中開啟",
+    ara: "فتح في منشئ المخططات",
+    ind: "Buka di pembuat grafik",
   },
   "This chart is private. Only you can see it.": {
     eng: "This chart is private. Only you can see it.",
@@ -680,6 +758,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Bu grafik özel. Sadece siz görebilirsiniz.",
     zhs: "此图表为私密，仅你可以查看。",
     zht: "此圖表為私密，僅你可以查看。",
+    ara: "هذا المخطط خاص. أنت فقط من يستطيع رؤيته.",
+    ind: "Grafik ini pribadi. Hanya kamu yang bisa melihatnya.",
   },
   "This chart does not exist or is private.": {
     eng: "This chart does not exist or is private.",
@@ -697,6 +777,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Bu grafik yok veya özel.",
     zhs: "该图表不存在或为私密。",
     zht: "該圖表不存在或為私密。",
+    ara: "هذا المخطط غير موجود أو خاص.",
+    ind: "Grafik ini tidak ada atau bersifat pribadi.",
   },
   "My charts": {
     eng: "My charts",
@@ -714,6 +796,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Grafiklerim",
     zhs: "我的图表",
     zht: "我的圖表",
+    ara: "مخططاتي",
+    ind: "Grafik saya",
   },
   "Build a chart in the": {
     eng: "Build a chart in the",
@@ -731,6 +815,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Şurada bir grafik oluşturun:",
     zhs: "在",
     zht: "在",
+    ara: "أنشئ مخططًا في",
+    ind: "Buat grafik di",
   },
   "Include upgraded cards": {
     eng: "Include upgraded cards",
@@ -748,6 +834,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Yükseltilmiş kartları dahil et",
     zhs: "包含升级卡",
     zht: "包含升級卡",
+    ara: "تضمين البطاقات المرقّاة",
+    ind: "Sertakan kartu yang ditingkatkan",
   },
   "Cohort: {cohort}": {
     eng: "Cohort: {cohort}",
@@ -765,6 +853,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Kohort: {cohort}",
     zhs: "队列：{cohort}",
     zht: "佇列：{cohort}",
+    ara: "الفئة: {cohort}",
+    ind: "Kohort: {cohort}",
   },
   mode: {
     eng: "mode",
@@ -782,6 +872,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "modu",
     zhs: "模式",
     zht: "模式",
+    ara: "الوضع",
+    ind: "mode",
   },
   "Win rate": {
     eng: "Win rate",
@@ -799,6 +891,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Kazanma oranı",
     zhs: "胜率",
     zht: "勝率",
+    ara: "معدل الفوز",
+    ind: "Tingkat kemenangan",
   },
   Lift: {
     eng: "Lift",
@@ -816,6 +910,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Kaldıraç",
     zhs: "提升度",
     zht: "提升度",
+    ara: "رفع",
+    ind: "Angkat",
   },
   "Codex Elo": {
     eng: "Codex Elo",
@@ -833,6 +929,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Kodeks Elo",
     zhs: "法典 Elo",
     zht: "法典 Elo",
+    ara: "Codex Elo",
+    ind: "Codex Elo",
   },
   "Pick rate": {
     eng: "Pick rate",
@@ -850,6 +948,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Seçim oranı",
     zhs: "选取率",
     zht: "選取率",
+    ara: "معدل الاختيار",
+    ind: "Tingkat pilih",
   },
   "Hold rate": {
     eng: "Hold rate",
@@ -867,6 +967,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Tutma oranı",
     zhs: "保留率",
     zht: "保留率",
+    ara: "معدل الحمل",
+    ind: "Tingkat pegang",
   },
   Picks: {
     eng: "Picks",
@@ -884,6 +986,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Seçimler",
     zhs: "选取数",
     zht: "選取數",
+    ara: "الاختيارات",
+    ind: "Pilihan",
   },
   "Codex Score": {
     eng: "Codex Score",
@@ -901,6 +1005,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Kodeks Puanı",
     zhs: "法典评分",
     zht: "法典評分",
+    ara: "Codex Score",
+    ind: "Codex Score",
   },
   "Buy rate": {
     eng: "Buy rate",
@@ -918,6 +1024,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Satın alma oranı",
     zhs: "购买率",
     zht: "購買率",
+    ara: "معدل الشراء",
+    ind: "Tingkat beli",
   },
   Share: {
     eng: "Share",
@@ -935,6 +1043,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Pay",
     zhs: "占比",
     zht: "佔比",
+    ara: "الحصة",
+    ind: "Porsi",
   },
   "Used rate": {
     eng: "Used rate",
@@ -952,6 +1062,8 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "Kullanım oranı",
     zhs: "使用率",
     zht: "使用率",
+    ara: "معدل الاستخدام",
+    ind: "Tingkat pakai",
   },
   "and save it here to share it.": {
     eng: "and save it here to share it.",
@@ -969,5 +1081,7 @@ export const X9T: Record<string, Record<string, string>> = {
     tur: "kaydedin ve buradan paylaşın.",
     zhs: "构建图表并保存在这里以分享。",
     zht: "建構圖表並儲存在這裡以分享。",
+    ara: "واحفظه هنا لمشاركته.",
+    ind: "dan simpan di sini untuk membagikannya.",
   },
 };
