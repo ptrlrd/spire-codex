@@ -18,8 +18,9 @@ sys.path.insert(0, "/app")
 
 from app.services import lake_stats
 from app.services import run_entity_stats as res
+from app.services.official_content import official_characters
 
-OFFICIAL = {"IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT"}
+OFFICIAL = official_characters()
 
 
 def main() -> None:

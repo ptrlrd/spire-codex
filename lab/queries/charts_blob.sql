@@ -4,7 +4,7 @@ CREATE OR REPLACE TEMP VIEW eligible AS
 SELECT r.* FROM read_parquet('/lake/runs.parquet') r
 ANTI JOIN read_parquet('/lake/excluded.parquet') x ON r.run_hash = x.run_hash
 WHERE r.ascension BETWEEN 0 AND 10
-  AND r.character IN ('IRONCLAD','SILENT','DEFECT','NECROBINDER','REGENT');
+  AND r.character IN ('IRONCLAD','SILENT','DEFECT','NECROBINDER','REGENT','FOOL');
 
 -- hp-trajectory: avg % of max HP per floor, wins vs losses (player 1).
 SELECT fe.floor_idx AS floor, e.win,

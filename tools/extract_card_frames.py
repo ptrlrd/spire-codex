@@ -73,6 +73,7 @@ FRAME_COLORS = {
     "defect": (0.55, 0.9, 1.0),
     "necrobinder": (0.965, 0.55, 1.2),
     "regent": (0.12, 1.5, 1.2),
+    "fool": (0.16, 0.4, 1.3),
     "colorless": (1.0, 0.0, 1.2),
     "curse": (0.85, 0.05, 0.55),
     "quest": (1.0, 1.0, 1.0),
@@ -202,8 +203,11 @@ def main() -> int:
 
     # Energy orbs: already colored per character, just slice.
     for char in ["ironclad", "silent", "defect", "necrobinder", "regent",
-                 "colorless", "quest"]:
+                 "fool", "colorless", "quest"]:
         orb = slice_piece(f"energy_{char}")
+        loose = atlas_dir.parent / "packed" / "energy_icons" / f"energy_{char}.png"
+        if orb is None and loose.exists():
+            orb = Image.open(loose).convert("RGBA").resize((74, 74), Image.LANCZOS)
         if orb is not None:
             save(orb, f"energy_{char}")
             made += 1
