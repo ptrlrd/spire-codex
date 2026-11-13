@@ -1,4 +1,4 @@
-"""Version listing API endpoint — returns available data versions (beta only)."""
+"""Version listing API endpoint."""
 
 from fastapi import APIRouter
 
@@ -9,5 +9,11 @@ router = APIRouter(prefix="/api/versions", tags=["Versions"])
 
 @router.get("")
 def list_versions():
-    """Return available data versions (e.g. v0.102.0, v0.103.0)."""
+    """Game versions the data endpoints can serve, newest first.
+
+    Pass one as `?version=` on any game data endpoint (cards, relics,
+    potions, monsters, events, powers and the rest of the catalog) to get
+    the data as it was on that version, for example
+    `/api/cards?version=v0.110.0` or `/api/cards/SCARE?version=v0.109.1`.
+    A version that is not in this list returns 404."""
     return get_available_versions()

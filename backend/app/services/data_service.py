@@ -2,7 +2,6 @@
 
 import json
 import os
-import re
 import time
 from pathlib import Path
 from functools import lru_cache
@@ -675,31 +674,18 @@ def count_images() -> int:
 
 
 def get_available_versions() -> list[dict]:
-    """Scan DATA_DIR for versioned subdirectories (v0.102.0, v0.103.0, etc.)."""
-    versions = []
+    """Every version a `?version=` request can serve, newest first.
+    `is_latest` marks the main catalog's version when the data tree is
+    versioned, `is_beta` the current beta."""
     latest_target = None
     latest_link = DATA_DIR / "latest"
     if latest_link.is_symlink():
         latest_target = Path(os.readlink(latest_link)).name
-
-    def _version_key(d: Path) -> tuple:
-        """Parse version string into tuple for proper numeric sorting."""
-        m = re.match(r"^v?(\d+)\.(\d+)(?:\.(\d+))?", d.name)
-        if m:
-            return (int(m.group(1)), int(m.group(2)), int(m.group(3) or 0))
-        return (0, 0, 0)
-
-    for d in sorted(DATA_DIR.iterdir(), key=_version_key, reverse=True):
-        if d.is_dir() and re.match(r"^v?\d+\.\d+", d.name):
-            # Verify it has at least an eng/ subdirectory
-            if (d / "eng").is_dir():
-                versions.append(
-                    {
-                        "version": d.name,
-                        "is_latest": d.name == latest_target,
-                    }
-                )
-    return versions
+    beta = get_beta_version()
+    return [
+        {"version": v, "is_latest": v == latest_target, "is_beta": v == beta}
+        for v in list_data_versions()
+    ]
 
 
 def get_stats(lang: str = DEFAULT_LANG) -> dict:

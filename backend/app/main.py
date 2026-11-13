@@ -97,6 +97,7 @@ from .services.data_service import (
     current_channel,
     current_version,
     get_stats,
+    list_data_versions,
     load_translation_maps,
 )
 from .dependencies import get_lang, VALID_LANGUAGES, LANGUAGE_NAMES
@@ -313,6 +314,46 @@ def _start_mentions_poller() -> None:
 _VERSION_RE = re.compile(r"^v?\d+\.\d+")
 
 
+_CATALOG_PREFIXES = tuple(
+    f"/api/{name}"
+    for name in (
+        "achievements",
+        "acts",
+        "afflictions",
+        "ancient-pools",
+        "ascensions",
+        "badges",
+        "cards",
+        "characters",
+        "enchantments",
+        "encounters",
+        "epochs",
+        "events",
+        "game-modes",
+        "glossary",
+        "intents",
+        "keywords",
+        "localizations",
+        "mechanics",
+        "merchant",
+        "modifiers",
+        "monsters",
+        "orbs",
+        "potions",
+        "powers",
+        "relics",
+        "stats",
+        "stories",
+        "translations",
+        "unlocks",
+    )
+)
+
+
+def _is_catalog_path(path: str) -> bool:
+    return any(path == p or path.startswith(p + "/") for p in _CATALOG_PREFIXES)
+
+
 class VersionMiddleware(BaseHTTPMiddleware):
     """Set the data_service contextvars for the request: the legacy
     ?version= selector, and the content channel.
@@ -325,6 +366,16 @@ class VersionMiddleware(BaseHTTPMiddleware):
 
     async def dispatch(self, request: Request, call_next):
         version = request.query_params.get("version")
+        if (
+            version
+            and version != "latest"
+            and _is_catalog_path(request.url.path)
+            and version not in list_data_versions()
+        ):
+            return JSONResponse(
+                {"detail": "Unknown version. See /api/versions for the list."},
+                status_code=404,
+            )
         if version and version != "latest" and _VERSION_RE.match(version):
             token = current_version.set(version)
         else:
