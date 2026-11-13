@@ -46,6 +46,7 @@ Behaviour notes:
     requires the `changelog-edit-approved` label on the PR.
 """
 import json
+import re
 import sys
 import subprocess
 import tempfile
@@ -377,6 +378,32 @@ def print_markdown(results: dict, old_label: str, new_label: str):
     print(f"---\n**Summary:** +{total_added} added, -{total_removed} removed, ~{total_changed} changed")
 
 
+NEWS_DIR = BASE_DIR / "data" / "news"
+STEAM_NEWS_URL = f"https://store.steampowered.com/news/app/{STEAM_APP_ID}/view/"
+
+
+def official_patch_notes(game_version: str, news_dir: Path | None = None) -> dict:
+    """The Steam patch notes post for this version from the news archive, as
+    the changelog's steam_url and notes. Empty when the archive has none."""
+    version = game_version.lstrip("vV")
+    pattern = re.compile(rf"patch notes\b.*\bv?{re.escape(version)}(?![\d.])", re.I)
+    for path in sorted((news_dir or NEWS_DIR).glob("*.json")):
+        if path.name == "index.json":
+            continue
+        try:
+            post = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        if not isinstance(post, dict) or not post.get("contents"):
+            continue
+        if pattern.search(str(post.get("title") or "")):
+            return {
+                "steam_url": f"{STEAM_NEWS_URL}{post['gid']}",
+                "notes": post["contents"],
+            }
+    return {}
+
+
 def build_json_output(results: dict, game_version: str, build_id: str, date: str, title: str, old_label: str, new_label: str) -> dict:
     """Build a JSON-serializable changelog object."""
     categories = []
@@ -552,11 +579,19 @@ def main():
                 try:
                     with open(out_path, "r", encoding="utf-8") as f:
                         existing = json.load(f)
-                    for preserved_key in ("features", "fixes", "api_changes"):
+                    for preserved_key in (
+                        "features",
+                        "fixes",
+                        "api_changes",
+                        "steam_url",
+                        "notes",
+                    ):
                         if preserved_key in existing and preserved_key not in changelog:
                             changelog[preserved_key] = existing[preserved_key]
                 except Exception:
                     pass
+            if "notes" not in changelog:
+                changelog.update(official_patch_notes(game_version))
             with open(out_path, "w", encoding="utf-8") as f:
                 json.dump(changelog, f, indent=2, ensure_ascii=False)
             print(f"Saved changelog to {out_path}")
