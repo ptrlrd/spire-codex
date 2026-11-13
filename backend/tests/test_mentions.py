@@ -706,9 +706,10 @@ def test_admin_bulk_updates_ids(env):
 
 
 def test_admin_summary_shape_and_buckets(env):
-    _seed(env, _id="s1", groups=["brand"])
-    _seed(env, _id="s2", groups=["brand", "community"])
-    _seed(env, _id="s3", status="replied", groups=["competitor"])
+    now = mentions._utcnow()
+    _seed(env, _id="s1", groups=["brand"], created_at=now)
+    _seed(env, _id="s2", groups=["brand", "community"], created_at=now)
+    _seed(env, _id="s3", status="replied", groups=["competitor"], created_at=now)
     body = client.get("/api/admin/mentions/summary?days=7").json()
     assert body["counts"]["status"]["new"] == 2
     assert body["counts"]["status"]["replied"] == 1
