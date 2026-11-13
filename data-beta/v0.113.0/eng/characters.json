@@ -471,40 +471,103 @@
     "color": "yellow",
     "dialogue_color": "590700",
     "quotes": {
-      "event_death_prevention": "TODO",
-      "gold_monologue": "TODO",
-      "aroma_principle": "TODO",
       "banter_alive": "[i]Hums wistfully...[/i]",
       "banter_dead": "...",
       "unlock_text": "Play a single run with [blue]{Prerequisite}[/blue] to unlock this character.",
       "cards_modifier_title": "Fool Cards",
       "cards_modifier_description": "Fool cards will now appear in rewards and shops."
     },
-    "dialogues": [
+    "dialogues": null,
+    "image_url": "/static/images/characters/char_select_fool.webp",
+    "animation_url": null,
+    "pronoun_guesses": [
       {
-        "ancient": "THE_ARCHITECT",
-        "ancient_name": "The Architect",
-        "lines": [
-          {
-            "order": 0,
-            "speaker": "ancient",
-            "text": "TEMP: Who are you supposed to be?"
-          },
-          {
-            "order": 1,
-            "speaker": "char",
-            "text": "TEMP: ..."
-          },
-          {
-            "order": 2,
-            "speaker": "ancient",
-            "text": "TEMP: Come back again later."
-          }
-        ]
+        "speaker_id": "DARV",
+        "speaker_name": "Darv",
+        "guess": "feminine",
+        "subject": "she",
+        "object": "her",
+        "possessive": "her"
+      },
+      {
+        "speaker_id": "NEOW",
+        "speaker_name": "Neow",
+        "guess": "it",
+        "subject": "it",
+        "object": "it",
+        "possessive": "its"
+      },
+      {
+        "speaker_id": "NONUPEIPE",
+        "speaker_name": "Nonupeipe",
+        "guess": "feminine",
+        "subject": "she",
+        "object": "her",
+        "possessive": "her"
+      },
+      {
+        "speaker_id": "OROBAS",
+        "speaker_name": "Orobas",
+        "guess": "it",
+        "subject": "it",
+        "object": "it",
+        "possessive": "its"
+      },
+      {
+        "speaker_id": "PAEL",
+        "speaker_name": "Pael",
+        "guess": "neutral",
+        "subject": "they",
+        "object": "them",
+        "possessive": "their"
+      },
+      {
+        "speaker_id": "REFLECTIONS",
+        "speaker_name": "Reflections snoitcelfeR",
+        "guess": "it",
+        "subject": "it",
+        "object": "it",
+        "possessive": "its"
+      },
+      {
+        "speaker_id": "TANX",
+        "speaker_name": "Tanx",
+        "guess": "masculine",
+        "subject": "he",
+        "object": "him",
+        "possessive": "his"
+      },
+      {
+        "speaker_id": "TEZCATARA",
+        "speaker_name": "Tezcatara",
+        "guess": "masculine",
+        "subject": "he",
+        "object": "him",
+        "possessive": "his"
+      },
+      {
+        "speaker_id": "THE_ARCHITECT",
+        "speaker_name": "The Architect",
+        "guess": "it",
+        "subject": "it",
+        "object": "it",
+        "possessive": "its"
+      },
+      {
+        "speaker_id": "VAKUU",
+        "speaker_name": "Vakuu",
+        "guess": "neutral",
+        "subject": "they",
+        "object": "them",
+        "possessive": "their"
       }
     ],
-    "image_url": "/static/images/characters/char_select_fool.webp",
-    "animation_url": null
+    "pronoun_default": {
+      "guess": "neutral",
+      "subject": "they",
+      "object": "them",
+      "possessive": "their"
+    }
   },
   {
     "id": "IRONCLAD",

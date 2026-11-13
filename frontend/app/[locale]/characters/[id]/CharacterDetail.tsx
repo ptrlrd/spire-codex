@@ -19,6 +19,7 @@ import FullCardGrid from "@/app/components/FullCardGrid";
 import EntityProse from "@/app/components/EntityProse";
 import { comparePairs, isCompareCharacter } from "@/lib/link-targets";
 import { needsMergedCatalog } from "@/lib/character-order";
+import { groupPronounGuesses } from "@/lib/pronoun-guesses";
 import "@/app/card-revamp.css";
 import "@/app/character-extra.css";
 
@@ -394,6 +395,8 @@ export default function CharacterDetail({
   const hasQuotes =
     !!char.quotes && Object.keys(char.quotes).some((k) => k in QUOTE_LABELS);
   const hasDialogues = !!char.dialogues && char.dialogues.length > 0;
+  const pronounGroups = groupPronounGuesses(char.pronoun_guesses);
+  const hasPronouns = pronounGroups.length > 0;
 
   const tocItems: { id: string; label: string }[] = [
     { id: "overview", label: t("Overview") },
@@ -402,6 +405,7 @@ export default function CharacterDetail({
     ...(hasCommunity ? [{ id: "community", label: t("Community") }] : []),
     ...(hasAllCards ? [{ id: "cards", label: t("Cards") }] : []),
     ...(hasPoolRelics ? [{ id: "relics", label: t("Relics") }] : []),
+    ...(hasPronouns ? [{ id: "pronouns", label: t("Nobody knows") }] : []),
     ...(hasQuotes ? [{ id: "quotes", label: t("Quotes") }] : []),
     ...(hasDialogues ? [{ id: "dialogue", label: t("Dialogue") }] : []),
   ];
@@ -749,6 +753,52 @@ export default function CharacterDetail({
                   ))}
                 </div>
               )}
+            </section>
+          )}
+
+          {hasPronouns && (
+            <section id="pronouns">
+              <h2>{t("Nobody knows")}</h2>
+              <p className="quote-text mb-4">
+                {t(
+                  "{name} is a tree person wearing a lot of clothes, so everyone just guesses. Each Ancient settles on a different pronoun.",
+                  { name: char.name },
+                )}
+              </p>
+              <div className="quotes">
+                {pronounGroups.map((group) => (
+                  <div key={group.guess} className="quote">
+                    <div className="quote-label">{group.subject}</div>
+                    <div className="pronoun-speakers">
+                      {group.speakers.map((speaker, i) => (
+                        <span key={speaker.speaker_id}>
+                          {i > 0 && ", "}
+                          <Link
+                            href={`/events/${speaker.speaker_id.toLowerCase()}`}
+                          >
+                            {speaker.speaker_name}
+                          </Link>
+                        </span>
+                      ))}
+                      {group.guess === char.pronoun_default?.guess &&
+                        ` · ${t("Everyone else")}`}
+                    </div>
+                  </div>
+                ))}
+                {char.pronoun_default?.subject &&
+                  !pronounGroups.some(
+                    (g) => g.guess === char.pronoun_default?.guess,
+                  ) && (
+                    <div className="quote">
+                      <div className="quote-label">
+                        {char.pronoun_default.subject}
+                      </div>
+                      <div className="pronoun-speakers">
+                        {t("Everyone else")}
+                      </div>
+                    </div>
+                  )}
+              </div>
             </section>
           )}
 

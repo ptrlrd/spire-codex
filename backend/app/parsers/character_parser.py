@@ -13,6 +13,11 @@ from parser_paths import (
 )
 
 CHARS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.Characters"
+EVENTS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.Events"
+
+_GUESS_OVERRIDE = re.compile(
+    r"FoolPronounGuess\s+FoolPronounGuess\s*=>\s*FoolPronounGuess\.(\w+)"
+)
 
 
 def class_name_to_id(name: str) -> str:
@@ -37,6 +42,60 @@ def load_ancients_localization(loc_dir: Path) -> dict:
     return {}
 
 
+def load_events_localization(loc_dir: Path) -> dict:
+    loc_file = loc_dir / "events.json"
+    if loc_file.exists():
+        with open(loc_file, "r", encoding="utf-8") as f:
+            return json.load(f)
+    return {}
+
+
+def _is_placeholder(text: str) -> bool:
+    """Text the game ships as a stand-in until the real line is written."""
+    stripped = (text or "").strip()
+    return stripped.upper() == "TODO" or stripped.startswith("TEMP:")
+
+
+def _pronouns(localization: dict, char_id: str, guess: str) -> dict:
+    base = f"{char_id}.guess.{guess}"
+    return {
+        "guess": guess,
+        "subject": localization.get(f"{base}.pronounSubject"),
+        "object": localization.get(f"{base}.pronounObject"),
+        "possessive": localization.get(f"{base}.possessiveAdjective"),
+    }
+
+
+def parse_pronoun_guesses(
+    localization: dict,
+    char_id: str,
+    speaker_titles: dict,
+    events_dir: Path | None = None,
+) -> tuple[list[dict], dict] | None:
+    """Which pronoun each Ancient or event narrator uses for a character the
+    game leaves unguessed. None when the character has no guess table."""
+    if not any(key.startswith(f"{char_id}.guess.") for key in localization):
+        return None
+    events_dir = events_dir or EVENTS_DIR
+    guesses = []
+    if events_dir.is_dir():
+        for filepath in sorted(events_dir.glob("*.cs")):
+            match = _GUESS_OVERRIDE.search(filepath.read_text(encoding="utf-8"))
+            if not match:
+                continue
+            speaker_id = class_name_to_id(filepath.stem)
+            guesses.append(
+                {
+                    "speaker_id": speaker_id,
+                    "speaker_name": speaker_titles.get(f"{speaker_id}.title")
+                    or speaker_id.replace("_", " ").title(),
+                    **_pronouns(localization, char_id, match.group(1).lower()),
+                }
+            )
+    guesses.sort(key=lambda g: g["speaker_name"])
+    return guesses, _pronouns(localization, char_id, "neutral")
+
+
 def parse_ancient_dialogues(ancients_loc: dict, char_id: str) -> list[dict]:
     """Parse NPC dialogue trees for a specific character."""
     dialogues = []
@@ -53,7 +112,7 @@ def parse_ancient_dialogues(ancients_loc: dict, char_id: str) -> list[dict]:
         is_random = bool(m.group(4))
         speaker_type = m.group(5)  # "ancient", "char", "next"
 
-        if speaker_type == "next":
+        if speaker_type == "next" or _is_placeholder(value):
             continue
 
         convo_key = f"{ancient}.{convo_idx}"
@@ -88,7 +147,10 @@ def parse_ancient_dialogues(ancients_loc: dict, char_id: str) -> list[dict]:
 
 
 def parse_character(
-    filepath: Path, localization: dict, ancients_loc: dict
+    filepath: Path,
+    localization: dict,
+    ancients_loc: dict,
+    events_loc: dict | None = None,
 ) -> dict | None:
     content = filepath.read_text(encoding="utf-8")
     class_name = filepath.stem
@@ -172,13 +234,13 @@ def parse_character(
     ]
     for field_name, loc_key in quote_keys:
         val = localization.get(f"{char_id}.{loc_key}")
-        if val:
+        if val and not _is_placeholder(val):
             quotes[field_name] = val
 
     # Ancient NPC dialogues
     dialogues = parse_ancient_dialogues(ancients_loc, char_id)
 
-    return {
+    character = {
         "id": char_id,
         "name": title,
         "description": description,
@@ -203,14 +265,21 @@ def parse_character(
             or resolve_animation_url("characters", f"{char_id.lower()}_idle")
         ),
     }
+    guessed = parse_pronoun_guesses(
+        localization, char_id, {**(events_loc or {}), **ancients_loc}
+    )
+    if guessed:
+        character["pronoun_guesses"], character["pronoun_default"] = guessed
+    return character
 
 
 def parse_all_characters(loc_dir: Path) -> list[dict]:
     localization = load_localization(loc_dir)
     ancients_loc = load_ancients_localization(loc_dir)
+    events_loc = load_events_localization(loc_dir)
     characters = []
     for filepath in sorted(CHARS_DIR.glob("*.cs")):
-        char = parse_character(filepath, localization, ancients_loc)
+        char = parse_character(filepath, localization, ancients_loc, events_loc)
         if char:
             characters.append(char)
     return characters
