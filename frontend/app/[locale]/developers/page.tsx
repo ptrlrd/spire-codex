@@ -1176,11 +1176,11 @@ export default async function DevelopersPage({ params }: Props) {
           <p className="text-sm text-[var(--text-secondary)] mb-2">
             {t("Add this query parameter to any endpoint:")}{" "}
             <code className="text-[var(--accent-gold)]">?lang=jpn</code>.{" "}
-            {t("15 languages supported:")}
+            {t("17 languages supported:")}
           </p>
           <p className="text-xs text-[var(--text-muted)]">
-            eng, deu, esp, fra, ita, jpn, kor, pol, ptb, rus, spa, tha, tur,
-            zhs, zht
+            eng, ara, deu, esp, fra, ind, ita, jpn, kor, pol, ptb, rus, spa,
+            tha, tur, zhs, zht
           </p>
         </div>
 

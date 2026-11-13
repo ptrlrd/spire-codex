@@ -16,6 +16,8 @@ export const X9M: Record<string, Record<string, string>> = {
     tur: "Aboneler",
     zhs: "订阅者",
     zht: "訂閱者",
+    ara: "المشتركون",
+    ind: "Pelanggan",
   },
   "Everyone backing the site month after month through Overwolf, Patreon or a Ko-fi membership.":
     {
@@ -34,6 +36,8 @@ export const X9M: Record<string, Record<string, string>> = {
       tur: "Overwolf, Patreon veya Ko-fi üyeliğiyle siteyi her ay destekleyen herkes.",
       zhs: "通过 Overwolf、Patreon 或 Ko-fi 会员每月支持本站的每一位。",
       zht: "透過 Overwolf、Patreon 或 Ko-fi 會員每月支持本站的每一位。",
+      ara: "كل من يدعم الموقع شهرًا بعد شهر عبر Overwolf أو Patreon أو عضوية Ko-fi.",
+      ind: "Semua yang mendukung situs ini bulan demi bulan lewat Overwolf, Patreon, atau keanggotaan Ko-fi.",
     },
   "You're a supporter, thank you. Ads are off for you.": {
     eng: "You're a supporter, thank you. Ads are off for you.",
@@ -51,6 +55,8 @@ export const X9M: Record<string, Record<string, string>> = {
     tur: "Destekçisiniz, teşekkürler. Reklamlar sizin için kapalı.",
     zhs: "你是支持者，谢谢。已为你关闭广告。",
     zht: "你是支持者，謝謝。已為你關閉廣告。",
+    ara: "أنت من الداعمين، شكرًا لك. الإعلانات متوقفة لديك.",
+    ind: "Kamu seorang pendukung, terima kasih. Iklan dimatikan untukmu.",
   },
   "Supporters see no ads on the site.": {
     eng: "Supporters see no ads on the site.",
@@ -68,6 +74,8 @@ export const X9M: Record<string, Record<string, string>> = {
     tur: "Destekçiler sitede reklam görmez.",
     zhs: "支持者在本站不会看到广告。",
     zht: "支持者在本站不會看到廣告。",
+    ara: "الداعمون لا يرون إعلانات في الموقع.",
+    ind: "Pendukung tidak melihat iklan di situs.",
   },
   "Subscribe on Patreon, become a monthly Ko-fi member, or subscribe through the Overwolf overlay.":
     {
@@ -86,6 +94,8 @@ export const X9M: Record<string, Record<string, string>> = {
       tur: "Patreon'da abone olun, aylık Ko-fi üyesi olun ya da Overwolf katmanından abone olun.",
       zhs: "在 Patreon 订阅、成为 Ko-fi 月度会员，或通过 Overwolf 悬浮层订阅。",
       zht: "在 Patreon 訂閱、成為 Ko-fi 每月會員，或透過 Overwolf 覆蓋層訂閱。",
+      ara: "اشترك على Patreon، أو كن عضوًا شهريًا في Ko-fi، أو اشترك عبر واجهة Overwolf.",
+      ind: "Berlangganan di Patreon, jadi anggota bulanan Ko-fi, atau berlangganan lewat overlay Overwolf.",
     },
   "Thanks for your Overwolf Common membership. You can list your name on the Thank You page.":
     {
@@ -104,6 +114,8 @@ export const X9M: Record<string, Record<string, string>> = {
       tur: "Overwolf Common üyeliğin için teşekkürler. Adını Teşekkür sayfasında listeleyebilirsin.",
       zhs: "感谢你的 Overwolf Common 会员。你可以在致谢页面列出你的名字。",
       zht: "感謝你的 Overwolf Common 會員。你可以在致謝頁面列出你的名字。",
+      ara: "شكرًا على عضويتك العادية في Overwolf. يمكنك إدراج اسمك في صفحة الشكر.",
+      ind: "Terima kasih atas keanggotaan Biasa Overwolf kamu. Kamu bisa mencantumkan namamu di halaman Terima Kasih.",
     },
   "List me on the Thank You page": {
     eng: "List me on the Thank You page",
@@ -121,6 +133,8 @@ export const X9M: Record<string, Record<string, string>> = {
     tur: "Beni Teşekkür sayfasında listele",
     zhs: "在致谢页面列出我的名字",
     zht: "在致謝頁面列出我的名字",
+    ara: "أدرج اسمي في صفحة الشكر",
+    ind: "Cantumkan saya di halaman Terima Kasih",
   },
   "Your name is now on the Thank You page.": {
     eng: "Your name is now on the Thank You page.",
@@ -138,6 +152,8 @@ export const X9M: Record<string, Record<string, string>> = {
     tur: "Adınız artık Teşekkür sayfasında.",
     zhs: "你的名字已显示在致谢页面。",
     zht: "你的名字已顯示在致謝頁面。",
+    ara: "اسمك يظهر الآن في صفحة الشكر.",
+    ind: "Namamu sekarang tercantum di halaman Terima Kasih.",
   },
   "Your name is hidden from the Thank You page.": {
     eng: "Your name is hidden from the Thank You page.",
@@ -155,6 +171,8 @@ export const X9M: Record<string, Record<string, string>> = {
     tur: "Adınız Teşekkür sayfasında gizlendi.",
     zhs: "你的名字已从致谢页面隐藏。",
     zht: "你的名字已從致謝頁面隱藏。",
+    ara: "اسمك مخفي من صفحة الشكر.",
+    ind: "Namamu disembunyikan dari halaman Terima Kasih.",
   },
   "Common Subscriber": {
     eng: "Common Subscriber",
@@ -172,6 +190,8 @@ export const X9M: Record<string, Record<string, string>> = {
     tur: "Sıradan abone",
     zhs: "普通订阅者",
     zht: "普通訂閱者",
+    ara: "مشترك عادي",
+    ind: "Pelanggan Biasa",
   },
   "Rare Subscriber": {
     eng: "Rare Subscriber",
@@ -189,6 +209,8 @@ export const X9M: Record<string, Record<string, string>> = {
     tur: "Nadir abone",
     zhs: "稀有订阅者",
     zht: "稀有訂閱者",
+    ara: "مشترك نادر",
+    ind: "Pelanggan Langka",
   },
   "Ancient Subscriber": {
     eng: "Ancient Subscriber",
@@ -206,5 +228,7 @@ export const X9M: Record<string, Record<string, string>> = {
     tur: "Kadim abone",
     zhs: "远古订阅者",
     zht: "遠古訂閱者",
+    ara: "مشترك عتيق",
+    ind: "Pelanggan Ancient",
   },
 };

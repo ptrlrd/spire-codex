@@ -39,8 +39,8 @@ from concurrent.futures import ThreadPoolExecutor
 
 UA = "SpireCodexWarmer/1.0 (+https://spire-codex.com)"
 LANG_PREFIXES = {
-    "eng", "deu", "esp", "fra", "ita", "jpn", "kor", "pol", "ptb",
-    "rus", "spa", "tha", "tur", "zhs", "zht",
+    "eng", "ara", "deu", "esp", "fra", "ind", "ita", "jpn", "kor", "pol",
+    "ptb", "rus", "spa", "tha", "tur", "zhs", "zht",
 }
 # Detail-page route -> API list endpoint. The id field is "id" unless noted.
 ENTITY_SOURCES: dict[str, str] = {

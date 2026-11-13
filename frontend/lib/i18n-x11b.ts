@@ -15,6 +15,8 @@ export const X11B: Record<string, Record<string, string>> = {
     tur: "En az bu kadar",
     zhs: "至少这么多",
     zht: "至少這麼多",
+    ara: "هذا العدد على الأقل",
+    ind: "Minimal sebanyak ini",
   },
   "By floor": {
     eng: "By floor",
@@ -32,6 +34,8 @@ export const X11B: Record<string, Record<string, string>> = {
     tur: "Bu kata kadar",
     zhs: "截至楼层",
     zht: "截至樓層",
+    ara: "حسب الطابق",
+    ind: "Per lantai",
   },
   "by floor": {
     eng: "by floor",
@@ -49,6 +53,8 @@ export const X11B: Record<string, Record<string, string>> = {
     tur: "kata kadar",
     zhs: "截至楼层",
     zht: "截至樓層",
+    ara: "حسب الطابق",
+    ind: "per lantai",
   },
   Seat: {
     eng: "Seat",
@@ -66,6 +72,8 @@ export const X11B: Record<string, Record<string, string>> = {
     tur: "Koltuk",
     zhs: "座位",
     zht: "座位",
+    ara: "المقعد",
+    ind: "Kursi",
   },
   "Search recorded runs and predicted seeds for Neow offers, card rewards, relics, events, ancients, bosses and shop stock. Predictions assume a fully unlocked profile and no modifiers.":
     {
@@ -84,6 +92,8 @@ export const X11B: Record<string, Record<string, string>> = {
       tur: "Kayıtlı oyunlarda ve tahmin edilen seed'lerde Neow teklifleri, kart ödülleri, kalıntılar, etkinlikler, kadimler, boss'lar ve dükkan stoklarını ara. Tahminler, her şeyin açık olduğu ve değiştiricisiz bir profili varsayar.",
       zhs: "在已记录的对局和预测的种子中搜索涅奥的馈赠、卡牌奖励、遗物、事件、先古之民、Boss 和商店货品。预测以全解锁且无修正规则的档案为前提。",
       zht: "在已記錄的對局和預測的種子中搜尋涅奧的饋贈、卡牌獎勵、遺物、事件、遠古之民、頭目和商店貨品。預測以全解鎖且無修正規則的檔案為前提。",
+      ara: "ابحث في الجولات المسجلة والبذور المتوقعة عن عروض Neow ومكافآت البطاقات والآثار والأحداث والقدماء والزعماء ومخزون المتجر. تفترض التوقعات ملفًا مفتوحًا بالكامل ومن دون معدلات.",
+      ind: "Cari di perjalanan yang terekam dan benih prediksi untuk tawaran Neow, pilihan kartu, pusaka, event, ancient, bos, dan stok toko. Prediksi mengasumsikan profil yang terbuka penuh dan tanpa efek.",
     },
   "Main and beta hash seeds differently, so pick the version you play. Recorded matches appear before predictions. Predicted rewards and shops assume the displayed reward order.":
     {
@@ -102,6 +112,8 @@ export const X11B: Record<string, Record<string, string>> = {
       tur: "Main ve beta seed'leri farklı hesaplar, bu yüzden oynadığın sürümü seç. Kayıtlı eşleşmeler tahminlerden önce gelir. Tahmin edilen ödüller ve dükkanlar gösterilen ödül sırasını varsayar.",
       zhs: "主版本和测试版计算种子的方式不同，请选择你游玩的版本。已记录的匹配排在预测之前。预测的奖励和商店以所显示的奖励顺序为前提。",
       zht: "主版本和測試版計算種子的方式不同，請選擇你遊玩的版本。已記錄的符合結果排在預測之前。預測的獎勵和商店以所顯示的獎勵順序為前提。",
+      ara: "الإصدار الرئيسي وبيتا يحسبان البذور بطريقتين مختلفتين، فاختر الإصدار الذي تلعبه. تظهر التطابقات المسجلة قبل التوقعات. المكافآت والمتاجر المتوقعة تفترض ترتيب المكافآت المعروض.",
+      ind: "Utama dan beta mengolah benih dengan cara berbeda, jadi pilih versi yang kamu mainkan. Hasil yang terekam muncul sebelum prediksi. Hadiah dan toko prediksi mengasumsikan urutan hadiah yang ditampilkan.",
     },
   "any version": {
     eng: "any version",
@@ -119,6 +131,8 @@ export const X11B: Record<string, Record<string, string>> = {
     tur: "herhangi bir sürüm",
     zhs: "任意版本",
     zht: "任意版本",
+    ara: "أي إصدار",
+    ind: "versi apa pun",
   },
   Lobby: {
     eng: "Lobby",
@@ -136,6 +150,8 @@ export const X11B: Record<string, Record<string, string>> = {
     tur: "Lobi",
     zhs: "房间人数",
     zht: "房間人數",
+    ara: "الردهة",
+    ind: "Lobi",
   },
   "Add a Neow relic": {
     eng: "Add a Neow relic",
@@ -153,6 +169,8 @@ export const X11B: Record<string, Record<string, string>> = {
     tur: "Neow kalıntısı ekle",
     zhs: "添加涅奥遗物",
     zht: "新增涅奧遺物",
+    ara: "أضف أثرًا من Neow",
+    ind: "Tambah pusaka Neow",
   },
   "Add a card": {
     eng: "Add a card",
@@ -170,6 +188,8 @@ export const X11B: Record<string, Record<string, string>> = {
     tur: "Kart ekle",
     zhs: "添加卡牌",
     zht: "新增卡牌",
+    ara: "أضف بطاقة",
+    ind: "Tambah kartu",
   },
   "Add a relic": {
     eng: "Add a relic",
@@ -187,6 +207,8 @@ export const X11B: Record<string, Record<string, string>> = {
     tur: "Kalıntı ekle",
     zhs: "添加遗物",
     zht: "新增遺物",
+    ara: "أضف أثرًا",
+    ind: "Tambah pusaka",
   },
   "Add an event": {
     eng: "Add an event",
@@ -204,6 +226,8 @@ export const X11B: Record<string, Record<string, string>> = {
     tur: "Etkinlik ekle",
     zhs: "添加事件",
     zht: "新增事件",
+    ara: "أضف حدثًا",
+    ind: "Tambah event",
   },
   "Add a boss": {
     eng: "Add a boss",
@@ -221,6 +245,8 @@ export const X11B: Record<string, Record<string, string>> = {
     tur: "Boss ekle",
     zhs: "添加 Boss",
     zht: "新增頭目",
+    ara: "أضف زعيمًا",
+    ind: "Tambah bos",
   },
   "Add an elite": {
     eng: "Add an elite",
@@ -238,6 +264,8 @@ export const X11B: Record<string, Record<string, string>> = {
     tur: "Elit ekle",
     zhs: "添加精英",
     zht: "新增菁英",
+    ara: "أضف نخبة",
+    ind: "Tambah elit",
   },
   "Which ancient appears": {
     eng: "Which ancient appears",
@@ -255,6 +283,8 @@ export const X11B: Record<string, Record<string, string>> = {
     tur: "Hangi kadim beliriyor",
     zhs: "出现哪位先古之民",
     zht: "出現哪位遠古之民",
+    ara: "أي من القدماء يظهر",
+    ind: "Ancient mana yang muncul",
   },
   "Ancient offers": {
     eng: "Ancient offers",
@@ -272,6 +302,8 @@ export const X11B: Record<string, Record<string, string>> = {
     tur: "Kadim teklifleri",
     zhs: "先古之民的馈赠",
     zht: "遠古之民的饋贈",
+    ara: "عروض القدماء",
+    ind: "Tawaran ancient",
   },
   "Add an ancient relic": {
     eng: "Add an ancient relic",
@@ -289,6 +321,8 @@ export const X11B: Record<string, Record<string, string>> = {
     tur: "Kadim kalıntı ekle",
     zhs: "添加先古遗物",
     zht: "新增遠古遺物",
+    ara: "أضف أثرًا من القدماء",
+    ind: "Tambah pusaka ancient",
   },
   "Add something a shop sold": {
     eng: "Add something a shop sold",
@@ -306,6 +340,8 @@ export const X11B: Record<string, Record<string, string>> = {
     tur: "Bir dükkanın sattığı bir şeyi ekle",
     zhs: "添加商店出售过的物品",
     zht: "新增商店販售過的物品",
+    ara: "أضف شيئًا باعه متجر",
+    ind: "Tambah barang yang dijual toko",
   },
   "Searching...": {
     eng: "Searching...",
@@ -323,6 +359,8 @@ export const X11B: Record<string, Record<string, string>> = {
     tur: "Aranıyor...",
     zhs: "搜索中...",
     zht: "搜尋中...",
+    ara: "جارٍ البحث...",
+    ind: "Mencari...",
   },
   "stop after": {
     eng: "stop after",
@@ -340,6 +378,8 @@ export const X11B: Record<string, Record<string, string>> = {
     tur: "şu kadar sonuçta dur:",
     zhs: "结果上限",
     zht: "結果上限",
+    ara: "التوقف بعد",
+    ind: "berhenti setelah",
   },
   "Link copied": {
     eng: "Link copied",
@@ -357,6 +397,8 @@ export const X11B: Record<string, Record<string, string>> = {
     tur: "Bağlantı kopyalandı",
     zhs: "链接已复制",
     zht: "連結已複製",
+    ara: "تم نسخ الرابط",
+    ind: "Tautan disalin",
   },
   "Clear filters": {
     eng: "Clear filters",
@@ -374,6 +416,8 @@ export const X11B: Record<string, Record<string, string>> = {
     tur: "Filtreleri temizle",
     zhs: "清除筛选",
     zht: "清除篩選",
+    ara: "مسح الفلاتر",
+    ind: "Hapus filter",
   },
   "empty search": {
     eng: "empty search",
@@ -391,6 +435,8 @@ export const X11B: Record<string, Record<string, string>> = {
     tur: "boş arama",
     zhs: "空搜索",
     zht: "空白搜尋",
+    ara: "بحث فارغ",
+    ind: "pencarian kosong",
   },
   "The seed index is still building on this box, so this is the older run scan.":
     {
@@ -409,6 +455,8 @@ export const X11B: Record<string, Record<string, string>> = {
       tur: "Seed dizini bu sunucuda hâlâ oluşturuluyor, bu yüzden bu eski oyun taramasıdır.",
       zhs: "这台服务器上的种子索引仍在构建中，因此这是旧版的对局扫描结果。",
       zht: "這台伺服器上的種子索引仍在建立中，因此這是舊版的對局掃描結果。",
+      ara: "فهرس البذور ما زال قيد البناء على هذا الخادم، لذا هذا هو الفحص الأقدم للجولات.",
+      ind: "Indeks benih masih dibangun di server ini, jadi ini pemindaian perjalanan versi lama.",
     },
   "No played seed matches all of that yet. Loosen a filter.": {
     eng: "No played seed matches all of that yet. Loosen a filter.",
@@ -426,6 +474,8 @@ export const X11B: Record<string, Record<string, string>> = {
     tur: "Henüz oynanmış hiçbir seed bunların hepsiyle eşleşmiyor. Bir filtreyi gevşet.",
     zhs: "还没有已游玩的种子同时满足这些条件。请放宽某个筛选条件。",
     zht: "還沒有已遊玩的種子同時符合這些條件。請放寬某個篩選條件。",
+    ara: "لا توجد بعد بذرة ملعوبة تطابق كل ذلك. خفف أحد الفلاتر.",
+    ind: "Belum ada benih yang dimainkan yang cocok dengan semuanya. Longgarkan satu filter.",
   },
   "Copy seed": {
     eng: "Copy seed",
@@ -443,6 +493,8 @@ export const X11B: Record<string, Record<string, string>> = {
     tur: "Seed'i kopyala",
     zhs: "复制种子",
     zht: "複製種子",
+    ara: "نسخ البذرة",
+    ind: "Salin benih",
   },
   Predicted: {
     eng: "Predicted",
@@ -460,6 +512,8 @@ export const X11B: Record<string, Record<string, string>> = {
     tur: "Tahmin",
     zhs: "预测",
     zht: "預測",
+    ara: "متوقع",
+    ind: "Prediksi",
   },
   "Fully unlocked, no modifiers": {
     eng: "Fully unlocked, no modifiers",
@@ -477,6 +531,8 @@ export const X11B: Record<string, Record<string, string>> = {
     tur: "Her şey açık, değiştirici yok",
     zhs: "全解锁，无修正规则",
     zht: "全解鎖，無修正規則",
+    ara: "مفتوح بالكامل، من دون معدلات",
+    ind: "Terbuka penuh, tanpa efek",
   },
   "watch replay": {
     eng: "watch replay",
@@ -494,6 +550,8 @@ export const X11B: Record<string, Record<string, string>> = {
     tur: "tekrarı izle",
     zhs: "观看回放",
     zht: "觀看回放",
+    ara: "مشاهدة الإعادة",
+    ind: "tonton replay",
   },
   Neow: {
     eng: "Neow",
@@ -511,6 +569,8 @@ export const X11B: Record<string, Record<string, string>> = {
     tur: "Neow",
     zhs: "涅奥",
     zht: "涅奧",
+    ara: "Neow",
+    ind: "Neow",
   },
   "Show more": {
     eng: "Show more",
@@ -528,6 +588,8 @@ export const X11B: Record<string, Record<string, string>> = {
     tur: "Daha fazla göster",
     zhs: "显示更多",
     zht: "顯示更多",
+    ara: "عرض المزيد",
+    ind: "Tampilkan lagi",
   },
   "Recorded runs and predictions for this seed. Predictions assume a fully unlocked profile and no modifiers. Rewards and shops depend on the choices made during a run.":
     {
@@ -546,6 +608,8 @@ export const X11B: Record<string, Record<string, string>> = {
       tur: "Bu seed için kayıtlı oyunlar ve tahminler. Tahminler, her şeyin açık olduğu ve değiştiricisiz bir profili varsayar. Ödüller ve dükkanlar oyun sırasında yapılan seçimlere bağlıdır.",
       zhs: "此种子的已记录对局和预测。预测以全解锁且无修正规则的档案为前提。奖励和商店取决于对局中做出的选择。",
       zht: "此種子的已記錄對局和預測。預測以全解鎖且無修正規則的檔案為前提。獎勵和商店取決於對局中做出的選擇。",
+      ara: "الجولات المسجلة والتوقعات لهذه البذرة. تفترض التوقعات ملفًا مفتوحًا بالكامل ومن دون معدلات. المكافآت والمتاجر تعتمد على الخيارات المتخذة خلال الجولة.",
+      ind: "Perjalanan yang terekam dan prediksi untuk benih ini. Prediksi mengasumsikan profil yang terbuka penuh dan tanpa efek. Hadiah dan toko bergantung pada pilihan yang diambil selama run.",
     },
   "Play it with the Steam mod or upload the run file and it will show up after the next nightly index.":
     {
@@ -564,6 +628,8 @@ export const X11B: Record<string, Record<string, string>> = {
       tur: "Steam moduyla oyna veya oyun dosyasını yükle; bir sonraki gecelik dizinlemeden sonra görünür.",
       zhs: "使用 Steam 模组游玩或上传对局文件，它会在下一次夜间索引后出现。",
       zht: "使用 Steam 模組遊玩或上傳對局檔案，它會在下一次夜間索引後出現。",
+      ara: "العبها مع تعديل Steam أو ارفع ملف الجولة وستظهر بعد الفهرسة الليلية التالية.",
+      ind: "Mainkan dengan mod Steam atau unggah file run-nya, nanti muncul setelah indeks malam berikutnya.",
     },
   "unknown version": {
     eng: "unknown version",
@@ -581,6 +647,8 @@ export const X11B: Record<string, Record<string, string>> = {
     tur: "bilinmeyen sürüm",
     zhs: "未知版本",
     zht: "未知版本",
+    ara: "إصدار غير معروف",
+    ind: "versi tidak diketahui",
   },
   "Run start": {
     eng: "Run start",
@@ -598,6 +666,8 @@ export const X11B: Record<string, Record<string, string>> = {
     tur: "Oyun başlangıcı",
     zhs: "对局开局",
     zht: "對局開局",
+    ara: "بداية الجولة",
+    ind: "Awal perjalanan",
   },
   Outcomes: {
     eng: "Outcomes",
@@ -615,6 +685,8 @@ export const X11B: Record<string, Record<string, string>> = {
     tur: "Sonuçlar",
     zhs: "结果",
     zht: "結果",
+    ara: "النتائج",
+    ind: "Hasil",
   },
   "Watch a replay of this seed": {
     eng: "Watch a replay of this seed",
@@ -632,6 +704,8 @@ export const X11B: Record<string, Record<string, string>> = {
     tur: "Bu seed'in tekrarını izle",
     zhs: "观看此种子的回放",
     zht: "觀看此種子的回放",
+    ara: "شاهد إعادة لهذه البذرة",
+    ind: "Tonton replay benih ini",
   },
   "Act 1 map": {
     eng: "Act 1 map",
@@ -649,6 +723,8 @@ export const X11B: Record<string, Record<string, string>> = {
     tur: "1. Sahne haritası",
     zhs: "阶段1地图",
     zht: "第 1 幕地圖",
+    ara: "خريطة الفصل 1",
+    ind: "Peta Babak 1",
   },
   "Path of the best run": {
     eng: "Path of the best run",
@@ -666,6 +742,8 @@ export const X11B: Record<string, Record<string, string>> = {
     tur: "En iyi oyunun rotası",
     zhs: "最佳对局的路线",
     zht: "最佳對局的路線",
+    ara: "مسار أفضل جولة",
+    ind: "Jalur perjalanan terbaik",
   },
   "Runs on this seed": {
     eng: "Runs on this seed",
@@ -683,6 +761,8 @@ export const X11B: Record<string, Record<string, string>> = {
     tur: "Bu seed'deki oyunlar",
     zhs: "使用此种子的对局",
     zht: "使用此種子的對局",
+    ara: "الجولات على هذه البذرة",
+    ind: "Perjalanan di benih ini",
   },
   "Chart Builder": {
     eng: "Chart Builder",
@@ -700,6 +780,8 @@ export const X11B: Record<string, Record<string, string>> = {
     tur: "Grafik Oluşturucu",
     zhs: "图表构建器",
     zht: "圖表建構器",
+    ara: "منشئ المخططات",
+    ind: "Pembuat Grafik",
   },
   "Browse all Slay the Spire 2 cards. Filter by character, type, rarity, and keywords.":
     {
@@ -718,6 +800,8 @@ export const X11B: Record<string, Record<string, string>> = {
       tur: "Slay the Spire 2'deki tüm kartlar. Karaktere, türe, nadirliğe ve anahtar kelimelere göre filtrele.",
       zhs: "杀戮尖塔2的全部卡牌。可按角色、类型、稀有度和关键词筛选。",
       zht: "殺戮尖塔2的全部卡牌。可按角色、類型、稀有度和關鍵字篩選。",
+      ara: "تصفح كل بطاقات Slay the Spire 2. فلتر حسب الشخصية والنوع والندرة والكلمات المفتاحية.",
+      ind: "Telusuri semua kartu Slay the Spire 2. Filter menurut karakter, tipe, kelangkaan, dan kata kunci.",
     },
   "View all Slay the Spire 2 characters, stats, starting decks, relics, and NPC dialogues.":
     {
@@ -736,6 +820,8 @@ export const X11B: Record<string, Record<string, string>> = {
       tur: "Slay the Spire 2'deki tüm karakterler: özellikler, başlangıç desteleri, kalıntılar ve NPC diyalogları.",
       zhs: "杀戮尖塔2的全部角色，包括属性、初始牌组、遗物和 NPC 对话。",
       zht: "殺戮尖塔2的全部角色，包括屬性、初始牌組、遺物和 NPC 對話。",
+      ara: "اطلع على كل شخصيات Slay the Spire 2 وإحصائياتها ومجموعات بطاقاتها الأساسية وآثارها وحوارات الشخصيات غير اللاعبة.",
+      ind: "Lihat semua karakter Slay the Spire 2, statistik, dek awalan, pusaka, dan dialog NPC.",
     },
   "Explore all Slay the Spire 2 relics from starter to ancient tier. Filter by rarity and pool.":
     {
@@ -754,6 +840,8 @@ export const X11B: Record<string, Record<string, string>> = {
       tur: "Slay the Spire 2'deki tüm kalıntılar, başlangıç kalıntılarından kadim kalıntılara. Nadirliğe ve havuza göre filtrele.",
       zhs: "杀戮尖塔2的全部遗物，从初始遗物到先古遗物。可按稀有度和遗物池筛选。",
       zht: "殺戮尖塔2的全部遺物，從初始遺物到遠古遺物。可按稀有度和遺物池篩選。",
+      ara: "استكشف كل آثار Slay the Spire 2 من الأساسية إلى آثار القدماء. فلتر حسب الندرة والمجموعة.",
+      ind: "Jelajahi semua pusaka Slay the Spire 2 dari awalan sampai tingkat ancient. Filter menurut kelangkaan dan kumpulan.",
     },
   "Study all Slay the Spire 2 monsters, HP, moves, damage stats, and ascension scaling.":
     {
@@ -772,6 +860,8 @@ export const X11B: Record<string, Record<string, string>> = {
       tur: "Slay the Spire 2'deki tüm canavarlar: can, hamleler, hasar değerleri ve Yükseliş ölçeklemesi.",
       zhs: "杀戮尖塔2的全部怪物，包括生命值、招式、伤害数值和进阶强化。",
       zht: "殺戮尖塔2的全部怪物，包括生命值、招式、傷害數值和晉階強化。",
+      ara: "ادرس كل وحوش Slay the Spire 2 ونقاط صحتها وحركاتها وإحصائيات ضررها وتدرجها مع الصعود.",
+      ind: "Pelajari semua monster Slay the Spire 2, HP, gerakan, statistik kerusakan, dan skala angkatan.",
     },
   "Discover all Slay the Spire 2 potions and their effects. Filter by rarity and character pool.":
     {
@@ -790,6 +880,8 @@ export const X11B: Record<string, Record<string, string>> = {
       tur: "Slay the Spire 2'deki tüm iksirler ve etkileri. Nadirliğe ve karakter havuzuna göre filtrele.",
       zhs: "杀戮尖塔2的全部药水及其效果。可按稀有度和角色池筛选。",
       zht: "殺戮尖塔2的全部藥水及其效果。可按稀有度和角色池篩選。",
+      ara: "اكتشف كل جرعات Slay the Spire 2 وتأثيراتها. فلتر حسب الندرة ومجموعة الشخصية.",
+      ind: "Temukan semua ramuan Slay the Spire 2 dan efeknya. Filter menurut kelangkaan dan kumpulan karakter.",
     },
   "View all Slay the Spire 2 enchantments, effects, card type restrictions, and stackability.":
     {
@@ -808,6 +900,8 @@ export const X11B: Record<string, Record<string, string>> = {
       tur: "Slay the Spire 2'deki tüm büyüler: etkiler, kart türü kısıtlamaları ve birikme.",
       zhs: "杀戮尖塔2的全部附魔，包括效果、卡牌类型限制和可叠加性。",
       zht: "殺戮尖塔2的全部附魔，包括效果、卡牌類型限制和可疊加性。",
+      ara: "اطلع على كل تعزيزات Slay the Spire 2 وتأثيراتها وقيود نوع البطاقة وقابلية التراكم.",
+      ind: "Lihat semua efek kartu Slay the Spire 2, pengaruhnya, batasan tipe kartu, dan bisa tidaknya ditumpuk.",
     },
   "Browse all Slay the Spire 2 combat encounters across every act, normals, elites, and bosses.":
     {
@@ -826,6 +920,8 @@ export const X11B: Record<string, Record<string, string>> = {
       tur: "Slay the Spire 2'deki tüm savaş karşılaşmaları; her sahnede normal düşmanlar, elitler ve boss'lar.",
       zhs: "杀戮尖塔2各阶段的全部战斗遭遇，包括普通战斗、精英和 Boss。",
       zht: "殺戮尖塔2每一幕的全部戰鬥遭遇，包括普通戰鬥、菁英和頭目。",
+      ara: "تصفح كل مواجهات القتال في Slay the Spire 2 عبر جميع الفصول: العادية والنخب والزعماء.",
+      ind: "Telusuri semua pertemuan tempur Slay the Spire 2 di setiap babak: biasa, elit, dan bos.",
     },
   "Explore all Slay the Spire 2 events, shrine events, Ancient encounters, choices, and outcomes.":
     {
@@ -844,6 +940,8 @@ export const X11B: Record<string, Record<string, string>> = {
       tur: "Slay the Spire 2'deki tüm etkinlikler: tapınak etkinlikleri, kadim karşılaşmaları, seçimler ve sonuçları.",
       zhs: "杀戮尖塔2的全部事件，包括神龛事件、与先古之民的相遇、选项和结果。",
       zht: "殺戮尖塔2的全部事件，包括神龕事件、與遠古之民的相遇、選項和結果。",
+      ara: "استكشف كل أحداث Slay the Spire 2 وأحداث المزارات ولقاءات القدماء والخيارات والنتائج.",
+      ind: "Jelajahi semua event Slay the Spire 2, event kuil, pertemuan Ancient, pilihan, dan hasilnya.",
     },
   "Browse all Slay the Spire 2 powers, buffs, debuffs, and neutral status effects.":
     {
@@ -862,6 +960,8 @@ export const X11B: Record<string, Record<string, string>> = {
       tur: "Slay the Spire 2'deki tüm güçler: güçlendirmeler, zayıflatmalar ve nötr durum etkileri.",
       zhs: "杀戮尖塔2的全部能力，包括增益、减益和中立状态效果。",
       zht: "殺戮尖塔2的全部能力，包括增益、減益和中立狀態效果。",
+      ara: "تصفح كل القوى والتعزيزات والإضعافات وتأثيرات الحالة المحايدة في Slay the Spire 2.",
+      ind: "Telusuri semua kuasa, buff, debuff, dan efek status netral Slay the Spire 2.",
     },
   "Explore the Slay the Spire 2 timeline, epochs, story arcs, and unlockable content.":
     {
@@ -880,6 +980,8 @@ export const X11B: Record<string, Record<string, string>> = {
       tur: "Slay the Spire 2 zaman çizelgesi: çağlar, hikâye bölümleri ve açılabilir içerikler.",
       zhs: "杀戮尖塔2的时间线，包括纪元、故事线和可解锁内容。",
       zht: "殺戮尖塔2的時間軸，包括紀元、故事線和可解鎖內容。",
+      ara: "استكشف الخط الزمني للعبة Slay the Spire 2 والحقب وخطوط القصة والمحتوى القابل للفتح.",
+      ind: "Jelajahi linimasa Slay the Spire 2, zaman, alur cerita, dan konten yang bisa dibuka.",
     },
   "Browse and download Slay the Spire 2 game art, card portraits, relic icons, monster sprites.":
     {
@@ -898,6 +1000,8 @@ export const X11B: Record<string, Record<string, string>> = {
       tur: "Slay the Spire 2 oyun görsellerine göz at ve indir: kart resimleri, kalıntı simgeleri, canavar sprite'ları.",
       zhs: "浏览并下载杀戮尖塔2的游戏美术：卡牌插图、遗物图标、怪物精灵图。",
       zht: "瀏覽並下載殺戮尖塔2的遊戲美術：卡牌插圖、遺物圖示、怪物精靈圖。",
+      ara: "تصفح ونزّل رسومات Slay the Spire 2: صور البطاقات وأيقونات الآثار ورسوم الوحوش.",
+      ind: "Telusuri dan unduh seni game Slay the Spire 2: potret kartu, ikon pusaka, sprite monster.",
     },
   "Slay the Spire 2 reference, keywords, orbs, afflictions, intents, acts, ascension, and more.":
     {
@@ -916,6 +1020,8 @@ export const X11B: Record<string, Record<string, string>> = {
       tur: "Slay the Spire 2 başvuru kaynağı: anahtar kelimeler, küreler, illetler, niyetler, sahneler, Yükseliş ve dahası.",
       zhs: "杀戮尖塔2资料速查：关键词、法球、苦难、意图、阶段、进阶等。",
       zht: "殺戮尖塔2資料速查：關鍵字、法球、苦難、意圖、幕、晉階等。",
+      ara: "مرجع Slay the Spire 2: الكلمات المفتاحية والأجرام والأعباء والنيات والفصول والصعود وغير ذلك.",
+      ind: "Referensi Slay the Spire 2: kata kunci, bola, penyakit, niat, babak, angkatan, dan lainnya.",
     },
   "Run-end badges from Slay the Spire 2, Bronze, Silver, and Gold tier mini-achievements awarded on the Game Over screen.":
     {
@@ -934,5 +1040,7 @@ export const X11B: Record<string, Record<string, string>> = {
       tur: "Slay the Spire 2 oyun sonu rozetleri: oyun sonu ekranında verilen bronz, gümüş ve altın seviyeli mini başarımlar.",
       zhs: "杀戮尖塔2的对局结算徽章：在游戏结束画面授予的铜、银、金级小成就。",
       zht: "殺戮尖塔2的對局結算徽章：在遊戲結束畫面授予的銅、銀、金級小成就。",
+      ara: "شارات نهاية الجولة في Slay the Spire 2: إنجازات صغيرة من الفئات البرونزية والفضية والذهبية تُمنح في شاشة نهاية اللعبة.",
+      ind: "Lencana akhir perjalanan dari Slay the Spire 2: pencapaian kecil tingkat Perunggu, Perak, dan Emas yang diberikan di layar Game Over.",
     },
 };

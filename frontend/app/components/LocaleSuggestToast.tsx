@@ -19,6 +19,16 @@ const COPY: Record<Locale, { text: string; open: string; dismiss: string }> = {
     open: "Switch to English",
     dismiss: "Dismiss",
   },
+  ara: {
+    text: "هذه الصفحة متاحة أيضًا بالعربية.",
+    open: "التبديل إلى العربية",
+    dismiss: "إغلاق",
+  },
+  ind: {
+    text: "Halaman ini juga tersedia dalam bahasa Indonesia.",
+    open: "Lihat dalam bahasa Indonesia",
+    dismiss: "Tutup",
+  },
   deu: {
     text: "Diese Seite gibt es auch auf Deutsch.",
     open: "Auf Deutsch anzeigen",

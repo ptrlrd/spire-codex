@@ -1,0 +1,86 @@
+[
+  {
+    "id": "ATTACK",
+    "name": "هجومي",
+    "description": "هذا العدو ينوي [gold]الهجوم[/gold] {IsMultiplayer:على الجميع |}مسببًا [blue]{Damage}[/blue] ضررًا{Repeat:plural:| [blue]{}[/blue] مرات}.",
+    "image_url": "/static/images/intents/attack.png"
+  },
+  {
+    "id": "BUFF",
+    "name": "تعزيز",
+    "description": "هذا العدو ينوي استخدام [gold]تعزيز[/gold].",
+    "image_url": "/static/images/intents/buff.png"
+  },
+  {
+    "id": "CARD_DEBUFF",
+    "name": "خبيث",
+    "description": "هذا العدو ينوي تطبيق [gold]آثار سلبية[/gold] على بطاقاتك.",
+    "image_url": "/static/images/intents/card_debuff.png"
+  },
+  {
+    "id": "DEATH_BLOW",
+    "name": "ضربة موت",
+    "description": "هذا المخلوق يحاول إسقاطك معه. سيهاجمك مسببًا [blue]{Damage}[/blue] ضررًا قبل أن يُدمّر.",
+    "image_url": "/static/images/intents/death_blow.png"
+  },
+  {
+    "id": "DEBUFF",
+    "name": "تكتيكي",
+    "description": "هذا العدو ينوي تطبيق [gold]إضعاف[/gold] عليك.",
+    "image_url": "/static/images/intents/debuff.png"
+  },
+  {
+    "id": "DEBUFF_STRONG",
+    "name": "تكتيكي",
+    "description": "هذا العدو ينوي تطبيق [gold]إضعاف قوي[/gold] عليك.",
+    "image_url": "/static/images/intents/debuff_strong.png"
+  },
+  {
+    "id": "DEFEND",
+    "name": "دفاعي",
+    "description": "هذا العدو ينوي استخدام [gold]صد[/gold] في دوره.",
+    "image_url": "/static/images/intents/defend.png"
+  },
+  {
+    "id": "ESCAPE",
+    "name": "جبان",
+    "description": "هذا العدو ينوي [gold]الهروب[/gold].",
+    "image_url": "/static/images/intents/escape.png"
+  },
+  {
+    "id": "HEAL",
+    "name": "علاج",
+    "description": "هذا العدو ينوي [gold]التعافي[/gold].",
+    "image_url": "/static/images/intents/heal.png"
+  },
+  {
+    "id": "SLEEP",
+    "name": "نائم",
+    "description": "هذا العدو لن يفعل شيئًا هذا الدور.",
+    "image_url": "/static/images/intents/sleep.png"
+  },
+  {
+    "id": "STATUS",
+    "name": "تكتيكي",
+    "description": "يعتزم هذا العدو أن يمنحك [blue]{CardCount}[/blue] {CardCount:plural:بطاقة|بطاقات} من [gold]الحالة[/gold].",
+    "image_url": "/static/images/intents/status.png"
+  },
+  {
+    "id": "STUN",
+    "name": "مذهول",
+    "description": "هذا العدو لا يستطيع التصرف في دوره القادم.",
+    "image_url": "/static/images/intents/stun.png"
+  },
+  {
+    "id": "SUMMON",
+    "name": "استدعاء",
+    "description": "هذا العدو ينوي استدعاء [gold]وحوش[/gold].",
+    "image_url": "/static/images/intents/summon.png"
+  },
+  {
+    "id": "UNKNOWN",
+    "name": "مجهول",
+    "description": "نيات هذا العدو [gold]مجهولة[/gold].",
+    "image_url": "/static/images/intents/unknown.png"
+  }
+]

@@ -1,0 +1,68 @@
+[
+  {
+    "id": "LEVEL_00",
+    "level": 0,
+    "name": "بلا Ascension",
+    "description": "العب بدون أي معدّلات Ascension."
+  },
+  {
+    "id": "LEVEL_01",
+    "level": 1,
+    "name": "النخب المحتشدة",
+    "description": "يظهر [gold]النخب[/gold] بمعدل أكبر."
+  },
+  {
+    "id": "LEVEL_02",
+    "level": 2,
+    "name": "المسافر المرهق",
+    "description": "يعالجك القدماء بنسبة [blue]80%[/blue] فقط من نقاط HP المفقودة."
+  },
+  {
+    "id": "LEVEL_03",
+    "level": 3,
+    "name": "الفقر",
+    "description": "يسقط الأعداء وصناديق الكنز [blue]25%[/blue] أقل من [gold]الذهب[/gold]."
+  },
+  {
+    "id": "LEVEL_04",
+    "level": 4,
+    "name": "الحزام الضيق",
+    "description": "ابدأ كل جولة بفتحة جرعة أقل."
+  },
+  {
+    "id": "LEVEL_05",
+    "level": 5,
+    "name": "عبء الصاعد",
+    "description": "ابدأ كل جولة وأنت [red]مثقل[/red]."
+  },
+  {
+    "id": "LEVEL_06",
+    "level": 6,
+    "name": "التضخم",
+    "description": "إزالة البطاقات من مجموعتك عند التاجر تصبح أغلى."
+  },
+  {
+    "id": "LEVEL_07",
+    "level": 7,
+    "name": "الندرة",
+    "description": "تظهر البطاقات النادرة والمطوّرة بمعدل أقل."
+  },
+  {
+    "id": "LEVEL_08",
+    "level": 8,
+    "name": "أعداء أقوى",
+    "description": "كل الأعداء أصعب في القتل."
+  },
+  {
+    "id": "LEVEL_09",
+    "level": 9,
+    "name": "أعداء فتاكون",
+    "description": "كل الأعداء يملكون هجمات أكثر فتكًا."
+  },
+  {
+    "id": "LEVEL_10",
+    "level": 10,
+    "name": "زعيمان",
+    "description": "قاتل زعيمين في نهاية الفصل 3."
+  }
+]

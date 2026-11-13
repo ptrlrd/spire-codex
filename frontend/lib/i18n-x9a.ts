@@ -16,6 +16,8 @@ export const X9A: Record<string, Record<string, string>> = {
     tur: "Tümünü seç",
     zhs: "全选",
     zht: "全選",
+    ara: "تحديد الكل",
+    ind: "Pilih semua",
   },
   "Select the {character} run that reached floor {floor}": {
     eng: "Select the {character} run that reached floor {floor}",
@@ -33,6 +35,8 @@ export const X9A: Record<string, Record<string, string>> = {
     tur: "{floor}. kata ulaşan {character} koşusunu seç",
     zhs: "选择到达第 {floor} 层的 {character} 对局",
     zht: "選擇到達第 {floor} 層的 {character} 對局",
+    ara: "تحديد جولة {character} التي بلغت الطابق {floor}",
+    ind: "Pilih perjalanan {character} yang mencapai lantai {floor}",
   },
   "Select this run": {
     eng: "Select this run",
@@ -50,6 +54,8 @@ export const X9A: Record<string, Record<string, string>> = {
     tur: "Bu koşuyu seç",
     zhs: "选择此对局",
     zht: "選擇此對局",
+    ara: "تحديد هذه الجولة",
+    ind: "Pilih perjalanan ini",
   },
   "Select every run on this page": {
     eng: "Select every run on this page",
@@ -67,6 +73,8 @@ export const X9A: Record<string, Record<string, string>> = {
     tur: "Bu sayfadaki tüm koşuları seç",
     zhs: "选择本页所有对局",
     zht: "選擇本頁所有對局",
+    ara: "تحديد كل الجولات في هذه الصفحة",
+    ind: "Pilih semua perjalanan di halaman ini",
   },
   "{n} selected": {
     eng: "{n} selected",
@@ -84,6 +92,8 @@ export const X9A: Record<string, Record<string, string>> = {
     tur: "{n} seçildi",
     zhs: "已选择 {n} 个",
     zht: "已選擇 {n} 個",
+    ara: "تم تحديد {n}",
+    ind: "{n} dipilih",
   },
   "Delete selected": {
     eng: "Delete selected",
@@ -101,6 +111,8 @@ export const X9A: Record<string, Record<string, string>> = {
     tur: "Seçilenleri sil",
     zhs: "删除所选",
     zht: "刪除所選",
+    ara: "حذف المحدد",
+    ind: "Hapus yang dipilih",
   },
   "Delete {n} runs": {
     eng: "Delete {n} runs",
@@ -118,6 +130,8 @@ export const X9A: Record<string, Record<string, string>> = {
     tur: "{n} koşuyu sil",
     zhs: "删除 {n} 个对局",
     zht: "刪除 {n} 個對局",
+    ara: "حذف {n} جولة",
+    ind: "Hapus {n} perjalanan",
   },
   "Deleting...": {
     eng: "Deleting...",
@@ -135,6 +149,8 @@ export const X9A: Record<string, Record<string, string>> = {
     tur: "Siliniyor...",
     zhs: "正在删除...",
     zht: "正在刪除...",
+    ara: "جارٍ الحذف...",
+    ind: "Menghapus...",
   },
   "Removed {n} runs from your profile": {
     eng: "Removed {n} runs from your profile",
@@ -152,6 +168,8 @@ export const X9A: Record<string, Record<string, string>> = {
     tur: "Profilinizden {n} koşu kaldırıldı",
     zhs: "已从你的个人资料中移除 {n} 个对局",
     zht: "已從你的個人檔案中移除 {n} 個對局",
+    ara: "تمت إزالة {n} جولة من ملفك الشخصي",
+    ind: "{n} perjalanan dihapus dari profilmu",
   },
   "Removed {n} runs, {failed} could not be removed": {
     eng: "Removed {n} runs, {failed} could not be removed",
@@ -169,6 +187,8 @@ export const X9A: Record<string, Record<string, string>> = {
     tur: "{n} koşu kaldırıldı, {failed} tanesi kaldırılamadı",
     zhs: "已移除 {n} 个对局，{failed} 个无法移除",
     zht: "已移除 {n} 個對局，{failed} 個無法移除",
+    ara: "تمت إزالة {n} جولة، وتعذرت إزالة {failed}",
+    ind: "{n} perjalanan dihapus, {failed} tidak bisa dihapus",
   },
   Unhide: {
     eng: "Unhide",
@@ -186,6 +206,8 @@ export const X9A: Record<string, Record<string, string>> = {
     tur: "Göster",
     zhs: "取消隐藏",
     zht: "取消隱藏",
+    ara: "إظهار",
+    ind: "Tampilkan",
   },
   "Run hidden": {
     eng: "Run hidden",
@@ -203,6 +225,8 @@ export const X9A: Record<string, Record<string, string>> = {
     tur: "Koşu gizlendi",
     zhs: "对局已隐藏",
     zht: "對局已隱藏",
+    ara: "تم إخفاء الجولة",
+    ind: "Perjalanan disembunyikan",
   },
   "Run unhidden": {
     eng: "Run unhidden",
@@ -220,6 +244,8 @@ export const X9A: Record<string, Record<string, string>> = {
     tur: "Koşu tekrar görünür",
     zhs: "对局已取消隐藏",
     zht: "對局已取消隱藏",
+    ara: "تم إظهار الجولة",
+    ind: "Perjalanan ditampilkan lagi",
   },
   "Failed to update this run": {
     eng: "Failed to update this run",
@@ -237,5 +263,7 @@ export const X9A: Record<string, Record<string, string>> = {
     tur: "Bu koşu güncellenemedi",
     zhs: "无法更新此对局",
     zht: "無法更新此對局",
+    ara: "تعذر تحديث هذه الجولة",
+    ind: "Gagal memperbarui perjalanan ini",
   },
 };

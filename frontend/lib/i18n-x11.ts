@@ -15,6 +15,8 @@ export const X11: Record<string, Record<string, string>> = {
     tur: "{cohort}: {name} tutulan {runs} oyunun {winRate} kadarı kazanıldı.",
     zhs: "{cohort}：在保留{name}的 {runs} 场对局中，胜率为 {winRate}。",
     zht: "{cohort}：在保留{name}的 {runs} 場對局中，勝率為 {winRate}。",
+    ara: "{cohort}: فاز {name} في {winRate} من أصل {runs} من الجولات التي احتوت عليه.",
+    ind: "{cohort}: {name} menang di {winRate} dari {runs} perjalanan yang memilikinya.",
   },
   entity_summary_cohort_baseline: {
     eng: "The baseline for this cohort is {baseline}.",
@@ -32,6 +34,8 @@ export const X11: Record<string, Record<string, string>> = {
     tur: "Bu kohortun temel oranı {baseline}.",
     zhs: "该分组的基准胜率为 {baseline}。",
     zht: "該分組的基準勝率為 {baseline}。",
+    ara: "خط الأساس لهذه المجموعة هو {baseline}.",
+    ind: "Nilai dasar kelompok ini adalah {baseline}.",
   },
   entity_summary_cohort_held: {
     eng: "{holdRate} of its runs held {name}.",
@@ -49,6 +53,8 @@ export const X11: Record<string, Record<string, string>> = {
     tur: "Bu kohorttaki oyunların {holdRate} kadarında {name} tutuldu.",
     zhs: "该分组中 {holdRate} 的对局保留了{name}。",
     zht: "該分組中 {holdRate} 的對局保留了{name}。",
+    ara: "{holdRate} من جولاتها احتوت على {name}.",
+    ind: "{holdRate} dari run-nya memiliki {name}.",
   },
   entity_summary_lifted_before: {
     eng: "Players who already have it take",
@@ -72,6 +78,8 @@ export const X11: Record<string, Record<string, string>> = {
     tur: "{cohort} için henüz veri yok, bu yüzden bu sayılar şunu kapsıyor: {shown}.",
     zhs: "{cohort}暂无数据，因此以下数据统计的是{shown}。",
     zht: "{cohort}暫無資料，因此以下數據統計的是{shown}。",
+    ara: "لا توجد بيانات بعد عن {cohort}، لذا تغطي هذه الأرقام {shown}.",
+    ind: "Belum ada data untuk {cohort}, jadi angka ini mencakup {shown}.",
   },
   "Data through {when} PT": {
     eng: "Data through {when} PT",

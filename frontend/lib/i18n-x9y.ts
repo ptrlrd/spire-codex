@@ -16,6 +16,8 @@ export const X9Y: Record<string, Record<string, string>> = {
     tur: "İstatistikleriniz",
     zhs: "你的统计",
     zht: "你的統計",
+    ara: "إحصائياتك",
+    ind: "Statistikmu",
   },
   "You took it": {
     eng: "You took it",
@@ -33,6 +35,8 @@ export const X9Y: Record<string, Record<string, string>> = {
     tur: "Sen aldın",
     zhs: "你拿过",
     zht: "你拿過",
+    ara: "أخذته",
+    ind: "Kamu ambil",
   },
   "Of your {n} runs, how many included it.": {
     eng: "Of your {n} runs, how many included it.",
@@ -50,6 +54,8 @@ export const X9Y: Record<string, Record<string, string>> = {
     tur: "{n} turunuzun kaçında bulunduğu.",
     zhs: "你的{n}局对局中，有多少局包含它。",
     zht: "你的{n}局對局中，有多少局包含它。",
+    ara: "من بين جولاتك البالغ عددها {n}، كم جولة تضمنته.",
+    ind: "Dari {n} perjalanan kamu, berapa yang menyertakannya.",
   },
   "Your Win%": {
     eng: "Your Win%",
@@ -67,6 +73,8 @@ export const X9Y: Record<string, Record<string, string>> = {
     tur: "Senin Kazanma%",
     zhs: "你的胜率",
     zht: "你的勝率",
+    ara: "فوزك%",
+    ind: "Menang% kamu",
   },
   "Your win rate in the runs that included it.": {
     eng: "Your win rate in the runs that included it.",
@@ -84,6 +92,8 @@ export const X9Y: Record<string, Record<string, string>> = {
     tur: "Onu içeren turlardaki kazanma oranınız.",
     zhs: "在包含它的对局中你的胜率。",
     zht: "在包含它的對局中你的勝率。",
+    ara: "معدل فوزك في الجولات التي تضمنته.",
+    ind: "Tingkat kemenanganmu di perjalanan yang menyertakannya.",
   },
   "Your Lift": {
     eng: "Your Lift",
@@ -101,6 +111,8 @@ export const X9Y: Record<string, Record<string, string>> = {
     tur: "Senin Kaldıracın",
     zhs: "你的提升度",
     zht: "你的提升度",
+    ara: "Lift الخاص بك",
+    ind: "Lift kamu",
   },
   "Your win rate minus what you were expected to win from the floor you got it, in percentage points.":
     {
@@ -119,6 +131,8 @@ export const X9Y: Record<string, Record<string, string>> = {
       tur: "Kazanma oranınız ile onu aldığınız katta kazanmanız beklenen oran arasındaki fark, yüzde puanı cinsinden.",
       zhs: "你的胜率减去从拿到它的楼层预期应得的胜率，以百分点计。",
       zht: "你的勝率減去從拿到它的樓層預期應得的勝率，以百分點計。",
+      ara: "معدل فوزك مطروحًا منه ما كان متوقعًا أن تفوز به من الطابق الذي حصلت عليه فيه، بالنقاط المئوية.",
+      ind: "Tingkat kemenanganmu dikurangi perkiraan kemenanganmu sejak lantai tempat kamu mendapatkannya, dalam poin persentase.",
     },
   "Community Win%": {
     eng: "Community Win%",
@@ -136,6 +150,8 @@ export const X9Y: Record<string, Record<string, string>> = {
     tur: "Topluluk Kazanma%",
     zhs: "社区胜率",
     zht: "社群勝率",
+    ara: "فوز المجتمع%",
+    ind: "Menang% komunitas",
   },
   "Win rate across all community-submitted runs.": {
     eng: "Win rate across all community-submitted runs.",
@@ -153,6 +169,8 @@ export const X9Y: Record<string, Record<string, string>> = {
     tur: "Topluluğun gönderdiği tüm turlardaki kazanma oranı.",
     zhs: "所有社区提交对局的胜率。",
     zht: "所有社群提交對局的勝率。",
+    ara: "معدل الفوز عبر كل الجولات التي رفعها المجتمع.",
+    ind: "Tingkat kemenangan di semua perjalanan kiriman komunitas.",
   },
   "Community Elo": {
     eng: "Community Elo",
@@ -170,6 +188,8 @@ export const X9Y: Record<string, Record<string, string>> = {
     tur: "Topluluk Elo",
     zhs: "社区 Elo",
     zht: "社群 Elo",
+    ara: "Elo المجتمع",
+    ind: "Elo komunitas",
   },
   "Community Lift": {
     eng: "Community Lift",
@@ -187,6 +207,8 @@ export const X9Y: Record<string, Record<string, string>> = {
     tur: "Topluluk Kaldıracı",
     zhs: "社区提升度",
     zht: "社群提升度",
+    ara: "Lift المجتمع",
+    ind: "Lift komunitas",
   },
   "Lift across all community-submitted runs.": {
     eng: "Lift across all community-submitted runs.",
@@ -204,6 +226,8 @@ export const X9Y: Record<string, Record<string, string>> = {
     tur: "Topluluğun gönderdiği tüm turlardaki kaldıraç.",
     zhs: "所有社区提交对局的提升度。",
     zht: "所有社群提交對局的提升度。",
+    ara: "Lift عبر كل الجولات التي رفعها المجتمع.",
+    ind: "Lift di semua perjalanan kiriman komunitas.",
   },
   "Community share": {
     eng: "Community share",
@@ -221,6 +245,8 @@ export const X9Y: Record<string, Record<string, string>> = {
     tur: "Topluluk payı",
     zhs: "社区占比",
     zht: "社群佔比",
+    ara: "حصة المجتمع",
+    ind: "Porsi komunitas",
   },
   "This option's share of all community choices at this event.": {
     eng: "This option's share of all community choices at this event.",
@@ -238,6 +264,8 @@ export const X9Y: Record<string, Record<string, string>> = {
     tur: "Bu seçeneğin bu olayda topluluğun tüm seçimleri içindeki payı.",
     zhs: "此选项在该事件所有社区选择中的占比。",
     zht: "此選項在該事件所有社群選擇中的佔比。",
+    ara: "حصة هذا الخيار من كل اختيارات المجتمع في هذا الحدث.",
+    ind: "Porsi opsi ini dari semua pilihan komunitas di event ini.",
   },
   "Best pick": {
     eng: "Best pick",
@@ -255,6 +283,8 @@ export const X9Y: Record<string, Record<string, string>> = {
     tur: "En iyi seçim",
     zhs: "最佳选择",
     zht: "最佳選擇",
+    ara: "أفضل اختيار",
+    ind: "Pilihan terbaik",
   },
   "Worst pick": {
     eng: "Worst pick",
@@ -272,6 +302,8 @@ export const X9Y: Record<string, Record<string, string>> = {
     tur: "En kötü seçim",
     zhs: "最差选择",
     zht: "最差選擇",
+    ara: "أسوأ اختيار",
+    ind: "Pilihan terburuk",
   },
   "Your best Lift among picks with at least {min} runs.": {
     eng: "Your best Lift among picks with at least {min} runs.",
@@ -289,6 +321,8 @@ export const X9Y: Record<string, Record<string, string>> = {
     tur: "En az {min} turlu seçimler arasındaki en iyi kaldıracınız.",
     zhs: "在至少{min}局的选择中你的最高提升度。",
     zht: "在至少{min}局的選擇中你的最高提升度。",
+    ara: "أفضل Lift لك بين الاختيارات التي لها {min} جولة على الأقل.",
+    ind: "Lift terbaikmu di antara pilihan dengan minimal {min} run.",
   },
   "Your worst Lift among picks with at least {min} runs.": {
     eng: "Your worst Lift among picks with at least {min} runs.",
@@ -306,6 +340,8 @@ export const X9Y: Record<string, Record<string, string>> = {
     tur: "En az {min} turlu seçimler arasındaki en kötü kaldıracınız.",
     zhs: "在至少{min}局的选择中你的最低提升度。",
     zht: "在至少{min}局的選擇中你的最低提升度。",
+    ara: "أسوأ Lift لك بين الاختيارات التي لها {min} جولة على الأقل.",
+    ind: "Lift terburukmu di antara pilihan dengan minimal {min} run.",
   },
   "Show starters and curses": {
     eng: "Show starters and curses",
@@ -323,6 +359,8 @@ export const X9Y: Record<string, Record<string, string>> = {
     tur: "Başlangıç ve lanetleri göster",
     zhs: "显示初始与诅咒",
     zht: "顯示初始與詛咒",
+    ara: "إظهار البطاقات الأساسية والأعباء",
+    ind: "Tampilkan awalan dan kutukan",
   },
   "You start every run with these, so take counts are meaningless.": {
     eng: "You start every run with these, so take counts are meaningless.",
@@ -340,6 +378,8 @@ export const X9Y: Record<string, Record<string, string>> = {
     tur: "Her turu bunlarla başlarsınız, bu yüzden sayılar bir şey ifade etmez.",
     zhs: "每局对局你都以它们开局，因此数字没有意义。",
     zht: "每局對局你都以它們開局，因此數字沒有意義。",
+    ara: "تبدأ كل جولة بهذه، لذا لا معنى لعدد مرات أخذها.",
+    ind: "Kamu memulai setiap perjalanan dengan ini, jadi jumlah pengambilannya tidak berarti.",
   },
   "Show rows under 5 runs": {
     eng: "Show rows under 5 runs",
@@ -357,6 +397,8 @@ export const X9Y: Record<string, Record<string, string>> = {
     tur: "5 turun altındaki satırları göster",
     zhs: "显示少于5局的行",
     zht: "顯示少於5局的行",
+    ara: "إظهار الصفوف الأقل من 5 جولات",
+    ind: "Tampilkan baris di bawah 5 perjalanan",
   },
   "Small sample: fewer than {min} runs": {
     eng: "Small sample: fewer than {min} runs",
@@ -374,6 +416,8 @@ export const X9Y: Record<string, Record<string, string>> = {
     tur: "Küçük örnek: {min} turdan az",
     zhs: "样本过小：少于{min}局",
     zht: "樣本過小：少於{min}局",
+    ara: "عينة صغيرة: أقل من {min} جولة",
+    ind: "Sampel kecil: kurang dari {min} perjalanan",
   },
   "Show more ({n})": {
     eng: "Show more ({n})",
@@ -391,6 +435,8 @@ export const X9Y: Record<string, Record<string, string>> = {
     tur: "Daha fazla göster ({n})",
     zhs: "显示更多 ({n})",
     zht: "顯示更多 ({n})",
+    ara: "عرض المزيد ({n})",
+    ind: "Tampilkan lagi ({n})",
   },
   "One player's own cards, relics, potions, events, shops and campfire stats with personal Lift; same filters and privacy as insights":
     {
@@ -409,6 +455,8 @@ export const X9Y: Record<string, Record<string, string>> = {
       tur: "Bir oyuncunun kendi kart, kalıntı, iksir, olay, dükkan ve kamp ateşi istatistikleri ile kişisel Lift; insights ile aynı filtreler ve gizlilik",
       zhs: "玩家自己的卡牌、遗物、药水、事件、商店和休息处统计及个人 Lift；筛选和隐私规则与 insights 相同",
       zht: "玩家自己的卡牌、遺物、藥水、事件、商店和篝火統計及個人 Lift；篩選和隱私規則與 insights 相同",
+      ara: "إحصائيات لاعب واحد لبطاقاته وآثاره وجرعاته وأحداثه ومتاجره ونيران مخيمه مع Lift شخصي؛ بنفس عوامل التصفية والخصوصية المستخدمة في الرؤى",
+      ind: "Statistik kartu, pusaka, ramuan, event, toko, dan api unggun milik satu pemain dengan Lift pribadi; filter dan privasinya sama dengan insights",
     },
   "Connect from the Spire Codex overlay": {
     eng: "Connect from the Spire Codex overlay",
@@ -426,6 +474,8 @@ export const X9Y: Record<string, Record<string, string>> = {
     tur: "Spire Codex katmanından bağlan",
     zhs: "从 Spire Codex 覆盖层连接",
     zht: "從 Spire Codex 覆蓋層連接",
+    ara: "اتصل من واجهة Spire Codex",
+    ind: "Hubungkan dari overlay Spire Codex",
   },
   "Common Subscriber": {
     eng: "Common Subscriber",
@@ -443,6 +493,8 @@ export const X9Y: Record<string, Record<string, string>> = {
     tur: "Sıradan abone",
     zhs: "普通订阅者",
     zht: "普通訂閱者",
+    ara: "مشترك عادي",
+    ind: "Pelanggan Biasa",
   },
   "Rare Subscriber": {
     eng: "Rare Subscriber",
@@ -460,6 +512,8 @@ export const X9Y: Record<string, Record<string, string>> = {
     tur: "Nadir abone",
     zhs: "稀有订阅者",
     zht: "稀有訂閱者",
+    ara: "مشترك نادر",
+    ind: "Pelanggan Langka",
   },
   "Ancient Subscriber": {
     eng: "Ancient Subscriber",
@@ -477,5 +531,7 @@ export const X9Y: Record<string, Record<string, string>> = {
     tur: "Kadim abone",
     zhs: "远古订阅者",
     zht: "遠古訂閱者",
+    ara: "مشترك عتيق",
+    ind: "Pelanggan Ancient",
   },
 };

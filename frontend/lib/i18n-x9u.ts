@@ -17,5 +17,7 @@ export const X9U: Record<string, Record<string, string>> = {
     tur: "10.000'den fazla koşu",
     zhs: "超过 10,000 个对局",
     zht: "超過 10,000 個對局",
+    ara: "أكثر من 10,000 جولة",
+    ind: "Lebih dari 10.000 perjalanan",
   },
 };

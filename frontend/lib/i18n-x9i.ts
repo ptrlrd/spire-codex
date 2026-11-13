@@ -16,6 +16,8 @@ export const X9I: Record<string, Record<string, string>> = {
     tur: "Seed Bulucu",
     zhs: "种子查找器",
     zht: "種子查找器",
+    ara: "باحث البذور",
+    ind: "Pencari Benih",
   },
   seed_finder_meta_description: {
     eng: "Find Slay the Spire 2 seeds that really produced the cards, relics, events and ancient offers you want, each backed by a community run you can open.",
@@ -33,6 +35,8 @@ export const X9I: Record<string, Record<string, string>> = {
     tur: "İstediğin kartları, kalıntıları, olayları ve kadim tekliflerini gerçekten üretmiş Slay the Spire 2 seed'lerini bul; her biri açabileceğin bir topluluk koşusuyla kanıtlı.",
     zhs: "查找真正出现过你想要的卡牌、遗物、事件和远古提议的 Slay the Spire 2 种子，每个种子都有一场可以打开查看的社区游戏作为佐证。",
     zht: "查找真正出現過你想要的卡牌、遺物、事件和遠古提議的 Slay the Spire 2 種子，每個種子都有一場可以開啟查看的社群遊戲作為佐證。",
+    ara: "اعثر على بذور Slay the Spire 2 التي أنتجت فعلاً البطاقات والآثار والأحداث وعروض القدماء التي تريدها، وكل منها مدعومة بجولة من المجتمع يمكنك فتحها.",
+    ind: "Temukan benih Slay the Spire 2 yang benar-benar menghasilkan kartu, pusaka, Event, dan tawaran Ancient yang kamu mau, masing-masing didukung perjalanan komunitas yang bisa kamu buka.",
   },
   "Seeds are locked to specific achievement unlocks. For the best experience, only use this tool when you're at max achievements and Ascension 10.":
     {
@@ -51,6 +55,8 @@ export const X9I: Record<string, Record<string, string>> = {
       tur: "Seed'ler belirli başarım kilitlerine bağlıdır. En iyi sonuç için bu aracı yalnızca tüm başarımlar açıkken ve Yükseliş 10'da kullan.",
       zhs: "种子与特定的成就解锁状态绑定。为获得最佳体验，请只在成就全部解锁并处于进阶10时使用此工具。",
       zht: "種子與特定的成就解鎖狀態綁定。為獲得最佳體驗，請只在成就全部解鎖並處於晉階10時使用此工具。",
+      ara: "البذور مرتبطة بما فُتح عبر إنجازات محددة. لأفضل تجربة، استخدم هذه الأداة فقط عندما تكون قد أكملت الإنجازات وبلغت الصعود 10.",
+      ind: "Benih terikat pada hal-hal yang dibuka lewat pencapaian tertentu. Untuk pengalaman terbaik, pakai alat ini hanya saat pencapaianmu sudah maksimal dan sudah Angkatan 10.",
     },
   "Covers solo runs at ascension 0 to 10 on the main game version. Every seed shown matched at least one thing you asked for; full matches come first.":
     {
@@ -69,6 +75,8 @@ export const X9I: Record<string, Record<string, string>> = {
       tur: "Oyunun ana sürümünde Yükseliş 0-10 arası tek kişilik koşuları kapsar. Gösterilen her seed istediğin şeylerden en az birini karşılar; tam eşleşmeler önce gelir.",
       zhs: "覆盖主版本进阶0至10的单人游戏。显示的每个种子至少符合你提出的一项条件，完全符合的排在前面。",
       zht: "涵蓋主版本晉階0至10的單人遊戲。顯示的每個種子至少符合你提出的一項條件，完全符合的排在前面。",
+      ara: "يغطي الجولات الفردية من الصعود 0 إلى 10 على الإصدار الرئيسي للعبة. كل بذرة معروضة طابقت شيئاً واحداً على الأقل مما طلبته؛ والمطابقات الكاملة تأتي أولاً.",
+      ind: "Mencakup perjalanan solo di Angkatan 0 sampai 10 pada versi main game. Setiap benih yang ditampilkan cocok dengan setidaknya satu hal yang kamu minta; yang cocok penuh muncul lebih dulu.",
     },
   Suggestions: {
     eng: "Suggestions",
@@ -86,6 +94,8 @@ export const X9I: Record<string, Record<string, string>> = {
     tur: "Öneriler",
     zhs: "建议",
     zht: "建議",
+    ara: "اقتراحات",
+    ind: "Saran",
   },
   "The run index is still building. It refreshes on its own; try again in a few minutes.":
     {
@@ -104,6 +114,8 @@ export const X9I: Record<string, Record<string, string>> = {
       tur: "Koşu dizini hâlâ oluşturuluyor. Kendi kendine yenilenir; birkaç dakika sonra tekrar dene.",
       zhs: "游戏索引仍在构建中。它会自动刷新，请过几分钟再试。",
       zht: "遊戲索引仍在建立中。它會自動更新，請過幾分鐘再試。",
+      ara: "فهرس الجولات ما زال قيد البناء. يتحدث تلقائياً؛ حاول مجدداً بعد بضع دقائق.",
+      ind: "Indeks perjalanan masih dibangun. Indeks ini memperbarui sendiri; coba lagi dalam beberapa menit.",
     },
   "The run database isn't reachable right now.": {
     eng: "The run database isn't reachable right now.",
@@ -121,6 +133,8 @@ export const X9I: Record<string, Record<string, string>> = {
     tur: "Koşu veritabanına şu anda ulaşılamıyor.",
     zhs: "目前无法访问游戏数据库。",
     zht: "目前無法連上遊戲資料庫。",
+    ara: "قاعدة بيانات الجولات غير متاحة حالياً.",
+    ind: "Database perjalanan sedang tidak bisa dijangkau.",
   },
   "Couldn't load the card, relic and event lists.": {
     eng: "Couldn't load the card, relic and event lists.",
@@ -138,6 +152,8 @@ export const X9I: Record<string, Record<string, string>> = {
     tur: "Kart, kalıntı ve olay listeleri yüklenemedi.",
     zhs: "无法加载卡牌、遗物和事件列表。",
     zht: "無法載入卡牌、遺物和事件列表。",
+    ara: "تعذر تحميل قوائم البطاقات والآثار والأحداث.",
+    ind: "Gagal memuat daftar kartu, pusaka, dan event.",
   },
   "The request didn't come back. It may have timed out; try again in a moment.":
     {
@@ -156,6 +172,8 @@ export const X9I: Record<string, Record<string, string>> = {
       tur: "İstek geri dönmedi. Zaman aşımına uğramış olabilir; birazdan tekrar dene.",
       zhs: "请求没有返回，可能已超时。请稍后再试。",
       zht: "請求沒有回應，可能已逾時。請稍後再試。",
+      ara: "لم يصل رد على الطلب. ربما انتهت المهلة، حاول مجددًا بعد قليل.",
+      ind: "Permintaan tidak mendapat balasan. Mungkin waktunya habis, coba lagi sebentar lagi.",
     },
   "Something went wrong on our side. Try again in a moment.": {
     eng: "Something went wrong on our side. Try again in a moment.",
@@ -173,6 +191,8 @@ export const X9I: Record<string, Record<string, string>> = {
     tur: "Bizim tarafta bir şeyler ters gitti. Birazdan tekrar dene.",
     zhs: "我们这边出了点问题，请稍后再试。",
     zht: "我們這邊出了點問題，請稍後再試。",
+    ara: "حدث خطأ من جهتنا. حاول مجددًا بعد قليل.",
+    ind: "Ada yang salah di sisi kami. Coba lagi sebentar lagi.",
   },
   "Copy link": {
     eng: "Copy link",
@@ -190,6 +210,8 @@ export const X9I: Record<string, Record<string, string>> = {
     tur: "Bağlantıyı kopyala",
     zhs: "复制链接",
     zht: "複製連結",
+    ara: "نسخ الرابط",
+    ind: "Salin tautan",
   },
   "Show up to {n}": {
     eng: "Show up to {n}",
@@ -207,6 +229,8 @@ export const X9I: Record<string, Record<string, string>> = {
     tur: "En fazla {n} göster",
     zhs: "最多显示 {n} 条",
     zht: "最多顯示 {n} 條",
+    ara: "عرض حتى {n}",
+    ind: "Tampilkan hingga {n}",
   },
   "Deck Builder": {
     eng: "Deck Builder",
@@ -224,5 +248,7 @@ export const X9I: Record<string, Record<string, string>> = {
     tur: "Deste Oluşturucu",
     zhs: "牌组构筑器",
     zht: "牌組構築器",
+    ara: "منشئ المجموعات",
+    ind: "Penyusun Dek",
   },
 };

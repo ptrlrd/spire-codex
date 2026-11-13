@@ -15,6 +15,8 @@ export const X9Z: Record<string, Record<string, string>> = {
     tur: "Ara veya filtrele, ör. lift>2 win>55",
     zhs: "搜索或筛选，例如 lift>2 win>55",
     zht: "搜尋或篩選，例如 lift>2 win>55",
+    ara: "ابحث أو صفِّ، مثل lift>2 win>55",
+    ind: "Cari atau filter, mis. lift>2 win>55",
   },
   "Unknown field: {field}": {
     eng: "Unknown field: {field}",
@@ -32,6 +34,8 @@ export const X9Z: Record<string, Record<string, string>> = {
     tur: "Bilinmeyen alan: {field}",
     zhs: "未知字段：{field}",
     zht: "未知欄位：{field}",
+    ara: "حقل غير معروف: {field}",
+    ind: "Kolom tidak dikenal: {field}",
   },
   "The query could not be read, so plain text search is used.": {
     eng: "The query could not be read, so plain text search is used.",
@@ -49,6 +53,8 @@ export const X9Z: Record<string, Record<string, string>> = {
     tur: "Sorgu okunamadı, düz metin araması kullanılıyor.",
     zhs: "无法解析查询，改用纯文本搜索。",
     zht: "無法解析查詢，改用純文字搜尋。",
+    ara: "تعذرت قراءة الاستعلام، لذا يُستخدم البحث النصي العادي.",
+    ind: "Kueri tidak bisa dibaca, jadi pencarian teks biasa yang dipakai.",
   },
   "Filter help": {
     eng: "Filter help",
@@ -66,6 +72,8 @@ export const X9Z: Record<string, Record<string, string>> = {
     tur: "Filtre yardımı",
     zhs: "筛选帮助",
     zht: "篩選說明",
+    ara: "مساعدة التصفية",
+    ind: "Bantuan filter",
   },
   "Spaces combine terms with AND, OR offers choices, and a leading - excludes.":
     {
@@ -84,6 +92,8 @@ export const X9Z: Record<string, Record<string, string>> = {
       tur: "Boşluklar koşulları AND ile birleştirir, OR alternatif sunar, baştaki - hariç tutar.",
       zhs: "空格用 AND 组合条件，OR 表示可选，开头的 - 表示排除。",
       zht: "空格用 AND 組合條件，OR 表示可選，開頭的 - 表示排除。",
+      ara: "المسافات تجمع المصطلحات بـ AND، و OR يتيح بدائل، وعلامة - في البداية تستبعد.",
+      ind: "Spasi menggabungkan istilah dengan AND, OR memberi pilihan, dan tanda - di depan mengecualikan.",
     },
   "Numbers: > >= < <= = != and : compare, a percent sign after the number is ignored.":
     {
@@ -102,6 +112,8 @@ export const X9Z: Record<string, Record<string, string>> = {
       tur: "Sayılar: > >= < <= = != ve : karşılaştırır, sayıdan sonraki % yok sayılır.",
       zhs: "数字：> >= < <= = != 和 : 用于比较，数字后的 % 会被忽略。",
       zht: "數字：> >= < <= = != 和 : 用於比較，數字後的 % 會被忽略。",
+      ara: "الأرقام: > >= < <= = != و : للمقارنة، وعلامة النسبة المئوية بعد الرقم يتم تجاهلها.",
+      ind: "Angka: > >= < <= = != dan : membandingkan, tanda persen setelah angka diabaikan.",
     },
   "Text: field:value matches part of the text (rarity and group match whole values), field=value matches exactly.":
     {
@@ -120,6 +132,8 @@ export const X9Z: Record<string, Record<string, string>> = {
       tur: "Metin: field:value kısmen eşleşir (rarity ve group tam değerle eşleşir), field=value tam eşleşir.",
       zhs: "文本：field:value 为包含匹配（rarity 和 group 需完整匹配），field=value 为精确匹配。",
       zht: "文字：field:value 為包含比對（rarity 和 group 需完整比對），field=value 為精確比對。",
+      ara: "النص: field:value يطابق جزءًا من النص (الندرة والمجموعة تطابقان القيمة كاملة)، و field=value يطابق تمامًا.",
+      ind: "Teks: field:value mencocokkan sebagian teks (kelangkaan dan grup mencocokkan nilai utuh), field=value mencocokkan persis.",
     },
   Examples: {
     eng: "Examples",
@@ -137,6 +151,8 @@ export const X9Z: Record<string, Record<string, string>> = {
     tur: "Örnekler",
     zhs: "示例",
     zht: "範例",
+    ara: "أمثلة",
+    ind: "Contoh",
   },
   "Behind the Codex": {
     eng: "Behind the Codex",
@@ -154,6 +170,8 @@ export const X9Z: Record<string, Record<string, string>> = {
     tur: "Codex'in arkasında",
     zhs: "Codex 幕后",
     zht: "Codex 幕後",
+    ara: "خلف Codex",
+    ind: "Di Balik Codex",
   },
   "Supporting Spire Codex": {
     eng: "Supporting Spire Codex",
@@ -171,6 +189,8 @@ export const X9Z: Record<string, Record<string, string>> = {
     tur: "Spire Codex'i desteklemek",
     zhs: "支持 Spire Codex",
     zht: "支持 Spire Codex",
+    ara: "دعم Spire Codex",
+    ind: "Mendukung Spire Codex",
   },
   "Hi! I am Peter, I am a self-taught technologist, rad dad, cool husband, and chronic tinkerer. I took a non-traditional path into software engineering and tech, building things from the ground up out of sheer curiosity and passion. I would not have it any other way. I've had quite a few projects (DPC, a Discord community with 10K+ DevOps and platform professionals, and Genshin News, a webhook service for the latest Genshin Impact news) but Spire Codex has been my biggest and proudest project.":
     {
@@ -189,6 +209,8 @@ export const X9Z: Record<string, Record<string, string>> = {
       tur: "Merhaba! Ben Peter; kendi kendini yetiştirmiş bir teknoloji meraklısı, harika bir baba, havalı bir koca ve iflah olmaz bir kurcalayıcıyım. Yazılım mühendisliğine ve teknolojiye alışılmadık bir yoldan geldim; tamamen merak ve tutkuyla her şeyi sıfırdan inşa ettim. Başka türlüsünü istemezdim. Pek çok projem oldu (10.000'den fazla DevOps ve platform uzmanından oluşan Discord topluluğu DPC ve en son Genshin Impact haberleri için bir webhook servisi olan Genshin News gibi), ama Spire Codex en büyük ve en gurur duyduğum projem.",
       zhs: "嗨！我是 Peter，一名自学成才的技术人、超酷的爸爸、很棒的丈夫，也是一个停不下来的折腾爱好者。我走了一条非传统的路进入软件工程和科技行业，纯粹出于好奇和热爱，从零开始把东西做出来。我不会想换一种方式。我做过不少项目（DPC，一个拥有一万多名 DevOps 和平台工程师的 Discord 社区；以及 Genshin News，一个推送原神最新消息的 Webhook 服务），但 Spire Codex 是我做过最大、也最让我自豪的项目。",
       zht: "嗨！我是 Peter，一名自學成才的技術人、超酷的爸爸、很棒的丈夫，也是一個停不下來的折騰愛好者。我走了一條非傳統的路進入軟體工程與科技業，純粹出於好奇與熱愛，從零開始把東西做出來。我不會想換一種方式。我做過不少專案（DPC，一個擁有一萬多名 DevOps 與平台工程師的 Discord 社群；以及 Genshin News，一個推送原神最新消息的 Webhook 服務），但 Spire Codex 是我做過最大、也最讓我自豪的專案。",
+      ara: "مرحبًا! أنا Peter، تقني علّم نفسه بنفسه، وأب رائع، وزوج لطيف، ومولع دائم بالتجريب. سلكت طريقًا غير تقليدي نحو هندسة البرمجيات والتقنية، وبنيت الأشياء من الصفر بدافع الفضول والشغف وحدهما. وما كنت لأختار غير ذلك. كانت لي مشاريع عديدة (DPC، مجتمع على Discord يضم أكثر من 10 آلاف محترف في DevOps والمنصات، و Genshin News، خدمة webhook لآخر أخبار Genshin Impact) لكن Spire Codex هو أكبر مشاريعي وأكثرها مدعاة لفخري.",
+      ind: "Hai! Saya Peter, seorang teknolog otodidak, ayah yang asyik, suami yang keren, dan tukang utak-atik kronis. Saya menempuh jalur yang tidak biasa ke dunia rekayasa perangkat lunak dan teknologi, membangun semuanya dari nol murni karena rasa ingin tahu dan kecintaan. Saya tidak mau jalan lain. Saya sudah punya beberapa proyek (DPC, komunitas Discord dengan lebih dari 10 ribu profesional DevOps dan platform, serta Genshin News, layanan webhook untuk berita terbaru Genshin Impact) tetapi Spire Codex adalah proyek terbesar dan paling saya banggakan.",
     },
   "Spire Codex started as a passion project born from a love for Slay the Spire and a desire to build useful, performant developer tools for the gaming community.":
     {
@@ -207,6 +229,8 @@ export const X9Z: Record<string, Record<string, string>> = {
       tur: "Spire Codex, Slay the Spire sevgisinden ve oyun topluluğu için faydalı, hızlı geliştirici araçları yapma isteğinden doğan bir tutku projesi olarak başladı.",
       zhs: "Spire Codex 起源于一个兴趣项目，源自对 Slay the Spire 的热爱，以及为游戏社区打造实用、高性能开发者工具的愿望。",
       zht: "Spire Codex 起源於一個興趣專案，源自對 Slay the Spire 的熱愛，以及為遊戲社群打造實用、高效能開發者工具的願望。",
+      ara: "بدأ Spire Codex كمشروع شغف وُلد من حب Slay the Spire ورغبة في بناء أدوات مطورين مفيدة وسريعة لمجتمع اللاعبين.",
+      ind: "Spire Codex berawal sebagai proyek hobi yang lahir dari kecintaan pada Slay the Spire dan keinginan membangun alat pengembang yang berguna dan kencang untuk komunitas game.",
     },
   "Running high-traffic databases and fast API infrastructure incurs real server costs and time. If Spire Codex has saved you a wipe, helped you theorycraft a run, or powered your own project, consider dropping a tip or picking up a membership! Thanks for your support whether you're monetarily supporting or not!":
     {
@@ -225,5 +249,7 @@ export const X9Z: Record<string, Record<string, string>> = {
       tur: "Yoğun trafikli veritabanlarını ve hızlı bir API altyapısını çalıştırmanın gerçek sunucu maliyetleri var ve zaman alıyor. Spire Codex seni bir yenilgiden kurtardıysa, bir run planlamana yardım ettiyse ya da kendi projene güç verdiyse, bahşiş bırakmayı veya üye olmayı düşün! Maddi olsun ya da olmasın, desteğin için teşekkürler!",
       zhs: "运行高流量的数据库和快速的 API 基础设施需要真金白银的服务器费用和大量时间。如果 Spire Codex 曾帮你避免翻车、帮你规划一局，或支撑了你自己的项目，欢迎打赏或加入会员！无论是否有经济上的支持，都感谢你的支持！",
       zht: "運行高流量的資料庫和快速的 API 基礎設施需要實實在在的伺服器費用和大量時間。如果 Spire Codex 曾幫你避免翻車、幫你規劃一局，或支撐了你自己的專案，歡迎打賞或加入會員！無論是否有經濟上的支持，都感謝你的支持！",
+      ara: "تشغيل قواعد بيانات عالية الزيارات وبنية API سريعة يكلّف وقتًا ومصاريف خوادم حقيقية. إذا أنقذك Spire Codex من خسارة، أو ساعدك في التخطيط لجولة، أو شغّل مشروعك الخاص، ففكّر في ترك إكرامية أو الحصول على عضوية! شكرًا على دعمك سواء كان ماليًا أم لا!",
+      ind: "Menjalankan basis data dengan trafik tinggi dan infrastruktur API yang cepat butuh biaya server dan waktu yang nyata. Kalau Spire Codex pernah menyelamatkanmu dari kekalahan, membantumu meracik strategi perjalanan, atau menjadi tenaga proyekmu sendiri, pertimbangkan memberi tip atau mengambil keanggotaan! Terima kasih atas dukunganmu, baik berupa uang maupun tidak!",
     },
 };

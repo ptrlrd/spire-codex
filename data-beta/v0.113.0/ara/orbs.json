@@ -1,0 +1,37 @@
+[
+  {
+    "id": "DARK_ORB",
+    "name": "ظلام",
+    "description": "[gold]سلبي:[/gold] في نهاية الدور، زد ضرر هذا الجرم بمقدار [blue]6[/blue].\n[gold]استدعاء:[/gold] ألحق [blue]6[/blue] ضررًا بالعدو الأقل صحة.",
+    "description_raw": "[gold]سلبي:[/gold] في نهاية الدور، زد ضرر هذا الجرم بمقدار [blue]{Passive}[/blue].\n[gold]استدعاء:[/gold] ألحق [blue]{Evoke}[/blue] ضررًا بالعدو الأقل صحة.",
+    "image_url": "/static/images/orbs/dark_orb.png"
+  },
+  {
+    "id": "FROST_ORB",
+    "name": "صقيع",
+    "description": "[gold]سلبي:[/gold] في نهاية الدور، اكسب [blue]2[/blue] [gold]دفاع[/gold].\n[gold]استدعاء:[/gold] اكسب [blue]5[/blue] [gold]دفاع[/gold].",
+    "description_raw": "[gold]سلبي:[/gold] في نهاية الدور، اكسب [blue]{Passive}[/blue] [gold]دفاع[/gold].\n[gold]استدعاء:[/gold] اكسب [blue]{Evoke}[/blue] [gold]دفاع[/gold].",
+    "image_url": "/static/images/orbs/frost_orb.png"
+  },
+  {
+    "id": "GLASS_ORB",
+    "name": "زجاج",
+    "description": "[gold]سلبي:[/gold] في نهاية الدور، ألحق [blue]4[/blue] ضررًا بجميع الأعداء وخفّض قيمة هذا الجرم بمقدار [blue]1[/blue].\n[gold]استدعاء:[/gold] ألحق [blue]8[/blue] ضررًا بجميع الأعداء.",
+    "description_raw": "[gold]سلبي:[/gold] في نهاية الدور، ألحق [blue]{Passive}[/blue] ضررًا بجميع الأعداء وخفّض قيمة هذا الجرم بمقدار [blue]1[/blue].\n[gold]استدعاء:[/gold] ألحق [blue]{Evoke}[/blue] ضررًا بجميع الأعداء.",
+    "image_url": "/static/images/orbs/glass_orb.png"
+  },
+  {
+    "id": "LIGHTNING_ORB",
+    "name": "برق",
+    "description": "[gold]سلبي:[/gold] في نهاية الدور، ألحق [blue]3[/blue] ضررًا بعدو عشوائي.\n[gold]استدعاء:[/gold] ألحق [blue]8[/blue] ضررًا بعدو عشوائي.",
+    "description_raw": "[gold]سلبي:[/gold] في نهاية الدور، ألحق [blue]{Passive}[/blue] ضررًا بعدو عشوائي.\n[gold]استدعاء:[/gold] ألحق [blue]{Evoke}[/blue] ضررًا بعدو عشوائي.",
+    "image_url": "/static/images/orbs/lightning_orb.png"
+  },
+  {
+    "id": "PLASMA_ORB",
+    "name": "بلازما",
+    "description": "[gold]سلبي:[/gold] في بداية الدور،\nاكسب [energy:1].\n[gold]استدعاء:[/gold] اكسب [energy:2].\nالبلازما لا تتأثر بـ [gold]التركيز[/gold].",
+    "description_raw": "[gold]سلبي:[/gold] في بداية الدور،\nاكسب {energyPrefix:energyIcons(1)}.\n[gold]استدعاء:[/gold] اكسب {energyPrefix:energyIcons(2)}.\nالبلازما لا تتأثر بـ [gold]التركيز[/gold].",
+    "image_url": "/static/images/orbs/plasma_orb.png"
+  }
+]

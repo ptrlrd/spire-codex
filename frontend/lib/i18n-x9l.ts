@@ -16,6 +16,8 @@ export const X9L: Record<string, Record<string, string>> = {
     tur: "Sayfalar",
     zhs: "页面",
     zht: "頁面",
+    ara: "الصفحات",
+    ind: "Halaman",
   },
   Images: {
     eng: "Images",
@@ -33,6 +35,8 @@ export const X9L: Record<string, Record<string, string>> = {
     tur: "Görseller",
     zhs: "图片",
     zht: "圖片",
+    ara: "الصور",
+    ind: "Gambar",
   },
   Characters: {
     eng: "Characters",
@@ -50,6 +54,8 @@ export const X9L: Record<string, Record<string, string>> = {
     tur: "Karakterler",
     zhs: "角色",
     zht: "角色",
+    ara: "الشخصيات",
+    ind: "Karakter",
   },
   Cards: {
     eng: "Cards",
@@ -67,6 +73,8 @@ export const X9L: Record<string, Record<string, string>> = {
     tur: "Kartlar",
     zhs: "卡牌",
     zht: "卡牌",
+    ara: "البطاقات",
+    ind: "Kartu",
   },
   Relics: {
     eng: "Relics",
@@ -84,6 +92,8 @@ export const X9L: Record<string, Record<string, string>> = {
     tur: "Kalıntılar",
     zhs: "遗物",
     zht: "遺物",
+    ara: "الآثار",
+    ind: "Pusaka",
   },
   Monsters: {
     eng: "Monsters",
@@ -101,6 +111,8 @@ export const X9L: Record<string, Record<string, string>> = {
     tur: "Canavarlar",
     zhs: "怪物",
     zht: "怪物",
+    ara: "الوحوش",
+    ind: "Monster",
   },
   Potions: {
     eng: "Potions",
@@ -118,6 +130,8 @@ export const X9L: Record<string, Record<string, string>> = {
     tur: "İksirler",
     zhs: "药水",
     zht: "藥水",
+    ara: "الجرعات",
+    ind: "Ramuan",
   },
   Powers: {
     eng: "Powers",
@@ -135,6 +149,8 @@ export const X9L: Record<string, Record<string, string>> = {
     tur: "Güçler",
     zhs: "能力",
     zht: "能力",
+    ara: "القدرات",
+    ind: "Kuasa",
   },
   Enchantments: {
     eng: "Enchantments",
@@ -152,6 +168,8 @@ export const X9L: Record<string, Record<string, string>> = {
     tur: "Büyüler",
     zhs: "附魔",
     zht: "附魔",
+    ara: "التعزيزات",
+    ind: "Efek",
   },
   Events: {
     eng: "Events",
@@ -169,6 +187,8 @@ export const X9L: Record<string, Record<string, string>> = {
     tur: "Olaylar",
     zhs: "事件",
     zht: "事件",
+    ara: "الأحداث",
+    ind: "Event",
   },
   Encounters: {
     eng: "Encounters",
@@ -186,6 +206,8 @@ export const X9L: Record<string, Record<string, string>> = {
     tur: "Karşılaşmalar",
     zhs: "遭遇",
     zht: "遭遇",
+    ara: "المواجهات",
+    ind: "Pertemuan",
   },
   Keywords: {
     eng: "Keywords",
@@ -203,6 +225,8 @@ export const X9L: Record<string, Record<string, string>> = {
     tur: "Anahtar kelimeler",
     zhs: "关键词",
     zht: "關鍵字",
+    ara: "الكلمات المفتاحية",
+    ind: "Kata Kunci",
   },
   Reference: {
     eng: "Reference",
@@ -220,6 +244,8 @@ export const X9L: Record<string, Record<string, string>> = {
     tur: "Referans",
     zhs: "参考",
     zht: "參考",
+    ara: "المرجع",
+    ind: "Referensi",
   },
   Mechanics: {
     eng: "Mechanics",
@@ -237,6 +263,8 @@ export const X9L: Record<string, Record<string, string>> = {
     tur: "Mekanikler",
     zhs: "机制",
     zht: "機制",
+    ara: "الآليات",
+    ind: "Mekanik",
   },
   Guides: {
     eng: "Guides",
@@ -254,6 +282,8 @@ export const X9L: Record<string, Record<string, string>> = {
     tur: "Rehberler",
     zhs: "攻略",
     zht: "攻略",
+    ara: "الأدلة",
+    ind: "Panduan",
   },
   News: {
     eng: "News",
@@ -271,6 +301,8 @@ export const X9L: Record<string, Record<string, string>> = {
     tur: "Haberler",
     zhs: "新闻",
     zht: "新聞",
+    ara: "الأخبار",
+    ind: "Berita",
   },
   Links: {
     eng: "Links",
@@ -288,6 +320,8 @@ export const X9L: Record<string, Record<string, string>> = {
     tur: "Bağlantılar",
     zhs: "链接",
     zht: "連結",
+    ara: "الروابط",
+    ind: "Tautan",
   },
   "Best matches": {
     eng: "Best matches",
@@ -305,6 +339,8 @@ export const X9L: Record<string, Record<string, string>> = {
     tur: "En iyi eşleşmeler",
     zhs: "最佳匹配",
     zht: "最佳匹配",
+    ara: "أفضل النتائج",
+    ind: "Hasil terbaik",
   },
   "Recent searches": {
     eng: "Recent searches",
@@ -322,6 +358,8 @@ export const X9L: Record<string, Record<string, string>> = {
     tur: "Son aramalar",
     zhs: "最近搜索",
     zht: "最近搜尋",
+    ara: "عمليات البحث الأخيرة",
+    ind: "Pencarian terakhir",
   },
   Clear: {
     eng: "Clear",
@@ -339,6 +377,8 @@ export const X9L: Record<string, Record<string, string>> = {
     tur: "Temizle",
     zhs: "清除",
     zht: "清除",
+    ara: "مسح",
+    ind: "Hapus",
   },
   Search: {
     eng: "Search",
@@ -356,6 +396,8 @@ export const X9L: Record<string, Record<string, string>> = {
     tur: "Ara",
     zhs: "搜索",
     zht: "搜尋",
+    ara: "بحث",
+    ind: "Cari",
   },
   "Unified site search across entities, reference entries, mechanics, guides, news, site pages and image files, with typo tolerance (q, lang)":
     {
@@ -374,5 +416,7 @@ export const X9L: Record<string, Record<string, string>> = {
       tur: "Varlıklar, referans girdileri, mekanikler, rehberler, haberler, site sayfaları ve görsel dosyaları kapsayan, yazım hatasına toleranslı birleşik site araması (q, lang)",
       zhs: "覆盖实体、参考条目、机制、攻略、新闻、站点页面和图片文件的统一站内搜索，支持容错拼写（q, lang）",
       zht: "涵蓋實體、參考條目、機制、攻略、新聞、網站頁面與圖片檔案的統一站內搜尋，支援容錯拼寫（q, lang）",
+      ara: "بحث موحد في الموقع يشمل الكيانات ومدخلات المرجع والآليات والأدلة والأخبار وصفحات الموقع وملفات الصور، مع تسامح مع الأخطاء الإملائية (q, lang)",
+      ind: "Pencarian situs terpadu untuk entitas, entri referensi, mekanik, panduan, berita, halaman situs, dan berkas gambar, dengan toleransi salah ketik (q, lang)",
     },
 };

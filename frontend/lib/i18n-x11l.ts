@@ -15,6 +15,8 @@ export const X11L: Record<string, Record<string, string>> = {
     tur: "{char} ile en hızlı {rank}. galibiyet",
     zhs: "{char} 最快胜利第 {rank} 名",
     zht: "{char} 最快勝利第 {rank} 名",
+    ara: "#{rank} أسرع فوز بشخصية {char}",
+    ind: "Kemenangan {char} tercepat #{rank}",
   },
   "{n} runs on this seed": {
     eng: "{n} runs on this seed",
@@ -32,6 +34,8 @@ export const X11L: Record<string, Record<string, string>> = {
     tur: "Bu seed ile {n} koşu",
     zhs: "此种子共 {n} 局游戏",
     zht: "此種子共 {n} 局遊戲",
+    ara: "{n} من الجولات على هذه البذرة",
+    ind: "{n} perjalanan di benih ini",
   },
   "{n} runs on this seed, #{rank} fastest win": {
     eng: "{n} runs on this seed, #{rank} fastest win",
@@ -49,6 +53,8 @@ export const X11L: Record<string, Record<string, string>> = {
     tur: "Bu seed ile {n} koşu, en hızlı {rank}. galibiyet",
     zhs: "此种子共 {n} 局游戏，最快胜利第 {rank} 名",
     zht: "此種子共 {n} 局遊戲，最快勝利第 {rank} 名",
+    ara: "{n} من الجولات على هذه البذرة، أسرع فوز #{rank}",
+    ind: "{n} perjalanan di benih ini, kemenangan tercepat #{rank}",
   },
   "Open this seed in the Seed Finder": {
     eng: "Open this seed in the Seed Finder",
@@ -66,6 +72,8 @@ export const X11L: Record<string, Record<string, string>> = {
     tur: "Bu seed'i Seed Bulucu'da aç",
     zhs: "在种子查找器中打开此种子",
     zht: "在種子查找器中開啟此種子",
+    ara: "افتح هذه البذرة في Seed Finder",
+    ind: "Buka benih ini di Seed Finder",
   },
   "View this player's profile": {
     eng: "View this player's profile",
@@ -83,6 +91,8 @@ export const X11L: Record<string, Record<string, string>> = {
     tur: "Bu oyuncunun profilini gör",
     zhs: "查看此玩家的个人资料",
     zht: "查看此玩家的個人資料",
+    ara: "عرض ملف هذا اللاعب",
+    ind: "Lihat profil pemain ini",
   },
   "Go deeper": {
     eng: "Go deeper",
@@ -100,6 +110,8 @@ export const X11L: Record<string, Record<string, string>> = {
     tur: "Daha fazlası",
     zhs: "深入了解",
     zht: "深入了解",
+    ara: "تعمّق أكثر",
+    ind: "Gali lebih dalam",
   },
   "Start here": {
     eng: "Start here",
@@ -117,5 +129,7 @@ export const X11L: Record<string, Record<string, string>> = {
     tur: "Buradan başla",
     zhs: "从这里开始",
     zht: "從這裡開始",
+    ara: "ابدأ من هنا",
+    ind: "Mulai dari sini",
   },
 };

@@ -15,6 +15,8 @@ export const X12F: Record<string, Record<string, string>> = {
     tur: "Soytarı",
     zhs: "愚者",
     zht: "愚者",
+    ara: "Fool",
+    ind: "Fool",
   },
   "Shows as {n} separate options:": {
     eng: "Shows as {n} separate options:",
@@ -32,6 +34,8 @@ export const X12F: Record<string, Record<string, string>> = {
     tur: "{n} ayrı seçenek olarak gösterilir:",
     zhs: "显示为 {n} 个独立选项：",
     zht: "顯示為 {n} 個獨立選項：",
+    ara: "يظهر كـ {n} خيارات منفصلة:",
+    ind: "Tampil sebagai {n} opsi terpisah:",
   },
   "All 576 cards ranked S → F. Filter by character (Ironclad, Silent, Defect, Necrobinder, Regent, Fool).":
     {
@@ -50,6 +54,8 @@ export const X12F: Record<string, Record<string, string>> = {
       tur: "576 kartın tamamı S'den F'ye sıralandı. Karaktere göre filtreleyin (Ironclad, Silent, Defect, Necrobinder, Regent, Fool).",
       zhs: "全部 576 张卡牌按 S 到 F 排名。可按角色筛选（铁甲战士、静默猎手、故障机器人、缚灵者、摄政者、愚者）。",
       zht: "全部 576 張卡牌按 S 到 F 排名。可按角色篩選（鐵甲戰士、靜默獵手、故障機器人、縛靈者、攝政者、愚者）。",
+      ara: "كل البطاقات الـ576 مرتبة من S → F. فلتر حسب الشخصية (المدرع، الصامتة، المعيب، رابطة الموتى، الوصي، Fool).",
+      ind: "Semua 576 kartu diurutkan S → F. Filter menurut karakter (Ironclad, Silent, Defect, Necrobinder, Regent, Fool).",
     },
   "Yes, the cards tier list filters to Ironclad, Silent, Defect, Necrobinder, Regent, Fool, or Colorless. The relics tier list filters by pool. Each filtered view is its own page targeting that character or pool specifically.":
     {
@@ -68,6 +74,8 @@ export const X12F: Record<string, Record<string, string>> = {
       tur: "Evet, kart sıralama listesi Ironclad, Silent, Defect, Necrobinder, Regent, Fool veya Renksiz olarak filtrelenir. Kalıntı sıralama listesi havuza göre filtrelenir. Her filtrelenmiş görünüm, o karaktere veya havuza özel ayrı bir sayfadır.",
       zhs: "是的，卡牌梯度榜可按铁甲战士、静默猎手、故障机器人、缚灵者、摄政者、愚者或无色筛选。遗物梯度榜按卡池筛选。每个筛选视图都是专门针对该角色或卡池的独立页面。",
       zht: "是的，卡牌梯度榜可按鐵甲戰士、靜默獵手、故障機器人、縛靈者、攝政者、愚者或無色篩選。遺物梯度榜按卡池篩選。每個篩選視圖都是專門針對該角色或卡池的獨立頁面。",
+      ara: "نعم، يمكن فلترة قائمة تصنيف البطاقات حسب المدرع أو الصامتة أو المعيب أو رابطة الموتى أو الوصي أو Fool أو عديمة اللون. وتُفلتر قائمة تصنيف الآثار حسب المجموعة. كل عرض مفلتر صفحة مستقلة تخص تلك الشخصية أو المجموعة تحديدًا.",
+      ind: "Ya, tier list kartu bisa difilter ke Ironclad, Silent, Defect, Necrobinder, Regent, Fool, atau Tak Berwarna. Tier list pusaka difilter menurut kumpulan. Setiap tampilan terfilter adalah halaman sendiri yang khusus untuk karakter atau kumpulan itu.",
     },
   Tarot: {
     eng: "Tarot",
@@ -85,6 +93,8 @@ export const X12F: Record<string, Record<string, string>> = {
     tur: "Tarot",
     zhs: "塔罗牌",
     zht: "塔羅",
+    ara: "تاروت",
+    ind: "Tarot",
   },
   Set: {
     eng: "Set",
@@ -102,6 +112,8 @@ export const X12F: Record<string, Record<string, string>> = {
     tur: "Set",
     zhs: "系列",
     zht: "系列",
+    ara: "الطقم",
+    ind: "Set",
   },
   "Created by": {
     eng: "Created by",
@@ -119,6 +131,8 @@ export const X12F: Record<string, Record<string, string>> = {
     tur: "Oluşturan",
     zhs: "生成来源",
     zht: "生成來源",
+    ara: "أنشأتها",
+    ind: "Dibuat oleh",
   },
   "Tarot cards are created during combat and are never offered as rewards.": {
     eng: "Tarot cards are created during combat and are never offered as rewards.",
@@ -136,5 +150,7 @@ export const X12F: Record<string, Record<string, string>> = {
     tur: "Tarot kartları savaş sırasında oluşturulur ve asla ödül olarak sunulmaz.",
     zhs: "塔罗牌在战斗中生成，从不作为奖励出现。",
     zht: "塔羅牌在戰鬥中生成，從不作為獎勵出現。",
+    ara: "بطاقات التاروت تُنشأ أثناء القتال ولا تُعرض أبدًا كمكافآت.",
+    ind: "Kartu Tarot dibuat saat pertarungan dan tidak pernah ditawarkan sebagai hadiah.",
   },
 };

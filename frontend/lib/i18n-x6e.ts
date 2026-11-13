@@ -17,6 +17,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "{game} için eksiksiz tüccar fiyat rehberi: kart, kalıntı ve iksir fiyatları, kart kaldırma ücreti ve Sahte Tüccar kalıntı ayrıntıları.",
       zhs: "{game} 商人价格完整指南：卡牌、遗物、药水价格，删卡费用，以及假商人遗物详情。",
       zht: "{game} 商人價格完整指南：卡牌、遺物、藥水價格，刪卡費用，以及假商人遺物詳情。",
+      ara: "دليل كامل لأسعار التاجر في {game} مع تكاليف البطاقات والآثار والجرعات، وأسعار إزالة البطاقات، وتفاصيل آثار التاجر المزيف.",
+      ind: "Panduan harga pedagang {game} yang lengkap dengan harga kartu, pusaka, dan ramuan, harga pembuangan kartu, dan detail pusaka Pedagang Palsu.",
     },
   "1st": {
     eng: "1st",
@@ -34,6 +36,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "1.",
     zhs: "第1次",
     zht: "第1次",
+    ara: "الأول",
+    ind: "ke-1",
   },
   "2nd": {
     eng: "2nd",
@@ -51,6 +55,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "2.",
     zhs: "第2次",
     zht: "第2次",
+    ara: "الثاني",
+    ind: "ke-2",
   },
   "3rd": {
     eng: "3rd",
@@ -68,6 +74,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "3.",
     zhs: "第3次",
     zht: "第3次",
+    ara: "الثالث",
+    ind: "ke-3",
   },
   "{n}th": {
     eng: "{n}th",
@@ -85,6 +93,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "{n}.",
     zhs: "第{n}次",
     zht: "第{n}次",
+    ara: "رقم {n}",
+    ind: "ke-{n}",
   },
   Economy: {
     eng: "Economy",
@@ -102,6 +112,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Ekonomi",
     zhs: "经济",
     zht: "經濟",
+    ara: "الاقتصاد",
+    ind: "Ekonomi",
   },
   "All merchant pricing extracted from the game source code. Prices vary within the listed ranges due to a per-seed random multiplier.":
     {
@@ -120,6 +132,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Tüm tüccar fiyatları oyunun kaynak kodundan çıkarıldı. Fiyatlar, tohuma özel rastgele bir çarpan nedeniyle listelenen aralıklar içinde değişir.",
       zhs: "所有商人价格均提取自游戏源代码。由于每个种子有随机倍率，价格会在所列区间内浮动。",
       zht: "所有商人價格均提取自遊戲原始碼。由於每個種子有隨機倍率，價格會在所列區間內浮動。",
+      ara: "كل أسعار التاجر مستخرجة من الشيفرة المصدرية للعبة. تتفاوت الأسعار ضمن النطاقات المذكورة بسبب مضاعف عشوائي لكل بذرة.",
+      ind: "Semua harga pedagang diambil dari kode sumber game. Harga bervariasi dalam rentang yang tercantum karena pengali acak per benih.",
     },
   "Each merchant stocks the following items, randomly generated from your seed:":
     {
@@ -138,6 +152,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Her tüccar, tohumunuzdan rastgele üretilen şu ürünleri bulundurur:",
       zhs: "每位商人出售以下物品，由你的种子随机生成：",
       zht: "每位商人販售以下物品，由你的種子隨機生成：",
+      ara: "يعرض كل تاجر العناصر التالية، مولدة عشوائيا من بذرتك:",
+      ind: "Setiap pedagang menyediakan barang berikut, dibuat acak dari benihmu:",
     },
   "Character Cards": {
     eng: "Character Cards",
@@ -155,6 +171,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Karakter Kartları",
     zhs: "角色卡牌",
     zht: "角色卡牌",
+    ara: "بطاقات الشخصية",
+    ind: "Kartu Karakter",
   },
   "2 Attacks, 2 Skills, 1 Power, from your character pool. One random card is on sale for half price.":
     {
@@ -173,6 +191,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Karakter havuzundan 2 Saldırı, 2 Beceri, 1 Güç. Rastgele bir kart yarı fiyatına indirimdedir.",
       zhs: "来自你的角色卡池：2张攻击、2张技能、1张能力。随机一张卡牌半价出售。",
       zht: "來自你的角色卡池：2張攻擊、2張技能、1張能力。隨機一張卡牌半價出售。",
+      ara: "هجومان، مهارتان، قوة واحدة، من مجموعة شخصيتك. بطاقة عشوائية واحدة معروضة بنصف السعر.",
+      ind: "2 Serangan, 2 Teknik, 1 Kuasa, dari kumpulan karaktermu. Satu kartu acak didiskon setengah harga.",
     },
   "Colorless Cards": {
     eng: "Colorless Cards",
@@ -190,6 +210,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Renksiz Kartlar",
     zhs: "无色卡牌",
     zht: "無色卡牌",
+    ara: "بطاقات بدون لون",
+    ind: "Kartu Tak Berwarna",
   },
   "1 Uncommon, 1 Rare, from the colorless pool. {pct}% price markup.": {
     eng: "1 Uncommon, 1 Rare, from the colorless pool. {pct}% price markup.",
@@ -207,6 +229,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Renksiz havuzdan 1 Sıradışı, 1 Nadir. Fiyata %{pct} ek ücret.",
     zhs: "来自无色卡池：1张罕见、1张稀有。价格上浮{pct}%。",
     zht: "來自無色卡池：1張罕見、1張稀有。價格上浮{pct}%。",
+    ara: "1 غير شائع، 1 نادر، من مجموعة البطاقات بدون لون. زيادة سعر {pct}%.",
+    ind: "1 Tidak Biasa, 1 Langka, dari kumpulan tak berwarna. Harga naik {pct}%.",
   },
   "2 random rarity rolls + 1 guaranteed Shop relic. The Courier, Old Coin, Lucky Fysh, Bowler Hat, and Amethyst Aubergine are blacklisted (gold-generating relics removed in Major Update #1).":
     {
@@ -225,6 +249,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "2 rastgele nadirlik çekilişi + 1 garanti Dükkân kalıntısı. The Courier, Old Coin, Lucky Fysh, Bowler Hat ve Amethyst Aubergine kara listededir (altın üreten kalıntılar Major Update #1 ile kaldırıldı).",
       zhs: "2次随机稀有度抽取 + 1个必定的商店遗物。The Courier、Old Coin、Lucky Fysh、Bowler Hat 和 Amethyst Aubergine 被排除（产金遗物已在 Major Update #1 中移除）。",
       zht: "2次隨機稀有度抽取 + 1個必定的商店遺物。The Courier、Old Coin、Lucky Fysh、Bowler Hat 和 Amethyst Aubergine 被排除（產金遺物已在 Major Update #1 中移除）。",
+      ara: "سحبان عشوائيا الندرة + أثر متجر واحد مضمون. الساعي، عملة قديمة، Fysh المحظوظ، قبعة بولر، وباذنجانة جمشتية مستبعدة (آثار مولدة للذهب أزيلت في التحديث الرئيسي #1).",
+      ind: "2 undian kelangkaan acak + 1 pusaka Toko yang dijamin. Sang Kurir, Koin Tua, Ykan Keberuntungan, Topi Bowling, dan Terong Ametis masuk daftar hitam (pusaka penghasil emas dihapus di Major Update #1).",
     },
   "3 random potions from the available pool.": {
     eng: "3 random potions from the available pool.",
@@ -242,6 +268,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Mevcut havuzdan 3 rastgele iksir.",
     zhs: "从可用池中随机抽取3瓶药水。",
     zht: "從可用池中隨機抽取3瓶藥水。",
+    ara: "3 جرعات عشوائية من المجموعة المتاحة.",
+    ind: "3 ramuan acak dari kumpulan yang tersedia.",
   },
   "Remove a card from your deck. Price increases each time.": {
     eng: "Remove a card from your deck. Price increases each time.",
@@ -259,6 +287,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Destenizden bir kart kaldırın. Fiyat her seferinde artar.",
     zhs: "从牌组中移除一张卡牌。每次价格递增。",
     zht: "從牌組中移除一張卡牌。每次價格遞增。",
+    ara: "أزل بطاقة من مجموعتك. يرتفع السعر في كل مرة.",
+    ind: "Buang satu kartu dari dekmu. Harga naik setiap kali.",
   },
   Base: {
     eng: "Base",
@@ -276,6 +306,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Temel",
     zhs: "基础",
     zht: "基礎",
+    ara: "الأساس",
+    ind: "Dasar",
   },
   "On Sale": {
     eng: "On Sale",
@@ -293,6 +325,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "İndirimde",
     zhs: "特价",
     zht: "特價",
+    ara: "في التخفيض",
+    ind: "Diskon",
   },
   "Range: base × random({min}–{max}). Colorless: +{pct}% markup. On sale: {sale}% off.":
     {
@@ -311,6 +345,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Aralık: temel × rastgele({min}–{max}). Renksiz: +%{pct} ek ücret. İndirim: %{sale} indirim.",
       zhs: "区间：基础 × 随机({min}–{max})。无色：上浮{pct}%。特价：{sale}%折扣。",
       zht: "區間：基礎 × 隨機({min}–{max})。無色：上浮{pct}%。特價：{sale}%折扣。",
+      ara: "النطاق: الأساس × random({min}–{max}). بدون لون: زيادة +{pct}%. في التخفيض: خصم {sale}%.",
+      ind: "Rentang: dasar × random({min}–{max}). Tak berwarna: naik +{pct}%. Diskon: potongan {sale}%.",
     },
   Multiplier: {
     eng: "Multiplier",
@@ -328,6 +364,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Çarpan",
     zhs: "倍率",
     zht: "倍率",
+    ara: "المضاعف",
+    ind: "Pengali",
   },
   "Relics have a wider price variance ({relicVar}) than cards ({cardVar}). Major Update #1 (v0.103.2) reduced every relic base by 25 gold. Five relics are blacklisted from the shop pool: The Courier, Old Coin, Lucky Fysh, Bowler Hat, Amethyst Aubergine.":
     {
@@ -346,6 +384,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Kalıntıların fiyat sapması ({relicVar}) kartlardan ({cardVar}) daha geniştir. Major Update #1 (v0.103.2) her kalıntının temel fiyatını 25 altın düşürdü. Beş kalıntı dükkân havuzundan çıkarıldı: The Courier, Old Coin, Lucky Fysh, Bowler Hat, Amethyst Aubergine.",
       zhs: "遗物的价格浮动（{relicVar}）比卡牌（{cardVar}）更大。Major Update #1（v0.103.2）将所有遗物的基础价格降低了25金币。有5个遗物被排除出商店池：The Courier、Old Coin、Lucky Fysh、Bowler Hat、Amethyst Aubergine。",
       zht: "遺物的價格浮動（{relicVar}）比卡牌（{cardVar}）更大。Major Update #1（v0.103.2）將所有遺物的基礎價格降低了25金幣。有5個遺物被排除出商店池：The Courier、Old Coin、Lucky Fysh、Bowler Hat、Amethyst Aubergine。",
+      ara: "تفاوت أسعار الآثار ({relicVar}) أوسع من البطاقات ({cardVar}). خفض التحديث الرئيسي #1 (v0.103.2) السعر الأساسي لكل أثر بمقدار 25 ذهب. خمسة آثار مستبعدة من مجموعة المتجر: الساعي، عملة قديمة، Fysh المحظوظ، قبعة بولر، باذنجانة جمشتية.",
+      ind: "Variasi harga pusaka ({relicVar}) lebih lebar daripada kartu ({cardVar}). Major Update #1 (v0.103.2) menurunkan harga dasar setiap pusaka sebesar 25 emas. Lima pusaka masuk daftar hitam kumpulan toko: Sang Kurir, Koin Tua, Ykan Keberuntungan, Topi Bowling, Terong Ametis.",
     },
   "Range: base × random({min}–{max}). Same variance as cards.": {
     eng: "Range: base × random({min}–{max}). Same variance as cards.",
@@ -363,6 +403,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Aralık: temel × rastgele({min}–{max}). Kartlarla aynı sapma.",
     zhs: "区间：基础 × 随机({min}–{max})。浮动与卡牌相同。",
     zht: "區間：基礎 × 隨機({min}–{max})。浮動與卡牌相同。",
+    ara: "النطاق: الأساس × random({min}–{max}). نفس تفاوت البطاقات.",
+    ind: "Rentang: dasar × random({min}–{max}). Variasi sama seperti kartu.",
   },
   "The merchant offers card removal at an escalating price. The cost increases each time you use it during the run. No random variance.":
     {
@@ -381,6 +423,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Tüccar kart kaldırmayı artan bir fiyatla sunar. Koşu sırasında her kullanımda maliyet yükselir. Rastgele sapma yoktur.",
       zhs: "商人提供价格递增的删卡服务。本局旅程中每使用一次，费用就会上涨。没有随机浮动。",
       zht: "商人提供價格遞增的刪卡服務。本局旅程中每使用一次，費用就會上漲。沒有隨機浮動。",
+      ara: "يعرض التاجر إزالة البطاقات بسعر متصاعد. ترتفع الكلفة في كل مرة تستخدمها خلال الجولة. لا تفاوت عشوائي.",
+      ind: "Pedagang menawarkan pembuangan kartu dengan harga yang terus naik. Harganya naik setiap kali dipakai selama perjalanan. Tanpa variasi acak.",
     },
   "Ascension 0–5": {
     eng: "Ascension 0–5",
@@ -398,6 +442,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Yükseliş 0–5",
     zhs: "进阶 0–5",
     zht: "晉階 0–5",
+    ara: "الصعود 0–5",
+    ind: "Angkatan 0–5",
   },
   gold: {
     eng: "gold",
@@ -415,6 +461,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "altın",
     zhs: "金币",
     zht: "金幣",
+    ara: "ذهب",
+    ind: "emas",
   },
   "Formula: {base} + ({inc} × removals used).": {
     eng: "Formula: {base} + ({inc} × removals used).",
@@ -432,6 +480,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Formül: {base} + ({inc} × kullanılan kaldırma sayısı).",
     zhs: "公式：{base} + ({inc} × 已删卡次数)。",
     zht: "公式：{base} + ({inc} × 已刪卡次數)。",
+    ara: "المعادلة: {base} + ({inc} × عدد الإزالات المستخدمة).",
+    ind: "Rumus: {base} + ({inc} × pembuangan yang dipakai).",
   },
   "Ascension 6+": {
     eng: "Ascension 6+",
@@ -449,6 +499,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Yükseliş 6+",
     zhs: "进阶 6+",
     zht: "晉階 6+",
+    ara: "الصعود 6+",
+    ind: "Angkatan 6+",
   },
   "Major Update #1 reworked Ascension 6 from {old} to {level}, raising the base by {gold} gold and the per-use increment by {inc}.":
     {
@@ -467,6 +519,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Major Update #1, Yükseliş 6'yı {old} yerine {level} olarak yeniden düzenledi; temel fiyat {gold} altın, kullanım başına artış {inc} yükseldi.",
       zhs: "Major Update #1 将进阶6从{old}改为{level}，基础价格提高{gold}金币，每次递增提高{inc}。",
       zht: "Major Update #1 將晉階6從{old}改為{level}，基礎價格提高{gold}金幣，每次遞增提高{inc}。",
+      ara: "أعاد التحديث الرئيسي #1 تصميم الصعود 6 من {old} إلى {level}، فرفع الأساس بمقدار {gold} ذهب والزيادة لكل استخدام بمقدار {inc}.",
+      ind: "Major Update #1 merombak Angkatan 6 dari {old} menjadi {level}, menaikkan harga dasar sebesar {gold} emas dan kenaikan per pemakaian sebesar {inc}.",
     },
   "Gloom (less rest sites)": {
     eng: "Gloom (less rest sites)",
@@ -484,6 +538,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Gloom (daha az dinlenme yeri)",
     zhs: "Gloom（更少休息处）",
     zht: "Gloom（更少休息點）",
+    ara: "الكآبة (مواقع راحة أقل)",
+    ind: "Kemuraman (peristirahatan lebih sedikit)",
   },
   "The Fake Merchant is an event that sells counterfeit relics for a flat {cost} gold each. These are weaker versions of well-known relics. All fake relics have Event rarity.":
     {
@@ -502,6 +558,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Sahte Tüccar, sahte kalıntıları tanesi sabit {cost} altına satan bir olaydır. Bunlar bilinen kalıntıların zayıf sürümleridir. Tüm sahte kalıntılar Olay nadirliğindedir.",
       zhs: "假商人是一个事件，以每件固定{cost}金币出售仿制遗物。它们是知名遗物的弱化版。所有假遗物的稀有度都是事件。",
       zht: "假商人是一個事件，以每件固定{cost}金幣販售仿製遺物。它們是知名遺物的弱化版。所有假遺物的稀有度都是事件。",
+      ara: "التاجر المزيف حدث يبيع آثارا مقلدة بسعر ثابت {cost} ذهب لكل منها. هذه نسخ أضعف من آثار معروفة. كل الآثار المزيفة ندرتها حدث.",
+      ind: "Pedagang Palsu adalah event yang menjual pusaka tiruan seharga tetap {cost} emas per buah. Ini versi lebih lemah dari pusaka terkenal. Semua pusaka palsu berkelangkaan Event.",
     },
   "Fake Relic": {
     eng: "Fake Relic",
@@ -519,6 +577,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Sahte Kalıntı",
     zhs: "假遗物",
     zht: "假遺物",
+    ara: "أثر مزيف",
+    ind: "Pusaka Palsu",
   },
   Mimics: {
     eng: "Mimics",
@@ -536,6 +596,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Taklit ettiği",
     zhs: "仿制自",
     zht: "仿製自",
+    ara: "يقلّد",
+    ind: "Meniru",
   },
   Price: {
     eng: "Price",
@@ -553,6 +615,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Fiyat",
     zhs: "价格",
     zht: "價格",
+    ara: "السعر",
+    ind: "Harga",
   },
   Effect: {
     eng: "Effect",
@@ -570,6 +634,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Etki",
     zhs: "效果",
     zht: "效果",
+    ara: "التأثير",
+    ind: "Efek",
   },
   "Gain 4 Block at the start of combat (real: 10)": {
     eng: "Gain 4 Block at the start of combat (real: 10)",
@@ -587,6 +653,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Savaş başında 4 Blok kazan (gerçek: 10)",
     zhs: "战斗开始时获得4点格挡（真品：10）",
     zht: "戰鬥開始時獲得4點格擋（真品：10）",
+    ara: "اكسب 4 الصد في بداية المعركة (الأصلي: 10)",
+    ind: "Dapatkan 4 Blok di awal perlawanan (asli: 10)",
   },
   "Heal 1 HP at the start of turn 1 only": {
     eng: "Heal 1 HP at the start of turn 1 only",
@@ -604,6 +672,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Yalnızca 1. tur başında 1 Can yeniler",
     zhs: "仅在第1回合开始时回复1点生命",
     zht: "僅在第1回合開始時回復1點生命",
+    ara: "استعد 1 صحة في بداية الدور 1 فقط",
+    ind: "Sembuh 1 HP hanya di awal giliran 1",
   },
   "Gain 1 Energy every 5 turns (real: every 3)": {
     eng: "Gain 1 Energy every 5 turns (real: every 3)",
@@ -621,6 +691,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Her 5 turda 1 Enerji kazan (gerçek: her 3)",
     zhs: "每5回合获得1点能量（真品：每3回合）",
     zht: "每5回合獲得1點能量（真品：每3回合）",
+    ara: "اكسب 1 طاقة كل 5 أدوار (الأصلي: كل 3)",
+    ind: "Dapatkan 1 Energi setiap 5 giliran (asli: setiap 3)",
   },
   "Heal 10% Max HP on pickup (real: raise Max HP)": {
     eng: "Heal 10% Max HP on pickup (real: raise Max HP)",
@@ -638,6 +710,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Alındığında Maks. Can'ın %10'unu yeniler (gerçek: Maks. Can'ı artırır)",
     zhs: "拾取时回复10%最大生命（真品：提升最大生命）",
     zht: "拾取時回復10%最大生命（真品：提升最大生命）",
+    ara: "استعد 10% من الصحة القصوى عند الالتقاط (الأصلي: يرفع الصحة القصوى)",
+    ind: "Sembuh 10% HP Maksimal saat didapat (asli: menaikkan HP Maksimal)",
   },
   "Gain 3 Max HP on pickup (real: 14)": {
     eng: "Gain 3 Max HP on pickup (real: 14)",
@@ -655,6 +729,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Alındığında 3 Maks. Can kazan (gerçek: 14)",
     zhs: "拾取时获得3点最大生命（真品：14）",
     zht: "拾取時獲得3點最大生命（真品：14）",
+    ara: "اكسب 3 صحة قصوى عند الالتقاط (الأصلي: 14)",
+    ind: "Dapatkan 3 HP Maksimal saat didapat (asli: 14)",
   },
   "Gain 3 Block at end of turn if no Block (real: 6)": {
     eng: "Gain 3 Block at end of turn if no Block (real: 6)",
@@ -672,6 +748,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Blok yoksa tur sonunda 3 Blok kazan (gerçek: 6)",
     zhs: "回合结束时若没有格挡则获得3点格挡（真品：6）",
     zht: "回合結束時若沒有格擋則獲得3點格擋（真品：6）",
+    ara: "اكسب 3 الصد في نهاية الدور إن لم يكن لديك الصد (الأصلي: 6)",
+    ind: "Dapatkan 3 Blok di akhir giliran jika tanpa Blok (asli: 6)",
   },
   "Applies Confused (randomizes card costs) with no draw bonus": {
     eng: "Applies Confused (randomizes card costs) with no draw bonus",
@@ -689,6 +767,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Kart çekme bonusu olmadan Şaşkın uygular (kart maliyetlerini rastgeleleştirir)",
     zhs: "施加混乱（随机化卡牌费用），无抽牌加成",
     zht: "施加混亂（隨機化卡牌費用），無抽牌加成",
+    ara: "يطبق مرتبك (يجعل كلفة البطاقات عشوائية) دون سحب إضافي",
+    ind: "Menerapkan Bingung (mengacak harga kartu) tanpa bonus ambil kartu",
   },
   "Strike cards deal 1 extra damage (real: 3)": {
     eng: "Strike cards deal 1 extra damage (real: 3)",
@@ -706,6 +786,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Vuruş kartları 1 ek hasar verir (gerçek: 3)",
     zhs: "打击类卡牌额外造成1点伤害（真品：3）",
     zht: "打擊類卡牌額外造成1點傷害（真品：3）",
+    ara: "بطاقات ضربة تسبب 1 ضرر إضافي (الأصلي: 3)",
+    ind: "Kartu Tebas melakukan 1 kerusakan tambahan (asli: 3)",
   },
   "Gain 1 Energy next combat after resting (real: 2)": {
     eng: "Gain 1 Energy next combat after resting (real: 2)",
@@ -723,6 +805,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Dinlendikten sonraki savaşta 1 Enerji kazan (gerçek: 2)",
     zhs: "休息后的下一场战斗获得1点能量（真品：2）",
     zht: "休息後的下一場戰鬥獲得1點能量（真品：2）",
+    ara: "اكسب 1 طاقة في المعركة التالية بعد الراحة (الأصلي: 2)",
+    ind: "Dapatkan 1 Energi di perlawanan berikutnya setelah beristirahat (asli: 2)",
   },
   "No effect. Purely decorative.": {
     eng: "No effect. Purely decorative.",
@@ -740,6 +824,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Etkisi yok. Tamamen dekoratif.",
     zhs: "没有效果。纯装饰。",
     zht: "沒有效果。純裝飾。",
+    ara: "بلا تأثير. للزينة فقط.",
+    ind: "Tanpa efek. Murni hiasan.",
   },
   "All prices come from a seeded random number generator, meaning prices are deterministic per seed.":
     {
@@ -758,6 +844,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Tüm fiyatlar tohumlu bir rastgele sayı üretecinden gelir, yani tohum başına belirlenimcidir.",
       zhs: "所有价格都来自带种子的随机数生成器，因此每个种子的价格是确定的。",
       zht: "所有價格都來自帶種子的隨機數產生器，因此每個種子的價格是確定的。",
+      ara: "كل الأسعار تأتي من مولد أرقام عشوائية مرتبط بالبذرة، أي أن الأسعار محددة سلفا لكل بذرة.",
+      ind: "Semua harga berasal dari generator angka acak berbasis benih, artinya harga bersifat pasti untuk tiap benih.",
     },
   "Random number generator:": {
     eng: "Random number generator:",
@@ -775,6 +863,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Rastgele sayı üreteci:",
     zhs: "随机数生成器：",
     zht: "隨機數產生器：",
+    ara: "مولد الأرقام العشوائية:",
+    ind: "Generator angka acak:",
   },
   "Cards use {call} for a {pct} variance.": {
     eng: "Cards use {call} for a {pct} variance.",
@@ -792,6 +882,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Kartlar {pct} sapma için {call} kullanır.",
     zhs: "卡牌使用 {call}，浮动为{pct}。",
     zht: "卡牌使用 {call}，浮動為{pct}。",
+    ara: "البطاقات تستخدم {call} بتفاوت {pct}.",
+    ind: "Kartu memakai {call} untuk variasi {pct}.",
   },
   "Relics use {call} for a wider {pct} variance.": {
     eng: "Relics use {call} for a wider {pct} variance.",
@@ -809,6 +901,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Kalıntılar daha geniş {pct} sapma için {call} kullanır.",
     zhs: "遗物使用 {call}，浮动更大，为{pct}。",
     zht: "遺物使用 {call}，浮動更大，為{pct}。",
+    ara: "الآثار تستخدم {call} بتفاوت أوسع قدره {pct}.",
+    ind: "Pusaka memakai {call} untuk variasi lebih lebar sebesar {pct}.",
   },
   "Potions use the same {pct} variance as cards.": {
     eng: "Potions use the same {pct} variance as cards.",
@@ -826,6 +920,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "İksirler kartlarla aynı {pct} sapmayı kullanır.",
     zhs: "药水与卡牌使用相同的{pct}浮动。",
     zht: "藥水與卡牌使用相同的{pct}浮動。",
+    ara: "الجرعات تستخدم نفس تفاوت البطاقات البالغ {pct}.",
+    ind: "Ramuan memakai variasi {pct} yang sama seperti kartu.",
   },
   "The shop randomly picks one of the 5 character cards to put on sale ({pct}% off).":
     {
@@ -844,6 +940,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Dükkân, 5 karakter kartından birini rastgele seçip indirime koyar (%{pct} indirim).",
       zhs: "商店从5张角色卡牌中随机选一张特价出售（{pct}%折扣）。",
       zht: "商店從5張角色卡牌中隨機選一張特價販售（{pct}%折扣）。",
+      ara: "يختار المتجر عشوائيا واحدة من بطاقات الشخصية الخمس لعرضها بتخفيض (خصم {pct}%).",
+      ind: "Toko memilih acak satu dari 5 kartu karakter untuk didiskon (potongan {pct}%).",
     },
   "The sale slot is determined by:": {
     eng: "The sale slot is determined by:",
@@ -861,6 +959,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "İndirim yuvasını belirleyen:",
     zhs: "特价栏位由以下决定：",
     zht: "特價欄位由以下決定：",
+    ara: "تُحدد خانة التخفيض عبر:",
+    ind: "Slot diskon ditentukan oleh:",
   },
   "When you buy an item, the slot is emptied. Items only restock if you have The Courier relic, which refills purchased slots with new random items (excluding duplicates already in the shop).":
     {
@@ -879,6 +979,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Bir ürün satın aldığınızda yuva boşalır. Ürünler yalnızca The Courier kalıntısına sahipseniz yenilenir; bu kalıntı satın alınan yuvaları yeni rastgele ürünlerle doldurur (dükkânda zaten bulunanların kopyaları hariç).",
       zhs: "购买物品后该栏位会清空。只有持有 The Courier 遗物时才会补货，它会用新的随机物品填补已购买的栏位（不包括商店中已有的重复品）。",
       zht: "購買物品後該欄位會清空。只有持有 The Courier 遺物時才會補貨，它會用新的隨機物品填補已購買的欄位（不包括商店中已有的重複品）。",
+      ara: "عند شراء عنصر تفرغ خانته. لا تُعاد تعبئة العناصر إلا إذا كان لديك أثر الساعي، الذي يملأ الخانات المشتراة بعناصر عشوائية جديدة (باستثناء المكررة الموجودة في المتجر).",
+      ind: "Saat kamu membeli barang, slotnya kosong. Barang hanya diisi ulang kalau kamu punya pusaka Sang Kurir, yang mengisi slot terbeli dengan barang acak baru (tanpa duplikat yang sudah ada di toko).",
     },
   "{pct}% off": {
     eng: "{pct}% off",
@@ -896,6 +998,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "%{pct} indirim",
     zhs: "{pct}%折扣",
     zht: "{pct}%折扣",
+    ara: "خصم {pct}%",
+    ind: "diskon {pct}%",
   },
   "Massive sample, elite": {
     eng: "Massive sample, elite",
@@ -913,6 +1017,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Devasa örneklem, elit",
     zhs: "海量样本，顶尖",
     zht: "海量樣本，頂尖",
+    ara: "عينة ضخمة، نخبوي",
+    ind: "Sampel masif, elit",
   },
   "High-N strong": {
     eng: "High-N strong",
@@ -930,6 +1036,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Yüksek N, güçlü",
     zhs: "样本多，强",
     zht: "樣本多，強",
+    ara: "عينة كبيرة، قوي",
+    ind: "N besar, kuat",
   },
   "Mid-N solid": {
     eng: "Mid-N solid",
@@ -947,6 +1055,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Orta N, sağlam",
     zhs: "样本中等，稳健",
     zht: "樣本中等，穩健",
+    ara: "عينة متوسطة، متين",
+    ind: "N sedang, solid",
   },
   "Small-N perfect": {
     eng: "Small-N perfect",
@@ -964,6 +1074,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Düşük N, kusursuz",
     zhs: "样本少，全胜",
     zht: "樣本少，全勝",
+    ara: "عينة صغيرة، مثالي",
+    ind: "N kecil, sempurna",
   },
   "Average performer": {
     eng: "Average performer",
@@ -981,6 +1093,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Ortalama performans",
     zhs: "表现平均",
     zht: "表現平均",
+    ara: "أداء متوسط",
+    ind: "Performa rata-rata",
   },
   "Small sample, no wins yet": {
     eng: "Small sample, no wins yet",
@@ -998,6 +1112,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Küçük örneklem, henüz galibiyet yok",
     zhs: "样本少，尚无胜利",
     zht: "樣本少，尚無勝利",
+    ara: "عينة صغيرة، لا انتصارات بعد",
+    ind: "Sampel kecil, belum ada kemenangan",
   },
   "High sample, underperforming": {
     eng: "High sample, underperforming",
@@ -1015,6 +1131,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Büyük örneklem, düşük performans",
     zhs: "样本多，表现不佳",
     zht: "樣本多，表現不佳",
+    ara: "عينة كبيرة، أداء ضعيف",
+    ind: "Sampel besar, di bawah harapan",
   },
   "Top of the win-rate signal. An out-of-distribution win rate sustained over hundreds of picks.":
     {
@@ -1033,6 +1151,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Kazanma oranı sinyalinin zirvesi. Yüzlerce seçim boyunca sürdürülen, dağılımın dışında bir kazanma oranı.",
       zhs: "胜率信号的顶端。在数百次选取中持续保持的、超出分布的胜率。",
       zht: "勝率訊號的頂端。在數百次選取中持續保持的、超出分佈的勝率。",
+      ara: "قمة إشارة نسبة الفوز. نسبة فوز خارجة عن التوزيع مستمرة على مئات الاختيارات.",
+      ind: "Puncak sinyal tingkat kemenangan. Tingkat kemenangan di luar distribusi yang bertahan selama ratusan pilihan.",
     },
   "Wins above the baseline reliably across a large sample.": {
     eng: "Wins above the baseline reliably across a large sample.",
@@ -1050,6 +1170,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Büyük bir örneklemde güvenilir biçimde taban çizgisinin üzerinde kazanır.",
     zhs: "在大样本中稳定高于基准线。",
     zht: "在大樣本中穩定高於基準線。",
+    ara: "يفوز فوق خط الأساس بثبات على عينة كبيرة.",
+    ind: "Menang di atas garis dasar secara konsisten pada sampel besar.",
   },
   "Above-average win rate. A safe pick when nothing better is offered.": {
     eng: "Above-average win rate. A safe pick when nothing better is offered.",
@@ -1067,6 +1189,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Ortalamanın üzerinde kazanma oranı. Daha iyisi sunulmadığında güvenli bir seçim.",
     zhs: "胜率高于平均。没有更好选择时的稳妥之选。",
     zht: "勝率高於平均。沒有更好選擇時的穩妥之選。",
+    ara: "نسبة فوز فوق المتوسط. اختيار آمن حين لا يُعرض ما هو أفضل.",
+    ind: "Tingkat kemenangan di atas rata-rata. Pilihan aman saat tidak ada tawaran yang lebih baik.",
   },
   "The middle of the curve. Most entities live here.": {
     eng: "The middle of the curve. Most entities live here.",
@@ -1084,6 +1208,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Eğrinin ortası. Çoğu burada yer alır.",
     zhs: "曲线的中段。大多数都在这里。",
     zht: "曲線的中段。大多數都在這裡。",
+    ara: "منتصف المنحنى. معظم العناصر تقع هنا.",
+    ind: "Bagian tengah kurva. Sebagian besar entitas ada di sini.",
   },
   "Below the baseline. Often niche or situational, sometimes just high-exposure (see the biases below).":
     {
@@ -1102,6 +1228,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Taban çizgisinin altında. Çoğu zaman niş veya duruma bağlı, bazen yalnızca yüksek maruziyet (aşağıdaki yanlılıklara bakın).",
       zhs: "低于基准线。通常是小众或看情况的选择，有时只是曝光过高（见下方偏差）。",
       zht: "低於基準線。通常是小眾或看情況的選擇，有時只是曝光過高（見下方偏差）。",
+      ara: "تحت خط الأساس. غالبا متخصص أو ظرفي، وأحيانا مجرد كثير الظهور (انظر الانحيازات أدناه).",
+      ind: "Di bawah garis dasar. Sering kali khusus atau situasional, kadang hanya berpaparan tinggi (lihat bias di bawah).",
     },
   "Bottom of the win-rate signal. Frequently a staple dragged down by being in nearly every run, not necessarily a bad card.":
     {
@@ -1120,6 +1248,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Kazanma oranı sinyalinin dibi. Sıklıkla neredeyse her koşuda bulunduğu için aşağı çekilen temel bir kart; mutlaka kötü bir kart değil.",
       zhs: "胜率信号的底端。常常是因几乎每局都在场而被拉低的常用牌，未必是差牌。",
       zht: "勝率訊號的底端。常常是因幾乎每局都在場而被拉低的常用牌，未必是差牌。",
+      ara: "قاع إشارة نسبة الفوز. كثيرا ما يكون بطاقة أساسية يهبط بها وجودها في كل جولة تقريبا، وليس بالضرورة بطاقة سيئة.",
+      ind: "Dasar sinyal tingkat kemenangan. Sering kali kartu andalan yang terseret turun karena ada di hampir setiap perjalanan, belum tentu kartu yang buruk.",
     },
   "How Codex Score ranks every {game} card, relic, and potion. Bayesian-shrunk win rate, S-through-F tier bands, and full formula methodology.":
     {
@@ -1138,6 +1268,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Codex Score, {game} oyunundaki her kartı, kalıntıyı ve iksiri nasıl sıralar. Bayes ile büzülmüş kazanma oranı, S'den F'ye katman bantları ve tam formül yöntemi.",
       zhs: "Codex Score 如何为 {game} 的每张卡牌、遗物和药水评分。贝叶斯收缩胜率、S 到 F 的分级区间，以及完整的公式说明。",
       zht: "Codex Score 如何為 {game} 的每張卡牌、遺物和藥水評分。貝氏收縮勝率、S 到 F 的分級區間，以及完整的公式說明。",
+      ara: "كيف يرتب Codex Score كل بطاقة وأثر وجرعة في {game}. نسبة فوز بانكماش بايزي، فئات من S إلى F، ومنهجية المعادلة كاملة.",
+      ind: "Cara Codex Score memeringkat setiap kartu, pusaka, dan ramuan {game}. Tingkat kemenangan dengan penyusutan Bayesian, tier S sampai F, dan metodologi rumus lengkap.",
     },
   "How every card, relic, and potion gets a 0–100 community-meta rating.": {
     eng: "How every card, relic, and potion gets a 0–100 community-meta rating.",
@@ -1155,6 +1287,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Her kart, kalıntı ve iksir 0–100 arası topluluk meta puanını nasıl alır.",
     zhs: "每张卡牌、遗物和药水如何获得 0–100 的社区环境评分。",
     zht: "每張卡牌、遺物和藥水如何獲得 0–100 的社群環境評分。",
+    ara: "كيف تحصل كل بطاقة وأثر وجرعة على تقييم من 0 إلى 100 بحسب ميتا المجتمع.",
+    ind: "Cara setiap kartu, pusaka, dan ramuan mendapat nilai meta komunitas 0–100.",
   },
   "What is the Codex Score?": {
     eng: "What is the Codex Score?",
@@ -1172,6 +1306,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Codex Score nedir?",
     zhs: "什么是 Codex Score？",
     zht: "什麼是 Codex Score？",
+    ara: "ما هو Codex Score؟",
+    ind: "Apa itu Codex Score?",
   },
   "Bayesian-shrunk win-rate, mapped to 0–100 with letter-grade tiers.": {
     eng: "Bayesian-shrunk win-rate, mapped to 0–100 with letter-grade tiers.",
@@ -1189,6 +1325,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Bayes ile büzülmüş kazanma oranı, harf notlu katmanlarla 0–100'e eşlenmiş.",
     zhs: "贝叶斯收缩胜率，映射到 0–100 并划分字母等级。",
     zht: "貝氏收縮勝率，映射到 0–100 並劃分字母等級。",
+    ara: "نسبة فوز بانكماش بايزي، محولة إلى 0–100 مع فئات بدرجات حرفية.",
+    ind: "Tingkat kemenangan dengan penyusutan Bayesian, dipetakan ke 0–100 dengan tier berhuruf.",
   },
   "Every card, relic, and potion in {game} gets a single number that summarizes how its presence correlates with winning runs, based purely on community-submitted run data, not opinion. 50 is neutral (the average run wins roughly half the time at A0), 100 is the top of the signal, 0 the bottom. It is a naive correlation with known biases (spelled out below), not a verdict on whether a card is good. The same number drives the default sort on every list page and the badge on every detail page.":
     {
@@ -1207,6 +1345,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "{game} oyunundaki her kart, kalıntı ve iksir, varlığının kazanılan koşularla ne kadar ilişkili olduğunu özetleyen tek bir sayı alır; bu yalnızca topluluğun gönderdiği koşu verilerine dayanır, görüşe değil. 50 nötrdür (ortalama koşu A0'da kabaca yarı yarıya kazanır), 100 sinyalin zirvesi, 0 dibidir. Bilinen yanlılıkları olan (aşağıda açıklanan) naif bir korelasyondur, bir kartın iyi olup olmadığına dair bir hüküm değildir. Aynı sayı her liste sayfasındaki varsayılan sıralamayı ve her ayrıntı sayfasındaki rozeti belirler.",
       zhs: "{game} 中的每张卡牌、遗物和药水都会得到一个数字，概括它的出现与获胜局数的相关程度，完全基于社区提交的对局数据，而非主观意见。50 为中性（A0 下平均对局约有一半获胜），100 是信号顶端，0 是底端。这是一种带有已知偏差（见下文）的朴素相关性，并非对卡牌好坏的定论。同一个数字决定每个列表页的默认排序和每个详情页的徽章。",
       zht: "{game} 中的每張卡牌、遺物和藥水都會得到一個數字，概括它的出現與獲勝局數的相關程度，完全基於社群提交的對局資料，而非主觀意見。50 為中性（A0 下平均對局約有一半獲勝），100 是訊號頂端，0 是底端。這是一種帶有已知偏差（見下文）的樸素相關性，並非對卡牌好壞的定論。同一個數字決定每個列表頁的預設排序和每個詳情頁的徽章。",
+      ara: "كل بطاقة وأثر وجرعة في {game} تحصل على رقم واحد يلخص ارتباط وجودها بالجولات الفائزة، اعتمادا على بيانات الجولات التي يرسلها المجتمع فقط لا على الرأي. 50 حياد (الجولة المتوسطة تفوز نحو نصف المرات في A0)، و100 قمة الإشارة، و0 قاعها. إنه ارتباط بسيط ذو انحيازات معروفة (مفصلة أدناه)، وليس حكما على جودة البطاقة. الرقم نفسه يحدد الترتيب الافتراضي في كل صفحة قائمة والشارة في كل صفحة تفاصيل.",
+      ind: "Setiap kartu, pusaka, dan ramuan di {game} mendapat satu angka yang merangkum bagaimana kehadirannya berkorelasi dengan perjalanan yang menang, murni dari data perjalanan kiriman komunitas, bukan opini. 50 itu netral (perjalanan rata-rata menang kira-kira separuh waktu di A0), 100 puncak sinyal, 0 dasarnya. Ini korelasi naif dengan bias yang sudah diketahui (dijelaskan di bawah), bukan vonis apakah sebuah kartu bagus. Angka yang sama menentukan urutan default di setiap halaman daftar dan lencana di setiap halaman detail.",
     },
   "Tier bands": {
     eng: "Tier bands",
@@ -1224,6 +1364,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Katman bantları",
     zhs: "分级区间",
     zht: "分級區間",
+    ara: "نطاقات الفئات",
+    ind: "Rentang tier",
   },
   Range: {
     eng: "Range",
@@ -1241,6 +1383,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Aralık",
     zhs: "区间",
     zht: "區間",
+    ara: "النطاق",
+    ind: "Rentang",
   },
   Tier: {
     eng: "Tier",
@@ -1258,6 +1402,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Katman",
     zhs: "等级",
     zht: "等級",
+    ara: "الفئة",
+    ind: "Tier",
   },
   Label: {
     eng: "Label",
@@ -1275,6 +1421,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Etiket",
     zhs: "标签",
     zht: "標籤",
+    ara: "التسمية",
+    ind: "Label",
   },
   "What it means": {
     eng: "What it means",
@@ -1292,6 +1440,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Anlamı",
     zhs: "含义",
     zht: "含義",
+    ara: "ماذا تعني",
+    ind: "Artinya",
   },
   "The formula": {
     eng: "The formula",
@@ -1309,6 +1459,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Formül",
     zhs: "公式",
     zht: "公式",
+    ara: "المعادلة",
+    ind: "Rumusnya",
   },
   "The score has two stages: Bayesian shrinkage (so a 5-pick perfect card doesn't outrank a 500-pick reliable one), then a linear map from win-rate-vs-baseline to the 0–100 scale.":
     {
@@ -1327,6 +1479,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Puan iki aşamalıdır: Bayes büzülmesi (5 seçimde kusursuz bir kartın 500 seçimde güvenilir bir kartı geçmemesi için), ardından taban çizgisine göre kazanma oranının 0–100 ölçeğine doğrusal eşlenmesi.",
       zhs: "评分分两步：贝叶斯收缩（避免5次选取全胜的卡牌压过500次选取稳定的卡牌），然后把相对基准线的胜率线性映射到 0–100。",
       zht: "評分分兩步：貝氏收縮（避免5次選取全勝的卡牌壓過500次選取穩定的卡牌），然後把相對基準線的勝率線性映射到 0–100。",
+      ara: "للدرجة مرحلتان: انكماش بايزي (حتى لا تتقدم بطاقة مثالية اختيرت 5 مرات على بطاقة موثوقة اختيرت 500 مرة)، ثم تحويل خطي من فرق نسبة الفوز عن خط الأساس إلى مقياس 0–100.",
+      ind: "Skor punya dua tahap: penyusutan Bayesian (agar kartu sempurna dengan 5 pilihan tidak mengungguli kartu andal dengan 500 pilihan), lalu pemetaan linear dari selisih tingkat kemenangan terhadap garis dasar ke skala 0–100.",
     },
   "Prior weight = 50.": {
     eng: "Prior weight = 50.",
@@ -1344,6 +1498,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Ön ağırlık = 50.",
     zhs: "先验权重 = 50。",
     zht: "先驗權重 = 50。",
+    ara: "وزن الافتراض المسبق = 50.",
+    ind: "Bobot prior = 50.",
   },
   "Every entity starts with the equivalent of 50 virtual picks at the baseline win rate. Real picks accumulate against this prior, so scores stabilize as data grows. A 5-pick card with a perfect record only nudges the prior; a 500-pick card with a strong record overpowers it.":
     {
@@ -1362,6 +1518,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Her öğe, taban kazanma oranında 50 sanal seçime eşdeğer bir noktadan başlar. Gerçek seçimler bu ön değere karşı birikir, böylece veri büyüdükçe puanlar kararlı hale gelir. 5 seçimde kusursuz sicili olan bir kart ön değeri yalnızca hafifçe iter; 500 seçimde güçlü sicili olan bir kart onu bastırır.",
       zhs: "每个条目起始时相当于在基准胜率下有50次虚拟选取。真实选取在这个先验之上累积，数据越多评分越稳定。5次选取全胜的卡牌只能略微推动先验；500次选取且战绩强劲的卡牌则能压过它。",
       zht: "每個條目起始時相當於在基準勝率下有50次虛擬選取。真實選取在這個先驗之上累積，資料越多評分越穩定。5次選取全勝的卡牌只能略微推動先驗；500次選取且戰績強勁的卡牌則能壓過它。",
+      ara: "كل عنصر يبدأ بما يعادل 50 اختيارا افتراضيا عند نسبة فوز خط الأساس. الاختيارات الحقيقية تتراكم مقابل هذا الافتراض، فتستقر الدرجات مع نمو البيانات. بطاقة اختيرت 5 مرات بسجل مثالي تحرك الافتراض قليلا فقط، وبطاقة اختيرت 500 مرة بسجل قوي تتغلب عليه.",
+      ind: "Setiap entitas mulai dengan setara 50 pilihan virtual pada tingkat kemenangan garis dasar. Pilihan nyata menumpuk melawan prior ini, jadi skor makin stabil seiring data bertambah. Kartu 5 pilihan dengan rekor sempurna hanya menggeser prior sedikit; kartu 500 pilihan dengan rekor kuat mengalahkannya.",
     },
   "Scale range = ±15pp.": {
     eng: "Scale range = ±15pp.",
@@ -1379,6 +1537,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Ölçek aralığı = ±15 puan.",
     zhs: "尺度范围 = ±15个百分点。",
     zht: "尺度範圍 = ±15個百分點。",
+    ara: "نطاق المقياس = ±15 نقطة مئوية.",
+    ind: "Rentang skala = ±15 poin persentase.",
   },
   "A win-rate gap of 15 percentage points above baseline maps to 100. Scores saturate beyond that, entities outside that band are genuinely off the distribution.":
     {
@@ -1397,6 +1557,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Taban çizgisinin 15 puan üzerindeki kazanma oranı farkı 100'e eşlenir. Bunun ötesinde puanlar doygunluğa ulaşır; bu bandın dışındaki öğeler gerçekten dağılımın dışındadır.",
       zhs: "胜率比基准线高15个百分点对应100。超出后评分饱和，超出该区间的条目确实脱离了分布。",
       zht: "勝率比基準線高15個百分點對應100。超出後評分飽和，超出該區間的條目確實脫離了分佈。",
+      ara: "فرق في نسبة الفوز قدره 15 نقطة مئوية فوق خط الأساس يقابل 100. تتشبع الدرجات بعد ذلك، والعناصر خارج هذا النطاق خارجة فعلا عن التوزيع.",
+      ind: "Selisih tingkat kemenangan 15 poin persentase di atas garis dasar dipetakan ke 100. Skor jenuh di luar itu, entitas di luar rentang tersebut memang benar-benar di luar distribusi.",
     },
   "Clamp.": {
     eng: "Clamp.",
@@ -1414,6 +1576,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Sınırlama.",
     zhs: "截断。",
     zht: "截斷。",
+    ara: "التقييد.",
+    ind: "Pembatasan.",
   },
   "Scores can't go negative or above 100, even if the math does. The cap is honest: an entity at the cap is “at least this good,” not necessarily “exactly 100.”":
     {
@@ -1432,6 +1596,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Matematik öyle dese bile puanlar negatif olamaz veya 100'ü aşamaz. Üst sınır dürüsttür: sınırdaki bir öğe “en az bu kadar iyi” demektir, illa “tam 100” değil.",
       zhs: "即使数学结果如此，评分也不会为负或超过100。上限是诚实的：达到上限的条目意味着“至少这么好”，不一定是“正好100”。",
       zht: "即使數學結果如此，評分也不會為負或超過100。上限是誠實的：達到上限的條目意味著「至少這麼好」，不一定是「正好100」。",
+      ara: "لا تنزل الدرجات تحت الصفر ولا تتجاوز 100 حتى لو فعلت الحسابات ذلك. الحد صادق: العنصر عند الحد «بهذه الجودة على الأقل» وليس بالضرورة «100 بالضبط».",
+      ind: "Skor tidak bisa negatif atau di atas 100, meskipun hitungannya begitu. Batas ini jujur: entitas di batas berarti “setidaknya sebagus ini,” belum tentu “tepat 100.”",
     },
   "Worked examples": {
     eng: "Worked examples",
@@ -1449,6 +1615,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Çözümlü örnekler",
     zhs: "计算示例",
     zht: "計算範例",
+    ara: "أمثلة محلولة",
+    ind: "Contoh perhitungan",
   },
   "Same baseline (50% win rate) for all rows below. Note how sample size matters: the 5-pick perfect record gets B-tier, while the 500-pick 56% record gets A-tier.":
     {
@@ -1467,6 +1635,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Aşağıdaki tüm satırlar için aynı taban çizgisi (%50 kazanma oranı). Örneklem boyutunun ne kadar önemli olduğuna dikkat edin: 5 seçimde kusursuz sicil B katmanı alırken 500 seçimde %56 sicil A katmanı alır.",
       zhs: "下方所有行使用相同基准线（50%胜率）。注意样本量的影响：5次选取全胜只得 B 级，而500次选取56%胜率得 A 级。",
       zht: "下方所有行使用相同基準線（50%勝率）。注意樣本量的影響：5次選取全勝只得 B 級，而500次選取56%勝率得 A 級。",
+      ara: "خط الأساس نفسه (نسبة فوز 50%) لكل الصفوف أدناه. لاحظ أهمية حجم العينة: السجل المثالي من 5 اختيارات ينال الفئة B، وسجل 56% من 500 اختيار ينال الفئة A.",
+      ind: "Garis dasar yang sama (tingkat kemenangan 50%) untuk semua baris di bawah. Perhatikan pentingnya ukuran sampel: rekor sempurna 5 pilihan dapat tier B, sedangkan rekor 56% dari 500 pilihan dapat tier A.",
     },
   Scenario: {
     eng: "Scenario",
@@ -1484,6 +1654,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Senaryo",
     zhs: "情景",
     zht: "情境",
+    ara: "الحالة",
+    ind: "Skenario",
   },
   "Codex Elo, the other half": {
     eng: "Codex Elo, the other half",
@@ -1501,6 +1673,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Codex Elo, diğer yarı",
     zhs: "Codex Elo，另一半",
     zht: "Codex Elo，另一半",
+    ara: "Codex Elo، النصف الآخر",
+    ind: "Codex Elo, separuh lainnya",
   },
   "Codex Score grades win rate, which is honest but confounded: a card's win rate reflects who picks it and what deck it lands in, not just the card. Codex Elo attacks that from the other side. It ignores wins entirely and instead reads revealed preference. Every card-reward screen is treated as a head-to-head where the card you take beats the cards you skip. Fit a Bradley-Terry model over millions of those decisions and you get a rating for “when offered, which card do players actually want?”":
     {
@@ -1519,6 +1693,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Codex Score kazanma oranını puanlar; bu dürüsttür ama karıştırıcıdır: bir kartın kazanma oranı onu kimin seçtiğini ve hangi desteye girdiğini yansıtır, yalnızca kartı değil. Codex Elo buna diğer taraftan saldırır. Galibiyetleri tamamen yok sayar ve bunun yerine açığa çıkan tercihi okur. Her kart ödül ekranı, aldığınız kartın atladığınız kartları yendiği bire bir bir karşılaşma olarak ele alınır. Milyonlarca böyle karara bir Bradley-Terry modeli uygulayın; “sunulduğunda oyuncular gerçekten hangi kartı ister?” sorusuna bir derece elde edersiniz.",
       zhs: "Codex Score 评估胜率，这诚实但存在混杂：一张卡的胜率反映了谁选了它、它进了什么牌组，而不只是卡牌本身。Codex Elo 从另一面切入。它完全忽略胜负，转而读取显示性偏好。每个卡牌奖励界面都被视为一场对决，你拿走的卡战胜你跳过的卡。对数百万次这样的决定拟合 Bradley-Terry 模型，就得到了“被提供时，玩家真正想要哪张卡？”的评分。",
       zht: "Codex Score 評估勝率，這誠實但存在混雜：一張卡的勝率反映了誰選了它、它進了什麼牌組，而不只是卡牌本身。Codex Elo 從另一面切入。它完全忽略勝負，轉而讀取顯示性偏好。每個卡牌獎勵介面都被視為一場對決，你拿走的卡戰勝你跳過的卡。對數百萬次這樣的決定擬合 Bradley-Terry 模型，就得到了「被提供時，玩家真正想要哪張卡？」的評分。",
+      ara: "Codex Score يقيّم نسبة الفوز، وهذا صادق لكنه متأثر بعوامل خارجية: نسبة فوز البطاقة تعكس من يختارها وأي مجموعة تدخلها، لا البطاقة وحدها. Codex Elo يعالج ذلك من الجهة الأخرى. يتجاهل الانتصارات كليا ويقرأ التفضيل الفعلي. كل شاشة مكافأة بطاقة تُعامل كمواجهة مباشرة تهزم فيها البطاقة التي تأخذها البطاقات التي تتخطاها. طبّق نموذج Bradley-Terry على ملايين هذه القرارات فتحصل على تقييم لسؤال «عند العرض، أي بطاقة يريدها اللاعبون فعلا؟»",
+      ind: "Codex Score menilai tingkat kemenangan, yang jujur tapi terdistorsi: tingkat kemenangan sebuah kartu mencerminkan siapa yang mengambilnya dan dek tempat kartu itu masuk, bukan hanya kartunya. Codex Elo menyerang masalah itu dari sisi lain. Ia mengabaikan kemenangan sepenuhnya dan membaca preferensi nyata. Setiap layar pilihan kartu diperlakukan sebagai duel di mana kartu yang kamu ambil mengalahkan kartu yang kamu lewati. Pasang model Bradley-Terry pada jutaan keputusan itu dan kamu dapat rating untuk “saat ditawarkan, kartu mana yang benar-benar diinginkan pemain?”",
     },
   "Skill-agnostic.": {
     eng: "Skill-agnostic.",
@@ -1536,6 +1712,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Beceriden bağımsız.",
     zhs: "与水平无关。",
     zht: "與水平無關。",
+    ara: "لا يتأثر بالمهارة.",
+    ind: "Tidak bergantung pada skill.",
   },
   "Win rate rises and falls with who's playing the card. A pick decision doesn't. A strong card is preferred whether a great or a mediocre player is choosing, so Elo sidesteps the win-rate confound.":
     {
@@ -1554,6 +1732,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Kazanma oranı kartı kimin oynadığına göre iner çıkar. Bir seçim kararı öyle değildir. Güçlü bir kart, seçen ister harika ister vasat bir oyuncu olsun tercih edilir; bu yüzden Elo kazanma oranı karıştırıcısını atlatır.",
       zhs: "胜率随打这张牌的人而起伏，选牌决定则不会。无论是高手还是普通玩家在选，强牌都会被偏爱，所以 Elo 绕开了胜率的混杂因素。",
       zht: "勝率隨打這張牌的人而起伏，選牌決定則不會。無論是高手還是普通玩家在選，強牌都會被偏愛，所以 Elo 繞開了勝率的混雜因素。",
+      ara: "نسبة الفوز تعلو وتهبط بحسب من يلعب البطاقة. قرار الاختيار لا يفعل. البطاقة القوية مفضلة سواء اختارها لاعب ممتاز أو متوسط، فيتجاوز Elo التباس نسبة الفوز.",
+      ind: "Tingkat kemenangan naik turun tergantung siapa yang memainkan kartunya. Keputusan memilih tidak. Kartu kuat tetap dipilih baik oleh pemain hebat maupun biasa saja, jadi Elo menghindari distorsi tingkat kemenangan.",
     },
   "Anchored ~1500, 400 per decade.": {
     eng: "Anchored ~1500, 400 per decade.",
@@ -1571,6 +1751,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "~1500'e sabitlenmiş, her on katta 400.",
     zhs: "锚定约1500，每十倍差400。",
     zht: "錨定約1500，每十倍差400。",
+    ara: "مثبت عند ~1500، 400 لكل عشرة أضعاف.",
+    ind: "Berpusat di ~1500, 400 per kelipatan sepuluh.",
   },
   "A card picked ten times as often as the field average over its rivals sits ~400 Elo above it, same scale logic as chess.":
     {
@@ -1589,6 +1771,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Rakiplerine karşı ortalamanın on katı sıklıkta seçilen bir kart ~400 Elo üstte oturur; satrançla aynı ölçek mantığı.",
       zhs: "相对对手被选取频率是平均值十倍的卡牌，Elo 高出约400，与国际象棋的尺度逻辑相同。",
       zht: "相對對手被選取頻率是平均值十倍的卡牌，Elo 高出約400，與西洋棋的尺度邏輯相同。",
+      ara: "بطاقة تُختار على منافساتها عشرة أضعاف متوسط البقية تقع ~400 Elo فوقه، بمنطق مقياس الشطرنج نفسه.",
+      ind: "Kartu yang dipilih sepuluh kali lebih sering daripada rata-rata atas saingannya berada ~400 Elo di atasnya, logika skala yang sama seperti catur.",
     },
   "Cards only.": {
     eng: "Cards only.",
@@ -1606,6 +1790,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Yalnızca kartlar.",
     zhs: "仅限卡牌。",
     zht: "僅限卡牌。",
+    ara: "للبطاقات فقط.",
+    ind: "Hanya kartu.",
   },
   "Reward screens offer cards, not relics or potions, so base-card Elo exists only for cards.":
     {
@@ -1624,6 +1810,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Ödül ekranları kalıntı veya iksir değil kart sunar, bu yüzden temel kart Elo'su yalnızca kartlar için vardır.",
       zhs: "奖励界面提供的是卡牌而非遗物或药水，所以基础卡 Elo 只存在于卡牌。",
       zht: "獎勵介面提供的是卡牌而非遺物或藥水，所以基礎卡 Elo 只存在於卡牌。",
+      ara: "شاشات المكافأة تعرض بطاقات لا آثارا ولا جرعات، لذا يوجد Elo البطاقة الأساسية للبطاقات فقط.",
+      ind: "Layar pilihan menawarkan kartu, bukan pusaka atau ramuan, jadi Elo kartu dasar hanya ada untuk kartu.",
     },
   "Upgraded cards get their own Elo.": {
     eng: "Upgraded cards get their own Elo.",
@@ -1641,6 +1829,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Yükseltilmiş kartların kendi Elo'su vardır.",
     zhs: "升级卡有自己的 Elo。",
     zht: "升級卡有自己的 Elo。",
+    ara: "البطاقات المطوّرة لها Elo خاص بها.",
+    ind: "Kartu yang ditingkatkan punya Elo sendiri.",
   },
   "Reward screens can offer a card already upgraded, but the run export only records which card was taken, not whether the offer was the “+” version, so every reward pick counts toward the base card and can't speak for the upgraded one. Instead the “+” variant is rated from a different revealed preference: the rest-site Smith decision. When you upgrade a card, it “beats” the other cards in your deck you could have upgraded but didn't. Fit the same Bradley-Terry model over those choices and the “+” row gets a genuine Upgrade Elo, not a copy of the base number. Starters can earn one this way too (you can Smith a Strike).":
     {
@@ -1659,6 +1849,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Ödül ekranları zaten yükseltilmiş bir kart sunabilir, ancak koşu dışa aktarımı yalnızca hangi kartın alındığını kaydeder, teklifin “+” sürümü olup olmadığını değil; bu yüzden her ödül seçimi temel karta sayılır ve yükseltilmiş olan adına konuşamaz. Bunun yerine “+” varyantı farklı bir açığa çıkan tercihten derecelendirilir: dinlenme yerindeki Dövme kararı. Bir kartı yükselttiğinizde, destenizde yükseltebileceğiniz ama yükseltmediğiniz diğer kartları “yener”. Aynı Bradley-Terry modelini bu seçimlere uygulayın; “+” satırı temel sayının kopyası değil, gerçek bir Yükseltme Elo'su alır. Başlangıç kartları da bu yolla kazanabilir (bir Vuruş'u Dövebilirsiniz).",
       zhs: "奖励界面可能提供已升级的卡牌，但对局导出只记录拿了哪张卡，不记录提供的是否为“+”版本，所以每次奖励选取都记在基础卡上，无法代表升级版。“+”版本改用另一种显示性偏好来评分：休息处的锻造决定。当你升级一张卡时，它“战胜”了牌组中你本可以升级却没有升级的其他卡。对这些选择拟合同一个 Bradley-Terry 模型，“+”行就得到真正的升级 Elo，而非基础数值的复制。初始卡也能这样获得（打击可以锻造）。",
       zht: "獎勵介面可能提供已升級的卡牌，但對局匯出只記錄拿了哪張卡，不記錄提供的是否為「+」版本，所以每次獎勵選取都記在基礎卡上，無法代表升級版。「+」版本改用另一種顯示性偏好來評分：休息點的鍛造決定。當你升級一張卡時，它「戰勝」了牌組中你本可以升級卻沒有升級的其他卡。對這些選擇擬合同一個 Bradley-Terry 模型，「+」行就得到真正的升級 Elo，而非基礎數值的複製。初始卡也能這樣獲得（打擊可以鍛造）。",
+      ara: "قد تعرض شاشات المكافأة بطاقة مطوّرة مسبقا، لكن تصدير الجولة يسجل فقط أي بطاقة أُخذت، لا إن كان العرض نسخة «+»، لذا يُحسب كل اختيار مكافأة للبطاقة الأساسية ولا يعبر عن المطوّرة. بدلا من ذلك تُقيّم نسخة «+» من تفضيل فعلي آخر: قرار حدادة في موقع الراحة. حين تطوّر بطاقة فهي «تهزم» بطاقات مجموعتك الأخرى التي كان بإمكانك تطويرها ولم تفعل. طبّق نموذج Bradley-Terry نفسه على هذه الاختيارات فيحصل صف «+» على Upgrade Elo حقيقي، لا نسخة من الرقم الأساسي. البطاقات الأساسية يمكنها نيل واحد بهذه الطريقة أيضا (يمكنك تطوير ضربة بالحدادة).",
+      ind: "Layar pilihan bisa menawarkan kartu yang sudah ditingkatkan, tapi ekspor perjalanan hanya mencatat kartu mana yang diambil, bukan apakah tawarannya versi “+”, jadi setiap pilihan dihitung untuk kartu dasar dan tidak bisa mewakili versi yang ditingkatkan. Sebagai gantinya varian “+” dinilai dari preferensi nyata yang berbeda: keputusan Tingkatkan di peristirahatan. Saat kamu meningkatkan sebuah kartu, kartu itu “mengalahkan” kartu lain di dekmu yang bisa kamu tingkatkan tapi tidak. Pasang model Bradley-Terry yang sama pada pilihan itu dan baris “+” mendapat Upgrade Elo sungguhan, bukan salinan angka dasarnya. Kartu awalan juga bisa mendapatkannya dengan cara ini (kamu bisa meningkatkan Tebas).",
     },
   "Use them together: Score says “this wins games,” Elo says “players want this when they see it.” Cards high on both are unambiguous; a gap between them is usually a build-around or a situational pick.":
     {
@@ -1677,6 +1869,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "İkisini birlikte kullanın: Score “bu oyun kazandırır” der, Elo “oyuncular bunu gördüğünde ister” der. Her ikisinde de yüksek kartlar nettir; aralarındaki fark genellikle bir deste-odaklı ya da duruma bağlı seçimdir.",
       zhs: "把两者结合使用：Score 说“这能赢”，Elo 说“玩家看到就想要”。两者都高的卡毫无疑问；两者差距大的通常是需要围绕构筑或看情况的选择。",
       zht: "把兩者結合使用：Score 說「這能贏」，Elo 說「玩家看到就想要」。兩者都高的卡毫無疑問；兩者差距大的通常是需要圍繞構築或看情況的選擇。",
+      ara: "استخدمهما معا: Score يقول «هذه تكسب المباريات»، و Elo يقول «اللاعبون يريدونها حين يرونها». البطاقات العالية في الاثنين واضحة، والفجوة بينهما تعني غالبا بطاقة يُبنى حولها أو اختيارا ظرفيا.",
+      ind: "Pakai keduanya bersama: Score bilang “ini memenangkan permainan,” Elo bilang “pemain menginginkan ini saat melihatnya.” Kartu yang tinggi di keduanya sudah jelas; selisih di antara keduanya biasanya kartu poros build atau pilihan situasional.",
     },
   "Both live side by side on the Card Metrics table.": {
     eng: "Both live side by side on the Card Metrics table.",
@@ -1694,6 +1888,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "İkisi de Kart Ölçütleri tablosunda yan yana yer alır.",
     zhs: "两者并排显示在卡牌指标表中。",
     zht: "兩者並排顯示在卡牌指標表中。",
+    ara: "كلاهما معروض جنبا إلى جنب في جدول مقاييس البطاقات.",
+    ind: "Keduanya tampil berdampingan di tabel Metrik Kartu.",
   },
   "What the score is not": {
     eng: "What the score is not",
@@ -1711,6 +1907,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Puanın olmadığı şeyler",
     zhs: "评分不是什么",
     zht: "評分不是什麼",
+    ara: "ما ليست عليه الدرجة",
+    ind: "Yang bukan arti skor ini",
   },
   "Codex Score is a naive win-rate correlation, and a correlation carries baggage. The two biggest confounds below are why some obviously good cards can land low and some niche ones can land high. Read a grade as a signal with caveats, not a ruling. Where a card has been offered in reward screens, Codex Elo is the less-confounded counterweight, it is skill-agnostic and not exposure-weighted.":
     {
@@ -1729,6 +1927,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Codex Score naif bir kazanma oranı korelasyonudur ve korelasyonun yükü vardır. Aşağıdaki en büyük iki karıştırıcı, bariz şekilde iyi bazı kartların neden düşük, bazı niş kartların neden yüksek çıkabildiğini açıklar. Bir notu hüküm olarak değil, çekinceleri olan bir sinyal olarak okuyun. Bir kart ödül ekranlarında sunulmuşsa, Codex Elo daha az karıştırıcılı karşı ağırlıktır: beceriden bağımsızdır ve maruziyetle ağırlıklandırılmaz.",
       zhs: "Codex Score 是朴素的胜率相关性，而相关性自带包袱。下面两个最大的混杂因素解释了为什么一些明显的好牌可能排得低、一些小众牌可能排得高。把等级当作带注意事项的信号来读，而非定论。对于在奖励界面出现过的卡牌，Codex Elo 是混杂更少的制衡：它与水平无关，也不按曝光加权。",
       zht: "Codex Score 是樸素的勝率相關性，而相關性自帶包袱。下面兩個最大的混雜因素解釋了為什麼一些明顯的好牌可能排得低、一些小眾牌可能排得高。把等級當作帶注意事項的訊號來讀，而非定論。對於在獎勵介面出現過的卡牌，Codex Elo 是混雜更少的制衡：它與水平無關，也不按曝光加權。",
+      ara: "Codex Score ارتباط بسيط بنسبة الفوز، والارتباط يحمل شوائب. أكبر عاملي التباس أدناه هما سبب هبوط بعض البطاقات الجيدة بوضوح وارتفاع بعض المتخصصة. اقرأ الدرجة كإشارة مع تحفظات لا كحكم. حيثما عُرضت بطاقة في شاشات المكافأة، يكون Codex Elo الميزان المقابل الأقل تأثرا، فهو لا يتأثر بالمهارة وغير مرجح بمدة الظهور.",
+      ind: "Codex Score adalah korelasi tingkat kemenangan yang naif, dan korelasi membawa beban. Dua distorsi terbesar di bawah adalah alasan beberapa kartu yang jelas bagus bisa mendarat rendah dan beberapa yang khusus bisa mendarat tinggi. Baca nilai sebagai sinyal dengan catatan, bukan keputusan. Kalau sebuah kartu pernah ditawarkan di layar pilihan, Codex Elo adalah penyeimbang yang lebih sedikit terdistorsi, tidak bergantung pada skill dan tidak dibobot paparan.",
     },
   "Jump to Codex Elo": {
     eng: "Jump to Codex Elo",
@@ -1746,6 +1946,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Codex Elo'ya git",
     zhs: "跳转到 Codex Elo",
     zht: "跳轉到 Codex Elo",
+    ara: "الانتقال إلى Codex Elo",
+    ind: "Lompat ke Codex Elo",
   },
   "Exposure-time / pick-frequency bias.": {
     eng: "Exposure-time / pick-frequency bias.",
@@ -1763,6 +1965,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Maruziyet süresi / seçim sıklığı yanlılığı.",
     zhs: "曝光时长 / 选取频率偏差。",
     zht: "曝光時長 / 選取頻率偏差。",
+    ara: "انحياز مدة الظهور / تكرار الاختيار.",
+    ind: "Bias lama paparan / frekuensi pilihan.",
   },
   "A card that sits in the deck longer, or gets picked in nearly every run (starters, commons, high-pick staples), absorbs more of every loss it was present for. So heavily-used cards score low even when they're fine, which is why some staples land in the bottom tiers. An F often means “high exposure,” not “bad card.”":
     {
@@ -1781,6 +1985,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Destede daha uzun kalan ya da neredeyse her koşuda seçilen bir kart (başlangıç kartları, sıradan kartlar, çok seçilen temel kartlar), bulunduğu her yenilgiden daha fazla pay alır. Bu yüzden çok kullanılan kartlar iyi olsalar bile düşük puan alır; bazı temel kartların alt katmanlara düşmesinin sebebi budur. Bir F genellikle “kötü kart” değil “yüksek maruziyet” demektir.",
       zhs: "在牌组里待得更久、或几乎每局都被选的卡（初始卡、普通卡、高频常用牌），会分担更多它在场时的每一次失败。所以高频使用的卡即使不错也评分偏低，这就是一些常用牌落到底层的原因。F 往往意味着“高曝光”，而不是“差牌”。",
       zht: "在牌組裡待得更久、或幾乎每局都被選的卡（初始卡、普通卡、高頻常用牌），會分擔更多它在場時的每一次失敗。所以高頻使用的卡即使不錯也評分偏低，這就是一些常用牌落到底層的原因。F 往往意味著「高曝光」，而不是「差牌」。",
+      ara: "البطاقة التي تبقى في المجموعة مدة أطول، أو تُختار في كل جولة تقريبا (الأساسية، العادية، والمفضلة كثيرة الاختيار)، تتحمل قسطا أكبر من كل خسارة حضرتها. لذا تنال البطاقات كثيرة الاستخدام درجات منخفضة حتى وهي جيدة، ولهذا تقع بعض البطاقات الأساسية في الفئات الدنيا. F تعني غالبا «كثيرة الظهور» لا «بطاقة سيئة».",
+      ind: "Kartu yang lebih lama berada di dek, atau diambil di hampir setiap perjalanan (awalan, biasa, andalan yang sering diambil), menyerap lebih banyak dari setiap kekalahan yang dialaminya. Jadi kartu yang sering dipakai mendapat skor rendah meski sebenarnya baik-baik saja, itu sebabnya beberapa kartu andalan mendarat di tier bawah. F sering berarti “paparan tinggi,” bukan “kartu buruk.”",
     },
   "Survivorship bias.": {
     eng: "Survivorship bias.",
@@ -1798,6 +2004,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Hayatta kalma yanlılığı.",
     zhs: "幸存者偏差。",
     zht: "倖存者偏差。",
+    ara: "انحياز البقاء.",
+    ind: "Bias penyintas.",
   },
   "Late-game rares and uncommons only get offered in runs that already got deep, runs that were, on average, already going well. Their win rate is inflated by the run being healthy before the pick, so they can look stronger than they are.":
     {
@@ -1816,6 +2024,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Geç oyun nadir ve sıradışı kartları yalnızca zaten derine inmiş, yani ortalamada zaten iyi giden koşularda sunulur. Kazanma oranları, seçimden önce koşunun sağlıklı olmasıyla şişer; bu yüzden olduklarından güçlü görünebilirler.",
       zhs: "后期的稀有和罕见卡只会在已经走得很深的对局中出现，而这些对局平均来说本来就进行得不错。它们的胜率被选牌前对局的健康状态抬高了，所以可能显得比实际更强。",
       zht: "後期的稀有和罕見卡只會在已經走得很深的對局中出現，而這些對局平均來說本來就進行得不錯。它們的勝率被選牌前對局的健康狀態抬高了，所以可能顯得比實際更強。",
+      ara: "البطاقات النادرة وغير الشائعة المتأخرة تُعرض فقط في جولات وصلت بعيدا، أي جولات كانت في المتوسط تسير جيدا أصلا. نسبة فوزها مضخمة لأن الجولة كانت سليمة قبل الاختيار، فقد تبدو أقوى مما هي.",
+      ind: "Kartu langka dan tidak biasa di akhir permainan hanya ditawarkan di perjalanan yang sudah jauh, perjalanan yang rata-rata memang sudah berjalan baik. Tingkat kemenangannya terdongkrak karena perjalanannya sudah sehat sebelum pilihan itu, jadi bisa terlihat lebih kuat dari aslinya.",
     },
   "Not a personal recommendation.": {
     eng: "Not a personal recommendation.",
@@ -1833,6 +2043,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Kişisel bir öneri değildir.",
     zhs: "不是个人化推荐。",
     zht: "不是個人化推薦。",
+    ara: "ليست توصية شخصية.",
+    ind: "Bukan rekomendasi pribadi.",
   },
   "Score answers “what wins for the average submitter?” It can't see your deck, your character, your ascension, or what relics you already have. A C-tier card can be the right pick if it solves your problem.":
     {
@@ -1851,6 +2063,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Puan “ortalama gönderen için ne kazandırır?” sorusuna cevap verir. Destenizi, karakterinizi, yükseliş seviyenizi ya da sahip olduğunuz kalıntıları göremez. Bir C katmanı kart, sizin sorununuzu çözüyorsa doğru seçim olabilir.",
       zhs: "评分回答的是“对平均提交者来说什么能赢？”它看不到你的牌组、角色、进阶等级或已有的遗物。如果一张 C 级卡能解决你的问题，它就是正确的选择。",
       zht: "評分回答的是「對平均提交者來說什麼能贏？」它看不到你的牌組、角色、晉階等級或已有的遺物。如果一張 C 級卡能解決你的問題，它就是正確的選擇。",
+      ara: "Score يجيب عن «ما الذي يفوز لدى المرسل المتوسط؟» لا يرى مجموعتك ولا شخصيتك ولا مستوى صعودك ولا الآثار التي لديك. بطاقة من الفئة C قد تكون الاختيار الصحيح إن حلت مشكلتك.",
+      ind: "Score menjawab “apa yang menang untuk pengirim rata-rata?” Ia tidak bisa melihat dekmu, karaktermu, angkatanmu, atau pusaka yang sudah kamu punya. Kartu tier C bisa jadi pilihan tepat kalau menyelesaikan masalahmu.",
     },
   "Not normalized by ascension.": {
     eng: "Not normalized by ascension.",
@@ -1868,6 +2082,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Yükselişe göre normalize edilmemiş.",
     zhs: "未按进阶等级归一化。",
     zht: "未按晉階等級歸一化。",
+    ara: "غير موحدة حسب الصعود.",
+    ind: "Tidak dinormalkan per angkatan.",
   },
   "A relic that's great at A0 and mediocre at A10 gets one blended score. We'll add per-ascension scoring once the sample size at high ascension is statistically meaningful.":
     {
@@ -1886,6 +2102,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "A0'da harika, A10'da vasat olan bir kalıntı tek bir karışık puan alır. Yüksek yükselişteki örneklem boyutu istatistiksel olarak anlamlı olduğunda yükseliş başına puanlama ekleyeceğiz.",
       zhs: "在 A0 很强、在 A10 平庸的遗物只会得到一个混合评分。等高进阶的样本量具有统计意义后，我们会加入按进阶分级的评分。",
       zht: "在 A0 很強、在 A10 平庸的遺物只會得到一個混合評分。等高晉階的樣本量具有統計意義後，我們會加入按晉階分級的評分。",
+      ara: "أثر ممتاز في A0 ومتوسط في A10 ينال درجة واحدة ممزوجة. سنضيف درجات لكل مستوى صعود حين يصبح حجم العينة في الصعود العالي ذا دلالة إحصائية.",
+      ind: "Pusaka yang hebat di A0 dan biasa saja di A10 mendapat satu skor gabungan. Kami akan menambahkan skor per angkatan setelah ukuran sampel di angkatan tinggi bermakna secara statistik.",
     },
   "Not normalized by character.": {
     eng: "Not normalized by character.",
@@ -1903,6 +2121,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Karaktere göre normalize edilmemiş.",
     zhs: "未按角色归一化。",
     zht: "未按角色歸一化。",
+    ara: "غير موحّد حسب الشخصية.",
+    ind: "Tidak dinormalkan per karakter.",
   },
   "A relic with a 70% win rate on Defect and 45% on Ironclad blends to one number. Per-character scoring is on the roadmap (the data is already in the per-character breakdown table on each detail page).":
     {
@@ -1921,6 +2141,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Defect'te %70, Ironclad'de %45 kazanma oranına sahip bir kalıntı tek bir sayıya karışır. Karakter başına puanlama yol haritasında (veriler zaten her ayrıntı sayfasındaki karakter dökümü tablosunda).",
       zhs: "一件在故障机器人上胜率 70%、在铁甲战士上 45% 的遗物会被混成一个数字。按角色评分已在计划中（数据已在每个详情页的角色分项表中）。",
       zht: "一件在故障機器人上勝率 70%、在鐵甲戰士上 45% 的遺物會被混成一個數字。按角色評分已在計畫中（資料已在每個詳情頁的角色分項表中）。",
+      ara: "أثر بمعدل فوز 70% مع المعيب و45% مع المدرع يُدمج في رقم واحد. التقييم لكل شخصية ضمن الخطة القادمة (البيانات موجودة أصلًا في جدول التفصيل حسب الشخصية في كل صفحة تفاصيل).",
+      ind: "Pusaka dengan tingkat kemenangan 70% di Defect dan 45% di Ironclad digabung jadi satu angka. Skor per karakter sudah masuk rencana (datanya sudah ada di tabel rincian per karakter di tiap halaman detail).",
     },
   "Biased toward submitter pool.": {
     eng: "Biased toward submitter pool.",
@@ -1938,6 +2160,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Gönderen havuzuna yanlı.",
     zhs: "偏向提交者群体。",
     zht: "偏向提交者群體。",
+    ara: "منحاز نحو فئة المرسلين.",
+    ind: "Condong ke kelompok pengirim.",
   },
   "The score reflects runs that real humans bothered to submit, disproportionately wins, disproportionately ranked-mode players. The baseline win rate is computed from the same pool, so the bias largely cancels out for relative ranking. But absolute win rates skew higher than the average player's.":
     {
@@ -1956,6 +2180,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Puan, gerçek insanların göndermeye zahmet ettiği koşuları yansıtır; orantısız biçimde galibiyetler ve dereceli mod oyuncuları. Taban kazanma oranı aynı havuzdan hesaplanır, bu yüzden göreli sıralamada yanlılık büyük ölçüde birbirini götürür. Ancak mutlak kazanma oranları ortalama oyuncununkinden yüksektir.",
       zhs: "评分反映的是真人愿意提交的对局，其中胜局和排位模式玩家的比例偏高。基准胜率来自同一群体，所以在相对排名上偏差大体抵消。但绝对胜率会高于普通玩家。",
       zht: "評分反映的是真人願意提交的對局，其中勝局和排位模式玩家的比例偏高。基準勝率來自同一群體，所以在相對排名上偏差大體抵消。但絕對勝率會高於普通玩家。",
+      ara: "تعكس النتيجة الجولات التي كلّف أشخاص حقيقيون أنفسهم عناء إرسالها، وأغلبها انتصارات ومن لاعبي الوضع المصنّف بشكل غير متناسب. معدل الفوز الأساسي محسوب من الفئة نفسها، لذا يتلاشى الانحياز في معظمه عند الترتيب النسبي. لكن معدلات الفوز المطلقة أعلى من معدلات اللاعب العادي.",
+      ind: "Skor ini mencerminkan perjalanan yang benar-benar dikirim orang, yang condong ke kemenangan dan ke pemain mode peringkat. Tingkat kemenangan dasar dihitung dari kelompok yang sama, jadi biasnya sebagian besar hilang untuk peringkat relatif. Tapi tingkat kemenangan absolutnya lebih tinggi daripada pemain rata-rata.",
     },
   "Refreshes every 30 minutes.": {
     eng: "Refreshes every 30 minutes.",
@@ -1973,6 +2199,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Her 30 dakikada yenilenir.",
     zhs: "每30分钟刷新。",
     zht: "每30分鐘刷新。",
+    ara: "يتحدّث كل 30 دقيقة.",
+    ind: "Diperbarui tiap 30 menit.",
   },
   "Scores are cached server-side. A run you submit right now will affect the next score rebuild, not the one in your browser.":
     {
@@ -1991,6 +2219,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Puanlar sunucu tarafında önbelleğe alınır. Şu anda gönderdiğiniz bir koşu, tarayıcınızdaki değil bir sonraki puan yeniden hesaplamasını etkiler.",
       zhs: "评分在服务端缓存。你现在提交的对局会影响下一次评分重建，而不是浏览器中显示的这一次。",
       zht: "評分在伺服端快取。你現在提交的對局會影響下一次評分重建，而不是瀏覽器中顯示的這一次。",
+      ara: "تُخزَّن النتائج مؤقتًا على الخادم. الجولة التي ترسلها الآن ستؤثر في إعادة بناء النتائج التالية، لا في النسخة الظاهرة في متصفحك.",
+      ind: "Skor disimpan di cache server. Perjalanan yang kamu kirim sekarang akan memengaruhi pembaruan skor berikutnya, bukan yang ada di browsermu.",
     },
   "To cut the obvious confounds yourself, the Card Metrics table puts Codex Elo next to Score and slices both by per-character and per-run brackets.":
     {
@@ -2009,6 +2239,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Bariz karıştırıcıları kendiniz ayıklamak için Kart Ölçütleri tablosu Codex Elo'yu Score'un yanına koyar ve ikisini de karakter ve koşu dilimlerine göre böler.",
       zhs: "想自己剔除明显的混杂因素，卡牌指标表把 Codex Elo 放在 Score 旁边，并按角色和对局分段切分两者。",
       zht: "想自己剔除明顯的混雜因素，卡牌指標表把 Codex Elo 放在 Score 旁邊，並按角色和對局分段切分兩者。",
+      ara: "لاستبعاد العوامل المربكة الواضحة بنفسك، يضع جدول مقاييس البطاقات Codex Elo بجانب النتيجة ويقسّم كليهما حسب الشخصية وحسب فئات الجولات.",
+      ind: "Untuk menyingkirkan sendiri faktor pengganggu yang jelas, tabel Metrik Kartu menaruh Codex Elo di samping Skor dan memilah keduanya per karakter dan per kelompok run.",
     },
   "See it in action": {
     eng: "See it in action",
@@ -2026,6 +2258,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Uygulamada görün",
     zhs: "实际效果",
     zht: "實際效果",
+    ara: "شاهده عمليًا",
+    ind: "Lihat langsung",
   },
   "Cards by score": {
     eng: "Cards by score",
@@ -2043,6 +2277,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Puana göre kartlar",
     zhs: "按评分排序的卡牌",
     zht: "按評分排序的卡牌",
+    ara: "البطاقات حسب النتيجة",
+    ind: "Kartu menurut skor",
   },
   "Top-tier cards, sortable by Codex Score.": {
     eng: "Top-tier cards, sortable by Codex Score.",
@@ -2060,6 +2296,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Codex Score'a göre sıralanabilen üst katman kartlar.",
     zhs: "顶级卡牌，可按 Codex Score 排序。",
     zht: "頂級卡牌，可按 Codex Score 排序。",
+    ara: "بطاقات الصف الأول، قابلة للفرز حسب Codex Score.",
+    ind: "Kartu tingkat teratas, bisa diurutkan menurut Codex Score.",
   },
   "Relics by score": {
     eng: "Relics by score",
@@ -2077,6 +2315,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Puana göre kalıntılar",
     zhs: "按评分排序的遗物",
     zht: "按評分排序的遺物",
+    ara: "الآثار حسب النتيجة",
+    ind: "Pusaka menurut skor",
   },
   "Best-rated relics across all pools.": {
     eng: "Best-rated relics across all pools.",
@@ -2094,6 +2334,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tüm havuzlardaki en iyi puanlı kalıntılar.",
     zhs: "所有池中评分最高的遗物。",
     zht: "所有池中評分最高的遺物。",
+    ara: "أعلى الآثار تقييمًا في كل المجموعات.",
+    ind: "Pusaka dengan nilai terbaik di semua kelompok.",
   },
   "Potions by score": {
     eng: "Potions by score",
@@ -2111,6 +2353,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Puana göre iksirler",
     zhs: "按评分排序的药水",
     zht: "按評分排序的藥水",
+    ara: "الجرعات حسب النتيجة",
+    ind: "Ramuan menurut skor",
   },
   "Tier list of every potion in the game.": {
     eng: "Tier list of every potion in the game.",
@@ -2128,6 +2372,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Oyundaki her iksirin katman listesi.",
     zhs: "游戏中所有药水的梯度榜。",
     zht: "遊戲中所有藥水的梯度榜。",
+    ara: "قائمة تصنيف لكل جرعة في اللعبة.",
+    ind: "Tier list semua ramuan di game.",
   },
   "Improve the scores": {
     eng: "Improve the scores",
@@ -2145,6 +2391,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Puanları iyileştirin",
     zhs: "改进评分",
     zht: "改進評分",
+    ara: "حسّن النتائج",
+    ind: "Bantu pertajam skor",
   },
   "Every score gets sharper when more runs are submitted, especially losses, which are chronically underrepresented in community datasets. The submitter pool is the data.":
     {
@@ -2163,6 +2411,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Daha fazla koşu gönderildikçe her puan keskinleşir; özellikle topluluk veri setlerinde sürekli eksik temsil edilen yenilgiler. Gönderen havuzu verinin ta kendisidir.",
       zhs: "提交的对局越多，每个评分就越精准，尤其是失败的对局，它们在社区数据集中长期不足。提交者群体就是数据。",
       zht: "提交的對局越多，每個評分就越精準，尤其是失敗的對局，它們在社群資料集中長期不足。提交者群體就是資料。",
+      ara: "تزداد كل نتيجة دقة كلما أُرسلت جولات أكثر، وخصوصًا الهزائم التي تبقى ناقصة التمثيل دائمًا في بيانات المجتمع. فئة المرسلين هي البيانات.",
+      ind: "Tiap skor makin tajam kalau makin banyak perjalanan dikirim, terutama kekalahan, yang selalu kurang terwakili di data komunitas. Kelompok pengirim adalah datanya.",
     },
   "→ Submit a run": {
     eng: "→ Submit a run",
@@ -2180,6 +2430,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "→ Koşu gönder",
     zhs: "→ 提交对局",
     zht: "→ 提交對局",
+    ara: "→ أرسل جولة",
+    ind: "→ Kirim perjalanan",
   },
   "No API key": {
     eng: "No API key",
@@ -2197,6 +2449,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "API anahtarı yok",
     zhs: "无 API 密钥",
     zht: "無 API 金鑰",
+    ara: "بلا مفتاح API",
+    ind: "Tanpa kunci API",
   },
   "Registered User": {
     eng: "Registered User",
@@ -2214,6 +2468,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Kayıtlı Kullanıcı",
     zhs: "注册用户",
     zht: "註冊用戶",
+    ara: "مستخدم مسجّل",
+    ind: "Pengguna Terdaftar",
   },
   "create one on your profile": {
     eng: "create one on your profile",
@@ -2231,6 +2487,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "profilinizden oluşturun",
     zhs: "在个人资料中创建",
     zht: "在個人資料中建立",
+    ara: "أنشئ واحدًا من ملفك الشخصي",
+    ind: "buat di profilmu",
   },
   "granted on request": {
     eng: "granted on request",
@@ -2248,6 +2506,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "talep üzerine verilir",
     zhs: "按申请授予",
     zht: "按申請授予",
+    ara: "يُمنح عند الطلب",
+    ind: "diberikan atas permintaan",
   },
   supporters: {
     eng: "supporters",
@@ -2265,6 +2525,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "destekçiler",
     zhs: "赞助者",
     zht: "贊助者",
+    ara: "الداعمون",
+    ind: "pendukung",
   },
   "Integrate {game} game data into your projects. Public REST API with 22+ endpoints, embeddable tooltip widget, and multi-language support.":
     {
@@ -2283,6 +2545,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "{game} oyun verilerini projelerinize entegre edin. 22'den fazla uç noktaya sahip herkese açık REST API, gömülebilir ipucu bileşeni ve çoklu dil desteği.",
       zhs: "将 {game} 游戏数据集成到你的项目中。拥有 22+ 个端点的公开 REST API、可嵌入的提示框组件和多语言支持。",
       zht: "將 {game} 遊戲資料整合到你的專案中。擁有 22+ 個端點的公開 REST API、可嵌入的提示框元件和多語言支援。",
+      ara: "ادمج بيانات لعبة {game} في مشاريعك. واجهة REST API عامة بأكثر من 22 نقطة وصول، وأداة تلميحات قابلة للتضمين، ودعم لعدة لغات.",
+      ind: "Integrasikan data game {game} ke proyekmu. REST API publik dengan 22+ endpoint, widget tooltip yang bisa disematkan, dan dukungan banyak bahasa.",
     },
   "Developer API & Tooltip Widget": {
     eng: "Developer API & Tooltip Widget",
@@ -2300,6 +2564,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Geliştirici API'si ve İpucu Bileşeni",
     zhs: "开发者 API 与提示框组件",
     zht: "開發者 API 與提示框元件",
+    ara: "API للمطورين وأداة التلميحات",
+    ind: "API Developer & Widget Tooltip",
   },
   "Build tools, bots, and content with Spire Codex data. Everything is free and open.":
     {
@@ -2318,6 +2584,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Spire Codex verileriyle araçlar, botlar ve içerik oluşturun. Her şey ücretsiz ve açık.",
       zhs: "用 Spire Codex 的数据构建工具、机器人和内容。一切免费开放。",
       zht: "用 Spire Codex 的資料打造工具、機器人和內容。一切免費開放。",
+      ara: "ابنِ أدوات وبوتات ومحتوى ببيانات Spire Codex. كل شيء مجاني ومفتوح.",
+      ind: "Buat alat, bot, dan konten dengan data Spire Codex. Semuanya gratis dan terbuka.",
     },
   "Tooltip Widget": {
     eng: "Tooltip Widget",
@@ -2335,6 +2603,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "İpucu Bileşeni",
     zhs: "提示框组件",
     zht: "提示框元件",
+    ara: "أداة التلميحات",
+    ind: "Widget Tooltip",
   },
   "Add Wowhead-style hoverable tooltips for cards, relics, and potions to any website. One script tag, zero dependencies.":
     {
@@ -2353,6 +2623,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Herhangi bir web sitesine kartlar, kalıntılar ve iksirler için Wowhead tarzı üzerine gelince açılan ipuçları ekleyin. Tek bir script etiketi, sıfır bağımlılık.",
       zhs: "为任何网站添加 Wowhead 风格的卡牌、遗物和药水悬停提示。一个 script 标签，零依赖。",
       zht: "為任何網站加入 Wowhead 風格的卡牌、遺物和藥水懸停提示。一個 script 標籤，零依賴。",
+      ara: "أضف تلميحات تظهر عند التمرير على طريقة Wowhead للبطاقات والآثار والجرعات إلى أي موقع. وسم script واحد وبلا أي اعتماديات.",
+      ind: "Tambahkan tooltip hover ala Wowhead untuk kartu, pusaka, dan ramuan ke situs mana pun. Satu tag script, tanpa dependensi.",
     },
   Installation: {
     eng: "Installation",
@@ -2370,6 +2642,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Kurulum",
     zhs: "安装",
     zht: "安裝",
+    ara: "التثبيت",
+    ind: "Instalasi",
   },
   Syntax: {
     eng: "Syntax",
@@ -2387,6 +2661,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Söz dizimi",
     zhs: "语法",
     zht: "語法",
+    ara: "الصيغة",
+    ind: "Sintaks",
   },
   "Card tooltip (default type)": {
     eng: "Card tooltip (default type)",
@@ -2404,6 +2680,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Kart ipucu (varsayılan tür)",
     zhs: "卡牌提示（默认类型）",
     zht: "卡牌提示（預設類型）",
+    ara: "تلميح بطاقة (النوع الافتراضي)",
+    ind: "Tooltip kartu (tipe bawaan)",
   },
   "Card (explicit)": {
     eng: "Card (explicit)",
@@ -2421,6 +2699,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Kart (açık)",
     zhs: "卡牌（显式）",
     zht: "卡牌（顯式）",
+    ara: "بطاقة (صريح)",
+    ind: "Kartu (eksplisit)",
   },
   "JavaScript API": {
     eng: "JavaScript API",
@@ -2438,6 +2718,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "JavaScript API'si",
     zhs: "JavaScript API",
     zht: "JavaScript API",
+    ara: "JavaScript API",
+    ind: "JavaScript API",
   },
   "Re-scan the page for new [[...]] patterns (for SPAs)": {
     eng: "Re-scan the page for new [[...]] patterns (for SPAs)",
@@ -2455,6 +2737,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Sayfayı yeni [[...]] kalıpları için yeniden tarar (SPA'lar için)",
     zhs: "重新扫描页面中的新 [[...]] 模式（用于 SPA）",
     zht: "重新掃描頁面中的新 [[...]] 模式（用於 SPA）",
+    ara: "أعد فحص الصفحة بحثًا عن أنماط [[...]] جديدة (لتطبيقات SPA)",
+    ind: "Pindai ulang halaman untuk pola [[...]] baru (untuk SPA)",
   },
   "Scan a specific DOM element": {
     eng: "Scan a specific DOM element",
@@ -2472,6 +2756,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Belirli bir DOM öğesini tarar",
     zhs: "扫描指定的 DOM 元素",
     zht: "掃描指定的 DOM 元素",
+    ara: "افحص عنصر DOM محددًا",
+    ind: "Pindai elemen DOM tertentu",
   },
   "Changelog Widget": {
     eng: "Changelog Widget",
@@ -2489,6 +2775,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Değişiklik Günlüğü Bileşeni",
     zhs: "更新日志组件",
     zht: "更新日誌元件",
+    ara: "أداة سجل التغييرات",
+    ind: "Widget Changelog",
   },
   "Embed a compact, interactive changelog viewer showing Spire Codex update history with version switching.":
     {
@@ -2507,6 +2795,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Sürüm geçişiyle Spire Codex güncelleme geçmişini gösteren kompakt, etkileşimli bir değişiklik günlüğü görüntüleyici gömün.",
       zhs: "嵌入一个紧凑的交互式更新日志查看器，展示 Spire Codex 的更新历史并支持切换版本。",
       zht: "嵌入一個精簡的互動式更新日誌檢視器，展示 Spire Codex 的更新歷史並支援切換版本。",
+      ara: "ضمّن عارضًا مصغرًا وتفاعليًا لسجل التغييرات يعرض تاريخ تحديثات Spire Codex مع التبديل بين الإصدارات.",
+      ind: "Sematkan penampil changelog yang ringkas dan interaktif, berisi riwayat pembaruan Spire Codex dengan pilihan versi.",
     },
   "Show a specific version (default: latest)": {
     eng: "Show a specific version (default: latest)",
@@ -2524,6 +2814,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Belirli bir sürümü gösterir (varsayılan: en son)",
     zhs: "显示指定版本（默认：最新）",
     zht: "顯示指定版本（預設：最新）",
+    ara: "اعرض إصدارًا محددًا (الافتراضي: الأحدث)",
+    ind: "Tampilkan versi tertentu (bawaan: terbaru)",
   },
   "Full game database accessible via a public REST API. No authentication required: the per-IP website allowance covers browsing and casual calls, and keyless API usage gets the base rate below.":
     {
@@ -2542,6 +2834,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Oyunun tüm veritabanına herkese açık bir REST API üzerinden erişilebilir. Kimlik doğrulama gerekmez: IP başına web sitesi kotası gezinmeyi ve ara sıra yapılan çağrıları karşılar; anahtarsız API kullanımı aşağıdaki temel oranı alır.",
       zhs: "完整游戏数据库可通过公开 REST API 访问。无需认证：按 IP 的网站配额足以覆盖浏览和零散调用，无密钥的 API 使用适用下方的基础速率。",
       zht: "完整遊戲資料庫可透過公開 REST API 存取。無需認證：按 IP 的網站配額足以涵蓋瀏覽和零散呼叫，無金鑰的 API 使用適用下方的基礎速率。",
+      ara: "قاعدة بيانات اللعبة كاملة متاحة عبر REST API عامة. لا حاجة إلى مصادقة: حصة الموقع لكل عنوان IP تغطي التصفح والطلبات العابرة، واستخدام API بلا مفتاح يحصل على المعدل الأساسي أدناه.",
+      ind: "Seluruh database game bisa diakses lewat REST API publik. Tanpa autentikasi: jatah situs per IP mencakup penjelajahan dan panggilan ringan, dan pemakaian API tanpa kunci mendapat batas dasar di bawah.",
     },
   "For scripts and tools, create an API key and send it as the X-API-Key header.":
     {
@@ -2560,6 +2854,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Betikler ve araçlar için bir API anahtarı oluşturun ve X-API-Key başlığı olarak gönderin.",
       zhs: "脚本和工具请创建 API 密钥，并通过 X-API-Key 请求头发送。",
       zht: "腳本和工具請建立 API 金鑰，並透過 X-API-Key 請求標頭傳送。",
+      ara: "للسكربتات والأدوات، أنشئ مفتاح API وأرسله في الترويسة X-API-Key.",
+      ind: "Untuk skrip dan alat, buat kunci API dan kirim sebagai header X-API-Key.",
     },
   "Create one on your profile page.": {
     eng: "Create one on your profile page.",
@@ -2577,6 +2873,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Profil sayfanızdan bir tane oluşturun.",
     zhs: "在个人资料页创建一个。",
     zht: "在個人資料頁建立一個。",
+    ara: "أنشئ واحدًا من صفحة ملفك الشخصي.",
+    ind: "Buat di halaman profilmu.",
   },
   "A key buckets your requests by identity instead of IP (stable across networks, never shared with other users behind the same NAT) and gives you usage tracking; its tier cap applies per endpoint. Responses carry X-RateLimit-Remaining / X-RateLimit-Reset so you can pace requests.":
     {
@@ -2595,6 +2893,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Bir anahtar, isteklerinizi IP yerine kimliğe göre gruplar (ağlar arasında kararlıdır, aynı NAT arkasındaki diğer kullanıcılarla asla paylaşılmaz) ve kullanım takibi sağlar; katman sınırı uç nokta başına uygulanır. Yanıtlar, istekleri ayarlayabilmeniz için X-RateLimit-Remaining / X-RateLimit-Reset taşır.",
       zhs: "密钥按身份而非 IP 归集你的请求（跨网络稳定，绝不与同一 NAT 下的其他用户共享），并提供用量跟踪；其等级上限按端点计算。响应携带 X-RateLimit-Remaining / X-RateLimit-Reset，便于你控制请求节奏。",
       zht: "金鑰按身分而非 IP 歸集你的請求（跨網路穩定，絕不與同一 NAT 下的其他用戶共享），並提供用量追蹤；其等級上限按端點計算。回應攜帶 X-RateLimit-Remaining / X-RateLimit-Reset，便於你控制請求節奏。",
+      ara: "المفتاح يحتسب طلباتك حسب الهوية لا حسب IP (ثابت عبر الشبكات، ولا يُشارك أبدًا مع مستخدمين آخرين خلف NAT نفسه) ويمنحك تتبعًا للاستخدام، ويُطبَّق حد فئته على كل نقطة وصول. تحمل الردود X-RateLimit-Remaining / X-RateLimit-Reset لتضبط وتيرة طلباتك.",
+      ind: "Kunci mengelompokkan permintaanmu berdasarkan identitas, bukan IP (stabil di jaringan mana pun, tidak pernah berbagi dengan pengguna lain di balik NAT yang sama) dan memberimu pelacakan pemakaian. Batas tingkatannya berlaku per endpoint. Respons membawa X-RateLimit-Remaining / X-RateLimit-Reset supaya kamu bisa mengatur laju permintaan.",
     },
   "Rate limits": {
     eng: "Rate limits",
@@ -2612,6 +2912,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Hız sınırları",
     zhs: "速率限制",
     zht: "速率限制",
+    ara: "حدود المعدل",
+    ind: "Batas laju",
   },
   "Website Traffic": {
     eng: "Website Traffic",
@@ -2629,6 +2931,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Web Sitesi Trafiği",
     zhs: "网站流量",
     zht: "網站流量",
+    ara: "زيارات الموقع",
+    ind: "Trafik Situs",
   },
   "per IP": {
     eng: "per IP",
@@ -2646,6 +2950,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "IP başına",
     zhs: "每个 IP",
     zht: "每個 IP",
+    ara: "لكل IP",
+    ind: "per IP",
   },
   "All caps count per endpoint: the table is your allowance on each route, not a global pool. A few heavy endpoints carry their own budgets that apply to every caller regardless of key (see the run export below; the language ZIP is 10/hour). Watch X-RateLimit-Remaining and back off on 429 (Retry-After is set).":
     {
@@ -2664,6 +2970,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Tüm sınırlar uç nokta başına sayılır: tablo her rotadaki kotanızdır, küresel bir havuz değil. Birkaç ağır uç noktanın, anahtardan bağımsız olarak her çağırana uygulanan kendi bütçesi vardır (aşağıdaki koşu dışa aktarımına bakın; dil ZIP'i saatte 10). X-RateLimit-Remaining'i izleyin ve 429'da geri çekilin (Retry-After ayarlanır).",
       zhs: "所有上限按端点计算：表格是你在每条路由上的配额，而不是全局池。少数重型端点有自己的预算，无论是否使用密钥都对所有调用者生效（见下方的对局导出；语言 ZIP 为每小时 10 次）。关注 X-RateLimit-Remaining，遇到 429 时退避（会设置 Retry-After）。",
       zht: "所有上限按端點計算：表格是你在每條路由上的配額，而不是全域池。少數重型端點有自己的預算，無論是否使用金鑰都對所有呼叫者生效（見下方的對局匯出；語言 ZIP 為每小時 10 次）。關注 X-RateLimit-Remaining，遇到 429 時退避（會設定 Retry-After）。",
+      ara: "كل الحدود تُحتسب لكل نقطة وصول: الجدول هو حصتك على كل مسار، لا رصيد شامل. بعض نقاط الوصول الثقيلة لها ميزانيات خاصة تنطبق على كل طالب مهما كان مفتاحه (انظر تصدير الجولات أدناه، وملف ZIP للغة 10 في الساعة). راقب X-RateLimit-Remaining وتمهّل عند 429 (القيمة Retry-After محددة).",
+      ind: "Semua batas dihitung per endpoint: tabel ini jatahmu di tiap rute, bukan kuota global. Beberapa endpoint berat punya anggaran sendiri yang berlaku untuk semua pemanggil apa pun kuncinya (lihat ekspor perjalanan di bawah; ZIP bahasa 10/jam). Pantau X-RateLimit-Remaining dan tahan dulu saat 429 (Retry-After disertakan).",
     },
   "Bulk run export": {
     eng: "Bulk run export",
@@ -2681,6 +2989,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Toplu koşu dışa aktarımı",
     zhs: "批量导出对局",
     zht: "批次匯出對局",
+    ara: "تصدير الجولات بالجملة",
+    ind: "Ekspor perjalanan massal",
   },
   "Streams official runs as JSONL, one run per line.": {
     eng: "Streams official runs as JSONL, one run per line.",
@@ -2698,6 +3008,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Resmi koşuları JSONL olarak akıtır, satır başına bir koşu.",
     zhs: "以 JSONL 流式输出官方对局，每行一局。",
     zht: "以 JSONL 串流輸出官方對局，每行一局。",
+    ara: "يبث الجولات الرسمية بصيغة JSONL، جولة في كل سطر.",
+    ind: "Mengalirkan perjalanan resmi sebagai JSONL, satu perjalanan per baris.",
   },
   "Bounds the page; a full page returns a cursor for the next one.": {
     eng: "Bounds the page; a full page returns a cursor for the next one.",
@@ -2715,6 +3027,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Sayfayı sınırlar; dolu bir sayfa bir sonraki için imleç döndürür.",
     zhs: "限制页面大小；满页会返回指向下一页的 cursor。",
     zht: "限制頁面大小；滿頁會回傳指向下一頁的 cursor。",
+    ara: "يحدّ حجم الصفحة، والصفحة الممتلئة تعيد مؤشرًا للصفحة التالية.",
+    ind: "Membatasi halaman. Halaman penuh mengembalikan kursor untuk halaman berikutnya.",
   },
   "Restrict to a half-open submitted-at window. Keep them constant while paging; the cursor does not embed them.":
     {
@@ -2733,6 +3047,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Yarı açık bir gönderim zamanı penceresiyle sınırlar. Sayfalarken sabit tutun; imleç bunları içermez.",
       zhs: "限制为半开区间的提交时间窗口。分页时保持不变；cursor 不包含它们。",
       zht: "限制為半開區間的提交時間視窗。分頁時保持不變；cursor 不包含它們。",
+      ara: "احصر النتائج في نافذة نصف مفتوحة لوقت الإرسال. أبقهما ثابتين أثناء التنقل بين الصفحات، فالمؤشر لا يتضمنهما.",
+      ind: "Batasi ke jendela waktu kirim setengah terbuka. Jaga nilainya tetap selama berpindah halaman, kursor tidak menyimpannya.",
     },
   "This endpoint has its own budget of 120 credits per hour, shared by keyed and anonymous callers alike: a paginated request costs 1 credit, an unbounded pull (no limit) costs 60. Sustained syncing therefore works best as paginated pulls spaced ~30s apart; on 429, honor Retry-After and resume with the same cursor.":
     {
@@ -2751,6 +3067,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Bu uç noktanın saatte 120 kredilik kendi bütçesi vardır ve anahtarlı ya da anonim tüm çağıranlar tarafından paylaşılır: sayfalanmış bir istek 1 kredi, sınırsız bir çekim (limit yok) 60 kredi tutar. Bu yüzden sürekli eşitleme en iyi ~30 sn aralıklı sayfalanmış çekimlerle çalışır; 429'da Retry-After'a uyun ve aynı imleçle devam edin.",
       zhs: "该端点有自己的预算，每小时 120 点，带密钥和匿名调用者共享：分页请求消耗 1 点，无限制拉取（不带 limit）消耗 60 点。因此持续同步最好用间隔约 30 秒的分页拉取；遇到 429 时遵守 Retry-After，并用同一个 cursor 继续。",
       zht: "該端點有自己的預算，每小時 120 點，帶金鑰和匿名呼叫者共享：分頁請求消耗 1 點，無限制拉取（不帶 limit）消耗 60 點。因此持續同步最好用間隔約 30 秒的分頁拉取；遇到 429 時遵守 Retry-After，並用同一個 cursor 繼續。",
+      ara: "لنقطة الوصول هذه ميزانية خاصة من 120 رصيدًا في الساعة، يتشاركها أصحاب المفاتيح والمجهولون على السواء: الطلب المقسّم إلى صفحات يكلف رصيدًا واحدًا، والسحب غير المحدود (بلا limit) يكلف 60. لذا تعمل المزامنة المستمرة بأفضل شكل كسحوبات مقسّمة يفصل بينها نحو 30 ثانية. عند 429 التزم بقيمة Retry-After واستأنف بالمؤشر نفسه.",
+      ind: "Endpoint ini punya anggaran sendiri 120 kredit per jam, dipakai bersama oleh pemanggil berkunci maupun anonim: permintaan berhalaman memakan 1 kredit, tarikan tanpa batas (tanpa limit) memakan 60. Jadi sinkronisasi rutin paling pas dilakukan sebagai tarikan berhalaman berjarak ~30 detik. Saat 429, patuhi Retry-After dan lanjutkan dengan kursor yang sama.",
     },
   "Base URL": {
     eng: "Base URL",
@@ -2768,6 +3086,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Temel URL",
     zhs: "基础 URL",
     zht: "基礎 URL",
+    ara: "عنوان URL الأساسي",
+    ind: "URL dasar",
   },
   "Beta channel (unreleased content from the Steam beta branch): add this to any entity endpoint:":
     {
@@ -2786,6 +3106,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Beta kanalı (Steam beta dalındaki yayınlanmamış içerik): bunu herhangi bir varlık uç noktasına ekleyin:",
       zhs: "Beta 频道（来自 Steam beta 分支的未发布内容）：在任意实体端点上加上：",
       zht: "Beta 頻道（來自 Steam beta 分支的未發布內容）：在任意實體端點上加上：",
+      ara: "قناة beta (محتوى غير مُصدَر من فرع beta على Steam): أضف هذا إلى أي نقطة وصول للكيانات:",
+      ind: "Kanal beta (konten belum rilis dari cabang beta Steam): tambahkan ini ke endpoint entitas mana pun:",
     },
   "Current beta version:": {
     eng: "Current beta version:",
@@ -2803,6 +3125,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Geçerli beta sürümü:",
     zhs: "当前 beta 版本：",
     zht: "目前 beta 版本：",
+    ara: "إصدار beta الحالي:",
+    ind: "Versi beta saat ini:",
   },
   "Full diff against main:": {
     eng: "Full diff against main:",
@@ -2820,6 +3144,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Main ile tam fark:",
     zhs: "与 main 的完整差异：",
     zht: "與 main 的完整差異：",
+    ara: "الفرق الكامل مقارنة بـ main:",
+    ind: "Diff lengkap terhadap main:",
   },
   Endpoints: {
     eng: "Endpoints",
@@ -2837,6 +3163,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Uç noktalar",
     zhs: "端点",
     zht: "端點",
+    ara: "نقاط الوصول",
+    ind: "Endpoint",
   },
   "Full interactive docs (auto-generated from the backend, always current):": {
     eng: "Full interactive docs (auto-generated from the backend, always current):",
@@ -2854,6 +3182,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tam etkileşimli belgeler (arka uçtan otomatik üretilir, her zaman güncel):",
     zhs: "完整交互式文档（由后端自动生成，始终最新）：",
     zht: "完整互動式文件（由後端自動產生，始終最新）：",
+    ara: "وثائق تفاعلية كاملة (تُولَّد تلقائيًا من الخادم ومحدّثة دائمًا):",
+    ind: "Dokumentasi interaktif lengkap (dibuat otomatis dari backend, selalu terbaru):",
   },
   Entities: {
     eng: "Entities",
@@ -2871,6 +3201,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Varlıklar",
     zhs: "实体",
     zht: "實體",
+    ara: "الكيانات",
+    ind: "Entitas",
   },
   "All cards (filter: color, type, rarity, keyword, tag, spawns, search)": {
     eng: "All cards (filter: color, type, rarity, keyword, tag, spawns, search)",
@@ -2888,6 +3220,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tüm kartlar (filtre: color, type, rarity, keyword, tag, spawns, search)",
     zhs: "所有卡牌（筛选：color、type、rarity、keyword、tag、spawns、search）",
     zht: "所有卡牌（篩選：color、type、rarity、keyword、tag、spawns、search）",
+    ara: "كل البطاقات (تصفية: color، type، rarity، keyword، tag، spawns، search)",
+    ind: "Semua kartu (filter: color, type, rarity, keyword, tag, spawns, search)",
   },
   "Single card": {
     eng: "Single card",
@@ -2905,6 +3239,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tek kart",
     zhs: "单张卡牌",
     zht: "單張卡牌",
+    ara: "بطاقة واحدة",
+    ind: "Satu kartu",
   },
   "Single character": {
     eng: "Single character",
@@ -2922,6 +3258,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tek karakter",
     zhs: "单个角色",
     zht: "單個角色",
+    ara: "شخصية واحدة",
+    ind: "Satu karakter",
   },
   "All relics (filter: rarity, pool, ancient, search)": {
     eng: "All relics (filter: rarity, pool, ancient, search)",
@@ -2939,6 +3277,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tüm kalıntılar (filtre: rarity, pool, ancient, search)",
     zhs: "所有遗物（筛选：rarity、pool、ancient、search）",
     zht: "所有遺物（篩選：rarity、pool、ancient、search）",
+    ara: "كل الآثار (تصفية: rarity، pool، ancient، search)",
+    ind: "Semua pusaka (filter: rarity, pool, ancient, search)",
   },
   "Single relic": {
     eng: "Single relic",
@@ -2956,6 +3296,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tek kalıntı",
     zhs: "单个遗物",
     zht: "單個遺物",
+    ara: "أثر واحد",
+    ind: "Satu pusaka",
   },
   "All potions (filter: rarity, pool, search)": {
     eng: "All potions (filter: rarity, pool, search)",
@@ -2973,6 +3315,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tüm iksirler (filtre: rarity, pool, search)",
     zhs: "所有药水（筛选：rarity、pool、search）",
     zht: "所有藥水（篩選：rarity、pool、search）",
+    ara: "كل الجرعات (تصفية: rarity، pool، search)",
+    ind: "Semua ramuan (filter: rarity, pool, search)",
   },
   "Single potion": {
     eng: "Single potion",
@@ -2990,6 +3334,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tek iksir",
     zhs: "单个药水",
     zht: "單個藥水",
+    ara: "جرعة واحدة",
+    ind: "Satu ramuan",
   },
   "All monsters (filter: type, search)": {
     eng: "All monsters (filter: type, search)",
@@ -3007,6 +3353,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tüm canavarlar (filtre: type, search)",
     zhs: "所有怪物（筛选：type、search）",
     zht: "所有怪物（篩選：type、search）",
+    ara: "كل الوحوش (تصفية: type، search)",
+    ind: "Semua monster (filter: type, search)",
   },
   "Single monster": {
     eng: "Single monster",
@@ -3024,6 +3372,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tek canavar",
     zhs: "单个怪物",
     zht: "單個怪物",
+    ara: "وحش واحد",
+    ind: "Satu monster",
   },
   "All powers (filter: type, stack_type, search)": {
     eng: "All powers (filter: type, stack_type, search)",
@@ -3041,6 +3391,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tüm güçler (filtre: type, stack_type, search)",
     zhs: "所有能力（筛选：type、stack_type、search）",
     zht: "所有能力（篩選：type、stack_type、search）",
+    ara: "كل القوى (تصفية: type، stack_type، search)",
+    ind: "Semua kuasa (filter: type, stack_type, search)",
   },
   "Single power": {
     eng: "Single power",
@@ -3058,6 +3410,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tek güç",
     zhs: "单个能力",
     zht: "單個能力",
+    ara: "قوة واحدة",
+    ind: "Satu kuasa",
   },
   "All events (filter: type, act, search)": {
     eng: "All events (filter: type, act, search)",
@@ -3075,6 +3429,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tüm olaylar (filtre: type, act, search)",
     zhs: "所有事件（筛选：type、act、search）",
     zht: "所有事件（篩選：type、act、search）",
+    ara: "كل الأحداث (تصفية: type، act، search)",
+    ind: "Semua event (filter: type, act, search)",
   },
   "Single event": {
     eng: "Single event",
@@ -3092,6 +3448,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tek olay",
     zhs: "单个事件",
     zht: "單個事件",
+    ara: "حدث واحد",
+    ind: "Satu event",
   },
   "All encounters (filter: room_type, act, search)": {
     eng: "All encounters (filter: room_type, act, search)",
@@ -3109,6 +3467,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tüm karşılaşmalar (filtre: room_type, act, search)",
     zhs: "所有遭遇（筛选：room_type、act、search）",
     zht: "所有遭遇（篩選：room_type、act、search）",
+    ara: "كل المواجهات (تصفية: room_type، act، search)",
+    ind: "Semua pertemuan (filter: room_type, act, search)",
   },
   "Single encounter": {
     eng: "Single encounter",
@@ -3126,6 +3486,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tek karşılaşma",
     zhs: "单个遭遇",
     zht: "單個遭遇",
+    ara: "مواجهة واحدة",
+    ind: "Satu pertemuan",
   },
   "All enchantments": {
     eng: "All enchantments",
@@ -3143,6 +3505,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tüm büyüler",
     zhs: "所有附魔",
     zht: "所有附魔",
+    ara: "كل التعزيزات",
+    ind: "Semua efek kartu",
   },
   "Single enchantment": {
     eng: "Single enchantment",
@@ -3160,6 +3524,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tek büyü",
     zhs: "单个附魔",
     zht: "單個附魔",
+    ara: "تعزيز واحد",
+    ind: "Satu efek kartu",
   },
   "Card keywords": {
     eng: "Card keywords",
@@ -3177,6 +3543,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Kart anahtar sözcükleri",
     zhs: "卡牌关键词",
     zht: "卡牌關鍵字",
+    ara: "الكلمات المفتاحية للبطاقات",
+    ind: "Kata kunci kartu",
   },
   "Single keyword": {
     eng: "Single keyword",
@@ -3194,6 +3562,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tek anahtar sözcük",
     zhs: "单个关键词",
     zht: "單個關鍵字",
+    ara: "كلمة مفتاحية واحدة",
+    ind: "Satu kata kunci",
   },
   "All intent types": {
     eng: "All intent types",
@@ -3211,6 +3581,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tüm niyet türleri",
     zhs: "所有意图类型",
     zht: "所有意圖類型",
+    ara: "كل أنواع النوايا",
+    ind: "Semua tipe niat",
   },
   "Single intent": {
     eng: "Single intent",
@@ -3228,6 +3600,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tek niyet",
     zhs: "单个意图",
     zht: "單個意圖",
+    ara: "نية واحدة",
+    ind: "Satu niat",
   },
   "All orb types": {
     eng: "All orb types",
@@ -3245,6 +3619,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tüm küre türleri",
     zhs: "所有充能球类型",
     zht: "所有充能球類型",
+    ara: "كل أنواع الأجرام",
+    ind: "Semua tipe bola",
   },
   "Single orb": {
     eng: "Single orb",
@@ -3262,6 +3638,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tek küre",
     zhs: "单个充能球",
     zht: "單個充能球",
+    ara: "جرم واحد",
+    ind: "Satu bola",
   },
   "Affliction types": {
     eng: "Affliction types",
@@ -3279,6 +3657,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Illet türleri",
     zhs: "苦难类型",
     zht: "苦難類型",
+    ara: "أنواع الآفات",
+    ind: "Tipe penyakit",
   },
   "Single affliction": {
     eng: "Single affliction",
@@ -3296,6 +3676,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tek illet",
     zhs: "单个苦难",
     zht: "單個苦難",
+    ara: "آفة واحدة",
+    ind: "Satu penyakit",
   },
   "Custom mode modifiers": {
     eng: "Custom mode modifiers",
@@ -3313,6 +3695,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Özel mod değiştiricileri",
     zhs: "自定义模式修正",
     zht: "自訂模式修正",
+    ara: "معدّلات الوضع المخصص",
+    ind: "Efek Mode Kustom",
   },
   "Single modifier": {
     eng: "Single modifier",
@@ -3330,6 +3714,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tek değiştirici",
     zhs: "单个修正",
     zht: "單個修正",
+    ara: "معدّل واحد",
+    ind: "Satu efek mode",
   },
   "All achievements": {
     eng: "All achievements",
@@ -3347,6 +3733,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tüm başarımlar",
     zhs: "所有成就",
     zht: "所有成就",
+    ara: "كل الإنجازات",
+    ind: "Semua pencapaian",
   },
   "Single achievement": {
     eng: "Single achievement",
@@ -3364,6 +3752,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tek başarım",
     zhs: "单个成就",
     zht: "單個成就",
+    ara: "إنجاز واحد",
+    ind: "Satu pencapaian",
   },
   "All badges": {
     eng: "All badges",
@@ -3381,6 +3771,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tüm rozetler",
     zhs: "所有徽章",
     zht: "所有徽章",
+    ara: "كل الشارات",
+    ind: "Semua lencana",
   },
   "Single badge": {
     eng: "Single badge",
@@ -3398,6 +3790,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tek rozet",
     zhs: "单个徽章",
     zht: "單個徽章",
+    ara: "شارة واحدة",
+    ind: "Satu lencana",
   },
   "All epochs": {
     eng: "All epochs",
@@ -3415,6 +3809,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tüm çağlar",
     zhs: "所有纪元",
     zht: "所有紀元",
+    ara: "كل الحقب",
+    ind: "Semua zaman",
   },
   "Single epoch": {
     eng: "Single epoch",
@@ -3432,6 +3828,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tek çağ",
     zhs: "单个纪元",
     zht: "單個紀元",
+    ara: "حقبة واحدة",
+    ind: "Satu zaman",
   },
   "All stories": {
     eng: "All stories",
@@ -3449,6 +3847,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tüm hikâyeler",
     zhs: "所有故事",
     zht: "所有故事",
+    ara: "كل القصص",
+    ind: "Semua cerita",
   },
   "Single story": {
     eng: "Single story",
@@ -3466,6 +3866,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tek hikâye",
     zhs: "单个故事",
     zht: "單個故事",
+    ara: "قصة واحدة",
+    ind: "Satu cerita",
   },
   "Single act": {
     eng: "Single act",
@@ -3483,6 +3885,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tek perde",
     zhs: "单个阶段",
     zht: "單一幕",
+    ara: "فصل واحد",
+    ind: "Satu babak",
   },
   "All ascension levels": {
     eng: "All ascension levels",
@@ -3500,6 +3904,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tüm yükseliş seviyeleri",
     zhs: "所有进阶等级",
     zht: "所有晉階等級",
+    ara: "كل مستويات الصعود",
+    ind: "Semua level Angkatan",
   },
   "Single ascension": {
     eng: "Single ascension",
@@ -3517,6 +3923,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tek yükseliş",
     zhs: "单个进阶等级",
     zht: "單個晉階等級",
+    ara: "مستوى الصعود واحد",
+    ind: "Satu Angkatan",
   },
   "All glossary terms": {
     eng: "All glossary terms",
@@ -3534,6 +3942,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tüm sözlük terimleri",
     zhs: "所有术语",
     zht: "所有術語",
+    ara: "كل مصطلحات المسرد",
+    ind: "Semua istilah glosarium",
   },
   "Single term": {
     eng: "Single term",
@@ -3551,6 +3961,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tek terim",
     zhs: "单个术语",
     zht: "單個術語",
+    ara: "مصطلح واحد",
+    ind: "Satu istilah",
   },
   "Aggregations & Lookups": {
     eng: "Aggregations & Lookups",
@@ -3568,6 +3980,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Toplamalar ve Aramalar",
     zhs: "聚合与查询",
     zht: "彙總與查詢",
+    ara: "التجميعات والاستعلامات",
+    ind: "Agregasi & Pencarian",
   },
   "Entity counts": {
     eng: "Entity counts",
@@ -3585,6 +3999,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Varlık sayıları",
     zhs: "实体数量",
     zht: "實體數量",
+    ara: "أعداد الكيانات",
+    ind: "Jumlah entitas",
   },
   "All ancient relic pools with conditions": {
     eng: "All ancient relic pools with conditions",
@@ -3602,6 +4018,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Koşullarıyla tüm kadim kalıntı havuzları",
     zhs: "所有远古者遗物池及其条件",
     zht: "所有遠古者遺物池及其條件",
+    ara: "كل مجموعات آثار العتقاء مع الشروط",
+    ind: "Semua kelompok pusaka Ancient beserta syaratnya",
   },
   "Pools for a single ancient": {
     eng: "Pools for a single ancient",
@@ -3619,6 +4037,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tek bir kadimin havuzları",
     zhs: "单个远古者的池",
     zht: "單個遠古者的池",
+    ara: "مجموعات عتيق واحد",
+    ind: "Kelompok untuk satu Ancient",
   },
   "Unlockable entities grouped by type with epoch context": {
     eng: "Unlockable entities grouped by type with epoch context",
@@ -3636,6 +4056,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Çağ bağlamıyla türe göre gruplanmış açılabilir varlıklar",
     zhs: "按类型分组、附带纪元信息的可解锁实体",
     zht: "按類型分組、附帶紀元資訊的可解鎖實體",
+    ara: "الكيانات القابلة للفتح مجمّعة حسب النوع مع سياق الحقبة",
+    ind: "Entitas yang bisa dibuka, dikelompokkan per tipe dengan konteks zaman",
   },
   "Per-entity version history from changelogs": {
     eng: "Per-entity version history from changelogs",
@@ -3653,6 +4075,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Değişiklik günlüklerinden varlık başına sürüm geçmişi",
     zhs: "来自更新日志的单个实体版本历史",
     zht: "來自更新日誌的單個實體版本歷史",
+    ara: "تاريخ الإصدارات لكل كيان من سجلات التغييرات",
+    ind: "Riwayat versi per entitas dari changelog",
   },
   "Per-entity game-patch update history": {
     eng: "Per-entity game-patch update history",
@@ -3670,6 +4094,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Oyun yaması bazında varlık başına güncelleme geçmişi",
     zhs: "单个实体的游戏补丁更新历史",
     zht: "單個實體的遊戲補丁更新歷史",
+    ara: "تاريخ تحديثات اللعبة لكل كيان",
+    ind: "Riwayat pembaruan patch game per entitas",
   },
   "Cross-language name lookup for an entity": {
     eng: "Cross-language name lookup for an entity",
@@ -3687,6 +4113,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Bir varlık için diller arası ad arama",
     zhs: "跨语言查询实体名称",
     zht: "跨語言查詢實體名稱",
+    ara: "البحث عن اسم كيان عبر اللغات",
+    ind: "Pencarian nama entitas lintas bahasa",
   },
   "Unified site search across entities, reference entries, mechanics, guides, and news (q, lang)":
     {
@@ -3705,6 +4133,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Varlıklar, referans girdileri, mekanikler, rehberler ve haberler genelinde birleşik site araması (q, lang)",
       zhs: "覆盖实体、参考条目、机制、攻略和新闻的站内统一搜索（q、lang）",
       zht: "涵蓋實體、參考條目、機制、攻略和新聞的站內統一搜尋（q、lang）",
+      ara: "بحث موحّد في الموقع يشمل الكيانات والمراجع والآليات والأدلة والأخبار (q، lang)",
+      ind: "Pencarian situs terpadu untuk entitas, entri referensi, mekanik, panduan, dan berita (q, lang)",
     },
   "All changelogs": {
     eng: "All changelogs",
@@ -3722,6 +4152,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tüm değişiklik günlükleri",
     zhs: "所有更新日志",
     zht: "所有更新日誌",
+    ara: "كل سجلات التغييرات",
+    ind: "Semua changelog",
   },
   "Newest entities surfaced for the homepage band": {
     eng: "Newest entities surfaced for the homepage band",
@@ -3739,6 +4171,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Ana sayfa şeridi için öne çıkarılan en yeni varlıklar",
     zhs: "首页横幅展示的最新实体",
     zht: "首頁橫幅展示的最新實體",
+    ara: "أحدث الكيانات المعروضة في شريط الصفحة الرئيسية",
+    ind: "Entitas terbaru yang ditampilkan di beranda",
   },
   "Single changelog by tag (e.g. v1.0.20)": {
     eng: "Single changelog by tag (e.g. v1.0.20)",
@@ -3756,6 +4190,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Etikete göre tek değişiklik günlüğü (ör. v1.0.20)",
     zhs: "按标签获取单个更新日志（如 v1.0.20）",
     zht: "按標籤取得單個更新日誌（如 v1.0.20）",
+    ara: "سجل تغييرات واحد حسب الوسم (مثل v1.0.20)",
+    ind: "Satu changelog menurut tag (mis. v1.0.20)",
   },
   "Steam announcements (mirrored locally for permanence)": {
     eng: "Steam announcements (mirrored locally for permanence)",
@@ -3773,6 +4209,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Steam duyuruları (kalıcılık için yerel olarak yansıtılır)",
     zhs: "Steam 公告（本地镜像以便长期保存）",
     zht: "Steam 公告（本地鏡像以便長期保存）",
+    ara: "إعلانات Steam (منسوخة محليًا لتبقى دائمًا)",
+    ind: "Pengumuman Steam (dicerminkan secara lokal supaya permanen)",
   },
   "Single news article with sanitized body": {
     eng: "Single news article with sanitized body",
@@ -3790,6 +4228,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Temizlenmiş gövdeli tek haber makalesi",
     zhs: "单篇新闻，正文已净化",
     zht: "單篇新聞，內文已淨化",
+    ara: "مقال إخباري واحد بمحتوى منقّح",
+    ind: "Satu artikel berita dengan isi yang sudah dibersihkan",
   },
   "Available beta data versions for the version picker": {
     eng: "Available beta data versions for the version picker",
@@ -3807,6 +4247,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Sürüm seçici için kullanılabilir beta veri sürümleri",
     zhs: "版本选择器可用的 beta 数据版本",
     zht: "版本選擇器可用的 beta 資料版本",
+    ara: "إصدارات بيانات beta المتاحة لمنتقي الإصدار",
+    ind: "Versi data beta yang tersedia untuk pemilih versi",
   },
   "Community & Submissions": {
     eng: "Community & Submissions",
@@ -3824,6 +4266,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Topluluk ve Gönderimler",
     zhs: "社区与提交",
     zht: "社群與提交",
+    ara: "المجتمع والإرسالات",
+    ind: "Komunitas & Kiriman",
   },
   "All guides (filter: category, difficulty, tag, search)": {
     eng: "All guides (filter: category, difficulty, tag, search)",
@@ -3841,6 +4285,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tüm rehberler (filtre: category, difficulty, tag, search)",
     zhs: "所有攻略（筛选：category、difficulty、tag、search）",
     zht: "所有攻略（篩選：category、difficulty、tag、search）",
+    ara: "كل الأدلة (تصفية: category، difficulty، tag، search)",
+    ind: "Semua panduan (filter: category, difficulty, tag, search)",
   },
   "Single guide with rendered markdown": {
     eng: "Single guide with rendered markdown",
@@ -3858,6 +4304,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "İşlenmiş markdown ile tek rehber",
     zhs: "单篇攻略，Markdown 已渲染",
     zht: "單篇攻略，Markdown 已渲染",
+    ara: "دليل واحد مع markdown معروض",
+    ind: "Satu panduan dengan markdown yang sudah dirender",
   },
   "Submit a guide (Discord webhook, rate-limited)": {
     eng: "Submit a guide (Discord webhook, rate-limited)",
@@ -3875,6 +4323,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Rehber gönder (Discord webhook, hız sınırlı)",
     zhs: "提交攻略（Discord webhook，有速率限制）",
     zht: "提交攻略（Discord webhook，有速率限制）",
+    ara: "أرسل دليلًا (Discord webhook، بمعدل محدود)",
+    ind: "Kirim panduan (webhook Discord, laju dibatasi)",
   },
   "Submit a run for community stats and leaderboards": {
     eng: "Submit a run for community stats and leaderboards",
@@ -3892,6 +4342,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Topluluk istatistikleri ve liderlik tabloları için koşu gönder",
     zhs: "提交对局用于社区统计和排行榜",
     zht: "提交對局用於社群統計和排行榜",
+    ara: "أرسل جولة لإحصائيات المجتمع ولوحة المتصدرين",
+    ind: "Kirim perjalanan untuk statistik komunitas dan peringkat",
   },
   "Attach a username to previously-submitted runs by hash": {
     eng: "Attach a username to previously-submitted runs by hash",
@@ -3909,6 +4361,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Daha önce gönderilen koşulara hash ile kullanıcı adı ekle",
     zhs: "通过哈希为已提交的对局绑定用户名",
     zht: "透過雜湊為已提交的對局綁定使用者名稱",
+    ara: "اربط اسم مستخدم بجولات أُرسلت سابقًا عبر الهاش",
+    ind: "Pasang nama pengguna ke perjalanan yang sudah dikirim, berdasarkan hash",
   },
   "Browse submitted runs with filters and pagination (incl. ascension_min/ascension_max and winrate_min/winrate_max by submitter win rate — the content brackets)":
     {
@@ -3927,6 +4381,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Gönderilen koşulara filtre ve sayfalamayla göz atın (gönderenin kazanma oranına göre ascension_min/ascension_max ve winrate_min/winrate_max dahil, yani içerik dilimleri)",
       zhs: "带筛选和分页浏览已提交的对局（包括按提交者胜率的 ascension_min/ascension_max 和 winrate_min/winrate_max，即内容分段）",
       zht: "帶篩選和分頁瀏覽已提交的對局（包括按提交者勝率的 ascension_min/ascension_max 和 winrate_min/winrate_max，即內容分段）",
+      ara: "تصفح الجولات المرسلة مع عوامل تصفية وصفحات (يشمل ascension_min/ascension_max و winrate_min/winrate_max حسب معدل فوز المرسل، أي فئات المحتوى)",
+      ind: "Jelajahi perjalanan kiriman dengan filter dan halaman (termasuk ascension_min/ascension_max dan winrate_min/winrate_max menurut tingkat kemenangan pengirim, yaitu kelompok konten)",
     },
   "Run leaderboards (fastest, highest_ascension); filter by character, players, game_mode, ascension_min, winrate_min (the content brackets)":
     {
@@ -3945,6 +4401,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Koşu liderlik tabloları (fastest, highest_ascension); character, players, game_mode, ascension_min, winrate_min ile filtreleyin (içerik dilimleri)",
       zhs: "对局排行榜（fastest、highest_ascension）；可按 character、players、game_mode、ascension_min、winrate_min（内容分段）筛选",
       zht: "對局排行榜（fastest、highest_ascension）；可按 character、players、game_mode、ascension_min、winrate_min（內容分段）篩選",
+      ara: "لوحات متصدري الجولات (fastest، highest_ascension)، مع التصفية حسب character و players و game_mode و ascension_min و winrate_min (فئات المحتوى)",
+      ind: "Peringkat perjalanan (fastest, highest_ascension); filter menurut character, players, game_mode, ascension_min, winrate_min (kelompok konten)",
     },
   "Single submitted run by hash (rate-limited)": {
     eng: "Single submitted run by hash (rate-limited)",
@@ -3962,6 +4420,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Hash ile tek gönderilmiş koşu (hız sınırlı)",
     zhs: "按哈希获取单个已提交对局（有速率限制）",
     zht: "按雜湊取得單個已提交對局（有速率限制）",
+    ara: "جولة مرسلة واحدة حسب الهاش (بمعدل محدود)",
+    ind: "Satu perjalanan kiriman berdasarkan hash (laju dibatasi)",
   },
   "Aggregate community stats (filter by character, ascension, username)": {
     eng: "Aggregate community stats (filter by character, ascension, username)",
@@ -3979,6 +4439,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Toplu topluluk istatistikleri (character, ascension, username ile filtreleyin)",
     zhs: "社区统计汇总（可按 character、ascension、username 筛选）",
     zht: "社群統計彙總（可按 character、ascension、username 篩選）",
+    ara: "إحصائيات المجتمع المجمّعة (تصفية حسب character و ascension و username)",
+    ind: "Statistik komunitas gabungan (filter menurut character, ascension, username)",
   },
   "Fun community datasets: event decision splits, deadliest encounters, win rates by ascension/character, records":
     {
@@ -3997,6 +4459,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Eğlenceli topluluk veri setleri: olay karar dağılımları, en ölümcül karşılaşmalar, yükseliş/karaktere göre kazanma oranları, rekorlar",
       zhs: "有趣的社区数据集：事件选择分布、最致命的遭遇、按进阶等级/角色的胜率、纪录",
       zht: "有趣的社群資料集：事件選擇分佈、最致命的遭遇、按晉階等級/角色的勝率、紀錄",
+      ara: "بيانات مجتمعية ممتعة: توزيع قرارات الأحداث، أخطر المواجهات، معدلات الفوز حسب الصعود والشخصية، والأرقام القياسية",
+      ind: "Data komunitas seru: pembagian keputusan event, pertemuan paling mematikan, tingkat kemenangan per Angkatan/karakter, rekor",
     },
   "Chart registry for the /stats/charts explorer: available charts, filters, splits, and run stats":
     {
@@ -4015,6 +4479,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "/stats/charts gezgini için grafik kaydı: kullanılabilir grafikler, filtreler, bölmeler ve koşu istatistikleri",
       zhs: "/stats/charts 浏览器的图表注册表：可用图表、筛选、拆分和对局统计",
       zht: "/stats/charts 瀏覽器的圖表註冊表：可用圖表、篩選、拆分和對局統計",
+      ara: "سجل المخططات لمستكشف /stats/charts: المخططات المتاحة وعوامل التصفية والتقسيمات وإحصائيات الجولات",
+      ind: "Registri grafik untuk penjelajah /stats/charts: grafik yang tersedia, filter, pembagian, dan statistik perjalanan",
     },
   "One pre-aggregated chart (filter: players, ascension, game_mode, username, split, bracket=a10|wr30|wr50|wr75 on frame charts, plus per-chart params)":
     {
@@ -4033,6 +4499,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Önceden toplanmış tek grafik (filtre: players, ascension, game_mode, username, split, çerçeve grafiklerinde bracket=a10|wr30|wr50|wr75, artı grafik başına parametreler)",
       zhs: "单个预聚合图表（筛选：players、ascension、game_mode、username、split，框架图表支持 bracket=a10|wr30|wr50|wr75，另有各图表专属参数）",
       zht: "單個預彙總圖表（篩選：players、ascension、game_mode、username、split，框架圖表支援 bracket=a10|wr30|wr50|wr75，另有各圖表專屬參數）",
+      ara: "مخطط واحد مجمّع مسبقًا (تصفية: players، ascension، game_mode، username، split، bracket=a10|wr30|wr50|wr75 في مخططات frame، إضافة إلى معاملات كل مخطط)",
+      ind: "Satu grafik pra-agregasi (filter: players, ascension, game_mode, username, split, bracket=a10|wr30|wr50|wr75 pada grafik frame, plus parameter per grafik)",
     },
   "What the current beta adds, changes, and removes per entity type; powers every BETA label":
     {
@@ -4051,6 +4519,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Geçerli betanın varlık türü başına neler eklediği, değiştirdiği ve kaldırdığı; her BETA etiketini besler",
       zhs: "当前 beta 按实体类型新增、修改和移除的内容；所有 BETA 标签的数据来源",
       zht: "目前 beta 按實體類型新增、修改和移除的內容；所有 BETA 標籤的資料來源",
+      ara: "ما يضيفه إصدار beta الحالي ويغيّره ويزيله لكل نوع كيان، وهو مصدر كل علامة BETA",
+      ind: "Apa yang ditambah, diubah, dan dihapus beta saat ini per tipe entitas; sumber semua label BETA",
     },
   "The current beta version": {
     eng: "The current beta version",
@@ -4068,6 +4538,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Geçerli beta sürümü",
     zhs: "当前 beta 版本",
     zht: "目前 beta 版本",
+    ara: "إصدار beta الحالي",
+    ind: "Versi beta saat ini",
   },
   "Codex Score + Codex Elo per entity (cards/relics/potions); ?bracket=a10|wr30|wr50|wr75 grades within a content bracket (the in-game mod sends the same via ?stat_filter=a10|a10_wr30|a10_wr50|a10_wr75); relics accept ?act=1|2|3 to rank by acquisition act; ?character= switches to that character's slice (entries gain a scope field)":
     {
@@ -4086,6 +4558,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Varlık başına Codex Score + Codex Elo (cards/relics/potions); ?bracket=a10|wr30|wr50|wr75 bir içerik dilimi içinde notlandırır (oyun içi mod aynısını ?stat_filter=a10|a10_wr30|a10_wr50|a10_wr75 ile gönderir); kalıntılar edinme perdesine göre sıralamak için ?act=1|2|3 kabul eder; ?character= o karakterin dilimine geçer (girdiler bir scope alanı kazanır)",
       zhs: "按实体（cards/relics/potions）的 Codex Score + Codex Elo；?bracket=a10|wr30|wr50|wr75 在内容分段内评级（游戏内模组通过 ?stat_filter=a10|a10_wr30|a10_wr50|a10_wr75 发送同样的值）；遗物支持 ?act=1|2|3 按获得阶段排名；?character= 切换到该角色的切片（条目会多出 scope 字段）",
       zht: "按實體（cards/relics/potions）的 Codex Score + Codex Elo；?bracket=a10|wr30|wr50|wr75 在內容分段內評級（遊戲內模組透過 ?stat_filter=a10|a10_wr30|a10_wr50|a10_wr75 傳送同樣的值）；遺物支援 ?act=1|2|3 按獲得幕排名；?character= 切換到該角色的切片（條目會多出 scope 欄位）",
+      ara: "Codex Score + Codex Elo لكل كيان (cards/relics/potions)، و ?bracket=a10|wr30|wr50|wr75 يقيّم ضمن فئة محتوى (المود داخل اللعبة يرسل الشيء نفسه عبر ?stat_filter=a10|a10_wr30|a10_wr50|a10_wr75)، والآثار تقبل ?act=1|2|3 للترتيب حسب فصل الحصول عليها، و ?character= ينتقل إلى شريحة تلك الشخصية (تُضاف إلى العناصر خانة scope)",
+      ind: "Codex Score + Codex Elo per entitas (cards/relics/potions); ?bracket=a10|wr30|wr50|wr75 menilai dalam satu kelompok konten (mod dalam game mengirim hal yang sama lewat ?stat_filter=a10|a10_wr30|a10_wr50|a10_wr75); pusaka menerima ?act=1|2|3 untuk mengurutkan menurut babak perolehan; ?character= beralih ke irisan karakter itu (entri mendapat kolom scope)",
     },
   "Seed + global standing for one seed (?seed=&steam_id=); rank fields are null without a winning run":
     {
@@ -4104,6 +4578,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Tek bir tohum için tohum + küresel sıralama (?seed=&steam_id=); kazanan koşu olmadan sıralama alanları null olur",
       zhs: "某个种子的种子排名 + 全局排名（?seed=&steam_id=）；没有获胜对局时排名字段为 null",
       zht: "某個種子的種子排名 + 全域排名（?seed=&steam_id=）；沒有獲勝對局時排名欄位為 null",
+      ara: "ترتيب البذرة والترتيب العالمي لبذرة واحدة (?seed=&steam_id=)، وخانات الترتيب تكون null دون جولة فائزة",
+      ind: "Posisi benih + global untuk satu benih (?seed=&steam_id=); kolom ranking bernilai null tanpa perjalanan yang menang",
     },
   "Exchange a Steamworks web auth ticket for the site JWT (in-game silent sign-in); 503 until the server has a Steam key":
     {
@@ -4122,6 +4598,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Bir Steamworks web kimlik doğrulama biletini site JWT'siyle değiştir (oyun içi sessiz oturum açma); sunucuda Steam anahtarı olana kadar 503",
       zhs: "用 Steamworks 网页认证票据换取站点 JWT（游戏内静默登录）；服务器没有 Steam 密钥前返回 503",
       zht: "用 Steamworks 網頁認證票據換取站點 JWT（遊戲內靜默登入）；伺服器沒有 Steam 金鑰前回傳 503",
+      ara: "استبدل تذكرة مصادقة ويب من Steamworks برمز JWT الخاص بالموقع (تسجيل دخول صامت داخل اللعبة)، ويعيد 503 إلى أن يملك الخادم مفتاح Steam",
+      ind: "Tukar tiket autentikasi web Steamworks dengan JWT situs (masuk otomatis dalam game); 503 sampai server punya kunci Steam",
     },
   "Dense metrics table: Codex Score, Codex Elo, win rate, pick rate, per-act splits; ?bracket=all|solo|2p|3p|4p|a10|daily|custom|wr30|wr50|wr75 (the content brackets)":
     {
@@ -4140,6 +4618,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Yoğun ölçüt tablosu: Codex Score, Codex Elo, kazanma oranı, seçim oranı, perde başına bölmeler; ?bracket=all|solo|2p|3p|4p|a10|daily|custom|wr30|wr50|wr75 (içerik dilimleri)",
       zhs: "密集指标表：Codex Score、Codex Elo、胜率、选取率、按阶段拆分；?bracket=all|solo|2p|3p|4p|a10|daily|custom|wr30|wr50|wr75（内容分段）",
       zht: "密集指標表：Codex Score、Codex Elo、勝率、選取率、按幕拆分；?bracket=all|solo|2p|3p|4p|a10|daily|custom|wr30|wr50|wr75（內容分段）",
+      ara: "جدول مقاييس مكثّف: Codex Score و Codex Elo ومعدل الفوز ومعدل الاختيار والتقسيم حسب الفصل، مع ?bracket=all|solo|2p|3p|4p|a10|daily|custom|wr30|wr50|wr75 (فئات المحتوى)",
+      ind: "Tabel metrik padat: Codex Score, Codex Elo, tingkat kemenangan, tingkat pilih, pembagian per babak; ?bracket=all|solo|2p|3p|4p|a10|daily|custom|wr30|wr50|wr75 (kelompok konten)",
     },
   "Distinct game build IDs that have submitted runs": {
     eng: "Distinct game build IDs that have submitted runs",
@@ -4157,6 +4637,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Gönderilmiş koşusu olan farklı oyun derleme kimlikleri",
     zhs: "有已提交对局的游戏版本 ID 列表",
     zht: "有已提交對局的遊戲版本 ID 列表",
+    ara: "معرّفات إصدارات اللعبة المختلفة التي أُرسلت منها جولات",
+    ind: "ID build game unik yang punya perjalanan kiriman",
   },
   "Submit feedback (Discord webhook)": {
     eng: "Submit feedback (Discord webhook)",
@@ -4174,6 +4656,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Geri bildirim gönder (Discord webhook)",
     zhs: "提交反馈（Discord webhook）",
     zht: "提交回饋（Discord webhook）",
+    ara: "أرسل ملاحظاتك (Discord webhook)",
+    ind: "Kirim masukan (webhook Discord)",
   },
   "Bulk Downloads": {
     eng: "Bulk Downloads",
@@ -4191,6 +4675,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Toplu İndirmeler",
     zhs: "批量下载",
     zht: "批次下載",
+    ara: "التنزيلات بالجملة",
+    ind: "Unduhan Massal",
   },
   "JSONL stream of official runs (limit/start/end/cursor pagination; own 120-credits-per-hour budget - see Bulk run export above)":
     {
@@ -4209,6 +4695,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Resmi koşuların JSONL akışı (limit/start/end/cursor sayfalama; saatte 120 kredilik kendi bütçesi, yukarıdaki toplu koşu dışa aktarımına bakın)",
       zhs: "官方对局的 JSONL 流（limit/start/end/cursor 分页；独立的每小时 120 点预算，见上方批量导出对局）",
       zht: "官方對局的 JSONL 串流（limit/start/end/cursor 分頁；獨立的每小時 120 點預算，見上方批次匯出對局）",
+      ara: "بث JSONL للجولات الرسمية (التنقل عبر limit/start/end/cursor، بميزانية خاصة من 120 رصيدًا في الساعة - انظر تصدير الجولات بالجملة أعلاه)",
+      ind: "Aliran JSONL perjalanan resmi (halaman lewat limit/start/end/cursor; anggaran sendiri 120 kredit per jam - lihat Ekspor perjalanan massal di atas)",
     },
   "ZIP of all entity JSON for one language (10/hour)": {
     eng: "ZIP of all entity JSON for one language (10/hour)",
@@ -4226,6 +4714,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tek bir dil için tüm varlık JSON'larının ZIP'i (saatte 10)",
     zhs: "某一语言全部实体 JSON 的 ZIP（每小时 10 次）",
     zht: "某一語言全部實體 JSON 的 ZIP（每小時 10 次）",
+    ara: "ملف ZIP لكل JSON الكيانات بلغة واحدة (10 في الساعة)",
+    ind: "ZIP semua JSON entitas untuk satu bahasa (10/jam)",
   },
   "Image gallery categories": {
     eng: "Image gallery categories",
@@ -4243,6 +4733,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Görsel galerisi kategorileri",
     zhs: "图库分类",
     zht: "圖庫分類",
+    ara: "فئات معرض الصور",
+    ind: "Kategori galeri gambar",
   },
   "Search images by filename": {
     eng: "Search images by filename",
@@ -4260,6 +4752,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Dosya adına göre görsel ara",
     zhs: "按文件名搜索图片",
     zht: "按檔名搜尋圖片",
+    ara: "ابحث عن الصور باسم الملف",
+    ind: "Cari gambar menurut nama file",
   },
   "Paged folder browsing of a full asset dump (path, offset, limit)": {
     eng: "Paged folder browsing of a full asset dump (path, offset, limit)",
@@ -4277,6 +4771,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tam bir varlık dökümünün klasörlerinde sayfalı gezinme (path, offset, limit)",
     zhs: "分页浏览完整资源转储的文件夹（path、offset、limit）",
     zht: "分頁瀏覽完整資源轉儲的資料夾（path、offset、limit）",
+    ara: "تصفح مجلدات نسخة الأصول الكاملة صفحة بصفحة (path، offset، limit)",
+    ind: "Jelajah folder berhalaman dari dump aset lengkap (path, offset, limit)",
   },
   "ZIP of one dump folder's files (path; capped at 2000 files)": {
     eng: "ZIP of one dump folder's files (path; capped at 2000 files)",
@@ -4294,6 +4790,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Bir döküm klasörünün dosyalarının ZIP'i (path; en fazla 2000 dosya)",
     zhs: "某个转储文件夹内文件的 ZIP（path；上限 2000 个文件）",
     zht: "某個轉儲資料夾內檔案的 ZIP（path；上限 2000 個檔案）",
+    ara: "ملف ZIP لملفات مجلد واحد من النسخة (path، بحد أقصى 2000 ملف)",
+    ind: "ZIP file dari satu folder dump (path; maksimal 2000 file)",
   },
   "Multi-Language": {
     eng: "Multi-Language",
@@ -4311,6 +4809,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Çoklu Dil",
     zhs: "多语言",
     zht: "多語言",
+    ara: "تعدد اللغات",
+    ind: "Multi-Bahasa",
   },
   "Add this query parameter to any endpoint:": {
     eng: "Add this query parameter to any endpoint:",
@@ -4328,23 +4828,27 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Bu sorgu parametresini herhangi bir uç noktaya ekleyin:",
     zhs: "在任意端点上加上此查询参数：",
     zht: "在任意端點上加上此查詢參數：",
+    ara: "أضف معامل الاستعلام هذا إلى أي نقطة وصول:",
+    ind: "Tambahkan parameter kueri ini ke endpoint mana pun:",
   },
-  "15 languages supported:": {
-    eng: "15 languages supported:",
-    deu: "15 Sprachen werden unterstützt:",
-    esp: "15 idiomas compatibles:",
-    fra: "15 langues prises en charge :",
-    ita: "15 lingue supportate:",
-    jpn: "15言語に対応：",
-    kor: "15개 언어 지원:",
-    pol: "Obsługiwanych jest 15 języków:",
-    ptb: "15 idiomas suportados:",
-    rus: "Поддерживается 15 языков:",
-    spa: "15 idiomas compatibles:",
-    tha: "รองรับ 15 ภาษา:",
-    tur: "15 dil desteklenir:",
-    zhs: "支持 15 种语言：",
-    zht: "支援 15 種語言：",
+  "17 languages supported:": {
+    eng: "17 languages supported:",
+    deu: "17 Sprachen werden unterstützt:",
+    esp: "17 idiomas compatibles:",
+    fra: "17 langues prises en charge :",
+    ita: "17 lingue supportate:",
+    jpn: "17言語に対応：",
+    kor: "17개 언어 지원:",
+    pol: "Obsługiwanych jest 17 języków:",
+    ptb: "17 idiomas suportados:",
+    rus: "Поддерживается 17 языков:",
+    spa: "17 idiomas compatibles:",
+    tha: "รองรับ 17 ภาษา:",
+    tur: "17 dil desteklenir:",
+    zhs: "支持 17 种语言：",
+    zht: "支援 17 種語言：",
+    ara: "17 لغة مدعومة:",
+    ind: "17 bahasa didukung:",
   },
   "Quick Start": {
     eng: "Quick Start",
@@ -4362,6 +4866,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Hızlı Başlangıç",
     zhs: "快速开始",
     zht: "快速開始",
+    ara: "بداية سريعة",
+    ind: "Mulai Cepat",
   },
   "Tiny Card Sprite": {
     eng: "Tiny Card Sprite",
@@ -4379,6 +4885,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Mini Kart Sprite'ı",
     zhs: "迷你卡牌精灵图",
     zht: "迷你卡牌精靈圖",
+    ara: "صورة البطاقة المصغّرة",
+    ind: "Sprite Kartu Mini",
   },
   "Reproduce the game's in-run card thumbnail (used on the Run History / Game Over screens) in any web project. Six PNG layers composited with CSS mask-image, no canvas, no WebGL, just tinted sprites.":
     {
@@ -4397,6 +4905,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Oyunun koşu içi kart küçük resmini (Koşu Geçmişi / Oyun Bitti ekranlarında kullanılır) herhangi bir web projesinde yeniden oluşturun. CSS mask-image ile birleştirilmiş altı PNG katmanı; canvas yok, WebGL yok, yalnızca renklendirilmiş sprite'lar.",
       zhs: "在任何网页项目中复现游戏内的卡牌缩略图（用于对局历史 / 游戏结束界面）。六层 PNG 通过 CSS mask-image 合成，不用 canvas，不用 WebGL，只是上色的精灵图。",
       zht: "在任何網頁專案中重現遊戲內的卡牌縮圖（用於對局歷史 / 遊戲結束介面）。六層 PNG 透過 CSS mask-image 合成，不用 canvas，不用 WebGL，只是上色的精靈圖。",
+      ara: "أعد إنشاء مصغّرة البطاقة التي تعرضها اللعبة أثناء الجولة (المستخدمة في شاشتي سجل الجولات ونهاية اللعبة) في أي مشروع ويب. ست طبقات PNG مركّبة بخاصية CSS mask-image، بلا canvas وبلا WebGL، مجرد صور ملوّنة.",
+      ind: "Buat ulang thumbnail kartu dalam perjalanan milik game (dipakai di layar Riwayat / Game Over) di proyek web mana pun. Enam lapis PNG digabung dengan CSS mask-image, tanpa canvas, tanpa WebGL, cuma sprite yang diwarnai.",
     },
   "Colors come straight from the decompiled game code:": {
     eng: "Colors come straight from the decompiled game code:",
@@ -4414,6 +4924,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Renkler doğrudan derlemesi çözülmüş oyun kodundan gelir:",
     zhs: "颜色直接取自反编译的游戏代码：",
     zht: "顏色直接取自反編譯的遊戲程式碼：",
+    ara: "الألوان مأخوذة مباشرة من كود اللعبة المفكّك:",
+    ind: "Warnanya diambil langsung dari kode game hasil dekompilasi:",
   },
   "Sprite assets": {
     eng: "Sprite assets",
@@ -4431,6 +4943,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Sprite varlıkları",
     zhs: "精灵图资源",
     zht: "精靈圖資源",
+    ara: "ملفات الصور",
+    ind: "Aset sprite",
   },
   "All 10 PNGs are served with CORS enabled, drop the base URL in front of each filename. Each sprite is 128×128, RGBA, white-on-transparent (meant to be tinted via CSS).":
     {
@@ -4449,6 +4963,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "10 PNG'nin tamamı CORS etkin olarak sunulur; her dosya adının önüne temel URL'yi koyun. Her sprite 128×128, RGBA, saydam üzerine beyazdır (CSS ile renklendirilmek için).",
       zhs: "全部 10 个 PNG 均启用 CORS，把基础 URL 放在每个文件名前即可。每个精灵图为 128×128、RGBA、透明底白色（用于通过 CSS 上色）。",
       zht: "全部 10 個 PNG 均啟用 CORS，把基礎 URL 放在每個檔名前即可。每個精靈圖為 128×128、RGBA、透明底白色（用於透過 CSS 上色）。",
+      ara: "كل ملفات PNG العشرة تُقدَّم مع تفعيل CORS، فقط ضع عنوان URL الأساسي قبل اسم كل ملف. كل صورة بحجم 128×128 بصيغة RGBA، بيضاء على خلفية شفافة (معدّة للتلوين عبر CSS).",
+      ind: "Semua 10 PNG disajikan dengan CORS aktif, tinggal taruh URL dasar di depan tiap nama file. Tiap sprite berukuran 128×128, RGBA, putih di atas transparan (untuk diwarnai lewat CSS).",
     },
   "Pool (card back) colors": {
     eng: "Pool (card back) colors",
@@ -4466,6 +4982,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Havuz (kart arkası) renkleri",
     zhs: "卡池（卡背）颜色",
     zht: "卡池（卡背）顏色",
+    ara: "ألوان المجموعة (ظهر البطاقة)",
+    ind: "Warna kelompok (punggung kartu)",
   },
   "Source:": {
     eng: "Source:",
@@ -4483,6 +5001,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Kaynak:",
     zhs: "来源：",
     zht: "來源：",
+    ara: "المصدر:",
+    ind: "Sumber:",
   },
   "Match these against the {field} field returned by {endpoint}.": {
     eng: "Match these against the {field} field returned by {endpoint}.",
@@ -4500,6 +5020,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Bunları {endpoint} tarafından döndürülen {field} alanıyla eşleştirin.",
     zhs: "将它们与 {endpoint} 返回的 {field} 字段对应。",
     zht: "將它們與 {endpoint} 回傳的 {field} 欄位對應。",
+    ara: "طابقها مع الخانة {field} التي يعيدها {endpoint}.",
+    ind: "Cocokkan dengan kolom {field} yang dikembalikan {endpoint}.",
   },
   "Rarity (banner) colors": {
     eng: "Rarity (banner) colors",
@@ -4517,6 +5039,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Nadirlik (afiş) renkleri",
     zhs: "稀有度（横幅）颜色",
     zht: "稀有度（橫幅）顏色",
+    ara: "ألوان الندرة (الشريط)",
+    ind: "Warna kelangkaan (pita)",
   },
   "Match against the {field} field.": {
     eng: "Match against the {field} field.",
@@ -4534,6 +5058,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "{field} alanıyla eşleştirin.",
     zhs: "与 {field} 字段对应。",
     zht: "與 {field} 欄位對應。",
+    ara: "طابقها مع الخانة {field}.",
+    ind: "Cocokkan dengan kolom {field}.",
   },
   "Minimal HTML + CSS recipe": {
     eng: "Minimal HTML + CSS recipe",
@@ -4551,6 +5077,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "En basit HTML + CSS tarifi",
     zhs: "最简 HTML + CSS 示例",
     zht: "最簡 HTML + CSS 範例",
+    ara: "وصفة HTML + CSS مبسّطة",
+    ind: "Resep HTML + CSS minimal",
   },
   "Portrait filename:": {
     eng: "Portrait filename:",
@@ -4568,6 +5096,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Portre dosya adı:",
     zhs: "肖像文件名：",
     zht: "肖像檔名：",
+    ara: "اسم ملف الصورة:",
+    ind: "Nama file potret:",
   },
   "Attack cards": {
     eng: "Attack cards",
@@ -4585,6 +5115,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Saldırı kartları",
     zhs: "攻击牌",
     zht: "攻擊牌",
+    ara: "بطاقات الهجوم",
+    ind: "Kartu Serangan",
   },
   "Power cards": {
     eng: "Power cards",
@@ -4602,6 +5134,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Güç kartları",
     zhs: "能力牌",
     zht: "能力牌",
+    ara: "بطاقات القوة",
+    ind: "Kartu Kuasa",
   },
   "everything else (Skill, Status, Curse, …)": {
     eng: "everything else (Skill, Status, Curse, …)",
@@ -4619,6 +5153,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "diğer her şey (Beceri, Durum, Lanet, …)",
     zhs: "其余所有（技能、状态、诅咒……）",
     zht: "其餘所有（技能、狀態、詛咒……）",
+    ara: "كل ما عدا ذلك (مهارة، حالة، عبء، …)",
+    ind: "sisanya (Teknik, Status, Kutukan, …)",
   },
   "React component": {
     eng: "React component",
@@ -4636,6 +5172,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "React bileşeni",
     zhs: "React 组件",
     zht: "React 元件",
+    ara: "مكوّن React",
+    ind: "Komponen React",
   },
   "Drop-in React version. Source:": {
     eng: "Drop-in React version. Source:",
@@ -4653,6 +5191,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Doğrudan kullanılabilir React sürümü. Kaynak:",
     zhs: "开箱即用的 React 版本。源码：",
     zht: "開箱即用的 React 版本。原始碼：",
+    ara: "نسخة React جاهزة للاستخدام. المصدر:",
+    ind: "Versi React siap pakai. Sumber:",
   },
   "Full card images": {
     eng: "Full card images",
@@ -4670,6 +5210,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Tam kart görselleri",
     zhs: "完整卡牌图片",
     zht: "完整卡牌圖片",
+    ara: "صور البطاقات الكاملة",
+    ind: "Gambar kartu lengkap",
   },
   "Every card from {endpoint} includes two ready-to-use URLs for the full game-rendered card (frame, art, banner, and text, exactly as it looks in-game). Ancient cards are animated webps.":
     {
@@ -4688,6 +5230,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "{endpoint} içindeki her kart, oyunun işlediği tam kart için (çerçeve, çizim, afiş ve metin, tam olarak oyundaki gibi) kullanıma hazır iki URL içerir. Kadim kartlar animasyonlu webp'dir.",
       zhs: "{endpoint} 返回的每张卡牌都包含两个可直接使用的 URL，指向游戏渲染的完整卡牌（边框、插画、横幅和文字，与游戏内完全一致）。远古者卡牌为动态 webp。",
       zht: "{endpoint} 回傳的每張卡牌都包含兩個可直接使用的 URL，指向遊戲渲染的完整卡牌（邊框、插畫、橫幅和文字，與遊戲內完全一致）。遠古者卡牌為動態 webp。",
+      ara: "كل بطاقة من {endpoint} تتضمن رابطين جاهزين للبطاقة الكاملة كما ترسمها اللعبة (الإطار والرسم والشريط والنص، تمامًا كما تظهر داخل اللعبة). البطاقات العتيقة صور webp متحركة.",
+      ind: "Tiap kartu dari {endpoint} menyertakan dua URL siap pakai untuk kartu lengkap hasil render game (bingkai, gambar, pita, dan teks, persis seperti di dalam game). Kartu Ancient berupa webp animasi.",
     },
   "The base card. null for the one card with no render (mad_science); fall back to image_url (the portrait art) there.":
     {
@@ -4706,6 +5250,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Temel kart. İşlenmiş görseli olmayan tek kart (mad_science) için null; orada image_url'ye (portre çizimi) geri dönün.",
       zhs: "基础卡。唯一一张没有渲染图的卡（mad_science）为 null；此时请回退到 image_url（肖像插画）。",
       zht: "基礎卡。唯一一張沒有渲染圖的卡（mad_science）為 null；此時請回退到 image_url（肖像插畫）。",
+      ara: "البطاقة الأساسية. تكون null للبطاقة الوحيدة التي لا صورة لها (mad_science)، وفي هذه الحالة استخدم image_url (رسم البطاقة) بديلًا.",
+      ind: "Kartu dasar. null untuk satu kartu yang tidak punya render (mad_science); pakai image_url (gambar potretnya) sebagai gantinya.",
     },
   "The upgraded card. null when the card has no upgrade.": {
     eng: "The upgraded card. null when the card has no upgrade.",
@@ -4723,6 +5269,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Yükseltilmiş kart. Kartın yükseltmesi yoksa null.",
     zhs: "升级卡。卡牌没有升级时为 null。",
     zht: "升級卡。卡牌沒有升級時為 null。",
+    ara: "البطاقة المرقّاة. تكون null إذا لم يكن للبطاقة ترقية.",
+    ind: "Kartu yang ditingkatkan. null kalau kartunya tidak punya peningkatan.",
   },
   "Localized renders live under a language subfolder, for example:": {
     eng: "Localized renders live under a language subfolder, for example:",
@@ -4740,6 +5288,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Yerelleştirilmiş görseller bir dil alt klasöründe bulunur, örneğin:",
     zhs: "本地化渲染图位于语言子文件夹下，例如：",
     zht: "本地化渲染圖位於語言子資料夾下，例如：",
+    ara: "الصور المترجمة موجودة في مجلد فرعي للغة، مثلًا:",
+    ind: "Render terjemahan ada di subfolder bahasa, misalnya:",
   },
   "All 15 languages are available.": {
     eng: "All 15 languages are available.",
@@ -4757,6 +5307,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "15 dilin tamamı mevcuttur.",
     zhs: "全部 15 种语言均可用。",
     zht: "全部 15 種語言均可用。",
+    ara: "كل اللغات الـ15 متاحة.",
+    ind: "Semua 15 bahasa tersedia.",
   },
   "Enchanted card renders": {
     eng: "Enchanted card renders",
@@ -4774,6 +5326,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Büyülü kart görselleri",
     zhs: "附魔卡牌渲染图",
     zht: "附魔卡牌渲染圖",
+    ara: "صور البطاقات مع التعزيزات",
+    ind: "Render kartu dengan efek",
   },
   "Every card is also rendered with each enchantment it can legally take, exactly as the in-game enchant preview draws it (badge, amount, and added card text). The URLs follow one pattern:":
     {
@@ -4792,6 +5346,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Her kart ayrıca kurallara uygun olarak alabileceği her büyüyle, oyun içi büyü önizlemesinin çizdiği gibi (rozet, miktar ve eklenen kart metni) işlenir. URL'ler tek bir kalıbı izler:",
       zhs: "每张卡牌还会与它可合法获得的每种附魔一起渲染，与游戏内附魔预览的绘制完全一致（徽章、数值和新增的卡牌文字）。URL 遵循同一模式：",
       zht: "每張卡牌還會與它可合法獲得的每種附魔一起渲染，與遊戲內附魔預覽的繪製完全一致（徽章、數值和新增的卡牌文字）。URL 遵循同一模式：",
+      ara: "كل بطاقة تُرسم أيضًا مع كل تعزيز يمكن أن تحمله وفق القواعد، تمامًا كما ترسمها معاينة التعزيز داخل اللعبة (الشارة والمقدار ونص البطاقة المضاف). تتبع الروابط نمطًا واحدًا:",
+      ind: "Tiap kartu juga dirender dengan setiap efek kartu yang sah untuknya, persis seperti pratinjau efek di dalam game (lencana, jumlah, dan teks kartu tambahan). URL-nya mengikuti satu pola:",
     },
   "lowercase ids from /api/enchantments and /api/cards (e.g. sharp, corrupted, sown).":
     {
@@ -4810,6 +5366,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "/api/enchantments ve /api/cards'tan küçük harfli kimlikler (ör. sharp, corrupted, sown).",
       zhs: "来自 /api/enchantments 和 /api/cards 的小写 id（如 sharp、corrupted、sown）。",
       zht: "來自 /api/enchantments 和 /api/cards 的小寫 id（如 sharp、corrupted、sown）。",
+      ara: "معرّفات بأحرف صغيرة من /api/enchantments و /api/cards (مثل sharp، corrupted، sown).",
+      ind: "id huruf kecil dari /api/enchantments dan /api/cards (mis. sharp, corrupted, sown).",
     },
   "Only valid card and enchantment combinations exist (the export uses the game's own applicability rules), so an invalid combo is a 404. The card_type / applicable_to fields on /api/enchantments describe which cards qualify.":
     {
@@ -4828,6 +5386,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Yalnızca geçerli kart ve büyü kombinasyonları vardır (dışa aktarım oyunun kendi uygulanabilirlik kurallarını kullanır), bu yüzden geçersiz bir kombinasyon 404 döner. /api/enchantments üzerindeki card_type / applicable_to alanları hangi kartların uygun olduğunu açıklar.",
       zhs: "只存在合法的卡牌与附魔组合（导出使用游戏自身的适用规则），因此无效组合会返回 404。/api/enchantments 中的 card_type / applicable_to 字段说明哪些卡牌符合条件。",
       zht: "只存在合法的卡牌與附魔組合（匯出使用遊戲自身的適用規則），因此無效組合會回傳 404。/api/enchantments 中的 card_type / applicable_to 欄位說明哪些卡牌符合條件。",
+      ara: "لا توجد إلا التركيبات الصالحة بين البطاقات والتعزيزات (التصدير يستخدم قواعد اللعبة نفسها)، لذا التركيبة غير الصالحة تعيد 404. الخانتان card_type / applicable_to في /api/enchantments تبيّنان البطاقات المؤهلة.",
+      ind: "Hanya kombinasi kartu dan efek yang sah yang tersedia (ekspor memakai aturan game sendiri), jadi kombinasi tidak sah menghasilkan 404. Kolom card_type / applicable_to di /api/enchantments menjelaskan kartu mana yang memenuhi syarat.",
     },
   "Base and upgraded variants exist for every combo, in all 14 languages, with the enchantment text fully localized.":
     {
@@ -4846,6 +5406,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Her kombinasyon için temel ve yükseltilmiş varyantlar 14 dilin tamamında, büyü metni tamamen yerelleştirilmiş olarak mevcuttur.",
       zhs: "每个组合都有基础版和升级版，覆盖全部 14 种语言，附魔文字完全本地化。",
       zht: "每個組合都有基礎版和升級版，涵蓋全部 14 種語言，附魔文字完全本地化。",
+      ara: "النسختان الأساسية والمرقّاة متاحتان لكل تركيبة، بكل اللغات الـ14، مع نص التعزيز مترجمًا بالكامل.",
+      ind: "Varian dasar dan yang ditingkatkan tersedia untuk tiap kombinasi, dalam 14 bahasa, dengan teks efek yang sepenuhnya diterjemahkan.",
     },
   "Data Exports": {
     eng: "Data Exports",
@@ -4863,6 +5425,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Veri Dışa Aktarımları",
     zhs: "数据导出",
     zht: "資料匯出",
+    ara: "تصدير البيانات",
+    ind: "Ekspor Data",
   },
   "Download all game data as a single ZIP archive. Each archive contains JSON files for every entity type (cards, relics, monsters, powers, and more).":
     {
@@ -4881,6 +5445,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Tüm oyun verilerini tek bir ZIP arşivi olarak indirin. Her arşiv, her varlık türü için (kartlar, kalıntılar, canavarlar, güçler ve daha fazlası) JSON dosyaları içerir.",
       zhs: "将全部游戏数据下载为单个 ZIP 压缩包。每个压缩包包含所有实体类型（卡牌、遗物、怪物、能力等）的 JSON 文件。",
       zht: "將全部遊戲資料下載為單個 ZIP 壓縮檔。每個壓縮檔包含所有實體類型（卡牌、遺物、怪物、能力等）的 JSON 檔案。",
+      ara: "نزّل كل بيانات اللعبة في أرشيف ZIP واحد. يحتوي كل أرشيف على ملفات JSON لكل نوع كيان (البطاقات والآثار والوحوش والقوى وغيرها).",
+      ind: "Unduh semua data game dalam satu arsip ZIP. Tiap arsip berisi file JSON untuk semua tipe entitas (kartu, pusaka, monster, kuasa, dan lainnya).",
     },
   "Download English Data (ZIP)": {
     eng: "Download English Data (ZIP)",
@@ -4898,6 +5464,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "İngilizce Verileri İndir (ZIP)",
     zhs: "下载英文数据（ZIP）",
     zht: "下載英文資料（ZIP）",
+    ara: "نزّل البيانات الإنجليزية (ZIP)",
+    ind: "Unduh Data Bahasa Inggris (ZIP)",
   },
   "15 languages available. Example downloads:": {
     eng: "15 languages available. Example downloads:",
@@ -4915,6 +5483,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "15 dil mevcut. Örnek indirmeler:",
     zhs: "提供 15 种语言。下载示例：",
     zht: "提供 15 種語言。下載範例：",
+    ara: "15 لغة متاحة. أمثلة للتنزيل:",
+    ind: "15 bahasa tersedia. Contoh unduhan:",
   },
   Japanese: {
     eng: "Japanese",
@@ -4932,6 +5502,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Japonca",
     zhs: "日语",
     zht: "日語",
+    ara: "اليابانية",
+    ind: "Jepang",
   },
   Korean: {
     eng: "Korean",
@@ -4949,6 +5521,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Korece",
     zhs: "韩语",
     zht: "韓語",
+    ara: "الكورية",
+    ind: "Korea",
   },
   Chinese: {
     eng: "Chinese",
@@ -4966,6 +5540,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Çince",
     zhs: "中文",
     zht: "中文",
+    ara: "الصينية",
+    ind: "Mandarin",
   },
   French: {
     eng: "French",
@@ -4983,6 +5559,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Fransızca",
     zhs: "法语",
     zht: "法語",
+    ara: "الفرنسية",
+    ind: "Prancis",
   },
   German: {
     eng: "German",
@@ -5000,6 +5578,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Almanca",
     zhs: "德语",
     zht: "德語",
+    ara: "الألمانية",
+    ind: "Jerman",
   },
   "Interactive API Docs": {
     eng: "Interactive API Docs",
@@ -5017,6 +5597,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Etkileşimli API Belgeleri",
     zhs: "交互式 API 文档",
     zht: "互動式 API 文件",
+    ara: "وثائق API التفاعلية",
+    ind: "Dokumentasi API Interaktif",
   },
   "Full Swagger/OpenAPI documentation with try-it-out functionality.": {
     eng: "Full Swagger/OpenAPI documentation with try-it-out functionality.",
@@ -5034,6 +5616,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Deneme özelliğiyle eksiksiz Swagger/OpenAPI belgeleri.",
     zhs: "完整的 Swagger/OpenAPI 文档，支持在线试用。",
     zht: "完整的 Swagger/OpenAPI 文件，支援線上試用。",
+    ara: "وثائق Swagger/OpenAPI كاملة مع إمكانية تجربة الطلبات.",
+    ind: "Dokumentasi Swagger/OpenAPI lengkap dengan fitur coba langsung.",
   },
   "Open API Docs →": {
     eng: "Open API Docs →",
@@ -5051,6 +5635,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "API Belgelerini Aç →",
     zhs: "打开 API 文档 →",
     zht: "打開 API 文件 →",
+    ara: "افتح وثائق API →",
+    ind: "Buka Dokumentasi API →",
   },
   "Open Source": {
     eng: "Open Source",
@@ -5068,6 +5654,8 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "Açık Kaynak",
     zhs: "开源",
     zht: "開源",
+    ara: "مفتوح المصدر",
+    ind: "Open Source",
   },
   "Spire Codex is open source. The data extraction pipeline, API, and frontend are all available on GitHub.":
     {
@@ -5086,6 +5674,8 @@ export const X6E: Record<string, Record<string, string>> = {
       tur: "Spire Codex açık kaynaklıdır. Veri çıkarma hattı, API ve ön uç GitHub'da mevcuttur.",
       zhs: "Spire Codex 是开源的。数据提取流水线、API 和前端都可以在 GitHub 上获取。",
       zht: "Spire Codex 是開源的。資料擷取流水線、API 和前端都可以在 GitHub 上取得。",
+      ara: "Spire Codex مفتوح المصدر. مسار استخراج البيانات و API والواجهة كلها متاحة على GitHub.",
+      ind: "Spire Codex itu open source. Pipeline ekstraksi data, API, dan frontend semuanya tersedia di GitHub.",
     },
   "View on GitHub →": {
     eng: "View on GitHub →",
@@ -5103,5 +5693,7 @@ export const X6E: Record<string, Record<string, string>> = {
     tur: "GitHub'da görüntüle →",
     zhs: "在 GitHub 上查看 →",
     zht: "在 GitHub 上查看 →",
+    ara: "اعرض على GitHub →",
+    ind: "Lihat di GitHub →",
   },
 };

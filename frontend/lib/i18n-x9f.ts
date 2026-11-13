@@ -17,6 +17,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Kart Görselleri",
     zhs: "卡牌渲染图",
     zht: "卡牌渲染圖",
+    ara: "صور البطاقات",
+    ind: "Render Kartu",
   },
   Animations: {
     eng: "Animations",
@@ -34,6 +36,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Animasyonlar",
     zhs: "动画",
     zht: "動畫",
+    ara: "الرسوم المتحركة",
+    ind: "Animasi",
   },
   "Monster Renders": {
     eng: "Monster Renders",
@@ -51,6 +55,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Canavar Görselleri",
     zhs: "怪物渲染图",
     zht: "怪物渲染圖",
+    ara: "صور الوحوش",
+    ind: "Render Monster",
   },
   "Monster Skins": {
     eng: "Monster Skins",
@@ -68,6 +74,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Canavar Kostümleri",
     zhs: "怪物皮肤",
     zht: "怪物外觀",
+    ara: "مظاهر الوحوش",
+    ind: "Skin Monster",
   },
   "Character Renders": {
     eng: "Character Renders",
@@ -85,6 +93,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Karakter Görselleri",
     zhs: "角色渲染图",
     zht: "角色渲染圖",
+    ara: "صور الشخصيات",
+    ind: "Render Karakter",
   },
   "Character Forms": {
     eng: "Character Forms",
@@ -102,6 +112,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Karakter Formları",
     zhs: "角色形态",
     zht: "角色形態",
+    ara: "هيئات الشخصيات",
+    ind: "Wujud Karakter",
   },
   "Relic Renders": {
     eng: "Relic Renders",
@@ -119,6 +131,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Kalıntı Görselleri",
     zhs: "遗物渲染图",
     zht: "遺物渲染圖",
+    ara: "صور الآثار",
+    ind: "Render Pusaka",
   },
   "Potion Renders": {
     eng: "Potion Renders",
@@ -136,6 +150,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "İksir Görselleri",
     zhs: "药水渲染图",
     zht: "藥水渲染圖",
+    ara: "صور الجرعات",
+    ind: "Render Ramuan",
   },
   "Backgrounds (Scenes)": {
     eng: "Backgrounds (Scenes)",
@@ -153,6 +169,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Arka Planlar (Sahneler)",
     zhs: "背景（场景）",
     zht: "背景（場景）",
+    ara: "الخلفيات (المشاهد)",
+    ind: "Latar (Adegan)",
   },
   "Card Frames": {
     eng: "Card Frames",
@@ -170,6 +188,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Kart Çerçeveleri",
     zhs: "卡牌边框",
     zht: "卡牌邊框",
+    ara: "إطارات البطاقات",
+    ind: "Bingkai Kartu",
   },
   "Enchantment Badges": {
     eng: "Enchantment Badges",
@@ -187,6 +207,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Büyü Rozetleri",
     zhs: "附魔徽章",
     zht: "附魔徽章",
+    ara: "شارات التعزيزات",
+    ind: "Lencana Efek",
   },
   "Enchanted Cards": {
     eng: "Enchanted Cards",
@@ -204,6 +226,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Büyülü Kartlar",
     zhs: "附魔卡牌",
     zht: "附魔卡牌",
+    ara: "البطاقات المعززة",
+    ind: "Kartu Dengan Efek",
   },
   "Afflicted Cards": {
     eng: "Afflicted Cards",
@@ -221,6 +245,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Lanetli Kartlar",
     zhs: "受苦难卡牌",
     zht: "受苦難卡牌",
+    ara: "البطاقات المصابة",
+    ind: "Kartu Dengan Penyakit",
   },
   "Game Assets": {
     eng: "Game Assets",
@@ -238,6 +264,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Oyun Varlıkları",
     zhs: "游戏资源",
     zht: "遊戲資源",
+    ara: "أصول اللعبة",
+    ind: "Aset Game",
   },
   "Main {version}": {
     eng: "Main {version}",
@@ -255,6 +283,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Main {version}",
     zhs: "Main {version}",
     zht: "Main {version}",
+    ara: "الرئيسي {version}",
+    ind: "Main {version}",
   },
   "Beta {version}": {
     eng: "Beta {version}",
@@ -272,6 +302,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Beta {version}",
     zhs: "Beta {version}",
     zht: "Beta {version}",
+    ara: "بيتا {version}",
+    ind: "Beta {version}",
   },
   "Every card as the game draws it, base and upgraded, in every language.": {
     eng: "Every card as the game draws it, base and upgraded, in every language.",
@@ -289,6 +321,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Oyunun çizdiği haliyle her kart, temel ve geliştirilmiş, her dilde.",
     zhs: "游戏绘制的每一张卡牌，基础版与升级版，全语言。",
     zht: "遊戲繪製的每一張卡牌，基礎版與升級版，全語言。",
+    ara: "كل بطاقة كما ترسمها اللعبة، أساسية ومرقّاة، بكل اللغات.",
+    ind: "Setiap kartu seperti yang digambar game, versi dasar dan ditingkatkan, dalam semua bahasa.",
   },
   "Frame-by-frame idle animations for cards, characters and monsters.": {
     eng: "Frame-by-frame idle animations for cards, characters and monsters.",
@@ -306,6 +340,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Kartlar, karakterler ve canavarlar için kare kare bekleme animasyonları.",
     zhs: "卡牌、角色与怪物的逐帧待机动画。",
     zht: "卡牌、角色與怪物的逐格待機動畫。",
+    ara: "رسوم الوقوف المتحركة إطاراً بإطار للبطاقات والشخصيات والوحوش.",
+    ind: "Animasi diam frame demi frame untuk kartu, karakter, dan monster.",
   },
   "Every monster on its idle pose, trimmed to the art.": {
     eng: "Every monster on its idle pose, trimmed to the art.",
@@ -323,6 +359,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Her canavar bekleme duruşunda, çizime göre kırpılmış.",
     zhs: "每个怪物的待机姿势，按画面裁切。",
     zht: "每個怪物的待機姿勢，依畫面裁切。",
+    ara: "كل وحش في وضعية الوقوف، مقصوصاً على حدود الرسم.",
+    ind: "Setiap monster dalam pose diam, dipotong pas dengan gambarnya.",
   },
   "Alternate skins for the monsters that have them.": {
     eng: "Alternate skins for the monsters that have them.",
@@ -340,6 +378,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Kostümü olan canavarların alternatif kostümleri.",
     zhs: "拥有皮肤的怪物的替换皮肤。",
     zht: "擁有外觀的怪物的替換外觀。",
+    ara: "مظاهر بديلة للوحوش التي تملكها.",
+    ind: "Skin alternatif untuk monster yang memilikinya.",
   },
   "The playable characters on their idle pose.": {
     eng: "The playable characters on their idle pose.",
@@ -357,6 +397,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Oynanabilir karakterler bekleme duruşunda.",
     zhs: "可操作角色的待机姿势。",
     zht: "可操作角色的待機姿勢。",
+    ara: "الشخصيات القابلة للعب في وضعية الوقوف.",
+    ind: "Karakter yang bisa dimainkan dalam pose diam.",
   },
   "Characters with their form effects active.": {
     eng: "Characters with their form effects active.",
@@ -374,6 +416,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Form efektleri etkin karakterler.",
     zhs: "形态效果激活时的角色。",
     zht: "形態效果啟用時的角色。",
+    ara: "الشخصيات مع تفعيل تأثيرات هيئاتها.",
+    ind: "Karakter dengan efek wujudnya aktif.",
   },
   "Every relic's art, with the beta-art versions in their own folder.": {
     eng: "Every relic's art, with the beta-art versions in their own folder.",
@@ -391,6 +435,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Her kalıntının çizimi, beta çizim sürümleri kendi klasöründe.",
     zhs: "每件遗物的美术图，测试版美术单独存放。",
     zht: "每件遺物的美術圖，測試版美術單獨存放。",
+    ara: "رسم كل أثر، مع نسخ رسوم البيتا في مجلد خاص بها.",
+    ind: "Gambar setiap pusaka, dengan versi gambar beta di folder tersendiri.",
   },
   "Every potion, rendered at its in-game size.": {
     eng: "Every potion, rendered at its in-game size.",
@@ -408,6 +454,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Her iksir, oyun içi boyutunda işlenmiş.",
     zhs: "每种药水，按游戏内尺寸渲染。",
     zht: "每種藥水，依遊戲內尺寸渲染。",
+    ara: "كل جرعة، مرسومة بحجمها داخل اللعبة.",
+    ind: "Setiap ramuan, dirender pada ukuran dalam game.",
   },
   "Room, event and menu backdrops at full resolution.": {
     eng: "Room, event and menu backdrops at full resolution.",
@@ -425,6 +473,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Oda, olay ve menü arka planları tam çözünürlükte.",
     zhs: "房间、事件与菜单背景，全分辨率。",
     zht: "房間、事件與選單背景，全解析度。",
+    ara: "خلفيات الغرف والأحداث والقوائم بالدقة الكاملة.",
+    ind: "Latar ruangan, Event, dan menu dalam resolusi penuh.",
   },
   "The frame, banner and cost pieces the game composes cards from.": {
     eng: "The frame, banner and cost pieces the game composes cards from.",
@@ -442,6 +492,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Oyunun kartları oluşturduğu çerçeve, şerit ve maliyet parçaları.",
     zhs: "游戏拼合卡牌所用的边框、横幅与费用部件。",
     zht: "遊戲拼合卡牌所用的邊框、橫幅與費用部件。",
+    ara: "قطع الإطار والراية والتكلفة التي تركّب منها اللعبة البطاقات.",
+    ind: "Potongan bingkai, panji, dan biaya yang dipakai game untuk menyusun kartu.",
   },
   "The small badge each enchantment shows on a card.": {
     eng: "The small badge each enchantment shows on a card.",
@@ -459,6 +511,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Her büyünün bir kartta gösterdiği küçük rozet.",
     zhs: "每种附魔在卡牌上显示的小徽章。",
     zht: "每種附魔在卡牌上顯示的小徽章。",
+    ara: "الشارة الصغيرة التي يظهرها كل تعزيز على البطاقة.",
+    ind: "Lencana kecil yang ditampilkan tiap Efek pada kartu.",
   },
   "Every card crossed with every enchantment it can carry, per language.": {
     eng: "Every card crossed with every enchantment it can carry, per language.",
@@ -476,6 +530,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Her kart, taşıyabildiği her büyüyle çaprazlanmış, dil başına.",
     zhs: "每张卡牌与其可附加的每种附魔的组合，按语言划分。",
     zht: "每張卡牌與其可附加的每種附魔的組合，依語言劃分。",
+    ara: "كل بطاقة مع كل تعزيز يمكن أن تحمله، لكل لغة.",
+    ind: "Setiap kartu dipasangkan dengan setiap Efek yang bisa dibawanya, per bahasa.",
   },
   "Every card crossed with every affliction, per language.": {
     eng: "Every card crossed with every affliction, per language.",
@@ -493,6 +549,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Her kart, her lanetle çaprazlanmış, dil başına.",
     zhs: "每张卡牌与每种苦难的组合，按语言划分。",
     zht: "每張卡牌與每種苦難的組合，依語言劃分。",
+    ara: "كل بطاقة مع كل علة، لكل لغة.",
+    ind: "Setiap kartu dipasangkan dengan setiap Penyakit, per bahasa.",
   },
   "The full texture dump: UI, map, powers, orbs, effects and everything else.":
     {
@@ -511,6 +569,8 @@ export const X9F: Record<string, Record<string, string>> = {
       tur: "Tam doku dökümü: arayüz, harita, güçler, küreler, efektler ve diğer her şey.",
       zhs: "完整贴图导出：界面、地图、能力、法球、特效及其他一切。",
       zht: "完整貼圖匯出：介面、地圖、能力、法球、特效及其他一切。",
+      ara: "كل الخامات كاملة: الواجهة والخريطة والقدرات والأجرام والمؤثرات وكل ما عداها.",
+      ind: "Seluruh tekstur: UI, peta, Kuasa, Bola, efek, dan semua yang lain.",
     },
   "Beta art": {
     eng: "Beta art",
@@ -528,6 +588,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Beta çizim",
     zhs: "测试版美术",
     zht: "測試版美術",
+    ara: "رسوم البيتا",
+    ind: "Gambar beta",
   },
   English: {
     eng: "English",
@@ -545,6 +607,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "İngilizce",
     zhs: "英语",
     zht: "英文",
+    ara: "الإنجليزية",
+    ind: "Inggris",
   },
   Cards: {
     eng: "Cards",
@@ -562,6 +626,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Kartlar",
     zhs: "卡牌",
     zht: "卡牌",
+    ara: "البطاقات",
+    ind: "Kartu",
   },
   Characters: {
     eng: "Characters",
@@ -579,6 +645,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Karakterler",
     zhs: "角色",
     zht: "角色",
+    ara: "الشخصيات",
+    ind: "Karakter",
   },
   Monsters: {
     eng: "Monsters",
@@ -596,6 +664,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Canavarlar",
     zhs: "怪物",
     zht: "怪物",
+    ara: "الوحوش",
+    ind: "Monster",
   },
   Ancients: {
     eng: "Ancients",
@@ -613,6 +683,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Kadimler",
     zhs: "远古者",
     zht: "遠古者",
+    ara: "القدماء",
+    ind: "Ancient",
   },
   "Atlas sprites": {
     eng: "Atlas sprites",
@@ -630,6 +702,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Atlas sprite'ları",
     zhs: "图集精灵图",
     zht: "圖集精靈圖",
+    ara: "صور الأطالس",
+    ind: "Sprite atlas",
   },
   Atlases: {
     eng: "Atlases",
@@ -647,6 +721,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Atlaslar",
     zhs: "图集",
     zht: "圖集",
+    ara: "الأطالس",
+    ind: "Atlas",
   },
   "Card overlays": {
     eng: "Card overlays",
@@ -664,6 +740,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Kart kaplamaları",
     zhs: "卡牌叠加层",
     zht: "卡牌疊加層",
+    ara: "طبقات البطاقات",
+    ind: "Overlay kartu",
   },
   Debug: {
     eng: "Debug",
@@ -681,6 +759,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Hata ayıklama",
     zhs: "调试",
     zht: "除錯",
+    ara: "التصحيح",
+    ind: "Debug",
   },
   Enchantments: {
     eng: "Enchantments",
@@ -698,6 +778,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Büyüler",
     zhs: "附魔",
     zht: "附魔",
+    ara: "التعزيزات",
+    ind: "Efek",
   },
   Events: {
     eng: "Events",
@@ -715,6 +797,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Olaylar",
     zhs: "事件",
     zht: "事件",
+    ara: "الأحداث",
+    ind: "Event",
   },
   Tutorial: {
     eng: "Tutorial",
@@ -732,6 +816,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Eğitim",
     zhs: "教程",
     zht: "教學",
+    ara: "الشرح",
+    ind: "Tutorial",
   },
   Map: {
     eng: "Map",
@@ -749,6 +835,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Harita",
     zhs: "地图",
     zht: "地圖",
+    ara: "الخريطة",
+    ind: "Peta",
   },
   Orbs: {
     eng: "Orbs",
@@ -766,6 +854,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Küreler",
     zhs: "法球",
     zht: "法球",
+    ara: "الأجرام",
+    ind: "Bola",
   },
   Other: {
     eng: "Other",
@@ -783,6 +873,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Diğer",
     zhs: "其他",
     zht: "其他",
+    ara: "أخرى",
+    ind: "Lainnya",
   },
   Packed: {
     eng: "Packed",
@@ -800,6 +892,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Paketlenmiş",
     zhs: "已打包",
     zht: "已打包",
+    ara: "مضغوطة",
+    ind: "Terkemas",
   },
   Potions: {
     eng: "Potions",
@@ -817,6 +911,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "İksirler",
     zhs: "药水",
     zht: "藥水",
+    ara: "الجرعات",
+    ind: "Ramuan",
   },
   Powers: {
     eng: "Powers",
@@ -834,6 +930,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Güçler",
     zhs: "能力",
     zht: "能力",
+    ara: "القدرات",
+    ind: "Kuasa",
   },
   Relics: {
     eng: "Relics",
@@ -851,6 +949,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Kalıntılar",
     zhs: "遗物",
     zht: "遺物",
+    ara: "الآثار",
+    ind: "Pusaka",
   },
   Rooms: {
     eng: "Rooms",
@@ -868,6 +968,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Odalar",
     zhs: "房间",
     zht: "房間",
+    ara: "الغرف",
+    ind: "Ruangan",
   },
   Timeline: {
     eng: "Timeline",
@@ -885,6 +987,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Zaman çizelgesi",
     zhs: "时间线",
     zht: "時間線",
+    ara: "الخط الزمني",
+    ind: "Linimasa",
   },
   UI: {
     eng: "UI",
@@ -902,6 +1006,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Arayüz",
     zhs: "界面",
     zht: "介面",
+    ara: "الواجهة",
+    ind: "UI",
   },
   Effects: {
     eng: "Effects",
@@ -919,6 +1025,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Efektler",
     zhs: "特效",
     zht: "特效",
+    ara: "التأثيرات",
+    ind: "Efek",
   },
   Combat: {
     eng: "Combat",
@@ -936,6 +1044,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Savaş",
     zhs: "战斗",
     zht: "戰鬥",
+    ara: "معركة",
+    ind: "Perlawanan",
   },
   Credits: {
     eng: "Credits",
@@ -953,6 +1063,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Jenerik",
     zhs: "制作人员",
     zht: "製作人員",
+    ara: "فريق العمل",
+    ind: "Kredit",
   },
   Emotes: {
     eng: "Emotes",
@@ -970,6 +1082,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "İfadeler",
     zhs: "表情",
     zht: "表情",
+    ara: "الإيماءات",
+    ind: "Emote",
   },
   "Game over screen": {
     eng: "Game over screen",
@@ -987,6 +1101,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Oyun sonu ekranı",
     zhs: "游戏结束画面",
     zht: "遊戲結束畫面",
+    ara: "شاشة نهاية اللعبة",
+    ind: "Layar game over",
   },
   Hands: {
     eng: "Hands",
@@ -1004,6 +1120,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Eller",
     zhs: "手部",
     zht: "手部",
+    ara: "الأيدي",
+    ind: "Tangan",
   },
   "Main menu": {
     eng: "Main menu",
@@ -1021,6 +1139,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Ana menü",
     zhs: "主菜单",
     zht: "主選單",
+    ara: "القائمة الرئيسية",
+    ind: "Menu Utama",
   },
   Mods: {
     eng: "Mods",
@@ -1038,6 +1158,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Modlar",
     zhs: "模组",
     zht: "模組",
+    ara: "التعديلات",
+    ind: "Mod",
   },
   Profile: {
     eng: "Profile",
@@ -1055,6 +1177,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Profil",
     zhs: "档案",
     zht: "檔案",
+    ara: "الملف الشخصي",
+    ind: "Profil",
   },
   "Rest site": {
     eng: "Rest site",
@@ -1072,6 +1196,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Dinlenme yeri",
     zhs: "休息处",
     zht: "休息點",
+    ara: "موقع راحة",
+    ind: "Peristirahatan",
   },
   "Reward screen": {
     eng: "Reward screen",
@@ -1089,6 +1215,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Ödül ekranı",
     zhs: "奖励画面",
     zht: "獎勵畫面",
+    ara: "شاشة المكافآت",
+    ind: "Layar hadiah",
   },
   "Run history": {
     eng: "Run history",
@@ -1106,6 +1234,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Koşu geçmişi",
     zhs: "游戏记录",
     zht: "遊戲紀錄",
+    ara: "سجل الجولات",
+    ind: "Riwayat",
   },
   "Top panel": {
     eng: "Top panel",
@@ -1123,6 +1253,8 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Üst panel",
     zhs: "顶部面板",
     zht: "頂部面板",
+    ara: "اللوحة العلوية",
+    ind: "Panel atas",
   },
   Transitions: {
     eng: "Transitions",
@@ -1140,5 +1272,7 @@ export const X9F: Record<string, Record<string, string>> = {
     tur: "Geçişler",
     zhs: "过渡效果",
     zht: "過渡效果",
+    ara: "الانتقالات",
+    ind: "Transisi",
   },
 };

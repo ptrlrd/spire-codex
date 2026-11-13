@@ -1,0 +1,37 @@
+[
+  {
+    "id": "ETERNAL",
+    "name": "Abadi",
+    "description": "Tidak bisa dibuang atau ditransformasi dari [gold]Dekmu[/gold]."
+  },
+  {
+    "id": "ETHEREAL",
+    "name": "Rapuh",
+    "description": "Jika kartu ini di [gold]Tangan[/gold] pada akhir giliran ini, kartu [gold]Hangus[/gold]."
+  },
+  {
+    "id": "EXHAUST",
+    "name": "Hangus",
+    "description": "Hilang sampai akhir perlawanan."
+  },
+  {
+    "id": "INNATE",
+    "name": "Bawaan",
+    "description": "Mulai perlawanan dengan kartu ini di [gold]Tangan[/gold]."
+  },
+  {
+    "id": "RETAIN",
+    "name": "Pertahankan",
+    "description": "Kartu yang dipertahankan tidak disingkirkan saat akhir giliran."
+  },
+  {
+    "id": "SLY",
+    "name": "Lihai",
+    "description": "Jika kartu ini disingkirkan dari [gold]Tangan[/gold] sebelum giliran berakhir, mainkan secara gratis."
+  },
+  {
+    "id": "UNPLAYABLE",
+    "name": "Nonaktif",
+    "description": "Kartu nonaktif tidak bisa dimainkan."
+  }
+]
