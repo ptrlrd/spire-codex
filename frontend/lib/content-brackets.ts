@@ -3,6 +3,8 @@
 // win-rate tiers are an A10-gated quality ladder (A10 runs from players above
 // that overall win rate). Keep the keys in sync with _BRACKET_KEYS in
 // backend/app/services/run_entity_stats.py.
+import { GAME_MODES } from "./game-modes";
+
 export interface ContentBracket {
   key: string;
   param: string | null; // value sent as ?bracket= to the API; null = all runs
@@ -31,11 +33,11 @@ export const PLAYER_BRACKETS: ContentBracket[] = [
 // Game-mode brackets. Like the player axis they share the single ?bracket=
 // slot: picking a mode replaces the player/skill selection (only the version
 // composes on top). "All" is the absence of a mode key.
-export const MODE_BRACKETS: ContentBracket[] = [
-  { key: "standard", param: "standard", label: "Standard" },
-  { key: "daily", param: "daily", label: "Daily" },
-  { key: "custom", param: "custom", label: "Custom" },
-];
+export const MODE_BRACKETS: ContentBracket[] = GAME_MODES.map((m) => ({
+  key: m.id,
+  param: m.id,
+  label: m.label,
+}));
 
 export const CHARACTER_BRACKETS: ContentBracket[] = [
   { key: "ironclad", param: "ironclad", label: "Ironclad" },

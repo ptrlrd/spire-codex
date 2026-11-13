@@ -27,6 +27,8 @@ interface PersonalBests {
   highest_ascension?: PersonalBest;
   todays_daily?: PersonalBest;
   fastest_daily?: PersonalBest;
+  fastest_blitz?: PersonalBest;
+  fastest_dread?: PersonalBest;
 }
 
 interface DailyLeaderboardEntry {

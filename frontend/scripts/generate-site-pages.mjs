@@ -89,6 +89,10 @@ export const PAGE_OVERRIDES = {
     name: "Custom Mode",
     keywords: ["modifier", "custom", "mode", "mutator"],
   },
+  "/game-modes": {
+    name: "Game Modes",
+    keywords: ["game mode", "blitz", "dread", "dominion", "daily", "standard"],
+  },
   "/runs": { keywords: ["run", "upload", "submit", "history", "win", "loss"] },
   "/tier-list": {
     keywords: ["tier", "tier list", "ranking", "best", "worst", "s tier"],

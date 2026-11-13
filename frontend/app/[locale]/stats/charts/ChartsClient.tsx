@@ -26,6 +26,7 @@ import {
 import { Line, Bar, Scatter } from "react-chartjs-2";
 import { fmtNum } from "@/lib/pct";
 import { replaceQuery } from "@/lib/replace-query";
+import { GAME_MODES } from "@/lib/game-modes";
 
 ChartJS.register(
   LineElement,
@@ -211,11 +212,9 @@ const PLAYER_OPTS = [
   { value: "3", label: "3P" },
   { value: "4", label: "4P" },
 ];
-const MODE_OPTS = [
+const MODE_OPTS: { value: string; label: string }[] = [
   { value: "all", label: "All modes" },
-  { value: "standard", label: "Standard" },
-  { value: "daily", label: "Daily" },
-  { value: "custom", label: "Custom" },
+  ...GAME_MODES.map((m) => ({ value: m.id, label: m.label })),
 ];
 // Content brackets (apply to frame and blob charts; only the daily chart opts
 // out). "all" sends no param.

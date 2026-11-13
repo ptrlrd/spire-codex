@@ -1,4 +1,5 @@
 import { CHARACTER_ORDER } from "@/lib/character-order";
+import { GAME_MODES, GAME_MODE_WORDS } from "@/lib/game-modes";
 
 export type TFn = (
   key: string,
@@ -19,11 +20,9 @@ export const SKILL_AXIS = [
   { key: "wr50", label: "A10 >50% WR" },
   { key: "wr75", label: "A10 >75% WR" },
 ];
-export const MODE_AXIS = [
+export const MODE_AXIS: { key: string; label: string }[] = [
   { key: "", label: "All" },
-  { key: "standard", label: "Standard" },
-  { key: "daily", label: "Daily" },
-  { key: "custom", label: "Custom" },
+  ...GAME_MODES.map((m) => ({ key: m.id, label: m.label })),
 ];
 export const CHARACTERS = CHARACTER_ORDER.map((c) => c.toUpperCase());
 
@@ -84,11 +83,6 @@ const PLAYER_WORDS: Record<string, string> = {
   "3p": "Three players",
   "4p": "Four players",
 };
-const MODE_WORDS: Record<string, string> = {
-  standard: "Standard mode",
-  daily: "Daily climb",
-  custom: "Custom mode",
-};
 const SKILL_PCT: Record<string, number> = { wr30: 30, wr50: 50, wr75: 75 };
 
 export function cohortLabel(b: string, t: TFn, character = ""): string {
@@ -100,7 +94,7 @@ export function cohortLabel(b: string, t: TFn, character = ""): string {
     if (SKILL_PCT[skill])
       parts.push(t("players above {pct}% win rate", { pct: SKILL_PCT[skill] }));
   }
-  if (mode) parts.push(t(MODE_WORDS[mode]));
+  if (mode) parts.push(t(GAME_MODE_WORDS[mode]));
   if (version) parts.push(version);
   if (character)
     parts.push(
