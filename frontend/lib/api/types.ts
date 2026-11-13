@@ -94,6 +94,20 @@ export interface Character {
   dialogues: CharacterDialogue[] | null;
   image_url: string | null;
   animation_url: string | null;
+  pronoun_guesses?: CharacterPronounGuess[] | null;
+  pronoun_default?: CharacterPronouns | null;
+}
+
+export interface CharacterPronouns {
+  guess: string;
+  subject: string | null;
+  object: string | null;
+  possessive: string | null;
+}
+
+export interface CharacterPronounGuess extends CharacterPronouns {
+  speaker_id: string;
+  speaker_name: string;
 }
 
 export interface MerchantPrice {

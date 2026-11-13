@@ -146,6 +146,18 @@ class CharacterDialogue(BaseModel):
     lines: list[CharacterDialogueLine]
 
 
+class CharacterPronouns(BaseModel):
+    guess: str
+    subject: str | None = None
+    object: str | None = None
+    possessive: str | None = None
+
+
+class CharacterPronounGuess(CharacterPronouns):
+    speaker_id: str
+    speaker_name: str
+
+
 class Character(BaseModel):
     id: str
     name: str
@@ -164,6 +176,8 @@ class Character(BaseModel):
     dialogues: list[CharacterDialogue] | None = None
     image_url: str | None = None
     animation_url: str | None = None
+    pronoun_guesses: list[CharacterPronounGuess] | None = None
+    pronoun_default: CharacterPronouns | None = None
 
 
 class MerchantPrice(BaseModel):

@@ -227,6 +227,18 @@
   line-height: 1.55;
 }
 
+.card-rvmp .pronoun-speakers {
+  color: var(--text-2);
+  font-size: 15px;
+  line-height: 1.55;
+}
+.card-rvmp .pronoun-speakers a {
+  color: var(--text-primary);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--spine) 55%, transparent);
+  text-underline-offset: 3px;
+}
+
 /* ── NPC dialogue chat ── */
 .card-rvmp .dlg-list {
   display: grid;
