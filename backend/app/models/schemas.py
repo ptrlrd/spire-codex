@@ -456,6 +456,36 @@ class Modifier(BaseModel):
     character: str | None = None
 
 
+class GameModeEntry(BaseModel):
+    id: str | None = None
+    name: str
+    description: str
+
+
+class GameModeDominion(BaseModel):
+    id: str
+    encounter_id: str | None = None
+    boss_name: str
+    name: str
+    description: str
+
+
+class GameMode(BaseModel):
+    id: str
+    name: str
+    description: str | None = None
+    multiplayer_description: str | None = None
+    intro: str | None = None
+    rules: list[str] | None = None
+    epoch_id: str | None = None
+    unlock_text: str | None = None
+    unlock_info: str | None = None
+    neow: GameModeEntry | None = None
+    merchant_entries: list[GameModeEntry] | None = None
+    dominions: list[GameModeDominion] | None = None
+    rotating_streak: GameModeEntry | None = None
+
+
 class Achievement(BaseModel):
     id: str
     name: str

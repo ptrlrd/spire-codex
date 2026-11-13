@@ -15,6 +15,7 @@ from badge_parser import main as parse_badges
 from epoch_parser import main as parse_epochs
 from act_parser import main as parse_acts
 from ascension_parser import main as parse_ascensions
+from game_mode_parser import main as parse_game_modes
 from pool_parser import main as parse_pools
 from translation_parser import main as parse_translations
 from news_parser import main as parse_news
@@ -70,6 +71,7 @@ def parse_language(lang: str):
     parse_epochs(lang)
     parse_acts(lang)
     parse_ascensions(lang)
+    parse_game_modes(lang)
     parse_pools(lang)  # Must run after potions
     parse_translations(lang)
     parse_localizations(lang)
