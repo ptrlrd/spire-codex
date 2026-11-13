@@ -45,6 +45,7 @@ import {
   type MonsterMap,
   type NamedMap,
 } from "../live-shared";
+import { powerIconUrl } from "@/lib/power-icon";
 import { LiveEventPanel, LiveLootPanel, LiveShopPanel } from "../LiveEventShop";
 
 // Map an intent category to its icon file (a few names differ from the type).
@@ -105,31 +106,36 @@ function PowerRow({ powers, names }: { powers: LivePower[]; names: NamedMap }) {
   if (!powers.length) return null;
   return (
     <div className="flex flex-wrap justify-center gap-1">
-      {powers.map((pw) => (
-        <span
-          key={pw.id}
-          className="relative inline-flex"
-          title={powerName(pw.id, names)}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            // power ids already end in _POWER (e.g. DEXTERITY_POWER), and the
-            // asset is dexterity_power.png -- so no extra _power suffix.
-            src={imageUrl(`/static/images/powers/${pw.id.toLowerCase()}.png`)}
-            alt={powerName(pw.id, names)}
-            className="h-5 w-5 object-contain"
-            crossOrigin="anonymous"
-            onError={(e) => {
-              (e.target as HTMLImageElement).style.visibility = "hidden";
-            }}
-          />
-          {pw.amount != null && pw.amount !== 0 && (
-            <span className="absolute -bottom-1 -right-1 rounded bg-scrim/70 px-0.5 text-[9px] font-bold leading-none text-on-fill tabular-nums">
-              {pw.amount}
-            </span>
-          )}
-        </span>
-      ))}
+      {powers.map((pw) => {
+        const icon = powerIconUrl(pw.id, names, "png");
+        return (
+          <span
+            key={pw.id}
+            className="relative inline-flex"
+            title={powerName(pw.id, names)}
+          >
+            {icon ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={icon}
+                alt={powerName(pw.id, names)}
+                className="h-5 w-5 object-contain"
+                crossOrigin="anonymous"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).style.visibility = "hidden";
+                }}
+              />
+            ) : (
+              <span className="h-5 w-5" />
+            )}
+            {pw.amount != null && pw.amount !== 0 && (
+              <span className="absolute -bottom-1 -right-1 rounded bg-scrim/70 px-0.5 text-[9px] font-bold leading-none text-on-fill tabular-nums">
+                {pw.amount}
+              </span>
+            )}
+          </span>
+        );
+      })}
     </div>
   );
 }

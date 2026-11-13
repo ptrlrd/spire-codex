@@ -13,6 +13,7 @@ import { Link, useRouter } from "@/i18n/navigation";
 import type { Relic } from "@/lib/api/types";
 import RichDescription from "@/app/components/RichDescription";
 import { cachedFetch } from "@/lib/fetch-cache";
+import { mergedCatalogParam } from "@/lib/character-order";
 import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityUpdateHistory from "@/app/components/EntityUpdateHistory";
 import RelatedItems from "@/app/components/RelatedItems";
@@ -366,13 +367,13 @@ export default function RelicDetail({
               groups={[
                 {
                   label: t("{pool} relics", { pool: poolName }),
-                  path: `/api/relics?pool=${encodeURIComponent(relic.pool)}&lang=${lang}`,
+                  path: `/api/relics?pool=${encodeURIComponent(relic.pool)}&lang=${lang}${mergedCatalogParam(relic.pool)}`,
                 },
                 {
                   label: relic.rarity.endsWith("Relic")
                     ? `${relic.rarity}s`
                     : t("{rarity} Relics", { rarity: relic.rarity }),
-                  path: `/api/relics?rarity=${encodeURIComponent(relic.rarity)}&lang=${lang}`,
+                  path: `/api/relics?rarity=${encodeURIComponent(relic.rarity)}&lang=${lang}${mergedCatalogParam(relic.pool)}`,
                 },
               ]}
               initialGroups={initialRelated}

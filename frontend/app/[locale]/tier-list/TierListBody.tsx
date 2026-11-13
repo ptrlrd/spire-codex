@@ -35,7 +35,7 @@ function sections(t: TFn) {
       href: "/tier-list/cards",
       label: t("Card Tier List"),
       description:
-        "All 576 cards ranked S → F. Filter by character (Ironclad, Silent, Defect, Necrobinder, Regent).",
+        "All 576 cards ranked S → F. Filter by character (Ironclad, Silent, Defect, Necrobinder, Regent, Fool).",
       accent: "from-warning/20 to-warning/10 border-warning/40",
     },
     {
@@ -178,7 +178,7 @@ function buildFaqEntries(
     {
       question: t("Is there a tier list per character?"),
       answer: t(
-        "Yes, the cards tier list filters to Ironclad, Silent, Defect, Necrobinder, Regent, or Colorless. The relics tier list filters by pool. Each filtered view is its own page targeting that character or pool specifically.",
+        "Yes, the cards tier list filters to Ironclad, Silent, Defect, Necrobinder, Regent, Fool, or Colorless. The relics tier list filters by pool. Each filtered view is its own page targeting that character or pool specifically.",
       ),
     },
   );

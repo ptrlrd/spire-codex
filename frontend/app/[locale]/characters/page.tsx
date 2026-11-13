@@ -6,6 +6,8 @@ import type { Character } from "@/lib/api/types";
 import JsonLd from "@/app/components/JsonLd";
 import { buildCollectionPageJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
 import CharactersClient from "./CharactersClient";
+import { fetchBetaAdditions } from "@/lib/beta-additions.server";
+import { inCharacterOrder } from "@/lib/character-order";
 
 const API =
   process.env.API_INTERNAL_URL ||
@@ -37,6 +39,15 @@ export default async function CharactersPage({ params }: Props) {
     });
     if (res.ok) characters = await res.json();
   } catch {}
+  const betaCharacters = await fetchBetaAdditions<Character>(
+    "characters",
+    locale,
+  );
+  const mainIds = new Set(characters.map((c) => c.id));
+  const listed = inCharacterOrder(
+    [...characters, ...betaCharacters.filter((c) => !mainIds.has(c.id))],
+    (c) => c.id,
+  );
 
   const jsonLd = [
     buildBreadcrumbJsonLd([
@@ -48,7 +59,7 @@ export default async function CharactersPage({ params }: Props) {
       description: "All playable characters in Slay the Spire 2.",
       path: localePath(locale, "/characters"),
       inLanguage: inLanguageOf(locale),
-      items: characters.map((c) => ({
+      items: listed.map((c) => ({
         name: c.name,
         path: `/characters/${c.id.toLowerCase()}`,
       })),
@@ -63,7 +74,10 @@ export default async function CharactersPage({ params }: Props) {
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-6">{tagline}</p>
 
-      <CharactersClient initialCharacters={characters} />
+      <CharactersClient
+        initialCharacters={characters}
+        initialBeta={{ lang: locale, items: betaCharacters }}
+      />
     </div>
   );
 }

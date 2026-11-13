@@ -60,7 +60,8 @@ async function fetchFilteredCards(
   try {
     const params = new URLSearchParams(filterParams);
     params.set("lang", "eng");
-    if (needsMergedCatalog(filterParams.color)) params.set("channel", "all");
+    if (needsMergedCatalog(filterParams.color) || filterParams.tag)
+      params.set("channel", "all");
     const res = await fetch(`${API}/api/cards?${params}`, {
       next: { revalidate: 300 },
     });
@@ -110,6 +111,7 @@ export default async function BrowsePage({ params }: Props) {
       entry.params.color.charAt(0).toUpperCase() + entry.params.color.slice(1),
     );
   if (entry.params.keyword) filterParts.push(entry.params.keyword);
+  if (entry.params.tag) filterParts.push(entry.params.tag);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

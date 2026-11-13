@@ -1,3 +1,5 @@
+import { mergedCatalogParam } from "./character-order";
+
 const API_INTERNAL =
   process.env.API_INTERNAL_URL ||
   process.env.NEXT_PUBLIC_API_URL ||
@@ -170,14 +172,15 @@ export function relicRelatedGroups(
   relic: { pool: string; rarity: string },
   lang: string,
 ): { label: string; path: string }[] {
+  const merged = mergedCatalogParam(relic.pool);
   return [
     {
       label: relic.pool,
-      path: `/api/relics?pool=${encodeURIComponent(relic.pool)}&lang=${lang}`,
+      path: `/api/relics?pool=${encodeURIComponent(relic.pool)}&lang=${lang}${merged}`,
     },
     {
       label: relic.rarity,
-      path: `/api/relics?rarity=${encodeURIComponent(relic.rarity)}&lang=${lang}`,
+      path: `/api/relics?rarity=${encodeURIComponent(relic.rarity)}&lang=${lang}${merged}`,
     },
   ];
 }
@@ -186,16 +189,17 @@ export function potionRelatedGroups(
   potion: { pool?: string | null; rarity: string },
   lang: string,
 ): { label: string; path: string }[] {
+  const merged = mergedCatalogParam(potion.pool);
   const groups = [
     {
       label: potion.rarity,
-      path: `/api/potions?rarity=${encodeURIComponent(potion.rarity)}&lang=${lang}`,
+      path: `/api/potions?rarity=${encodeURIComponent(potion.rarity)}&lang=${lang}${merged}`,
     },
   ];
   if (potion.pool) {
     groups.push({
       label: potion.pool,
-      path: `/api/potions?pool=${encodeURIComponent(potion.pool)}&lang=${lang}`,
+      path: `/api/potions?pool=${encodeURIComponent(potion.pool)}&lang=${lang}${merged}`,
     });
   }
   return groups;

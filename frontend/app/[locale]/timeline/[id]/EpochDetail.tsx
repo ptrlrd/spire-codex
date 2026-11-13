@@ -12,6 +12,8 @@ import { Link, useRouter } from "@/i18n/navigation";
 import type { Epoch, Card, Relic, Potion } from "@/lib/api/types";
 import RichDescription from "@/app/components/RichDescription";
 import { cachedFetch } from "@/lib/fetch-cache";
+import { isBetaRow } from "@/lib/beta-row";
+import BetaBadge from "@/app/components/BetaBadge";
 import { imageUrl } from "@/lib/image-url";
 import "@/app/card-revamp.css";
 import "@/app/meta-extra.css";
@@ -60,7 +62,7 @@ export default function EpochDetail({
 
   useEffect(() => {
     if (!id) return;
-    cachedFetch<Epoch>(`${API}/api/epochs/${id}?lang=${lang}`)
+    cachedFetch<Epoch>(`${API}/api/epochs/${id}?lang=${lang}&channel=all`)
       .then(setEpoch)
       .catch(() => {
         if (!initialEpoch) setNotFound(true);
@@ -70,10 +72,10 @@ export default function EpochDetail({
 
   useEffect(() => {
     Promise.all([
-      cachedFetch<Card[]>(`${API}/api/cards?lang=${lang}`),
-      cachedFetch<Relic[]>(`${API}/api/relics?lang=${lang}`),
-      cachedFetch<Potion[]>(`${API}/api/potions?lang=${lang}`),
-      cachedFetch<Epoch[]>(`${API}/api/epochs?lang=${lang}`),
+      cachedFetch<Card[]>(`${API}/api/cards?lang=${lang}&channel=all`),
+      cachedFetch<Relic[]>(`${API}/api/relics?lang=${lang}&channel=all`),
+      cachedFetch<Potion[]>(`${API}/api/potions?lang=${lang}&channel=all`),
+      cachedFetch<Epoch[]>(`${API}/api/epochs?lang=${lang}&channel=all`),
     ]).then(([cards, relics, potions, epochs]) => {
       const cm: Record<string, Card> = {};
       for (const c of cards) cm[c.id] = c;
@@ -202,7 +204,14 @@ export default function EpochDetail({
                 </>
               )}
             </p>
-            <h1>{epoch.title}</h1>
+            <h1>
+              {epoch.title}
+              {isBetaRow(epoch) && (
+                <span className="ml-3 align-middle inline-flex">
+                  <BetaBadge />
+                </span>
+              )}
+            </h1>
           </div>
 
           {/* Sticky ToC */}

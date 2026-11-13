@@ -39,17 +39,19 @@ export default async function TimelinePage({ params }: Props) {
   try {
     const [epochsRes, storiesRes, cardsRes, relicsRes, potionsRes] =
       await Promise.all([
-        fetch(`${API}/api/epochs?lang=${locale}`, {
+        fetch(`${API}/api/epochs?lang=${locale}&channel=all`, {
           next: { revalidate: 300 },
         }),
-        fetch(`${API}/api/stories?lang=${locale}`, {
+        fetch(`${API}/api/stories?lang=${locale}&channel=all`, {
           next: { revalidate: 300 },
         }),
-        fetch(`${API}/api/cards?lang=${locale}`, { next: { revalidate: 300 } }),
-        fetch(`${API}/api/relics?lang=${locale}`, {
+        fetch(`${API}/api/cards?lang=${locale}&channel=all`, {
           next: { revalidate: 300 },
         }),
-        fetch(`${API}/api/potions?lang=${locale}`, {
+        fetch(`${API}/api/relics?lang=${locale}&channel=all`, {
+          next: { revalidate: 300 },
+        }),
+        fetch(`${API}/api/potions?lang=${locale}&channel=all`, {
           next: { revalidate: 300 },
         }),
       ]);

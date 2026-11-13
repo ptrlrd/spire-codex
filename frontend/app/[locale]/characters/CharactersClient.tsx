@@ -12,7 +12,9 @@ import BetaBadge from "@/app/components/BetaBadge";
 import { inCharacterOrder } from "@/lib/character-order";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
-import { imageUrl, fullCardUrl } from "@/lib/image-url";
+import { imageUrl } from "@/lib/image-url";
+import CardImage from "@/app/components/CardImage";
+import { cardRenderChannel } from "@/lib/card-fallback";
 
 function toUpperSnake(s: string): string {
   return s.replace(/([a-z0-9])([A-Z])/g, "$1_$2").toUpperCase();
@@ -33,8 +35,10 @@ const colorStyles: Record<string, string> = {
 
 export default function CharactersClient({
   initialCharacters,
+  initialBeta,
 }: {
   initialCharacters: Character[];
+  initialBeta?: { lang: string; items: Character[] };
 }) {
   const lang = useGameLocale();
   const t = useT();
@@ -45,7 +49,11 @@ export default function CharactersClient({
   const [cardMap, setCardMap] = useState<Record<string, Card>>({});
   const [loading, setLoading] = useState(false);
   const initialRender = useRef(true);
-  const betaAdditions = useBetaAdditions<Character>("characters", lang);
+  const betaAdditions = useBetaAdditions<Character>(
+    "characters",
+    lang,
+    initialBeta,
+  );
   const betaIds = new Set(betaAdditions.map((c) => c.id));
   const allCharacters = inCharacterOrder(
     [...characters.filter((c) => !betaIds.has(c.id)), ...betaAdditions],
@@ -53,6 +61,7 @@ export default function CharactersClient({
   );
 
   useEffect(() => {
+    const merged = bp ? "" : "&channel=all";
     // Skip the first fetch if we have server data and lang is English.
     // Never skip on the beta channel: the server data is the stable
     // catalog, and cachedFetch appends channel=beta on /beta paths.
@@ -65,8 +74,8 @@ export default function CharactersClient({
       ) {
         // Still need relics and cards for tooltips on initial render
         Promise.all([
-          cachedFetch<Relic[]>(`${API}/api/relics?lang=${lang}`),
-          cachedFetch<Card[]>(`${API}/api/cards?lang=${lang}`),
+          cachedFetch<Relic[]>(`${API}/api/relics?lang=${lang}${merged}`),
+          cachedFetch<Card[]>(`${API}/api/cards?lang=${lang}${merged}`),
         ]).then(([relics, cards]: [Relic[], Card[]]) => {
           const rm: Record<string, Relic> = {};
           for (const r of relics) rm[r.id] = r;
@@ -81,8 +90,8 @@ export default function CharactersClient({
 
     Promise.all([
       cachedFetch<Character[]>(`${API}/api/characters?lang=${lang}`),
-      cachedFetch<Relic[]>(`${API}/api/relics?lang=${lang}`),
-      cachedFetch<Card[]>(`${API}/api/cards?lang=${lang}`),
+      cachedFetch<Relic[]>(`${API}/api/relics?lang=${lang}${merged}`),
+      cachedFetch<Card[]>(`${API}/api/cards?lang=${lang}${merged}`),
     ])
       .then(([chars, relics, cards]: [Character[], Relic[], Card[]]) => {
         setCharacters(chars);
@@ -182,17 +191,12 @@ export default function CharactersClient({
                         cardName.replace(/([A-Z])/g, " $1").trim()}
                       {cardData && (
                         <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 w-44 opacity-0 group-hover/card:opacity-100 transition-opacity z-20">
-                          <img
-                            src={fullCardUrl(
-                              cardData.id.toLowerCase(),
-                              false,
-                              "stable",
-                              lang,
-                            )}
+                          <CardImage
+                            id={cardData.id}
+                            channel={cardRenderChannel(cardData)}
+                            art={cardData.image_url}
                             alt={cardData.name}
                             className="w-44 h-auto drop-shadow-[0_6px_18px_rgba(0,0,0,0.65)]"
-                            crossOrigin="anonymous"
-                            loading="lazy"
                           />
                         </span>
                       )}

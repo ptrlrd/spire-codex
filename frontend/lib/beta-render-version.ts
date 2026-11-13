@@ -1,4 +1,4 @@
-export const BETA_RENDER_VERSION_FALLBACK = "0.111.0";
+export const BETA_RENDER_VERSION_FALLBACK = "0.113.0";
 
 export function normalizeBetaRenderVersion(
   v: string | null | undefined,

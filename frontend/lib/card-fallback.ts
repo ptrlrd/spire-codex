@@ -1,5 +1,6 @@
 import { displayName } from "./display-name";
 import { enchantedCardUrl, fullCardUrl, imageUrl } from "./image-url";
+import { isBetaRow } from "./beta-row";
 
 export function safeCardId(id: string | null | undefined): boolean {
   return !!id && !id.includes("/") && !id.includes("\\") && !id.includes("..");
@@ -73,4 +74,10 @@ export function cardImageChain(
   }
   if (art) urls.push(imageUrl(art));
   return urls.filter((u, i) => urls.indexOf(u) === i);
+}
+
+export function cardRenderChannel(
+  card: { image_url?: string | null } | null | undefined,
+): "stable" | "beta" {
+  return isBetaRow(card) ? "beta" : "stable";
 }

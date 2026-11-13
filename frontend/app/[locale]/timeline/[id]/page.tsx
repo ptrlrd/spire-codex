@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getT(locale);
   const path = `/timeline/${id}`;
   try {
-    const res = await fetch(`${API_INTERNAL}/api/epochs/${id}`);
+    const res = await fetch(`${API_INTERNAL}/api/epochs/${id}?channel=all`);
     if (!res.ok)
       return buildPageMetadata({
         locale,
@@ -65,7 +65,7 @@ export default async function Page({ params }: Props) {
   let jsonLd = null;
   let epoch = null;
   try {
-    const res = await fetch(`${API_INTERNAL}/api/epochs/${id}`);
+    const res = await fetch(`${API_INTERNAL}/api/epochs/${id}?channel=all`);
     if (res.ok) {
       epoch = await res.json();
       const desc = stripTags(epoch.description || "");

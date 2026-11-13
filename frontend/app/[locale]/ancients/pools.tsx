@@ -69,7 +69,9 @@ function RelicPill({
         )}
         {isPerCharacter && variants.length > 0 && (
           <span className="anc-variants">
-            <span className="lbl">{t("Shows as 5 separate options:")}</span>{" "}
+            <span className="lbl">
+              {t("Shows as {n} separate options:", { n: variants.length })}
+            </span>{" "}
             {variants.map((v, i) => (
               <span key={v.char}>
                 <span className="vn">{v.name}</span>

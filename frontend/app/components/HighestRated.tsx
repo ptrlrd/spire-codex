@@ -1,6 +1,8 @@
 import { Link } from "@/i18n/navigation";
 import ScoreBadge from "@/app/components/ScoreBadge";
-import { imageUrl, fullCardUrl } from "@/lib/image-url";
+import { imageUrl } from "@/lib/image-url";
+import CardImage from "./CardImage";
+import { cardRenderChannel } from "@/lib/card-fallback";
 import { getT, getFormatNumber } from "@/lib/i18n-server";
 
 const API =
@@ -111,12 +113,13 @@ export default async function HighestRated({
             >
               {isCards ? (
                 // Full game card art (localized), the render carries the name.
-                <img
-                  src={fullCardUrl(e.id.toLowerCase(), false, "stable", lang)}
+                <CardImage
+                  id={e.id}
+                  channel={cardRenderChannel(e)}
+                  art={e.image_url}
+                  lang={lang}
                   alt={t("{name} - Slay the Spire 2 card", { name: e.name })}
                   className="w-full h-auto aspect-[400/520] transition-transform group-hover:scale-[1.04] drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
-                  loading="lazy"
-                  crossOrigin="anonymous"
                 />
               ) : (
                 <>

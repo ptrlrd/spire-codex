@@ -30,6 +30,7 @@ export const PAGE_OVERRIDES = {
       "defect",
       "necrobinder",
       "regent",
+      "fool",
     ],
   },
   "/relics": { keywords: ["relic", "artifact"] },

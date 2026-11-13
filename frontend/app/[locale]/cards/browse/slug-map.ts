@@ -97,6 +97,13 @@ export const SLUG_MAP: Record<string, SlugEntry> = {
   },
 
   // --- By Keyword ---
+  tarot: {
+    params: { tag: "Tarot" },
+    label: "Tarot Cards",
+    description:
+      "All 22 Tarot cards in Slay the Spire 2. The Fool's Mythic Form adds a random one to your hand at the start of each turn, and each costs 0.",
+    category: "keyword",
+  },
   exhaust: {
     params: { keyword: "Exhaust" },
     label: "Exhaust Cards",

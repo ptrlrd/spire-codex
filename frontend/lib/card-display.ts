@@ -397,6 +397,7 @@ export function gridCard(card: Card): Card {
     is_x_star_cost: card.is_x_star_cost,
     keywords: card.keywords,
     keywords_key: card.keywords_key,
+    tags: card.tags,
     upgrade,
     image_url: card.image_url,
     beta_image_url: card.beta_image_url,

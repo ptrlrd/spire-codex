@@ -40,6 +40,7 @@ export default function PowerDetail({
   const lang = useGameLocale();
   const t = useT();
   const bp = useBetaPrefix();
+  const merged = bp ? "" : "&channel=all";
   const [power, setPower] = useState<Power | null>(initialPower ?? null);
   const [allCards, setAllCards] = useState<Card[]>([]);
   const [loading, setLoading] = useState(!initialPower);
@@ -57,8 +58,10 @@ export default function PowerDetail({
   }, [id, lang]);
 
   useEffect(() => {
-    cachedFetch<Card[]>(`${API}/api/cards?lang=${lang}`).then(setAllCards);
-  }, [lang]);
+    cachedFetch<Card[]>(`${API}/api/cards?lang=${lang}${merged}`).then(
+      setAllCards,
+    );
+  }, [lang, merged]);
 
   const relatedCards = useMemo(() => {
     if (!id || allCards.length === 0) return [];

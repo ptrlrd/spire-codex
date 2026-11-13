@@ -5,6 +5,8 @@ import { useT, useGameLocale, type TFn } from "@/lib/i18n";
 
 import type { ReactNode } from "react";
 import { imageUrl } from "@/lib/image-url";
+import { powerIconUrl } from "@/lib/power-icon";
+import { useIdMap } from "@/lib/use-id-map";
 import type { ScoresMap } from "@/lib/use-entity-scores";
 import type {
   BuyLine,
@@ -945,19 +947,25 @@ function BlockChip({ n }: { n: number }) {
 }
 
 function PowerChip({ id, n }: { id: string; n?: number }) {
+  const powers = useIdMap<{ id: string; image_url?: string | null }>(
+    "/api/powers",
+  );
+  const icon = powerIconUrl(id, powers);
   return (
     <span className="inline-flex items-center gap-0.5 align-baseline tabular-nums">
       {powerLabel(id, n)}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={imageUrl(`/static/images/powers/${id.toLowerCase()}.webp`)}
-        alt=""
-        className="inline-block h-4 w-4 align-text-bottom"
-        loading="lazy"
-        onError={(e) => {
-          (e.target as HTMLImageElement).style.display = "none";
-        }}
-      />
+      {icon && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={icon}
+          alt=""
+          className="inline-block h-4 w-4 align-text-bottom"
+          loading="lazy"
+          onError={(e) => {
+            (e.target as HTMLImageElement).style.display = "none";
+          }}
+        />
+      )}
     </span>
   );
 }

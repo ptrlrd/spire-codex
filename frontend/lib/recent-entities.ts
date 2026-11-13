@@ -91,7 +91,7 @@ export function fetchRecentName(
 ): Promise<string | null> {
   const path = API_PATH[type] ?? type;
   return cachedFetch<{ name?: string; title?: string }>(
-    `${API}/api/${path}/${id}?lang=${lang}`,
+    `${API}/api/${path}/${id}?lang=${lang}&channel=all`,
   )
     .then((d) => d?.name || d?.title || null)
     .catch(() => null);
