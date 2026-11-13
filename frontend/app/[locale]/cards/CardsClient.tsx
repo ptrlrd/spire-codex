@@ -139,7 +139,10 @@ const keywordOptions = [
   { label: "Unplayable", value: "Unplayable" },
   { label: "Sly", value: "Sly" },
   { label: "Eternal", value: "Eternal" },
+  { label: "Tarot", value: "Tarot" },
 ];
+
+const TAG_FILTERS = new Set(["Tarot"]);
 
 function CardsClientInner({
   initialCards,
@@ -247,7 +250,8 @@ function CardsClientInner({
     if (color) params.set("color", color);
     if (type) params.set("type", type);
     if (rarity) params.set("rarity", rarity);
-    if (keyword) params.set("keyword", keyword);
+    if (keyword)
+      params.set(TAG_FILTERS.has(keyword) ? "tag" : "keyword", keyword);
     if (cost) params.set("cost", cost);
     if (search) params.set("search", search);
     params.set("lang", lang);
@@ -267,7 +271,10 @@ function CardsClientInner({
           (!color || c.color === color) &&
           (!type || c.type === type) &&
           (!rarity || c.rarity === rarity) &&
-          (!keyword || cardHasKeyword(c, keyword)) &&
+          (!keyword ||
+            (TAG_FILTERS.has(keyword)
+              ? !!c.tags?.includes(keyword)
+              : cardHasKeyword(c, keyword))) &&
           matchesCost(c, cost) &&
           (!search || c.name.toLowerCase().includes(search.toLowerCase())),
       )

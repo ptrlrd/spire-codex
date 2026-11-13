@@ -7,6 +7,7 @@ import type { Card } from "@/lib/api/types";
 import CardImage from "@/app/components/CardImage";
 import { useChannel, useBetaPrefix } from "@/lib/api/prefix.client";
 import BetaBadge from "./BetaBadge";
+import { cardRenderChannel } from "@/lib/card-fallback";
 
 /**
  * "Card view" of the card list: the full game-rendered card images (frame, art,
@@ -31,10 +32,12 @@ function FullCardItem({ card, stat }: { card: Card; stat?: CardStat }) {
   const hasUpgrade = !!card.upgrade;
   const showUpgraded = upgraded && hasUpgrade;
   const href = `${bp}/cards/${id}`;
+  const betaOnly =
+    !!card.beta || (channel !== "beta" && cardRenderChannel(card) === "beta");
 
   return (
     <div className="group relative [content-visibility:auto] [contain-intrinsic-size:auto_230px]">
-      {card.beta && (
+      {betaOnly && (
         <span className="absolute top-1 right-1 z-20">
           <BetaBadge />
         </span>
@@ -43,7 +46,7 @@ function FullCardItem({ card, stat }: { card: Card; stat?: CardStat }) {
         <CardImage
           id={id}
           upgraded={showUpgraded}
-          channel={card.beta ? "beta" : channel}
+          channel={betaOnly ? "beta" : channel}
           art={card.image_url || card.beta_image_url}
           alt={t("{name} - Slay the Spire 2", {
             name: `${card.name}${showUpgraded ? "+" : ""}`,

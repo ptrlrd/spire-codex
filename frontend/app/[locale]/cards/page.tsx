@@ -169,6 +169,12 @@ export default async function CardsPage({ params }: Props) {
     };
   }).filter((char, i) => i < LAUNCH_CHARACTERS || char.count > 0);
 
+  const castList = new Intl.ListFormat("en", { type: "conjunction" }).format(
+    cardsByCharacter.map((c, i) =>
+      i < LAUNCH_CHARACTERS ? c.name : `${c.name} (beta)`,
+    ),
+  );
+
   // Top-6 by Codex Score, only cards that have stats (so the section
   // never renders empty placeholders during a fresh deploy when the
   // entity_stats_snapshot is still warming).
@@ -188,7 +194,7 @@ export default async function CardsPage({ params }: Props) {
   const faq = [
     {
       question: t("How many cards are in Slay the Spire 2?"),
-      answer: `Slay the Spire 2 has ${fmtN(totalCards)} cards across the five characters, Ironclad, Silent, Defect, Necrobinder, and Regent, plus colorless, event, and token cards. Spire Codex updates the catalog automatically with each patch by re-parsing the decompiled game source.`,
+      answer: `Slay the Spire 2 has ${fmtN(totalCards)} cards across its characters, ${castList}, plus colorless, event, and token cards. Spire Codex updates the catalog automatically with each patch by re-parsing the decompiled game source.`,
     },
     {
       question: t("Which sts2 cards have the best win rates?"),
@@ -215,7 +221,7 @@ export default async function CardsPage({ params }: Props) {
     buildCollectionPageJsonLd({
       name: "Slay the Spire 2 Cards",
       description:
-        "Browse every card across Ironclad, Silent, Defect, Necrobinder, and Regent.",
+        "Browse every Slay the Spire 2 card by character, type, rarity, and keyword.",
       path: localePath(locale, "/cards"),
       inLanguage: inLanguageOf(locale),
       items: cards.map((c) => ({
@@ -243,10 +249,7 @@ export default async function CardsPage({ params }: Props) {
           <section className="mb-8 space-y-3 text-[var(--text-default)] max-w-3xl">
             <p>
               Every <strong>Slay the Spire 2</strong> card in one place, all{" "}
-              {fmtN(totalCards)} cards from the five characters (
-              {CHARACTERS.slice(0, LAUNCH_CHARACTERS)
-                .map((c) => t(c.name))
-                .join(", ")}
+              {fmtN(totalCards)} cards from the playable characters ({castList}
               ), with live pick rates, win rates, and tier scores aggregated
               from community-tracked runs. The card catalog is parsed directly
               from the game on every patch, so values stay canonical, and stats

@@ -96,7 +96,8 @@ export default function BrowseDetail({
     if (keyword) params.set("keyword", keyword);
     if (search) params.set("search", search);
     params.set("lang", "eng");
-    if (needsMergedCatalog(params.get("color"))) params.set("channel", "all");
+    if (needsMergedCatalog(params.get("color")) || params.get("tag"))
+      params.set("channel", "all");
     url = buildApiUrl(`${API}/api/cards?${params}`);
   }
   const filtered = useFilterFetch<Card[]>(url);

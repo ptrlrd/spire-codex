@@ -85,7 +85,7 @@ export async function fetchSpawnedCards(
     ids.map(async (sid) => {
       try {
         const res = await fetch(
-          `${API_INTERNAL}/api/cards/${sid}${langQuery(locale)}`,
+          `${API_INTERNAL}/api/cards/${sid}?channel=all${langQuery(locale, "&")}`,
           { next: { revalidate: 3600 } },
         );
         if (!res.ok) return null;

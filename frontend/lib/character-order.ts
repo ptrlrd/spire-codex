@@ -40,6 +40,10 @@ export function needsMergedCatalog(id: string | null | undefined): boolean {
   return CHARACTER_IDS.includes(key) && !LAUNCH_CHARACTERS.includes(key);
 }
 
+export function mergedCatalogParam(id: string | null | undefined): string {
+  return needsMergedCatalog(id) ? "&channel=all" : "";
+}
+
 export function characterLabel(id: string | null | undefined): string {
   const key = characterKey(id);
   return (

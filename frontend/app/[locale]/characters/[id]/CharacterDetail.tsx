@@ -14,7 +14,9 @@ import type { Character, Card, Relic, Potion } from "@/lib/api/types";
 import RichDescription from "@/app/components/RichDescription";
 import ScoreBadge from "@/app/components/ScoreBadge";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { imageUrl, fullCardUrl } from "@/lib/image-url";
+import { imageUrl } from "@/lib/image-url";
+import CardImage from "@/app/components/CardImage";
+import { cardRenderChannel } from "@/lib/card-fallback";
 import FullCardGrid from "@/app/components/FullCardGrid";
 import EntityProse from "@/app/components/EntityProse";
 import { comparePairs, isCompareCharacter } from "@/lib/link-targets";
@@ -208,9 +210,9 @@ export default function CharacterDetail({
         `${API}/api/runs/top/${type}/${id}?limit=15`,
       ).catch(() => [] as TopEntry[]);
     Promise.all([
-      cachedFetch<Potion[]>(`${API}/api/potions?lang=${lang}`).catch(
-        () => [] as Potion[],
-      ),
+      cachedFetch<Potion[]>(
+        `${API}/api/potions?lang=${lang}${needsMergedCatalog(id) ? "&channel=all" : ""}`,
+      ).catch(() => [] as Potion[]),
       top("cards"),
       top("relics"),
       top("potions"),
@@ -392,6 +394,14 @@ export default function CharacterDetail({
     topPotionsFiltered.length > 0;
   const hasAllCards = allCards.length > 0;
   const hasPoolRelics = sortedPoolRelics.length > 0;
+  const tarotSources = allCards.filter((c) =>
+    c.spawns_cards?.some((sid) => cards[sid]?.tags?.includes("Tarot")),
+  );
+  const tarotIds = new Set(tarotSources.flatMap((c) => c.spawns_cards ?? []));
+  const tarotCards = Object.values(cards)
+    .filter((c) => tarotIds.has(c.id) && c.tags?.includes("Tarot"))
+    .sort((a, b) => a.name.localeCompare(b.name));
+  const hasTarot = tarotCards.length > 0;
   const hasQuotes =
     !!char.quotes && Object.keys(char.quotes).some((k) => k in QUOTE_LABELS);
   const hasDialogues = !!char.dialogues && char.dialogues.length > 0;
@@ -404,6 +414,7 @@ export default function CharacterDetail({
     ...(hasStartRelics ? [{ id: "relic", label: t("Starting relic") }] : []),
     ...(hasCommunity ? [{ id: "community", label: t("Community") }] : []),
     ...(hasAllCards ? [{ id: "cards", label: t("Cards") }] : []),
+    ...(hasTarot ? [{ id: "tarot", label: t("Tarot") }] : []),
     ...(hasPoolRelics ? [{ id: "relics", label: t("Relics") }] : []),
     ...(hasPronouns ? [{ id: "pronouns", label: t("Nobody knows") }] : []),
     ...(hasQuotes ? [{ id: "quotes", label: t("Quotes") }] : []),
@@ -556,18 +567,13 @@ export default function CharacterDetail({
                       href={`/cards/${cardData.id.toLowerCase()}`}
                       title={cardData.name}
                     >
-                      <img
-                        src={fullCardUrl(
-                          cardData.id.toLowerCase(),
-                          false,
-                          "stable",
-                          lang,
-                        )}
+                      <CardImage
+                        id={cardData.id}
+                        channel={cardRenderChannel(cardData)}
+                        art={cardData.image_url}
                         alt={t("{name} - Slay the Spire 2", {
                           name: cardData.name,
                         })}
-                        crossOrigin="anonymous"
-                        loading="lazy"
                       />
                     </Link>
                   );
@@ -699,6 +705,40 @@ export default function CharacterDetail({
                   ))}
                 </div>
               )}
+            </section>
+          )}
+
+          {hasTarot && (
+            <section id="tarot">
+              <h2>
+                {t("Tarot")}
+                <span className="sec-count">
+                  {" "}
+                  ({t("{n} cards", { n: tarotCards.length })})
+                </span>
+              </h2>
+              <p className="h-note">
+                {t(
+                  "Tarot cards are created during combat and are never offered as rewards.",
+                )}{" "}
+                {t("Created by")}:{" "}
+                {tarotSources.map((c, i) => (
+                  <span key={c.id}>
+                    {i > 0 ? ", " : ""}
+                    <Link
+                      prefetch={false}
+                      href={`/cards/${c.id.toLowerCase()}`}
+                    >
+                      {c.name}
+                    </Link>
+                  </span>
+                ))}
+                .
+              </p>
+              <FullCardGrid
+                cards={tarotCards}
+                className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3"
+              />
             </section>
           )}
 

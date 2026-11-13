@@ -176,9 +176,9 @@ export default function DeckBuilderClient() {
           fetch(`${API}/api/cards?color=colorless`).then((r) =>
             r.ok ? r.json() : Promise.reject(r.status),
           ),
-          fetch(`${API}/api/relics`).then((r) =>
-            r.ok ? r.json() : Promise.reject(r.status),
-          ),
+          fetch(
+            `${API}/api/relics${needsMergedCatalog(state.character) ? "?channel=all" : ""}`,
+          ).then((r) => (r.ok ? r.json() : Promise.reject(r.status))),
         ]);
         if (dead) return;
         const cards = [...own, ...colorless]

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
+import { ALL_BROWSE_SLUGS } from "./slug-map";
 
 const title =
   "Cards - Browse by Category - Slay the Spire 2 (sts2) | Spire Codex";
@@ -8,8 +9,7 @@ const ogDesc =
 
 export const metadata: Metadata = {
   title,
-  description:
-    "Filtered card collections for Slay the Spire 2 (sts2), 41 curated lists by type, rarity, character, and keyword (Attack, Skill, Power, Rare, Ironclad, more).",
+  description: `Filtered card collections for Slay the Spire 2 (sts2), ${ALL_BROWSE_SLUGS.length} curated lists by type, rarity, character, and keyword (Attack, Skill, Power, Rare, Ironclad, more).`,
   openGraph: {
     type: "website",
     siteName: SITE_NAME,

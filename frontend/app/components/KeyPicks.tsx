@@ -2,7 +2,8 @@
 
 import { useMemo, useState } from "react";
 import CardImage from "@/app/components/CardImage";
-import { CDN_BASE } from "@/lib/image-url";
+import { CDN_BASE, imageUrl } from "@/lib/image-url";
+import { cardRenderChannel } from "@/lib/card-fallback";
 import { useT } from "@/lib/i18n";
 import { useIdMap } from "@/lib/use-id-map";
 
@@ -19,19 +20,31 @@ export interface KeyBoss {
 interface Named {
   id: string;
   name: string;
+  image_url?: string | null;
 }
 
-function useNames(
+function useRows(
   kind: "cards" | "relics" | "encounters",
-): Record<string, string> {
+): Record<string, Named> {
   const rows = useIdMap<Named>(`/api/${kind}`);
   return useMemo(
     () =>
       Object.fromEntries(
-        Object.values(rows).map((r) => [r.id.toUpperCase(), r.name]),
+        Object.values(rows).map((r) => [r.id.toUpperCase(), r]),
       ),
     [rows],
   );
+}
+
+export function keyPickIcon(
+  kind: "cards" | "relics",
+  id: string,
+  row: Named | undefined,
+  catalogLoaded: boolean,
+): string | null {
+  if (row?.image_url) return imageUrl(row.image_url);
+  if (!catalogLoaded) return null;
+  return `${CDN_BASE}/${kind}/${id.toLowerCase()}.webp`;
 }
 
 function pretty(id: string): string {
@@ -55,15 +68,17 @@ export default function KeyPicks({
   className?: string;
 }) {
   const t = useT();
-  const cardNames = useNames("cards");
-  const relicNames = useNames("relics");
-  const bossNames = useNames("encounters");
+  const cardRows = useRows("cards");
+  const relicRows = useRows("relics");
+  const bossRows = useRows("encounters");
+  const cardsLoaded = Object.keys(cardRows).length > 0;
+  const relicsLoaded = Object.keys(relicRows).length > 0;
   if (!cards?.length && !relics?.length && !bosses?.length) return null;
   const killer = (killedBy ?? "").split(".").pop()?.toUpperCase();
   return (
     <span className={`flex items-center gap-1 ${className}`}>
       {(bosses ?? []).map((b, i) => {
-        const name = bossNames[b.id] ?? pretty(b.id.replace(/_BOSS$/, ""));
+        const name = bossRows[b.id]?.name ?? pretty(b.id.replace(/_BOSS$/, ""));
         const killed = killer === b.id;
         const label = killed ? `${t("Killed by")} ${name}` : name;
         return (
@@ -100,11 +115,15 @@ export default function KeyPicks({
           <span className="mx-1 h-5 w-px bg-[var(--border-subtle)]" />
         )}
       {(relics ?? []).map((id) => {
-        const name = relicNames[id] ?? pretty(id);
+        const row = relicRows[id.toUpperCase()];
+        const name = row?.name ?? pretty(id);
+        const src = keyPickIcon("relics", id, row, relicsLoaded);
+        if (!src)
+          return <span key={`r-${id}`} className="h-7 w-7" title={name} />;
         return (
           <img
             key={`r-${id}`}
-            src={`${CDN_BASE}/relics/${id.toLowerCase()}.webp`}
+            src={src}
             alt={name}
             title={name}
             loading="lazy"
@@ -119,36 +138,51 @@ export default function KeyPicks({
         <KeyCardIcon
           key={`c-${c.id}`}
           card={c}
-          name={(cardNames[c.id] ?? pretty(c.id)) + (c.upgraded ? "+" : "")}
+          row={cardRows[c.id.toUpperCase()]}
+          catalogLoaded={cardsLoaded}
+          name={
+            (cardRows[c.id.toUpperCase()]?.name ?? pretty(c.id)) +
+            (c.upgraded ? "+" : "")
+          }
         />
       ))}
     </span>
   );
 }
 
-function KeyCardIcon({ card, name }: { card: KeyCard; name: string }) {
+function KeyCardIcon({
+  card,
+  name,
+  row,
+  catalogLoaded,
+}: {
+  card: KeyCard;
+  name: string;
+  row: Named | undefined;
+  catalogLoaded: boolean;
+}) {
   const [open, setOpen] = useState(false);
+  const src = keyPickIcon("cards", card.id, row, catalogLoaded);
+  const frame = `h-7 w-7 rounded object-cover border ${
+    card.upgraded
+      ? "border-[var(--accent-gold)]"
+      : "border-[var(--border-subtle)]"
+  }`;
+  if (!src) return <span className={frame} title={name} />;
   return (
     <span
       className="relative"
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
-      <img
-        src={`${CDN_BASE}/cards/${card.id.toLowerCase()}.webp`}
-        alt={name}
-        loading="lazy"
-        className={`h-7 w-7 rounded object-cover border ${
-          card.upgraded
-            ? "border-[var(--accent-gold)]"
-            : "border-[var(--border-subtle)]"
-        }`}
-      />
+      <img src={src} alt={name} loading="lazy" className={frame} />
       {open && (
         <span className="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-full mb-2 w-40 z-50">
           <CardImage
             id={card.id.toLowerCase()}
             upgraded={card.upgraded}
+            channel={cardRenderChannel(row)}
+            art={row?.image_url}
             alt={name}
             eager
             className="w-40 h-auto drop-shadow-[0_8px_24px_rgba(0,0,0,0.7)]"

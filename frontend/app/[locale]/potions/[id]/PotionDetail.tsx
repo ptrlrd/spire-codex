@@ -1,6 +1,7 @@
 "use client";
 
 import { useT, useGameLocale } from "@/lib/i18n";
+import { mergedCatalogParam } from "@/lib/character-order";
 import {
   useState,
   useEffect,
@@ -291,13 +292,13 @@ export default function PotionDetail({
               groups={[
                 {
                   label: t("{rarity} potions", { rarity: potion.rarity }),
-                  path: `/api/potions?rarity=${encodeURIComponent(potion.rarity)}&lang=${lang}`,
+                  path: `/api/potions?rarity=${encodeURIComponent(potion.rarity)}&lang=${lang}${mergedCatalogParam(potion.pool)}`,
                 },
                 ...(potion.pool
                   ? [
                       {
                         label: t("{pool} pool", { pool: potion.pool }),
-                        path: `/api/potions?pool=${encodeURIComponent(potion.pool)}&lang=${lang}`,
+                        path: `/api/potions?pool=${encodeURIComponent(potion.pool)}&lang=${lang}${mergedCatalogParam(potion.pool)}`,
                       },
                     ]
                   : []),

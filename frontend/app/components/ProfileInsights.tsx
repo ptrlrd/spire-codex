@@ -16,7 +16,9 @@ import {
 } from "chart.js";
 import { Chart } from "react-chartjs-2";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { CDN_BASE, fullCardUrl, imageUrl } from "@/lib/image-url";
+import { CDN_BASE, imageUrl } from "@/lib/image-url";
+import CardImage from "./CardImage";
+import { cardRenderChannel } from "@/lib/card-fallback";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
 import IconSelect from "@/app/components/IconSelect";
 import AscensionHeatmap, {
@@ -497,20 +499,12 @@ function CardDeltaList({
             className="flex items-center gap-3 py-1.5 hover:bg-[var(--bg-card-hover)] rounded px-2 -mx-2 transition-colors"
           >
             <span className="flex-shrink-0 w-10 h-[52px] flex items-center justify-center">
-              <img
-                src={fullCardUrl(d.id.toLowerCase(), false, "stable", lang)}
+              <CardImage
+                id={d.id}
+                channel={cardRenderChannel(info)}
+                art={info?.image_url}
                 alt={info?.name || d.id}
-                crossOrigin="anonymous"
-                loading="lazy"
                 className="max-w-full max-h-full object-contain drop-shadow"
-                onError={(e) => {
-                  // mad_science has no full render; fall back to the portrait.
-                  const el = e.currentTarget;
-                  if (info?.image_url && !el.dataset.fellBack) {
-                    el.dataset.fellBack = "1";
-                    el.src = imageUrl(info.image_url);
-                  }
-                }}
               />
             </span>
             <span className="flex-1 min-w-0">

@@ -1,12 +1,14 @@
 "use client";
 
-import { useT, useGameLocale, type TFn } from "@/lib/i18n";
+import { useT, type TFn } from "@/lib/i18n";
 import React, { useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
-import { imageUrl, fullCardUrl } from "@/lib/image-url";
+import { imageUrl } from "@/lib/image-url";
+import CardImage from "./CardImage";
+import { cardRenderChannel } from "@/lib/card-fallback";
 import {
   splitRichLinks,
   type EntityNameLink,
@@ -371,8 +373,6 @@ function CardHoverTip({
 }) {
   const t = useT();
   const [show, setShow] = useState(false);
-  const [failed, setFailed] = useState(false);
-  const lang = useGameLocale();
   const displayName = isUpgraded ? `${card.name}+` : card.name;
 
   return (
@@ -392,22 +392,13 @@ function CardHoverTip({
           {/* Full game-rendered card (with upgraded variant when relevant);
               the render already carries the name/cost/text. Falls back to
               the portrait art if a card has no full render (mad_science). */}
-          <img
-            src={
-              failed && card.image_url
-                ? imageUrl(card.image_url)
-                : fullCardUrl(
-                    card.id.toLowerCase(),
-                    !!isUpgraded,
-                    "stable",
-                    lang,
-                  )
-            }
+          <CardImage
+            id={card.id}
+            upgraded={!!isUpgraded}
+            channel={cardRenderChannel(card)}
+            art={card.image_url}
             alt={t("{name} - Slay the Spire 2 Card", { name: displayName })}
             className="w-40 h-auto drop-shadow-[0_8px_24px_rgba(0,0,0,0.7)]"
-            crossOrigin="anonymous"
-            loading="lazy"
-            onError={() => setFailed(true)}
           />
         </span>
       )}

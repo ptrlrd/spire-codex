@@ -10,6 +10,7 @@ import RichDescription from "@/app/components/RichDescription";
 import SearchFilter from "@/app/components/SearchFilter";
 import EntityProse from "@/app/components/EntityProse";
 import { cachedFetch } from "@/lib/fetch-cache";
+import { useBetaPrefix } from "@/lib/api/prefix.client";
 import "@/app/card-revamp.css";
 import "@/app/reference-extra.css";
 
@@ -59,6 +60,7 @@ export default function KeywordDetail({
   const router = useRouter();
   const lang = useGameLocale();
   const t = useT();
+  const merged = useBetaPrefix() ? "" : "&channel=all";
 
   const [keyword, setKeyword] = useState<Keyword | null>(
     initialResult?.type === "keyword" ? initialResult.data : null,
@@ -82,7 +84,7 @@ export default function KeywordDetail({
       .then((kw) => {
         setKeyword(kw);
         return cachedFetch<Card[]>(
-          `${API}/api/cards?keyword=${encodeURIComponent(id)}&lang=${lang}`,
+          `${API}/api/cards?keyword=${encodeURIComponent(id)}&lang=${lang}${merged}`,
         );
       })
       .then((cardList) => setCards(cardList))
@@ -97,7 +99,7 @@ export default function KeywordDetail({
           });
       })
       .finally(() => setLoading(false));
-  }, [id, lang]);
+  }, [id, lang, merged]);
 
   if (loading) {
     return (

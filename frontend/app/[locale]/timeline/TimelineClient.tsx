@@ -5,6 +5,8 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "@/i18n/navigation";
 import type { Epoch, Story, Card, Relic, Potion } from "@/lib/api/types";
 import { cachedFetch } from "@/lib/fetch-cache";
+import { isBetaRow } from "@/lib/beta-row";
+import BetaBadge from "@/app/components/BetaBadge";
 import SearchFilter from "@/app/components/SearchFilter";
 import RichDescription from "@/app/components/RichDescription";
 import { useChannel } from "@/lib/api/prefix.client";
@@ -200,10 +202,10 @@ export default function TimelineClient({
       return;
     }
     Promise.all([
-      cachedFetch<Card[]>(`${API}/api/cards?lang=${lang}`),
-      cachedFetch<Relic[]>(`${API}/api/relics?lang=${lang}`),
-      cachedFetch<Potion[]>(`${API}/api/potions?lang=${lang}`),
-      cachedFetch<Epoch[]>(`${API}/api/epochs?lang=${lang}`),
+      cachedFetch<Card[]>(`${API}/api/cards?lang=${lang}&channel=all`),
+      cachedFetch<Relic[]>(`${API}/api/relics?lang=${lang}&channel=all`),
+      cachedFetch<Potion[]>(`${API}/api/potions?lang=${lang}&channel=all`),
+      cachedFetch<Epoch[]>(`${API}/api/epochs?lang=${lang}&channel=all`),
     ]).then(
       ([cards, relics, potions, allEpochs]: [
         Card[],
@@ -245,9 +247,10 @@ export default function TimelineClient({
     if (storyFilter) params.set("story", storyFilter);
     if (search) params.set("search", search);
     params.set("lang", lang);
+    params.set("channel", "all");
     Promise.all([
       cachedFetch<Epoch[]>(`${API}/api/epochs?${params}`),
-      cachedFetch<Story[]>(`${API}/api/stories?lang=${lang}`),
+      cachedFetch<Story[]>(`${API}/api/stories?lang=${lang}&channel=all`),
     ])
       .then(([e, s]: [Epoch[], Story[]]) => {
         setEpochs(e.sort((a, b) => a.sort_order - b.sort_order));
@@ -364,7 +367,7 @@ export default function TimelineClient({
                                 />
                               )}
                               <div>
-                                <h3 className="font-semibold text-[var(--text-primary)]">
+                                <h3 className="font-semibold text-[var(--text-primary)] flex flex-wrap items-center gap-2">
                                   <Link
                                     href={`/timeline/${epoch.id.toLowerCase()}`}
                                     className="hover:text-[var(--accent-gold)] transition-colors"
@@ -372,6 +375,7 @@ export default function TimelineClient({
                                   >
                                     {epoch.title}
                                   </Link>
+                                  {isBetaRow(epoch) && <BetaBadge />}
                                 </h3>
                                 <p className="text-[10px] text-[var(--text-muted)]">
                                   {epoch.era_name}

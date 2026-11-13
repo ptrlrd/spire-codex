@@ -300,7 +300,9 @@ export default function CardDetail({
   const [notFound, setNotFound] = useState(false);
   const [upgraded, setUpgraded] = useState(false);
   const [betaArt, setBetaArt] = useState(false);
+  const [creators, setCreators] = useState<{ id: string; name: string }[]>([]);
   const [cardImgFailed, setCardImgFailed] = useState(false);
+  const [failedRender, setFailedRender] = useState("");
   const [selectedVariant, setSelectedVariant] = useState<string | null>(null);
   // Enchantment chosen in the infobox variant switcher ("none" = plain render).
   const [selectedEnch, setSelectedEnch] = useState<string>("none");
@@ -353,9 +355,9 @@ export default function CardDetail({
         ) {
           Promise.all(
             data.spawns_cards.map((sid: string) =>
-              cachedFetch<Card>(`${API}/api/cards/${sid}?lang=${lang}`).catch(
-                () => null,
-              ),
+              cachedFetch<Card>(
+                `${API}/api/cards/${sid}?lang=${lang}&channel=all`,
+              ).catch(() => null),
             ),
           ).then((results) =>
             setSpawnedCards(results.filter(Boolean) as Card[]),
@@ -367,6 +369,26 @@ export default function CardDetail({
       })
       .finally(() => setLoading(false));
   }, [id, lang, initialCatalogs]);
+
+  const isTarot = !!card?.tags?.includes("Tarot");
+  const cardId = card?.id;
+  useEffect(() => {
+    if (!isTarot || !cardId) return;
+    let live = true;
+    cachedFetch<Card[]>(`${API}/api/cards?lang=${lang}&channel=all`)
+      .then((all) => {
+        if (!live) return;
+        setCreators(
+          all
+            .filter((c) => c.spawns_cards?.includes(cardId))
+            .map((c) => ({ id: c.id, name: c.name })),
+        );
+      })
+      .catch(() => {});
+    return () => {
+      live = false;
+    };
+  }, [isTarot, cardId, lang]);
 
   // Load powers, keywords, and glossary for inline tooltips (beta only;
   // the stable page passes these down from the server).
@@ -593,6 +615,23 @@ export default function CardDetail({
   // Infobox render: enchanted render > raw artwork (detail / beta / variant /
   // failed full render) > full engine render. Mirrors the old image logic while
   // driving off the new variant switcher.
+  const localizedRender = fullCardUrl(
+    card.id.toLowerCase(),
+    isUpgraded,
+    channel,
+    lang,
+    betaRenderVersion,
+  );
+  const englishRender = fullCardUrl(
+    card.id.toLowerCase(),
+    isUpgraded,
+    channel,
+    "eng",
+    betaRenderVersion,
+  );
+  const useEnglishRender =
+    failedRender === localizedRender && englishRender !== localizedRender;
+  const plainRender = useEnglishRender ? englishRender : localizedRender;
   const renderSrc = enchActive
     ? enchantedCardUrl(
         card.id.toLowerCase(),
@@ -604,13 +643,7 @@ export default function CardDetail({
       )
     : betaArt || variantImg || cardImgFailed
       ? imageUrl(imgUrl)
-      : fullCardUrl(
-          card.id.toLowerCase(),
-          isUpgraded,
-          channel,
-          lang,
-          betaRenderVersion,
-        );
+      : plainRender;
 
   const partners = initialPairings?.partners;
   const serverToc = TOC_IDS.filter((sid) => {
@@ -1043,7 +1076,9 @@ export default function CardDetail({
                     );
                   }
                 } else if (!betaArt && !variantImg) {
-                  setCardImgFailed(true);
+                  if (!useEnglishRender && englishRender !== localizedRender)
+                    setFailedRender(localizedRender);
+                  else setCardImgFailed(true);
                 }
               }}
             />
@@ -1131,6 +1166,31 @@ export default function CardDetail({
                           {i > 0 ? ", " : ""}
                           <Link href={`${bp}/cards/${sc.id.toLowerCase()}`}>
                             {sc.name}
+                          </Link>
+                        </span>
+                      ))}
+                    </dd>
+                  </div>
+                )}
+                {isTarot && (
+                  <div className="frow">
+                    <dt>{t("Set")}</dt>
+                    <dd>
+                      <Link href={`${bp}/cards/browse/tarot`}>
+                        {t("Tarot")}
+                      </Link>
+                    </dd>
+                  </div>
+                )}
+                {creators.length > 0 && (
+                  <div className="frow">
+                    <dt>{t("Created by")}</dt>
+                    <dd>
+                      {creators.map((c, i) => (
+                        <span key={c.id}>
+                          {i > 0 ? ", " : ""}
+                          <Link href={`${bp}/cards/${c.id.toLowerCase()}`}>
+                            {c.name}
                           </Link>
                         </span>
                       ))}
