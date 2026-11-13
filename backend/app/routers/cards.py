@@ -54,6 +54,13 @@ def has_keyword(card: dict, keyword: str, localized: str | None = None) -> bool:
     return bool((card.get("upgrade") or {}).get(f"add_{want}"))
 
 
+def has_tag(card: dict, tag: str) -> bool:
+    want = tag.strip().lower()
+    names = [str(t).lower() for t in (card.get("tags") or [])]
+    keys = [str(t).lower() for t in (card.get("tags_key") or [])]
+    return bool(want) and (want in names or want in keys)
+
+
 @router.get("", response_model=list[Card])
 def get_cards(
     request: Request,
@@ -72,7 +79,11 @@ def get_cards(
         description="Filter by keyword (Exhaust, Innate, Ethereal, Retain, Unplayable, Sly, Eternal)",
     ),
     tag: str | None = Query(
-        None, description="Filter by tag (Strike, Defend, Minion, etc.)"
+        None, description="Filter by tag (Strike, Defend, Minion, Tarot, etc.)"
+    ),
+    tarot: bool | None = Query(
+        None,
+        description="true for only the Tarot cards, false to leave them out",
     ),
     spawns: str | None = Query(
         None,
@@ -105,7 +116,9 @@ def get_cards(
         kw_localized = maps["keywords"].get(canonical.upper(), keyword)
         cards = [c for c in cards if has_keyword(c, canonical, kw_localized)]
     if tag:
-        cards = [c for c in cards if c.get("tags") and tag in c["tags"]]
+        cards = [c for c in cards if has_tag(c, tag)]
+    if tarot is not None:
+        cards = [c for c in cards if has_tag(c, "Tarot") == tarot]
     if spawns:
         want = spawns.strip().upper()
         cards = [c for c in cards if want in (c.get("spawns_cards") or [])]
