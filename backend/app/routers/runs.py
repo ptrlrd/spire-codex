@@ -15,6 +15,7 @@ from starlette.requests import ClientDisconnect
 from ..dependencies import get_lang, shared_limiter
 from ..models.schemas import ArchetypesResponse
 from ..services import rate_limit_config
+from ..services.game_modes import is_game_mode_filter
 from ..services.official_content import official_characters
 from ..services.runs_db import (
     INT_OVERFLOW_ERROR,
@@ -650,10 +651,11 @@ def get_leaderboard(
     more), or `multi` (player_count > 1). A co-op run is one row: the row is
     one of its seats, and `party` lists every seat's `run_hash`, `character`
     and `username`.
-    `game_mode`: `standard`, `daily`, or `custom`. Custom runs ride on
-    custom seeds so their times aren't comparable to the standard
-    ladder; the frontend defaults to `standard` and exposes mode
-    explicitly so users can opt into the other pools.
+    `game_mode`: `standard`, `daily`, `custom`, `blitz`, or `dread`. Each
+    mode is its own pool: custom runs ride on custom seeds, Blitz runs are
+    condensed and Dread runs carry extra rules, so their times aren't
+    comparable to the standard ladder; the frontend defaults to `standard`
+    and exposes mode explicitly so users can opt into the other pools.
     Single-player and multiplayer runs aren't directly comparable, so the
     frontend reads them as disjoint pools.
 
@@ -668,7 +670,7 @@ def get_leaderboard(
         raise HTTPException(status_code=400, detail="bad category")
     if players not in (None, "", "single", "multi", "1", "2", "3", "4"):
         raise HTTPException(status_code=400, detail="bad players")
-    if game_mode not in (None, "", "standard", "daily", "custom"):
+    if not is_game_mode_filter(game_mode):
         raise HTTPException(status_code=400, detail="bad game_mode")
     if character:
         character = character.strip().upper()
@@ -1995,7 +1997,7 @@ def get_community_stats(
             raise HTTPException(status_code=400, detail="bad character")
     if win not in (None, "", "true", "false", "abandoned"):
         raise HTTPException(status_code=400, detail="bad win filter")
-    if game_mode not in (None, "", "standard", "daily", "custom"):
+    if not is_game_mode_filter(game_mode):
         raise HTTPException(status_code=400, detail="bad game_mode")
     if players not in (None, "", "single", "multi", "1", "2", "3", "4"):
         raise HTTPException(status_code=400, detail="bad players")

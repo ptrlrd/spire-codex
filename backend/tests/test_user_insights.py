@@ -219,6 +219,8 @@ def test_streaks_and_weekly_activity():
         "coop": 0,
         "daily": 0,
         "custom": 0,
+        "blitz": 0,
+        "dread": 0,
         "win_rate": 100.0,
     }
     assert newer["runs"] == 4

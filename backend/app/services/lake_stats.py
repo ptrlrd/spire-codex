@@ -12,6 +12,7 @@ import os
 import threading
 from pathlib import Path
 
+from .game_modes import GAME_MODES
 from .official_content import official_characters, official_characters_sql
 
 logger = logging.getLogger(__name__)
@@ -654,7 +655,7 @@ def _cube_membership_sql(col: str, table: str, floor_col: str, where: str) -> st
     )
 
 
-_MODE_KEYS = frozenset(("standard", "daily", "custom"))
+_MODE_KEYS = frozenset(GAME_MODES)
 _PLAYER_KEYS = {"solo": "1", "2p": "2", "3p": "3", "4p": "4"}
 _SKILL_KEYS = {"a10": 0, "wr30": 1, "wr50": 2, "wr75": 3}
 

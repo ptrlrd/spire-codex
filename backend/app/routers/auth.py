@@ -11,6 +11,7 @@ from pydantic import BaseModel, Field
 from fastapi.responses import JSONResponse
 
 from ..dependencies import shared_limiter
+from ..services.game_modes import SEPARATE_MODES
 from ..services import supporters, rate_limit_config
 from ..services.auth_jwt import (
     get_current_user,
@@ -22,6 +23,7 @@ from ..services.auth_jwt import (
 logger = logging.getLogger("spire-codex.auth")
 
 router = APIRouter(prefix="/api/auth", tags=["Auth"])
+_OWN_BEST_MODES = tuple(m for m in SEPARATE_MODES if m not in ("daily", "custom"))
 limiter = shared_limiter
 
 _MAX_UPLOAD_SIZE = 512 * 1024  # 512 KB per file
@@ -518,6 +520,8 @@ def _compute_personal_bests(username: str) -> dict:
         [("run_time", 1)],
     )
     _best("fastest_daily", {"game_mode": "daily"}, [("run_time", 1)])
+    for mode in _OWN_BEST_MODES:
+        _best(f"fastest_{mode}", {"game_mode": mode}, [("run_time", 1)])
 
     return results
 
@@ -746,9 +750,13 @@ def competitive_stats(request: Request):
             "today_only": True,
         },
         "fastest_daily": {"category": "fastest", "game_mode": "daily"},
+        **{
+            f"fastest_{mode}": {"category": "fastest", "game_mode": mode}
+            for mode in _OWN_BEST_MODES
+        },
     }
 
-    # Up to 5 rank counts + the leaderboard + the comparison are independent
+    # Up to 7 rank counts + the leaderboard + the comparison are independent
     # Mongo queries; serially they were the profile page's long pole. Fan them
     # out on a small pool so the endpoint costs one slow query, not the sum.
     from concurrent.futures import ThreadPoolExecutor

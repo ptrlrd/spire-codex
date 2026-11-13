@@ -23,6 +23,7 @@ from ..dependencies import shared_limiter
 from ..services import rate_limit_config
 from ..services import cache as app_cache
 from ..services import charts_stats as cs
+from ..services.game_modes import is_game_mode_filter
 from ..services.official_content import official_characters
 
 from ..services.run_entity_stats import (
@@ -818,7 +819,7 @@ def get_chart(
         None, ge=0, le=10, description="Exact ascension (A10 is the cap)"
     ),
     game_mode: str | None = Query(
-        None, description="standard | daily | custom (omit for all)"
+        None, description="standard | daily | custom | blitz | dread (omit for all)"
     ),
     username: str | None = Query(
         None, max_length=64, description="One submitter's runs"
@@ -869,7 +870,7 @@ def get_chart(
             raise HTTPException(status_code=400, detail="bad bracket")
     if build_id is not None and not re.fullmatch(r"v[\d.]+", build_id):
         raise HTTPException(status_code=400, detail="bad build_id")
-    if game_mode and game_mode not in ("standard", "daily", "custom"):
+    if not is_game_mode_filter(game_mode):
         raise HTTPException(status_code=400, detail="bad game_mode")
     for name, value in (("stat", stat), ("x", x), ("y", y)):
         if value and value not in cs.STATS:
