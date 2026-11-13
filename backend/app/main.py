@@ -36,6 +36,7 @@ from .routers import (
     orbs,
     afflictions,
     modifiers,
+    game_modes,
     achievements,
     badges,
     epochs,
@@ -857,6 +858,7 @@ app.include_router(intents.router)
 app.include_router(orbs.router)
 app.include_router(afflictions.router)
 app.include_router(modifiers.router)
+app.include_router(game_modes.router)
 app.include_router(achievements.router)
 app.include_router(badges.router)
 app.include_router(epochs.router)
@@ -1024,6 +1026,7 @@ def root(request: Request):
             "orbs": "/api/orbs",
             "afflictions": "/api/afflictions",
             "modifiers": "/api/modifiers",
+            "game_modes": "/api/game-modes",
             "achievements": "/api/achievements",
             "epochs": "/api/epochs",
             "stories": "/api/stories",

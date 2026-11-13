@@ -506,6 +506,10 @@ def load_modifiers(lang: str = DEFAULT_LANG) -> list[dict]:
     return _load_json(lang, "modifiers")
 
 
+def load_game_modes(lang: str = DEFAULT_LANG) -> list[dict]:
+    return _load_json(lang, "game_modes")
+
+
 def load_achievements(lang: str = DEFAULT_LANG) -> list[dict]:
     return _load_json(lang, "achievements")
 
