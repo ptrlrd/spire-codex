@@ -6,12 +6,15 @@ import { Link } from "@/i18n/navigation";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
 import RichDescription from "@/app/components/RichDescription";
+import BetaBadge from "@/app/components/BetaBadge";
+import { markBetaUnlocks } from "@/lib/unlocks-merge";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 import { imageUrl, fullCardUrl } from "@/lib/image-url";
 import { textColor } from "@/lib/character-colors";
 
 interface UnlockEntity {
+  beta?: boolean;
   id: string;
   name: string;
   type?: string;
@@ -27,6 +30,7 @@ interface UnlockEntity {
 }
 
 interface CharacterUnlock {
+  beta?: boolean;
   id: string;
   name: string;
   epoch_id: string;
@@ -79,6 +83,7 @@ function EntityCard({
   const [cardFailed, setCardFailed] = useState(false);
   const lang = useGameLocale();
   const t = useT();
+  const renders = entity.beta ? "beta" : "stable";
 
   return (
     <Link
@@ -92,7 +97,7 @@ function EntityCard({
         // Hovering pops a larger copy.
         <span className="relative flex-shrink-0 group/pop">
           <img
-            src={fullCardUrl(entity.id.toLowerCase(), false, "stable", lang)}
+            src={fullCardUrl(entity.id.toLowerCase(), false, renders, lang)}
             alt={entity.name}
             className="w-10 h-auto drop-shadow-[0_2px_6px_rgba(0,0,0,0.5)]"
             crossOrigin="anonymous"
@@ -101,7 +106,7 @@ function EntityCard({
           />
           <span className="pointer-events-none absolute left-0 bottom-full mb-2 w-44 opacity-0 group-hover/pop:opacity-100 transition-opacity z-30">
             <img
-              src={fullCardUrl(entity.id.toLowerCase(), false, "stable", lang)}
+              src={fullCardUrl(entity.id.toLowerCase(), false, renders, lang)}
               alt=""
               className="w-44 h-auto drop-shadow-[0_8px_24px_rgba(0,0,0,0.7)]"
               crossOrigin="anonymous"
@@ -117,8 +122,11 @@ function EntityCard({
         />
       ) : null}
       <div className="min-w-0 flex-1">
-        <div className="text-sm font-medium text-[var(--text-primary)] group-hover:text-[var(--accent-gold)] transition-colors truncate">
-          {entity.name}
+        <div className="flex items-center gap-2 min-w-0">
+          <span className="text-sm font-medium text-[var(--text-primary)] group-hover:text-[var(--accent-gold)] transition-colors truncate">
+            {entity.name}
+          </span>
+          {entity.beta && <BetaBadge />}
         </div>
         <div className="flex items-center gap-2 text-[11px] text-[var(--text-muted)]">
           {entity.rarity && <span>{t(entity.rarity)}</span>}
@@ -153,8 +161,13 @@ export default function UnlocksClient({
 
   useEffect(() => {
     if (initial) return;
-    cachedFetch<UnlocksData>(`${API}/api/unlocks?lang=${lang}`)
-      .then(setData)
+    Promise.all([
+      cachedFetch<UnlocksData>(`${API}/api/unlocks?channel=all&lang=${lang}`),
+      cachedFetch<UnlocksData>(`${API}/api/unlocks?lang=${lang}`).catch(
+        () => null,
+      ),
+    ])
+      .then(([merged, main]) => setData(markBetaUnlocks(merged, main)))
       .catch(() => {})
       .finally(() => setLoading(false));
   }, [lang, initial]);
@@ -293,8 +306,9 @@ export default function UnlocksClient({
                   crossOrigin="anonymous"
                 />
                 <div>
-                  <div className="text-sm font-medium text-[var(--text-primary)] group-hover:text-[var(--accent-gold)] transition-colors">
+                  <div className="flex items-center gap-2 text-sm font-medium text-[var(--text-primary)] group-hover:text-[var(--accent-gold)] transition-colors">
                     {char.name}
+                    {char.beta && <BetaBadge />}
                   </div>
                   {char.unlock_info && (
                     <div className="text-[11px] text-[var(--text-secondary)] mt-0.5">

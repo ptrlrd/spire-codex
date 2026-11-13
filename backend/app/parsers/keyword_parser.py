@@ -5,7 +5,13 @@ import re
 from pathlib import Path
 from description_resolver import resolve_description, extract_vars_from_source
 
-from parser_paths import BASE, DECOMPILED, loc_dir as _loc_dir, data_dir as _data_dir
+from parser_paths import (
+    BASE,
+    DECOMPILED,
+    loc_dir as _loc_dir,
+    data_dir as _data_dir,
+    site_characters,
+)
 
 ORBS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.Orbs"
 AFFLICTIONS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.Afflictions"
@@ -235,12 +241,49 @@ def parse_afflictions(loc_dir: Path) -> list[dict]:
 
 
 # --- Modifiers ---
-def parse_modifiers(loc_dir: Path) -> list[dict]:
+MODEL_DB = DECOMPILED / "MegaCrit.Sts2.Core.Models" / "ModelDb.cs"
+_CHARACTER_CARDS = "CHARACTER_CARDS"
+
+
+def _modifier_classes(modifiers_dir: Path) -> dict[str, Path]:
+    """Modifier id -> source file for every modifier the game implements."""
+    if not modifiers_dir.is_dir():
+        return {}
+    return {
+        class_name_to_id(cs_file.stem): cs_file
+        for cs_file in sorted(modifiers_dir.glob("*.cs"))
+        if cs_file.stem != "DeprecatedModifier"
+    }
+
+
+def _modifier_kinds(model_db: Path) -> dict[str, str]:
+    """Modifier id -> "good" or "bad", from the two lists custom mode shows."""
+    if not model_db.exists():
+        return {}
+    source = model_db.read_text(encoding="utf-8")
+    kinds: dict[str, str] = {}
+    for prop, kind in (("GoodModifiers", "good"), ("BadModifiers", "bad")):
+        block = re.search(rf"\b{prop}\s*=>.*?\{{(.*?)\}}\);", source, re.DOTALL)
+        if not block:
+            continue
+        for name in re.findall(r"Modifier<(\w+)>\(\)", block.group(1)):
+            kinds[class_name_to_id(name)] = kind
+    return kinds
+
+
+def parse_modifiers(
+    loc_dir: Path,
+    modifiers_dir: Path | None = None,
+    model_db: Path | None = None,
+) -> list[dict]:
     loc_file = loc_dir / "modifiers.json"
     if not loc_file.exists():
         return []
     with open(loc_file, "r", encoding="utf-8") as f:
         loc = json.load(f)
+
+    classes = _modifier_classes(modifiers_dir or MODIFIERS_DIR)
+    kinds = _modifier_kinds(model_db or MODEL_DB)
 
     modifiers = []
     seen = set()
@@ -250,17 +293,16 @@ def parse_modifiers(loc_dir: Path) -> list[dict]:
         if mod_id in seen:
             continue
         seen.add(mod_id)
+        if classes and mod_id not in classes:
+            continue
 
         title = loc.get(f"{mod_id}.title", mod_id.replace("_", " ").title())
 
-        # Try to get C# source data
         all_vars: dict[str, int] = {}
-        for cs_file in MODIFIERS_DIR.glob("*.cs"):
-            cs_id = class_name_to_id(cs_file.stem)
-            if cs_id == mod_id:
-                content = cs_file.read_text(encoding="utf-8")
-                all_vars = extract_vars_from_source(content)
-                break
+        if mod_id in classes:
+            all_vars = extract_vars_from_source(
+                classes[mod_id].read_text(encoding="utf-8")
+            )
 
         desc_raw = loc.get(f"{mod_id}.description", "")
         desc_resolved = resolve_description(desc_raw, all_vars) if desc_raw else ""
@@ -271,8 +313,33 @@ def parse_modifiers(loc_dir: Path) -> list[dict]:
                 "id": mod_id,
                 "name": title,
                 "description": desc_clean,
+                "kind": kinds.get(mod_id),
+                "character": None,
             }
         )
+
+    if _CHARACTER_CARDS in classes:
+        characters_file = loc_dir / "characters.json"
+        characters_loc = {}
+        if characters_file.exists():
+            with open(characters_file, "r", encoding="utf-8") as f:
+                characters_loc = json.load(f)
+        for name in site_characters():
+            char_id = name.upper()
+            title = characters_loc.get(f"{char_id}.cardsModifierTitle")
+            if not title:
+                continue
+            modifiers.append(
+                {
+                    "id": f"{_CHARACTER_CARDS}_{char_id}",
+                    "name": title,
+                    "description": clean_description(
+                        characters_loc.get(f"{char_id}.cardsModifierDescription", "")
+                    ),
+                    "kind": kinds.get(_CHARACTER_CARDS),
+                    "character": char_id,
+                }
+            )
     return modifiers
 
 

@@ -6,6 +6,9 @@ import { Link } from "@/i18n/navigation";
 import { cachedFetch } from "@/lib/fetch-cache";
 import RichDescription from "@/app/components/RichDescription";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
+import BetaBadge from "@/app/components/BetaBadge";
+import CharacterTag from "@/app/components/CharacterTag";
+import { inCharacterOrder } from "@/lib/character-order";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -13,6 +16,8 @@ interface Modifier {
   id: string;
   name: string;
   description: string;
+  kind?: string | null;
+  character?: string | null;
 }
 
 type Tag = "clears_deck" | "replaces_neow" | "no_pandora";
@@ -64,6 +69,7 @@ export default function ModifiersClient() {
   const t = useT();
   const bp = useBetaPrefix();
   const [modifiers, setModifiers] = useState<Modifier[]>([]);
+  const [betaIds, setBetaIds] = useState<Set<string>>(new Set());
   const [names, setNames] = useState<GameNames>({
     neow: "Neow",
     relic: "Pandora's Box",
@@ -72,8 +78,19 @@ export default function ModifiersClient() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    cachedFetch<Modifier[]>(`${API}/api/modifiers?lang=${lang}`)
-      .then(setModifiers)
+    const main = cachedFetch<Modifier[]>(`${API}/api/modifiers?lang=${lang}`);
+    cachedFetch<Modifier[]>(`${API}/api/modifiers?channel=all&lang=${lang}`)
+      .then(async (merged) => {
+        const mainIds = new Set(
+          (await main.catch(() => merged)).map((m) => m.id),
+        );
+        setModifiers(merged);
+        setBetaIds(
+          new Set(merged.filter((m) => !mainIds.has(m.id)).map((m) => m.id)),
+        );
+      })
+      .catch(() => main.then(setModifiers))
+      .catch(() => {})
       .finally(() => setLoading(false));
     Promise.all([
       cachedFetch<{ name: string }>(`${API}/api/events/neow?lang=${lang}`),
@@ -108,7 +125,13 @@ export default function ModifiersClient() {
       MODIFIER_TAGS[m.id]?.includes("replaces_neow") &&
       !MODIFIER_TAGS[m.id]?.includes("clears_deck"),
   );
-  const otherModifiers = modifiers.filter((m) => !MODIFIER_TAGS[m.id]?.length);
+  const characterModifiers = inCharacterOrder(
+    modifiers.filter((m) => m.character),
+    (m) => m.character ?? "",
+  );
+  const otherModifiers = modifiers.filter(
+    (m) => !MODIFIER_TAGS[m.id]?.length && !m.character,
+  );
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -162,6 +185,30 @@ export default function ModifiersClient() {
         </div>
       )}
 
+      {characterModifiers.length > 0 && (
+        <div className="mb-6">
+          <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-3">
+            {t("Character Card Modifiers")}
+          </h2>
+          <p className="text-xs text-[var(--text-muted)] mb-3">
+            {t(
+              "One per character. Each adds that character's cards to card rewards and shops.",
+            )}
+          </p>
+          <div className="space-y-3">
+            {characterModifiers.map((mod) => (
+              <ModifierCard
+                key={mod.id}
+                mod={mod}
+                bp={bp}
+                names={names}
+                beta={betaIds.has(mod.id)}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Other Modifiers */}
       {otherModifiers.length > 0 && (
         <div className="mb-6">
@@ -183,22 +230,28 @@ function ModifierCard({
   mod,
   bp,
   names,
+  beta = false,
 }: {
   mod: Modifier;
   bp: string;
   names: GameNames;
+  beta?: boolean;
 }) {
   const t = useT();
   const tags = MODIFIER_TAGS[mod.id] || [];
   const note = MODIFIER_NOTES[mod.id];
-
-  return (
-    <Link
-      href={`${bp}/modifiers/${mod.id.toLowerCase()}`}
-      className="block bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-4 hover:bg-[var(--bg-card-hover)] transition-colors"
-    >
+  const cardClass =
+    "block bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-4";
+  const body = (
+    <>
       <div className="flex items-start justify-between mb-2">
-        <h3 className="font-semibold text-[var(--text-primary)]">{mod.name}</h3>
+        <h3 className="flex items-center gap-2 font-semibold text-[var(--text-primary)]">
+          {mod.character && (
+            <CharacterTag id={mod.character} showName={false} size={20} />
+          )}
+          {mod.name}
+          {beta && <BetaBadge />}
+        </h3>
         {tags.length > 0 && (
           <div className="flex flex-wrap gap-1 ml-2">
             {tags.map((tag) => (
@@ -220,6 +273,15 @@ function ModifierCard({
           {t(note, names)}
         </p>
       )}
+    </>
+  );
+  if (beta) return <div className={cardClass}>{body}</div>;
+  return (
+    <Link
+      href={`${bp}/modifiers/${mod.id.toLowerCase()}`}
+      className={`${cardClass} hover:bg-[var(--bg-card-hover)] transition-colors`}
+    >
+      {body}
     </Link>
   );
 }

@@ -437,6 +437,8 @@ class Modifier(BaseModel):
     id: str
     name: str
     description: str
+    kind: str | None = None
+    character: str | None = None
 
 
 class Achievement(BaseModel):

@@ -6,10 +6,17 @@ import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 import { API_INTERNAL } from "@/lib/api/endpoint.common";
 import UnlocksClient, { type UnlocksData } from "./UnlocksClient";
+import { markBetaUnlocks } from "@/lib/unlocks-merge";
 
-async function fetchUnlocks(locale: string): Promise<UnlocksData | null> {
+async function fetchUnlocks(
+  locale: string,
+  channel?: "all",
+): Promise<UnlocksData | null> {
   try {
-    const res = await fetch(`${API_INTERNAL}/api/unlocks?lang=${locale}`, {
+    const query = channel
+      ? `channel=${channel}&lang=${locale}`
+      : `lang=${locale}`;
+    const res = await fetch(`${API_INTERNAL}/api/unlocks?${query}`, {
       next: { revalidate: 3600 },
     });
     if (!res.ok) return null;
@@ -44,7 +51,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Page({ params }: Props) {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
-  const initial = await fetchUnlocks(locale);
+  const [merged, main] = await Promise.all([
+    fetchUnlocks(locale, "all"),
+    fetchUnlocks(locale),
+  ]);
+  const initial = merged ? markBetaUnlocks(merged, main) : main;
   const jsonLd = [
     buildBreadcrumbJsonLd([
       { name: t("Home"), href: localePath(locale, "/") },
