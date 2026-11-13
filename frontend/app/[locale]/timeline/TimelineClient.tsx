@@ -326,10 +326,11 @@ export default function TimelineClient({
                 <div className="space-y-3">
                   {storyEpochs.map((epoch) => {
                     const isExpanded = expandedEpochs[epoch.id];
-                    const hasUnlocks =
+                    const hasUnlocks = !!(
                       epoch.unlocks_cards?.length ||
                       epoch.unlocks_relics?.length ||
-                      epoch.unlocks_potions?.length;
+                      epoch.unlocks_potions?.length
+                    );
 
                     return (
                       <div

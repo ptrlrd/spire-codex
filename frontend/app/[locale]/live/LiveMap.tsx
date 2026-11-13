@@ -132,7 +132,7 @@ function roomArt(name: string): string {
   return imageUrl(`/static/images/ui/map_nodes/${name}.png`);
 }
 
-// The boss node draws the game's boss map icon (ui/map_bosses, keyed by the
+// The boss node draws the game's boss map icon (ui/boss, keyed by the
 // boss encounter id); a missing icon falls back to the boss portrait.
 function assetKey(
   id: string | null | undefined,
@@ -144,7 +144,7 @@ function assetKey(
 
 function bossArt(id?: string | null): string | null {
   const key = assetKey(id, /^encounter\./);
-  return key ? imageUrl(`/static/images/ui/map_bosses/${key}_icon.webp`) : null;
+  return key ? imageUrl(`/static/images/ui/boss/${key}_icon.webp`) : null;
 }
 
 // The game backs the boss drawing with its solid silhouette in a paper tone
@@ -153,7 +153,7 @@ function bossArt(id?: string | null): string | null {
 function bossBackingArt(id?: string | null): string | null {
   const key = assetKey(id, /^encounter\./);
   return key
-    ? imageUrl(`/static/images/ui/map_bosses/${key}_icon_outline.webp`)
+    ? imageUrl(`/static/images/ui/boss/${key}_icon_outline.webp`)
     : null;
 }
 

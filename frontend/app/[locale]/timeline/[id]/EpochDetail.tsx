@@ -152,10 +152,11 @@ export default function EpochDetail({
   const sk = storyKey(epoch.story_id || "");
   const accent = storyAccent[sk] || "text-[var(--accent-gold)]";
 
-  const hasUnlocks =
+  const hasUnlocks = !!(
     epoch.unlocks_cards?.length ||
     epoch.unlocks_relics?.length ||
-    epoch.unlocks_potions?.length;
+    epoch.unlocks_potions?.length
+  );
   const hasImage = !!epoch.image_url;
   const hasDescription = !!(
     epoch.unlock_info ||
