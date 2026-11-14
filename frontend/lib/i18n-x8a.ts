@@ -16,6 +16,8 @@ export const X8A: Record<string, Record<string, string>> = {
     tur: "Demircilik",
     zhs: "锻造",
     zht: "鍛造",
+    ara: "حدادة",
+    ind: "Tingkatkan",
   },
   Dig: {
     eng: "Dig",
@@ -33,6 +35,8 @@ export const X8A: Record<string, Record<string, string>> = {
     tur: "Kazmak",
     zhs: "挖掘",
     zht: "挖掘",
+    ara: "حفر",
+    ind: "Gali",
   },
   Lift: {
     eng: "Lift",
@@ -50,6 +54,8 @@ export const X8A: Record<string, Record<string, string>> = {
     tur: "Antrenman",
     zhs: "锻炼",
     zht: "鍛鍊",
+    ara: "رفع",
+    ind: "Angkat",
   },
   Cook: {
     eng: "Cook",
@@ -67,6 +73,8 @@ export const X8A: Record<string, Record<string, string>> = {
     tur: "Yemek Pişirme",
     zhs: "烹饪",
     zht: "烹飪",
+    ara: "طهو",
+    ind: "Masak",
   },
   Clone: {
     eng: "Clone",
@@ -84,6 +92,8 @@ export const X8A: Record<string, Record<string, string>> = {
     tur: "Klonlama",
     zhs: "复制",
     zht: "複製",
+    ara: "استنساخ",
+    ind: "Klona",
   },
   Hatch: {
     eng: "Hatch",
@@ -101,6 +111,8 @@ export const X8A: Record<string, Record<string, string>> = {
     tur: "Kuluçka",
     zhs: "孵化",
     zht: "孵化",
+    ara: "فقس",
+    ind: "Menetas",
   },
   Mend: {
     eng: "Mend",
@@ -118,6 +130,8 @@ export const X8A: Record<string, Record<string, string>> = {
     tur: "Onarma",
     zhs: "修补",
     zht: "修補",
+    ara: "ترميم",
+    ind: "Rawat",
   },
   Kindle: {
     eng: "Kindle",
@@ -135,6 +149,8 @@ export const X8A: Record<string, Record<string, string>> = {
     tur: "Tutuşturma",
     zhs: "点燃",
     zht: "點燃",
+    ara: "إشعال",
+    ind: "Sulut",
   },
   "First Visit": {
     eng: "First Visit",
@@ -152,6 +168,8 @@ export const X8A: Record<string, Record<string, string>> = {
     tur: "İlk Ziyaret",
     zhs: "首次访问",
     zht: "首次造訪",
+    ara: "الزيارة الأولى",
+    ind: "Kunjungan Pertama",
   },
   Returning: {
     eng: "Returning",
@@ -169,6 +187,8 @@ export const X8A: Record<string, Record<string, string>> = {
     tur: "Tekrar Ziyaret",
     zhs: "再次访问",
     zht: "再次造訪",
+    ara: "زيارة لاحقة",
+    ind: "Kunjungan Ulang",
   },
   "Clears Starter Deck": {
     eng: "Clears Starter Deck",
@@ -186,6 +206,8 @@ export const X8A: Record<string, Record<string, string>> = {
     tur: "Başlangıç Destesini Siler",
     zhs: "清除初始牌组",
     zht: "清除初始牌組",
+    ara: "يمسح مجموعة البداية",
+    ind: "Menghapus Dek Awalan",
   },
   "Replaces {neow}": {
     eng: "Replaces {neow}",
@@ -203,6 +225,8 @@ export const X8A: Record<string, Record<string, string>> = {
     tur: "{neow} Yerine Geçer",
     zhs: "替换{neow}",
     zht: "替換{neow}",
+    ara: "يستبدل {neow}",
+    ind: "Menggantikan {neow}",
   },
   "Prevents {relic}": {
     eng: "Prevents {relic}",
@@ -220,6 +244,8 @@ export const X8A: Record<string, Record<string, string>> = {
     tur: "{relic} Engeller",
     zhs: "阻止{relic}",
     zht: "阻止{relic}",
+    ara: "يمنع {relic}",
+    ind: "Mencegah {relic}",
   },
   "Fake {relic}": {
     eng: "Fake {relic}",
@@ -237,6 +263,8 @@ export const X8A: Record<string, Record<string, string>> = {
     tur: "Sahte {relic}",
     zhs: "假{relic}",
     zht: "假{relic}",
+    ara: "{relic} مزيف",
+    ind: "{relic} Palsu",
   },
   "All {n} modifiers available in Custom Mode. Some modifiers replace your starting deck and change how {neow} works.":
     {
@@ -255,6 +283,8 @@ export const X8A: Record<string, Record<string, string>> = {
       tur: "Özel Modda kullanılabilen {n} değiştiricinin tamamı. Bazıları başlangıç destenizi değiştirir ve {neow} işleyişini değiştirir.",
       zhs: "自定义模式中可用的全部{n}个修正。部分修正会替换初始牌组并改变{neow}的运作方式。",
       zht: "自訂模式中可用的全部{n}個修正。部分修正會替換初始牌組並改變{neow}的運作方式。",
+      ara: "كل المعدّلات الـ{n} المتاحة في الوضع المخصص. بعض المعدّلات تستبدل مجموعة البداية وتغيّر طريقة عمل {neow}.",
+      ind: "Semua {n} efek yang tersedia di Mode Kustom. Beberapa efek mengganti dek awalanmu dan mengubah cara kerja {neow}.",
     },
   "2 random rarity rolls + 1 guaranteed Shop relic. {list} are blacklisted (gold-generating relics removed in Major Update #1).":
     {
@@ -273,6 +303,8 @@ export const X8A: Record<string, Record<string, string>> = {
       tur: "2 rastgele nadirlik atışı + 1 garanti dükkan kalıntısı. {list} kara listede (Major Update #1'de kaldırılan altın üreten kalıntılar).",
       zhs: "2次随机稀有度掷骰 + 1件保底商店遗物。{list}已被列入黑名单（Major Update #1中移除的产金遗物）。",
       zht: "2次隨機稀有度擲骰 + 1件保底商店遺物。{list}已被列入黑名單（Major Update #1中移除的產金遺物）。",
+      ara: "رميتا ندرة عشوائيتان + أثر متجر واحد مضمون. {list} مستبعدة (آثار توليد الذهب أُزيلت في التحديث الكبير #1).",
+      ind: "2 lemparan kelangkaan acak + 1 Pusaka Toko pasti. {list} masuk daftar hitam (pusaka penghasil emas dihapus di Major Update #1).",
     },
   "Relics have a wider price variance ({relicVar}) than cards ({cardVar}). Major Update #1 (v0.103.2) reduced every relic base by 25 gold. Five relics are blacklisted from the shop pool: {list}.":
     {
@@ -291,6 +323,8 @@ export const X8A: Record<string, Record<string, string>> = {
       tur: "Kalıntıların fiyat değişkenliği ({relicVar}) kartlardan ({cardVar}) daha geniştir. Major Update #1 (v0.103.2) her kalıntının taban fiyatını 25 altın düşürdü. Beş kalıntı dükkan havuzundan çıkarıldı: {list}.",
       zhs: "遗物的价格浮动范围（{relicVar}）大于卡牌（{cardVar}）。Major Update #1（v0.103.2）将所有遗物基础价格降低了25金币。有5件遗物被排除在商店池外：{list}。",
       zht: "遺物的價格浮動範圍（{relicVar}）大於卡牌（{cardVar}）。Major Update #1（v0.103.2）將所有遺物基礎價格降低了25金幣。有5件遺物被排除在商店池外：{list}。",
+      ara: "تتفاوت أسعار الآثار ({relicVar}) أكثر من البطاقات ({cardVar}). خفّض التحديث الكبير #1 (v0.103.2) السعر الأساسي لكل أثر بمقدار 25 ذهبًا. خمسة آثار مستبعدة من مجموعة المتجر: {list}.",
+      ind: "Rentang harga pusaka ({relicVar}) lebih lebar daripada kartu ({cardVar}). Major Update #1 (v0.103.2) menurunkan harga dasar tiap pusaka sebesar 25 emas. Lima pusaka masuk daftar hitam kelompok toko: {list}.",
     },
   "Stolen by the {monster}": {
     eng: "Stolen by the {monster}",
@@ -308,6 +342,8 @@ export const X8A: Record<string, Record<string, string>> = {
     tur: "{monster} tarafından çalındı",
     zhs: "被{monster}偷走",
     zht: "被{monster}偷走",
+    ara: "سرقه {monster}",
+    ind: "Dicuri oleh {monster}",
   },
   "A suspicious merchant offers 6 fake relics (drawn from a pool of 9) at 42–58 gold each. Throwing a [gold]Foul Potion[/gold] starts a fight against The Merchant??? (165 HP). Winning rewards [gold]The Merchant's Rug???[/gold] plus all unsold relics.":
     {
@@ -326,6 +362,8 @@ export const X8A: Record<string, Record<string, string>> = {
       tur: "Şüpheli bir tüccar 9'luk bir havuzdan çekilen 6 sahte kalıntıyı tanesi 42–58 altına satar. Bir [gold]Foul Potion[/gold] fırlatmak The Merchant??? (165 CP) ile savaş başlatır. Kazanmak [gold]The Merchant's Rug???[/gold] ve satılmayan tüm kalıntıları verir.",
       zhs: "一名可疑商人以每件42–58金币的价格出售6件假遗物（从9件的池中抽取）。投掷[gold]恶臭药水[/gold]会触发与The Merchant???（165点生命）的战斗。获胜可获得[gold]The Merchant's Rug???[/gold]以及所有未售出的遗物。",
       zht: "一名可疑商人以每件42–58金幣的價格出售6件假遺物（從9件的池中抽取）。投擲[gold]惡臭藥水[/gold]會觸發與The Merchant???（165點生命）的戰鬥。獲勝可獲得[gold]The Merchant's Rug???[/gold]以及所有未售出的遺物。",
+      ara: "تاجر مريب يعرض 6 آثار مزيفة (مسحوبة من مجموعة من 9) بسعر 42–58 ذهبًا لكل منها. رمي [gold]جرعة نتنة[/gold] يبدأ قتالًا ضد التاجر؟؟؟ (165 HP). الفوز يمنحك [gold]بساط التاجر؟؟؟[/gold] مع كل الآثار غير المباعة.",
+      ind: "Pedagang mencurigakan menawarkan 6 pusaka palsu (diambil dari kelompok berisi 9) seharga 42–58 emas per buah. Melempar [gold]Ramuan Busuk[/gold] memulai perlawanan melawan Si Pedagang??? (165 HP). Kalau menang, hadiahnya [gold]Karpet Si Pedagang???[/gold] plus semua pusaka yang belum terjual.",
     },
   "{neow} Replacement Modifiers": {
     eng: "{neow} Replacement Modifiers",
@@ -343,6 +381,8 @@ export const X8A: Record<string, Record<string, string>> = {
     tur: "{neow} Yerine Geçen Değiştiriciler",
     zhs: "替换{neow}的修正",
     zht: "替換{neow}的修正",
+    ara: "معدّلات استبدال {neow}",
+    ind: "Efek Pengganti {neow}",
   },
   "These modifiers clear your starter deck and replace the {neow} encounter. When active, {relic} will not be offered by {darv}.":
     {
@@ -361,6 +401,8 @@ export const X8A: Record<string, Record<string, string>> = {
       tur: "Bu değiştiriciler başlangıç destenizi siler ve {neow} karşılaşmasının yerine geçer. Etkinken {darv} {relic} sunmaz.",
       zhs: "这些修正会清除初始牌组并替换{neow}遭遇。启用时，{darv}不会提供{relic}。",
       zht: "這些修正會清除初始牌組並替換{neow}遭遇。啟用時，{darv}不會提供{relic}。",
+      ara: "هذه المعدّلات تمسح مجموعة البداية وتستبدل لقاء {neow}. عند تفعيلها، لن يعرض {darv} الأثر {relic}.",
+      ind: "Efek ini menghapus dek awalanmu dan menggantikan pertemuan dengan {neow}. Saat aktif, {relic} tidak akan ditawarkan oleh {darv}.",
     },
   "These modifiers replace the normal relic offerings of {neow} with a custom selection.":
     {
@@ -379,5 +421,7 @@ export const X8A: Record<string, Record<string, string>> = {
       tur: "Bu değiştiriciler {neow} tarafından sunulan normal kalıntı tekliflerini özel bir seçimle değiştirir.",
       zhs: "这些修正会用自定义的选项替换{neow}通常提供的遗物。",
       zht: "這些修正會用自訂的選項替換{neow}通常提供的遺物。",
+      ara: "هذه المعدّلات تستبدل عروض الآثار المعتادة من {neow} بتشكيلة مخصصة.",
+      ind: "Efek ini mengganti tawaran pusaka biasa dari {neow} dengan pilihan khusus.",
     },
 };

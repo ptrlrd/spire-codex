@@ -16,6 +16,8 @@ export const X10: Record<string, Record<string, string>> = {
     tur: "Sahne",
     zhs: "场景",
     zht: "場景",
+    ara: "المشهد",
+    ind: "Adegan",
   },
   Play: {
     eng: "Play",
@@ -33,6 +35,8 @@ export const X10: Record<string, Record<string, string>> = {
     tur: "Oynat",
     zhs: "播放",
     zht: "播放",
+    ara: "تشغيل",
+    ind: "Putar",
   },
   Pause: {
     eng: "Pause",
@@ -50,6 +54,8 @@ export const X10: Record<string, Record<string, string>> = {
     tur: "Duraklat",
     zhs: "暂停",
     zht: "暫停",
+    ara: "إيقاف مؤقت",
+    ind: "Jeda",
   },
   "Previous step": {
     eng: "Previous step",
@@ -67,6 +73,8 @@ export const X10: Record<string, Record<string, string>> = {
     tur: "Önceki adım",
     zhs: "上一步",
     zht: "上一步",
+    ara: "الخطوة السابقة",
+    ind: "Langkah sebelumnya",
   },
   "Next step": {
     eng: "Next step",
@@ -84,6 +92,8 @@ export const X10: Record<string, Record<string, string>> = {
     tur: "Sonraki adım",
     zhs: "下一步",
     zht: "下一步",
+    ara: "الخطوة التالية",
+    ind: "Langkah berikutnya",
   },
   "Step {n} of {total}": {
     eng: "Step {n} of {total}",
@@ -101,6 +111,8 @@ export const X10: Record<string, Record<string, string>> = {
     tur: "Adım {n} / {total}",
     zhs: "第 {n} 步，共 {total} 步",
     zht: "第 {n} 步，共 {total} 步",
+    ara: "الخطوة {n} من {total}",
+    ind: "Langkah {n} dari {total}",
   },
   "← → step through the replay · Space plays": {
     eng: "← → step through the replay · Space plays",
@@ -118,6 +130,8 @@ export const X10: Record<string, Record<string, string>> = {
     tur: "← → tekrarda ilerle · Boşluk oynatır",
     zhs: "← → 逐步查看回放 · 空格键播放",
     zht: "← → 逐步查看重播 · 空白鍵播放",
+    ara: "← → للتنقل بين خطوات الإعادة · المسافة للتشغيل",
+    ind: "← → menelusuri replay · Spasi memutar",
   },
   "End of turn": {
     eng: "End of turn",
@@ -135,6 +149,8 @@ export const X10: Record<string, Record<string, string>> = {
     tur: "Tur sonu",
     zhs: "回合结束",
     zht: "回合結束",
+    ara: "نهاية الدور",
+    ind: "Akhir giliran",
   },
   "Card reward": {
     eng: "Card reward",
@@ -152,6 +168,8 @@ export const X10: Record<string, Record<string, string>> = {
     tur: "Kart ödülü",
     zhs: "卡牌奖励",
     zht: "卡牌獎勵",
+    ara: "مكافأة بطاقة",
+    ind: "Pilihan Kartu",
   },
   "Choose cards": {
     eng: "Choose cards",
@@ -169,6 +187,8 @@ export const X10: Record<string, Record<string, string>> = {
     tur: "Kart seç",
     zhs: "选择卡牌",
     zht: "選擇卡牌",
+    ara: "اختر بطاقات",
+    ind: "Pilih kartu",
   },
   "Created, pile not recorded": {
     eng: "Created, pile not recorded",
@@ -186,6 +206,8 @@ export const X10: Record<string, Record<string, string>> = {
     tur: "Oluşturuldu, deste kaydedilmedi",
     zhs: "已生成，未记录所在牌堆",
     zht: "已生成，未記錄所在牌堆",
+    ara: "أُنشئت، الكومة غير مسجلة",
+    ind: "Dibuat, tumpukan tidak tercatat",
   },
   "{from} became {to}": {
     eng: "{from} became {to}",
@@ -203,6 +225,8 @@ export const X10: Record<string, Record<string, string>> = {
     tur: "{from}, {to} oldu",
     zhs: "{from} 变为 {to}",
     zht: "{from} 變為 {to}",
+    ara: "{from} تحولت إلى {to}",
+    ind: "{from} menjadi {to}",
   },
   Hide: {
     eng: "Hide",
@@ -220,6 +244,8 @@ export const X10: Record<string, Record<string, string>> = {
     tur: "Gizle",
     zhs: "隐藏",
     zht: "隱藏",
+    ara: "إخفاء",
+    ind: "Sembunyikan",
   },
   "Hide selected": {
     eng: "Hide selected",
@@ -237,6 +263,8 @@ export const X10: Record<string, Record<string, string>> = {
     tur: "Seçilenleri gizle",
     zhs: "隐藏所选",
     zht: "隱藏所選",
+    ara: "إخفاء المحدد",
+    ind: "Sembunyikan yang dipilih",
   },
   "Unhide selected": {
     eng: "Unhide selected",
@@ -254,6 +282,8 @@ export const X10: Record<string, Record<string, string>> = {
     tur: "Seçilenleri göster",
     zhs: "取消隐藏所选",
     zht: "取消隱藏所選",
+    ara: "إظهار المحدد",
+    ind: "Tampilkan yang dipilih",
   },
   "This run was hidden by a moderator": {
     eng: "This run was hidden by a moderator",
@@ -271,6 +301,8 @@ export const X10: Record<string, Record<string, string>> = {
     tur: "Bu koşu bir moderatör tarafından gizlendi",
     zhs: "此局游戏已被管理员隐藏",
     zht: "此局遊戲已被管理員隱藏",
+    ara: "أخفى أحد المشرفين هذه الجولة",
+    ind: "Perjalanan ini disembunyikan oleh moderator",
   },
   "Updated {n} runs": {
     eng: "Updated {n} runs",
@@ -288,6 +320,8 @@ export const X10: Record<string, Record<string, string>> = {
     tur: "{n} koşu güncellendi",
     zhs: "已更新 {n} 局游戏",
     zht: "已更新 {n} 局遊戲",
+    ara: "تم تحديث {n} من الجولات",
+    ind: "{n} perjalanan diperbarui",
   },
   "Updated {n} runs, {failed} could not be updated": {
     eng: "Updated {n} runs, {failed} could not be updated",
@@ -305,6 +339,8 @@ export const X10: Record<string, Record<string, string>> = {
     tur: "{n} koşu güncellendi, {failed} koşu güncellenemedi",
     zhs: "已更新 {n} 局游戏，{failed} 局无法更新",
     zht: "已更新 {n} 局遊戲，{failed} 局無法更新",
+    ara: "تم تحديث {n} من الجولات، وتعذر تحديث {failed}",
+    ind: "{n} perjalanan diperbarui, {failed} gagal diperbarui",
   },
   "This permanently deletes the run. No undo.": {
     eng: "This permanently deletes the run. No undo.",
@@ -322,6 +358,8 @@ export const X10: Record<string, Record<string, string>> = {
     tur: "Bu koşu kalıcı olarak silinir. Geri alınamaz.",
     zhs: "此局游戏将被永久删除，无法撤销。",
     zht: "此局遊戲將被永久刪除，無法復原。",
+    ara: "سيؤدي هذا إلى حذف الجولة نهائيًا. لا يمكن التراجع.",
+    ind: "Ini menghapus perjalanan secara permanen. Tidak bisa dibatalkan.",
   },
   "This permanently deletes {n} runs. No undo.": {
     eng: "This permanently deletes {n} runs. No undo.",
@@ -339,6 +377,8 @@ export const X10: Record<string, Record<string, string>> = {
     tur: "{n} koşu kalıcı olarak silinir. Geri alınamaz.",
     zhs: "{n} 局游戏将被永久删除，无法撤销。",
     zht: "{n} 局遊戲將被永久刪除，無法復原。",
+    ara: "سيؤدي هذا إلى حذف {n} من الجولات نهائيًا. لا يمكن التراجع.",
+    ind: "Ini menghapus {n} perjalanan secara permanen. Tidak bisa dibatalkan.",
   },
   "Run deleted": {
     eng: "Run deleted",
@@ -356,6 +396,8 @@ export const X10: Record<string, Record<string, string>> = {
     tur: "Koşu silindi",
     zhs: "已删除该局游戏",
     zht: "已刪除該局遊戲",
+    ara: "تم حذف الجولة",
+    ind: "Perjalanan dihapus",
   },
   "Deleted {n} runs": {
     eng: "Deleted {n} runs",
@@ -373,6 +415,8 @@ export const X10: Record<string, Record<string, string>> = {
     tur: "{n} koşu silindi",
     zhs: "已删除 {n} 局游戏",
     zht: "已刪除 {n} 局遊戲",
+    ara: "تم حذف {n} من الجولات",
+    ind: "{n} perjalanan dihapus",
   },
   "Deleted {n} runs, {failed} could not be deleted": {
     eng: "Deleted {n} runs, {failed} could not be deleted",
@@ -390,5 +434,7 @@ export const X10: Record<string, Record<string, string>> = {
     tur: "{n} koşu silindi, {failed} koşu silinemedi",
     zhs: "已删除 {n} 局游戏，{failed} 局无法删除",
     zht: "已刪除 {n} 局遊戲，{failed} 局無法刪除",
+    ara: "تم حذف {n} من الجولات، وتعذر حذف {failed}",
+    ind: "{n} perjalanan dihapus, {failed} gagal dihapus",
   },
 };

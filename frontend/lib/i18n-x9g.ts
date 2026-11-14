@@ -16,6 +16,8 @@ export const X9G: Record<string, Record<string, string>> = {
     tur: "Tekrarlara göz at",
     zhs: "浏览回放",
     zht: "瀏覽回放",
+    ara: "تصفح إعادات العرض",
+    ind: "Jelajahi Replay",
   },
   replays_meta_description: {
     eng: "Watch Slay the Spire 2 runs floor by floor. Every run here has a full replay: filter by character, ascension, username, seed, version, mode, and more.",
@@ -33,6 +35,8 @@ export const X9G: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 turlarını kat kat izleyin. Buradaki her turun tam bir tekrarı var: karakter, yükseliş, kullanıcı adı, seed, sürüm, mod ve daha fazlasına göre filtreleyin.",
     zhs: "逐层观看《杀戮尖塔2》对局。这里的每一局都有完整回放：按角色、进阶、用户名、种子、版本、模式等筛选。",
     zht: "逐層觀看《殺戮尖塔2》對局。這裡的每一局都有完整回放：按角色、晉階、使用者名稱、種子、版本、模式等篩選。",
+    ara: "شاهد جولات Slay the Spire 2 طابقاً بطابق. كل جولة هنا لها إعادة عرض كاملة: فلتر حسب الشخصية، الصعود، اسم المستخدم، البذرة، الإصدار، الطور، وغير ذلك.",
+    ind: "Tonton perjalanan Slay the Spire 2 lantai demi lantai. Setiap perjalanan di sini punya replay lengkap: filter menurut karakter, Angkatan, nama pengguna, benih, versi, mode, dan lainnya.",
   },
   "Find a replay to watch.": {
     eng: "Find a replay to watch.",
@@ -50,6 +54,8 @@ export const X9G: Record<string, Record<string, string>> = {
     tur: "İzlemek için bir tekrar bulun.",
     zhs: "找一场回放来看。",
     zht: "找一場回放來看。",
+    ara: "ابحث عن إعادة عرض لمشاهدتها.",
+    ind: "Cari replay untuk ditonton.",
   },
   "Every run here has a replay. Click one to watch it floor by floor.": {
     eng: "Every run here has a replay. Click one to watch it floor by floor.",
@@ -67,6 +73,8 @@ export const X9G: Record<string, Record<string, string>> = {
     tur: "Buradaki her turun bir tekrarı var. Kat kat izlemek için birine tıklayın.",
     zhs: "这里的每一局都有回放。点击任意一局逐层观看。",
     zht: "這裡的每一局都有回放。點擊任意一局逐層觀看。",
+    ara: "كل جولة هنا لها إعادة عرض. انقر على إحداها لمشاهدتها طابقاً بطابق.",
+    ind: "Setiap perjalanan di sini punya replay. Klik salah satu untuk menontonnya lantai demi lantai.",
   },
   "replays total": {
     eng: "replays total",
@@ -84,6 +92,8 @@ export const X9G: Record<string, Record<string, string>> = {
     tur: "tekrar toplam",
     zhs: "个回放",
     zht: "個回放",
+    ara: "إعادة عرض إجمالاً",
+    ind: "total replay",
   },
   "No replays found.": {
     eng: "No replays found.",
@@ -101,6 +111,8 @@ export const X9G: Record<string, Record<string, string>> = {
     tur: "Tekrar bulunamadı.",
     zhs: "未找到回放。",
     zht: "未找到回放。",
+    ara: "لم يتم العثور على إعادات عرض.",
+    ind: "Tidak ada replay ditemukan.",
   },
   Watch: {
     eng: "Watch",
@@ -118,6 +130,8 @@ export const X9G: Record<string, Record<string, string>> = {
     tur: "İzle",
     zhs: "观看",
     zht: "觀看",
+    ara: "مشاهدة",
+    ind: "Tonton",
   },
   "{n} watchable replays": {
     eng: "{n} watchable replays",
@@ -135,6 +149,8 @@ export const X9G: Record<string, Record<string, string>> = {
     tur: "{n} izlenebilir tekrar",
     zhs: "{n} 个可观看的回放",
     zht: "{n} 個可觀看的回放",
+    ara: "{n} إعادة عرض قابلة للمشاهدة",
+    ind: "{n} replay bisa ditonton",
   },
   replays_mod_hint: {
     eng: "Want your own runs in here? Get the {mod} from the Steam Workshop and turn on replay uploads when it asks, or later in its settings. It records every run as you play and uploads the replay with it.",
@@ -152,5 +168,7 @@ export const X9G: Record<string, Record<string, string>> = {
     tur: "Kendi koşularını burada görmek ister misin? {mod}'u Steam Atölyesi'nden edin ve sorduğunda ya da sonra ayarlardan tekrar yüklemeyi aç. Oynarken her koşuyu kaydeder ve tekrarı onunla birlikte yükler.",
     zhs: "想把自己的游戏也放到这里？在 Steam 创意工坊获取 {mod}，在它询问时或稍后在设置中开启回放上传。它会在你游玩时记录每一局，并连同回放一起上传。",
     zht: "想把自己的遊戲也放到這裡？在 Steam 工作坊取得 {mod}，在它詢問時或稍後在設定中開啟回放上傳。它會在你遊玩時記錄每一局，並連同回放一起上傳。",
+    ara: "تريد جولاتك هنا؟ احصل على {mod} من Steam Workshop وفعّل رفع إعادات العرض عندما يسألك، أو لاحقاً من إعداداته. يسجل كل جولة أثناء لعبك ويرفع إعادة العرض معها.",
+    ind: "Mau perjalanan milikmu ada di sini? Ambil {mod} dari Steam Workshop dan nyalakan unggah replay saat ditanya, atau nanti di pengaturannya. Mod itu merekam setiap perjalanan saat kamu bermain dan mengunggah replay bersamanya.",
   },
 };

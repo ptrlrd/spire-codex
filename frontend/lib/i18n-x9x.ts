@@ -16,6 +16,8 @@ export const X9X: Record<string, Record<string, string>> = {
       tur: "Sadece bir sürüm mü? /api/exports/runs?version=v0.111.0, manifestin versions haritasındaki sürüme özel statik dosyaya yönlendirir: /exports/runs-v0.111.0.jsonl.gz; limit ve cursor ile birleştirilirse bunun yerine tek bir sürümü sayfalar.",
       zhs: "只要某个补丁？/api/exports/runs?version=v0.111.0 会重定向到 manifest 的 versions 表中对应版本的静态文件 /exports/runs-v0.111.0.jsonl.gz；配合 limit 和 cursor 则改为对单个补丁分页拉取。",
       zht: "只要某個補丁？/api/exports/runs?version=v0.111.0 會重新導向到 manifest 的 versions 表中對應版本的靜態檔案 /exports/runs-v0.111.0.jsonl.gz；搭配 limit 和 cursor 則改為對單一補丁分頁拉取。",
+      ara: "تريد تحديثًا واحدًا فقط؟ /api/exports/runs?version=v0.111.0 يعيد التوجيه إلى ملف ثابت خاص بالإصدار من خريطة versions في البيان، /exports/runs-v0.111.0.jsonl.gz؛ ومع limit و cursor يقسّم تحديثًا واحدًا إلى صفحات بدلًا من ذلك.",
+      ind: "Cuma satu patch? /api/exports/runs?version=v0.111.0 mengalihkan ke berkas statis per versi dari peta versions di manifes, /exports/runs-v0.111.0.jsonl.gz; jika digabung dengan limit dan cursor, yang dihalamankan adalah satu patch saja.",
     },
   "Link Overwolf": {
     eng: "Link Overwolf",
@@ -33,6 +35,8 @@ export const X9X: Record<string, Record<string, string>> = {
     tur: "Overwolf'u bağla",
     zhs: "关联 Overwolf",
     zht: "連結 Overwolf",
+    ara: "ربط Overwolf",
+    ind: "Tautkan Overwolf",
   },
   "Linking...": {
     eng: "Linking...",
@@ -50,6 +54,8 @@ export const X9X: Record<string, Record<string, string>> = {
     tur: "Bağlanıyor...",
     zhs: "正在关联...",
     zht: "正在連結...",
+    ara: "جارٍ الربط...",
+    ind: "Menautkan...",
   },
   "Sign in to Spire Codex to finish linking your Overwolf account.": {
     eng: "Sign in to Spire Codex to finish linking your Overwolf account.",
@@ -67,6 +73,8 @@ export const X9X: Record<string, Record<string, string>> = {
     tur: "Overwolf hesabını bağlamayı bitirmek için Spire Codex'e giriş yap.",
     zhs: "登录 Spire Codex 以完成关联你的 Overwolf 账号。",
     zht: "登入 Spire Codex 以完成連結你的 Overwolf 帳號。",
+    ara: "سجّل الدخول إلى Spire Codex لإكمال ربط حسابك في Overwolf.",
+    ind: "Masuk ke Spire Codex untuk menyelesaikan penautan akun Overwolf kamu.",
   },
   "Linked: {tier}": {
     eng: "Linked: {tier}",
@@ -84,6 +92,8 @@ export const X9X: Record<string, Record<string, string>> = {
     tur: "Bağlandı: {tier}",
     zhs: "已关联：{tier}",
     zht: "已連結：{tier}",
+    ara: "مرتبط: {tier}",
+    ind: "Tertaut: {tier}",
   },
   "Linked. No active subscription was found.": {
     eng: "Linked. No active subscription was found.",
@@ -101,6 +111,8 @@ export const X9X: Record<string, Record<string, string>> = {
     tur: "Bağlandı. Etkin abonelik bulunamadı.",
     zhs: "已关联。未找到有效订阅。",
     zht: "已連結。未找到有效訂閱。",
+    ara: "تم الربط. لم يُعثر على اشتراك نشط.",
+    ind: "Tertaut. Tidak ditemukan langganan aktif.",
   },
   "Ads are off for you on spire-codex.com.": {
     eng: "Ads are off for you on spire-codex.com.",
@@ -118,6 +130,8 @@ export const X9X: Record<string, Record<string, string>> = {
     tur: "spire-codex.com'da reklamlar senin için kapalı.",
     zhs: "你在 spire-codex.com 上已不再看到广告。",
     zht: "你在 spire-codex.com 上已不再看到廣告。",
+    ara: "الإعلانات متوقفة لديك على spire-codex.com.",
+    ind: "Iklan dimatikan untukmu di spire-codex.com.",
   },
   "Go to Settings": {
     eng: "Go to Settings",
@@ -135,6 +149,8 @@ export const X9X: Record<string, Record<string, string>> = {
     tur: "Ayarlara git",
     zhs: "前往设置",
     zht: "前往設定",
+    ara: "الذهاب إلى الإعدادات",
+    ind: "Buka Pengaturan",
   },
   "Linking failed. The link from the overlay is valid for 15 minutes, so press Link in the overlay again.":
     {
@@ -153,6 +169,8 @@ export const X9X: Record<string, Record<string, string>> = {
       tur: "Bağlanamadı. Katmandaki bağlantı 15 dakika geçerli, bu yüzden katmanda tekrar Bağla'ya bas.",
       zhs: "关联失败。覆盖层中的链接有效期为 15 分钟，请在覆盖层中再次点击关联。",
       zht: "連結失敗。覆蓋層中的連結有效期為 15 分鐘，請在覆蓋層中再次點擊連結。",
+      ara: "فشل الربط. رابط الواجهة صالح لمدة 15 دقيقة، لذا اضغط Link في الواجهة مجددًا.",
+      ind: "Penautan gagal. Tautan dari overlay berlaku 15 menit, jadi tekan Link di overlay sekali lagi.",
     },
   "Open Spire Codex in Overwolf and press Link to spire-codex.com to link your account.":
     {
@@ -171,6 +189,8 @@ export const X9X: Record<string, Record<string, string>> = {
       tur: "Hesabını bağlamak için Overwolf'ta Spire Codex'i aç ve spire-codex.com'a bağla'ya bas.",
       zhs: "在 Overwolf 中打开 Spire Codex，点击「关联 spire-codex.com」来关联你的账号。",
       zht: "在 Overwolf 中開啟 Spire Codex，點擊「連結 spire-codex.com」來連結你的帳號。",
+      ara: "افتح Spire Codex في Overwolf واضغط Link to spire-codex.com لربط حسابك.",
+      ind: "Buka Spire Codex di Overwolf dan tekan Link to spire-codex.com untuk menautkan akunmu.",
     },
   "Common Subscriber": {
     eng: "Common Subscriber",
@@ -188,6 +208,8 @@ export const X9X: Record<string, Record<string, string>> = {
     tur: "Sıradan abone",
     zhs: "普通订阅者",
     zht: "普通訂閱者",
+    ara: "مشترك عادي",
+    ind: "Pelanggan Biasa",
   },
   "Rare Subscriber": {
     eng: "Rare Subscriber",
@@ -205,6 +227,8 @@ export const X9X: Record<string, Record<string, string>> = {
     tur: "Nadir abone",
     zhs: "稀有订阅者",
     zht: "稀有訂閱者",
+    ara: "مشترك نادر",
+    ind: "Pelanggan Langka",
   },
   "Ancient Subscriber": {
     eng: "Ancient Subscriber",
@@ -222,6 +246,8 @@ export const X9X: Record<string, Record<string, string>> = {
     tur: "Kadim abone",
     zhs: "远古订阅者",
     zht: "遠古訂閱者",
+    ara: "مشترك عتيق",
+    ind: "Pelanggan Ancient",
   },
   "Reverse order": {
     eng: "Reverse order",
@@ -239,6 +265,8 @@ export const X9X: Record<string, Record<string, string>> = {
     tur: "Sırayı tersine çevir",
     zhs: "反转顺序",
     zht: "反轉順序",
+    ara: "عكس الترتيب",
+    ind: "Balik urutan",
   },
   "Monthly membership": {
     eng: "Monthly membership",
@@ -256,6 +284,8 @@ export const X9X: Record<string, Record<string, string>> = {
     tur: "Aylık üyelik",
     zhs: "月度会员",
     zht: "月度會員",
+    ara: "عضوية شهرية",
+    ind: "Keanggotaan bulanan",
   },
   "Common, Rare or Ancient, in the overlay": {
     eng: "Common, Rare or Ancient, in the overlay",
@@ -273,6 +303,8 @@ export const X9X: Record<string, Record<string, string>> = {
     tur: "Katmanda Common, Rare veya Ancient",
     zhs: "在覆盖层中选择 Common、Rare 或 Ancient",
     zht: "在覆蓋層中選擇 Common、Rare 或 Ancient",
+    ara: "عادي أو نادر أو عتيق، في الواجهة",
+    ind: "Biasa, Langka, atau Ancient, di overlay",
   },
   "Cost: low → high": {
     eng: "Cost: low → high",
@@ -290,6 +322,8 @@ export const X9X: Record<string, Record<string, string>> = {
     tur: "Maliyet: düşük → yüksek",
     zhs: "费用：低 → 高",
     zht: "費用：低 → 高",
+    ara: "الكلفة: من الأقل إلى الأعلى",
+    ind: "Harga: rendah → tinggi",
   },
   "Cost: high → low": {
     eng: "Cost: high → low",
@@ -307,6 +341,8 @@ export const X9X: Record<string, Record<string, string>> = {
     tur: "Maliyet: yüksek → düşük",
     zhs: "费用：高 → 低",
     zht: "費用：高 → 低",
+    ara: "الكلفة: من الأعلى إلى الأقل",
+    ind: "Harga: tinggi → rendah",
   },
   Any: {
     eng: "Any",
@@ -324,6 +360,8 @@ export const X9X: Record<string, Record<string, string>> = {
     tur: "Herhangi",
     zhs: "任意",
     zht: "任意",
+    ara: "الكل",
+    ind: "Semua",
   },
   "Link these two accounts?": {
     eng: "Link these two accounts?",
@@ -341,6 +379,8 @@ export const X9X: Record<string, Record<string, string>> = {
     tur: "Bu iki hesap bağlansın mı?",
     zhs: "要关联这两个账号吗？",
     zht: "要連結這兩個帳號嗎？",
+    ara: "ربط هذين الحسابين؟",
+    ind: "Tautkan kedua akun ini?",
   },
   "Overwolf account": {
     eng: "Overwolf account",
@@ -358,6 +398,8 @@ export const X9X: Record<string, Record<string, string>> = {
     tur: "Overwolf hesabı",
     zhs: "Overwolf 账号",
     zht: "Overwolf 帳號",
+    ara: "حساب Overwolf",
+    ind: "Akun Overwolf",
   },
   "Spire Codex account": {
     eng: "Spire Codex account",
@@ -375,6 +417,8 @@ export const X9X: Record<string, Record<string, string>> = {
     tur: "Spire Codex hesabı",
     zhs: "Spire Codex 账号",
     zht: "Spire Codex 帳號",
+    ara: "حساب Spire Codex",
+    ind: "Akun Spire Codex",
   },
   "After linking, anyone signed in to this Overwolf account can sign in to this Spire Codex account. Only continue if you pressed Link in the overlay yourself.":
     {
@@ -393,6 +437,8 @@ export const X9X: Record<string, Record<string, string>> = {
       tur: "Bağlandıktan sonra bu Overwolf hesabına giriş yapmış herkes bu Spire Codex hesabına giriş yapabilir. Yalnızca arayüzde Bağla'ya kendin bastıysan devam et.",
       zhs: "关联后，任何登录了这个 Overwolf 账号的人都可以登录这个 Spire Codex 账号。只有在你自己在覆盖层中点了关联时才继续。",
       zht: "連結後，任何登入這個 Overwolf 帳號的人都可以登入這個 Spire Codex 帳號。只有在你自己在覆蓋層中按了連結時才繼續。",
+      ara: "بعد الربط، يستطيع أي شخص مسجّل الدخول إلى حساب Overwolf هذا أن يسجّل الدخول إلى حساب Spire Codex هذا. تابع فقط إذا كنت أنت من ضغط Link في الواجهة.",
+      ind: "Setelah ditautkan, siapa pun yang masuk ke akun Overwolf ini bisa masuk ke akun Spire Codex ini. Lanjutkan hanya jika kamu sendiri yang menekan Link di overlay.",
     },
   "Link accounts": {
     eng: "Link accounts",
@@ -410,6 +456,8 @@ export const X9X: Record<string, Record<string, string>> = {
     tur: "Hesapları bağla",
     zhs: "关联账号",
     zht: "連結帳號",
+    ara: "ربط الحسابين",
+    ind: "Tautkan akun",
   },
   "This Overwolf account is already linked to another Spire Codex account, or this account already has a different Overwolf account. Disconnect the old link in Settings first.":
     {
@@ -428,5 +476,7 @@ export const X9X: Record<string, Record<string, string>> = {
       tur: "Bu Overwolf hesabı zaten başka bir Spire Codex hesabına bağlı ya da bu hesapta zaten farklı bir Overwolf hesabı var. Önce Ayarlar'dan eski bağlantıyı kaldır.",
       zhs: "这个 Overwolf 账号已关联到另一个 Spire Codex 账号，或者这个账号已经关联了别的 Overwolf 账号。请先在设置中解除旧的关联。",
       zht: "這個 Overwolf 帳號已連結到另一個 Spire Codex 帳號，或者這個帳號已經連結了別的 Overwolf 帳號。請先在設定中解除舊的連結。",
+      ara: "حساب Overwolf هذا مرتبط بالفعل بحساب Spire Codex آخر، أو أن هذا الحساب مرتبط بحساب Overwolf مختلف. افصل الربط القديم من الإعدادات أولًا.",
+      ind: "Akun Overwolf ini sudah tertaut ke akun Spire Codex lain, atau akun ini sudah punya akun Overwolf yang berbeda. Putuskan tautan lama di Pengaturan dulu.",
     },
 };

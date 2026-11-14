@@ -71,7 +71,9 @@ function listOf(
 
 const LOCALE_TAGS: Record<string, string> = {
   eng: "en",
+  ara: "ar",
   deu: "de",
+  ind: "id",
   esp: "es",
   spa: "es",
   fra: "fr",

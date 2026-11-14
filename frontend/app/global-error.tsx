@@ -23,6 +23,8 @@ const COPY: Record<string, [string, string, string]> = {
     "Si è verificato un errore imprevisto.",
     "Riprova",
   ],
+  ara: ["حدث خطأ ما", "حدث خطأ غير متوقع.", "إعادة المحاولة"],
+  ind: ["Terjadi kesalahan", "Terjadi kesalahan tak terduga.", "Coba lagi"],
   jpn: ["問題が発生しました", "予期しないエラーが発生しました。", "再試行"],
   kor: ["문제가 발생했습니다", "예기치 않은 오류가 발생했습니다.", "다시 시도"],
   pol: [

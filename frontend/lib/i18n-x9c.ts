@@ -16,6 +16,8 @@ export const X9C: Record<string, Record<string, string>> = {
     tur: "Seçilen seçenek kaydedilmedi",
     zhs: "未记录所选选项",
     zht: "未記錄所選選項",
+    ara: "الخيار المختار غير مسجل",
+    ind: "Opsi yang dipilih tidak tercatat",
   },
   "Some picks not recorded": {
     eng: "Some picks not recorded",
@@ -33,6 +35,8 @@ export const X9C: Record<string, Record<string, string>> = {
     tur: "Bazı seçimler kaydedilmedi",
     zhs: "部分选择未被记录",
     zht: "部分選擇未被記錄",
+    ara: "بعض الاختيارات غير مسجلة",
+    ind: "Sebagian pilihan tidak tercatat",
   },
   "Conflicting choice records": {
     eng: "Conflicting choice records",
@@ -50,6 +54,8 @@ export const X9C: Record<string, Record<string, string>> = {
     tur: "Çelişkili seçim kayıtları",
     zhs: "选择记录相互矛盾",
     zht: "選擇記錄相互矛盾",
+    ara: "سجلات اختيار متضاربة",
+    ind: "Catatan pilihan saling bertentangan",
   },
   "This recording did not include map positions.": {
     eng: "This recording did not include map positions.",
@@ -67,6 +73,8 @@ export const X9C: Record<string, Record<string, string>> = {
     tur: "Bu kayıt harita konumlarını içermiyordu.",
     zhs: "此记录未包含地图位置。",
     zht: "此記錄未包含地圖位置。",
+    ara: "هذا التسجيل لم يتضمن مواقع الخريطة.",
+    ind: "Rekaman ini tidak memuat posisi peta.",
   },
   "Fight {n} of {of}": {
     eng: "Fight {n} of {of}",
@@ -84,6 +92,8 @@ export const X9C: Record<string, Record<string, string>> = {
     tur: "{of} savaştan {n}. si",
     zhs: "第 {n} 场战斗，共 {of} 场",
     zht: "第 {n} 場戰鬥，共 {of} 場",
+    ara: "القتال {n} من {of}",
+    ind: "Pertarungan {n} dari {of}",
   },
   "Result not recorded": {
     eng: "Result not recorded",
@@ -101,6 +111,8 @@ export const X9C: Record<string, Record<string, string>> = {
     tur: "Sonuç kaydedilmedi",
     zhs: "未记录结果",
     zht: "未記錄結果",
+    ara: "النتيجة غير مسجلة",
+    ind: "Hasil tidak tercatat",
   },
   "End not recorded": {
     eng: "End not recorded",
@@ -118,6 +130,8 @@ export const X9C: Record<string, Record<string, string>> = {
     tur: "Bitiş kaydedilmedi",
     zhs: "未记录结束",
     zht: "未記錄結束",
+    ara: "النهاية غير مسجلة",
+    ind: "Akhir tidak tercatat",
   },
   "Damage per floor": {
     eng: "Damage per floor",
@@ -135,6 +149,8 @@ export const X9C: Record<string, Record<string, string>> = {
     tur: "Kat başına hasar",
     zhs: "每层伤害",
     zht: "每層傷害",
+    ara: "الضرر لكل طابق",
+    ind: "Kerusakan per lantai",
   },
   "Turns per floor": {
     eng: "Turns per floor",
@@ -152,6 +168,8 @@ export const X9C: Record<string, Record<string, string>> = {
     tur: "Kat başına tur",
     zhs: "每层回合数",
     zht: "每層回合數",
+    ara: "الأدوار لكل طابق",
+    ind: "Giliran per lantai",
   },
   "HP lost": {
     eng: "HP lost",
@@ -169,6 +187,8 @@ export const X9C: Record<string, Record<string, string>> = {
     tur: "Kaybedilen CP",
     zhs: "损失生命",
     zht: "損失生命",
+    ara: "الصحة المفقودة",
+    ind: "HP hilang",
   },
   "HP lost unknown": {
     eng: "HP lost unknown",
@@ -186,6 +206,8 @@ export const X9C: Record<string, Record<string, string>> = {
     tur: "Kaybedilen CP bilinmiyor",
     zhs: "损失生命未知",
     zht: "損失生命未知",
+    ara: "الصحة المفقودة غير معروفة",
+    ind: "HP hilang tidak diketahui",
   },
   "HP lost per floor": {
     eng: "HP lost per floor",
@@ -203,6 +225,8 @@ export const X9C: Record<string, Record<string, string>> = {
     tur: "Kat başına kaybedilen CP",
     zhs: "每层损失生命",
     zht: "每層損失生命",
+    ara: "الصحة المفقودة لكل طابق",
+    ind: "HP hilang per lantai",
   },
   "Floors with no recorded position: {n}": {
     eng: "Floors with no recorded position: {n}",
@@ -220,6 +244,8 @@ export const X9C: Record<string, Record<string, string>> = {
     tur: "Kayıtlı konumu olmayan katlar: {n}",
     zhs: "没有记录位置的层数：{n}",
     zht: "沒有記錄位置的層數：{n}",
+    ara: "طوابق بلا موقع مسجل: {n}",
+    ind: "Lantai tanpa posisi tercatat: {n}",
   },
   "Recorded positions not on the map: {n}": {
     eng: "Recorded positions not on the map: {n}",
@@ -237,6 +263,8 @@ export const X9C: Record<string, Record<string, string>> = {
     tur: "Haritada olmayan kayıtlı konumlar: {n}",
     zhs: "不在地图上的记录位置：{n}",
     zht: "不在地圖上的記錄位置：{n}",
+    ara: "مواقع مسجلة غير موجودة على الخريطة: {n}",
+    ind: "Posisi tercatat yang tidak ada di peta: {n}",
   },
   "At least {n} HP lost": {
     eng: "At least {n} HP lost",
@@ -254,6 +282,8 @@ export const X9C: Record<string, Record<string, string>> = {
     tur: "En az {n} CP kaybedildi",
     zhs: "至少损失 {n} 点生命",
     zht: "至少損失 {n} 點生命",
+    ara: "فُقد ما لا يقل عن {n} HP",
+    ind: "Setidaknya {n} HP hilang",
   },
   "Fight {n}, attempt {k}": {
     eng: "Fight {n}, attempt {k}",
@@ -271,6 +301,8 @@ export const X9C: Record<string, Record<string, string>> = {
     tur: "{n}. savaş, {k}. deneme",
     zhs: "第 {n} 场战斗，第 {k} 次尝试",
     zht: "第 {n} 場戰鬥，第 {k} 次嘗試",
+    ara: "القتال {n}، المحاولة {k}",
+    ind: "Pertarungan {n}, percobaan {k}",
   },
   "Undone by a reload, so this attempt did not stick": {
     eng: "Undone by a reload, so this attempt did not stick",
@@ -288,6 +320,8 @@ export const X9C: Record<string, Record<string, string>> = {
     tur: "Yükleme ile yeniden başladı, bu deneme sayılmadı",
     zhs: "因读档重新开始，本次尝试未生效",
     zht: "因讀檔重新開始，本次嘗試未生效",
+    ara: "ألغتها إعادة تحميل، فلم تُحتسب هذه المحاولة",
+    ind: "Dibatalkan oleh muat ulang, jadi percobaan ini tidak berlaku",
   },
   "The recording stopped before the run ended, so the later floors are missing.":
     {
@@ -306,6 +340,8 @@ export const X9C: Record<string, Record<string, string>> = {
       tur: "Kayıt koşu bitmeden durdu, bu yüzden sonraki katlar eksik.",
       zhs: "记录在对局结束前停止，因此缺少后面的楼层。",
       zht: "記錄在對局結束前停止，因此缺少後面的樓層。",
+      ara: "توقف التسجيل قبل نهاية الجولة، لذا الطوابق اللاحقة مفقودة.",
+      ind: "Rekaman berhenti sebelum perjalanan selesai, jadi lantai-lantai berikutnya tidak ada.",
     },
   "The recording dropped some of this run, so parts of it are missing.": {
     eng: "The recording dropped some of this run, so parts of it are missing.",
@@ -323,6 +359,8 @@ export const X9C: Record<string, Record<string, string>> = {
     tur: "Kayıt bu koşunun bir kısmını atladı, bu yüzden eksik bölümler var.",
     zhs: "记录遗漏了本局的部分内容，因此有缺失。",
     zht: "記錄遺漏了本局的部分內容，因此有缺失。",
+    ara: "أسقط التسجيل جزءاً من هذه الجولة، لذا بعض أجزائها مفقودة.",
+    ind: "Rekaman kehilangan sebagian perjalanan ini, jadi ada bagian yang tidak ada.",
   },
   "Lines not captured: {n}": {
     eng: "Lines not captured: {n}",
@@ -340,6 +378,8 @@ export const X9C: Record<string, Record<string, string>> = {
     tur: "Kaydedilmeyen satırlar: {n}",
     zhs: "未记录的行数：{n}",
     zht: "未記錄的行數：{n}",
+    ara: "أسطر لم تُلتقط: {n}",
+    ind: "Baris yang tidak terekam: {n}",
   },
   "Lines that could not be read: {n}": {
     eng: "Lines that could not be read: {n}",
@@ -357,6 +397,8 @@ export const X9C: Record<string, Record<string, string>> = {
     tur: "Okunamayan satırlar: {n}",
     zhs: "无法读取的行数：{n}",
     zht: "無法讀取的行數：{n}",
+    ara: "أسطر تعذرت قراءتها: {n}",
+    ind: "Baris yang tidak bisa dibaca: {n}",
   },
   "Missing from the record: {n} lines in {places} places": {
     eng: "Missing from the record: {n} lines in {places} places",
@@ -374,6 +416,8 @@ export const X9C: Record<string, Record<string, string>> = {
     tur: "Kayıtta eksik: {places} yerde {n} satır",
     zhs: "记录缺失：{places} 处共 {n} 行",
     zht: "記錄缺失：{places} 處共 {n} 行",
+    ara: "مفقود من السجل: {n} سطر في {places} موضع",
+    ind: "Hilang dari catatan: {n} baris di {places} tempat",
   },
   "Floors affected: {list}": {
     eng: "Floors affected: {list}",
@@ -391,6 +435,8 @@ export const X9C: Record<string, Record<string, string>> = {
     tur: "Etkilenen katlar: {list}",
     zhs: "受影响的楼层：{list}",
     zht: "受影響的樓層：{list}",
+    ara: "الطوابق المتأثرة: {list}",
+    ind: "Lantai terdampak: {list}",
   },
   "{n} lines from this floor are missing from the record, so something here went unrecorded.":
     {
@@ -409,6 +455,8 @@ export const X9C: Record<string, Record<string, string>> = {
       tur: "Bu kattan {n} satır kayıtta eksik, yani burada bir şey kaydedilmedi.",
       zhs: "本层有 {n} 行未出现在记录中，说明这里有内容未被记录。",
       zht: "本層有 {n} 行未出現在記錄中，說明這裡有內容未被記錄。",
+      ara: "{n} سطر من هذا الطابق مفقود من السجل، فهناك شيء هنا لم يُسجل.",
+      ind: "{n} baris dari lantai ini hilang dari catatan, jadi ada sesuatu di sini yang tidak terekam.",
     },
   "Continued after a reload": {
     eng: "Continued after a reload",
@@ -426,5 +474,7 @@ export const X9C: Record<string, Record<string, string>> = {
     tur: "Yüklemeden sonra devam etti",
     zhs: "读档后继续",
     zht: "讀檔後繼續",
+    ara: "استمرت بعد إعادة تحميل",
+    ind: "Dilanjutkan setelah muat ulang",
   },
 };

@@ -1,0 +1,1586 @@
+[
+  {
+    "id": "AEONGLASS_BOSS",
+    "name": "زجاج الأيون",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "AEONGLASS",
+        "name": "زجاج الأيون"
+      }
+    ],
+    "loss_text": "لم يتقبل [gold]زجاج الأيون[/gold] إزعاج [b]The Adventurer[/b] بلطف."
+  },
+  {
+    "id": "AXEBOTS_NORMAL",
+    "name": "أصدقاء آليون",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "AXEBOT",
+        "name": "أكسيبوت"
+      }
+    ],
+    "loss_text": "قُطّع [b]The Adventurer[/b] إربًا على يد بعض [gold]أصدقاء آليون[/gold]."
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_ENCOUNTER",
+    "name": "Battleworn Dummy Event Encounter",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": null,
+    "loss_text": null
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_V1_ENCOUNTER",
+    "name": "Battleworn Dummy",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "BATTLE_FRIEND_V1",
+        "name": "رفيق المعركة V1.0"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] was somehow killed by [gold]Battleworn Dummy[/gold]???"
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_V2_ENCOUNTER",
+    "name": "Battleworn Dummy",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "BATTLE_FRIEND_V2",
+        "name": "رفيق المعركة V2.0"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] was somehow killed by [gold]Battleworn Dummy[/gold]???"
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_V3_ENCOUNTER",
+    "name": "Battleworn Dummy",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "BATTLE_FRIEND_V3",
+        "name": "رفيق المعركة V3.0"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] was somehow killed by [gold]Battleworn Dummy[/gold]???"
+  },
+  {
+    "id": "BOWLBUGS_NORMAL",
+    "name": "سرب Bowlbug",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Workers"
+    ],
+    "monsters": [
+      {
+        "id": "BOWLBUG_EGG",
+        "name": "بولبغ (بيضة)"
+      },
+      {
+        "id": "BOWLBUG_NECTAR",
+        "name": "بولبغ (رحيق)"
+      },
+      {
+        "id": "BOWLBUG_ROCK",
+        "name": "بولبغ (صخر)"
+      },
+      {
+        "id": "BOWLBUG_SILK",
+        "name": "بولبغ (حرير)"
+      }
+    ],
+    "loss_text": "اعترض [b]The Adventurer[/b] طريق [gold]سرب Bowlbug[/gold] منشغل."
+  },
+  {
+    "id": "BOWLBUGS_WEAK",
+    "name": "Bowlbugs",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Workers"
+    ],
+    "monsters": [
+      {
+        "id": "BOWLBUG_EGG",
+        "name": "بولبغ (بيضة)"
+      },
+      {
+        "id": "BOWLBUG_NECTAR",
+        "name": "بولبغ (رحيق)"
+      },
+      {
+        "id": "BOWLBUG_ROCK",
+        "name": "بولبغ (صخر)"
+      }
+    ],
+    "loss_text": "اعترض [b]The Adventurer[/b] طريق بعض [gold]Bowlbugs[/gold] المنشغلين."
+  },
+  {
+    "id": "BYGONE_EFFIGY_ELITE",
+    "name": "تمثال الماضي",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "BYGONE_EFFIGY",
+        "name": "تمثال الماضي"
+      }
+    ],
+    "loss_text": "شُطر [b]The Adventurer[/b] نصفين على يد [gold]تمثال الماضي[/gold]."
+  },
+  {
+    "id": "BYRDONIS_ELITE",
+    "name": "بيردونيس",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "BYRDONIS",
+        "name": "بيردونيس"
+      }
+    ],
+    "loss_text": "حمى [gold]بيردونيس[/gold] أطفاله من [b]The Adventurer[/b]."
+  },
+  {
+    "id": "CEREMONIAL_BEAST_BOSS",
+    "name": "الوحش الشعائري",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CEREMONIAL_BEAST",
+        "name": "الوحش الطقوسي"
+      }
+    ],
+    "loss_text": "أرقد [gold]الوحش الشعائري[/gold] [b]The Adventurer[/b] إلى الأبد."
+  },
+  {
+    "id": "CHOMPERS_NORMAL",
+    "name": "زوج آلي",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Chomper"
+    ],
+    "monsters": [
+      {
+        "id": "CHOMPER",
+        "name": "تشومبر"
+      }
+    ],
+    "loss_text": "قُضم [b]The Adventurer[/b] حتى الموت بواسطة [gold]زوج آلي[/gold]."
+  },
+  {
+    "id": "CONSTRUCT_MENAGERIE_NORMAL",
+    "name": "حظيرة المنشآت",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CUBEX_CONSTRUCT",
+        "name": "بنية كيوبكس"
+      },
+      {
+        "id": "PUNCH_CONSTRUCT",
+        "name": "بنية الملاكمة"
+      }
+    ],
+    "loss_text": "سحق [gold]حظيرة المنشآت[/gold] [b]The Adventurer[/b]."
+  },
+  {
+    "id": "CORPSE_SLUGS_NORMAL",
+    "name": "رخويات جثث كثيرة",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": [
+      "Slugs"
+    ],
+    "monsters": [
+      {
+        "id": "CORPSE_SLUG",
+        "name": "بزاقة الجثة"
+      }
+    ],
+    "loss_text": "تغذّى [gold]رخويات جثث كثيرة[/gold] على [b]The Adventurer[/b]."
+  },
+  {
+    "id": "CORPSE_SLUGS_WEAK",
+    "name": "رخويات الجثث",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Underdocks",
+    "tags": [
+      "Slugs"
+    ],
+    "monsters": [
+      {
+        "id": "CORPSE_SLUG",
+        "name": "بزاقة الجثة"
+      }
+    ],
+    "loss_text": "تغذّى [gold]رخويات الجثث[/gold] على [b]The Adventurer[/b]."
+  },
+  {
+    "id": "CUBEX_CONSTRUCT_NORMAL",
+    "name": "بنية كيوبكس",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CUBEX_CONSTRUCT",
+        "name": "بنية كيوبكس"
+      }
+    ],
+    "loss_text": "قُتل [b]The Adventurer[/b] بأشعة الليزر على يد [gold]بنية كيوبكس[/gold]."
+  },
+  {
+    "id": "CULTISTS_NORMAL",
+    "name": "العبّاد",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CALCIFIED_CULTIST",
+        "name": "المتعبد المتكلس"
+      },
+      {
+        "id": "DAMP_CULTIST",
+        "name": "المتعبد الرطب"
+      }
+    ],
+    "loss_text": "قُتل [b]The Adventurer[/b] على يد بعض [gold]العبّاد[/gold]. [sine]كااااو[/sine]..."
+  },
+  {
+    "id": "DECIMILLIPEDE_ELITE",
+    "name": "ديسيميليبيد",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "DECIMILLIPEDE_SEGMENT_BACK",
+        "name": "Decimillipede Segment Back"
+      },
+      {
+        "id": "DECIMILLIPEDE_SEGMENT_FRONT",
+        "name": "Decimillipede Segment Front"
+      },
+      {
+        "id": "DECIMILLIPEDE_SEGMENT_MIDDLE",
+        "name": "Decimillipede Segment Middle"
+      }
+    ],
+    "loss_text": "لم يستطع [b]The Adventurer[/b] النجاة داخل نطاق [gold]ديسيميليبيد[/gold]."
+  },
+  {
+    "id": "DENSE_VEGETATION_EVENT_ENCOUNTER",
+    "name": "المتلوّون",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "WRIGGLER",
+        "name": "المتلوّي"
+      }
+    ],
+    "loss_text": "أُصيب [b]The Adventurer[/b] بالطفيليات بواسطة [gold]المتلوّون[/gold]."
+  },
+  {
+    "id": "DEVOTED_SCULPTOR_WEAK",
+    "name": "النحّات المتفاني",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "DEVOTED_SCULPTOR",
+        "name": "النحات المتعبد"
+      }
+    ],
+    "loss_text": "حُطّم [b]The Adventurer[/b] إلى قطع على يد [gold]النحّات المتفاني[/gold]."
+  },
+  {
+    "id": "ENTOMANCER_ELITE",
+    "name": "قائد الحشرات",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "ENTOMANCER",
+        "name": "قائد الحشرات"
+      }
+    ],
+    "loss_text": "لُسع [b]The Adventurer[/b] حتى الموت على يد [gold]قائد الحشرات[/gold]."
+  },
+  {
+    "id": "EXOSKELETONS_NORMAL",
+    "name": "هياكل خارجية كثيرة",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Exoskeletons"
+    ],
+    "monsters": [
+      {
+        "id": "EXOSKELETON",
+        "name": "هيكل خارجي"
+      }
+    ],
+    "loss_text": "مُزّق [b]The Adventurer[/b] على يد [gold]هياكل خارجية كثيرة[/gold]."
+  },
+  {
+    "id": "EXOSKELETONS_WEAK",
+    "name": "هياكل خارجية",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Exoskeletons"
+    ],
+    "monsters": [
+      {
+        "id": "EXOSKELETON",
+        "name": "هيكل خارجي"
+      }
+    ],
+    "loss_text": "مُزّق [b]The Adventurer[/b] على يد بعض [gold]هياكل خارجية[/gold]."
+  },
+  {
+    "id": "FABRICATOR_NORMAL",
+    "name": "المصنّع",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FABRICATOR",
+        "name": "المُصنِّع"
+      }
+    ],
+    "loss_text": "صُعق [b]The Adventurer[/b] بواسطة روبوتات [gold]المصنّع[/gold]."
+  },
+  {
+    "id": "FAKE_MERCHANT_EVENT_ENCOUNTER",
+    "name": "التاجر؟؟؟",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FAKE_MERCHANT_MONSTER",
+        "name": "التاجر؟؟؟"
+      }
+    ],
+    "loss_text": "واجه [b]The Adventurer[/b] غضب [gold]التاجر؟؟؟[/gold]"
+  },
+  {
+    "id": "FLYCONID_NORMAL",
+    "name": "فطر ووحل",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Mushroom",
+      "Slimes"
+    ],
+    "monsters": [
+      {
+        "id": "FLYCONID",
+        "name": "فلايكونيد"
+      },
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "وحل الأوراق (M)"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "وحل الأغصان (M)"
+      }
+    ],
+    "loss_text": "امتص [gold]فطر ووحل[/gold] [b]The Adventurer[/b]."
+  },
+  {
+    "id": "FOGMOG_NORMAL",
+    "name": "فوغموج",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "EYE_WITH_TEETH",
+        "name": "عين بأسنان"
+      },
+      {
+        "id": "FOGMOG",
+        "name": "فوغموج"
+      }
+    ],
+    "loss_text": "تشتّت [b]The Adventurer[/b] بأوهام [gold]فوغموج[/gold]."
+  },
+  {
+    "id": "FOSSIL_STALKER_NORMAL",
+    "name": "مطارد الأحافير",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FOSSIL_STALKER",
+        "name": "مطارد الأحافير"
+      }
+    ],
+    "loss_text": "نصب [gold]مطارد الأحافير[/gold] كمينًا لـ [b]The Adventurer[/b]."
+  },
+  {
+    "id": "FROG_KNIGHT_NORMAL",
+    "name": "فارس الضفدع",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FROG_KNIGHT",
+        "name": "فارس الضفدع"
+      }
+    ],
+    "loss_text": "انتصر [gold]فارس الضفدع[/gold] الباسل على [b]The Adventurer[/b]."
+  },
+  {
+    "id": "FUZZY_WURM_CRAWLER_WEAK",
+    "name": "زاحف الدودة الزغبة",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Crawler"
+    ],
+    "monsters": [
+      {
+        "id": "FUZZY_WURM_CRAWLER",
+        "name": "زاحف الدودة الزغبة"
+      }
+    ],
+    "loss_text": "بصق [gold]زاحف الدودة الزغبة[/gold] على [b]The Adventurer[/b]."
+  },
+  {
+    "id": "GLOBE_HEAD_NORMAL",
+    "name": "رأس كروي وحيد",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "GLOBE_HEAD",
+        "name": "رأس الكرة"
+      }
+    ],
+    "loss_text": "صعق [gold]رأس كروي وحيد[/gold] [b]The Adventurer[/b]."
+  },
+  {
+    "id": "GREMLIN_MERC_NORMAL",
+    "name": "غريملنان في معطف واحد",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FAT_GREMLIN",
+        "name": "غريملين بدين"
+      },
+      {
+        "id": "GREMLIN_MERC",
+        "name": "غريملين مرتزق"
+      },
+      {
+        "id": "SNEAKY_GREMLIN",
+        "name": "غريملين متسلل"
+      }
+    ],
+    "loss_text": "تعرّض [b]The Adventurer[/b] للسطو على يد [gold]غريملنان في معطف واحد[/gold]."
+  },
+  {
+    "id": "HAUNTED_SHIP_NORMAL",
+    "name": "السفينة المسكونة",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "HAUNTED_SHIP",
+        "name": "السفينة المسكونة"
+      }
+    ],
+    "loss_text": "داس [gold]السفينة المسكونة[/gold] على [b]The Adventurer[/b] بلا رحمة."
+  },
+  {
+    "id": "HUNTER_KILLER_NORMAL",
+    "name": "الصياد القاتل",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "HUNTER_KILLER",
+        "name": "الصياد القاتل"
+      }
+    ],
+    "loss_text": "بُقر بطن [b]The Adventurer[/b] على يد [gold]الصياد القاتل[/gold]."
+  },
+  {
+    "id": "INFESTED_PRISMS_ELITE",
+    "name": "المنشور المصاب",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "INFESTED_PRISM",
+        "name": "المنشور الموبوء"
+      }
+    ],
+    "loss_text": "أوقف [gold]المنشور المصاب[/gold] [b]The Adventurer[/b]."
+  },
+  {
+    "id": "INKLETS_NORMAL",
+    "name": "Inklets",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "INKLET",
+        "name": "إنكلت"
+      }
+    ],
+    "loss_text": "لم تسمح بعض [gold]Inklets[/gold] لـ [b]The Adventurer[/b] بالعبور."
+  },
+  {
+    "id": "KAISER_CRAB_BOSS",
+    "name": "Kaiser Crab",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CRUSHER",
+        "name": "الساحق"
+      },
+      {
+        "id": "ROCKET",
+        "name": "صاروخ"
+      }
+    ],
+    "loss_text": "ضرب [gold]Kaiser Crab[/gold] [b]The Adventurer[/b] من كل الجهات."
+  },
+  {
+    "id": "KNIGHTS_ELITE",
+    "name": "عصابة الفرسان",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": [
+      "Knights"
+    ],
+    "monsters": [
+      {
+        "id": "FLAIL_KNIGHT",
+        "name": "فارس السوط"
+      },
+      {
+        "id": "MAGI_KNIGHT",
+        "name": "فارس الطاقة"
+      },
+      {
+        "id": "SPECTRAL_KNIGHT",
+        "name": "الفارس الطيفي"
+      }
+    ],
+    "loss_text": "قُتل [b]The Adventurer[/b] على يد [gold]عصابة الفرسان[/gold]."
+  },
+  {
+    "id": "KNOWLEDGE_DEMON_BOSS",
+    "name": "وحش المعرفة",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "KNOWLEDGE_DEMON",
+        "name": "وحش المعرفة"
+      }
+    ],
+    "loss_text": "أغرق [gold]وحش المعرفة[/gold] [b]The Adventurer[/b] في معرفة طاغية."
+  },
+  {
+    "id": "LAGAVULIN_MATRIARCH_BOSS",
+    "name": "أم لاغافولين",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "LAGAVULIN_MATRIARCH",
+        "name": "أم لاغافولين"
+      }
+    ],
+    "loss_text": "قُطع [b]The Adventurer[/b] نصفين على يد [gold]أم لاغافولين[/gold]."
+  },
+  {
+    "id": "LIVING_FOG_NORMAL",
+    "name": "غاز شرير",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "GAS_BOMB",
+        "name": "قنبلة غاز"
+      },
+      {
+        "id": "LIVING_FOG",
+        "name": "الضباب الحي"
+      }
+    ],
+    "loss_text": "لم يحتمل [b]The Adventurer[/b] رائحة بعض [gold]غاز شرير[/gold]."
+  },
+  {
+    "id": "LOUSE_PROGENITOR_NORMAL",
+    "name": "سلف القمل",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "LOUSE_PROGENITOR",
+        "name": "سلف القمل"
+      }
+    ],
+    "loss_text": "شُلّ [b]The Adventurer[/b] بواسطة [gold]سلف القمل[/gold]."
+  },
+  {
+    "id": "MAWLER_NORMAL",
+    "name": "ماولر",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MAWLER",
+        "name": "ماولر"
+      }
+    ],
+    "loss_text": "صار [b]The Adventurer[/b] وجبة شهية لـ [gold]ماولر[/gold]."
+  },
+  {
+    "id": "MECHA_KNIGHT_ELITE",
+    "name": "الفارس الآلي",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MECHA_KNIGHT",
+        "name": "فارس الميكا"
+      }
+    ],
+    "loss_text": "طُعن [b]The Adventurer[/b] وأُحرق على يد [gold]الفارس الآلي[/gold]."
+  },
+  {
+    "id": "MYSTERIOUS_KNIGHT_EVENT_ENCOUNTER",
+    "name": "الفارس الغامض",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MYSTERIOUS_KNIGHT",
+        "name": "الفارس الغامض"
+      }
+    ],
+    "loss_text": "حاول [b]The Adventurer[/b] أخذ مفتاح [gold]الفارس الغامض[/gold]."
+  },
+  {
+    "id": "MYTES_NORMAL",
+    "name": "كتلة Mytes",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MYTE",
+        "name": "مايت"
+      }
+    ],
+    "loss_text": "اجتاح [gold]كتلة Mytes[/gold] [b]The Adventurer[/b]."
+  },
+  {
+    "id": "NIBBITS_NORMAL",
+    "name": "زوج من Nibbits",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "NIBBIT",
+        "name": "نيبِت"
+      }
+    ],
+    "loss_text": "أوسع [gold]زوج من Nibbits[/gold] [b]The Adventurer[/b] ضربًا."
+  },
+  {
+    "id": "NIBBITS_WEAK",
+    "name": "نيبِت وحيد",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Nibbit"
+    ],
+    "monsters": [
+      {
+        "id": "NIBBIT",
+        "name": "نيبِت"
+      }
+    ],
+    "loss_text": "أوسع [gold]نيبِت وحيد[/gold] [b]The Adventurer[/b] ضربًا."
+  },
+  {
+    "id": "OVERGROWTH_CRAWLERS",
+    "name": "زواحف النموّ الجارف",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Shrinker",
+      "Crawler"
+    ],
+    "monsters": [
+      {
+        "id": "FUZZY_WURM_CRAWLER",
+        "name": "زاحف الدودة الزغبة"
+      },
+      {
+        "id": "SHRINKER_BEETLE",
+        "name": "خنفساء التقليص"
+      }
+    ],
+    "loss_text": "تغذّى بعض [gold]زواحف النموّ الجارف[/gold] على [b]The Adventurer[/b]."
+  },
+  {
+    "id": "OVICOPTER_NORMAL",
+    "name": "أوفيكوبتر",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "OVICOPTER",
+        "name": "أوفيكوبتر"
+      },
+      {
+        "id": "TOUGH_EGG",
+        "name": "بيضة صلبة"
+      }
+    ],
+    "loss_text": "صار [b]The Adventurer[/b] طعامًا لأطفال [gold]أوفيكوبتر[/gold]."
+  },
+  {
+    "id": "OWL_MAGISTRATE_NORMAL",
+    "name": "قاضي البوم",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "OWL_MAGISTRATE",
+        "name": "قاضي البوم"
+      }
+    ],
+    "loss_text": "حكم [gold]قاضي البوم[/gold] على [b]The Adventurer[/b] بالموت."
+  },
+  {
+    "id": "PHANTASMAL_GARDENERS_ELITE",
+    "name": "البستانيون الشبحيون",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PHANTASMAL_GARDENER",
+        "name": "البستاني الشبحي"
+      }
+    ],
+    "loss_text": "أرقد [gold]البستانيون الشبحيون[/gold] [b]The Adventurer[/b] إلى الأبد."
+  },
+  {
+    "id": "PHROG_PARASITE_ELITE",
+    "name": "طفيلي الفروغ",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PHROG_PARASITE",
+        "name": "طفيلي الفروغ"
+      },
+      {
+        "id": "WRIGGLER",
+        "name": "المتلوّي"
+      }
+    ],
+    "loss_text": "نشر [gold]طفيلي الفروغ[/gold] مستعمرته إلى [b]The Adventurer[/b]."
+  },
+  {
+    "id": "PUNCH_CONSTRUCT_NORMAL",
+    "name": "بنية الملاكمة",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PUNCH_CONSTRUCT",
+        "name": "بنية الملاكمة"
+      }
+    ],
+    "loss_text": "دخل [b]The Adventurer[/b] في عراك بالأيدي مع [gold]بنية الملاكمة[/gold]."
+  },
+  {
+    "id": "PUNCH_OFF_EVENT_ENCOUNTER",
+    "name": "Punch Constructs",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PUNCH_CONSTRUCT",
+        "name": "بنية الملاكمة"
+      }
+    ],
+    "loss_text": "قاطع [b]The Adventurer[/b] نزالًا بين اثنين من [gold]Punch Constructs[/gold]."
+  },
+  {
+    "id": "QUEEN_BOSS",
+    "name": "الملكة",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "QUEEN",
+        "name": "الملكة"
+      },
+      {
+        "id": "TORCH_HEAD_AMALGAM",
+        "name": "مزيج رأس الشعلة"
+      }
+    ],
+    "loss_text": "أضافت [gold]الملكة[/gold] قطعة من [b]The Adventurer[/b] إلى مجموعتها."
+  },
+  {
+    "id": "RUBY_RAIDERS_NORMAL",
+    "name": "غزاة الياقوت",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "ASSASSIN_RUBY_RAIDER",
+        "name": "غارة الياقوت القاتل"
+      },
+      {
+        "id": "AXE_RUBY_RAIDER",
+        "name": "غارة الفأس"
+      },
+      {
+        "id": "BRUTE_RUBY_RAIDER",
+        "name": "غارة الياقوت الضخم"
+      },
+      {
+        "id": "CROSSBOW_RUBY_RAIDER",
+        "name": "غارة القوس النشاب"
+      },
+      {
+        "id": "TRACKER_RUBY_RAIDER",
+        "name": "المغير المتعقّب"
+      }
+    ],
+    "loss_text": "هجم على [b]The Adventurer[/b] جماعة من [gold]غزاة الياقوت[/gold]."
+  },
+  {
+    "id": "SCROLLS_OF_BITING_NORMAL",
+    "name": "لفائف عضّ كثيرة",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": [
+      "Scrolls"
+    ],
+    "monsters": [
+      {
+        "id": "SCROLL_OF_BITING",
+        "name": "لفافة العض"
+      }
+    ],
+    "loss_text": "مزّق [gold]لفائف عضّ كثيرة[/gold] [b]The Adventurer[/b] إربًا."
+  },
+  {
+    "id": "SCROLLS_OF_BITING_WEAK",
+    "name": "لفائف العضّ",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 3 - Glory",
+    "tags": [
+      "Scrolls"
+    ],
+    "monsters": [
+      {
+        "id": "SCROLL_OF_BITING",
+        "name": "لفافة العض"
+      }
+    ],
+    "loss_text": "مزّقت بعض [gold]لفائف العضّ[/gold] [b]The Adventurer[/b] إربًا."
+  },
+  {
+    "id": "SEAPUNK_NORMAL",
+    "name": "حياة Underdocks البرية",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": [
+      "Seapunk"
+    ],
+    "monsters": [
+      {
+        "id": "CALCIFIED_CULTIST",
+        "name": "المتعبد المتكلس"
+      },
+      {
+        "id": "SEAPUNK",
+        "name": "سيبانك"
+      }
+    ],
+    "loss_text": "هُزم [b]The Adventurer[/b] على يد بعض [gold]حياة Underdocks البرية[/gold]."
+  },
+  {
+    "id": "SEAPUNK_WEAK",
+    "name": "سيبانك",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Underdocks",
+    "tags": [
+      "Seapunk"
+    ],
+    "monsters": [
+      {
+        "id": "SEAPUNK",
+        "name": "سيبانك"
+      }
+    ],
+    "loss_text": "أبرح [gold]سيبانك[/gold] [b]The Adventurer[/b] ضربًا."
+  },
+  {
+    "id": "SEWER_CLAM_NORMAL",
+    "name": "محار المجاري",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SEWER_CLAM",
+        "name": "محار المجاري"
+      }
+    ],
+    "loss_text": "ابتلع [gold]محار المجاري[/gold] [b]The Adventurer[/b]."
+  },
+  {
+    "id": "SHRINKER_BEETLE_WEAK",
+    "name": "خنفساء التقليص",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Shrinker"
+    ],
+    "monsters": [
+      {
+        "id": "SHRINKER_BEETLE",
+        "name": "خنفساء التقليص"
+      }
+    ],
+    "loss_text": "تسلى [gold]خنفساء التقليص[/gold] بالتهام [b]The Adventurer[/b]."
+  },
+  {
+    "id": "SKULKING_COLONY_ELITE",
+    "name": "المستعمرة المتربصة",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SKULKING_COLONY",
+        "name": "المستعمرة المتربصة"
+      }
+    ],
+    "loss_text": "امتص [gold]المستعمرة المتربصة[/gold] [b]The Adventurer[/b]"
+  },
+  {
+    "id": "SLIMED_BERSERKER_NORMAL",
+    "name": "الهائج الموحل",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SLIMED_BERSERKER",
+        "name": "الهائج الموحل"
+      }
+    ],
+    "loss_text": "امتص [gold]الهائج الموحل[/gold] [b]The Adventurer[/b]."
+  },
+  {
+    "id": "SLIMES_NORMAL",
+    "name": "سرب من الوحل",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Slimes"
+    ],
+    "monsters": [
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "وحل الأوراق (M)"
+      },
+      {
+        "id": "LEAF_SLIME_S",
+        "name": "وحل الأوراق (S)"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "وحل الأغصان (M)"
+      },
+      {
+        "id": "TWIG_SLIME_S",
+        "name": "وحل الأغصان (S)"
+      }
+    ],
+    "loss_text": "أسقط [gold]سرب من الوحل[/gold] [b]The Adventurer[/b]."
+  },
+  {
+    "id": "SLIMES_WEAK",
+    "name": "مجموعة من الوحل",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Slimes"
+    ],
+    "monsters": [
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "وحل الأوراق (M)"
+      },
+      {
+        "id": "LEAF_SLIME_S",
+        "name": "وحل الأوراق (S)"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "وحل الأغصان (M)"
+      },
+      {
+        "id": "TWIG_SLIME_S",
+        "name": "وحل الأغصان (S)"
+      }
+    ],
+    "loss_text": "أسقط [gold]مجموعة من الوحل[/gold] [b]The Adventurer[/b]."
+  },
+  {
+    "id": "SLITHERING_STRANGLER_NORMAL",
+    "name": "الخانق الزاحف وصديقه",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Jaxfruit",
+      "Slimes"
+    ],
+    "monsters": [
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "وحل الأوراق (M)"
+      },
+      {
+        "id": "LEAF_SLIME_S",
+        "name": "وحل الأوراق (S)"
+      },
+      {
+        "id": "SLITHERING_STRANGLER",
+        "name": "الخانق الزاحف"
+      },
+      {
+        "id": "SNAPPING_JAXFRUIT",
+        "name": "جاك فروت قاضم"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "وحل الأغصان (M)"
+      },
+      {
+        "id": "TWIG_SLIME_S",
+        "name": "وحل الأغصان (S)"
+      }
+    ],
+    "loss_text": "خُنق [b]The Adventurer[/b] بواسطة [gold]الخانق الزاحف وصديقه[/gold]."
+  },
+  {
+    "id": "SLUDGE_SPINNER_WEAK",
+    "name": "غزّال الحمأة",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SLUDGE_SPINNER",
+        "name": "غازل الحمأة"
+      }
+    ],
+    "loss_text": "لم يستطع [b]The Adventurer[/b] هزيمة [gold]غزّال الحمأة[/gold]."
+  },
+  {
+    "id": "SLUMBERING_BEETLE_NORMAL",
+    "name": "حفلة سبات",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Workers"
+    ],
+    "monsters": [
+      {
+        "id": "BOWLBUG_ROCK",
+        "name": "بولبغ (صخر)"
+      },
+      {
+        "id": "BOWLBUG_SILK",
+        "name": "بولبغ (حرير)"
+      },
+      {
+        "id": "SLUMBERING_BEETLE",
+        "name": "الخنفساء النائمة"
+      }
+    ],
+    "loss_text": "قاطع [b]The Adventurer[/b] [gold]حفلة سبات[/gold]."
+  },
+  {
+    "id": "SNAPPING_JAXFRUIT_NORMAL",
+    "name": "نباتات النموّ الجارف",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Mushroom",
+      "Jaxfruit"
+    ],
+    "monsters": [
+      {
+        "id": "FLYCONID",
+        "name": "فلايكونيد"
+      },
+      {
+        "id": "SNAPPING_JAXFRUIT",
+        "name": "جاك فروت قاضم"
+      }
+    ],
+    "loss_text": "وقع [b]The Adventurer[/b] في ورطة مع بعض [gold]نباتات النموّ الجارف[/gold]."
+  },
+  {
+    "id": "SOUL_FYSH_BOSS",
+    "name": "سمكة طيفية",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SOUL_FYSH",
+        "name": "سمكة طيفية"
+      }
+    ],
+    "loss_text": "استدرج [gold]سمكة طيفية[/gold] [b]The Adventurer[/b] إلى هلاكه."
+  },
+  {
+    "id": "SOUL_NEXUS_ELITE",
+    "name": "ملتقى الأطياف",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SOUL_NEXUS",
+        "name": "ملتقى الأطياف"
+      }
+    ],
+    "loss_text": "مات [b]The Adventurer[/b] على يد [gold]ملتقى الأطياف[/gold] في ساحة معركة منسية."
+  },
+  {
+    "id": "SPINY_TOAD_NORMAL",
+    "name": "ضفدع شائك",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SPINY_TOAD",
+        "name": "العلجوم الشوكي"
+      }
+    ],
+    "loss_text": "لم يستطع [b]The Adventurer[/b] اختراق أشواك [gold]ضفدع شائك[/gold]."
+  },
+  {
+    "id": "TERROR_EEL_ELITE",
+    "name": "ثعبان البحر المرعب",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TERROR_EEL",
+        "name": "أنقليس الرعب"
+      }
+    ],
+    "loss_text": "كان [gold]ثعبان البحر المرعب[/gold] مرعبًا أكثر من اللازم لـ [b]The Adventurer[/b]."
+  },
+  {
+    "id": "TEST_SUBJECT_BOSS",
+    "name": "موضوع الاختبار",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TEST_SUBJECT",
+        "name": "موضوع الاختبار #C{Count}"
+      }
+    ],
+    "loss_text": "حرس [gold]موضوع الاختبار[/gold] أسياده بإخلاص من [b]The Adventurer[/b]."
+  },
+  {
+    "id": "THE_ARCHITECT_EVENT_ENCOUNTER",
+    "name": "المعماري",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "ARCHITECT",
+        "name": "المعماري"
+      }
+    ],
+    "loss_text": "لا ينبغي أن ترى هذا."
+  },
+  {
+    "id": "THE_INSATIABLE_BOSS",
+    "name": "النهم",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "THE_INSATIABLE",
+        "name": "النهم"
+      }
+    ],
+    "loss_text": "التهَم [gold]النهم[/gold] [b]The Adventurer[/b]. ومع ذلك، ما زال جائعًا..."
+  },
+  {
+    "id": "THE_KIN_BOSS",
+    "name": "The Kin",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "KIN_FOLLOWER",
+        "name": "تابع الكِن"
+      },
+      {
+        "id": "KIN_PRIEST",
+        "name": "زعيم الكِن"
+      }
+    ],
+    "loss_text": "أُبيد [b]The Adventurer[/b] بفعل استراتيجية [gold]The Kin[/gold] المتفوقة."
+  },
+  {
+    "id": "THE_LOST_AND_FORGOTTEN_NORMAL",
+    "name": "الضائع والمنسي",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "THE_FORGOTTEN",
+        "name": "المنسي"
+      },
+      {
+        "id": "THE_LOST",
+        "name": "الضائع"
+      }
+    ],
+    "loss_text": "سرق [gold]الضائع والمنسي[/gold] إرادة [b]The Adventurer[/b] في الحياة."
+  },
+  {
+    "id": "THE_OBSCURA_NORMAL",
+    "name": "الغامض",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PARAFRIGHT",
+        "name": "بارافرايت"
+      },
+      {
+        "id": "THE_OBSCURA",
+        "name": "الغامض"
+      }
+    ],
+    "loss_text": "حطّم [gold]الغامض[/gold] ووهمه [b]The Adventurer[/b]."
+  },
+  {
+    "id": "THIEVING_HOPPER_WEAK",
+    "name": "النطّاط اللص",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Thieves"
+    ],
+    "monsters": [
+      {
+        "id": "THIEVING_HOPPER",
+        "name": "النطّاط اللص"
+      }
+    ],
+    "loss_text": "سطا [gold]النطّاط اللص[/gold] على [b]The Adventurer[/b]."
+  },
+  {
+    "id": "TOADPOLES_WEAK",
+    "name": "Toadpoles",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TOADPOLE",
+        "name": "شرغوف"
+      }
+    ],
+    "loss_text": "لم يستطع [b]The Adventurer[/b] التعامل مع بعض [gold]Toadpoles[/gold]."
+  },
+  {
+    "id": "TUNNELER_NORMAL",
+    "name": "ثنائي الحفر",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": [
+      "Burrower",
+      "Chomper"
+    ],
+    "monsters": [
+      {
+        "id": "CHOMPER",
+        "name": "تشومبر"
+      },
+      {
+        "id": "TUNNELER",
+        "name": "الحفّار"
+      }
+    ],
+    "loss_text": "قضى [gold]ثنائي الحفر[/gold] على [b]The Adventurer[/b]."
+  },
+  {
+    "id": "TUNNELER_WEAK",
+    "name": "الحفّار",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Burrower"
+    ],
+    "monsters": [
+      {
+        "id": "TUNNELER",
+        "name": "الحفّار"
+      }
+    ],
+    "loss_text": "ضُرب [b]The Adventurer[/b] بقوة على يد [gold]الحفّار[/gold]."
+  },
+  {
+    "id": "TURRET_OPERATOR_WEAK",
+    "name": "مشغّل البرج",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "LIVING_SHIELD",
+        "name": "الدرع الحي"
+      },
+      {
+        "id": "TURRET_OPERATOR",
+        "name": "مشغّل البرج"
+      }
+    ],
+    "loss_text": "ثقّب [gold]مشغّل البرج[/gold] [b]The Adventurer[/b] بالرصاص."
+  },
+  {
+    "id": "TWO_TAILED_RATS_NORMAL",
+    "name": "جرذان ثنائية الذيل",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TWO_TAILED_RAT",
+        "name": "جرذ بذيلين"
+      }
+    ],
+    "loss_text": "اجتاح بعض [gold]جرذان ثنائية الذيل[/gold] [b]The Adventurer[/b]."
+  },
+  {
+    "id": "VANTOM_BOSS",
+    "name": "فانتوم",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "VANTOM",
+        "name": "فانتوم"
+      }
+    ],
+    "loss_text": "حوّل [gold]فانتوم[/gold] [b]The Adventurer[/b] إلى إنكلت."
+  },
+  {
+    "id": "VINE_SHAMBLER_NORMAL",
+    "name": "متهادي الكروم",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "VINE_SHAMBLER",
+        "name": "متهادي الكروم"
+      }
+    ],
+    "loss_text": "لم يستطع [b]The Adventurer[/b] الهرب من [gold]متهادي الكروم[/gold]."
+  },
+  {
+    "id": "WATERFALL_GIANT_BOSS",
+    "name": "عملاق الشلال",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "WATERFALL_GIANT",
+        "name": "عملاق الشلال"
+      }
+    ],
+    "loss_text": "طهّر [gold]عملاق الشلال[/gold] الـ Underdocks من [b]The Adventurer[/b]."
+  }
+]

@@ -16,6 +16,8 @@ export const X9N: Record<string, Record<string, string>> = {
     tur: "Karakter",
     zhs: "角色",
     zht: "角色",
+    ara: "الشخصية",
+    ind: "Karakter",
   },
   "Pick a character": {
     eng: "Pick a character",
@@ -33,5 +35,7 @@ export const X9N: Record<string, Record<string, string>> = {
     tur: "Bir karakter seç",
     zhs: "选择角色",
     zht: "選擇角色",
+    ara: "اختر شخصية",
+    ind: "Pilih karakter",
   },
 };

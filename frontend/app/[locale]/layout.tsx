@@ -17,7 +17,12 @@ import IntlProvider from "@/app/components/IntlProvider";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { hreflangOf, ogLocaleOf, type Locale } from "@/lib/locale";
-import { LANG_DATABASE, LANG_GAME_NAME, LANG_NAMES } from "@/lib/languages";
+import {
+  LANG_DATABASE,
+  LANG_GAME_NAME,
+  LANG_NAMES,
+  RTL_LANGS,
+} from "@/lib/languages";
 import { AuthProvider } from "@/app/contexts/AuthContext";
 import { ToastProvider } from "@/app/components/Toast";
 import AuthNotice from "@/app/components/AuthNotice";
@@ -137,7 +142,11 @@ export default async function RootLayout({ children, params }: LayoutProps) {
   setRequestLocale(locale);
   const betaRenderVersion = await fetchBetaRenderVersion();
   return (
-    <html lang={hreflangOf(locale)} className="dark">
+    <html
+      lang={hreflangOf(locale)}
+      dir={RTL_LANGS.has(locale) ? "rtl" : "ltr"}
+      className="dark"
+    >
       {/* React hoists these into <head>. Preconnecting to the CDN saves a
           DNS + TLS round trip before the first image request — on mobile
           RTTs that's a few hundred ms off every art-heavy page. */}

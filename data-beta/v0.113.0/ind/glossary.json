@@ -1,0 +1,206 @@
+[
+  {
+    "id": "ARROW",
+    "name": "Panah",
+    "description": "Panah bisa ditembak oleh kartu untuk [gold]Menusuk[/gold] sebuah kartu.",
+    "category": "mechanics"
+  },
+  {
+    "id": "BLOCK",
+    "name": "Blok",
+    "description": "Sampai giliran selanjutnya, mencegah kerusakan.",
+    "category": "combat"
+  },
+  {
+    "id": "CARD_REWARD",
+    "name": "Pilihan Kartu",
+    "description": "Sebuah paket berisi [blue]3[/blue] kartu acak. Kamu bisa memilih [blue]1[/blue] untuk ditambahkan ke [gold]Dekmu[/gold].",
+    "category": "progression"
+  },
+  {
+    "id": "CHANNELING",
+    "name": "Salurkan",
+    "description": "Menyalurkan sebuah Bola menempatkannya ke tempat kosong pertama. Jika kamu tidak punya tempat kosong, bola pertamamu [gold]Terpicu[/gold] secara otomatis untuk mengkosongkan tempat.",
+    "category": "combat"
+  },
+  {
+    "id": "CHO_MELODY",
+    "name": "Melodi Cho",
+    "description": "Aktif bila kamu memainkan sebuah kartu “Cho” giliran ini.",
+    "category": "mechanics"
+  },
+  {
+    "id": "COOK",
+    "name": "Masak",
+    "description": "[gold]Buang[/gold] [blue]2[/blue] kartu dari [gold]Dekmu[/gold] dan dapatkan [green]9[/green] HP Maksimal pada [gold]Peristirahatan[/gold].",
+    "category": "mechanics"
+  },
+  {
+    "id": "DECK",
+    "name": "Dek",
+    "description": "Lihat semua kartu dalam dekmu.",
+    "category": "zones"
+  },
+  {
+    "id": "DISCARD_PILE",
+    "name": "Tumpukan Singkir",
+    "description": "Jika tumpukan ambil kamu kosong, tumpukan singkir akan dikocok ke tumpukan ambil.\n\nKlik untuk melihat kartu didalam tumpukan singkir.",
+    "category": "zones"
+  },
+  {
+    "id": "DRAW_PILE",
+    "name": "Tumpukan Ambil",
+    "description": "Pada awal giliran,\n[blue]5[/blue] kartu diambil dari sini.\n\nKlik untuk melihat kartu dalam tumpukan ambil kamu (terkocok).",
+    "category": "zones"
+  },
+  {
+    "id": "DREAD_ROTATION",
+    "name": "Rentetan Bergantian",
+    "description": "Dalam sebuah [gold]Rentetan Bergantian[/gold], karakter berganti ke kanan setiap kali kamu menang.\nKemenangan dihitung dalam rentetan terpisah, dan tidak lagi terhitung pada masing-masing karakter.",
+    "category": "progression"
+  },
+  {
+    "id": "ENERGY",
+    "name": "Energi",
+    "description": "Energi digunakan untuk memainkan kartu dari [gold]Tanganmu[/gold].",
+    "category": "combat"
+  },
+  {
+    "id": "EVOKE",
+    "name": "Picu",
+    "description": "Gunakan Bola paling kanan milikmu dan Picu efeknya.",
+    "category": "combat"
+  },
+  {
+    "id": "EXHAUST_PILE",
+    "name": "Kartu Hangus",
+    "description": "Klik untuk melihat kartu hangus pada perlawanan ini.",
+    "category": "zones"
+  },
+  {
+    "id": "FATAL",
+    "name": "Fatal",
+    "description": "Terpicu setiap kali kartu ini membunuh musuh bukan pengikut.",
+    "category": "combat"
+  },
+  {
+    "id": "FORGE",
+    "name": "Tempa",
+    "description": "Pertama kalinya kamu [gold]Tempa[/gold] setiap perlawanan, tambahkan [gold]Pedang Penguasa[/gold] ke [gold]Tanganmu[/gold]. Tambahkan kerusakan ke [gold]Pedang Penguasa[/gold].",
+    "category": "mechanics"
+  },
+  {
+    "id": "HIT_POINTS",
+    "name": "Hit Point",
+    "description": "Jika kamu kehabisan HP, kamu mati.",
+    "category": "progression"
+  },
+  {
+    "id": "KI_MELODY",
+    "name": "Melodi Ki",
+    "description": "Aktif bila kamu memainkan sebuah kartu “Ki” giliran ini.",
+    "category": "mechanics"
+  },
+  {
+    "id": "LINKED_REWARDS",
+    "name": "Pilihan Terhubung",
+    "description": "Kamu hanya bisa memilih [blue]1[/blue] dari kumpulan ini.",
+    "category": "progression"
+  },
+  {
+    "id": "MONEY_POUCH",
+    "name": "Emas",
+    "description": "Berapa banyak Emas yang kamu miliki. Emas adalah mata uang dalam Spire.",
+    "category": "progression"
+  },
+  {
+    "id": "POTION_SLOT",
+    "name": "Tempat Ramuan",
+    "description": "Gunakan ramuan saat perlawanan untuk mendapat [green]bonus[/green] atau [red]menghambat[/red] musuh.",
+    "category": "progression"
+  },
+  {
+    "id": "REPLAY",
+    "name": "Ulangi",
+    "description": "Mainkan kartu ini lagi.",
+    "category": "mechanics"
+  },
+  {
+    "id": "ROOM_ANCIENT",
+    "name": "Ancient",
+    "description": "Ancient berkediaman dalam ruangan ini.\n\nMereka memberi bonus, harta, dan pengetahuan yang hebat.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_BOSS",
+    "name": "Bos",
+    "description": "Musuh paling berbahaya di area ini.\n\nMengalahkan mereka akan memungkinkanmu lanjut ke Babak selanjutnya.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_ELITE",
+    "name": "Elit",
+    "description": "Musuh kuat ada dalam ruangan ini.\n\nMengalahkan mereka memberimu sebuah [gold]Pusaka[/gold].",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_ENEMY",
+    "name": "Musuh",
+    "description": "Musuh berada dalam ruangan ini.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_EVENT",
+    "name": "Event",
+    "description": "Sesuatu yang janggal terjadi dalam ruangan ini...",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_MERCHANT",
+    "name": "Toko",
+    "description": "Pedagang misterius menjual barang-barangnya dalam ruangan ini.\n\nHabiskan [gold]Emas[/gold] yang kamu susah payah kumpulkan disini!",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_REST",
+    "name": "Peristirahatan",
+    "description": "Berhentilah dalam ruangan ini untuk [green]Menyembuhkan[/green] seberapa HP atau [gold]Tingkatkan[/gold] sebuah kartu.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_TREASURE",
+    "name": "Ruang Harta",
+    "description": "[gold]Pusaka[/gold] dan [gold]Emas[/gold] dapat dijumpai dalam ruangan mengagumkan ini.",
+    "category": "rooms"
+  },
+  {
+    "id": "STUN",
+    "name": "Linglung",
+    "description": "Cegah musuh melakukan apapun di gilirannya selanjutnya.",
+    "category": "combat"
+  },
+  {
+    "id": "SUMMON",
+    "name": "Panggil",
+    "description": "Panggil [gold]Osty[/gold].\nJika sudah terpanggil, naikkan HP Maksimalnya selama perlawanan ini.",
+    "category": "mechanics"
+  },
+  {
+    "id": "TAROT",
+    "name": "Tarot",
+    "description": "Kartu unik dengan efek khusus.",
+    "category": "mechanics"
+  },
+  {
+    "id": "TRANSFORM",
+    "name": "Transformasi",
+    "description": "Kartu yang Ditransformasikan menjadi kartu acak dengan kelangkaan apapun.",
+    "category": "mechanics"
+  },
+  {
+    "id": "WAH_MELODY",
+    "name": "Melodi Wah",
+    "description": "Aktif bila kamu memainkan sebuah kartu “Wah” giliran ini.",
+    "category": "mechanics"
+  }
+]

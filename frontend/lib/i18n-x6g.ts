@@ -16,6 +16,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Bir kart oynadı",
     zhs: "打出了一张牌",
     zht: "打出了一張牌",
+    ara: "لعب بطاقة",
+    ind: "Memainkan kartu",
   },
   Played: {
     eng: "Played",
@@ -33,6 +35,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Oynadı:",
     zhs: "打出",
     zht: "打出",
+    ara: "تم اللعب",
+    ind: "Dimainkan",
   },
   "Removed a card": {
     eng: "Removed a card",
@@ -50,6 +54,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Bir kart kaldırdı",
     zhs: "移除了一张牌",
     zht: "移除了一張牌",
+    ara: "أزال بطاقة",
+    ind: "Membuang kartu",
   },
   "Bought something at the shop": {
     eng: "Bought something at the shop",
@@ -67,6 +73,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Dükkandan bir şey aldı",
     zhs: "在商店买了东西",
     zht: "在商店買了東西",
+    ara: "اشترى شيئًا من المتجر",
+    ind: "Membeli sesuatu di toko",
   },
   Bought: {
     eng: "Bought",
@@ -84,6 +92,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Satın aldı:",
     zhs: "购买",
     zht: "購買",
+    ara: "تم الشراء",
+    ind: "Dibeli",
   },
   "Ancient relic:": {
     eng: "Ancient relic:",
@@ -101,6 +111,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Kadim kalıntı:",
     zhs: "远古遗物：",
     zht: "遠古遺物：",
+    ara: "أثر عتيق:",
+    ind: "Pusaka Ancient:",
   },
   Got: {
     eng: "Got",
@@ -118,6 +130,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Aldı:",
     zhs: "获得",
     zht: "獲得",
+    ara: "حصل على",
+    ind: "Dapat",
   },
   "Took an ancient relic": {
     eng: "Took an ancient relic",
@@ -135,6 +149,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Kadim bir kalıntı aldı",
     zhs: "拿了一件远古遗物",
     zht: "拿了一件遠古遺物",
+    ara: "أخذ أثرًا عتيقًا",
+    ind: "Mengambil pusaka Ancient",
   },
   "Got a relic": {
     eng: "Got a relic",
@@ -152,6 +168,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Bir kalıntı aldı",
     zhs: "获得了一件遗物",
     zht: "獲得了一件遺物",
+    ara: "حصل على أثر",
+    ind: "Dapat pusaka",
   },
   "Took {n} gold": {
     eng: "Took {n} gold",
@@ -169,6 +187,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "{n} altın aldı",
     zhs: "拿了 {n} 金币",
     zht: "拿了 {n} 金幣",
+    ara: "أخذ {n} من الذهب",
+    ind: "Mengambil {n} emas",
   },
   "Took loot": {
     eng: "Took loot",
@@ -186,6 +206,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Ganimet aldı",
     zhs: "拿了战利品",
     zht: "拿了戰利品",
+    ara: "أخذ الغنائم",
+    ind: "Mengambil rampasan",
   },
   Took: {
     eng: "Took",
@@ -203,6 +225,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Aldı:",
     zhs: "拿了",
     zht: "拿了",
+    ara: "أخذ",
+    ind: "Mengambil",
   },
   "Rested at a campfire": {
     eng: "Rested at a campfire",
@@ -220,6 +244,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Kamp ateşinde dinlendi",
     zhs: "在休息处休息",
     zht: "在休息處休息",
+    ara: "استراح في موقع راحة",
+    ind: "Beristirahat di peristirahatan",
   },
   "Upgraded a card": {
     eng: "Upgraded a card",
@@ -237,6 +263,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Bir kart geliştirdi",
     zhs: "升级了一张牌",
     zht: "升級了一張牌",
+    ara: "رقّى بطاقة",
+    ind: "Meningkatkan kartu",
   },
   "Visited an event": {
     eng: "Visited an event",
@@ -254,6 +282,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Bir olaya uğradı",
     zhs: "遇到了一个事件",
     zht: "遇到了一個事件",
+    ara: "زار حدثًا",
+    ind: "Mengunjungi event",
   },
   "Event:": {
     eng: "Event:",
@@ -271,6 +301,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Olay:",
     zhs: "事件：",
     zht: "事件：",
+    ara: "حدث:",
+    ind: "Event:",
   },
   "Fight started": {
     eng: "Fight started",
@@ -288,6 +320,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Savaş başladı",
     zhs: "战斗开始",
     zht: "戰鬥開始",
+    ara: "بدأ القتال",
+    ind: "Perlawanan dimulai",
   },
   "Won the fight against {name}": {
     eng: "Won the fight against {name}",
@@ -305,6 +339,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "{name} ile savaşı kazandı",
     zhs: "战胜了 {name}",
     zht: "戰勝了 {name}",
+    ara: "فاز في القتال ضد {name}",
+    ind: "Menang melawan {name}",
   },
   "Won the fight": {
     eng: "Won the fight",
@@ -322,6 +358,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Savaşı kazandı",
     zhs: "赢得了战斗",
     zht: "贏得了戰鬥",
+    ara: "فاز في القتال",
+    ind: "Menang perlawanan",
   },
   "Picked: {option}": {
     eng: "Picked: {option}",
@@ -339,6 +377,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Seçti: {option}",
     zhs: "选择了：{option}",
     zht: "選擇了：{option}",
+    ara: "اختار: {option}",
+    ind: "Memilih: {option}",
   },
   "Picked an option": {
     eng: "Picked an option",
@@ -356,6 +396,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Bir seçenek seçti",
     zhs: "选择了一个选项",
     zht: "選擇了一個選項",
+    ara: "اختار خيارًا",
+    ind: "Memilih opsi",
   },
   Died: {
     eng: "Died",
@@ -373,6 +415,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Öldü",
     zhs: "死亡",
     zht: "死亡",
+    ara: "مات",
+    ind: "Tewas",
   },
   "Entered {act}": {
     eng: "Entered {act}",
@@ -390,6 +434,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "{act} bölümüne girdi",
     zhs: "进入了 {act}",
     zht: "進入了 {act}",
+    ara: "دخل {act}",
+    ind: "Masuk {act}",
   },
   "Entered a new act": {
     eng: "Entered a new act",
@@ -407,6 +453,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Yeni bir perdeye girdi",
     zhs: "进入了新的阶段",
     zht: "進入了新的一幕",
+    ara: "دخل فصلًا جديدًا",
+    ind: "Masuk babak baru",
   },
   "T{n}": {
     eng: "T{n}",
@@ -424,6 +472,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "T{n}",
     zhs: "T{n}",
     zht: "T{n}",
+    ara: "د{n}",
+    ind: "G{n}",
   },
   "Damage dealt": {
     eng: "Damage dealt",
@@ -441,6 +491,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Verilen hasar",
     zhs: "造成伤害",
     zht: "造成傷害",
+    ara: "الضرر المُحدَث",
+    ind: "Kerusakan diberikan",
   },
   "This turn": {
     eng: "This turn",
@@ -458,6 +510,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Bu tur",
     zhs: "本回合",
     zht: "本回合",
+    ara: "هذا الدور",
+    ind: "Giliran ini",
   },
   "Damage taken": {
     eng: "Damage taken",
@@ -475,6 +529,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Alınan hasar",
     zhs: "受到伤害",
     zht: "受到傷害",
+    ara: "الضرر المتلقّى",
+    ind: "Kerusakan diterima",
   },
   "Biggest hit": {
     eng: "Biggest hit",
@@ -492,6 +548,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "En büyük vuruş",
     zhs: "最高单次伤害",
     zht: "最高單次傷害",
+    ara: "أقوى ضربة",
+    ind: "Pukulan terbesar",
   },
   Draw: {
     eng: "Draw",
@@ -509,6 +567,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Çekme",
     zhs: "抽牌",
     zht: "抽牌",
+    ara: "السحب",
+    ind: "Ambil",
   },
   Discard: {
     eng: "Discard",
@@ -526,6 +586,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Atılan",
     zhs: "弃牌",
     zht: "棄牌",
+    ara: "المهملات",
+    ind: "Singkir",
   },
   "Hand ({n})": {
     eng: "Hand ({n})",
@@ -543,6 +605,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "El ({n})",
     zhs: "手牌 ({n})",
     zht: "手牌 ({n})",
+    ara: "اليد ({n})",
+    ind: "Tangan ({n})",
   },
   "{label} pile — click to view": {
     eng: "{label} pile — click to view",
@@ -560,6 +624,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "{label} destesi — görmek için tıkla",
     zhs: "{label}堆 — 点击查看",
     zht: "{label}堆 — 點擊查看",
+    ara: "كومة {label} - انقر للعرض",
+    ind: "Tumpukan {label} - klik untuk lihat",
   },
   "{label} pile": {
     eng: "{label} pile",
@@ -577,6 +643,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "{label} destesi",
     zhs: "{label}堆",
     zht: "{label}堆",
+    ara: "كومة {label}",
+    ind: "Tumpukan {label}",
   },
   "{label} pile ({n})": {
     eng: "{label} pile ({n})",
@@ -594,6 +662,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "{label} destesi ({n})",
     zhs: "{label}堆 ({n})",
     zht: "{label}堆 ({n})",
+    ara: "كومة {label} ({n})",
+    ind: "Tumpukan {label} ({n})",
   },
   Close: {
     eng: "Close",
@@ -611,6 +681,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Kapat",
     zhs: "关闭",
     zht: "關閉",
+    ara: "إغلاق",
+    ind: "Tutup",
   },
   Party: {
     eng: "Party",
@@ -628,6 +700,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Ekip",
     zhs: "队伍",
     zht: "隊伍",
+    ara: "الفريق",
+    ind: "Tim",
   },
   you: {
     eng: "you",
@@ -645,6 +719,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "sen",
     zhs: "你",
     zht: "你",
+    ara: "أنت",
+    ind: "kamu",
   },
   dead: {
     eng: "dead",
@@ -662,6 +738,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "öldü",
     zhs: "已死亡",
     zht: "已死亡",
+    ara: "ميت",
+    ind: "mati",
   },
   "{hp}/{max} HP": {
     eng: "{hp}/{max} HP",
@@ -679,6 +757,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "{hp}/{max} HP",
     zhs: "生命 {hp}/{max}",
     zht: "生命 {hp}/{max}",
+    ara: "{hp}/{max} HP",
+    ind: "{hp}/{max} HP",
   },
   "Block {n}": {
     eng: "Block {n}",
@@ -696,6 +776,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Blok {n}",
     zhs: "格挡 {n}",
     zht: "格擋 {n}",
+    ara: "الصد {n}",
+    ind: "Blok {n}",
   },
   "{n}g": {
     eng: "{n}g",
@@ -713,6 +795,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "{n} altın",
     zhs: "{n} 金币",
     zht: "{n} 金幣",
+    ara: "{n} ذهب",
+    ind: "{n}g",
   },
   "Not live right now": {
     eng: "Not live right now",
@@ -730,6 +814,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Şu anda canlı değil",
     zhs: "当前未在直播",
     zht: "目前未在直播",
+    ara: "ليس في بث مباشر الآن",
+    ind: "Sedang tidak live",
   },
   "This player is not in a run, or their live status is off.": {
     eng: "This player is not in a run, or their live status is off.",
@@ -747,6 +833,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Bu oyuncu bir koşuda değil ya da canlı durumu kapalı.",
     zhs: "该玩家当前不在游戏中，或已关闭直播状态。",
     zht: "該玩家目前不在遊戲中，或已關閉直播狀態。",
+    ara: "هذا اللاعب ليس في جولة، أو أن حالته المباشرة متوقفة.",
+    ind: "Pemain ini tidak sedang dalam perjalanan, atau status live-nya mati.",
   },
   "Back to the live roster": {
     eng: "Back to the live roster",
@@ -764,6 +852,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Canlı listesine dön",
     zhs: "返回直播列表",
     zht: "返回直播列表",
+    ara: "العودة إلى قائمة المباشر",
+    ind: "Kembali ke daftar live",
   },
   "run ended": {
     eng: "run ended",
@@ -781,6 +871,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "koşu bitti",
     zhs: "游戏已结束",
     zht: "遊戲已結束",
+    ara: "انتهت الجولة",
+    ind: "perjalanan selesai",
   },
   "run {time}": {
     eng: "run {time}",
@@ -798,6 +890,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "koşu {time}",
     zhs: "游戏时长 {time}",
     zht: "遊戲時長 {time}",
+    ara: "الجولة {time}",
+    ind: "perjalanan {time}",
   },
   "seed {seed}": {
     eng: "seed {seed}",
@@ -815,6 +909,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "tohum {seed}",
     zhs: "种子 {seed}",
     zht: "種子 {seed}",
+    ara: "البذرة {seed}",
+    ind: "benih {seed}",
   },
   "Play-by-play": {
     eng: "Play-by-play",
@@ -832,6 +928,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Hamle hamle",
     zhs: "实时记录",
     zht: "即時記錄",
+    ara: "مجريات اللعب",
+    ind: "Jalannya permainan",
   },
   "No plays yet. Card plays, potions, fights, and purchases show up here as they happen.":
     {
@@ -850,6 +948,8 @@ export const X6G: Record<string, Record<string, string>> = {
       tur: "Henüz hamle yok. Oynanan kartlar, iksirler, savaşlar ve alışverişler gerçekleştikçe burada görünür.",
       zhs: "还没有记录。打出的牌、药水、战斗和购买会在发生时显示在这里。",
       zht: "還沒有記錄。打出的牌、藥水、戰鬥和購買會在發生時顯示在這裡。",
+      ara: "لا تحركات بعد. لعب البطاقات والجرعات والمعارك والمشتريات تظهر هنا فور حدوثها.",
+      ind: "Belum ada aksi. Kartu yang dimainkan, ramuan, perlawanan, dan pembelian muncul di sini saat terjadi.",
     },
   Deck: {
     eng: "Deck",
@@ -867,6 +967,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Deste",
     zhs: "牌组",
     zht: "牌組",
+    ara: "المجموعة",
+    ind: "Dek",
   },
   "Deck ({n})": {
     eng: "Deck ({n})",
@@ -884,6 +986,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Deste ({n})",
     zhs: "牌组 ({n})",
     zht: "牌組 ({n})",
+    ara: "المجموعة ({n})",
+    ind: "Dek ({n})",
   },
   "No deck data on this beat.": {
     eng: "No deck data on this beat.",
@@ -901,6 +1005,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Bu güncellemede deste verisi yok.",
     zhs: "此次更新没有牌组数据。",
     zht: "此次更新沒有牌組資料。",
+    ara: "لا بيانات للمجموعة في هذه اللحظة.",
+    ind: "Tidak ada data dek di momen ini.",
   },
   "No relic data on this beat.": {
     eng: "No relic data on this beat.",
@@ -918,6 +1024,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Bu güncellemede kalıntı verisi yok.",
     zhs: "此次更新没有遗物数据。",
     zht: "此次更新沒有遺物資料。",
+    ara: "لا بيانات للآثار في هذه اللحظة.",
+    ind: "Tidak ada data pusaka di momen ini.",
   },
   "Live roster": {
     eng: "Live roster",
@@ -935,6 +1043,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Canlı listesi",
     zhs: "直播列表",
     zht: "直播列表",
+    ara: "قائمة المباشر",
+    ind: "Daftar live",
   },
   "Collapse play-by-play": {
     eng: "Collapse play-by-play",
@@ -952,6 +1062,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Hamle hamle bölümünü daralt",
     zhs: "收起实时记录",
     zht: "收起即時記錄",
+    ara: "طيّ مجريات اللعب",
+    ind: "Ciutkan jalannya permainan",
   },
   "Show play-by-play": {
     eng: "Show play-by-play",
@@ -969,6 +1081,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Hamle hamle bölümünü göster",
     zhs: "显示实时记录",
     zht: "顯示即時記錄",
+    ara: "إظهار مجريات اللعب",
+    ind: "Tampilkan jalannya permainan",
   },
   Map: {
     eng: "Map",
@@ -986,6 +1100,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Harita",
     zhs: "地图",
     zht: "地圖",
+    ara: "الخريطة",
+    ind: "Peta",
   },
   "Map · Act {n}": {
     eng: "Map · Act {n}",
@@ -1003,6 +1119,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Harita · Perde {n}",
     zhs: "地图 · 第 {n} 阶段",
     zht: "地圖 · 第 {n} 幕",
+    ara: "الخريطة · الفصل {n}",
+    ind: "Peta · Babak {n}",
   },
   "Empty orb slot": {
     eng: "Empty orb slot",
@@ -1020,6 +1138,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Boş küre yuvası",
     zhs: "空充能球槽",
     zht: "空充能球槽",
+    ara: "خانة جرم فارغة",
+    ind: "Tempat bola kosong",
   },
   down: {
     eng: "down",
@@ -1037,6 +1157,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "düştü",
     zhs: "倒下",
     zht: "倒下",
+    ara: "ساقط",
+    ind: "tumbang",
   },
   "Turn locked in": {
     eng: "Turn locked in",
@@ -1054,6 +1176,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Tur onaylandı",
     zhs: "已结束回合",
     zht: "已結束回合",
+    ara: "تم تثبيت الدور",
+    ind: "Giliran dikunci",
   },
   Pet: {
     eng: "Pet",
@@ -1071,6 +1195,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Evcil hayvan",
     zhs: "宠物",
     zht: "寵物",
+    ara: "المرافق",
+    ind: "Peliharaan",
   },
   "Act boss: {name}": {
     eng: "Act boss: {name}",
@@ -1088,6 +1214,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Perde patronu: {name}",
     zhs: "本阶段 Boss：{name}",
     zht: "本幕 Boss：{name}",
+    ara: "زعيم الفصل: {name}",
+    ind: "Bos babak: {name}",
   },
   Defeated: {
     eng: "Defeated",
@@ -1105,6 +1233,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Yenildi",
     zhs: "战败",
     zht: "戰敗",
+    ara: "هُزم",
+    ind: "Kalah",
   },
   "Slain by {name}": {
     eng: "Slain by {name}",
@@ -1122,6 +1252,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "{name} tarafından öldürüldü",
     zhs: "被 {name} 击杀",
     zht: "被 {name} 擊殺",
+    ara: "قُتل على يد {name}",
+    ind: "Dibunuh oleh {name}",
   },
   "Resting at a campfire": {
     eng: "Resting at a campfire",
@@ -1139,6 +1271,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Kamp ateşinde dinleniyor",
     zhs: "正在休息处休息",
     zht: "正在休息處休息",
+    ara: "يستريح في موقع راحة",
+    ind: "Beristirahat di peristirahatan",
   },
   "On the {screen} screen": {
     eng: "On the {screen} screen",
@@ -1156,6 +1290,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "{screen} ekranında",
     zhs: "位于 {screen} 界面",
     zht: "位於 {screen} 畫面",
+    ara: "في شاشة {screen}",
+    ind: "Di layar {screen}",
   },
   "Between rooms": {
     eng: "Between rooms",
@@ -1173,6 +1309,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Odalar arasında",
     zhs: "房间之间",
     zht: "房間之間",
+    ara: "بين الغرف",
+    ind: "Di antara ruangan",
   },
   "No cards on this beat.": {
     eng: "No cards on this beat.",
@@ -1190,6 +1328,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Bu güncellemede kart yok.",
     zhs: "此次更新没有卡牌。",
     zht: "此次更新沒有卡牌。",
+    ara: "لا بطاقات في هذه اللحظة.",
+    ind: "Tidak ada kartu di momen ini.",
   },
   "{name} - Slay the Spire 2 Enchantment": {
     eng: "{name} - Slay the Spire 2 Enchantment",
@@ -1207,6 +1347,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "{name} - Slay the Spire 2 büyüsü",
     zhs: "{name} - Slay the Spire 2 附魔",
     zht: "{name} - Slay the Spire 2 附魔",
+    ara: "{name} - تعزيز في Slay the Spire 2",
+    ind: "{name} - Efek Kartu Slay the Spire 2",
   },
   "{name} - Slay the Spire 2 Intent": {
     eng: "{name} - Slay the Spire 2 Intent",
@@ -1224,6 +1366,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "{name} - Slay the Spire 2 niyeti",
     zhs: "{name} - Slay the Spire 2 意图",
     zht: "{name} - Slay the Spire 2 意圖",
+    ara: "{name} - نية في Slay the Spire 2",
+    ind: "{name} - Niat Slay the Spire 2",
   },
   "{name} - Slay the Spire 2 Orb": {
     eng: "{name} - Slay the Spire 2 Orb",
@@ -1241,6 +1385,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "{name} - Slay the Spire 2 küresi",
     zhs: "{name} - Slay the Spire 2 充能球",
     zht: "{name} - Slay the Spire 2 充能球",
+    ara: "{name} - جرم في Slay the Spire 2",
+    ind: "{name} - Bola Slay the Spire 2",
   },
   "{name} - Slay the Spire 2 Power": {
     eng: "{name} - Slay the Spire 2 Power",
@@ -1258,6 +1404,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "{name} - Slay the Spire 2 gücü",
     zhs: "{name} - Slay the Spire 2 能力",
     zht: "{name} - Slay the Spire 2 能力",
+    ara: "{name} - قوة في Slay the Spire 2",
+    ind: "{name} - Kuasa Slay the Spire 2",
   },
   "{card} with {name} - Slay the Spire 2": {
     eng: "{card} with {name} - Slay the Spire 2",
@@ -1275,6 +1423,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "{name} ile {card} - Slay the Spire 2",
     zhs: "带有{name}的{card} - Slay the Spire 2",
     zht: "帶有{name}的{card} - Slay the Spire 2",
+    ara: "{card} مع {name} - Slay the Spire 2",
+    ind: "{card} dengan {name} - Slay the Spire 2",
   },
   "{name} epoch art - Slay the Spire 2": {
     eng: "{name} epoch art - Slay the Spire 2",
@@ -1292,6 +1442,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "{name} çağı görseli - Slay the Spire 2",
     zhs: "{name} 纪元美术 - Slay the Spire 2",
     zht: "{name} 紀元美術 - Slay the Spire 2",
+    ara: "رسم حقبة {name} - Slay the Spire 2",
+    ind: "Gambar zaman {name} - Slay the Spire 2",
   },
   "Codex Score: {score} ({tier})": {
     eng: "Codex Score: {score} ({tier})",
@@ -1309,6 +1461,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Codex Score: {score} ({tier})",
     zhs: "Codex Score：{score}（{tier}）",
     zht: "Codex Score：{score}（{tier}）",
+    ara: "Codex Score: {score} ({tier})",
+    ind: "Codex Score: {score} ({tier})",
   },
   "Recently Added {items}": {
     eng: "Recently Added {items}",
@@ -1326,6 +1480,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Yakın Zamanda Eklenen {items}",
     zhs: "最近新增的{items}",
     zht: "最近新增的{items}",
+    ara: "{items} المضافة حديثًا",
+    ind: "{items} yang Baru Ditambahkan",
   },
   "New in v{version}": {
     eng: "New in v{version}",
@@ -1343,6 +1499,8 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "v{version} ile yeni",
     zhs: "v{version} 新增",
     zht: "v{version} 新增",
+    ara: "جديد في v{version}",
+    ind: "Baru di v{version}",
   },
   "Select language (current: {code})": {
     eng: "Select language (current: {code})",
@@ -1360,5 +1518,7 @@ export const X6G: Record<string, Record<string, string>> = {
     tur: "Dil seç (geçerli: {code})",
     zhs: "选择语言（当前：{code}）",
     zht: "選擇語言（目前：{code}）",
+    ara: "اختر اللغة (الحالية: {code})",
+    ind: "Pilih bahasa (saat ini: {code})",
   },
 };

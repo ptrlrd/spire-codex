@@ -1,0 +1,3042 @@
+[
+  {
+    "id": "ACCELERANT",
+    "name": "Pemercepat",
+    "description": "[gold]Racun[/gold] terpicu sekali lagi.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/accelerant_power.webp"
+  },
+  {
+    "id": "ACCURACY",
+    "name": "Akurasi",
+    "description": "[gold]Belati[/gold] melakukan kerusakan tambahan.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/accuracy_power.webp"
+  },
+  {
+    "id": "ADAPTABLE",
+    "name": "Beradaptasi",
+    "description": "Saat [gold]this creature[/gold] akan mati, bangkit kembali lebih kuat.",
+    "description_raw": "Saat [gold]{OwnerName}[/gold] akan mati, bangkit kembali lebih kuat.",
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/adaptable_power.webp"
+  },
+  {
+    "id": "AEONGLASS_DOMINION",
+    "name": "Kekuasaan Aeonglass",
+    "description": "Pada awal giliranmu, tambahkan [blue]1[/blue] [gold]Layu[/gold] ke atas [gold]Tumpukan Ambil[/gold] kamu.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/aeonglass_dominion_power.webp"
+  },
+  {
+    "id": "AFTERIMAGE",
+    "name": "Raga Ilusi",
+    "description": "Setiap kali kamu memainkan sebuah kartu, dapatkan [blue]1[/blue] [gold]Blok[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/afterimage_power.webp"
+  },
+  {
+    "id": "AGGRESSION",
+    "name": "Agresi",
+    "description": "Pada awal giliranmu, taruh sebuah Serangan acak dari [gold]Tumpukan Singkir[/gold] kamu ke [gold]Tanganmu[/gold] dan [gold]Tingkatkan[/gold] itu untuk sisa perlawanan.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/aggression_power.webp"
+  },
+  {
+    "id": "AIM",
+    "name": "Bidik",
+    "description": "[gold]Panahmu[/gold] selanjutnya melakukan kerusakan lebih.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/aim_power.webp"
+  },
+  {
+    "id": "ALL_IS_WELL",
+    "name": "Tidak Apa-Apa",
+    "description": "Setiap kali kamu membuat sebuah [gold]Murung[/gold], dapatkan [blue]4[/blue] [gold]Blok[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/all_is_well_power.webp"
+  },
+  {
+    "id": "AMNESIA",
+    "name": "Amnesia",
+    "description": "Giliran ini, ambil 2 lebih sedikit kartu dan [energy:1] hilang.",
+    "description_raw": "Giliran ini, ambil {Cards} lebih sedikit kartu dan {Energy:energyIcons()} hilang.",
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/amnesia_power.webp"
+  },
+  {
+    "id": "ANTICIPATE",
+    "name": "Temporary Dexterity",
+    "description": "Dapatkan [gold]Ketangkasan[/gold] sampai akhir giliran ini.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/anticipate_power.webp"
+  },
+  {
+    "id": "ARCHERY",
+    "name": "Panahan",
+    "description": "Pada awal giliranmu, dapatkan [blue]4[/blue] [gold]Bidik[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/archery_power.webp"
+  },
+  {
+    "id": "ARSENAL",
+    "name": "Persenjataan",
+    "description": "Setiap kali kamu membuat kartu, dapatkan [blue]1[/blue] [gold]Kekuatan[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/arsenal_power.webp"
+  },
+  {
+    "id": "ARTIFACT",
+    "name": "Artefak",
+    "description": "[gold]Mencegah[/gold] efek buruk.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/artifact_power.webp"
+  },
+  {
+    "id": "ASLEEP",
+    "name": "Tertidur",
+    "description": "Bangun saat kehilangan HP atau setelah [blue]{}[/blue] giliran.",
+    "description_raw": "Bangun saat kehilangan HP atau {Amount:choose(1):giliran selanjutnya|setelah [blue]{}[/blue] giliran}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/asleep_power.webp"
+  },
+  {
+    "id": "AUTOMATION",
+    "name": "Otomasi",
+    "description": "Setiap [blue]10[/blue] kartu yang kamu ambil, dapatkan [energy:1].",
+    "description_raw": "Setiap [blue]{BaseCards}[/blue] kartu yang kamu ambil, dapatkan {Amount:energyIcons()}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/automation_power.webp"
+  },
+  {
+    "id": "BACK_ATTACK_LEFT",
+    "name": "Serangan Belakang",
+    "description": "Melakukan [blue]50%[/blue] lebih banyak kerusakan bila menyerangmu dari belakang.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/back_attack_left_power.webp"
+  },
+  {
+    "id": "BACK_ATTACK_RIGHT",
+    "name": "Serangan Belakang",
+    "description": "Melakukan [blue]50%[/blue] lebih banyak kerusakan bila menyerangmu dari belakang.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/back_attack_right_power.webp"
+  },
+  {
+    "id": "BARRICADE",
+    "name": "Barikade",
+    "description": "[gold]Blok[/gold] tidak dihilangkan pada awal giliran kamu.",
+    "description_raw": "[gold]Blok[/gold] tidak dihilangkan pada awal giliran {ApplierName.StringValue:cond:[gold]{OwnerName}[/gold]|kamu}.",
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/barricade_power.webp"
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_TIME_LIMIT",
+    "name": "Batas Waktu",
+    "description": "Kamu punya [blue]3[/blue] giliran lagi untuk mengalahkan Boneka Latihan Usang.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/battleworn_dummy_time_limit_power.webp"
+  },
+  {
+    "id": "BEACON_OF_HOPE",
+    "name": "Suar Harapan",
+    "description": "Setiap kali kamu mendapat [gold]Blok[/gold] pada giliranmu, pemain lain mendapat setengah [gold]Blok[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/beacon_of_hope_power.webp"
+  },
+  {
+    "id": "BIASED_COGNITION",
+    "name": "Pemikiran Bias",
+    "description": "Pada awal giliranmu, kehilangan [blue]1[/blue] [gold]Fokus[/gold].",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/biased_cognition_power.webp"
+  },
+  {
+    "id": "BLACK_HOLE",
+    "name": "Lubang Hitam",
+    "description": "Setiap kali kamu menghabiskan atau mendapatkan [star:1], lakukan [blue]3[/blue] kerusakan ke SEMUA musuh.",
+    "description_raw": "Setiap kali kamu menghabiskan atau mendapatkan {singleStarIcon}, lakukan [blue]3[/blue] kerusakan ke SEMUA musuh.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/black_hole_power.webp"
+  },
+  {
+    "id": "BLOCK_NEXT_TURN",
+    "name": "Blok Giliran Selanjutnya",
+    "description": "Pada awal giliranmu selanjutnya, dapatkan [blue]4[/blue] [gold]Blok[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/block_next_turn_power.webp"
+  },
+  {
+    "id": "BLUR",
+    "name": "Samar",
+    "description": "[gold]Blok[/gold] tidak hilang pada awal giliranmu selanjutnya.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/blur_power.webp"
+  },
+  {
+    "id": "BORROWED_TIME",
+    "name": "Waktu Pinjaman",
+    "description": "Kartu berharga [energy:1] tambahan giliran ini.",
+    "description_raw": "Kartu berharga {Amount:energyIcons()} tambahan giliran ini.",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/borrowed_time_power.webp"
+  },
+  {
+    "id": "BUFFER",
+    "name": "Pengaman",
+    "description": "Cegah kejadian kamu akan kehilangan HP.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/buffer_power.webp"
+  },
+  {
+    "id": "BURROWED",
+    "name": "Terpendam",
+    "description": "[gold]Blok[/gold] tidak dihapus pada awal giliran [gold]this creature[/gold]. [gold]Linglung[/gold] jika semua [gold]Blok[/gold] hilang.",
+    "description_raw": "[gold]Blok[/gold] tidak dihapus pada awal giliran [gold]{OwnerName}[/gold]. [gold]Linglung[/gold] jika semua [gold]Blok[/gold] hilang.",
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/burrowed_power.webp"
+  },
+  {
+    "id": "BURST",
+    "name": "Letusan",
+    "description": "Giliran ini, Teknikmu selanjutnya dimainkan sekali lagi.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/burst_power.webp"
+  },
+  {
+    "id": "CACOPHONY",
+    "name": "Kebisingan",
+    "description": "Setelah [blue]33[/blue] total kartu diambil oleh SIAPAPUN, lakukan [blue][Amount][/blue] kerusakan ke satu musuh acak.",
+    "description_raw": "Setelah [blue]{Cards}[/blue] {Cards:choose(1):kartu diambil oleh SIAPAPUN|total kartu diambil oleh SIAPAPUN}, lakukan [blue]{Amount}[/blue] kerusakan ke satu musuh acak.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/cacophony_power.webp"
+  },
+  {
+    "id": "CALAMITY",
+    "name": "Bencana",
+    "description": "Setiap kali kamu memainkan sebuah Serangan, tambahkan sebuah Serangan acak ke [gold]Tanganmu[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/calamity_power.webp"
+  },
+  {
+    "id": "CALCIFY",
+    "name": "Perkeras",
+    "description": "Serangan [gold]Osty[/gold] melakukan kerusakan tambahan.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/calcify_power.webp"
+  },
+  {
+    "id": "CALL_OF_THE_VOID",
+    "name": "Panggilan Kehampaan",
+    "description": "Pada awal giliranmu, tambahkan [blue]1[/blue] kartu acak ke [gold]Tanganmu[/gold] dan tambahkan [gold]Rapuh[/gold] kepadanya.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/call_of_the_void_power.webp"
+  },
+  {
+    "id": "CHAINS_OF_BINDING",
+    "name": "Rantai Penjerat",
+    "description": "[blue][Amount][/blue] kartu pertama yang diambil setiap gilirannya memiliki [gold]Terhubung[/gold].",
+    "description_raw": "[blue]{Amount}[/blue] kartu pertama yang diambil setiap gilirannya memiliki [gold]Terhubung[/gold].",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/chains_of_binding_power.webp"
+  },
+  {
+    "id": "CHILD_OF_THE_STARS",
+    "name": "Putra Bintang",
+    "description": "Dapatkan [blue]1[/blue] [gold]Blok[/gold] untuk setiap [star:1] yang dihabiskan.",
+    "description_raw": "Dapatkan [blue]1[/blue] [gold]Blok[/gold] untuk setiap {singleStarIcon} yang dihabiskan.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/child_of_the_stars_power.webp"
+  },
+  {
+    "id": "CHO_BARBS",
+    "name": "Temporary Thorns",
+    "description": "Dapatkan [gold]Duri[/gold] giliran ini.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/cho_barbs_power.webp"
+  },
+  {
+    "id": "CLARITY",
+    "name": "Kemurnian",
+    "description": "Pada awal giliran selanjutnya, ambil [blue]1[/blue] kartu tambahan.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/clarity_power.webp"
+  },
+  {
+    "id": "COLOSSUS",
+    "name": "Kolosus",
+    "description": "Kamu mendapat [blue]50%[/blue] lebih sedikit kerusakan dari musuh dengan [gold]Rentan[/gold] giliran ini.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/colossus_power.webp"
+  },
+  {
+    "id": "COMPOST",
+    "name": "Kompos",
+    "description": "Setiap kali satu musuh mati, SEMUA pemain mendapat [energy:1].",
+    "description_raw": "Setiap kali satu musuh mati, SEMUA pemain mendapat {Amount:energyIcons()}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/compost_power.webp"
+  },
+  {
+    "id": "CONCOCT",
+    "name": "Racik",
+    "description": "Setiap kali kamu melakukan kerusakan serangan tidak terblok giliran ini, terapkan [blue]3[/blue] [gold]Racun[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/concoct_power.webp"
+  },
+  {
+    "id": "CONDUCTORS_BATON",
+    "name": "Tongkat Dirigen",
+    "description": "Dapatkan [blue]25%[/blue] lebih sedikit kerusakan serangan sampai giliranmu selanjutnya.",
+    "description_raw": "Dapatkan [blue]{DamageDecrease:percentLess()}%[/blue] lebih sedikit kerusakan serangan sampai giliranmu selanjutnya.",
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": null
+  },
+  {
+    "id": "CONFUSED",
+    "name": "Bingung",
+    "description": "Harga dari kartu diacak saat diambil, dari [blue]0[/blue] sampai [blue]3[/blue].",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/confused_power.webp"
+  },
+  {
+    "id": "CONQUEROR",
+    "name": "Penguasa",
+    "description": "[gold]Pedang Penguasa[/gold] melakukan kerusakan ganda ke musuh giliran ini.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/conqueror_power.webp"
+  },
+  {
+    "id": "CONSTRICT",
+    "name": "Lilit",
+    "description": "Selama Perayap Pencekik masih hidup, pada akhir giliranmu, dapatkan [blue]1[/blue] kerusakan.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/constrict_power.webp"
+  },
+  {
+    "id": "CONSUMING_SHADOW",
+    "name": "Bayangan Pemangsa",
+    "description": "Pada akhir giliranmu, [gold]Picu[/gold] Bolamu yang paling kiri.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/consuming_shadow_power.webp"
+  },
+  {
+    "id": "COOLANT",
+    "name": "Pendingin",
+    "description": "Pada awal giliranmu, dapatkan [blue]3[/blue] [gold]Blok[/gold] untuk setiap tipe Bola yang kamu punya.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/coolant_power.webp"
+  },
+  {
+    "id": "COORDINATE",
+    "name": "Temporary Strength",
+    "description": "Dapatkan [gold]Kekuatan[/gold] sampai akhir giliran ini.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/coordinate_power.webp"
+  },
+  {
+    "id": "CORROSIVE_WAVE",
+    "name": "Ombak Racun",
+    "description": "Setiap kali kamu mengambil sebuah kartu giliran ini, terapkan [blue]2[/blue] [gold]Racun[/gold] ke SEMUA musuh.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/corrosive_wave_power.webp"
+  },
+  {
+    "id": "CORRUPTION",
+    "name": "Korupsi",
+    "description": "Teknik berharga [blue]0[/blue].\nSetiap kali kamu memainkan sebuah Skill, [gold]Hanguskan[/gold] itu.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/corruption_power.webp"
+  },
+  {
+    "id": "COUNTDOWN",
+    "name": "Hitung Mundur",
+    "description": "Pada awal giliranmu, terapkan [blue]6[/blue] [gold]Maut[/gold] ke musuh acak.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/countdown_power.webp"
+  },
+  {
+    "id": "COVERED",
+    "name": "Dilindungi",
+    "description": "Seorang teman melindungimu. Semua serangan yang ditujukan ke kamu akan diterima dia.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/covered_power.webp"
+  },
+  {
+    "id": "COVERING_FIRE",
+    "name": "Tembakan Bantuan",
+    "description": "Setiap kali kamu [gold]Menembak[/gold], teman mendapat [blue][Amount][/blue] [gold]Blok[/gold].",
+    "description_raw": "Setiap kali kamu [gold]Menembak[/gold], teman mendapat [blue]{Amount}[/blue] [gold]Blok[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/covering_fire_power.webp"
+  },
+  {
+    "id": "CRAB_RAGE",
+    "name": "Amarah Kepiting",
+    "description": "Saat seorang teman mati, [gold]this creature[/gold] mendapatkan [blue]6[/blue] [gold]Kekuatan[/gold] dan [blue]99[/blue] [gold]Blok[/gold].",
+    "description_raw": "Saat seorang teman mati, [gold]{OwnerName}[/gold] mendapatkan [blue]{StrengthPower}[/blue] [gold]Kekuatan[/gold] dan [blue]{Block}[/blue] [gold]Blok[/gold].",
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/crab_rage_power.webp"
+  },
+  {
+    "id": "CREATIVE_AI",
+    "name": "AI Kreatif",
+    "description": "Pada awal giliranmu, tambahkan sebuah Kuasa acak ke [gold]Tanganmu[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/creative_ai_power.webp"
+  },
+  {
+    "id": "CRIMSON_MANTLE",
+    "name": "Mantel Merah",
+    "description": "Pada awal giliranmu, 1 HP hilang dan dapatkan [gold]Blok[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/crimson_mantle_power.webp"
+  },
+  {
+    "id": "CRUELTY",
+    "name": "Kekejaman",
+    "description": "Musuh dengan Rentan mendapat kerusakan tambahan.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/cruelty_power.webp"
+  },
+  {
+    "id": "CRUSH_UNDER",
+    "name": "Temporary Strength Down",
+    "description": "Kehilangan [gold]Kekuatan[/gold] sampai akhir giliran ini.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/crush_under_power.webp"
+  },
+  {
+    "id": "CURIOUS",
+    "name": "Ingin Tahu",
+    "description": "Kuasa berkurang [blue]1[/blue] [energy:1] harganya.",
+    "description_raw": "Kuasa berkurang [blue]1[/blue] {energyPrefix:energyIcons(1)} harganya.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/curious_power.webp"
+  },
+  {
+    "id": "CURL_UP",
+    "name": "Berguling",
+    "description": "Saat mendapat kerusakan, berguling dan mendapat blok. (Sekali setiap perlawanan)",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/curl_up_power.webp"
+  },
+  {
+    "id": "DAMPEN",
+    "name": "Redam",
+    "description": "Selama Kesatria Majus masih hidup, SEMUA kartumu turun [gold]Tingkat[/gold].",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "None",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/dampen_power.webp"
+  },
+  {
+    "id": "DANSE_MACABRE",
+    "name": "Danse Macabre",
+    "description": "Setiap kali kamu memainkan sebuah kartu yang berharga [energy:2] atau lebih, dapatkan [blue][Amount][/blue] [gold]Blok[/gold].",
+    "description_raw": "Setiap kali kamu memainkan sebuah kartu yang berharga {Energy:energyIcons()} atau lebih, dapatkan [blue]{Amount}[/blue] [gold]Blok[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/danse_macabre_power.webp"
+  },
+  {
+    "id": "DARK_EMBRACE",
+    "name": "Pelukan Gelap",
+    "description": "Setiap kali sebuah kartu [gold]Hangus[/gold], ambil [blue]1[/blue] kartu.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/dark_embrace_power.webp"
+  },
+  {
+    "id": "DARK_SHACKLES",
+    "name": "Temporary Strength Down",
+    "description": "Kehilangan [gold]Kekuatan[/gold] sampai akhir giliran ini.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/dark_shackles_power.webp"
+  },
+  {
+    "id": "DEBILITATE",
+    "name": "Perlemah",
+    "description": "[gold]Rentan[/gold] dan [gold]Lemah[/gold] dua kali lebih efektif pada musuh untuk [blue]2[/blue] giliran selanjutnya.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/debilitate_power.webp"
+  },
+  {
+    "id": "DEMESNE",
+    "name": "Domain",
+    "description": "Pada awal giliranmu, dapatkan [blue]1[/blue] [gold]Energi[/gold] dan ambil [blue]1[/blue] kartu tambahan.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/demesne_power.webp"
+  },
+  {
+    "id": "DEMISE",
+    "name": "Binasa",
+    "description": "Pada akhir giliran [gold]this creature[/gold], dia kehilangan [blue][Amount][/blue] HP.",
+    "description_raw": "Pada akhir giliran [gold]{OwnerName}[/gold], dia kehilangan [blue]{Amount}[/blue] HP.",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/demise_power.webp"
+  },
+  {
+    "id": "DEMON_FORM",
+    "name": "Wujud Iblis",
+    "description": "Pada awal giliranmu, dapatkan [blue]2[/blue] [gold]Kekuatan[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/demon_form_power.webp"
+  },
+  {
+    "id": "DEVOUR_LIFE",
+    "name": "Mangsa Kehidupan",
+    "description": "Setiap kali kamu mainkan sebuah [gold]Jiwa[/gold], [gold]Panggil[/gold] [blue]1[/blue].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/devour_life_power.webp"
+  },
+  {
+    "id": "DEXTERITY",
+    "name": "Ketangkasan",
+    "description": "Menambah [gold]Blok[/gold] yang didapat dari kartu sebesar [blue][/blue].",
+    "description_raw": "{Amount:cond:<0?Mengurangi|Menambah} [gold]Blok[/gold] yang didapat dari kartu sebesar [blue]{Amount:abs()}[/blue].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": true,
+    "image_url": "/static/images/beta/v0.113.0/powers/dexterity_power.webp"
+  },
+  {
+    "id": "DIE_FOR_YOU",
+    "name": "Mati Buatmu",
+    "description": "[gold]Osty[/gold] mendapat semua kerusakan yang tidak terblok.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/die_for_you_power.webp"
+  },
+  {
+    "id": "DISINTEGRATION",
+    "name": "Hancur",
+    "description": "Pada awal giliranmu, dapatkan [blue][Amount][/blue] kerusakan.",
+    "description_raw": "Pada awal giliranmu, dapatkan [blue]{Amount}[/blue] kerusakan.",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/disintegration_power.webp"
+  },
+  {
+    "id": "DISLIKE_YOU",
+    "name": "Nggak Suka",
+    "description": "Musuh ini mendapat [blue]50%[/blue] kerusakan tambahan dari [gold]Tembakan[/gold] giliran ini.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/dislike_you_power.webp"
+  },
+  {
+    "id": "DOOM",
+    "name": "Maut",
+    "description": "Pada akhir giliran musuh, jika [gold]this creature[/gold] punya [blue][Amount][/blue] atau kurang HP, dia mati.",
+    "description_raw": "Pada akhir giliran {OnPlayer:kamu|musuh}, jika [gold]{OwnerName}[/gold] punya [blue]{Amount}[/blue] atau kurang HP, dia mati.",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/doom_power.webp"
+  },
+  {
+    "id": "DOUBLE_DAMAGE",
+    "name": "Kerusakan Ganda",
+    "description": "Giliran ini, Serangan melakukan kerusakan ganda.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/double_damage_power.webp"
+  },
+  {
+    "id": "DRAW_CARDS_NEXT_TURN",
+    "name": "Ambil Kartu Giliran Selanjutnya",
+    "description": "Pada awal giliranmu selanjutnya, ambil [blue]1[/blue] kartu tambahan.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/draw_cards_next_turn_power.webp"
+  },
+  {
+    "id": "DUPLICATION",
+    "name": "Duplikasi",
+    "description": "Kartu selanjutnya yang kamu mainkan dimainkan sekali lagi.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/duplication_power.webp"
+  },
+  {
+    "id": "DYING_STAR",
+    "name": "Temporary Strength Down",
+    "description": "Kehilangan [gold]Kekuatan[/gold] sampai akhir giliran ini.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/dying_star_power.webp"
+  },
+  {
+    "id": "ECHO_FORM",
+    "name": "Wujud Gema",
+    "description": "Kartu pertama setiap giliran yang kamu mainkan dimainkan sekali lagi.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/echo_form_power.webp"
+  },
+  {
+    "id": "ECSTASY",
+    "name": "Ekstasi",
+    "description": "Pada awal giliranmu, [gold]Transformasikan[/gold] [blue]1[/blue] [gold]Murung[/gold] acak di [gold]Tanganmu[/gold] menjadi [gold]Riang[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/ecstasy_power.webp"
+  },
+  {
+    "id": "ENCORE",
+    "name": "Lagi",
+    "description": "Kamu hanya bisa memainkan [blue]1[/blue] kartu lagi giliran ini.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/encore_power.webp"
+  },
+  {
+    "id": "ENERGY_NEXT_TURN",
+    "name": "Energi Giliran Selanjutnya",
+    "description": "Dapatkan [gold]Energi[/gold] tambahan giliran selanjutnya.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/energy_next_turn_power.webp"
+  },
+  {
+    "id": "ENFEEBLING_TOUCH",
+    "name": "Temporary Strength Down",
+    "description": "Kehilangan [gold]Kekuatan[/gold] sampai akhir giliran ini.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/enfeebling_touch_power.webp"
+  },
+  {
+    "id": "ENNUI",
+    "name": "Lesu",
+    "description": "Pada awal giliranmu, tambahkan [blue]1[/blue] [gold]Murung[/gold] ke [gold]Tanganmu[/gold] dan ambil [blue]2[/blue] kartu tambahan.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/ennui_power.webp"
+  },
+  {
+    "id": "ENRAGE",
+    "name": "Mengamuk",
+    "description": "Setiap kali kamu memainkan sebuah Teknik, dapatkan [blue]2[/blue] [gold]Kekuatan[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/enrage_power.webp"
+  },
+  {
+    "id": "ENSEMBLE",
+    "name": "Ansambel",
+    "description": "[blue]3[/blue] kartu selanjutnya yang dimainkan pemain lain gratis.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/ensemble_power.webp"
+  },
+  {
+    "id": "ENTROPY",
+    "name": "Entropi",
+    "description": "Pada awal giliranmu, [gold]Transformasikan[/gold] [blue]1[/blue] kartu pada [gold]Tanganmu[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/entropy_power.webp"
+  },
+  {
+    "id": "ENVENOM",
+    "name": "Racuni",
+    "description": "Setiap kali sebuah Serangan melakukan kerusakan tidak terblok, terapkan [blue]1[/blue] [gold]Racun[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/envenom_power.webp"
+  },
+  {
+    "id": "ESCAPE_ARTIST",
+    "name": "Ahli Kabur",
+    "description": "Pergi dari perlawanan setelah 4 giliran.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/escape_artist_power.webp"
+  },
+  {
+    "id": "EXPLOSIVE_ARROWS",
+    "name": "Panah Peledak",
+    "description": "Setiap kali kamu [gold]Menusuk[/gold] satu musuh, lakukan [blue]6[/blue] kerusakan ke SEMUA musuh.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/explosive_arrows_power.webp"
+  },
+  {
+    "id": "EXPLOSIVE",
+    "name": "Peledak",
+    "description": "Saat makhluk ini mati, dia meledak, melakukan kerusakan.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/explosive_power.webp"
+  },
+  {
+    "id": "EXTRA_TURN",
+    "name": "Giliran Tambahan",
+    "description": "Dapatkan giliran tambahan setelah ini.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/extra_turn_power.webp"
+  },
+  {
+    "id": "FADE",
+    "name": "Temporary Dexterity",
+    "description": "Dapatkan [gold]Ketangkasan[/gold] sampai akhir giliran ini.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/fade_power.webp"
+  },
+  {
+    "id": "FAN_OF_KNIVES",
+    "name": "Kipas Belati",
+    "description": "[gold]Belati[/gold] mengenai SEMUA musuh.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/fan_of_knives_power.webp"
+  },
+  {
+    "id": "FASTEN",
+    "name": "Perketat",
+    "description": "Dapatkan [blue]4[/blue] [gold]Blok[/gold] tambahan dari kartu Tahan.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/fasten_power.webp"
+  },
+  {
+    "id": "FEEDING_FRENZY",
+    "name": "Temporary Strength",
+    "description": "Dapatkan [gold]Kekuatan[/gold] sampai akhir giliran ini.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/feeding_frenzy_power.webp"
+  },
+  {
+    "id": "FEEL_NO_PAIN",
+    "name": "Kebal Kesakitan",
+    "description": "Setiap kali sebuah kartu Dihanguskan, dapatkan [blue]3[/blue] [gold]Blok[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/feel_no_pain_power.webp"
+  },
+  {
+    "id": "FERAL",
+    "name": "Buas",
+    "description": "Kali pertama kamu memainkan sebuah Serangan berharga 0[energy:1] setiap giliran, kembalikan itu ke [gold]Tanganmu[/gold].",
+    "description_raw": "Kali pertama kamu memainkan sebuah Serangan berharga 0{energyPrefix:energyIcons(1)} setiap giliran, kembalikan itu ke [gold]Tanganmu[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/feral_power.webp"
+  },
+  {
+    "id": "FLAME_BARRIER",
+    "name": "Pembatas Api",
+    "description": "Setiap kali kamu diserang giliran ini, lakukan [blue]4[/blue] kerusakan balasan.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/flame_barrier_power.webp"
+  },
+  {
+    "id": "FLANKING",
+    "name": "Pengepungan",
+    "description": "Pemain lain melakukan [blue]2x[/blue] kerusakan serangan ke musuh ini giliran ini.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/flanking_power.webp"
+  },
+  {
+    "id": "FLEX_POTION",
+    "name": "Temporary Strength",
+    "description": "Dapatkan [gold]Kekuatan[/gold] sampai akhir giliran ini.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/flex_potion_power.webp"
+  },
+  {
+    "id": "FLUTTER",
+    "name": "Terbang",
+    "description": "Menerima [blue]50%[/blue] lebih sedikit kerusakan dari Serangan. Lakukan [blue][Amount][/blue] kali serangan untuk membuatnya [gold]Linglung[/gold].",
+    "description_raw": "Menerima [blue]{DamageDecrease}%[/blue] lebih sedikit kerusakan dari Serangan. Lakukan [blue]{Amount}[/blue] {Amount:plural:kali|kali} serangan untuk membuatnya [gold]Linglung[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/flutter_power.webp"
+  },
+  {
+    "id": "FOCUS",
+    "name": "Fokus",
+    "description": "Meningkatkan efektivitas dari Bola sebesar [blue][/blue].",
+    "description_raw": "{Amount:cond:<0?Mengurangi|Meningkatkan} efektivitas dari Bola sebesar [blue]{Amount:abs()}[/blue].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": true,
+    "image_url": "/static/images/beta/v0.113.0/powers/focus_power.webp"
+  },
+  {
+    "id": "FOCUSED_STRIKE",
+    "name": "Temporary Focus",
+    "description": "Dapatkan [gold]Fokus[/gold] sampai akhir giliran ini.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/focused_strike_power.webp"
+  },
+  {
+    "id": "FORBIDDEN_GRIMOIRE",
+    "name": "Kitab Terlarang",
+    "description": "Pada akhir perlawanan, buang sebuah kartu dari [gold]Dekmu[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/forbidden_grimoire_power.webp"
+  },
+  {
+    "id": "FOREGONE_CONCLUSION",
+    "name": "Hasil Pasti",
+    "description": "Giliran selanjutnya, taruh [blue]3[/blue] kartu dari [gold]Tumpukan Ambil[/gold] kamu ke [gold]Tanganmu[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/foregone_conclusion_power.webp"
+  },
+  {
+    "id": "FRAIL",
+    "name": "Retak",
+    "description": "Saat memiliki Retak, dapatkan [blue]25%[/blue] lebih sedikit [gold]Blok[/gold] dari kartu.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/frail_power.webp"
+  },
+  {
+    "id": "FREE_ATTACK",
+    "name": "Serangan Gratis",
+    "description": "Serangan kamu selanjutnya berharga [blue]0[/blue] [energy:1].",
+    "description_raw": "Serangan kamu selanjutnya berharga [blue]0[/blue] {energyPrefix:energyIcons(1)}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/free_attack_power.webp"
+  },
+  {
+    "id": "FREE_CARD",
+    "name": "Kartu Gratis",
+    "description": "Kartu selanjutnya yang kamu mainkan berharga [blue]0[/blue] [energy:1].",
+    "description_raw": "Kartu selanjutnya yang kamu mainkan berharga [blue]0[/blue] {energyPrefix:energyIcons(1)}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": null
+  },
+  {
+    "id": "FREE_POWER",
+    "name": "Kuasa Gratis",
+    "description": "Kuasa selanjutnya berharga [blue]0[/blue] [energy:1].",
+    "description_raw": "Kuasa selanjutnya berharga [blue]0[/blue] {energyPrefix:energyIcons(1)}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/free_power_power.webp"
+  },
+  {
+    "id": "FREE_SKILL",
+    "name": "Teknik Gratis",
+    "description": "Teknik selanjutnya berharga [blue]0[/blue] [energy:1].",
+    "description_raw": "Teknik selanjutnya berharga [blue]0[/blue] {energyPrefix:energyIcons(1)}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/free_skill_power.webp"
+  },
+  {
+    "id": "FRIENDSHIP",
+    "name": "Pertemanan",
+    "description": "Dapatkan [energy:1] pada awal setiap giliran.",
+    "description_raw": "Dapatkan {Amount:energyIcons()} pada awal setiap giliran.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/friendship_power.webp"
+  },
+  {
+    "id": "FURNACE",
+    "name": "Tungku",
+    "description": "Pada awal giliranmu, [gold]Tempa[/gold] [blue]5[/blue].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/furnace_power.webp"
+  },
+  {
+    "id": "GALVANIC",
+    "name": "Setruman",
+    "description": "Kuasa memiliki efek [gold]Menyetrum[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/galvanic_power.webp"
+  },
+  {
+    "id": "GENESIS",
+    "name": "Kejadian",
+    "description": "Pada awal giliranmu, dapatkan [star:1].",
+    "description_raw": "Pada awal giliranmu, dapatkan {Amount:starIcons()}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/genesis_power.webp"
+  },
+  {
+    "id": "GIGANTIFICATION",
+    "name": "Gigantifikasi",
+    "description": "Serangan selanjutnya yang kamu mainkan melakukan kerusakan tiga kali lipat.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/gigantification_power.webp"
+  },
+  {
+    "id": "GOD_BYRD",
+    "name": "Dewa Byurung",
+    "description": "Pada awal giliranmu selanjutnya, lakukan [blue]20[/blue] kerusakan ke SEMUA musuh.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/god_byrd_power.webp"
+  },
+  {
+    "id": "GRAVITY",
+    "name": "Gravitasi",
+    "description": "Setiap kali kamu memainkan sebuah kartu giliran ini, lakukan [blue]2[/blue] kerusakan ke SEMUA musuh.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/gravity_power.webp"
+  },
+  {
+    "id": "GUARDED",
+    "name": "Terlindung",
+    "description": "Terima [blue]50%[/blue] lebih sedikit kerusakan dari musuh. Hilang jika [gold][Applier.StringValue][/gold] mati.",
+    "description_raw": "Terima [blue]{DamageDecrease:percentLess()}%[/blue] lebih sedikit kerusakan dari musuh. Hilang jika [gold]{Applier.StringValue}[/gold] mati.",
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/guarded_power.webp"
+  },
+  {
+    "id": "HAILSTORM",
+    "name": "Badai Es",
+    "description": "Pada akhir giliranmu, jika kamu memiliki [gold]Es[/gold], lakukan [blue]6[/blue] kerusakan ke SEMUA musuh.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/hailstorm_power.webp"
+  },
+  {
+    "id": "HAMMER_TIME",
+    "name": "Waktunya Palu",
+    "description": "Setiap kali kamu [gold]Tempa[/gold], semua teman juga [gold]Menempa[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/hammer_time_power.webp"
+  },
+  {
+    "id": "HANG",
+    "name": "Gantung",
+    "description": "Semua kartu [gold]Gantung[/gold] melakukan [blue]2[/blue] kali lipat kerusakan ke musuh ini.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/hang_power.webp"
+  },
+  {
+    "id": "HARD_TO_KILL",
+    "name": "Sulit Dibunuh",
+    "description": "Kurangi semua kerusakan yang diterima dan pengurangan HP [gold]this creature[/gold] menjadi [blue][Amount][/blue].",
+    "description_raw": "Kurangi semua kerusakan yang diterima dan pengurangan HP [gold]{OwnerName}[/gold] menjadi [blue]{Amount}[/blue].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/hard_to_kill_power.webp"
+  },
+  {
+    "id": "HARDENED_SHELL",
+    "name": "Cangkang Keras",
+    "description": "[gold]This creature[/gold] tidak bisa kehilangan lebih dari [blue][Amount][/blue] HP tiap gilirannya.",
+    "description_raw": "[gold]{OwnerName}[/gold] tidak bisa kehilangan lebih dari [blue]{Amount}[/blue] HP tiap gilirannya.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/hardened_shell_power.webp"
+  },
+  {
+    "id": "HATCH",
+    "name": "Menetas",
+    "description": "Menetas setelah [blue]X[/blue] giliran.",
+    "description_raw": "Menetas setelah X giliran.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/hatch_power.webp"
+  },
+  {
+    "id": "HAUNT",
+    "name": "Hantui",
+    "description": "Setiap kali kamu memainkan sebuah [gold]Jiwa[/gold], musuh acak kehilangan [blue]3[/blue] HP.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/haunt_power.webp"
+  },
+  {
+    "id": "HEIST",
+    "name": "Rampas",
+    "description": "Saat terbunuh, kembalikan semua [gold]Emas[/gold] yang dicuri.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/heist_power.webp"
+  },
+  {
+    "id": "HELICAL_DART",
+    "name": "Temporary Dexterity",
+    "description": "Dapatkan [gold]Ketangkasan[/gold] sampai akhir giliran ini.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/helical_dart_power.webp"
+  },
+  {
+    "id": "HELLO_WORLD",
+    "name": "Halo Dunia",
+    "description": "Pada awal giliranmu, tambahkan [blue]1[/blue] kartu Biasa acak ke [gold]Hand[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/hello_world_power.webp"
+  },
+  {
+    "id": "HELLRAISER",
+    "name": "Pembangkit Neraka",
+    "description": "Setiap kali kamu mengambil sebuah kartu dengan kata “Tebas”, mainkan itu ke musuh acak.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/hellraiser_power.webp"
+  },
+  {
+    "id": "HEX",
+    "name": "Kutuk",
+    "description": "Selama Kesatria Gaib masih hidup, SEMUA kartumu memiliki efek [gold]Rapuh[/gold].",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/hex_power.webp"
+  },
+  {
+    "id": "HIBERNATE",
+    "name": "Hibernasi",
+    "description": "Giliran ini, bola [gold]Es[/gold] kamu memberi SEMUA teman [gold]Blok[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/hibernate_power.webp"
+  },
+  {
+    "id": "HIDDEN_ROOTS",
+    "name": "Akar Tersembunyi",
+    "description": "Pada awal giliranmu, dapatkan [blue]5[/blue] [gold]Peregangan[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/hidden_roots_power.webp"
+  },
+  {
+    "id": "HIGH_VOLTAGE",
+    "name": "Voltase Tinggi",
+    "description": "Pada akhir giliran [gold]this creature[/gold], dia mendapatkan [blue][Amount][/blue] [gold]Kekuatan[/gold].",
+    "description_raw": "Pada akhir giliran [gold]{OwnerName}[/gold], dia mendapatkan [blue]{Amount}[/blue] [gold]Kekuatan[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/high_voltage_power.webp"
+  },
+  {
+    "id": "HONING",
+    "name": "Pertajam",
+    "description": "[gold]Panah[/gold] melakukan [blue]50%[/blue] kerusakan tambahan.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/honing_power.webp"
+  },
+  {
+    "id": "HOTFIX",
+    "name": "Temporary Focus",
+    "description": "Dapatkan [gold]Fokus[/gold] sampai akhir giliran ini.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/hotfix_power.webp"
+  },
+  {
+    "id": "HYPERBEAM_FOCUS_DOWN",
+    "name": "Temporary Focus Down",
+    "description": "Kehilangan [gold]Fokus[/gold] sampai akhir giliran ini.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/hyperbeam_focus_down_power.webp"
+  },
+  {
+    "id": "ILLUSION",
+    "name": "Ilusi",
+    "description": "Saat ini mati, dia bangkit giliran selanjutnya dengan HP penuh.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/illusion_power.webp"
+  },
+  {
+    "id": "IMBALANCED",
+    "name": "Tidak Seimbang",
+    "description": "Jika serangan [gold]this creature[/gold] terblok sepenuhnya, dia menjadi [gold]Linglung[/gold].",
+    "description_raw": "Jika serangan [gold]{OwnerName}[/gold] terblok sepenuhnya{IsMultiplayer: oleh siapapun|}, dia menjadi [gold]Linglung[/gold].",
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/imbalanced_power.webp"
+  },
+  {
+    "id": "IMITATION_LEARNING",
+    "name": "Belajar Meniru",
+    "description": "Saat pemain lain memainkan sebuah Kuasa, kamu memainkan sebuah salinannya.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/imitation_learning_power.webp"
+  },
+  {
+    "id": "IMPALED",
+    "name": "Tertusuk",
+    "description": "[gold]Panah[/gold] ini akan [gold]Terlepas[/gold] setelah musuh ini kena [blue]3[/blue] kali lagi olehmu.",
+    "description_raw": "[gold]Panah[/gold] ini akan [gold]Terlepas[/gold] setelah musuh ini kena [blue]{HitCounter}[/blue] kali lagi olehmu.",
+    "type": "None",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/impaled_power.webp"
+  },
+  {
+    "id": "IMPROVEMENT",
+    "name": "Peningkatan",
+    "description": "Pada akhir perlawanan, [gold]Tingkatkan[/gold] sebuah kartu acak.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/improvement_power.webp"
+  },
+  {
+    "id": "INFERNO",
+    "name": "Laut Api",
+    "description": "Pada awal giliranmu, [blue]1[/blue] HP hilang. Setiap kali kamu kehilangan HP pada giliranmu, lakukan [blue]4[/blue] kerusakan ke SEMUA musuh.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/inferno_power.webp"
+  },
+  {
+    "id": "INFESTED",
+    "name": "Terjangkit",
+    "description": "Saat mati, memunculkan... sesuatu.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/infested_power.webp"
+  },
+  {
+    "id": "INFINITE_BLADES",
+    "name": "Belati Tak Terbatas",
+    "description": "Pada awal giliranmu, tambahkan [gold]Belati[/gold] ke [gold]Tanganmu[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/infinite_blades_power.webp"
+  },
+  {
+    "id": "INSATIABLE_DOMINION",
+    "name": "Kekuasaan Yang Tak Terpuaskan",
+    "description": "Pada akhir giliranmu, dapatkan 2 kerusakan dan naikkan kerusakan ini sebesar satu.",
+    "description_raw": "Pada akhir giliranmu, dapatkan {Damage} kerusakan dan naikkan kerusakan ini sebesar satu.",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/insatiable_dominion_power.webp"
+  },
+  {
+    "id": "INTANGIBLE",
+    "name": "Tembus",
+    "description": "Kurangi semua kerusakan diterima dan pengurangan HP menjadi [blue]1[/blue] giliran ini.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/intangible_power.webp"
+  },
+  {
+    "id": "INTERCEPT",
+    "name": "Halangi",
+    "description": "Kamu sedang melindungi pemain lain. Semua serangan yang ditujukan kepada mereka akan diterima olehmu.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/intercept_power.webp"
+  },
+  {
+    "id": "ITERATION",
+    "name": "Iterasi",
+    "description": "Pertama kalinya kamu mengambil sebuah Status setiap giliran, ambil kartu lebih.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/iteration_power.webp"
+  },
+  {
+    "id": "JUGGERNAUT",
+    "name": "Raksasa",
+    "description": "Setiap kali kamu mendapat [gold]Blok[/gold], lakukan [blue]6[/blue] kerusakan ke musuh acak.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/juggernaut_power.webp"
+  },
+  {
+    "id": "JUGGLING",
+    "name": "Juggling",
+    "description": "Tambahkan sebuah salinan dari Serangan ketiga yang kamu mainkan setiap gilirannya ke [gold]Tanganmu[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/juggling_power.webp"
+  },
+  {
+    "id": "KI_VERSE",
+    "name": "Bait Ki",
+    "description": "Kartu “Wah”, “Cho”, atau “Ki” selanjutnya yang kamu mainkan giliran ini dimainkan sekali lagi.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": null
+  },
+  {
+    "id": "KNOCKDOWN",
+    "name": "Jatuhkan",
+    "description": "Makhluk ini menerima [blue][Amount][/blue] kali kerusakan dari pemain lain giliran ini.",
+    "description_raw": "Makhluk ini menerima [blue]{Amount}[/blue] kali kerusakan dari pemain lain giliran ini.",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/knockdown_power.webp"
+  },
+  {
+    "id": "LAGAVULIN_MATRIARCH_DOMINION",
+    "name": "Kekuasaan Pemimpin Lagavulin",
+    "description": "Pada akhir giliran ini, [blue]2[/blue] [gold]Kekuatan[/gold] dan [gold]Ketangkasan[/gold] hilang.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/lagavulin_matriarch_dominion_power.webp"
+  },
+  {
+    "id": "LEADERSHIP",
+    "name": "Kepemimpinan",
+    "description": "Semua pemain lain melakukan [blue]1[/blue] kerusakan tambahan.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/leadership_power.webp"
+  },
+  {
+    "id": "LETHALITY",
+    "name": "Mematikan",
+    "description": "Serangan pertama setiap giliran melakukan 50% kerusakan tambahan.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/lethality_power.webp"
+  },
+  {
+    "id": "LIGHTNING_ROD",
+    "name": "Penangkal Petir",
+    "description": "Pada awal [blue]2[/blue] giliran selanjutnya, [gold]Salurkan[/gold] [blue]1[/blue] [gold]Petir[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/lightning_rod_power.webp"
+  },
+  {
+    "id": "LOOP",
+    "name": "Perulangan",
+    "description": "Pada awal giliranmu, lakukan efek pasif dari Bolamu yang paling kanan.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/loop_power.webp"
+  },
+  {
+    "id": "LOST_LUTE",
+    "name": "Kecapi Terlupakan",
+    "description": "Setiap kali kamu mendapat [gold]Melodi[/gold], mainkan kartu teratas pada [gold]Tumpukan Ambil[/gold] kamu.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/lost_lute_power.webp"
+  },
+  {
+    "id": "LULLABY",
+    "name": "Nina Bobo",
+    "description": "Saat kamu mendapat semua [gold]Melodi[/gold], dapatkan [blue]20[/blue] [gold]Blok[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/lullaby_power.webp"
+  },
+  {
+    "id": "MACHINE_LEARNING",
+    "name": "Pembelajaran Mesin",
+    "description": "Pada awal giliranmu, ambil [blue]1[/blue] kartu tambahan.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/machine_learning_power.webp"
+  },
+  {
+    "id": "MAGIC_BOMB",
+    "name": "Bom Magis",
+    "description": "Dapatkan [blue]20[/blue] kerusakan pada akhir giliranmu. Hilang bila Kesatria Majus mati.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/magic_bomb_power.webp"
+  },
+  {
+    "id": "MANGLE",
+    "name": "Temporary Strength Down",
+    "description": "Kehilangan [gold]Kekuatan[/gold] sampai akhir giliran ini.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/mangle_power.webp"
+  },
+  {
+    "id": "MASTER_PLANNER",
+    "name": "Ahli Rencana",
+    "description": "Saat kamu memainkan sebuah Teknik, tambahkan [gold]Lihai[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/master_planner_power.webp"
+  },
+  {
+    "id": "MAYHEM",
+    "name": "Kacau Balau",
+    "description": "Pada awal giliranmu, mainkan kartu teratas pada [gold]Tumpukan Ambil[/gold] kamu.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/mayhem_power.webp"
+  },
+  {
+    "id": "MIND_ROT",
+    "name": "Kebusukan Pikiran",
+    "description": "Ambil [blue]1[/blue] lebih sedikit kartu tiap giliran.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/mind_rot_power.webp"
+  },
+  {
+    "id": "MINION",
+    "name": "Pengikut",
+    "description": "Pengikut lari dari perlawanan tanpa pimpinan mereka.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/minion_power.webp"
+  },
+  {
+    "id": "MONARCHS_GAZE",
+    "name": "Tatapan Bangsawan",
+    "description": "Setiap kali kamu menyerang musuh, dia kehilangan [blue]1[/blue] [gold]Kekuatan[/gold] giliran ini.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/monarchs_gaze_power.webp"
+  },
+  {
+    "id": "MONARCHS_GAZE_STRENGTH_DOWN",
+    "name": "Temporary Strength Down",
+    "description": "Kehilangan [gold]Kekuatan[/gold] sampai akhir giliran ini.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/monarchs_gaze_strength_down_power.webp"
+  },
+  {
+    "id": "MONOLOGUE",
+    "name": "Monolog",
+    "description": "Setiap kali kamu memainkan sebuah kartu giliran ini, dapatkan [blue]1[/blue] [gold]Kekuatan[/gold] giliran ini.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "None",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/monologue_power.webp"
+  },
+  {
+    "id": "MOTIF",
+    "name": "Motif",
+    "description": "Setiap kali kamu mendapat [gold]Melodi[/gold], Ambil [blue]1[/blue] kartu",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/motif_power.webp"
+  },
+  {
+    "id": "MYTHIC_FORM",
+    "name": "Wujud Mistis",
+    "description": "Pada awal giliranmu, tambahkan [blue]1[/blue] kartu [gold]Tarot[/gold] acak ke [gold]Tanganmu[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": null
+  },
+  {
+    "id": "NECRO_MASTERY",
+    "name": "Ahli Pembangkit",
+    "description": "Setiap kali [gold]Osty[/gold] kehilangan HP, SEMUA musuh juga kehilangan HP sebanyak itu.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/necro_mastery_power.webp"
+  },
+  {
+    "id": "NEMESIS",
+    "name": "Nemesis",
+    "description": "Pada akhir tiap dua giliran, mendapatkan [gold]Tembus[/gold] [blue]1[/blue].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/nemesis_power.webp"
+  },
+  {
+    "id": "NEUROSURGE",
+    "name": "Lonjakan Pikiran",
+    "description": "Pada awal giliranmu, terapkan [blue]3[/blue] [gold]Maut[/gold] ke dirimu.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/neurosurge_power.webp"
+  },
+  {
+    "id": "NIGHTMARE",
+    "name": "Mimpi Buruk",
+    "description": "Tambahkan [blue]3[/blue] salinan dari kartu terpilih ke [gold]Tanganmu[/gold] giliran selanjutnya.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/nightmare_power.webp"
+  },
+  {
+    "id": "NO_BLOCK",
+    "name": "Tidak Bisa Blok",
+    "description": "Kamu tidak bisa mendapat [gold]Blok[/gold] dari kartu selama [blue]2[/blue] giliran.",
+    "description_raw": "Kamu tidak bisa mendapat [gold]Blok[/gold] dari kartu selama {Amount:plural:[blue]{}[/blue] giliran|[blue]{}[/blue] giliran}.",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/no_block_power.webp"
+  },
+  {
+    "id": "NO_DRAW",
+    "name": "Tidak Boleh Ambil",
+    "description": "Kamu tidak boleh mengambil kartu lagi giliran ini.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/no_draw_power.webp"
+  },
+  {
+    "id": "NO_ENERGY_GAIN",
+    "name": "Tidak Bisa Menambah Energi",
+    "description": "Kamu tidak bisa mendapat [energy:1] tambahan giliran ini.",
+    "description_raw": "Kamu tidak bisa mendapat {energyPrefix:energyIcons(1)} tambahan giliran ini.",
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/no_energy_gain_power.webp"
+  },
+  {
+    "id": "NOSTALGIA",
+    "name": "Nostalgia",
+    "description": "Serangan atau Teknik pertama yang kamu mainkan setiap giliran ditaruh ke atas [gold]Tumpukan Ambil[/gold] kamu.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/nostalgia_power.webp"
+  },
+  {
+    "id": "NOXIOUS_FUMES",
+    "name": "Asap Memusingkan",
+    "description": "Pada awal giliranmu, terapkan [blue]2[/blue] [gold]Racun[/gold] ke SEMUA musuh.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/noxious_fumes_power.webp"
+  },
+  {
+    "id": "OBLIVION",
+    "name": "Terlupakan",
+    "description": "Setiap kali kamu memainkan sebuah kartu giliran ini, musuh ini mendapat [blue]1[/blue] [gold]Maut[/gold].",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/oblivion_power.webp"
+  },
+  {
+    "id": "ONE_FOR_ALL",
+    "name": "Satu untuk Semua",
+    "description": "Serangan berharga [blue]0[/blue] [energy:1] kamu melakukan kerusakan lebih.",
+    "description_raw": "Serangan berharga [blue]0[/blue] {energyPrefix:energyIcons(1)} kamu melakukan kerusakan lebih.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/one_for_all_power.webp"
+  },
+  {
+    "id": "ONE_TWO_PUNCH",
+    "name": "Tinju Satu-Dua",
+    "description": "Seranganmu selanjutnya dimainkan sekali lagi giliran ini.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/one_two_punch_power.webp"
+  },
+  {
+    "id": "ORBIT",
+    "name": "Orbit",
+    "description": "Setiap [energy:4] Energi yang kamu habiskan, dapatkan [energy:1].",
+    "description_raw": "Setiap {Energy:energyIcons()} Energi yang kamu habiskan, dapatkan {Amount:energyIcons()}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/orbit_power.webp"
+  },
+  {
+    "id": "PAGESTORM",
+    "name": "Hamburan Halaman",
+    "description": "Setiap kali kamu mengambil sebuah kartu dengan [gold]Rapuh[/gold], ambil [blue]1[/blue] kartu.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/pagestorm_power.webp"
+  },
+  {
+    "id": "PAINFUL_STABS",
+    "name": "Tikaman Menyakitkan",
+    "description": "Kocok [blue]1[/blue] [gold]Luka[/gold] ke dalam [gold]Tumpukan Singkir[/gold] kamu setiap kali kamu menerima kerusakan yang tidak terblok.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/painful_stabs_power.webp"
+  },
+  {
+    "id": "PALE_BLUE_DOT",
+    "name": "Titik Biru Pucat",
+    "description": "Jika kamu memainkan [blue]5[/blue] kartu pada sebuah giliran, ambil [blue][Amount][/blue] kartu tambahan pada awal giliranmu selanjutnya.",
+    "description_raw": "Jika kamu memainkan [blue]{CardPlay}[/blue] kartu pada sebuah giliran, ambil [blue]{Amount}[/blue] {Amount:plural:kartu|kartu} tambahan pada awal giliranmu selanjutnya.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/pale_blue_dot_power.webp"
+  },
+  {
+    "id": "PANACHE",
+    "name": "Memikat",
+    "description": "Jika kamu memainkan [blue]5[/blue] kartu lagi giliran ini, lakukan [blue][Amount][/blue] kerusakan ke SEMUA musuh.",
+    "description_raw": "Jika kamu memainkan [blue]{CardsLeft}[/blue] {CardsLeft:plural:kartu|kartu} lagi giliran ini, lakukan [blue]{Amount}[/blue] kerusakan ke SEMUA musuh.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/panache_power.webp"
+  },
+  {
+    "id": "PAPER_CUTS",
+    "name": "Luka Kertas",
+    "description": "Setiap kali [gold]this creature[/gold] melakukan kerusakan tidak terblok kepadamu, kamu kehilangan [blue][Amount][/blue] [gold]HP Maksimal[/gold].",
+    "description_raw": "Setiap kali [gold]{OwnerName}[/gold] melakukan kerusakan tidak terblok kepadamu, kamu kehilangan [blue]{Amount}[/blue] [gold]HP Maksimal[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/paper_cuts_power.webp"
+  },
+  {
+    "id": "PARRY",
+    "name": "Tangkis",
+    "description": "[gold]Pedang Penguasa[/gold] sekarang memberi [gold]Blok[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/parry_power.webp"
+  },
+  {
+    "id": "PERSONAL_HIVE",
+    "name": "Sarang Pribadi",
+    "description": "Setiap kali musuh ini diserang dengan Serangan, tambahkan [gold]Pusing[/gold] kedalam [gold]Tumpukan Ambil[/gold] kamu.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/personal_hive_power.webp"
+  },
+  {
+    "id": "PHANTOM_BLADES",
+    "name": "Belati Arwah",
+    "description": "[gold]Belati[/gold] mendapat efek [gold]Pertahankan[/gold].\n[gold]Belati[/gold] pertama yang kamu mainkan setiap giliran melakukan [blue]8[/blue] kerusakan tambahan.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/phantom_blades_power.webp"
+  },
+  {
+    "id": "PIERCING_WAIL",
+    "name": "Temporary Strength Down",
+    "description": "Kehilangan [gold]Kekuatan[/gold] sampai akhir giliran ini.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/piercing_wail_power.webp"
+  },
+  {
+    "id": "PILLAR_OF_CREATION",
+    "name": "Tiang Ciptaan",
+    "description": "Setiap kali kamu membuat kartu, dapatkan [blue][Amount][/blue] [gold]Blok[/gold].",
+    "description_raw": "Setiap kali kamu membuat kartu, dapatkan [blue]{Amount}[/blue] [gold]Blok[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/pillar_of_creation_power.webp"
+  },
+  {
+    "id": "PLATING",
+    "name": "Lapisan",
+    "description": "Pada akhir giliranmu, dapatkan [blue][Amount][/blue] [gold]Blok[/gold]. [gold]Lapisan[/gold] dikurangi sebanyak [blue]1[/blue] pada awal giliranmu.",
+    "description_raw": "Pada akhir giliranmu, dapatkan [blue]{Amount}[/blue] [gold]Blok[/gold]. [gold]Lapisan[/gold] dikurangi sebanyak [blue]{Decrement}[/blue] pada awal giliranmu.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/plating_power.webp"
+  },
+  {
+    "id": "PLOW",
+    "name": "Bajak",
+    "description": "Pertama kalinya HP [gold]this creature[/gold] mencapai [blue][Amount][/blue] atau kurang, dia menjadi [gold]Linglung[/gold] dan kehilangan semua [gold]Kekuatan[/gold].",
+    "description_raw": "Pertama kalinya HP [gold]{OwnerName}[/gold] mencapai [blue]{Amount}[/blue] atau kurang, dia menjadi [gold]Linglung[/gold] dan kehilangan semua [gold]Kekuatan[/gold].",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/plow_power.webp"
+  },
+  {
+    "id": "POISON",
+    "name": "Racun",
+    "description": "Makhluk yang diracuni kehilangan HP pada awal giliran mereka. Tiap gilirannya, Racun dikurangi [blue]1[/blue].",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/poison_power.webp"
+  },
+  {
+    "id": "POSSESS_SPEED",
+    "name": "Hisap Kecepatan",
+    "description": "Saat dibunuh, kembalikan semua [gold]Ketangkasan[/gold] yang dicuri.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/possess_speed_power.webp"
+  },
+  {
+    "id": "POSSESS_STRENGTH",
+    "name": "Hisap Kekuatan",
+    "description": "Saat dibunuh, kembalikan semua [gold]Kekuatan[/gold] yang dicuri.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/possess_strength_power.webp"
+  },
+  {
+    "id": "PREP_TIME",
+    "name": "Pemanasan",
+    "description": "Pada awal giliranmu, dapatkan [blue]4[/blue] [gold]Bugar[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/prep_time_power.webp"
+  },
+  {
+    "id": "PYRE",
+    "name": "Perapian",
+    "description": "Dapatkan [energy:1] pada awal tiap giliran.",
+    "description_raw": "Dapatkan {Amount:energyIcons()} pada awal tiap giliran.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/pyre_power.webp"
+  },
+  {
+    "id": "QUIETUS",
+    "name": "Sunyi Senyap",
+    "description": "[gold]Tembakanmu[/gold] selanjutnya melakukan [blue]2[/blue] kali lipat kerusakan giliran ini tapi [gold]Panahnya[/gold] hancur.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": null
+  },
+  {
+    "id": "RADIANCE",
+    "name": "Beradiasi",
+    "description": "Dapatkan satu [gold]Energi[/gold] tambahan giliran selanjutnya.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/radiance_power.webp"
+  },
+  {
+    "id": "RAGE",
+    "name": "Amarah",
+    "description": "Setiap kali kamu memainkan sebuah Serangan giliran ini, dapatkan [blue]3[/blue] [gold]Blok[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/rage_power.webp"
+  },
+  {
+    "id": "RAMPART",
+    "name": "Benteng",
+    "description": "Pada awal giliran pemain, Pengguna Turret mendapat [blue]25[/blue] [gold]Blok[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/rampart_power.webp"
+  },
+  {
+    "id": "RAVENOUS",
+    "name": "Rakus",
+    "description": "Saat musuh mati, Siput Mayat langsung memakannya, menjadi [gold]Linglung[/gold] dan mendapat [blue]1[/blue] [gold]Kekuatan[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/ravenous_power.webp"
+  },
+  {
+    "id": "REAPER_FORM",
+    "name": "Wujud Pencabut",
+    "description": "Setiap kali Serangan melakukan kerusakan, terapkan [gold]Maut[/gold] sebanyak itu.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/reaper_form_power.webp"
+  },
+  {
+    "id": "REATTACH",
+    "name": "Gabung Kembali",
+    "description": "Jika segmen lain masih hidup, bangkit kembali dalam [blue]2[/blue] giliran dengan [blue]25[/blue] HP.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/reattach_power.webp"
+  },
+  {
+    "id": "REBOUND",
+    "name": "Pantul",
+    "description": "Kartu selanjutnya yang kamu mainkan giliran ini ditaruh ke atas [gold]Tumpukan Ambil[/gold] kamu.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/rebound_power.webp"
+  },
+  {
+    "id": "REFLECT",
+    "name": "Cerminkan",
+    "description": "Kerusakan yang diblok dikembalikan ke penyerang.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/reflect_power.webp"
+  },
+  {
+    "id": "REGEN",
+    "name": "Regenerasi",
+    "description": "[gold]Regenerasi[/gold] menyembuhkan HP pada akhir tiap giliranmu. Tiap giliran, [gold]Regenerasi[/gold] dikurangi [blue]1[/blue].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/regen_power.webp"
+  },
+  {
+    "id": "REPTILE_TRINKET",
+    "name": "Temporary Strength",
+    "description": "Dapatkan [gold]Kekuatan[/gold] sampai akhir giliran ini.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/reptile_trinket_power.webp"
+  },
+  {
+    "id": "RETAIN_HAND",
+    "name": "Pertahankan Tangan",
+    "description": "[gold]Pertahankan[/gold] [gold]Tanganmu[/gold] untuk [blue]2[/blue] giliran selanjutnya.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/retain_hand_power.webp"
+  },
+  {
+    "id": "RINGING",
+    "name": "Berdengung",
+    "description": "Kamu hanya bisa memainkan [blue]1[/blue] kartu giliran ini.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/ringing_power.webp"
+  },
+  {
+    "id": "RITUAL",
+    "name": "Ritual",
+    "description": "Dapatkan [gold]Kekuatan[/gold] pada akhir giliranmu.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/ritual_power.webp"
+  },
+  {
+    "id": "ROLLING_BOULDER",
+    "name": "Batu Gelinding",
+    "description": "Pada awal giliranmu, lakukan [blue][Amount][/blue] kerusakan ke SEMUA musuh dan naikkan kerusakan kartu ini sebesar [blue]5[/blue].",
+    "description_raw": "Pada awal giliranmu, lakukan [blue]{Amount}[/blue] kerusakan ke SEMUA musuh dan naikkan kerusakan kartu ini sebesar [blue]{Damage}[/blue].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/rolling_boulder_power.webp"
+  },
+  {
+    "id": "ROYALTIES",
+    "name": "Royalti",
+    "description": "Pada akhir perlawanan, dapatkan [blue]25[/blue] [gold]Emas[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/royalties_power.webp"
+  },
+  {
+    "id": "RUPTURE",
+    "name": "Pecah",
+    "description": "Setiap kali kamu kehilangan HP pada giliranmu, dapatkan [blue]1[/blue] [gold]Kekuatan[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/rupture_power.webp"
+  },
+  {
+    "id": "SANDPIT",
+    "name": "Lubang Pasir",
+    "description": "Sebuah kuasa yang digunakan Yang Tak Terpuaskan.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/sandpit_power.webp"
+  },
+  {
+    "id": "SEEKING_EDGE",
+    "name": "Tepi Pencari",
+    "description": "[gold]Pedang Penguasa[/gold] sekarang melakukan serangan ke SEMUA musuh.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/seeking_edge_power.webp"
+  },
+  {
+    "id": "SELF_FORMING_CLAY",
+    "name": "Tanah Liat Menggeliat",
+    "description": "Dapatkan [blue]3[/blue] [gold]Blok[/gold] giliran selanjutnya.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/self_forming_clay_power.webp"
+  },
+  {
+    "id": "SENTRY_MODE",
+    "name": "Mode Penjaga",
+    "description": "Pada awal giliranmu, tambahkan [blue]1[/blue] [gold]Tatapan Menyapu[/gold] ke [gold]Tanganmu[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/sentry_mode_power.webp"
+  },
+  {
+    "id": "SERPENT_FORM",
+    "name": "Wujud Ular",
+    "description": "Setiap kali kamu memainkan sebuah kartu, lakukan [blue]4[/blue] kerusakan ke musuh acak.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/serpent_form_power.webp"
+  },
+  {
+    "id": "SERRATED_ARROWS",
+    "name": "Panah Bergerigi",
+    "description": "Musuh [gold]Tertusuk[/gold] mendapat kerusakan tambahan dari seranganmu.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/serrated_arrows_power.webp"
+  },
+  {
+    "id": "SETUP_STRIKE",
+    "name": "Temporary Strength",
+    "description": "Dapatkan [gold]Kekuatan[/gold] sampai akhir giliran ini.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/setup_strike_power.webp"
+  },
+  {
+    "id": "SHACKLING_POTION",
+    "name": "Temporary Strength Down",
+    "description": "Kehilangan [gold]Kekuatan[/gold] sampai akhir giliran ini.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/shackling_potion_power.webp"
+  },
+  {
+    "id": "SHADOW_STEP",
+    "name": "Langkah Bayangan",
+    "description": "Giliran selanjutnya, Serangan melakukan kerusakan ganda.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/shadow_step_power.webp"
+  },
+  {
+    "id": "SHADOWMELD",
+    "name": "Bayangan Lebur",
+    "description": "Gandakan pemberian [gold]Blokmu[/gold] giliran ini.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/shadowmeld_power.webp"
+  },
+  {
+    "id": "SHOW_OFF",
+    "name": "Pamer",
+    "description": "Jika satu musuh bukan pengikut mati giliran ini, naikkan secara permanen [gold]Bidik[/gold] dari kartu [gold]Pamer[/gold] ini sebesar [blue][Amount][/blue].",
+    "description_raw": "Jika satu musuh bukan pengikut mati giliran ini, naikkan secara permanen [gold]Bidik[/gold] dari kartu [gold]Pamer[/gold] ini sebesar [blue]{Amount}[/blue].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": null
+  },
+  {
+    "id": "SHRIEK",
+    "name": "Menjerit",
+    "description": "Pertama kalinya HP [gold]this creature[/gold] mencapai [blue][Amount][/blue] atau kurang, dia menjadi [gold]Linglung[/gold].",
+    "description_raw": "Pertama kalinya HP [gold]{OwnerName}[/gold] mencapai [blue]{Amount}[/blue] atau kurang, dia menjadi [gold]Linglung[/gold].",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": true,
+    "image_url": "/static/images/beta/v0.113.0/powers/shriek_power.webp"
+  },
+  {
+    "id": "SHRINK",
+    "name": "Ciut",
+    "description": "Serangan [gold]this creature[/gold] melakukan [blue]30%[/blue] lebih sedikit kerusakan.",
+    "description_raw": "{ApplierName.StringValue:cond:Selama {} masih hidup,|Serangan [gold]{OwnerName}[/gold]} melakukan [blue]{DamageDecrease}%[/blue] lebih sedikit kerusakan{Amount:cond:==1? giliran selanjutnya|>1? untuk [blue]{}[/blue] giliran selanjutnya|}.",
+    "type": "Debuff",
+    "stack_type": "None",
+    "allow_negative": true,
+    "image_url": "/static/images/beta/v0.113.0/powers/shrink_power.webp"
+  },
+  {
+    "id": "SHROUD",
+    "name": "Bungkus",
+    "description": "Setiap kali kamu menerapkan [gold]Maut[/gold], dapatkan [blue]3[/blue] [gold]Blok[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/shroud_power.webp"
+  },
+  {
+    "id": "SIC_EM",
+    "name": "Pukul Dia",
+    "description": "Setiap kali [gold]Osty[/gold] menyerang musuh ini giliran ini, [gold]Panggil[/gold] [blue]3[/blue].",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/sic_em_power.webp"
+  },
+  {
+    "id": "SIGNAL_BOOST",
+    "name": "Penguat Sinyal",
+    "description": "Kuasa yang kamu mainkan selanjutnya dimainkan sekali lagi.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/signal_boost_power.webp"
+  },
+  {
+    "id": "SIMPLETON",
+    "name": "Jelata",
+    "description": "Pada akhir giliranmu, mainkan kartu paling murah di [gold]Tanganmu[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/simpleton_power.webp"
+  },
+  {
+    "id": "SKITTISH",
+    "name": "Penakut",
+    "description": "Pertama kalinya [gold]this creature[/gold] diserang tiap gilirannya, dia mendapat [blue][Amount][/blue] [gold]Blok[/gold].",
+    "description_raw": "Pertama kalinya [gold]{OwnerName}[/gold] diserang tiap gilirannya, dia mendapat [blue]{Amount}[/blue] [gold]Blok[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/skittish_power.webp"
+  },
+  {
+    "id": "SLEIGHT_OF_FLESH",
+    "name": "Santet",
+    "description": "Setiap kali kamu menerapkan sebuah efek ke musuh, mereka mendapatkan [blue]13[/blue] kerusakan.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/sleight_of_flesh_power.webp"
+  },
+  {
+    "id": "SLIPPERY",
+    "name": "Licin",
+    "description": "Kali selanjutnya makhluk ini kehilangan HP, dia hanya kehilangan [blue]1[/blue] HP.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/slippery_power.webp"
+  },
+  {
+    "id": "SLOTH",
+    "name": "Malas",
+    "description": "Kamu tidak bisa memainkan lebih dari [blue]3[/blue] kartu tiap gilirannya.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/sloth_power.webp"
+  },
+  {
+    "id": "SLOW",
+    "name": "Lamban",
+    "description": "Setiap kali kamu memainkan sebuah kartu, musuh ini menerima [blue]10%[/blue] lebih banyak kerusakan dari Serangan giliran ini.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/slow_power.webp"
+  },
+  {
+    "id": "SLUMBER",
+    "name": "Terlelap",
+    "description": "Bangun saat mendapat giliran atau kehilangan HP 3 kali.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/slumber_power.webp"
+  },
+  {
+    "id": "SMOGGY",
+    "name": "Berasap",
+    "description": "Kamu hanya bisa memainkan [blue]1[/blue] Teknik tiap giliran.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/smoggy_power.webp"
+  },
+  {
+    "id": "SMOKESTACK",
+    "name": "Cerobong Asap",
+    "description": "Setiap kali kamu membuat sebuah Status, lakukan kerusakan ke SEMUA musuh.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/smokestack_power.webp"
+  },
+  {
+    "id": "SNEAKY",
+    "name": "Diam-Diam",
+    "description": "Setiap kali pemain lain menyerang musuh, dapatkan [gold]Blok[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/sneaky_power.webp"
+  },
+  {
+    "id": "SOAR",
+    "name": "Melayang",
+    "description": "Menerima [blue]50%[/blue] lebih sedikit kerusakan serangan sampai dia mendarat.",
+    "description_raw": "Menerima [blue]{DamageDecrease}%[/blue] lebih sedikit kerusakan serangan sampai dia mendarat.",
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/soar_power.webp"
+  },
+  {
+    "id": "SONG_PATH",
+    "name": "Panduan Lagu",
+    "description": "Setiap kali kamu mendapat [gold]Melodi Cho[/gold], dapatkan [blue]7[/blue] [gold]Blok[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/song_path_power.webp"
+  },
+  {
+    "id": "SOULBOUND",
+    "name": "Janji Jiwa",
+    "description": "Setiap kali [ApplierName] membuat sebuah [gold]Jiwa[/gold], tambahkan sebuah [gold]Jiwa[/gold] ke [gold]Tumpukan Ambil[/gold] kamu.",
+    "description_raw": "Setiap kali {ApplierName} membuat sebuah [gold]Jiwa[/gold], tambahkan sebuah [gold]Jiwa[/gold] ke [gold]Tumpukan Ambil[/gold] kamu.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/soulbound_power.webp"
+  },
+  {
+    "id": "SPECTRUM_SHIFT",
+    "name": "Ganti Spektrum",
+    "description": "Pada awal giliranmu, tambahkan [blue]1[/blue] kartu Tak Berwarna acak ke [gold]Tanganmu[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/spectrum_shift_power.webp"
+  },
+  {
+    "id": "SPEED_POTION",
+    "name": "Temporary Dexterity",
+    "description": "Dapatkan [gold]Ketangkasan[/gold] sampai akhir giliran ini.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/speed_potion_power.webp"
+  },
+  {
+    "id": "SPEEDSTER",
+    "name": "Pembalap",
+    "description": "Setiap kali kamu mengambil sebuah kartu selama giliranmu, lakukan [blue]3[/blue] kerusakan ke SEMUA musuh.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/speedster_power.webp"
+  },
+  {
+    "id": "SPINNER",
+    "name": "Gangsing",
+    "description": "Pada awal giliranmu, [gold]Salurkan[/gold] [blue]1[/blue] [gold]Kaca[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/spinner_power.webp"
+  },
+  {
+    "id": "SPIRIT_OF_ASH",
+    "name": "Arwah Abu",
+    "description": "Setiap kali kamu memainkan sebuah kartu [gold]Rapuh[/gold], dapatkan [blue]4[/blue] [gold]Blok[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/spirit_of_ash_power.webp"
+  },
+  {
+    "id": "STAMPEDE",
+    "name": "Serbu",
+    "description": "Pada akhir giliranmu, [blue]1[/blue] Serangan acak di [gold]Tanganmu[/gold] dimainkan pada musuh acak.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/stampede_power.webp"
+  },
+  {
+    "id": "STAR_NEXT_TURN",
+    "name": "Bintang Giliran Selanjutnya",
+    "description": "Dapatkan 1 [star:1] giliran selanjutnya.",
+    "description_raw": "Dapatkan 1 {singleStarIcon} giliran selanjutnya.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/star_next_turn_power.webp"
+  },
+  {
+    "id": "STEAM_ERUPTION",
+    "name": "Ledakan Uap",
+    "description": "Saat dibunuh, melakukan kerusakan pada akhir giliran selanjutnya.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/steam_eruption_power.webp"
+  },
+  {
+    "id": "STOCK",
+    "name": "Cadangan",
+    "description": "Saat dibunuh, sebuah Axebot baru menggantikannya.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/stock_power.webp"
+  },
+  {
+    "id": "STORM",
+    "name": "Badai",
+    "description": "Setiap kali kamu memainkan sebuah Kuasa, [gold]Salurkan[/gold] [blue]1[/blue] [gold]Petir[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/storm_power.webp"
+  },
+  {
+    "id": "STRANGLE",
+    "name": "Cekik",
+    "description": "Setiap kali kamu memainkan sebuah kartu giliran ini, musuh kehilangan [blue]2[/blue] HP.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/strangle_power.webp"
+  },
+  {
+    "id": "STRATAGEM",
+    "name": "Siasat",
+    "description": "Setiap kali kamu mengocok [gold]Tumpukan Ambil[/gold] kamu, pilih [blue]1[/blue] kartu dari sana untuk ditaruh ke [gold]Tanganmu[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/stratagem_power.webp"
+  },
+  {
+    "id": "STRENGTH",
+    "name": "Kekuatan",
+    "description": "Menambah kerusakan serangan sebesar [blue][/blue].",
+    "description_raw": "{Amount:cond:<0?Mengurangi|Menambah} kerusakan serangan sebesar [blue]{Amount:abs()}[/blue].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": true,
+    "image_url": "/static/images/beta/v0.113.0/powers/strength_power.webp"
+  },
+  {
+    "id": "STRETCH",
+    "name": "Peregangan",
+    "description": "Kali selanjutnya kamu mendapat [gold]Blok[/gold] dari sebuah kartu, dapatkan lebih banyak [gold]Blok[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/stretch_power.webp"
+  },
+  {
+    "id": "SUBROUTINE",
+    "name": "Subrutin",
+    "description": "Setiap kali kamu memainkan sebuah Kuasa, dapatkan [energy:1].",
+    "description_raw": "Setiap kali kamu memainkan sebuah Kuasa, dapatkan {Amount:energyIcons()}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/subroutine_power.webp"
+  },
+  {
+    "id": "SUCK",
+    "name": "Seruput",
+    "description": "Setiap kali [gold]this creature[/gold] melakukan kerusakan tidak terblok, dia mendapatkan [blue][Amount][/blue] [gold]Kekuatan[/gold].",
+    "description_raw": "Setiap kali [gold]{OwnerName}[/gold] melakukan kerusakan tidak terblok, dia mendapatkan [blue]{Amount}[/blue] [gold]Kekuatan[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/suck_power.webp"
+  },
+  {
+    "id": "SUMMON_NEXT_TURN",
+    "name": "Panggil Giliran Selanjutnya",
+    "description": "Pada awal giliranmu selanjutnya, [gold]Panggil[/gold] [blue]2[/blue].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/summon_next_turn_power.webp"
+  },
+  {
+    "id": "SURPRISE",
+    "name": "Kejutan",
+    "description": "Ada sesuatu yang aneh tentang makhluk ini...",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/surprise_power.webp"
+  },
+  {
+    "id": "SURROUNDED",
+    "name": "Dikepung",
+    "description": "Menerima [blue]50%[/blue] kerusakan tambahan jika diserang dari belakang. Gunakan kartu yang menarget atau ramuan untuk mengubah hadapanmu.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/surrounded_power.webp"
+  },
+  {
+    "id": "SWIPE",
+    "name": "Gasak",
+    "description": "Saat membunuh musuh ini, kartu yang dicuri dikembalikan.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/swipe_power.webp"
+  },
+  {
+    "id": "SWORD_SAGE",
+    "name": "Pendekar Pedang",
+    "description": "[gold]Pedang Penguasa[/gold] mendapat Efek [gold]Ulangi[/gold] [blue]1[/blue].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/sword_sage_power.webp"
+  },
+  {
+    "id": "SYNCHRONIZE",
+    "name": "Temporary Focus",
+    "description": "Dapatkan [gold]Fokus[/gold] sampai akhir giliran ini.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/synchronize_power.webp"
+  },
+  {
+    "id": "TAG_TEAM",
+    "name": "Kerja Sama",
+    "description": "Serangan selanjutnya yang dimainkan pemain lain pada musuh ini dimainkan sekali lagi.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/tag_team_power.webp"
+  },
+  {
+    "id": "TAINTED",
+    "name": "Noda",
+    "description": "Dapatkan kerusakan tambahan dari Serangan giliran ini.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/tainted_power.webp"
+  },
+  {
+    "id": "TANGLED",
+    "name": "Terjerat",
+    "description": "Serangan berharga [blue]1[/blue] [gold]Energi[/gold] tambahan giliran ini.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/tangled_power.webp"
+  },
+  {
+    "id": "TANK",
+    "name": "Tank",
+    "description": "Terima [blue]50%[/blue] kerusakan lebih dari musuh. Teman menerima [blue]50%[/blue] lebih sedikit kerusakan dari musuh.",
+    "description_raw": "Terima [blue]{DamageIncrease:percentMore()}%[/blue] kerusakan lebih dari musuh. Teman menerima [blue]{DamageDecrease:percentLess()}%[/blue] lebih sedikit kerusakan dari musuh.",
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/tank_power.webp"
+  },
+  {
+    "id": "TENDER",
+    "name": "Perih",
+    "description": "Setiap kali kamu memainkan sebuah kartu, [blue]1[/blue] [gold]Kekuatan[/gold] dan [blue]1[/blue] [gold]Ketangkasan[/gold] hilang giliran ini.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/tender_power.webp"
+  },
+  {
+    "id": "TERRITORIAL",
+    "name": "Teritorial",
+    "description": "Pada akhir giliran [gold]this creature[/gold], dia mendapatkan [blue][Amount][/blue] [gold]Kekuatan[/gold].",
+    "description_raw": "Pada akhir giliran [gold]{OwnerName}[/gold], dia mendapatkan [blue]{Amount}[/blue] [gold]Kekuatan[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/territorial_power.webp"
+  },
+  {
+    "id": "THE_BOMB",
+    "name": "Bom",
+    "description": "Pada akhir [blue]3[/blue] giliran, lakukan [blue]40[/blue] kerusakan ke SEMUA musuh.",
+    "description_raw": "Pada akhir {Amount:choose(1):giliran ini|[blue]{}[/blue] giliran}, lakukan [blue]{Damage}[/blue] kerusakan ke SEMUA musuh.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/the_bomb_power.webp"
+  },
+  {
+    "id": "THE_GAMBIT",
+    "name": "Taruhan",
+    "description": "Jika kamu mendapat kerusakan serangan tidak terblok perlawanan ini, mati.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/the_gambit_power.webp"
+  },
+  {
+    "id": "THE_HUNT",
+    "name": "Pemburuan",
+    "description": "Dapatkan [blue]1[/blue] jarahan kartu tambahan pada akhir perlawanan.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/the_hunt_power.webp"
+  },
+  {
+    "id": "THE_SEALED_THRONE",
+    "name": "Tahta Tersegel",
+    "description": "Setiap kali kamu memainkan sebuah kartu, dapatkan [star:1].",
+    "description_raw": "Setiap kali kamu memainkan sebuah kartu, dapatkan {Amount:starIcons()}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/the_sealed_throne_power.webp"
+  },
+  {
+    "id": "THIEVERY",
+    "name": "Pencurian",
+    "description": "Mencuri [gold]Emas[/gold] saat Menyerang.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/thievery_power.webp"
+  },
+  {
+    "id": "THORNS",
+    "name": "Duri",
+    "description": "Saat kena serangan, lakukan kerusakan balik.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/thorns_power.webp"
+  },
+  {
+    "id": "THUNDER",
+    "name": "Guntur",
+    "description": "Setiap kali kamu [gold]Memicu Petir[/gold], lakukan [blue]8[/blue] kerusakan ke setiap musuh yang terkena.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/thunder_power.webp"
+  },
+  {
+    "id": "TOOLS_OF_THE_TRADE",
+    "name": "Peralatan Kerja",
+    "description": "Pada awal giliranmu, ambil [blue]1[/blue] kartu dan singkirkan [blue]1[/blue] kartu.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/tools_of_the_trade_power.webp"
+  },
+  {
+    "id": "TORIC_TOUGHNESS",
+    "name": "Katangguhan Torus",
+    "description": "Dapatkan [blue]5[/blue] [gold]Blok[/gold] pada awal [blue]2[/blue] giliranmu selanjutnya.",
+    "description_raw": "Dapatkan [blue]{Block:diff()}[/blue] [gold]Blok[/gold] pada awal [blue]{Amount}[/blue] {Amount:plural:giliranmu|giliranmu} selanjutnya.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/toric_toughness_power.webp"
+  },
+  {
+    "id": "TRACKING",
+    "name": "Lacak",
+    "description": "Musuh dengan [gold]Lemah[/gold] mendapat [blue]50%[/blue] kerusakan lebih dari Serangan milikmu.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/tracking_power.webp"
+  },
+  {
+    "id": "TRASH_TO_TREASURE",
+    "name": "Sampah jadi Harta",
+    "description": "Setiap kali kamu membuat sebuah Status, [gold]Salurkan[/gold] [blue]2[/blue] Bola acak.",
+    "description_raw": "Setiap kali kamu membuat sebuah Status, [gold]Salurkan[/gold] {Amount:plural:[blue]{}[/blue] Bola acak|[blue]{}[/blue] Bola acak}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/trash_to_treasure_power.webp"
+  },
+  {
+    "id": "TUNE",
+    "name": "Setel",
+    "description": "Pada akhir giliranmu, jika kamu memiliki [gold]Melodi Ki[/gold], kartu selanjutnya yang kamu mainkan berharga 0 energi.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/tune_power.webp"
+  },
+  {
+    "id": "TYRANNY",
+    "name": "Tirani",
+    "description": "Pada awal giliranmu, ambil [blue]2[/blue] kartu dan [gold]Hanguskan[/gold] [blue]2[/blue] kartu dari [gold]Tanganmu[/gold].",
+    "description_raw": "Pada awal giliranmu, ambil {Amount:plural:[blue]{}[/blue]|[blue]{}[/blue]} kartu dan [gold]Hanguskan[/gold] {Amount:plural:[blue]{}[/blue]|[blue]{}[/blue]} kartu dari [gold]Tanganmu[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/tyranny_power.webp"
+  },
+  {
+    "id": "UNDERWORLD",
+    "name": "Neraka",
+    "description": "Setiap kali pemain lain melakukan kerusakan serangan giliran ini, terapkan [gold]Maut[/gold] sebanyak itu.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/underworld_power.webp"
+  },
+  {
+    "id": "UNMOVABLE",
+    "name": "Tak Goyah",
+    "description": "Pertama kalinya kamu mendapat [gold]Blok[/gold] dari sebuah kartu setiap giliran, gandakan yang didapat.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/unmovable_power.webp"
+  },
+  {
+    "id": "VEILPIERCER",
+    "name": "Penembus Tabir",
+    "description": "Kartu [gold]Rapuh[/gold] selanjutnya yang kamu mainkan berharga [blue]0[/blue].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/veilpiercer_power.webp"
+  },
+  {
+    "id": "VICIOUS",
+    "name": "Ganas",
+    "description": "Setiap kali kamu menerapkan [gold]Rentan[/gold], ambil [blue]1[/blue] kartu.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/vicious_power.webp"
+  },
+  {
+    "id": "VIGOR",
+    "name": "Bugar",
+    "description": "Serangan [gold]this creature[/gold] selanjutnya melakukan [blue][Amount][/blue] kerusakan tambahan.",
+    "description_raw": "Serangan {OnPlayer:Kamu|[gold]{OwnerName}[/gold]} selanjutnya melakukan [blue]{Amount}[/blue] kerusakan tambahan.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/vigor_power.webp"
+  },
+  {
+    "id": "VIOLENT_CHORD",
+    "name": "Nada Kekerasan",
+    "description": "Setiap kali kamu mendapat [gold]Melodi Wah[/gold], lakukan [blue]9[/blue] kerusakan ke SEMUA musuh.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/violent_chord_power.webp"
+  },
+  {
+    "id": "VITAL_SPARK",
+    "name": "Percikan Vital",
+    "description": "SEMUA [gold]Teknik[/gold] memiliki [gold]Noda[/gold] [blue]2[/blue].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/vital_spark_power.webp"
+  },
+  {
+    "id": "VOID_FORM",
+    "name": "Wujud Hampa",
+    "description": "[blue]2[/blue] kartu pertama yang kamu mainkan setiap giliran gratis.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/void_form_power.webp"
+  },
+  {
+    "id": "VULNERABLE",
+    "name": "Rentan",
+    "description": "Mendapat [blue]50%[/blue] kerusakan tambahan dari Serangan selama [blue][Amount][/blue] giliran.",
+    "description_raw": "Mendapat [blue]{DamageIncrease:percentMore()}%[/blue] kerusakan tambahan dari Serangan selama [blue]{Amount}[/blue] {Amount:plural:giliran|giliran}.",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/vulnerable_power.webp"
+  },
+  {
+    "id": "WASTE_AWAY",
+    "name": "Terbuang",
+    "description": "Dapatkan [blue]1[/blue] [gold]Energi[/gold] lebih sedikit setiap giliran.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/waste_away_power.webp"
+  },
+  {
+    "id": "WEAK",
+    "name": "Lemah",
+    "description": "Makhluk lemah melakukan [blue]25%[/blue] lebih sedikit kerusakan dengan Serangan.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/weak_power.webp"
+  },
+  {
+    "id": "WELL_LAID_PLANS",
+    "name": "Rencana Matang",
+    "description": "Pada akhir giliranmu, kamu tidak lagi menyingkirkan kartu di [gold]Tanganmu[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/well_laid_plans_power.webp"
+  },
+  {
+    "id": "WITHERING_PRESENCE",
+    "name": "Melayukan",
+    "description": "Setiap [blue]6[/blue] kartu yang kamu mainkan, tambahkan sebuah [gold]Layu[/gold] ke [gold]Tanganmu[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/withering_presence_power.webp"
+  },
+  {
+    "id": "WRAITH_FORM",
+    "name": "Wujud Roh",
+    "description": "Pada awal giliranmu, [blue]1[/blue] [gold]Ketangkasan[/gold] hilang.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/wraith_form_power.webp"
+  },
+  {
+    "id": "WUPPYS_LOYALTY",
+    "name": "Kesetiaan Wuppy",
+    "description": "[gold]Wuppy[/gold] mendapat SEMUA serangan.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/wuppys_loyalty_power.webp"
+  },
+  {
+    "id": "YAH",
+    "name": "Yah!",
+    "description": "Pertama kalinya kamu [gold]Melepas[/gold] sebuah [gold]Panah[/gold] setiap giliran, dapatkan [energy:1].",
+    "description_raw": "Pertama kalinya kamu [gold]Melepas[/gold] sebuah [gold]Panah[/gold] setiap giliran, dapatkan {Amount:energyIcons()}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/yah_power.webp"
+  },
+  {
+    "id": "YOU_ARE_MINE",
+    "name": "Kau Milikku",
+    "description": "Giliran selanjutnya, dapatkan [blue]3[/blue] [gold]Lemah[/gold], [gold]Rentan[/gold], dan [gold]Retak[/gold].",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": null
+  }
+]

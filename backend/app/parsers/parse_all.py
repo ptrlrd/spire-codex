@@ -23,10 +23,12 @@ from localization_parser import main as parse_localizations
 from parser_paths import loc_dir
 
 LANGUAGES = [
+    "ara",
     "deu",
     "eng",
     "esp",
     "fra",
+    "ind",
     "ita",
     "jpn",
     "kor",

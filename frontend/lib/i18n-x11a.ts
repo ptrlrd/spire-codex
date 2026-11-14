@@ -15,6 +15,8 @@ export const X11A: Record<string, Record<string, string>> = {
     tur: "Herhangi bir düşman",
     zhs: "任意敌人",
     zht: "任意敵人",
+    ara: "أي عدو",
+    ind: "Musuh Mana Pun",
   },
   "All Enemies": {
     eng: "All Enemies",
@@ -32,6 +34,8 @@ export const X11A: Record<string, Record<string, string>> = {
     tur: "Tüm düşmanlar",
     zhs: "所有敌人",
     zht: "所有敵人",
+    ara: "كل الأعداء",
+    ind: "Semua Musuh",
   },
   "Random Enemy": {
     eng: "Random Enemy",
@@ -49,6 +53,8 @@ export const X11A: Record<string, Record<string, string>> = {
     tur: "Rastgele düşman",
     zhs: "随机敌人",
     zht: "隨機敵人",
+    ara: "عدو عشوائي",
+    ind: "Musuh Acak",
   },
   "Any Ally": {
     eng: "Any Ally",
@@ -66,6 +72,8 @@ export const X11A: Record<string, Record<string, string>> = {
     tur: "Herhangi bir müttefik",
     zhs: "任意队友",
     zht: "任意隊友",
+    ara: "أي حليف",
+    ind: "Sekutu Mana Pun",
   },
   "All Allies": {
     eng: "All Allies",
@@ -83,6 +91,8 @@ export const X11A: Record<string, Record<string, string>> = {
     tur: "Tüm müttefikler",
     zhs: "所有队友",
     zht: "所有隊友",
+    ara: "كل الحلفاء",
+    ind: "Semua Sekutu",
   },
   "{n} known moves.": {
     eng: "{n} known moves.",
@@ -100,6 +110,8 @@ export const X11A: Record<string, Record<string, string>> = {
     tur: "{n} bilinen hamle.",
     zhs: "已知行动 {n} 种。",
     zht: "已知行動 {n} 種。",
+    ara: "عدد الحركات المعروفة: {n}.",
+    ind: "{n} gerakan diketahui.",
   },
   "Moveset & HP": {
     eng: "Moveset & HP",
@@ -117,6 +129,8 @@ export const X11A: Record<string, Record<string, string>> = {
     tur: "Hamleler ve HP",
     zhs: "行动与HP",
     zht: "行動與HP",
+    ara: "الحركات ونقاط الصحة",
+    ind: "Gerakan & HP",
   },
   Masculine: {
     eng: "Masculine",
@@ -134,6 +148,8 @@ export const X11A: Record<string, Record<string, string>> = {
     tur: "Eril",
     zhs: "男性",
     zht: "男性",
+    ara: "مذكر",
+    ind: "Maskulin",
   },
   Feminine: {
     eng: "Feminine",
@@ -151,6 +167,8 @@ export const X11A: Record<string, Record<string, string>> = {
     tur: "Dişil",
     zhs: "女性",
     zht: "女性",
+    ara: "مؤنث",
+    ind: "Feminin",
   },
   "Win rate at this bracket": {
     eng: "Win rate at this bracket",
@@ -168,5 +186,7 @@ export const X11A: Record<string, Record<string, string>> = {
     tur: "Bu gruptaki kazanma oranı",
     zhs: "此分段的胜率",
     zht: "此分段的勝率",
+    ara: "معدل الفوز في هذه الشريحة",
+    ind: "Tingkat menang di kelompok ini",
   },
 };

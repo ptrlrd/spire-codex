@@ -15,6 +15,8 @@ export const X9Q: Record<string, Record<string, string>> = {
     tur: "Yükselişler",
     zhs: "进阶",
     zht: "晉階",
+    ara: "الصعودات",
+    ind: "Angkatan",
   },
   "What {name} says in combat.": {
     eng: "What {name} says in combat.",
@@ -32,6 +34,8 @@ export const X9Q: Record<string, Record<string, string>> = {
     tur: "{name} savaşta neler söylüyor.",
     zhs: "{name}在战斗中说的话。",
     zht: "{name}在戰鬥中說的話。",
+    ara: "ما يقوله {name} في القتال.",
+    ind: "Yang diucapkan {name} saat bertarung.",
   },
   "Pick a color": {
     eng: "Pick a color",
@@ -49,6 +53,8 @@ export const X9Q: Record<string, Record<string, string>> = {
     tur: "Renk seç",
     zhs: "选择颜色",
     zht: "選擇顏色",
+    ara: "اختر لونًا",
+    ind: "Pilih warna",
   },
   "Your color": {
     eng: "Your color",
@@ -66,6 +72,8 @@ export const X9Q: Record<string, Record<string, string>> = {
     tur: "Rengin",
     zhs: "你的颜色",
     zht: "你的顏色",
+    ara: "لونك",
+    ind: "Warnamu",
   },
   "Your theme": {
     eng: "Your theme",
@@ -83,6 +91,8 @@ export const X9Q: Record<string, Record<string, string>> = {
     tur: "Teman",
     zhs: "你的主题",
     zht: "你的主題",
+    ara: "سمتك",
+    ind: "Temamu",
   },
   "Show my theme to others": {
     eng: "Show my theme to others",
@@ -100,6 +110,8 @@ export const X9Q: Record<string, Record<string, string>> = {
     tur: "Temamı başkalarına göster",
     zhs: "向他人展示我的主题",
     zht: "向他人顯示我的主題",
+    ara: "إظهار سمتي للآخرين",
+    ind: "Tampilkan tema saya ke orang lain",
   },
   "Thanks for supporting the site. Your color shows on your profile and runs when you turn that on in your profile settings.":
     {
@@ -118,6 +130,8 @@ export const X9Q: Record<string, Record<string, string>> = {
       tur: "Siteyi desteklediğin için teşekkürler. Profil ayarlarından açtığında rengin profilinde ve oyunlarında görünür.",
       zhs: "感谢你对本站的支持。在档案设置中开启后，你的颜色会显示在你的档案和对局中。",
       zht: "感謝你對本站的支持。在檔案設定中開啟後，你的顏色會顯示在你的檔案和對局中。",
+      ara: "شكرًا على دعمك للموقع. يظهر لونك في ملفك الشخصي وجولاتك عند تفعيل ذلك في إعدادات ملفك الشخصي.",
+      ind: "Terima kasih sudah mendukung situs ini. Warnamu tampil di profil dan perjalanan kamu setelah diaktifkan di pengaturan profil.",
     },
   "Your theme now shows on your profile and runs.": {
     eng: "Your theme now shows on your profile and runs.",
@@ -135,6 +149,8 @@ export const X9Q: Record<string, Record<string, string>> = {
     tur: "Teman artık profilinde ve oyunlarında görünüyor.",
     zhs: "你的主题现在会显示在你的档案和对局中。",
     zht: "你的主題現在會顯示在你的檔案和對局中。",
+    ara: "سمتك تظهر الآن في ملفك الشخصي وجولاتك.",
+    ind: "Temamu sekarang tampil di profil dan perjalanan kamu.",
   },
   "Your theme is only visible to you.": {
     eng: "Your theme is only visible to you.",
@@ -152,6 +168,8 @@ export const X9Q: Record<string, Record<string, string>> = {
     tur: "Temanı yalnızca sen görebilirsin.",
     zhs: "你的主题仅自己可见。",
     zht: "你的主題僅自己可見。",
+    ara: "سمتك ظاهرة لك فقط.",
+    ind: "Temamu hanya terlihat olehmu.",
   },
   "Pick a character or a custom color from the theme menu in the top bar. When shown, people see your colors on your profile, your runs and your replays, and your badge everywhere your name appears.":
     {
@@ -170,6 +188,8 @@ export const X9Q: Record<string, Record<string, string>> = {
       tur: "Üst çubuktaki tema menüsünden bir karakter veya özel bir renk seç. Gösterim açıkken diğerleri renklerini profilinde, oyunlarında ve tekrarlarında, rozetini de adının geçtiği her yerde görür.",
       zhs: "在顶栏的主题菜单中选择一个角色或自定义颜色。开启展示后，其他人会在你的档案、对局和回放中看到你的颜色，并在你名字出现的任何地方看到你的徽章。",
       zht: "在頂欄的主題選單中選擇一個角色或自訂顏色。開啟顯示後，其他人會在你的檔案、對局和回放中看到你的顏色，並在你名字出現的任何地方看到你的徽章。",
+      ara: "اختر شخصية أو لونًا مخصصًا من قائمة السمات في الشريط العلوي. عند الإظهار، يرى الآخرون ألوانك في ملفك الشخصي وجولاتك وإعاداتك، وشارتك في كل مكان يظهر فيه اسمك.",
+      ind: "Pilih karakter atau warna kustom dari menu tema di bilah atas. Saat ditampilkan, orang lain melihat warnamu di profil, perjalanan, dan replay kamu, serta lencanamu di mana pun namamu muncul.",
     },
   "Pick a character or a custom color from the theme menu in the top bar to set your theme.":
     {
@@ -188,6 +208,8 @@ export const X9Q: Record<string, Record<string, string>> = {
       tur: "Temanı belirlemek için üst çubuktaki tema menüsünden bir karakter veya özel bir renk seç.",
       zhs: "在顶栏的主题菜单中选择一个角色或自定义颜色来设置你的主题。",
       zht: "在頂欄的主題選單中選擇一個角色或自訂顏色來設定你的主題。",
+      ara: "اختر شخصية أو لونًا مخصصًا من قائمة السمات في الشريط العلوي لتعيين سمتك.",
+      ind: "Pilih karakter atau warna kustom dari menu tema di bilah atas untuk mengatur temamu.",
     },
   "Subscribe on Patreon": {
     eng: "Subscribe on Patreon",
@@ -205,6 +227,8 @@ export const X9Q: Record<string, Record<string, string>> = {
     tur: "Patreon'da abone ol",
     zhs: "在 Patreon 上订阅",
     zht: "在 Patreon 上訂閱",
+    ara: "اشترك على Patreon",
+    ind: "Berlangganan di Patreon",
   },
   "Everyone backing the site month after month through Patreon, a Ko-fi membership or the Overwolf overlay. Subscribers see no ads and get a badge and a theme of their own.":
     {
@@ -223,5 +247,7 @@ export const X9Q: Record<string, Record<string, string>> = {
       tur: "Siteyi Patreon, Ko-fi üyeliği veya Overwolf arayüzü üzerinden her ay destekleyen herkes. Aboneler reklam görmez, bir rozet ve kendilerine ait bir tema alır.",
       zhs: "所有通过 Patreon、Ko-fi 会员或 Overwolf 叠加层长期按月支持本站的人。订阅者不会看到广告，并获得徽章和专属主题。",
       zht: "所有透過 Patreon、Ko-fi 會員或 Overwolf 疊加層長期按月支持本站的人。訂閱者不會看到廣告，並獲得徽章和專屬主題。",
+      ara: "كل من يدعم الموقع شهرًا بعد شهر عبر Patreon أو عضوية Ko-fi أو واجهة Overwolf. المشتركون لا يرون إعلانات ويحصلون على شارة وسمة خاصة بهم.",
+      ind: "Semua yang mendukung situs ini bulan demi bulan lewat Patreon, keanggotaan Ko-fi, atau overlay Overwolf. Pelanggan tidak melihat iklan dan mendapat lencana serta tema sendiri.",
     },
 };

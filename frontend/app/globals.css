@@ -482,6 +482,10 @@ select.filter-select optgroup {
   padding-block: 3px;
 }
 
+[dir="rtl"] * {
+  letter-spacing: 0 !important;
+}
+
 /* Kreon sets tight below ~14px; a touch of tracking keeps dense UI text
    readable. :where() keeps specificity at zero so any explicit tracking-*
    utility on the same element still wins. */

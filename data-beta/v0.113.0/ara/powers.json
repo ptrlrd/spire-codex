@@ -1,0 +1,3042 @@
+[
+  {
+    "id": "ACCELERANT",
+    "name": "مُسرِّع",
+    "description": "يُفعَّل [gold]السم[/gold] مرة إضافية.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/accelerant_power.webp"
+  },
+  {
+    "id": "ACCURACY",
+    "name": "دقة",
+    "description": "تلحق [gold]الشفرات[/gold] ضرراً إضافياً.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/accuracy_power.webp"
+  },
+  {
+    "id": "ADAPTABLE",
+    "name": "تكيُّف",
+    "description": "عندما يُهزم [gold]this creature[/gold]، ينعش بدلاً من ذلك ويعود أقوى.",
+    "description_raw": "عندما يُهزم [gold]{OwnerName}[/gold]، ينعش بدلاً من ذلك ويعود أقوى.",
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/adaptable_power.webp"
+  },
+  {
+    "id": "AEONGLASS_DOMINION",
+    "name": "Aeonglass Dominion",
+    "description": "At the start of your turn, add [blue]1[/blue] [gold]Wither[/gold] to the top of your [gold]Draw Pile[/gold].",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/aeonglass_dominion_power.webp"
+  },
+  {
+    "id": "AFTERIMAGE",
+    "name": "أثر باقٍ",
+    "description": "كلما لعبت بطاقة، اكتسب [blue]1[/blue] [gold]درع[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/afterimage_power.webp"
+  },
+  {
+    "id": "AGGRESSION",
+    "name": "عدوانية",
+    "description": "في بداية دورك، ضع هجومًا عشوائيًا من [gold]كومة التخلّص[/gold] في [gold]يدك[/gold] و[gold]رقِّه[/gold] لبقية القتال.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/aggression_power.webp"
+  },
+  {
+    "id": "AIM",
+    "name": "Aim",
+    "description": "Your next [gold]Arrow[/gold] deals more damage.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/aim_power.webp"
+  },
+  {
+    "id": "ALL_IS_WELL",
+    "name": "All Is Well",
+    "description": "Whenever you create a [gold]Sadness[/gold], gain [blue]4[/blue] [gold]Block[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/all_is_well_power.webp"
+  },
+  {
+    "id": "AMNESIA",
+    "name": "Amnesia",
+    "description": "This turn, draw 2 fewer cards and lose [energy:1].",
+    "description_raw": "This turn, draw {Cards} fewer cards and lose {Energy:energyIcons()}.",
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/amnesia_power.webp"
+  },
+  {
+    "id": "ANTICIPATE",
+    "name": "Temporary Dexterity",
+    "description": "اكتسب [gold]رشاقة[/gold] حتى نهاية هذا الدور.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/anticipate_power.webp"
+  },
+  {
+    "id": "ARCHERY",
+    "name": "Archery",
+    "description": "At the start of your turn, gain [blue]4[/blue] [gold]Aim[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/archery_power.webp"
+  },
+  {
+    "id": "ARSENAL",
+    "name": "ترسانة",
+    "description": "كلما أنشأت بطاقة، اكتسب [blue]1[/blue] [gold]قوة[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/arsenal_power.webp"
+  },
+  {
+    "id": "ARTIFACT",
+    "name": "أثر",
+    "description": "[gold]يلغي[/gold] التأثيرات السلبية.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/artifact_power.webp"
+  },
+  {
+    "id": "ASLEEP",
+    "name": "نائم",
+    "description": "يستيقظ عند فقدان نقاط الصحة أو بعد [blue]2[/blue] أدوار.",
+    "description_raw": "يستيقظ عند فقدان نقاط الصحة أو {Amount:plural:الدور التالي|بعد [blue]{}[/blue] أدوار}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/asleep_power.webp"
+  },
+  {
+    "id": "AUTOMATION",
+    "name": "أتمتة",
+    "description": "كل [blue]10[/blue] بطاقات تسحبها، اكتسب [energy:1].",
+    "description_raw": "كل [blue]{BaseCards}[/blue] بطاقات تسحبها، اكتسب {Amount:energyIcons()}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/automation_power.webp"
+  },
+  {
+    "id": "BACK_ATTACK_LEFT",
+    "name": "هجوم خلفي",
+    "description": "يلحق [blue]50%[/blue] ضرراً إضافياً عند مهاجمتك من الخلف.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/back_attack_left_power.webp"
+  },
+  {
+    "id": "BACK_ATTACK_RIGHT",
+    "name": "هجوم خلفي",
+    "description": "يلحق [blue]50%[/blue] ضرراً إضافياً عند مهاجمتك من الخلف.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/back_attack_right_power.webp"
+  },
+  {
+    "id": "BARRICADE",
+    "name": "حاجز",
+    "description": "لا يُزال [gold]الدرع[/gold] في بداية دورك.",
+    "description_raw": "لا يُزال [gold]الدرع[/gold] في بداية {ApplierName.StringValue:cond:دور [gold]{OwnerName}[/gold]|دورك}.",
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/barricade_power.webp"
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_TIME_LIMIT",
+    "name": "مهلة زمنية",
+    "description": "لديك [blue]3[/blue] أدوار إضافية لهزيمة الدمية المتهالكة.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/battleworn_dummy_time_limit_power.webp"
+  },
+  {
+    "id": "BEACON_OF_HOPE",
+    "name": "منارة الأمل",
+    "description": "كلما اكتسبت [gold]درعاً[/gold] في دورك، يكتسب اللاعبون الآخرون نصف ذلك القدر من [gold]الدرع[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/beacon_of_hope_power.webp"
+  },
+  {
+    "id": "BIASED_COGNITION",
+    "name": "إدراك متحيز",
+    "description": "في بداية دورك، اخسر [blue]1[/blue] [gold]تركيز[/gold].",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/biased_cognition_power.webp"
+  },
+  {
+    "id": "BLACK_HOLE",
+    "name": "ثقب أسود",
+    "description": "كلما أنفقت أو اكتسبت [star:1]، ألحق [blue]3[/blue] ضرر بجميع الأعداء.",
+    "description_raw": "كلما أنفقت أو اكتسبت {singleStarIcon}، ألحق [blue]3[/blue] ضرر بجميع الأعداء.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/black_hole_power.webp"
+  },
+  {
+    "id": "BLOCK_NEXT_TURN",
+    "name": "درع الدور التالي",
+    "description": "في بداية دورك التالي، اكتسب [blue]4[/blue] [gold]درع[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/block_next_turn_power.webp"
+  },
+  {
+    "id": "BLUR",
+    "name": "ضبابية",
+    "description": "لا يُزال [gold]الدرع[/gold] في بداية [blue]2[/blue] أدوارك التالية.",
+    "description_raw": "لا يُزال [gold]الدرع[/gold] في بداية {Amount:plural:دورك التالي|[blue]{}[/blue] أدوارك التالية}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/blur_power.webp"
+  },
+  {
+    "id": "BORROWED_TIME",
+    "name": "وقت مُستعار",
+    "description": "تكلف البطاقات [energy:1] إضافية هذا الدور.",
+    "description_raw": "تكلف البطاقات {Amount:energyIcons()} إضافية هذا الدور.",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/borrowed_time_power.webp"
+  },
+  {
+    "id": "BUFFER",
+    "name": "عازل",
+    "description": "امنع [blue]2[/blue] مرات التالية التي ستفقد فيها نقاط صحة.",
+    "description_raw": "امنع {Amount:plural:المرة التالية|[blue]{}[/blue] مرات التالية} التي ستفقد فيها نقاط صحة.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/buffer_power.webp"
+  },
+  {
+    "id": "BURROWED",
+    "name": "مُتحصِّن",
+    "description": "لا يُزال [gold]الدرع[/gold] في بداية دور [gold]this creature[/gold]. يُصبح [gold]مُذهولاً[/gold] إذا أُزيل كل [gold]الدرع[/gold].",
+    "description_raw": "لا يُزال [gold]الدرع[/gold] في بداية دور [gold]{OwnerName}[/gold]. يُصبح [gold]مُذهولاً[/gold] إذا أُزيل كل [gold]الدرع[/gold].",
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/burrowed_power.webp"
+  },
+  {
+    "id": "BURST",
+    "name": "انفجار",
+    "description": "[blue]2[/blue] مهاراتك التالية مرة إضافية هذا الدور.",
+    "description_raw": "{Amount:plural:تُلعَب مهارتك التالية|[blue]{}[/blue] مهاراتك التالية} مرة إضافية هذا الدور.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/burst_power.webp"
+  },
+  {
+    "id": "CACOPHONY",
+    "name": "Cacophony",
+    "description": "After [blue]33[/blue] cards are drawn across ALL players, deal [blue][Amount][/blue] damage to a random enemy.",
+    "description_raw": "After [blue]{Cards}[/blue] {Cards:plural:card is drawn by ANY player|cards are drawn across ALL players}, deal [blue]{Amount}[/blue] damage to a random enemy.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/cacophony_power.webp"
+  },
+  {
+    "id": "CALAMITY",
+    "name": "كارثة",
+    "description": "كلما لعبت هجوماً، أضف [blue]2[/blue] هجمات عشوائية إلى [gold]يدك[/gold].",
+    "description_raw": "كلما لعبت هجوماً، أضف {Amount:plural:هجوماً عشوائياً|[blue]{}[/blue] هجمات عشوائية} إلى [gold]يدك[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/calamity_power.webp"
+  },
+  {
+    "id": "CALCIFY",
+    "name": "تكلس",
+    "description": "تلحق هجمات [gold]أوستي[/gold] ضرراً إضافياً.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/calcify_power.webp"
+  },
+  {
+    "id": "CALL_OF_THE_VOID",
+    "name": "نداء الفراغ",
+    "description": "في بداية دورك، أضف [blue]1[/blue] بطاقة عشوائية إلى [gold]يدك[/gold] وأضف إليها [gold]أثيري[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/call_of_the_void_power.webp"
+  },
+  {
+    "id": "CHAINS_OF_BINDING",
+    "name": "سلاسل الربط",
+    "description": "The first [blue][Amount][/blue] cards drawn each turn are Afflicted with [gold]Bound[/gold].",
+    "description_raw": "The first [blue]{Amount}[/blue] cards drawn each turn are Afflicted with [gold]Bound[/gold].",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/chains_of_binding_power.webp"
+  },
+  {
+    "id": "CHILD_OF_THE_STARS",
+    "name": "ابن النجوم",
+    "description": "اكتسب [blue]1[/blue] [gold]درع[/gold] لكل [star:1] تُنفقها.",
+    "description_raw": "اكتسب [blue]1[/blue] [gold]درع[/gold] لكل {singleStarIcon} تُنفقها.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/child_of_the_stars_power.webp"
+  },
+  {
+    "id": "CHO_BARBS",
+    "name": "Temporary Thorns",
+    "description": "Gain [gold]Thorns[/gold] this turn.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/cho_barbs_power.webp"
+  },
+  {
+    "id": "CLARITY",
+    "name": "وضوح",
+    "description": "في بداية [blue]2[/blue] أدوارك التالية، اسحب [blue]1[/blue] بطاقة إضافية.",
+    "description_raw": "في بداية {Amount:plural:دورك التالي|[blue]{}[/blue] أدوارك التالية}، اسحب [blue]1[/blue] بطاقة إضافية.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/clarity_power.webp"
+  },
+  {
+    "id": "COLOSSUS",
+    "name": "عملاق",
+    "description": "تتلقى [blue]50%[/blue] ضرراً أقل من الأعداء المصابين بـ[gold]الوَهْن[/gold] لـ[blue]2[/blue] أدوار.",
+    "description_raw": "تتلقى [blue]{DamageDecrease:percentLess()}%[/blue] ضرراً أقل من الأعداء المصابين بـ[gold]الوَهْن[/gold] {Amount:plural:هذا الدور|لـ[blue]{}[/blue] أدوار}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/colossus_power.webp"
+  },
+  {
+    "id": "COMPOST",
+    "name": "Compost",
+    "description": "Whenever an enemy dies, ALL players gain [energy:1].",
+    "description_raw": "Whenever an enemy dies, ALL players gain {Amount:energyIcons()}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/compost_power.webp"
+  },
+  {
+    "id": "CONCOCT",
+    "name": "Concoct",
+    "description": "Whenever you deal unblocked attack damage this turn, apply [blue]3[/blue] [gold]Poison[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/concoct_power.webp"
+  },
+  {
+    "id": "CONDUCTORS_BATON",
+    "name": "Conductor's Baton",
+    "description": "Receive [blue]25%[/blue] less attack damage until your next turn.",
+    "description_raw": "Receive [blue]{DamageDecrease:percentLess()}%[/blue] less attack damage until your next turn.",
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": null
+  },
+  {
+    "id": "CONFUSED",
+    "name": "مُرتبك",
+    "description": "تُحدَّد تكاليف بطاقاتك عشوائياً عند السحب، من [blue]0[/blue] إلى [blue]3[/blue].",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/confused_power.webp"
+  },
+  {
+    "id": "CONQUEROR",
+    "name": "فاتح",
+    "description": "يلحق [gold]النصل السيادي[/gold] ضعفاً الضرر بـ[gold]this creature[/gold] خلال [blue]2[/blue] الأدوار التالية.",
+    "description_raw": "يلحق [gold]النصل السيادي[/gold] ضعفاً الضرر بـ[gold]{OwnerName}[/gold] {Amount:plural:هذا الدور|خلال [blue]{}[/blue] الأدوار التالية}.",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/conqueror_power.webp"
+  },
+  {
+    "id": "CONSTRICT",
+    "name": "خنق",
+    "description": "طالما أن الخانق الانزلاقي على قيد الحياة، في نهاية دورك، تلقَّ [blue]1[/blue] ضرر.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/constrict_power.webp"
+  },
+  {
+    "id": "CONSUMING_SHADOW",
+    "name": "ظلٌ يلتهم",
+    "description": "في نهاية دورك، [gold]أثِر[/gold] [blue]2[/blue] أيسر أجراس.",
+    "description_raw": "في نهاية دورك، [gold]أثِر[/gold] {Amount:plural:|[blue]{}[/blue] }أيسر {Amount:plural:جُرم|أجراس}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/consuming_shadow_power.webp"
+  },
+  {
+    "id": "COOLANT",
+    "name": "مبرِّد",
+    "description": "في بداية دورك، اكتسب [blue]3[/blue] [gold]درع[/gold] لكل جُرم فريد تمتلكه.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/coolant_power.webp"
+  },
+  {
+    "id": "COORDINATE",
+    "name": "Temporary Strength",
+    "description": "اكتسب [gold]قوة[/gold] حتى نهاية هذا الدور.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/coordinate_power.webp"
+  },
+  {
+    "id": "CORROSIVE_WAVE",
+    "name": "موجة أكّالة",
+    "description": "كلما سحبت بطاقة هذا الدور، أضف [blue]2[/blue] [gold]سم[/gold] لجميع الأعداء.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/corrosive_wave_power.webp"
+  },
+  {
+    "id": "CORRUPTION",
+    "name": "فساد",
+    "description": "تكلف المهارات [blue]0[/blue].\nكلما لعبت مهارة، [gold]استنفدها[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/corruption_power.webp"
+  },
+  {
+    "id": "COUNTDOWN",
+    "name": "عدّ تنازلي",
+    "description": "في بداية دورك، أضف [blue]6[/blue] [gold]هلاك[/gold] إلى عدو عشوائي.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/countdown_power.webp"
+  },
+  {
+    "id": "COVERED",
+    "name": "محمي",
+    "description": "حليف يحميك. جميع الهجمات الموجهة إليك تُحوَّل نحوه بدلاً من ذلك.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/covered_power.webp"
+  },
+  {
+    "id": "COVERING_FIRE",
+    "name": "Covering Fire",
+    "description": "Whenever you [gold]Shoot[/gold], allies gain [blue][Amount][/blue] [gold]Block[/gold].",
+    "description_raw": "Whenever you [gold]Shoot[/gold], allies gain [blue]{Amount}[/blue] [gold]Block[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/covering_fire_power.webp"
+  },
+  {
+    "id": "CRAB_RAGE",
+    "name": "غضب السلطعون",
+    "description": "عند موت حليف، يكتسب [gold]this creature[/gold] [blue]6[/blue] [gold]قوة[/gold] و[blue]99[/blue] [gold]درع[/gold].",
+    "description_raw": "عند موت حليف، يكتسب [gold]{OwnerName}[/gold] [blue]{StrengthPower}[/blue] [gold]قوة[/gold] و[blue]{Block}[/blue] [gold]درع[/gold].",
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/crab_rage_power.webp"
+  },
+  {
+    "id": "CREATIVE_AI",
+    "name": "ذكاء إبداعي",
+    "description": "في بداية دورك، أضف [blue]2[/blue] قدرات عشوائية إلى [gold]يدك[/gold].",
+    "description_raw": "في بداية دورك، أضف {Amount:plural:قدرة عشوائية|[blue]{}[/blue] قدرات عشوائية} إلى [gold]يدك[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/creative_ai_power.webp"
+  },
+  {
+    "id": "CRIMSON_MANTLE",
+    "name": "الرداء القرمزي",
+    "description": "في بداية دورك، افقد نقاط صحة واكتسب [gold]درعاً[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/crimson_mantle_power.webp"
+  },
+  {
+    "id": "CRUELTY",
+    "name": "قسوة",
+    "description": "يتلقى الأعداء المصابون بالوَهْن ضرراً إضافياً.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/cruelty_power.webp"
+  },
+  {
+    "id": "CRUSH_UNDER",
+    "name": "Temporary Strength Down",
+    "description": "افقد [gold]قوة[/gold] حتى نهاية هذا الدور.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/crush_under_power.webp"
+  },
+  {
+    "id": "CURIOUS",
+    "name": "فضولي",
+    "description": "تكلف القدرات [blue]1[/blue] [energy:1] أقل.",
+    "description_raw": "تكلف القدرات [blue]1[/blue] {energyPrefix:energyIcons(1)} أقل.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/curious_power.webp"
+  },
+  {
+    "id": "CURL_UP",
+    "name": "التفاف",
+    "description": "عند تلقي ضرر، يلتف ويكتسب درعاً. (مرة واحدة لكل قتال)",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/curl_up_power.webp"
+  },
+  {
+    "id": "DAMPEN",
+    "name": "كبت",
+    "description": "طالما أن فارس الطاقة على قيد الحياة، جميع بطاقاتك [gold]مُضعَّفة[/gold].",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "None",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/dampen_power.webp"
+  },
+  {
+    "id": "DANSE_MACABRE",
+    "name": "رقصة الموت",
+    "description": "كلما لعبت بطاقة تكلف [energy:2] أو أكثر، اكتسب [blue][Amount][/blue] [gold]درع[/gold].",
+    "description_raw": "كلما لعبت بطاقة تكلف {Energy:energyIcons()} أو أكثر، اكتسب [blue]{Amount}[/blue] [gold]درع[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/danse_macabre_power.webp"
+  },
+  {
+    "id": "DARK_EMBRACE",
+    "name": "عناق الظلام",
+    "description": "كلما [gold]استُنفدت[/gold] بطاقة، اسحب [blue]1[/blue] بطاقة.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/dark_embrace_power.webp"
+  },
+  {
+    "id": "DARK_SHACKLES",
+    "name": "Temporary Strength Down",
+    "description": "افقد [gold]قوة[/gold] حتى نهاية هذا الدور.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/dark_shackles_power.webp"
+  },
+  {
+    "id": "DEBILITATE",
+    "name": "إضعاف",
+    "description": "[gold]الوَهْن[/gold] و[gold]الضَّعف[/gold] أكثر فعالية بضعفين خلال [blue]2[/blue] الأدوار التالية.",
+    "description_raw": "[gold]الوَهْن[/gold] و[gold]الضَّعف[/gold] أكثر فعالية بضعفين {Amount:plural:هذا الدور|خلال [blue]{}[/blue] الأدوار التالية}.",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/debilitate_power.webp"
+  },
+  {
+    "id": "DEMESNE",
+    "name": "مُلك",
+    "description": "في بداية دورك، اكتسب [blue]1[/blue] [gold]طاقة[/gold] واسحب [blue]1[/blue] بطاقة إضافية.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/demesne_power.webp"
+  },
+  {
+    "id": "DEMISE",
+    "name": "فناء",
+    "description": "في نهاية دور [gold]this creature[/gold]، يفقد [blue][Amount][/blue] نقاط صحة.",
+    "description_raw": "في نهاية دور [gold]{OwnerName}[/gold]، يفقد [blue]{Amount}[/blue] نقاط صحة.",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/demise_power.webp"
+  },
+  {
+    "id": "DEMON_FORM",
+    "name": "هيئة جبارة",
+    "description": "في بداية دورك، اكتسب [blue]2[/blue] [gold]قوة[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/demon_form_power.webp"
+  },
+  {
+    "id": "DEVOUR_LIFE",
+    "name": "التهام الحياة",
+    "description": "كلما لعبت [gold]طيفًا[/gold]، [gold]استدعِ[/gold] [blue]1[/blue].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/devour_life_power.webp"
+  },
+  {
+    "id": "DEXTERITY",
+    "name": "رشاقة",
+    "description": "يزيد [gold]الدرع[/gold] المُكتسب من البطاقات بمقدار [blue][/blue].",
+    "description_raw": "{Amount:cond:<0?يُقلل|يزيد} [gold]الدرع[/gold] المُكتسب من البطاقات بمقدار [blue]{Amount:abs()}[/blue].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": true,
+    "image_url": "/static/images/beta/v0.113.0/powers/dexterity_power.webp"
+  },
+  {
+    "id": "DIE_FOR_YOU",
+    "name": "أموت لأجلك",
+    "description": "[gold]أوستي[/gold] يمتص كل ضرر الهجمات غير المحجوبة.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/die_for_you_power.webp"
+  },
+  {
+    "id": "DISINTEGRATION",
+    "name": "تفكّك",
+    "description": "At the end of your turn, take [blue][Amount][/blue] damage.",
+    "description_raw": "At the end of your turn, take [blue]{Amount}[/blue] damage.",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/disintegration_power.webp"
+  },
+  {
+    "id": "DISLIKE_YOU",
+    "name": "Dislike You",
+    "description": "This enemy takes [blue]50%[/blue] additional damage from [gold]Shots[/gold] this turn.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/dislike_you_power.webp"
+  },
+  {
+    "id": "DOOM",
+    "name": "هلاك",
+    "description": "في نهاية دور العدو، إذا كانت نقاط صحة [gold]this creature[/gold] [blue][Amount][/blue] أو أقل، يموت.",
+    "description_raw": "في نهاية دور {OnPlayer:اللاعب|العدو}، إذا كانت نقاط صحة [gold]{OwnerName}[/gold] [blue]{Amount}[/blue] أو أقل، يموت.",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/doom_power.webp"
+  },
+  {
+    "id": "DOUBLE_DAMAGE",
+    "name": "ضرر مضاعف",
+    "description": "خلال [blue]2[/blue] الأدوار التالية، تلحق الهجمات ضِعف الضرر.",
+    "description_raw": "{Amount:plural:هذا الدور|خلال [blue]{}[/blue] الأدوار التالية}، تلحق الهجمات ضِعف الضرر.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/double_damage_power.webp"
+  },
+  {
+    "id": "DRAW_CARDS_NEXT_TURN",
+    "name": "سحب بطاقات الدور التالي",
+    "description": "في بداية دورك التالي، اسحب [blue]1[/blue] بطاقة إضافية.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/draw_cards_next_turn_power.webp"
+  },
+  {
+    "id": "DUPLICATION",
+    "name": "ازدواجية",
+    "description": "[blue]2[/blue] بطاقاتك التالية مرة إضافية.",
+    "description_raw": "{Amount:plural:تُلعَب بطاقتك التالية|[blue]{}[/blue] بطاقاتك التالية} مرة إضافية.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/duplication_power.webp"
+  },
+  {
+    "id": "DYING_STAR",
+    "name": "Temporary Strength Down",
+    "description": "افقد [gold]قوة[/gold] حتى نهاية هذا الدور.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/dying_star_power.webp"
+  },
+  {
+    "id": "ECHO_FORM",
+    "name": "هيئة الصدى",
+    "description": "أول [blue]2[/blue] بطاقات تلعبها كل دور تُلعَب مرة إضافية.",
+    "description_raw": "أول {Amount:plural:بطاقة تلعبها كل دور تُلعَب|[blue]{}[/blue] بطاقات تلعبها كل دور تُلعَب} مرة إضافية.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/echo_form_power.webp"
+  },
+  {
+    "id": "ECSTASY",
+    "name": "Ecstasy",
+    "description": "At the start of your turn, [gold]Transform[/gold] [blue]1[/blue] random [gold]Sadness[/gold] in your [gold]Hand[/gold] into [gold]Joy[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/ecstasy_power.webp"
+  },
+  {
+    "id": "ENCORE",
+    "name": "Encore",
+    "description": "You can only play [blue]1[/blue] more card this turn.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/encore_power.webp"
+  },
+  {
+    "id": "ENERGY_NEXT_TURN",
+    "name": "طاقة الدور التالي",
+    "description": "اكتسب [gold]طاقة[/gold] إضافية في الدور التالي.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/energy_next_turn_power.webp"
+  },
+  {
+    "id": "ENFEEBLING_TOUCH",
+    "name": "Temporary Strength Down",
+    "description": "افقد [gold]قوة[/gold] حتى نهاية هذا الدور.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/enfeebling_touch_power.webp"
+  },
+  {
+    "id": "ENNUI",
+    "name": "Ennui",
+    "description": "At the start of your turn, add [blue]1[/blue] [gold]Sadness[/gold] to your [gold]Hand[/gold] and draw [blue]2[/blue] additional cards.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/ennui_power.webp"
+  },
+  {
+    "id": "ENRAGE",
+    "name": "هياج",
+    "description": "كلما لعبت مهارة، يكتسب [blue]2[/blue] [gold]قوة[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/enrage_power.webp"
+  },
+  {
+    "id": "ENSEMBLE",
+    "name": "Ensemble",
+    "description": "The next [blue]2[/blue] cards played by other players are free to play.",
+    "description_raw": "The next {Amount:plural:card|[blue]{}[/blue] cards} played by {Amount:plural:another player|other players} {Amount:plural:is|are} free to play.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/ensemble_power.webp"
+  },
+  {
+    "id": "ENTROPY",
+    "name": "فوضى",
+    "description": "في بداية دورك، [gold]حوِّل[/gold] [blue]1[/blue] بطاقة في [gold]يدك[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/entropy_power.webp"
+  },
+  {
+    "id": "ENVENOM",
+    "name": "تسميم",
+    "description": "كلما ألحقت ضرر هجوم غير محجوب، أضف [blue]1[/blue] [gold]سم[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/envenom_power.webp"
+  },
+  {
+    "id": "ESCAPE_ARTIST",
+    "name": "فنان الهروب",
+    "description": "يحاول الهروب من القتال بعد [blue]2[/blue] أدوار.",
+    "description_raw": "يحاول الهروب من القتال {Amount:plural:هذا الدور|بعد [blue]{}[/blue] أدوار}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/escape_artist_power.webp"
+  },
+  {
+    "id": "EXPLOSIVE_ARROWS",
+    "name": "Explosive Arrows",
+    "description": "Whenever you [gold]Impale[/gold] an enemy, deal [blue]6[/blue] damage to ALL enemies.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/explosive_arrows_power.webp"
+  },
+  {
+    "id": "EXPLOSIVE",
+    "name": "Explosive",
+    "description": "When this creature dies, it explodes, dealing damage.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/explosive_power.webp"
+  },
+  {
+    "id": "EXTRA_TURN",
+    "name": "Extra Turn",
+    "description": "Take an extra turn after this one.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/extra_turn_power.webp"
+  },
+  {
+    "id": "FADE",
+    "name": "Temporary Dexterity",
+    "description": "اكتسب [gold]رشاقة[/gold] حتى نهاية هذا الدور.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/fade_power.webp"
+  },
+  {
+    "id": "FAN_OF_KNIVES",
+    "name": "مروحة السكاكين",
+    "description": "تصيب [gold]الشفرات[/gold] جميع الأعداء.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/fan_of_knives_power.webp"
+  },
+  {
+    "id": "FASTEN",
+    "name": "إحكام",
+    "description": "اكتسب [blue]4[/blue] [gold]درع[/gold] إضافية من بطاقات الدفاع.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/fasten_power.webp"
+  },
+  {
+    "id": "FEEDING_FRENZY",
+    "name": "Temporary Strength",
+    "description": "اكتسب [gold]قوة[/gold] حتى نهاية هذا الدور.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/feeding_frenzy_power.webp"
+  },
+  {
+    "id": "FEEL_NO_PAIN",
+    "name": "لا أشعر بالألم",
+    "description": "كلما استُنفدت بطاقة، اكتسب [blue]3[/blue] [gold]درع[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/feel_no_pain_power.webp"
+  },
+  {
+    "id": "FERAL",
+    "name": "همجي",
+    "description": "أول [blue]2[/blue] مرات تلعب فيها هجوم بتكلفة 0[energy:1] كل دور، أعدْه إلى [gold]يدك[/gold].",
+    "description_raw": "أول {Amount:plural:مرة|[blue]{}[/blue] مرات} تلعب فيها هجوم بتكلفة 0{energyPrefix:energyIcons(1)} كل دور، أعدْه إلى [gold]يدك[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/feral_power.webp"
+  },
+  {
+    "id": "FLAME_BARRIER",
+    "name": "حاجز لهبي",
+    "description": "كلما هُوجمت هذا الدور، ألحق [blue]4[/blue] ضرر بالمهاجم.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/flame_barrier_power.webp"
+  },
+  {
+    "id": "FLANKING",
+    "name": "التفاف",
+    "description": "يلحق الحلفاء الآخرون [blue]2x[/blue] ضرر الهجوم بهذا العدو هذا الدور.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/flanking_power.webp"
+  },
+  {
+    "id": "FLEX_POTION",
+    "name": "Temporary Strength",
+    "description": "اكتسب [gold]قوة[/gold] حتى نهاية هذا الدور.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/flex_potion_power.webp"
+  },
+  {
+    "id": "FLUTTER",
+    "name": "رفرفة",
+    "description": "يتلقى [blue]50%[/blue] ضرراً أقل من الهجمات. ألحق ضرر هجوم [blue][Amount][/blue] مرات [gold]لإذهاله[/gold].",
+    "description_raw": "يتلقى [blue]{DamageDecrease}%[/blue] ضرراً أقل من الهجمات. ألحق ضرر هجوم [blue]{Amount}[/blue] {Amount:plural:مرة|مرات} [gold]لإذهاله[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/flutter_power.webp"
+  },
+  {
+    "id": "FOCUS",
+    "name": "تركيز",
+    "description": "يزيد فعالية الأجراس بمقدار [blue][/blue].",
+    "description_raw": "{Amount:cond:<0?يُقلل|يزيد} فعالية الأجراس بمقدار [blue]{Amount:abs()}[/blue].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": true,
+    "image_url": "/static/images/beta/v0.113.0/powers/focus_power.webp"
+  },
+  {
+    "id": "FOCUSED_STRIKE",
+    "name": "Temporary Focus",
+    "description": "اكتسب [gold]تركيز[/gold] حتى نهاية هذا الدور.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/focused_strike_power.webp"
+  },
+  {
+    "id": "FORBIDDEN_GRIMOIRE",
+    "name": "كتاب الأسرار القديمة",
+    "description": "في نهاية القتال، أزِل بطاقة من [gold]مجموعة أوراقك[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/forbidden_grimoire_power.webp"
+  },
+  {
+    "id": "FOREGONE_CONCLUSION",
+    "name": "نتيجة محتومة",
+    "description": "في الدور التالي، ضع [blue]3[/blue] بطاقات من [gold]كومة السحب[/gold] في [gold]يدك[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/foregone_conclusion_power.webp"
+  },
+  {
+    "id": "FRAIL",
+    "name": "هشاشة",
+    "description": "أثناء الهشاشة، اكتسب [blue]25%[/blue] [gold]درع[/gold] أقل من البطاقات.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/frail_power.webp"
+  },
+  {
+    "id": "FREE_ATTACK",
+    "name": "هجوم مجاني",
+    "description": "[blue]2[/blue] هجماتك التالية تكلف [blue]0[/blue] [energy:1].",
+    "description_raw": "{Amount:plural:هجومك التالي يكلف|[blue]{}[/blue] هجماتك التالية تكلف} [blue]0[/blue] {energyPrefix:energyIcons(1)}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/free_attack_power.webp"
+  },
+  {
+    "id": "FREE_CARD",
+    "name": "Free Card",
+    "description": "The next [blue]2[/blue] cards you play cost [blue]0[/blue] [energy:1].",
+    "description_raw": "The next {Amount:plural:card|[blue]{}[/blue] cards} you play {Amount:plural:costs|cost} [blue]0[/blue] {energyPrefix:energyIcons(1)}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": null
+  },
+  {
+    "id": "FREE_POWER",
+    "name": "قدرة مجانية",
+    "description": "[blue]2[/blue] القدرات التالية التي تلعبها تكلف [blue]0[/blue] [energy:1].",
+    "description_raw": "{Amount:plural:القدرة التالية التي تلعبها تكلف|[blue]{}[/blue] القدرات التالية التي تلعبها تكلف} [blue]0[/blue] {energyPrefix:energyIcons(1)}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/free_power_power.webp"
+  },
+  {
+    "id": "FREE_SKILL",
+    "name": "مهارة مجانية",
+    "description": "[blue]2[/blue] المهارات التالية التي تلعبها تكلف [blue]0[/blue] [energy:1].",
+    "description_raw": "{Amount:plural:المهارة التالية التي تلعبها تكلف|[blue]{}[/blue] المهارات التالية التي تلعبها تكلف} [blue]0[/blue] {energyPrefix:energyIcons(1)}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/free_skill_power.webp"
+  },
+  {
+    "id": "FRIENDSHIP",
+    "name": "صداقة",
+    "description": "اكتسب [energy:1] في بداية كل دور.",
+    "description_raw": "اكتسب {Amount:energyIcons()} في بداية كل دور.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/friendship_power.webp"
+  },
+  {
+    "id": "FURNACE",
+    "name": "فرن",
+    "description": "في بداية دورك، [gold]اصنع[/gold] [blue]5[/blue].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/furnace_power.webp"
+  },
+  {
+    "id": "GALVANIC",
+    "name": "تحفيز كهربائي",
+    "description": "تُصاب القدرات بـ[gold]التحفيز[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/galvanic_power.webp"
+  },
+  {
+    "id": "GENESIS",
+    "name": "تكوين",
+    "description": "في بداية دورك، اكتسب [star:1].",
+    "description_raw": "في بداية دورك، اكتسب {Amount:starIcons()}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/genesis_power.webp"
+  },
+  {
+    "id": "GIGANTIFICATION",
+    "name": "تعملاق",
+    "description": "[blue]2[/blue] الهجمات التالية التي تلعبها تلحق ثلاثة أضعاف الضرر.",
+    "description_raw": "{Amount:plural:الهجوم التالي الذي تلعبه يلحق|[blue]{}[/blue] الهجمات التالية التي تلعبها تلحق} ثلاثة أضعاف الضرر.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/gigantification_power.webp"
+  },
+  {
+    "id": "GOD_BYRD",
+    "name": "God Byrd",
+    "description": "At the start of your next turn, deal [blue]20[/blue] damage to ALL enemies.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/god_byrd_power.webp"
+  },
+  {
+    "id": "GRAVITY",
+    "name": "جاذبية",
+    "description": "كلما لعبت بطاقة هذا الدور، ألحق [blue]2[/blue] ضرر بجميع الأعداء.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/gravity_power.webp"
+  },
+  {
+    "id": "GUARDED",
+    "name": "مُحروس",
+    "description": "Take [blue]50%[/blue] less damage from enemies. Removed if [gold][Applier.StringValue][/gold] dies.",
+    "description_raw": "Take [blue]{DamageDecrease:percentLess()}%[/blue] less damage from enemies. Removed if [gold]{Applier.StringValue}[/gold] dies.",
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/guarded_power.webp"
+  },
+  {
+    "id": "HAILSTORM",
+    "name": "عاصفة البَرَد",
+    "description": "في نهاية دورك، إذا كنت تمتلك [gold]صقيعاً[/gold]، ألحق [blue]6[/blue] ضرر بجميع الأعداء.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/hailstorm_power.webp"
+  },
+  {
+    "id": "HAMMER_TIME",
+    "name": "وقت المطرقة",
+    "description": "كلما [gold]صنعت[/gold]، [gold]يصنع[/gold] جميع الحلفاء أيضاً.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/hammer_time_power.webp"
+  },
+  {
+    "id": "HANG",
+    "name": "تعليق",
+    "description": "تلحق جميع [gold]التعليقات[/gold] [blue]2[/blue] أضعاف الضرر بهذا العدو.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/hang_power.webp"
+  },
+  {
+    "id": "HARD_TO_KILL",
+    "name": "عسير القتل",
+    "description": "قلل كل الضرر المتلقى ونقاط الصحة المفقودة بواسطة [gold]this creature[/gold] إلى [blue][Amount][/blue].",
+    "description_raw": "قلل كل الضرر المتلقى ونقاط الصحة المفقودة بواسطة [gold]{OwnerName}[/gold] إلى [blue]{Amount}[/blue].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/hard_to_kill_power.webp"
+  },
+  {
+    "id": "HARDENED_SHELL",
+    "name": "صدفة مُصلَّبة",
+    "description": "لا يمكن لـ[gold]this creature[/gold] أن يفقد أكثر من [blue][Amount][/blue] نقطة صحة كل دور.",
+    "description_raw": "لا يمكن لـ[gold]{OwnerName}[/gold] أن يفقد أكثر من [blue]{Amount}[/blue] نقطة صحة كل دور.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/hardened_shell_power.webp"
+  },
+  {
+    "id": "HATCH",
+    "name": "فقس",
+    "description": "يفقس بعد [blue]X[/blue] أدوار.",
+    "description_raw": "يفقس بعد X أدوار.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/hatch_power.webp"
+  },
+  {
+    "id": "HAUNT",
+    "name": "تطييف",
+    "description": "كلما لعبت [gold]طيفًا[/gold]، يفقد عدو عشوائي [blue]3[/blue] نقاط صحة.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/haunt_power.webp"
+  },
+  {
+    "id": "HEIST",
+    "name": "سطو",
+    "description": "عند الموت، يُعيد كل [gold]الذهب[/gold] المسروق.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/heist_power.webp"
+  },
+  {
+    "id": "HELICAL_DART",
+    "name": "Temporary Dexterity",
+    "description": "اكتسب [gold]رشاقة[/gold] حتى نهاية هذا الدور.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/helical_dart_power.webp"
+  },
+  {
+    "id": "HELLO_WORLD",
+    "name": "مرحباً بالعالم",
+    "description": "في بداية دورك، أضف [blue]1[/blue] بطاقة شائعة عشوائية إلى [gold]يدك[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/hello_world_power.webp"
+  },
+  {
+    "id": "HELLRAISER",
+    "name": "مثير الفوضى",
+    "description": "كلما سحبت بطاقة تحتوي على \"ضربة\"، تُلعَب ضد عدو عشوائي.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/hellraiser_power.webp"
+  },
+  {
+    "id": "HEX",
+    "name": "سِحْر",
+    "description": "طالما أن فارس الأشباح على قيد الحياة، جميع بطاقاتك [gold]أثيرية[/gold].",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/hex_power.webp"
+  },
+  {
+    "id": "HIBERNATE",
+    "name": "Hibernate",
+    "description": "For the next [blue]2[/blue] turns, your [gold]Frost[/gold] grants ALL allies [gold]Block[/gold].",
+    "description_raw": "{Amount:plural:This turn|For the next [blue]{}[/blue] turns}, your [gold]Frost[/gold] grants ALL allies [gold]Block[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/hibernate_power.webp"
+  },
+  {
+    "id": "HIDDEN_ROOTS",
+    "name": "Hidden Roots",
+    "description": "At the start of your turn, gain [blue]5[/blue] [gold]Stretch[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/hidden_roots_power.webp"
+  },
+  {
+    "id": "HIGH_VOLTAGE",
+    "name": "جهد عالٍ",
+    "description": "في نهاية دور [gold]this creature[/gold]، يكتسب [blue][Amount][/blue] [gold]قوة[/gold].",
+    "description_raw": "في نهاية دور [gold]{OwnerName}[/gold]، يكتسب [blue]{Amount}[/blue] [gold]قوة[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/high_voltage_power.webp"
+  },
+  {
+    "id": "HONING",
+    "name": "Honing",
+    "description": "[gold]Arrows[/gold] deal [blue]50%[/blue] additional damage.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/honing_power.webp"
+  },
+  {
+    "id": "HOTFIX",
+    "name": "Temporary Focus",
+    "description": "اكتسب [gold]تركيز[/gold] حتى نهاية هذا الدور.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/hotfix_power.webp"
+  },
+  {
+    "id": "HYPERBEAM_FOCUS_DOWN",
+    "name": "Temporary Focus Down",
+    "description": "افقد [gold]تركيز[/gold] حتى نهاية هذا الدور.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/hyperbeam_focus_down_power.webp"
+  },
+  {
+    "id": "ILLUSION",
+    "name": "وَهْم",
+    "description": "عند موته، ينعش في الدور التالي بكامل نقاط صحته.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/illusion_power.webp"
+  },
+  {
+    "id": "IMBALANCED",
+    "name": "عدم توازن",
+    "description": "إذا حُجبت هجمات [gold]this creature[/gold] بالكامل، يُصبح [gold]مُذهولاً[/gold].",
+    "description_raw": "إذا حُجبت هجمات [gold]{OwnerName}[/gold] بالكامل{IsMultiplayer: من أي لاعب|}، يُصبح [gold]مُذهولاً[/gold].",
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/imbalanced_power.webp"
+  },
+  {
+    "id": "IMITATION_LEARNING",
+    "name": "Imitation Learning",
+    "description": "The next [blue]2[/blue] times [gold][TargetPlayer][/gold] plays a Power, you play a copy of it.",
+    "description_raw": "The next {Amount:plural:time|[blue]{}[/blue] times} [gold]{TargetPlayer}[/gold] plays a Power, you play a copy of it.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/imitation_learning_power.webp"
+  },
+  {
+    "id": "IMPALED",
+    "name": "Impaled",
+    "description": "This [gold]Arrow[/gold] is [gold]Dislodged[/gold] after you hit this enemy [blue]3[/blue] more times.",
+    "description_raw": "This [gold]Arrow[/gold] is [gold]Dislodged[/gold] after you hit this enemy [blue]{HitCounter}[/blue] more {HitCounter:plural:time|times}.",
+    "type": "None",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/impaled_power.webp"
+  },
+  {
+    "id": "IMPROVEMENT",
+    "name": "تحسين",
+    "description": "في نهاية القتال، [gold]رقِّ[/gold] بطاقة عشوائية.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/improvement_power.webp"
+  },
+  {
+    "id": "INFERNO",
+    "name": "اشتعال",
+    "description": "في بداية دورك، افقد [blue]1[/blue] نقطة صحة. كلما فقدت نقاط صحة في دورك، ألحق [blue]4[/blue] ضرر بجميع الأعداء.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/inferno_power.webp"
+  },
+  {
+    "id": "INFESTED",
+    "name": "موبوء",
+    "description": "عند الموت، يستدعي... شيئاً ما.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/infested_power.webp"
+  },
+  {
+    "id": "INFINITE_BLADES",
+    "name": "شفرات لا نهائية",
+    "description": "في بداية دورك، أضف [blue]2[/blue] [gold]شفرات[/gold] إلى [gold]يدك[/gold].",
+    "description_raw": "في بداية دورك، أضف {Amount:plural:[gold]شفرة[/gold]|[blue]{}[/blue] [gold]شفرات[/gold]} إلى [gold]يدك[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/infinite_blades_power.webp"
+  },
+  {
+    "id": "INSATIABLE_DOMINION",
+    "name": "Insatiable Dominion",
+    "description": "At the end of your turn, take 2 damage and increase the damage by one.",
+    "description_raw": "At the end of your turn, take {Damage} damage and increase the damage by one.",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/insatiable_dominion_power.webp"
+  },
+  {
+    "id": "INTANGIBLE",
+    "name": "لا ملمسي",
+    "description": "قلل كل الضرر المتلقى وفقدان نقاط الصحة إلى [blue]1[/blue] هذا الدور.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/intangible_power.webp"
+  },
+  {
+    "id": "INTERCEPT",
+    "name": "اعتراض",
+    "description": "أنت تحمي لاعباً آخر. جميع الهجمات الموجهة نحوه تُحوَّل إليك.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/intercept_power.webp"
+  },
+  {
+    "id": "ITERATION",
+    "name": "تكرار",
+    "description": "أول مرة تسحب فيها حالة كل دور، اسحب بطاقات إضافية.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/iteration_power.webp"
+  },
+  {
+    "id": "JUGGERNAUT",
+    "name": "القوة الدافعة",
+    "description": "كلما اكتسبت [gold]درعاً[/gold]، ألحق [blue]6[/blue] ضرر بعدو عشوائي.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/juggernaut_power.webp"
+  },
+  {
+    "id": "JUGGLING",
+    "name": "مُناوَلة",
+    "description": "أضف نسخة من ثالث هجوم تلعبه كل دور إلى [gold]يدك[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/juggling_power.webp"
+  },
+  {
+    "id": "KI_VERSE",
+    "name": "Ki Verse",
+    "description": "The next [blue]2[/blue] “Wah”, “Cho”, or “Ki” cards you play this turn are played an additional time.",
+    "description_raw": "The next{Amount:plural:| [blue]{}[/blue]} “Wah”, “Cho”, or “Ki” {Amount:plural:card|cards} you play this turn {Amount:plural:is|are} played an additional time.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": null
+  },
+  {
+    "id": "KNOCKDOWN",
+    "name": "إسقاط",
+    "description": "يتلقى هذا المخلوق [blue][Amount][/blue] أضعاف الضرر من اللاعبين الآخرين هذا الدور.",
+    "description_raw": "يتلقى هذا المخلوق [blue]{Amount}[/blue] أضعاف الضرر من اللاعبين الآخرين هذا الدور.",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/knockdown_power.webp"
+  },
+  {
+    "id": "LAGAVULIN_MATRIARCH_DOMINION",
+    "name": "Lagavulin Matriarch Dominion",
+    "description": "At the end of this turn, lose [blue]1[/blue] [gold]Strength[/gold] and [gold]Dexterity[/gold].",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/lagavulin_matriarch_dominion_power.webp"
+  },
+  {
+    "id": "LEADERSHIP",
+    "name": "قيادة",
+    "description": "يلحق جميع الحلفاء الآخرين [blue]1[/blue] ضرر إضافي.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/leadership_power.webp"
+  },
+  {
+    "id": "LETHALITY",
+    "name": "فتاكية",
+    "description": "أول هجوم كل دور يلحق 50% ضرراً إضافياً.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/lethality_power.webp"
+  },
+  {
+    "id": "LIGHTNING_ROD",
+    "name": "مانعة صواعق",
+    "description": "في بداية [blue]2[/blue] الأدوار التالية، [gold]وجّه[/gold] [blue]1[/blue] [gold]برق[/gold].",
+    "description_raw": "في بداية {Amount:plural:الدور التالي|[blue]{}[/blue] الأدوار التالية}، [gold]وجّه[/gold] [blue]1[/blue] [gold]برق[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/lightning_rod_power.webp"
+  },
+  {
+    "id": "LOOP",
+    "name": "حلقة",
+    "description": "في بداية دورك، فعّل القدرة السلبية لجُرمك التالي.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/loop_power.webp"
+  },
+  {
+    "id": "LOST_LUTE",
+    "name": "Lost Lute",
+    "description": "Whenever you gain a [gold]Melody[/gold], play the next [blue]2[/blue] top cards of your [gold]Draw Pile[/gold].",
+    "description_raw": "Whenever you gain a [gold]Melody[/gold], play the {Amount:plural:top card|next [blue]{}[/blue] top cards} of your [gold]Draw Pile[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/lost_lute_power.webp"
+  },
+  {
+    "id": "LULLABY",
+    "name": "Lullaby",
+    "description": "When you gain every [gold]Melody[/gold], gain [blue]20[/blue] [gold]Block[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/lullaby_power.webp"
+  },
+  {
+    "id": "MACHINE_LEARNING",
+    "name": "تعلّم آلي",
+    "description": "في بداية دورك، اسحب [blue]1[/blue] بطاقة إضافية.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/machine_learning_power.webp"
+  },
+  {
+    "id": "MAGIC_BOMB",
+    "name": "قنبلة طاقة",
+    "description": "تلقَّ [blue]20[/blue] ضرر في نهاية دورك. يُزال إذا مات فارس الطاقة.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/magic_bomb_power.webp"
+  },
+  {
+    "id": "MANGLE",
+    "name": "Temporary Strength Down",
+    "description": "افقد [gold]قوة[/gold] حتى نهاية هذا الدور.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/mangle_power.webp"
+  },
+  {
+    "id": "MASTER_PLANNER",
+    "name": "المُخطّط الماهر",
+    "description": "عندما تلعب مهارة، تكتسب [gold]الدهاء[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/master_planner_power.webp"
+  },
+  {
+    "id": "MAYHEM",
+    "name": "فوضى عارمة",
+    "description": "في بداية دورك، العب [blue]2[/blue] البطاقات العلوية التالية من [gold]كومة السحب[/gold].",
+    "description_raw": "في بداية دورك، العب {Amount:plural:البطاقة العلوية|[blue]{}[/blue] البطاقات العلوية التالية} من [gold]كومة السحب[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/mayhem_power.webp"
+  },
+  {
+    "id": "MIND_ROT",
+    "name": "تآكل العقل",
+    "description": "اسحب [blue]1[/blue] بطاقة أقل كل دور.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/mind_rot_power.webp"
+  },
+  {
+    "id": "MINION",
+    "name": "تابع",
+    "description": "تتخلى الأتباع عن القتال بدون قائدها.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/minion_power.webp"
+  },
+  {
+    "id": "MONARCHS_GAZE",
+    "name": "نظرة العاهل",
+    "description": "كلما هاجمت عدواً، يفقد [blue]1[/blue] [gold]قوة[/gold] هذا الدور.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/monarchs_gaze_power.webp"
+  },
+  {
+    "id": "MONARCHS_GAZE_STRENGTH_DOWN",
+    "name": "Temporary Strength Down",
+    "description": "افقد [gold]قوة[/gold] حتى نهاية هذا الدور.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/monarchs_gaze_strength_down_power.webp"
+  },
+  {
+    "id": "MONOLOGUE",
+    "name": "مُناجاة",
+    "description": "كلما لعبت بطاقة هذا الدور، اكتسب [blue]1[/blue] [gold]قوة[/gold] هذا الدور.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "None",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/monologue_power.webp"
+  },
+  {
+    "id": "MOTIF",
+    "name": "Motif",
+    "description": "Whenever you gain a [gold]Melody[/gold], draw [blue]1[/blue] card.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/motif_power.webp"
+  },
+  {
+    "id": "MYTHIC_FORM",
+    "name": "Mythic Form",
+    "description": "At the start of your turn, add [blue]1[/blue] random [gold]Tarot[/gold] into your [gold]Hand[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": null
+  },
+  {
+    "id": "NECRO_MASTERY",
+    "name": "إتقان الموت",
+    "description": "كلما فقد [gold]أوستي[/gold] نقاط صحة، يفقد جميع الأعداء نفس المقدار من نقاط الصحة.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/necro_mastery_power.webp"
+  },
+  {
+    "id": "NEMESIS",
+    "name": "العدو اللدود",
+    "description": "في نهاية كل دور متبادل، يكتسب [gold]لا ملمسي[/gold] [blue]1[/blue].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/nemesis_power.webp"
+  },
+  {
+    "id": "NEUROSURGE",
+    "name": "اندفاع عصبي",
+    "description": "في بداية دورك، أضف [blue]3[/blue] [gold]هلاك[/gold] إلى نفسك.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/neurosurge_power.webp"
+  },
+  {
+    "id": "NIGHTMARE",
+    "name": "كابوس",
+    "description": "أضف [blue]2[/blue] [gold][Card][/gold] بطاقات إلى [gold]يدك[/gold] في الدور التالي.",
+    "description_raw": "أضف {Amount:plural:|[blue]{}[/blue]} [gold]{Card}[/gold] {Amount:plural:بطاقة|بطاقات} إلى [gold]يدك[/gold] في الدور التالي.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/nightmare_power.webp"
+  },
+  {
+    "id": "NO_BLOCK",
+    "name": "لا درع",
+    "description": "لا يمكنك اكتساب [gold]الدرع[/gold] من البطاقات لمدة [blue]2[/blue] أدوار.",
+    "description_raw": "لا يمكنك اكتساب [gold]الدرع[/gold] من البطاقات لمدة {Amount:plural:[blue]{}[/blue] دور|[blue]{}[/blue] أدوار}.",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/no_block_power.webp"
+  },
+  {
+    "id": "NO_DRAW",
+    "name": "لا سحب",
+    "description": "لا يمكنك سحب المزيد من البطاقات هذا الدور.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/no_draw_power.webp"
+  },
+  {
+    "id": "NO_ENERGY_GAIN",
+    "name": "لا اكتساب طاقة",
+    "description": "لا يمكنك اكتساب [energy:1] إضافية هذا الدور.",
+    "description_raw": "لا يمكنك اكتساب {energyPrefix:energyIcons(1)} إضافية هذا الدور.",
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/no_energy_gain_power.webp"
+  },
+  {
+    "id": "NOSTALGIA",
+    "name": "حنين",
+    "description": "أول 2 هجمات أو مهارات تلعبها كل دور توضع فوق [gold]كومة السحب[/gold].",
+    "description_raw": "أول {Amount:plural:هجوم أو مهارة|{} هجمات أو مهارات} تلعبها كل دور {Amount:plural:توضع|توضع} فوق [gold]كومة السحب[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/nostalgia_power.webp"
+  },
+  {
+    "id": "NOXIOUS_FUMES",
+    "name": "أبخرة سامة",
+    "description": "في بداية دورك، أضف [blue]2[/blue] [gold]سم[/gold] لجميع الأعداء.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/noxious_fumes_power.webp"
+  },
+  {
+    "id": "OBLIVION",
+    "name": "نسيان",
+    "description": "كلما لعبت بطاقة، يكتسب هذا العدو [blue]1[/blue] [gold]هلاك[/gold].",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/oblivion_power.webp"
+  },
+  {
+    "id": "ONE_FOR_ALL",
+    "name": "One for All",
+    "description": "Your [blue]0[/blue] [energy:1] Attacks deal more damage.",
+    "description_raw": "Your [blue]0[/blue] {energyPrefix:energyIcons(1)} Attacks deal more damage.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/one_for_all_power.webp"
+  },
+  {
+    "id": "ONE_TWO_PUNCH",
+    "name": "لكمة مزدوجة",
+    "description": "[blue]2[/blue] هجماتك التالية مرة إضافية هذا الدور.",
+    "description_raw": "{Amount:plural:يُلعَب هجومك التالي|[blue]{}[/blue] هجماتك التالية} مرة إضافية هذا الدور.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/one_two_punch_power.webp"
+  },
+  {
+    "id": "ORBIT",
+    "name": "مدار",
+    "description": "كل [energy:4] تنفقها، اكتسب [energy:1].",
+    "description_raw": "كل {Energy:energyIcons()} تنفقها، اكتسب {Amount:energyIcons()}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/orbit_power.webp"
+  },
+  {
+    "id": "PAGESTORM",
+    "name": "عاصفة ورقية",
+    "description": "كلما سحبت بطاقة [gold]أثيرية[/gold]، اسحب [blue]1[/blue] بطاقة.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/pagestorm_power.webp"
+  },
+  {
+    "id": "PAINFUL_STABS",
+    "name": "طعنات مؤلمة",
+    "description": "اخلط [blue]1[/blue] [gold]جرح[/gold] في [gold]كومة التخلّص[/gold] كل مرة تتلقى فيها ضرر هجوم غير محجوب.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/painful_stabs_power.webp"
+  },
+  {
+    "id": "PALE_BLUE_DOT",
+    "name": "نقطة زرقاء شاحبة",
+    "description": "إذا لعبت [blue]5[/blue] بطاقات أو أكثر في دور واحد، اسحب [blue][Amount][/blue] بطاقات إضافية في بداية دورك التالي.",
+    "description_raw": "إذا لعبت [blue]{CardPlay}[/blue] بطاقات أو أكثر في دور واحد، اسحب [blue]{Amount}[/blue] {Amount:plural:بطاقة إضافية|بطاقات إضافية} في بداية دورك التالي.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/pale_blue_dot_power.webp"
+  },
+  {
+    "id": "PANACHE",
+    "name": "أناقة",
+    "description": "إذا لعبت [blue]5[/blue] بطاقات إضافية هذا الدور، ألحق [blue][Amount][/blue] ضرر بجميع الأعداء.",
+    "description_raw": "إذا لعبت [blue]{CardsLeft}[/blue] {CardsLeft:plural:بطاقة إضافية|بطاقات إضافية} هذا الدور، ألحق [blue]{Amount}[/blue] ضرر بجميع الأعداء.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/panache_power.webp"
+  },
+  {
+    "id": "PAPER_CUTS",
+    "name": "جروح ورقية",
+    "description": "كلما ألحق بك [gold]this creature[/gold] ضرر هجوم غير محجوب، تفقد [blue][Amount][/blue] [gold]الحد الأقصى لنقاط الصحة[/gold].",
+    "description_raw": "كلما ألحق بك [gold]{OwnerName}[/gold] ضرر هجوم غير محجوب، تفقد [blue]{Amount}[/blue] [gold]الحد الأقصى لنقاط الصحة[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/paper_cuts_power.webp"
+  },
+  {
+    "id": "PARRY",
+    "name": "صدّ",
+    "description": "يكتسب [gold]النصل السيادي[/gold] الآن [gold]درعاً[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/parry_power.webp"
+  },
+  {
+    "id": "PERSONAL_HIVE",
+    "name": "خلية شخصية",
+    "description": "كلما أُصيب هذا العدو بهجوم، أضف [gold]مُصاب بالدوار[/gold] إلى [gold]كومة السحب[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/personal_hive_power.webp"
+  },
+  {
+    "id": "PHANTOM_BLADES",
+    "name": "شفرات شبحية",
+    "description": "تكتسب [gold]الشفرات[/gold] [gold]الاحتفاظ[/gold].\nتلحق أول [gold]شفرة[/gold] تلعبها كل دور [blue]9[/blue] ضرر إضافي.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/phantom_blades_power.webp"
+  },
+  {
+    "id": "PIERCING_WAIL",
+    "name": "Temporary Strength Down",
+    "description": "افقد [gold]قوة[/gold] حتى نهاية هذا الدور.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/piercing_wail_power.webp"
+  },
+  {
+    "id": "PILLAR_OF_CREATION",
+    "name": "عمود الخلق",
+    "description": "Whenever you create a card, gain [blue][Amount][/blue] [gold]Block[/gold].",
+    "description_raw": "Whenever you create a card, gain [blue]{Amount}[/blue] [gold]Block[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/pillar_of_creation_power.webp"
+  },
+  {
+    "id": "PLATING",
+    "name": "تصفيح",
+    "description": "في نهاية دورك، اكتسب [blue][Amount][/blue] [gold]درع[/gold]. يُقلَّل [gold]التصفيح[/gold] بمقدار [blue]1[/blue] في بداية دورك.",
+    "description_raw": "في نهاية دورك، اكتسب [blue]{Amount}[/blue] [gold]درع[/gold]. يُقلَّل [gold]التصفيح[/gold] بمقدار [blue]{Decrement}[/blue] في بداية دورك.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/plating_power.webp"
+  },
+  {
+    "id": "PLOW",
+    "name": "محراث",
+    "description": "أول مرة تصل فيها نقاط صحة [gold]this creature[/gold] إلى [blue][Amount][/blue] أو أقل، يُصبح [gold]مُذهولاً[/gold] ويفقد كل [gold]قوته[/gold].",
+    "description_raw": "أول مرة تصل فيها نقاط صحة [gold]{OwnerName}[/gold] إلى [blue]{Amount}[/blue] أو أقل، يُصبح [gold]مُذهولاً[/gold] ويفقد كل [gold]قوته[/gold].",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/plow_power.webp"
+  },
+  {
+    "id": "POISON",
+    "name": "سم",
+    "description": "تفقد المخلوقات المسمومة نقاط صحة في بداية دورها. يُقلَّل السم بمقدار [blue]1[/blue] كل دور.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/poison_power.webp"
+  },
+  {
+    "id": "POSSESS_SPEED",
+    "name": "امتلاك السرعة",
+    "description": "عند الموت، يُعيد كل [gold]الرشاقة[/gold] المسروقة إلى اللاعب.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/possess_speed_power.webp"
+  },
+  {
+    "id": "POSSESS_STRENGTH",
+    "name": "امتلاك القوة",
+    "description": "عند الموت، يُعيد كل [gold]القوة[/gold] المسروقة إلى اللاعب.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/possess_strength_power.webp"
+  },
+  {
+    "id": "PREP_TIME",
+    "name": "وقت التحضير",
+    "description": "في بداية دورك، اكتسب [blue]4[/blue] [gold]حيوية[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/prep_time_power.webp"
+  },
+  {
+    "id": "PYRE",
+    "name": "محرقة",
+    "description": "اكتسب [energy:1] في بداية كل دور.",
+    "description_raw": "اكتسب {Amount:energyIcons()} في بداية كل دور.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/pyre_power.webp"
+  },
+  {
+    "id": "QUIETUS",
+    "name": "Quietus",
+    "description": "Your next [gold]Shot[/gold] this turn deals [blue]2[/blue] times more damage but the [gold]Arrow[/gold] is destroyed.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": null
+  },
+  {
+    "id": "RADIANCE",
+    "name": "توهّج",
+    "description": "اكتسب [energy:1] إضافية خلال [blue]2[/blue] الأدوار التالية.",
+    "description_raw": "اكتسب {Energy:energyIcons()} إضافية {Amount:plural:في الدور التالي|خلال [blue]{}[/blue] الأدوار التالية}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/radiance_power.webp"
+  },
+  {
+    "id": "RAGE",
+    "name": "غضب",
+    "description": "كلما لعبت هجوماً هذا الدور، اكتسب [blue]3[/blue] [gold]درع[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/rage_power.webp"
+  },
+  {
+    "id": "RAMPART",
+    "name": "سور دفاعي",
+    "description": "في بداية دور اللاعب، يكتسب مشغّل البرج [blue]25[/blue] [gold]درع[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/rampart_power.webp"
+  },
+  {
+    "id": "RAVENOUS",
+    "name": "نَهْم",
+    "description": "عند موت عدو، تلتهمه بزاقة الجثث فوراً، فتُصبح [gold]مُذهولة[/gold] وتكتسب [blue]1[/blue] [gold]قوة[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/ravenous_power.webp"
+  },
+  {
+    "id": "REAPER_FORM",
+    "name": "هيئة الحاصد",
+    "description": "كلما ألحقت الهجمات ضرراً، أضف [blue]2[/blue] أضعاف نفس المقدار من [gold]الهلاك[/gold].",
+    "description_raw": "كلما ألحقت الهجمات ضرراً، أضف {Amount:plural:|[blue]{}[/blue] أضعاف }نفس المقدار من [gold]الهلاك[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/reaper_form_power.webp"
+  },
+  {
+    "id": "REATTACH",
+    "name": "إعادة إلحاق",
+    "description": "إذا كانت الأجزاء الأخرى لا تزال حية، ينعش خلال [blue]2[/blue] دور مع [blue]25[/blue] نقطة صحة.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/reattach_power.webp"
+  },
+  {
+    "id": "REBOUND",
+    "name": "ارتداد",
+    "description": "[blue]2[/blue] البطاقات التالية التي تلعبها هذا الدور توضع فوق [gold]كومة السحب[/gold].",
+    "description_raw": "{Amount:plural:البطاقة التالية التي تلعبها|[blue]{}[/blue] البطاقات التالية التي تلعبها} هذا الدور {Amount:plural:توضع|توضع} فوق [gold]كومة السحب[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/rebound_power.webp"
+  },
+  {
+    "id": "REFLECT",
+    "name": "انعكاس",
+    "description": "يُعكس الضرر المحجوب إلى مُهاجمك.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/reflect_power.webp"
+  },
+  {
+    "id": "REGEN",
+    "name": "تجديد الصحة",
+    "description": "يُعالج [gold]تجديد الصحة[/gold] نقاط الصحة في نهاية دورك. يُقلَّل [gold]تجديد الصحة[/gold] بمقدار [blue]1[/blue] كل دور.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/regen_power.webp"
+  },
+  {
+    "id": "REPTILE_TRINKET",
+    "name": "Temporary Strength",
+    "description": "اكتسب [gold]قوة[/gold] حتى نهاية هذا الدور.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/reptile_trinket_power.webp"
+  },
+  {
+    "id": "RETAIN_HAND",
+    "name": "الاحتفاظ باليد",
+    "description": "[gold]احتفظ[/gold] [gold]بيدك[/gold] خلال [blue]2[/blue] الأدوار التالية.",
+    "description_raw": "[gold]احتفظ[/gold] [gold]بيدك[/gold] {Amount:plural:هذا الدور|خلال [blue]{}[/blue] الأدوار التالية}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/retain_hand_power.webp"
+  },
+  {
+    "id": "RINGING",
+    "name": "رنين",
+    "description": "يمكنك لعب [blue]1[/blue] بطاقة فقط هذا الدور.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/ringing_power.webp"
+  },
+  {
+    "id": "RITUAL",
+    "name": "تراكم القوة",
+    "description": "اكتسب [gold]قوة[/gold] في نهاية دورك.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/ritual_power.webp"
+  },
+  {
+    "id": "ROLLING_BOULDER",
+    "name": "صخرة متدحرجة",
+    "description": "في بداية دورك، ألحق [blue][Amount][/blue] ضرر بجميع الأعداء وزِد هذا الضرر بمقدار [blue]5[/blue].",
+    "description_raw": "في بداية دورك، ألحق [blue]{Amount}[/blue] ضرر بجميع الأعداء وزِد هذا الضرر بمقدار [blue]{Damage}[/blue].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/rolling_boulder_power.webp"
+  },
+  {
+    "id": "ROYALTIES",
+    "name": "حقوق ملكية",
+    "description": "في نهاية القتال، اكتسب [blue]25[/blue] [gold]ذهب[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/royalties_power.webp"
+  },
+  {
+    "id": "RUPTURE",
+    "name": "تمزّق",
+    "description": "كلما فقدت نقاط صحة في دورك، اكتسب [blue]1[/blue] [gold]قوة[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/rupture_power.webp"
+  },
+  {
+    "id": "SANDPIT",
+    "name": "حفرة رملية",
+    "description": "خلال [blue]2[/blue] أدوار، ستُلتهم وتموت.",
+    "description_raw": "{Amount:plural:عندما يحين دور [gold]الذي لا يشبع[/gold]|خلال [blue]{}[/blue] أدوار}، ستُلتهم وتموت.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/sandpit_power.webp"
+  },
+  {
+    "id": "SEEKING_EDGE",
+    "name": "نصل باحث",
+    "description": "يصيب [gold]النصل السيادي[/gold] الآن جميع الأعداء.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/seeking_edge_power.webp"
+  },
+  {
+    "id": "SELF_FORMING_CLAY",
+    "name": "طين ذاتي التشكّل",
+    "description": "اكتسب [blue]3[/blue] [gold]درع[/gold] في الدور التالي.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/self_forming_clay_power.webp"
+  },
+  {
+    "id": "SENTRY_MODE",
+    "name": "وضع الحراسة",
+    "description": "في بداية دورك، أضف [blue]1[/blue] [gold]نظرة كاسحة[/gold] إلى [gold]يدك[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/sentry_mode_power.webp"
+  },
+  {
+    "id": "SERPENT_FORM",
+    "name": "هيئة الأفعى",
+    "description": "كلما لعبت بطاقة، ألحق [blue]4[/blue] ضرر بعدو عشوائي.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/serpent_form_power.webp"
+  },
+  {
+    "id": "SERRATED_ARROWS",
+    "name": "Serrated Arrows",
+    "description": "[gold]Impaled[/gold] enemies take additional damage from your Attacks.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/serrated_arrows_power.webp"
+  },
+  {
+    "id": "SETUP_STRIKE",
+    "name": "Temporary Strength",
+    "description": "اكتسب [gold]قوة[/gold] حتى نهاية هذا الدور.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/setup_strike_power.webp"
+  },
+  {
+    "id": "SHACKLING_POTION",
+    "name": "Temporary Strength Down",
+    "description": "افقد [gold]قوة[/gold] حتى نهاية هذا الدور.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/shackling_potion_power.webp"
+  },
+  {
+    "id": "SHADOW_STEP",
+    "name": "خطوة الظل",
+    "description": "خلال [blue]2[/blue] الأدوار التالية بعد هذا الدور، تلحق الهجمات ضِعف الضرر.",
+    "description_raw": "{Amount:plural:في الدور التالي|خلال [blue]{}[/blue] الأدوار التالية بعد هذا الدور}، تلحق الهجمات ضِعف الضرر.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/shadow_step_power.webp"
+  },
+  {
+    "id": "SHADOWMELD",
+    "name": "ذوبان في الظل",
+    "description": "ضاعف اكتساب [gold]الدرع[/gold] هذا الدور [blue]2[/blue] أضعاف.",
+    "description_raw": "ضاعف اكتساب [gold]الدرع[/gold] هذا الدور{Amount:plural:| [blue]{}[/blue] أضعاف}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/shadowmeld_power.webp"
+  },
+  {
+    "id": "SHOW_OFF",
+    "name": "Show Off",
+    "description": "If a non-minion enemy dies this turn, permanently increase the [gold]Aim[/gold] of this [gold]Show Off[/gold] by [blue][Amount][/blue].",
+    "description_raw": "If a non-minion enemy dies this turn, permanently increase the [gold]Aim[/gold] of this [gold]Show Off[/gold] by [blue]{Amount}[/blue].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": null
+  },
+  {
+    "id": "SHRIEK",
+    "name": "صرخة",
+    "description": "أول مرة تصل فيها نقاط صحة [gold]this creature[/gold] إلى [blue][Amount][/blue] أو أقل، يُصبح [gold]مُذهولاً[/gold].",
+    "description_raw": "أول مرة تصل فيها نقاط صحة [gold]{OwnerName}[/gold] إلى [blue]{Amount}[/blue] أو أقل، يُصبح [gold]مُذهولاً[/gold].",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": true,
+    "image_url": "/static/images/beta/v0.113.0/powers/shriek_power.webp"
+  },
+  {
+    "id": "SHRINK",
+    "name": "انكماش",
+    "description": "Hجمات [gold]this creature[/gold] تلحق [blue]30%[/blue] ضرراً أقل.",
+    "description_raw": "{ApplierName.StringValue:cond:طالما أن {} حي،|hجمات [gold]{OwnerName}[/gold]} تلحق [blue]{DamageDecrease}%[/blue] ضرراً أقل{Amount:cond:==1? في الدور التالي|>1? خلال [blue]{}[/blue] الأدوار التالية|}.",
+    "type": "Debuff",
+    "stack_type": "None",
+    "allow_negative": true,
+    "image_url": "/static/images/beta/v0.113.0/powers/shrink_power.webp"
+  },
+  {
+    "id": "SHROUD",
+    "name": "كفن",
+    "description": "كلما أضفت [gold]هلاك[/gold]، اكتسب [blue]3[/blue] [gold]درع[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/shroud_power.webp"
+  },
+  {
+    "id": "SIC_EM",
+    "name": "أطلقه!",
+    "description": "كلما ضرب [gold]أوستي[/gold] هذا العدو هذا الدور، [gold]استدعِ[/gold] [blue]3[/blue].",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/sic_em_power.webp"
+  },
+  {
+    "id": "SIGNAL_BOOST",
+    "name": "تعزيز الإشارة",
+    "description": "[blue]2[/blue] قدراتك التالية مرة إضافية.",
+    "description_raw": "{Amount:plural:تُلعَب قدرتك التالية|[blue]{}[/blue] قدراتك التالية} مرة إضافية.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/signal_boost_power.webp"
+  },
+  {
+    "id": "SIMPLETON",
+    "name": "Simpleton",
+    "description": "At the end of your turn, play the [blue]2[/blue] least expensive cards in your [gold]Hand[/gold].",
+    "description_raw": "At the end of your turn, play the{Amount:plural:| [blue]{}[/blue]} least expensive {Amount:plural:card|cards} in your [gold]Hand[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/simpleton_power.webp"
+  },
+  {
+    "id": "SKITTISH",
+    "name": "نافر",
+    "description": "أول مرة يُصاب فيها [gold]this creature[/gold] كل دور، يكتسب [blue][Amount][/blue] [gold]درع[/gold].",
+    "description_raw": "أول مرة يُصاب فيها [gold]{OwnerName}[/gold] كل دور، يكتسب [blue]{Amount}[/blue] [gold]درع[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/skittish_power.webp"
+  },
+  {
+    "id": "SLEIGHT_OF_FLESH",
+    "name": "خفة الجسد",
+    "description": "كلما أضفت تأثيراً سلبياً إلى عدو، يتلقى [blue]13[/blue] ضرر.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/sleight_of_flesh_power.webp"
+  },
+  {
+    "id": "SLIPPERY",
+    "name": "زَلِق",
+    "description": "في [blue]2[/blue] المرات التالية التي يفقد فيها [gold]this creature[/gold] نقاط صحة، يفقد [blue]1[/blue] نقطة صحة فقط بدلاً من ذلك.",
+    "description_raw": "في {Amount:plural:المرة التالية|[blue]{}[/blue] المرات التالية} التي يفقد فيها [gold]{OwnerName}[/gold] نقاط صحة، يفقد [blue]1[/blue] نقطة صحة فقط بدلاً من ذلك.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/slippery_power.webp"
+  },
+  {
+    "id": "SLOTH",
+    "name": "كسل",
+    "description": "لا يمكنك لعب أكثر من [blue]3[/blue] بطاقات كل دور.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/sloth_power.webp"
+  },
+  {
+    "id": "SLOW",
+    "name": "بطء",
+    "description": "كلما لعبت بطاقة، يتلقى هذا العدو [blue]10%[/blue] ضرراً إضافياً من الهجمات هذا الدور.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/slow_power.webp"
+  },
+  {
+    "id": "SLUMBER",
+    "name": "سُبات",
+    "description": "يستيقظ بعد أخذ أدوار أو فقدان نقاط صحة 3 مرات.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/slumber_power.webp"
+  },
+  {
+    "id": "SMOGGY",
+    "name": "ضبابي",
+    "description": "يمكنك لعب [blue]1[/blue] مهارة فقط كل دور.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/smoggy_power.webp"
+  },
+  {
+    "id": "SMOKESTACK",
+    "name": "مدخنة",
+    "description": "كلما أنشأت حالة، ألحق ضرراً بجميع الأعداء.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/smokestack_power.webp"
+  },
+  {
+    "id": "SNEAKY",
+    "name": "ماكر",
+    "description": "كلما هاجم لاعب آخر عدواً، اكتسب [gold]درعاً[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/sneaky_power.webp"
+  },
+  {
+    "id": "SOAR",
+    "name": "تحليق",
+    "description": "يتلقى [blue]50%[/blue] ضرر هجوم أقل حتى يهبط.",
+    "description_raw": "يتلقى [blue]{DamageDecrease}%[/blue] ضرر هجوم أقل حتى يهبط.",
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/soar_power.webp"
+  },
+  {
+    "id": "SONG_PATH",
+    "name": "Song Path",
+    "description": "Whenever you gain a [gold]Cho Melody[/gold], gain [blue]5[/blue] [gold]Block[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/song_path_power.webp"
+  },
+  {
+    "id": "SOULBOUND",
+    "name": "Soulbound",
+    "description": "Whenever [ApplierName] creates a [gold]Soul[/gold], add a [gold]Soul[/gold] to your [gold]Draw Pile[/gold].",
+    "description_raw": "Whenever {ApplierName} creates a [gold]Soul[/gold], add a [gold]Soul[/gold] to your [gold]Draw Pile[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/soulbound_power.webp"
+  },
+  {
+    "id": "SPECTRUM_SHIFT",
+    "name": "تحول طيفي",
+    "description": "في بداية دورك، أضف [blue]1[/blue] بطاقة عديمة اللون عشوائية إلى [gold]يدك[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/spectrum_shift_power.webp"
+  },
+  {
+    "id": "SPEED_POTION",
+    "name": "Temporary Dexterity",
+    "description": "اكتسب [gold]رشاقة[/gold] حتى نهاية هذا الدور.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/speed_potion_power.webp"
+  },
+  {
+    "id": "SPEEDSTER",
+    "name": "سريع",
+    "description": "Whenever you draw a card during your turn, deal [blue]3[/blue] damage to ALL enemies.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/speedster_power.webp"
+  },
+  {
+    "id": "SPINNER",
+    "name": "دوّارة",
+    "description": "في بداية دورك، [gold]وجّه[/gold] [blue]1[/blue] [gold]زجاج[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/spinner_power.webp"
+  },
+  {
+    "id": "SPIRIT_OF_ASH",
+    "name": "طيف الرماد",
+    "description": "كلما لعبت بطاقة [gold]أثيرية[/gold]، اكتسب [blue]4[/blue] [gold]درع[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/spirit_of_ash_power.webp"
+  },
+  {
+    "id": "STAMPEDE",
+    "name": "تدافع",
+    "description": "في نهاية دورك، يُلعَب [blue]1[/blue] هجوم عشوائي في [gold]يدك[/gold] ضد عدو عشوائي.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/stampede_power.webp"
+  },
+  {
+    "id": "STAR_NEXT_TURN",
+    "name": "نجمة الدور التالي",
+    "description": "اكتسب 1 [star:1] في الدور التالي.",
+    "description_raw": "اكتسب 1 {singleStarIcon} في الدور التالي.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/star_next_turn_power.webp"
+  },
+  {
+    "id": "STEAM_ERUPTION",
+    "name": "ثوران بخاري",
+    "description": "عند الموت، يلحق ضرراً في نهاية دورك التالي.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/steam_eruption_power.webp"
+  },
+  {
+    "id": "STOCK",
+    "name": "مخزون",
+    "description": "عند الموت، يُستدعى روبوت فأس جديد في مكانه.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/stock_power.webp"
+  },
+  {
+    "id": "STORM",
+    "name": "عاصفة",
+    "description": "كلما لعبت قدرة، [gold]وجّه[/gold] [blue]1[/blue] [gold]برق[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/storm_power.webp"
+  },
+  {
+    "id": "STRANGLE",
+    "name": "خنق",
+    "description": "كلما لعبت بطاقة هذا الدور، يفقد هذا العدو [blue]2[/blue] نقاط صحة.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/strangle_power.webp"
+  },
+  {
+    "id": "STRATAGEM",
+    "name": "حيلة حربية",
+    "description": "كلما خلطت [gold]كومة السحب[/gold]، اختر [blue]1[/blue] بطاقة منها لوضعها في [gold]يدك[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/stratagem_power.webp"
+  },
+  {
+    "id": "STRENGTH",
+    "name": "قوة",
+    "description": "يزيد ضرر الهجوم بمقدار [blue][/blue].",
+    "description_raw": "{Amount:cond:<0?يُقلل|يزيد} ضرر الهجوم بمقدار [blue]{Amount:abs()}[/blue].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": true,
+    "image_url": "/static/images/beta/v0.113.0/powers/strength_power.webp"
+  },
+  {
+    "id": "STRETCH",
+    "name": "Stretch",
+    "description": "The next time you gain [gold]Block[/gold] from a card, gain additional [gold]Block[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/stretch_power.webp"
+  },
+  {
+    "id": "SUBROUTINE",
+    "name": "إجراء فرعي",
+    "description": "كلما لعبت قدرة، اكتسب [blue]1[/blue] [energy:1].",
+    "description_raw": "كلما لعبت قدرة، اكتسب [blue]1[/blue] {energyPrefix:energyIcons(1)}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/subroutine_power.webp"
+  },
+  {
+    "id": "SUCK",
+    "name": "امتصاص",
+    "description": "كلما ألحق [gold]this creature[/gold] ضرر هجوم غير محجوب، يكتسب [blue][Amount][/blue] [gold]قوة[/gold].",
+    "description_raw": "كلما ألحق [gold]{OwnerName}[/gold] ضرر هجوم غير محجوب، يكتسب [blue]{Amount}[/blue] [gold]قوة[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/suck_power.webp"
+  },
+  {
+    "id": "SUMMON_NEXT_TURN",
+    "name": "استدعاء الدور التالي",
+    "description": "في بداية دورك التالي، [gold]استدعِ[/gold] [blue]2[/blue].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/summon_next_turn_power.webp"
+  },
+  {
+    "id": "SURPRISE",
+    "name": "مفاجأة",
+    "description": "هناك شيء غريب بشأن هذا المخلوق...",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/surprise_power.webp"
+  },
+  {
+    "id": "SURROUNDED",
+    "name": "مُحاط",
+    "description": "تلقَّ [blue]50%[/blue] ضرراً إضافياً إذا هوجمت من الخلف. استخدم بطاقات الاستهداف أو الجرعات لتغيير اتجاهك.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/surrounded_power.webp"
+  },
+  {
+    "id": "SWIPE",
+    "name": "سرقة خاطفة",
+    "description": "عند قتل هذا العدو، تُعاد البطاقة المسروقة.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/swipe_power.webp"
+  },
+  {
+    "id": "SWORD_SAGE",
+    "name": "حكيم السيف",
+    "description": "يكتسب [gold]النصل السيادي[/gold] [gold]إعادة لعب[/gold] [blue]1[/blue].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/sword_sage_power.webp"
+  },
+  {
+    "id": "SYNCHRONIZE",
+    "name": "Temporary Focus",
+    "description": "اكتسب [gold]تركيز[/gold] حتى نهاية هذا الدور.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/synchronize_power.webp"
+  },
+  {
+    "id": "TAG_TEAM",
+    "name": "فريق ثنائي",
+    "description": "يُلعَب الهجوم التالي الذي يلعبه لاعب آخر على العدو مرة إضافية.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/tag_team_power.webp"
+  },
+  {
+    "id": "TAINTED",
+    "name": "مُلوَّث",
+    "description": "يتلقى ضرراً إضافياً من الهجمات هذا الدور.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/tainted_power.webp"
+  },
+  {
+    "id": "TANGLED",
+    "name": "متشابك",
+    "description": "تكلف الهجمات [energy:1] إضافية خلال 2 أدوار.",
+    "description_raw": "تكلف الهجمات {Amount:energyIcons()} إضافية {Amount:plural:هذا الدور|خلال {} أدوار}.",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/tangled_power.webp"
+  },
+  {
+    "id": "TANK",
+    "name": "دبابة",
+    "description": "Take [blue]50%[/blue] more damage from enemies. Allies take [blue]50%[/blue] less damage from enemies.",
+    "description_raw": "Take [blue]{DamageIncrease:percentMore()}%[/blue] more damage from enemies. Allies take [blue]{DamageDecrease:percentLess()}%[/blue] less damage from enemies.",
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/tank_power.webp"
+  },
+  {
+    "id": "TENDER",
+    "name": "رقيق",
+    "description": "كلما لعبت بطاقة، افقد [blue]1[/blue] [gold]قوة[/gold] و[blue]1[/blue] [gold]رشاقة[/gold] هذا الدور.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/tender_power.webp"
+  },
+  {
+    "id": "TERRITORIAL",
+    "name": "إقليمي",
+    "description": "في نهاية دور [gold]this creature[/gold]، يكتسب [blue][Amount][/blue] [gold]قوة[/gold].",
+    "description_raw": "في نهاية دور [gold]{OwnerName}[/gold]، يكتسب [blue]{Amount}[/blue] [gold]قوة[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/territorial_power.webp"
+  },
+  {
+    "id": "THE_BOMB",
+    "name": "القنبلة",
+    "description": "في نهاية [blue]3[/blue] أدوار، ألحق [blue]40[/blue] ضرر بجميع الأعداء.",
+    "description_raw": "في نهاية {Amount:plural:هذا الدور|[blue]{}[/blue] أدوار}، ألحق [blue]{Damage}[/blue] ضرر بجميع الأعداء.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/the_bomb_power.webp"
+  },
+  {
+    "id": "THE_GAMBIT",
+    "name": "المقامرة",
+    "description": "إذا تلقيت ضرر هجوم غير محجوب هذا القتال، مت.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/the_gambit_power.webp"
+  },
+  {
+    "id": "THE_HUNT",
+    "name": "الصيد",
+    "description": "اكتسب [blue]1[/blue] مكافأة بطاقات إضافية في نهاية القتال.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/the_hunt_power.webp"
+  },
+  {
+    "id": "THE_SEALED_THRONE",
+    "name": "العرش المختوم",
+    "description": "كلما لعبت بطاقة، اكتسب [star:1].",
+    "description_raw": "كلما لعبت بطاقة، اكتسب {Amount:starIcons()}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/the_sealed_throne_power.webp"
+  },
+  {
+    "id": "THIEVERY",
+    "name": "سرقة",
+    "description": "يسرق [gold]الذهب[/gold] عند الهجوم.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/thievery_power.webp"
+  },
+  {
+    "id": "THORNS",
+    "name": "أشواك",
+    "description": "عند الإصابة بهجوم، ألحق ضرراً بالمهاجم.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/thorns_power.webp"
+  },
+  {
+    "id": "THUNDER",
+    "name": "رعد",
+    "description": "كلما [gold]أثرت برقاً[/gold]، ألحق [blue]8[/blue] ضرر بكل عدو مُصاب.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/thunder_power.webp"
+  },
+  {
+    "id": "TOOLS_OF_THE_TRADE",
+    "name": "أدوات المهنة",
+    "description": "في بداية دورك، اسحب [blue]1[/blue] بطاقة وتخلّص من [blue]1[/blue] بطاقة.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/tools_of_the_trade_power.webp"
+  },
+  {
+    "id": "TORIC_TOUGHNESS",
+    "name": "صلابة توريك",
+    "description": "اكتسب [blue]5[/blue] [gold]درع[/gold] في بداية [blue]2[/blue] الأدوار التالية.",
+    "description_raw": "اكتسب [blue]{Block:diff()}[/blue] [gold]درع[/gold] في بداية [blue]{Amount}[/blue] {Amount:plural:الدور التالي|الأدوار التالية}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/toric_toughness_power.webp"
+  },
+  {
+    "id": "TRACKING",
+    "name": "تتبّع",
+    "description": "يتلقى الأعداء المصابون بـ[gold]الضَّعف[/gold] [blue]2[/blue] أضعاف الضرر من الهجمات.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/tracking_power.webp"
+  },
+  {
+    "id": "TRASH_TO_TREASURE",
+    "name": "من القمامة إلى الكنز",
+    "description": "كلما أنشأت حالة، [gold]وجّه[/gold] [blue]2[/blue] أجراس عشوائية.",
+    "description_raw": "كلما أنشأت حالة، [gold]وجّه[/gold] {Amount:plural:[blue]{}[/blue] جُرم عشوائي|[blue]{}[/blue] أجراس عشوائية}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/trash_to_treasure_power.webp"
+  },
+  {
+    "id": "TUNE",
+    "name": "Tune",
+    "description": "At the end of your turn, if you have a [gold]Ki Melody[/gold], the next [blue]2[/blue] cards you play cost [blue]0[/blue] [energy:1].",
+    "description_raw": "At the end of your turn, if you have a [gold]Ki Melody[/gold], the next {Amount:plural:card|[blue]{}[/blue] cards} you play {Amount:plural:costs|cost} [blue]0[/blue] {energyPrefix:energyIcons(1)}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/tune_power.webp"
+  },
+  {
+    "id": "TYRANNY",
+    "name": "طغيان",
+    "description": "في بداية دورك، اسحب [blue]2[/blue] بطاقات و[gold]استنفد[/gold] [blue]2[/blue] بطاقات من [gold]يدك[/gold].",
+    "description_raw": "في بداية دورك، اسحب {Amount:plural:[blue]{}[/blue] بطاقة|[blue]{}[/blue] بطاقات} و[gold]استنفد[/gold] {Amount:plural:[blue]{}[/blue] بطاقة|[blue]{}[/blue] بطاقات} من [gold]يدك[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/tyranny_power.webp"
+  },
+  {
+    "id": "UNDERWORLD",
+    "name": "Underworld",
+    "description": "Whenever other players deal attack damage this turn, apply [blue]2[/blue] times that much [gold]Doom[/gold].",
+    "description_raw": "Whenever other players deal attack damage this turn, apply{Amount:plural:| [blue]{}[/blue] times} that much [gold]Doom[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/underworld_power.webp"
+  },
+  {
+    "id": "UNMOVABLE",
+    "name": "راسخ",
+    "description": "أول [blue]2[/blue] مرات تكتسب فيها [gold]درعاً[/gold] من بطاقة كل دور، ضاعف المقدار المُكتسب.",
+    "description_raw": "أول {Amount:plural:مرة|[blue]{}[/blue] مرات} تكتسب فيها [gold]درعاً[/gold] من بطاقة كل دور، ضاعف المقدار المُكتسب.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/unmovable_power.webp"
+  },
+  {
+    "id": "VEILPIERCER",
+    "name": "ثاقب الحجاب",
+    "description": "[blue]2[/blue] [gold]البطاقات الأثيرية[/gold] التالية التي تلعبها تكلف [blue]0[/blue].",
+    "description_raw": "{Amount:plural:[gold]البطاقة الأثيرية[/gold] التالية التي تلعبها تكلف|[blue]{}[/blue] [gold]البطاقات الأثيرية[/gold] التالية التي تلعبها تكلف} [blue]0[/blue].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/veilpiercer_power.webp"
+  },
+  {
+    "id": "VICIOUS",
+    "name": "شراسة",
+    "description": "كلما أضفت [gold]وَهْناً[/gold]، اسحب [blue]1[/blue] بطاقة.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/vicious_power.webp"
+  },
+  {
+    "id": "VIGOR",
+    "name": "حيوية",
+    "description": "هجوم [gold]this creature[/gold] التالي يلحق [blue][Amount][/blue] ضرر إضافي.",
+    "description_raw": "{OnPlayer:هجومك|هجوم [gold]{OwnerName}[/gold]} التالي يلحق [blue]{Amount}[/blue] ضرر إضافي.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/vigor_power.webp"
+  },
+  {
+    "id": "VIOLENT_CHORD",
+    "name": "Violent Chord",
+    "description": "Whenever you gain a [gold]Wah Melody[/gold], deal [blue]9[/blue] damage to ALL enemies.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/violent_chord_power.webp"
+  },
+  {
+    "id": "VITAL_SPARK",
+    "name": "شرارة حيوية",
+    "description": "جميع [gold]المهارات[/gold] [gold]مُلوَّثة[/gold] [blue]2[/blue].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/vital_spark_power.webp"
+  },
+  {
+    "id": "VOID_FORM",
+    "name": "هيئة الفراغ",
+    "description": "أول [blue]2[/blue] بطاقات تلعبها كل دور مجانية.",
+    "description_raw": "أول {Amount:plural:بطاقة تلعبها كل دور مجانية|[blue]{}[/blue] بطاقات تلعبها كل دور مجانية}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/void_form_power.webp"
+  },
+  {
+    "id": "VULNERABLE",
+    "name": "وَهن",
+    "description": "تلقَّ [blue]50%[/blue] ضرراً إضافياً من الهجمات لمدة [blue][Amount][/blue] أدوار.",
+    "description_raw": "تلقَّ [blue]{DamageIncrease:percentMore()}%[/blue] ضرراً إضافياً من الهجمات لمدة [blue]{Amount}[/blue] {Amount:plural:دور|أدوار}.",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/vulnerable_power.webp"
+  },
+  {
+    "id": "WASTE_AWAY",
+    "name": "تضائل",
+    "description": "اكتسب [blue]1[/blue] [gold]طاقة[/gold] أقل كل دور.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/waste_away_power.webp"
+  },
+  {
+    "id": "WEAK",
+    "name": "ضَعْف",
+    "description": "تلحق المخلوقات المصابة بالضَّعف [blue]25%[/blue] ضرراً أقل بالهجمات.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/weak_power.webp"
+  },
+  {
+    "id": "WELL_LAID_PLANS",
+    "name": "خطط محكمة",
+    "description": "At the end of your turn, you no longer discard your [gold]Hand[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/well_laid_plans_power.webp"
+  },
+  {
+    "id": "WITHERING_PRESENCE",
+    "name": "حضور مُذبل",
+    "description": "كل [blue]6[/blue] بطاقات تلعبها، أضف [gold]ذبول[/gold] إلى [gold]يدك[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/withering_presence_power.webp"
+  },
+  {
+    "id": "WRAITH_FORM",
+    "name": "هيئة الشبح",
+    "description": "في بداية دورك، افقد [blue]1[/blue] [gold]رشاقة[/gold].",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/wraith_form_power.webp"
+  },
+  {
+    "id": "WUPPYS_LOYALTY",
+    "name": "Wuppy's Loyalty",
+    "description": "[gold]Wuppy[/gold] absorbs ALL attack damage.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/wuppys_loyalty_power.webp"
+  },
+  {
+    "id": "YAH",
+    "name": "Yah!",
+    "description": "The first time you [gold]Dislodge[/gold] an [gold]Arrow[/gold] each turn, gain [energy:1].",
+    "description_raw": "The first time you [gold]Dislodge[/gold] an [gold]Arrow[/gold] each turn, gain {Amount:energyIcons()}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/beta/v0.113.0/powers/yah_power.webp"
+  },
+  {
+    "id": "YOU_ARE_MINE",
+    "name": "You Are Mine",
+    "description": "Next turn, gain [blue]3[/blue] [gold]Weak[/gold], [gold]Vulnerable[/gold], and [gold]Frail[/gold].",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": null
+  }
+]

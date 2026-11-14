@@ -1,13 +1,15 @@
 /**
  * Language configuration for international SEO landing pages.
- * These are the 14 non-English languages supported by the game's localization
- * (zht shipped in game v0.109.0 with English fallback for untranslated strings).
+ * These are the 16 non-English languages supported by the game's localization
+ * (zht shipped in game v0.109.0, ara in v0.113.0; untranslated strings fall back to English).
  */
 
 export const SUPPORTED_LANGS = [
+  "ara",
   "deu",
   "esp",
   "fra",
+  "ind",
   "ita",
   "jpn",
   "kor",
@@ -30,6 +32,9 @@ export type LangCode = (typeof SUPPORTED_LANGS)[number];
  * each silently missed zht when it shipped, which made the language
  * switcher append /zht onto already-prefixed paths.
  */
+/** Languages written right to left. */
+export const RTL_LANGS: ReadonlySet<string> = new Set(["ara"]);
+
 export const LANG_PREFIXES: ReadonlySet<string> = new Set(SUPPORTED_LANGS);
 
 /** Sections and paths that only exist in English: localized URLs 308 to the bare path. */
@@ -51,7 +56,9 @@ export function langFromBrowser(tag: string): LangCode | "eng" | null {
     return t === "es" || t.startsWith("es-es") ? "esp" : "spa";
   if (t.startsWith("pt")) return "ptb";
   const two: Record<string, LangCode> = {
+    ar: "ara",
     de: "deu",
+    id: "ind",
     fr: "fra",
     it: "ita",
     ja: "jpn",
@@ -66,9 +73,11 @@ export function langFromBrowser(tag: string): LangCode | "eng" | null {
 
 /** Maps 3-letter game codes to BCP-47 / hreflang codes */
 export const LANG_HREFLANG: Record<LangCode, string> = {
+  ara: "ar",
   deu: "de",
   esp: "es-ES",
   fra: "fr",
+  ind: "id",
   ita: "it",
   jpn: "ja",
   kor: "ko",
@@ -88,9 +97,11 @@ export const LANG_HREFLANG: Record<LangCode, string> = {
 
 /** Open Graph locale codes (language_TERRITORY), distinct from the hreflang tags above. */
 export const LANG_OG_LOCALE: Record<LangCode, string> = {
+  ara: "ar_AR",
   deu: "de_DE",
   esp: "es_ES",
   fra: "fr_FR",
+  ind: "id_ID",
   ita: "it_IT",
   jpn: "ja_JP",
   kor: "ko_KR",
@@ -106,9 +117,11 @@ export const LANG_OG_LOCALE: Record<LangCode, string> = {
 
 /** Human-readable native language names */
 export const LANG_NAMES: Record<LangCode, string> = {
+  ara: "العربية",
   deu: "Deutsch",
   esp: "Español (ES)",
   fra: "Français",
+  ind: "Bahasa Indonesia",
   ita: "Italiano",
   jpn: "日本語",
   kor: "한국어",
@@ -130,9 +143,11 @@ export const LANG_NAMES: Record<LangCode, string> = {
  * this single source ships the abbreviation to all 52+ localized pages.
  */
 export const LANG_GAME_NAME: Record<LangCode, string> = {
+  ara: "Slay the Spire 2 (STS2)",
   deu: "Slay the Spire 2 (STS2)",
   esp: "Slay the Spire 2 (STS2)",
   fra: "Slay the Spire 2 (STS2)",
+  ind: "Slay the Spire 2 (STS2)",
   ita: "Slay the Spire 2 (STS2)",
   jpn: "スレイ・ザ・スパイア2 (STS2)",
   kor: "슬레이 더 스파이어 2 (STS2)",
@@ -148,9 +163,11 @@ export const LANG_GAME_NAME: Record<LangCode, string> = {
 
 /** Localized "Database" for title/descriptions */
 export const LANG_DATABASE: Record<LangCode, string> = {
+  ara: "قاعدة بيانات",
   deu: "Datenbank",
   esp: "Base de datos",
   fra: "Base de données",
+  ind: "Basis Data",
   ita: "Database",
   jpn: "データベース",
   kor: "데이터베이스",
@@ -166,9 +183,11 @@ export const LANG_DATABASE: Record<LangCode, string> = {
 
 /** Localized "Cards" label */
 export const LANG_CARDS: Record<LangCode, string> = {
+  ara: "البطاقات",
   deu: "Karten",
   esp: "Cartas",
   fra: "Cartes",
+  ind: "Kartu",
   ita: "Carte",
   jpn: "カード",
   kor: "카드",
@@ -184,9 +203,11 @@ export const LANG_CARDS: Record<LangCode, string> = {
 
 /** Localized "Relics" label */
 export const LANG_RELICS: Record<LangCode, string> = {
+  ara: "الآثار",
   deu: "Relikte",
   esp: "Reliquias",
   fra: "Reliques",
+  ind: "Pusaka",
   ita: "Reliquie",
   jpn: "レリック",
   kor: "유물",

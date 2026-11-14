@@ -1,0 +1,68 @@
+[
+  {
+    "id": "LEVEL_00",
+    "level": 0,
+    "name": "Tanpa Angkatan",
+    "description": "Main tanpa efek Angkatan."
+  },
+  {
+    "id": "LEVEL_01",
+    "level": 1,
+    "name": "Gerombolan Elit",
+    "description": "[gold]Elit[/gold] muncul lebih sering."
+  },
+  {
+    "id": "LEVEL_02",
+    "level": 2,
+    "name": "Pengembara Waspada",
+    "description": "Ancient hanya akan menyembuhkan [blue]80%[/blue] HP kamu yang habis."
+  },
+  {
+    "id": "LEVEL_03",
+    "level": 3,
+    "name": "Kemiskinan",
+    "description": "Musuh dan Harta menghasilkan [blue]25%[/blue] lebih sedikit [gold]Emas[/gold]."
+  },
+  {
+    "id": "LEVEL_04",
+    "level": 4,
+    "name": "Sabuk Ketat",
+    "description": "Mulai setiap perjalanan dengan [blue]1[/blue] lebih sedikit tempat ramuan."
+  },
+  {
+    "id": "LEVEL_05",
+    "level": 5,
+    "name": "Kutukan Pendaki",
+    "description": "Mulai setiap perjalanan dengan [red]Kutukan[/red]."
+  },
+  {
+    "id": "LEVEL_06",
+    "level": 6,
+    "name": "Inflasi",
+    "description": "Membuang kartu dari dekmu di Pedagang lebih mahal."
+  },
+  {
+    "id": "LEVEL_07",
+    "level": 7,
+    "name": "Kelangkaan",
+    "description": "Kartu langka dan ditingkatkan muncul lebih jarang."
+  },
+  {
+    "id": "LEVEL_08",
+    "level": 8,
+    "name": "Musuh Kuat",
+    "description": "Semua musuh lebih sulit dibunuh."
+  },
+  {
+    "id": "LEVEL_09",
+    "level": 9,
+    "name": "Musuh Berbahaya",
+    "description": "Semua musuh punya serangan lebih berbahaya."
+  },
+  {
+    "id": "LEVEL_10",
+    "level": 10,
+    "name": "Bos Ganda",
+    "description": "Lawan [blue]2[/blue] [red]bos[/red] di akhir [gold]Babak[/gold] [blue]3[/blue]."
+  }
+]

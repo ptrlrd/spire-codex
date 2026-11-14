@@ -16,6 +16,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Ulaşılan kata göre kazanma oranı",
     zhs: "按到达层数的胜率",
     zht: "按到達層數的勝率",
+    ara: "معدل الفوز حسب الطابق الذي وصلت إليه الجولة",
+    ind: "Tingkat kemenangan per lantai yang dicapai",
   },
   "Win rate vs run stat": {
     eng: "Win rate vs run stat",
@@ -33,6 +35,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Kazanma oranı ve koşu istatistiği",
     zhs: "胜率与游戏数据",
     zht: "勝率與遊戲數據",
+    ara: "معدل الفوز مقابل إحصائية الجولة",
+    ind: "Tingkat kemenangan vs statistik perjalanan",
   },
   "Daily win rate by date": {
     eng: "Daily win rate by date",
@@ -50,6 +54,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Tarihe göre günlük kazanma oranı",
     zhs: "每日挑战按日期的胜率",
     zht: "每日挑戰按日期的勝率",
+    ara: "معدل الفوز اليومي حسب التاريخ",
+    ind: "Tingkat kemenangan harian per tanggal",
   },
   "Deaths by floor": {
     eng: "Deaths by floor",
@@ -67,6 +73,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Kata göre ölümler",
     zhs: "按层数的死亡",
     zht: "按層數的死亡",
+    ara: "الوفيات حسب الطابق",
+    ind: "Kematian per lantai",
   },
   "How far runs get (funnel)": {
     eng: "How far runs get (funnel)",
@@ -84,6 +92,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Koşular ne kadar ilerliyor (huni)",
     zhs: "游戏进度漏斗",
     zht: "遊戲進度漏斗",
+    ara: "إلى أين تصل الجولات (قمع)",
+    ind: "Sejauh mana perjalanan bertahan (corong)",
   },
   "Deaths by room type": {
     eng: "Deaths by room type",
@@ -101,6 +111,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Oda türüne göre ölümler",
     zhs: "按房间类型的死亡",
     zht: "按房間類型的死亡",
+    ara: "الوفيات حسب نوع الغرفة",
+    ind: "Kematian per tipe ruangan",
   },
   "HP trajectory, wins vs losses": {
     eng: "HP trajectory, wins vs losses",
@@ -118,6 +130,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "HP eğrisi, kazanç ve kayıp",
     zhs: "生命值轨迹：胜利 vs 失败",
     zht: "生命值軌跡：勝利 vs 失敗",
+    ara: "مسار HP، الانتصارات مقابل الهزائم",
+    ind: "Lintasan HP, menang vs kalah",
   },
   "Gold curve, wins vs losses": {
     eng: "Gold curve, wins vs losses",
@@ -135,6 +149,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Altın eğrisi, kazanç ve kayıp",
     zhs: "金币曲线：胜利 vs 失败",
     zht: "金幣曲線：勝利 vs 失敗",
+    ara: "منحنى الذهب، الانتصارات مقابل الهزائم",
+    ind: "Kurva emas, menang vs kalah",
   },
   "Deck growth, wins vs losses": {
     eng: "Deck growth, wins vs losses",
@@ -152,6 +168,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Deste büyümesi, kazanç ve kayıp",
     zhs: "牌组增长：胜利 vs 失败",
     zht: "牌組增長：勝利 vs 失敗",
+    ara: "نمو المجموعة، الانتصارات مقابل الهزائم",
+    ind: "Pertumbuhan dek, menang vs kalah",
   },
   "% max HP lost per fight floor": {
     eng: "% max HP lost per fight floor",
@@ -169,6 +187,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Savaş katı başına kaybedilen maks. HP %",
     zhs: "每战斗层损失的最大生命值 %",
     zht: "每戰鬥層損失的最大生命值 %",
+    ara: "% الصحة القصوى المفقودة لكل طابق قتال",
+    ind: "% HP Maksimal hilang per lantai pertarungan",
   },
   "Encounter damage ranking": {
     eng: "Encounter damage ranking",
@@ -186,6 +206,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Karşılaşma hasar sıralaması",
     zhs: "遭遇伤害排名",
     zht: "遭遇傷害排名",
+    ara: "ترتيب المواجهات حسب الضرر",
+    ind: "Peringkat kerusakan pertemuan",
   },
   "Slowest encounters (turns)": {
     eng: "Slowest encounters (turns)",
@@ -203,6 +225,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "En yavaş karşılaşmalar (tur)",
     zhs: "最慢的遭遇（回合数）",
     zht: "最慢的遭遇（回合數）",
+    ara: "أبطأ المواجهات (بالأدوار)",
+    ind: "Pertemuan terlama (giliran)",
   },
   "Encounter damage histogram": {
     eng: "Encounter damage histogram",
@@ -220,6 +244,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Karşılaşma hasar histogramı",
     zhs: "遭遇伤害直方图",
     zht: "遭遇傷害直方圖",
+    ara: "مدرج تكراري لضرر المواجهة",
+    ind: "Histogram kerusakan pertemuan",
   },
   "Average win time by day": {
     eng: "Average win time by day",
@@ -237,6 +263,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Güne göre ortalama kazanma süresi",
     zhs: "每日平均胜利用时",
     zht: "每日平均勝利用時",
+    ara: "متوسط وقت الفوز حسب اليوم",
+    ind: "Rata-rata waktu menang per hari",
   },
   "Elites fought vs win rate": {
     eng: "Elites fought vs win rate",
@@ -254,6 +282,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Savaşılan elitler ve kazanma oranı",
     zhs: "精英战数量与胜率",
     zht: "精英戰數量與勝率",
+    ara: "النخب التي قوتلت مقابل معدل الفوز",
+    ind: "Elit yang dilawan vs tingkat kemenangan",
   },
   "Upgrades taken vs win rate": {
     eng: "Upgrades taken vs win rate",
@@ -271,6 +301,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Alınan yükseltmeler ve kazanma oranı",
     zhs: "升级次数与胜率",
     zht: "升級次數與勝率",
+    ara: "الترقيات المأخوذة مقابل معدل الفوز",
+    ind: "Peningkatan yang diambil vs tingkat kemenangan",
   },
   "Event choice outcomes": {
     eng: "Event choice outcomes",
@@ -288,6 +320,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Olay seçimi sonuçları",
     zhs: "事件选项结果",
     zht: "事件選項結果",
+    ara: "نتائج خيارات الأحداث",
+    ind: "Hasil pilihan Event",
   },
   "Card / relic / potion over time": {
     eng: "Card / relic / potion over time",
@@ -305,6 +339,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Zaman içinde kart / kalıntı / iksir",
     zhs: "卡牌 / 遗物 / 药水随时间变化",
     zht: "卡牌 / 遺物 / 藥水隨時間變化",
+    ara: "بطاقة / أثر / جرعة عبر الزمن",
+    ind: "Kartu / pusaka / ramuan dari waktu ke waktu",
   },
   "Copies in deck vs win rate": {
     eng: "Copies in deck vs win rate",
@@ -322,6 +358,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Destedeki kopyalar ve kazanma oranı",
     zhs: "牌组中的数量与胜率",
     zht: "牌組中的數量與勝率",
+    ara: "عدد النسخ في المجموعة مقابل معدل الفوز",
+    ind: "Salinan di dek vs tingkat kemenangan",
   },
   "Win rate by enchantment": {
     eng: "Win rate by enchantment",
@@ -339,6 +377,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Büyüye göre kazanma oranı",
     zhs: "按附魔的胜率",
     zht: "按附魔的勝率",
+    ara: "معدل الفوز حسب التعزيز",
+    ind: "Tingkat kemenangan per Efek",
   },
   "Runs played over time": {
     eng: "Runs played over time",
@@ -356,6 +396,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Zaman içinde oynanan koşular",
     zhs: "游玩的游戏数随时间变化",
     zht: "遊玩的遊戲數隨時間變化",
+    ara: "الجولات الملعوبة عبر الزمن",
+    ind: "Perjalanan yang dimainkan dari waktu ke waktu",
   },
   "Run stat distribution": {
     eng: "Run stat distribution",
@@ -373,6 +415,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Koşu istatistiği dağılımı",
     zhs: "游戏数据分布",
     zht: "遊戲數據分布",
+    ara: "توزيع إحصائيات الجولات",
+    ind: "Distribusi statistik perjalanan",
   },
   "How long a winning run takes": {
     eng: "How long a winning run takes",
@@ -390,6 +434,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Kazanılan bir koşu ne kadar sürer",
     zhs: "获胜游戏的用时",
     zht: "獲勝遊戲的用時",
+    ara: "كم تستغرق الجولة الفائزة",
+    ind: "Berapa lama perjalanan yang menang berlangsung",
   },
   "Stat vs stat scatter": {
     eng: "Stat vs stat scatter",
@@ -407,6 +453,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "İstatistik-istatistik dağılım grafiği",
     zhs: "数据散点图",
     zht: "數據散點圖",
+    ara: "مخطط انتشار إحصائية مقابل إحصائية",
+    ind: "Diagram sebar statistik vs statistik",
   },
   "Win rates": {
     eng: "Win rates",
@@ -424,6 +472,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Kazanma oranları",
     zhs: "胜率",
     zht: "勝率",
+    ara: "معدلات الفوز",
+    ind: "Tingkat kemenangan",
   },
   Survival: {
     eng: "Survival",
@@ -441,6 +491,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Hayatta kalma",
     zhs: "生存",
     zht: "生存",
+    ara: "البقاء",
+    ind: "Bertahan hidup",
   },
   "Run curves": {
     eng: "Run curves",
@@ -458,6 +510,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Koşu eğrileri",
     zhs: "游戏曲线",
     zht: "遊戲曲線",
+    ara: "منحنيات الجولات",
+    ind: "Kurva perjalanan",
   },
   "Cards and relics": {
     eng: "Cards and relics",
@@ -475,6 +529,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Kartlar ve kalıntılar",
     zhs: "卡牌与遗物",
     zht: "卡牌與遺物",
+    ara: "البطاقات والآثار",
+    ind: "Kartu dan pusaka",
   },
   Volume: {
     eng: "Volume",
@@ -492,6 +548,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Hacim",
     zhs: "数量",
     zht: "數量",
+    ara: "الحجم",
+    ind: "Volume",
   },
   Distributions: {
     eng: "Distributions",
@@ -509,6 +567,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Dağılımlar",
     zhs: "分布",
     zht: "分布",
+    ara: "التوزيعات",
+    ind: "Distribusi",
   },
   "Floor reached": {
     eng: "Floor reached",
@@ -526,6 +586,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Ulaşılan kat",
     zhs: "到达层数",
     zht: "到達層數",
+    ara: "الطابق الذي تم بلوغه",
+    ind: "Lantai yang dicapai",
   },
   Week: {
     eng: "Week",
@@ -543,6 +605,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Hafta",
     zhs: "周",
     zht: "週",
+    ara: "الأسبوع",
+    ind: "Minggu",
   },
   Stage: {
     eng: "Stage",
@@ -560,6 +624,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Aşama",
     zhs: "阶段",
     zht: "階段",
+    ara: "المرحلة",
+    ind: "Tahap",
   },
   "Room type": {
     eng: "Room type",
@@ -577,6 +643,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Oda türü",
     zhs: "房间类型",
     zht: "房間類型",
+    ara: "نوع الغرفة",
+    ind: "Tipe ruangan",
   },
   "% of max HP lost": {
     eng: "% of max HP lost",
@@ -594,6 +662,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Kaybedilen maks. HP %",
     zhs: "损失的最大生命值 %",
     zht: "損失的最大生命值 %",
+    ara: "% من الصحة القصوى المفقودة",
+    ind: "% HP Maksimal yang hilang",
   },
   Day: {
     eng: "Day",
@@ -611,6 +681,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Gün",
     zhs: "日期",
     zht: "日期",
+    ara: "اليوم",
+    ind: "Hari",
   },
   "Elite fights in the run": {
     eng: "Elite fights in the run",
@@ -628,6 +700,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Koşudaki elit savaşları",
     zhs: "本局精英战数量",
     zht: "本局精英戰數量",
+    ara: "معارك النخبة في الجولة",
+    ind: "Pertarungan Elit dalam perjalanan",
   },
   "Smith choices in the run": {
     eng: "Smith choices in the run",
@@ -645,6 +719,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Koşudaki demirci seçimleri",
     zhs: "本局锻造次数",
     zht: "本局鍛造次數",
+    ara: "اختيارات الحدادة في الجولة",
+    ind: "Pilihan Tingkatkan dalam perjalanan",
   },
   Option: {
     eng: "Option",
@@ -662,6 +738,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Seçenek",
     zhs: "选项",
     zht: "選項",
+    ara: "الخيار",
+    ind: "Opsi",
   },
   "Copies in final deck": {
     eng: "Copies in final deck",
@@ -679,6 +757,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Son destedeki kopyalar",
     zhs: "最终牌组中的数量",
     zht: "最終牌組中的數量",
+    ara: "عدد النسخ في المجموعة النهائية",
+    ind: "Salinan di dek akhir",
   },
   "Run length (minutes)": {
     eng: "Run length (minutes)",
@@ -696,6 +776,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Koşu süresi (dakika)",
     zhs: "游戏时长（分钟）",
     zht: "遊戲時長（分鐘）",
+    ara: "مدة الجولة (بالدقائق)",
+    ind: "Durasi perjalanan (menit)",
   },
   "Eventual win %": {
     eng: "Eventual win %",
@@ -713,6 +795,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Nihai kazanma %",
     zhs: "最终胜率 %",
     zht: "最終勝率 %",
+    ara: "% الفوز في النهاية",
+    ind: "% akhirnya menang",
   },
   "% of losses": {
     eng: "% of losses",
@@ -730,6 +814,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Kayıpların %",
     zhs: "失败占比 %",
     zht: "失敗佔比 %",
+    ara: "% من الخسائر",
+    ind: "% dari kekalahan",
   },
   "% of runs": {
     eng: "% of runs",
@@ -747,6 +833,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Koşuların %",
     zhs: "游戏占比 %",
     zht: "遊戲佔比 %",
+    ara: "% من الجولات",
+    ind: "% dari perjalanan",
   },
   "% of deaths": {
     eng: "% of deaths",
@@ -764,6 +852,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Ölümlerin %",
     zhs: "死亡占比 %",
     zht: "死亡佔比 %",
+    ara: "% من الوفيات",
+    ind: "% dari kematian",
   },
   "Avg % of max HP": {
     eng: "Avg % of max HP",
@@ -781,6 +871,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Ort. maks. HP %",
     zhs: "平均最大生命值 %",
     zht: "平均最大生命值 %",
+    ara: "متوسط % من الصحة القصوى",
+    ind: "Rata-rata % HP Maksimal",
   },
   "Avg gold held": {
     eng: "Avg gold held",
@@ -798,6 +890,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Ort. tutulan altın",
     zhs: "平均持有金币",
     zht: "平均持有金幣",
+    ara: "متوسط الذهب المحمول",
+    ind: "Rata-rata Emas dipegang",
   },
   "Avg cards added": {
     eng: "Avg cards added",
@@ -815,6 +909,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Ort. eklenen kart",
     zhs: "平均添加卡牌数",
     zht: "平均添加卡牌數",
+    ara: "متوسط البطاقات المضافة",
+    ind: "Rata-rata kartu ditambahkan",
   },
   "Avg % max HP lost": {
     eng: "Avg % max HP lost",
@@ -832,6 +928,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Ort. kaybedilen maks. HP %",
     zhs: "平均损失的最大生命值 %",
     zht: "平均損失的最大生命值 %",
+    ara: "متوسط % الصحة القصوى المفقودة",
+    ind: "Rata-rata % HP Maksimal hilang",
   },
   "Avg turns per fight": {
     eng: "Avg turns per fight",
@@ -849,6 +947,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Savaş başına ort. tur",
     zhs: "每场战斗平均回合数",
     zht: "每場戰鬥平均回合數",
+    ara: "متوسط الأدوار لكل قتال",
+    ind: "Rata-rata giliran per pertarungan",
   },
   "% of fights": {
     eng: "% of fights",
@@ -866,6 +966,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Savaşların %",
     zhs: "战斗占比 %",
     zht: "戰鬥佔比 %",
+    ara: "% من المعارك",
+    ind: "% dari pertarungan",
   },
   "Avg run length (minutes)": {
     eng: "Avg run length (minutes)",
@@ -883,6 +985,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Ort. koşu süresi (dakika)",
     zhs: "平均游戏时长（分钟）",
     zht: "平均遊戲時長（分鐘）",
+    ara: "متوسط مدة الجولة (بالدقائق)",
+    ind: "Rata-rata durasi perjalanan (menit)",
   },
   "Win % of runs holding it": {
     eng: "Win % of runs holding it",
@@ -900,6 +1004,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Ona sahip koşuların kazanma %",
     zhs: "持有它的游戏胜率 %",
     zht: "持有它的遊戲勝率 %",
+    ara: "% فوز الجولات التي تحمله",
+    ind: "% menang perjalanan yang memilikinya",
   },
   "% of wins": {
     eng: "% of wins",
@@ -917,6 +1023,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Kazançların %",
     zhs: "胜利占比 %",
     zht: "勝利佔比 %",
+    ara: "% من الانتصارات",
+    ind: "% dari kemenangan",
   },
   "Floors reached": {
     eng: "Floors reached",
@@ -934,6 +1042,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Ulaşılan katlar",
     zhs: "到达层数",
     zht: "到達層數",
+    ara: "الطوابق التي تم بلوغها",
+    ind: "Lantai yang dicapai",
   },
   "Deck size": {
     eng: "Deck size",
@@ -951,6 +1061,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Deste boyutu",
     zhs: "牌组大小",
     zht: "牌組大小",
+    ara: "حجم المجموعة",
+    ind: "Ukuran dek",
   },
   "Relic count": {
     eng: "Relic count",
@@ -968,6 +1080,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Kalıntı sayısı",
     zhs: "遗物数量",
     zht: "遺物數量",
+    ara: "عدد الآثار",
+    ind: "Jumlah pusaka",
   },
   "2 Players": {
     eng: "2 Players",
@@ -985,6 +1099,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "2 oyuncu",
     zhs: "2 名玩家",
     zht: "2 名玩家",
+    ara: "لاعبان",
+    ind: "2 Pemain",
   },
   "3 Players": {
     eng: "3 Players",
@@ -1002,6 +1118,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "3 oyuncu",
     zhs: "3 名玩家",
     zht: "3 名玩家",
+    ara: "3 لاعبين",
+    ind: "3 Pemain",
   },
   "4 Players": {
     eng: "4 Players",
@@ -1019,6 +1137,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "4 oyuncu",
     zhs: "4 名玩家",
     zht: "4 名玩家",
+    ara: "4 لاعبين",
+    ind: "4 Pemain",
   },
   "Daily win rate": {
     eng: "Daily win rate",
@@ -1036,6 +1156,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Günlük kazanma oranı",
     zhs: "每日挑战胜率",
     zht: "每日挑戰勝率",
+    ara: "معدل الفوز اليومي",
+    ind: "Tingkat kemenangan harian",
   },
   "Pick share %": {
     eng: "Pick share %",
@@ -1053,6 +1175,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Seçim payı %",
     zhs: "选择占比 %",
     zht: "選擇佔比 %",
+    ara: "حصة الاختيار %",
+    ind: "Porsi pilihan %",
   },
   "Win rate when picked %": {
     eng: "Win rate when picked %",
@@ -1070,6 +1194,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Seçildiğinde kazanma oranı %",
     zhs: "选择后胜率 %",
     zht: "選擇後勝率 %",
+    ara: "معدل الفوز عند الاختيار %",
+    ind: "Tingkat kemenangan saat dipilih %",
   },
   "Win rate by copies": {
     eng: "Win rate by copies",
@@ -1087,6 +1213,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Kopya sayısına göre kazanma oranı",
     zhs: "按数量的胜率",
     zht: "按數量的勝率",
+    ara: "معدل الفوز حسب عدد النسخ",
+    ind: "Tingkat kemenangan per jumlah salinan",
   },
   "Win rate with enchantment": {
     eng: "Win rate with enchantment",
@@ -1104,6 +1232,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Büyüyle kazanma oranı",
     zhs: "持有附魔的胜率",
     zht: "持有附魔的勝率",
+    ara: "معدل الفوز مع التعزيز",
+    ind: "Tingkat kemenangan dengan Efek",
   },
   Started: {
     eng: "Started",
@@ -1121,6 +1251,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Başladı",
     zhs: "开始",
     zht: "開始",
+    ara: "بدأت",
+    ind: "Dimulai",
   },
   "Reached Act 2": {
     eng: "Reached Act 2",
@@ -1138,6 +1270,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "2. Perdeye ulaştı",
     zhs: "到达第二阶段",
     zht: "到達第二幕",
+    ara: "بلغت الفصل 2",
+    ind: "Mencapai Babak 2",
   },
   "Reached Act 3": {
     eng: "Reached Act 3",
@@ -1155,6 +1289,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "3. Perdeye ulaştı",
     zhs: "到达第三阶段",
     zht: "到達第三幕",
+    ara: "بلغت الفصل 3",
+    ind: "Mencapai Babak 3",
   },
   Won: {
     eng: "Won",
@@ -1172,6 +1308,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Kazanıldı",
     zhs: "获胜",
     zht: "獲勝",
+    ara: "فازت",
+    ind: "Menang",
   },
   "Of the runs that made it to floor X, how many went on to win the run.": {
     eng: "Of the runs that made it to floor X, how many went on to win the run.",
@@ -1189,6 +1327,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "X. kata ulaşan koşulardan kaçının sonunda kazandığı.",
     zhs: "到达第 X 层的游戏中，最终获胜的比例。",
     zht: "到達第 X 層的遊戲中，最終獲勝的比例。",
+    ara: "من بين الجولات التي وصلت إلى الطابق X، كم منها انتهى بالفوز.",
+    ind: "Dari perjalanan yang sampai ke lantai X, berapa banyak yang akhirnya menang.",
   },
   "Weekly community win rate from submitted runs.": {
     eng: "Weekly community win rate from submitted runs.",
@@ -1206,6 +1346,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Gönderilen koşulardan haftalık topluluk kazanma oranı.",
     zhs: "来自已提交游戏的每周社区胜率。",
     zht: "來自已提交遊戲的每週社群勝率。",
+    ara: "معدل فوز المجتمع الأسبوعي من الجولات المرسلة.",
+    ind: "Tingkat kemenangan komunitas mingguan dari perjalanan yang dikirim.",
   },
   "Win rate of runs bucketed by a run stat (deck size, relics, length, ...).": {
     eng: "Win rate of runs bucketed by a run stat (deck size, relics, length, ...).",
@@ -1223,6 +1365,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Bir koşu istatistiğine göre gruplanan koşuların kazanma oranı (deste boyutu, kalıntılar, süre, ...).",
     zhs: "按某项游戏数据（牌组大小、遗物、时长……）分组的游戏胜率。",
     zht: "按某項遊戲數據（牌組大小、遺物、時長……）分組的遊戲勝率。",
+    ara: "معدل فوز الجولات مجمّعة حسب إحصائية للجولة (حجم المجموعة، الآثار، المدة، ...).",
+    ind: "Tingkat kemenangan perjalanan yang dikelompokkan menurut statistik perjalanan (ukuran dek, pusaka, durasi, ...).",
   },
   "Win rate at each ascension level.": {
     eng: "Win rate at each ascension level.",
@@ -1240,6 +1384,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Her yükseliş seviyesinde kazanma oranı.",
     zhs: "每个进阶等级的胜率。",
     zht: "每個晉階等級的勝率。",
+    ara: "معدل الفوز في كل مستوى الصعود.",
+    ind: "Tingkat kemenangan di setiap tingkat Angkatan.",
   },
   "Win rate of each daily climb (the seed encodes the daily's date). Low bars were the brutal ones.":
     {
@@ -1258,6 +1404,8 @@ export const X8B: Record<string, Record<string, string>> = {
       tur: "Her günlük tırmanışın kazanma oranı (tohum tarihi kodlar). Düşük çubuklar acımasız olanlardı.",
       zhs: "每个每日挑战的胜率（种子编码了日期）。低柱是最残酷的那些。",
       zht: "每個每日挑戰的勝率（種子編碼了日期）。低柱是最殘酷的那些。",
+      ara: "معدل الفوز في كل تحدٍّ يومي (البذرة تحمل تاريخ التحدي). الأعمدة المنخفضة كانت الأيام القاسية.",
+      ind: "Tingkat kemenangan setiap Harian (benihnya memuat tanggal Harian itu). Batang yang rendah adalah hari yang brutal.",
     },
   "Where losses end. Abandoned runs are excluded.": {
     eng: "Where losses end. Abandoned runs are excluded.",
@@ -1275,6 +1423,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Kayıpların bittiği yer. Terk edilen koşular hariçtir.",
     zhs: "失败游戏结束的位置。不含放弃的游戏。",
     zht: "失敗遊戲結束的位置。不含放棄的遊戲。",
+    ara: "أين تنتهي الخسائر. الجولات المتروكة مستثناة.",
+    ind: "Di mana kekalahan berakhir. Perjalanan yang ditinggalkan tidak dihitung.",
   },
   "Share of runs surviving each act boundary, ending in the win rate.": {
     eng: "Share of runs surviving each act boundary, ending in the win rate.",
@@ -1292,6 +1442,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Her perde sınırını geçen koşuların payı, kazanma oranıyla biter.",
     zhs: "通过每个阶段边界的游戏占比，最后是胜率。",
     zht: "通過每一幕邊界的遊戲佔比，最後是勝率。",
+    ara: "حصة الجولات التي تتجاوز حدود كل فصل، وصولاً إلى معدل الفوز.",
+    ind: "Porsi perjalanan yang melewati tiap batas babak, berakhir di tingkat kemenangan.",
   },
   "What kind of room runs die in. All ascensions and modes.": {
     eng: "What kind of room runs die in. All ascensions and modes.",
@@ -1309,6 +1461,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Koşuların öldüğü oda türü. Tüm yükselişler ve modlar.",
     zhs: "游戏在哪种房间失败。所有进阶和模式。",
     zht: "遊戲在哪種房間失敗。所有晉階和模式。",
+    ara: "في أي نوع من الغرف تنتهي الجولات بالموت. كل مستويات الصعود والأطوار.",
+    ind: "Di jenis ruangan apa perjalanan berakhir mati. Semua Angkatan dan mode.",
   },
   "Average health per floor for winning and losing runs. All ascensions and modes.":
     {
@@ -1327,6 +1481,8 @@ export const X8B: Record<string, Record<string, string>> = {
       tur: "Kazanan ve kaybeden koşular için kat başına ortalama can. Tüm yükselişler ve modlar.",
       zhs: "胜利与失败游戏每层的平均生命值。所有进阶和模式。",
       zht: "勝利與失敗遊戲每層的平均生命值。所有晉階和模式。",
+      ara: "متوسط الصحة في كل طابق للجولات الفائزة والخاسرة. كل مستويات الصعود والأطوار.",
+      ind: "Rata-rata HP per lantai untuk perjalanan yang menang dan kalah. Semua Angkatan dan mode.",
     },
   "Average gold held per floor for winning and losing runs. All ascensions and modes.":
     {
@@ -1345,6 +1501,8 @@ export const X8B: Record<string, Record<string, string>> = {
       tur: "Kazanan ve kaybeden koşular için kat başına ortalama altın. Tüm yükselişler ve modlar.",
       zhs: "胜利与失败游戏每层的平均持有金币。所有进阶和模式。",
       zht: "勝利與失敗遊戲每層的平均持有金幣。所有晉階和模式。",
+      ara: "متوسط الذهب المحمول في كل طابق للجولات الفائزة والخاسرة. كل مستويات الصعود والأطوار.",
+      ind: "Rata-rata Emas yang dipegang per lantai untuk perjalanan yang menang dan kalah. Semua Angkatan dan mode.",
     },
   "Average number of final-deck cards acquired by each floor (removed cards aren't counted). All ascensions and modes.":
     {
@@ -1363,6 +1521,8 @@ export const X8B: Record<string, Record<string, string>> = {
       tur: "Her kata kadar edinilen son deste kartlarının ortalama sayısı (çıkarılan kartlar sayılmaz). Tüm yükselişler ve modlar.",
       zhs: "到每层为止获得的最终牌组卡牌平均数量（不计已移除的卡牌）。所有进阶和模式。",
       zht: "到每層為止獲得的最終牌組卡牌平均數量（不計已移除的卡牌）。所有晉階和模式。",
+      ara: "متوسط عدد بطاقات المجموعة النهائية التي تم الحصول عليها حتى كل طابق (البطاقات المزالة لا تُحتسب). كل مستويات الصعود والأطوار.",
+      ind: "Rata-rata jumlah kartu dek akhir yang sudah didapat di tiap lantai (kartu yang dibuang tidak dihitung). Semua Angkatan dan mode.",
     },
   "Average share of max HP lost in combat at each floor. All ascensions and modes.":
     {
@@ -1381,6 +1541,8 @@ export const X8B: Record<string, Record<string, string>> = {
       tur: "Her katta savaşta kaybedilen maks. HP'nin ortalama payı. Tüm yükselişler ve modlar.",
       zhs: "每层战斗中损失最大生命值的平均占比。所有进阶和模式。",
       zht: "每層戰鬥中損失最大生命值的平均佔比。所有晉階和模式。",
+      ara: "متوسط نسبة الصحة القصوى المفقودة في القتال عند كل طابق. كل مستويات الصعود والأطوار.",
+      ind: "Rata-rata porsi HP Maksimal yang hilang dalam pertarungan di tiap lantai. Semua Angkatan dan mode.",
     },
   "Encounters ranked by the average share of max HP they take per fight. All ascensions and modes.":
     {
@@ -1399,6 +1561,8 @@ export const X8B: Record<string, Record<string, string>> = {
       tur: "Savaş başına aldıkları ortalama maks. HP payına göre sıralanan karşılaşmalar. Tüm yükselişler ve modlar.",
       zhs: "按每场战斗平均消耗最大生命值占比排名的遭遇。所有进阶和模式。",
       zht: "按每場戰鬥平均消耗最大生命值佔比排名的遭遇。所有晉階和模式。",
+      ara: "المواجهات مرتبة حسب متوسط نسبة الصحة القصوى التي تأخذها في كل قتال. كل مستويات الصعود والأطوار.",
+      ind: "Pertemuan diurutkan menurut rata-rata porsi HP Maksimal yang diambil per pertarungan. Semua Angkatan dan mode.",
     },
   "Encounters ranked by how many turns the fight takes. All ascensions and modes.":
     {
@@ -1417,6 +1581,8 @@ export const X8B: Record<string, Record<string, string>> = {
       tur: "Savaşın kaç tur sürdüğüne göre sıralanan karşılaşmalar. Tüm yükselişler ve modlar.",
       zhs: "按战斗回合数排名的遭遇。所有进阶和模式。",
       zht: "按戰鬥回合數排名的遭遇。所有晉階和模式。",
+      ara: "المواجهات مرتبة حسب عدد الأدوار التي يستغرقها القتال. كل مستويات الصعود والأطوار.",
+      ind: "Pertemuan diurutkan menurut jumlah giliran pertarungannya. Semua Angkatan dan mode.",
     },
   "Damage distribution for one encounter, in 5%-of-max-HP buckets. All ascensions and modes.":
     {
@@ -1435,6 +1601,8 @@ export const X8B: Record<string, Record<string, string>> = {
       tur: "Bir karşılaşmanın hasar dağılımı, maks. HP'nin %5'lik dilimlerinde. Tüm yükselişler ve modlar.",
       zhs: "单个遭遇的伤害分布，按最大生命值 5% 分段。所有进阶和模式。",
       zht: "單個遭遇的傷害分布，按最大生命值 5% 分段。所有晉階和模式。",
+      ara: "توزيع الضرر لمواجهة واحدة، في فئات بحجم 5% من الصحة القصوى. كل مستويات الصعود والأطوار.",
+      ind: "Distribusi kerusakan untuk satu pertemuan, dalam kelompok 5% HP Maksimal. Semua Angkatan dan mode.",
     },
   "Daily average length of winning runs. Days with under 10 wins are dropped.":
     {
@@ -1453,6 +1621,8 @@ export const X8B: Record<string, Record<string, string>> = {
       tur: "Kazanılan koşuların günlük ortalama süresi. 10'dan az kazançlı günler atılır.",
       zhs: "获胜游戏的每日平均时长。少于 10 场胜利的日期不计。",
       zht: "獲勝遊戲的每日平均時長。少於 10 場勝利的日期不計。",
+      ara: "المتوسط اليومي لمدة الجولات الفائزة. تُستبعد الأيام التي فيها أقل من 10 انتصارات.",
+      ind: "Rata-rata harian durasi perjalanan yang menang. Hari dengan kurang dari 10 kemenangan dibuang.",
     },
   "Do greedy elite routes pay off. All ascensions and modes.": {
     eng: "Do greedy elite routes pay off. All ascensions and modes.",
@@ -1470,6 +1640,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Açgözlü elit rotaları karşılığını veriyor mu. Tüm yükselişler ve modlar.",
     zhs: "贪精英的路线是否值得。所有进阶和模式。",
     zht: "貪精英的路線是否值得。所有晉階和模式。",
+    ara: "هل تؤتي مسارات النخب الطماعة ثمارها. كل مستويات الصعود والأطوار.",
+    ind: "Apakah rute Elit yang serakah sepadan. Semua Angkatan dan mode.",
   },
   "Win rate by how many rest sites went to upgrading. All ascensions and modes.":
     {
@@ -1488,6 +1660,8 @@ export const X8B: Record<string, Record<string, string>> = {
       tur: "Kaç dinlenme yerinin yükseltmeye gittiğine göre kazanma oranı. Tüm yükselişler ve modlar.",
       zhs: "按用于升级的休息处数量的胜率。所有进阶和模式。",
       zht: "按用於升級的休息點數量的勝率。所有晉階和模式。",
+      ara: "معدل الفوز حسب عدد مواقع الراحة التي استُخدمت للترقية. كل مستويات الصعود والأطوار.",
+      ind: "Tingkat kemenangan menurut berapa Peristirahatan yang dipakai untuk meningkatkan kartu. Semua Angkatan dan mode.",
     },
   "What players pick at one event, and the win rate of runs that picked each option. All ascensions and modes.":
     {
@@ -1506,6 +1680,8 @@ export const X8B: Record<string, Record<string, string>> = {
       tur: "Oyuncuların bir olayda ne seçtiği ve her seçeneği seçen koşuların kazanma oranı. Tüm yükselişler ve modlar.",
       zhs: "玩家在某个事件的选择，以及选择各选项的游戏胜率。所有进阶和模式。",
       zht: "玩家在某個事件的選擇，以及選擇各選項的遊戲勝率。所有晉階和模式。",
+      ara: "ما يختاره اللاعبون في حدث واحد، ومعدل فوز الجولات التي اختارت كل خيار. كل مستويات الصعود والأطوار.",
+      ind: "Apa yang dipilih pemain di satu Event, dan tingkat kemenangan perjalanan yang memilih tiap opsi. Semua Angkatan dan mode.",
     },
   "Weekly share of runs holding it, win rate with it, and the overall win rate baseline. All ascensions and modes.":
     {
@@ -1524,6 +1700,8 @@ export const X8B: Record<string, Record<string, string>> = {
       tur: "Ona sahip koşuların haftalık payı, onunla kazanma oranı ve genel kazanma oranı taban çizgisi. Tüm yükselişler ve modlar.",
       zhs: "每周持有它的游戏占比、持有时的胜率，以及总体胜率基线。所有进阶和模式。",
       zht: "每週持有它的遊戲佔比、持有時的勝率，以及總體勝率基線。所有晉階和模式。",
+      ara: "الحصة الأسبوعية للجولات التي تحمله، ومعدل الفوز معه، وخط الأساس لمعدل الفوز العام. كل مستويات الصعود والأطوار.",
+      ind: "Porsi mingguan perjalanan yang memilikinya, tingkat kemenangan dengannya, dan garis dasar tingkat kemenangan keseluruhan. Semua Angkatan dan mode.",
     },
   "Win rate by how many copies of one card the final deck held. All ascensions and modes.":
     {
@@ -1542,6 +1720,8 @@ export const X8B: Record<string, Record<string, string>> = {
       tur: "Son destenin bir karttan kaç kopya tuttuğuna göre kazanma oranı. Tüm yükselişler ve modlar.",
       zhs: "按最终牌组中某张卡牌数量的胜率。所有进阶和模式。",
       zht: "按最終牌組中某張卡牌數量的勝率。所有晉階和模式。",
+      ara: "معدل الفوز حسب عدد نسخ بطاقة واحدة في المجموعة النهائية. كل مستويات الصعود والأطوار.",
+      ind: "Tingkat kemenangan menurut jumlah salinan satu kartu di dek akhir. Semua Angkatan dan mode.",
     },
   "Win rate of runs whose final deck carried each enchantment. All ascensions and modes.":
     {
@@ -1560,6 +1740,8 @@ export const X8B: Record<string, Record<string, string>> = {
       tur: "Son destesi her bir büyüyü taşıyan koşuların kazanma oranı. Tüm yükselişler ve modlar.",
       zhs: "最终牌组带有各附魔的游戏胜率。所有进阶和模式。",
       zht: "最終牌組帶有各附魔的遊戲勝率。所有晉階和模式。",
+      ara: "معدل فوز الجولات التي حملت مجموعتها النهائية كل تعزيز. كل مستويات الصعود والأطوار.",
+      ind: "Tingkat kemenangan perjalanan yang dek akhirnya membawa tiap Efek. Semua Angkatan dan mode.",
     },
   "Weekly runs by the date they were played.": {
     eng: "Weekly runs by the date they were played.",
@@ -1577,6 +1759,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Oynandıkları tarihe göre haftalık koşular.",
     zhs: "按游玩日期统计的每周游戏数。",
     zht: "按遊玩日期統計的每週遊戲數。",
+    ara: "الجولات الأسبوعية حسب تاريخ لعبها.",
+    ind: "Perjalanan mingguan menurut tanggal dimainkan.",
   },
   "How a run stat is distributed across the filtered runs.": {
     eng: "How a run stat is distributed across the filtered runs.",
@@ -1594,6 +1778,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Bir koşu istatistiğinin filtrelenen koşular arasında nasıl dağıldığı.",
     zhs: "某项游戏数据在筛选后的游戏中的分布。",
     zht: "某項遊戲數據在篩選後的遊戲中的分布。",
+    ara: "كيف تتوزع إحصائية للجولة على الجولات المفلترة.",
+    ind: "Bagaimana satu statistik perjalanan tersebar di perjalanan yang difilter.",
   },
   "Run length of victorious runs in 5-minute buckets. Each series shows its average and median in the legend. Wins only.":
     {
@@ -1612,6 +1798,8 @@ export const X8B: Record<string, Record<string, string>> = {
       tur: "Kazanılan koşuların süresi 5 dakikalık dilimlerde. Her seri ortalamasını ve medyanını açıklamada gösterir. Yalnızca kazançlar.",
       zhs: "获胜游戏的时长，按 5 分钟分段。每个系列在图例中显示平均值和中位数。仅限胜利。",
       zht: "獲勝遊戲的時長，按 5 分鐘分段。每個系列在圖例中顯示平均值和中位數。僅限勝利。",
+      ara: "مدة الجولات الفائزة في فئات من 5 دقائق. تعرض كل سلسلة متوسطها ووسيطها في وسيلة الإيضاح. الانتصارات فقط.",
+      ind: "Durasi perjalanan yang menang dalam kelompok 5 menit. Tiap seri menampilkan rata-rata dan mediannya di legenda. Hanya kemenangan.",
     },
   "Sampled runs plotted stat-vs-stat.": {
     eng: "Sampled runs plotted stat-vs-stat.",
@@ -1629,6 +1817,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Örneklenen koşular istatistik-istatistik olarak çizildi.",
     zhs: "抽样游戏按数据对数据绘制。",
     zht: "抽樣遊戲按數據對數據繪製。",
+    ara: "عينة من الجولات مرسومة إحصائية مقابل إحصائية.",
+    ind: "Sampel perjalanan yang diplot statistik vs statistik.",
   },
   "{name} (avg {avg}m, median {med}m)": {
     eng: "{name} (avg {avg}m, median {med}m)",
@@ -1646,6 +1836,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "{name} (ort. {avg} dk, medyan {med} dk)",
     zhs: "{name}（平均 {avg} 分钟，中位数 {med} 分钟）",
     zht: "{name}（平均 {avg} 分鐘，中位數 {med} 分鐘）",
+    ara: "{name} (المتوسط {avg} د، الوسيط {med} د)",
+    ind: "{name} (rata-rata {avg}m, median {med}m)",
   },
   "Based on {n} runs matching the filters.": {
     eng: "Based on {n} runs matching the filters.",
@@ -1663,6 +1855,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Filtrelerle eşleşen {n} koşuya dayanır.",
     zhs: "基于符合筛选条件的 {n} 场游戏。",
     zht: "基於符合篩選條件的 {n} 場遊戲。",
+    ara: "استناداً إلى {n} جولة مطابقة للفلاتر.",
+    ind: "Berdasarkan {n} perjalanan yang cocok dengan filter.",
   },
   "Sampled from {n} matching runs.": {
     eng: "Sampled from {n} matching runs.",
@@ -1680,6 +1874,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Eşleşen {n} koşudan örneklendi.",
     zhs: "从 {n} 场符合条件的游戏中抽样。",
     zht: "從 {n} 場符合條件的遊戲中抽樣。",
+    ara: "عينة من {n} جولة مطابقة.",
+    ind: "Sampel dari {n} perjalanan yang cocok.",
   },
   "Runs uploaded over time": {
     eng: "Runs uploaded over time",
@@ -1697,6 +1893,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Zaman içinde yüklenen koşular",
     zhs: "上传的游戏数随时间变化",
     zht: "上傳的遊戲數隨時間變化",
+    ara: "الجولات المرفوعة عبر الزمن",
+    ind: "Perjalanan yang diunggah dari waktu ke waktu",
   },
   "Weekly runs by the date they reached Spire Codex.": {
     eng: "Weekly runs by the date they reached Spire Codex.",
@@ -1714,6 +1912,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "Spire Codex'e ulaştıkları tarihe göre haftalık koşular.",
     zhs: "按到达 Spire Codex 日期统计的每周游戏数。",
     zht: "按到達 Spire Codex 日期統計的每週遊戲數。",
+    ara: "الجولات الأسبوعية حسب تاريخ وصولها إلى Spire Codex.",
+    ind: "Perjalanan mingguan menurut tanggal sampai di Spire Codex.",
   },
   "30-day average": {
     eng: "30-day average",
@@ -1731,6 +1931,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "30 günlük ortalama",
     zhs: "30 日平均",
     zht: "30 日平均",
+    ara: "متوسط 30 يوماً",
+    ind: "Rata-rata 30 hari",
   },
   "{name} 30-day avg": {
     eng: "{name} 30-day avg",
@@ -1748,6 +1950,8 @@ export const X8B: Record<string, Record<string, string>> = {
     tur: "{name} 30 günlük ort.",
     zhs: "{name} 30 日均线",
     zht: "{name} 30 日均線",
+    ara: "متوسط 30 يوماً لـ {name}",
+    ind: "Rata-rata 30 hari {name}",
   },
   "Runs abandoned by floor 5 are left out of every stat in these tables, since most are Neow rerolls that were never played. They still count in the run totals.":
     {
@@ -1766,5 +1970,7 @@ export const X8B: Record<string, Record<string, string>> = {
       tur: "5. kata kadar terk edilen koşular, çoğu hiç oynanmamış Neow yeniden denemeleri olduğu için bu tablolardaki hiçbir istatistiğe dahil edilmez. Toplam koşu sayılarında yine sayılırlar.",
       zhs: "在第 5 层及以前放弃的游戏不计入这些表格的任何统计，因为它们大多是在 Neow 处重开、并未真正游玩的局。它们仍计入游戏总数。",
       zht: "在第 5 層及以前放棄的遊戲不計入這些表格的任何統計，因為它們大多是在 Neow 處重開、並未真正遊玩的局。它們仍計入遊戲總數。",
+      ara: "الجولات المتروكة قبل الطابق 5 أو عنده مستبعدة من كل إحصائية في هذه الجداول، لأن معظمها إعادات سحب عند Neow لم تُلعب فعلاً. لكنها تبقى محسوبة في إجمالي الجولات.",
+      ind: "Perjalanan yang ditinggalkan sampai lantai 5 tidak masuk ke statistik mana pun di tabel ini, karena kebanyakan hanya ganti pilihan Neow yang tidak pernah dimainkan. Perjalanan itu tetap dihitung di total run.",
     },
 };

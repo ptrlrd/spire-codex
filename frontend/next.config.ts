@@ -3,7 +3,8 @@ import { withSentryConfig } from "@sentry/nextjs/config";
 import createNextIntlPlugin from "next-intl/plugin";
 import { MOVED_PAGES } from "./lib/moved-pages";
 
-const LANGS = "eng|deu|esp|fra|ita|jpn|kor|pol|ptb|rus|spa|tha|tur|zhs|zht";
+const LANGS =
+  "eng|ara|deu|esp|fra|ind|ita|jpn|kor|pol|ptb|rus|spa|tha|tur|zhs|zht";
 
 const nextConfig: NextConfig = {
   deploymentId: process.env.NEXT_DEPLOYMENT_ID || undefined,

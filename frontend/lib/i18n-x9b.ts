@@ -16,6 +16,8 @@ export const X9B: Record<string, Record<string, string>> = {
     tur: "sonra",
     zhs: "之后",
     zht: "之後",
+    ara: "بعد",
+    ind: "sesudah",
   },
   "Back to run": {
     eng: "Back to run",
@@ -33,6 +35,8 @@ export const X9B: Record<string, Record<string, string>> = {
     tur: "Koşuya dön",
     zhs: "返回对局",
     zht: "返回對局",
+    ara: "العودة إلى الجولة",
+    ind: "Kembali ke perjalanan",
   },
   blocked: {
     eng: "blocked",
@@ -50,6 +54,8 @@ export const X9B: Record<string, Record<string, string>> = {
     tur: "bloklandı",
     zhs: "被格挡",
     zht: "被格擋",
+    ara: "تم صده",
+    ind: "diblok",
   },
   "Couldn't load the replay.": {
     eng: "Couldn't load the replay.",
@@ -67,6 +73,8 @@ export const X9B: Record<string, Record<string, string>> = {
     tur: "Tekrar yüklenemedi.",
     zhs: "无法加载回放。",
     zht: "無法載入回放。",
+    ara: "تعذر تحميل الإعادة.",
+    ind: "Tidak bisa memuat replay.",
   },
   "Damage per fight": {
     eng: "Damage per fight",
@@ -84,6 +92,8 @@ export const X9B: Record<string, Record<string, string>> = {
     tur: "Dövüş başına hasar",
     zhs: "每场战斗伤害",
     zht: "每場戰鬥傷害",
+    ara: "الضرر لكل معركة",
+    ind: "Damage per pertarungan",
   },
   "damage taken": {
     eng: "damage taken",
@@ -101,6 +111,8 @@ export const X9B: Record<string, Record<string, string>> = {
     tur: "hasar alındı",
     zhs: "点受到的伤害",
     zht: "點受到的傷害",
+    ara: "ضرر متلقى",
+    ind: "damage diterima",
   },
   decisions: {
     eng: "decisions",
@@ -118,6 +130,8 @@ export const X9B: Record<string, Record<string, string>> = {
     tur: "karar",
     zhs: "个决策",
     zht: "個決策",
+    ara: "قرارات",
+    ind: "keputusan",
   },
   Drew: {
     eng: "Drew",
@@ -135,6 +149,8 @@ export const X9B: Record<string, Record<string, string>> = {
     tur: "Çekti",
     zhs: "抽到",
     zht: "抽到",
+    ara: "تم السحب",
+    ind: "Ditarik",
   },
   Exhausted: {
     eng: "Exhausted",
@@ -152,6 +168,8 @@ export const X9B: Record<string, Record<string, string>> = {
     tur: "Tüketti",
     zhs: "消耗",
     zht: "消耗",
+    ara: "مستهلكة",
+    ind: "Hangus",
   },
   floor: {
     eng: "floor",
@@ -169,6 +187,8 @@ export const X9B: Record<string, Record<string, string>> = {
     tur: "kat",
     zhs: "层",
     zht: "層",
+    ara: "الطابق",
+    ind: "lantai",
   },
   "Gold in": {
     eng: "Gold in",
@@ -186,6 +206,8 @@ export const X9B: Record<string, Record<string, string>> = {
     tur: "Gelen altın",
     zhs: "金币收入",
     zht: "金幣收入",
+    ara: "الذهب عند الدخول",
+    ind: "Emas masuk",
   },
   "Gold out": {
     eng: "Gold out",
@@ -203,6 +225,8 @@ export const X9B: Record<string, Record<string, string>> = {
     tur: "Giden altın",
     zhs: "金币支出",
     zht: "金幣支出",
+    ara: "الذهب عند الخروج",
+    ind: "Emas keluar",
   },
   "hit for": {
     eng: "hit for",
@@ -220,6 +244,8 @@ export const X9B: Record<string, Record<string, string>> = {
     tur: "hasar verdi",
     zhs: "造成伤害",
     zht: "造成傷害",
+    ara: "يضرب بمقدار",
+    ind: "memukul sebesar",
   },
   "Loading replay…": {
     eng: "Loading replay…",
@@ -237,6 +263,8 @@ export const X9B: Record<string, Record<string, string>> = {
     tur: "Tekrar yükleniyor…",
     zhs: "正在加载回放…",
     zht: "正在載入回放…",
+    ara: "جارٍ تحميل الإعادة…",
+    ind: "Memuat replay…",
   },
   "No pick recorded": {
     eng: "No pick recorded",
@@ -254,6 +282,8 @@ export const X9B: Record<string, Record<string, string>> = {
     tur: "Kayıtlı seçim yok",
     zhs: "未记录选择",
     zht: "未記錄選擇",
+    ara: "لم يُسجل أي اختيار",
+    ind: "Tidak ada pilihan tercatat",
   },
   "Nothing bought": {
     eng: "Nothing bought",
@@ -271,6 +301,8 @@ export const X9B: Record<string, Record<string, string>> = {
     tur: "Hiçbir şey satın alınmadı",
     zhs: "未购买任何物品",
     zht: "未購買任何物品",
+    ara: "لم يُشترَ شيء",
+    ind: "Tidak membeli apa-apa",
   },
   "Nothing else was recorded on this floor.": {
     eng: "Nothing else was recorded on this floor.",
@@ -288,6 +320,8 @@ export const X9B: Record<string, Record<string, string>> = {
     tur: "Bu katta başka bir şey kaydedilmedi.",
     zhs: "本层没有记录其他内容。",
     zht: "本層沒有記錄其他內容。",
+    ara: "لم يُسجل شيء آخر في هذا الطابق.",
+    ind: "Tidak ada lagi yang tercatat di lantai ini.",
   },
   "Nothing recorded": {
     eng: "Nothing recorded",
@@ -305,6 +339,8 @@ export const X9B: Record<string, Record<string, string>> = {
     tur: "Kayıt yok",
     zhs: "无记录",
     zht: "無記錄",
+    ara: "لم يُسجل شيء",
+    ind: "Tidak ada yang tercatat",
   },
   offered: {
     eng: "offered",
@@ -322,6 +358,8 @@ export const X9B: Record<string, Record<string, string>> = {
     tur: "sunuldu",
     zhs: "个选项",
     zht: "個選項",
+    ara: "معروض",
+    ind: "ditawarkan",
   },
   Outcome: {
     eng: "Outcome",
@@ -339,6 +377,8 @@ export const X9B: Record<string, Record<string, string>> = {
     tur: "Sonuç",
     zhs: "结果",
     zht: "結果",
+    ara: "النتيجة",
+    ind: "Hasil",
   },
   "Pick a floor.": {
     eng: "Pick a floor.",
@@ -356,6 +396,8 @@ export const X9B: Record<string, Record<string, string>> = {
     tur: "Bir kat seç.",
     zhs: "请选择一层。",
     zht: "請選擇一層。",
+    ara: "اختر طابقا.",
+    ind: "Pilih lantai.",
   },
   "Reloaded from a save": {
     eng: "Reloaded from a save",
@@ -373,6 +415,8 @@ export const X9B: Record<string, Record<string, string>> = {
     tur: "Bir kayıttan yeniden yüklendi",
     zhs: "从存档重新载入",
     zht: "從存檔重新載入",
+    ara: "أعيد التحميل من ملف حفظ",
+    ind: "Dimuat ulang dari simpanan",
   },
   reloads: {
     eng: "reloads",
@@ -390,6 +434,8 @@ export const X9B: Record<string, Record<string, string>> = {
     tur: "yeniden yükleme",
     zhs: "次重载",
     zht: "次重載",
+    ara: "مرات إعادة التحميل",
+    ind: "muat ulang",
   },
   Replay: {
     eng: "Replay",
@@ -407,6 +453,8 @@ export const X9B: Record<string, Record<string, string>> = {
     tur: "Tekrar",
     zhs: "回放",
     zht: "回放",
+    ara: "الإعادة",
+    ind: "Replay",
   },
   replay_meta_description: {
     eng: "Step through every floor, reward, and combat turn of this Slay the Spire 2 run.",
@@ -424,6 +472,8 @@ export const X9B: Record<string, Record<string, string>> = {
     tur: "Bu Slay the Spire 2 koşusunun her katını, ödülünü ve dövüş turunu adım adım incele.",
     zhs: "逐层查看这局 Slay the Spire 2 对局的每个楼层、奖励和战斗回合。",
     zht: "逐層查看這局 Slay the Spire 2 對局的每個樓層、獎勵和戰鬥回合。",
+    ara: "تنقل عبر كل طابق ومكافأة ودور قتال في هذه الجولة من Slay the Spire 2.",
+    ind: "Telusuri setiap lantai, hadiah, dan giliran pertarungan dari perjalanan Slay the Spire 2 ini.",
   },
   "Replay Not Found": {
     eng: "Replay Not Found",
@@ -441,6 +491,8 @@ export const X9B: Record<string, Record<string, string>> = {
     tur: "Tekrar bulunamadı",
     zhs: "未找到回放",
     zht: "未找到回放",
+    ara: "إعادة العرض غير موجودة",
+    ind: "Replay Tidak Ditemukan",
   },
   Rerolled: {
     eng: "Rerolled",
@@ -458,6 +510,8 @@ export const X9B: Record<string, Record<string, string>> = {
     tur: "Yeniden çekildi",
     zhs: "已重抽",
     zht: "已重抽",
+    ara: "أعيد التدوير",
+    ind: "Diacak ulang",
   },
   Rest: {
     eng: "Rest",
@@ -475,6 +529,8 @@ export const X9B: Record<string, Record<string, string>> = {
     tur: "Dinlenme",
     zhs: "休息",
     zht: "休息",
+    ara: "راحة",
+    ind: "Istirahat",
   },
   "Run progress": {
     eng: "Run progress",
@@ -492,6 +548,8 @@ export const X9B: Record<string, Record<string, string>> = {
     tur: "Koşu ilerlemesi",
     zhs: "对局进度",
     zht: "對局進度",
+    ara: "تقدم الجولة",
+    ind: "Progres perjalanan",
   },
   Sale: {
     eng: "Sale",
@@ -509,6 +567,8 @@ export const X9B: Record<string, Record<string, string>> = {
     tur: "İndirim",
     zhs: "特价",
     zht: "特價",
+    ara: "تخفيض",
+    ind: "Diskon",
   },
   selectable: {
     eng: "selectable",
@@ -526,6 +586,8 @@ export const X9B: Record<string, Record<string, string>> = {
     tur: "seçilebilir",
     zhs: "个可选",
     zht: "個可選",
+    ara: "قابل للاختيار",
+    ind: "bisa dipilih",
   },
   Spent: {
     eng: "Spent",
@@ -543,6 +605,8 @@ export const X9B: Record<string, Record<string, string>> = {
     tur: "Harcandı",
     zhs: "花费",
     zht: "花費",
+    ara: "المنفق",
+    ind: "Dibelanjakan",
   },
   Turn: {
     eng: "Turn",
@@ -560,6 +624,8 @@ export const X9B: Record<string, Record<string, string>> = {
     tur: "Tur",
     zhs: "回合",
     zht: "回合",
+    ara: "الدور",
+    ind: "Giliran",
   },
   "Turns per fight": {
     eng: "Turns per fight",
@@ -577,6 +643,8 @@ export const X9B: Record<string, Record<string, string>> = {
     tur: "Dövüş başına tur",
     zhs: "每场战斗回合数",
     zht: "每場戰鬥回合數",
+    ara: "الأدوار لكل معركة",
+    ind: "Giliran per pertarungan",
   },
   "Use ← → to step floors": {
     eng: "Use ← → to step floors",
@@ -594,6 +662,8 @@ export const X9B: Record<string, Record<string, string>> = {
     tur: "Katlar arasında gezinmek için ← → tuşlarını kullan",
     zhs: "使用 ← → 逐层查看",
     zht: "使用 ← → 逐層查看",
+    ara: "استخدم ← → للتنقل بين الطوابق",
+    ind: "Pakai ← → untuk pindah lantai",
   },
   "{who} - {character} - Ascension {ascension} {result} replay": {
     eng: "{who} - {character} - Ascension {ascension} {result} replay",
@@ -611,5 +681,7 @@ export const X9B: Record<string, Record<string, string>> = {
     tur: "{who} - {character} - Yükseliş {ascension} {result} tekrarı",
     zhs: "{who} - {character} - 进阶{ascension} {result}回放",
     zht: "{who} - {character} - 晉階{ascension} {result}回放",
+    ara: "{who} - {character} - الصعود {ascension} - إعادة عرض {result}",
+    ind: "{who} - {character} - Angkatan {ascension} - replay {result}",
   },
 };

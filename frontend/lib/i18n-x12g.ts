@@ -15,6 +15,8 @@ export const X12G: Record<string, Record<string, string>> = {
     tur: "Sürat",
     zhs: "极速",
     zht: "閃擊",
+    ara: "Blitz",
+    ind: "Kilat",
   },
   Dread: {
     eng: "Dread",
@@ -32,6 +34,8 @@ export const X12G: Record<string, Record<string, string>> = {
     tur: "Dehşet",
     zhs: "恐惧",
     zht: "恐懼",
+    ara: "رهبة",
+    ind: "Kelam",
   },
   "Blitz mode": {
     eng: "Blitz mode",
@@ -49,6 +53,8 @@ export const X12G: Record<string, Record<string, string>> = {
     tur: "Sürat modu",
     zhs: "极速模式",
     zht: "閃擊模式",
+    ara: "طور Blitz",
+    ind: "Mode Kilat",
   },
   "Dread mode": {
     eng: "Dread mode",
@@ -66,6 +72,8 @@ export const X12G: Record<string, Record<string, string>> = {
     tur: "Dehşet modu",
     zhs: "恐惧模式",
     zht: "恐懼模式",
+    ara: "طور الرهبة",
+    ind: "Mode Kelam",
   },
   "Fastest Blitz": {
     eng: "Fastest Blitz",
@@ -83,6 +91,8 @@ export const X12G: Record<string, Record<string, string>> = {
     tur: "En hızlı Sürat",
     zhs: "最快极速",
     zht: "最快閃擊",
+    ara: "أسرع Blitz",
+    ind: "Kilat Tercepat",
   },
   "Fastest Dread": {
     eng: "Fastest Dread",
@@ -100,6 +110,8 @@ export const X12G: Record<string, Record<string, string>> = {
     tur: "En hızlı Dehşet",
     zhs: "最快恐惧",
     zht: "最快恐懼",
+    ara: "أسرع رهبة",
+    ind: "Kelam Tercepat",
   },
   "Game Modes": {
     eng: "Game Modes",
@@ -117,6 +129,8 @@ export const X12G: Record<string, Record<string, string>> = {
     tur: "Oyun modları",
     zhs: "游戏模式",
     zht: "遊戲模式",
+    ara: "أطوار اللعب",
+    ind: "Mode Permainan",
   },
   "Game Modes - Standard, Daily, Blitz and Dread": {
     eng: "Game Modes - Standard, Daily, Blitz and Dread",
@@ -134,6 +148,8 @@ export const X12G: Record<string, Record<string, string>> = {
     tur: "Oyun modları - Standart, Günlük, Sürat ve Dehşet",
     zhs: "游戏模式 - 标准、每日、极速与恐惧",
     zht: "遊戲模式 - 標準、每日挑戰、閃擊與恐懼",
+    ara: "أطوار اللعب - عادي ويومي و Blitz ورهبة",
+    ind: "Mode Permainan - Standar, Harian, Kilat, dan Kelam",
   },
   game_modes_meta_description: {
     eng: "Every Slay the Spire 2 game mode and its rules: Standard, Daily, Blitz and Dread, with all 12 Dread Dominions and the Blitz merchant offers.",
@@ -151,6 +167,8 @@ export const X12G: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2'deki tüm oyun modları ve kuralları: Standart, Günlük, Sürat ve Dehşet; 12 Dehşet Hâkimiyeti ve Sürat tüccar teklifleriyle.",
     zhs: "《Slay the Spire 2》的全部游戏模式及规则：标准、每日、极速与恐惧，包含恐惧的 12 个领域和极速模式的商人货品。",
     zht: "《Slay the Spire 2》的所有遊戲模式與規則：標準、每日挑戰、閃擊與恐懼，包含恐懼的 12 個領域與閃擊模式的商人貨品。",
+    ara: "كل أطوار اللعب في Slay the Spire 2 وقواعدها: عادي ويومي و Blitz ورهبة، مع جميع هيمنات الرهبة الـ12 وعروض التاجر في Blitz.",
+    ind: "Setiap mode permainan Slay the Spire 2 dan aturannya: Standar, Harian, Kilat, dan Kelam, dengan semua 12 Kekuasaan Kelam dan tawaran pedagang Kilat.",
   },
   "Every way to play a run, with the rules each mode adds.": {
     eng: "Every way to play a run, with the rules each mode adds.",
@@ -168,6 +186,8 @@ export const X12G: Record<string, Record<string, string>> = {
     tur: "Bir koşuyu oynamanın tüm yolları ve her modun eklediği kurallar.",
     zhs: "进行一局游戏的所有方式，以及每种模式附加的规则。",
     zht: "進行一局遊戲的所有方式，以及每種模式附加的規則。",
+    ara: "كل طرق لعب الجولة، مع القواعد التي يضيفها كل طور.",
+    ind: "Setiap cara memainkan perjalanan, dengan aturan yang ditambahkan tiap mode.",
   },
   Rules: {
     eng: "Rules",
@@ -185,6 +205,8 @@ export const X12G: Record<string, Record<string, string>> = {
     tur: "Kurallar",
     zhs: "规则",
     zht: "規則",
+    ara: "القواعد",
+    ind: "Aturan",
   },
   Dominions: {
     eng: "Dominions",
@@ -202,6 +224,8 @@ export const X12G: Record<string, Record<string, string>> = {
     tur: "Hâkimiyetler",
     zhs: "领域",
     zht: "領域",
+    ara: "الهيمنات",
+    ind: "Kekuasaan",
   },
   "Enemies gain an extra rule from the boss waiting at the end of the act.": {
     eng: "Enemies gain an extra rule from the boss waiting at the end of the act.",
@@ -219,6 +243,8 @@ export const X12G: Record<string, Record<string, string>> = {
     tur: "Düşmanlar, perdenin sonunda bekleyen patrondan ek bir kural kazanır.",
     zhs: "敌人会获得来自本幕末尾首领的额外规则。",
     zht: "敵人會獲得來自本幕末尾首領的額外規則。",
+    ara: "يكتسب الأعداء قاعدة إضافية من الزعيم المنتظر في نهاية الفصل.",
+    ind: "Musuh mendapat aturan tambahan dari bos yang menunggu di akhir babak.",
   },
   "Merchant offers": {
     eng: "Merchant offers",
@@ -236,6 +262,8 @@ export const X12G: Record<string, Record<string, string>> = {
     tur: "Tüccar teklifleri",
     zhs: "商人货品",
     zht: "商人貨品",
+    ara: "عروض التاجر",
+    ind: "Tawaran pedagang",
   },
   "How to unlock": {
     eng: "How to unlock",
@@ -253,6 +281,8 @@ export const X12G: Record<string, Record<string, string>> = {
     tur: "Nasıl açılır",
     zhs: "解锁方式",
     zht: "解鎖方式",
+    ara: "طريقة الفتح",
+    ind: "Cara membuka",
   },
   "In co-op": {
     eng: "In co-op",
@@ -270,6 +300,8 @@ export const X12G: Record<string, Record<string, string>> = {
     tur: "Eşli oyunda",
     zhs: "合作模式下",
     zht: "合作模式下",
+    ara: "في اللعب الجماعي",
+    ind: "Di multi pemain",
   },
   "Starting choice": {
     eng: "Starting choice",
@@ -287,5 +319,7 @@ export const X12G: Record<string, Record<string, string>> = {
     tur: "Başlangıç seçimi",
     zhs: "开局选择",
     zht: "開局選擇",
+    ara: "الخيار الابتدائي",
+    ind: "Pilihan awal",
   },
 };

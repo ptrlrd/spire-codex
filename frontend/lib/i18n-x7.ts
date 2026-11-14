@@ -16,6 +16,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) Veritabanı (Türkçe), Spire Codex. Kartlara, kalıntılara, karakterlere, canavarlara, iksirlere, olaylara ve güçlere göz atın.",
     zhs: "杀戮尖塔2 (STS2) 数据库 (简体中文), Spire Codex. 浏览卡牌、遗物、角色、怪物、药水、事件和能力。",
     zht: "殺戮尖塔2 (STS2) 資料庫 (繁體中文), Spire Codex. 瀏覽卡牌、遺物、角色、怪物、藥水、事件和能力。",
+    ara: "قاعدة البيانات الكاملة للعبة Slay the Spire 2 (sts2). تصفح البطاقات والآثار والشخصيات والوحوش والجرعات والأحداث والقوى. صفِّ حسب الشخصية والندرة والكلمة المفتاحية.",
+    ind: "Database lengkap Slay the Spire 2 (sts2). Jelajahi kartu, pusaka, karakter, monster, ramuan, event, dan kuasa. Filter menurut karakter, kelangkaan, dan kata kunci.",
   },
   home_tagline: {
     eng: "The complete Slay the Spire 2 (sts2) database. Browse cards, relics, characters, monsters, potions, events, and powers. Filter by character, rarity, and keyword.",
@@ -33,6 +35,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) Veritabanı (Türkçe), Spire Codex. Kartlara, kalıntılara, karakterlere, canavarlara, iksirlere, olaylara ve güçlere göz atın.",
     zhs: "杀戮尖塔2 (STS2) 数据库 (简体中文), Spire Codex. 浏览卡牌、遗物、角色、怪物、药水、事件和能力。",
     zht: "殺戮尖塔2 (STS2) 資料庫 (繁體中文), Spire Codex. 瀏覽卡牌、遺物、角色、怪物、藥水、事件和能力。",
+    ara: "قاعدة البيانات الكاملة للعبة Slay the Spire 2 (sts2). تصفح البطاقات والآثار والشخصيات والوحوش والجرعات والأحداث والقوى. صفِّ حسب الشخصية والندرة والكلمة المفتاحية.",
+    ind: "Database lengkap Slay the Spire 2 (sts2). Jelajahi kartu, pusaka, karakter, monster, ramuan, event, dan kuasa. Filter menurut karakter, kelangkaan, dan kata kunci.",
   },
   about_meta_description: {
     eng: "About Spire Codex, a community-built database for Slay the Spire 2. Learn about the data pipeline, tech stack, and how the site works.",
@@ -50,6 +54,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Spire Codex Hakkında, Slay the Spire 2 için topluluk tarafından oluşturulmuş bir veritabanı. Veri hattı, teknoloji yığını ve sitenin nasıl çalıştığını öğrenin.",
     zhs: "关于 Spire Codex, 一个社区构建的杀戮尖塔2数据库。了解数据管道、技术栈和网站运作方式。",
     zht: "關於 Spire Codex, 一個社群構建的殺戮尖塔2資料庫。瞭解資料管道、技術棧和網站運作方式。",
+    ara: "عن Spire Codex، قاعدة بيانات من صنع المجتمع للعبة Slay the Spire 2. تعرّف على مسار البيانات والتقنيات المستخدمة وطريقة عمل الموقع.",
+    ind: "Tentang Spire Codex, database buatan komunitas untuk Slay the Spire 2. Pelajari pipeline data, teknologi yang dipakai, dan cara kerja situsnya.",
   },
   ancients_meta_description: {
     eng: "Relic pools for all 8 Slay the Spire 2 (sts2) Ancients, Neow, Tezcatara, Pael, Orobas, Darv, Nonupeipe, Tanx, Vakuu. Every offering and condition.",
@@ -67,6 +73,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) oyunundaki 8 kadimin kalıntı havuzları: Neow, Tezcatara, Pael, Orobas, Darv, Nonupeipe, Tanx, Vakuu. Tüm teklifler ve koşullar.",
     zhs: "杀戮尖塔2 (STS2)全部8位先古之民（涅奥、特兹卡塔拉、佩尔、欧洛巴斯、达弗、诺奴佩普、坦克斯、瓦库）的遗物池。包含每一项馈赠和条件。",
     zht: "殺戮尖塔2 (STS2)全部8位遠古之民（涅奧、特茲卡塔拉、佩爾、歐洛巴斯、達弗、諾奴佩普、坦克斯、瓦庫）的遺物池。包含每一項饋贈和條件。",
+    ara: "مجموعات الآثار لكل العتقاء الثمانية في Slay the Spire 2 (sts2): Neow و Tezcatara و Pael و Orobas و Darv و Nonupeipe و Tanx و Vakuu. كل العروض والشروط.",
+    ind: "Kelompok pusaka untuk 8 Ancient di Slay the Spire 2 (sts2): Neow, Tezcatara, Pael, Orobas, Darv, Nonupeipe, Tanx, Vakuu. Semua tawaran dan syaratnya.",
   },
   ancients_tagline: {
     eng: "Relic pools for all 8 Slay the Spire 2 (sts2) Ancients, Neow, Tezcatara, Pael, Orobas, Darv, Nonupeipe, Tanx, Vakuu. Every offering and condition.",
@@ -84,6 +92,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) oyunundaki 8 kadimin kalıntı havuzları: Neow, Tezcatara, Pael, Orobas, Darv, Nonupeipe, Tanx, Vakuu. Tüm teklifler ve koşullar.",
     zhs: "杀戮尖塔2 (STS2)全部8位先古之民（涅奥、特兹卡塔拉、佩尔、欧洛巴斯、达弗、诺奴佩普、坦克斯、瓦库）的遗物池。包含每一项馈赠和条件。",
     zht: "殺戮尖塔2 (STS2)全部8位遠古之民（涅奧、特茲卡塔拉、佩爾、歐洛巴斯、達弗、諾奴佩普、坦克斯、瓦庫）的遺物池。包含每一項饋贈和條件。",
+    ara: "مجموعات الآثار لكل العتقاء الثمانية في Slay the Spire 2 (sts2): Neow و Tezcatara و Pael و Orobas و Darv و Nonupeipe و Tanx و Vakuu. كل العروض والشروط.",
+    ind: "Kelompok pusaka untuk 8 Ancient di Slay the Spire 2 (sts2): Neow, Tezcatara, Pael, Orobas, Darv, Nonupeipe, Tanx, Vakuu. Semua tawaran dan syaratnya.",
   },
   badges_meta_description: {
     eng: "Run-end badges are mini-achievements awarded on the Game Over screen. Some have Bronze / Silver / Gold tiers; a handful are only attainable in multiplayer. Badges contribute to your Daily Leaderboard score.",
@@ -101,6 +111,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) Rozetler, Tur sonu rozetleri, Game Over ekranında verilen mini başarımlardır. Bazılarının Bronz/Gümüş/Altın kademeleri vardır; birkaçı yalnızca çok oyunculu modda kazanılabilir. Rozetler, Günlük Liderlik Tablosu puanınıza katkıda bulunur.",
     zhs: "杀戮尖塔2 (STS2) 徽章, 局末徽章是在游戏结束画面授予的小成就。一些有铜/银/金等级；部分仅在多人模式中可获得。徽章会计入你的每日排行榜得分。",
     zht: "殺戮尖塔2 (STS2) 徽章, 局末徽章是在遊戲結束畫面授予的小成就。一些有銅/銀/金等級；部分僅在多人模式中可獲得。徽章會計入你的每日排行榜得分。",
+    ara: "شارات نهاية الجولة إنجازات صغيرة تُمنح في شاشة نهاية اللعبة. لبعضها درجات برونزية / فضية / ذهبية، وقليل منها لا يُنال إلا في اللعب الجماعي. تُحتسب الشارات في نتيجتك بلوحة المتصدرين اليومية.",
+    ind: "Lencana akhir perjalanan adalah pencapaian kecil yang diberikan di layar Game Over. Sebagian punya tingkat Perunggu / Perak / Emas, dan beberapa hanya bisa didapat di Multi Pemain. Lencana ikut dihitung ke skor Peringkat Harianmu.",
   },
   badges_tagline: {
     eng: "Run-end badges are mini-achievements awarded on the Game Over screen. Some have Bronze / Silver / Gold tiers; a handful are only attainable in multiplayer. Badges contribute to your Daily Leaderboard score.",
@@ -118,6 +130,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Tur sonu rozetleri, Game Over ekranında verilen mini başarımlardır. Bazılarının Bronz/Gümüş/Altın kademeleri vardır; birkaçı yalnızca çok oyunculu modda kazanılabilir. Rozetler, Günlük Liderlik Tablosu puanınıza katkıda bulunur.",
     zhs: "局末徽章是在游戏结束画面授予的小成就。一些有铜/银/金等级；部分仅在多人模式中可获得。徽章会计入你的每日排行榜得分。",
     zht: "局末徽章是在遊戲結束畫面授予的小成就。一些有銅/銀/金等級；部分僅在多人模式中可獲得。徽章會計入你的每日排行榜得分。",
+    ara: "شارات نهاية الجولة إنجازات صغيرة تُمنح في شاشة نهاية اللعبة. لبعضها درجات برونزية / فضية / ذهبية، وقليل منها لا يُنال إلا في اللعب الجماعي. تُحتسب الشارات في نتيجتك بلوحة المتصدرين اليومية.",
+    ind: "Lencana akhir perjalanan adalah pencapaian kecil yang diberikan di layar Game Over. Sebagian punya tingkat Perunggu / Perak / Emas, dan beberapa hanya bisa didapat di Multi Pemain. Lencana ikut dihitung ke skor Peringkat Harianmu.",
   },
   cards_meta_description: {
     eng: "Browse every card across Ironclad, Silent, Defect, Necrobinder, Regent, and Fool. Filter by character, type, rarity, and keywords.",
@@ -135,6 +149,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) oyunundaki tüm kartlar: Demirkaplı, Sessiz, Arıza, Ölübağlayan, Naip, Soytarı. Karaktere, türe, nadirliğe ve anahtar kelimelere göre filtrele.",
     zhs: "杀戮尖塔2 (STS2)的全部卡牌（铁甲战士、静默猎手、故障机器人、亡灵契约师、储君、愚者）。可按角色、类型、稀有度和关键词筛选。",
     zht: "殺戮尖塔2 (STS2)的全部卡牌（鐵甲戰士、寂靜獵手、故障機器人、縛亡者、儲君、愚者）。可按角色、類型、稀有度和關鍵字篩選。",
+    ara: "تصفح كل بطاقات المدرع والصامتة والمعيب ورابطة الموتى والوصي و Fool. صفِّ حسب الشخصية والنوع والندرة والكلمات المفتاحية.",
+    ind: "Jelajahi semua kartu Ironclad, Silent, Defect, Necrobinder, Regent, dan Fool. Filter menurut karakter, tipe, kelangkaan, dan kata kunci.",
   },
   changelog_meta_description: {
     eng: "Slay the Spire 2 update history and Spire Codex changelog. Track game patches, balance changes, and new content additions.",
@@ -152,6 +168,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) güncelleme geçmişi ve Spire Codex değişiklik günlüğü. Yamaları, denge değişikliklerini ve yeni içerikleri takip et.",
     zhs: "杀戮尖塔2 (STS2)的更新历史和 Spire Codex 更新日志。追踪游戏补丁、平衡调整和新增内容。",
     zht: "殺戮尖塔2 (STS2)的更新歷史和 Spire Codex 更新日誌。追蹤遊戲修補、平衡調整和新增內容。",
+    ara: "تاريخ تحديثات Slay the Spire 2 وسجل تغييرات Spire Codex. تابع تحديثات اللعبة وتغييرات التوازن والمحتوى الجديد.",
+    ind: "Riwayat pembaruan Slay the Spire 2 dan changelog Spire Codex. Ikuti patch game, perubahan balance, dan konten baru.",
   },
   characters_meta_description: {
     eng: "All playable characters in Slay the Spire 2, view starting decks, relics, HP, gold, energy, and more.",
@@ -169,6 +187,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) oyunundaki tüm oynanabilir karakterler: başlangıç desteleri, kalıntılar, can, altın, enerji ve dahası.",
     zhs: "杀戮尖塔2 (STS2)的全部可玩角色：初始牌组、遗物、生命值、金币、能量等。",
     zht: "殺戮尖塔2 (STS2)的全部可玩角色：初始牌組、遺物、生命值、金幣、能量等。",
+    ara: "كل الشخصيات القابلة للعب في Slay the Spire 2، مع مجموعات البداية والآثار و HP والذهب والطاقة وغيرها.",
+    ind: "Semua karakter yang bisa dimainkan di Slay the Spire 2, lihat dek awalan, pusaka, HP, emas, energi, dan lainnya.",
   },
   charts_meta_description: {
     eng: "Interactive charts over community-submitted Slay the Spire 2 runs: win rate by floor, ascension and over time, damage per encounter, run stat distributions and scatters. Filter by player count, ascension, game mode, or a single player.",
@@ -186,6 +206,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) Koşu grafikleri (Türkçe).",
     zhs: "杀戮尖塔2 (STS2) 对局图表 (简体中文).",
     zht: "殺戮尖塔2 (STS2) 對局圖表 (繁體中文).",
+    ara: "مخططات تفاعلية لجولات Slay the Spire 2 التي أرسلها المجتمع: معدل الفوز حسب الطابق و الصعود وعبر الزمن، والضرر في كل مواجهة، وتوزيعات إحصائيات الجولات ومخططات التبعثر. صفِّ حسب عدد اللاعبين أو الصعود أو وضع اللعب أو لاعب واحد.",
+    ind: "Grafik interaktif dari perjalanan Slay the Spire 2 kiriman komunitas: tingkat kemenangan per lantai, Angkatan, dan dari waktu ke waktu, kerusakan per pertemuan, distribusi statistik perjalanan, dan diagram sebar. Filter menurut jumlah pemain, Angkatan, mode game, atau satu pemain.",
   },
   charts_tagline: {
     eng: "Interactive charts over community-submitted Slay the Spire 2 runs: win rate by floor, ascension and over time, damage per encounter, run stat distributions and scatters. Filter by player count, ascension, game mode, or a single player.",
@@ -203,6 +225,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) Koşu grafikleri (Türkçe).",
     zhs: "杀戮尖塔2 (STS2) 对局图表 (简体中文).",
     zht: "殺戮尖塔2 (STS2) 對局圖表 (繁體中文).",
+    ara: "مخططات تفاعلية لجولات Slay the Spire 2 التي أرسلها المجتمع: معدل الفوز حسب الطابق و الصعود وعبر الزمن، والضرر في كل مواجهة، وتوزيعات إحصائيات الجولات ومخططات التبعثر. صفِّ حسب عدد اللاعبين أو الصعود أو وضع اللعب أو لاعب واحد.",
+    ind: "Grafik interaktif dari perjalanan Slay the Spire 2 kiriman komunitas: tingkat kemenangan per lantai, Angkatan, dan dari waktu ke waktu, kerusakan per pertemuan, distribusi statistik perjalanan, dan diagram sebar. Filter menurut jumlah pemain, Angkatan, mode game, atau satu pemain.",
   },
   "community-stats_meta_description": {
     eng: "Fun community stats for Slay the Spire 2 (sts2): how players vote at every event, what kills runs most, win rates by ascension and character, and run records, all from community-submitted runs.",
@@ -220,6 +244,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) için eğlenceli topluluk istatistikleri: oyuncuların her etkinlikte ne seçtiği, oyunları en çok neyin bitirdiği, Yükseliş ve karaktere göre kazanma oranları ve rekorlar; hepsi topluluğun gönderdiği oyunlardan.",
     zhs: "杀戮尖塔2 (STS2)的趣味社区统计：玩家在每个事件中的选择、最常终结对局的原因、按进阶和角色划分的胜率以及对局纪录，全部来自社区提交的对局。",
     zht: "殺戮尖塔2 (STS2)的趣味社群統計：玩家在每個事件中的選擇、最常終結對局的原因、按晉階和角色劃分的勝率以及對局紀錄，全部來自社群提交的對局。",
+    ara: "إحصائيات مجتمعية ممتعة للعبة Slay the Spire 2 (sts2): كيف يختار اللاعبون في كل حدث، وما الذي ينهي الجولات غالبًا، ومعدلات الفوز حسب الصعود والشخصية، والأرقام القياسية للجولات، كلها من جولات أرسلها المجتمع.",
+    ind: "Statistik komunitas seru untuk Slay the Spire 2 (sts2): pilihan pemain di tiap event, apa yang paling sering mengakhiri perjalanan, tingkat kemenangan per Angkatan dan karakter, serta rekor perjalanan, semuanya dari perjalanan kiriman komunitas.",
   },
   "community-stats_tagline": {
     eng: "Fun community stats for Slay the Spire 2 (sts2): how players vote at every event, what kills runs most, win rates by ascension and character, and run records, all from community-submitted runs.",
@@ -237,6 +263,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) için eğlenceli topluluk istatistikleri: oyuncuların her etkinlikte ne seçtiği, oyunları en çok neyin bitirdiği, Yükseliş ve karaktere göre kazanma oranları ve rekorlar; hepsi topluluğun gönderdiği oyunlardan.",
     zhs: "杀戮尖塔2 (STS2)的趣味社区统计：玩家在每个事件中的选择、最常终结对局的原因、按进阶和角色划分的胜率以及对局纪录，全部来自社区提交的对局。",
     zht: "殺戮尖塔2 (STS2)的趣味社群統計：玩家在每個事件中的選擇、最常終結對局的原因、按晉階和角色劃分的勝率以及對局紀錄，全部來自社群提交的對局。",
+    ara: "إحصائيات مجتمعية ممتعة للعبة Slay the Spire 2 (sts2): كيف يختار اللاعبون في كل حدث، وما الذي ينهي الجولات غالبًا، ومعدلات الفوز حسب الصعود والشخصية، والأرقام القياسية للجولات، كلها من جولات أرسلها المجتمع.",
+    ind: "Statistik komunitas seru untuk Slay the Spire 2 (sts2): pilihan pemain di tiap event, apa yang paling sering mengakhiri perjalanan, tingkat kemenangan per Angkatan dan karakter, serta rekor perjalanan, semuanya dari perjalanan kiriman komunitas.",
   },
   compare_meta_description: {
     eng: "Compare Slay the Spire 2 characters side by side, stats, card pool breakdowns, keyword distributions, and starting decks.",
@@ -254,6 +282,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Tüm Slay the Spire 2 (STS2) karakterlerini yan yana karşılaştırın. İstatistikler, kart havuzları, anahtar kelimeler ve başlangıç desteleri. Türkçe.",
     zhs: "并排比较 杀戮尖塔2 (STS2) 的所有角色。属性、卡池、关键词和初始牌组。 简体中文.",
     zht: "並排比較 殺戮尖塔2 (STS2) 的所有角色。屬性、卡池、關鍵詞和初始牌組。 繁體中文.",
+    ara: "قارن بين شخصيات Slay the Spire 2 جنبًا إلى جنب: الإحصائيات وتفصيل مجموعات البطاقات وتوزيع الكلمات المفتاحية ومجموعات البداية.",
+    ind: "Bandingkan karakter Slay the Spire 2 berdampingan: statistik, rincian kumpulan kartu, distribusi kata kunci, dan dek awalan.",
   },
   developers_meta_description: {
     eng: "Integrate Slay the Spire 2 (sts2) game data into your projects. Public REST API with 22+ endpoints, embeddable tooltip widget, and multi-language support.",
@@ -271,6 +301,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) oyun verilerini projelerinize entegre edin. 22'den fazla uç noktaya sahip herkese açık REST API, gömülebilir ipucu bileşeni ve çoklu dil desteği. Türkçe.",
     zhs: "将 杀戮尖塔2 (STS2) 游戏数据集成到你的项目中。拥有 22+ 个端点的公开 REST API、可嵌入的提示框组件和多语言支持。 简体中文.",
     zht: "將 殺戮尖塔2 (STS2) 遊戲資料整合到你的專案中。擁有 22+ 個端點的公開 REST API、可嵌入的提示框元件和多語言支援。 繁體中文.",
+    ara: "ادمج بيانات لعبة Slay the Spire 2 (sts2) في مشاريعك. واجهة REST API عامة بأكثر من 22 نقطة وصول، وأداة تلميحات قابلة للتضمين، ودعم لعدة لغات.",
+    ind: "Integrasikan data game Slay the Spire 2 (sts2) ke proyekmu. REST API publik dengan 22+ endpoint, widget tooltip yang bisa disematkan, dan dukungan banyak bahasa.",
   },
   enchantments_meta_description: {
     eng: "Browse every enchantment in Slay the Spire 2. Filter by card type and view effects, stackability, and extra card text.",
@@ -288,6 +320,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) Büyüler (Türkçe). Her büyü, etkiler, kart türü kısıtlamaları, yığılabilirlik ve eklenen kart metni.",
     zhs: "杀戮尖塔2 (STS2) 附魔 (简体中文). 所有附魔、效果、卡牌类型限制、可叠加性和附加卡牌文本。",
     zht: "殺戮尖塔2 (STS2) 附魔 (繁體中文). 所有附魔、效果、卡牌類型限制、可疊加性和附加卡牌文字。",
+    ara: "تصفح كل التعزيزات في Slay the Spire 2. صفِّ حسب نوع البطاقة واطّلع على التأثيرات وقابلية التراكم ونص البطاقة الإضافي.",
+    ind: "Jelajahi semua efek kartu di Slay the Spire 2. Filter menurut tipe kartu dan lihat pengaruhnya, bisa ditumpuk atau tidak, dan teks kartu tambahannya.",
   },
   encounters_meta_description: {
     eng: "Browse every combat encounter in Slay the Spire 2. Filter by room type (Monster, Elite, Boss) and act to find specific fights and monster compositions.",
@@ -305,6 +339,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) Karşılaşmalar (Türkçe). Canavar bileşimleri ve perde yerleşimiyle her savaş karşılaşması, normal dövüşler, elitler ve bosslar.",
     zhs: "杀戮尖塔2 (STS2) 遭遇 (简体中文). 所有战斗遭遇、普通战斗、精英和Boss，附带怪物组成和所在阶段。",
     zht: "殺戮尖塔2 (STS2) 遭遇 (繁體中文). 所有戰鬥遭遇、普通戰鬥、精英和頭目，附帶怪物組成和所在幕。",
+    ara: "تصفح كل مواجهات القتال في Slay the Spire 2. صفِّ حسب نوع الغرفة (وحش، نخبة، زعيم) والفصل للعثور على معارك وتشكيلات وحوش محددة.",
+    ind: "Jelajahi semua pertemuan tempur di Slay the Spire 2. Filter menurut tipe ruangan (Monster, Elit, Bos) dan babak untuk menemukan perlawanan dan susunan monster tertentu.",
   },
   events_meta_description: {
     eng: "Browse every Slay the Spire 2 event including shrine events, Ancient encounters, and story events. View choices, dialogue, and outcomes.",
@@ -322,6 +358,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) Etkinlikler (Türkçe). Her tapınak, Kadim ve hikaye olayı, seçimler, diyaloglar, sunulan kalıntılar ve sonuçlar.",
     zhs: "杀戮尖塔2 (STS2) 事件 (简体中文). 所有神龛、远古者和剧情事件、选项、对话、遗物提供和结果。",
     zht: "殺戮尖塔2 (STS2) 事件 (繁體中文). 所有神龕、遠古者和劇情事件、選項、對話、遺物提供和結果。",
+    ara: "تصفح كل أحداث Slay the Spire 2، ومنها أحداث المزارات ولقاءات العتقاء وأحداث القصة. اطّلع على الخيارات والحوارات والنتائج.",
+    ind: "Jelajahi semua event Slay the Spire 2, termasuk event kuil, pertemuan dengan Ancient, dan event cerita. Lihat pilihan, dialog, dan hasilnya.",
   },
   exporter_meta_description: {
     eng: "The tool that generates every image on Spire Codex, free on the Steam Workshop for Slay the Spire 2. Card renders, Spine character art, animations, and texture dumps.",
@@ -339,6 +377,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Spire Codex'teki her görseli üreten araç, Slay the Spire 2 (STS2) için Steam Atölyesi'nde ücretsiz. Kart render'ları, Spine karakter çizimleri, animasyonlar ve doku dökümleri.",
     zhs: "生成 Spire Codex 上所有图片的工具，可在 杀戮尖塔2 (STS2) 的 Steam 创意工坊免费获取。卡牌渲染图、Spine 角色美术、动画和贴图导出。",
     zht: "產生 Spire Codex 上所有圖片的工具，可在 殺戮尖塔2 (STS2) 的 Steam 工作坊免費取得。卡牌渲染圖、Spine 角色美術、動畫和貼圖匯出。",
+    ara: "الأداة التي تولّد كل صور Spire Codex، مجانية على Steam Workshop للعبة Slay the Spire 2. صور البطاقات ورسوم الشخصيات بتقنية Spine والحركات ونسخ الخامات.",
+    ind: "Alat yang membuat semua gambar di Spire Codex, gratis di Steam Workshop untuk Slay the Spire 2. Render kartu, art karakter Spine, animasi, dan dump tekstur.",
   },
   exporter_tagline: {
     eng: "The tool that generates every image on Spire Codex, free on the Steam Workshop for Slay the Spire 2. Card renders, Spine character art, animations, and texture dumps.",
@@ -356,6 +396,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Spire Codex'teki her görseli üreten araç, Slay the Spire 2 (STS2) için Steam Atölyesi'nde ücretsiz. Kart render'ları, Spine karakter çizimleri, animasyonlar ve doku dökümleri.",
     zhs: "生成 Spire Codex 上所有图片的工具，可在 杀戮尖塔2 (STS2) 的 Steam 创意工坊免费获取。卡牌渲染图、Spine 角色美术、动画和贴图导出。",
     zht: "產生 Spire Codex 上所有圖片的工具，可在 殺戮尖塔2 (STS2) 的 Steam 工作坊免費取得。卡牌渲染圖、Spine 角色美術、動畫和貼圖匯出。",
+    ara: "الأداة التي تولّد كل صور Spire Codex، مجانية على Steam Workshop للعبة Slay the Spire 2. صور البطاقات ورسوم الشخصيات بتقنية Spine والحركات ونسخ الخامات.",
+    ind: "Alat yang membuat semua gambar di Spire Codex, gratis di Steam Workshop untuk Slay the Spire 2. Render kartu, art karakter Spine, animasi, dan dump tekstur.",
   },
   giveaway_meta_description: {
     eng: "Enter to win a Slay the Spire 2 shadowbox. Sign in with Steam, get the mod, and upload a run. No purchase necessary. US residents only. July 7 to August 7, 2026.",
@@ -373,6 +415,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Enter to win a Slay the Spire 2 shadowbox. Sign in with Steam, get the mod, and upload a run. No purchase necessary. US residents only. July 7 to August 7, 2026.",
     zhs: "Enter to win a Slay the Spire 2 shadowbox. Sign in with Steam, get the mod, and upload a run. No purchase necessary. US residents only. July 7 to August 7, 2026.",
     zht: "Enter to win a Slay the Spire 2 shadowbox. Sign in with Steam, get the mod, and upload a run. No purchase necessary. US residents only. July 7 to August 7, 2026.",
+    ara: "شارك لتربح صندوق عرض Slay the Spire 2. سجّل الدخول عبر Steam واحصل على المود وارفع جولة. لا يلزم الشراء. لسكان الولايات المتحدة فقط. من 7 يوليو إلى 7 أغسطس 2026.",
+    ind: "Ikut undian untuk memenangkan shadowbox Slay the Spire 2. Masuk dengan Steam, pasang mod, dan unggah satu run. Tanpa pembelian. Khusus penduduk AS. 7 Juli sampai 7 Agustus 2026.",
   },
   giveaway_tagline: {
     eng: "Enter to win a Slay the Spire 2 shadowbox. Sign in with Steam, get the mod, and upload a run. No purchase necessary. US residents only. July 7 to August 7, 2026.",
@@ -390,6 +434,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Enter to win a Slay the Spire 2 shadowbox. Sign in with Steam, get the mod, and upload a run. No purchase necessary. US residents only. July 7 to August 7, 2026.",
     zhs: "Enter to win a Slay the Spire 2 shadowbox. Sign in with Steam, get the mod, and upload a run. No purchase necessary. US residents only. July 7 to August 7, 2026.",
     zht: "Enter to win a Slay the Spire 2 shadowbox. Sign in with Steam, get the mod, and upload a run. No purchase necessary. US residents only. July 7 to August 7, 2026.",
+    ara: "شارك لتربح صندوق عرض Slay the Spire 2. سجّل الدخول عبر Steam واحصل على المود وارفع جولة. لا يلزم الشراء. لسكان الولايات المتحدة فقط. من 7 يوليو إلى 7 أغسطس 2026.",
+    ind: "Ikut undian untuk memenangkan shadowbox Slay the Spire 2. Masuk dengan Steam, pasang mod, dan unggah satu run. Tanpa pembelian. Khusus penduduk AS. 7 Juli sampai 7 Agustus 2026.",
   },
   guides_meta_description: {
     eng: "Community strategy guides, character breakdowns, and tips for climbing the Spire.",
@@ -407,6 +453,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Topluluk strateji rehberleri, karakter analizleri ve Spire'a tırmanma ipuçları. Türkçe.",
     zhs: "社区策略攻略、角色解析、攀登尖塔的技巧。 简体中文.",
     zht: "社群策略攻略、角色解析、攀登尖塔的技巧。 繁體中文.",
+    ara: "أدلة استراتيجية من المجتمع وتحليلات للشخصيات ونصائح لتسلق البرج.",
+    ind: "Panduan strategi komunitas, ulasan karakter, dan tips mendaki Spire.",
   },
   guides_tagline: {
     eng: "Community strategy guides, character breakdowns, and tips for climbing the Spire.",
@@ -424,6 +472,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Topluluk strateji rehberleri, karakter analizleri ve Spire'a tırmanma ipuçları.",
     zhs: "社区策略攻略、角色解析、攀登尖塔的技巧。",
     zht: "社群策略攻略、角色解析、攀登尖塔的技巧。",
+    ara: "أدلة استراتيجية من المجتمع وتحليلات للشخصيات ونصائح لتسلق البرج.",
+    ind: "Panduan strategi komunitas, ulasan karakter, dan tips mendaki Spire.",
   },
   guides_submit_meta_description: {
     eng: "Submit a community strategy guide for Slay the Spire 2 (sts2). Share character guides, boss strategies, and deck-building tips with the Spire Codex community.",
@@ -441,6 +491,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) için bir topluluk strateji rehberi gönder. Karakter rehberlerini, boss stratejilerini ve deste kurma ipuçlarını Spire Codex topluluğuyla paylaş.",
     zhs: "提交一篇 杀戮尖塔2 (STS2) 社区攻略。与 Spire Codex 社区分享角色攻略、Boss 打法和牌组构筑技巧。",
     zht: "提交一篇 殺戮尖塔2 (STS2) 社群攻略。與 Spire Codex 社群分享角色攻略、頭目打法和牌組構築技巧。",
+    ara: "أرسل دليلًا استراتيجيًا مجتمعيًا للعبة Slay the Spire 2 (sts2). شارك أدلة الشخصيات واستراتيجيات الزعماء ونصائح بناء المجموعات مع مجتمع Spire Codex.",
+    ind: "Kirim panduan strategi komunitas untuk Slay the Spire 2 (sts2). Bagikan panduan karakter, strategi bos, dan tips menyusun dek dengan komunitas Spire Codex.",
   },
   guides_submit_tagline: {
     eng: "Submit a community strategy guide for Slay the Spire 2 (sts2). Share character guides, boss strategies, and deck-building tips with the Spire Codex community.",
@@ -458,6 +510,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) için bir topluluk strateji rehberi gönder. Karakter rehberlerini, boss stratejilerini ve deste kurma ipuçlarını Spire Codex topluluğuyla paylaş.",
     zhs: "提交一篇 杀戮尖塔2 (STS2) 社区攻略。与 Spire Codex 社区分享角色攻略、Boss 打法和牌组构筑技巧。",
     zht: "提交一篇 殺戮尖塔2 (STS2) 社群攻略。與 Spire Codex 社群分享角色攻略、頭目打法和牌組構築技巧。",
+    ara: "أرسل دليلًا استراتيجيًا مجتمعيًا للعبة Slay the Spire 2 (sts2). شارك أدلة الشخصيات واستراتيجيات الزعماء ونصائح بناء المجموعات مع مجتمع Spire Codex.",
+    ind: "Kirim panduan strategi komunitas untuk Slay the Spire 2 (sts2). Bagikan panduan karakter, strategi bos, dan tips menyusun dek dengan komunitas Spire Codex.",
   },
   images_meta_description: {
     eng: "Browse and download Slay the Spire 2 game assets, card portraits, relic icons, monster sprites, character art, and more.",
@@ -475,6 +529,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) oyun görsellerine göz at ve indir: kart resimleri, kalıntı simgeleri, canavar sprite'ları, karakter çizimleri ve dahası.",
     zhs: "浏览并下载 杀戮尖塔2 (STS2) 的游戏素材：卡牌插图、遗物图标、怪物精灵图、角色美术等。",
     zht: "瀏覽並下載 殺戮尖塔2 (STS2) 的遊戲素材：卡牌插圖、遺物圖示、怪物精靈圖、角色美術等。",
+    ara: "تصفح ونزّل أصول لعبة Slay the Spire 2: رسوم البطاقات وأيقونات الآثار وصور الوحوش ورسوم الشخصيات وغيرها.",
+    ind: "Jelajahi dan unduh aset game Slay the Spire 2: potret kartu, ikon pusaka, sprite monster, art karakter, dan lainnya.",
   },
   images_tagline: {
     eng: "Browse and download Slay the Spire 2 game assets, card portraits, relic icons, monster sprites, character art, and more.",
@@ -492,6 +548,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) oyun görsellerine göz at ve indir: kart resimleri, kalıntı simgeleri, canavar sprite'ları, karakter çizimleri ve dahası.",
     zhs: "浏览并下载 杀戮尖塔2 (STS2) 的游戏素材：卡牌插图、遗物图标、怪物精灵图、角色美术等。",
     zht: "瀏覽並下載 殺戮尖塔2 (STS2) 的遊戲素材：卡牌插圖、遺物圖示、怪物精靈圖、角色美術等。",
+    ara: "تصفح ونزّل أصول لعبة Slay the Spire 2: رسوم البطاقات وأيقونات الآثار وصور الوحوش ورسوم الشخصيات وغيرها.",
+    ind: "Jelajahi dan unduh aset game Slay the Spire 2: potret kartu, ikon pusaka, sprite monster, art karakter, dan lainnya.",
   },
   keywords_meta_description: {
     eng: "Every Slay the Spire 2 (sts2) card keyword and game term, Exhaust, Ethereal, Innate, Retain, Sly, Eternal, and more, with all cards using each.",
@@ -509,6 +567,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) Kart Anahtar Kelimeleri (Türkçe). Her kart anahtar kelimesi ve oyun terimi, her birini kullanan tüm kartlarla.",
     zhs: "杀戮尖塔2 (STS2) 卡牌关键词 (简体中文). 所有卡牌关键词和游戏术语，以及使用它们的全部卡牌。",
     zht: "殺戮尖塔2 (STS2) 卡牌關鍵詞 (繁體中文). 所有卡牌關鍵詞和遊戲術語，以及使用它們的全部卡牌。",
+    ara: "كل الكلمات المفتاحية للبطاقات ومصطلحات اللعبة في Slay the Spire 2 (sts2): استهلاك وزائلة وفطرية واحتفاظ ومخادعة وأبدية وغيرها، مع كل البطاقات التي تستخدم كلًّا منها.",
+    ind: "Semua kata kunci kartu dan istilah game Slay the Spire 2 (sts2): Hangus, Rapuh, Bawaan, Pertahankan, Lihai, Abadi, dan lainnya, lengkap dengan semua kartu yang memakainya.",
   },
   "knowledge-demon_meta_description": {
     eng: "Knowledge Demon, a Discord bot for Slay the Spire 2 communities. Slash-command lookups for cards, relics, monsters, and events, plus moderation and news feeds.",
@@ -526,6 +586,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Knowledge Demon, Slay the Spire 2 (STS2) toplulukları için bir Discord botu. Eğik çizgi komutlarıyla kart, kalıntı, canavar ve etkinlik sorgulama, ayrıca moderasyon ve haber akışları.",
     zhs: "Knowledge Demon，面向 杀戮尖塔2 (STS2) 社区的 Discord 机器人。用斜杠命令查询卡牌、遗物、怪物和事件，并提供管理功能和新闻推送。",
     zht: "Knowledge Demon，面向 殺戮尖塔2 (STS2) 社群的 Discord 機器人。用斜線指令查詢卡牌、遺物、怪物和事件，並提供管理功能和新聞推送。",
+    ara: "Knowledge Demon، بوت Discord لمجتمعات Slay the Spire 2. بحث بأوامر الشرطة المائلة عن البطاقات والآثار والوحوش والأحداث، إضافة إلى الإشراف وخلاصات الأخبار.",
+    ind: "Knowledge Demon, bot Discord untuk komunitas Slay the Spire 2. Pencarian kartu, pusaka, monster, dan event lewat slash command, plus moderasi dan feed berita.",
   },
   "knowledge-demon_tagline": {
     eng: "Knowledge Demon, a Discord bot for Slay the Spire 2 communities. Slash-command lookups for cards, relics, monsters, and events, plus moderation and news feeds.",
@@ -543,6 +605,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Knowledge Demon, Slay the Spire 2 (STS2) toplulukları için bir Discord botu. Eğik çizgi komutlarıyla kart, kalıntı, canavar ve etkinlik sorgulama, ayrıca moderasyon ve haber akışları.",
     zhs: "Knowledge Demon，面向 杀戮尖塔2 (STS2) 社区的 Discord 机器人。用斜杠命令查询卡牌、遗物、怪物和事件，并提供管理功能和新闻推送。",
     zht: "Knowledge Demon，面向 殺戮尖塔2 (STS2) 社群的 Discord 機器人。用斜線指令查詢卡牌、遺物、怪物和事件，並提供管理功能和新聞推送。",
+    ara: "Knowledge Demon، بوت Discord لمجتمعات Slay the Spire 2. بحث بأوامر الشرطة المائلة عن البطاقات والآثار والوحوش والأحداث، إضافة إلى الإشراف وخلاصات الأخبار.",
+    ind: "Knowledge Demon, bot Discord untuk komunitas Slay the Spire 2. Pencarian kartu, pusaka, monster, dan event lewat slash command, plus moderasi dan feed berita.",
   },
   leaderboards_meta_description: {
     eng: "Slay the Spire 2 (sts2) leaderboards: the fastest wins and highest ascensions from community-submitted runs, for every character, player count, and game mode.",
@@ -560,6 +624,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Topluluktan en hızlı galibiyetler ve en yüksek yükselişler. Gönderilen her turu inceleyin veya belirli bir karaktere odaklanın.",
     zhs: "来自社区的最快胜利和最高进阶。浏览每个提交的对局或深入查看特定角色。",
     zht: "來自社群的最快勝利和最高晉階。瀏覽每個提交的對局或深入檢視特定角色。",
+    ara: "لوحات متصدري Slay the Spire 2 (sts2): أسرع الانتصارات وأعلى مستويات الصعود من جولات أرسلها المجتمع، لكل شخصية وعدد لاعبين ووضع لعب.",
+    ind: "Peringkat Slay the Spire 2 (sts2): kemenangan tercepat dan Angkatan tertinggi dari perjalanan kiriman komunitas, untuk tiap karakter, jumlah pemain, dan mode game.",
   },
   leaderboards_encounters_meta_description: {
     eng: "Per-encounter Slay the Spire 2 stats, fatal counts, average damage, average turns, and a per-character breakdown for every monster, elite, and boss. Live aggregation from submitted community runs.",
@@ -577,6 +643,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "En ölümcül karşılaşmalar ve bitirdikleri koşular, perde ve yükselişe göre.",
     zhs: "按阶段和进阶等级列出的最致命遭遇及被它们终结的对局。",
     zht: "按幕次和晉階等級列出的最致命遭遇及被它們終結的對局。",
+    ara: "إحصائيات Slay the Spire 2 لكل مواجهة: عدد الوفيات ومتوسط الضرر ومتوسط الأدوار وتفصيل حسب الشخصية لكل وحش ونخبة وزعيم. تجميع حي من جولات المجتمع المرسلة.",
+    ind: "Statistik Slay the Spire 2 per pertemuan: jumlah kematian, rata-rata kerusakan, rata-rata giliran, dan rincian per karakter untuk tiap monster, elit, dan bos. Agregasi langsung dari perjalanan kiriman komunitas.",
   },
   leaderboards_encounters_tagline: {
     eng: "Per-encounter Slay the Spire 2 stats, fatal counts, average damage, average turns, and a per-character breakdown for every monster, elite, and boss. Live aggregation from submitted community runs.",
@@ -594,6 +662,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "En ölümcül karşılaşmalar ve bitirdikleri koşular, perde ve yükselişe göre.",
     zhs: "按阶段和进阶等级列出的最致命遭遇及被它们终结的对局。",
     zht: "按幕次和晉階等級列出的最致命遭遇及被它們終結的對局。",
+    ara: "إحصائيات Slay the Spire 2 لكل مواجهة: عدد الوفيات ومتوسط الضرر ومتوسط الأدوار وتفصيل حسب الشخصية لكل وحش ونخبة وزعيم. تجميع حي من جولات المجتمع المرسلة.",
+    ind: "Statistik Slay the Spire 2 per pertemuan: jumlah kematian, rata-rata kerusakan, rata-rata giliran, dan rincian per karakter untuk tiap monster, elit, dan bos. Agregasi langsung dari perjalanan kiriman komunitas.",
   },
   leaderboards_metrics_meta_description: {
     eng: "Every Slay the Spire 2 (sts2) card ranked by Codex Elo, Codex Score, win rate and pick rate. Revealed-preference ratings from community card-reward picks, plus per-act splits and raw counts.",
@@ -611,6 +681,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Her kart Codex Elo, Codex Puanı, kazanma oranı ve seçim oranına göre sıralanır, perde başına dağılımla, gönderilen her turdan hesaplanır.",
     zhs: "每张卡牌按 Codex Elo、Codex 评分、胜率和选择率排名，含分阶段数据，从每个提交的对局计算。",
     zht: "每張卡牌按 Codex Elo、Codex 評分、勝率和選擇率排名，含分幕資料，從每個提交的對局計算。",
+    ara: "كل بطاقات Slay the Spire 2 (sts2) مرتبة حسب Codex Elo و Codex Score ومعدل الفوز ومعدل الاختيار. تقييمات مبنية على التفضيل الفعلي من اختيارات المجتمع في مكافآت البطاقات، مع التقسيم حسب الفصل والأعداد الخام.",
+    ind: "Semua kartu Slay the Spire 2 (sts2) diurutkan menurut Codex Elo, Codex Score, tingkat kemenangan, dan tingkat pilih. Nilai preferensi nyata dari pilihan kartu komunitas, plus pembagian per babak dan angka mentah.",
   },
   leaderboards_metrics_tagline: {
     eng: "Every card ranked by Codex Elo, Codex Score, win rate and pick rate, with per-act splits, computed from every submitted run.",
@@ -628,6 +700,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Her kart Codex Elo, Codex Puanı, kazanma oranı ve seçim oranına göre sıralanır, perde başına dağılımla, gönderilen her turdan hesaplanır.",
     zhs: "每张卡牌按 Codex Elo、Codex 评分、胜率和选择率排名，含分阶段数据，从每个提交的对局计算。",
     zht: "每張卡牌按 Codex Elo、Codex 評分、勝率和選擇率排名，含分幕資料，從每個提交的對局計算。",
+    ara: "كل البطاقات مرتبة حسب Codex Elo و Codex Score ومعدل الفوز ومعدل الاختيار، مع التقسيم حسب الفصل، محسوبة من كل الجولات المرسلة.",
+    ind: "Semua kartu diurutkan menurut Codex Elo, Codex Score, tingkat kemenangan, dan tingkat pilih, dengan pembagian per babak, dihitung dari semua perjalanan kiriman.",
   },
   leaderboards_scoring_meta_description: {
     eng: "How Codex Score ranks every Slay the Spire 2 (sts2) card, relic, and potion. Bayesian-shrunk win rate, S-through-F tier bands, and full formula methodology.",
@@ -645,6 +719,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Codex Score, Slay the Spire 2 (STS2) oyunundaki her kartı, kalıntıyı ve iksiri nasıl sıralar. Bayes ile büzülmüş kazanma oranı, S'den F'ye katman bantları ve tam formül yöntemi. Türkçe.",
     zhs: "Codex Score 如何为 杀戮尖塔2 (STS2) 的每张卡牌、遗物和药水评分。贝叶斯收缩胜率、S 到 F 的分级区间，以及完整的公式说明。 简体中文.",
     zht: "Codex Score 如何為 殺戮尖塔2 (STS2) 的每張卡牌、遺物和藥水評分。貝氏收縮勝率、S 到 F 的分級區間，以及完整的公式說明。 繁體中文.",
+    ara: "كيف يرتّب Codex Score كل بطاقة وأثر وجرعة في Slay the Spire 2 (sts2). معدل فوز مصحّح بطريقة بايز، وفئات تصنيف من S إلى F، وشرح كامل للمعادلة والمنهجية.",
+    ind: "Cara Codex Score memeringkat semua kartu, pusaka, dan ramuan Slay the Spire 2 (sts2). Tingkat kemenangan dengan penyusutan Bayes, tier S sampai F, dan metodologi rumus lengkap.",
   },
   leaderboards_scoring_tagline: {
     eng: "How Codex Score ranks every Slay the Spire 2 (sts2) card, relic, and potion. Bayesian-shrunk win rate, S-through-F tier bands, and full formula methodology.",
@@ -662,6 +738,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Codex Score, Slay the Spire 2 (STS2) oyunundaki her kartı, kalıntıyı ve iksiri nasıl sıralar. Bayes ile büzülmüş kazanma oranı, S'den F'ye katman bantları ve tam formül yöntemi. Türkçe.",
     zhs: "Codex Score 如何为 杀戮尖塔2 (STS2) 的每张卡牌、遗物和药水评分。贝叶斯收缩胜率、S 到 F 的分级区间，以及完整的公式说明。 简体中文.",
     zht: "Codex Score 如何為 殺戮尖塔2 (STS2) 的每張卡牌、遺物和藥水評分。貝氏收縮勝率、S 到 F 的分級區間，以及完整的公式說明。 繁體中文.",
+    ara: "كيف يرتّب Codex Score كل بطاقة وأثر وجرعة في Slay the Spire 2 (sts2). معدل فوز مصحّح بطريقة بايز، وفئات تصنيف من S إلى F، وشرح كامل للمعادلة والمنهجية.",
+    ind: "Cara Codex Score memeringkat semua kartu, pusaka, dan ramuan Slay the Spire 2 (sts2). Tingkat kemenangan dengan penyusutan Bayes, tier S sampai F, dan metodologi rumus lengkap.",
   },
   leaderboards_stats_tagline: {
     eng: "Slay the Spire 2 stats, win rates by character, card pick rates, most common relics, deadliest encounters. Community-driven data from submitted runs.",
@@ -679,6 +757,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Karakter başına kazanma oranları, kart seçim oranları, en yaygın kalıntılar, en ölümcül karşılaşmalar, gönderilen her turdan hesaplanır.",
     zhs: "按角色的胜率、卡牌选择率、最常见遗物、最致命遭遇, 从每个提交的对局计算。",
     zht: "按角色的勝率、卡牌選擇率、最常見遺物、最致命遭遇, 從每個提交的對局計算。",
+    ara: "إحصائيات Slay the Spire 2: معدلات الفوز حسب الشخصية، ومعدلات اختيار البطاقات، وأكثر الآثار شيوعًا، وأخطر المواجهات. بيانات مجتمعية من الجولات المرسلة.",
+    ind: "Statistik Slay the Spire 2: tingkat kemenangan per karakter, tingkat pilih kartu, pusaka paling umum, pertemuan paling mematikan. Data komunitas dari perjalanan kiriman.",
   },
   leaderboards_submit_meta_description: {
     eng: "Upload your Slay the Spire 2 (sts2) run history. Drop .run files or paste JSON to share with the community and feed deck-choice and win-rate analytics.",
@@ -696,6 +776,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Liderlik tablolarına ve topluluk istatistiklerine katkıda bulunmak için .run dosyalarınızı yükleyin. .run dosyalarınız tarayıcınızda yerel olarak ayrıştırılır, gönder butonuna basana kadar hiçbir şey makinenizden çıkmaz.",
     zhs: "上传你的 .run 文件为排行榜和社区统计做贡献。你的 .run 文件在浏览器本地解析, 在点击提交之前不会离开你的设备。",
     zht: "上傳你的 .run 檔案為排行榜和社群統計做貢獻。你的 .run 檔案在瀏覽器本地解析, 在點選提交之前不會離開你的裝置。",
+    ara: "ارفع سجل جولاتك في Slay the Spire 2 (sts2). أفلت ملفات .run أو الصق JSON لتشاركها مع المجتمع وتغذّي تحليلات اختيارات المجموعة ومعدل الفوز.",
+    ind: "Unggah riwayat perjalanan Slay the Spire 2 (sts2) milikmu. Taruh file .run atau tempel JSON untuk berbagi dengan komunitas dan menyumbang ke analitik pilihan dek dan tingkat kemenangan.",
   },
   leaderboards_submit_tagline: {
     eng: "Upload your Slay the Spire 2 (sts2) run history. Drop .run files or paste JSON to share with the community and feed deck-choice and win-rate analytics.",
@@ -713,6 +795,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Liderlik tablolarına ve topluluk istatistiklerine katkıda bulunmak için .run dosyalarınızı yükleyin. .run dosyalarınız tarayıcınızda yerel olarak ayrıştırılır, gönder butonuna basana kadar hiçbir şey makinenizden çıkmaz.",
     zhs: "上传你的 .run 文件为排行榜和社区统计做贡献。你的 .run 文件在浏览器本地解析, 在点击提交之前不会离开你的设备。",
     zht: "上傳你的 .run 檔案為排行榜和社群統計做貢獻。你的 .run 檔案在瀏覽器本地解析, 在點選提交之前不會離開你的裝置。",
+    ara: "ارفع سجل جولاتك في Slay the Spire 2 (sts2). أفلت ملفات .run أو الصق JSON لتشاركها مع المجتمع وتغذّي تحليلات اختيارات المجموعة ومعدل الفوز.",
+    ind: "Unggah riwayat perjalanan Slay the Spire 2 (sts2) milikmu. Taruh file .run atau tempel JSON untuk berbagi dengan komunitas dan menyumbang ke analitik pilihan dek dan tingkat kemenangan.",
   },
   mechanics_meta_description: {
     eng: "Slay the Spire 2 (sts2) mechanics, card and relic drop rates, gold rewards, map generation, combat formulas, and secrets. Pulled straight from the game's source.",
@@ -730,6 +814,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2'nin derlenmiş kaynak kodundan çıkarılan her drop oranı, ödül şansı ve oyun formülü. Tüm değerler kesindir.",
     zhs: "从《杀戮尖塔2》反编译源代码中提取的每个掉落率、奖励几率和游戏公式。所有数值均精确。",
     zht: "從《殺戮尖塔2》反編譯原始碼中提取的每個掉落率、獎勵機率和遊戲公式。所有數值均精確。",
+    ara: "آليات Slay the Spire 2 (sts2): معدلات ظهور البطاقات والآثار، ومكافآت الذهب، وتوليد الخريطة، ومعادلات القتال، والأسرار. مأخوذة مباشرة من كود اللعبة.",
+    ind: "Mekanik Slay the Spire 2 (sts2): peluang muncul kartu dan pusaka, hadiah emas, pembuatan peta, rumus pertarungan, dan rahasia. Diambil langsung dari kode sumber game.",
   },
   mechanics_tagline: {
     eng: "Every drop rate, reward chance, and game formula extracted from Slay the Spire 2's decompiled source code. All values are exact.",
@@ -747,6 +833,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2'nin derlenmiş kaynak kodundan çıkarılan her drop oranı, ödül şansı ve oyun formülü. Tüm değerler kesindir.",
     zhs: "从《杀戮尖塔2》反编译源代码中提取的每个掉落率、奖励几率和游戏公式。所有数值均精确。",
     zht: "從《殺戮尖塔2》反編譯原始碼中提取的每個掉落率、獎勵機率和遊戲公式。所有數值均精確。",
+    ara: "كل نسب الظهور وفرص المكافآت ومعادلات اللعبة مستخرجة من الشيفرة المصدرية المفككة للعبة Slay the Spire 2. كل القيم دقيقة.",
+    ind: "Semua drop rate, peluang hadiah, dan rumus game diambil dari kode sumber Slay the Spire 2 hasil dekompilasi. Semua nilainya persis.",
   },
   merchant_meta_description: {
     eng: "Complete Slay the Spire 2 (sts2) merchant price guide with card, relic, and potion costs, card removal pricing, and Fake Merchant relic details.",
@@ -764,6 +852,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) için eksiksiz tüccar fiyat rehberi: kart, kalıntı ve iksir fiyatları, kart kaldırma ücreti ve Sahte Tüccar kalıntı ayrıntıları. Türkçe.",
     zhs: "杀戮尖塔2 (STS2) 商人价格完整指南：卡牌、遗物、药水价格，删卡费用，以及假商人遗物详情。 简体中文.",
     zht: "殺戮尖塔2 (STS2) 商人價格完整指南：卡牌、遺物、藥水價格，刪卡費用，以及假商人遺物詳情。 繁體中文.",
+    ara: "دليل كامل لأسعار التاجر في Slay the Spire 2 (sts2) يشمل تكاليف البطاقات والآثار والجرعات، وسعر إزالة البطاقات، وتفاصيل آثار التاجر المزيف.",
+    ind: "Panduan lengkap harga pedagang Slay the Spire 2 (sts2): harga kartu, pusaka, dan ramuan, biaya pembuangan kartu, dan detail pusaka Pedagang Palsu.",
   },
   mod_meta_description: {
     eng: "The official Spire Codex mod for Slay the Spire 2, from the Steam Workshop. Automatic run uploads, in-game community insights, and a route planner.",
@@ -781,6 +871,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) için resmi Spire Codex modu, Steam Atölyesi'nde. Otomatik oyun yükleme, oyun içi topluluk verileri ve bir rota planlayıcı.",
     zhs: "杀戮尖塔2 (STS2) 的官方 Spire Codex 模组，可在 Steam 创意工坊获取。自动上传对局、游戏内社区数据和路线规划器。",
     zht: "殺戮尖塔2 (STS2) 的官方 Spire Codex 模組，可在 Steam 工作坊取得。自動上傳對局、遊戲內社群資料和路線規劃器。",
+    ara: "المود الرسمي من Spire Codex للعبة Slay the Spire 2، من Steam Workshop. رفع تلقائي للجولات، ومعلومات مجتمعية داخل اللعبة، ومخطِّط للمسار.",
+    ind: "Mod resmi Spire Codex untuk Slay the Spire 2, dari Steam Workshop. Unggah perjalanan otomatis, wawasan komunitas di dalam game, dan perencana rute.",
   },
   mod_tagline: {
     eng: "The official Spire Codex mod for Slay the Spire 2, from the Steam Workshop. Automatic run uploads, in-game community insights, and a route planner.",
@@ -798,6 +890,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) için resmi Spire Codex modu, Steam Atölyesi'nde. Otomatik oyun yükleme, oyun içi topluluk verileri ve bir rota planlayıcı.",
     zhs: "杀戮尖塔2 (STS2) 的官方 Spire Codex 模组，可在 Steam 创意工坊获取。自动上传对局、游戏内社区数据和路线规划器。",
     zht: "殺戮尖塔2 (STS2) 的官方 Spire Codex 模組，可在 Steam 工作坊取得。自動上傳對局、遊戲內社群資料和路線規劃器。",
+    ara: "المود الرسمي من Spire Codex للعبة Slay the Spire 2، من Steam Workshop. رفع تلقائي للجولات، ومعلومات مجتمعية داخل اللعبة، ومخطِّط للمسار.",
+    ind: "Mod resmi Spire Codex untuk Slay the Spire 2, dari Steam Workshop. Unggah perjalanan otomatis, wawasan komunitas di dalam game, dan perencana rute.",
   },
   modifiers_meta_description: {
     eng: "All 16 Slay the Spire 2 (sts2) custom-mode modifiers, Draft, Sealed Deck, Insanity, and more. Effects, deck rules, and Neow interactions for each.",
@@ -815,6 +909,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) özel modundaki 16 değiştiricinin tamamı: Taslak, Mühürlü Deste, Delilik ve dahası. Her birinin etkileri, deste kuralları ve Neow etkileşimleri.",
     zhs: "杀戮尖塔2 (STS2)自定模式的全部16种修正规则：选牌、现开套牌、精神错乱等。包含每种的效果、牌组规则和与涅奥的互动。",
     zht: "殺戮尖塔2 (STS2)自訂模式的全部16種修正規則：選牌、現開牌組、精神錯亂等。包含每種的效果、牌組規則和與涅奧的互動。",
+    ara: "كل معدّلات الوضع المخصص الـ16 في Slay the Spire 2 (sts2): درافت ومجموعة مختومة وجنون وغيرها. التأثيرات وقواعد المجموعة والتفاعل مع Neow لكل منها.",
+    ind: "Semua 16 efek Mode Kustom Slay the Spire 2 (sts2): Pemilihan, Dek Tersegel, Kegilaan, dan lainnya. Pengaruh, aturan dek, dan interaksi dengan Neow untuk masing-masing.",
   },
   modifiers_tagline: {
     eng: "All 16 Slay the Spire 2 (sts2) custom-mode modifiers, Draft, Sealed Deck, Insanity, and more. Effects, deck rules, and Neow interactions for each.",
@@ -832,6 +928,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) özel modundaki 16 değiştiricinin tamamı: Taslak, Mühürlü Deste, Delilik ve dahası. Her birinin etkileri, deste kuralları ve Neow etkileşimleri.",
     zhs: "杀戮尖塔2 (STS2)自定模式的全部16种修正规则：选牌、现开套牌、精神错乱等。包含每种的效果、牌组规则和与涅奥的互动。",
     zht: "殺戮尖塔2 (STS2)自訂模式的全部16種修正規則：選牌、現開牌組、精神錯亂等。包含每種的效果、牌組規則和與涅奧的互動。",
+    ara: "كل معدّلات الوضع المخصص الـ16 في Slay the Spire 2 (sts2): درافت ومجموعة مختومة وجنون وغيرها. التأثيرات وقواعد المجموعة والتفاعل مع Neow لكل منها.",
+    ind: "Semua 16 efek Mode Kustom Slay the Spire 2 (sts2): Pemilihan, Dek Tersegel, Kegilaan, dan lainnya. Pengaruh, aturan dek, dan interaksi dengan Neow untuk masing-masing.",
   },
   monsters_meta_description: {
     eng: "Browse every monster in Slay the Spire 2, normals, elites, and bosses. View HP values, moves, damage stats, and ascension scaling.",
@@ -849,6 +947,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) Canavarlar (Türkçe). Her canavar, HP aralıkları, saldırı kalıpları, doğuştan güçler ve yükseliş ölçeklenmesi.",
     zhs: "杀戮尖塔2 (STS2) 怪物 (简体中文). 所有怪物、生命值范围、攻击模式、固有能力和进阶成长。",
     zht: "殺戮尖塔2 (STS2) 怪物 (繁體中文). 所有怪物、生命值範圍、攻擊模式、固有能力和晉階成長。",
+    ara: "تصفح كل وحوش Slay the Spire 2: العاديون والنخب والزعماء. اطّلع على قيم HP والحركات وإحصائيات الضرر وتغيّرها مع الصعود.",
+    ind: "Jelajahi semua monster di Slay the Spire 2: biasa, elit, dan bos. Lihat nilai HP, gerakan, statistik kerusakan, dan skala Angkatan.",
   },
   news_tagline: {
     eng: "Patch notes, dev updates, and community announcements from Mega Crit, plus press coverage. Mirrored from Steam, read each post in full or follow the original link.",
@@ -866,6 +966,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Mega Crit'ten yama notları, geliştirici güncellemeleri ve topluluk duyuruları, ayrıca basın haberleri. Steam'den yansıtılır, her gönderiyi tam olarak okuyun veya orijinal bağlantıyı takip edin.",
     zhs: "Mega Crit 的补丁说明、开发者更新和社区公告，以及新闻媒体报道。镜像自 Steam, 完整阅读每篇文章或跟进原始链接。",
     zht: "Mega Crit 的補丁說明、開發者更新和社群公告，以及新聞媒體報道。映象自 Steam, 完整閱讀每篇文章或跟進原始連結。",
+    ara: "ملاحظات التحديثات وأخبار المطورين وإعلانات المجتمع من Mega Crit، إضافة إلى التغطية الصحفية. منسوخة من Steam، اقرأ كل منشور كاملًا أو اتبع الرابط الأصلي.",
+    ind: "Catatan patch, kabar developer, dan pengumuman komunitas dari Mega Crit, plus liputan pers. Dicerminkan dari Steam, baca tiap kiriman secara penuh atau ikuti tautan aslinya.",
   },
   overlay_meta_description: {
     eng: "The Overwolf companion overlay for Slay the Spire 2. In-game card, relic, and monster lookups plus a live run tracker that reads your save file.",
@@ -883,6 +985,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) için Overwolf yardımcı arayüzü. Oyun içinde kart, kalıntı ve canavar sorgulama, ayrıca kayıt dosyanı okuyan canlı bir oyun takipçisi.",
     zhs: "杀戮尖塔2 (STS2) 的 Overwolf 伴侣叠加层。可在游戏内查询卡牌、遗物和怪物，并通过读取存档实时追踪对局。",
     zht: "殺戮尖塔2 (STS2) 的 Overwolf 伴侶疊加層。可在遊戲內查詢卡牌、遺物和怪物，並透過讀取存檔即時追蹤對局。",
+    ara: "واجهة Overwolf المرافقة للعبة Slay the Spire 2. بحث داخل اللعبة عن البطاقات والآثار والوحوش، ومتتبع حي للجولة يقرأ ملف الحفظ.",
+    ind: "Overlay pendamping Overwolf untuk Slay the Spire 2. Pencarian kartu, pusaka, dan monster di dalam game, plus pelacak perjalanan live yang membaca file simpananmu.",
   },
   overlay_tagline: {
     eng: "The Overwolf companion overlay for Slay the Spire 2. In-game card, relic, and monster lookups plus a live run tracker that reads your save file.",
@@ -900,6 +1004,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) için Overwolf yardımcı arayüzü. Oyun içinde kart, kalıntı ve canavar sorgulama, ayrıca kayıt dosyanı okuyan canlı bir oyun takipçisi.",
     zhs: "杀戮尖塔2 (STS2) 的 Overwolf 伴侣叠加层。可在游戏内查询卡牌、遗物和怪物，并通过读取存档实时追踪对局。",
     zht: "殺戮尖塔2 (STS2) 的 Overwolf 伴侶疊加層。可在遊戲內查詢卡牌、遺物和怪物，並透過讀取存檔即時追蹤對局。",
+    ara: "واجهة Overwolf المرافقة للعبة Slay the Spire 2. بحث داخل اللعبة عن البطاقات والآثار والوحوش، ومتتبع حي للجولة يقرأ ملف الحفظ.",
+    ind: "Overlay pendamping Overwolf untuk Slay the Spire 2. Pencarian kartu, pusaka, dan monster di dalam game, plus pelacak perjalanan live yang membaca file simpananmu.",
   },
   potions_meta_description: {
     eng: "Browse every Slay the Spire 2 potion, shared and character-specific. Filter by rarity and character pool.",
@@ -917,6 +1023,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) İksirler (Türkçe). Nadirlik ve karakter havuzuna göre her iksir, etkiler, dükkan fiyatları ve kullanım zamanı.",
     zhs: "杀戮尖塔2 (STS2) 药水 (简体中文). 按稀有度和角色池列出的所有药水、效果、商店价格和使用时机。",
     zht: "殺戮尖塔2 (STS2) 藥水 (繁體中文). 按稀有度和角色池列出的所有藥水、效果、商店價格和使用時機。",
+    ara: "تصفح كل جرعات Slay the Spire 2، المشتركة والخاصة بالشخصيات. صفِّ حسب الندرة ومجموعة الشخصية.",
+    ind: "Jelajahi semua ramuan Slay the Spire 2, yang umum dan yang khusus karakter. Filter menurut kelangkaan dan kelompok karakter.",
   },
   powers_meta_description: {
     eng: "Browse every power in Slay the Spire 2, buffs, debuffs, and neutral effects. Filter by type and stack behavior.",
@@ -934,6 +1042,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) Güçler (Türkçe). Açıklamalar, simgeler ve yığılma davranışıyla her güçlendirme, zayıflatma ve nötr güç.",
     zhs: "杀戮尖塔2 (STS2) 能力 (简体中文). 所有增益、减益和中性能力，附带描述、图标和叠加规则。",
     zht: "殺戮尖塔2 (STS2) 能力 (繁體中文). 所有增益、減益和中性能力，附帶描述、圖示和疊加規則。",
+    ara: "تصفح كل القوى في Slay the Spire 2: التعزيزات والإضعافات والتأثيرات المحايدة. صفِّ حسب النوع وطريقة التراكم.",
+    ind: "Jelajahi semua kuasa di Slay the Spire 2: buff, debuff, dan efek netral. Filter menurut tipe dan cara menumpuknya.",
   },
   privacy_meta_description: {
     eng: "How Spire Codex collects, uses, and retains data submitted through the website, API, and Overwolf overlay.",
@@ -951,6 +1061,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Spire Codex'in web sitesi, API ve Overwolf yer paylaşımı aracılığıyla gönderilen verileri nasıl topladığı, kullandığı ve sakladığı. Türkçe.",
     zhs: "Spire Codex 如何收集、使用和保留通过网站、API 和 Overwolf 叠加层提交的数据。 简体中文.",
     zht: "Spire Codex 如何收集、使用和保留透過網站、API 和 Overwolf 疊加層提交的資料。 繁體中文.",
+    ara: "كيف يجمع Spire Codex البيانات المرسلة عبر الموقع وواجهة API وواجهة تراكب Overwolf ويستخدمها ويحتفظ بها.",
+    ind: "Cara Spire Codex mengumpulkan, memakai, dan menyimpan data yang dikirim lewat situs web, API, dan overlay Overwolf.",
   },
   privacy_tagline: {
     eng: "How Spire Codex collects, uses, and retains data submitted through the website, API, and Overwolf overlay.",
@@ -968,6 +1080,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Spire Codex'in web sitesi, API ve Overwolf yer paylaşımı aracılığıyla gönderilen verileri nasıl topladığı, kullandığı ve sakladığı. Türkçe.",
     zhs: "Spire Codex 如何收集、使用和保留通过网站、API 和 Overwolf 叠加层提交的数据。 简体中文.",
     zht: "Spire Codex 如何收集、使用和保留透過網站、API 和 Overwolf 疊加層提交的資料。 繁體中文.",
+    ara: "كيف يجمع Spire Codex البيانات المرسلة عبر الموقع وواجهة API وواجهة تراكب Overwolf ويستخدمها ويحتفظ بها.",
+    ind: "Cara Spire Codex mengumpulkan, memakai, dan menyimpan data yang dikirim lewat situs web, API, dan overlay Overwolf.",
   },
   reference_meta_description: {
     eng: "Quick reference for Slay the Spire 2 game mechanics, keywords, orbs, afflictions, intents, modifiers, achievements, acts, and ascension levels.",
@@ -985,6 +1099,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) oyun mekanikleri için hızlı başvuru: anahtar kelimeler, küreler, illetler, niyetler, değiştiriciler, başarımlar, sahneler ve Yükseliş seviyeleri.",
     zhs: "杀戮尖塔2 (STS2)游戏机制速查：关键词、法球、苦难、意图、修正规则、成就、阶段和进阶等级。",
     zht: "殺戮尖塔2 (STS2)遊戲機制速查：關鍵字、法球、苦難、意圖、修正規則、成就、幕和晉階等級。",
+    ara: "مرجع سريع لآليات لعبة Slay the Spire 2: الكلمات المفتاحية والأجرام والآفات والنوايا والمعدّلات والإنجازات والفصول ومستويات الصعود.",
+    ind: "Referensi cepat mekanik game Slay the Spire 2: kata kunci, bola, penyakit, niat, efek Mode Kustom, pencapaian, babak, dan level Angkatan.",
   },
   reference_tagline: {
     eng: "Quick reference for Slay the Spire 2 game mechanics, keywords, orbs, afflictions, intents, modifiers, achievements, acts, and ascension levels.",
@@ -1002,6 +1118,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 oyun mekanikleri için hızlı referans, anahtar kelimeler, küreler, rahatsızlıklar, niyetler, değiştiriciler, başarımlar, perdeler ve yükseliş seviyeleri.",
     zhs: "杀戮尖塔2游戏机制速查, 关键词、能量球、状态、意图、修改器、成就、阶段和进阶等级。",
     zht: "殺戮尖塔2遊戲機制速查, 關鍵詞、能量球、狀態、意圖、修改器、成就、幕次和晉階等級。",
+    ara: "مرجع سريع لآليات لعبة Slay the Spire 2: الكلمات المفتاحية والأجرام والآفات والنوايا والمعدّلات والإنجازات والفصول ومستويات الصعود.",
+    ind: "Referensi cepat mekanik game Slay the Spire 2: kata kunci, bola, penyakit, niat, efek Mode Kustom, pencapaian, babak, dan level Angkatan.",
   },
   relics_meta_description: {
     eng: "Browse every Slay the Spire 2 relic, shared and character-specific. Filter by rarity and character pool.",
@@ -1019,6 +1137,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) Kalıntılar (Türkçe). Nadirlik ve karakter havuzuna göre her kalıntı, etkiler, betimleme metni, dükkan fiyatları ve yükseltilmiş başlangıç kalıntıları.",
     zhs: "杀戮尖塔2 (STS2) 遗物 (简体中文). 按稀有度和角色池列出的所有遗物、效果、风味文本、商店价格和升级版初始遗物。",
     zht: "殺戮尖塔2 (STS2) 遺物 (繁體中文). 按稀有度和角色池列出的所有遺物、效果、風味文字、商店價格和升級版初始遺物。",
+    ara: "تصفح كل آثار Slay the Spire 2، المشتركة والخاصة بالشخصيات. صفِّ حسب الندرة ومجموعة الشخصية.",
+    ind: "Jelajahi semua pusaka Slay the Spire 2, yang umum dan yang khusus karakter. Filter menurut kelangkaan dan kelompok karakter.",
   },
   runs_meta_description: {
     eng: "Browse, search, and filter every Slay the Spire 2 run submitted to Spire Codex. Filter by character, ascension, username, seed, version, mode, and more.",
@@ -1036,6 +1156,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Topluluk turları gezgini, seed'leri, build ID'leri, son desteleri ve oyuncu tabanından paylaşılan turları görüntüleyin.",
     zhs: "社区对局浏览器, 查看种子、版本 ID、最终牌组，以及整个玩家群体分享的对局。",
     zht: "社群對局瀏覽器, 檢視種子、版本 ID、最終牌組，以及整個玩家群體分享的對局。",
+    ara: "تصفح كل جولات Slay the Spire 2 المرسلة إلى Spire Codex وابحث فيها وصفِّها. صفِّ حسب الشخصية و الصعود واسم المستخدم والبذرة والإصدار والوضع وغيرها.",
+    ind: "Jelajahi, cari, dan filter semua perjalanan Slay the Spire 2 yang dikirim ke Spire Codex. Filter menurut karakter, Angkatan, nama pengguna, benih, versi, mode, dan lainnya.",
   },
   runs_tagline: {
     eng: "Community runs browser, view seeds, build IDs, final decks, and shared runs from across the playerbase.",
@@ -1053,6 +1175,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Topluluk turları gezgini, seed'leri, build ID'leri, son desteleri ve oyuncu tabanından paylaşılan turları görüntüleyin.",
     zhs: "社区对局浏览器, 查看种子、版本 ID、最终牌组，以及整个玩家群体分享的对局。",
     zht: "社群對局瀏覽器, 檢視種子、版本 ID、最終牌組，以及整個玩家群體分享的對局。",
+    ara: "متصفح جولات المجتمع: اطّلع على البذور ومعرّفات الإصدار والمجموعات النهائية والجولات المشتركة من كل اللاعبين.",
+    ind: "Penjelajah perjalanan komunitas: lihat benih, ID build, dek akhir, dan perjalanan yang dibagikan dari seluruh pemain.",
   },
   showcase_meta_description: {
     eng: "Bots, widgets, apps, and tools built with the Spire Codex API by the Slay the Spire 2 (sts2) community.",
@@ -1070,6 +1194,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) topluluk projeleri (Türkçe). Slay the Spire 2 topluluğunun Spire Codex API ile oluşturduğu botlar, widget'lar, uygulamalar ve araçlar.",
     zhs: "杀戮尖塔2 (STS2) 社区项目 (简体中文). Slay the Spire 2 社区使用 Spire Codex API 构建的机器人、小组件、应用和工具。",
     zht: "殺戮尖塔2 (STS2) 社群專案 (繁體中文). Slay the Spire 2 社群使用 Spire Codex API 構建的機器人、小工具、應用程式和工具。",
+    ara: "بوتات وأدوات وتطبيقات بناها مجتمع Slay the Spire 2 (sts2) باستخدام Spire Codex API.",
+    ind: "Bot, widget, aplikasi, dan alat yang dibuat komunitas Slay the Spire 2 (sts2) dengan Spire Codex API.",
   },
   terms_meta_description: {
     eng: "Terms governing use of the Spire Codex website, API, embeddable widgets, and Overwolf overlay.",
@@ -1087,6 +1213,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Spire Codex web sitesinin, API’nin, gömülebilir widget’ların ve Overwolf bindirmesinin kullanımını düzenleyen koşullar. Türkçe.",
     zhs: "管辖 Spire Codex 网站、API、可嵌入小组件以及 Overwolf 叠加层使用的条款。 简体中文.",
     zht: "管轄 Spire Codex 網站、API、可嵌入小元件以及 Overwolf 疊加層使用的條款。 繁體中文.",
+    ara: "الشروط التي تحكم استخدام موقع Spire Codex وواجهة API والأدوات القابلة للتضمين وواجهة تراكب Overwolf.",
+    ind: "Ketentuan yang mengatur penggunaan situs web Spire Codex, API, widget yang bisa disematkan, dan overlay Overwolf.",
   },
   terms_tagline: {
     eng: "Terms governing use of the Spire Codex website, API, embeddable widgets, and Overwolf overlay.",
@@ -1104,6 +1232,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Spire Codex web sitesinin, API’nin, gömülebilir widget’ların ve Overwolf bindirmesinin kullanımını düzenleyen koşullar. Türkçe.",
     zhs: "管辖 Spire Codex 网站、API、可嵌入小组件以及 Overwolf 叠加层使用的条款。 简体中文.",
     zht: "管轄 Spire Codex 網站、API、可嵌入小元件以及 Overwolf 疊加層使用的條款。 繁體中文.",
+    ara: "الشروط التي تحكم استخدام موقع Spire Codex وواجهة API والأدوات القابلة للتضمين وواجهة تراكب Overwolf.",
+    ind: "Ketentuan yang mengatur penggunaan situs web Spire Codex, API, widget yang bisa disematkan, dan overlay Overwolf.",
   },
   "thank-you_meta_description": {
     eng: "Thank you to the Slay the Spire 2 community, Ko-fi supporters, and contributors who help grow Spire Codex.",
@@ -1121,6 +1251,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) topluluğuna, Ko-fi destekçilerine ve Spire Codex'in büyümesine katkı sağlayan herkese teşekkürler.",
     zhs: "感谢 杀戮尖塔2 (STS2) 社区、Ko-fi 支持者以及帮助 Spire Codex 成长的贡献者。",
     zht: "感謝 殺戮尖塔2 (STS2) 社群、Ko-fi 支持者以及幫助 Spire Codex 成長的貢獻者。",
+    ara: "شكرًا لمجتمع Slay the Spire 2 وداعمي Ko-fi والمساهمين الذين يساعدون على نمو Spire Codex.",
+    ind: "Terima kasih untuk komunitas Slay the Spire 2, pendukung Ko-fi, dan para kontributor yang membantu Spire Codex berkembang.",
   },
   "thank-you_tagline": {
     eng: "Thank you to the Slay the Spire 2 community, Ko-fi supporters, and contributors who help grow Spire Codex.",
@@ -1138,6 +1270,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) topluluğuna, Ko-fi destekçilerine ve Spire Codex'in büyümesine katkı sağlayan herkese teşekkürler.",
     zhs: "感谢 杀戮尖塔2 (STS2) 社区、Ko-fi 支持者以及帮助 Spire Codex 成长的贡献者。",
     zht: "感謝 殺戮尖塔2 (STS2) 社群、Ko-fi 支持者以及幫助 Spire Codex 成長的貢獻者。",
+    ara: "شكرًا لمجتمع Slay the Spire 2 وداعمي Ko-fi والمساهمين الذين يساعدون على نمو Spire Codex.",
+    ind: "Terima kasih untuk komunitas Slay the Spire 2, pendukung Ko-fi, dan para kontributor yang membantu Spire Codex berkembang.",
   },
   "tier-list_meta_description": {
     eng: "Slay the Spire 2 (sts2) tier list ranking every card, relic, and potion S through F. Codex Score from community win rates. Updated daily after every patch.",
@@ -1155,6 +1289,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) seviye listesi: her kart, kalıntı ve iksir S'den F'ye sıralanır. Codex Score topluluğun kazanma oranlarından hesaplanır. Her gün ve her yamadan sonra güncellenir.",
     zhs: "杀戮尖塔2 (STS2)梯度榜，将每张卡牌、每件遗物和每瓶药水从 S 到 F 分级。Codex Score 基于社区胜率计算，每日更新，并在每次补丁后更新。",
     zht: "殺戮尖塔2 (STS2)梯度榜，將每張卡牌、每件遺物和每瓶藥水從 S 到 F 分級。Codex Score 根據社群勝率計算，每日更新，並在每次修補後更新。",
+    ara: "قائمة تصنيف Slay the Spire 2 (sts2) ترتّب كل بطاقة وأثر وجرعة من S إلى F. نتيجة Codex Score من معدلات فوز المجتمع. تُحدَّث يوميًا بعد كل تحديث للعبة.",
+    ind: "Tier list Slay the Spire 2 (sts2) yang memeringkat semua kartu, pusaka, dan ramuan dari S sampai F. Codex Score dari tingkat kemenangan komunitas. Diperbarui harian setelah tiap patch.",
   },
   "tier-list_tagline": {
     eng: "Slay the Spire 2 (sts2) tier list ranking every card, relic, and potion S through F. Codex Score from community win rates. Updated daily after every patch.",
@@ -1172,6 +1308,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) seviye listesi: her kart, kalıntı ve iksir S'den F'ye sıralanır. Codex Score topluluğun kazanma oranlarından hesaplanır. Her gün ve her yamadan sonra güncellenir.",
     zhs: "杀戮尖塔2 (STS2)梯度榜，将每张卡牌、每件遗物和每瓶药水从 S 到 F 分级。Codex Score 基于社区胜率计算，每日更新，并在每次补丁后更新。",
     zht: "殺戮尖塔2 (STS2)梯度榜，將每張卡牌、每件遺物和每瓶藥水從 S 到 F 分級。Codex Score 根據社群勝率計算，每日更新，並在每次修補後更新。",
+    ara: "قائمة تصنيف Slay the Spire 2 (sts2) ترتّب كل بطاقة وأثر وجرعة من S إلى F. نتيجة Codex Score من معدلات فوز المجتمع. تُحدَّث يوميًا بعد كل تحديث للعبة.",
+    ind: "Tier list Slay the Spire 2 (sts2) yang memeringkat semua kartu, pusaka, dan ramuan dari S sampai F. Codex Score dari tingkat kemenangan komunitas. Diperbarui harian setelah tiap patch.",
   },
   "tier-list-maker_meta_description": {
     eng: "Build and share Slay the Spire 2 tier lists. Drag and drop cards, relics, potions, and monsters into custom tiers.",
@@ -1189,6 +1327,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) seviye listeleri oluştur ve paylaş. Kartları, kalıntıları, iksirleri ve canavarları sürükleyip kendi seviyelerine bırak.",
     zhs: "创建并分享 杀戮尖塔2 (STS2) 梯度榜。将卡牌、遗物、药水和怪物拖放到自定义梯度中。",
     zht: "建立並分享 殺戮尖塔2 (STS2) 梯度榜。將卡牌、遺物、藥水和怪物拖放到自訂梯度中。",
+    ara: "أنشئ قوائم تصنيف Slay the Spire 2 وشاركها. اسحب البطاقات والآثار والجرعات والوحوش وأفلتها في فئات مخصصة.",
+    ind: "Buat dan bagikan tier list Slay the Spire 2. Seret dan taruh kartu, pusaka, ramuan, dan monster ke tier kustom.",
   },
   "tier-list-maker_tagline": {
     eng: "Build and share Slay the Spire 2 tier lists. Drag and drop cards, relics, potions, and monsters into custom tiers.",
@@ -1206,6 +1346,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) seviye listeleri oluştur ve paylaş. Kartları, kalıntıları, iksirleri ve canavarları sürükleyip kendi seviyelerine bırak.",
     zhs: "创建并分享 杀戮尖塔2 (STS2) 梯度榜。将卡牌、遗物、药水和怪物拖放到自定义梯度中。",
     zht: "建立並分享 殺戮尖塔2 (STS2) 梯度榜。將卡牌、遺物、藥水和怪物拖放到自訂梯度中。",
+    ara: "أنشئ قوائم تصنيف Slay the Spire 2 وشاركها. اسحب البطاقات والآثار والجرعات والوحوش وأفلتها في فئات مخصصة.",
+    ind: "Buat dan bagikan tier list Slay the Spire 2. Seret dan taruh kartu, pusaka, ramuan, dan monster ke tier kustom.",
   },
   timeline_meta_description: {
     eng: "Explore the full Slay the Spire 2 timeline across every epoch, story arc, and era. Track story progression, unlockable cards, relics, and potions.",
@@ -1223,6 +1365,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) zaman çizelgesinin tamamını keşfet: her çağ, hikâye bölümü ve dönem. Hikâye ilerleyişini ve açılabilir kartları, kalıntıları ve iksirleri takip et.",
     zhs: "探索 杀戮尖塔2 (STS2) 的完整时间线，涵盖每个纪元、故事线和时代。追踪剧情进度以及可解锁的卡牌、遗物和药水。",
     zht: "探索 殺戮尖塔2 (STS2) 的完整時間軸，涵蓋每個紀元、故事線和時代。追蹤劇情進度以及可解鎖的卡牌、遺物和藥水。",
+    ara: "استكشف الخط الزمني الكامل للعبة Slay the Spire 2 عبر كل حقبة وخط قصصي وعصر. تابع تقدم القصة والبطاقات والآثار والجرعات القابلة للفتح.",
+    ind: "Jelajahi seluruh linimasa Slay the Spire 2 di setiap zaman, alur cerita, dan era. Ikuti perkembangan cerita serta kartu, pusaka, dan ramuan yang bisa dibuka.",
   },
   timeline_tagline: {
     eng: "Explore the full Slay the Spire 2 timeline across every epoch, story arc, and era. Track story progression, unlockable cards, relics, and potions.",
@@ -1240,6 +1384,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Her epok, hikaye yayı ve çağ boyunca Slay the Spire 2'nin tam zaman çizelgesini keşfedin. Hikaye ilerlemesini, kilidi açılabilir kartları, kalıntıları ve iksirleri takip edin.",
     zhs: "探索杀戮尖塔2横跨每个纪元、故事弧和时代的完整时间线。追踪故事进展、可解锁的卡牌、遗物和药水。",
     zht: "探索殺戮尖塔2橫跨每個紀元、故事弧和時代的完整時間線。追蹤故事進展、可解鎖的卡牌、遺物和藥水。",
+    ara: "استكشف الخط الزمني الكامل للعبة Slay the Spire 2 عبر كل حقبة وخط قصصي وعصر. تابع تقدم القصة والبطاقات والآثار والجرعات القابلة للفتح.",
+    ind: "Jelajahi seluruh linimasa Slay the Spire 2 di setiap zaman, alur cerita, dan era. Ikuti perkembangan cerita serta kartu, pusaka, dan ramuan yang bisa dibuka.",
   },
   unlocks_meta_description: {
     eng: "Complete list of all unlockable content in Slay the Spire 2, 60 cards, 45 relics, 21 potions, and 4 characters unlocked through timeline progression.",
@@ -1257,6 +1403,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) oyunundaki tüm açılabilir içeriklerin tam listesi: zaman çizelgesinde ilerledikçe açılan 60 kart, 45 kalıntı, 21 iksir ve 4 karakter.",
     zhs: "杀戮尖塔2 (STS2)全部可解锁内容的完整列表：通过时间线进度解锁的60张卡牌、45件遗物、21瓶药水和4名角色。",
     zht: "殺戮尖塔2 (STS2)全部可解鎖內容的完整列表：透過時間軸進度解鎖的60張卡牌、45件遺物、21瓶藥水和4名角色。",
+    ara: "قائمة كاملة بكل المحتوى القابل للفتح في Slay the Spire 2: 60 بطاقة و45 أثرًا و21 جرعة و4 شخصيات تُفتح بالتقدم في الخط الزمني.",
+    ind: "Daftar lengkap semua konten yang bisa dibuka di Slay the Spire 2: 60 kartu, 45 pusaka, 21 ramuan, dan 4 karakter yang dibuka lewat kemajuan linimasa.",
   },
   unlocks_tagline: {
     eng: "Complete list of all unlockable content in Slay the Spire 2, 60 cards, 45 relics, 21 potions, and 4 characters unlocked through timeline progression.",
@@ -1274,6 +1422,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) oyunundaki tüm açılabilir içeriklerin tam listesi: zaman çizelgesinde ilerledikçe açılan 60 kart, 45 kalıntı, 21 iksir ve 4 karakter.",
     zhs: "杀戮尖塔2 (STS2)全部可解锁内容的完整列表：通过时间线进度解锁的60张卡牌、45件遗物、21瓶药水和4名角色。",
     zht: "殺戮尖塔2 (STS2)全部可解鎖內容的完整列表：透過時間軸進度解鎖的60張卡牌、45件遺物、21瓶藥水和4名角色。",
+    ara: "قائمة كاملة بكل المحتوى القابل للفتح في Slay the Spire 2: 60 بطاقة و45 أثرًا و21 جرعة و4 شخصيات تُفتح بالتقدم في الخط الزمني.",
+    ind: "Daftar lengkap semua konten yang bisa dibuka di Slay the Spire 2: 60 kartu, 45 pusaka, 21 ramuan, dan 4 karakter yang dibuka lewat kemajuan linimasa.",
   },
   achievement_meta_description: {
     eng: "{name} is an achievement in Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
@@ -1291,6 +1441,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) Başarım, {name}{hasDesc, select, yes {: {desc}} other {}}",
     zhs: "杀戮尖塔2 (STS2) 成就, {name}{hasDesc, select, yes {: {desc}} other {}}",
     zht: "殺戮尖塔2 (STS2) 成就, {name}{hasDesc, select, yes {: {desc}} other {}}",
+    ara: "{name} إنجاز في Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
+    ind: "{name} adalah pencapaian di Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
   },
   act_meta_description: {
     eng: "{name} is an act in Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
@@ -1308,6 +1460,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) Perde, {name}",
     zhs: "杀戮尖塔2 (STS2) 阶段, {name}",
     zht: "殺戮尖塔2 (STS2) 幕, {name}",
+    ara: "{name} فصل في Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
+    ind: "{name} adalah babak di Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
   },
   affliction_meta_description: {
     eng: "{name} is an affliction in Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
@@ -1325,6 +1479,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) Rahatsızlık, {name}{hasDesc, select, yes {: {desc}} other {}}",
     zhs: "杀戮尖塔2 (STS2) 状态, {name}{hasDesc, select, yes {: {desc}} other {}}",
     zht: "殺戮尖塔2 (STS2) 狀態, {name}{hasDesc, select, yes {: {desc}} other {}}",
+    ara: "{name} آفة في Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
+    ind: "{name} adalah penyakit di Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
   },
   ascension_meta_description: {
     eng: "Ascension {level} ({name}) in Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
@@ -1342,6 +1498,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) Yükseliş, {name}{hasDesc, select, yes {: {desc}} other {}}",
     zhs: "杀戮尖塔2 (STS2) 进阶, {name}{hasDesc, select, yes {: {desc}} other {}}",
     zht: "殺戮尖塔2 (STS2) 晉階, {name}{hasDesc, select, yes {: {desc}} other {}}",
+    ara: "الصعود {level} ({name}) في Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
+    ind: "Angkatan {level} ({name}) di Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
   },
   badge_meta_description: {
     eng: "{name} is {kind} in Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
@@ -1359,6 +1517,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) Rozet, {name}{hasDesc, select, yes {: {desc}} other {}}",
     zhs: "杀戮尖塔2 (STS2) 徽章, {name}{hasDesc, select, yes {: {desc}} other {}}",
     zht: "殺戮尖塔2 (STS2) 徽章, {name}{hasDesc, select, yes {: {desc}} other {}}",
+    ara: "{name}: {kind} في Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
+    ind: "{name} adalah {kind} di Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
   },
   card_meta_description: {
     eng: "{name} is {kind} in Slay the Spire 2 (sts2). {descFlat}{keywords}",
@@ -1376,6 +1536,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) Kart, {name}: {descFlat}",
     zhs: "杀戮尖塔2 (STS2) 卡牌, {name}: {descFlat}",
     zht: "殺戮尖塔2 (STS2) 卡牌, {name}: {descFlat}",
+    ara: "{name}: {kind} في Slay the Spire 2 (sts2). {descFlat}{keywords}",
+    ind: "{name} adalah {kind} di Slay the Spire 2 (sts2). {descFlat}{keywords}",
   },
   character_meta_description: {
     eng: "Slay the Spire 2 (sts2) playable character, {name}.{stats}{hasDesc, select, yes { {desc}} other {}}",
@@ -1393,6 +1555,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) Karakter, {name}{hasDesc, select, yes {: {desc}} other {}}",
     zhs: "杀戮尖塔2 (STS2) 角色, {name}{hasDesc, select, yes {: {desc}} other {}}",
     zht: "殺戮尖塔2 (STS2) 角色, {name}{hasDesc, select, yes {: {desc}} other {}}",
+    ara: "شخصية قابلة للعب في Slay the Spire 2 (sts2): {name}.{stats}{hasDesc, select, yes { {desc}} other {}}",
+    ind: "Karakter Slay the Spire 2 (sts2) yang bisa dimainkan, {name}.{stats}{hasDesc, select, yes { {desc}} other {}}",
   },
   enchantment_meta_description: {
     eng: "{name} is a card enchantment in Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
@@ -1410,6 +1574,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) Büyü, {name}{hasDesc, select, yes {: {desc}} other {}}",
     zhs: "杀戮尖塔2 (STS2) 附魔, {name}{hasDesc, select, yes {: {desc}} other {}}",
     zht: "殺戮尖塔2 (STS2) 附魔, {name}{hasDesc, select, yes {: {desc}} other {}}",
+    ara: "{name} تعزيز بطاقات في Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
+    ind: "{name} adalah efek kartu di Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
   },
   encounter_meta_description: {
     eng: "Slay the Spire 2 (sts2) {roomType} encounter, {name}{actText}.{monsterList}",
@@ -1427,6 +1593,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) Karşılaşma, {name}{monsterList}",
     zhs: "杀戮尖塔2 (STS2) 遭遇, {name}{monsterList}",
     zht: "殺戮尖塔2 (STS2) 遭遇, {name}{monsterList}",
+    ara: "مواجهة {roomType} في Slay the Spire 2 (sts2): {name}{actText}.{monsterList}",
+    ind: "Pertemuan {roomType} Slay the Spire 2 (sts2), {name}{actText}.{monsterList}",
   },
   event_meta_description: {
     eng: "{name} is {kind} in Slay the Spire 2 (sts2){act}{hasDesc, select, yes {: {desc}} other {.}}",
@@ -1444,6 +1612,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) Etkinlik, {name}{hasDesc, select, yes {: {desc}} other {}}",
     zhs: "杀戮尖塔2 (STS2) 事件, {name}{hasDesc, select, yes {: {desc}} other {}}",
     zht: "殺戮尖塔2 (STS2) 事件, {name}{hasDesc, select, yes {: {desc}} other {}}",
+    ara: "{name}: {kind} في Slay the Spire 2 (sts2){act}{hasDesc, select, yes {: {desc}} other {.}}",
+    ind: "{name} adalah {kind} di Slay the Spire 2 (sts2){act}{hasDesc, select, yes {: {desc}} other {.}}",
   },
   intent_meta_description: {
     eng: "{name} is a monster intent in Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
@@ -1461,6 +1631,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) Niyet, {name}{hasDesc, select, yes {: {desc}} other {}}",
     zhs: "杀戮尖塔2 (STS2) 意图, {name}{hasDesc, select, yes {: {desc}} other {}}",
     zht: "殺戮尖塔2 (STS2) 意圖, {name}{hasDesc, select, yes {: {desc}} other {}}",
+    ara: "{name} نية وحش في Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
+    ind: "{name} adalah niat monster di Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
   },
   keyword_meta_description: {
     eng: "{name} is a card keyword in Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}} See every card that uses {name}.",
@@ -1478,6 +1650,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) Anahtar kelime, {name}{hasDesc, select, yes {: {desc}} other {}}",
     zhs: "杀戮尖塔2 (STS2) 关键词, {name}{hasDesc, select, yes {: {desc}} other {}}",
     zht: "殺戮尖塔2 (STS2) 關鍵詞, {name}{hasDesc, select, yes {: {desc}} other {}}",
+    ara: "{name} كلمة مفتاحية للبطاقات في Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}} اطّلع على كل بطاقة تستخدم {name}.",
+    ind: "{name} adalah kata kunci kartu di Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}} Lihat semua kartu yang memakai {name}.",
   },
   modifier_meta_description: {
     eng: "{name} is a custom-run modifier in Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
@@ -1495,6 +1669,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) Değiştirici, {name}{hasDesc, select, yes {: {desc}} other {}}",
     zhs: "杀戮尖塔2 (STS2) 修改器, {name}{hasDesc, select, yes {: {desc}} other {}}",
     zht: "殺戮尖塔2 (STS2) 修改器, {name}{hasDesc, select, yes {: {desc}} other {}}",
+    ara: "{name} معدّل للجولات المخصصة في Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
+    ind: "{name} adalah efek Mode Kustom di Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
   },
   monster_meta_description: {
     eng: "{name} is {kind} in Slay the Spire 2 (sts2).{hpText}{movesText}",
@@ -1512,6 +1688,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) Canavar, {name}{hpText}{movesText}",
     zhs: "杀戮尖塔2 (STS2) 怪物, {name}{hpText}{movesText}",
     zht: "殺戮尖塔2 (STS2) 怪物, {name}{hpText}{movesText}",
+    ara: "{name}: {kind} في Slay the Spire 2 (sts2).{hpText}{movesText}",
+    ind: "{name} adalah {kind} di Slay the Spire 2 (sts2).{hpText}{movesText}",
   },
   orb_meta_description: {
     eng: "{name} is an orb in Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
@@ -1529,6 +1707,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) Küre, {name}{hasDesc, select, yes {: {desc}} other {}}",
     zhs: "杀戮尖塔2 (STS2) 能量球, {name}{hasDesc, select, yes {: {desc}} other {}}",
     zht: "殺戮尖塔2 (STS2) 能量球, {name}{hasDesc, select, yes {: {desc}} other {}}",
+    ara: "{name} جرم في Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
+    ind: "{name} adalah bola di Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
   },
   potion_meta_description: {
     eng: "{name} is {kind} in Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
@@ -1546,6 +1726,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) İksir, {name}{hasDesc, select, yes {: {desc}} other {}}",
     zhs: "杀戮尖塔2 (STS2) 药水, {name}{hasDesc, select, yes {: {desc}} other {}}",
     zht: "殺戮尖塔2 (STS2) 藥水, {name}{hasDesc, select, yes {: {desc}} other {}}",
+    ara: "{name}: {kind} في Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
+    ind: "{name} adalah {kind} di Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
   },
   power_meta_description: {
     eng: "{name} is {kind} in Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
@@ -1563,6 +1745,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) Güç, {name}{hasDesc, select, yes {: {desc}} other {}}",
     zhs: "杀戮尖塔2 (STS2) 能力, {name}{hasDesc, select, yes {: {desc}} other {}}",
     zht: "殺戮尖塔2 (STS2) 能力, {name}{hasDesc, select, yes {: {desc}} other {}}",
+    ara: "{name}: {kind} في Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
+    ind: "{name} adalah {kind} di Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
   },
   relic_meta_description: {
     eng: "{name} is {kind} in Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
@@ -1580,6 +1764,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 (STS2) Kalıntı, {name}{hasDesc, select, yes {: {desc}} other {}}",
     zhs: "杀戮尖塔2 (STS2) 遗物, {name}{hasDesc, select, yes {: {desc}} other {}}",
     zht: "殺戮尖塔2 (STS2) 遺物, {name}{hasDesc, select, yes {: {desc}} other {}}",
+    ara: "{name}: {kind} في Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
+    ind: "{name} adalah {kind} di Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
   },
   compare_pair_meta_description: {
     eng: "Compare {a} and {b} in Slay the Spire 2. Side-by-side stats, card pool breakdowns by type and rarity, keyword distributions, and starting decks.",
@@ -1597,6 +1783,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2'de {a} ile {b}'yi karşılaştır. Yan yana istatistikler, tür ve nadirliğe göre kart havuzu dağılımı, anahtar kelime dağılımı ve başlangıç desteleri.",
     zhs: "在杀戮尖塔2中比较{a}与{b}。并排属性、按类型和稀有度划分的卡池、关键词分布和初始牌组。",
     zht: "在殺戮尖塔2中比較{a}與{b}。並排屬性、依類型與稀有度劃分的卡池、關鍵字分佈與初始牌組。",
+    ara: "قارن بين {a} و {b} في Slay the Spire 2. إحصائيات جنبًا إلى جنب، وتفصيل مجموعات البطاقات حسب النوع والندرة، وتوزيع الكلمات المفتاحية، ومجموعات البداية.",
+    ind: "Bandingkan {a} dan {b} di Slay the Spire 2. Statistik berdampingan, rincian kumpulan kartu per tipe dan kelangkaan, distribusi kata kunci, dan dek awalan.",
   },
   "Database, Wiki & Guide": {
     eng: "Database, Wiki & Guide",
@@ -1614,6 +1802,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Veritabanı, Wiki ve Rehber",
     zhs: "数据库、百科与攻略",
     zht: "資料庫、百科與攻略",
+    ara: "قاعدة بيانات وويكي ودليل",
+    ind: "Database, Wiki & Panduan",
   },
   "Achievement Not Found": {
     eng: "Achievement Not Found",
@@ -1631,6 +1821,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Başarım Bulunamadı",
     zhs: "成就 未找到",
     zht: "成就 未找到",
+    ara: "الإنجاز غير موجود",
+    ind: "Pencapaian Tidak Ditemukan",
   },
   "Act Not Found": {
     eng: "Act Not Found",
@@ -1648,6 +1840,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Perde Bulunamadı",
     zhs: "阶段 未找到",
     zht: "幕 未找到",
+    ara: "الفصل غير موجود",
+    ind: "Babak Tidak Ditemukan",
   },
   "Affliction Not Found": {
     eng: "Affliction Not Found",
@@ -1665,6 +1859,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Rahatsızlık Bulunamadı",
     zhs: "状态 未找到",
     zht: "狀態 未找到",
+    ara: "الآفة غير موجودة",
+    ind: "Penyakit Tidak Ditemukan",
   },
   "Ascension Not Found": {
     eng: "Ascension Not Found",
@@ -1682,6 +1878,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Yükseliş Bulunamadı",
     zhs: "进阶 未找到",
     zht: "晉階 未找到",
+    ara: "مستوى الصعود غير موجود",
+    ind: "Angkatan Tidak Ditemukan",
   },
   "Character Not Found": {
     eng: "Character Not Found",
@@ -1699,6 +1897,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Karakter Bulunamadı",
     zhs: "角色 未找到",
     zht: "角色 未找到",
+    ara: "الشخصية غير موجودة",
+    ind: "Karakter Tidak Ditemukan",
   },
   "Enchantment Not Found": {
     eng: "Enchantment Not Found",
@@ -1716,6 +1916,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Büyü Bulunamadı",
     zhs: "附魔 未找到",
     zht: "附魔 未找到",
+    ara: "التعزيز غير موجود",
+    ind: "Efek Kartu Tidak Ditemukan",
   },
   "Encounter Not Found": {
     eng: "Encounter Not Found",
@@ -1733,6 +1935,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Karşılaşma Bulunamadı",
     zhs: "遭遇 未找到",
     zht: "遭遇 未找到",
+    ara: "المواجهة غير موجودة",
+    ind: "Pertemuan Tidak Ditemukan",
   },
   "Event Not Found": {
     eng: "Event Not Found",
@@ -1750,6 +1954,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Etkinlik Bulunamadı",
     zhs: "事件 未找到",
     zht: "事件 未找到",
+    ara: "الحدث غير موجود",
+    ind: "Event Tidak Ditemukan",
   },
   "Intent Not Found": {
     eng: "Intent Not Found",
@@ -1767,6 +1973,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Niyet Bulunamadı",
     zhs: "意图 未找到",
     zht: "意圖 未找到",
+    ara: "النية غير موجودة",
+    ind: "Niat Tidak Ditemukan",
   },
   "Keyword Not Found": {
     eng: "Keyword Not Found",
@@ -1784,6 +1992,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Anahtar kelime Bulunamadı",
     zhs: "关键词 未找到",
     zht: "關鍵詞 未找到",
+    ara: "الكلمة المفتاحية غير موجودة",
+    ind: "Kata Kunci Tidak Ditemukan",
   },
   "Modifier Not Found": {
     eng: "Modifier Not Found",
@@ -1801,6 +2011,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Değiştirici Bulunamadı",
     zhs: "修改器 未找到",
     zht: "修改器 未找到",
+    ara: "المعدّل غير موجود",
+    ind: "Efek Mode Tidak Ditemukan",
   },
   "Orb Not Found": {
     eng: "Orb Not Found",
@@ -1818,6 +2030,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Küre Bulunamadı",
     zhs: "能量球 未找到",
     zht: "能量球 未找到",
+    ara: "الجرم غير موجود",
+    ind: "Bola Tidak Ditemukan",
   },
   "Potion Not Found": {
     eng: "Potion Not Found",
@@ -1835,6 +2049,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "İksir Bulunamadı",
     zhs: "药水 未找到",
     zht: "藥水 未找到",
+    ara: "الجرعة غير موجودة",
+    ind: "Ramuan Tidak Ditemukan",
   },
   "Power Not Found": {
     eng: "Power Not Found",
@@ -1852,6 +2068,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Güç Bulunamadı",
     zhs: "能力 未找到",
     zht: "能力 未找到",
+    ara: "القوة غير موجودة",
+    ind: "Kuasa Tidak Ditemukan",
   },
   "Relic Not Found": {
     eng: "Relic Not Found",
@@ -1869,6 +2087,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Kalıntı Bulunamadı",
     zhs: "遗物 未找到",
     zht: "遺物 未找到",
+    ara: "الأثر غير موجود",
+    ind: "Pusaka Tidak Ditemukan",
   },
   "Run Not Found": {
     eng: "Run Not Found",
@@ -1886,6 +2106,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Tur Bulunamadı",
     zhs: "对局 未找到",
     zht: "對局 未找到",
+    ara: "الجولة غير موجودة",
+    ind: "Perjalanan Tidak Ditemukan",
   },
   "Comparison Not Found": {
     eng: "Comparison Not Found",
@@ -1903,6 +2125,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Comparison Bulunamadı",
     zhs: "Comparison 未找到",
     zht: "Comparison 未找到",
+    ara: "المقارنة غير موجودة",
+    ind: "Perbandingan Tidak Ditemukan",
   },
   "About Spire Codex": {
     eng: "About Spire Codex",
@@ -1920,6 +2144,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Spire Codex Hakkında",
     zhs: "关于 Spire Codex",
     zht: "關於 Spire Codex",
+    ara: "عن Spire Codex",
+    ind: "Tentang Spire Codex",
   },
   "Ancient Relic Pools - All Ancient Offerings": {
     eng: "Ancient Relic Pools - All Ancient Offerings",
@@ -1937,6 +2163,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Kadim Kalıntı Havuzları - Tüm Teklifler",
     zhs: "远古者遗物池 - 所有供奉",
     zht: "遠古者遺物池 - 所有供奉",
+    ara: "مجموعات آثار العتقاء - كل عروض العتقاء",
+    ind: "Kelompok Pusaka Ancient - Semua Tawaran Ancient",
   },
   "Changelog - Update History": {
     eng: "Changelog - Update History",
@@ -1954,6 +2182,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Değişiklik Günlüğü - Güncelleme Geçmişi",
     zhs: "更新日志 - 更新历史",
     zht: "更新日誌 - 更新歷史",
+    ara: "سجل التغييرات - تاريخ التحديثات",
+    ind: "Changelog - Riwayat Pembaruan",
   },
   "Images - Game Art & Assets": {
     eng: "Images - Game Art & Assets",
@@ -1971,6 +2201,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Görseller - Oyun Sanatı ve Varlıkları",
     zhs: "图片 - 游戏美术与素材",
     zht: "圖片 - 遊戲美術與素材",
+    ara: "الصور - رسوم اللعبة وأصولها",
+    ind: "Gambar - Art & Aset Game",
   },
   "Knowledge Demon - Discord Bot": {
     eng: "Knowledge Demon - Discord Bot",
@@ -1988,6 +2220,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Knowledge Demon - Discord Botu",
     zhs: "Knowledge Demon - Discord 机器人",
     zht: "Knowledge Demon - Discord 機器人",
+    ara: "Knowledge Demon - بوت Discord",
+    ind: "Knowledge Demon - Bot Discord",
   },
   "Codex Score - How Tier Ratings Work": {
     eng: "Codex Score - How Tier Ratings Work",
@@ -2005,6 +2239,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Codex Score - Tier Puanları Nasıl Çalışır",
     zhs: "Codex Score - 梯度评分的原理",
     zht: "Codex Score - 梯度評分的原理",
+    ara: "Codex Score - كيف تعمل تقييمات التصنيف",
+    ind: "Codex Score - Cara Kerja Nilai Tier",
   },
   "Game Mechanics - Drop Rates, Combat & Map Data": {
     eng: "Game Mechanics - Drop Rates, Combat & Map Data",
@@ -2022,6 +2258,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Oyun Mekanikleri - Düşme Oranları, Savaş ve Harita Verileri",
     zhs: "游戏机制 - 掉落率、战斗与地图数据",
     zht: "遊戲機制 - 掉落率、戰鬥與地圖資料",
+    ara: "آليات اللعبة - معدلات الظهور والقتال وبيانات الخريطة",
+    ind: "Mekanik Game - Peluang Muncul, Pertarungan & Data Peta",
   },
   "Merchant Guide - Prices, Card Removal & Fake Merchant": {
     eng: "Merchant Guide - Prices, Card Removal & Fake Merchant",
@@ -2039,6 +2277,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Tüccar Rehberi - Fiyatlar, Kart Silme ve Sahte Tüccar",
     zhs: "商人指南 - 价格、删牌与假商人",
     zht: "商人指南 - 價格、刪牌與假商人",
+    ara: "دليل التاجر - الأسعار وإزالة البطاقات والتاجر المزيف",
+    ind: "Panduan Pedagang - Harga, Pembuangan Kartu & Pedagang Palsu",
   },
   "Custom Mode Modifiers - All Modifiers": {
     eng: "Custom Mode Modifiers - All Modifiers",
@@ -2056,6 +2296,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Özel Mod Değiştiricileri - Tüm Değiştiriciler",
     zhs: "自定义模式修正 - 所有修正",
     zht: "自訂模式修正 - 所有修正",
+    ara: "معدّلات الوضع المخصص - كل المعدّلات",
+    ind: "Efek Mode Kustom - Semua Efek",
   },
   "Patch Notes & Updates": {
     eng: "Patch Notes & Updates",
@@ -2073,6 +2315,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Yama Notları ve Güncellemeler",
     zhs: "补丁说明与更新",
     zht: "更新說明與更新",
+    ara: "ملاحظات التحديثات والمستجدات",
+    ind: "Catatan Patch & Pembaruan",
   },
   "Overwolf Overlay": {
     eng: "Overwolf Overlay",
@@ -2090,6 +2334,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Overwolf Katmanı",
     zhs: "Overwolf 悬浮窗",
     zht: "Overwolf 覆蓋層",
+    ara: "واجهة Overwolf",
+    ind: "Overlay Overwolf",
   },
   "Tier List - Cards, Relics & Potions Ranked": {
     eng: "Tier List - Cards, Relics & Potions Ranked",
@@ -2107,6 +2353,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Tier Listesi - Kartlar, Kalıntılar ve İksirler Sıralandı",
     zhs: "梯度榜 - 卡牌、遗物与药水排名",
     zht: "梯度榜 - 卡牌、遺物與藥水排名",
+    ara: "قائمة التصنيف - ترتيب البطاقات والآثار والجرعات",
+    ind: "Tier List - Peringkat Kartu, Pusaka & Ramuan",
   },
   "Unlocks - All Unlockable Cards, Relics & Potions": {
     eng: "Unlocks - All Unlockable Cards, Relics & Potions",
@@ -2124,6 +2372,8 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Kilit Açmalar - Açılabilir Tüm Kartlar, Kalıntılar ve İksirler",
     zhs: "解锁 - 所有可解锁的卡牌、遗物与药水",
     zht: "解鎖 - 所有可解鎖的卡牌、遺物與藥水",
+    ara: "المفتوحات - كل البطاقات والآثار والجرعات القابلة للفتح",
+    ind: "Bukaan - Semua Kartu, Pusaka & Ramuan yang Bisa Dibuka",
   },
   "Shadowbox Giveaway": {
     eng: "Shadowbox Giveaway",
@@ -2141,5 +2391,7 @@ export const X7: Record<string, Record<string, string>> = {
     tur: "Shadowbox Çekilişi",
     zhs: "Shadowbox 抽奖",
     zht: "Shadowbox 抽獎",
+    ara: "سحب صندوق العرض",
+    ind: "Undian Shadowbox",
   },
 };

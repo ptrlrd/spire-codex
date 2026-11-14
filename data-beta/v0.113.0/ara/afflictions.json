@@ -1,0 +1,51 @@
+[
+  {
+    "id": "BOUND",
+    "name": "مقيّدة",
+    "description": "يمكن لعب بطاقة [blue]1[/blue] [gold]مقيّدة[/gold] واحدة فقط كل دور. تُزال حالة [gold]التقييد[/gold] بنهاية الدور.",
+    "extra_card_text": "مقيّدة",
+    "is_stackable": false
+  },
+  {
+    "id": "ENTANGLED",
+    "name": "متشابكة",
+    "description": "تكلف [energy:1] إضافية.",
+    "extra_card_text": "متشابكة",
+    "is_stackable": false
+  },
+  {
+    "id": "GALVANIZED",
+    "name": "مكهربة",
+    "description": "تلقَّ [blue]X[/blue] ضررًا عند لعب هذه البطاقة.",
+    "extra_card_text": "تلقَّ X ضررًا.",
+    "is_stackable": true
+  },
+  {
+    "id": "HEXED",
+    "name": "مثقلة",
+    "description": "أضف [gold]أثيري[/gold] لهذه البطاقة.",
+    "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
+    "id": "RINGING",
+    "name": "رنّانة",
+    "description": "يمكنك لعب [blue]1[/blue] بطاقة فقط هذا الدور.",
+    "extra_card_text": "رنّانة.",
+    "is_stackable": false
+  },
+  {
+    "id": "SMOG",
+    "name": "ضباب سام",
+    "description": "لا يمكنك لعب [gold]مهارات[/gold] إضافية هذا الدور. تزول بنهاية الدور.",
+    "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
+    "id": "TAINTED",
+    "name": "ملوّث",
+    "description": "احصل على [blue]X[/blue] من [gold]التلوث[/gold] عند لعب هذه البطاقة.",
+    "extra_card_text": "احصل على X من التلوث.",
+    "is_stackable": true
+  }
+]

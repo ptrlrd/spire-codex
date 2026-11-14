@@ -15,6 +15,8 @@ export const X11C: Record<string, Record<string, string>> = {
     tur: "Oyun Yamaları",
     zhs: "游戏补丁",
     zht: "遊戲補丁",
+    ara: "تحديثات اللعبة",
+    ind: "Patch Game",
   },
   "Site Releases": {
     eng: "Site Releases",
@@ -32,6 +34,8 @@ export const X11C: Record<string, Record<string, string>> = {
     tur: "Site Sürümleri",
     zhs: "站点版本",
     zht: "站點版本",
+    ara: "إصدارات الموقع",
+    ind: "Rilis Situs",
   },
   "Beta Patch Notes": {
     eng: "Beta Patch Notes",
@@ -49,6 +53,8 @@ export const X11C: Record<string, Record<string, string>> = {
     tur: "Beta Yama Notları",
     zhs: "测试版补丁说明",
     zht: "測試版補丁說明",
+    ara: "ملاحظات تحديث بيتا",
+    ind: "Catatan Patch Beta",
   },
   "Release Notes": {
     eng: "Release Notes",
@@ -66,6 +72,8 @@ export const X11C: Record<string, Record<string, string>> = {
     tur: "Sürüm Notları",
     zhs: "版本说明",
     zht: "版本說明",
+    ara: "ملاحظات الإصدار",
+    ind: "Catatan Rilis",
   },
   patch_index_intro: {
     eng: "Every {game} patch, with the cards, relics, monsters and other content each one added, changed or removed. Patches marked Beta are on beta only.",
@@ -83,6 +91,8 @@ export const X11C: Record<string, Record<string, string>> = {
     tur: "{game} için çıkan her yama ve her birinin eklediği, değiştirdiği veya kaldırdığı kartlar, kalıntılar, canavarlar ve diğer içerikler. Beta olarak işaretlenen yamalar yalnızca betadadır.",
     zhs: "{game}的每一个补丁，以及各补丁新增、变更或移除的卡牌、遗物、怪物和其他内容。标有测试版的补丁仅在测试版中提供。",
     zht: "{game}的每一個補丁，以及各補丁新增、變更或移除的卡牌、遺物、怪物和其他內容。標有測試版的補丁僅在測試版中提供。",
+    ara: "كل تحديثات {game}، مع البطاقات والآثار والوحوش وسائر المحتوى الذي أضافه أو غيّره أو أزاله كل تحديث. التحديثات الموسومة بـ Beta متاحة على بيتا فقط.",
+    ind: "Setiap patch {game}, dengan kartu, pusaka, monster, dan konten lain yang ditambah, diubah, atau dihapus di tiap patch. Patch bertanda Beta hanya ada di beta.",
   },
   patch_index_meta_description: {
     eng: "{game} patch notes for every update and beta patch: the cards, relics, monsters and events each version added, changed or removed, with before and after values.",
@@ -100,6 +110,8 @@ export const X11C: Record<string, Record<string, string>> = {
     tur: "Her güncelleme ve beta yaması için {game} yama notları: her sürümün eklediği, değiştirdiği veya kaldırdığı kartlar, kalıntılar, canavarlar ve olaylar, önceki ve sonraki değerleriyle.",
     zhs: "{game}每次更新和测试版补丁的补丁说明：各版本新增、变更或移除的卡牌、遗物、怪物和事件，附变更前后的数值。",
     zht: "{game}每次更新和測試版補丁的補丁說明：各版本新增、變更或移除的卡牌、遺物、怪物和事件，附變更前後的數值。",
+    ara: "ملاحظات تحديث {game} لكل تحديث وتحديث بيتا: البطاقات والآثار والوحوش والأحداث التي أضافها أو غيّرها أو أزالها كل إصدار، مع القيم قبل وبعد.",
+    ind: "Catatan patch {game} untuk setiap pembaruan dan patch beta: kartu, pusaka, monster, dan event yang ditambah, diubah, atau dihapus di tiap versi, dengan nilai sebelum dan sesudah.",
   },
   patch_meta_description: {
     eng: "{game} {version} patch notes from {date}: {added} added, {changed} changed and {removed} removed, with every card, relic and monster change listed before and after.",
@@ -117,6 +129,8 @@ export const X11C: Record<string, Record<string, string>> = {
     tur: "{date} tarihli {game} {version} yama notları: {added} eklendi, {changed} değişti ve {removed} kaldırıldı. Her kart, kalıntı ve canavar değişikliği önceki ve sonraki değerleriyle.",
     zhs: "{game} {version} 补丁说明（{date}）：新增 {added}，变更 {changed}，移除 {removed}，列出每张卡牌、每个遗物和怪物变更前后的内容。",
     zht: "{game} {version} 補丁說明（{date}）：新增 {added}，變更 {changed}，移除 {removed}，列出每張卡牌、每個遺物和怪物變更前後的內容。",
+    ara: "ملاحظات تحديث {game} {version} بتاريخ {date}: {added} مضافة و{changed} معدلة و{removed} محذوفة، مع سرد كل تغيير في البطاقات والآثار والوحوش قبل وبعد.",
+    ind: "Catatan patch {game} {version} dari {date}: {added} ditambah, {changed} diubah, dan {removed} dihapus, dengan setiap perubahan kartu, pusaka, dan monster ditampilkan sebelum dan sesudah.",
   },
   site_release_meta_description: {
     eng: "Spire Codex {version} release notes from {date}: new features, fixes and API changes.",
@@ -134,6 +148,8 @@ export const X11C: Record<string, Record<string, string>> = {
     tur: "{date} tarihli Spire Codex {version} sürüm notları: yeni özellikler, düzeltmeler ve API değişiklikleri.",
     zhs: "Spire Codex {version} 版本说明（{date}）：新功能、修复和 API 变更。",
     zht: "Spire Codex {version} 版本說明（{date}）：新功能、修復和 API 變更。",
+    ara: "ملاحظات إصدار Spire Codex {version} بتاريخ {date}: ميزات جديدة وإصلاحات وتغييرات في API.",
+    ind: "Catatan rilis Spire Codex {version} dari {date}: fitur baru, perbaikan, dan perubahan API.",
   },
   site_releases_intro: {
     eng: "Updates to Spire Codex itself: new pages, fixes and API changes.",
@@ -151,6 +167,8 @@ export const X11C: Record<string, Record<string, string>> = {
     tur: "Spire Codex'in kendi güncellemeleri: yeni sayfalar, düzeltmeler ve API değişiklikleri.",
     zhs: "Spire Codex 自身的更新：新页面、修复和 API 变更。",
     zht: "Spire Codex 自身的更新：新頁面、修復和 API 變更。",
+    ara: "تحديثات Spire Codex نفسه: صفحات جديدة وإصلاحات وتغييرات في API.",
+    ind: "Pembaruan untuk Spire Codex sendiri: halaman baru, perbaikan, dan perubahan API.",
   },
   "Latest patch notes: {version}": {
     eng: "Latest patch notes: {version}",
@@ -168,6 +186,8 @@ export const X11C: Record<string, Record<string, string>> = {
     tur: "En son yama notları: {version}",
     zhs: "最新补丁说明：{version}",
     zht: "最新補丁說明：{version}",
+    ara: "أحدث ملاحظات التحديث: {version}",
+    ind: "Catatan patch terbaru: {version}",
   },
   patch_beta_only_note: {
     eng: "This patch is on beta only. It is not on main.",
@@ -185,6 +205,8 @@ export const X11C: Record<string, Record<string, string>> = {
     tur: "Bu yama yalnızca betadadır. Ana sürümde yoktur.",
     zhs: "此补丁仅在测试版中提供，主版本中没有。",
     zht: "此補丁僅在測試版中提供，主版本中沒有。",
+    ara: "هذا التحديث متاح على بيتا فقط. ليس متاحًا على الإصدار الرئيسي.",
+    ind: "Patch ini hanya ada di beta. Belum ada di utama.",
   },
   "All patch notes": {
     eng: "All patch notes",
@@ -202,6 +224,8 @@ export const X11C: Record<string, Record<string, string>> = {
     tur: "Tüm yama notları",
     zhs: "全部补丁说明",
     zht: "全部補丁說明",
+    ara: "كل ملاحظات التحديث",
+    ind: "Semua catatan patch",
   },
   "Newer patch": {
     eng: "Newer patch",
@@ -219,6 +243,8 @@ export const X11C: Record<string, Record<string, string>> = {
     tur: "Daha yeni yama",
     zhs: "较新的补丁",
     zht: "較新的補丁",
+    ara: "تحديث أحدث",
+    ind: "Patch lebih baru",
   },
   "Older patch": {
     eng: "Older patch",
@@ -236,6 +262,8 @@ export const X11C: Record<string, Record<string, string>> = {
     tur: "Daha eski yama",
     zhs: "较早的补丁",
     zht: "較早的補丁",
+    ara: "تحديث أقدم",
+    ind: "Patch lebih lama",
   },
   "Newer release": {
     eng: "Newer release",
@@ -253,6 +281,8 @@ export const X11C: Record<string, Record<string, string>> = {
     tur: "Daha yeni sürüm",
     zhs: "较新的版本",
     zht: "較新的版本",
+    ara: "إصدار أحدث",
+    ind: "Rilis lebih baru",
   },
   "Older release": {
     eng: "Older release",
@@ -270,6 +300,8 @@ export const X11C: Record<string, Record<string, string>> = {
     tur: "Daha eski sürüm",
     zhs: "较早的版本",
     zht: "較早的版本",
+    ara: "إصدار أقدم",
+    ind: "Rilis lebih lama",
   },
   "Game data changes": {
     eng: "Game data changes",
@@ -287,6 +319,8 @@ export const X11C: Record<string, Record<string, string>> = {
     tur: "Oyun verisi değişiklikleri",
     zhs: "游戏数据变更",
     zht: "遊戲資料變更",
+    ara: "تغييرات بيانات اللعبة",
+    ind: "Perubahan data game",
   },
   patch_no_data_changes: {
     eng: "No cards, relics, monsters or other game data changed in this patch.",
@@ -304,6 +338,8 @@ export const X11C: Record<string, Record<string, string>> = {
     tur: "Bu yamada kartlar, kalıntılar, canavarlar veya diğer oyun verileri değişmedi.",
     zhs: "此补丁没有变更卡牌、遗物、怪物或其他游戏数据。",
     zht: "此補丁沒有變更卡牌、遺物、怪物或其他遊戲資料。",
+    ara: "لم تتغير أي بطاقات أو آثار أو وحوش أو بيانات لعبة أخرى في هذا التحديث.",
+    ind: "Tidak ada kartu, pusaka, monster, atau data game lain yang berubah di patch ini.",
   },
   "On this page": {
     eng: "On this page",
@@ -321,6 +357,8 @@ export const X11C: Record<string, Record<string, string>> = {
     tur: "Bu sayfada",
     zhs: "本页内容",
     zht: "本頁內容",
+    ara: "في هذه الصفحة",
+    ind: "Di halaman ini",
   },
   Stories: {
     eng: "Stories",
@@ -338,5 +376,7 @@ export const X11C: Record<string, Record<string, string>> = {
     tur: "Hikayeler",
     zhs: "故事",
     zht: "故事",
+    ara: "القصص",
+    ind: "Cerita",
   },
 };

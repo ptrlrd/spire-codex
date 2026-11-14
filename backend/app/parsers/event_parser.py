@@ -108,9 +108,11 @@ def load_all_titles(loc_dir: Path) -> dict[str, str]:
 # falls back to English.
 PLACEHOLDER_PHRASES: dict[str, dict[str, str]] = {
     "one of your Relics": {
+        "ara": "أحد آثارك",
         "deu": "eines deiner Relikte",
         "esp": "una de tus reliquias",
         "fra": "l'une de vos reliques",
+        "ind": "salah satu Pusakamu",
         "ita": "una delle tue reliquie",
         "jpn": "所持しているレリックの1つ",
         "kor": "보유한 유물 중 하나",
@@ -124,9 +126,11 @@ PLACEHOLDER_PHRASES: dict[str, dict[str, str]] = {
         "zht": "你的一件遺物",
     },
     "a random Relic": {
+        "ara": "أثر عشوائي",
         "deu": "ein zufälliges Relikt",
         "esp": "una reliquia aleatoria",
         "fra": "une relique aléatoire",
+        "ind": "Pusaka acak",
         "ita": "una reliquia casuale",
         "jpn": "ランダムなレリック",
         "kor": "무작위 유물",
@@ -140,9 +144,11 @@ PLACEHOLDER_PHRASES: dict[str, dict[str, str]] = {
         "zht": "一件隨機遺物",
     },
     "a random Card": {
+        "ara": "بطاقة عشوائية",
         "deu": "eine zufällige Karte",
         "esp": "una carta aleatoria",
         "fra": "une carte aléatoire",
+        "ind": "Kartu acak",
         "ita": "una carta casuale",
         "jpn": "ランダムなカード",
         "kor": "무작위 카드",
@@ -156,9 +162,11 @@ PLACEHOLDER_PHRASES: dict[str, dict[str, str]] = {
         "zht": "一張隨機卡牌",
     },
     "a random Potion": {
+        "ara": "جرعة عشوائية",
         "deu": "ein zufälliger Trank",
         "esp": "una poción aleatoria",
         "fra": "une potion aléatoire",
+        "ind": "Ramuan acak",
         "ita": "una pozione casuale",
         "jpn": "ランダムなポーション",
         "kor": "무작위 물약",
@@ -172,9 +180,11 @@ PLACEHOLDER_PHRASES: dict[str, dict[str, str]] = {
         "zht": "一瓶隨機藥水",
     },
     "a Potion": {
+        "ara": "جرعة",
         "deu": "ein Trank",
         "esp": "una poción",
         "fra": "une potion",
+        "ind": "sebuah Ramuan",
         "ita": "una pozione",
         "jpn": "ポーション",
         "kor": "물약",
@@ -188,9 +198,11 @@ PLACEHOLDER_PHRASES: dict[str, dict[str, str]] = {
         "zht": "一瓶藥水",
     },
     "Common": {
+        "ara": "شائع",
         "deu": "Gewöhnlich",
         "esp": "Común",
         "fra": "Commune",
+        "ind": "Biasa",
         "ita": "Comune",
         "jpn": "コモン",
         "kor": "일반",
@@ -204,9 +216,11 @@ PLACEHOLDER_PHRASES: dict[str, dict[str, str]] = {
         "zht": "普通",
     },
     "Skill": {
+        "ara": "مهارة",
         "deu": "Fertigkeit",
         "esp": "Habilidad",
         "fra": "Compétence",
+        "ind": "Teknik",
         "ita": "Abilità",
         "jpn": "スキル",
         "kor": "스킬",
@@ -1206,6 +1220,11 @@ def _fix_lost_wisp(event: dict) -> dict:
 
 
 FAKE_MERCHANT_DESCRIPTION: dict[str, str] = {
+    "ara": (
+        "تاجر مريب يعرض 6 آثار مزيفة (من مجموعة تضم 9) بسعر 42–58 ذهبًا لكل منها. "
+        "رمي [gold]Foul Potion[/gold] يبدأ قتالًا ضد The Merchant??? (165 نقطة صحة). "
+        "الفوز يمنحك [gold]The Merchant's Rug???[/gold] مع كل الآثار غير المباعة."
+    ),
     "eng": (
         "A suspicious merchant offers 6 fake relics (drawn from a pool of 9) at 42–58 gold each. "
         "Throwing a [gold]Foul Potion[/gold] starts a fight against The Merchant??? (165 HP). "
@@ -1225,6 +1244,11 @@ FAKE_MERCHANT_DESCRIPTION: dict[str, str] = {
         "Un marchand suspect propose 6 fausses reliques (tirées d'un pool de 9) à 42–58 pièces chacune. "
         "Lancer une [gold]Foul Potion[/gold] déclenche un combat contre The Merchant??? (165 PV). "
         "La victoire récompense [gold]The Merchant's Rug???[/gold] ainsi que toutes les reliques invendues."
+    ),
+    "ind": (
+        "Pedagang mencurigakan menawarkan 6 Pusaka palsu (dari kumpulan 9) seharga 42–58 Emas per buah. "
+        "Melempar [gold]Foul Potion[/gold] memulai pertarungan melawan The Merchant??? (165 HP). "
+        "Kemenangan memberi [gold]The Merchant's Rug???[/gold] beserta semua Pusaka yang tidak terjual."
     ),
     "ita": (
         "Un mercante sospetto offre 6 reliquie false (da un pool di 9) a 42–58 oro ciascuna. "

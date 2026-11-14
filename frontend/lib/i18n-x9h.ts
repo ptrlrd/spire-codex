@@ -16,6 +16,8 @@ export const X9H: Record<string, Record<string, string>> = {
     tur: "Spire Codex En İyi Oyuncular",
     zhs: "Spire Codex 顶尖玩家",
     zht: "Spire Codex 頂尖玩家",
+    ara: "أفضل لاعبي Spire Codex",
+    ind: "Pemain Teratas Spire Codex",
   },
   "Top Players": {
     eng: "Top Players",
@@ -33,6 +35,8 @@ export const X9H: Record<string, Record<string, string>> = {
     tur: "En İyi Oyuncular",
     zhs: "顶尖玩家",
     zht: "頂尖玩家",
+    ara: "أفضل اللاعبين",
+    ind: "Pemain Teratas",
   },
   elo_meta_description: {
     eng: "The 100 highest rated Slay the Spire 2 players on Spire Codex, rated on solo Ascension 10 standard runs.",
@@ -50,6 +54,8 @@ export const X9H: Record<string, Record<string, string>> = {
     tur: "Spire Codex'te en yüksek puanlı 100 Slay the Spire 2 oyuncusu, tek kişilik Yükseliş 10 standart oyunlara göre.",
     zhs: "Spire Codex 上评分最高的100位杀戮尖塔2玩家，按单人进阶10标准模式评定。",
     zht: "Spire Codex 上評分最高的100位殺戮尖塔2玩家，按單人晉階10標準模式評定。",
+    ara: "أعلى 100 لاعب تقييماً في Slay the Spire 2 على Spire Codex، مقيّمون على الجولات الفردية العادية في الصعود 10.",
+    ind: "100 pemain Slay the Spire 2 dengan rating tertinggi di Spire Codex, dinilai dari perjalanan Standar solo Angkatan 10.",
   },
   elo_intro: {
     eng: "The top 100 players on Spire Codex, ranked by Elo. Every solo Ascension 10 standard run on an official character counts as a match against that character's community win rate. Win and your rating climbs, lose and it drops, with bigger swings during your first 30 runs on a character. Elo blends the characters you actually play. Lifetime is the rating your whole record proves with 95% confidence, so it rewards volume. Only accounts with a public name and at least {n} rated runs are listed.",
@@ -67,6 +73,8 @@ export const X9H: Record<string, Record<string, string>> = {
     tur: "Elo'ya göre sıralanmış Spire Codex'in en iyi 100 oyuncusu. Resmi bir karakterle oynanan her tek kişilik Yükseliş 10 standart oyun, o karakterin topluluk kazanma oranına karşı bir maç sayılır. Kazanırsan puanın yükselir, kaybedersen düşer; bir karakterle ilk 30 oyununda dalgalanmalar daha büyüktür. Elo gerçekten oynadığın karakterleri harmanlar. Lifetime, tüm geçmişinin %95 güvenle kanıtladığı puandır, bu yüzden hacmi ödüllendirir. Yalnızca herkese açık adı olan ve en az {n} puanlanmış oyunu bulunan hesaplar listelenir.",
     zhs: "Spire Codex 按 Elo 排名的前100名玩家。使用官方角色进行的每一场单人进阶10标准模式都算作与该角色社区胜率的一次对局。赢了评分上升，输了评分下降，每个角色的前30局波动更大。Elo 综合了你实际游玩的角色。Lifetime 是你全部战绩在95%置信度下证明的评分，因此局数越多越有利。仅列出有公开名称且至少有{n}场评分对局的账号。",
     zht: "Spire Codex 按 Elo 排名的前100名玩家。使用官方角色進行的每一場單人晉階10標準模式都算作與該角色社群勝率的一次對局。贏了評分上升，輸了評分下降，每個角色的前30局波動更大。Elo 綜合了你實際遊玩的角色。Lifetime 是你全部戰績在95%信賴度下證明的評分，因此局數越多越有利。僅列出有公開名稱且至少有{n}場評分對局的帳號。",
+    ara: "أفضل 100 لاعب على Spire Codex، مرتبون حسب Elo. كل جولة فردية عادية في الصعود 10 بشخصية رسمية تُحتسب كمباراة ضد معدل فوز المجتمع لتلك الشخصية. إذا فزت ارتفع تقييمك، وإذا خسرت انخفض، مع تقلبات أكبر خلال أول 30 جولة لك بالشخصية. يمزج Elo بين الشخصيات التي تلعب بها فعلاً. تقييم مدى الحياة هو التقييم الذي يثبته سجلك الكامل بثقة 95%، لذا فهو يكافئ كثرة اللعب. تُدرج فقط الحسابات التي لها اسم علني وما لا يقل عن {n} جولة مقيّمة.",
+    ind: "100 pemain teratas di Spire Codex, diurutkan menurut Elo. Setiap perjalanan Standar solo Angkatan 10 dengan karakter resmi dihitung sebagai pertandingan melawan tingkat kemenangan komunitas karakter itu. Menang dan ratingmu naik, kalah dan ratingmu turun, dengan ayunan lebih besar selama 30 perjalanan pertamamu dengan satu karakter. Elo memadukan karakter yang benar-benar kamu mainkan. Sepanjang Masa adalah rating yang dibuktikan seluruh catatanmu dengan keyakinan 95%, jadi ini menghargai jumlah run. Hanya akun dengan nama publik dan setidaknya {n} perjalanan berperingkat yang ditampilkan.",
   },
   "Refreshed nightly. Last build: {when}": {
     eng: "Refreshed nightly. Last build: {when}",
@@ -84,6 +92,8 @@ export const X9H: Record<string, Record<string, string>> = {
     tur: "Her gece yenilenir. Son derleme: {when}",
     zhs: "每晚刷新。最近生成：{when}",
     zht: "每晚更新。最近生成：{when}",
+    ara: "يُحدّث كل ليلة. آخر بناء: {when}",
+    ind: "Diperbarui tiap malam. Build terakhir: {when}",
   },
   "{n} rated players": {
     eng: "{n} rated players",
@@ -101,6 +111,8 @@ export const X9H: Record<string, Record<string, string>> = {
     tur: "{n} puanlanmış oyuncu",
     zhs: "{n} 位已评分玩家",
     zht: "{n} 位已評分玩家",
+    ara: "{n} لاعب مقيّم",
+    ind: "{n} pemain berperingkat",
   },
   Lifetime: {
     eng: "Lifetime",
@@ -118,6 +130,8 @@ export const X9H: Record<string, Record<string, string>> = {
     tur: "Lifetime",
     zhs: "Lifetime",
     zht: "Lifetime",
+    ara: "مدى الحياة",
+    ind: "Sepanjang Masa",
   },
   "A10 runs": {
     eng: "A10 runs",
@@ -135,6 +149,8 @@ export const X9H: Record<string, Record<string, string>> = {
     tur: "A10 oyun",
     zhs: "进阶10局数",
     zht: "晉階10局數",
+    ara: "جولات A10",
+    ind: "Perjalanan A10",
   },
   Main: {
     eng: "Main",
@@ -152,6 +168,8 @@ export const X9H: Record<string, Record<string, string>> = {
     tur: "Ana",
     zhs: "主用",
     zht: "主用",
+    ara: "الرئيسي",
+    ind: "Main",
   },
   "No ratings yet. The board fills in after the next nightly build.": {
     eng: "No ratings yet. The board fills in after the next nightly build.",
@@ -169,6 +187,8 @@ export const X9H: Record<string, Record<string, string>> = {
     tur: "Henüz puan yok. Tablo bir sonraki gece derlemesinden sonra dolar.",
     zhs: "暂无评分。表格将在下次夜间生成后填充。",
     zht: "暫無評分。表格將在下次夜間生成後填充。",
+    ara: "لا توجد تقييمات بعد. تمتلئ اللوحة بعد البناء الليلي التالي.",
+    ind: "Belum ada rating. Papan akan terisi setelah build malam berikutnya.",
   },
   "{wins} wins in {runs} runs": {
     eng: "{wins} wins in {runs} runs",
@@ -186,5 +206,7 @@ export const X9H: Record<string, Record<string, string>> = {
     tur: "{runs} oyunda {wins} galibiyet",
     zhs: "{runs}局中{wins}胜",
     zht: "{runs}局中{wins}勝",
+    ara: "{wins} فوز في {runs} جولة",
+    ind: "{wins} menang dari {runs} perjalanan",
   },
 };

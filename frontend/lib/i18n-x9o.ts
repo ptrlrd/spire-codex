@@ -16,6 +16,8 @@ export const X9O: Record<string, Record<string, string>> = {
     tur: "Öngörülen mağaza {n}",
     zhs: "预测商店 {n}",
     zht: "預測商店 {n}",
+    ara: "المتجر المتوقع {n}",
+    ind: "Prediksi toko {n}",
   },
   "Neow offers": {
     eng: "Neow offers",
@@ -33,6 +35,8 @@ export const X9O: Record<string, Record<string, string>> = {
     tur: "Neow teklifleri",
     zhs: "涅奥的提议",
     zht: "涅奧的提議",
+    ara: "عروض Neow",
+    ind: "Tawaran Neow",
   },
   "Card rewards offered": {
     eng: "Card rewards offered",
@@ -50,6 +54,8 @@ export const X9O: Record<string, Record<string, string>> = {
     tur: "Sunulan kart ödülleri",
     zhs: "提供的卡牌奖励",
     zht: "提供的卡牌獎勵",
+    ara: "مكافآت البطاقات المعروضة",
+    ind: "Pilihan kartu yang ditawarkan",
   },
   "Relics obtained": {
     eng: "Relics obtained",
@@ -67,6 +73,8 @@ export const X9O: Record<string, Record<string, string>> = {
     tur: "Alınan kalıntılar",
     zhs: "获得的遗物",
     zht: "獲得的遺物",
+    ara: "الآثار المكتسبة",
+    ind: "Pusaka didapat",
   },
   "Shop stock": {
     eng: "Shop stock",
@@ -84,6 +92,8 @@ export const X9O: Record<string, Record<string, string>> = {
     tur: "Dükkan stoğu",
     zhs: "商店库存",
     zht: "商店庫存",
+    ara: "بضاعة المتجر",
+    ind: "Stok toko",
   },
   "Final deck": {
     eng: "Final deck",
@@ -101,6 +111,8 @@ export const X9O: Record<string, Record<string, string>> = {
     tur: "Son deste",
     zhs: "最终牌组",
     zht: "最終牌組",
+    ara: "المجموعة النهائية",
+    ind: "Dek akhir",
   },
   "Won at least once": {
     eng: "Won at least once",
@@ -118,6 +130,8 @@ export const X9O: Record<string, Record<string, string>> = {
     tur: "En az bir kez kazanıldı",
     zhs: "至少赢过一次",
     zht: "至少贏過一次",
+    ara: "فاز مرة واحدة على الأقل",
+    ind: "Menang setidaknya sekali",
   },
   "inspect seed": {
     eng: "inspect seed",
@@ -135,6 +149,8 @@ export const X9O: Record<string, Record<string, string>> = {
     tur: "tohumu incele",
     zhs: "查看种子",
     zht: "查看種子",
+    ara: "فحص البذرة",
+    ind: "periksa benih",
   },
   "Random seed": {
     eng: "Random seed",
@@ -152,6 +168,8 @@ export const X9O: Record<string, Record<string, string>> = {
     tur: "Rastgele tohum",
     zhs: "随机种子",
     zht: "隨機種子",
+    ara: "بذرة عشوائية",
+    ind: "Benih acak",
   },
   "Find seeds like this": {
     eng: "Find seeds like this",
@@ -169,6 +187,8 @@ export const X9O: Record<string, Record<string, string>> = {
     tur: "Benzer tohumları bul",
     zhs: "查找类似种子",
     zht: "尋找類似種子",
+    ara: "ابحث عن بذور مشابهة",
+    ind: "Cari benih seperti ini",
   },
   "Nobody has uploaded a run on this seed yet.": {
     eng: "Nobody has uploaded a run on this seed yet.",
@@ -186,6 +206,8 @@ export const X9O: Record<string, Record<string, string>> = {
     tur: "Bu tohumla henüz kimse bir koşu yüklemedi.",
     zhs: "还没有人上传过这个种子的游戏记录。",
     zht: "還沒有人上傳過這個種子的遊戲紀錄。",
+    ara: "لم يرفع أحد جولة على هذه البذرة بعد.",
+    ind: "Belum ada yang mengunggah perjalanan dengan benih ini.",
   },
   "Seed {seed}": {
     eng: "Seed {seed}",
@@ -203,6 +225,8 @@ export const X9O: Record<string, Record<string, string>> = {
     tur: "Tohum {seed}",
     zhs: "种子 {seed}",
     zht: "種子 {seed}",
+    ara: "البذرة {seed}",
+    ind: "Benih {seed}",
   },
   seed_inspect_meta_description: {
     eng: "What Slay the Spire 2 seed {seed} offers: Neow relics, card rewards by floor, bosses, shops and outcomes from real community runs.",
@@ -220,6 +244,8 @@ export const X9O: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 tohumu {seed} ne sunuyor: Neow kalıntıları, kat kat kart ödülleri, patronlar, dükkanlar ve gerçek topluluk koşularının sonuçları.",
     zhs: "Slay the Spire 2 种子 {seed} 提供的内容：涅奥遗物、各层卡牌奖励、Boss、商店，以及来自真实社区对局的结果。",
     zht: "Slay the Spire 2 種子 {seed} 提供的內容：涅奧遺物、各層卡牌獎勵、Boss、商店，以及來自真實社群對局的結果。",
+    ara: "ما تقدمه البذرة {seed} في Slay the Spire 2: آثار Neow، ومكافآت البطاقات حسب الطابق، والزعماء، والمتاجر، والنتائج من جولات حقيقية للمجتمع.",
+    ind: "Isi benih {seed} di Slay the Spire 2: pusaka Neow, pilihan kartu per lantai, bos, toko, dan hasil dari perjalanan nyata komunitas.",
   },
   "{n} players": {
     eng: "{n} players",
@@ -237,6 +263,8 @@ export const X9O: Record<string, Record<string, string>> = {
     tur: "{n} oyuncu",
     zhs: "{n} 名玩家",
     zht: "{n} 名玩家",
+    ara: "{n} لاعب",
+    ind: "{n} pemain",
   },
   "{n} seeds indexed.": {
     eng: "{n} seeds indexed.",
@@ -254,6 +282,8 @@ export const X9O: Record<string, Record<string, string>> = {
     tur: "{n} tohum dizinlendi.",
     zhs: "已收录 {n} 个种子。",
     zht: "已收錄 {n} 個種子。",
+    ara: "تمت فهرسة {n} بذرة.",
+    ind: "{n} benih terindeks.",
   },
   "{n} seed": {
     eng: "{n} seed",
@@ -271,6 +301,8 @@ export const X9O: Record<string, Record<string, string>> = {
     tur: "{n} tohum",
     zhs: "{n} 个种子",
     zht: "{n} 個種子",
+    ara: "{n} بذرة",
+    ind: "{n} benih",
   },
   "{n} seeds": {
     eng: "{n} seeds",
@@ -288,6 +320,8 @@ export const X9O: Record<string, Record<string, string>> = {
     tur: "{n} tohum",
     zhs: "{n} 个种子",
     zht: "{n} 個種子",
+    ara: "{n} بذرة",
+    ind: "{n} benih",
   },
   "{n} runs": {
     eng: "{n} runs",
@@ -305,6 +339,8 @@ export const X9O: Record<string, Record<string, string>> = {
     tur: "{n} koşu",
     zhs: "{n} 局",
     zht: "{n} 局",
+    ara: "{n} جولة",
+    ind: "{n} perjalanan",
   },
   "{p}% wins": {
     eng: "{p}% wins",
@@ -322,6 +358,8 @@ export const X9O: Record<string, Record<string, string>> = {
     tur: "%{p} galibiyet",
     zhs: "{p}% 胜率",
     zht: "{p}% 勝率",
+    ara: "{p}% فوز",
+    ind: "{p}% menang",
   },
   "fastest win {time}": {
     eng: "fastest win {time}",
@@ -339,6 +377,8 @@ export const X9O: Record<string, Record<string, string>> = {
     tur: "en hızlı galibiyet {time}",
     zhs: "最快胜利 {time}",
     zht: "最快勝利 {time}",
+    ara: "أسرع فوز {time}",
+    ind: "kemenangan tercepat {time}",
   },
   "best run, floor {n}": {
     eng: "best run, floor {n}",
@@ -356,6 +396,8 @@ export const X9O: Record<string, Record<string, string>> = {
     tur: "en iyi koşu, kat {n}",
     zhs: "最佳对局，第 {n} 层",
     zht: "最佳對局，第 {n} 層",
+    ara: "أفضل جولة، الطابق {n}",
+    ind: "perjalanan terbaik, lantai {n}",
   },
   "act {n}": {
     eng: "act {n}",
@@ -373,6 +415,8 @@ export const X9O: Record<string, Record<string, string>> = {
     tur: "perde {n}",
     zhs: "第 {n} 阶段",
     zht: "第 {n} 幕",
+    ara: "الفصل {n}",
+    ind: "babak {n}",
   },
   "any act": {
     eng: "any act",
@@ -390,6 +434,8 @@ export const X9O: Record<string, Record<string, string>> = {
     tur: "herhangi bir perde",
     zhs: "任意阶段",
     zht: "任意幕",
+    ara: "أي فصل",
+    ind: "babak mana pun",
   },
   "by floor {n}": {
     eng: "by floor {n}",
@@ -407,6 +453,8 @@ export const X9O: Record<string, Record<string, string>> = {
     tur: "{n}. kata kadar",
     zhs: "第 {n} 层之前",
     zht: "第 {n} 層之前",
+    ara: "حتى الطابق {n}",
+    ind: "sebelum lantai {n}",
   },
   "from floor {n}": {
     eng: "from floor {n}",
@@ -424,6 +472,8 @@ export const X9O: Record<string, Record<string, string>> = {
     tur: "{n}. kattan itibaren",
     zhs: "第 {n} 层起",
     zht: "第 {n} 層起",
+    ara: "من الطابق {n}",
+    ind: "dari lantai {n}",
   },
   "seat {n}": {
     eng: "seat {n}",
@@ -441,6 +491,8 @@ export const X9O: Record<string, Record<string, string>> = {
     tur: "koltuk {n}",
     zhs: "座位 {n}",
     zht: "座位 {n}",
+    ara: "المقعد {n}",
+    ind: "kursi {n}",
   },
   "any seat": {
     eng: "any seat",
@@ -458,6 +510,8 @@ export const X9O: Record<string, Record<string, string>> = {
     tur: "herhangi bir koltuk",
     zhs: "任意座位",
     zht: "任意座位",
+    ara: "أي مقعد",
+    ind: "kursi mana pun",
   },
   "Neow offered {name}": {
     eng: "Neow offered {name}",
@@ -475,6 +529,8 @@ export const X9O: Record<string, Record<string, string>> = {
     tur: "Neow {name} sundu",
     zhs: "涅奥提供了 {name}",
     zht: "涅奧提供了 {name}",
+    ara: "عرض Neow {name}",
+    ind: "Neow menawarkan {name}",
   },
   "met {name}": {
     eng: "met {name}",
@@ -492,6 +548,8 @@ export const X9O: Record<string, Record<string, string>> = {
     tur: "{name} ile karşılaşıldı",
     zhs: "遇见了 {name}",
     zht: "遇見了 {name}",
+    ara: "قابل {name}",
+    ind: "bertemu {name}",
   },
   "boss {name}": {
     eng: "boss {name}",
@@ -509,6 +567,8 @@ export const X9O: Record<string, Record<string, string>> = {
     tur: "patron {name}",
     zhs: "Boss {name}",
     zht: "Boss {name}",
+    ara: "الزعيم {name}",
+    ind: "bos {name}",
   },
   "elite {name}": {
     eng: "elite {name}",
@@ -526,6 +586,8 @@ export const X9O: Record<string, Record<string, string>> = {
     tur: "elit {name}",
     zhs: "精英 {name}",
     zht: "精英 {name}",
+    ara: "النخبة {name}",
+    ind: "elit {name}",
   },
   "shop sold {name}": {
     eng: "shop sold {name}",
@@ -543,6 +605,8 @@ export const X9O: Record<string, Record<string, string>> = {
     tur: "dükkan {name} sattı",
     zhs: "商店出售 {name}",
     zht: "商店出售 {name}",
+    ara: "باع المتجر {name}",
+    ind: "toko menjual {name}",
   },
   "{m} of {n}": {
     eng: "{m} of {n}",
@@ -560,6 +624,8 @@ export const X9O: Record<string, Record<string, string>> = {
     tur: "{n} içinden {m}",
     zhs: "{n} 项中的 {m} 项",
     zht: "{n} 項中的 {m} 項",
+    ara: "{m} من {n}",
+    ind: "{m} dari {n}",
   },
   "floor {n}": {
     eng: "floor {n}",
@@ -577,6 +643,8 @@ export const X9O: Record<string, Record<string, string>> = {
     tur: "kat {n}",
     zhs: "第 {n} 层",
     zht: "第 {n} 層",
+    ara: "الطابق {n}",
+    ind: "lantai {n}",
   },
   "removal {n} gold": {
     eng: "removal {n} gold",
@@ -594,6 +662,8 @@ export const X9O: Record<string, Record<string, string>> = {
     tur: "kaldırma {n} altın",
     zhs: "移除卡牌 {n} 金币",
     zht: "移除卡牌 {n} 金幣",
+    ara: "الإزالة {n} ذهب",
+    ind: "pembuangan {n} emas",
   },
   "Ascension {a} to {b}": {
     eng: "Ascension {a} to {b}",
@@ -611,6 +681,8 @@ export const X9O: Record<string, Record<string, string>> = {
     tur: "Yükseliş {a} - {b}",
     zhs: "进阶 {a} 到 {b}",
     zht: "晉階 {a} 到 {b}",
+    ara: "الصعود {a} إلى {b}",
+    ind: "Angkatan {a} sampai {b}",
   },
   "Fastest win {time}": {
     eng: "Fastest win {time}",
@@ -628,6 +700,8 @@ export const X9O: Record<string, Record<string, string>> = {
     tur: "En hızlı galibiyet {time}",
     zhs: "最快胜利 {time}",
     zht: "最快勝利 {time}",
+    ara: "أسرع فوز {time}",
+    ind: "Kemenangan tercepat {time}",
   },
   "Best run, floor {n}": {
     eng: "Best run, floor {n}",
@@ -645,5 +719,7 @@ export const X9O: Record<string, Record<string, string>> = {
     tur: "En iyi koşu, kat {n}",
     zhs: "最佳对局，第 {n} 层",
     zht: "最佳對局，第 {n} 層",
+    ara: "أفضل جولة، الطابق {n}",
+    ind: "Perjalanan terbaik, lantai {n}",
   },
 };

@@ -16,6 +16,8 @@ export const X9J: Record<string, Record<string, string>> = {
     tur: "Bir Slay the Spire 2 taslağı çiz ve topluluk verilerinin onu nereye götürdüğünü gör: dönüştüğü arketip, benzer destelerle kazananların sonra ne aldığı ve teklif edilen hangi kartın alınacağı.",
     zhs: "拟一个 Slay the Spire 2 的构筑草稿，看看社区数据说它会走向哪里：正在成为哪种原型、用相似牌组获胜的人接下来拿了什么、以及该拿提供的哪张牌。",
     zht: "擬一個 Slay the Spire 2 的構築草稿，看看社群資料說它會走向哪裡：正在成為哪種原型、用相似牌組獲勝的人接下來拿了什麼、以及該拿提供的哪張牌。",
+    ara: "ارسم تشكيلة في Slay the Spire 2 واعرف إلى أين تتجه بحسب بيانات المجتمع: النمط الذي تتحول إليه، وما أخذه الفائزون أصحاب المجموعات المشابهة بعد ذلك، وأي بطاقة معروضة تأخذها.",
+    ind: "Rancang draft Slay the Spire 2 dan lihat arahnya menurut data komunitas: arketipe yang sedang terbentuk, apa yang diambil para pemenang dengan dek serupa setelahnya, dan kartu tawaran mana yang sebaiknya diambil.",
   },
   deck_builder_scope: {
     eng: "Covers solo runs at ascension 0 to 10 on the main game version.",
@@ -33,6 +35,8 @@ export const X9J: Record<string, Record<string, string>> = {
     tur: "Oyunun ana sürümünde Yükseliş 0 ile 10 arasındaki tek kişilik oyunları kapsar.",
     zhs: "涵盖主版本游戏中进阶 0 到 10 的单人游戏。",
     zht: "涵蓋主版本遊戲中晉階 0 到 10 的單人遊戲。",
+    ara: "يشمل الجولات الفردية في الصعود من 0 إلى 10 على إصدار اللعبة الرئيسي.",
+    ind: "Mencakup perjalanan solo di angkatan 0 sampai 10 pada versi main game.",
   },
   "Only add what you picked. Starter cards, starter relics and Ascender's Bane are left out on purpose.":
     {
@@ -51,6 +55,8 @@ export const X9J: Record<string, Record<string, string>> = {
       tur: "Yalnızca kendi seçtiklerini ekle. Başlangıç kartları, başlangıç kutsal emanetleri ve Yükselenin Laneti bilerek dışarıda bırakılır.",
       zhs: "只添加你自己拿到的。初始卡牌、初始遗物和登顶者之祸是特意排除的。",
       zht: "只加入你自己拿到的。初始卡牌、初始遺物和登頂者之禍是特意排除的。",
+      ara: "أضف ما اخترته فقط. البطاقات الأساسية وآثار البداية وعبء الصاعد مستبعدة عمدًا.",
+      ind: "Tambahkan hanya yang kamu pilih. Kartu awalan, pusaka awalan, dan Kutukan Pendaki sengaja tidak disertakan.",
     },
   "Which should you take?": {
     eng: "Which should you take?",
@@ -68,6 +74,8 @@ export const X9J: Record<string, Record<string, string>> = {
     tur: "Hangisini almalısın?",
     zhs: "该拿哪张？",
     zht: "該拿哪張？",
+    ara: "أيها تأخذ؟",
+    ind: "Mana yang sebaiknya diambil?",
   },
   "Add your draft first so the offer can be scored against it.": {
     eng: "Add your draft first so the offer can be scored against it.",
@@ -85,6 +93,8 @@ export const X9J: Record<string, Record<string, string>> = {
     tur: "Teklifin ona göre puanlanabilmesi için önce taslağını ekle.",
     zhs: "先添加你的构筑，才能据此给提供的牌打分。",
     zht: "先加入你的構築，才能據此給提供的牌評分。",
+    ara: "أضف تشكيلتك أولًا ليتم تقييم العرض بناءً عليها.",
+    ind: "Tambahkan draft kamu dulu supaya tawaran bisa dinilai berdasarkan draft itu.",
   },
   Commit: {
     eng: "Commit",
@@ -102,6 +112,8 @@ export const X9J: Record<string, Record<string, string>> = {
     tur: "Yönelim",
     zhs: "倾向",
     zht: "傾向",
+    ara: "التركيز",
+    ind: "Fokus",
   },
   Winners: {
     eng: "Winners",
@@ -119,6 +131,8 @@ export const X9J: Record<string, Record<string, string>> = {
     tur: "Kazananlar",
     zhs: "胜者",
     zht: "勝者",
+    ara: "الفائزون",
+    ind: "Pemenang",
   },
   "Take rate": {
     eng: "Take rate",
@@ -136,6 +150,8 @@ export const X9J: Record<string, Record<string, string>> = {
     tur: "Alınma oranı",
     zhs: "拿取率",
     zht: "拿取率",
+    ara: "معدل الأخذ",
+    ind: "Tingkat ambil",
   },
   "How often players take this card when it's offered, nudged by what you already hold. Base rate {base}%.":
     {
@@ -154,6 +170,8 @@ export const X9J: Record<string, Record<string, string>> = {
       tur: "Bu kart teklif edildiğinde oyuncuların onu ne sıklıkla aldığı, elindekilere göre ayarlanmış. Temel oran %{base}.",
       zhs: "这张牌被提供时玩家拿取的频率，并根据你已有的内容做了调整。基础拿取率 {base}%。",
       zht: "這張牌被提供時玩家拿取的頻率，並根據你已有的內容做了調整。基礎拿取率 {base}%。",
+      ara: "عدد مرات أخذ اللاعبين لهذه البطاقة عند عرضها، مع تعديل بسيط بحسب ما تملكه بالفعل. المعدل الأساسي {base}%.",
+      ind: "Seberapa sering pemain mengambil kartu ini saat ditawarkan, disesuaikan sedikit dengan apa yang sudah kamu pegang. Tingkat dasar {base}%.",
     },
   "Defines the build": {
     eng: "Defines the build",
@@ -171,6 +189,8 @@ export const X9J: Record<string, Record<string, string>> = {
     tur: "Bu build'i tanımlar",
     zhs: "构筑核心",
     zht: "構築核心",
+    ara: "تحدد البناء",
+    ind: "Menentukan build",
   },
   Undo: {
     eng: "Undo",
@@ -188,6 +208,8 @@ export const X9J: Record<string, Record<string, string>> = {
     tur: "Geri al",
     zhs: "撤销",
     zht: "復原",
+    ara: "تراجع",
+    ind: "Urungkan",
   },
   "Switched to {character}. Your previous draft is one click away.": {
     eng: "Switched to {character}. Your previous draft is one click away.",
@@ -205,6 +227,8 @@ export const X9J: Record<string, Record<string, string>> = {
     tur: "{character} karakterine geçildi. Önceki taslağın bir tık uzağında.",
     zhs: "已切换到{character}。上一份构筑一键即可恢复。",
     zht: "已切換到{character}。上一份構築一鍵即可恢復。",
+    ara: "تم التبديل إلى {character}. تشكيلتك السابقة على بعد نقرة واحدة.",
+    ind: "Beralih ke {character}. Draft sebelumnya bisa dipulihkan dengan satu klik.",
   },
   "Previous draft restored.": {
     eng: "Previous draft restored.",
@@ -222,6 +246,8 @@ export const X9J: Record<string, Record<string, string>> = {
     tur: "Önceki taslak geri yüklendi.",
     zhs: "已恢复上一份构筑。",
     zht: "已恢復上一份構築。",
+    ara: "تمت استعادة التشكيلة السابقة.",
+    ind: "Draft sebelumnya dipulihkan.",
   },
   "Nothing stands out yet. Winners near this draft didn't share picks you're missing.":
     {
@@ -240,5 +266,7 @@ export const X9J: Record<string, Record<string, string>> = {
       tur: "Henüz öne çıkan bir şey yok. Bu taslağa yakın kazananların sende eksik olan ortak seçimleri yoktu.",
       zhs: "暂时没有突出的选择。与这份构筑相近的胜者没有你缺少的共同拿取。",
       zht: "暫時沒有突出的選擇。與這份構築相近的勝者沒有你缺少的共同拿取。",
+      ara: "لا شيء بارز بعد. الفائزون القريبون من هذه التشكيلة لم يشتركوا في اختيارات تنقصك.",
+      ind: "Belum ada yang menonjol. Para pemenang dengan draft serupa tidak punya pilihan bersama yang belum kamu ambil.",
     },
 };

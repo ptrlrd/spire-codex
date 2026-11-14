@@ -41,6 +41,7 @@ export default function Wordmark({ className = "" }: { className?: string }) {
 
   return (
     <span
+      dir="ltr"
       className={`inline-flex items-center gap-2 text-xl font-bold ${className}`}
     >
       {icon}

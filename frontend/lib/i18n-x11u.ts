@@ -15,6 +15,8 @@ export const X11U: Record<string, Record<string, string>> = {
     tur: "Karakter Kartı Değiştiricileri",
     zhs: "角色卡牌修正",
     zht: "角色卡牌修正",
+    ara: "معدلات بطاقات الشخصيات",
+    ind: "Efek Kartu Karakter",
   },
   "One per character. Each adds that character's cards to card rewards and shops.":
     {
@@ -33,6 +35,8 @@ export const X11U: Record<string, Record<string, string>> = {
       tur: "Her karakter için bir tane. Her biri o karakterin kartlarını kart ödüllerine ve dükkanlara ekler.",
       zhs: "每个角色一个。各自会让该角色的卡牌出现在卡牌奖励和商店中。",
       zht: "每個角色一個。各自會讓該角色的卡牌出現在卡牌獎勵和商店中。",
+      ara: "واحد لكل شخصية. كل منها يضيف بطاقات تلك الشخصية إلى مكافآت البطاقات والمتاجر.",
+      ind: "Satu per karakter. Masing-masing menambahkan kartu karakter itu ke pilihan kartu dan toko.",
     },
   none: {
     eng: "none",
@@ -50,6 +54,8 @@ export const X11U: Record<string, Record<string, string>> = {
     tur: "yok",
     zhs: "无",
     zht: "無",
+    ara: "لا شيء",
+    ind: "tidak ada",
   },
   "Show fewer versions": {
     eng: "Show fewer versions",
@@ -67,6 +73,8 @@ export const X11U: Record<string, Record<string, string>> = {
     tur: "Daha az sürüm göster",
     zhs: "收起版本",
     zht: "收起版本",
+    ara: "عرض إصدارات أقل",
+    ind: "Tampilkan lebih sedikit versi",
   },
   "Show all versions": {
     eng: "Show all versions",
@@ -84,6 +92,8 @@ export const X11U: Record<string, Record<string, string>> = {
     tur: "Tüm sürümleri göster",
     zhs: "显示所有版本",
     zht: "顯示所有版本",
+    ara: "عرض كل الإصدارات",
+    ind: "Tampilkan semua versi",
   },
   "to search": {
     eng: "to search",
@@ -101,6 +111,8 @@ export const X11U: Record<string, Record<string, string>> = {
     tur: "ile ara",
     zhs: "搜索",
     zht: "搜尋",
+    ara: "للبحث",
+    ind: "untuk mencari",
   },
   "Nobody knows": {
     eng: "Nobody knows",
@@ -118,6 +130,8 @@ export const X11U: Record<string, Record<string, string>> = {
     tur: "Kimse bilmiyor",
     zhs: "无人知晓",
     zht: "無人知曉",
+    ara: "لا أحد يعرف",
+    ind: "Tidak ada yang tahu",
   },
   "Everyone else": {
     eng: "Everyone else",
@@ -135,6 +149,8 @@ export const X11U: Record<string, Record<string, string>> = {
     tur: "Diğer herkes",
     zhs: "其他所有人",
     zht: "其他所有人",
+    ara: "الجميع غيرهم",
+    ind: "Yang lainnya",
   },
   "{name} is a tree person wearing a lot of clothes, so everyone just guesses. Each Ancient settles on a different pronoun.":
     {
@@ -153,5 +169,7 @@ export const X11U: Record<string, Record<string, string>> = {
       tur: "{name} kat kat giysi giymiş bir ağaç insan, bu yüzden herkes sadece tahmin ediyor. Her Kadim farklı bir zamir kullanıyor.",
       zhs: "{name}是一个裹着很多衣服的树人，所以大家都只能猜。每位远古者用的代词都不一样。",
       zht: "{name}是一個裹著很多衣服的樹人，所以大家都只能猜。每位遠古者用的代詞都不一樣。",
+      ara: "{name} شخص شجري يرتدي الكثير من الملابس، لذا يكتفي الجميع بالتخمين. كل واحد من القدماء يستقر على ضمير مختلف.",
+      ind: "{name} adalah manusia pohon yang memakai banyak pakaian, jadi semua orang cuma menebak. Tiap Ancient memakai kata ganti yang berbeda.",
     },
 };

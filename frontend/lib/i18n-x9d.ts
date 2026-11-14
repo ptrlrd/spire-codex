@@ -16,6 +16,8 @@ export const X9D: Record<string, Record<string, string>> = {
     tur: "{who} öldürüldü",
     zhs: "击杀了{who}",
     zht: "擊殺了{who}",
+    ara: "قتل {who}",
+    ind: "membunuh {who}",
   },
   "{target} took {n} damage": {
     eng: "{target} took {n} damage",
@@ -33,6 +35,8 @@ export const X9D: Record<string, Record<string, string>> = {
     tur: "{target} {n} hasar aldı",
     zhs: "{target}受到 {n} 点伤害",
     zht: "{target}受到 {n} 點傷害",
+    ara: "تلقى {target} {n} ضرر",
+    ind: "{target} menerima {n} kerusakan",
   },
   "Applied {power} to {target}": {
     eng: "Applied {power} to {target}",
@@ -50,6 +54,8 @@ export const X9D: Record<string, Record<string, string>> = {
     tur: "{target} üzerine {power} uygulandı",
     zhs: "对{target}施加了{power}",
     zht: "對{target}施加了{power}",
+    ara: "تم تطبيق {power} على {target}",
+    ind: "Menerapkan {power} ke {target}",
   },
   "Gained {power}": {
     eng: "Gained {power}",
@@ -67,6 +73,8 @@ export const X9D: Record<string, Record<string, string>> = {
     tur: "{power} kazanıldı",
     zhs: "获得了{power}",
     zht: "獲得了{power}",
+    ara: "تم اكتساب {power}",
+    ind: "Mendapat {power}",
   },
   "Used {potion}": {
     eng: "Used {potion}",
@@ -84,6 +92,8 @@ export const X9D: Record<string, Record<string, string>> = {
     tur: "{potion} kullanıldı",
     zhs: "使用了{potion}",
     zht: "使用了{potion}",
+    ara: "تم استخدام {potion}",
+    ind: "Memakai {potion}",
   },
   "Exhausted {card}": {
     eng: "Exhausted {card}",
@@ -101,6 +111,8 @@ export const X9D: Record<string, Record<string, string>> = {
     tur: "{card} tüketildi",
     zhs: "消耗了{card}",
     zht: "消耗了{card}",
+    ara: "تم استهلاك {card}",
+    ind: "{card} Hangus",
   },
   "Chose {card}": {
     eng: "Chose {card}",
@@ -118,6 +130,8 @@ export const X9D: Record<string, Record<string, string>> = {
     tur: "{card} seçildi",
     zhs: "选择了{card}",
     zht: "選擇了{card}",
+    ara: "تم اختيار {card}",
+    ind: "Memilih {card}",
   },
   Chose: {
     eng: "Chose",
@@ -135,6 +149,8 @@ export const X9D: Record<string, Record<string, string>> = {
     tur: "Seçildi",
     zhs: "选择了",
     zht: "選擇了",
+    ara: "تم اختيار",
+    ind: "Memilih",
   },
   "Created {card}": {
     eng: "Created {card}",
@@ -152,6 +168,8 @@ export const X9D: Record<string, Record<string, string>> = {
     tur: "{card} oluşturuldu",
     zhs: "生成了{card}",
     zht: "生成了{card}",
+    ara: "تم إنشاء {card}",
+    ind: "Membuat {card}",
   },
   "Healed {n} HP": {
     eng: "Healed {n} HP",
@@ -169,6 +187,8 @@ export const X9D: Record<string, Record<string, string>> = {
     tur: "{n} CP iyileştirildi",
     zhs: "恢复了 {n} 生命",
     zht: "恢復了 {n} 生命",
+    ara: "تم علاج {n} HP",
+    ind: "Pulih {n} HP",
   },
   "Lost {n} HP": {
     eng: "Lost {n} HP",
@@ -186,6 +206,8 @@ export const X9D: Record<string, Record<string, string>> = {
     tur: "{n} CP kaybedildi",
     zhs: "失去了 {n} 生命",
     zht: "失去了 {n} 生命",
+    ara: "تم فقدان {n} HP",
+    ind: "Kehilangan {n} HP",
   },
   "{monster} hit you for {n}": {
     eng: "{monster} hit you for {n}",
@@ -203,6 +225,8 @@ export const X9D: Record<string, Record<string, string>> = {
     tur: "{monster} sana {n} vurdu",
     zhs: "{monster}对你造成 {n} 点伤害",
     zht: "{monster}對你造成 {n} 點傷害",
+    ara: "{monster} أصابك بمقدار {n}",
+    ind: "{monster} mengenaimu sebesar {n}",
   },
   "An effect": {
     eng: "An effect",
@@ -220,6 +244,8 @@ export const X9D: Record<string, Record<string, string>> = {
     tur: "Bir etki",
     zhs: "一个效果",
     zht: "一個效果",
+    ara: "تأثير",
+    ind: "Sebuah efek",
   },
   "{power} applied to you": {
     eng: "{power} applied to you",
@@ -237,6 +263,8 @@ export const X9D: Record<string, Record<string, string>> = {
     tur: "Sana {power} uygulandı",
     zhs: "你被施加了{power}",
     zht: "你被施加了{power}",
+    ara: "تم تطبيق {power} عليك",
+    ind: "{power} diterapkan kepadamu",
   },
   "{monster} gained {power}": {
     eng: "{monster} gained {power}",
@@ -254,6 +282,8 @@ export const X9D: Record<string, Record<string, string>> = {
     tur: "{monster} {power} kazandı",
     zhs: "{monster}获得了{power}",
     zht: "{monster}獲得了{power}",
+    ara: "{monster} اكتسب {power}",
+    ind: "{monster} mendapat {power}",
   },
   "Added {card} to your deck": {
     eng: "Added {card} to your deck",
@@ -271,6 +301,8 @@ export const X9D: Record<string, Record<string, string>> = {
     tur: "{card} destene eklendi",
     zhs: "{card}被加入你的牌组",
     zht: "{card}被加入你的牌組",
+    ara: "أضيفت {card} إلى مجموعتك",
+    ind: "{card} ditambahkan ke dekmu",
   },
   "Added {n} × {card} to your deck": {
     eng: "Added {n} × {card} to your deck",
@@ -288,6 +320,8 @@ export const X9D: Record<string, Record<string, string>> = {
     tur: "{n} × {card} destene eklendi",
     zhs: "{n} 张{card}被加入你的牌组",
     zht: "{n} 張{card}被加入你的牌組",
+    ara: "أضيفت {n} × {card} إلى مجموعتك",
+    ind: "{n} × {card} ditambahkan ke dekmu",
   },
   "You died here": {
     eng: "You died here",
@@ -305,6 +339,8 @@ export const X9D: Record<string, Record<string, string>> = {
     tur: "Burada öldün",
     zhs: "你在此阵亡",
     zht: "你在此陣亡",
+    ara: "مت هنا",
+    ind: "Kamu mati di sini",
   },
   "The run was left here": {
     eng: "The run was left here",
@@ -322,6 +358,8 @@ export const X9D: Record<string, Record<string, string>> = {
     tur: "Koşu burada terk edildi",
     zhs: "在此离开了本局",
     zht: "在此離開了本局",
+    ara: "تُركت الجولة هنا",
+    ind: "Perjalanan ditinggalkan di sini",
   },
   "No enemy action recorded": {
     eng: "No enemy action recorded",
@@ -339,6 +377,8 @@ export const X9D: Record<string, Record<string, string>> = {
     tur: "Düşman eylemi kaydedilmedi",
     zhs: "未记录敌人行动",
     zht: "未記錄敵人行動",
+    ara: "لم يُسجل أي فعل للعدو",
+    ind: "Tidak ada aksi musuh tercatat",
   },
   "Got {item}": {
     eng: "Got {item}",
@@ -356,6 +396,8 @@ export const X9D: Record<string, Record<string, string>> = {
     tur: "{item} alındı",
     zhs: "获得了{item}",
     zht: "獲得了{item}",
+    ara: "تم الحصول على {item}",
+    ind: "Mendapat {item}",
   },
   "Took {card}": {
     eng: "Took {card}",
@@ -373,6 +415,8 @@ export const X9D: Record<string, Record<string, string>> = {
     tur: "{card} alındı",
     zhs: "选择了{card}",
     zht: "選擇了{card}",
+    ara: "تم أخذ {card}",
+    ind: "Mengambil {card}",
   },
   "Upgraded {card}": {
     eng: "Upgraded {card}",
@@ -390,6 +434,8 @@ export const X9D: Record<string, Record<string, string>> = {
     tur: "{card} geliştirildi",
     zhs: "升级了{card}",
     zht: "升級了{card}",
+    ara: "تمت ترقية {card}",
+    ind: "Meningkatkan {card}",
   },
   "Removed {card}": {
     eng: "Removed {card}",
@@ -407,6 +453,8 @@ export const X9D: Record<string, Record<string, string>> = {
     tur: "{card} kaldırıldı",
     zhs: "移除了{card}",
     zht: "移除了{card}",
+    ara: "تمت إزالة {card}",
+    ind: "Membuang {card}",
   },
   "{who} healed for {n} HP": {
     eng: "{who} healed for {n} HP",
@@ -424,6 +472,8 @@ export const X9D: Record<string, Record<string, string>> = {
     tur: "{who} {n} CP iyileşti",
     zhs: "{who}恢复了 {n} 生命",
     zht: "{who}恢復了 {n} 生命",
+    ara: "{who} استعاد {n} HP",
+    ind: "{who} pulih {n} HP",
   },
   "{who} rested and healed": {
     eng: "{who} rested and healed",
@@ -441,6 +491,8 @@ export const X9D: Record<string, Record<string, string>> = {
     tur: "{who} dinlendi ve iyileşti",
     zhs: "{who}休息并恢复了生命",
     zht: "{who}休息並恢復了生命",
+    ara: "{who} استراح واستعاد صحته",
+    ind: "{who} beristirahat dan pulih",
   },
   "{who} smithed at the campfire": {
     eng: "{who} smithed at the campfire",
@@ -458,6 +510,8 @@ export const X9D: Record<string, Record<string, string>> = {
     tur: "{who} kamp ateşinde demir dövdü",
     zhs: "{who}在休息处锻造",
     zht: "{who}在篝火處鍛造",
+    ara: "{who} اختار الحدادة في موقع الراحة",
+    ind: "{who} memilih Tingkatkan di Peristirahatan",
   },
   "{who} chose {option} at the campfire": {
     eng: "{who} chose {option} at the campfire",
@@ -475,6 +529,8 @@ export const X9D: Record<string, Record<string, string>> = {
     tur: "{who} kamp ateşinde {option} seçti",
     zhs: "{who}在休息处选择了{option}",
     zht: "{who}在篝火處選擇了{option}",
+    ara: "{who} اختار {option} في موقع الراحة",
+    ind: "{who} memilih {option} di Peristirahatan",
   },
   "{who} lost {n} HP": {
     eng: "{who} lost {n} HP",
@@ -492,6 +548,8 @@ export const X9D: Record<string, Record<string, string>> = {
     tur: "{who} {n} CP kaybetti",
     zhs: "{who}失去了 {n} 生命",
     zht: "{who}失去了 {n} 生命",
+    ara: "{who} فقد {n} HP",
+    ind: "{who} kehilangan {n} HP",
   },
   "Lost {power}": {
     eng: "Lost {power}",
@@ -509,6 +567,8 @@ export const X9D: Record<string, Record<string, string>> = {
     tur: "{power} kaybedildi",
     zhs: "失去了{power}",
     zht: "失去了{power}",
+    ara: "تم فقدان {power}",
+    ind: "Kehilangan {power}",
   },
   "{monster} lost {power}": {
     eng: "{monster} lost {power}",
@@ -526,6 +586,8 @@ export const X9D: Record<string, Record<string, string>> = {
     tur: "{monster} {power} kaybetti",
     zhs: "{monster}失去了{power}",
     zht: "{monster}失去了{power}",
+    ara: "{monster} فقد {power}",
+    ind: "{monster} kehilangan {power}",
   },
   "{monster} used {move}": {
     eng: "{monster} used {move}",
@@ -543,6 +605,8 @@ export const X9D: Record<string, Record<string, string>> = {
     tur: "{monster} {move} kullandı",
     zhs: "{monster}使用了{move}",
     zht: "{monster}使用了{move}",
+    ara: "{monster} استخدم {move}",
+    ind: "{monster} memakai {move}",
   },
   "{monster} gained {n} Block": {
     eng: "{monster} gained {n} Block",
@@ -560,6 +624,8 @@ export const X9D: Record<string, Record<string, string>> = {
     tur: "{monster} {n} Blok kazandı",
     zhs: "{monster}获得了 {n} 点格挡",
     zht: "{monster}獲得了 {n} 點格擋",
+    ara: "{monster} اكتسب {n} من الصد",
+    ind: "{monster} mendapat {n} Blok",
   },
   "Fight start": {
     eng: "Fight start",
@@ -577,6 +643,8 @@ export const X9D: Record<string, Record<string, string>> = {
     tur: "Savaş başlangıcı",
     zhs: "战斗开始",
     zht: "戰鬥開始",
+    ara: "بداية القتال",
+    ind: "Awal pertarungan",
   },
   "The recording stopped here": {
     eng: "The recording stopped here",
@@ -594,6 +662,8 @@ export const X9D: Record<string, Record<string, string>> = {
     tur: "Kayıt burada durdu",
     zhs: "记录在此中断",
     zht: "記錄在此中斷",
+    ara: "توقف التسجيل هنا",
+    ind: "Rekaman berhenti di sini",
   },
   "{n} lines missing here": {
     eng: "{n} lines missing here",
@@ -611,6 +681,8 @@ export const X9D: Record<string, Record<string, string>> = {
     tur: "Burada {n} satır eksik",
     zhs: "此处缺少 {n} 行",
     zht: "此處缺少 {n} 行",
+    ara: "{n} سطر مفقود هنا",
+    ind: "{n} baris hilang di sini",
   },
   "The recording ends on this floor, so what happened here was never written.":
     {
@@ -629,6 +701,8 @@ export const X9D: Record<string, Record<string, string>> = {
       tur: "Kayıt bu katta bitiyor, burada olanlar hiç yazılmadı.",
       zhs: "记录在此层结束，这里发生的事从未被写下。",
       zht: "記錄在此層結束，這裡發生的事從未被寫下。",
+      ara: "ينتهي التسجيل عند هذا الطابق، لذا لم يُكتب ما حدث هنا.",
+      ind: "Rekaman berakhir di lantai ini, jadi apa yang terjadi di sini tidak pernah tertulis.",
     },
   "The recording ends on this floor.": {
     eng: "The recording ends on this floor.",
@@ -646,6 +720,8 @@ export const X9D: Record<string, Record<string, string>> = {
     tur: "Kayıt bu katta bitiyor.",
     zhs: "记录在此层结束。",
     zht: "記錄在此層結束。",
+    ara: "ينتهي التسجيل عند هذا الطابق.",
+    ind: "Rekaman berakhir di lantai ini.",
   },
   Abandoned: {
     eng: "Abandoned",
@@ -663,5 +739,7 @@ export const X9D: Record<string, Record<string, string>> = {
     tur: "Terk edilen",
     zhs: "已放弃",
     zht: "已放棄",
+    ara: "متروكة",
+    ind: "Ditinggalkan",
   },
 };

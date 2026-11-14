@@ -14,9 +14,11 @@ from event_parser import (  # noqa: E402
 )
 
 LANGS = [
+    "ara",
     "deu",
     "esp",
     "fra",
+    "ind",
     "ita",
     "jpn",
     "kor",

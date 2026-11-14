@@ -17,6 +17,8 @@ export const X8E: Record<string, Record<string, string>> = {
       tur: "Üç havuzun her birinden bir kalıntı sunar. Havuz 1'de {relic} veya {relic2} çıkma ihtimali vardır.",
       zhs: "从三个池中各提供一件遗物。池1中有机会出现{relic}或{relic2}。",
       zht: "從三個池中各提供一件遺物。池1中有機會出現{relic}或{relic2}。",
+      ara: "يعرض أثراً واحداً من كل مجموعة من ثلاث مجموعات. المجموعة 1 تتضمن فرصة للحصول على {relic} أو {relic2}.",
+      ind: "Menawarkan satu pusaka dari masing-masing tiga kumpulan. Kumpulan 1 punya peluang berisi {relic} atau {relic2}.",
     },
   "Has a large pool of powerful relics. 50% chance to get 3 options from the pool, 50% chance to get 2 options plus {relic}.":
     {
@@ -35,6 +37,8 @@ export const X8E: Record<string, Record<string, string>> = {
       tur: "Güçlü kalıntılardan oluşan büyük bir havuzu vardır. %50 ihtimalle havuzdan 3 seçenek, %50 ihtimalle 2 seçenek ve {relic} sunar.",
       zhs: "拥有一个强力遗物的大池。50%几率从池中给出3个选项，50%几率给出2个选项加{relic}。",
       zht: "擁有一個強力遺物的大池。50%機率從池中給出3個選項，50%機率給出2個選項加{relic}。",
+      ara: "لديه مجموعة كبيرة من الآثار القوية. فرصة 50% للحصول على 3 خيارات من المجموعة، وفرصة 50% للحصول على خيارين مع {relic}.",
+      ind: "Punya kumpulan besar pusaka kuat. Peluang 50% dapat 3 opsi dari kumpulan, peluang 50% dapat 2 opsi ditambah {relic}.",
     },
   "Offers one relic from each of three pools. Pool 2 has conditional additions and {relic} has a reduced chance.":
     {
@@ -53,6 +57,8 @@ export const X8E: Record<string, Record<string, string>> = {
       tur: "Üç havuzun her birinden bir kalıntı sunar. Havuz 2'de koşullu eklemeler vardır ve {relic} daha düşük ihtimalle çıkar.",
       zhs: "从三个池中各提供一件遗物。池2有条件性追加，且{relic}的出现几率较低。",
       zht: "從三個池中各提供一件遺物。池2有條件性追加，且{relic}的出現機率較低。",
+      ara: "يعرض أثراً واحداً من كل مجموعة من ثلاث مجموعات. المجموعة 2 فيها إضافات مشروطة، وفرصة {relic} مخفضة.",
+      ind: "Menawarkan satu pusaka dari masing-masing tiga kumpulan. Kumpulan 2 punya tambahan bersyarat dan peluang {relic} lebih kecil.",
     },
   "50% chance: 3 from pool OR 2 from pool + {relic}": {
     eng: "50% chance: 3 from pool OR 2 from pool + {relic}",
@@ -70,6 +76,8 @@ export const X8E: Record<string, Record<string, string>> = {
     tur: "%50 ihtimal: havuzdan 3 VEYA havuzdan 2 + {relic}",
     zhs: "50%几率：从池中出3件，或从池中出2件 + {relic}",
     zht: "50%機率：從池中出3件，或從池中出2件 + {relic}",
+    ara: "فرصة 50%: 3 من المجموعة أو 2 من المجموعة + {relic}",
+    ind: "Peluang 50%: 3 dari kumpulan ATAU 2 dari kumpulan + {relic}",
   },
   "The pool is doubled before adding {relic}, giving it a reduced chance.": {
     eng: "The pool is doubled before adding {relic}, giving it a reduced chance.",
@@ -87,6 +95,8 @@ export const X8E: Record<string, Record<string, string>> = {
     tur: "{relic} eklenmeden önce havuz iki katına çıkarılır, bu da çıkma ihtimalini düşürür.",
     zhs: "在加入{relic}之前，池会被翻倍，因此它的出现几率较低。",
     zht: "在加入{relic}之前，池會被加倍，因此它的出現機率較低。",
+    ara: "تُضاعف المجموعة قبل إضافة {relic}، فتنخفض فرصته.",
+    ind: "Kumpulan digandakan sebelum {relic} ditambahkan, jadi peluangnya lebih kecil.",
   },
   "Includes either {relic} (33% chance) or {relic2} (67% chance). {relic2} picks from a random unlocked character other than the current one.":
     {
@@ -105,6 +115,8 @@ export const X8E: Record<string, Record<string, string>> = {
       tur: "{relic} (%33 ihtimal) veya {relic2} (%67 ihtimal) içerir. {relic2}, mevcut karakter dışındaki rastgele bir açılmış karakteri seçer.",
       zhs: "包含{relic}（33%几率）或{relic2}（67%几率）。{relic2}会从当前角色以外已解锁的角色中随机选择。",
       zht: "包含{relic}（33%機率）或{relic2}（67%機率）。{relic2}會從目前角色以外已解鎖的角色中隨機選擇。",
+      ara: "تتضمن إما {relic} (فرصة 33%) أو {relic2} (فرصة 67%). {relic2} يختار من شخصية مفتوحة عشوائية غير الشخصية الحالية.",
+      ind: "Berisi {relic} (peluang 33%) atau {relic2} (peluang 67%). {relic2} memilih dari karakter terbuka acak selain karakter saat ini.",
     },
   "50% chance (vs {relic})": {
     eng: "50% chance (vs {relic})",
@@ -122,6 +134,8 @@ export const X8E: Record<string, Record<string, string>> = {
     tur: "%50 ihtimal ({relic} ile arasında)",
     zhs: "50%几率（与{relic}二选一）",
     zht: "50%機率（與{relic}二選一）",
+    ara: "فرصة 50% (مقابل {relic})",
+    ind: "Peluang 50% (vs {relic})",
   },
   "33% chance (vs {relic})": {
     eng: "33% chance (vs {relic})",
@@ -139,6 +153,8 @@ export const X8E: Record<string, Record<string, string>> = {
     tur: "%33 ihtimal ({relic} ile arasında)",
     zhs: "33%几率（与{relic}二选一）",
     zht: "33%機率（與{relic}二選一）",
+    ara: "فرصة 33% (مقابل {relic})",
+    ind: "Peluang 33% (vs {relic})",
   },
   "67% chance (vs {relic}); character is random unlocked non-current": {
     eng: "67% chance (vs {relic}); character is random unlocked non-current",
@@ -156,6 +172,8 @@ export const X8E: Record<string, Record<string, string>> = {
     tur: "%67 ihtimal ({relic} ile arasında); karakter, mevcut olan dışında rastgele bir açılmış karakterdir",
     zhs: "67%几率（与{relic}二选一）；角色为当前角色以外已解锁角色中随机",
     zht: "67%機率（與{relic}二選一）；角色為目前角色以外已解鎖角色中隨機",
+    ara: "فرصة 67% (مقابل {relic})؛ الشخصية عشوائية من المفتوحة غير الحالية",
+    ind: "Peluang 67% (vs {relic}); karakternya acak dari yang terbuka selain yang sekarang",
   },
   "Act 2 only; 50% chance (vs {relic})": {
     eng: "Act 2 only; 50% chance (vs {relic})",
@@ -173,6 +191,8 @@ export const X8E: Record<string, Record<string, string>> = {
     tur: "Yalnızca 2. Perde; %50 ihtimal ({relic} ile arasında)",
     zhs: "仅第2阶段；50%几率（与{relic}二选一）",
     zht: "僅第2幕；50%機率（與{relic}二選一）",
+    ara: "الفصل 2 فقط؛ فرصة 50% (مقابل {relic})",
+    ind: "Hanya Babak 2; peluang 50% (vs {relic})",
   },
   "Act 3 only; 50% chance (vs {relic})": {
     eng: "Act 3 only; 50% chance (vs {relic})",
@@ -190,6 +210,8 @@ export const X8E: Record<string, Record<string, string>> = {
     tur: "Yalnızca 3. Perde; %50 ihtimal ({relic} ile arasında)",
     zhs: "仅第3阶段；50%几率（与{relic}二选一）",
     zht: "僅第3幕；50%機率（與{relic}二選一）",
+    ara: "الفصل 3 فقط؛ فرصة 50% (مقابل {relic})",
+    ind: "Hanya Babak 3; peluang 50% (vs {relic})",
   },
   "50% chance (vs {relic}); excluded if {relic2} is the curse option": {
     eng: "50% chance (vs {relic}); excluded if {relic2} is the curse option",
@@ -207,6 +229,8 @@ export const X8E: Record<string, Record<string, string>> = {
     tur: "%50 ihtimal ({relic} ile arasında); {relic2} lanet seçeneğiyse hariç tutulur",
     zhs: "50%几率（与{relic}二选一）；若{relic2}为诅咒选项则排除",
     zht: "50%機率（與{relic}二選一）；若{relic2}為詛咒選項則排除",
+    ara: "فرصة 50% (مقابل {relic})؛ يُستبعد إذا كان {relic2} هو خيار العبء",
+    ind: "Peluang 50% (vs {relic}); dikecualikan jika {relic2} adalah opsi kutukan",
   },
   "Excluded if {relic} is the curse option": {
     eng: "Excluded if {relic} is the curse option",
@@ -224,6 +248,8 @@ export const X8E: Record<string, Record<string, string>> = {
     tur: "{relic} lanet seçeneğiyse hariç tutulur",
     zhs: "若{relic}为诅咒选项则排除",
     zht: "若{relic}為詛咒選項則排除",
+    ara: "يُستبعد إذا كان {relic} هو خيار العبء",
+    ind: "Dikecualikan jika {relic} adalah opsi kutukan",
   },
   "Excluded with the {a}, {b}, or {c} modifiers": {
     eng: "Excluded with the {a}, {b}, or {c} modifiers",
@@ -241,6 +267,8 @@ export const X8E: Record<string, Record<string, string>> = {
     tur: "{a}, {b} veya {c} değiştiricileriyle hariç tutulur",
     zhs: "使用{a}、{b}或{c}修正规则时排除",
     zht: "使用{a}、{b}或{c}修正規則時排除",
+    ara: "يُستبعد مع المعدلات {a} أو {b} أو {c}",
+    ind: "Dikecualikan dengan efek {a}, {b}, atau {c}",
   },
   "Deck has 4+ cards that can be enchanted with {enchant}": {
     eng: "Deck has 4+ cards that can be enchanted with {enchant}",
@@ -258,6 +286,8 @@ export const X8E: Record<string, Record<string, string>> = {
     tur: "Destede {enchant} ile büyülenebilecek 4+ kart var",
     zhs: "牌组中有4+张可附魔{enchant}的卡牌",
     zht: "牌組中有4+張可附魔{enchant}的卡牌",
+    ara: "في المجموعة 4 بطاقات أو أكثر يمكن تعزيزها بـ {enchant}",
+    ind: "Dek punya 4+ kartu yang bisa diberi Efek {enchant}",
   },
   "Deck has 3+ cards that can be enchanted with {enchant}": {
     eng: "Deck has 3+ cards that can be enchanted with {enchant}",
@@ -275,6 +305,8 @@ export const X8E: Record<string, Record<string, string>> = {
     tur: "Destede {enchant} ile büyülenebilecek 3+ kart var",
     zhs: "牌组中有3+张可附魔{enchant}的卡牌",
     zht: "牌組中有3+張可附魔{enchant}的卡牌",
+    ara: "في المجموعة 3 بطاقات أو أكثر يمكن تعزيزها بـ {enchant}",
+    ind: "Dek punya 3+ kartu yang bisa diberi Efek {enchant}",
   },
   "Deck has 3+ Attack cards (the type filter {enchant} enforces)": {
     eng: "Deck has 3+ Attack cards (the type filter {enchant} enforces)",
@@ -292,6 +324,8 @@ export const X8E: Record<string, Record<string, string>> = {
     tur: "Destede 3+ saldırı kartı var ({enchant} büyüsünün dayattığı tür filtresi)",
     zhs: "牌组中有3+张攻击牌（{enchant}强制要求的类型筛选）",
     zht: "牌組中有3+張攻擊牌（{enchant}強制要求的類型篩選）",
+    ara: "في المجموعة 3 بطاقات هجوم أو أكثر (فلتر النوع الذي يفرضه {enchant})",
+    ind: "Dek punya 3+ kartu Serangan (filter tipe yang diterapkan {enchant})",
   },
   "Player does not have an event pet ({relic} relic or {card} card)": {
     eng: "Player does not have an event pet ({relic} relic or {card} card)",
@@ -309,6 +343,8 @@ export const X8E: Record<string, Record<string, string>> = {
     tur: "Oyuncunun etkinlik evcil hayvanı yok ({relic} kalıntısı veya {card} kartı)",
     zhs: "玩家没有事件宠物（{relic}遗物或{card}卡牌）",
     zht: "玩家沒有事件寵物（{relic}遺物或{card}卡牌）",
+    ara: "اللاعب لا يملك حيواناً أليفاً من حدث (أثر {relic} أو بطاقة {card})",
+    ind: "Pemain tidak punya peliharaan dari Event (pusaka {relic} atau kartu {card})",
   },
   "Relic Pool": {
     eng: "Relic Pool",
@@ -326,6 +362,8 @@ export const X8E: Record<string, Record<string, string>> = {
     tur: "Kalıntı Havuzu",
     zhs: "遗物池",
     zht: "遺物池",
+    ara: "مجموعة الآثار",
+    ind: "Kumpulan Pusaka",
   },
   "Curse Pool": {
     eng: "Curse Pool",
@@ -343,6 +381,8 @@ export const X8E: Record<string, Record<string, string>> = {
     tur: "Lanet Havuzu",
     zhs: "诅咒池",
     zht: "詛咒池",
+    ara: "مجموعة الأعباء",
+    ind: "Kumpulan Kutukan",
   },
   "Positive Pool": {
     eng: "Positive Pool",
@@ -360,6 +400,8 @@ export const X8E: Record<string, Record<string, string>> = {
     tur: "Olumlu Havuz",
     zhs: "正面池",
     zht: "正面池",
+    ara: "المجموعة الإيجابية",
+    ind: "Kumpulan Positif",
   },
   "Pool 1": {
     eng: "Pool 1",
@@ -377,6 +419,8 @@ export const X8E: Record<string, Record<string, string>> = {
     tur: "Havuz 1",
     zhs: "池1",
     zht: "池1",
+    ara: "المجموعة 1",
+    ind: "Kumpulan 1",
   },
   "Pool 2": {
     eng: "Pool 2",
@@ -394,6 +438,8 @@ export const X8E: Record<string, Record<string, string>> = {
     tur: "Havuz 2",
     zhs: "池2",
     zht: "池2",
+    ara: "المجموعة 2",
+    ind: "Kumpulan 2",
   },
   "Pool 3": {
     eng: "Pool 3",
@@ -411,6 +457,8 @@ export const X8E: Record<string, Record<string, string>> = {
     tur: "Havuz 3",
     zhs: "池3",
     zht: "池3",
+    ara: "المجموعة 3",
+    ind: "Kumpulan 3",
   },
   "Each set has one relic chosen at random. Sets with act conditions are only included if the condition is met.":
     {
@@ -429,6 +477,8 @@ export const X8E: Record<string, Record<string, string>> = {
       tur: "Her setten rastgele bir kalıntı seçilir. Perde koşulu olan setler yalnızca koşul sağlandığında dahil edilir.",
       zhs: "每组会随机选出一件遗物。带有阶段条件的组只有在满足条件时才会加入。",
       zht: "每組會隨機選出一件遺物。帶有幕條件的組只有在滿足條件時才會加入。",
+      ara: "لكل طقم أثر واحد يُختار عشوائياً. الأطقم المشروطة بفصل معين تُدرج فقط إذا تحقق الشرط.",
+      ind: "Tiap set punya satu pusaka yang dipilih acak. Set dengan syarat babak hanya disertakan jika syaratnya terpenuhi.",
     },
   "50% chance to replace one of the three options.": {
     eng: "50% chance to replace one of the three options.",
@@ -446,6 +496,8 @@ export const X8E: Record<string, Record<string, string>> = {
     tur: "%50 ihtimalle üç seçenekten birinin yerini alır.",
     zhs: "有50%几率替换三个选项中的一个。",
     zht: "有50%機率替換三個選項中的一個。",
+    ara: "فرصة 50% لاستبدال أحد الخيارات الثلاثة.",
+    ind: "Peluang 50% menggantikan salah satu dari tiga opsi.",
   },
   "50% chance to appear as the third option": {
     eng: "50% chance to appear as the third option",
@@ -463,6 +515,8 @@ export const X8E: Record<string, Record<string, string>> = {
     tur: "%50 ihtimalle üçüncü seçenek olarak çıkar",
     zhs: "有50%几率作为第三个选项出现",
     zht: "有50%機率作為第三個選項出現",
+    ara: "فرصة 50% للظهور كخيار ثالث",
+    ind: "Peluang 50% muncul sebagai opsi ketiga",
   },
   "2 from positive pool + 1 from curse pool": {
     eng: "2 from positive pool + 1 from curse pool",
@@ -480,6 +534,8 @@ export const X8E: Record<string, Record<string, string>> = {
     tur: "Olumlu havuzdan 2 + lanet havuzundan 1",
     zhs: "正面池2件 + 诅咒池1件",
     zht: "正面池2件 + 詛咒池1件",
+    ara: "2 من المجموعة الإيجابية + 1 من مجموعة الأعباء",
+    ind: "2 dari kumpulan positif + 1 dari kumpulan kutukan",
   },
   "Presents 2 positive options and 1 curse option. The curse pool is built first, then excluded relics are removed from the positive pool.":
     {
@@ -498,6 +554,8 @@ export const X8E: Record<string, Record<string, string>> = {
       tur: "2 olumlu ve 1 lanet seçeneği sunar. Önce lanet havuzu oluşturulur, ardından hariç tutulan kalıntılar olumlu havuzdan çıkarılır.",
       zhs: "提供2个正面选项和1个诅咒选项。先构建诅咒池，然后从正面池中移除被排除的遗物。",
       zht: "提供2個正面選項和1個詛咒選項。先建立詛咒池，然後從正面池中移除被排除的遺物。",
+      ara: "يقدم خيارين إيجابيين وخيار عبء واحداً. تُبنى مجموعة الأعباء أولاً، ثم تُزال الآثار المستبعدة من المجموعة الإيجابية.",
+      ind: "Menyajikan 2 opsi positif dan 1 opsi kutukan. Kumpulan kutukan dibuat dulu, lalu pusaka yang dikecualikan dibuang dari kumpulan positif.",
     },
   "One relic is chosen at random from this pool as the curse option.": {
     eng: "One relic is chosen at random from this pool as the curse option.",
@@ -515,6 +573,8 @@ export const X8E: Record<string, Record<string, string>> = {
     tur: "Bu havuzdan rastgele bir kalıntı lanet seçeneği olarak seçilir.",
     zhs: "从该池中随机选出一件遗物作为诅咒选项。",
     zht: "從該池中隨機選出一件遺物作為詛咒選項。",
+    ara: "يُختار أثر واحد عشوائياً من هذه المجموعة كخيار العبء.",
+    ind: "Satu pusaka dipilih acak dari kumpulan ini sebagai opsi kutukan.",
   },
   "Two relics are chosen at random. Some relics are excluded based on which curse was selected.":
     {
@@ -533,6 +593,8 @@ export const X8E: Record<string, Record<string, string>> = {
       tur: "Rastgele iki kalıntı seçilir. Seçilen lanete göre bazı kalıntılar hariç tutulur.",
       zhs: "随机选出两件遗物。部分遗物会根据所选的诅咒被排除。",
       zht: "隨機選出兩件遺物。部分遺物會根據所選的詛咒被排除。",
+      ara: "يُختار أثران عشوائياً. تُستبعد بعض الآثار بحسب العبء الذي تم اختياره.",
+      ind: "Dua pusaka dipilih acak. Beberapa pusaka dikecualikan tergantung kutukan yang terpilih.",
     },
   "Single player only": {
     eng: "Single player only",
@@ -550,6 +612,8 @@ export const X8E: Record<string, Record<string, string>> = {
     tur: "Yalnızca tek oyunculu",
     zhs: "仅单人游戏",
     zht: "僅單人遊戲",
+    ara: "لاعب واحد فقط",
+    ind: "Hanya Pemain Tunggal",
   },
   "Player has cards that can form bundles": {
     eng: "Player has cards that can form bundles",
@@ -567,6 +631,8 @@ export const X8E: Record<string, Record<string, string>> = {
     tur: "Oyuncunun paket oluşturabilecek kartları var",
     zhs: "玩家拥有可以组成卡牌包的卡牌",
     zht: "玩家擁有可以組成卡牌包的卡牌",
+    ara: "اللاعب لديه بطاقات يمكن أن تشكل حزماً",
+    ind: "Pemain punya kartu yang bisa membentuk bundel",
   },
   "3 from pool": {
     eng: "3 from pool",
@@ -584,6 +650,8 @@ export const X8E: Record<string, Record<string, string>> = {
     tur: "Havuzdan 3",
     zhs: "从池中出3件",
     zht: "從池中出3件",
+    ara: "3 من المجموعة",
+    ind: "3 dari kumpulan",
   },
   "1 from each pool (3 total)": {
     eng: "1 from each pool (3 total)",
@@ -601,6 +669,8 @@ export const X8E: Record<string, Record<string, string>> = {
     tur: "Her havuzdan 1 (toplam 3)",
     zhs: "每个池各1件（共3件）",
     zht: "每個池各1件（共3件）",
+    ara: "1 من كل مجموعة (3 إجمالاً)",
+    ind: "1 dari tiap kumpulan (total 3)",
   },
   "Has a single large pool. Three relics are chosen at random.": {
     eng: "Has a single large pool. Three relics are chosen at random.",
@@ -618,6 +688,8 @@ export const X8E: Record<string, Record<string, string>> = {
     tur: "Tek bir büyük havuzu vardır. Rastgele üç kalıntı seçilir.",
     zhs: "只有一个大池。会随机选出三件遗物。",
     zht: "只有一個大池。會隨機選出三件遺物。",
+    ara: "لديه مجموعة واحدة كبيرة. تُختار ثلاثة آثار عشوائياً.",
+    ind: "Punya satu kumpulan besar. Tiga pusaka dipilih acak.",
   },
   "Has a single large pool of weapon relics. Three are chosen at random.": {
     eng: "Has a single large pool of weapon relics. Three are chosen at random.",
@@ -635,6 +707,8 @@ export const X8E: Record<string, Record<string, string>> = {
     tur: "Silah kalıntılarından oluşan tek bir büyük havuzu vardır. Rastgele üç tanesi seçilir.",
     zhs: "只有一个由武器遗物组成的大池。会从中随机选出三件。",
     zht: "只有一個由武器遺物組成的大池。會從中隨機選出三件。",
+    ara: "لديه مجموعة واحدة كبيرة من آثار الأسلحة. تُختار ثلاثة عشوائياً.",
+    ind: "Punya satu kumpulan besar pusaka senjata. Tiga dipilih acak.",
   },
   "Both relics require player setup. If neither is available, a locked option is shown.":
     {
@@ -653,6 +727,8 @@ export const X8E: Record<string, Record<string, string>> = {
       tur: "Her iki kalıntı da oyuncunun hazırlık yapmasını gerektirir. Hiçbiri yoksa kilitli bir seçenek gösterilir.",
       zhs: "两件遗物都需要玩家事先准备。若两者均不可用，则显示一个锁定的选项。",
       zht: "兩件遺物都需要玩家事先準備。若兩者皆不可用，則顯示一個鎖定的選項。",
+      ara: "كلا الأثرين يتطلب تجهيزاً من اللاعب. إذا لم يتوفر أي منهما يظهر خيار مقفل.",
+      ind: "Kedua pusaka butuh persiapan dari pemain. Jika tidak ada yang tersedia, opsi terkunci ditampilkan.",
     },
   "Requires player setup (starter relic upgrade)": {
     eng: "Requires player setup (starter relic upgrade)",
@@ -670,6 +746,8 @@ export const X8E: Record<string, Record<string, string>> = {
     tur: "Oyuncunun hazırlık yapmasını gerektirir (başlangıç kalıntısı yükseltmesi)",
     zhs: "需要玩家事先准备（初始遗物升级）",
     zht: "需要玩家事先準備（初始遺物升級）",
+    ara: "يتطلب تجهيزاً من اللاعب (ترقية الأثر الأساسي)",
+    ind: "Butuh persiapan pemain (peningkatan pusaka Awalan)",
   },
   "Requires player setup": {
     eng: "Requires player setup",
@@ -687,6 +765,8 @@ export const X8E: Record<string, Record<string, string>> = {
     tur: "Oyuncunun hazırlık yapmasını gerektirir",
     zhs: "需要玩家事先准备",
     zht: "需要玩家事先準備",
+    ara: "يتطلب تجهيزاً من اللاعب",
+    ind: "Butuh persiapan pemain",
   },
   "Deck has 5+ removable cards": {
     eng: "Deck has 5+ removable cards",
@@ -704,6 +784,8 @@ export const X8E: Record<string, Record<string, string>> = {
     tur: "Destede çıkarılabilir 5+ kart var",
     zhs: "牌组中有5+张可移除的卡牌",
     zht: "牌組中有5+張可移除的卡牌",
+    ara: "في المجموعة 5 بطاقات أو أكثر قابلة للإزالة",
+    ind: "Dek punya 5+ kartu yang bisa dibuang",
   },
   "Always in pool but at reduced odds (pool is doubled before adding)": {
     eng: "Always in pool but at reduced odds (pool is doubled before adding)",
@@ -721,6 +803,8 @@ export const X8E: Record<string, Record<string, string>> = {
     tur: "Her zaman havuzdadır ama düşük ihtimalle çıkar (eklenmeden önce havuz iki katına çıkarılır)",
     zhs: "始终在池中，但出现几率较低（加入前池会被翻倍）",
     zht: "始終在池中，但出現機率較低（加入前池會被加倍）",
+    ara: "دائماً في المجموعة لكن بفرصة مخفضة (تُضاعف المجموعة قبل إضافته)",
+    ind: "Selalu ada di kumpulan tapi dengan peluang lebih kecil (kumpulan digandakan sebelum ditambahkan)",
   },
   "Offers one relic from each of three pools, chosen at random.": {
     eng: "Offers one relic from each of three pools, chosen at random.",
@@ -738,6 +822,8 @@ export const X8E: Record<string, Record<string, string>> = {
     tur: "Üç havuzun her birinden rastgele seçilmiş bir kalıntı sunar.",
     zhs: "从三个池中各随机提供一件遗物。",
     zht: "從三個池中各隨機提供一件遺物。",
+    ara: "يعرض أثراً واحداً من كل مجموعة من ثلاث مجموعات، يُختار عشوائياً.",
+    ind: "Menawarkan satu pusaka dari masing-masing tiga kumpulan, dipilih acak.",
   },
   "Offers one relic from each of three pools, chosen at random. No conditions.":
     {
@@ -756,6 +842,8 @@ export const X8E: Record<string, Record<string, string>> = {
       tur: "Üç havuzun her birinden rastgele seçilmiş bir kalıntı sunar. Koşul yoktur.",
       zhs: "从三个池中各随机提供一件遗物。没有任何条件。",
       zht: "從三個池中各隨機提供一件遺物。沒有任何條件。",
+      ara: "يعرض أثراً واحداً من كل مجموعة من ثلاث مجموعات، يُختار عشوائياً. بلا شروط.",
+      ind: "Menawarkan satu pusaka dari masing-masing tiga kumpulan, dipilih acak. Tanpa syarat.",
     },
   "{neow} is replaced with a draft selection of 10 card rewards to build your starting deck.":
     {
@@ -774,6 +862,8 @@ export const X8E: Record<string, Record<string, string>> = {
       tur: "{neow}, başlangıç desteni oluşturman için 10 kart ödülünden oluşan bir draft seçimiyle değiştirilir.",
       zhs: "{neow}会被替换为10次卡牌奖励的选秀选择，用于组建你的初始牌组。",
       zht: "{neow}會被替換為10次卡牌獎勵的選秀選擇，用於組建你的初始牌組。",
+      ara: "يُستبدل {neow} باختيار درافت من 10 مكافآت بطاقات لبناء مجموعتك الابتدائية.",
+      ind: "{neow} diganti dengan pemilihan draft dari 10 Pilihan Kartu untuk membangun dek awalmu.",
     },
   "{neow} is replaced with a selection of 10 out of 30 random cards to build your starting deck.":
     {
@@ -792,6 +882,8 @@ export const X8E: Record<string, Record<string, string>> = {
       tur: "{neow}, başlangıç desteni oluşturman için rastgele 30 karttan 10'unu seçmeyle değiştirilir.",
       zhs: "{neow}会被替换为从30张随机卡牌中选择10张来组建你的初始牌组。",
       zht: "{neow}會被替換為從30張隨機卡牌中選擇10張來組建你的初始牌組。",
+      ara: "يُستبدل {neow} باختيار 10 من 30 بطاقة عشوائية لبناء مجموعتك الابتدائية.",
+      ind: "{neow} diganti dengan pemilihan 10 dari 30 kartu acak untuk membangun dek awalmu.",
     },
   "{neow} is replaced with a random deck of 30 cards. Your starter deck and relics are removed.":
     {
@@ -810,6 +902,8 @@ export const X8E: Record<string, Record<string, string>> = {
       tur: "{neow}, rastgele 30 kartlık bir desteyle değiştirilir. Başlangıç desten ve kalıntıların kaldırılır.",
       zhs: "{neow}会被替换为一副随机的30张牌组。你的初始牌组和遗物会被移除。",
       zht: "{neow}會被替換為一副隨機的30張牌組。你的初始牌組和遺物會被移除。",
+      ara: "يُستبدل {neow} بمجموعة عشوائية من 30 بطاقة. تُزال مجموعتك الأساسية وآثارك.",
+      ind: "{neow} diganti dengan dek acak berisi 30 kartu. Dek awal dan pusakamu dibuang.",
     },
   "{neow} is replaced with a selection of 5 colorless cards to add to your deck.":
     {
@@ -828,6 +922,8 @@ export const X8E: Record<string, Record<string, string>> = {
       tur: "{neow}, destene eklemek üzere 5 renksiz kart seçimiyle değiştirilir.",
       zhs: "{neow}会被替换为选择5张无色卡牌加入你的牌组。",
       zht: "{neow}會被替換為選擇5張無色卡牌加入你的牌組。",
+      ara: "يُستبدل {neow} باختيار 5 بطاقات عديمة اللون لإضافتها إلى مجموعتك.",
+      ind: "{neow} diganti dengan pemilihan 5 kartu Tak Berwarna untuk ditambahkan ke dekmu.",
     },
   "{neow} is replaced with a selection of 5 copies of a single card.": {
     eng: "{neow} is replaced with a selection of 5 copies of a single card.",
@@ -845,5 +941,7 @@ export const X8E: Record<string, Record<string, string>> = {
     tur: "{neow}, tek bir kartın 5 kopyasından oluşan bir seçimle değiştirilir.",
     zhs: "{neow}会被替换为选择同一张卡牌的5张副本。",
     zht: "{neow}會被替換為選擇同一張卡牌的5張複本。",
+    ara: "يُستبدل {neow} باختيار 5 نسخ من بطاقة واحدة.",
+    ind: "{neow} diganti dengan pemilihan 5 salinan dari satu kartu.",
   },
 };

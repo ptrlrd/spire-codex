@@ -15,6 +15,8 @@ export const X9P: Record<string, Record<string, string>> = {
     tur: "Topluluğun {runs} oyununda {name} alındığında kazanma oranı {winRate}, temel oran ise {baseline}; oyunların {pickRate} kadarında yer alıyor.",
     zhs: "在社区的 {runs} 场对局中，选取{name}后的胜率为 {winRate}（基准胜率 {baseline}），出现在 {pickRate} 的对局中。",
     zht: "在社群的 {runs} 場對局中，選取{name}後的勝率為 {winRate}（基準勝率 {baseline}），出現在 {pickRate} 的對局中。",
+    ara: "عبر {runs} جولة من المجتمع، يفوز {name} بنسبة {winRate} عند أخذه، مقابل خط أساس {baseline}، ويظهر في {pickRate} من الجولات.",
+    ind: "Dari {runs} perjalanan komunitas, {name} menang {winRate} saat diambil, dibandingkan baseline {baseline}, dan muncul di {pickRate} run.",
   },
   entity_summary_stats_no_pick: {
     eng: "Across {runs} community runs, {name} wins {winRate} of the time when taken, against a {baseline} baseline.",
@@ -32,6 +34,8 @@ export const X9P: Record<string, Record<string, string>> = {
     tur: "Topluluğun {runs} oyununda {name} alındığında kazanma oranı {winRate}, temel oran ise {baseline}.",
     zhs: "在社区的 {runs} 场对局中，选取{name}后的胜率为 {winRate}（基准胜率 {baseline}）。",
     zht: "在社群的 {runs} 場對局中，選取{name}後的勝率為 {winRate}（基準勝率 {baseline}）。",
+    ara: "عبر {runs} جولة من المجتمع، يفوز {name} بنسبة {winRate} عند أخذه، مقابل خط أساس {baseline}.",
+    ind: "Dari {runs} perjalanan komunitas, {name} menang {winRate} saat diambil, dibandingkan baseline {baseline}.",
   },
   entity_summary_best_character: {
     eng: "It performs best for {character} players, at {winRate}.",
@@ -49,6 +53,8 @@ export const X9P: Record<string, Record<string, string>> = {
     tur: "En iyi sonuç {character} oyuncularında: {winRate}.",
     zhs: "在{character}手中表现最好，胜率为 {winRate}。",
     zht: "在{character}手中表現最好，勝率為 {winRate}。",
+    ara: "أفضل أداء له مع لاعبي {character}، بنسبة {winRate}.",
+    ind: "Performanya paling baik untuk pemain {character}, yaitu {winRate}.",
   },
   entity_summary_partners: {
     eng: "It is most often run alongside {list}.",
@@ -66,6 +72,8 @@ export const X9P: Record<string, Record<string, string>> = {
     tur: "En sık şunlarla birlikte oynanıyor: {list}.",
     zhs: "最常搭配的是{list}。",
     zht: "最常搭配的是{list}。",
+    ara: "يُلعب غالبًا مع {list}.",
+    ind: "Paling sering dimainkan bersama {list}.",
   },
   entity_summary_lifted: {
     eng: "Players who already have it take {list} more often than usual.",
@@ -83,5 +91,7 @@ export const X9P: Record<string, Record<string, string>> = {
     tur: "Buna sahip oyuncular şunları normalden daha sık seçiyor: {list}.",
     zhs: "已拥有它的玩家会比平时更常选取{list}。",
     zht: "已擁有它的玩家會比平時更常選取{list}。",
+    ara: "اللاعبون الذين يملكونه يأخذون {list} أكثر من المعتاد.",
+    ind: "Pemain yang sudah memilikinya lebih sering mengambil {list} daripada biasanya.",
   },
 };

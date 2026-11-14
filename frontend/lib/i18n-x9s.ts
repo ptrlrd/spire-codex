@@ -17,6 +17,8 @@ export const X9S: Record<string, Record<string, string>> = {
       tur: "Codex Score: buna sahip koltukların kazanma oranı, kohort tabanına çekilip 0 ile 100 arasına ölçeklenir.",
       zhs: "Codex Score：持有它的席位的胜率，向该群组基准收缩后映射到 0 到 100。",
       zht: "Codex Score：持有它的席位的勝率，向該群組基準收縮後映射到 0 到 100。",
+      ara: "Codex Score: معدل فوز المقاعد التي حملته، مقرّبًا نحو خط أساس الفئة ومحوّلًا إلى مقياس من 0 إلى 100.",
+      ind: "Codex Score: tingkat kemenangan kursi yang memegangnya, disusutkan ke arah baseline kohort dan dipetakan ke 0 sampai 100.",
     },
   "Codex Elo: how often players take it over the other options on the same screen, fitted as a Bradley-Terry rating.":
     {
@@ -35,6 +37,8 @@ export const X9S: Record<string, Record<string, string>> = {
       tur: "Codex Elo: oyuncuların aynı ekrandaki diğer seçenekler yerine bunu ne sıklıkla aldığı, Bradley-Terry puanı olarak hesaplanır.",
       zhs: "Codex Elo：玩家在同一画面中选它而非其他选项的频率，按 Bradley-Terry 评分拟合。",
       zht: "Codex Elo：玩家在同一畫面中選它而非其他選項的頻率，按 Bradley-Terry 評分擬合。",
+      ara: "Codex Elo: عدد مرات أخذ اللاعبين له بدل الخيارات الأخرى في الشاشة نفسها، محسوبًا كتصنيف Bradley-Terry.",
+      ind: "Codex Elo: seberapa sering pemain mengambilnya dibanding opsi lain di layar yang sama, dihitung sebagai rating Bradley-Terry.",
     },
   "Share of seats that held it and went on to win the run.": {
     eng: "Share of seats that held it and went on to win the run.",
@@ -52,6 +56,8 @@ export const X9S: Record<string, Record<string, string>> = {
     tur: "Buna sahip olup koşuyu kazanan koltukların payı.",
     zhs: "持有它并最终赢下这局的席位占比。",
     zht: "持有它並最終贏下這局的席位占比。",
+    ara: "نسبة المقاعد التي حملته ثم فازت بالجولة.",
+    ind: "Porsi kursi yang memegangnya lalu memenangkan run.",
   },
   "How often it was taken when it was offered on a choice screen.": {
     eng: "How often it was taken when it was offered on a choice screen.",
@@ -69,6 +75,8 @@ export const X9S: Record<string, Record<string, string>> = {
     tur: "Bir seçim ekranında sunulduğunda ne sıklıkla alındığı.",
     zhs: "在选择画面中被提供时被选取的频率。",
     zht: "在選擇畫面中被提供時被選取的頻率。",
+    ara: "عدد مرات أخذه عند عرضه في شاشة اختيار.",
+    ind: "Seberapa sering diambil saat ditawarkan di layar pilihan.",
   },
   "Share of all seats in the cohort that held it at some point.": {
     eng: "Share of all seats in the cohort that held it at some point.",
@@ -86,6 +94,8 @@ export const X9S: Record<string, Record<string, string>> = {
     tur: "Kohorttaki tüm koltuklar içinde bir noktada buna sahip olanların payı.",
     zhs: "该群组中所有席位里曾经持有过它的占比。",
     zht: "該群組中所有席位裡曾經持有過它的占比。",
+    ara: "نسبة كل مقاعد الفئة التي حملته في وقت ما.",
+    ind: "Porsi semua kursi di kohort yang pernah memegangnya.",
   },
   "Share of seats that obtained it and used it at least once.": {
     eng: "Share of seats that obtained it and used it at least once.",
@@ -103,6 +113,8 @@ export const X9S: Record<string, Record<string, string>> = {
     tur: "Bunu edinip en az bir kez kullanan koltukların payı.",
     zhs: "获得它并至少使用过一次的席位占比。",
     zht: "獲得它並至少使用過一次的席位占比。",
+    ara: "نسبة المقاعد التي حصلت عليه واستخدمته مرة واحدة على الأقل.",
+    ind: "Porsi kursi yang mendapatkannya dan memakainya setidaknya sekali.",
   },
   "How often it was bought when it appeared on a shop shelf.": {
     eng: "How often it was bought when it appeared on a shop shelf.",
@@ -120,6 +132,8 @@ export const X9S: Record<string, Record<string, string>> = {
     tur: "Dükkân rafında göründüğünde ne sıklıkla satın alındığı.",
     zhs: "它出现在商店货架上时被购买的频率。",
     zht: "它出現在商店貨架上時被購買的頻率。",
+    ara: "عدد مرات شرائه عند ظهوره على رف المتجر.",
+    ind: "Seberapa sering dibeli saat muncul di rak toko.",
   },
   "This option's share of all choices made at this event.": {
     eng: "This option's share of all choices made at this event.",
@@ -137,6 +151,8 @@ export const X9S: Record<string, Record<string, string>> = {
     tur: "Bu seçeneğin bu olayda yapılan tüm seçimler içindeki payı.",
     zhs: "此选项在该事件所有选择中的占比。",
     zht: "此選項在該事件所有選擇中的占比。",
+    ara: "حصة هذا الخيار من كل الاختيارات في هذا الحدث.",
+    ind: "Porsi opsi ini dari semua pilihan yang dibuat di event ini.",
   },
   "This action's share of all choices made at campfires.": {
     eng: "This action's share of all choices made at campfires.",
@@ -154,6 +170,8 @@ export const X9S: Record<string, Record<string, string>> = {
     tur: "Bu eylemin kamp ateşlerinde yapılan tüm seçimler içindeki payı.",
     zhs: "此行动在所有休息处选择中的占比。",
     zht: "此行動在所有休息處選擇中的占比。",
+    ara: "حصة هذا الفعل من كل الاختيارات عند نيران المخيم.",
+    ind: "Porsi tindakan ini dari semua pilihan yang dibuat di api unggun.",
   },
   "Share of these choices made while below half HP.": {
     eng: "Share of these choices made while below half HP.",
@@ -171,6 +189,8 @@ export const X9S: Record<string, Record<string, string>> = {
     tur: "Bu seçimlerin yarı HP'nin altındayken yapılanlarının payı.",
     zhs: "这些选择中在生命低于一半时做出的占比。",
     zht: "這些選擇中在生命低於一半時做出的占比。",
+    ara: "نسبة هذه الاختيارات التي تمت والصحة أقل من النصف.",
+    ind: "Porsi pilihan ini yang dibuat saat HP di bawah setengah.",
   },
   "Win rate minus what the same players were expected to win from the floor where they got it, in percentage points.":
     {
@@ -189,6 +209,8 @@ export const X9S: Record<string, Record<string, string>> = {
       tur: "Kazanma oranı eksi aynı oyuncuların bunu aldıkları kattan itibaren kazanması beklenen oran, yüzde puanı olarak.",
       zhs: "胜率减去同一批玩家从获得它的楼层起预期能赢的比例，单位为百分点。",
       zht: "勝率減去同一批玩家從獲得它的樓層起預期能贏的比例，單位為百分點。",
+      ara: "معدل الفوز مطروحًا منه ما كان متوقعًا أن يفوز به اللاعبون أنفسهم من الطابق الذي حصلوا عليه فيه، بالنقاط المئوية.",
+      ind: "Tingkat kemenangan dikurangi perkiraan kemenangan pemain yang sama sejak lantai tempat mereka mendapatkannya, dalam poin persentase.",
     },
   "Times it was taken from a choice screen.": {
     eng: "Times it was taken from a choice screen.",
@@ -206,6 +228,8 @@ export const X9S: Record<string, Record<string, string>> = {
     tur: "Bir seçim ekranından kaç kez alındığı.",
     zhs: "它在选择画面中被选取的次数。",
     zht: "它在選擇畫面中被選取的次數。",
+    ara: "مرات أخذه من شاشة اختيار.",
+    ind: "Jumlah diambil dari layar pilihan.",
   },
   "Pick rate on choice screens in act 1.": {
     eng: "Pick rate on choice screens in act 1.",
@@ -223,6 +247,8 @@ export const X9S: Record<string, Record<string, string>> = {
     tur: "1. perdedeki seçim ekranlarında seçilme oranı.",
     zhs: "第 1 阶段选择画面中的选取率。",
     zht: "第 1 幕選擇畫面中的選取率。",
+    ara: "معدل الاختيار في شاشات الاختيار في الفصل 1.",
+    ind: "Tingkat pilih di layar pilihan pada babak 1.",
   },
   "Pick rate on choice screens in act 2.": {
     eng: "Pick rate on choice screens in act 2.",
@@ -240,6 +266,8 @@ export const X9S: Record<string, Record<string, string>> = {
     tur: "2. perdedeki seçim ekranlarında seçilme oranı.",
     zhs: "第 2 阶段选择画面中的选取率。",
     zht: "第 2 幕選擇畫面中的選取率。",
+    ara: "معدل الاختيار في شاشات الاختيار في الفصل 2.",
+    ind: "Tingkat pilih di layar pilihan pada babak 2.",
   },
   "Pick rate on choice screens in act 3 and later.": {
     eng: "Pick rate on choice screens in act 3 and later.",
@@ -257,6 +285,8 @@ export const X9S: Record<string, Record<string, string>> = {
     tur: "3. perde ve sonrasındaki seçim ekranlarında seçilme oranı.",
     zhs: "第 3 阶段及之后选择画面中的选取率。",
     zht: "第 3 幕及之後選擇畫面中的選取率。",
+    ara: "معدل الاختيار في شاشات الاختيار في الفصل 3 وما بعده.",
+    ind: "Tingkat pilih di layar pilihan pada babak 3 dan seterusnya.",
   },
   "Wins and losses among the seats that held it.": {
     eng: "Wins and losses among the seats that held it.",
@@ -274,6 +304,8 @@ export const X9S: Record<string, Record<string, string>> = {
     tur: "Buna sahip koltuklar arasındaki galibiyet ve mağlubiyetler.",
     zhs: "持有它的席位的胜负数。",
     zht: "持有它的席位的勝負數。",
+    ara: "الانتصارات والهزائم بين المقاعد التي حملته.",
+    ind: "Kemenangan dan kekalahan di antara kursi yang memegangnya.",
   },
   "Show wax relics": {
     eng: "Show wax relics",
@@ -291,6 +323,8 @@ export const X9S: Record<string, Record<string, string>> = {
     tur: "Balmumu kalıntılarını göster",
     zhs: "显示蜡制遗物",
     zht: "顯示蠟製遺物",
+    ara: "إظهار الآثار الشمعية",
+    ind: "Tampilkan pusaka lilin",
   },
   "Show upgraded cards": {
     eng: "Show upgraded cards",
@@ -308,6 +342,8 @@ export const X9S: Record<string, Record<string, string>> = {
     tur: "Yükseltilmiş kartları göster",
     zhs: "显示升级卡牌",
     zht: "顯示升級卡牌",
+    ara: "إظهار البطاقات المرقّاة",
+    ind: "Tampilkan kartu yang ditingkatkan",
   },
   "Per character": {
     eng: "Per character",
@@ -325,6 +361,8 @@ export const X9S: Record<string, Record<string, string>> = {
     tur: "Karaktere göre",
     zhs: "按角色",
     zht: "按角色",
+    ara: "لكل شخصية",
+    ind: "Per karakter",
   },
   "{n} picks": {
     eng: "{n} picks",
@@ -342,6 +380,8 @@ export const X9S: Record<string, Record<string, string>> = {
     tur: "{n} seçim",
     zhs: "{n} 次选取",
     zht: "{n} 次選取",
+    ara: "{n} اختيار",
+    ind: "{n} pilihan",
   },
   "See in Card Metrics": {
     eng: "See in Card Metrics",
@@ -359,6 +399,8 @@ export const X9S: Record<string, Record<string, string>> = {
     tur: "Kart metriklerinde gör",
     zhs: "在卡牌指标中查看",
     zht: "在卡牌指標中查看",
+    ara: "عرض في مقاييس البطاقات",
+    ind: "Lihat di Metrik Kartu",
   },
   "See in Relic Metrics": {
     eng: "See in Relic Metrics",
@@ -376,6 +418,8 @@ export const X9S: Record<string, Record<string, string>> = {
     tur: "Kalıntı metriklerinde gör",
     zhs: "在遗物指标中查看",
     zht: "在遺物指標中查看",
+    ara: "عرض في مقاييس الآثار",
+    ind: "Lihat di Metrik Pusaka",
   },
   "See in Potion Metrics": {
     eng: "See in Potion Metrics",
@@ -393,6 +437,8 @@ export const X9S: Record<string, Record<string, string>> = {
     tur: "İksir metriklerinde gör",
     zhs: "在药水指标中查看",
     zht: "在藥水指標中查看",
+    ara: "عرض في مقاييس الجرعات",
+    ind: "Lihat di Metrik Ramuan",
   },
   "Seats that held it (sample size)": {
     eng: "Seats that held it (sample size)",
@@ -410,6 +456,8 @@ export const X9S: Record<string, Record<string, string>> = {
     tur: "Buna sahip koltuklar (örneklem boyutu)",
     zhs: "持有它的席位（样本量）",
     zht: "持有它的席位（樣本量）",
+    ara: "المقاعد التي حملته (حجم العينة)",
+    ind: "Kursi yang memegangnya (ukuran sampel)",
   },
   "Reset filters": {
     eng: "Reset filters",
@@ -427,6 +475,8 @@ export const X9S: Record<string, Record<string, string>> = {
     tur: "Filtreleri sıfırla",
     zhs: "重置筛选",
     zht: "重置篩選",
+    ara: "إعادة ضبط عوامل التصفية",
+    ind: "Reset filter",
   },
   "Reset columns": {
     eng: "Reset columns",
@@ -444,6 +494,8 @@ export const X9S: Record<string, Record<string, string>> = {
     tur: "Sütunları sıfırla",
     zhs: "重置列",
     zht: "重置欄",
+    ara: "إعادة ضبط الأعمدة",
+    ind: "Reset kolom",
   },
   "Encounter stats carry no game-mode axis, so every mode is included.": {
     eng: "Encounter stats carry no game-mode axis, so every mode is included.",
@@ -461,6 +513,8 @@ export const X9S: Record<string, Record<string, string>> = {
     tur: "Karşılaşma istatistiklerinde oyun modu ekseni yoktur, bu yüzden her mod dahildir.",
     zhs: "遭遇统计没有游戏模式维度，因此包含所有模式。",
     zht: "遭遇統計沒有遊戲模式維度，因此包含所有模式。",
+    ara: "إحصائيات المواجهات لا تحتوي على محور لوضع اللعب، لذا تشمل كل الأوضاع.",
+    ind: "Statistik pertemuan tidak punya sumbu mode permainan, jadi semua mode disertakan.",
   },
   "Needs a Played by character or the Per character view.": {
     eng: "Needs a Played by character or the Per character view.",
@@ -478,6 +532,8 @@ export const X9S: Record<string, Record<string, string>> = {
     tur: "“Oynayan” altında bir karakter ya da “Karaktere göre” görünümü gerekir.",
     zhs: "需要先选择“使用角色”或打开“按角色”视图。",
     zht: "需要先選擇「使用角色」或開啟「按角色」視圖。",
+    ara: "يتطلب تحديد شخصية في «لعبها» أو عرض «لكل شخصية».",
+    ind: "Perlu karakter di Dimainkan oleh atau tampilan Per karakter.",
   },
   "Other characters' cards": {
     eng: "Other characters' cards",
@@ -495,6 +551,8 @@ export const X9S: Record<string, Record<string, string>> = {
     tur: "Diğer karakterlerin kartları",
     zhs: "其他角色的卡牌",
     zht: "其他角色的卡牌",
+    ara: "بطاقات الشخصيات الأخرى",
+    ind: "Kartu karakter lain",
   },
   "Only cards that belong to a different character than the one playing them.":
     {
@@ -513,5 +571,7 @@ export const X9S: Record<string, Record<string, string>> = {
       tur: "Yalnızca onları oynayan karakterden farklı bir karaktere ait kartlar.",
       zhs: "只显示归属角色与使用角色不同的卡牌。",
       zht: "只顯示歸屬角色與使用角色不同的卡牌。",
+      ara: "فقط البطاقات التي تنتمي إلى شخصية غير التي تلعبها.",
+      ind: "Hanya kartu milik karakter yang berbeda dari karakter yang memainkannya.",
     },
 };

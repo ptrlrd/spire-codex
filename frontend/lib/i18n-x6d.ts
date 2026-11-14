@@ -16,6 +16,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Bu rehberin neyi kapsadığına dair kısa bir özet",
     zhs: "简要概括这篇攻略的内容",
     zht: "簡要概括這篇攻略的內容",
+    ara: "ملخص قصير لما يغطيه هذا الدليل",
+    ind: "Ringkasan singkat isi panduan ini",
   },
   "A cold query can take up to a minute; repeats are cached and come back instantly.":
     {
@@ -34,6 +36,8 @@ export const X6D: Record<string, Record<string, string>> = {
       tur: "Yeni bir sorgu bir dakikaya kadar sürebilir; tekrarlar önbelleğe alınır ve anında döner.",
       zhs: "首次查询最多可能需要一分钟；重复查询会被缓存并立即返回。",
       zht: "首次查詢最多可能需要一分鐘；重複查詢會被快取並立即返回。",
+      ara: "قد يستغرق الاستعلام الأول حتى دقيقة، أما التكرارات فتُخزن مؤقتا وتعود فورا.",
+      ind: "Kueri pertama bisa memakan waktu hingga satu menit; pengulangan disimpan di cache dan langsung muncul.",
     },
   "Act map showing the player's route": {
     eng: "Act map showing the player's route",
@@ -51,6 +55,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Oyuncunun rotasını gösteren perde haritası",
     zhs: "显示玩家路线的阶段地图",
     zht: "顯示玩家路線的幕地圖",
+    ara: "خريطة الفصل تعرض مسار اللاعب",
+    ind: "Peta babak yang menunjukkan rute pemain",
   },
   "(act {n})": {
     eng: "(act {n})",
@@ -68,6 +74,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "(perde {n})",
     zhs: "（第 {n} 阶段）",
     zht: "（第 {n} 幕）",
+    ara: "(الفصل {n})",
+    ind: "(babak {n})",
   },
   "Add a card…": {
     eng: "Add a card…",
@@ -85,6 +93,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Kart ekle…",
     zhs: "添加卡牌…",
     zht: "新增卡牌…",
+    ara: "أضف بطاقة…",
+    ind: "Tambah kartu…",
   },
   "Add a few picks and the nearest community archetypes appear here.": {
     eng: "Add a few picks and the nearest community archetypes appear here.",
@@ -102,6 +112,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Birkaç seçim ekleyin, en yakın topluluk arketipleri burada görünsün.",
     zhs: "添加几个选择后，最接近的社区流派会显示在这里。",
     zht: "新增幾個選擇後，最接近的社群流派會顯示在這裡。",
+    ara: "أضف بضعة اختيارات وستظهر هنا أقرب الأنماط لدى المجتمع.",
+    ind: "Tambahkan beberapa pilihan dan arketipe komunitas terdekat akan muncul di sini.",
   },
   "Add an event…": {
     eng: "Add an event…",
@@ -119,6 +131,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Olay ekle…",
     zhs: "添加事件…",
     zht: "新增事件…",
+    ara: "أضف حدثا…",
+    ind: "Tambah event…",
   },
   "Add an offered card (up to 5)…": {
     eng: "Add an offered card (up to 5)…",
@@ -136,6 +150,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Sunulan kart ekle (en fazla 5)…",
     zhs: "添加提供的卡牌（最多 5 张）…",
     zht: "新增提供的卡牌（最多 5 張）…",
+    ara: "أضف بطاقة معروضة (حتى 5)…",
+    ind: "Tambah kartu yang ditawarkan (maks. 5)…",
   },
   "Add a relic…": {
     eng: "Add a relic…",
@@ -153,6 +169,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Kalıntı ekle…",
     zhs: "添加遗物…",
     zht: "新增遺物…",
+    ara: "أضف أثرا…",
+    ind: "Tambah pusaka…",
   },
   "Add the cards and relics you have picked so far. Starters are assumed and don't need to be entered.":
     {
@@ -171,6 +189,8 @@ export const X6D: Record<string, Record<string, string>> = {
       tur: "Şimdiye kadar aldığınız kartları ve kalıntıları ekleyin. Başlangıç kartları varsayılır, girilmesine gerek yok.",
       zhs: "添加你目前已拿到的卡牌和遗物。初始卡牌默认已有，无需输入。",
       zht: "新增你目前已拿到的卡牌和遺物。初始卡牌預設已有，無需輸入。",
+      ara: "أضف البطاقات والآثار التي اخترتها حتى الآن. البطاقات والآثار الأساسية مفترضة ولا حاجة لإدخالها.",
+      ind: "Tambahkan kartu dan pusaka yang sudah kamu ambil sejauh ini. Bawaan awal sudah dihitung dan tidak perlu dimasukkan.",
     },
   "Ancient offer": {
     eng: "Ancient offer",
@@ -188,6 +208,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Kadim teklifi",
     zhs: "远古者的馈赠",
     zht: "遠古者的饋贈",
+    ara: "عرض العتيق",
+    ind: "Tawaran Ancient",
   },
   "ancient offered {name}": {
     eng: "ancient offered {name}",
@@ -205,6 +227,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "kadim {name} sundu",
     zhs: "远古者提供了 {name}",
     zht: "遠古者提供了 {name}",
+    ara: "عرض العتيق {name}",
+    ind: "ancient menawarkan {name}",
   },
   Announcements: {
     eng: "Announcements",
@@ -222,6 +246,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Duyurular",
     zhs: "公告",
     zht: "公告",
+    ara: "الإعلانات",
+    ind: "Pengumuman",
   },
   "Anonymous climber": {
     eng: "Anonymous climber",
@@ -239,6 +265,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Anonim tırmanıcı",
     zhs: "匿名攀登者",
     zht: "匿名攀登者",
+    ara: "متسلق مجهول",
+    ind: "Pendaki anonim",
   },
   "Any act": {
     eng: "Any act",
@@ -256,6 +284,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Herhangi bir perde",
     zhs: "任意阶段",
     zht: "任意幕",
+    ara: "أي فصل",
+    ind: "Babak apa pun",
   },
   "Any character": {
     eng: "Any character",
@@ -273,6 +303,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Herhangi bir karakter",
     zhs: "任意角色",
     zht: "任意角色",
+    ara: "أي شخصية",
+    ind: "Karakter apa pun",
   },
   API: {
     eng: "API",
@@ -290,6 +322,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "API",
     zhs: "API",
     zht: "API",
+    ara: "API",
+    ind: "API",
   },
   "API Changes": {
     eng: "API Changes",
@@ -307,6 +341,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "API Değişiklikleri",
     zhs: "API 变更",
     zht: "API 變更",
+    ara: "تغييرات API",
+    ind: "Perubahan API",
   },
   "Appeared as a card reward. Click a chip to require more copies.": {
     eng: "Appeared as a card reward. Click a chip to require more copies.",
@@ -324,6 +360,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Kart ödülü olarak çıktı. Daha fazla kopya istemek için bir çipe tıklayın.",
     zhs: "作为卡牌奖励出现。点击标签可要求更多副本。",
     zht: "作為卡牌獎勵出現。點擊標籤可要求更多副本。",
+    ara: "ظهرت كمكافأة بطاقة. انقر على شارة لطلب نسخ أكثر.",
+    ind: "Muncul sebagai pilihan kartu. Klik chip untuk mewajibkan lebih banyak salinan.",
   },
   "App ID:": {
     eng: "App ID:",
@@ -341,6 +379,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Uygulama kimliği:",
     zhs: "应用 ID：",
     zht: "應用程式 ID：",
+    ara: "App ID:",
+    ind: "App ID:",
   },
   "A relic offered by an ancient, optionally locked to an act.": {
     eng: "A relic offered by an ancient, optionally locked to an act.",
@@ -358,6 +398,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Bir kadimin sunduğu kalıntı; isteğe bağlı olarak bir perdeye sabitlenir.",
     zhs: "远古者提供的遗物，可选择限定阶段。",
     zht: "遠古者提供的遺物，可選擇限定幕。",
+    ara: "أثر يعرضه عتيق، مع إمكانية حصره بفصل معين.",
+    ind: "Pusaka yang ditawarkan ancient, bisa dikunci ke satu babak.",
   },
   "Artovision Slay the Spire 2 shadowbox": {
     eng: "Artovision Slay the Spire 2 shadowbox",
@@ -375,6 +417,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Artovision Slay the Spire 2 gölge kutusu",
     zhs: "Artovision 出品的 Slay the Spire 2 立体画框",
     zht: "Artovision 出品的 Slay the Spire 2 立體畫框",
+    ara: "صندوق العرض Artovision للعبة Slay the Spire 2",
+    ind: "Shadowbox Artovision Slay the Spire 2",
   },
   ATK: {
     eng: "ATK",
@@ -392,6 +436,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "SLD",
     zhs: "攻击",
     zht: "攻擊",
+    ara: "هجوم",
+    ind: "SRG",
   },
   "ATK {dmg}": {
     eng: "ATK {dmg}",
@@ -409,6 +455,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "SLD {dmg}",
     zhs: "攻击 {dmg}",
     zht: "攻擊 {dmg}",
+    ara: "هجوم {dmg}",
+    ind: "SRG {dmg}",
   },
   beta: {
     eng: "beta",
@@ -426,6 +474,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "beta",
     zhs: "测试版",
     zht: "測試版",
+    ara: "بيتا",
+    ind: "beta",
   },
   "Beta Changelog": {
     eng: "Beta Changelog",
@@ -443,6 +493,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Beta Değişiklik Günlüğü",
     zhs: "测试版更新日志",
     zht: "測試版更新日誌",
+    ara: "سجل تغييرات بيتا",
+    ind: "Catatan Perubahan Beta",
   },
   "Beta-only": {
     eng: "Beta-only",
@@ -460,6 +512,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Yalnızca beta",
     zhs: "仅限测试版",
     zht: "僅限測試版",
+    ara: "بيتا فقط",
+    ind: "Khusus beta",
   },
   "beta {version}": {
     eng: "beta {version}",
@@ -477,6 +531,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "beta {version}",
     zhs: "测试版 {version}",
     zht: "測試版 {version}",
+    ara: "بيتا {version}",
+    ind: "beta {version}",
   },
   "Beta - What's new": {
     eng: "Beta - What's new",
@@ -494,6 +550,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Beta - Yenilikler",
     zhs: "测试版 - 新内容",
     zht: "測試版 - 新內容",
+    ara: "بيتا - ما الجديد",
+    ind: "Beta - Yang baru",
   },
   block: {
     eng: "block",
@@ -511,6 +569,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "blok",
     zhs: "格挡",
     zht: "格擋",
+    ara: "صد",
+    ind: "blok",
   },
   BLOCK: {
     eng: "BLOCK",
@@ -528,6 +588,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "BLOK",
     zhs: "格挡",
     zht: "格擋",
+    ara: "صد",
+    ind: "BLOK",
   },
   bot: {
     eng: "bot",
@@ -545,6 +607,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "bot",
     zhs: "机器人",
     zht: "機器人",
+    ara: "بوت",
+    ind: "bot",
   },
   BUFF: {
     eng: "BUFF",
@@ -562,6 +626,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "GÜÇLENME",
     zhs: "增益",
     zht: "增益",
+    ara: "تعزيز",
+    ind: "BUFF",
   },
   "Build ID:": {
     eng: "Build ID:",
@@ -579,6 +645,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Yapı kimliği:",
     zhs: "构建 ID：",
     zht: "建置 ID：",
+    ara: "Build ID:",
+    ind: "Build ID:",
   },
   "Build trajectory": {
     eng: "Build trajectory",
@@ -596,6 +664,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Yapı gidişatı",
     zhs: "构筑走向",
     zht: "構築走向",
+    ara: "مسار البناء",
+    ind: "Arah build",
   },
   "by {name}": {
     eng: "by {name}",
@@ -613,6 +683,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "{name} tarafından",
     zhs: "作者：{name}",
     zht: "作者：{name}",
+    ara: "بواسطة {name}",
+    ind: "oleh {name}",
   },
   card: {
     eng: "card",
@@ -630,6 +702,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "kart",
     zhs: "卡牌",
     zht: "卡牌",
+    ara: "بطاقة",
+    ind: "kartu",
   },
   CARD: {
     eng: "CARD",
@@ -647,6 +721,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "KART",
     zhs: "卡牌",
     zht: "卡牌",
+    ara: "بطاقة",
+    ind: "KARTU",
   },
   "Card offer": {
     eng: "Card offer",
@@ -664,6 +740,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Kart teklifi",
     zhs: "卡牌选项",
     zht: "卡牌選項",
+    ara: "عرض بطاقات",
+    ind: "Tawaran kartu",
   },
   "Card removal available": {
     eng: "Card removal available",
@@ -681,6 +759,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Kart kaldırma mevcut",
     zhs: "可删除卡牌",
     zht: "可刪除卡牌",
+    ara: "إزالة البطاقات متاحة",
+    ind: "Pembuangan kartu tersedia",
   },
   "Cards kept": {
     eng: "Cards kept",
@@ -698,6 +778,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Tutulan kartlar",
     zhs: "保留的卡牌",
     zht: "保留的卡牌",
+    ara: "البطاقات المحتفظ بها",
+    ind: "Kartu disimpan",
   },
   "Cards offered": {
     eng: "Cards offered",
@@ -715,6 +797,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Sunulan kartlar",
     zhs: "提供的卡牌",
     zht: "提供的卡牌",
+    ara: "البطاقات المعروضة",
+    ind: "Kartu ditawarkan",
   },
   "Click to copy seed": {
     eng: "Click to copy seed",
@@ -732,6 +816,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Tohumu kopyalamak için tıklayın",
     zhs: "点击复制种子",
     zht: "點擊複製種子",
+    ara: "انقر لنسخ البذرة",
+    ind: "Klik untuk menyalin benih",
   },
   "Click to remove": {
     eng: "Click to remove",
@@ -749,6 +835,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Kaldırmak için tıklayın",
     zhs: "点击移除",
     zht: "點擊移除",
+    ara: "انقر للإزالة",
+    ind: "Klik untuk menghapus",
   },
   "Click to remove one copy": {
     eng: "Click to remove one copy",
@@ -766,6 +854,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Bir kopyayı kaldırmak için tıklayın",
     zhs: "点击移除一张",
     zht: "點擊移除一張",
+    ara: "انقر لإزالة نسخة واحدة",
+    ind: "Klik untuk menghapus satu salinan",
   },
   "Click to require one more": {
     eng: "Click to require one more",
@@ -783,6 +873,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Bir tane daha istemek için tıklayın",
     zhs: "点击要求再多一张",
     zht: "點擊要求再多一張",
+    ara: "انقر لطلب نسخة إضافية",
+    ind: "Klik untuk mewajibkan satu lagi",
   },
   "climbing for {time}": {
     eng: "climbing for {time}",
@@ -800,6 +892,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "{time} süredir tırmanıyor",
     zhs: "已攀登 {time}",
     zht: "已攀登 {time}",
+    ara: "يتسلق منذ {time}",
+    ind: "mendaki selama {time}",
   },
   "Comma-separated, e.g. strength, scaling, act 3": {
     eng: "Comma-separated, e.g. strength, scaling, act 3",
@@ -817,6 +911,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Virgülle ayrılmış, ör. güç, ölçekleme, perde 3",
     zhs: "用逗号分隔，例如：力量、成长、第 3 阶段",
     zht: "用逗號分隔，例如：力量、成長、第 3 幕",
+    ara: "مفصولة بفواصل، مثل: strength, scaling, act 3",
+    ind: "Dipisahkan koma, mis. strength, scaling, act 3",
   },
   "community archetypes": {
     eng: "community archetypes",
@@ -834,6 +930,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "topluluk arketipleri",
     zhs: "社区流派",
     zht: "社群流派",
+    ara: "أنماط المجتمع",
+    ind: "arketipe komunitas",
   },
   "co-op ×{n}": {
     eng: "co-op ×{n}",
@@ -851,6 +949,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "ortak ×{n}",
     zhs: "合作 ×{n}",
     zht: "合作 ×{n}",
+    ara: "تعاوني ×{n}",
+    ind: "co-op ×{n}",
   },
   "Copy link to this version": {
     eng: "Copy link to this version",
@@ -868,6 +968,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Bu sürümün bağlantısını kopyala",
     zhs: "复制此版本链接",
     zht: "複製此版本連結",
+    ara: "نسخ رابط هذه النسخة",
+    ind: "Salin tautan ke versi ini",
   },
   "Could not load your keys. Refresh to retry.": {
     eng: "Could not load your keys. Refresh to retry.",
@@ -885,6 +987,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Anahtarlarınız yüklenemedi. Yeniden denemek için sayfayı yenileyin.",
     zhs: "无法加载你的密钥。刷新以重试。",
     zht: "無法載入你的金鑰。重新整理以重試。",
+    ara: "تعذر تحميل مفاتيحك. حدّث الصفحة لإعادة المحاولة.",
+    ind: "Kunci kamu gagal dimuat. Muat ulang untuk mencoba lagi.",
   },
   DEBUFF: {
     eng: "DEBUFF",
@@ -902,6 +1006,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "ZAYIFLATMA",
     zhs: "减益",
     zht: "減益",
+    ara: "إضعاف",
+    ind: "DEBUFF",
   },
   "Deck Lab": {
     eng: "Deck Lab",
@@ -919,6 +1025,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Deste Laboratuvarı",
     zhs: "牌组实验室",
     zht: "牌組實驗室",
+    ara: "مختبر المجموعات",
+    ind: "Lab Dek",
   },
   "Delete this tier list?": {
     eng: "Delete this tier list?",
@@ -936,6 +1044,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Bu seviye listesi silinsin mi?",
     zhs: "删除此梯度榜？",
     zht: "刪除此梯度榜？",
+    ara: "حذف قائمة التصنيف هذه؟",
+    ind: "Hapus tier list ini?",
   },
   "Differs from main: {fields} changed.": {
     eng: "Differs from main: {fields} changed.",
@@ -953,6 +1063,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Main sürümünden farklı: {fields} değişti.",
     zhs: "与主版本不同：{fields}已变更。",
     zht: "與主版本不同：{fields}已變更。",
+    ara: "يختلف عن الرئيسية: تغيّر {fields}.",
+    ind: "Berbeda dari main: {fields} berubah.",
   },
   "Digging through the community runs — combing candidate decks, then verifying offers, events, and ancient rolls.":
     {
@@ -971,6 +1083,8 @@ export const X6D: Record<string, Record<string, string>> = {
       tur: "Topluluk koşuları taranıyor: aday desteler ayıklanıyor, ardından teklifler, olaylar ve kadim çekilişleri doğrulanıyor.",
       zhs: "正在翻查社区对局：筛选候选牌组，然后核对卡牌选项、事件和远古者结果。",
       zht: "正在翻查社群對局：篩選候選牌組，然後核對卡牌選項、事件和遠古者結果。",
+      ara: "جار البحث في جولات المجتمع: فرز المجموعات المرشحة، ثم التحقق من العروض والأحداث وعروض القدماء.",
+      ind: "Menggali perjalanan komunitas: menyisir dek kandidat, lalu memverifikasi tawaran, event, dan undian ancient.",
     },
   "Discord username or email": {
     eng: "Discord username or email",
@@ -988,6 +1102,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Discord kullanıcı adı veya e-posta",
     zhs: "Discord 用户名或邮箱",
     zht: "Discord 使用者名稱或電子郵件",
+    ara: "اسم مستخدم Discord أو البريد الإلكتروني",
+    ind: "Nama pengguna Discord atau email",
   },
   Dismiss: {
     eng: "Dismiss",
@@ -1005,6 +1121,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Kapat",
     zhs: "关闭",
     zht: "關閉",
+    ara: "إغلاق",
+    ind: "Tutup",
   },
   "Download Overwolf Companion App": {
     eng: "Download Overwolf Companion App",
@@ -1022,6 +1140,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Overwolf Yardımcı Uygulamasını İndir",
     zhs: "下载 Overwolf 伴侣应用",
     zht: "下載 Overwolf 伴侶應用程式",
+    ara: "تنزيل تطبيق Overwolf المرافق",
+    ind: "Unduh Aplikasi Pendamping Overwolf",
   },
   "Download ZIP": {
     eng: "Download ZIP",
@@ -1039,6 +1159,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "ZIP indir",
     zhs: "下载 ZIP",
     zht: "下載 ZIP",
+    ara: "تنزيل ZIP",
+    ind: "Unduh ZIP",
   },
   "Drop .run files here or click to browse": {
     eng: "Drop .run files here or click to browse",
@@ -1056,6 +1178,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: ".run dosyalarını buraya bırakın veya göz atmak için tıklayın",
     zhs: "将 .run 文件拖到这里或点击浏览",
     zht: "將 .run 檔案拖到這裡或點擊瀏覽",
+    ara: "أفلت ملفات .run هنا أو انقر للتصفح",
+    ind: "Jatuhkan file .run di sini atau klik untuk memilih",
   },
   "Edit this list": {
     eng: "Edit this list",
@@ -1073,6 +1197,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Bu listeyi düzenle",
     zhs: "编辑此榜单",
     zht: "編輯此榜單",
+    ara: "تعديل هذه القائمة",
+    ind: "Edit daftar ini",
   },
   "e.g. Ironclad Strength Build Guide": {
     eng: "e.g. Ironclad Strength Build Guide",
@@ -1090,6 +1216,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "ör. Ironclad Güç Yapısı Rehberi",
     zhs: "例如：铁甲战士力量流攻略",
     zht: "例如：鐵甲戰士力量流攻略",
+    ara: "مثال: دليل بناء القوة للمدرع",
+    ind: "mis. Panduan Build Kekuatan Ironclad",
   },
   "Encountered anywhere in the run.": {
     eng: "Encountered anywhere in the run.",
@@ -1107,6 +1235,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Koşunun herhangi bir yerinde karşılaşıldı.",
     zhs: "在本局任意位置遇到。",
     zht: "在本局任意位置遇到。",
+    ara: "ظهر في أي موضع من الجولة.",
+    ind: "Ditemui di mana pun dalam perjalanan.",
   },
   Enemy: {
     eng: "Enemy",
@@ -1124,6 +1254,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Düşman",
     zhs: "敌人",
     zht: "敵人",
+    ara: "عدو",
+    ind: "Musuh",
   },
   energy: {
     eng: "energy",
@@ -1141,6 +1273,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "enerji",
     zhs: "能量",
     zht: "能量",
+    ara: "طاقة",
+    ind: "energi",
   },
   ESC: {
     eng: "ESC",
@@ -1158,6 +1292,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "ESC",
     zhs: "ESC",
     zht: "ESC",
+    ara: "ESC",
+    ind: "ESC",
   },
   "Events seen": {
     eng: "Events seen",
@@ -1175,6 +1311,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Görülen olaylar",
     zhs: "遇到的事件",
     zht: "遇到的事件",
+    ara: "الأحداث التي ظهرت",
+    ind: "Event ditemui",
   },
   "Everything the current beta branch adds, changes, or removes compared to main, straight from the game data. Presentation-only differences (art, ordering) are filtered out.":
     {
@@ -1193,6 +1331,8 @@ export const X6D: Record<string, Record<string, string>> = {
       tur: "Mevcut beta dalının main'e kıyasla eklediği, değiştirdiği veya kaldırdığı her şey, doğrudan oyun verilerinden. Yalnızca görsel farklar (çizim, sıralama) elenir.",
       zhs: "当前测试版分支相对主版本新增、变更或移除的全部内容，直接来自游戏数据。仅展示层面的差异（美术、排序）已被过滤。",
       zht: "當前測試版分支相對主版本新增、變更或移除的全部內容，直接來自遊戲資料。僅展示層面的差異（美術、排序）已被過濾。",
+      ara: "كل ما يضيفه فرع بيتا الحالي أو يغيره أو يحذفه مقارنة بالرئيسية، مباشرة من بيانات اللعبة. الفروق الشكلية فقط (الرسوم والترتيب) مستبعدة.",
+      ind: "Semua yang ditambahkan, diubah, atau dihapus cabang beta saat ini dibanding main, langsung dari data game. Perbedaan tampilan saja (gambar, urutan) disaring.",
     },
   "Failed to load": {
     eng: "Failed to load",
@@ -1210,6 +1350,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Yüklenemedi",
     zhs: "加载失败",
     zht: "載入失敗",
+    ara: "فشل التحميل",
+    ind: "Gagal memuat",
   },
   "Failed to submit guide": {
     eng: "Failed to submit guide",
@@ -1227,6 +1369,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Rehber gönderilemedi",
     zhs: "攻略提交失败",
     zht: "攻略提交失敗",
+    ara: "فشل إرسال الدليل",
+    ind: "Gagal mengirim panduan",
   },
   Fighting: {
     eng: "Fighting",
@@ -1244,6 +1388,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Savaşıyor",
     zhs: "战斗中",
     zht: "戰鬥中",
+    ara: "في قتال",
+    ind: "Bertarung",
   },
   "Fighting {label}": {
     eng: "Fighting {label}",
@@ -1261,6 +1407,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "{label} ile savaşıyor",
     zhs: "正在对战 {label}",
     zht: "正在對戰 {label}",
+    ara: "يقاتل {label}",
+    ind: "Melawan {label}",
   },
   "Find seeds": {
     eng: "Find seeds",
@@ -1278,6 +1426,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Tohum bul",
     zhs: "查找种子",
     zht: "查找種子",
+    ara: "ابحث عن بذور",
+    ind: "Cari benih",
   },
   Fixes: {
     eng: "Fixes",
@@ -1295,6 +1445,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Düzeltmeler",
     zhs: "修复",
     zht: "修復",
+    ara: "إصلاحات",
+    ind: "Perbaikan",
   },
   FLEE: {
     eng: "FLEE",
@@ -1312,6 +1464,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "KAÇIŞ",
     zhs: "逃跑",
     zht: "逃跑",
+    ara: "فرار",
+    ind: "KABUR",
   },
   "F{n}": {
     eng: "F{n}",
@@ -1329,6 +1483,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "K{n}",
     zhs: "{n} 层",
     zht: "{n} 層",
+    ara: "ط{n}",
+    ind: "L{n}",
   },
   "Get the Mod": {
     eng: "Get the Mod",
@@ -1346,6 +1502,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Modu edin",
     zhs: "获取模组",
     zht: "取得模組",
+    ara: "احصل على المود",
+    ind: "Dapatkan Mod",
   },
   "got {name}": {
     eng: "got {name}",
@@ -1363,6 +1521,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "{name} alındı",
     zhs: "获得了 {name}",
     zht: "獲得了 {name}",
+    ara: "حصل على {name}",
+    ind: "dapat {name}",
   },
   "Guide Content": {
     eng: "Guide Content",
@@ -1380,6 +1540,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Rehber İçeriği",
     zhs: "攻略正文",
     zht: "攻略正文",
+    ara: "محتوى الدليل",
+    ind: "Isi Panduan",
   },
   "Guide Submitted!": {
     eng: "Guide Submitted!",
@@ -1397,6 +1559,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Rehber gönderildi!",
     zhs: "攻略已提交！",
     zht: "攻略已提交！",
+    ara: "تم إرسال الدليل!",
+    ind: "Panduan Terkirim!",
   },
   "Has a note": {
     eng: "Has a note",
@@ -1414,6 +1578,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Notu var",
     zhs: "有备注",
     zht: "有備註",
+    ara: "فيه ملاحظة",
+    ind: "Ada catatan",
   },
   "Heads up": {
     eng: "Heads up",
@@ -1431,6 +1597,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Dikkat",
     zhs: "提示",
     zht: "提示",
+    ara: "تنبيه",
+    ind: "Perhatian",
   },
   HEAL: {
     eng: "HEAL",
@@ -1448,6 +1616,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "İYİLEŞME",
     zhs: "治疗",
     zht: "治療",
+    ara: "علاج",
+    ind: "SEMBUH",
   },
   "How much this pick moves you toward the target build": {
     eng: "How much this pick moves you toward the target build",
@@ -1465,6 +1635,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Bu seçimin sizi hedef yapıya ne kadar yaklaştırdığı",
     zhs: "此选择让你向目标构筑靠近多少",
     zht: "此選擇讓你向目標構築靠近多少",
+    ara: "مدى اقترابك من البناء المستهدف بهذا الاختيار",
+    ind: "Seberapa jauh pilihan ini membawamu ke build tujuan",
   },
   "If this is your tier list, make sure you are signed in.": {
     eng: "If this is your tier list, make sure you are signed in.",
@@ -1482,6 +1654,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Bu sizin seviye listenizse giriş yaptığınızdan emin olun.",
     zhs: "如果这是你的梯度榜，请确认已登录。",
     zht: "如果這是你的梯度榜，請確認已登入。",
+    ara: "إن كانت هذه قائمتك، فتأكد من تسجيل دخولك.",
+    ind: "Kalau ini tier list milikmu, pastikan kamu sudah masuk.",
   },
   "I haven't had a visitor in a millennia! If you wish to support Spire Codex, consider":
     {
@@ -1500,6 +1674,8 @@ export const X6D: Record<string, Record<string, string>> = {
       tur: "Binlerce yıldır ziyaretçim olmamıştı! Spire Codex'i desteklemek isterseniz",
       zhs: "千年来终于有访客了！如果你想支持 Spire Codex，不妨",
       zht: "千年來終於有訪客了！如果你想支持 Spire Codex，不妨",
+      ara: "لم يزرني أحد منذ ألف عام! إن أردت دعم Spire Codex، ففكر في",
+      ind: "Sudah seribu tahun aku tidak kedatangan tamu! Kalau ingin mendukung Spire Codex, pertimbangkan",
     },
   "In the final deck. Click a chip to require more copies.": {
     eng: "In the final deck. Click a chip to require more copies.",
@@ -1517,6 +1693,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Son destede. Daha fazla kopya istemek için bir çipe tıklayın.",
     zhs: "在最终牌组中。点击标签可要求更多副本。",
     zht: "在最終牌組中。點擊標籤可要求更多副本。",
+    ara: "في المجموعة النهائية. انقر على شارة لطلب نسخ أكثر.",
+    ind: "Ada di dek akhir. Klik chip untuk mewajibkan lebih banyak salinan.",
   },
   "kept {name}": {
     eng: "kept {name}",
@@ -1534,6 +1712,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "{name} tutuldu",
     zhs: "保留了 {name}",
     zht: "保留了 {name}",
+    ara: "احتفظ بـ {name}",
+    ind: "simpan {name}",
   },
   "{label} must start with http:// or https://": {
     eng: "{label} must start with http:// or https://",
@@ -1551,6 +1731,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "{label} http:// veya https:// ile başlamalı",
     zhs: "{label} 必须以 http:// 或 https:// 开头",
     zht: "{label} 必須以 http:// 或 https:// 開頭",
+    ara: "يجب أن يبدأ {label} بـ http:// أو https://",
+    ind: "{label} harus diawali http:// atau https://",
   },
   "last refresh failed, retrying": {
     eng: "last refresh failed, retrying",
@@ -1568,6 +1750,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "son yenileme başarısız, yeniden deneniyor",
     zhs: "上次刷新失败，正在重试",
     zht: "上次重新整理失敗，正在重試",
+    ara: "فشل آخر تحديث، جار إعادة المحاولة",
+    ind: "pembaruan terakhir gagal, mencoba lagi",
   },
   "Latest cards": {
     eng: "Latest cards",
@@ -1585,6 +1769,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Son kartlar",
     zhs: "最新卡牌",
     zht: "最新卡牌",
+    ara: "أحدث البطاقات",
+    ind: "Kartu terbaru",
   },
   leave: {
     eng: "leave",
@@ -1602,6 +1788,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "ayrıl",
     zhs: "离开",
     zht: "離開",
+    ara: "مغادرة",
+    ind: "pergi",
   },
   LETHAL: {
     eng: "LETHAL",
@@ -1619,6 +1807,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "ÖLÜMCÜL",
     zhs: "致命",
     zht: "致命",
+    ara: "قاتل",
+    ind: "MEMATIKAN",
   },
   "LETHAL {dmg}": {
     eng: "LETHAL {dmg}",
@@ -1636,6 +1826,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "ÖLÜMCÜL {dmg}",
     zhs: "致命 {dmg}",
     zht: "致命 {dmg}",
+    ara: "قاتل {dmg}",
+    ind: "MEMATIKAN {dmg}",
   },
   "Likely an internal refactor with no gameplay-facing data.": {
     eng: "Likely an internal refactor with no gameplay-facing data.",
@@ -1653,6 +1845,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Muhtemelen oynanışı etkileyen veri içermeyen dahili bir yeniden düzenleme.",
     zhs: "可能是内部重构，没有影响玩法的数据。",
     zht: "可能是內部重構，沒有影響玩法的資料。",
+    ara: "غالبا إعادة هيكلة داخلية دون بيانات تمس اللعب.",
+    ind: "Kemungkinan refactor internal tanpa data yang memengaruhi gameplay.",
   },
   Live: {
     eng: "Live",
@@ -1670,6 +1864,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Canlı",
     zhs: "直播",
     zht: "直播",
+    ara: "مباشر",
+    ind: "Live",
   },
   "Live now": {
     eng: "Live now",
@@ -1687,6 +1883,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Şu an canlı",
     zhs: "正在直播",
     zht: "正在直播",
+    ara: "مباشر الآن",
+    ind: "Sedang live",
   },
   "Loading the roster...": {
     eng: "Loading the roster...",
@@ -1704,6 +1902,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Liste yükleniyor...",
     zhs: "正在加载名单...",
     zht: "正在載入名單...",
+    ara: "جار تحميل القائمة...",
+    ind: "Memuat daftar pemain...",
   },
   "Loading version...": {
     eng: "Loading version...",
@@ -1721,6 +1921,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Sürüm yükleniyor...",
     zhs: "正在加载版本...",
     zht: "正在載入版本...",
+    ara: "جار تحميل النسخة...",
+    ind: "Memuat versi...",
   },
   "Load more ({shown} of {total})": {
     eng: "Load more ({shown} of {total})",
@@ -1738,6 +1940,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Daha fazla yükle ({shown}/{total})",
     zhs: "加载更多（{shown}/{total}）",
     zht: "載入更多（{shown}/{total}）",
+    ara: "تحميل المزيد ({shown} من {total})",
+    ind: "Muat lagi ({shown} dari {total})",
   },
   main: {
     eng: "main",
@@ -1755,6 +1959,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "ana",
     zhs: "主版本",
     zht: "主版本",
+    ara: "الرئيسية",
+    ind: "main",
   },
   "Make your own": {
     eng: "Make your own",
@@ -1772,6 +1978,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Kendininkini yap",
     zhs: "制作你自己的",
     zht: "製作你自己的",
+    ara: "أنشئ قائمتك",
+    ind: "Buat sendiri",
   },
   "Make your own tier list": {
     eng: "Make your own tier list",
@@ -1789,6 +1997,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Kendi seviye listeni yap",
     zhs: "制作你自己的梯度榜",
     zht: "製作你自己的梯度榜",
+    ara: "أنشئ قائمة تصنيفك",
+    ind: "Buat tier list sendiri",
   },
   "(Markdown supported)": {
     eng: "(Markdown supported)",
@@ -1806,6 +2016,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "(Markdown desteklenir)",
     zhs: "（支持 Markdown）",
     zht: "（支援 Markdown）",
+    ara: "(يدعم Markdown)",
+    ind: "(mendukung Markdown)",
   },
   "Modded card": {
     eng: "Modded card",
@@ -1823,6 +2035,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Modlu kart",
     zhs: "模组卡牌",
     zht: "模組卡牌",
+    ara: "بطاقة معدّلة",
+    ind: "Kartu modif",
   },
   "Must start with http:// or https://": {
     eng: "Must start with http:// or https://",
@@ -1840,6 +2054,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "http:// veya https:// ile başlamalı",
     zhs: "必须以 http:// 或 https:// 开头",
     zht: "必須以 http:// 或 https:// 開頭",
+    ara: "يجب أن يبدأ بـ http:// أو https://",
+    ind: "Harus diawali http:// atau https://",
   },
   "My {type} Tier List": {
     eng: "My {type} Tier List",
@@ -1857,6 +2073,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "{type} Seviye Listem",
     zhs: "我的{type}梯度榜",
     zht: "我的{type}梯度榜",
+    ara: "قائمة تصنيفي: {type}",
+    ind: "Tier List {type} Saya",
   },
   "{n} / 7d": {
     eng: "{n} / 7d",
@@ -1874,6 +2092,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "{n} / 7 gün",
     zhs: "{n} / 7 天",
     zht: "{n} / 7 天",
+    ara: "{n} / 7 أيام",
+    ind: "{n} / 7 hr",
   },
   "{n} added": {
     eng: "{n} added",
@@ -1891,6 +2111,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "{n} eklendi",
     zhs: "新增 {n}",
     zht: "新增 {n}",
+    ara: "{n} مضاف",
+    ind: "{n} ditambahkan",
   },
   "{name} - Slay the Spire 2 Card": {
     eng: "{name} - Slay the Spire 2 Card",
@@ -1908,6 +2130,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "{name} - Slay the Spire 2 Kartı",
     zhs: "{name} - Slay the Spire 2 卡牌",
     zht: "{name} - Slay the Spire 2 卡牌",
+    ara: "{name} - بطاقة Slay the Spire 2",
+    ind: "{name} - Kartu Slay the Spire 2",
   },
   "{n} changed": {
     eng: "{n} changed",
@@ -1925,6 +2149,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "{n} değişti",
     zhs: "变更 {n}",
     zht: "變更 {n}",
+    ara: "{n} معدّل",
+    ind: "{n} diubah",
   },
   "{n} changes": {
     eng: "{n} changes",
@@ -1942,6 +2168,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "{n} değişiklik",
     zhs: "{n} 处变更",
     zht: "{n} 處變更",
+    ara: "{n} تغييرات",
+    ind: "{n} perubahan",
   },
   "{n} commit": {
     eng: "{n} commit",
@@ -1959,6 +2187,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "{n} bağlılık",
     zhs: "{n} 投入度",
     zht: "{n} 投入度",
+    ara: "التزام {n}",
+    ind: "komitmen {n}",
   },
   "{n} Damage": {
     eng: "{n} Damage",
@@ -1976,6 +2206,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "{n} Hasar",
     zhs: "{n} 伤害",
     zht: "{n} 傷害",
+    ara: "{n} ضرر",
+    ind: "{n} Kerusakan",
   },
   never: {
     eng: "never",
@@ -1993,6 +2225,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "hiç",
     zhs: "从未",
     zht: "從未",
+    ara: "أبدا",
+    ind: "tidak pernah",
   },
   "New in this beta. There is no main version of this yet.": {
     eng: "New in this beta. There is no main version of this yet.",
@@ -2010,6 +2244,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Bu betada yeni. Henüz main sürümü yok.",
     zhs: "本测试版新增。主版本中尚不存在。",
     zht: "本測試版新增。主版本中尚不存在。",
+    ara: "جديد في هذه البيتا. لا توجد نسخة رئيسية منه بعد.",
+    ind: "Baru di beta ini. Belum ada versi main untuk ini.",
   },
   "New on Spire Codex": {
     eng: "New on Spire Codex",
@@ -2027,6 +2263,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Spire Codex'te yeni",
     zhs: "Spire Codex 新动态",
     zht: "Spire Codex 新動態",
+    ara: "جديد في Spire Codex",
+    ind: "Baru di Spire Codex",
   },
   "New Spire Codex announcement": {
     eng: "New Spire Codex announcement",
@@ -2044,6 +2282,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Yeni Spire Codex duyurusu",
     zhs: "Spire Codex 新公告",
     zht: "Spire Codex 新公告",
+    ara: "إعلان جديد من Spire Codex",
+    ind: "Pengumuman baru Spire Codex",
   },
   "{n} field": {
     eng: "{n} field",
@@ -2061,6 +2301,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "{n} alan",
     zhs: "{n} 个字段",
     zht: "{n} 個欄位",
+    ara: "{n} حقل",
+    ind: "{n} kolom",
   },
   "{n} fields": {
     eng: "{n} fields",
@@ -2078,6 +2320,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "{n} alan",
     zhs: "{n} 个字段",
     zht: "{n} 個欄位",
+    ara: "{n} حقول",
+    ind: "{n} kolom",
   },
   "{n} files": {
     eng: "{n} files",
@@ -2095,6 +2339,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "{n} dosya",
     zhs: "{n} 个文件",
     zht: "{n} 個檔案",
+    ara: "{n} ملفات",
+    ind: "{n} file",
   },
   "{n} folders": {
     eng: "{n} folders",
@@ -2112,6 +2358,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "{n} klasör",
     zhs: "{n} 个文件夹",
     zht: "{n} 個資料夾",
+    ara: "{n} مجلدات",
+    ind: "{n} folder",
   },
   "{n} gold": {
     eng: "{n} gold",
@@ -2129,6 +2377,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "{n} altın",
     zhs: "{n} 金币",
     zht: "{n} 金幣",
+    ara: "{n} ذهب",
+    ind: "{n} emas",
   },
   "{n} Gold": {
     eng: "{n} Gold",
@@ -2146,6 +2396,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "{n} Altın",
     zhs: "{n} 金币",
     zht: "{n} 金幣",
+    ara: "{n} ذهب",
+    ind: "{n} Emas",
   },
   "{n} Healed": {
     eng: "{n} Healed",
@@ -2163,6 +2415,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "{n} İyileşme",
     zhs: "治疗 {n}",
     zht: "治療 {n}",
+    ara: "علاج {n}",
+    ind: "{n} Disembuhkan",
   },
   "{n} images": {
     eng: "{n} images",
@@ -2180,6 +2434,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "{n} görsel",
     zhs: "{n} 张图片",
     zht: "{n} 張圖片",
+    ara: "{n} صور",
+    ind: "{n} gambar",
   },
   "{n} Live": {
     eng: "{n} Live",
@@ -2197,6 +2453,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "{n} Canlı",
     zhs: "{n} 直播",
     zht: "{n} 直播",
+    ara: "{n} مباشر",
+    ind: "{n} Live",
   },
   "Nobody is climbing right now. The roster updates on its own.": {
     eng: "Nobody is climbing right now. The roster updates on its own.",
@@ -2214,6 +2472,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Şu an kimse tırmanmıyor. Liste kendiliğinden güncellenir.",
     zhs: "现在没有人在攀登。名单会自动更新。",
     zht: "現在沒有人在攀登。名單會自動更新。",
+    ara: "لا أحد يتسلق الآن. القائمة تتحدث تلقائيا.",
+    ind: "Belum ada yang mendaki saat ini. Daftar ini diperbarui sendiri.",
   },
   "No changelogs yet.": {
     eng: "No changelogs yet.",
@@ -2231,6 +2491,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Henüz değişiklik günlüğü yok.",
     zhs: "暂无更新日志。",
     zht: "暫無更新日誌。",
+    ara: "لا توجد سجلات تغييرات بعد.",
+    ind: "Belum ada catatan perubahan.",
   },
   "No differences detected between beta and main right now.": {
     eng: "No differences detected between beta and main right now.",
@@ -2248,6 +2510,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Şu anda beta ile main arasında fark tespit edilmedi.",
     zhs: "目前测试版与主版本没有差异。",
     zht: "目前測試版與主版本沒有差異。",
+    ara: "لا توجد فروق بين بيتا والرئيسية حاليا.",
+    ind: "Saat ini tidak ada perbedaan antara beta dan main.",
   },
   "No entity changes detected in this build.": {
     eng: "No entity changes detected in this build.",
@@ -2265,6 +2529,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Bu yapıda varlık değişikliği tespit edilmedi.",
     zhs: "此构建中未检测到实体变更。",
     zht: "此建置中未偵測到實體變更。",
+    ara: "لا توجد تغييرات على العناصر في هذا الإصدار.",
+    ind: "Tidak ada perubahan entitas yang terdeteksi di build ini.",
   },
   "{n}% of winners": {
     eng: "{n}% of winners",
@@ -2282,6 +2548,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "kazananların %{n}'i",
     zhs: "{n}% 的胜者",
     zht: "{n}% 的勝者",
+    ara: "{n}% من الفائزين",
+    ind: "{n}% pemenang",
   },
   "No saved tier lists yet.": {
     eng: "No saved tier lists yet.",
@@ -2299,6 +2567,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Henüz kayıtlı seviye listesi yok.",
     zhs: "暂无已保存的梯度榜。",
     zht: "暫無已儲存的梯度榜。",
+    ara: "لا توجد قوائم تصنيف محفوظة بعد.",
+    ind: "Belum ada tier list tersimpan.",
   },
   "Not found": {
     eng: "Not found",
@@ -2316,6 +2586,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Bulunamadı",
     zhs: "未找到",
     zht: "未找到",
+    ara: "غير موجود",
+    ind: "Tidak ditemukan",
   },
   "Nothing matched. Loosen a predicate or drop the character filter.": {
     eng: "Nothing matched. Loosen a predicate or drop the character filter.",
@@ -2333,6 +2605,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Eşleşme yok. Bir koşulu gevşetin veya karakter filtresini kaldırın.",
     zhs: "没有匹配结果。放宽条件或移除角色筛选。",
     zht: "沒有匹配結果。放寬條件或移除角色篩選。",
+    ara: "لا نتائج مطابقة. خفف أحد الشروط أو أزل فلتر الشخصية.",
+    ind: "Tidak ada yang cocok. Longgarkan salah satu syarat atau hapus filter karakter.",
   },
   now: {
     eng: "now",
@@ -2350,6 +2624,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "şimdi",
     zhs: "刚刚",
     zht: "剛剛",
+    ara: "الآن",
+    ind: "sekarang",
   },
   "{n} removed": {
     eng: "{n} removed",
@@ -2367,6 +2643,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "{n} kaldırıldı",
     zhs: "移除 {n}",
     zht: "移除 {n}",
+    ara: "{n} محذوف",
+    ind: "{n} dihapus",
   },
   "{n} result": {
     eng: "{n} result",
@@ -2384,6 +2662,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "{n} sonuç",
     zhs: "{n} 条结果",
     zht: "{n} 條結果",
+    ara: "{n} نتيجة",
+    ind: "{n} hasil",
   },
   "{n} results": {
     eng: "{n} results",
@@ -2401,6 +2681,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "{n} sonuç",
     zhs: "{n} 条结果",
     zht: "{n} 條結果",
+    ara: "{n} نتائج",
+    ind: "{n} hasil",
   },
   "{n} run on your account. You are good.": {
     eng: "{n} run on your account. You are good.",
@@ -2418,6 +2700,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Hesabınızda {n} koşu var. Hazırsınız.",
     zhs: "你的账户有 {n} 局对局。已经就绪。",
     zht: "你的帳戶有 {n} 局對局。已經就緒。",
+    ara: "{n} جولة على حسابك. كل شيء على ما يرام.",
+    ind: "{n} perjalanan di akunmu. Semua aman.",
   },
   "{n} runs on your account. You are good.": {
     eng: "{n} runs on your account. You are good.",
@@ -2435,6 +2719,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Hesabınızda {n} koşu var. Hazırsınız.",
     zhs: "你的账户有 {n} 局对局。已经就绪。",
     zht: "你的帳戶有 {n} 局對局。已經就緒。",
+    ara: "{n} جولات على حسابك. كل شيء على ما يرام.",
+    ind: "{n} perjalanan di akunmu. Semua aman.",
   },
   "{n}s ago": {
     eng: "{n}s ago",
@@ -2452,6 +2738,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "{n} sn önce",
     zhs: "{n} 秒前",
     zht: "{n} 秒前",
+    ara: "منذ {n} ث",
+    ind: "{n} dtk lalu",
   },
   "{n} Turns": {
     eng: "{n} Turns",
@@ -2469,6 +2757,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "{n} Tur",
     zhs: "{n} 回合",
     zht: "{n} 回合",
+    ara: "{n} أدوار",
+    ind: "{n} Giliran",
   },
   "offered {name}": {
     eng: "offered {name}",
@@ -2486,6 +2776,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "{name} sunuldu",
     zhs: "提供了 {name}",
     zht: "提供了 {name}",
+    ara: "عُرض {name}",
+    ind: "ditawari {name}",
   },
   "Official patch notes": {
     eng: "Official patch notes",
@@ -2503,6 +2795,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Resmi yama notları",
     zhs: "官方更新说明",
     zht: "官方更新說明",
+    ara: "ملاحظات التحديث الرسمية",
+    ind: "Catatan patch resmi",
   },
   "Official patch notes on Steam": {
     eng: "Official patch notes on Steam",
@@ -2520,6 +2814,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Steam'deki resmi yama notları",
     zhs: "Steam 官方更新说明",
     zht: "Steam 官方更新說明",
+    ara: "ملاحظات التحديث الرسمية على Steam",
+    ind: "Catatan patch resmi di Steam",
   },
   "(option)": {
     eng: "(option)",
@@ -2537,6 +2833,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "(seçenek)",
     zhs: "（选项）",
     zht: "（選項）",
+    ara: "(خيار)",
+    ind: "(opsi)",
   },
   "(optional)": {
     eng: "(optional)",
@@ -2554,6 +2852,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "(isteğe bağlı)",
     zhs: "（可选）",
     zht: "（可選）",
+    ara: "(اختياري)",
+    ind: "(opsional)",
   },
   "Or steer toward": {
     eng: "Or steer toward",
@@ -2571,6 +2871,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Ya da şuna yönel",
     zhs: "或转向",
     zht: "或轉向",
+    ara: "أو توجه نحو",
+    ind: "Atau arahkan ke",
   },
   "Overwolf overlay": {
     eng: "Overwolf overlay",
@@ -2588,6 +2890,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Overwolf kaplaması",
     zhs: "Overwolf 覆盖层",
     zht: "Overwolf 覆蓋層",
+    ara: "واجهة Overwolf",
+    ind: "Overlay Overwolf",
   },
   "Pack {n}": {
     eng: "Pack {n}",
@@ -2605,6 +2909,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Paket {n}",
     zhs: "卡包 {n}",
     zht: "卡包 {n}",
+    ara: "الحزمة {n}",
+    ind: "Paket {n}",
   },
   "Picked up during the run (shop stock the player skipped isn't recorded).": {
     eng: "Picked up during the run (shop stock the player skipped isn't recorded).",
@@ -2622,6 +2928,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Koşu sırasında alınanlar (oyuncunun geçtiği dükkân stoğu kaydedilmez).",
     zhs: "本局中拾取（玩家跳过的商店库存不会记录）。",
     zht: "本局中拾取（玩家跳過的商店庫存不會記錄）。",
+    ara: "حُصل عليه خلال الجولة (لا تُسجل بضاعة المتجر التي تخطاها اللاعب).",
+    ind: "Didapat selama perjalanan (stok toko yang dilewati pemain tidak tercatat).",
   },
   "Players in a run with the mod right now · refreshes every {n}s": {
     eng: "Players in a run with the mod right now · refreshes every {n}s",
@@ -2639,6 +2947,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Şu an modla koşuda olan oyuncular · her {n} sn'de yenilenir",
     zhs: "当前使用模组进行对局的玩家 · 每 {n} 秒刷新",
     zht: "當前使用模組進行對局的玩家 · 每 {n} 秒重新整理",
+    ara: "لاعبون في جولة مع المود الآن · تحديث كل {n} ث",
+    ind: "Pemain yang sedang dalam perjalanan dengan mod · diperbarui tiap {n} dtk",
   },
   "Powered by": {
     eng: "Powered by",
@@ -2656,6 +2966,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Kaynak:",
     zhs: "数据来源：",
     zht: "資料來源：",
+    ara: "بدعم من",
+    ind: "Didukung oleh",
   },
   Preview: {
     eng: "Preview",
@@ -2673,6 +2985,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Önizleme",
     zhs: "预览",
     zht: "預覽",
+    ara: "معاينة",
+    ind: "Pratinjau",
   },
   "Rate limited — give it a minute and try again.": {
     eng: "Rate limited — give it a minute and try again.",
@@ -2690,6 +3004,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "İstek sınırı aşıldı. Bir dakika bekleyip tekrar deneyin.",
     zhs: "请求过于频繁，请稍等一分钟再试。",
     zht: "請求過於頻繁，請稍等一分鐘再試。",
+    ara: "تجاوزت حد الطلبات. انتظر دقيقة ثم حاول مجددا.",
+    ind: "Terkena batas permintaan. Tunggu sebentar lalu coba lagi.",
   },
   "Relic offered by an ancient…": {
     eng: "Relic offered by an ancient…",
@@ -2707,6 +3023,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Bir kadimin sunduğu kalıntı…",
     zhs: "远古者提供的遗物…",
     zht: "遠古者提供的遺物…",
+    ara: "أثر يعرضه عتيق…",
+    ind: "Pusaka yang ditawarkan ancient…",
   },
   "Relics obtained": {
     eng: "Relics obtained",
@@ -2724,6 +3042,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Alınan kalıntılar",
     zhs: "获得的遗物",
     zht: "獲得的遺物",
+    ara: "الآثار المكتسبة",
+    ind: "Pusaka didapat",
   },
   Remove: {
     eng: "Remove",
@@ -2741,6 +3061,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Kaldır",
     zhs: "移除",
     zht: "移除",
+    ara: "إزالة",
+    ind: "Hapus",
   },
   "Removed in the current beta.": {
     eng: "Removed in the current beta.",
@@ -2758,6 +3080,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Mevcut betada kaldırıldı.",
     zhs: "已在当前测试版中移除。",
     zht: "已在當前測試版中移除。",
+    ara: "محذوف في البيتا الحالية.",
+    ind: "Dihapus di beta saat ini.",
   },
   Rewards: {
     eng: "Rewards",
@@ -2775,6 +3099,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Ödüller",
     zhs: "奖励",
     zht: "獎勵",
+    ara: "المكافآت",
+    ind: "Rampasan",
   },
   sale: {
     eng: "sale",
@@ -2792,6 +3118,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "indirim",
     zhs: "特价",
     zht: "特價",
+    ara: "تخفيض",
+    ind: "diskon",
   },
   "(sampled — add a card kept or relic to search everything)": {
     eng: "(sampled — add a card kept or relic to search everything)",
@@ -2809,6 +3137,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "(örneklendi: her şeyi aramak için tutulan bir kart veya kalıntı ekleyin)",
     zhs: "（已抽样：添加保留卡牌或遗物可搜索全部）",
     zht: "（已抽樣：新增保留卡牌或遺物可搜尋全部）",
+    ara: "(عينة فقط، أضف بطاقة محتفظا بها أو أثرا للبحث في كل شيء)",
+    ind: "(sampel saja, tambahkan kartu yang disimpan atau pusaka untuk mencari semuanya)",
   },
   "saw {name}": {
     eng: "saw {name}",
@@ -2826,6 +3156,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "{name} görüldü",
     zhs: "遇到了 {name}",
     zht: "遇到了 {name}",
+    ara: "رأى {name}",
+    ind: "melihat {name}",
   },
   "Scanned {n} candidate runs": {
     eng: "Scanned {n} candidate runs",
@@ -2843,6 +3175,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "{n} aday koşu tarandı",
     zhs: "已扫描 {n} 局候选对局",
     zht: "已掃描 {n} 局候選對局",
+    ara: "تم فحص {n} جولة مرشحة",
+    ind: "{n} perjalanan kandidat dipindai",
   },
   "Search community runs for seeds that demonstrably produced a combination of content: cards offered or kept, relics obtained, events encountered, ancient offers. A hit is a real run. Open it to see the route that got there.":
     {
@@ -2861,6 +3195,8 @@ export const X6D: Record<string, Record<string, string>> = {
       tur: "Topluluk koşularında belirli bir içerik kombinasyonunu gerçekten üretmiş tohumları arayın: sunulan veya tutulan kartlar, alınan kalıntılar, karşılaşılan olaylar, kadim teklifleri. Her sonuç gerçek bir koşudur: oraya götüren rotayı görmek için açın.",
       zhs: "在社区对局中搜索确实产生了某种内容组合的种子：提供或保留的卡牌、获得的遗物、遇到的事件、远古者的馈赠。每条结果都是一局真实对局，打开即可查看到达那里的路线。",
       zht: "在社群對局中搜尋確實產生了某種內容組合的種子：提供或保留的卡牌、獲得的遺物、遇到的事件、遠古者的饋贈。每條結果都是一局真實對局，打開即可查看到達那裡的路線。",
+      ara: "ابحث في جولات المجتمع عن بذور ثبت أنها أنتجت تركيبة من المحتوى: بطاقات معروضة أو محتفظ بها، آثار مكتسبة، أحداث ظهرت، عروض القدماء. كل نتيجة جولة حقيقية. افتحها لترى المسار الذي أوصل إليها.",
+      ind: "Cari di perjalanan komunitas benih yang terbukti menghasilkan kombinasi konten: kartu yang ditawarkan atau disimpan, pusaka yang didapat, event yang ditemui, tawaran ancient. Setiap hasil adalah perjalanan nyata. Buka untuk melihat rute yang sampai ke sana.",
     },
   "Search failed ({status}). Try again in a moment.": {
     eng: "Search failed ({status}). Try again in a moment.",
@@ -2878,6 +3214,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Arama başarısız ({status}). Birazdan tekrar deneyin.",
     zhs: "搜索失败（{status}）。请稍后再试。",
     zht: "搜尋失敗（{status}）。請稍後再試。",
+    ara: "فشل البحث ({status}). حاول مجددا بعد قليل.",
+    ind: "Pencarian gagal ({status}). Coba lagi sebentar lagi.",
   },
   "Searching…": {
     eng: "Searching…",
@@ -2895,6 +3233,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Aranıyor…",
     zhs: "搜索中…",
     zht: "搜尋中…",
+    ara: "جار البحث…",
+    ind: "Mencari…",
   },
   "Seed Lab": {
     eng: "Seed Lab",
@@ -2912,6 +3252,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Tohum Laboratuvarı",
     zhs: "种子实验室",
     zht: "種子實驗室",
+    ara: "مختبر البذور",
+    ind: "Lab Benih",
   },
   "Servants! Fetch tea for": {
     eng: "Servants! Fetch tea for",
@@ -2929,6 +3271,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Hizmetkârlar! Çay getirin,",
     zhs: "仆人们！给",
     zht: "僕人們！給",
+    ara: "أيها الخدم! أحضروا الشاي إلى",
+    ind: "Pelayan! Bawakan teh untuk",
   },
   "Share of nearby winning decks carrying this card": {
     eng: "Share of nearby winning decks carrying this card",
@@ -2946,6 +3290,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Bu kartı taşıyan yakın kazanan destelerin oranı",
     zhs: "相近获胜牌组中包含此卡的比例",
     zht: "相近獲勝牌組中包含此卡的比例",
+    ara: "نسبة المجموعات الفائزة القريبة التي تضم هذه البطاقة",
+    ind: "Porsi dek pemenang terdekat yang memuat kartu ini",
   },
   "Share your knowledge with the community. Guides are reviewed before publishing. Markdown formatting is supported in the guide content.":
     {
@@ -2964,6 +3310,8 @@ export const X6D: Record<string, Record<string, string>> = {
       tur: "Bilginizi toplulukla paylaşın. Rehberler yayınlanmadan önce incelenir. İçerikte Markdown biçimlendirmesi desteklenir.",
       zhs: "与社区分享你的知识。攻略在发布前会经过审核。正文支持 Markdown 格式。",
       zht: "與社群分享你的知識。攻略在發布前會經過審核。正文支援 Markdown 格式。",
+      ara: "شارك معرفتك مع المجتمع. تُراجع الأدلة قبل نشرها. تنسيق Markdown مدعوم في محتوى الدليل.",
+      ind: "Bagikan pengetahuanmu ke komunitas. Panduan ditinjau sebelum diterbitkan. Format Markdown didukung di isi panduan.",
     },
   "Show announcement {i} of {n}": {
     eng: "Show announcement {i} of {n}",
@@ -2981,6 +3329,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "{n} duyurudan {i}. duyuruyu göster",
     zhs: "显示第 {i}/{n} 条公告",
     zht: "顯示第 {i}/{n} 條公告",
+    ara: "عرض الإعلان {i} من {n}",
+    ind: "Tampilkan pengumuman {i} dari {n}",
   },
   "Show base card": {
     eng: "Show base card",
@@ -2998,6 +3348,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Temel kartı göster",
     zhs: "显示基础卡牌",
     zht: "顯示基礎卡牌",
+    ara: "عرض البطاقة الأساسية",
+    ind: "Tampilkan kartu dasar",
   },
   "Show beta art": {
     eng: "Show beta art",
@@ -3015,6 +3367,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Beta çizimini göster",
     zhs: "显示测试版美术",
     zht: "顯示測試版美術",
+    ara: "عرض رسم البيتا",
+    ind: "Tampilkan gambar beta",
   },
   "Show normal art": {
     eng: "Show normal art",
@@ -3032,6 +3386,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Normal çizimi göster",
     zhs: "显示正常美术",
     zht: "顯示正常美術",
+    ara: "عرض الرسم العادي",
+    ind: "Tampilkan gambar normal",
   },
   "Show upgraded": {
     eng: "Show upgraded",
@@ -3049,6 +3405,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Yükseltilmişi göster",
     zhs: "显示升级版",
     zht: "顯示升級版",
+    ara: "عرض الترقية",
+    ind: "Tampilkan peningkatan",
   },
   "Sign in with Steam to save tier lists and find them here later.": {
     eng: "Sign in with Steam to save tier lists and find them here later.",
@@ -3066,6 +3424,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Seviye listelerini kaydedip daha sonra burada bulmak için Steam ile giriş yapın.",
     zhs: "使用 Steam 登录即可保存梯度榜并在此处找到它们。",
     zht: "使用 Steam 登入即可儲存梯度榜並在此處找到它們。",
+    ara: "سجل الدخول عبر Steam لحفظ قوائم التصنيف والعثور عليها هنا لاحقا.",
+    ind: "Masuk dengan Steam untuk menyimpan tier list dan menemukannya lagi di sini.",
   },
   "{similarity}% match · {winRate}% community win rate · {share}% of {character} runs":
     {
@@ -3084,6 +3444,8 @@ export const X6D: Record<string, Record<string, string>> = {
       tur: "%{similarity} eşleşme · %{winRate} topluluk kazanma oranı · {character} koşularının %{share}'i",
       zhs: "匹配度 {similarity}% · 社区胜率 {winRate}% · 占 {character} 对局的 {share}%",
       zht: "匹配度 {similarity}% · 社群勝率 {winRate}% · 佔 {character} 對局的 {share}%",
+      ara: "تطابق {similarity}% · نسبة فوز المجتمع {winRate}% · {share}% من جولات {character}",
+      ind: "{similarity}% cocok · tingkat kemenangan komunitas {winRate}% · {share}% perjalanan {character}",
     },
   "{similarity}% · {winRate}% WR": {
     eng: "{similarity}% · {winRate}% WR",
@@ -3101,6 +3463,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "%{similarity} · %{winRate} kazanma",
     zhs: "{similarity}% · 胜率 {winRate}%",
     zht: "{similarity}% · 勝率 {winRate}%",
+    ara: "{similarity}% · فوز {winRate}%",
+    ind: "{similarity}% · {winRate}% WR",
   },
   "Sketch a draft and see what the community data says: the archetype it is becoming, what winners with similar decks took next, and how each card in an offer commits you.":
     {
@@ -3119,6 +3483,8 @@ export const X6D: Record<string, Record<string, string>> = {
       tur: "Bir taslak çizin ve topluluk verilerinin ne dediğine bakın: dönüştüğü arketip, benzer destelere sahip kazananların sonra ne aldığı ve teklifteki her kartın sizi ne kadar bağladığı.",
       zhs: "画个草稿，看看社区数据怎么说：它正在成为哪种流派、相似牌组的胜者接下来拿了什么、以及选项中每张卡让你投入多少。",
       zht: "畫個草稿，看看社群資料怎麼說：它正在成為哪種流派、相似牌組的勝者接下來拿了什麼、以及選項中每張卡讓你投入多少。",
+      ara: "ارسم مسودة وشاهد ما تقوله بيانات المجتمع: النمط الذي تتجه إليه، وما أخذه الفائزون أصحاب المجموعات المشابهة بعد ذلك، ومدى التزامك بكل بطاقة في العرض.",
+      ind: "Susun draf dan lihat apa kata data komunitas: arketipe yang sedang terbentuk, apa yang diambil para pemenang dengan dek serupa berikutnya, dan seberapa jauh tiap kartu dalam tawaran mengikatmu.",
     },
   Skipped: {
     eng: "Skipped",
@@ -3136,6 +3502,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Atlandı",
     zhs: "跳过",
     zht: "跳過",
+    ara: "تم التخطي",
+    ind: "Dilewati",
   },
   sold: {
     eng: "sold",
@@ -3153,6 +3521,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "satıldı",
     zhs: "已售",
     zht: "已售",
+    ara: "مباع",
+    ind: "terjual",
   },
   "Something went wrong. Please try again.": {
     eng: "Something went wrong. Please try again.",
@@ -3170,6 +3540,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Bir şeyler ters gitti. Lütfen tekrar deneyin.",
     zhs: "出了点问题，请重试。",
     zht: "出了點問題，請重試。",
+    ara: "حدث خطأ ما. يرجى المحاولة مجددا.",
+    ind: "Terjadi kesalahan. Silakan coba lagi.",
   },
   "Spent {n} Gold": {
     eng: "Spent {n} Gold",
@@ -3187,6 +3559,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "{n} Altın harcandı",
     zhs: "花费 {n} 金币",
     zht: "花費 {n} 金幣",
+    ara: "أنفق {n} ذهب",
+    ind: "Habis {n} Emas",
   },
   "Spire Codex mod": {
     eng: "Spire Codex mod",
@@ -3204,6 +3578,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Spire Codex modu",
     zhs: "Spire Codex 模组",
     zht: "Spire Codex 模組",
+    ara: "مود Spire Codex",
+    ind: "Mod Spire Codex",
   },
   star: {
     eng: "star",
@@ -3221,6 +3597,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "yıldız",
     zhs: "星",
     zht: "星",
+    ara: "نجمة",
+    ind: "bintang",
   },
   "Stats are rebuilding after an update. Charts, metrics, and scores usually fill back in within 15 minutes; no data is lost.":
     {
@@ -3239,6 +3617,8 @@ export const X6D: Record<string, Record<string, string>> = {
       tur: "İstatistikler bir güncellemenin ardından yeniden oluşturuluyor. Grafikler, ölçümler ve puanlar genellikle 15 dakika içinde geri gelir; veri kaybı olmaz.",
       zhs: "更新后统计正在重建。图表、指标和分数通常会在 15 分钟内恢复，数据不会丢失。",
       zht: "更新後統計正在重建。圖表、指標和分數通常會在 15 分鐘內恢復，資料不會遺失。",
+      ara: "يُعاد بناء الإحصائيات بعد تحديث. تعود الرسوم والمقاييس والدرجات عادة خلال 15 دقيقة، ولم تُفقد أي بيانات.",
+      ind: "Statistik sedang dibangun ulang setelah pembaruan. Grafik, metrik, dan skor biasanya terisi lagi dalam 15 menit; tidak ada data yang hilang.",
     },
   "Submit Guide": {
     eng: "Submit Guide",
@@ -3256,6 +3636,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Rehber Gönder",
     zhs: "提交攻略",
     zht: "提交攻略",
+    ara: "إرسال الدليل",
+    ind: "Kirim Panduan",
   },
   "Submitting...": {
     eng: "Submitting...",
@@ -3273,6 +3655,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Gönderiliyor...",
     zhs: "提交中...",
     zht: "提交中...",
+    ara: "جار الإرسال...",
+    ind: "Mengirim...",
   },
   "Suggestions from winning decks near yours show up once you add picks.": {
     eng: "Suggestions from winning decks near yours show up once you add picks.",
@@ -3290,6 +3674,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Sizinkine yakın kazanan destelerden öneriler, seçim ekledikçe görünür.",
     zhs: "添加选择后，会显示来自与你相近的获胜牌组的建议。",
     zht: "新增選擇後，會顯示來自與你相近的獲勝牌組的建議。",
+    ara: "تظهر اقتراحات من المجموعات الفائزة القريبة من مجموعتك بعد إضافة اختيارات.",
+    ind: "Saran dari dek pemenang yang mirip dekmu muncul setelah kamu menambahkan pilihan.",
   },
   SUMMON: {
     eng: "SUMMON",
@@ -3307,6 +3693,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "ÇAĞIRMA",
     zhs: "召唤",
     zht: "召喚",
+    ara: "استدعاء",
+    ind: "PANGGIL",
   },
   Summary: {
     eng: "Summary",
@@ -3324,6 +3712,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Özet",
     zhs: "摘要",
     zht: "摘要",
+    ara: "الملخص",
+    ind: "Ringkasan",
   },
   "supporting us on Patreon": {
     eng: "supporting us on Patreon",
@@ -3341,6 +3731,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "bizi Patreon'da desteklemeyi düşünün",
     zhs: "在 Patreon 上支持我们",
     zht: "在 Patreon 上支持我們",
+    ara: "دعمنا على Patreon",
+    ind: "mendukung kami di Patreon",
   },
   "Switch between main and beta content": {
     eng: "Switch between main and beta content",
@@ -3358,6 +3750,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Main ve beta içeriği arasında geçiş yap",
     zhs: "在主版本和测试版内容之间切换",
     zht: "在主版本和測試版內容之間切換",
+    ara: "التبديل بين محتوى الرئيسية وبيتا",
+    ind: "Beralih antara konten main dan beta",
   },
   "target locked": {
     eng: "target locked",
@@ -3375,6 +3769,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "hedef kilitli",
     zhs: "已锁定目标",
     zht: "已鎖定目標",
+    ara: "تم تحديد الهدف",
+    ind: "target dikunci",
   },
   "Thanks for your contribution! We'll review your guide and publish it soon.":
     {
@@ -3393,6 +3789,8 @@ export const X6D: Record<string, Record<string, string>> = {
       tur: "Katkınız için teşekkürler! Rehberinizi inceleyip yakında yayınlayacağız.",
       zhs: "感谢你的贡献！我们会审核你的攻略并尽快发布。",
       zht: "感謝你的貢獻！我們會審核你的攻略並盡快發布。",
+      ara: "شكرا على مساهمتك! سنراجع دليلك وننشره قريبا.",
+      ind: "Terima kasih atas kontribusimu! Kami akan meninjau panduanmu dan segera menerbitkannya.",
     },
   "The finder isn't available right now (vector data may still be building).": {
     eng: "The finder isn't available right now (vector data may still be building).",
@@ -3410,6 +3808,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Bulucu şu anda kullanılamıyor (vektör verileri hâlâ oluşturuluyor olabilir).",
     zhs: "查找器暂不可用（向量数据可能仍在构建中）。",
     zht: "查找器暫不可用（向量資料可能仍在建置中）。",
+    ara: "الباحث غير متاح حاليا (قد تكون بيانات المتجهات قيد البناء).",
+    ind: "Pencari sedang tidak tersedia (data vektor mungkin masih dibangun).",
   },
   "The game's complete asset dumps, straight from the engine: the main patch and the current Steam beta side by side. Click a category to browse its folders, or grab any folder as a zip.":
     {
@@ -3428,6 +3828,8 @@ export const X6D: Record<string, Record<string, string>> = {
       tur: "Oyunun tüm varlık dökümleri, doğrudan motordan: ana yama ve mevcut Steam betası yan yana. Klasörlerine göz atmak için bir kategoriye tıklayın veya herhangi bir klasörü zip olarak alın.",
       zhs: "游戏的完整资源导出，直接来自引擎：主版本补丁与当前 Steam 测试版并列展示。点击分类浏览其文件夹，或将任意文件夹打包为 zip 下载。",
       zht: "遊戲的完整資源匯出，直接來自引擎：主版本補丁與當前 Steam 測試版並列展示。點擊分類瀏覽其資料夾，或將任意資料夾打包為 zip 下載。",
+      ara: "ملفات أصول اللعبة الكاملة، مباشرة من المحرك: التحديث الرئيسي وبيتا Steam الحالية جنبا إلى جنب. انقر على فئة لتصفح مجلداتها، أو نزّل أي مجلد كملف zip.",
+      ind: "Dump aset game yang lengkap, langsung dari engine: patch main dan beta Steam saat ini berdampingan. Klik kategori untuk menjelajahi foldernya, atau ambil folder mana pun sebagai zip.",
     },
   "The search didn't come back — it may have timed out. A cold query can take a while; try again, the result gets cached.":
     {
@@ -3446,6 +3848,8 @@ export const X6D: Record<string, Record<string, string>> = {
       tur: "Arama geri dönmedi, zaman aşımına uğramış olabilir. Yeni bir sorgu zaman alabilir; tekrar deneyin, sonuç önbelleğe alınır.",
       zhs: "搜索没有返回，可能已超时。首次查询可能较慢；请重试，结果会被缓存。",
       zht: "搜尋沒有返回，可能已逾時。首次查詢可能較慢；請重試，結果會被快取。",
+      ara: "لم يعد البحث بنتيجة، ربما انتهت مهلته. قد يستغرق الاستعلام الأول بعض الوقت، حاول مجددا وستُخزن النتيجة مؤقتا.",
+      ind: "Pencarian tidak kembali, mungkin kehabisan waktu. Kueri pertama bisa agak lama; coba lagi, hasilnya akan disimpan di cache.",
     },
   "This is different in the current beta: {fields} changed.": {
     eng: "This is different in the current beta: {fields} changed.",
@@ -3463,6 +3867,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Mevcut betada bu farklı: {fields} değişti.",
     zhs: "当前测试版中有所不同：{fields}已变更。",
     zht: "當前測試版中有所不同：{fields}已變更。",
+    ara: "يختلف هذا في البيتا الحالية: تغيّر {fields}.",
+    ind: "Ini berbeda di beta saat ini: {fields} berubah.",
   },
   "those who've supported us": {
     eng: "those who've supported us",
@@ -3480,6 +3886,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "bizi destekleyenlere",
     zhs: "支持过我们的人上茶",
     zht: "支持過我們的人上茶",
+    ara: "من دعمونا",
+    ind: "mereka yang sudah mendukung kami",
   },
   Title: {
     eng: "Title",
@@ -3497,6 +3905,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Başlık",
     zhs: "标题",
     zht: "標題",
+    ara: "العنوان",
+    ind: "Judul",
   },
   "to navigate": {
     eng: "to navigate",
@@ -3514,6 +3924,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "gezinmek için",
     zhs: "导航",
     zht: "導航",
+    ara: "للتنقل",
+    ind: "untuk navigasi",
   },
   "to select": {
     eng: "to select",
@@ -3531,6 +3943,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "seçmek için",
     zhs: "选择",
     zht: "選擇",
+    ara: "للاختيار",
+    ind: "untuk memilih",
   },
   "Track what changes between beta updates, compare patches and see what's new.":
     {
@@ -3549,6 +3963,8 @@ export const X6D: Record<string, Record<string, string>> = {
       tur: "Beta güncellemeleri arasında nelerin değiştiğini takip edin, yamaları karşılaştırın ve yenilikleri görün.",
       zhs: "追踪测试版更新之间的变化，比较补丁，了解新内容。",
       zht: "追蹤測試版更新之間的變化，比較補丁，了解新內容。",
+      ara: "تابع ما يتغير بين تحديثات بيتا، قارن بين التحديثات وشاهد الجديد.",
+      ind: "Pantau apa yang berubah antar pembaruan beta, bandingkan patch, dan lihat yang baru.",
     },
   "Track what changes between game updates, new cards, balance tweaks, removed content, and more.":
     {
@@ -3567,6 +3983,8 @@ export const X6D: Record<string, Record<string, string>> = {
       tur: "Oyun güncellemeleri arasında nelerin değiştiğini takip edin: yeni kartlar, denge ayarları, kaldırılan içerik ve daha fazlası.",
       zhs: "追踪游戏更新之间的变化：新卡牌、平衡调整、移除的内容等。",
       zht: "追蹤遊戲更新之間的變化：新卡牌、平衡調整、移除的內容等。",
+      ara: "تابع ما يتغير بين تحديثات اللعبة: بطاقات جديدة، تعديلات توازن، محتوى محذوف وغير ذلك.",
+      ind: "Pantau apa yang berubah antar pembaruan game: kartu baru, penyesuaian balance, konten yang dihapus, dan lainnya.",
     },
   "Turn {n}": {
     eng: "Turn {n}",
@@ -3584,6 +4002,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Tur {n}",
     zhs: "第 {n} 回合",
     zht: "第 {n} 回合",
+    ara: "الدور {n}",
+    ind: "Giliran {n}",
   },
   "under a minute": {
     eng: "under a minute",
@@ -3601,6 +4021,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "bir dakikadan az",
     zhs: "不到一分钟",
     zht: "不到一分鐘",
+    ara: "أقل من دقيقة",
+    ind: "kurang dari semenit",
   },
   "Unknown ids: {ids} — these don't exist in the game data, check the spelling.":
     {
@@ -3619,6 +4041,8 @@ export const X6D: Record<string, Record<string, string>> = {
       tur: "Bilinmeyen kimlikler: {ids}. Oyun verilerinde yok, yazımı kontrol edin.",
       zhs: "未知 ID：{ids}。游戏数据中不存在，请检查拼写。",
       zht: "未知 ID：{ids}。遊戲資料中不存在，請檢查拼寫。",
+      ara: "معرّفات غير معروفة: {ids}. هذه غير موجودة في بيانات اللعبة، تحقق من الكتابة.",
+      ind: "Id tidak dikenal: {ids}. Ini tidak ada di data game, periksa ejaannya.",
     },
   "updating…": {
     eng: "updating…",
@@ -3636,6 +4060,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "güncelleniyor…",
     zhs: "更新中…",
     zht: "更新中…",
+    ara: "جار التحديث…",
+    ind: "memperbarui…",
   },
   "Uploading...": {
     eng: "Uploading...",
@@ -3653,6 +4079,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Yükleniyor...",
     zhs: "上传中...",
     zht: "上傳中...",
+    ara: "جار الرفع...",
+    ind: "Mengunggah...",
   },
   used: {
     eng: "used",
@@ -3670,6 +4098,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "kullanıldı",
     zhs: "已使用",
     zht: "已使用",
+    ara: "مستخدم",
+    ind: "dipakai",
   },
   username: {
     eng: "username",
@@ -3687,6 +4117,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "kullanıcı adı",
     zhs: "用户名",
     zht: "使用者名稱",
+    ara: "اسم المستخدم",
+    ind: "nama pengguna",
   },
   "username#1234 or email@example.com": {
     eng: "username#1234 or email@example.com",
@@ -3704,6 +4136,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "kullanici#1234 veya email@example.com",
     zhs: "username#1234 或 email@example.com",
     zht: "username#1234 或 email@example.com",
+    ara: "username#1234 أو email@example.com",
+    ind: "username#1234 atau email@example.com",
   },
   Versions: {
     eng: "Versions",
@@ -3721,6 +4155,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Sürümler",
     zhs: "版本",
     zht: "版本",
+    ara: "النسخ",
+    ind: "Versi",
   },
   "Viewing the beta version of this {noun}.": {
     eng: "Viewing the beta version of this {noun}.",
@@ -3738,6 +4174,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Bu {noun} için beta sürümünü görüntülüyorsunuz.",
     zhs: "正在查看此{noun}的测试版。",
     zht: "正在查看此{noun}的測試版。",
+    ara: "تعرض نسخة بيتا من {noun}.",
+    ind: "Melihat versi beta dari {noun} ini.",
   },
   "view run": {
     eng: "view run",
@@ -3755,6 +4193,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "koşuyu gör",
     zhs: "查看对局",
     zht: "查看對局",
+    ara: "عرض الجولة",
+    ind: "lihat perjalanan",
   },
   "View the beta version": {
     eng: "View the beta version",
@@ -3772,6 +4212,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Beta sürümünü gör",
     zhs: "查看测试版",
     zht: "查看測試版",
+    ara: "عرض نسخة بيتا",
+    ind: "Lihat versi beta",
   },
   "View the main version": {
     eng: "View the main version",
@@ -3789,6 +4231,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Main sürümünü gör",
     zhs: "查看主版本",
     zht: "查看主版本",
+    ara: "عرض النسخة الرئيسية",
+    ind: "Lihat versi main",
   },
   "Watch live": {
     eng: "Watch live",
@@ -3806,6 +4250,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Canlı izle",
     zhs: "观看直播",
     zht: "觀看直播",
+    ara: "شاهد مباشرة",
+    ind: "Tonton live",
   },
   "Watch on Twitch": {
     eng: "Watch on Twitch",
@@ -3823,6 +4269,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Twitch'te izle",
     zhs: "在 Twitch 观看",
     zht: "在 Twitch 觀看",
+    ara: "شاهد على Twitch",
+    ind: "Tonton di Twitch",
   },
   "Watch players live": {
     eng: "Watch players live",
@@ -3840,6 +4288,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Oyuncuları canlı izle",
     zhs: "观看玩家直播",
     zht: "觀看玩家直播",
+    ara: "شاهد اللاعبين مباشرة",
+    ind: "Tonton pemain live",
   },
   "what's new": {
     eng: "what's new",
@@ -3857,6 +4307,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "yenilikler",
     zhs: "新内容",
     zht: "新內容",
+    ara: "ما الجديد",
+    ind: "yang baru",
   },
   "What's new": {
     eng: "What's new",
@@ -3874,6 +4326,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Yenilikler",
     zhs: "新内容",
     zht: "新內容",
+    ara: "ما الجديد",
+    ind: "Yang baru",
   },
   "— which should you take?": {
     eng: "— which should you take?",
@@ -3891,6 +4345,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "— hangisini almalısın?",
     zhs: "— 该拿哪张？",
     zht: "— 該拿哪張？",
+    ara: "، أيها تأخذ؟",
+    ind: ", mana yang sebaiknya diambil?",
   },
   "Winners with this deck also took": {
     eng: "Winners with this deck also took",
@@ -3908,6 +4364,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Bu desteyle kazananlar ayrıca şunları aldı",
     zhs: "使用此牌组的胜者还拿了",
     zht: "使用此牌組的勝者還拿了",
+    ara: "الفائزون بهذه المجموعة أخذوا أيضا",
+    ind: "Pemenang dengan dek ini juga mengambil",
   },
   "Write your guide here. Use ## for headings, **bold** for emphasis, - for lists...":
     {
@@ -3926,6 +4384,8 @@ export const X6D: Record<string, Record<string, string>> = {
       tur: "Rehberinizi buraya yazın. Başlıklar için ##, vurgu için **kalın**, listeler için - kullanın...",
       zhs: "在这里撰写攻略。## 表示标题，**粗体** 表示强调，- 表示列表...",
       zht: "在這裡撰寫攻略。## 表示標題，**粗體** 表示強調，- 表示列表...",
+      ara: "اكتب دليلك هنا. استخدم ## للعناوين، **bold** للتأكيد، - للقوائم...",
+      ind: "Tulis panduanmu di sini. Gunakan ## untuk judul, **bold** untuk penekanan, - untuk daftar...",
     },
   "Your display name": {
     eng: "Your display name",
@@ -3943,6 +4403,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Görünen adınız",
     zhs: "你的显示名称",
     zht: "你的顯示名稱",
+    ara: "اسمك المعروض",
+    ind: "Nama tampilanmu",
   },
   "Your draft": {
     eng: "Your draft",
@@ -3960,6 +4422,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Taslağınız",
     zhs: "你的草稿",
     zht: "你的草稿",
+    ara: "مسودتك",
+    ind: "Draf kamu",
   },
   "Your Name": {
     eng: "Your Name",
@@ -3977,6 +4441,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Adınız",
     zhs: "你的名字",
     zht: "你的名字",
+    ara: "اسمك",
+    ind: "Nama Kamu",
   },
   Room: {
     eng: "Room",
@@ -3994,6 +4460,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Oda",
     zhs: "房间",
     zht: "房間",
+    ara: "غرفة",
+    ind: "Ruangan",
   },
   Registered: {
     eng: "Registered",
@@ -4011,6 +4479,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Kayıtlı",
     zhs: "已注册",
     zht: "已註冊",
+    ara: "مسجّل",
+    ind: "Terdaftar",
   },
   Academia: {
     eng: "Academia",
@@ -4028,6 +4498,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Akademik",
     zhs: "学术",
     zht: "學術",
+    ara: "أكاديمي",
+    ind: "Akademik",
   },
   Paid: {
     eng: "Paid",
@@ -4045,6 +4517,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Ücretli",
     zhs: "付费",
     zht: "付費",
+    ara: "المدفوع",
+    ind: "Dibayar",
   },
   description: {
     eng: "description",
@@ -4062,6 +4536,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "açıklama",
     zhs: "描述",
     zht: "描述",
+    ara: "الوصف",
+    ind: "deskripsi",
   },
   "upgraded description": {
     eng: "upgraded description",
@@ -4079,6 +4555,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "yükseltilmiş açıklama",
     zhs: "升级后描述",
     zht: "升級後描述",
+    ara: "وصف الترقية",
+    ind: "deskripsi peningkatan",
   },
   upgrade: {
     eng: "upgrade",
@@ -4096,6 +4574,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "yükseltme",
     zhs: "升级",
     zht: "升級",
+    ara: "الترقية",
+    ind: "peningkatan",
   },
   numbers: {
     eng: "numbers",
@@ -4113,6 +4593,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "değerler",
     zhs: "数值",
     zht: "數值",
+    ara: "الأرقام",
+    ind: "angka",
   },
   damage: {
     eng: "damage",
@@ -4130,6 +4612,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "hasar",
     zhs: "伤害",
     zht: "傷害",
+    ara: "الضرر",
+    ind: "kerusakan",
   },
   "hit count": {
     eng: "hit count",
@@ -4147,6 +4631,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "vuruş sayısı",
     zhs: "攻击次数",
     zht: "攻擊次數",
+    ara: "عدد الضربات",
+    ind: "jumlah pukulan",
   },
   cost: {
     eng: "cost",
@@ -4164,6 +4650,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "maliyet",
     zhs: "费用",
     zht: "費用",
+    ara: "الكلفة",
+    ind: "harga",
   },
   rarity: {
     eng: "rarity",
@@ -4181,6 +4669,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "nadirlik",
     zhs: "稀有度",
     zht: "稀有度",
+    ara: "الندرة",
+    ind: "kelangkaan",
   },
   keywords: {
     eng: "keywords",
@@ -4198,6 +4688,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "anahtar kelimeler",
     zhs: "关键词",
     zht: "關鍵字",
+    ara: "الكلمات المفتاحية",
+    ind: "kata kunci",
   },
   "applied powers": {
     eng: "applied powers",
@@ -4215,6 +4707,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "uygulanan güçler",
     zhs: "施加的能力",
     zht: "施加的能力",
+    ara: "القوى المطبقة",
+    ind: "kuasa yang diterapkan",
   },
   event: {
     eng: "event",
@@ -4232,6 +4726,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "olay",
     zhs: "事件",
     zht: "事件",
+    ara: "حدث",
+    ind: "event",
   },
   Epoch: {
     eng: "Epoch",
@@ -4249,6 +4745,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Çağ",
     zhs: "纪元",
     zht: "紀元",
+    ara: "حقبة",
+    ind: "Zaman",
   },
   "Card Browse": {
     eng: "Card Browse",
@@ -4266,6 +4764,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Kartlara Göz At",
     zhs: "浏览卡牌",
     zht: "瀏覽卡牌",
+    ara: "تصفح البطاقات",
+    ind: "Jelajah Kartu",
   },
   "Run Stats": {
     eng: "Run Stats",
@@ -4283,6 +4783,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Koşu İstatistikleri",
     zhs: "对局统计",
     zht: "對局統計",
+    ara: "إحصائيات الجولة",
+    ind: "Statistik Perjalanan",
   },
   Exporter: {
     eng: "Exporter",
@@ -4300,6 +4802,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Dışa Aktarıcı",
     zhs: "导出器",
     zht: "匯出器",
+    ara: "المصدّر",
+    ind: "Pengekspor",
   },
   Giveaway: {
     eng: "Giveaway",
@@ -4317,6 +4821,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Çekiliş",
     zhs: "抽奖",
     zht: "抽獎",
+    ara: "سحب على جوائز",
+    ind: "Giveaway",
   },
   Mod: {
     eng: "Mod",
@@ -4334,6 +4840,8 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "Mod",
     zhs: "模组",
     zht: "模組",
+    ara: "مود",
+    ind: "Mod",
   },
   "July 7, 2026, 5:00 PM PT to August 7, 2026, 5:00 PM PT": {
     eng: "July 7, 2026, 5:00 PM PT to August 7, 2026, 5:00 PM PT",
@@ -4351,5 +4859,7 @@ export const X6D: Record<string, Record<string, string>> = {
     tur: "7 Temmuz 2026 17:00 PT ile 7 Ağustos 2026 17:00 PT arası",
     zhs: "2026 年 7 月 7 日 17:00 PT 至 2026 年 8 月 7 日 17:00 PT",
     zht: "2026 年 7 月 7 日 17:00 PT 至 2026 年 8 月 7 日 17:00 PT",
+    ara: "7 يوليو 2026، 5:00 م PT إلى 7 أغسطس 2026، 5:00 م PT",
+    ind: "7 Juli 2026, 17.00 PT sampai 7 Agustus 2026, 17.00 PT",
   },
 };

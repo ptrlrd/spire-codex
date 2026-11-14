@@ -16,6 +16,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "), genel API, gömülebilir widget'lar ve Overwolf yer paylaşımı.",
     zhs: "）、公共 API、可嵌入的小部件以及 Overwolf 叠加层。",
     zht: "）、公共 API、可嵌入的小部件以及 Overwolf 疊加層。",
+    ara: ")، و API العام، والأدوات القابلة للتضمين، وواجهة Overwolf.",
+    ind: "), API publik, widget yang bisa disematkan, dan overlay Overwolf.",
   },
   ". Include the SteamID or run hash you’d like removed. We process requests within a reasonable time and confirm by reply.":
     {
@@ -34,6 +36,8 @@ export const X2: Record<string, Record<string, string>> = {
       tur: ". Kaldırmak istediğiniz SteamID veya run hash'ini ekleyin. İstekleri makul bir süre içinde işleme alır ve yanıtla onaylarız.",
       zhs: "。请注明你想删除的 SteamID 或运行哈希值。我们会在合理时间内处理请求并回复确认。",
       zht: "。請註明你想刪除的 SteamID 或執行雜湊值。我們會在合理時間內處理請求並回復確認。",
+      ara: ". اذكر SteamID أو معرّف الجولة الذي تريد إزالته. نعالج الطلبات خلال مدة معقولة ونؤكد ذلك بالرد.",
+      ind: ". Sertakan SteamID atau hash perjalanan yang ingin dihapus. Permintaan diproses dalam waktu yang wajar dan dikonfirmasi lewat balasan.",
     },
   "A layered, lit 3D shadowbox of Slay the Spire 2 art. Approximate retail value:":
     {
@@ -52,6 +56,8 @@ export const X2: Record<string, Record<string, string>> = {
       tur: "Slay the Spire 2 çizimlerinden oluşan, katmanlı ve aydınlatmalı 3D gölge kutusu. Yaklaşık perakende değeri:",
       zhs: "分层、带灯光的 Slay the Spire 2 艺术 3D 立体框。大致零售价值：",
       zht: "分層、帶燈光的 Slay the Spire 2 藝術 3D 立體框。大致零售價值：",
+      ara: "صندوق عرض ثلاثي الأبعاد متعدد الطبقات ومضاء لرسومات Slay the Spire 2. القيمة التقريبية للبيع بالتجزئة:",
+      ind: "Shadowbox 3D berlapis dan berlampu dengan seni Slay the Spire 2. Perkiraan harga ritel:",
     },
   "About Overwolf": {
     eng: "About Overwolf",
@@ -69,6 +75,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Overwolf Hakkında",
     zhs: "关于 Overwolf",
     zht: "關於 Overwolf",
+    ara: "حول Overwolf",
+    ind: "Tentang Overwolf",
   },
   "Add an email to unlock API keys and future features.": {
     eng: "Add an email to unlock API keys and future features.",
@@ -86,6 +94,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "API anahtarlarını ve gelecekteki özellikleri açmak için bir e-posta ekleyin.",
     zhs: "添加邮箱以解锁 API 密钥和未来功能。",
     zht: "新增郵箱以解鎖 API 金鑰和未來功能。",
+    ara: "أضف بريدًا إلكترونيًا لفتح مفاتيح API والميزات القادمة.",
+    ind: "Tambahkan email untuk membuka kunci API dan fitur mendatang.",
   },
   "All Comparisons": {
     eng: "All Comparisons",
@@ -103,6 +113,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Tüm Karşılaştırmalar",
     zhs: "所有对比",
     zht: "所有對比",
+    ara: "كل المقارنات",
+    ind: "Semua Perbandingan",
   },
   "All hotkeys are rebindable from Overwolf → Settings → Hotkeys if any of these conflict with your binds.":
     {
@@ -121,6 +133,8 @@ export const X2: Record<string, Record<string, string>> = {
       tur: "Bunlardan herhangi biri kendi atamalarınızla çakışırsa tüm kısayollar Overwolf → Settings → Hotkeys üzerinden yeniden atanabilir.",
       zhs: "如果其中任何一个与你的按键设置冲突,都可以在 Overwolf → Settings → Hotkeys 中重新绑定所有热键。",
       zht: "如果其中任何一個與你的按鍵設定衝突,都可以在 Overwolf → Settings → Hotkeys 中重新繫結所有熱鍵。",
+      ara: "يمكن إعادة تعيين كل الاختصارات من Overwolf → Settings → Hotkeys إذا تعارض أي منها مع اختصاراتك.",
+      ind: "Semua hotkey bisa diatur ulang dari Overwolf → Settings → Hotkeys kalau ada yang bentrok dengan tombolmu.",
     },
   "And special thanks to the following community contributors:": {
     eng: "And special thanks to the following community contributors:",
@@ -138,6 +152,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Ve aşağıdaki topluluk katkıcılarına özel teşekkürler:",
     zhs: "特别感谢以下社区贡献者:",
     zht: "特別感謝以下社群貢獻者:",
+    ara: "وشكر خاص للمساهمين التاليين من المجتمع:",
+    ind: "Dan terima kasih khusus untuk para kontributor komunitas berikut:",
   },
   "Attempt to access accounts or data that don’t belong to you, or impersonate another player.":
     {
@@ -156,6 +172,8 @@ export const X2: Record<string, Record<string, string>> = {
       tur: "Size ait olmayan hesaplara veya verilere erişmeye çalışmak ya da başka bir oyuncunun kimliğine bürünmek.",
       zhs: "试图访问不属于你的账户或数据,或冒充其他玩家。",
       zht: "試圖訪問不屬於你的帳戶或資料,或冒充其他玩家。",
+      ara: "محاولة الوصول إلى حسابات أو بيانات لا تخصك، أو انتحال شخصية لاعب آخر.",
+      ind: "Mencoba mengakses akun atau data yang bukan milikmu, atau menyamar sebagai pemain lain.",
     },
   "Back to tier lists": {
     eng: "Back to tier lists",
@@ -173,6 +191,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Seviye listelerine dön",
     zhs: "返回梯队列表",
     zht: "返回梯佇列表",
+    ara: "العودة إلى قوائم التصنيف",
+    ind: "Kembali ke tier list",
   },
   "Browse cards by character": {
     eng: "Browse cards by character",
@@ -190,6 +210,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Kartları karaktere göre gözat",
     zhs: "按角色浏览卡牌",
     zht: "按角色瀏覽卡牌",
+    ara: "تصفح البطاقات حسب الشخصية",
+    ind: "Telusuri kartu menurut karakter",
   },
   "Card / relic / potion tabs only; the filters below don't apply.": {
     eng: "Card / relic / potion tabs only; the filters below don't apply.",
@@ -207,6 +229,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Yalnızca kart / kalıntı / iksir sekmeleri; aşağıdaki filtreler geçerli değildir.",
     zhs: "仅限卡牌 / 遗物 / 药水标签页;下方的筛选器不适用。",
     zht: "僅限卡牌 / 遺物 / 藥水標籤頁;下方的篩選器不適用。",
+    ara: "تبويبات البطاقات والآثار والجرعات فقط؛ الفلاتر أدناه لا تنطبق.",
+    ind: "Hanya tab kartu / pusaka / ramuan; filter di bawah tidak berlaku.",
   },
   "Card Tier List": {
     eng: "Card Tier List",
@@ -224,6 +248,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Kart Seviye Listesi",
     zhs: "卡牌梯队列表",
     zht: "卡牌梯佇列表",
+    ara: "قائمة تصنيف البطاقات",
+    ind: "Tier List Kartu",
   },
   Chart: {
     eng: "Chart",
@@ -241,6 +267,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Grafik",
     zhs: "图表",
     zht: "圖表",
+    ara: "مخطط",
+    ind: "Grafik",
   },
   Clear: {
     eng: "Clear",
@@ -258,6 +286,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Temizle",
     zhs: "清除",
     zht: "清除",
+    ara: "مسح",
+    ind: "Hapus",
   },
   "Community Meta": {
     eng: "Community Meta",
@@ -275,6 +305,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Topluluk Metası",
     zhs: "社区流行趋势",
     zht: "社群流行趨勢",
+    ara: "ميتا المجتمع",
+    ind: "Meta Komunitas",
   },
   "Connect Steam": {
     eng: "Connect Steam",
@@ -292,6 +324,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Steam'i Bağla",
     zhs: "连接 Steam",
     zht: "連線 Steam",
+    ara: "ربط Steam",
+    ind: "Hubungkan Steam",
   },
   Connected: {
     eng: "Connected",
@@ -309,6 +343,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Bağlandı",
     zhs: "已连接",
     zht: "已連線",
+    ara: "متصل",
+    ind: "Terhubung",
   },
   "Could not load character data. Please try again later.": {
     eng: "Could not load character data. Please try again later.",
@@ -326,6 +362,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Karakter verileri yüklenemedi. Lütfen daha sonra tekrar deneyin.",
     zhs: "无法加载角色数据。请稍后重试。",
     zht: "無法載入角色資料。請稍後重試。",
+    ara: "تعذر تحميل بيانات الشخصية. يرجى المحاولة لاحقًا.",
+    ind: "Data karakter gagal dimuat. Coba lagi nanti.",
   },
   "Daily runs only.": {
     eng: "Daily runs only.",
@@ -343,6 +381,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Yalnızca günlük koşular.",
     zhs: "仅限每日运行。",
     zht: "僅限每日執行。",
+    ara: "الجولات اليومية فقط.",
+    ind: "Hanya perjalanan harian.",
   },
   "Deadliest events": {
     eng: "Deadliest events",
@@ -360,6 +400,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "En ölümcül olaylar",
     zhs: "最致命的事件",
     zht: "最致命的事件",
+    ara: "أخطر الأحداث",
+    ind: "Event paling mematikan",
   },
   "Default hotkeys": {
     eng: "Default hotkeys",
@@ -377,6 +419,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Varsayılan kısayollar",
     zhs: "默认热键",
     zht: "預設熱鍵",
+    ara: "الاختصارات الافتراضية",
+    ind: "Hotkey bawaan",
   },
   "Display Name": {
     eng: "Display Name",
@@ -394,6 +438,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Görünen ad",
     zhs: "显示名称",
     zht: "顯示名稱",
+    ara: "اسم العرض",
+    ind: "Nama Tampilan",
   },
   "Either complete the three steps above (sign in with Steam, install the Spire Codex mod, and upload at least one run during the contest period), or use the free mail-in method described above. Limit one entry per person.":
     {
@@ -412,6 +458,8 @@ export const X2: Record<string, Record<string, string>> = {
       tur: "Ya yukarıdaki üç adımı tamamlayın (Steam ile giriş yapın, Spire Codex modunu yükleyin ve yarışma süresi boyunca en az bir koşu yükleyin) ya da yukarıda açıklanan ücretsiz posta yöntemini kullanın. Kişi başı bir katılım hakkı.",
       zhs: "完成上述三个步骤(使用 Steam 登录、安装 Spire Codex 模组,并在比赛期间上传至少一次运行),或使用上文所述的免费邮寄方式。每人限一次参与。",
       zht: "完成上述三個步驟(使用 Steam 登入、安裝 Spire Codex 模組,並在比賽期間上傳至少一次執行),或使用上文所述的免費郵寄方式。每人限一次參與。",
+      ara: "إما أن تكمل الخطوات الثلاث أعلاه (تسجيل الدخول عبر Steam، وتثبيت تعديل Spire Codex، ورفع جولة واحدة على الأقل خلال فترة المسابقة)، أو أن تستخدم طريقة المشاركة المجانية بالبريد الموضحة أعلاه. مشاركة واحدة فقط لكل شخص.",
+      ind: "Selesaikan tiga langkah di atas (masuk dengan Steam, pasang mod Spire Codex, dan unggah minimal satu perjalanan selama periode kontes), atau pakai cara gratis lewat pos yang dijelaskan di atas. Maksimal satu entri per orang.",
     },
   "Enter display name": {
     eng: "Enter display name",
@@ -429,6 +477,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Görünen adı girin",
     zhs: "输入显示名称",
     zht: "輸入顯示名稱",
+    ara: "أدخل اسم العرض",
+    ind: "Masukkan nama tampilan",
   },
   "Entity type": {
     eng: "Entity type",
@@ -446,6 +496,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Varlık türü",
     zhs: "实体类型",
     zht: "實體型別",
+    ara: "نوع العنصر",
+    ind: "Tipe entitas",
   },
   "Every command resolves through the public Spire Codex API, so a card looked up in Discord matches what you'd see on this site.":
     {
@@ -464,6 +516,8 @@ export const X2: Record<string, Record<string, string>> = {
       tur: "Her komut, herkese açık Spire Codex API üzerinden işlenir; bu yüzden Discord'da aranan bir kart, bu sitede göreceğinizle eşleşir.",
       zhs: "每条命令都通过公共 Spire Codex API 处理,因此在 Discord 中查询的卡牌与你在本站看到的一致。",
       zht: "每條命令都透過公共 Spire Codex API 處理,因此在 Discord 中查詢的卡牌與你在本站看到的一致。",
+      ara: "كل أمر يمر عبر Spire Codex API العام، فالبطاقة التي تبحث عنها في Discord تطابق ما تراه على هذا الموقع.",
+      ind: "Setiap perintah berjalan lewat Spire Codex API publik, jadi kartu yang dicari di Discord sama dengan yang terlihat di situs ini.",
     },
   "Failed to delete run": {
     eng: "Failed to delete run",
@@ -481,6 +535,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Koşu silinemedi",
     zhs: "删除运行失败",
     zht: "刪除執行失敗",
+    ara: "فشل حذف الجولة",
+    ind: "Gagal menghapus perjalanan",
   },
   "Failed to update username": {
     eng: "Failed to update username",
@@ -498,6 +554,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Kullanıcı adı güncellenemedi",
     zhs: "更新用户名失败",
     zht: "更新使用者名稱失敗",
+    ara: "فشل تحديث اسم المستخدم",
+    ind: "Gagal memperbarui nama pengguna",
   },
   "Fastest win": {
     eng: "Fastest win",
@@ -515,6 +573,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "En hızlı galibiyet",
     zhs: "最快胜利",
     zht: "最快勝利",
+    ara: "أسرع فوز",
+    ind: "Kemenangan tercepat",
   },
   "Filter by player count": {
     eng: "Filter by player count",
@@ -532,6 +592,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Oyuncu sayısına göre filtrele",
     zhs: "按玩家数量筛选",
     zht: "按玩家數量篩選",
+    ara: "فلتر حسب عدد اللاعبين",
+    ind: "Filter menurut jumlah pemain",
   },
   "Finish a run with the mod active and it uploads on its own. You can also upload a":
     {
@@ -550,6 +612,8 @@ export const X2: Record<string, Record<string, string>> = {
       tur: "Bir koşuyu mod etkinken bitirin, kendiliğinden yüklenir. Ayrıca şunu da yükleyebilirsiniz:",
       zhs: "在模组启用的情况下完成一次运行,它会自动上传。你也可以上传",
       zht: "在模組啟用的情況下完成一次執行,它會自動上傳。你也可以上傳",
+      ara: "أنهِ جولة والتعديل مفعّل وستُرفع من تلقاء نفسها. يمكنك أيضًا رفع",
+      ind: "Selesaikan perjalanan dengan mod aktif dan perjalanan itu terunggah sendiri. Kamu juga bisa mengunggah",
     },
   "Frequently asked about sts2 cards": {
     eng: "Frequently asked about sts2 cards",
@@ -567,6 +631,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "sts2 kartları hakkında sık sorulanlar",
     zhs: "关于 sts2 卡牌的常见问题",
     zht: "關於 sts2 卡牌的常見問題",
+    ara: "أسئلة شائعة عن بطاقات sts2",
+    ind: "Sering ditanyakan tentang kartu sts2",
   },
   "Games by Character": {
     eng: "Games by Character",
@@ -584,6 +650,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Karaktere göre oyunlar",
     zhs: "按角色统计的游戏",
     zht: "按角色統計的遊戲",
+    ara: "المباريات حسب الشخصية",
+    ind: "Permainan per Karakter",
   },
   "Get the overlay": {
     eng: "Get the overlay",
@@ -601,6 +669,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Yer paylaşımını edinin",
     zhs: "获取叠加层",
     zht: "獲取疊加層",
+    ara: "احصل على الواجهة",
+    ind: "Dapatkan overlay",
   },
   "Hex color": {
     eng: "Hex color",
@@ -618,6 +688,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Hex renk",
     zhs: "十六进制颜色",
     zht: "十六進位制顏色",
+    ara: "لون Hex",
+    ind: "Warna hex",
   },
   "How many cards are in Slay the Spire 2?": {
     eng: "How many cards are in Slay the Spire 2?",
@@ -635,6 +707,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2'de kaç kart var?",
     zhs: "Slay the Spire 2 中有多少张卡牌?",
     zht: "Slay the Spire 2 中有多少張卡牌?",
+    ara: "كم عدد البطاقات في Slay the Spire 2؟",
+    ind: "Ada berapa kartu di Slay the Spire 2?",
   },
   "How the community actually plays": {
     eng: "How the community actually plays",
@@ -652,6 +726,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Topluluk gerçekte nasıl oynuyor",
     zhs: "社区实际的玩法",
     zht: "社群實際的玩法",
+    ara: "كيف يلعب المجتمع فعلًا",
+    ind: "Cara komunitas benar-benar bermain",
   },
   "How to enter:": {
     eng: "How to enter:",
@@ -669,6 +745,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Nasıl katılınır:",
     zhs: "如何参与:",
     zht: "如何參與:",
+    ara: "طريقة المشاركة:",
+    ind: "Cara ikut:",
   },
   "Invalid comparison pair.": {
     eng: "Invalid comparison pair.",
@@ -686,6 +764,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Geçersiz karşılaştırma çifti.",
     zhs: "无效的对比组合。",
     zht: "無效的對比組合。",
+    ara: "زوج مقارنة غير صالح.",
+    ind: "Pasangan perbandingan tidak valid.",
   },
   "It does not affect your entry either way.": {
     eng: "It does not affect your entry either way.",
@@ -703,6 +783,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Her iki durumda da katılımınızı etkilemez.",
     zhs: "无论如何,这都不会影响你的参与资格。",
     zht: "無論如何,這都不會影響你的參與資格。",
+    ara: "لا يؤثر ذلك في مشاركتك في كلتا الحالتين.",
+    ind: "Ini tidak memengaruhi entrimu sama sekali.",
   },
   "Ko-fi Supporters": {
     eng: "Ko-fi Supporters",
@@ -720,6 +802,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Ko-fi Destekçileri",
     zhs: "Ko-fi 支持者",
     zht: "Ko-fi 支持者",
+    ara: "داعمو Ko-fi",
+    ind: "Pendukung Ko-fi",
   },
   "Limitation of liability": {
     eng: "Limitation of liability",
@@ -737,6 +821,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Sorumluluğun sınırlandırılması",
     zhs: "责任限制",
     zht: "責任限制",
+    ara: "تحديد المسؤولية",
+    ind: "Batasan tanggung jawab",
   },
   Mode: {
     eng: "Mode",
@@ -754,6 +840,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Mod",
     zhs: "模式",
     zht: "模式",
+    ara: "الطور",
+    ind: "Mode",
   },
   "Most Used Cards": {
     eng: "Most Used Cards",
@@ -771,6 +859,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "En Çok Kullanılan Kartlar",
     zhs: "使用最多的卡牌",
     zht: "使用最多的卡牌",
+    ara: "البطاقات الأكثر استخدامًا",
+    ind: "Kartu Paling Sering Dipakai",
   },
   "Neow Replacement Modifiers": {
     eng: "Neow Replacement Modifiers",
@@ -788,6 +878,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Neow Değişim Değiştiricileri",
     zhs: "Neow 替换修正",
     zht: "Neow 替換修正",
+    ara: "معدلات استبدال Neow",
+    ind: "Efek Pengganti Neow",
   },
   "News feed": {
     eng: "News feed",
@@ -805,6 +897,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Haber akışı",
     zhs: "新闻动态",
     zht: "新聞動態",
+    ara: "موجز الأخبار",
+    ind: "Umpan berita",
   },
   "No data for this bracket yet. Stats build from community-submitted runs,": {
     eng: "No data for this bracket yet. Stats build from community-submitted runs,",
@@ -822,6 +916,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Bu kategori için henüz veri yok. İstatistikler, toplulukça gönderilen koşulardan oluşur,",
     zhs: "此区间暂无数据。统计数据来自社区提交的运行,",
     zht: "此區間暫無資料。統計資料來自社群提交的執行,",
+    ara: "لا توجد بيانات لهذه الشريحة بعد. تُبنى الإحصائيات من الجولات التي يرسلها المجتمع،",
+    ind: "Belum ada data untuk kelompok ini. Statistik dibangun dari perjalanan kiriman komunitas,",
   },
   "No password, OAuth token, or Steam session token. Steam sign-in is one-shot OpenID; we never see your credentials.":
     {
@@ -840,6 +936,8 @@ export const X2: Record<string, Record<string, string>> = {
       tur: "Şifre, OAuth belirteci veya Steam oturum belirteci yok. Steam girişi tek seferlik OpenID'dir; kimlik bilgilerinizi asla görmeyiz.",
       zhs: "没有密码、OAuth 令牌或 Steam 会话令牌。Steam 登录是一次性 OpenID;我们永远看不到你的凭据。",
       zht: "沒有密碼、OAuth 令牌或 Steam 會話令牌。Steam 登入是一次性 OpenID;我們永遠看不到你的憑據。",
+      ara: "لا كلمة مرور ولا رمز OAuth ولا رمز جلسة Steam. تسجيل الدخول عبر Steam يتم بعملية OpenID لمرة واحدة، ولا نرى بيانات اعتمادك أبدًا.",
+      ind: "Tanpa kata sandi, token OAuth, atau token sesi Steam. Masuk dengan Steam memakai OpenID sekali pakai; kami tidak pernah melihat kredensialmu.",
     },
   "No purchase necessary": {
     eng: "No purchase necessary",
@@ -857,6 +955,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Satın alma gerekmez",
     zhs: "无需购买",
     zht: "無需購買",
+    ara: "لا يلزم الشراء",
+    ind: "Tanpa perlu membeli",
   },
   "No runs yet. Upload .run files to get started.": {
     eng: "No runs yet. Upload .run files to get started.",
@@ -874,6 +974,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Henüz koşu yok. Başlamak için .run dosyaları yükleyin.",
     zhs: "还没有运行记录。上传 .run 文件即可开始。",
     zht: "還沒有執行記錄。上傳 .run 檔案即可開始。",
+    ara: "لا توجد جولات بعد. ارفع ملفات .run للبدء.",
+    ind: "Belum ada run. Unggah file .run untuk memulai.",
   },
   "Not enough runs match these filters.": {
     eng: "Not enough runs match these filters.",
@@ -891,6 +993,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Bu filtrelere uyan yeterli koşu yok.",
     zhs: "符合这些筛选条件的运行数量不足。",
     zht: "符合這些篩選條件的執行數量不足。",
+    ara: "لا توجد جولات كافية تطابق هذه الفلاتر.",
+    ind: "Perjalanan yang cocok dengan filter ini belum cukup.",
   },
   "One entry per outer mailing envelope, hand-addressed. Mail-in entries must be postmarked within the contest period and received within 7 days of the end date. Mail-in entrants are entered into the same drawing on equal footing as online entrants.":
     {
@@ -909,6 +1013,8 @@ export const X2: Record<string, Record<string, string>> = {
       tur: "El yazısıyla adreslenmiş her dış zarf için bir katılım. Posta yoluyla katılımlar, yarışma süresi içinde posta damgası taşımalı ve bitiş tarihinden itibaren 7 gün içinde teslim alınmalıdır. Posta yoluyla katılanlar, çevrimiçi katılanlarla eşit koşullarda aynı çekilişe dahil edilir.",
       zhs: "每个手写地址的外层邮寄信封限一次参与。邮寄参与须在比赛期间加盖邮戳,并在结束日期后 7 天内送达。邮寄参与者与在线参与者以同等条件进入同一次抽奖。",
       zht: "每個手寫地址的外層郵寄信封限一次參與。郵寄參與須在比賽期間加蓋郵戳,並在結束日期後 7 天內送達。郵寄參與者與線上參與者以同等條件進入同一次抽獎。",
+      ara: "مشاركة واحدة لكل ظرف بريدي خارجي، معنون بخط اليد. يجب أن تحمل المشاركات البريدية ختمًا بريديًا ضمن فترة المسابقة وأن تصل خلال 7 أيام من تاريخ الانتهاء. يدخل المشاركون بالبريد السحب نفسه على قدم المساواة مع المشاركين عبر الإنترنت.",
+      ind: "Satu entri per amplop luar, dengan alamat ditulis tangan. Entri lewat pos harus bercap pos dalam periode kontes dan diterima dalam 7 hari setelah tanggal berakhir. Peserta lewat pos masuk ke undian yang sama dan setara dengan peserta online.",
     },
   "Opens July 7": {
     eng: "Opens July 7",
@@ -926,6 +1032,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "7 Temmuz'da açılıyor",
     zhs: "7 月 7 日开放",
     zht: "7 月 7 日開放",
+    ara: "يفتح في 7 يوليو",
+    ind: "Dibuka 7 Juli",
   },
   "Other Modifiers": {
     eng: "Other Modifiers",
@@ -943,6 +1051,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Diğer Değiştiriciler",
     zhs: "其他修正",
     zht: "其他修正",
+    ara: "معدلات أخرى",
+    ind: "Efek Lainnya",
   },
   "Personal Bests": {
     eng: "Personal Bests",
@@ -960,6 +1070,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Kişisel Rekorlar",
     zhs: "个人最佳",
     zht: "個人最佳",
+    ara: "أفضل الأرقام الشخصية",
+    ind: "Rekor Pribadi",
   },
   Picked: {
     eng: "Picked",
@@ -977,6 +1089,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Seçildi",
     zhs: "已选择",
     zht: "已選擇",
+    ara: "تم اختيارها",
+    ind: "Dipilih",
   },
   "Polls RSS feeds you configure per guild and posts new entries to the channel of your choice. Add the Slay the Spire 2 Steam announcements feed (":
     {
@@ -995,6 +1109,8 @@ export const X2: Record<string, Record<string, string>> = {
       tur: "Her sunucu için yapılandırdığınız RSS akışlarını sorgular ve yeni girdileri seçtiğiniz kanala gönderir. Slay the Spire 2 Steam duyuruları akışını ekleyin (",
       zhs: "轮询你为每个服务器配置的 RSS 源,并将新条目发布到你选择的频道。添加 Slay the Spire 2 的 Steam 公告源(",
       zht: "輪詢你為每個伺服器配置的 RSS 源,並將新條目釋出到你選擇的頻道。新增 Slay the Spire 2 的 Steam 公告源(",
+      ara: "يتابع خلاصات RSS التي تضبطها لكل خادم وينشر المدخلات الجديدة في القناة التي تختارها. أضف خلاصة إعلانات Slay the Spire 2 على Steam (",
+      ind: "Memantau feed RSS yang kamu atur per guild dan memposting entri baru ke channel pilihanmu. Tambahkan feed pengumuman Steam Slay the Spire 2 (",
     },
   "Preview content; numbers and text can change before they reach main.": {
     eng: "Preview content; numbers and text can change before they reach main.",
@@ -1012,6 +1128,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Önizleme içeriği; sayılar ve metin main'e ulaşmadan önce değişebilir.",
     zhs: "预览内容;数字和文本在进入 main 之前可能会更改。",
     zht: "預覽內容;數字和文字在進入 main 之前可能會更改。",
+    ara: "محتوى تجريبي؛ قد تتغير الأرقام والنصوص قبل وصولها إلى الإصدار الرئيسي.",
+    ind: "Konten pratinjau; angka dan teks bisa berubah sebelum sampai ke utama.",
   },
   "Prize:": {
     eng: "Prize:",
@@ -1029,6 +1147,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Ödül:",
     zhs: "奖品:",
     zht: "獎品:",
+    ara: "الجائزة:",
+    ind: "Hadiah:",
   },
   Records: {
     eng: "Records",
@@ -1046,6 +1166,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Rekorlar",
     zhs: "记录",
     zht: "記錄",
+    ara: "الأرقام القياسية",
+    ind: "Rekor",
   },
   "Remove note": {
     eng: "Remove note",
@@ -1063,6 +1185,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Notu kaldır",
     zhs: "删除备注",
     zht: "刪除備註",
+    ara: "إزالة الملاحظة",
+    ind: "Hapus catatan",
   },
   "Reset the board? Every item goes back to the tray.": {
     eng: "Reset the board? Every item goes back to the tray.",
@@ -1080,6 +1204,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Panoyu sıfırla? Her öğe tepsiye geri döner.",
     zhs: "重置面板?每个项目都会回到托盘。",
     zht: "重置面板?每個專案都會回到托盤。",
+    ara: "إعادة تعيين اللوحة؟ سيعود كل عنصر إلى الدرج.",
+    ind: "Atur ulang papan? Semua item kembali ke baki.",
   },
   "Run data, leaderboard entries, and submitted feedback are retained indefinitely so the community archive remains complete. Server logs are kept for up to 30 days.":
     {
@@ -1098,6 +1224,8 @@ export const X2: Record<string, Record<string, string>> = {
       tur: "Topluluk arşivinin eksiksiz kalması için koşu verileri, lider tablosu kayıtları ve gönderilen geri bildirimler süresiz olarak saklanır. Sunucu günlükleri en fazla 30 gün tutulur.",
       zhs: "运行数据、排行榜条目和提交的反馈将无限期保留,以保持社区档案的完整。服务器日志最多保留 30 天。",
       zht: "執行資料、排行榜條目和提交的反饋將無限期保留,以保持社群檔案的完整。伺服器日誌最多保留 30 天。",
+      ara: "يُحتفظ ببيانات الجولات ومدخلات لوحة المتصدرين والملاحظات المرسلة إلى أجل غير مسمى ليبقى أرشيف المجتمع مكتملًا. تُحفظ سجلات الخادم لمدة تصل إلى 30 يومًا.",
+      ind: "Data perjalanan, entri peringkat, dan masukan yang dikirim disimpan tanpa batas waktu supaya arsip komunitas tetap lengkap. Log server disimpan hingga 30 hari.",
     },
   "Run stat": {
     eng: "Run stat",
@@ -1115,6 +1243,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Koşu istatistiği",
     zhs: "运行统计",
     zht: "執行統計",
+    ara: "إحصائية الجولة",
+    ind: "Statistik perjalanan",
   },
   "Saving...": {
     eng: "Saving...",
@@ -1132,6 +1262,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Kaydediliyor...",
     zhs: "正在保存...",
     zht: "正在儲存...",
+    ara: "جارٍ الحفظ...",
+    ind: "Menyimpan...",
   },
   "Search cards...": {
     eng: "Search cards...",
@@ -1149,6 +1281,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Kart ara...",
     zhs: "搜索卡牌...",
     zht: "搜尋卡牌...",
+    ara: "ابحث عن بطاقات...",
+    ind: "Cari kartu...",
   },
   "Send feedback": {
     eng: "Send feedback",
@@ -1166,6 +1300,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Geri bildirim gönder",
     zhs: "发送反馈",
     zht: "傳送反饋",
+    ara: "إرسال ملاحظات",
+    ind: "Kirim masukan",
   },
   Sharing: {
     eng: "Sharing",
@@ -1183,6 +1319,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Paylaşım",
     zhs: "共享",
     zht: "共享",
+    ara: "المشاركة",
+    ind: "Berbagi",
   },
   "Sign in to view settings": {
     eng: "Sign in to view settings",
@@ -1200,6 +1338,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Ayarları görüntülemek için giriş yapın",
     zhs: "登录以查看设置",
     zht: "登入以檢視設定",
+    ara: "سجّل الدخول لعرض الإعدادات",
+    ind: "Masuk untuk melihat pengaturan",
   },
   "Sign in with Steam to save": {
     eng: "Sign in with Steam to save",
@@ -1217,6 +1357,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Kaydetmek için Steam ile giriş yapın",
     zhs: "使用 Steam 登录以保存",
     zht: "使用 Steam 登入以儲存",
+    ara: "سجّل الدخول عبر Steam للحفظ",
+    ind: "Masuk dengan Steam untuk menyimpan",
   },
   "Slay the Spire 2 is © Mega Crit Games. All in-game art, names, descriptions, and design elements shown on the Service belong to Mega Crit. Spire Codex is an independent fan project and is":
     {
@@ -1235,6 +1377,8 @@ export const X2: Record<string, Record<string, string>> = {
       tur: "Slay the Spire 2, © Mega Crit Games'e aittir. Hizmet'te gösterilen tüm oyun içi çizimler, adlar, açıklamalar ve tasarım öğeleri Mega Crit'e aittir. Spire Codex bağımsız bir hayran projesidir ve",
       zhs: "Slay the Spire 2 版权归 © Mega Crit Games 所有。本服务中显示的所有游戏内美术、名称、描述和设计元素均归 Mega Crit 所有。Spire Codex 是一个独立的粉丝项目,并",
       zht: "Slay the Spire 2 版權歸 © Mega Crit Games 所有。本服務中顯示的所有遊戲內美術、名稱、描述和設計元素均歸 Mega Crit 所有。Spire Codex 是一個獨立的粉絲專案,並",
+      ara: "Slay the Spire 2 © Mega Crit Games. كل الرسومات والأسماء والأوصاف وعناصر التصميم داخل اللعبة المعروضة على الخدمة ملك لشركة Mega Crit. Spire Codex مشروع مستقل من صنع المعجبين وهو",
+      ind: "Slay the Spire 2 adalah © Mega Crit Games. Semua seni, nama, deskripsi, dan elemen desain dalam game yang ditampilkan di Layanan adalah milik Mega Crit. Spire Codex adalah proyek penggemar independen dan",
     },
   "Spire Codex is an independent, non-commercial fan project that catalogs publicly available data from Slay the Spire 2 and offers community features (leaderboards, run sharing, guides, news mirror). The Service is provided free of charge.":
     {
@@ -1253,6 +1397,8 @@ export const X2: Record<string, Record<string, string>> = {
       tur: "Spire Codex, Slay the Spire 2'nin herkese açık verilerini kataloglayan ve topluluk özellikleri (lider tabloları, koşu paylaşımı, rehberler, haber aynası) sunan bağımsız, ticari olmayan bir hayran projesidir. Hizmet ücretsiz olarak sunulur.",
       zhs: "Spire Codex 是一个独立的非商业粉丝项目,它整理 Slay the Spire 2 的公开数据,并提供社区功能(排行榜、运行分享、攻略、新闻镜像)。本服务免费提供。",
       zht: "Spire Codex 是一個獨立的非商業粉絲專案,它整理 Slay the Spire 2 的公開資料,並提供社群功能(排行榜、執行分享、攻略、新聞映象)。本服務免費提供。",
+      ara: "Spire Codex مشروع مستقل وغير تجاري من صنع المعجبين يفهرس البيانات المتاحة للعموم من Slay the Spire 2 ويقدم ميزات مجتمعية (لوحة المتصدرين، مشاركة الجولات، الأدلة، مرآة الأخبار). تُقدَّم الخدمة مجانًا.",
+      ind: "Spire Codex adalah proyek penggemar independen dan non-komersial yang mengatalogkan data Slay the Spire 2 yang tersedia untuk umum dan menawarkan fitur komunitas (peringkat, berbagi perjalanan, panduan, mirror berita). Layanan disediakan gratis.",
     },
   "Sponsor:": {
     eng: "Sponsor:",
@@ -1270,6 +1416,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Sponsor:",
     zhs: "赞助商:",
     zht: "贊助商:",
+    ara: "الراعي:",
+    ind: "Sponsor:",
   },
   "Steam identifiers tie submitted runs to a profile so you can claim and manage your own history.":
     {
@@ -1288,6 +1436,8 @@ export const X2: Record<string, Record<string, string>> = {
       tur: "Steam tanımlayıcıları, gönderilen koşuları bir profile bağlar; böylece kendi geçmişinizi sahiplenip yönetebilirsiniz.",
       zhs: "Steam 标识符将提交的运行与个人资料关联起来,以便你认领和管理自己的历史记录。",
       zht: "Steam 識別符號將提交的執行與個人資料關聯起來,以便你認領和管理自己的歷史記錄。",
+      ara: "معرّفات Steam تربط الجولات المرسلة بملف شخصي لتتمكن من المطالبة بسجلك وإدارته.",
+      ind: "Pengenal Steam mengaitkan perjalanan yang dikirim ke sebuah profil supaya kamu bisa mengklaim dan mengelola riwayatmu sendiri.",
     },
   "Sub-processors used by the Service: Steam (OpenID sign-in and persona lookup), GitHub (issue tracking for feedback), Discord (real-time feedback notifications), Ko-fi (donations, optional).":
     {
@@ -1306,6 +1456,8 @@ export const X2: Record<string, Record<string, string>> = {
       tur: "Hizmet tarafından kullanılan alt işleyiciler: Steam (OpenID girişi ve persona sorgulama), GitHub (geri bildirim için sorun takibi), Discord (gerçek zamanlı geri bildirim bildirimleri), Ko-fi (bağışlar, isteğe bağlı).",
       zhs: "本服务使用的次级处理方:Steam(OpenID 登录和角色资料查询)、GitHub(反馈的问题跟踪)、Discord(实时反馈通知)、Ko-fi(捐赠,可选)。",
       zht: "本服務使用的次級處理方:Steam(OpenID 登入和角色資料查詢)、GitHub(反饋的問題跟蹤)、Discord(實時反饋通知)、Ko-fi(捐贈,可選)。",
+      ara: "المعالجون الفرعيون الذين تستخدمهم الخدمة: Steam (تسجيل الدخول عبر OpenID وجلب الاسم المعروض)، GitHub (تتبع المشكلات الخاصة بالملاحظات)، Discord (إشعارات فورية بالملاحظات)، Ko-fi (التبرعات، اختياري).",
+      ind: "Sub-pemroses yang dipakai Layanan: Steam (masuk dengan OpenID dan pencarian persona), GitHub (pelacakan isu untuk masukan), Discord (notifikasi masukan real-time), Ko-fi (donasi, opsional).",
     },
   "Submitted content": {
     eng: "Submitted content",
@@ -1323,6 +1475,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Gönderilen içerik",
     zhs: "提交的内容",
     zht: "提交的內容",
+    ara: "المحتوى المرسل",
+    ind: "Konten yang dikirim",
   },
   Table: {
     eng: "Table",
@@ -1340,6 +1494,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Tablo",
     zhs: "表格",
     zht: "表格",
+    ara: "جدول",
+    ind: "Tabel",
   },
   Terms: {
     eng: "Terms",
@@ -1357,6 +1513,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Şartlar",
     zhs: "条款",
     zht: "條款",
+    ara: "شروط",
+    ind: "Ketentuan",
   },
   "Thanks for using spire-codex.com.": {
     eng: "Thanks for using spire-codex.com.",
@@ -1374,6 +1532,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "spire-codex.com'u kullandığınız için teşekkürler.",
     zhs: "感谢你使用 spire-codex.com。",
     zht: "感謝你使用 spire-codex.com。",
+    ara: "شكرًا لاستخدامك spire-codex.com.",
+    ind: "Terima kasih sudah memakai spire-codex.com.",
   },
   "The prize": {
     eng: "The prize",
@@ -1391,6 +1551,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Ödül",
     zhs: "奖品",
     zht: "獎品",
+    ara: "الجائزة",
+    ind: "Hadiahnya",
   },
   "These stats are still building after a fresh deploy. They cover every run and land within a few minutes.":
     {
@@ -1409,6 +1571,8 @@ export const X2: Record<string, Record<string, string>> = {
       tur: "Bu istatistikler yeni bir dağıtımın ardından hâlâ oluşturuluyor. Her koşuyu kapsar ve birkaç dakika içinde hazır olur.",
       zhs: "这些统计数据在最近一次部署后仍在生成中。它们涵盖每一次运行,并会在几分钟内就绪。",
       zht: "這些統計資料在最近一次部署後仍在生成中。它們涵蓋每一次執行,並會在幾分鐘內就緒。",
+      ara: "ما زالت هذه الإحصائيات قيد البناء بعد نشر جديد. تشمل كل الجولات وتكتمل خلال دقائق قليلة.",
+      ind: "Statistik ini masih dibangun setelah deploy baru. Cakupannya semua perjalanan dan selesai dalam beberapa menit.",
     },
   "This is a machine-assisted translation. The English version is the authoritative one.":
     {
@@ -1427,6 +1591,8 @@ export const X2: Record<string, Record<string, string>> = {
       tur: "Bu, makine destekli bir çeviridir. Geçerli olan İngilizce sürümdür.",
       zhs: "这是机器辅助翻译。以英文版本为准。",
       zht: "這是機器輔助翻譯。以英文版本為準。",
+      ara: "هذه ترجمة بمساعدة الآلة. النسخة الإنجليزية هي المرجع المعتمد.",
+      ind: "Ini terjemahan berbantuan mesin. Versi bahasa Inggris adalah yang berlaku.",
     },
   "Tier Lists": {
     eng: "Tier Lists",
@@ -1444,6 +1610,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Seviye Listeleri",
     zhs: "梯队列表",
     zht: "梯佇列表",
+    ara: "قوائم التصنيف",
+    ind: "Tier List",
   },
   "To request deletion of your submitted runs, leaderboard entries, or feedback, email":
     {
@@ -1462,6 +1630,8 @@ export const X2: Record<string, Record<string, string>> = {
       tur: "Gönderdiğiniz koşuların, lider tablosu kayıtlarının veya geri bildirimlerin silinmesini istemek için şu adrese e-posta gönderin:",
       zhs: "如需请求删除你提交的运行、排行榜条目或反馈,请发送邮件至",
       zht: "如需請求刪除你提交的執行、排行榜條目或反饋,請傳送郵件至",
+      ara: "لطلب حذف جولاتك المرسلة أو مدخلاتك في لوحة المتصدرين أو ملاحظاتك، راسلنا على",
+      ind: "Untuk meminta penghapusan perjalanan kirimanmu, entri peringkat, atau masukan, kirim email ke",
     },
   "Too many files or file too large": {
     eng: "Too many files or file too large",
@@ -1479,6 +1649,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Çok fazla dosya veya dosya çok büyük",
     zhs: "文件过多或文件过大",
     zht: "檔案過多或檔案過大",
+    ara: "عدد الملفات كبير جدًا أو الملف كبير جدًا",
+    ind: "Terlalu banyak file atau file terlalu besar",
   },
   "US residents only": {
     eng: "US residents only",
@@ -1496,6 +1668,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Yalnızca ABD sakinleri",
     zhs: "仅限美国居民",
     zht: "僅限美國居民",
+    ara: "للمقيمين في الولايات المتحدة فقط",
+    ind: "Khusus penduduk AS",
   },
   "Upload at least one run": {
     eng: "Upload at least one run",
@@ -1513,6 +1687,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "En az bir koşu yükleyin",
     zhs: "上传至少一次运行",
     zht: "上傳至少一次執行",
+    ara: "ارفع جولة واحدة على الأقل",
+    ind: "Unggah minimal satu perjalanan",
   },
   "Use the Service to commit fraud or violate any applicable law.": {
     eng: "Use the Service to commit fraud or violate any applicable law.",
@@ -1530,6 +1706,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Hizmet'i dolandırıcılık yapmak veya geçerli herhangi bir yasayı ihlal etmek için kullanmak.",
     zhs: "利用本服务实施欺诈或违反任何适用法律。",
     zht: "利用本服務實施欺詐或違反任何適用法律。",
+    ara: "استخدام الخدمة لارتكاب احتيال أو مخالفة أي قانون سارٍ.",
+    ind: "Memakai Layanan untuk melakukan penipuan atau melanggar hukum yang berlaku.",
   },
   View: {
     eng: "View",
@@ -1547,6 +1725,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Görünüm",
     zhs: "查看",
     zht: "檢視",
+    ara: "العرض",
+    ind: "Tampilan",
   },
   "We appreciate you trying us out, and we've recorded your feedback.": {
     eng: "We appreciate you trying us out, and we've recorded your feedback.",
@@ -1564,6 +1744,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Bizi denediğiniz için teşekkür ederiz, geri bildiriminizi kaydettik.",
     zhs: "感谢你的试用,我们已记录你的反馈。",
     zht: "感謝你的試用,我們已記錄你的反饋。",
+    ara: "نقدّر تجربتك لنا، وقد سجلنا ملاحظاتك.",
+    ind: "Terima kasih sudah mencoba, masukanmu sudah kami catat.",
   },
   "We may suspend or terminate access to the Service at any time, with or without notice, for any reason, including violation of these terms. You may stop using the Service at any time. Sections that by their nature should survive termination (license, disclaimers, limitations of liability, governing law) will survive.":
     {
@@ -1582,6 +1764,8 @@ export const X2: Record<string, Record<string, string>> = {
       tur: "Bu şartların ihlali dahil olmak üzere herhangi bir nedenle, bildirimli veya bildirimsiz olarak, Hizmet'e erişimi istediğimiz zaman askıya alabilir veya sonlandırabiliriz. Hizmet'i kullanmayı istediğiniz zaman bırakabilirsiniz. Niteliği gereği sona ermeden sonra da geçerli kalması gereken bölümler (lisans, feragatnameler, sorumluluk sınırlamaları, geçerli hukuk) yürürlükte kalır.",
       zhs: "我们可以随时暂停或终止对本服务的访问,无论是否事先通知,出于任何原因,包括违反本条款。你可以随时停止使用本服务。就其性质而言应在终止后继续有效的部分(许可、免责声明、责任限制、适用法律)将继续有效。",
       zht: "我們可以隨時暫停或終止對本服務的訪問,無論是否事先通知,出於任何原因,包括違反本條款。你可以隨時停止使用本服務。就其性質而言應在終止後繼續有效的部分(許可、免責宣告、責任限制、適用法律)將繼續有效。",
+      ara: "يجوز لنا تعليق الوصول إلى الخدمة أو إنهاؤه في أي وقت، بإشعار أو من دونه، ولأي سبب، بما في ذلك مخالفة هذه الشروط. يمكنك التوقف عن استخدام الخدمة في أي وقت. الأقسام التي يُفترض بطبيعتها أن تبقى سارية بعد الإنهاء (الترخيص، إخلاء المسؤولية، تحديد المسؤولية، القانون الحاكم) تظل سارية.",
+      ind: "Kami dapat menangguhkan atau menghentikan akses ke Layanan kapan saja, dengan atau tanpa pemberitahuan, karena alasan apa pun, termasuk pelanggaran ketentuan ini. Kamu bisa berhenti memakai Layanan kapan saja. Bagian yang menurut sifatnya tetap berlaku setelah penghentian (lisensi, penafian, batasan tanggung jawab, hukum yang berlaku) akan tetap berlaku.",
     },
   "What is the best potion in Slay the Spire 2?": {
     eng: "What is the best potion in Slay the Spire 2?",
@@ -1599,6 +1783,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2'deki en iyi iksir hangisi?",
     zhs: "Slay the Spire 2 中最好的药水是什么?",
     zht: "Slay the Spire 2 中最好的藥水是什麼?",
+    ara: "ما أفضل جرعة في Slay the Spire 2؟",
+    ind: "Apa ramuan terbaik di Slay the Spire 2?",
   },
   "What we collect": {
     eng: "What we collect",
@@ -1616,6 +1802,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Neleri topluyoruz",
     zhs: "我们收集哪些信息",
     zht: "我們收集哪些資訊",
+    ara: "ما الذي نجمعه",
+    ind: "Apa yang kami kumpulkan",
   },
   "What's underperforming right now": {
     eng: "What's underperforming right now",
@@ -1633,6 +1821,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Şu anda düşük performans gösteren neler",
     zhs: "目前表现不佳的内容",
     zht: "目前表現不佳的內容",
+    ara: "ما الأضعف أداءً حاليًا",
+    ind: "Yang performanya kurang saat ini",
   },
   "Where does the card data come from?": {
     eng: "Where does the card data come from?",
@@ -1650,6 +1840,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Kart verileri nereden geliyor?",
     zhs: "卡牌数据来自哪里?",
     zht: "卡牌資料來自哪裡?",
+    ara: "من أين تأتي بيانات البطاقات؟",
+    ind: "Dari mana data kartu berasal?",
   },
   "Win / Loss": {
     eng: "Win / Loss",
@@ -1667,6 +1859,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Galibiyet / Mağlubiyet",
     zhs: "胜 / 负",
     zht: "勝 / 負",
+    ara: "فوز / خسارة",
+    ind: "Menang / Kalah",
   },
   "Winner selection:": {
     eng: "Winner selection:",
@@ -1684,6 +1878,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Kazanan seçimi:",
     zhs: "获奖者选择:",
     zht: "獲獎者選擇:",
+    ara: "اختيار الفائز:",
+    ind: "Pemilihan pemenang:",
   },
   You: {
     eng: "You",
@@ -1701,6 +1897,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Sen",
     zhs: "你",
     zht: "你",
+    ara: "أنت",
+    ind: "Kamu",
   },
   "You do not own this run": {
     eng: "You do not own this run",
@@ -1718,6 +1916,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Bu koşu size ait değil",
     zhs: "此运行不属于你",
     zht: "此執行不屬於你",
+    ara: "هذه الجولة ليست ملكك",
+    ind: "Perjalanan ini bukan milikmu",
   },
   "Your tier lists": {
     eng: "Your tier lists",
@@ -1735,6 +1935,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Seviye listeleriniz",
     zhs: "你的梯队列表",
     zht: "你的梯佇列表",
+    ara: "قوائم تصنيفك",
+    ind: "Tier list kamu",
   },
   "changes remaining today.": {
     eng: "changes remaining today.",
@@ -1752,6 +1954,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "bugün kalan değişiklik.",
     zhs: "今天剩余的更改次数。",
     zht: "今天剩餘的更改次數。",
+    ara: "تغييرات متبقية اليوم.",
+    ind: "perubahan tersisa hari ini.",
   },
   deaths: {
     eng: "deaths",
@@ -1769,6 +1973,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "ölüm",
     zhs: "死亡次数",
     zht: "死亡次數",
+    ara: "وفيات",
+    ind: "kematian",
   },
   errors: {
     eng: "errors",
@@ -1786,6 +1992,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "hata",
     zhs: "错误",
     zht: "錯誤",
+    ara: "أخطاء",
+    ind: "galat",
   },
   "for use restrictions and disclaimers.": {
     eng: "for use restrictions and disclaimers.",
@@ -1803,6 +2011,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "kullanım kısıtlamaları ve feragatnameler için.",
     zhs: "了解使用限制和免责声明。",
     zht: "瞭解使用限制和免責宣告。",
+    ara: "لمعرفة قيود الاستخدام وإخلاء المسؤولية.",
+    ind: "untuk batasan penggunaan dan penafian.",
   },
   "is appreciated but not required.": {
     eng: "is appreciated but not required.",
@@ -1820,6 +2030,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "takdir edilir ama zorunlu değildir.",
     zhs: "我们很感激,但并非必须。",
     zht: "我們很感激,但並非必須。",
+    ara: "موضع تقدير لكنه غير مطلوب.",
+    ind: "dihargai tetapi tidak wajib.",
   },
   "of Service": {
     eng: "of Service",
@@ -1837,6 +2049,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "Hizmet",
     zhs: "服务",
     zht: "服務",
+    ara: "الخدمة",
+    ind: "Layanan",
   },
   "on your account. You are good.": {
     eng: "on your account. You are good.",
@@ -1854,6 +2068,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "hesabınızda. Her şey yolunda.",
     zhs: "在你的账户上。一切正常。",
     zht: "在你的帳戶上。一切正常。",
+    ara: "على حسابك. كل شيء على ما يرام.",
+    ind: "di akunmu. Semuanya beres.",
   },
   potions: {
     eng: "potions",
@@ -1871,6 +2087,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "iksir",
     zhs: "药水",
     zht: "藥水",
+    ara: "جرعات",
+    ind: "ramuan",
   },
   "runs today": {
     eng: "runs today",
@@ -1888,6 +2106,8 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "bugünkü koşular",
     zhs: "今日运行",
     zht: "今日執行",
+    ara: "جولات اليوم",
+    ind: "perjalanan hari ini",
   },
   "submitted runs. A naive snapshot of the data, not a verdict on what is correct.":
     {
@@ -1906,6 +2126,8 @@ export const X2: Record<string, Record<string, string>> = {
       tur: "gönderilen koşular. Verilerin basit bir anlık görüntüsü, neyin doğru olduğuna dair bir yargı değil.",
       zhs: "提交的运行。这是数据的粗略快照,而非对何为正确的定论。",
       zht: "提交的執行。這是資料的粗略快照,而非對何為正確的定論。",
+      ara: "جولات مرسلة. لقطة مبسطة من البيانات، وليست حكمًا على ما هو صحيح.",
+      ind: "perjalanan terkirim. Potret mentah dari data, bukan putusan soal mana yang benar.",
     },
   "your account": {
     eng: "your account",
@@ -1923,5 +2145,7 @@ export const X2: Record<string, Record<string, string>> = {
     tur: "hesabınız",
     zhs: "你的账户",
     zht: "你的帳戶",
+    ara: "حسابك",
+    ind: "akunmu",
   },
 };

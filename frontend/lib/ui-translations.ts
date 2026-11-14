@@ -21,6 +21,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Genel Bakış",
     zhs: "概览",
     zht: "概覽",
+    ara: "نظرة عامة",
+    ind: "Ringkasan",
   },
   Details: {
     eng: "Details",
@@ -38,6 +40,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Detaylar",
     zhs: "详情",
     zht: "詳情",
+    ara: "التفاصيل",
+    ind: "Detail",
   },
   Info: {
     eng: "Info",
@@ -55,6 +59,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Bilgi",
     zhs: "信息",
     zht: "資訊",
+    ara: "معلومات",
+    ind: "Info",
   },
 
   // Navigation
@@ -74,6 +80,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Geri dön:",
     zhs: "返回",
     zht: "返回",
+    ara: "العودة إلى",
+    ind: "Kembali ke",
   },
   Home: {
     eng: "Home",
@@ -91,6 +99,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Ana Sayfa",
     zhs: "首页",
     zht: "首頁",
+    ara: "الرئيسية",
+    ind: "Beranda",
   },
 
   // Search & filters
@@ -110,6 +120,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Ara...",
     zhs: "搜索...",
     zht: "搜尋...",
+    ara: "بحث...",
+    ind: "Cari...",
   },
   "All Colors": {
     eng: "All Colors",
@@ -127,6 +139,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tüm Renkler",
     zhs: "所有颜色",
     zht: "所有顏色",
+    ara: "كل الألوان",
+    ind: "Semua Warna",
   },
   "All Keywords": {
     eng: "All Keywords",
@@ -144,6 +158,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tüm Anahtar Kelimeler",
     zhs: "所有关键词",
     zht: "所有關鍵詞",
+    ara: "كل الكلمات المفتاحية",
+    ind: "Semua Kata Kunci",
   },
   "All Pools": {
     eng: "All Pools",
@@ -161,6 +177,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tüm Havuzlar",
     zhs: "所有池",
     zht: "所有池",
+    ara: "كل الفئات",
+    ind: "Semua Kelompok",
   },
   "All Characters": {
     eng: "All Characters",
@@ -178,6 +196,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tüm Karakterler",
     zhs: "所有角色",
     zht: "所有角色",
+    ara: "كل الشخصيات",
+    ind: "Semua Karakter",
   },
   "runs tracked": {
     eng: "runs tracked",
@@ -195,6 +215,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "kayıtlı oyun",
     zhs: "次爬塔记录",
     zht: "次爬塔記錄",
+    ara: "جولة مسجلة",
+    ind: "perjalanan tercatat",
   },
   "Updates as runs are uploaded": {
     eng: "Updates as runs are uploaded",
@@ -212,6 +234,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Oyunlar yüklendikçe güncellenir",
     zhs: "上传爬塔后实时更新",
     zht: "上傳爬塔後即時更新",
+    ara: "يتحدث مع رفع الجولات",
+    ind: "Diperbarui saat perjalanan diunggah",
   },
   "Best matches": {
     eng: "Best matches",
@@ -229,6 +253,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "En iyi eşleşmeler",
     zhs: "最佳匹配",
     zht: "最佳匹配",
+    ara: "أفضل النتائج",
+    ind: "Hasil terbaik",
   },
   results: {
     eng: "results",
@@ -246,6 +272,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "sonuç",
     zhs: "结果",
     zht: "結果",
+    ara: "نتائج",
+    ind: "hasil",
   },
 
   // Detail page sections
@@ -265,6 +293,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tüccar Fiyatı",
     zhs: "商人价格",
     zht: "商人價格",
+    ara: "سعر التاجر",
+    ind: "Harga Pedagang",
   },
   "Powers Applied": {
     eng: "Powers Applied",
@@ -282,6 +312,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Uygulanan Güçler",
     zhs: "应用能力",
     zht: "應用能力",
+    ara: "القوى المطبقة",
+    ind: "Kuasa yang Diterapkan",
   },
   "Related Cards": {
     eng: "Related Cards",
@@ -299,6 +331,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "İlgili Kartlar",
     zhs: "相关卡牌",
     zht: "相關卡牌",
+    ara: "بطاقات ذات صلة",
+    ind: "Kartu Terkait",
   },
   "Other languages": {
     eng: "Other languages",
@@ -316,6 +350,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Diğer Diller",
     zhs: "其他语言",
     zht: "其他語言",
+    ara: "لغات أخرى",
+    ind: "Bahasa lain",
   },
   "Version History": {
     eng: "Version History",
@@ -333,6 +369,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Sürüm Geçmişi",
     zhs: "版本历史",
     zht: "版本歷史",
+    ara: "سجل الإصدارات",
+    ind: "Riwayat Versi",
   },
   Gold: {
     eng: "Gold",
@@ -350,6 +388,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Altın",
     zhs: "金币",
     zht: "金幣",
+    ara: "الذهب",
+    ind: "Emas",
   },
   Cards: {
     eng: "Cards",
@@ -367,6 +407,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Kartlar",
     zhs: "卡牌",
     zht: "卡牌",
+    ara: "البطاقات",
+    ind: "Kartu",
   },
   Relics: {
     eng: "Relics",
@@ -384,6 +426,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Kalıntılar",
     zhs: "遗物",
     zht: "遺物",
+    ara: "الآثار",
+    ind: "Pusaka",
   },
   Potions: {
     eng: "Potions",
@@ -401,6 +445,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "İksirler",
     zhs: "药水",
     zht: "藥水",
+    ara: "الجرعات",
+    ind: "Ramuan",
   },
   Monsters: {
     eng: "Monsters",
@@ -418,6 +464,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Canavarlar",
     zhs: "怪物",
     zht: "怪物",
+    ara: "الوحوش",
+    ind: "Monster",
   },
   Powers: {
     eng: "Powers",
@@ -435,6 +483,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Güçler",
     zhs: "能力",
     zht: "能力",
+    ara: "القدرات",
+    ind: "Kuasa",
   },
   Events: {
     eng: "Events",
@@ -452,6 +502,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Etkinlikler",
     zhs: "事件",
     zht: "事件",
+    ara: "الأحداث",
+    ind: "Event",
   },
   Characters: {
     eng: "Characters",
@@ -469,6 +521,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Karakterler",
     zhs: "角色",
     zht: "角色",
+    ara: "الشخصيات",
+    ind: "Karakter",
   },
   Encounters: {
     eng: "Encounters",
@@ -486,6 +540,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Karşılaşmalar",
     zhs: "遭遇",
     zht: "遭遇",
+    ara: "المواجهات",
+    ind: "Pertemuan",
   },
   Enchantments: {
     eng: "Enchantments",
@@ -503,6 +559,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Büyüler",
     zhs: "附魔",
     zht: "附魔",
+    ara: "التعزيزات",
+    ind: "Efek",
   },
   // Short label for the card-detail tab so the bar fits on mobile.
   Enchants: {
@@ -521,6 +579,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Büyüler",
     zhs: "附魔",
     zht: "附魔",
+    ara: "تعزيزات",
+    ind: "Efek",
   },
 
   // Sort
@@ -540,6 +600,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Ansiklopedi",
     zhs: "图鉴",
     zht: "圖鑑",
+    ara: "الموسوعة",
+    ind: "Ensiklopedia",
   },
 
   // Nav groups
@@ -559,6 +621,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Veritabanı",
     zhs: "数据库",
     zht: "資料庫",
+    ara: "قاعدة البيانات",
+    ind: "Basis Data",
   },
   Gameplay: {
     eng: "Gameplay",
@@ -576,6 +640,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Oynanış",
     zhs: "玩法",
     zht: "玩法",
+    ara: "اللعب",
+    ind: "Gameplay",
   },
   Contact: {
     eng: "Contact",
@@ -593,6 +659,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "İletişim",
     zhs: "联系",
     zht: "聯絡",
+    ara: "اتصل بنا",
+    ind: "Kontak",
   },
   Feedback: {
     eng: "Feedback",
@@ -610,6 +678,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Geri Bildirim",
     zhs: "反馈",
     zht: "反饋",
+    ara: "ملاحظات",
+    ind: "Masukan",
   },
   Email: {
     eng: "Email",
@@ -627,6 +697,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "E-posta",
     zhs: "邮箱",
     zht: "郵箱",
+    ara: "البريد الإلكتروني",
+    ind: "Email",
   },
 
   // Nav link labels
@@ -646,6 +718,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Kart Kütüphanesi",
     zhs: "卡牌库",
     zht: "卡牌庫",
+    ara: "مكتبة البطاقات",
+    ind: "Pustaka Kartu",
   },
   "Relic Collection": {
     eng: "Relic Collection",
@@ -663,6 +737,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Kalıntı Koleksiyonu",
     zhs: "遗物收藏",
     zht: "遺物收藏",
+    ara: "مجموعة الآثار",
+    ind: "Koleksi Pusaka",
   },
   Bestiary: {
     eng: "Bestiary",
@@ -680,6 +756,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Yaratık Ansiklopedisi",
     zhs: "怪物图鉴",
     zht: "怪物圖鑑",
+    ara: "دليل الوحوش",
+    ind: "Kitab Monster",
   },
   "Potion Lab": {
     eng: "Potion Lab",
@@ -697,6 +775,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "İksir Laboratuvarı",
     zhs: "药水实验室",
     zht: "藥水實驗室",
+    ara: "مختبر الجرعات",
+    ind: "Laboratorium Ramuan",
   },
   Merchant: {
     eng: "Merchant",
@@ -714,6 +794,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tüccar",
     zhs: "商人",
     zht: "商人",
+    ara: "التاجر",
+    ind: "Pedagang",
   },
   Keywords: {
     eng: "Keywords",
@@ -731,6 +813,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Anahtar Kelimeler",
     zhs: "关键词",
     zht: "關鍵詞",
+    ara: "الكلمات المفتاحية",
+    ind: "Kata Kunci",
   },
   Compare: {
     eng: "Compare",
@@ -748,6 +832,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Karşılaştır",
     zhs: "比较",
     zht: "比較",
+    ara: "مقارنة",
+    ind: "Bandingkan",
   },
   "Compare Characters": {
     eng: "Compare Characters",
@@ -765,6 +851,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Karakterleri Karşılaştır",
     zhs: "比较角色",
     zht: "比較角色",
+    ara: "مقارنة الشخصيات",
+    ind: "Bandingkan Karakter",
   },
   Timeline: {
     eng: "Timeline",
@@ -782,6 +870,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Zaman Çizelgesi",
     zhs: "时间线",
     zht: "時間線",
+    ara: "الخط الزمني",
+    ind: "Linimasa",
   },
   Images: {
     eng: "Images",
@@ -799,6 +889,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Görseller",
     zhs: "图片",
     zht: "圖片",
+    ara: "الصور",
+    ind: "Gambar",
   },
   Reference: {
     eng: "Reference",
@@ -816,6 +908,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Referans",
     zhs: "参考",
     zht: "參考",
+    ara: "المرجع",
+    ind: "Referensi",
   },
   Showcase: {
     eng: "Showcase",
@@ -833,6 +927,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Vitrin",
     zhs: "展示",
     zht: "展示",
+    ara: "المعرض",
+    ind: "Galeri",
   },
   Changelog: {
     eng: "Changelog",
@@ -850,6 +946,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Değişiklik Günlüğü",
     zhs: "更新日志",
     zht: "更新日誌",
+    ara: "سجل التغييرات",
+    ind: "Catatan Perubahan",
   },
   About: {
     eng: "About",
@@ -867,6 +965,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Hakkında",
     zhs: "关于",
     zht: "關於",
+    ara: "حول",
+    ind: "Tentang",
   },
   "Thank You": {
     eng: "Thank You",
@@ -884,6 +984,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Teşekkürler",
     zhs: "感谢",
     zht: "感謝",
+    ara: "شكرًا لكم",
+    ind: "Terima Kasih",
   },
   Developers: {
     eng: "Developers",
@@ -901,6 +1003,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Geliştiriciler",
     zhs: "开发者",
     zht: "開發者",
+    ara: "المطورون",
+    ind: "Pengembang",
   },
   Discord: {
     eng: "Discord",
@@ -918,6 +1022,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Discord",
     zhs: "Discord",
     zht: "Discord",
+    ara: "Discord",
+    ind: "Discord",
   },
 
   // Misc
@@ -937,6 +1043,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Paylaş",
     zhs: "分享",
     zht: "分享",
+    ara: "الحصة",
+    ind: "Porsi",
   },
   "Share of your deaths. Gray = community share.": {
     eng: "Share of your deaths. Gray = community share.",
@@ -954,6 +1062,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Ölümlerinizin payı. Gri = topluluk.",
     zhs: "占你阵亡次数的比例。灰色为社区。",
     zht: "占你陣亡次數的比例。灰色為社群。",
+    ara: "حصتها من وفياتك. الرمادي = حصة المجتمع.",
+    ind: "Porsi dari kematianmu. Abu-abu = porsi komunitas.",
   },
   "How often a visit kills you. Gray = community.": {
     eng: "How often a visit kills you. Gray = community.",
@@ -971,6 +1081,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Bir ziyaretin sizi ne sıklıkla öldürdüğü. Gri = topluluk.",
     zhs: "访问该节点时阵亡的频率。灰色为社区平均。",
     zht: "訪問該節點時陣亡的頻率。灰色為社群平均。",
+    ara: "عدد المرات التي تقتلك فيها الزيارة. الرمادي = المجتمع.",
+    ind: "Seberapa sering kunjungan membunuhmu. Abu-abu = komunitas.",
   },
   Report: {
     eng: "Report",
@@ -988,6 +1100,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Bildir",
     zhs: "举报",
     zht: "檢舉",
+    ara: "إبلاغ",
+    ind: "Laporkan",
   },
   "Report run": {
     eng: "Report run",
@@ -1005,6 +1119,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Turu bildir",
     zhs: "举报对局",
     zht: "檢舉對局",
+    ara: "الإبلاغ عن الجولة",
+    ind: "Laporkan perjalanan",
   },
   "Why are you reporting this run?": {
     eng: "Why are you reporting this run?",
@@ -1022,6 +1138,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Bu turu neden bildiriyorsunuz?",
     zhs: "你为什么举报这场对局？",
     zht: "你為什麼檢舉這場對局？",
+    ara: "لماذا تبلّغ عن هذه الجولة؟",
+    ind: "Kenapa kamu melaporkan perjalanan ini?",
   },
   "Send report": {
     eng: "Send report",
@@ -1039,6 +1157,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Bildirimi gönder",
     zhs: "发送举报",
     zht: "發送檢舉",
+    ara: "إرسال البلاغ",
+    ind: "Kirim laporan",
   },
   "Report sent. Thanks!": {
     eng: "Report sent. Thanks!",
@@ -1056,6 +1176,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Bildirim gönderildi. Teşekkürler!",
     zhs: "举报已发送。谢谢！",
     zht: "檢舉已發送。謝謝！",
+    ara: "تم إرسال البلاغ. شكرًا!",
+    ind: "Laporan terkirim. Terima kasih!",
   },
   "Enter a valid email address.": {
     eng: "Enter a valid email address.",
@@ -1073,6 +1195,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Geçerli bir e-posta adresi girin.",
     zhs: "请输入有效的邮箱地址。",
     zht: "請輸入有效的郵箱地址。",
+    ara: "أدخل عنوان بريد إلكتروني صالحًا.",
+    ind: "Masukkan alamat email yang valid.",
   },
   "Could not send the report.": {
     eng: "Could not send the report.",
@@ -1090,6 +1214,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Bildirim gönderilemedi.",
     zhs: "无法发送举报。",
     zht: "無法發送檢舉。",
+    ara: "تعذر إرسال البلاغ.",
+    ind: "Laporan gagal dikirim.",
   },
   "Loading...": {
     eng: "Loading...",
@@ -1107,6 +1233,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Yükleniyor...",
     zhs: "加载中...",
     zht: "載入中...",
+    ara: "جارٍ التحميل...",
+    ind: "Memuat...",
   },
   "Not Found": {
     eng: "Not Found",
@@ -1124,6 +1252,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Bulunamadı",
     zhs: "未找到",
     zht: "未找到",
+    ara: "غير موجود",
+    ind: "Tidak Ditemukan",
   },
   "Damage Values": {
     eng: "Damage Values",
@@ -1141,6 +1271,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Hasar Değerleri",
     zhs: "伤害值",
     zht: "傷害值",
+    ara: "قيم الضرر",
+    ind: "Nilai Kerusakan",
   },
   "Block Values": {
     eng: "Block Values",
@@ -1158,6 +1290,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Blok Değerleri",
     zhs: "格挡值",
     zht: "格擋值",
+    ara: "قيم الصد",
+    ind: "Nilai Blok",
   },
   Moves: {
     eng: "Moves",
@@ -1175,6 +1309,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Hamleler",
     zhs: "招式",
     zht: "招式",
+    ara: "الحركات",
+    ind: "Gerakan",
   },
 
   // Page taglines / descriptions
@@ -1194,6 +1330,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Ironclad, Silent, Defect, Necrobinder, Regent ve Fool'un tüm kartlarını inceleyin. Karakter, tür, nadirlik ve anahtar kelimelere göre filtreleyin.",
     zhs: "浏览铁甲战士、沉默猎手、缺陷体、亡灵师、摄政王、愚者的所有卡牌。按角色、类型、稀有度和关键词筛选。",
     zht: "瀏覽鐵甲戰士、沉默獵手、缺陷體、亡靈師、攝政王、愚者的所有卡牌。按角色、型別、稀有度和關鍵詞篩選。",
+    ara: "تصفح كل بطاقات المدرع والصامتة والمعيب ورابطة الموتى والوصي و Fool. صفِّ حسب الشخصية والنوع والندرة والكلمات المفتاحية.",
+    ind: "Jelajahi semua kartu Ironclad, Silent, Defect, Necrobinder, Regent, dan Fool. Filter menurut karakter, tipe, kelangkaan, dan kata kunci.",
   },
   relics_tagline: {
     eng: "Browse every relic across all rarities and character pools. Filter by rarity and pool.",
@@ -1211,6 +1349,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tüm nadirlik ve karakter havuzlarındaki kalıntıları inceleyin. Nadirlik ve havuza göre filtreleyin.",
     zhs: "浏览所有稀有度和角色池的遗物。按稀有度和池筛选。",
     zht: "瀏覽所有稀有度和角色池的遺物。按稀有度和池篩選。",
+    ara: "تصفح كل الآثار من جميع درجات الندرة ومجموعات الشخصيات. صفِّ حسب الندرة والمجموعة.",
+    ind: "Jelajahi semua pusaka dari semua kelangkaan dan kumpulan karakter. Filter menurut kelangkaan dan kumpulan.",
   },
   potions_tagline: {
     eng: "Browse every potion. Filter by rarity and character pool.",
@@ -1228,6 +1368,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tüm iksirleri inceleyin. Nadirlik ve karakter havuzuna göre filtreleyin.",
     zhs: "浏览所有药水。按稀有度和角色池筛选。",
     zht: "瀏覽所有藥水。按稀有度和角色池篩選。",
+    ara: "تصفح كل الجرعات. صفِّ حسب الندرة ومجموعة الشخصية.",
+    ind: "Jelajahi semua ramuan. Filter menurut kelangkaan dan kumpulan karakter.",
   },
   monsters_tagline: {
     eng: "Browse every monster, normals, elites, and bosses. View HP values, moves, damage stats, and ascension scaling.",
@@ -1245,6 +1387,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tüm canavarları inceleyin, normal, elit ve boss. HP, hamleler, hasar ve tırmanma ölçeklendirmesini görüntüleyin.",
     zhs: "浏览所有怪物, 普通、精英和Boss。查看HP、招式、伤害和进阶缩放。",
     zht: "瀏覽所有怪物, 普通、精英和Boss。檢視HP、招式、傷害和晉階縮放。",
+    ara: "تصفح كل الوحوش، العاديين والنخب والزعماء. اعرض قيم نقاط الصحة والحركات وإحصائيات الضرر وتغيّرها مع الصعود.",
+    ind: "Jelajahi semua monster, biasa, elit, dan bos. Lihat nilai HP, gerakan, statistik kerusakan, dan perubahan per angkatan.",
   },
   powers_tagline: {
     eng: "Browse every power, buffs, debuffs, and neutral effects. Filter by type and stack behavior.",
@@ -1262,6 +1406,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tüm güçleri inceleyin, buff, debuff ve nötr etkiler. Tür ve yığılma davranışına göre filtreleyin.",
     zhs: "浏览所有能力, 增益、减益和中性效果。按类型和叠加行为筛选。",
     zht: "瀏覽所有能力, 增益、減益和中性效果。按型別和疊加行為篩選。",
+    ara: "تصفح كل القوى، التعزيزات والإضعافات والتأثيرات المحايدة. صفِّ حسب النوع وطريقة التراكم.",
+    ind: "Jelajahi semua kuasa, buff, debuff, dan efek netral. Filter menurut tipe dan cara penumpukan.",
   },
   events_tagline: {
     eng: "Browse every event including shrine events, Ancient encounters, and story events. View choices, dialogue, and outcomes.",
@@ -1279,6 +1425,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tüm etkinlikleri inceleyin, tapınak, Kadim karşılaşmalar ve hikaye etkinlikleri. Seçenekleri, diyalogları ve sonuçları görüntüleyin.",
     zhs: "浏览所有事件, 神龛事件、远古遭遇和故事事件。查看选择、对话和结果。",
     zht: "瀏覽所有事件, 神龕事件、遠古遭遇和故事事件。檢視選擇、對話和結果。",
+    ara: "تصفح كل الأحداث، ومنها أحداث المزارات ولقاءات القدماء وأحداث القصة. اعرض الخيارات والحوارات والنتائج.",
+    ind: "Jelajahi semua event, termasuk event kuil, pertemuan Ancient, dan event cerita. Lihat pilihan, dialog, dan hasilnya.",
   },
   characters_tagline: {
     eng: "All playable characters, view starting decks, relics, HP, gold, energy, and more.",
@@ -1296,6 +1444,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tüm oynanabilir karakterler, başlangıç desteleri, kalıntılar, HP, altın, enerji ve daha fazlası.",
     zhs: "所有可玩角色, 初始牌组、遗物、HP、金币、能量等。",
     zht: "所有可玩角色, 初始牌組、遺物、HP、金幣、能量等。",
+    ara: "كل الشخصيات القابلة للعب، اعرض مجموعات البداية والآثار ونقاط الصحة والذهب والطاقة وغيرها.",
+    ind: "Semua karakter yang bisa dimainkan, lihat dek awal, pusaka, HP, emas, energi, dan lainnya.",
   },
   encounters_tagline: {
     eng: "Browse every combat encounter. Filter by room type and act.",
@@ -1313,6 +1463,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tüm savaş karşılaşmalarını inceleyin. Oda türü ve perdeye göre filtreleyin.",
     zhs: "浏览所有战斗遭遇。按房间类型和阶段筛选。",
     zht: "瀏覽所有戰鬥遭遇。按房間型別和幕篩選。",
+    ara: "تصفح كل مواجهات القتال. صفِّ حسب نوع الغرفة والفصل.",
+    ind: "Jelajahi semua pertemuan tempur. Filter menurut tipe ruangan dan babak.",
   },
   enchantments_tagline: {
     eng: "Browse every enchantment. Filter by card type and view effects, stackability, and extra card text.",
@@ -1330,6 +1482,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tüm büyüleri inceleyin. Kart türüne göre filtreleyin ve etkileri, yığılabilirliği ve ek kart metnini görüntüleyin.",
     zhs: "浏览所有附魔。按卡牌类型筛选，查看效果、可叠加性和额外文本。",
     zht: "瀏覽所有附魔。按卡牌型別篩選，檢視效果、可疊加性和額外文字。",
+    ara: "تصفح كل التعزيزات. صفِّ حسب نوع البطاقة واعرض التأثيرات وقابلية التراكم ونص البطاقة الإضافي.",
+    ind: "Jelajahi semua efek. Filter menurut tipe kartu dan lihat pengaruhnya, bisa ditumpuk atau tidak, dan teks kartu tambahan.",
   },
 
   // About the Site page taglines
@@ -1349,6 +1503,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Spire Codex Hakkında, Slay the Spire 2 için topluluk tarafından oluşturulmuş bir veritabanı. Veri hattı, teknoloji yığını ve sitenin nasıl çalıştığını öğrenin.",
     zhs: "关于 Spire Codex, 一个社区构建的杀戮尖塔2数据库。了解数据管道、技术栈和网站运作方式。",
     zht: "關於 Spire Codex, 一個社群構建的殺戮尖塔2資料庫。瞭解資料管道、技術棧和網站運作方式。",
+    ara: "عن Spire Codex، قاعدة بيانات من صنع المجتمع للعبة Slay the Spire 2. تعرّف على مسار البيانات والتقنيات المستخدمة وطريقة عمل الموقع.",
+    ind: "Tentang Spire Codex, database buatan komunitas untuk Slay the Spire 2. Pelajari pipeline data, teknologi yang dipakai, dan cara kerja situsnya.",
   },
   changelog_tagline: {
     eng: "Track what changes between game updates, new cards, balance tweaks, removed content, and more.",
@@ -1366,6 +1522,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Oyun güncellemeleri arasındaki değişiklikleri takip edin, yeni kartlar, denge ayarları, kaldırılan içerik ve daha fazlası.",
     zhs: "追踪游戏更新之间的变化, 新卡牌、平衡调整、删除内容等。",
     zht: "追蹤遊戲更新之間的變化, 新卡牌、平衡調整、刪除內容等。",
+    ara: "تابع ما يتغير بين تحديثات اللعبة: بطاقات جديدة، تعديلات توازن، محتوى محذوف وغير ذلك.",
+    ind: "Pantau apa yang berubah antar pembaruan game: kartu baru, penyesuaian balance, konten yang dihapus, dan lainnya.",
   },
   showcase_tagline: {
     eng: "Community projects built with the Spire Codex API. Want to add yours? Submit a PR on GitHub.",
@@ -1383,6 +1541,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Spire Codex API ile oluşturulmuş topluluk projeleri. Kendinizinkini eklemek ister misiniz? GitHub'da bir PR gönderin.",
     zhs: "使用 Spire Codex API 构建的社区项目。想添加你的项目？在 GitHub 上提交 PR。",
     zht: "使用 Spire Codex API 構建的社群專案。想新增你的專案？在 GitHub 上提交 PR。",
+    ara: "مشاريع من المجتمع مبنية على Spire Codex API. تريد إضافة مشروعك؟ أرسل PR على GitHub.",
+    ind: "Proyek komunitas yang dibuat dengan Spire Codex API. Mau menambahkan punyamu? Kirim PR di GitHub.",
   },
   developers_tagline: {
     eng: "Build tools, bots, and content with Spire Codex data. Everything is free and open.",
@@ -1400,6 +1560,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Spire Codex verileriyle araçlar, botlar ve içerik oluşturun. Her şey ücretsiz ve açık.",
     zhs: "使用 Spire Codex 数据构建工具、机器人和内容。一切免费开放。",
     zht: "使用 Spire Codex 資料構建工具、機器人和內容。一切免費開放。",
+    ara: "ابنِ أدوات وبوتات ومحتوى ببيانات Spire Codex. كل شيء مجاني ومفتوح.",
+    ind: "Buat alat, bot, dan konten dengan data Spire Codex. Semuanya gratis dan terbuka.",
   },
   merchant_tagline: {
     eng: "All merchant pricing extracted from the game source code. Prices vary within the listed ranges due to a per-seed random multiplier.",
@@ -1417,6 +1579,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tüm tüccar fiyatları oyun kaynak kodundan çıkarılmıştır. Fiyatlar, seed bazlı rastgele çarpan nedeniyle listelenen aralıklarda değişir.",
     zhs: "所有商人价格从游戏源代码提取。价格因每个种子的随机乘数而在列出的范围内变化。",
     zht: "所有商人價格從遊戲原始碼提取。價格因每個種子的隨機乘數而在列出的範圍內變化。",
+    ara: "كل أسعار التاجر مستخرجة من الشيفرة المصدرية للعبة. تتفاوت الأسعار ضمن النطاقات المذكورة بسبب مضاعف عشوائي لكل بذرة.",
+    ind: "Semua harga pedagang diambil dari kode sumber game. Harga bervariasi dalam rentang yang tercantum karena pengali acak per benih.",
   },
   compare_tagline: {
     eng: "Compare characters side by side, stats, card pool breakdowns, keyword distributions, and starting decks.",
@@ -1434,6 +1598,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Karakterleri yan yana karşılaştırın, istatistikler, kart havuzu dağılımları, anahtar kelime dağılımları ve başlangıç desteleri.",
     zhs: "并排比较角色, 属性、卡池分析、关键词分布和初始牌组。",
     zht: "並排比較角色, 屬性、卡池分析、關鍵詞分佈和初始牌組。",
+    ara: "قارن الشخصيات جنبًا إلى جنب، الإحصائيات وتفاصيل مجموعات البطاقات وتوزيع الكلمات المفتاحية ومجموعات البداية.",
+    ind: "Bandingkan karakter berdampingan, statistik, rincian kumpulan kartu, sebaran kata kunci, dan dek awal.",
   },
   keywords_tagline: {
     eng: "Keywords define special behaviors for cards. Click a keyword to see all cards with that keyword.",
@@ -1451,6 +1617,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Anahtar kelimeler kartlar için özel davranışlar tanımlar. Tüm kartları görmek için bir anahtar kelimeye tıklayın.",
     zhs: "关键词定义卡牌的特殊行为。点击关键词查看拥有该关键词的所有卡牌。",
     zht: "關鍵詞定義卡牌的特殊行為。點選關鍵詞檢視擁有該關鍵詞的所有卡牌。",
+    ara: "الكلمات المفتاحية تحدد سلوكيات خاصة للبطاقات. انقر على كلمة مفتاحية لرؤية كل البطاقات التي تحملها.",
+    ind: "Kata kunci menentukan perilaku khusus kartu. Klik kata kunci untuk melihat semua kartu yang memilikinya.",
   },
   "The complete database for Slay the Spire 2": {
     eng: "The complete database for Slay the Spire 2",
@@ -1468,6 +1636,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 için eksiksiz veritabanı",
     zhs: "杀戮尖塔2完整数据库",
     zht: "殺戮尖塔2完整資料庫",
+    ara: "قاعدة البيانات الكاملة للعبة Slay the Spire 2",
+    ind: "Database lengkap untuk Slay the Spire 2",
   },
   "Preview of upcoming Slay the Spire 2 content": {
     eng: "Preview of upcoming Slay the Spire 2 content",
@@ -1485,6 +1655,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Yaklaşan Slay the Spire 2 içeriklerinin önizlemesi",
     zhs: "即将推出的杀戮尖塔2内容预览",
     zht: "即將推出的殺戮尖塔2內容預覽",
+    ara: "معاينة لمحتوى Slay the Spire 2 القادم",
+    ind: "Pratinjau konten Slay the Spire 2 yang akan datang",
   },
   "Merchant Guide": {
     eng: "Merchant Guide",
@@ -1502,6 +1674,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tüccar Rehberi",
     zhs: "商人指南",
     zht: "商人指南",
+    ara: "دليل التاجر",
+    ind: "Panduan Pedagang",
   },
   "Character Comparisons": {
     eng: "Character Comparisons",
@@ -1519,6 +1693,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Karakter Karşılaştırmaları",
     zhs: "角色对比",
     zht: "角色對比",
+    ara: "مقارنة الشخصيات",
+    ind: "Perbandingan Karakter",
   },
   "Card Keywords": {
     eng: "Card Keywords",
@@ -1536,6 +1712,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Kart Anahtar Kelimeleri",
     zhs: "卡牌关键词",
     zht: "卡牌關鍵詞",
+    ara: "كلمات البطاقات المفتاحية",
+    ind: "Kata Kunci Kartu",
   },
 
   // Badges
@@ -1555,6 +1733,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Rozetler",
     zhs: "徽章",
     zht: "徽章",
+    ara: "الشارات",
+    ind: "Lencana",
   },
   "Tiered Badges": {
     eng: "Tiered Badges",
@@ -1572,6 +1752,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Kademeli Rozetler",
     zhs: "分级徽章",
     zht: "分級徽章",
+    ara: "شارات متعددة المستويات",
+    ind: "Lencana Bertingkat",
   },
   "Single-Tier Badges": {
     eng: "Single-Tier Badges",
@@ -1589,6 +1771,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tek Kademeli Rozetler",
     zhs: "单级徽章",
     zht: "單級徽章",
+    ara: "شارات بمستوى واحد",
+    ind: "Lencana Satu Tingkat",
   },
   "Multiplayer-Only": {
     eng: "Multiplayer-Only",
@@ -1606,6 +1790,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Yalnızca Çok Oyunculu",
     zhs: "仅多人游戏",
     zht: "僅多人遊戲",
+    ara: "اللعب الجماعي فقط",
+    ind: "Khusus Multi Pemain",
   },
   Tiers: {
     eng: "Tiers",
@@ -1623,6 +1809,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Kademeler",
     zhs: "等级",
     zht: "等級",
+    ara: "المستويات",
+    ind: "Tingkat",
   },
   Bronze: {
     eng: "Bronze",
@@ -1640,6 +1828,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Bronz",
     zhs: "铜",
     zht: "銅",
+    ara: "برونزي",
+    ind: "Perunggu",
   },
   Silver: {
     eng: "Silver",
@@ -1657,6 +1847,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Gümüş",
     zhs: "银",
     zht: "銀",
+    ara: "فضي",
+    ind: "Perak",
   },
   "Gold tier": {
     eng: "Gold",
@@ -1674,6 +1866,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Altın",
     zhs: "金",
     zht: "金",
+    ara: "الذهب",
+    ind: "Emas",
   },
   "Single tier": {
     eng: "Single tier",
@@ -1691,6 +1885,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tek kademe",
     zhs: "单级",
     zht: "單級",
+    ara: "مستوى واحد",
+    ind: "Satu tingkat",
   },
   "Requires win": {
     eng: "Requires win",
@@ -1708,6 +1904,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Galibiyet gerekli",
     zhs: "需要胜利",
     zht: "需要勝利",
+    ara: "يتطلب الفوز",
+    ind: "Harus menang",
   },
   "Multiplayer only": {
     eng: "Multiplayer only",
@@ -1725,6 +1923,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Yalnızca çok oyunculu",
     zhs: "仅多人游戏",
     zht: "僅多人遊戲",
+    ara: "اللعب الجماعي فقط",
+    ind: "Khusus multi pemain",
   },
   tier: {
     eng: "tier",
@@ -1742,6 +1942,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "kademe",
     zhs: "级",
     zht: "級",
+    ara: "مستوى",
+    ind: "tingkat",
   },
   tiers: {
     eng: "tiers",
@@ -1759,6 +1961,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "kademe",
     zhs: "级",
     zht: "級",
+    ara: "مستويات",
+    ind: "tingkat",
   },
   "requires win": {
     eng: "requires win",
@@ -1776,6 +1980,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "galibiyet gerekli",
     zhs: "需要胜利",
     zht: "需要勝利",
+    ara: "يتطلب الفوز",
+    ind: "harus menang",
   },
   "multiplayer only": {
     eng: "multiplayer only",
@@ -1793,6 +1999,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "yalnızca çok oyunculu",
     zhs: "仅多人",
     zht: "僅多人",
+    ara: "اللعب الجماعي فقط",
+    ind: "khusus multi pemain",
   },
   "Back to Badges": {
     eng: "Back to Badges",
@@ -1810,6 +2018,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Rozetlere geri dön",
     zhs: "返回徽章",
     zht: "返回徽章",
+    ara: "العودة إلى الشارات",
+    ind: "Kembali ke Lencana",
   },
   badges_tagline: {
     eng: "Run-end badges are mini-achievements awarded on the Game Over screen. Some have Bronze / Silver / Gold tiers; a handful are only attainable in multiplayer. Badges contribute to your Daily Leaderboard score.",
@@ -1827,6 +2037,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tur sonu rozetleri, Game Over ekranında verilen mini başarımlardır. Bazılarının Bronz/Gümüş/Altın kademeleri vardır; birkaçı yalnızca çok oyunculu modda kazanılabilir. Rozetler, Günlük Liderlik Tablosu puanınıza katkıda bulunur.",
     zhs: "局末徽章是在游戏结束画面授予的小成就。一些有铜/银/金等级；部分仅在多人模式中可获得。徽章会计入你的每日排行榜得分。",
     zht: "局末徽章是在遊戲結束畫面授予的小成就。一些有銅/銀/金等級；部分僅在多人模式中可獲得。徽章會計入你的每日排行榜得分。",
+    ara: "شارات نهاية الجولة إنجازات صغيرة تُمنح في شاشة نهاية اللعبة. لبعضها درجات برونزية / فضية / ذهبية، وقليل منها لا يُنال إلا في اللعب الجماعي. تُحتسب الشارات في نتيجتك بلوحة المتصدرين اليومية.",
+    ind: "Lencana akhir perjalanan adalah pencapaian kecil yang diberikan di layar Game Over. Sebagian punya tingkat Perunggu / Perak / Emas, dan beberapa hanya bisa didapat di Multi Pemain. Lencana ikut dihitung ke skor Peringkat Harianmu.",
   },
   multiplayer_only_tagline: {
     eng: "These badges can only be earned in multiplayer runs.",
@@ -1844,6 +2056,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Bu rozetler yalnızca çok oyunculu turlarda kazanılabilir.",
     zhs: "这些徽章仅可在多人模式中获得。",
     zht: "這些徽章僅可在多人模式中獲得。",
+    ara: "لا يمكن كسب هذه الشارات إلا في جولات اللعب الجماعي.",
+    ind: "Lencana ini hanya bisa didapat di perjalanan Multi Pemain.",
   },
 
   // Leaderboards / runs
@@ -1863,6 +2077,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Liderlik Tabloları",
     zhs: "排行榜",
     zht: "排行榜",
+    ara: "لوحة المتصدرين",
+    ind: "Peringkat",
   },
   leaderboards_tagline: {
     eng: "Fastest wins and highest ascensions from the community. Browse every submitted run or drill into a specific character.",
@@ -1880,6 +2096,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Topluluktan en hızlı galibiyetler ve en yüksek yükselişler. Gönderilen her turu inceleyin veya belirli bir karaktere odaklanın.",
     zhs: "来自社区的最快胜利和最高进阶。浏览每个提交的对局或深入查看特定角色。",
     zht: "來自社群的最快勝利和最高晉階。瀏覽每個提交的對局或深入檢視特定角色。",
+    ara: "أسرع الانتصارات وأعلى مستويات الصعود من المجتمع. تصفح كل الجولات المرسلة أو تعمّق في شخصية محددة.",
+    ind: "Kemenangan tercepat dan angkatan tertinggi dari komunitas. Jelajahi semua perjalanan yang dikirim atau dalami satu karakter.",
   },
   "Fastest Wins": {
     eng: "Fastest Wins",
@@ -1897,6 +2115,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "En Hızlı Galibiyetler",
     zhs: "最快胜利",
     zht: "最快勝利",
+    ara: "أسرع الانتصارات",
+    ind: "Menang Tercepat",
   },
   "Highest Ascension": {
     eng: "Highest Ascension",
@@ -1914,6 +2134,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "En Yüksek Yükseliş",
     zhs: "最高进阶",
     zht: "最高晉階",
+    ara: "أعلى صعود",
+    ind: "Angkatan Tertinggi",
   },
   "Browse Runs": {
     eng: "Browse Runs",
@@ -1931,6 +2153,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Turları İncele",
     zhs: "浏览对局",
     zht: "瀏覽對局",
+    ara: "تصفح الجولات",
+    ind: "Jelajahi Perjalanan",
   },
   Fastest: {
     eng: "Fastest",
@@ -1948,6 +2172,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "En Hızlı",
     zhs: "最快",
     zht: "最快",
+    ara: "الأسرع",
+    ind: "Tercepat",
   },
   Browse: {
     eng: "Browse",
@@ -1965,6 +2191,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "İncele",
     zhs: "浏览",
     zht: "瀏覽",
+    ara: "تصفح",
+    ind: "Jelajahi",
   },
   Ascension: {
     eng: "Ascension",
@@ -1982,6 +2210,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Yükseliş",
     zhs: "进阶",
     zht: "晉階",
+    ara: "الصعود",
+    ind: "Angkatan",
   },
   Anonymous: {
     eng: "Anonymous",
@@ -1999,6 +2229,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Anonim",
     zhs: "匿名",
     zht: "匿名",
+    ara: "مجهول",
+    ind: "Anonim",
   },
   Players: {
     eng: "Players",
@@ -2016,6 +2248,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Oyuncular",
     zhs: "玩家数",
     zht: "玩家數",
+    ara: "اللاعبون",
+    ind: "Pemain",
   },
   Version: {
     eng: "Version",
@@ -2033,6 +2267,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Sürüm",
     zhs: "版本",
     zht: "版本",
+    ara: "الإصدار",
+    ind: "Versi",
   },
   "Who removes the most": {
     eng: "Who removes the most",
@@ -2050,6 +2286,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "En çok kim kart siliyor",
     zhs: "谁移除卡牌最多",
     zht: "誰移除卡牌最多",
+    ara: "من يزيل أكثر",
+    ind: "Siapa yang paling banyak membuang",
   },
   "Cards removed per run at shops and events, by the removing player's character.":
     {
@@ -2068,6 +2306,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
       tur: "Dükkan ve olaylarda tur başına silinen kartlar, silen oyuncunun karakterine göre.",
       zhs: "每局在商店和事件中移除的卡牌数（按移除玩家的角色统计）。",
       zht: "每局在商店和事件中移除的卡牌數（按移除玩家的角色統計）。",
+      ara: "البطاقات المزالة في كل جولة في المتاجر والأحداث، حسب شخصية اللاعب الذي أزالها.",
+      ind: "Kartu yang dibuang per perjalanan di toko dan event, menurut karakter pemain yang membuangnya.",
     },
   "Campfire habits": {
     eng: "Campfire habits",
@@ -2085,6 +2325,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Kamp ateşi alışkanlıkları",
     zhs: "休息处习惯",
     zht: "休息處習慣",
+    ara: "عادات مواقع الراحة",
+    ind: "Kebiasaan di peristirahatan",
   },
   "What each character does at rest sites.": {
     eng: "What each character does at rest sites.",
@@ -2102,6 +2344,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Her karakterin dinlenme noktalarında yaptıkları.",
     zhs: "每个角色在休息处做什么。",
     zht: "每個角色在休息點做什麼。",
+    ara: "ما تفعله كل شخصية في مواقع الراحة.",
+    ind: "Apa yang dilakukan tiap karakter di peristirahatan.",
   },
   "The ascension wall": {
     eng: "The ascension wall",
@@ -2119,6 +2363,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Yükseliş duvarı",
     zhs: "进阶之墙",
     zht: "晉階之牆",
+    ara: "جدار الصعود",
+    ind: "Tembok angkatan",
   },
   "Win-rate change at each ascension step. The deepest bar is where the community hits the wall.":
     {
@@ -2137,6 +2383,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
       tur: "Her yükseliş adımında kazanma oranı değişimi. En derin çubuk topluluğun duvarıdır.",
       zhs: "每级进阶的胜率变化。最深的柱子就是社区撞墙的地方。",
       zht: "每級晉階的勝率變化。最深的柱子就是社群撞牆的地方。",
+      ara: "تغيّر معدل الفوز عند كل درجة صعود. أعمق عمود هو حيث يصطدم المجتمع بالجدار.",
+      ind: "Perubahan rasio menang di tiap tingkat angkatan. Batang terdalam adalah tempat komunitas menabrak tembok.",
     },
   "Survival by floor": {
     eng: "Survival by floor",
@@ -2154,6 +2402,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Kata göre hayatta kalma",
     zhs: "各层存活率",
     zht: "各層存活率",
+    ara: "النجاة حسب الطابق",
+    ind: "Bertahan hidup per lantai",
   },
   "The share of runs still alive at each floor, abandons included.": {
     eng: "The share of runs still alive at each floor, abandons included.",
@@ -2171,6 +2421,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Her katta hâlâ hayatta olan turların payı, terk edilenler dahil.",
     zhs: "每层仍然存活的对局比例（含放弃）。",
     zht: "每層仍然存活的對局比例（含放棄）。",
+    ara: "نسبة الجولات التي ما زالت مستمرة عند كل طابق، بما فيها الجولات المتروكة.",
+    ind: "Porsi perjalanan yang masih hidup di tiap lantai, termasuk yang ditinggalkan.",
   },
   "removals over": {
     eng: "removals over",
@@ -2188,6 +2440,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "silme /",
     zhs: "次移除 /",
     zht: "次移除 /",
+    ara: "إزالة خلال",
+    ind: "pembuangan dari",
   },
   "of runs still alive": {
     eng: "of runs still alive",
@@ -2205,6 +2459,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "tur hâlâ hayatta",
     zhs: "的对局仍存活",
     zht: "的對局仍存活",
+    ara: "من الجولات ما زالت مستمرة",
+    ind: "perjalanan masih hidup",
   },
   "Win rate by character and ascension": {
     eng: "Win rate by character and ascension",
@@ -2222,6 +2478,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Karakter ve yükselişe göre kazanma oranı",
     zhs: "按角色与进阶层数的胜率",
     zht: "按角色與晉階層數的勝率",
+    ara: "معدل الفوز حسب الشخصية والصعود",
+    ind: "Rasio menang per karakter dan angkatan",
   },
   "Every character at every ascension. The pale band is where the community wins; the dark band is the wall.":
     {
@@ -2240,6 +2498,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
       tur: "Her karakter her yükselişte. Açık bant kazanıyor, koyu bant duvar.",
       zhs: "每个角色在每个进阶层数的表现。浅色带是胜利区，深色带是墙。",
       zht: "每個角色在每個晉階層數的表現。淺色帶是勝利區，深色帶是牆。",
+      ara: "كل شخصية عند كل مستوى صعود. الشريط الفاتح هو حيث يفوز المجتمع، والشريط الداكن هو الجدار.",
+      ind: "Semua karakter di semua angkatan. Pita terang adalah tempat komunitas menang, pita gelap adalah temboknya.",
     },
   "lighter = higher win rate": {
     eng: "lighter = higher win rate",
@@ -2257,6 +2517,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "daha açık = daha yüksek kazanma oranı",
     zhs: "越亮 = 胜率越高",
     zht: "越亮 = 勝率越高",
+    ara: "أفتح = معدل فوز أعلى",
+    ind: "lebih terang = rasio menang lebih tinggi",
   },
   "Any Character": {
     eng: "Any Character",
@@ -2274,6 +2536,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Herhangi bir karakter",
     zhs: "任意角色",
     zht: "任意角色",
+    ara: "أي شخصية",
+    ind: "Semua Karakter",
   },
   "Any Ascension": {
     eng: "Any Ascension",
@@ -2291,6 +2555,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Herhangi bir yükseliş",
     zhs: "任意进阶层数",
     zht: "任意晉階層數",
+    ara: "أي صعود",
+    ind: "Semua Angkatan",
   },
   "Any Version": {
     eng: "Any Version",
@@ -2308,6 +2574,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Herhangi bir sürüm",
     zhs: "任意版本",
     zht: "任意版本",
+    ara: "أي إصدار",
+    ind: "Semua Versi",
   },
   "This run doesn't count toward leaderboards or community stats.": {
     eng: "This run doesn't count toward leaderboards or community stats.",
@@ -2325,6 +2593,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Bu tur lider tablolarına veya topluluk istatistiklerine sayılmaz.",
     zhs: "该对局不计入排行榜或社区统计。",
     zht: "該對局不計入排行榜或社群統計。",
+    ara: "هذه الجولة لا تُحتسب في لوحة المتصدرين ولا في إحصائيات المجتمع.",
+    ind: "Perjalanan ini tidak dihitung dalam peringkat atau statistik komunitas.",
   },
   "Reach out on Discord if that seems wrong.": {
     eng: "Reach out on Discord if that seems wrong.",
@@ -2342,6 +2612,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Bunun bir hata olduğunu düşünüyorsanız Discord'dan ulaşın.",
     zhs: "如有异议请通过 Discord 联系我们。",
     zht: "如有異議請透過 Discord 聯絡我們。",
+    ara: "تواصل معنا على Discord إن بدا لك ذلك خطأ.",
+    ind: "Hubungi kami di Discord kalau itu terasa salah.",
   },
   "per run": {
     eng: "per run",
@@ -2359,6 +2631,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "tur başına",
     zhs: "每局",
     zht: "每局",
+    ara: "لكل جولة",
+    ind: "per perjalanan",
   },
   "Current Elo": {
     eng: "Current Elo",
@@ -2376,6 +2650,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Mevcut Elo",
     zhs: "当前Elo",
     zht: "當前Elo",
+    ara: "Elo الحالي",
+    ind: "Elo Saat Ini",
   },
   "Highest Elo Score Achieved": {
     eng: "Highest Elo Score Achieved",
@@ -2393,6 +2669,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Ulaşılan en yüksek Elo",
     zhs: "最高Elo分数",
     zht: "最高Elo分數",
+    ara: "أعلى Elo تم بلوغه",
+    ind: "Elo Tertinggi yang Dicapai",
   },
   "Elo over time": {
     eng: "Elo over time",
@@ -2410,6 +2688,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Zaman içinde Elo",
     zhs: "Elo变化曲线",
     zht: "Elo變化曲線",
+    ara: "Elo عبر الزمن",
+    ind: "Elo dari waktu ke waktu",
   },
   "rated solo A10 run": {
     eng: "rated solo A10 run",
@@ -2427,6 +2707,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "puanlanan tek kişilik A10 turu",
     zhs: "计分单人A10对局",
     zht: "計分單人A10對局",
+    ara: "جولة فردية A10 مصنّفة",
+    ind: "perjalanan solo A10 berperingkat",
   },
   Run: {
     eng: "Run",
@@ -2444,6 +2726,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tur",
     zhs: "对局",
     zht: "對局",
+    ara: "جولة",
+    ind: "Perjalanan",
   },
   Guide: {
     eng: "Guide",
@@ -2461,6 +2745,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Rehber",
     zhs: "攻略",
     zht: "攻略",
+    ara: "دليل",
+    ind: "Panduan",
   },
   "not found": {
     eng: "not found",
@@ -2478,6 +2764,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "bulunamadı",
     zhs: "未找到",
     zht: "未找到",
+    ara: "غير موجود",
+    ind: "tidak ditemukan",
   },
   win: {
     eng: "win",
@@ -2495,6 +2783,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "galibiyet",
     zhs: "胜利",
     zht: "勝利",
+    ara: "فوز",
+    ind: "menang",
   },
   loss: {
     eng: "loss",
@@ -2512,6 +2802,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "mağlubiyet",
     zhs: "失败",
     zht: "失敗",
+    ara: "خسارة",
+    ind: "kalah",
   },
   Solo: {
     eng: "Solo",
@@ -2529,6 +2821,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tek kişilik",
     zhs: "单人",
     zht: "單人",
+    ara: "فردي",
+    ind: "Solo",
   },
   "View run": {
     eng: "View run",
@@ -2546,6 +2840,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Turu görüntüle",
     zhs: "查看对局",
     zht: "檢視對局",
+    ara: "عرض الجولة",
+    ind: "Lihat perjalanan",
   },
   "View run details": {
     eng: "View run details",
@@ -2563,6 +2859,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tur detaylarını görüntüle",
     zhs: "查看对局详情",
     zht: "檢視對局詳情",
+    ara: "عرض تفاصيل الجولة",
+    ind: "Lihat detail perjalanan",
   },
   "Username...": {
     eng: "Username...",
@@ -2580,6 +2878,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Kullanıcı adı...",
     zhs: "用户名...",
     zht: "使用者名稱...",
+    ara: "اسم المستخدم...",
+    ind: "Nama pengguna...",
   },
   "Seed...": {
     eng: "Seed...",
@@ -2597,6 +2897,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tohum...",
     zhs: "种子...",
     zht: "種子...",
+    ara: "البذرة...",
+    ind: "Benih...",
   },
   "Search username...": {
     eng: "Search username...",
@@ -2614,6 +2916,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Kullanıcı adı ara...",
     zhs: "搜索用户名...",
     zht: "搜尋使用者名稱...",
+    ara: "ابحث عن اسم مستخدم...",
+    ind: "Cari nama pengguna...",
   },
 
   // Submit a Run
@@ -2633,6 +2937,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tur Gönder",
     zhs: "提交对局",
     zht: "提交對局",
+    ara: "أرسل جولة",
+    ind: "Kirim Perjalanan",
   },
   submit_tagline: {
     eng: "Our Overwolf companion app uploads your runs to Spire Codex automatically, sign in with Steam to claim them under your username and contribute to the leaderboards and community stats. You can still upload .run files manually below if you prefer.",
@@ -2650,6 +2956,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Liderlik tablolarına ve topluluk istatistiklerine katkıda bulunmak için .run dosyalarınızı yükleyin. .run dosyalarınız tarayıcınızda yerel olarak ayrıştırılır, gönder butonuna basana kadar hiçbir şey makinenizden çıkmaz.",
     zhs: "上传你的 .run 文件为排行榜和社区统计做贡献。你的 .run 文件在浏览器本地解析, 在点击提交之前不会离开你的设备。",
     zht: "上傳你的 .run 檔案為排行榜和社群統計做貢獻。你的 .run 檔案在瀏覽器本地解析, 在點選提交之前不會離開你的裝置。",
+    ara: "تطبيقنا المرافق على Overwolf يرفع جولاتك إلى Spire Codex تلقائيًا، سجّل الدخول عبر Steam لتنسبها إلى اسم المستخدم الخاص بك وتساهم في لوحة المتصدرين وإحصائيات المجتمع. ما زال بإمكانك رفع ملفات .run يدويًا أدناه إن أردت.",
+    ind: "Aplikasi pendamping Overwolf kami mengunggah perjalananmu ke Spire Codex secara otomatis, masuk dengan Steam untuk mengklaimnya atas nama penggunamu dan ikut mengisi peringkat serta statistik komunitas. Kamu tetap bisa mengunggah file .run secara manual di bawah kalau mau.",
   },
   "Drag & drop .run files here, or click to select": {
     eng: "Drag & drop .run files here, or click to select",
@@ -2667,6 +2975,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: ".run dosyalarını buraya sürükleyin veya seçmek için tıklayın",
     zhs: "将 .run 文件拖放到此处，或点击选择",
     zht: "將 .run 檔案拖放到此處，或點選選擇",
+    ara: "اسحب ملفات .run وأفلتها هنا، أو انقر للاختيار",
+    ind: "Seret dan lepas file .run di sini, atau klik untuk memilih",
   },
   "Drop files here...": {
     eng: "Drop files here...",
@@ -2684,6 +2994,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Dosyaları buraya bırakın...",
     zhs: "在此处放下文件...",
     zht: "在此處放下檔案...",
+    ara: "أفلت الملفات هنا...",
+    ind: "Lepas file di sini...",
   },
   "Username (optional)": {
     eng: "Username (optional)",
@@ -2701,6 +3013,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Kullanıcı adı (isteğe bağlı)",
     zhs: "用户名（可选）",
     zht: "使用者名稱（可選）",
+    ara: "اسم المستخدم (اختياري)",
+    ind: "Nama pengguna (opsional)",
   },
 
   // Stats
@@ -2720,6 +3034,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "İstatistikler",
     zhs: "统计",
     zht: "統計",
+    ara: "الإحصائيات",
+    ind: "Statistik",
   },
 
   // Card Metrics
@@ -2739,6 +3055,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Kart Metrikleri",
     zhs: "卡牌数据",
     zht: "卡牌資料",
+    ara: "مقاييس البطاقات",
+    ind: "Metrik Kartu",
   },
   metrics_tagline: {
     eng: "Every card ranked by Codex Elo, Codex Score, win rate and pick rate, with per-act splits, computed from every submitted run.",
@@ -2756,6 +3074,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Her kart Codex Elo, Codex Puanı, kazanma oranı ve seçim oranına göre sıralanır, perde başına dağılımla, gönderilen her turdan hesaplanır.",
     zhs: "每张卡牌按 Codex Elo、Codex 评分、胜率和选择率排名，含分阶段数据，从每个提交的对局计算。",
     zht: "每張卡牌按 Codex Elo、Codex 評分、勝率和選擇率排名，含分幕資料，從每個提交的對局計算。",
+    ara: "كل البطاقات مرتبة حسب Codex Elo و Codex Score ومعدل الفوز ومعدل الاختيار، مع التقسيم حسب الفصل، محسوبة من كل الجولات المرسلة.",
+    ind: "Semua kartu diurutkan menurut Codex Elo, Codex Score, tingkat kemenangan, dan tingkat pilih, dengan pembagian per babak, dihitung dari semua perjalanan kiriman.",
   },
 
   // Runs / Run Summary
@@ -2775,6 +3095,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Topluluk turları gezgini, seed'leri, build ID'leri, son desteleri ve oyuncu tabanından paylaşılan turları görüntüleyin.",
     zhs: "社区对局浏览器, 查看种子、版本 ID、最终牌组，以及整个玩家群体分享的对局。",
     zht: "社群對局瀏覽器, 檢視種子、版本 ID、最終牌組，以及整個玩家群體分享的對局。",
+    ara: "متصفح جولات المجتمع: اطّلع على البذور ومعرّفات الإصدار والمجموعات النهائية والجولات المشتركة من كل اللاعبين.",
+    ind: "Penjelajah perjalanan komunitas: lihat benih, ID build, dek akhir, dan perjalanan yang dibagikan dari seluruh pemain.",
   },
   Victory: {
     eng: "Victory",
@@ -2792,6 +3114,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Galibiyet",
     zhs: "胜利",
     zht: "勝利",
+    ara: "نصر",
+    ind: "Menang",
   },
   Defeat: {
     eng: "Defeat",
@@ -2809,6 +3133,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Yenilgi",
     zhs: "失败",
     zht: "失敗",
+    ara: "هزيمة",
+    ind: "Kalah",
   },
   Abandoned: {
     eng: "Abandoned",
@@ -2826,6 +3152,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Terk edilmiş",
     zhs: "已放弃",
     zht: "已放棄",
+    ara: "متروكة",
+    ind: "Ditinggalkan",
   },
   abandoned: {
     eng: "abandoned",
@@ -2843,6 +3171,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "terk edildi",
     zhs: "已放弃",
     zht: "已放棄",
+    ara: "متروكة",
+    ind: "ditinggalkan",
   },
   victorious: {
     eng: "victorious",
@@ -2860,6 +3190,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "muzaffer",
     zhs: "胜利的",
     zht: "勝利的",
+    ara: "منتصرة",
+    ind: "menang",
   },
   "Share Run": {
     eng: "Share Run",
@@ -2877,6 +3209,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Turu paylaş",
     zhs: "分享对局",
     zht: "分享對局",
+    ara: "مشاركة الجولة",
+    ind: "Bagikan Perjalanan",
   },
   "Copied!": {
     eng: "Copied!",
@@ -2894,6 +3228,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Kopyalandı!",
     zhs: "已复制！",
     zht: "已複製！",
+    ara: "تم النسخ!",
+    ind: "Tersalin!",
   },
   "The journey ended.": {
     eng: "The journey ended.",
@@ -2911,6 +3247,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Yolculuk sona erdi.",
     zhs: "旅程结束了。",
     zht: "旅程結束了。",
+    ara: "انتهت الرحلة.",
+    ind: "Perjalanan berakhir.",
   },
   Unknown: {
     eng: "Unknown",
@@ -2928,6 +3266,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Bilinmiyor",
     zhs: "未知",
     zht: "未知",
+    ara: "غير معروف",
+    ind: "Tidak Diketahui",
   },
   Common: {
     eng: "Common",
@@ -2945,6 +3285,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Yaygın",
     zhs: "普通",
     zht: "普通",
+    ara: "عادي",
+    ind: "Biasa",
   },
   Uncommon: {
     eng: "Uncommon",
@@ -2962,6 +3304,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Nadir",
     zhs: "罕见",
     zht: "罕見",
+    ara: "غير شائع",
+    ind: "Tidak Biasa",
   },
   Rare: {
     eng: "Rare",
@@ -2979,6 +3323,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Nadide",
     zhs: "稀有",
     zht: "稀有",
+    ara: "نادر",
+    ind: "Langka",
   },
   Ancient: {
     eng: "Ancient",
@@ -2996,6 +3342,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Kadim",
     zhs: "远古",
     zht: "遠古",
+    ara: "عتيق",
+    ind: "Ancient",
   },
   Standard: {
     eng: "Standard",
@@ -3013,6 +3361,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Standart",
     zhs: "标准",
     zht: "標準",
+    ara: "عادي",
+    ind: "Standar",
   },
   Starter: {
     eng: "Starter",
@@ -3030,6 +3380,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Başlangıç",
     zhs: "初始",
     zht: "初始",
+    ara: "أساسي",
+    ind: "Awalan",
   },
   Status: {
     eng: "Status",
@@ -3047,6 +3399,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Durum",
     zhs: "状态",
     zht: "狀態",
+    ara: "حالة",
+    ind: "Status",
   },
 
   // News page
@@ -3066,6 +3420,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Haberler",
     zhs: "新闻",
     zht: "新聞",
+    ara: "الأخبار",
+    ind: "Berita",
   },
   "Patch Notes": {
     eng: "Patch Notes",
@@ -3083,6 +3439,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Yama Notları",
     zhs: "补丁说明",
     zht: "補丁說明",
+    ara: "ملاحظات التحديث",
+    ind: "Catatan Patch",
   },
   "Read on Steam": {
     eng: "Read on Steam",
@@ -3100,6 +3458,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Steam'de Oku",
     zhs: "在 Steam 上阅读",
     zht: "在 Steam 上閱讀",
+    ara: "اقرأ على Steam",
+    ind: "Baca di Steam",
   },
   news_tagline: {
     eng: "Patch notes, dev updates, and community announcements from Mega Crit, plus press coverage. Mirrored from Steam, read each post in full or follow the original link.",
@@ -3117,6 +3477,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Mega Crit'ten yama notları, geliştirici güncellemeleri ve topluluk duyuruları, ayrıca basın haberleri. Steam'den yansıtılır, her gönderiyi tam olarak okuyun veya orijinal bağlantıyı takip edin.",
     zhs: "Mega Crit 的补丁说明、开发者更新和社区公告，以及新闻媒体报道。镜像自 Steam, 完整阅读每篇文章或跟进原始链接。",
     zht: "Mega Crit 的補丁說明、開發者更新和社群公告，以及新聞媒體報道。映象自 Steam, 完整閱讀每篇文章或跟進原始連結。",
+    ara: "ملاحظات التحديثات وأخبار المطورين وإعلانات المجتمع من Mega Crit، إضافة إلى التغطية الصحفية. منسوخة من Steam، اقرأ كل منشور كاملًا أو اتبع الرابط الأصلي.",
+    ind: "Catatan patch, kabar developer, dan pengumuman komunitas dari Mega Crit, plus liputan pers. Dicerminkan dari Steam, baca tiap kiriman secara penuh atau ikuti tautan aslinya.",
   },
   news_attribution: {
     eng: "Article content © Mega Crit Games (Steam Community Announcements) and the respective publishers. Spire Codex mirrors and archives this feed for searchability, original links are preserved on every post.",
@@ -3134,6 +3496,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Makale içeriği © Mega Crit Games (Steam Topluluk Duyuruları) ve ilgili yayıncılar. Spire Codex bu yayını aranabilirlik için yansıtır ve arşivler, orijinal bağlantılar her gönderide korunur.",
     zhs: "文章内容 © Mega Crit Games（Steam 社区公告）及相应发行商。Spire Codex 镜像并归档此源以供搜索, 每篇文章都保留原始链接。",
     zht: "文章內容 © Mega Crit Games（Steam 社群公告）及相應發行商。Spire Codex 映象並歸檔此源以供搜尋, 每篇文章都保留原始連結。",
+    ara: "محتوى المقالات © Mega Crit Games (إعلانات مجتمع Steam) والناشرون المعنيون. ينسخ Spire Codex هذه الخلاصة ويؤرشفها لتسهيل البحث، والروابط الأصلية محفوظة في كل منشور.",
+    ind: "Isi artikel © Mega Crit Games (Pengumuman Komunitas Steam) dan penerbit masing-masing. Spire Codex menyalin dan mengarsipkan umpan ini agar mudah dicari, tautan asli tetap ada di setiap kiriman.",
   },
   news_empty: {
     eng: "No news available right now. Check back soon.",
@@ -3151,6 +3515,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Şu anda haber yok. Yakında tekrar kontrol edin.",
     zhs: "目前暂无新闻。稍后再来查看。",
     zht: "目前暫無新聞。稍後再來檢視。",
+    ara: "لا توجد أخبار الآن. عد قريبًا.",
+    ind: "Belum ada berita saat ini. Cek lagi nanti.",
   },
   "Mega Crit": {
     eng: "Mega Crit",
@@ -3168,6 +3534,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Mega Crit",
     zhs: "Mega Crit",
     zht: "Mega Crit",
+    ara: "Mega Crit",
+    ind: "Mega Crit",
   },
   Press: {
     eng: "Press",
@@ -3185,6 +3553,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Basın",
     zhs: "媒体",
     zht: "媒體",
+    ara: "الصحافة",
+    ind: "Pers",
   },
   news_tab_community: {
     eng: "Steam announcements",
@@ -3202,6 +3572,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Steam duyuruları",
     zhs: "Steam 公告",
     zht: "Steam 公告",
+    ara: "إعلانات Steam",
+    ind: "Pengumuman Steam",
   },
   news_tab_press: {
     eng: "PCGamesN, RPS, GamingOnLinux…",
@@ -3219,6 +3591,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "PCGamesN, RPS, GamingOnLinux…",
     zhs: "PCGamesN, RPS, GamingOnLinux…",
     zht: "PCGamesN, RPS, GamingOnLinux…",
+    ara: "PCGamesN, RPS, GamingOnLinux…",
+    ind: "PCGamesN, RPS, GamingOnLinux…",
   },
   news_tab_all: {
     eng: "Everything",
@@ -3236,6 +3610,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Hepsi",
     zhs: "全部",
     zht: "全部",
+    ara: "الكل",
+    ind: "Semuanya",
   },
   "News - Subtitle": {
     eng: "Patch Notes & Announcements",
@@ -3253,6 +3629,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Yama Notları ve Duyurular",
     zhs: "补丁说明与公告",
     zht: "補丁說明與公告",
+    ara: "ملاحظات التحديث والإعلانات",
+    ind: "Catatan Patch & Pengumuman",
   },
   news_meta_description: {
     eng: "Slay the Spire 2 patch notes, dev announcements, and press coverage. Track every Mega Crit update plus external articles from PCGamesN, RPS, and more.",
@@ -3270,6 +3648,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 yama notları, geliştirici duyuruları ve basın haberleri. Her Mega Crit güncellemesini ve PCGamesN, RPS ve daha fazlasından harici makaleleri takip edin.",
     zhs: "杀戮尖塔2的补丁说明、开发者公告和媒体报道。追踪 Mega Crit 的每次更新以及 PCGamesN、RPS 等外部文章。",
     zht: "殺戮尖塔2的補丁說明、開發者公告和媒體報道。追蹤 Mega Crit 的每次更新以及 PCGamesN、RPS 等外部文章。",
+    ara: "ملاحظات تحديث Slay the Spire 2 وإعلانات المطورين والتغطية الصحفية. تابع كل تحديث من Mega Crit مع مقالات خارجية من PCGamesN و RPS وغيرهما.",
+    ind: "Catatan patch Slay the Spire 2, pengumuman pengembang, dan liputan pers. Pantau semua pembaruan Mega Crit plus artikel luar dari PCGamesN, RPS, dan lainnya.",
   },
   home_news_heading_prefix: {
     eng: "Slay the Spire 2 News from",
@@ -3287,6 +3667,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 haberleri",
     zhs: "杀戮尖塔2新闻 来自",
     zht: "殺戮尖塔2新聞 來自",
+    ara: "أخبار Slay the Spire 2 من",
+    ind: "Berita Slay the Spire 2 dari",
   },
   "View more": {
     eng: "View more",
@@ -3304,6 +3686,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Daha fazla",
     zhs: "查看更多",
     zht: "檢視更多",
+    ara: "عرض المزيد",
+    ind: "Lihat lainnya",
   },
   Community: {
     eng: "Community",
@@ -3321,6 +3705,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Topluluk",
     zhs: "社区",
     zht: "社群",
+    ara: "المجتمع",
+    ind: "Komunitas",
   },
   home_faq_heading: {
     eng: "Frequently Asked Questions",
@@ -3338,6 +3724,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Sıkça Sorulan Sorular",
     zhs: "常见问题",
     zht: "常見問題",
+    ara: "الأسئلة الشائعة",
+    ind: "Pertanyaan yang Sering Diajukan",
   },
   "Recent Runs": {
     eng: "Recent Runs",
@@ -3355,6 +3743,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Son Koşular",
     zhs: "最近运行",
     zht: "最近執行",
+    ara: "أحدث الجولات",
+    ind: "Perjalanan Terbaru",
   },
   "Upload your runs": {
     eng: "Upload your runs",
@@ -3372,6 +3762,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Koşularını yükle",
     zhs: "上传你的对局",
     zht: "上傳你的對局",
+    ara: "ارفع جولاتك",
+    ind: "Unggah perjalananmu",
   },
   "View all stats": {
     eng: "View all stats",
@@ -3389,6 +3781,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tüm istatistikleri gör",
     zhs: "查看所有统计",
     zht: "檢視所有統計",
+    ara: "عرض كل الإحصائيات",
+    ind: "Lihat semua statistik",
   },
   "Character Win Rates": {
     eng: "Character Win Rates",
@@ -3406,6 +3800,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Karakter Galibiyet Oranları",
     zhs: "角色胜率",
     zht: "角色勝率",
+    ara: "معدلات فوز الشخصيات",
+    ind: "Rasio Menang Karakter",
   },
   "Most Played": {
     eng: "Most Played",
@@ -3423,6 +3819,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "En çok oynanan",
     zhs: "最常游玩",
     zht: "最常遊玩",
+    ara: "الأكثر لعبًا",
+    ind: "Paling Sering Dimainkan",
   },
   "No A10 wins submitted yet, be the first.": {
     eng: "No A10 wins submitted yet, be the first.",
@@ -3440,6 +3838,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Henüz A10 galibiyeti gönderilmedi, ilk olun.",
     zhs: "尚未提交 A10 胜利, 来当第一个。",
     zht: "尚未提交 A10 勝利, 來當第一個。",
+    ara: "لم يُرسل أي فوز A10 بعد، كن الأول.",
+    ind: "Belum ada kemenangan A10 yang dikirim, jadilah yang pertama.",
   },
   "No runs submitted yet.": {
     eng: "No runs submitted yet.",
@@ -3457,6 +3857,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Henüz koşu gönderilmedi.",
     zhs: "尚未提交任何运行。",
     zht: "尚未提交任何執行。",
+    ara: "لم تُرسل أي جولات بعد.",
+    ind: "Belum ada perjalanan yang dikirim.",
   },
 
   // Leaderboard browse / table headers
@@ -3476,6 +3878,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tümü",
     zhs: "全部",
     zht: "全部",
+    ara: "الكل",
+    ind: "Semua",
   },
   Rank: {
     eng: "Rank",
@@ -3493,6 +3897,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Sıra",
     zhs: "排名",
     zht: "排名",
+    ara: "الترتيب",
+    ind: "Peringkat",
   },
   Player: {
     eng: "Player",
@@ -3510,6 +3916,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Oyuncu",
     zhs: "玩家",
     zht: "玩家",
+    ara: "اللاعب",
+    ind: "Pemain",
   },
   Character: {
     eng: "Character",
@@ -3527,6 +3935,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Karakter",
     zhs: "角色",
     zht: "角色",
+    ara: "الشخصية",
+    ind: "Karakter",
   },
   Asc: {
     eng: "Asc",
@@ -3544,6 +3954,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Yük.",
     zhs: "进阶",
     zht: "晉階",
+    ara: "صعود",
+    ind: "Angk",
   },
   Time: {
     eng: "Time",
@@ -3561,6 +3973,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Süre",
     zhs: "时间",
     zht: "時間",
+    ara: "الوقت",
+    ind: "Waktu",
   },
   Floors: {
     eng: "Floors",
@@ -3578,6 +3992,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Katlar",
     zhs: "层数",
     zht: "層數",
+    ara: "الطوابق",
+    ind: "Lantai",
   },
   Score: {
     eng: "Score",
@@ -3595,6 +4011,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Puan",
     zhs: "分数",
     zht: "分數",
+    ara: "النتيجة",
+    ind: "Skor",
   },
   "No leaderboard entries found.": {
     eng: "No leaderboard entries found.",
@@ -3612,6 +4030,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Liderlik tablosunda kayıt bulunamadı.",
     zhs: "未找到排行榜记录。",
     zht: "未找到排行榜記錄。",
+    ara: "لا توجد نتائج في لوحة المتصدرين.",
+    ind: "Tidak ada entri peringkat.",
   },
   "No runs found.": {
     eng: "No runs found.",
@@ -3629,6 +4049,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tur bulunamadı.",
     zhs: "未找到对局。",
     zht: "未找到對局。",
+    ara: "لا توجد جولات.",
+    ind: "Tidak ada perjalanan.",
   },
   "All Runs": {
     eng: "All Runs",
@@ -3646,6 +4068,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tüm Turlar",
     zhs: "所有对局",
     zht: "所有對局",
+    ara: "كل الجولات",
+    ind: "Semua Perjalanan",
   },
   "All Versions": {
     eng: "All Versions",
@@ -3663,6 +4087,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tüm Sürümler",
     zhs: "所有版本",
     zht: "所有版本",
+    ara: "كل الإصدارات",
+    ind: "Semua Versi",
   },
   Wins: {
     eng: "Wins",
@@ -3680,6 +4106,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Galibiyetler",
     zhs: "胜利",
     zht: "勝利",
+    ara: "الانتصارات",
+    ind: "Menang",
   },
   Losses: {
     eng: "Losses",
@@ -3697,6 +4125,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Yenilgiler",
     zhs: "失败",
     zht: "失敗",
+    ara: "الهزائم",
+    ind: "Kalah",
   },
   Newest: {
     eng: "Newest",
@@ -3714,6 +4144,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "En Yeni",
     zhs: "最新",
     zht: "最新",
+    ara: "الأحدث",
+    ind: "Terbaru",
   },
   Slowest: {
     eng: "Slowest",
@@ -3731,6 +4163,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "En Yavaş",
     zhs: "最慢",
     zht: "最慢",
+    ara: "الأبطأ",
+    ind: "Terlama",
   },
   "Highest Asc": {
     eng: "Highest Asc",
@@ -3748,6 +4182,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "En Yüksek Yük.",
     zhs: "最高进阶",
     zht: "最高晉階",
+    ara: "أعلى صعود",
+    ind: "Angk Tertinggi",
   },
   "runs total": {
     eng: "runs total",
@@ -3765,6 +4201,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "toplam tur",
     zhs: "总对局数",
     zht: "總對局數",
+    ara: "جولة إجمالًا",
+    ind: "total perjalanan",
   },
   Page: {
     eng: "Page",
@@ -3782,6 +4220,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Sayfa",
     zhs: "页",
     zht: "頁",
+    ara: "صفحة",
+    ind: "Halaman",
   },
   of: {
     eng: "of",
@@ -3799,6 +4239,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "/",
     zhs: "/",
     zht: "/",
+    ara: "من",
+    ind: "dari",
   },
   Prev: {
     eng: "Prev",
@@ -3816,6 +4258,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Önceki",
     zhs: "上一页",
     zht: "上一頁",
+    ara: "السابق",
+    ind: "Sebelumnya",
   },
   Next: {
     eng: "Next",
@@ -3833,6 +4277,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Sonraki",
     zhs: "下一页",
     zht: "下一頁",
+    ara: "التالي",
+    ind: "Berikutnya",
   },
 
   // Submit Run / file uploads
@@ -3852,6 +4298,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Dosya Seç",
     zhs: "选择文件",
     zht: "選擇檔案",
+    ara: "اختر ملفات",
+    ind: "Pilih File",
   },
   "Done!": {
     eng: "Done!",
@@ -3869,6 +4317,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tamam!",
     zhs: "完成！",
     zht: "完成！",
+    ara: "تم!",
+    ind: "Selesai!",
   },
   submitted: {
     eng: "submitted",
@@ -3886,6 +4336,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "gönderildi",
     zhs: "已提交",
     zht: "已提交",
+    ara: "مُرسلة",
+    ind: "terkirim",
   },
   "duplicates skipped": {
     eng: "duplicates skipped",
@@ -3903,6 +4355,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "yinelenenler atlandı",
     zhs: "已跳过重复项",
     zht: "已跳過重複項",
+    ara: "مكررة تم تخطيها",
+    ind: "duplikat dilewati",
   },
   invalid: {
     eng: "invalid",
@@ -3920,6 +4374,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "geçersiz",
     zhs: "无效",
     zht: "無效",
+    ara: "غير صالحة",
+    ind: "tidak valid",
   },
   Processing: {
     eng: "Processing",
@@ -3937,6 +4393,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "İşleniyor",
     zhs: "处理中",
     zht: "處理中",
+    ara: "جارٍ المعالجة",
+    ind: "Memproses",
   },
   "or paste JSON": {
     eng: "or paste JSON",
@@ -3954,6 +4412,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "ya da JSON yapıştır",
     zhs: "或粘贴 JSON",
     zht: "或貼上 JSON",
+    ara: "أو الصق JSON",
+    ind: "atau tempel JSON",
   },
   "Analyze Run": {
     eng: "Analyze Run",
@@ -3971,6 +4431,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Turu Analiz Et",
     zhs: "分析对局",
     zht: "分析對局",
+    ara: "تحليل الجولة",
+    ind: "Analisis Perjalanan",
   },
   submit_invalid_run: {
     eng: "This doesn't look like a valid run file. Expected players, map_point_history, and acts fields.",
@@ -3988,6 +4450,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Bu geçerli bir tur dosyasına benzemiyor. players, map_point_history ve acts alanları bekleniyor.",
     zhs: "这看起来不像有效的对局文件。需要 players、map_point_history 和 acts 字段。",
     zht: "這看起來不像有效的對局檔案。需要 players、map_point_history 和 acts 欄位。",
+    ara: "لا يبدو هذا ملف جولة صالحًا. الحقول المتوقعة: players و map_point_history و acts.",
+    ind: "Ini sepertinya bukan file perjalanan yang valid. Kolom yang diharapkan: players, map_point_history, dan acts.",
   },
 
   // Run summary / shared run
@@ -4007,6 +4471,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tur bulunamadı.",
     zhs: "未找到对局。",
     zht: "未找到對局。",
+    ara: "الجولة غير موجودة.",
+    ind: "Perjalanan tidak ditemukan.",
   },
   "Killed by": {
     eng: "Killed by",
@@ -4024,6 +4490,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Öldüren",
     zhs: "被击败者",
     zht: "被擊敗者",
+    ara: "قُتل على يد",
+    ind: "Dibunuh oleh",
   },
   Hide: {
     eng: "Hide",
@@ -4041,6 +4509,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Gizle",
     zhs: "隐藏",
     zht: "隱藏",
+    ara: "إخفاء",
+    ind: "Sembunyikan",
   },
   Show: {
     eng: "Show",
@@ -4058,6 +4528,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Göster",
     zhs: "显示",
     zht: "顯示",
+    ara: "إظهار",
+    ind: "Tampilkan",
   },
   "detailed history": {
     eng: "detailed history (deck list, relic acquisition floors, floor-by-floor stats)",
@@ -4075,6 +4547,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "ayrıntılı geçmiş (deste listesi, kalıntı edinme katları, kat kat istatistikler)",
     zhs: "详细历史（牌组列表、遗物获取楼层、逐层统计）",
     zht: "詳細歷史（牌組列表、遺物獲取樓層、逐層統計）",
+    ara: "السجل المفصل (قائمة المجموعة، طوابق الحصول على الآثار، إحصائيات كل طابق)",
+    ind: "riwayat detail (daftar dek, lantai perolehan pusaka, statistik per lantai)",
   },
   "Final Deck": {
     eng: "Final Deck",
@@ -4092,6 +4566,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Son Deste",
     zhs: "最终牌组",
     zht: "最終牌組",
+    ara: "المجموعة النهائية",
+    ind: "Dek Akhir",
   },
   "Floor History": {
     eng: "Floor History",
@@ -4109,6 +4585,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Kat Geçmişi",
     zhs: "楼层历史",
     zht: "樓層歷史",
+    ara: "سجل الطوابق",
+    ind: "Riwayat Lantai",
   },
   Floor: {
     eng: "Floor",
@@ -4126,6 +4604,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Kat",
     zhs: "楼层",
     zht: "樓層",
+    ara: "الطابق",
+    ind: "Lantai",
   },
 
   // Stats / Meta
@@ -4145,6 +4625,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Sunulan",
     zhs: "提供",
     zht: "提供",
+    ara: "معروض",
+    ind: "Ditawarkan",
   },
   "In Decks": {
     eng: "In Decks",
@@ -4162,6 +4644,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Destelerde",
     zhs: "在牌组中",
     zht: "在牌組中",
+    ara: "في المجموعات",
+    ind: "Di Dek",
   },
   "Win %": {
     eng: "Win %",
@@ -4179,6 +4663,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Galibiyet %",
     zhs: "胜率%",
     zht: "勝率%",
+    ara: "الفوز %",
+    ind: "Menang %",
   },
   Name: {
     eng: "Name",
@@ -4196,6 +4682,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "İsim",
     zhs: "名称",
     zht: "名稱",
+    ara: "الاسم",
+    ind: "Nama",
   },
   "Top 20": {
     eng: "Top 20",
@@ -4213,6 +4701,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "İlk 20",
     zhs: "前20",
     zht: "前20",
+    ara: "أفضل 20",
+    ind: "20 Teratas",
   },
   "Show All": {
     eng: "Show All",
@@ -4230,6 +4720,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tümünü Göster",
     zhs: "显示全部",
     zht: "顯示全部",
+    ara: "عرض الكل",
+    ind: "Tampilkan Semua",
   },
   Runs: {
     eng: "Runs",
@@ -4247,6 +4739,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Turlar",
     zhs: "对局",
     zht: "對局",
+    ara: "الجولات",
+    ind: "Perjalanan",
   },
 
   // Footer / Feedback modal
@@ -4266,6 +4760,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Geri Bildirim Gönder",
     zhs: "提交反馈",
     zht: "提交反饋",
+    ara: "إرسال ملاحظات",
+    ind: "Kirim Masukan",
   },
   "Sent successfully. Thank you!": {
     eng: "Sent successfully. Thank you!",
@@ -4283,6 +4779,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Başarıyla gönderildi. Teşekkürler!",
     zhs: "已成功发送。谢谢！",
     zht: "已成功傳送。謝謝！",
+    ara: "تم الإرسال بنجاح. شكرًا لك!",
+    ind: "Berhasil dikirim. Terima kasih!",
   },
   "Failed to send. Please try again.": {
     eng: "Failed to send. Please try again.",
@@ -4300,6 +4798,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Gönderilemedi. Lütfen tekrar deneyin.",
     zhs: "发送失败。请重试。",
     zht: "傳送失敗。請重試。",
+    ara: "فشل الإرسال. حاول مرة أخرى.",
+    ind: "Gagal mengirim. Coba lagi.",
   },
   Type: {
     eng: "Type",
@@ -4317,6 +4817,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tür",
     zhs: "类型",
     zht: "型別",
+    ara: "النوع",
+    ind: "Tipe",
   },
   Bug: {
     eng: "Bug",
@@ -4334,6 +4836,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Hata",
     zhs: "缺陷",
     zht: "缺陷",
+    ara: "خلل",
+    ind: "Bug",
   },
   "Feature Request": {
     eng: "Feature Request",
@@ -4351,6 +4855,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Özellik İsteği",
     zhs: "功能请求",
     zht: "功能請求",
+    ara: "طلب ميزة",
+    ind: "Permintaan Fitur",
   },
   Localization: {
     eng: "Localization",
@@ -4368,6 +4874,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Yerelleştirme",
     zhs: "本地化",
     zht: "本地化",
+    ara: "الترجمة",
+    ind: "Terjemahan",
   },
   "Discord Username or Email": {
     eng: "Discord Username or Email",
@@ -4385,6 +4893,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Discord Kullanıcı Adı veya E-posta",
     zhs: "Discord 用户名或邮箱",
     zht: "Discord 使用者名稱或郵箱",
+    ara: "اسم المستخدم في Discord أو البريد الإلكتروني",
+    ind: "Nama pengguna Discord atau Email",
   },
   Contents: {
     eng: "Contents",
@@ -4402,6 +4912,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "İçerik",
     zhs: "内容",
     zht: "內容",
+    ara: "المحتوى",
+    ind: "Isi",
   },
   "Describe the bug or feature request...": {
     eng: "Describe the bug or feature request...",
@@ -4419,6 +4931,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Hatayı veya özellik isteğini açıklayın...",
     zhs: "描述缺陷或功能请求...",
     zht: "描述缺陷或功能請求...",
+    ara: "صف الخلل أو الميزة المطلوبة...",
+    ind: "Jelaskan bug atau permintaan fiturnya...",
   },
   Cancel: {
     eng: "Cancel",
@@ -4436,6 +4950,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "İptal",
     zhs: "取消",
     zht: "取消",
+    ara: "إلغاء",
+    ind: "Batalkan",
   },
   Submit: {
     eng: "Submit",
@@ -4453,6 +4969,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Gönder",
     zhs: "提交",
     zht: "提交",
+    ara: "إرسال",
+    ind: "Kirim",
   },
   "Sending...": {
     eng: "Sending...",
@@ -4470,6 +4988,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Gönderiliyor...",
     zhs: "发送中...",
     zht: "傳送中...",
+    ara: "جارٍ الإرسال...",
+    ind: "Mengirim...",
   },
   "Stable Site": {
     eng: "Stable Site",
@@ -4487,6 +5007,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Kararlı Site",
     zhs: "稳定站点",
     zht: "穩定站點",
+    ara: "الموقع المستقر",
+    ind: "Situs Stabil",
   },
   "Beta Site": {
     eng: "Beta Site",
@@ -4504,6 +5026,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Beta Site",
     zhs: "测试站点",
     zht: "測試站點",
+    ara: "الموقع التجريبي",
+    ind: "Situs Beta",
   },
 
   // Global search
@@ -4523,6 +5047,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Kart, kalıntı, canavar ara...",
     zhs: "搜索卡牌、遗物、怪物...",
     zht: "搜尋卡牌、遺物、怪物...",
+    ara: "ابحث عن بطاقات، آثار، وحوش...",
+    ind: "Cari kartu, pusaka, monster...",
   },
   "Type to search across all categories": {
     eng: "Type to search across all categories",
@@ -4540,6 +5066,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tüm kategorilerde arama yapmak için yazın",
     zhs: "输入以搜索所有类别",
     zht: "輸入以搜尋所有類別",
+    ara: "اكتب للبحث في كل الفئات",
+    ind: "Ketik untuk mencari di semua kategori",
   },
   "No results found for": {
     eng: "No results found for",
@@ -4557,6 +5085,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Sonuç bulunamadı:",
     zhs: "未找到结果：",
     zht: "未找到結果：",
+    ara: "لا توجد نتائج لـ",
+    ind: "Tidak ada hasil untuk",
   },
   Pages: {
     eng: "Pages",
@@ -4574,6 +5104,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Sayfalar",
     zhs: "页面",
     zht: "頁面",
+    ara: "الصفحات",
+    ind: "Halaman",
   },
   Search: {
     eng: "Search",
@@ -4591,6 +5123,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Ara",
     zhs: "搜索",
     zht: "搜尋",
+    ara: "بحث",
+    ind: "Cari",
   },
 
   // Mechanics hub
@@ -4610,6 +5144,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Oyun Mekanikleri",
     zhs: "游戏机制",
     zht: "遊戲機制",
+    ara: "آليات اللعبة",
+    ind: "Mekanisme Game",
   },
   mechanics_tagline: {
     eng: "Every drop rate, reward chance, and game formula extracted from Slay the Spire 2's decompiled source code. All values are exact.",
@@ -4627,6 +5163,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2'nin derlenmiş kaynak kodundan çıkarılan her drop oranı, ödül şansı ve oyun formülü. Tüm değerler kesindir.",
     zhs: "从《杀戮尖塔2》反编译源代码中提取的每个掉落率、奖励几率和游戏公式。所有数值均精确。",
     zht: "從《殺戮尖塔2》反編譯原始碼中提取的每個掉落率、獎勵機率和遊戲公式。所有數值均精確。",
+    ara: "كل نسب الظهور وفرص المكافآت ومعادلات اللعبة مستخرجة من الشيفرة المصدرية المفككة للعبة Slay the Spire 2. كل القيم دقيقة.",
+    ind: "Semua drop rate, peluang hadiah, dan rumus game diambil dari kode sumber Slay the Spire 2 hasil dekompilasi. Semua nilainya persis.",
   },
   Mechanics: {
     eng: "Mechanics",
@@ -4644,6 +5182,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Mekanikler",
     zhs: "机制",
     zht: "機制",
+    ara: "الآليات",
+    ind: "Mekanik",
   },
   "Secrets & Trivia": {
     eng: "Secrets & Trivia",
@@ -4661,6 +5201,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Sırlar ve İlginç Bilgiler",
     zhs: "秘密与趣闻",
     zht: "秘密與趣聞",
+    ara: "أسرار ومعلومات طريفة",
+    ind: "Rahasia & Trivia",
   },
 
   // Generic/shared
@@ -4680,6 +5222,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "evet",
     zhs: "是",
     zht: "是",
+    ara: "نعم",
+    ind: "ya",
   },
   no: {
     eng: "no",
@@ -4697,6 +5241,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "hayır",
     zhs: "否",
     zht: "否",
+    ara: "لا",
+    ind: "tidak",
   },
 
   // Nav groups + nav links that were missing
@@ -4716,6 +5262,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Araçlar",
     zhs: "工具",
     zht: "工具",
+    ara: "الأدوات",
+    ind: "Alat",
   },
   "Custom Mode": {
     eng: "Custom Mode",
@@ -4733,6 +5281,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Özel Mod",
     zhs: "自定义模式",
     zht: "自定義模式",
+    ara: "الوضع المخصص",
+    ind: "Mode Kustom",
   },
   Unlocks: {
     eng: "Unlocks",
@@ -4750,6 +5300,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Kilit Açma",
     zhs: "解锁",
     zht: "解鎖",
+    ara: "المفتوحات",
+    ind: "Bukaan",
   },
   Unlockables: {
     eng: "Unlockables",
@@ -4767,6 +5319,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Açılabilirler",
     zhs: "可解锁内容",
     zht: "可解鎖內容",
+    ara: "العناصر القابلة للفتح",
+    ind: "Yang Bisa Dibuka",
   },
   Ancients: {
     eng: "Ancients",
@@ -4784,6 +5338,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Kadimler",
     zhs: "远古者",
     zht: "遠古者",
+    ara: "القدماء",
+    ind: "Ancient",
   },
   Guides: {
     eng: "Guides",
@@ -4801,6 +5357,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Rehberler",
     zhs: "攻略",
     zht: "攻略",
+    ara: "الأدلة",
+    ind: "Panduan",
   },
   "Submit a Guide": {
     eng: "Submit a Guide",
@@ -4818,6 +5376,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Bir Rehber Gönder",
     zhs: "提交攻略",
     zht: "提交攻略",
+    ara: "أرسل دليلًا",
+    ind: "Kirim Panduan",
   },
   "Toggle menu": {
     eng: "Toggle menu",
@@ -4835,6 +5395,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Menüyü aç/kapat",
     zhs: "切换菜单",
     zht: "切換選單",
+    ara: "إظهار أو إخفاء القائمة",
+    ind: "Buka atau tutup menu",
   },
   "View Stable Site": {
     eng: "View Stable Site",
@@ -4852,6 +5414,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Kararlı Siteyi Görüntüle",
     zhs: "查看稳定站点",
     zht: "檢視穩定站點",
+    ara: "عرض الموقع المستقر",
+    ind: "Lihat Situs Stabil",
   },
   "View Beta Site": {
     eng: "View Beta Site",
@@ -4869,6 +5433,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Beta Siteyi Görüntüle",
     zhs: "查看测试站点",
     zht: "檢視測試站點",
+    ara: "عرض الموقع التجريبي",
+    ind: "Lihat Situs Beta",
   },
 
   // Page titles + taglines that were untranslated on /[lang] pages
@@ -4888,6 +5454,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Topluluk strateji rehberleri, karakter analizleri ve Spire'a tırmanma ipuçları.",
     zhs: "社区策略攻略、角色解析、攀登尖塔的技巧。",
     zht: "社群策略攻略、角色解析、攀登尖塔的技巧。",
+    ara: "أدلة استراتيجية من المجتمع وتحليلات للشخصيات ونصائح لتسلق البرج.",
+    ind: "Panduan strategi komunitas, ulasan karakter, dan tips mendaki Spire.",
   },
   "Keywords & Game Terms": {
     eng: "Keywords & Game Terms",
@@ -4905,6 +5473,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Anahtar Kelimeler ve Oyun Terimleri",
     zhs: "关键词与游戏术语",
     zht: "關鍵詞與遊戲術語",
+    ara: "الكلمات المفتاحية ومصطلحات اللعبة",
+    ind: "Kata Kunci & Istilah Game",
   },
   "Game Terms": {
     eng: "Game Terms",
@@ -4922,6 +5492,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Oyun Terimleri",
     zhs: "游戏术语",
     zht: "遊戲術語",
+    ara: "مصطلحات اللعبة",
+    ind: "Istilah Game",
   },
   "Slay the Spire 2 Timeline": {
     eng: "Slay the Spire 2 Timeline",
@@ -4939,6 +5511,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 Zaman Çizelgesi",
     zhs: "杀戮尖塔2时间线",
     zht: "殺戮尖塔2時間線",
+    ara: "الخط الزمني للعبة Slay the Spire 2",
+    ind: "Linimasa Slay the Spire 2",
   },
   "Slay the Spire 2 Reference": {
     eng: "Slay the Spire 2 Reference",
@@ -4956,6 +5530,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 Referansı",
     zhs: "杀戮尖塔2参考",
     zht: "殺戮尖塔2參考",
+    ara: "مرجع Slay the Spire 2",
+    ind: "Referensi Slay the Spire 2",
   },
   "Slay the Spire 2 Guides": {
     eng: "Slay the Spire 2 Guides",
@@ -4973,6 +5549,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 Rehberleri",
     zhs: "杀戮尖塔2攻略",
     zht: "殺戮尖塔2攻略",
+    ara: "أدلة Slay the Spire 2",
+    ind: "Panduan Slay the Spire 2",
   },
   "Community Showcase": {
     eng: "Community Showcase",
@@ -4990,6 +5568,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Topluluk Vitrini",
     zhs: "社区展示",
     zht: "社群展示",
+    ara: "معرض المجتمع",
+    ind: "Karya Komunitas",
   },
   timeline_tagline: {
     eng: "Explore the full Slay the Spire 2 timeline across every epoch, story arc, and era. Track story progression, unlockable cards, relics, and potions.",
@@ -5007,6 +5587,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Her epok, hikaye yayı ve çağ boyunca Slay the Spire 2'nin tam zaman çizelgesini keşfedin. Hikaye ilerlemesini, kilidi açılabilir kartları, kalıntıları ve iksirleri takip edin.",
     zhs: "探索杀戮尖塔2横跨每个纪元、故事弧和时代的完整时间线。追踪故事进展、可解锁的卡牌、遗物和药水。",
     zht: "探索殺戮尖塔2橫跨每個紀元、故事弧和時代的完整時間線。追蹤故事進展、可解鎖的卡牌、遺物和藥水。",
+    ara: "استكشف الخط الزمني الكامل للعبة Slay the Spire 2 عبر كل حقبة وخط قصصي وعصر. تابع تقدم القصة والبطاقات والآثار والجرعات القابلة للفتح.",
+    ind: "Jelajahi seluruh linimasa Slay the Spire 2 di setiap zaman, alur cerita, dan era. Ikuti perkembangan cerita serta kartu, pusaka, dan ramuan yang bisa dibuka.",
   },
   reference_tagline: {
     eng: "Quick reference for Slay the Spire 2 game mechanics, keywords, orbs, afflictions, intents, modifiers, achievements, acts, and ascension levels.",
@@ -5024,6 +5606,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Slay the Spire 2 oyun mekanikleri için hızlı referans, anahtar kelimeler, küreler, rahatsızlıklar, niyetler, değiştiriciler, başarımlar, perdeler ve yükseliş seviyeleri.",
     zhs: "杀戮尖塔2游戏机制速查, 关键词、能量球、状态、意图、修改器、成就、阶段和进阶等级。",
     zht: "殺戮尖塔2遊戲機制速查, 關鍵詞、能量球、狀態、意圖、修改器、成就、幕次和晉階等級。",
+    ara: "مرجع سريع لآليات لعبة Slay the Spire 2: الكلمات المفتاحية والأجرام والآفات والنوايا والمعدّلات والإنجازات والفصول ومستويات الصعود.",
+    ind: "Referensi cepat mekanik game Slay the Spire 2: kata kunci, bola, penyakit, niat, efek Mode Kustom, pencapaian, babak, dan level Angkatan.",
   },
 
   // Detail pages, community stats, daily climb, and feedback UI strings
@@ -5043,6 +5627,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Rahatsızlık",
     zhs: "状态",
     zht: "狀態",
+    ara: "عبء",
+    ind: "Penyakit",
   },
   "All Modes": {
     eng: "All Modes",
@@ -5060,6 +5646,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tüm Modlar",
     zhs: "所有模式",
     zht: "所有模式",
+    ara: "كل الأوضاع",
+    ind: "Semua Mode",
   },
   "At a glance": {
     eng: "At a glance",
@@ -5077,6 +5665,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Bir bakışta",
     zhs: "一览",
     zht: "一覽",
+    ara: "لمحة سريعة",
+    ind: "Sekilas",
   },
   "Beta art": {
     eng: "Beta art",
@@ -5094,6 +5684,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Beta görseli",
     zhs: "测试版美术",
     zht: "測試版美術",
+    ara: "رسوم البيتا",
+    ind: "Gambar beta",
   },
   Card: {
     eng: "Card",
@@ -5111,6 +5703,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Kart",
     zhs: "卡牌",
     zht: "卡牌",
+    ara: "بطاقة",
+    ind: "Kartu",
   },
   "Card Prices": {
     eng: "Card Prices",
@@ -5128,6 +5722,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Kart Fiyatları",
     zhs: "卡牌价格",
     zht: "卡牌價格",
+    ara: "أسعار البطاقات",
+    ind: "Harga Kartu",
   },
   "Card Removal": {
     eng: "Card Removal",
@@ -5145,6 +5741,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Kart Kaldırma",
     zhs: "移除卡牌",
     zht: "移除卡牌",
+    ara: "إزالة البطاقات",
+    ind: "Pembuangan Kartu",
   },
   "Card removal": {
     eng: "Card removal",
@@ -5162,6 +5760,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Kart kaldırma",
     zhs: "移除卡牌",
     zht: "移除卡牌",
+    ara: "إزالة البطاقات",
+    ind: "Pembuangan kartu",
   },
   "Card version": {
     eng: "Card version",
@@ -5179,6 +5779,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Kart sürümü",
     zhs: "卡牌版本",
     zht: "卡牌版本",
+    ara: "نسخة البطاقة",
+    ind: "Versi kartu",
   },
   "Cards from": {
     eng: "Cards from",
@@ -5196,6 +5798,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Şuradan kartlar:",
     zhs: "卡牌来自",
     zht: "卡牌來自",
+    ara: "بطاقات من",
+    ind: "Kartu dari",
   },
   "Close menu": {
     eng: "Close menu",
@@ -5213,6 +5817,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Menüyü kapat",
     zhs: "关闭菜单",
     zht: "關閉選單",
+    ara: "إغلاق القائمة",
+    ind: "Tutup menu",
   },
   "Codex Elo": {
     eng: "Codex Elo",
@@ -5230,6 +5836,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Codex Elo",
     zhs: "Codex Elo",
     zht: "Codex Elo",
+    ara: "Codex Elo",
+    ind: "Codex Elo",
   },
   "Codex Score": {
     eng: "Codex Score",
@@ -5247,6 +5855,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Codex Puanı",
     zhs: "Codex 分数",
     zht: "Codex 分數",
+    ara: "Codex Score",
+    ind: "Codex Score",
   },
   "Colorless markup": {
     eng: "Colorless markup",
@@ -5264,6 +5874,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Renksiz ek ücreti",
     zhs: "无色卡加价",
     zht: "無色卡加價",
+    ara: "زيادة سعر البطاقات بدون لون",
+    ind: "Kenaikan harga Tak Berwarna",
   },
   "Community performance": {
     eng: "Community performance",
@@ -5281,6 +5893,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Topluluk performansı",
     zhs: "社区表现",
     zht: "社群表現",
+    ara: "أداء المجتمع",
+    ind: "Performa komunitas",
   },
   "Community picks": {
     eng: "Community picks",
@@ -5298,6 +5912,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Topluluk seçimleri",
     zhs: "社区之选",
     zht: "社群之選",
+    ara: "اختيارات المجتمع",
+    ind: "Pilihan komunitas",
   },
   Custom: {
     eng: "Custom",
@@ -5315,6 +5931,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Özel",
     zhs: "自定义",
     zht: "自定義",
+    ara: "مخصص",
+    ind: "Kustom",
   },
   Daily: {
     eng: "Daily",
@@ -5332,6 +5950,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Günlük",
     zhs: "每日",
     zht: "每日",
+    ara: "يومي",
+    ind: "Harian",
   },
   "Daily Climb": {
     eng: "Daily Climb",
@@ -5349,6 +5969,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Günlük Tırmanış",
     zhs: "每日攀登",
     zht: "每日攀登",
+    ara: "التحدي اليومي",
+    ind: "Tantangan Harian",
   },
   Description: {
     eng: "Description",
@@ -5366,6 +5988,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Açıklama",
     zhs: "描述",
     zht: "描述",
+    ara: "الوصف",
+    ind: "Deskripsi",
   },
   Dialogue: {
     eng: "Dialogue",
@@ -5383,6 +6007,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Diyalog",
     zhs: "对话",
     zht: "對話",
+    ara: "الحوار",
+    ind: "Dialog",
   },
   Enchantment: {
     eng: "Enchantment",
@@ -5400,6 +6026,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Büyü",
     zhs: "附魔",
     zht: "附魔",
+    ara: "تعزيز",
+    ind: "Efek",
   },
   "Encounter Stats": {
     eng: "Encounter Stats",
@@ -5417,6 +6045,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Karşılaşma istatistikleri",
     zhs: "遭遇统计",
     zht: "遭遇統計",
+    ara: "إحصائيات المواجهات",
+    ind: "Statistik Pertemuan",
   },
   Energy: {
     eng: "Energy",
@@ -5434,6 +6064,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Enerji",
     zhs: "能量",
     zht: "能量",
+    ara: "الطاقة",
+    ind: "Energi",
   },
   "Fake Merchant": {
     eng: "Fake Merchant",
@@ -5451,6 +6083,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Sahte Tüccar",
     zhs: "假商人",
     zht: "假商人",
+    ara: "التاجر المزيف",
+    ind: "Pedagang Palsu",
   },
   Gender: {
     eng: "Gender",
@@ -5468,6 +6102,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Cinsiyet",
     zhs: "性别",
     zht: "性別",
+    ara: "الجنس",
+    ind: "Jenis Kelamin",
   },
   Generates: {
     eng: "Generates",
@@ -5485,6 +6121,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Üretir",
     zhs: "生成",
     zht: "生成",
+    ara: "يولّد",
+    ind: "Menghasilkan",
   },
   HP: {
     eng: "HP",
@@ -5502,6 +6140,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "HP",
     zhs: "生命值",
     zht: "生命值",
+    ara: "نقاط الصحة",
+    ind: "HP",
   },
   Intent: {
     eng: "Intent",
@@ -5519,6 +6159,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Niyet",
     zhs: "意图",
     zht: "意圖",
+    ara: "النية",
+    ind: "Niat",
   },
   "Is this worded wrong or incorrect? What should it be?": {
     eng: "Is this worded wrong or incorrect? What should it be?",
@@ -5536,6 +6178,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Bu ifade yanlış ya da hatalı mı? Nasıl olmalı?",
     zhs: "这里措辞有误或不正确吗？应该是什么？",
     zht: "這裡措辭有誤或不正確嗎？應該是什麼？",
+    ara: "هل الصياغة خاطئة أو غير صحيحة؟ كيف يجب أن تكون؟",
+    ind: "Apakah kata-katanya salah atau keliru? Seharusnya bagaimana?",
   },
   "Known as": {
     eng: "Known as",
@@ -5553,6 +6197,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Bilinen adı",
     zhs: "又名",
     zht: "又名",
+    ara: "يُعرف بـ",
+    ind: "Dikenal sebagai",
   },
   "Live aggregate across community-submitted runs. Filter by bracket to see how it holds up at higher levels of play.":
     {
@@ -5571,6 +6217,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
       tur: "Topluluğun gönderdiği koşuların canlı toplamı. Daha yüksek oyun seviyelerinde nasıl durduğunu görmek için kademeye göre filtreleyin.",
       zhs: "社区提交对局的实时汇总。按区段筛选，看看它在更高水平的对局中的表现。",
       zht: "社群提交對局的實時彙總。按區段篩選，看看它在更高水平的對局中的表現。",
+      ara: "إجمالي مباشر من الجولات التي أرسلها المجتمع. صفِّ حسب الفئة لترى كيف يصمد في مستويات اللعب الأعلى.",
+      ind: "Agregat langsung dari perjalanan kiriman komunitas. Filter menurut kelompok untuk melihat hasilnya di level permainan yang lebih tinggi.",
     },
   Modifier: {
     eng: "Modifier",
@@ -5588,6 +6236,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Değiştirici",
     zhs: "修改器",
     zht: "修改器",
+    ara: "معدِّل",
+    ind: "Efek",
   },
   "Multiple in-game art variants, toggle above": {
     eng: "Multiple in-game art variants, toggle above",
@@ -5605,6 +6255,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Oyun içi birden fazla görsel çeşidi, yukarıdan değiştirin",
     zhs: "游戏内多种美术变体，请在上方切换",
     zht: "遊戲內多種美術變體，請在上方切換",
+    ara: "عدة نسخ من الرسوم داخل اللعبة، بدّل بينها أعلاه",
+    ind: "Ada beberapa varian gambar dalam game, ganti di atas",
   },
   "NPC Dialogue": {
     eng: "NPC Dialogue",
@@ -5622,6 +6274,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "NPC Diyaloğu",
     zhs: "NPC 对话",
     zht: "NPC 對話",
+    ara: "حوار الشخصيات",
+    ind: "Dialog NPC",
   },
   "No daily runs yet today.": {
     eng: "No daily runs yet today.",
@@ -5639,6 +6293,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Bugün henüz günlük koşu yok.",
     zhs: "今天还没有每日通关记录。",
     zht: "今天還沒有每日通關記錄。",
+    ara: "لا توجد جولات يومية اليوم بعد.",
+    ind: "Belum ada perjalanan harian hari ini.",
   },
   "No enchantment": {
     eng: "No enchantment",
@@ -5656,6 +6312,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Büyü yok",
     zhs: "无附魔",
     zht: "無附魔",
+    ara: "بلا تعزيز",
+    ind: "Tanpa efek",
   },
   Normal: {
     eng: "Normal",
@@ -5673,6 +6331,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Normal",
     zhs: "普通",
     zht: "普通",
+    ara: "عادي",
+    ind: "Normal",
   },
   "Not sold": {
     eng: "Not sold",
@@ -5690,6 +6350,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Satılmıyor",
     zhs: "不出售",
     zht: "不出售",
+    ara: "غير معروض للبيع",
+    ind: "Tidak dijual",
   },
   "On sale": {
     eng: "On sale",
@@ -5707,6 +6369,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Satışta",
     zhs: "在售",
     zht: "在售",
+    ara: "في التخفيضات",
+    ind: "Diskon",
   },
   "On this page": {
     eng: "On this page",
@@ -5724,6 +6388,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Bu sayfada",
     zhs: "本页内容",
     zht: "本頁內容",
+    ara: "في هذه الصفحة",
+    ind: "Di halaman ini",
   },
   Orb: {
     eng: "Orb",
@@ -5741,6 +6407,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Küre",
     zhs: "能量球",
     zht: "能量球",
+    ara: "جرم",
+    ind: "Bola",
   },
   "Orb Slots": {
     eng: "Orb Slots",
@@ -5758,6 +6426,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Küre yuvaları",
     zhs: "能量球槽位",
     zht: "能量球槽位",
+    ara: "خانات الأجرام",
+    ind: "Tempat Bola",
   },
   "Other potions from the same rarity and pool.": {
     eng: "Other potions from the same rarity and pool.",
@@ -5775,6 +6445,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Aynı nadirlik ve havuzdan diğer iksirler.",
     zhs: "同一稀有度和池的其他药水。",
     zht: "同一稀有度和池的其他藥水。",
+    ara: "جرعات أخرى من الندرة والمجموعة نفسيهما.",
+    ind: "Ramuan lain dari kelangkaan dan kumpulan yang sama.",
   },
   "Other relics from the same pool and rarity.": {
     eng: "Other relics from the same pool and rarity.",
@@ -5792,6 +6464,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Aynı havuz ve nadirlikten diğer kalıntılar.",
     zhs: "同一池和稀有度的其他遗物。",
     zht: "同一池和稀有度的其他遺物。",
+    ara: "آثار أخرى من المجموعة والندرة نفسيهما.",
+    ind: "Pusaka lain dari kumpulan dan kelangkaan yang sama.",
   },
   "Pick rate": {
     eng: "Pick rate",
@@ -5809,6 +6483,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Seçilme oranı",
     zhs: "选取率",
     zht: "選取率",
+    ara: "معدل الاختيار",
+    ind: "Tingkat pilih",
   },
   Pool: {
     eng: "Pool",
@@ -5826,6 +6502,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Havuz",
     zhs: "池",
     zht: "池",
+    ara: "المجموعة",
+    ind: "Kumpulan",
   },
   Potion: {
     eng: "Potion",
@@ -5843,6 +6521,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "İksir",
     zhs: "药水",
     zht: "藥水",
+    ara: "جرعة",
+    ind: "Ramuan",
   },
   "Potion Prices": {
     eng: "Potion Prices",
@@ -5860,6 +6540,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "İksir Fiyatları",
     zhs: "药水价格",
     zht: "藥水價格",
+    ara: "أسعار الجرعات",
+    ind: "Harga Ramuan",
   },
   "Potions from": {
     eng: "Potions from",
@@ -5877,6 +6559,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Şuradan iksirler:",
     zhs: "药水来自",
     zht: "藥水來自",
+    ara: "جرعات من",
+    ind: "Ramuan dari",
   },
   Quotes: {
     eng: "Quotes",
@@ -5894,6 +6578,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Alıntılar",
     zhs: "语录",
     zht: "語錄",
+    ara: "الاقتباسات",
+    ind: "Kutipan",
   },
   Rarity: {
     eng: "Rarity",
@@ -5911,6 +6597,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Nadirlik",
     zhs: "稀有度",
     zht: "稀有度",
+    ara: "الندرة",
+    ind: "Kelangkaan",
   },
   Relations: {
     eng: "Relations",
@@ -5928,6 +6616,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "İlişkiler",
     zhs: "关系",
     zht: "關係",
+    ara: "العلاقات",
+    ind: "Hubungan",
   },
   Synergy: {
     eng: "Synergy",
@@ -5945,6 +6635,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Sinerji",
     zhs: "协同",
     zht: "協同",
+    ara: "التآزر",
+    ind: "Sinergi",
   },
   Relic: {
     eng: "Relic",
@@ -5962,6 +6654,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Kalıntı",
     zhs: "遗物",
     zht: "遺物",
+    ara: "أثر",
+    ind: "Pusaka",
   },
   "Relic Prices": {
     eng: "Relic Prices",
@@ -5979,6 +6673,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Kalıntı Fiyatları",
     zhs: "遗物价格",
     zht: "遺物價格",
+    ara: "أسعار الآثار",
+    ind: "Harga Pusaka",
   },
   "Relics from": {
     eng: "Relics from",
@@ -5996,6 +6692,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Şuradan kalıntılar:",
     zhs: "遗物来自",
     zht: "遺物來自",
+    ara: "آثار من",
+    ind: "Pusaka dari",
   },
   "Request a change": {
     eng: "Request a change",
@@ -6013,6 +6711,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Değişiklik iste",
     zhs: "请求更改",
     zht: "請求更改",
+    ara: "اطلب تعديلًا",
+    ind: "Minta perubahan",
   },
   "Selected text": {
     eng: "Selected text",
@@ -6030,6 +6730,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Seçili metin",
     zhs: "选中的文本",
     zht: "選中的文字",
+    ara: "النص المحدد",
+    ind: "Teks terpilih",
   },
   Send: {
     eng: "Send",
@@ -6047,6 +6749,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Gönder",
     zhs: "发送",
     zht: "傳送",
+    ara: "إرسال",
+    ind: "Kirim",
   },
   "Shop Inventory": {
     eng: "Shop Inventory",
@@ -6064,6 +6768,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Mağaza Envanteri",
     zhs: "商店库存",
     zht: "商店庫存",
+    ara: "مخزون المتجر",
+    ind: "Isi Toko",
   },
   "Star Cost": {
     eng: "Star Cost",
@@ -6081,6 +6787,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Yıldız Maliyeti",
     zhs: "星星消耗",
     zht: "星星消耗",
+    ara: "تكلفة النجوم",
+    ind: "Biaya Bintang",
   },
   "Starting Deck": {
     eng: "Starting Deck",
@@ -6098,6 +6806,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Başlangıç destesi",
     zhs: "初始牌组",
     zht: "初始牌組",
+    ara: "مجموعة البداية",
+    ind: "Dek Awal",
   },
   "Starting Relic": {
     eng: "Starting Relic",
@@ -6115,6 +6825,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Başlangıç kalıntısı",
     zhs: "初始遗物",
     zht: "初始遺物",
+    ara: "أثر البداية",
+    ind: "Pusaka Awalan",
   },
   "Starting deck": {
     eng: "Starting deck",
@@ -6132,6 +6844,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Başlangıç destesi",
     zhs: "初始牌组",
     zht: "初始牌組",
+    ara: "مجموعة البداية",
+    ind: "Dek awal",
   },
   "Starting relic": {
     eng: "Starting relic",
@@ -6149,6 +6863,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Başlangıç kalıntısı",
     zhs: "初始遗物",
     zht: "初始遺物",
+    ara: "أثر البداية",
+    ind: "Pusaka awalan",
   },
   Target: {
     eng: "Target",
@@ -6166,6 +6882,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Hedef",
     zhs: "目标",
     zht: "目標",
+    ara: "الهدف",
+    ind: "Target",
   },
   "Technical Notes": {
     eng: "Technical Notes",
@@ -6183,6 +6901,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Teknik Notlar",
     zhs: "技术说明",
     zht: "技術說明",
+    ara: "ملاحظات تقنية",
+    ind: "Catatan Teknis",
   },
   "Thanks! We'll take a look.": {
     eng: "Thanks! We'll take a look.",
@@ -6200,6 +6920,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Teşekkürler! Bir göz atacağız.",
     zhs: "谢谢！我们会看看的。",
     zht: "謝謝！我們會看看的。",
+    ara: "شكرًا! سنلقي نظرة.",
+    ind: "Terima kasih! Akan kami cek.",
   },
   "This relic has different art for each character. Use buttons above.": {
     eng: "This relic has different art for each character. Use buttons above.",
@@ -6217,6 +6939,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Bu kalıntının her karakter için farklı görseli var. Yukarıdaki düğmeleri kullanın.",
     zhs: "此遗物为每个角色提供不同的美术。请使用上方按钮。",
     zht: "此遺物為每個角色提供不同的美術。請使用上方按鈕。",
+    ara: "لهذا الأثر رسم مختلف لكل شخصية. استخدم الأزرار أعلاه.",
+    ind: "Pusaka ini punya gambar berbeda untuk tiap karakter. Pakai tombol di atas.",
   },
   Today: {
     eng: "Today",
@@ -6234,6 +6958,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Bugün",
     zhs: "今天",
     zht: "今天",
+    ara: "اليوم",
+    ind: "Hari ini",
   },
   "Unlocks after": {
     eng: "Unlocks after",
@@ -6251,6 +6977,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Şundan sonra açılır",
     zhs: "解锁条件",
     zht: "解鎖條件",
+    ara: "يُفتح بعد",
+    ind: "Terbuka setelah",
   },
   Upgraded: {
     eng: "Upgraded",
@@ -6268,6 +6996,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Geliştirilmiş",
     zhs: "已升级",
     zht: "已升級",
+    ara: "مطوّرة",
+    ind: "Ditingkatkan",
   },
   "Version history": {
     eng: "Version history",
@@ -6285,6 +7015,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Sürüm geçmişi",
     zhs: "版本历史",
     zht: "版本歷史",
+    ara: "سجل الإصدارات",
+    ind: "Riwayat versi",
   },
   "View the full changelog": {
     eng: "View the full changelog",
@@ -6302,6 +7034,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tüm değişiklik günlüğünü görüntüle",
     zhs: "查看完整更新日志",
     zht: "檢視完整更新日誌",
+    ara: "عرض سجل التغييرات الكامل",
+    ind: "Lihat catatan perubahan lengkap",
   },
   "No version history recorded for this entity.": {
     eng: "No version history recorded for this entity.",
@@ -6319,6 +7053,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Bu öğe için sürüm geçmişi kaydı yok.",
     zhs: "该条目没有版本历史记录。",
     zht: "該條目沒有版本歷史記錄。",
+    ara: "لا يوجد سجل إصدارات لهذا العنصر.",
+    ind: "Tidak ada riwayat versi untuk entitas ini.",
   },
   "View Card metrics": {
     eng: "View Card metrics",
@@ -6336,6 +7072,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Kart metriklerini gör",
     zhs: "查看卡牌数据",
     zht: "檢視卡牌資料",
+    ara: "عرض مقاييس البطاقات",
+    ind: "Lihat Metrik Kartu",
   },
   "View all runs by this player": {
     eng: "View all runs by this player",
@@ -6353,6 +7091,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Bu oyuncunun tüm koşularını gör",
     zhs: "查看该玩家的所有对局",
     zht: "檢視該玩家的所有對局",
+    ara: "عرض كل جولات هذا اللاعب",
+    ind: "Lihat semua perjalanan pemain ini",
   },
   "What should it say?": {
     eng: "What should it say?",
@@ -6370,6 +7110,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Ne yazmalı?",
     zhs: "应该写什么？",
     zht: "應該寫什麼？",
+    ara: "ماذا يجب أن يكون النص؟",
+    ind: "Seharusnya tertulis apa?",
   },
   "What this card makes, and what else interacts with it.": {
     eng: "What this card makes, and what else interacts with it.",
@@ -6387,6 +7129,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Bu kartın ürettiği ve onunla etkileşen diğer şeyler.",
     zhs: "这张卡牌会产生什么，以及还有什么与之互动。",
     zht: "這張卡牌會產生什麼，以及還有什麼與之互動。",
+    ara: "ما تصنعه هذه البطاقة، وما يتفاعل معها.",
+    ind: "Apa yang dibuat kartu ini, dan apa lagi yang berinteraksi dengannya.",
   },
   "What this character's community-tracked runs include most, beyond the starter kit.":
     {
@@ -6405,6 +7149,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
       tur: "Bu karakterin toplulukça izlenen koşularının başlangıç setinin ötesinde en çok içerdiği şeyler.",
       zhs: "除初始配置外，该角色被社区记录的对局中出现最多的内容。",
       zht: "除初始配置外，該角色被社群記錄的對局中出現最多的內容。",
+      ara: "أكثر ما تتضمنه جولات هذه الشخصية المسجلة من المجتمع، غير عدة البداية.",
+      ind: "Apa yang paling sering ada di perjalanan karakter ini yang tercatat komunitas, di luar perlengkapan awal.",
     },
   "Win rate": {
     eng: "Win rate",
@@ -6422,6 +7168,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Kazanma oranı",
     zhs: "胜率",
     zht: "勝率",
+    ara: "معدل الفوز",
+    ind: "Tingkat kemenangan",
   },
   "Your .run files live here:": {
     eng: "Your .run files live here:",
@@ -6439,6 +7187,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: ".run dosyalarınız burada:",
     zhs: "你的 .run 文件位于此处：",
     zht: "你的 .run 檔案位於此處：",
+    ara: "ملفات .run الخاصة بك موجودة هنا:",
+    ind: "File .run kamu ada di sini:",
   },
   by: {
     eng: "by",
@@ -6456,6 +7206,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "yazan:",
     zhs: "作者：",
     zht: "作者：",
+    ara: "بواسطة",
+    ind: "oleh",
   },
   encounter_stats_tagline: {
     eng: "Deadliest encounters and the runs they ended, by act and ascension.",
@@ -6473,6 +7225,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "En ölümcül karşılaşmalar ve bitirdikleri koşular, perde ve yükselişe göre.",
     zhs: "按阶段和进阶等级列出的最致命遭遇及被它们终结的对局。",
     zht: "按幕次和晉階等級列出的最致命遭遇及被它們終結的對局。",
+    ara: "أخطر المواجهات والجولات التي أنهتها، حسب الفصل والصعود.",
+    ind: "Pertemuan paling mematikan dan perjalanan yang diakhirinya, per babak dan angkatan.",
   },
   "resets 00:00 UTC": {
     eng: "resets 00:00 UTC",
@@ -6490,6 +7244,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "00:00 UTC'de sıfırlanır",
     zhs: "00:00 UTC 重置",
     zht: "00:00 UTC 重置",
+    ara: "يُعاد الضبط 00:00 UTC",
+    ind: "reset 00:00 UTC",
   },
   Account: {
     eng: "Account",
@@ -6507,6 +7263,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Hesap",
     zhs: "账户",
     zht: "帳戶",
+    ara: "الحساب",
+    ind: "Akun",
   },
   "Account menu": {
     eng: "Account menu",
@@ -6524,6 +7282,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Hesap menüsü",
     zhs: "账户菜单",
     zht: "帳戶選單",
+    ara: "قائمة الحساب",
+    ind: "Menu akun",
   },
   Admin: {
     eng: "Admin",
@@ -6541,6 +7301,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Yönetici",
     zhs: "管理",
     zht: "管理",
+    ara: "المشرف",
+    ind: "Admin",
   },
   "All characters": {
     eng: "All characters",
@@ -6558,6 +7320,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tüm karakterler",
     zhs: "所有角色",
     zht: "所有角色",
+    ara: "كل الشخصيات",
+    ind: "Semua karakter",
   },
   "Ancient Relic Pools": {
     eng: "Ancient Relic Pools",
@@ -6575,6 +7339,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Kadim kalıntı havuzları",
     zhs: "远古遗物池",
     zht: "遠古遺物池",
+    ara: "مجموعات آثار القدماء",
+    ind: "Kumpulan Pusaka Ancient",
   },
   Bracket: {
     eng: "Bracket",
@@ -6592,6 +7358,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Kategori",
     zhs: "分组",
     zht: "分組",
+    ara: "الشريحة",
+    ind: "Bracket",
   },
   "Browse the compendium": {
     eng: "Browse the compendium",
@@ -6609,6 +7377,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Ansiklopediye göz at",
     zhs: "浏览图鉴",
     zht: "瀏覽圖鑑",
+    ara: "تصفح الموسوعة",
+    ind: "Jelajahi ensiklopedia",
   },
   "By character and bracket.": {
     eng: "By character and bracket.",
@@ -6626,6 +7396,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Karaktere ve kategoriye göre.",
     zhs: "按角色和分组。",
     zht: "按角色和分組。",
+    ara: "حسب الشخصية والفئة.",
+    ind: "Per karakter dan kelompok.",
   },
   "Codex rates it": {
     eng: "Codex rates it",
@@ -6643,6 +7415,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Codex bunu değerlendiriyor",
     zhs: "Codex 评价",
     zht: "Codex 評價",
+    ara: "تقييم Codex له",
+    ind: "Codex menilainya",
   },
   "Community-submitted runs only, refreshed every 30 minutes.": {
     eng: "Community-submitted runs only, refreshed every 30 minutes.",
@@ -6660,6 +7434,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Yalnızca toplulukça gönderilen koşular, her 30 dakikada bir yenilenir.",
     zhs: "仅限社区提交的对局，每 30 分钟刷新一次。",
     zht: "僅限社群提交的對局，每 30 分鐘重新整理一次。",
+    ara: "الجولات التي أرسلها المجتمع فقط، تُحدَّث كل 30 دقيقة.",
+    ind: "Hanya perjalanan kiriman komunitas, diperbarui tiap 30 menit.",
   },
   "Create a tier list": {
     eng: "Create a tier list",
@@ -6677,6 +7453,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Seviye listesi oluştur",
     zhs: "创建评级榜",
     zht: "建立評級榜",
+    ara: "أنشئ قائمة تصنيف",
+    ind: "Buat tier list",
   },
   "Create an account": {
     eng: "Create an account",
@@ -6694,6 +7472,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Hesap oluştur",
     zhs: "创建账户",
     zht: "建立帳戶",
+    ara: "أنشئ حسابًا",
+    ind: "Buat akun",
   },
   Dark: {
     eng: "Dark",
@@ -6711,6 +7491,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Koyu",
     zhs: "深色",
     zht: "深色",
+    ara: "داكن",
+    ind: "Gelap",
   },
   Distribution: {
     eng: "Distribution",
@@ -6728,6 +7510,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Dağılım",
     zhs: "分布",
     zht: "分佈",
+    ara: "التوزيع",
+    ind: "Sebaran",
   },
   "Download Spire Codex on Overwolf to upload your runs and get in-game help. The best Slay the Spire 2 companion app.":
     {
@@ -6746,6 +7530,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
       tur: "Koşularını yüklemek ve oyun içi yardım almak için Overwolf üzerinde Spire Codex'i indir. En iyi Slay the Spire 2 yardımcı uygulaması.",
       zhs: "在 Overwolf 上下载 Spire Codex，上传你的对局并获得游戏内帮助。最好的杀戮尖塔2助手应用。",
       zht: "在 Overwolf 上下載 Spire Codex，上傳你的對局並獲得遊戲內幫助。最好的殺戮尖塔2助手應用。",
+      ara: "نزّل Spire Codex على Overwolf لرفع جولاتك والحصول على مساعدة داخل اللعبة. أفضل تطبيق مرافق للعبة Slay the Spire 2.",
+      ind: "Unduh Spire Codex di Overwolf untuk mengunggah perjalananmu dan dapat bantuan dalam game. Aplikasi pendamping Slay the Spire 2 terbaik.",
     },
   "Download the app": {
     eng: "Download the app",
@@ -6763,6 +7549,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Uygulamayı indir",
     zhs: "下载应用",
     zht: "下載應用",
+    ara: "نزّل التطبيق",
+    ind: "Unduh aplikasinya",
   },
   "Download the mod": {
     eng: "Download the mod",
@@ -6780,6 +7568,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Modu indir",
     zhs: "下载模组",
     zht: "下載模組",
+    ara: "نزّل التعديل",
+    ind: "Unduh modnya",
   },
   Elo: {
     eng: "Elo",
@@ -6797,6 +7587,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Elo",
     zhs: "Elo",
     zht: "Elo",
+    ara: "Elo",
+    ind: "Elo",
   },
   "Every Ancient in Slay the Spire 2 offers relics from specific pools with conditions. Here's exactly what each one can offer.":
     {
@@ -6815,6 +7607,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
       tur: "Slay the Spire 2'deki her Kadim, koşullara bağlı olarak belirli havuzlardan kalıntılar sunar. İşte her birinin tam olarak neler sunabileceği.",
       zhs: "杀戮尖塔2中每个远古存在都会按条件从特定池提供遗物。以下是每个能提供的确切内容。",
       zht: "殺戮尖塔2中每個遠古存在都會按條件從特定池提供遺物。以下是每個能提供的確切內容。",
+      ara: "كل قديم في Slay the Spire 2 يعرض آثارًا من مجموعات محددة بشروط. هذا بالضبط ما يمكن أن يعرضه كل واحد منهم.",
+      ind: "Setiap Ancient di Slay the Spire 2 menawarkan pusaka dari kumpulan tertentu dengan syarat. Ini persisnya yang bisa ditawarkan masing-masing.",
     },
   "Everything you need to climb the Spire. Track your runs, rank your favorites, and join the community.":
     {
@@ -6833,6 +7627,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
       tur: "Kule'ye tırmanmak için ihtiyacın olan her şey. Koşularını takip et, favorilerini sırala ve topluluğa katıl.",
       zhs: "攀登尖塔所需的一切。追踪你的对局，为你的最爱评级，加入社区。",
       zht: "攀登尖塔所需的一切。追蹤你的對局，為你的最愛評級，加入社群。",
+      ara: "كل ما تحتاجه لتسلق البرج. تتبّع جولاتك، رتّب مفضلاتك، وانضم إلى المجتمع.",
+      ind: "Semua yang kamu butuhkan untuk mendaki Spire. Lacak perjalananmu, urutkan favoritmu, dan gabung dengan komunitas.",
     },
   "Get on-demand updates, share tier lists, and show off your runs in the Spire Codex Discord.":
     {
@@ -6851,6 +7647,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
       tur: "Anında güncellemeler al, seviye listeleri paylaş ve koşularını Spire Codex Discord'unda sergile.",
       zhs: "按需获取更新，分享评级榜，在 Spire Codex Discord 中展示你的对局。",
       zht: "按需獲取更新，分享評級榜，在 Spire Codex Discord 中展示你的對局。",
+      ara: "احصل على التحديثات عند الطلب، شارك قوائم التصنيف، واستعرض جولاتك في Discord الخاص بـ Spire Codex.",
+      ind: "Dapatkan kabar terbaru kapan saja, bagikan tier list, dan pamerkan perjalananmu di Discord Spire Codex.",
     },
   "Get started": {
     eng: "Get started",
@@ -6868,6 +7666,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Başla",
     zhs: "开始使用",
     zht: "開始使用",
+    ara: "ابدأ الآن",
+    ind: "Mulai",
   },
   "Get the Spire Codex mod on the Steam Workshop for in-game stats contribution, auto run uploads, and a route planner.":
     {
@@ -6886,6 +7686,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
       tur: "Oyun içi istatistik katkısı, otomatik koşu yükleme ve rota planlayıcı için Steam Atölyesi'nden Spire Codex modunu edin.",
       zhs: "在 Steam 创意工坊获取 Spire Codex 模组，用于游戏内数据贡献、自动上传对局和路线规划。",
       zht: "在 Steam 創意工坊獲取 Spire Codex 模組，用於遊戲內資料貢獻、自動上傳對局和路線規劃。",
+      ara: "احصل على تعديل Spire Codex من Steam Workshop للمساهمة في الإحصائيات من داخل اللعبة، ورفع الجولات تلقائيًا، ومخطط للمسار.",
+      ind: "Dapatkan mod Spire Codex di Steam Workshop untuk ikut menyumbang statistik dari dalam game, unggah perjalanan otomatis, dan perencana rute.",
     },
   "How is the score calculated?": {
     eng: "How is the score calculated?",
@@ -6903,6 +7705,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Puan nasıl hesaplanır?",
     zhs: "分数是如何计算的？",
     zht: "分數是如何計算的？",
+    ara: "كيف تُحسب النتيجة؟",
+    ind: "Bagaimana skornya dihitung?",
   },
   "In-game lookup for cards, relics, monsters and events, plus a live run tracker that reads your save as you play.":
     {
@@ -6921,6 +7725,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
       tur: "Oyun içinde kart, kalıntı, canavar ve etkinlik araması, ayrıca sen oynarken kayıt dosyanı okuyan canlı bir koşu takipçisi.",
       zhs: "游戏内查询卡牌、遗物、怪物和事件，还有实时对局追踪器，边玩边读取你的存档。",
       zht: "遊戲內查詢卡牌、遺物、怪物和事件，還有實時對局追蹤器，邊玩邊讀取你的存檔。",
+      ara: "بحث داخل اللعبة عن البطاقات والآثار والوحوش والأحداث، مع متتبع مباشر للجولة يقرأ ملف الحفظ أثناء لعبك.",
+      ind: "Pencarian dalam game untuk kartu, pusaka, monster, dan event, plus pelacak perjalanan langsung yang membaca file simpananmu saat bermain.",
     },
   "Join the Discord": {
     eng: "Join the Discord",
@@ -6938,6 +7744,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Discord'a katıl",
     zhs: "加入 Discord",
     zht: "加入 Discord",
+    ara: "انضم إلى Discord",
+    ind: "Gabung ke Discord",
   },
   "Jump back in": {
     eng: "Jump back in",
@@ -6955,6 +7763,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Kaldığın yerden devam et",
     zhs: "继续",
     zht: "繼續",
+    ara: "تابع من حيث توقفت",
+    ind: "Lanjut lagi",
   },
   "Jump to an Ancient": {
     eng: "Jump to an Ancient",
@@ -6972,6 +7782,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Bir Kadim'e atla",
     zhs: "跳转到远古存在",
     zht: "跳轉到遠古存在",
+    ara: "انتقل إلى قديم",
+    ind: "Lompat ke Ancient",
   },
   "Last picked": {
     eng: "Last picked",
@@ -6989,6 +7801,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Son seçilen",
     zhs: "最近选择",
     zht: "最近選擇",
+    ara: "آخر اختيار",
+    ind: "Terakhir dipilih",
   },
   "Learn more": {
     eng: "Learn more",
@@ -7006,6 +7820,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Daha fazla bilgi",
     zhs: "了解更多",
     zht: "瞭解更多",
+    ara: "اعرف المزيد",
+    ind: "Selengkapnya",
   },
   Light: {
     eng: "Light",
@@ -7023,6 +7839,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Açık",
     zhs: "浅色",
     zht: "淺色",
+    ara: "فاتح",
+    ind: "Terang",
   },
   "Like the project? Support us directly to unlock more features and keep the data free and as up to date as possible.":
     {
@@ -7041,6 +7859,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
       tur: "Projeyi beğendin mi? Daha fazla özelliğin kilidini açmak ve verileri ücretsiz ve mümkün olduğunca güncel tutmak için bize doğrudan destek ol.",
       zhs: "喜欢这个项目吗？直接支持我们，解锁更多功能，并让数据保持免费和尽可能最新。",
       zht: "喜歡這個專案嗎？直接支援我們，解鎖更多功能，並讓資料保持免費和儘可能最新。",
+      ara: "يعجبك المشروع؟ ادعمنا مباشرة لفتح ميزات إضافية وإبقاء البيانات مجانية ومحدّثة قدر الإمكان.",
+      ind: "Suka proyek ini? Dukung kami langsung untuk membuka lebih banyak fitur dan menjaga data tetap gratis dan semutakhir mungkin.",
     },
   "Loading run stats…": {
     eng: "Loading run stats…",
@@ -7058,6 +7878,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Koşu istatistikleri yükleniyor…",
     zhs: "正在加载对局数据…",
     zht: "正在載入對局資料…",
+    ara: "جارٍ تحميل إحصائيات الجولات…",
+    ind: "Memuat statistik perjalanan…",
   },
   "Most often taken by": {
     eng: "Most often taken by",
@@ -7075,6 +7897,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "En sık şu tarafından alınır",
     zhs: "最常被选择的角色",
     zht: "最常被選擇的角色",
+    ara: "يأخذه غالبًا",
+    ind: "Paling sering diambil oleh",
   },
   "New · Overwolf companion": {
     eng: "New · Overwolf companion",
@@ -7092,6 +7916,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Yeni · Overwolf yardımcısı",
     zhs: "新 · Overwolf 助手",
     zht: "新 · Overwolf 助手",
+    ara: "جديد · رفيق Overwolf",
+    ind: "Baru · Pendamping Overwolf",
   },
   "Not enough data": {
     eng: "Not enough data",
@@ -7109,6 +7935,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Yeterli veri yok",
     zhs: "数据不足",
     zht: "資料不足",
+    ara: "بيانات غير كافية",
+    ind: "Data belum cukup",
   },
   "Pages you open show up here.": {
     eng: "Pages you open show up here.",
@@ -7126,6 +7954,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Açtığın sayfalar burada görünür.",
     zhs: "你打开的页面会显示在这里。",
     zht: "你開啟的頁面會顯示在這裡。",
+    ara: "الصفحات التي تفتحها تظهر هنا.",
+    ind: "Halaman yang kamu buka muncul di sini.",
   },
   "Pick rate is": {
     eng: "Pick rate is",
@@ -7143,6 +7973,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Seçilme oranı",
     zhs: "选择率为",
     zht: "選擇率為",
+    ara: "معدل الاختيار هو",
+    ind: "Rasio pilih adalah",
   },
   "Pick rate:": {
     eng: "Pick rate:",
@@ -7160,6 +7992,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Seçilme oranı:",
     zhs: "选择率：",
     zht: "選擇率：",
+    ara: "معدل الاختيار:",
+    ind: "Rasio pilih:",
   },
   "Picked most on": {
     eng: "Picked most on",
@@ -7177,6 +8011,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "En çok şurada seçildi",
     zhs: "最常在此选择",
     zht: "最常在此選擇",
+    ara: "الأكثر اختيارًا مع",
+    ind: "Paling sering dipilih pada",
   },
   Picks: {
     eng: "Picks",
@@ -7194,6 +8030,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Seçimler",
     zhs: "选择次数",
     zht: "選擇次數",
+    ara: "الاختيارات",
+    ind: "Pilihan",
   },
   "Picks by character": {
     eng: "Picks by character",
@@ -7211,6 +8049,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Karaktere göre seçimler",
     zhs: "各角色的选择",
     zht: "各角色的選擇",
+    ara: "الاختيارات حسب الشخصية",
+    ind: "Pilihan per karakter",
   },
   Profile: {
     eng: "Profile",
@@ -7228,6 +8068,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Profil",
     zhs: "个人资料",
     zht: "個人資料",
+    ara: "الملف الشخصي",
+    ind: "Profil",
   },
   "Played by": {
     eng: "Played by",
@@ -7245,6 +8087,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Oynayan",
     zhs: "使用角色",
     zht: "使用角色",
+    ara: "يلعبه",
+    ind: "Dimainkan oleh",
   },
   "Character rows carry Codex Score and Win% only. Elo and Pick% aren't tracked per character.":
     {
@@ -7263,6 +8107,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
       tur: "Karakter satırları yalnızca Codex Score ve kazanma oranı içerir. Elo ve seçim oranı karakter bazında izlenmez.",
       zhs: "角色行仅包含 Codex 评分和胜率。Elo 和选取率不按角色统计。",
       zht: "角色行僅包含 Codex 評分和勝率。Elo 和選取率不按角色統計。",
+      ara: "صفوف الشخصيات تعرض Codex Score و Win% فقط. لا يُتتبَّع Elo و Pick% لكل شخصية.",
+      ind: "Baris karakter hanya memuat Codex Score dan Win%. Elo dan Pick% tidak dilacak per karakter.",
     },
   "All players": {
     eng: "All players",
@@ -7280,6 +8126,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tüm oyuncular",
     zhs: "所有玩家",
     zht: "所有玩家",
+    ara: "كل اللاعبين",
+    ind: "Semua pemain",
   },
   "API Key": {
     eng: "API Key",
@@ -7297,6 +8145,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "API Anahtarı",
     zhs: "API 密钥",
     zht: "API 金鑰",
+    ara: "مفتاح API",
+    ind: "Kunci API",
   },
   "One key per account. Revoke it to create a new one.": {
     eng: "One key per account. Revoke it to create a new one.",
@@ -7314,6 +8164,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Hesap başına bir anahtar. Yenisini oluşturmak için iptal et.",
     zhs: "每个账户一个密钥。撤销后才能创建新的。",
     zht: "每個帳戶一個金鑰。撤銷後才能建立新的。",
+    ara: "مفتاح واحد لكل حساب. ألغِه لإنشاء مفتاح جديد.",
+    ind: "Satu kunci per akun. Cabut untuk membuat yang baru.",
   },
   "API Keys": {
     eng: "API Keys",
@@ -7331,6 +8183,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "API Anahtarları",
     zhs: "API 密钥",
     zht: "API 金鑰",
+    ara: "مفاتيح API",
+    ind: "Kunci API",
   },
   "For scripts and tools that call the API directly. Send the key as the X-API-Key header to get your own rate limit instead of the shared per-IP cap.":
     {
@@ -7349,6 +8203,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
       tur: "API'yi doğrudan çağıran betikler ve araçlar için. Paylaşılan IP sınırı yerine kendi hız sınırını almak için anahtarı X-API-Key başlığıyla gönder.",
       zhs: "适用于直接调用 API 的脚本和工具。将密钥放在 X-API-Key 请求头中发送，即可获得专属速率限制，而不是共享的按 IP 上限。",
       zht: "適用於直接呼叫 API 的指令碼和工具。將金鑰放在 X-API-Key 請求頭中傳送，即可獲得專屬速率限制，而不是共享的按 IP 上限。",
+      ara: "للسكربتات والأدوات التي تستدعي API مباشرة. أرسل المفتاح في الترويسة X-API-Key لتحصل على حد طلبات خاص بك بدل الحد المشترك لكل عنوان IP.",
+      ind: "Untuk skrip dan alat yang memanggil API secara langsung. Kirim kunci sebagai header X-API-Key untuk mendapat batas permintaan sendiri, bukan batas bersama per IP.",
     },
   "Your new key": {
     eng: "Your new key",
@@ -7366,6 +8222,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Yeni anahtarın",
     zhs: "你的新密钥",
     zht: "你的新金鑰",
+    ara: "مفتاحك الجديد",
+    ind: "Kunci barumu",
   },
   "Copy it now. For your security it is only shown this once.": {
     eng: "Copy it now. For your security it is only shown this once.",
@@ -7383,6 +8241,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Şimdi kopyala. Güvenliğin için yalnızca bu seferlik gösterilir.",
     zhs: "请立即复制。出于安全考虑，它只显示这一次。",
     zht: "請立即複製。出於安全考慮，它只顯示這一次。",
+    ara: "انسخه الآن. حفاظًا على أمانك لن يُعرض إلا هذه المرة.",
+    ind: "Salin sekarang. Demi keamananmu, kunci ini hanya ditampilkan sekali ini.",
   },
   Copy: {
     eng: "Copy",
@@ -7400,6 +8260,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Kopyala",
     zhs: "复制",
     zht: "複製",
+    ara: "نسخ",
+    ind: "Salin",
   },
   Copied: {
     eng: "Copied",
@@ -7417,6 +8279,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Kopyalandı",
     zhs: "已复制",
     zht: "已複製",
+    ara: "تم النسخ",
+    ind: "Tersalin",
   },
   Done: {
     eng: "Done",
@@ -7434,6 +8298,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tamam",
     zhs: "完成",
     zht: "完成",
+    ara: "تم",
+    ind: "Selesai",
   },
   Revoke: {
     eng: "Revoke",
@@ -7451,6 +8317,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "İptal et",
     zhs: "撤销",
     zht: "撤銷",
+    ara: "إلغاء المفتاح",
+    ind: "Cabut",
   },
   "Create key": {
     eng: "Create key",
@@ -7468,6 +8336,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Anahtar oluştur",
     zhs: "创建密钥",
     zht: "建立金鑰",
+    ara: "إنشاء مفتاح",
+    ind: "Buat kunci",
   },
   created: {
     eng: "created",
@@ -7485,6 +8355,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "oluşturuldu",
     zhs: "创建于",
     zht: "建立於",
+    ara: "أُنشئ",
+    ind: "dibuat",
   },
   Supporter: {
     eng: "Supporter",
@@ -7502,6 +8374,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Destekçi",
     zhs: "支持者",
     zht: "支持者",
+    ara: "داعم",
+    ind: "Pendukung",
   },
   today: {
     eng: "today",
@@ -7519,6 +8393,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "bugün",
     zhs: "今天",
     zht: "今天",
+    ara: "اليوم",
+    ind: "hari ini",
   },
   "last used": {
     eng: "last used",
@@ -7536,6 +8412,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "son kullanım",
     zhs: "最后使用",
     zht: "最後使用",
+    ara: "آخر استخدام",
+    ind: "terakhir dipakai",
   },
   "Unnamed key": {
     eng: "Unnamed key",
@@ -7553,6 +8431,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Adsız anahtar",
     zhs: "未命名密钥",
     zht: "未命名金鑰",
+    ara: "مفتاح بلا اسم",
+    ind: "Kunci tanpa nama",
   },
   "No keys yet.": {
     eng: "No keys yet.",
@@ -7570,6 +8450,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Henüz anahtar yok.",
     zhs: "还没有密钥。",
     zht: "還沒有金鑰。",
+    ara: "لا توجد مفاتيح بعد.",
+    ind: "Belum ada kunci.",
   },
   "Label (e.g. my script)": {
     eng: "Label (e.g. my script)",
@@ -7587,6 +8469,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Etiket (örn. betiğim)",
     zhs: "标签（例如：我的脚本）",
     zht: "標籤（例如：我的指令碼）",
+    ara: "التسمية (مثلًا: سكربتي)",
+    ind: "Label (mis. skrip saya)",
   },
   Settings: {
     eng: "Settings",
@@ -7604,6 +8488,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Ayarlar",
     zhs: "设置",
     zht: "設定",
+    ara: "الإعدادات",
+    ind: "Pengaturan",
   },
   "Show off your favorite tier lists of cards, relics, and more, and help others master the Spire.":
     {
@@ -7622,6 +8508,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
       tur: "Kartların, kalıntıların ve daha fazlasının favori seviye listelerini sergile ve başkalarının Kule'de ustalaşmasına yardım et.",
       zhs: "展示你最喜欢的卡牌、遗物等评级榜，帮助他人掌握尖塔。",
       zht: "展示你最喜歡的卡牌、遺物等評級榜，幫助他人掌握尖塔。",
+      ara: "استعرض قوائم التصنيف المفضلة لديك للبطاقات والآثار وغيرها، وساعد الآخرين على إتقان البرج.",
+      ind: "Pamerkan tier list favoritmu untuk kartu, pusaka, dan lainnya, dan bantu pemain lain menguasai Spire.",
     },
   "Sign Out": {
     eng: "Sign Out",
@@ -7639,6 +8527,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Çıkış yap",
     zhs: "退出登录",
     zht: "退出登入",
+    ara: "تسجيل الخروج",
+    ind: "Keluar",
   },
   "Sign in": {
     eng: "Sign in",
@@ -7656,6 +8546,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Giriş yap",
     zhs: "登录",
     zht: "登入",
+    ara: "تسجيل الدخول",
+    ind: "Masuk",
   },
   "Sign in options": {
     eng: "Sign in options",
@@ -7673,6 +8565,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Giriş seçenekleri",
     zhs: "登录选项",
     zht: "登入選項",
+    ara: "خيارات تسجيل الدخول",
+    ind: "Opsi masuk",
   },
   "Sign in with": {
     eng: "Sign in with",
@@ -7690,6 +8584,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Şununla giriş yap",
     zhs: "使用以下方式登录",
     zht: "使用以下方式登入",
+    ara: "سجّل الدخول عبر",
+    ind: "Masuk dengan",
   },
   "Spire Codex Overlay": {
     eng: "Spire Codex Overlay",
@@ -7707,6 +8603,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Spire Codex Yer Paylaşımı",
     zhs: "Spire Codex 悬浮窗",
     zht: "Spire Codex 懸浮窗",
+    ara: "Spire Codex Overlay",
+    ind: "Spire Codex Overlay",
   },
   "Spire Codex keeps track of your runs and tier lists, all while not tracking you.":
     {
@@ -7725,6 +8623,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
       tur: "Spire Codex, seni takip etmeden koşularını ve seviye listelerini takip eder.",
       zhs: "Spire Codex 会记录你的对局和评级榜，但绝不追踪你本人。",
       zht: "Spire Codex 會記錄你的對局和評級榜，但絕不追蹤你本人。",
+      ara: "Spire Codex يتتبع جولاتك وقوائم تصنيفك، دون أن يتتبعك أنت.",
+      ind: "Spire Codex melacak perjalanan dan tier list kamu, tanpa melacak dirimu.",
     },
   "Stats reflect community-submitted runs only and refresh every 30 minutes.": {
     eng: "Stats reflect community-submitted runs only and refresh every 30 minutes.",
@@ -7742,6 +8642,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "İstatistikler yalnızca toplulukça gönderilen koşuları yansıtır ve her 30 dakikada bir yenilenir.",
     zhs: "数据仅反映社区提交的对局，每 30 分钟刷新一次。",
     zht: "資料僅反映社群提交的對局，每 30 分鐘重新整理一次。",
+    ara: "الإحصائيات تعكس الجولات التي أرسلها المجتمع فقط وتُحدَّث كل 30 دقيقة.",
+    ind: "Statistik hanya mencerminkan perjalanan kiriman komunitas dan diperbarui tiap 30 menit.",
   },
   Steam: {
     eng: "Steam",
@@ -7759,6 +8661,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Steam",
     zhs: "Steam",
     zht: "Steam",
+    ara: "Steam",
+    ind: "Steam",
   },
   "Support on Patreon": {
     eng: "Support on Patreon",
@@ -7776,6 +8680,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Patreon'da destekle",
     zhs: "在 Patreon 上支持",
     zht: "在 Patreon 上支援",
+    ara: "ادعمنا على Patreon",
+    ind: "Dukung di Patreon",
   },
   Theme: {
     eng: "Theme",
@@ -7793,6 +8699,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Tema",
     zhs: "主题",
     zht: "主題",
+    ara: "السمة",
+    ind: "Tema",
   },
   "Toggle light and dark theme": {
     eng: "Toggle light and dark theme",
@@ -7810,6 +8718,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Açık ve koyu tema arasında geçiş yap",
     zhs: "切换浅色和深色主题",
     zht: "切換淺色和深色主題",
+    ara: "التبديل بين السمة الفاتحة والداكنة",
+    ind: "Ganti tema terang dan gelap",
   },
   "Total relics": {
     eng: "Total relics",
@@ -7827,6 +8737,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Toplam kalıntı",
     zhs: "遗物总数",
     zht: "遺物總數",
+    ara: "إجمالي الآثار",
+    ind: "Total pusaka",
   },
   User: {
     eng: "User",
@@ -7844,6 +8756,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Kullanıcı",
     zhs: "用户",
     zht: "使用者",
+    ara: "المستخدم",
+    ind: "Pengguna",
   },
   "Win Rate": {
     eng: "Win Rate",
@@ -7861,6 +8775,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Kazanma oranı",
     zhs: "胜率",
     zht: "勝率",
+    ara: "معدل الفوز",
+    ind: "Rasio Menang",
   },
   "Win rate by character": {
     eng: "Win rate by character",
@@ -7878,6 +8794,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Karaktere göre kazanma oranı",
     zhs: "各角色胜率",
     zht: "各角色勝率",
+    ara: "معدل الفوز حسب الشخصية",
+    ind: "Rasio menang per karakter",
   },
   "how is this calculated?": {
     eng: "how is this calculated?",
@@ -7895,6 +8813,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "bu nasıl hesaplanır?",
     zhs: "这是如何计算的？",
     zht: "這是如何計算的？",
+    ara: "كيف يُحسب هذا؟",
+    ind: "bagaimana ini dihitung?",
   },
   "in run": {
     eng: "in run",
@@ -7912,6 +8832,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "koşuda",
     zhs: "对局中",
     zht: "對局中",
+    ara: "في الجولة",
+    ind: "dalam perjalanan",
   },
   overall: {
     eng: "overall",
@@ -7929,6 +8851,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "genel",
     zhs: "总体",
     zht: "總體",
+    ara: "إجمالًا",
+    ind: "keseluruhan",
   },
   picks: {
     eng: "picks",
@@ -7946,6 +8870,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "seçimler",
     zhs: "选择次数",
     zht: "選擇次數",
+    ara: "اختيارات",
+    ind: "pilihan",
   },
   players: {
     eng: "players",
@@ -7963,6 +8889,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "oyuncular",
     zhs: "玩家",
     zht: "玩家",
+    ara: "لاعبون",
+    ind: "pemain",
   },
   relic: {
     eng: "relic",
@@ -7980,6 +8908,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "kalıntı",
     zhs: "遗物",
     zht: "遺物",
+    ara: "أثر",
+    ind: "pusaka",
   },
   relics: {
     eng: "relics",
@@ -7997,6 +8927,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "kalıntılar",
     zhs: "遗物",
     zht: "遺物",
+    ara: "آثار",
+    ind: "pusaka",
   },
   "revealed preference": {
     eng: "revealed preference",
@@ -8014,6 +8946,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "açığa çıkan tercih",
     zhs: "显示性偏好",
     zht: "顯示性偏好",
+    ara: "التفضيل المُعلن بالفعل",
+    ind: "preferensi nyata",
   },
   share: {
     eng: "share",
@@ -8031,6 +8965,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "paylaş",
     zhs: "分享",
     zht: "分享",
+    ara: "الحصة",
+    ind: "porsi",
   },
   "the story shifts by character and bracket.": {
     eng: "the story shifts by character and bracket.",
@@ -8048,6 +8984,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "durum karaktere ve kategoriye göre değişir.",
     zhs: "情况因角色和分组而异。",
     zht: "情況因角色和分組而異。",
+    ara: "الصورة تتغير حسب الشخصية والفئة.",
+    ind: "ceritanya berubah menurut karakter dan kelompok.",
   },
   "tracked runs.": {
     eng: "tracked runs.",
@@ -8065,6 +9003,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "takip edilen koşular.",
     zhs: "已追踪的对局。",
     zht: "已追蹤的對局。",
+    ara: "جولة مسجلة.",
+    ind: "perjalanan tercatat.",
   },
   variant: {
     eng: "variant",
@@ -8082,6 +9022,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "varyant",
     zhs: "变体",
     zht: "變體",
+    ara: "نسخة",
+    ind: "varian",
   },
   "win rate": {
     eng: "win rate",
@@ -8099,6 +9041,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "kazanma oranı",
     zhs: "胜率",
     zht: "勝率",
+    ara: "معدل الفوز",
+    ind: "rasio menang",
   },
   "win rate across": {
     eng: "win rate across",
@@ -8116,6 +9060,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "kazanma oranı",
     zhs: "胜率（共",
     zht: "勝率（共",
+    ara: "معدل الفوز عبر",
+    ind: "rasio menang dari",
   },
   wins: {
     eng: "wins",
@@ -8133,6 +9079,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "galibiyetler",
     zhs: "胜利",
     zht: "勝利",
+    ara: "انتصارات",
+    ind: "menang",
   },
   "Top tier": {
     eng: "Top tier",
@@ -8150,6 +9098,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "En üst seviye",
     zhs: "顶级",
     zht: "頂級",
+    ara: "الفئة العليا",
+    ind: "Tingkat teratas",
   },
   Strong: {
     eng: "Strong",
@@ -8167,6 +9117,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Güçlü",
     zhs: "强",
     zht: "強",
+    ara: "قوي",
+    ind: "Kuat",
   },
   Solid: {
     eng: "Solid",
@@ -8184,6 +9136,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Sağlam",
     zhs: "稳健",
     zht: "穩健",
+    ara: "متين",
+    ind: "Solid",
   },
   Average: {
     eng: "Average",
@@ -8201,6 +9155,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Ortalama",
     zhs: "中等",
     zht: "中等",
+    ara: "متوسط",
+    ind: "Rata-rata",
   },
   "Below average": {
     eng: "Below average",
@@ -8218,6 +9174,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Ortalamanın altında",
     zhs: "低于平均",
     zht: "低於平均",
+    ara: "دون المتوسط",
+    ind: "Di bawah rata-rata",
   },
   Underperforming: {
     eng: "Underperforming",
@@ -8235,6 +9193,8 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     tur: "Yetersiz",
     zhs: "表现不佳",
     zht: "表現不佳",
+    ara: "ضعيف الأداء",
+    ind: "Kurang bagus",
   },
 };
 
