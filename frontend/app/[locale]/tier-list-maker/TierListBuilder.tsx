@@ -139,14 +139,15 @@ export default function TierListBuilder({
   const [cardLang, setCardLang] = useState("eng");
   const displayEntities = useMemo(() => {
     if (entityType !== "cards" || cardLang === "eng") return entities;
-    return entities.map((e) =>
-      e.beta
-        ? e
-        : {
-            ...e,
-            image: fullCardUrl(e.id.toLowerCase(), false, "stable", cardLang),
-          },
-    );
+    return entities.map((e) => ({
+      ...e,
+      image: fullCardUrl(
+        e.id.toLowerCase(),
+        false,
+        e.beta ? "beta" : "stable",
+        cardLang,
+      ),
+    }));
   }, [entities, entityType, cardLang]);
 
   const entityMap = useMemo(() => {
