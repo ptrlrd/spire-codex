@@ -1,0 +1,269 @@
+[
+  {
+    "id": "STANDARD",
+    "name": "Standart",
+    "description": "Spire’ı katletmek için yolculuğa çık!",
+    "multiplayer_description": "Spire’ı katletmek için arkadaşlarınla bir yolculuğa çık!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": null,
+    "max_ascension": 10
+  },
+  {
+    "id": "DAILY",
+    "name": "Günlük",
+    "description": "Her gün yeni bir meydan okuma sizi bekliyor.\n\nEn yüksek puan için diğer oyuncularla yarış!",
+    "multiplayer_description": "Her gün yeni bir meydan okuma sizi bekliyor.\n\nEn yüksek puan için diğer gruplarla yarışın!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "Günlük Oyun'un kilidini açmak için tüm karakterlerle bir oyun oyna ve 3. Sahne'yi tamamla.",
+    "max_ascension": 10
+  },
+  {
+    "id": "DREAD",
+    "name": "Dehşet",
+    "description": "Mimar'ın ortaya koyduğu en üst düzey zorluk.\n\nYalnızca Spire'daki ustalığını sınamak isteyenler için.",
+    "multiplayer_description": "Mimar'ın ortaya koyduğu en üst düzey zorluk.\n\nYalnızca Spire'daki ustalığını sınamak isteyen gruplar için.",
+    "intro": "[gold]Dehşet[/gold], Slay the Spire'daki en zorlu mücadeledir.",
+    "rules": [
+      "Tüm Yükseliş kuralları etkinleştirildi.",
+      "Her Sahne'nin sonunda [gold]Deste[/gold]'ne bir [purple]Yükselenin Belası[/purple] eklenir.",
+      "Düşmanlar, bölümün sonundaki Boss'un becerilerini elde eder.",
+      "Boss'lar daha da güçlü hâle gelir."
+    ],
+    "epoch_id": "DREAD_EPOCH",
+    "unlock_text": "Açılan oyun modu: Dehşet.",
+    "unlock_info": "Bu Çağ'ı açmak için [red]Yükseliş[/red] [blue]10[/blue]'a tüm karakterler ile ulaş.",
+    "max_ascension": 10,
+    "dominions": [
+      {
+        "id": "AEONGLASS_DOMINION",
+        "encounter_id": "AEONGLASS_BOSS",
+        "boss_name": "Ebedi Kum Saati",
+        "name": "Ebedi Kum Saati Hakimiyeti",
+        "description": "Turunun başında [gold]Çekme Deste[/gold]'nin en üstüne [blue]1[/blue] [gold]Solma[/gold] ekle."
+      },
+      {
+        "id": "CEREMONIAL_BEAST_DOMINION",
+        "encounter_id": "CEREMONIAL_BEAST_BOSS",
+        "boss_name": "Mukaddes Yaratık",
+        "name": "Mukaddes Yaratık Hakimiyeti",
+        "description": "Tüm düşmanlar [blue]1[/blue] [gold]Ritüel[/gold] elde eder."
+      },
+      {
+        "id": "INSATIABLE_DOMINION",
+        "encounter_id": "THE_INSATIABLE_BOSS",
+        "boss_name": "Doyumsuz",
+        "name": "Doyumsuz Hakimiyeti",
+        "description": "Turunun sonunda tur sayısına bağlı olarak hasar al."
+      },
+      {
+        "id": "KAISER_CRAB_DOMINION",
+        "encounter_id": "KAISER_CRAB_BOSS",
+        "boss_name": "Kayzer Yengeç",
+        "name": "Kayzer Yengeç Hakimiyeti",
+        "description": "Tüm düşmanlar [blue]7[/blue] [gold]Zırh[/gold] elde eder."
+      },
+      {
+        "id": "KIN_DOMINION",
+        "encounter_id": "THE_KIN_BOSS",
+        "boss_name": "Kabile",
+        "name": "Kabile Hakimiyeti",
+        "description": "Savaşa [red]2[/red] [gold]Zayıf[/gold] ve [gold]Kırılgan[/gold] ile başlarsın."
+      },
+      {
+        "id": "KNOWLEDGE_DEMON_DOMINION",
+        "encounter_id": "KNOWLEDGE_DEMON_BOSS",
+        "boss_name": "Bilgi Şeytanı",
+        "name": "Bilgi Şeytanı Hakimiyeti",
+        "description": "Savaşın başında [blue]2[/blue] Hakimiyet [red]Belası[/red]ndan [blue]1[/blue] tanesini seç."
+      },
+      {
+        "id": "LAGAVULIN_MATRIARCH_DOMINION",
+        "encounter_id": "LAGAVULIN_MATRIARCH_BOSS",
+        "boss_name": "Anne Lagavulin",
+        "name": "Anne Lagavulin Hakimiyeti",
+        "description": "İlk turunun sonunda [red]1[/red] [gold]Kuvvet[/gold] ve [gold]Beceriklilik[/gold] kaybet."
+      },
+      {
+        "id": "QUEEN_DOMINION",
+        "encounter_id": "QUEEN_BOSS",
+        "boss_name": "Kraliçe",
+        "name": "Kraliçe Hakimiyeti",
+        "description": "2. turunun başlangıcında [red]3[/red] [gold]Zayıf[/gold], [gold]Savunmasız[/gold] ve [gold]Kırılgan[/gold] elde et."
+      },
+      {
+        "id": "SOUL_FYSH_DOMINION",
+        "encounter_id": "SOUL_FYSH_BOSS",
+        "boss_name": "Ruh Baluğu",
+        "name": "Ruh Baluğu Hakimiyeti",
+        "description": "Her savaşın başında [gold]Çekme Deste[/gold]'ne bir [gold]Çağrı[/gold] karıştır."
+      },
+      {
+        "id": "TEST_SUBJECT_DOMINION",
+        "encounter_id": "TEST_SUBJECT_BOSS",
+        "boss_name": "Denek",
+        "name": "Denek Hakimiyeti",
+        "description": "Tüm düşmanlar [blue]3[/blue] [gold]Kuvvet[/gold] elde eder."
+      },
+      {
+        "id": "VANTOM_DOMINION",
+        "encounter_id": "VANTOM_BOSS",
+        "boss_name": "Vantom",
+        "name": "Vantom Hakimiyeti",
+        "description": "Sıradan düşmanlar [blue]1[/blue] [gold]Kaygan[/gold], elitler [blue]2[/blue] [gold]Kaygan[/gold] elde eder."
+      },
+      {
+        "id": "WATERFALL_GIANT_DOMINION",
+        "encounter_id": "WATERFALL_GIANT_BOSS",
+        "boss_name": "Akarsu Devi",
+        "name": "Akarsu Devi Hakimiyeti",
+        "description": "Düşmanlar öldüklerinde patlayarak hasar verir."
+      }
+    ],
+    "rotating_streak": {
+      "name": "Dönüşümlü Seri",
+      "description": "[gold]Dönüşümlü Seri[/gold] sırasında kazandığın her zafer, seni sağdaki bir sonraki karaktere geçirir.\nGalibiyetler ayrı bir seride takip edilir ve artık karakterlerin kendi galibiyet serilerine eklenmez."
+    }
+  },
+  {
+    "id": "BLITZ",
+    "name": "Sürat",
+    "description": "Daha kısa bir yolculuk arayanlar için hızlı ve kısa süren oyunlar.",
+    "multiplayer_description": "Daha kısa bir yolculuk arayan gruplar için hızlı ve kısa süren oyunlar.",
+    "intro": "[green]Sürat[/green] moduna hoş geldin! Bu kısa oyunlarda, tüm karakterlerin ortak kullandığı ayrı bir Yükseliş zorluğu ve deste kurmayı ön plana çıkaran köklü değişiklikler bulunuyor.",
+    "rules": [
+      "Her oyunun başında kart alırsın.",
+      "Her Sahne'de [blue]4[/blue] karşılaşmaya girersin.",
+      "[blue]Tüccar[/blue] biraz [sine]tuhaftır[/sine].",
+      "[gold]Hazine Sandıkları[/gold] fazladan bir kalıntı içerir.",
+      "Harita yoktur."
+    ],
+    "epoch_id": "BLITZ_EPOCH",
+    "unlock_text": "Açılan oyun modu: Sürat.",
+    "unlock_info": "Sürat modunu açmak için bir Yükseliş oyunu oyna.",
+    "max_ascension": 5,
+    "ascension_levels": [
+      "WearyTraveler",
+      "TightBelt",
+      "ToughEnemies",
+      "DeadlyEnemies",
+      "AscendersBane"
+    ],
+    "neow": {
+      "name": "Sürat",
+      "description": "[gold]Deste[/gold]'ne eklemek için [blue]3[/blue] kart seç."
+    },
+    "merchant_entries": [
+      {
+        "id": "CARD_ENCHANT",
+        "name": "Enchantment",
+        "description": "Bir kartı [purple]Enchantment[/purple] ile [gold]Büyüle[/gold]."
+      },
+      {
+        "id": "CARD_PACKS",
+        "name": "Kart Paketleri",
+        "description": "[gold]Deste[/gold]'ne eklemek için [blue]2[/blue] kart paketinden [blue]1[/blue] tanesini seç."
+      },
+      {
+        "id": "CARD_REMOVAL",
+        "name": "Kart Kaldırma Servisi",
+        "description": "[gold]Deste[/gold]'nden bir kartı kaldır."
+      },
+      {
+        "id": "CARD_REWARD_OF_EACH_RARITY",
+        "name": "Lanetli Kart Ödülleri",
+        "description": "Rastgele [red]1[/red] [red]Lanet[/red] elde et.\n[blue]1[/blue] [gold]Yaygın[/gold], [gold]Az Yaygın[/gold] ve [gold]Nadir[/gold] kart ödülü elde et."
+      },
+      {
+        "id": "CARD_REWARDS",
+        "name": "Kart Ödülleri",
+        "description": "[blue]2[/blue] kart ödülü elde et."
+      },
+      {
+        "id": "CARD_TRANSFORM",
+        "name": "Kart Dönüştürme Servisi",
+        "description": "[gold]Deste[/gold]'ndeki bir kartı [gold]Dönüştür[/gold]."
+      },
+      {
+        "id": "CARD_UPGRADE",
+        "name": "Kart Geliştirme Servisi",
+        "description": "[gold]Deste[/gold]'ndeki bir kartı [gold]Geliştir[/gold]."
+      },
+      {
+        "id": "COLORLESS_CARD_REWARD",
+        "name": "Renksiz Kart Ödülü",
+        "description": "[blue]1[/blue] [gold]Renksiz[/gold] kart ödülü elde et."
+      },
+      {
+        "id": "ENCHANTED_CARD_REWARD",
+        "name": "Büyülenmiş Kart Ödülü",
+        "description": "[gold]Büyülenmiş[/gold] [blue]1[/blue] adet kart ödülü elde et."
+      },
+      {
+        "id": "FULL_HEAL_AND_MAX_HP",
+        "name": "Lanetli İyileştirme",
+        "description": "Rastgele [red]1[/red] [red]Lanet[/red] elde et.\nMaksimum CP'ni [blue]6[/blue] artır ve tüm CP'ni iyileştir."
+      },
+      {
+        "id": "GLAM",
+        "name": "Lanetli Enchantment",
+        "description": "Rastgele [red]1[/red] [red]Lanet[/red] elde et.\nBir kartı [purple]Enchantment[/purple] ile [gold]Büyüle[/gold]."
+      },
+      {
+        "id": "POTIONS",
+        "name": "İksirler",
+        "description": "[blue]1[/blue] iksir yuvası ve rastgele [blue]2[/blue] iksir elde et."
+      },
+      {
+        "id": "PRISMATIC_CARD_REWARD",
+        "name": "Character Kart Ödülü",
+        "description": "[blue]1[/blue] [gold]Character[/gold] kart ödülü elde et."
+      },
+      {
+        "id": "RANDOM_UPGRADES",
+        "name": "Rastgele Geliştirme",
+        "description": "[gold]Deste[/gold]'ndeki rastgele [blue]2[/blue] kartı geliştir."
+      },
+      {
+        "id": "RARE_CARD_REWARD",
+        "name": "Nadir Kart Ödülü",
+        "description": "[blue]1[/blue] nadir kart ödülü elde et."
+      },
+      {
+        "id": "RELIC",
+        "name": "Kalıntı",
+        "description": "Rastgele [blue]1[/blue] [gold]Kalıntı[/gold] elde et."
+      },
+      {
+        "id": "TWO_MORE_CHOICES",
+        "name": "Lanetli Tercihler",
+        "description": "Rastgele [red]1[/red] [red]Lanet[/red] elde et.\nTüccar'dan iki ürün daha satın alabilirsin."
+      },
+      {
+        "id": "TWO_RELICS",
+        "name": "Lanetli Kalıntılar",
+        "description": "Rastgele [red]1[/red] [red]Lanet[/red] elde et.\nRastgele [blue]2[/blue] [gold]Kalıntı[/gold] elde et."
+      },
+      {
+        "id": "UPGRADED_CARD_REWARD",
+        "name": "Geliştirilmiş Kart Ödülü",
+        "description": "[blue]1[/blue] adet [gold]Geliştirilmiş[/gold] kart ödülü elde et."
+      },
+      {
+        "id": "UPGRADED_RARE_CARD",
+        "name": "Geliştirilmiş Nadir Kart",
+        "description": "[blue]1[/blue] adet [gold]Geliştirilmiş[/gold] rastgele bir nadir kart elde et."
+      },
+      {
+        "id": "UPGRADED_RARE_CARD_REWARD",
+        "name": "Lanetli Geliştirilmiş Nadir Kart Ödülü",
+        "description": "Rastgele [red]1[/red] [red]Lanet[/red] elde et.\n[blue]1[/blue] adet [gold]Geliştirilmiş[/gold] nadir kart ödülü elde et."
+      }
+    ]
+  }
+]

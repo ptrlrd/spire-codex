@@ -1,0 +1,269 @@
+[
+  {
+    "id": "STANDARD",
+    "name": "일반",
+    "description": "첨탑을 무찌르기 위한\n탐험을 시작하세요!",
+    "multiplayer_description": "첨탑을 무찌르기 위한\n탐험을 시작하세요...\n친구와 함께!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": null,
+    "max_ascension": 10
+  },
+  {
+    "id": "DAILY",
+    "name": "일일 도전",
+    "description": "하루에 한 번 새로운\n도전을 진행할 수 있습니다.\n\n다른 플레이어들과\n최고 점수를 두고서\n경쟁해보세요!",
+    "multiplayer_description": "하루에 한 번 새로운\n도전을 진행할 수 있습니다.\n\n다른 그룹들과 최고 점수를 두고서 경쟁해보세요!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "일일 도전을 해금하려면 모든 캐릭터로 한 번씩 플레이하고 3막을 클리어하세요.",
+    "max_ascension": 10
+  },
+  {
+    "id": "DREAD",
+    "name": "드레드",
+    "description": "아키텍트가 마련한\n최고 난이도입니다.\n\n첨탑을 완벽히 통달했는지\n시험하고자 하는 분들을\n위한 난이도입니다.",
+    "multiplayer_description": "아키텍트가 마련한\n최고 난이도입니다.\n\n첨탑을 완벽히 통달했는지\n시험하고자 하는 파티를\n위한 난이도입니다.",
+    "intro": "[gold]드레드[/gold]는 Slay the Spire에서 경험할 수 있는 가장\n어려운 도전입니다.",
+    "rules": [
+      "모든 승천 모드가 활성화되어 있습니다.",
+      "매 막 종료 시, [gold]덱[/gold]에 [purple]등반자의 골칫거리[/purple]가 1장 추가됩니다.",
+      "적들이 다음 보스의 추가 능력을 획득합니다.",
+      "보스가 더 강력해집니다."
+    ],
+    "epoch_id": "DREAD_EPOCH",
+    "unlock_text": "게임 모드 해금: 드레드.",
+    "unlock_info": "모든 캐릭터로 [red]승천[/red] [blue]10[/blue]을 클리어해 이 역사를 드러내세요.",
+    "max_ascension": 10,
+    "dominions": [
+      {
+        "id": "AEONGLASS_DOMINION",
+        "encounter_id": "AEONGLASS_BOSS",
+        "boss_name": "영겁의 모래시계",
+        "name": "영겁의 모래시계의 권능",
+        "description": "내 턴 시작 시, [gold]뽑을 카드 더미[/gold] 맨 위에 [gold]시듦[/gold]을 [blue]1[/blue]장 추가합니다."
+      },
+      {
+        "id": "CEREMONIAL_BEAST_DOMINION",
+        "encounter_id": "CEREMONIAL_BEAST_BOSS",
+        "boss_name": "의식의 신수",
+        "name": "의식의 신수의 권능",
+        "description": "모든 적이 [gold]의식[/gold]을 [blue]1[/blue] 얻습니다."
+      },
+      {
+        "id": "INSATIABLE_DOMINION",
+        "encounter_id": "THE_INSATIABLE_BOSS",
+        "boss_name": "탐",
+        "name": "탐의 권능",
+        "description": "내 턴 종료 시, 턴 수에 따라 피해를 입습니다."
+      },
+      {
+        "id": "KAISER_CRAB_DOMINION",
+        "encounter_id": "KAISER_CRAB_BOSS",
+        "boss_name": "황제 게",
+        "name": "황제 게의 권능",
+        "description": "모든 적이 [gold]판금[/gold]을 [blue]7[/blue] 얻습니다."
+      },
+      {
+        "id": "KIN_DOMINION",
+        "encounter_id": "THE_KIN_BOSS",
+        "boss_name": "혈족",
+        "name": "혈족의 권능",
+        "description": "[gold]약화[/gold]와 [gold]손상[/gold]이 [red]2[/red] 부여된 상태로 전투를 시작합니다."
+      },
+      {
+        "id": "KNOWLEDGE_DEMON_DOMINION",
+        "encounter_id": "KNOWLEDGE_DEMON_BOSS",
+        "boss_name": "지식의 악마",
+        "name": "지식의 악마의 권능",
+        "description": "매 전투 시작 시, 권능의 [red]골칫거리[/red] [blue]2[/blue]개 중 [blue]1[/blue]개를 선택합니다."
+      },
+      {
+        "id": "LAGAVULIN_MATRIARCH_DOMINION",
+        "encounter_id": "LAGAVULIN_MATRIARCH_BOSS",
+        "boss_name": "라가불린 대모",
+        "name": "라가불린 대모의 권능",
+        "description": "첫 번째 턴 종료 시, [gold]힘[/gold]과 [gold]민첩[/gold]을 [red]1[/red] 잃습니다."
+      },
+      {
+        "id": "QUEEN_DOMINION",
+        "encounter_id": "QUEEN_BOSS",
+        "boss_name": "여왕",
+        "name": "여왕의 권능",
+        "description": "두 번째 턴 시작 시, [gold]약화[/gold], [gold]취약[/gold], [gold]손상[/gold]을 [red]3[/red] 얻습니다."
+      },
+      {
+        "id": "SOUL_FYSH_DOMINION",
+        "encounter_id": "SOUL_FYSH_BOSS",
+        "boss_name": "영혼 물교기",
+        "name": "영혼 물교기의 권능",
+        "description": "매 전투 시작 시, [gold]뽑을 카드 더미[/gold]에 [gold]유인[/gold]을 1장 추가합니다."
+      },
+      {
+        "id": "TEST_SUBJECT_DOMINION",
+        "encounter_id": "TEST_SUBJECT_BOSS",
+        "boss_name": "실험체",
+        "name": "실험체의 권능",
+        "description": "모든 적이 [gold]힘[/gold]을 [blue]3[/blue] 얻습니다."
+      },
+      {
+        "id": "VANTOM_DOMINION",
+        "encounter_id": "VANTOM_BOSS",
+        "boss_name": "밴텀",
+        "name": "밴텀의 권능",
+        "description": "일반 적이 [gold]미끈거림[/gold]을 [blue]1[/blue] 얻습니다. 엘리트가 [gold]미끈거림[/gold]을 [blue]2[/blue] 얻습니다."
+      },
+      {
+        "id": "WATERFALL_GIANT_DOMINION",
+        "encounter_id": "WATERFALL_GIANT_BOSS",
+        "boss_name": "폭포 거인",
+        "name": "폭포 거인의 권능",
+        "description": "적이 죽으면 폭발하며 피해를 입힙니다."
+      }
+    ],
+    "rotating_streak": {
+      "name": "교대 연승",
+      "description": "[gold]교대 연승[/gold]에서는, 승리할 때마다 오른쪽에 있는 다음 캐릭터로 이동합니다.\n승리는 별도의 연승 기록으로 집계되며, 각 캐릭터의 개별 기록에는 더 이상 반영되지 않습니다."
+    }
+  },
+  {
+    "id": "BLITZ",
+    "name": "블리츠",
+    "description": "더 짧은 여정을 원하는\n분들을 위한 더 빠르고\n압축된 도전입니다.",
+    "multiplayer_description": "더 짧은 여정을 원하는\n그룹을 위한 더 빠르고\n압축된 도전입니다.",
+    "intro": "[green]블리츠[/green] 모드에 오신 것을 환영합니다!\n빠르게 진행되는 이 모드에서는 모든 캐릭터가\n공유하는 별도의 승천 난이도가 적용되며,\n덱빌딩에 더욱 집중할 수 있도록 게임 규칙이\n크게 변경됩니다.",
+    "rules": [
+      "매 도전 시작 시 카드를 지급받습니다.",
+      "각 막에서 [blue]4번[/blue]의 전투를 치릅니다.",
+      "[blue]상인[/blue]은 [sine]이상합니다[/sine].",
+      "[gold]보물 상자[/gold]에 유물이 하나 더 들어 있습니다.",
+      "지도는 없습니다."
+    ],
+    "epoch_id": "BLITZ_EPOCH",
+    "unlock_text": "게임 모드 해금: 블리츠.",
+    "unlock_info": "승천 도전을 한 번 플레이해 블리츠를 해금하세요.",
+    "max_ascension": 5,
+    "ascension_levels": [
+      "WearyTraveler",
+      "TightBelt",
+      "ToughEnemies",
+      "DeadlyEnemies",
+      "AscendersBane"
+    ],
+    "neow": {
+      "name": "블리츠",
+      "description": "카드 [blue]3[/blue]장을 선택해 [gold]덱[/gold]에 추가합니다."
+    },
+    "merchant_entries": [
+      {
+        "id": "CARD_ENCHANT",
+        "name": "Enchantment",
+        "description": "카드 1장에 [purple]Enchantment[/purple] [gold]인챈트[/gold]합니다."
+      },
+      {
+        "id": "CARD_PACKS",
+        "name": "카드 팩",
+        "description": "카드 팩 [blue]2[/blue]개 중 [blue]1[/blue]개를 선택해 [gold]덱[/gold]에 추가합니다."
+      },
+      {
+        "id": "CARD_REMOVAL",
+        "name": "카드 제거 서비스",
+        "description": "[gold]덱[/gold]에서 카드를 1장 제거합니다."
+      },
+      {
+        "id": "CARD_REWARD_OF_EACH_RARITY",
+        "name": "저주받은 카드 보상",
+        "description": "무작위 [red]저주[/red]를 [red]1[/red]장 받습니다.\n[gold]일반[/gold], [gold]고급[/gold], [gold]희귀[/gold] 카드 보상을 [blue]1[/blue]번 받습니다."
+      },
+      {
+        "id": "CARD_REWARDS",
+        "name": "카드 보상",
+        "description": "카드 보상을 [blue]2[/blue]번 받습니다."
+      },
+      {
+        "id": "CARD_TRANSFORM",
+        "name": "카드 변화 서비스",
+        "description": "[gold]덱[/gold]에서 카드를 1장 [gold]변화[/gold]시킵니다."
+      },
+      {
+        "id": "CARD_UPGRADE",
+        "name": "카드 강화 서비스",
+        "description": "[gold]덱[/gold]에서 카드를 1장 [gold]강화[/gold]합니다."
+      },
+      {
+        "id": "COLORLESS_CARD_REWARD",
+        "name": "무색 카드 보상",
+        "description": "[gold]무색[/gold] 카드 보상을 [blue]1[/blue]번 받습니다."
+      },
+      {
+        "id": "ENCHANTED_CARD_REWARD",
+        "name": "인챈트된 카드 보상",
+        "description": "[gold]인챈트[/gold]된 카드 보상을 [blue]1[/blue]번 받습니다."
+      },
+      {
+        "id": "FULL_HEAL_AND_MAX_HP",
+        "name": "저주받은 치유",
+        "description": "무작위 [red]저주[/red]를 [red]1[/red]장 받습니다.\n최대 체력이 [blue]6[/blue] 증가하고 체력을 모두 회복합니다."
+      },
+      {
+        "id": "GLAM",
+        "name": "저주받은 Enchantment",
+        "description": "무작위 [red]저주[/red]를 [red]1[/red]장 받습니다.\n카드 1장에 [purple]Enchantment[/purple]를 [gold]인챈트[/gold]합니다."
+      },
+      {
+        "id": "POTIONS",
+        "name": "포션",
+        "description": "포션 슬롯을 [blue]1[/blue]개 얻고 무작위 포션을 [blue]2[/blue]개 생성합니다."
+      },
+      {
+        "id": "PRISMATIC_CARD_REWARD",
+        "name": "Character 카드 보상",
+        "description": "[gold]Character[/gold] 카드 보상을 [blue]1[/blue]번 받습니다."
+      },
+      {
+        "id": "RANDOM_UPGRADES",
+        "name": "무작위 강화",
+        "description": "[gold]덱[/gold]에서 무작위 카드를 [blue]2[/blue]장 강화합니다."
+      },
+      {
+        "id": "RARE_CARD_REWARD",
+        "name": "희귀 카드 보상",
+        "description": "희귀 카드 보상을 [blue]1[/blue]번 받습니다."
+      },
+      {
+        "id": "RELIC",
+        "name": "유물",
+        "description": "무작위 [gold]유물[/gold]을 [blue]1[/blue]개 얻습니다."
+      },
+      {
+        "id": "TWO_MORE_CHOICES",
+        "name": "저주받은 선택",
+        "description": "무작위 [red]저주[/red]를 [red]1[/red]장 받습니다.\n상인이 상품을 두 개 더 구매할 수 있게 해줍니다."
+      },
+      {
+        "id": "TWO_RELICS",
+        "name": "저주받은 유물",
+        "description": "무작위 [red]저주[/red]를 [red]1[/red]장 받습니다.\n무작위 [gold]유물[/gold]을 [blue]2[/blue]개 얻습니다."
+      },
+      {
+        "id": "UPGRADED_CARD_REWARD",
+        "name": "강화된 카드 보상",
+        "description": "[gold]강화[/gold]된 카드 보상을 [blue]1[/blue]번 받습니다."
+      },
+      {
+        "id": "UPGRADED_RARE_CARD",
+        "name": "강화된 희귀 카드",
+        "description": "무작위 [gold]강화[/gold]된 희귀 카드를 [blue]1[/blue]장 받습니다."
+      },
+      {
+        "id": "UPGRADED_RARE_CARD_REWARD",
+        "name": "저주받은 강화된 희귀 카드 보상",
+        "description": "무작위 [red]저주[/red]를 [red]1[/red]장 받습니다.\n[gold]강화[/gold]된 희귀 카드 보상을 [blue]1[/blue]번 받습니다."
+      }
+    ]
+  }
+]

@@ -60,6 +60,7 @@ STEAM_APP_ID = 2868840
 
 # Fields to ignore when diffing (noise / internal)
 IGNORE_FIELDS = {"image_url", "beta_image_url", "sort_order", "era_position", "compendium_order"}
+BETA_IMAGE_PATH = re.compile(r"/beta/v[\d.]+(?:-beta)?/")
 
 # Human-readable category names
 CATEGORY_NAMES = {
@@ -195,6 +196,13 @@ def diff_entity(old: dict, new: dict) -> dict[str, tuple]:
         # Skip noise: ignored top-level fields
         top = path.split(".", 1)[0].split("[", 1)[0]
         if top in IGNORE_FIELDS:
+            continue
+        if (
+            isinstance(old_val, str)
+            and isinstance(new_val, str)
+            and BETA_IMAGE_PATH.sub("/beta/", old_val)
+            == BETA_IMAGE_PATH.sub("/beta/", new_val)
+        ):
             continue
         changes[path] = (old_val, new_val)
     return changes
@@ -591,7 +599,10 @@ def main():
                 except Exception:
                     pass
             if "notes" not in changelog:
-                changelog.update(official_patch_notes(game_version))
+                changelog.update(
+                    official_patch_notes(game_version)
+                    or official_patch_notes(game_version, output_dir.parent / "news")
+                )
             with open(out_path, "w", encoding="utf-8") as f:
                 json.dump(changelog, f, indent=2, ensure_ascii=False)
             print(f"Saved changelog to {out_path}")

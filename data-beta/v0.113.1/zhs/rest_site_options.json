@@ -1,0 +1,46 @@
+[
+  {
+    "id": "CLONE",
+    "name": "克隆"
+  },
+  {
+    "id": "COOK",
+    "name": "烹饪"
+  },
+  {
+    "id": "DIG",
+    "name": "挖掘"
+  },
+  {
+    "id": "EVOLVE",
+    "name": "进化"
+  },
+  {
+    "id": "HATCH",
+    "name": "孵化"
+  },
+  {
+    "id": "HEAL",
+    "name": "休息"
+  },
+  {
+    "id": "KINDLE",
+    "name": "添火"
+  },
+  {
+    "id": "LIFT",
+    "name": "锻炼"
+  },
+  {
+    "id": "MEND",
+    "name": "愈合"
+  },
+  {
+    "id": "RESTORE",
+    "name": "回复"
+  },
+  {
+    "id": "SMITH",
+    "name": "锻造"
+  }
+]

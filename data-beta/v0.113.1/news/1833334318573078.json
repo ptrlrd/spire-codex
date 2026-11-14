@@ -1,0 +1,16 @@
+{
+  "gid": "1833334318573078",
+  "title": "Beta Hotfix Patch Notes - v0.106.1",
+  "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1833334318573078",
+  "is_external_url": true,
+  "author": "demileaf",
+  "contents": "Quick hotfix with a couple of Aeonglass-related fixes and some localization updates!\n\n[h3]WRITING:[/h3]\n\n[list]\n[*] Updated translations for various languages\n[/list]\n\n[h3]BUG FIXES:[/h3]\n\n[b]Enemies:[/b]\n[list]\n[*]The player can no longer upgrade Wither status cards\n[*]Wither status cards will no longer stick around in hand if they have Retain from something like the Runic Pyramid relic\n[/list]",
+  "feedlabel": "Community Announcements",
+  "feedname": "steam_community_announcements",
+  "feed_type": 1,
+  "tags": [
+    "patchnotes"
+  ],
+  "date": 1779497060,
+  "appid": 2868840
+}

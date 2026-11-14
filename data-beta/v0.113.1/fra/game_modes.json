@@ -1,0 +1,269 @@
+[
+  {
+    "id": "STANDARD",
+    "name": "Standard",
+    "description": "Commencez l'aventure pour venir à bout de la Tour !",
+    "multiplayer_description": "Commencez l'aventure pour venir à bout de la Tour... avec des amis !",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": null,
+    "max_ascension": 10
+  },
+  {
+    "id": "DAILY",
+    "name": "Défi quotidien",
+    "description": "Un nouveau défi est disponible chaque jour.\n\nMesurez votre score final aux autres joueurs !",
+    "multiplayer_description": "Un nouveau défi est disponible chaque jour.\n\nMesurez votre score final aux autres équipes du monde !",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "Jouez une partie avec chacun des personnages et triomphez de l'Acte 3 pour débloquer les Défis quotidiens.",
+    "max_ascension": 10
+  },
+  {
+    "id": "DREAD",
+    "name": "Effroi",
+    "description": "La difficulté la plus élevée que propose l'Architecte.\n\nUniquement pour ceux qui veulent mesurer leur talent aux épreuves de la Tour.",
+    "multiplayer_description": "La difficulté la plus élevée que propose l'Architecte.\n\nSeulement pour les groupes qui souhaitent mesurer leur talent aux épreuves de la Tour.",
+    "intro": "Le mode [gold]Effroi[/gold] représente le plus grand défi dans Slay the Spire.",
+    "rules": [
+      "Tous les modificateurs d'Ascension sont activés.",
+      "À la fin de chaque Acte, un [purple]Fléau de l'ascendant[/purple] est ajouté à votre [gold]Deck[/gold].",
+      "Le prochain boss accorde aux ennemis de nouvelles capacités.",
+      "Les boss sont encore plus puissants."
+    ],
+    "epoch_id": "DREAD_EPOCH",
+    "unlock_text": "Mode de jeu débloqué : Effroi.",
+    "unlock_info": "Atteignez le niveau d'Ascension 10 sur tous les personnages pour révéler cette Ère.",
+    "max_ascension": 10,
+    "dominions": [
+      {
+        "id": "AEONGLASS_DOMINION",
+        "encounter_id": "AEONGLASS_BOSS",
+        "boss_name": "Clepséon",
+        "name": "Suprématie de Clepséon",
+        "description": "Au début de votre tour, ajoutez [blue]1[/blue] [gold]Érosion[/gold] sur le dessus de votre [gold]Pioche[/gold]."
+      },
+      {
+        "id": "CEREMONIAL_BEAST_DOMINION",
+        "encounter_id": "CEREMONIAL_BEAST_BOSS",
+        "boss_name": "Cerf Auguste",
+        "name": "Suprématie de Cerf Auguste",
+        "description": "Tous les ennemis gagnent [blue]1[/blue] de [gold]Rituel[/gold]."
+      },
+      {
+        "id": "INSATIABLE_DOMINION",
+        "encounter_id": "THE_INSATIABLE_BOSS",
+        "boss_name": "L'Insatiable",
+        "name": "Suprématie de L'Insatiable",
+        "description": "À la fin de votre tour, subissez des dégâts en fonction du nombre de tours écoulés."
+      },
+      {
+        "id": "KAISER_CRAB_DOMINION",
+        "encounter_id": "KAISER_CRAB_BOSS",
+        "boss_name": "Crabe César",
+        "name": "Suprématie de Crabe César",
+        "description": "Tous les ennemis gagnent [blue]7[/blue] de [gold]Blindage[/gold]."
+      },
+      {
+        "id": "KIN_DOMINION",
+        "encounter_id": "THE_KIN_BOSS",
+        "boss_name": "La Tribu",
+        "name": "Suprématie de La Tribu",
+        "description": "Vous commencez chaque combat avec [gold]Affaibli[/gold] [red](2)[/red] et [gold]Fragilisé[/gold] [red](2)[/red]."
+      },
+      {
+        "id": "KNOWLEDGE_DEMON_DOMINION",
+        "encounter_id": "KNOWLEDGE_DEMON_BOSS",
+        "boss_name": "Démon de la Connaissance",
+        "name": "Suprématie de Démon de la Connaissance",
+        "description": "Au début de chaque combat, choisissez [blue]1[/blue] parmi [blue]2[/blue] [red]Fléaux[/red] de Suprématie."
+      },
+      {
+        "id": "LAGAVULIN_MATRIARCH_DOMINION",
+        "encounter_id": "LAGAVULIN_MATRIARCH_BOSS",
+        "boss_name": "Matriarche lagavulin",
+        "name": "Suprématie de Matriarche lagavulin",
+        "description": "À la fin de votre premier tour, perdez [red]1[/red] de [gold]Force[/gold] et de [gold]Dextérité[/gold]."
+      },
+      {
+        "id": "QUEEN_DOMINION",
+        "encounter_id": "QUEEN_BOSS",
+        "boss_name": "Reine",
+        "name": "Suprématie de Reine",
+        "description": "Au début du tour 2, gagnez [gold]Affaibli[/gold] [red](3)[/red], [gold]Vulnérable[/gold] [red](3)[/red] et [gold]Fragilisé[/gold] [red](3)[/red]."
+      },
+      {
+        "id": "SOUL_FYSH_DOMINION",
+        "encounter_id": "SOUL_FYSH_BOSS",
+        "boss_name": "Poissâme",
+        "name": "Suprématie de Poissâme",
+        "description": "Au début de chaque combat, mélangez un [gold]Appel[/gold] à votre [gold]Pioche[/gold]."
+      },
+      {
+        "id": "TEST_SUBJECT_DOMINION",
+        "encounter_id": "TEST_SUBJECT_BOSS",
+        "boss_name": "Cobaye",
+        "name": "Suprématie de Cobaye",
+        "description": "Tous les ennemis gagnent [blue]3[/blue] de [gold]Force[/gold]."
+      },
+      {
+        "id": "VANTOM_DOMINION",
+        "encounter_id": "VANTOM_BOSS",
+        "boss_name": "Vantôme",
+        "name": "Suprématie de Vantôme",
+        "description": "Les ennemis normaux gagnent [gold]Glissant[/gold] [blue](1)[/blue]. Les ennemis d'Élite gagnent [gold]Glissant[/gold] [blue](2)[/blue]."
+      },
+      {
+        "id": "WATERFALL_GIANT_DOMINION",
+        "encounter_id": "WATERFALL_GIANT_BOSS",
+        "boss_name": "Géant de la Cascade",
+        "name": "Suprématie de Géant de la Cascade",
+        "description": "Les ennemis explosent lorsqu'ils sont vaincus, infligeant des dégâts."
+      }
+    ],
+    "rotating_streak": {
+      "name": "Série de victoires en rotation",
+      "description": "Dans une [gold]Série de victoires en rotation[/gold], chaque victoire fait défiler le personnage d'un cran vers la droite.\nCes victoires sont enregistrées séparément des autres, et ne comptent plus pour les victoires de chaque personnage individuel."
+    }
+  },
+  {
+    "id": "BLITZ",
+    "name": "Blitz",
+    "description": "Des parties rapides et condensées pour qui recherche un périple plus court.",
+    "multiplayer_description": "Des parties courtes et condensées pour les groupes qui recherchent une aventure plus courte.",
+    "intro": "Bienvenue dans le mode [green]Blitz[/green] ! Ces parties rapides ont une difficulté d'Ascension séparée, commune à tous les personnages, et proposent des changements qui vous permettent de vous focaliser sur la construction de deck.",
+    "rules": [
+      "Vous recevez des cartes au début de chaque partie.",
+      "Affrontez [blue]4[/blue] combats par Acte.",
+      "Le [blue]Marchand[/blue] est [sine]bizarre[/sine].",
+      "Les [gold]Coffres au trésor[/gold] contiennent une relique supplémentaire.",
+      "Il n'y a pas de carte pour choisir son chemin."
+    ],
+    "epoch_id": "BLITZ_EPOCH",
+    "unlock_text": "Mode de jeu débloqué : Blitz.",
+    "unlock_info": "Jouez une partie en mode Ascension pour débloquer le mode Blitz.",
+    "max_ascension": 5,
+    "ascension_levels": [
+      "WearyTraveler",
+      "TightBelt",
+      "ToughEnemies",
+      "DeadlyEnemies",
+      "AscendersBane"
+    ],
+    "neow": {
+      "name": "Blitz",
+      "description": "Choisissez [blue]3[/blue] cartes à ajouter à votre [gold]Deck[/gold]."
+    },
+    "merchant_entries": [
+      {
+        "id": "CARD_ENCHANT",
+        "name": "Enchantment",
+        "description": "[gold]Envoûtez[/gold] une carte avec [purple]Enchantment[/purple]."
+      },
+      {
+        "id": "CARD_PACKS",
+        "name": "Paquets de cartes",
+        "description": "Choisissez parmi [blue]2[/blue] paquets de cartes à ajouter à votre [gold]Deck[/gold]."
+      },
+      {
+        "id": "CARD_REMOVAL",
+        "name": "Service de retrait de cartes",
+        "description": "Retirez une carte de votre [gold]Deck[/gold]."
+      },
+      {
+        "id": "CARD_REWARD_OF_EACH_RARITY",
+        "name": "Récompense de carte maudite",
+        "description": "Recevez [red]1[/red] [red]Malédiction[/red] aléatoire.\nRecevez [blue]1[/blue] récompense de carte [gold]Commune[/gold], [blue]1[/blue] [gold]Inhabituelle[/gold], et [blue]1[/blue] [gold]Rare[/gold]."
+      },
+      {
+        "id": "CARD_REWARDS",
+        "name": "Récompenses de carte",
+        "description": "Recevez [blue]2[/blue] récompenses de carte."
+      },
+      {
+        "id": "CARD_TRANSFORM",
+        "name": "Service de transformation de carte",
+        "description": "[gold]Transformez[/gold] une carte de votre [gold]Deck[/gold]."
+      },
+      {
+        "id": "CARD_UPGRADE",
+        "name": "Service d'amélioration de carte",
+        "description": "[gold]Améliorez[/gold] une carte de votre [gold]Deck[/gold]."
+      },
+      {
+        "id": "COLORLESS_CARD_REWARD",
+        "name": "Récompense de carte incolore",
+        "description": "Recevez [blue]1[/blue] récompense de carte [gold]Incolore[/gold]."
+      },
+      {
+        "id": "ENCHANTED_CARD_REWARD",
+        "name": "Récompense de carte envoûtée",
+        "description": "Recevez [blue]1[/blue] récompense de carte [gold]Envoûtée[/gold]."
+      },
+      {
+        "id": "FULL_HEAL_AND_MAX_HP",
+        "name": "Soins maudits",
+        "description": "Recevez [red]1[/red] [red]Malédiction[/red] aléatoire.\nAugmentez vos PV Max de [blue]6[/blue] et récupérez tous vos PV."
+      },
+      {
+        "id": "GLAM",
+        "name": "Enchantment maudit",
+        "description": "Recevez [red]1[/red] [red]Malédiction[/red] aléatoire.\n[gold]Envoûtez[/gold] une carte avec [purple]Enchantment[/purple]."
+      },
+      {
+        "id": "POTIONS",
+        "name": "Potions",
+        "description": "Gagnez [blue]1[/blue] emplacement de potion et obtenez [blue]2[/blue] potions aléatoires."
+      },
+      {
+        "id": "PRISMATIC_CARD_REWARD",
+        "name": "Récompense de carte Character",
+        "description": "Recevez [blue]1[/blue] récompense de carte [gold]Character[/gold]."
+      },
+      {
+        "id": "RANDOM_UPGRADES",
+        "name": "Améliorations aléatoires",
+        "description": "Améliorez [blue]2[/blue] cartes aléatoires de votre [gold]Deck[/gold]."
+      },
+      {
+        "id": "RARE_CARD_REWARD",
+        "name": "Récompense de carte rare",
+        "description": "Recevez [blue]1[/blue] récompense de carte rare."
+      },
+      {
+        "id": "RELIC",
+        "name": "Relique",
+        "description": "Obtenez [blue]1[/blue] [gold]Relique[/gold] aléatoire."
+      },
+      {
+        "id": "TWO_MORE_CHOICES",
+        "name": "Choix maudits",
+        "description": "Recevez [red]1[/red] [red]Malédiction[/red] aléatoire.\nLe Marchand vous permet d'acheter deux articles supplémentaires."
+      },
+      {
+        "id": "TWO_RELICS",
+        "name": "Reliques maudites",
+        "description": "Recevez [red]1[/red] [red]Malédiction[/red] aléatoire.\nObtenez [blue]2[/blue] [gold]Reliques[/gold] aléatoires."
+      },
+      {
+        "id": "UPGRADED_CARD_REWARD",
+        "name": "Récompense de carte améliorée",
+        "description": "Recevez [blue]1[/blue] récompense de carte [gold]Améliorée[/gold]."
+      },
+      {
+        "id": "UPGRADED_RARE_CARD",
+        "name": "Carte rare améliorée",
+        "description": "Recevez [blue]1[/blue] carte rare [gold]Améliorée[/gold] aléatoire."
+      },
+      {
+        "id": "UPGRADED_RARE_CARD_REWARD",
+        "name": "Récompense de carte rare améliorée maudite",
+        "description": "Recevez [red]1[/red] [red]Malédiction[/red] aléatoire.\nRecevez [blue]1[/blue] récompense de carte rare [gold]Améliorée[/gold]."
+      }
+    ]
+  }
+]

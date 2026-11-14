@@ -1,0 +1,269 @@
+[
+  {
+    "id": "STANDARD",
+    "name": "Standard",
+    "description": "Brich zu einer Quest auf, den Spire zu bezwingen!",
+    "multiplayer_description": "Brich zu einer Quest auf, den Spire zu bezwingen... mit Freunden!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": null,
+    "max_ascension": 10
+  },
+  {
+    "id": "DAILY",
+    "name": "Run des Tages",
+    "description": "Jeden Tag ist eine neue Herausforderung verfügbar.\n\nMiss dich mit anderen Spielern um die höchste Punktzahl!",
+    "multiplayer_description": "Jeden Tag ist eine neue Herausforderung verfügbar.\n\nMesst euch mit anderen Gruppen um die höchste Punktzahl!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "Spiele einen einzelnen Run mit allen Charakteren und besiege Akt 3, um den Run des Tages freizuschalten.",
+    "max_ascension": 10
+  },
+  {
+    "id": "DREAD",
+    "name": "Grauen",
+    "description": "Der Gipfel der Schwierigkeit, vom Architekten eingesetzt.\n\nNur für diejenigen, die ihre Meisterschaft über den Spire auf die Probe stellen wollen.",
+    "multiplayer_description": "Der Gipfel der Schwierigkeit, vom Architekten eingesetzt.\n\nNur für Gruppen, die ihre Meisterschaft über den Spire auf die Probe stellen wollen.",
+    "intro": "[gold]Grauen[/gold] ist die schwerste Herausforderung in Slay the Spire.",
+    "rules": [
+      "Alle Aufstiegsmodifikatoren sind aktiv.",
+      "Am Ende jedes Aktes nimmst du einen [purple]Aufstiegsfluch[/purple] in dein [gold]Deck[/gold].",
+      "Gegner erhalten zusätzliche Fähigkeiten vom bevorstehenden Boss.",
+      "Bosse sind noch stärker."
+    ],
+    "epoch_id": "DREAD_EPOCH",
+    "unlock_text": "Spielmodus freigeschaltet: Grauen.",
+    "unlock_info": "Erreiche [red]Aufstieg[/red] [blue]10[/blue] mit allen Charakteren, um diese Epoche aufzudecken.",
+    "max_ascension": 10,
+    "dominions": [
+      {
+        "id": "AEONGLASS_DOMINION",
+        "encounter_id": "AEONGLASS_BOSS",
+        "boss_name": "Äonenglas",
+        "name": "Herrschaft: Äonenglas",
+        "description": "Erhalte zu Beginn deines Zuges [blue]1[/blue] [gold]Verdorren[/gold] oben auf deinen [gold]Nachziehstapel[/gold]."
+      },
+      {
+        "id": "CEREMONIAL_BEAST_DOMINION",
+        "encounter_id": "CEREMONIAL_BEAST_BOSS",
+        "boss_name": "Zeremonienbiest",
+        "name": "Herrschaft: Zeremonienbiest",
+        "description": "Alle Gegner erhalten [blue]1[/blue] [gold]Ritual[/gold]."
+      },
+      {
+        "id": "INSATIABLE_DOMINION",
+        "encounter_id": "THE_INSATIABLE_BOSS",
+        "boss_name": "Der Nimmersatt",
+        "name": "Herrschaft: Der Nimmersatt",
+        "description": "Nimm am Ende deines Zuges Schaden entsprechend der Zugzahl."
+      },
+      {
+        "id": "KAISER_CRAB_DOMINION",
+        "encounter_id": "KAISER_CRAB_BOSS",
+        "boss_name": "Kaiserkrabbe",
+        "name": "Herrschaft: Kaiserkrabbe",
+        "description": "Alle Gegner erhalten [blue]7[/blue] [gold]Panzerung[/gold]."
+      },
+      {
+        "id": "KIN_DOMINION",
+        "encounter_id": "THE_KIN_BOSS",
+        "boss_name": "Die Sippe",
+        "name": "Herrschaft: Die Sippe",
+        "description": "Du beginnst den Kampf mit [red]2[/red] [gold]Schwach[/gold] und [gold]Gebrechlich[/gold]."
+      },
+      {
+        "id": "KNOWLEDGE_DEMON_DOMINION",
+        "encounter_id": "KNOWLEDGE_DEMON_BOSS",
+        "boss_name": "Wissensdämon",
+        "name": "Herrschaft: Wissensdämon",
+        "description": "Wähle zu Beginn des Kampfes [blue]1[/blue] von [blue]2[/blue] Herrschafts-[red]Bannen[/red]."
+      },
+      {
+        "id": "LAGAVULIN_MATRIARCH_DOMINION",
+        "encounter_id": "LAGAVULIN_MATRIARCH_BOSS",
+        "boss_name": "Lagavulin-Matriarchin",
+        "name": "Herrschaft: Lagavulin-Matriarchin",
+        "description": "Verliere am Ende deines ersten Zuges [red]1[/red] [gold]Stärke[/gold] und [gold]Geschicklichkeit[/gold]."
+      },
+      {
+        "id": "QUEEN_DOMINION",
+        "encounter_id": "QUEEN_BOSS",
+        "boss_name": "Königin",
+        "name": "Herrschaft: Königin",
+        "description": "Erhalte zu Beginn des 2. Zuges [red]3[/red] [gold]Schwach[/gold], [gold]Verwundbar[/gold] und [gold]Gebrechlich[/gold]."
+      },
+      {
+        "id": "SOUL_FYSH_DOMINION",
+        "encounter_id": "SOUL_FYSH_BOSS",
+        "boss_name": "Seelenfysch",
+        "name": "Herrschaft: Seelenfysch",
+        "description": "Mische zu Beginn jedes Kampfes ein [gold]Locken[/gold] in deinen [gold]Nachziehstapel[/gold]."
+      },
+      {
+        "id": "TEST_SUBJECT_DOMINION",
+        "encounter_id": "TEST_SUBJECT_BOSS",
+        "boss_name": "Testsubjekt",
+        "name": "Herrschaft: Testsubjekt",
+        "description": "Alle Gegner erhalten [blue]3[/blue] [gold]Stärke[/gold]."
+      },
+      {
+        "id": "VANTOM_DOMINION",
+        "encounter_id": "VANTOM_BOSS",
+        "boss_name": "Vantom",
+        "name": "Herrschaft: Vantom",
+        "description": "Normale Gegner erhalten [blue]1[/blue] [gold]Glitschig[/gold]. Eliten erhalten [blue]2[/blue] [gold]Glitschig[/gold]."
+      },
+      {
+        "id": "WATERFALL_GIANT_DOMINION",
+        "encounter_id": "WATERFALL_GIANT_BOSS",
+        "boss_name": "Wasserfall-Riese",
+        "name": "Herrschaft: Wasserfall-Riese",
+        "description": "Gegner explodieren beim Tod, was dir Schaden zufügt."
+      }
+    ],
+    "rotating_streak": {
+      "name": "Rotierende Siegessträhne",
+      "description": "Bei einer [gold]rotierenden Siegessträhne[/gold] bringt dich jeder Sieg einen Charakter weiter nach rechts.\nSiege werden in einer separaten Strähne gezählt und zählen nicht mehr zu der Strähne einzelner Charaktere."
+    }
+  },
+  {
+    "id": "BLITZ",
+    "name": "Blitz",
+    "description": "Schnellere und kompaktere Runs für diejenigen, die eine kürzere Reise suchen.",
+    "multiplayer_description": "Schnellere und kompaktere Runs für Gruppen, die eine kürzere Reise suchen.",
+    "intro": "Willkommen im [green]Blitz[/green]-Modus! Diese schnellen Runs haben eine separate Aufstiegs-Schwierigkeit, die zwischen allen Charakteren geteilt wird und große Änderungen, die den Fokus mehr auf den Deckbau setzen.",
+    "rules": [
+      "Erhalte zum Beginn jedes Runs Karten.",
+      "Triff auf [blue]4[/blue] Begegnungen pro Akt.",
+      "Der [blue]Händler[/blue] ist [sine]seltsam[/sine].",
+      "[gold]Schatztruhen[/gold] enthalten ein weiteres Relikt.",
+      "Es gibt keine Spire-Karte."
+    ],
+    "epoch_id": "BLITZ_EPOCH",
+    "unlock_text": "Spielmodus freigeschaltet: Blitz.",
+    "unlock_info": "Spiele einen einzigen Aufstiegs-Run, um Blitz freizuschalten.",
+    "max_ascension": 5,
+    "ascension_levels": [
+      "WearyTraveler",
+      "TightBelt",
+      "ToughEnemies",
+      "DeadlyEnemies",
+      "AscendersBane"
+    ],
+    "neow": {
+      "name": "Blitz",
+      "description": "Wähle [blue]3[/blue] Karten, die du in dein [gold]Deck[/gold] nimmst."
+    },
+    "merchant_entries": [
+      {
+        "id": "CARD_ENCHANT",
+        "name": "Enchantment",
+        "description": "[gold]Verzaubere[/gold] eine Karte mit [purple]Enchantment[/purple]."
+      },
+      {
+        "id": "CARD_PACKS",
+        "name": "Kartenpakete",
+        "description": "Wähle [blue]1[/blue] aus [blue]2[/blue] Kartenpaketen, das du in dein [gold]Deck[/gold] nimmst."
+      },
+      {
+        "id": "CARD_REMOVAL",
+        "name": "Kartenentfernungs-Dienst",
+        "description": "Entferne eine Karte aus deinem [gold]Deck[/gold]."
+      },
+      {
+        "id": "CARD_REWARD_OF_EACH_RARITY",
+        "name": "Verfluchte Kartenbelohnungen",
+        "description": "Erhalte [red]1[/red] zufälligen [red]Fluch[/red].\nErhalte [blue]1[/blue] [gold]Gewöhnliche[/gold], [gold]Ungewöhnliche[/gold] und [gold]Seltene[/gold] Kartenbelohnung."
+      },
+      {
+        "id": "CARD_REWARDS",
+        "name": "Kartenbelohnungen",
+        "description": "Erhalte [blue]2[/blue] Kartenbelohnungen."
+      },
+      {
+        "id": "CARD_TRANSFORM",
+        "name": "Kartentransformations-Dienst",
+        "description": "[gold]Transformiere[/gold] eine Karte aus deinem [gold]Deck[/gold]."
+      },
+      {
+        "id": "CARD_UPGRADE",
+        "name": "Kartenverbesserungs-Dienst",
+        "description": "[gold]Verbessere[/gold] eine Karte aus deinem [gold]Deck[/gold]."
+      },
+      {
+        "id": "COLORLESS_CARD_REWARD",
+        "name": "Farblose Kartenbelohnung",
+        "description": "Erhalte [blue]1[/blue] [gold]Farblose[/gold] Kartenbelohnung."
+      },
+      {
+        "id": "ENCHANTED_CARD_REWARD",
+        "name": "Verzauberte Kartenbelohnung",
+        "description": "Erhalte [blue]1[/blue] [gold]Verzauberte[/gold] Kartenbelohnung."
+      },
+      {
+        "id": "FULL_HEAL_AND_MAX_HP",
+        "name": "Verfluchte Heilung",
+        "description": "Erhalte [red]1[/red] zufälligen [red]Fluch[/red].\nErhöhe deine Max. TP um [blue]6[/blue] und heile alle deine TP."
+      },
+      {
+        "id": "GLAM",
+        "name": "Verfluchtes Enchantment",
+        "description": "Erhalte [red]1[/red] zufälligen [red]Fluch[/red].\n[gold]Verzaubere[/gold] eine Karte mit [purple]Enchantment[/purple]."
+      },
+      {
+        "id": "POTIONS",
+        "name": "Tränke",
+        "description": "Erhalte [blue]1[/blue] Trankslot und beschaffe [blue]2[/blue] zufällige Tränke."
+      },
+      {
+        "id": "PRISMATIC_CARD_REWARD",
+        "name": "Character Kartenbelohnung",
+        "description": "Erhalte [blue]1[/blue] [gold]Character[/gold] Kartenbelohnung."
+      },
+      {
+        "id": "RANDOM_UPGRADES",
+        "name": "Zufällige Verbesserungen",
+        "description": "Verbessere [blue]2[/blue] zufällige Karten in deinem [gold]Deck[/gold]."
+      },
+      {
+        "id": "RARE_CARD_REWARD",
+        "name": "Seltene Kartenbelohnung",
+        "description": "Erhalte [blue]1[/blue] Seltene Kartenbelohnung."
+      },
+      {
+        "id": "RELIC",
+        "name": "Relikt",
+        "description": "Erhalte [blue]1[/blue] seltenes [gold]Relikt[/gold]."
+      },
+      {
+        "id": "TWO_MORE_CHOICES",
+        "name": "Verfluchte Optionen",
+        "description": "Erhalte [red]1[/red] zufälligen [red]Fluch[/red].\nDer Händler erlaubt dir, zwei weitere Waren zu kaufen."
+      },
+      {
+        "id": "TWO_RELICS",
+        "name": "Verfluchte Relikte",
+        "description": "Erhalte [red]1[/red] zufälligen [red]Fluch[/red].\nErhalte [blue]2[/blue] zufällige [gold]Relikte[/gold]."
+      },
+      {
+        "id": "UPGRADED_CARD_REWARD",
+        "name": "Verbesserte Kartenbelohnung",
+        "description": "Erhalte [blue]1[/blue] [gold]Verbesserte[/gold] Kartenbelohnung."
+      },
+      {
+        "id": "UPGRADED_RARE_CARD",
+        "name": "Verbesserte Seltene Karte",
+        "description": "Erhalte [blue]1[/blue] zufällige [gold]Verbesserte[/gold] Seltene Karte."
+      },
+      {
+        "id": "UPGRADED_RARE_CARD_REWARD",
+        "name": "Verfluchte Verbesserte Seltene Kartenbelohnung",
+        "description": "Erhalte [red]1[/red] zufälligen [red]Fluch[/red].\nErhalte [blue]1[/blue] [gold]Verbesserte[/gold] Seltene Kartenbelohnung."
+      }
+    ]
+  }
+]

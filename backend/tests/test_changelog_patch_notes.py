@@ -41,3 +41,18 @@ def test_committed_changelog_carries_the_official_notes():
     assert log["notes"].startswith("At long last")
     assert log["steam_url"].endswith("/1849192144184507")
     assert diff_data.official_patch_notes("0.113.0")["notes"] == log["notes"]
+
+
+def test_image_paths_that_only_move_to_the_new_version_are_not_changes():
+    old = {
+        "id": "MAD_SCIENCE",
+        "name": "Mad Science",
+        "type_variants": {
+            "attack": {"image_url": "/static/images/beta/v0.113.0/cards/a.webp"}
+        },
+        "image_variants": {"Fool": "/static/images/beta/v0.113.0/relics/b.webp"},
+    }
+    new = json.loads(json.dumps(old).replace("v0.113.0", "v0.113.1"))
+    assert diff_data.diff_entity(old, new) == {}
+    new["image_variants"]["Fool"] = "/static/images/beta/v0.113.1/relics/c.webp"
+    assert list(diff_data.diff_entity(old, new)) == ["image_variants.Fool"]

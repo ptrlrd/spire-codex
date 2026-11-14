@@ -1,0 +1,1586 @@
+[
+  {
+    "id": "AEONGLASS_BOSS",
+    "name": "Aeonglass",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "AEONGLASS",
+        "name": "Aeonglass"
+      }
+    ],
+    "loss_text": "[gold]Aeonglass[/gold] didn't take kindly to [b]The Adventurer[/b]'s disturbance."
+  },
+  {
+    "id": "AXEBOTS_NORMAL",
+    "name": "Axebot",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "AXEBOT",
+        "name": "Axebot"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ถูกตัดแยกชิ้นส่วนโดย[gold]Axebot[/gold]"
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_ENCOUNTER",
+    "name": "Battleworn Dummy Event Encounter",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": null,
+    "loss_text": null
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_V1_ENCOUNTER",
+    "name": "Battleworn Dummy",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "BATTLE_FRIEND_V1",
+        "name": "Battle Friend V1.0"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] was somehow killed by [gold]Battleworn Dummy[/gold]???"
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_V2_ENCOUNTER",
+    "name": "Battleworn Dummy",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "BATTLE_FRIEND_V2",
+        "name": "Battle Friend V2.0"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] was somehow killed by [gold]Battleworn Dummy[/gold]???"
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_V3_ENCOUNTER",
+    "name": "Battleworn Dummy",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "BATTLE_FRIEND_V3",
+        "name": "Battle Friend V3.0"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] was somehow killed by [gold]Battleworn Dummy[/gold]???"
+  },
+  {
+    "id": "BOWLBUGS_NORMAL",
+    "name": "Bowlbug Swarm",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Workers"
+    ],
+    "monsters": [
+      {
+        "id": "BOWLBUG_EGG",
+        "name": "Bowlbug (Egg)"
+      },
+      {
+        "id": "BOWLBUG_NECTAR",
+        "name": "Bowlbug (Nectar)"
+      },
+      {
+        "id": "BOWLBUG_ROCK",
+        "name": "Bowlbug (Rock)"
+      },
+      {
+        "id": "BOWLBUG_SILK",
+        "name": "Bowlbug (Silk)"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ดันไปขวางทาง[gold]Bowlbug Swarm[/gold]เข้าแล้ว"
+  },
+  {
+    "id": "BOWLBUGS_WEAK",
+    "name": "Bowlbugs",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Workers"
+    ],
+    "monsters": [
+      {
+        "id": "BOWLBUG_EGG",
+        "name": "Bowlbug (Egg)"
+      },
+      {
+        "id": "BOWLBUG_NECTAR",
+        "name": "Bowlbug (Nectar)"
+      },
+      {
+        "id": "BOWLBUG_ROCK",
+        "name": "Bowlbug (Rock)"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]เข้าไปขวางทางพวก[gold]Bowlbugs[/gold]แสนวุ่นวาย"
+  },
+  {
+    "id": "BYGONE_EFFIGY_ELITE",
+    "name": "Bygone Effigy",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "BYGONE_EFFIGY",
+        "name": "Bygone Effigy"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ถูกหั่นครึ่งโดย[gold]Bygone Effigy[/gold]"
+  },
+  {
+    "id": "BYRDONIS_ELITE",
+    "name": "ณกยักษ์",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "BYRDONIS",
+        "name": "ณกยักษ์"
+      }
+    ],
+    "loss_text": "[gold]ณกยักษ์[/gold]ปกป้องลูกๆ ให้พ้นจาก[b]The Adventurer[/b]"
+  },
+  {
+    "id": "CEREMONIAL_BEAST_BOSS",
+    "name": "Ceremonial Beast",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CEREMONIAL_BEAST",
+        "name": "Ceremonial Beast"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ถูก[gold]Ceremonial Beast[/gold]ส่งไปที่ชอบที่ชอบ"
+  },
+  {
+    "id": "CHOMPERS_NORMAL",
+    "name": "An Automaton Pair",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Chomper"
+    ],
+    "monsters": [
+      {
+        "id": "CHOMPER",
+        "name": "Chomper"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ถูก[gold]An Automaton Pair[/gold]ขย้ำจนตาย"
+  },
+  {
+    "id": "CONSTRUCT_MENAGERIE_NORMAL",
+    "name": "Construct Menagerie",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CUBEX_CONSTRUCT",
+        "name": "Cubex Construct"
+      },
+      {
+        "id": "PUNCH_CONSTRUCT",
+        "name": "จักรกลชกต่อย"
+      }
+    ],
+    "loss_text": "[gold]Construct Menagerie[/gold]บดขยี้[b]The Adventurer[/b]จนแหลก"
+  },
+  {
+    "id": "CORPSE_SLUGS_NORMAL",
+    "name": "ฝูงทากศพ",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": [
+      "Slugs"
+    ],
+    "monsters": [
+      {
+        "id": "CORPSE_SLUG",
+        "name": "ทากศพ"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ถูก[gold]ฝูงทากศพ[/gold]รุมกินโต๊ะ"
+  },
+  {
+    "id": "CORPSE_SLUGS_WEAK",
+    "name": "ทากศพ",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Underdocks",
+    "tags": [
+      "Slugs"
+    ],
+    "monsters": [
+      {
+        "id": "CORPSE_SLUG",
+        "name": "ทากศพ"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ถูก[gold]ทากศพ[/gold]รุมกินโต๊ะ"
+  },
+  {
+    "id": "CUBEX_CONSTRUCT_NORMAL",
+    "name": "Cubex Construct",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CUBEX_CONSTRUCT",
+        "name": "Cubex Construct"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ถูก[gold]Cubex Construct[/gold]ยิงเลเซอร์ใส่จนตาย"
+  },
+  {
+    "id": "CULTISTS_NORMAL",
+    "name": "สาวกคลั่งลัทธิ",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CALCIFIED_CULTIST",
+        "name": "Calcified Cultist"
+      },
+      {
+        "id": "DAMP_CULTIST",
+        "name": "Damp Cultist"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ถูกสังหารโดยพวก[gold]สาวกคลั่งลัทธิ[/gold] [sine]กาาาาา[/sine]..."
+  },
+  {
+    "id": "DECIMILLIPEDE_ELITE",
+    "name": "The Decimillipede",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "DECIMILLIPEDE_SEGMENT_BACK",
+        "name": "Decimillipede Segment Back"
+      },
+      {
+        "id": "DECIMILLIPEDE_SEGMENT_FRONT",
+        "name": "Decimillipede Segment Front"
+      },
+      {
+        "id": "DECIMILLIPEDE_SEGMENT_MIDDLE",
+        "name": "Decimillipede Segment Middle"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ไม่สามารถเอาชีวิตรอดจากอาณาเขตของ[gold]The Decimillipede[/gold]ได้"
+  },
+  {
+    "id": "DENSE_VEGETATION_EVENT_ENCOUNTER",
+    "name": "Wrigglers",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "WRIGGLER",
+        "name": "Wriggler"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ถูก[gold]Wrigglers[/gold]แพร่ระบาด"
+  },
+  {
+    "id": "DEVOTED_SCULPTOR_WEAK",
+    "name": "Devoted Sculptor",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "DEVOTED_SCULPTOR",
+        "name": "Devoted Sculptor"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ถูก[gold]Devoted Sculptor[/gold]ทุบเป็นชิ้นเล็กชิ้นน้อย"
+  },
+  {
+    "id": "ENTOMANCER_ELITE",
+    "name": "Entomancer",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "ENTOMANCER",
+        "name": "Entomancer"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ถูก[gold]Entomancer[/gold]ฝังเล็กในจนตาย"
+  },
+  {
+    "id": "EXOSKELETONS_NORMAL",
+    "name": "Many Exoskeletons",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Exoskeletons"
+    ],
+    "monsters": [
+      {
+        "id": "EXOSKELETON",
+        "name": "Exoskeleton"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ถูก[gold]Many Exoskeletons[/gold]ควักไส้"
+  },
+  {
+    "id": "EXOSKELETONS_WEAK",
+    "name": "Exoskeletons",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Exoskeletons"
+    ],
+    "monsters": [
+      {
+        "id": "EXOSKELETON",
+        "name": "Exoskeleton"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ถูกกลุ่ม[gold]Exoskeletons[/gold]ควักไส้"
+  },
+  {
+    "id": "FABRICATOR_NORMAL",
+    "name": "Fabricator",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FABRICATOR",
+        "name": "Fabricator"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ถูกช็อตโดยหุ่นยนต์ของ[gold]Fabricator[/gold]"
+  },
+  {
+    "id": "FAKE_MERCHANT_EVENT_ENCOUNTER",
+    "name": "พ่อค้า???",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FAKE_MERCHANT_MONSTER",
+        "name": "The Merchant???"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]เผชิญโทสะของ[gold]พ่อค้า???[/gold]"
+  },
+  {
+    "id": "FLYCONID_NORMAL",
+    "name": "Shroom and Slime",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Mushroom",
+      "Slimes"
+    ],
+    "monsters": [
+      {
+        "id": "FLYCONID",
+        "name": "Flyconid"
+      },
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "Leaf Slime (M)"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "Twig Slime (M)"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ถูก[gold]Shroom and Slime[/gold]ดูดซับ"
+  },
+  {
+    "id": "FOGMOG_NORMAL",
+    "name": "Fogmog",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "EYE_WITH_TEETH",
+        "name": "Eye with Teeth"
+      },
+      {
+        "id": "FOGMOG",
+        "name": "Fogmog"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]หลงกลมายาของ[gold]Fogmog[/gold]"
+  },
+  {
+    "id": "FOSSIL_STALKER_NORMAL",
+    "name": "Fossil Stalker",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FOSSIL_STALKER",
+        "name": "Fossil Stalker"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ถูก[gold]Fossil Stalker[/gold]ซุ่มโจมตี"
+  },
+  {
+    "id": "FROG_KNIGHT_NORMAL",
+    "name": "Frog Knight",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FROG_KNIGHT",
+        "name": "Frog Knight"
+      }
+    ],
+    "loss_text": "[gold]Frog Knight[/gold]ผู้องอาจคว้าชัยเหนือ[b]The Adventurer[/b]"
+  },
+  {
+    "id": "FUZZY_WURM_CRAWLER_WEAK",
+    "name": "Fuzzy Wurm Crawler",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Crawler"
+    ],
+    "monsters": [
+      {
+        "id": "FUZZY_WURM_CRAWLER",
+        "name": "Fuzzy Wurm Crawler"
+      }
+    ],
+    "loss_text": "[gold]Fuzzy Wurm Crawler[/gold]ถุยน้ำลายใส่[b]The Adventurer[/b]"
+  },
+  {
+    "id": "GLOBE_HEAD_NORMAL",
+    "name": "A Lone Globe Head",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "GLOBE_HEAD",
+        "name": "Globe Head"
+      }
+    ],
+    "loss_text": "[gold]A Lone Globe Head[/gold]ช็อต[b]The Adventurer[/b]"
+  },
+  {
+    "id": "GREMLIN_MERC_NORMAL",
+    "name": "Two Gremlins in a Trenchcoat",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FAT_GREMLIN",
+        "name": "Fat Gremlin"
+      },
+      {
+        "id": "GREMLIN_MERC",
+        "name": "Gremlin Merc"
+      },
+      {
+        "id": "SNEAKY_GREMLIN",
+        "name": "Sneaky Gremlin"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ถูก[gold]Two Gremlins in a Trenchcoat[/gold]ปล้น"
+  },
+  {
+    "id": "HAUNTED_SHIP_NORMAL",
+    "name": "เรือผีสิง",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "HAUNTED_SHIP",
+        "name": "Haunted Ship"
+      }
+    ],
+    "loss_text": "[gold]เรือผีสิง[/gold]กระแทกทับ[b]The Adventurer[/b]จนเละ"
+  },
+  {
+    "id": "HUNTER_KILLER_NORMAL",
+    "name": "Hunter Killer",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "HUNTER_KILLER",
+        "name": "Hunter Killer"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ถูก[gold]Hunter Killer[/gold]คว้านไส้พุง"
+  },
+  {
+    "id": "INFESTED_PRISMS_ELITE",
+    "name": "Infested Prism",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "INFESTED_PRISM",
+        "name": "Infested Prism"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ถูก[gold]Infested Prism[/gold]หยุดยั้ง"
+  },
+  {
+    "id": "INKLETS_NORMAL",
+    "name": "Inklets",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "INKLET",
+        "name": "Inklet"
+      }
+    ],
+    "loss_text": "พวก[gold]Inklets[/gold]ไม่ปล่อยให้[b]The Adventurer[/b]ผ่านไปได้"
+  },
+  {
+    "id": "KAISER_CRAB_BOSS",
+    "name": "Kaiser Crab",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CRUSHER",
+        "name": "Crusher"
+      },
+      {
+        "id": "ROCKET",
+        "name": "Rocket"
+      }
+    ],
+    "loss_text": "[gold]Kaiser Crab[/gold]จู่โจม[b]The Adventurer[/b]จากทุกทิศทาง"
+  },
+  {
+    "id": "KNIGHTS_ELITE",
+    "name": "Knight Gang",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": [
+      "Knights"
+    ],
+    "monsters": [
+      {
+        "id": "FLAIL_KNIGHT",
+        "name": "Flail Knight"
+      },
+      {
+        "id": "MAGI_KNIGHT",
+        "name": "Magi Knight"
+      },
+      {
+        "id": "SPECTRAL_KNIGHT",
+        "name": "Spectral Knight"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ถูกสังหารโดย[gold]Knight Gang[/gold]"
+  },
+  {
+    "id": "KNOWLEDGE_DEMON_BOSS",
+    "name": "อสูรความรู้",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "KNOWLEDGE_DEMON",
+        "name": "Knowledge Demon"
+      }
+    ],
+    "loss_text": "[gold]อสูรความรู้[/gold]สาป[b]The Adventurer[/b]ด้วยความรู้ท่วมหัว"
+  },
+  {
+    "id": "LAGAVULIN_MATRIARCH_BOSS",
+    "name": "นางพญาลากาวูลิน",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "LAGAVULIN_MATRIARCH",
+        "name": "นางพญาลากาวูลิน"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ถูก[gold]นางพญาลากาวูลิน[/gold]เฉือนร่างออกเป็นสองส่วน"
+  },
+  {
+    "id": "LIVING_FOG_NORMAL",
+    "name": "Living Fog",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "GAS_BOMB",
+        "name": "Gas Bomb"
+      },
+      {
+        "id": "LIVING_FOG",
+        "name": "Living Fog"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ทนกลิ่นเหม็นเน่าของ[gold]Living Fog[/gold]ไม่ไหว"
+  },
+  {
+    "id": "LOUSE_PROGENITOR_NORMAL",
+    "name": "พระเจ้าเหา",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "LOUSE_PROGENITOR",
+        "name": "Louse Progenitor"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ถูก[gold]พระเจ้าเหา[/gold]ทำให้เป็นอัมพาต"
+  },
+  {
+    "id": "MAWLER_NORMAL",
+    "name": "Mawler",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MAWLER",
+        "name": "Mawler"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]กลายเป็นอาหารอันโอชะของ[gold]Mawler[/gold]"
+  },
+  {
+    "id": "MECHA_KNIGHT_ELITE",
+    "name": "Mecha Knight",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MECHA_KNIGHT",
+        "name": "Mecha Knight"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ถูก[gold]Mecha Knight[/gold]เผาเสียบไม้"
+  },
+  {
+    "id": "MYSTERIOUS_KNIGHT_EVENT_ENCOUNTER",
+    "name": "อัศวินปริศนา",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MYSTERIOUS_KNIGHT",
+        "name": "อัศวินปริศนา"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]พยายามชิงกุญแจของ[gold]อัศวินปริศนา[/gold]"
+  },
+  {
+    "id": "MYTES_NORMAL",
+    "name": "Mass of Mytes",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MYTE",
+        "name": "Myte"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ถูก[gold]Mass of Mytes[/gold]รุม"
+  },
+  {
+    "id": "NIBBITS_NORMAL",
+    "name": "A Pair of Nibbits",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "NIBBIT",
+        "name": "Nibbit"
+      }
+    ],
+    "loss_text": "[gold]A Pair of Nibbits[/gold]ซัด[b]The Adventurer[/b]จนน่วม"
+  },
+  {
+    "id": "NIBBITS_WEAK",
+    "name": "A Lone Nibbit",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Nibbit"
+    ],
+    "monsters": [
+      {
+        "id": "NIBBIT",
+        "name": "Nibbit"
+      }
+    ],
+    "loss_text": "[gold]A Lone Nibbit[/gold]ซัด[b]The Adventurer[/b]จนน่วม"
+  },
+  {
+    "id": "OVERGROWTH_CRAWLERS",
+    "name": "Overgrowth Crawlers",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Shrinker",
+      "Crawler"
+    ],
+    "monsters": [
+      {
+        "id": "FUZZY_WURM_CRAWLER",
+        "name": "Fuzzy Wurm Crawler"
+      },
+      {
+        "id": "SHRINKER_BEETLE",
+        "name": "Shrinker Beetle"
+      }
+    ],
+    "loss_text": "พวก[gold]Overgrowth Crawlers[/gold]รุมทึ้ง[b]The Adventurer[/b]"
+  },
+  {
+    "id": "OVICOPTER_NORMAL",
+    "name": "Ovicopter",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "OVICOPTER",
+        "name": "Ovicopter"
+      },
+      {
+        "id": "TOUGH_EGG",
+        "name": "Tough Egg"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]กลายเป็นอาหารให้ลูกๆ ของ[gold]Ovicopter[/gold]"
+  },
+  {
+    "id": "OWL_MAGISTRATE_NORMAL",
+    "name": "ฮูกพิพากษา",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "OWL_MAGISTRATE",
+        "name": "Owl Magistrate"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ได้ถูก[gold]ฮูกพิพากษา[/gold]ตัดสินประหารชีวิต"
+  },
+  {
+    "id": "PHANTASMAL_GARDENERS_ELITE",
+    "name": "Phantasmal Gardeners",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PHANTASMAL_GARDENER",
+        "name": "Phantasmal Gardener"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ถูก[gold]Phantasmal Gardeners[/gold]ส่งไปที่ชอบที่ชอบ"
+  },
+  {
+    "id": "PHROG_PARASITE_ELITE",
+    "name": "ปรสิตกป",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PHROG_PARASITE",
+        "name": "Phrog Parasite"
+      },
+      {
+        "id": "WRIGGLER",
+        "name": "Wriggler"
+      }
+    ],
+    "loss_text": "[gold]ปรสิตกป[/gold]แผ่ขยายอาณานิคมเข้าร่างของ[b]The Adventurer[/b]"
+  },
+  {
+    "id": "PUNCH_CONSTRUCT_NORMAL",
+    "name": "จักรกลชกต่อย",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PUNCH_CONSTRUCT",
+        "name": "จักรกลชกต่อย"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]แลกหมัดกับ[gold]จักรกลชกต่อย[/gold]"
+  },
+  {
+    "id": "PUNCH_OFF_EVENT_ENCOUNTER",
+    "name": "พวกจักรกลชกต่อย",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PUNCH_CONSTRUCT",
+        "name": "จักรกลชกต่อย"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]เข้าไปขัดการ[gold]พวกจักรกลชกต่อย[/gold]ของทั้ง 2 ตัว"
+  },
+  {
+    "id": "QUEEN_BOSS",
+    "name": "Queen",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "QUEEN",
+        "name": "Queen"
+      },
+      {
+        "id": "TORCH_HEAD_AMALGAM",
+        "name": "Torch Head Amalgam"
+      }
+    ],
+    "loss_text": "[gold]Queen[/gold]เพิ่มชิ้นส่วนของ[b]The Adventurer[/b]เข้าคอลเลกชั่น"
+  },
+  {
+    "id": "RUBY_RAIDERS_NORMAL",
+    "name": "Ruby Raiders",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "ASSASSIN_RUBY_RAIDER",
+        "name": "Assassin Raider"
+      },
+      {
+        "id": "AXE_RUBY_RAIDER",
+        "name": "Axe Raider"
+      },
+      {
+        "id": "BRUTE_RUBY_RAIDER",
+        "name": "Brute Raider"
+      },
+      {
+        "id": "CROSSBOW_RUBY_RAIDER",
+        "name": "Crossbow Raider"
+      },
+      {
+        "id": "TRACKER_RUBY_RAIDER",
+        "name": "Tracker Raider"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ถูก[gold]Ruby Raiders[/gold]ดักปล้น"
+  },
+  {
+    "id": "SCROLLS_OF_BITING_NORMAL",
+    "name": "Many Scrolls of Biting",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": [
+      "Scrolls"
+    ],
+    "monsters": [
+      {
+        "id": "SCROLL_OF_BITING",
+        "name": "Scroll of Biting"
+      }
+    ],
+    "loss_text": "[gold]Many Scrolls of Biting[/gold]ฉีก[b]The Adventurer[/b]เป็นชิ้นๆ"
+  },
+  {
+    "id": "SCROLLS_OF_BITING_WEAK",
+    "name": "Scrolls of Biting",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 3 - Glory",
+    "tags": [
+      "Scrolls"
+    ],
+    "monsters": [
+      {
+        "id": "SCROLL_OF_BITING",
+        "name": "Scroll of Biting"
+      }
+    ],
+    "loss_text": "[gold]Scrolls of Biting[/gold]ฉีก[b]The Adventurer[/b]เป็นชิ้นๆ"
+  },
+  {
+    "id": "SEAPUNK_NORMAL",
+    "name": "สิ่งมีชีวิตในท่าเรือเบื้องล่าง",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": [
+      "Seapunk"
+    ],
+    "monsters": [
+      {
+        "id": "CALCIFIED_CULTIST",
+        "name": "Calcified Cultist"
+      },
+      {
+        "id": "SEAPUNK",
+        "name": "หร่ายเล"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ถูกกำจัดโดยพวก[gold]สิ่งมีชีวิตในท่าเรือเบื้องล่าง[/gold]"
+  },
+  {
+    "id": "SEAPUNK_WEAK",
+    "name": "หร่ายเล",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Underdocks",
+    "tags": [
+      "Seapunk"
+    ],
+    "monsters": [
+      {
+        "id": "SEAPUNK",
+        "name": "หร่ายเล"
+      }
+    ],
+    "loss_text": "[gold]หร่ายเล[/gold]กระทืบ[b]The Adventurer[/b]"
+  },
+  {
+    "id": "SEWER_CLAM_NORMAL",
+    "name": "Sewer Clam",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SEWER_CLAM",
+        "name": "Sewer Clam"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ถูก[gold]Sewer Clam[/gold]จับกิน"
+  },
+  {
+    "id": "SHRINKER_BEETLE_WEAK",
+    "name": "Shrinker Beetle",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Shrinker"
+    ],
+    "monsters": [
+      {
+        "id": "SHRINKER_BEETLE",
+        "name": "Shrinker Beetle"
+      }
+    ],
+    "loss_text": "A [gold]Shrinker Beetle[/gold] snacked on [b]The Adventurer[/b]."
+  },
+  {
+    "id": "SKULKING_COLONY_ELITE",
+    "name": "Skulking Colony",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SKULKING_COLONY",
+        "name": "Skulking Colony"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ถูก[gold]Skulking Colony[/gold]ดูดซับ"
+  },
+  {
+    "id": "SLIMED_BERSERKER_NORMAL",
+    "name": "Slimed Berserker",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SLIMED_BERSERKER",
+        "name": "Slimed Berserker"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ถูกดูดรวมเข้ากับ[gold]Slimed Berserker[/gold]"
+  },
+  {
+    "id": "SLIMES_NORMAL",
+    "name": "Swarm of Slimes",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Slimes"
+    ],
+    "monsters": [
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "Leaf Slime (M)"
+      },
+      {
+        "id": "LEAF_SLIME_S",
+        "name": "Leaf Slime (S)"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "Twig Slime (M)"
+      },
+      {
+        "id": "TWIG_SLIME_S",
+        "name": "Twig Slime (S)"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ล้มให้กับ[gold]Swarm of Slimes[/gold]"
+  },
+  {
+    "id": "SLIMES_WEAK",
+    "name": "Group of Slimes",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Slimes"
+    ],
+    "monsters": [
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "Leaf Slime (M)"
+      },
+      {
+        "id": "LEAF_SLIME_S",
+        "name": "Leaf Slime (S)"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "Twig Slime (M)"
+      },
+      {
+        "id": "TWIG_SLIME_S",
+        "name": "Twig Slime (S)"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ล้มให้กับ[gold]Group of Slimes[/gold]"
+  },
+  {
+    "id": "SLITHERING_STRANGLER_NORMAL",
+    "name": "Strangler and Friend",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Jaxfruit",
+      "Slimes"
+    ],
+    "monsters": [
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "Leaf Slime (M)"
+      },
+      {
+        "id": "LEAF_SLIME_S",
+        "name": "Leaf Slime (S)"
+      },
+      {
+        "id": "SLITHERING_STRANGLER",
+        "name": "Slithering Strangler"
+      },
+      {
+        "id": "SNAPPING_JAXFRUIT",
+        "name": "Snapping Jaxfruit"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "Twig Slime (M)"
+      },
+      {
+        "id": "TWIG_SLIME_S",
+        "name": "Twig Slime (S)"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ถูก[gold]Strangler and Friend[/gold]ทำให้ขาดใจตาย"
+  },
+  {
+    "id": "SLUDGE_SPINNER_WEAK",
+    "name": "Sludge Spinner",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SLUDGE_SPINNER",
+        "name": "Sludge Spinner"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ไม่สามารถเอาชนะ[gold]Sludge Spinner[/gold]ได้"
+  },
+  {
+    "id": "SLUMBERING_BEETLE_NORMAL",
+    "name": "Slumber Party",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Workers"
+    ],
+    "monsters": [
+      {
+        "id": "BOWLBUG_ROCK",
+        "name": "Bowlbug (Rock)"
+      },
+      {
+        "id": "BOWLBUG_SILK",
+        "name": "Bowlbug (Silk)"
+      },
+      {
+        "id": "SLUMBERING_BEETLE",
+        "name": "Slumbering Beetle"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]เข้าไปขัดจังหวะ[gold]Slumber Party[/gold]"
+  },
+  {
+    "id": "SNAPPING_JAXFRUIT_NORMAL",
+    "name": "Overgrowth Flora",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Mushroom",
+      "Jaxfruit"
+    ],
+    "monsters": [
+      {
+        "id": "FLYCONID",
+        "name": "Flyconid"
+      },
+      {
+        "id": "SNAPPING_JAXFRUIT",
+        "name": "Snapping Jaxfruit"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] ran afoul of some [gold]Overgrowth Flora[/gold]."
+  },
+  {
+    "id": "SOUL_FYSH_BOSS",
+    "name": "ปฬาวิญญาณ",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SOUL_FYSH",
+        "name": "ปฬาวิญญาณ"
+      }
+    ],
+    "loss_text": "[gold]ปฬาวิญญาณ[/gold]เรียกหา[b]The Adventurer[/b]สู่ความตาย"
+  },
+  {
+    "id": "SOUL_NEXUS_ELITE",
+    "name": "Soul Nexus",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SOUL_NEXUS",
+        "name": "Soul Nexus"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] died to a [gold]Soul Nexus[/gold] on a forgotten battlefield."
+  },
+  {
+    "id": "SPINY_TOAD_NORMAL",
+    "name": "Spiny Toad",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SPINY_TOAD",
+        "name": "Spiny Toad"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ไม่สามารถฝ่าหนามของ[gold]Spiny Toad[/gold]ไปได้"
+  },
+  {
+    "id": "TERROR_EEL_ELITE",
+    "name": "Terror Eel",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TERROR_EEL",
+        "name": "Terror Eel"
+      }
+    ],
+    "loss_text": "A [gold]Terror Eel[/gold] was too terrifying for [b]The Adventurer[/b]."
+  },
+  {
+    "id": "TEST_SUBJECT_BOSS",
+    "name": "ตัวอย่างทดลอง",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TEST_SUBJECT",
+        "name": "Test Subject #C{Count}"
+      }
+    ],
+    "loss_text": "[gold]ตัวอย่างทดลอง[/gold]ผู้ภักดี ปกป้องเจ้านายให้พ้นจาก[b]The Adventurer[/b]"
+  },
+  {
+    "id": "THE_ARCHITECT_EVENT_ENCOUNTER",
+    "name": "สถาปนิก",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "ARCHITECT",
+        "name": "The Architect"
+      }
+    ],
+    "loss_text": "คุณไม่ควรได้เจอสิ่งนี้"
+  },
+  {
+    "id": "THE_INSATIABLE_BOSS",
+    "name": "The Insatiable",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "THE_INSATIABLE",
+        "name": "The Insatiable"
+      }
+    ],
+    "loss_text": "[gold]The Insatiable[/gold]เขมือบ[b]The Adventurer[/b]แต่ก็ยังหิวอยู่..."
+  },
+  {
+    "id": "THE_KIN_BOSS",
+    "name": "The Kin",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "KIN_FOLLOWER",
+        "name": "Kin Follower"
+      },
+      {
+        "id": "KIN_PRIEST",
+        "name": "Kin Priest"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ถูกกลยุทธ์ที่เหนือกว่าของ[gold]The Kin[/gold]ทำลายร้างจนราบคาบ"
+  },
+  {
+    "id": "THE_LOST_AND_FORGOTTEN_NORMAL",
+    "name": "Lost and Forgotten",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "THE_FORGOTTEN",
+        "name": "The Forgotten"
+      },
+      {
+        "id": "THE_LOST",
+        "name": "The Lost"
+      }
+    ],
+    "loss_text": "[gold]Lost and Forgotten[/gold]ช่วงชิงความอยากมีชีวิตของ[b]The Adventurer[/b]ไป"
+  },
+  {
+    "id": "THE_OBSCURA_NORMAL",
+    "name": "The Obscura",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PARAFRIGHT",
+        "name": "Parafright"
+      },
+      {
+        "id": "THE_OBSCURA",
+        "name": "The Obscura"
+      }
+    ],
+    "loss_text": "[gold]The Obscura[/gold]และมายาของมันรุมขย้ำ[b]The Adventurer[/b]"
+  },
+  {
+    "id": "THIEVING_HOPPER_WEAK",
+    "name": "Thieving Hopper",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Thieves"
+    ],
+    "monsters": [
+      {
+        "id": "THIEVING_HOPPER",
+        "name": "Thieving Hopper"
+      }
+    ],
+    "loss_text": "[gold]Thieving Hopper[/gold]ปล้น[b]The Adventurer[/b]"
+  },
+  {
+    "id": "TOADPOLES_WEAK",
+    "name": "Toadpoles",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TOADPOLE",
+        "name": "Toadpole"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]จัดการ[gold]Toadpoles[/gold]ไม่ได้"
+  },
+  {
+    "id": "TUNNELER_NORMAL",
+    "name": "Tunneling Twosome",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": [
+      "Burrower",
+      "Chomper"
+    ],
+    "monsters": [
+      {
+        "id": "CHOMPER",
+        "name": "Chomper"
+      },
+      {
+        "id": "TUNNELER",
+        "name": "Tunneler"
+      }
+    ],
+    "loss_text": "[gold]Tunneling Twosome[/gold]ปลิดชีพ[b]The Adventurer[/b]"
+  },
+  {
+    "id": "TUNNELER_WEAK",
+    "name": "Tunneler",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Burrower"
+    ],
+    "monsters": [
+      {
+        "id": "TUNNELER",
+        "name": "Tunneler"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ถูก[gold]Tunneler[/gold]เล่นงาน"
+  },
+  {
+    "id": "TURRET_OPERATOR_WEAK",
+    "name": "Turret Operator",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "LIVING_SHIELD",
+        "name": "Living Shield"
+      },
+      {
+        "id": "TURRET_OPERATOR",
+        "name": "Turret Operator"
+      }
+    ],
+    "loss_text": "[gold]Turret Operator[/gold]แจกรูพรุนให้แก่[b]The Adventurer[/b]"
+  },
+  {
+    "id": "TWO_TAILED_RATS_NORMAL",
+    "name": "Two-Tailed Rats",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TWO_TAILED_RAT",
+        "name": "Two-Tailed Rat"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ถูกพวก[gold]Two-Tailed Rats[/gold]รุมขย้ำ"
+  },
+  {
+    "id": "VANTOM_BOSS",
+    "name": "Vantom",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "VANTOM",
+        "name": "Vantom"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] was turned into an Inklet by the [gold]Vantom[/gold]."
+  },
+  {
+    "id": "VINE_SHAMBLER_NORMAL",
+    "name": "Vine Shambler",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "VINE_SHAMBLER",
+        "name": "Vine Shambler"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ไม่สามารถหลบหนี[gold]Vine Shambler[/gold]ไปได้"
+  },
+  {
+    "id": "WATERFALL_GIANT_BOSS",
+    "name": "ยักษ์น้ำตก",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "WATERFALL_GIANT",
+        "name": "ยักษ์น้ำตก"
+      }
+    ],
+    "loss_text": "[gold]ยักษ์น้ำตก[/gold]ชำระล้างท่าเรือเบื้องล่างให้ปราศจาก[b]The Adventurer[/b]"
+  }
+]
