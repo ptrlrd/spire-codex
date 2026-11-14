@@ -648,9 +648,12 @@ def _name_maps(version: str | None = None) -> dict[str, dict[str, str]]:
         out["cards"].setdefault("STRIKE", "Strike")
         out["cards"].setdefault("DEFEND", "Defend")
     # Characters keyed lowercase so "necrobinder" resolves "NECROBINDER".
-    out["characters"] = {
-        k.lower(): v for k, v in _index(data_service.load_characters).items()
-    }
+    cast_names = (
+        _index(data_service.load_characters, entity="characters") if pinned else {}
+    )
+    if not cast_names:
+        cast_names = _index(data_service.load_characters)
+    out["characters"] = {k.lower(): v for k, v in cast_names.items()}
     if out["characters"] and not pinned:
         from . import official_content
 

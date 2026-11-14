@@ -87,3 +87,36 @@ def test_archives_do_not_revive_an_empty_catalog(monkeypatch):
     _catalog(monkeypatch, [])
     assert community_stats._name_maps()["encounters"] == {}
     community_stats._name_maps.cache_clear()
+
+
+def test_version_bracket_lists_the_characters_of_that_version(monkeypatch):
+    cast = {
+        "v0.113.0": [
+            {"id": "IRONCLAD", "name": "The Ironclad"},
+            {"id": "FOOL", "name": "The Fool"},
+        ],
+        "v0.111.0": [{"id": "IRONCLAD", "name": "The Ironclad"}],
+        "v0.98.1": [],
+    }
+    _catalog(monkeypatch, [])
+    monkeypatch.setattr(
+        data_service,
+        "load_characters",
+        lambda *a, **k: [{"id": "IRONCLAD", "name": "The Ironclad"}],
+    )
+    monkeypatch.setattr(community_stats, "_archive_versions", lambda: list(cast.keys()))
+    monkeypatch.setattr(
+        community_stats,
+        "_archived_rows",
+        lambda entity, version: cast[version] if entity == "characters" else [],
+    )
+    community_stats._name_maps.cache_clear()
+    assert community_stats._name_maps("v0.113.0")["characters"] == {
+        "ironclad": "The Ironclad",
+        "fool": "The Fool",
+    }
+    assert "fool" not in community_stats._name_maps("v0.111.0")["characters"]
+    assert community_stats._name_maps("v0.98.1")["characters"] == {
+        "ironclad": "The Ironclad"
+    }
+    community_stats._name_maps.cache_clear()
