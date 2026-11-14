@@ -1,0 +1,2457 @@
+[
+  {
+    "id": "DEFECT",
+    "name": "المعيب",
+    "description": "آلة ذاتية الإصلاح والتطوير، تكافح للبقاء.\nوتستخدم تقنية الأجرام حين تضطر إلى القتال.",
+    "starting_hp": 75,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": 3,
+    "starting_deck": [
+      "StrikeDefect",
+      "StrikeDefect",
+      "StrikeDefect",
+      "StrikeDefect",
+      "DefendDefect",
+      "DefendDefect",
+      "DefendDefect",
+      "DefendDefect",
+      "Zap",
+      "Dualcast"
+    ],
+    "starting_relics": [
+      "CrackedCore"
+    ],
+    "unlocks_after": "Necrobinder",
+    "gender": "Neutral",
+    "color": "blue",
+    "dialogue_color": "13446B",
+    "quotes": {
+      "event_death_prevention": "يجب أن أعيش من أجل أصدقائي!",
+      "gold_monologue": "[sine]يمكن استبدال هذا الذهب بقطع غيار...[/sine]",
+      "aroma_principle": "[sine][blue]1100 0011 1100 0011...[/blue][/sine]",
+      "banter_alive": "شباب الزمن",
+      "banter_dead": "...",
+      "unlock_text": "العب جولة واحدة باستخدام [pink]{Prerequisite}[/pink] لفتح هذه الشخصية.",
+      "cards_modifier_title": "بطاقات المعيب",
+      "cards_modifier_description": "بطاقات المعيب ستظهر الآن في المكافآت والمتاجر."
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "أنت قطعة خردة جميلة، أتعلم ذلك؟"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<3[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "ما زلت تواصل العمل، كما أرى... فلنرَ إن كان بوسعنا تطويرك!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "ما زلت أحتفظ بشيء يخص صديقك... أمم...\nلا عليك، انسَ الأمر!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<صفير فضولي>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "يا مصلّح الخردة الصغير، انسَ كل ما قلته!"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]...أيها البناء.. ماذا...\n....أصبحتَ..؟[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]...هو.. يستطيع...\n....إصلاحك.. ...وإصلاح كل شيء....[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]...أنا.. لا أستطيع... ..أن أجعلك...\n...تنسى....[/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<أصوات صفير حازمة>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[sine]...جيد....[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "هل يمكن لبناء آلي أن يكون مستحقًا حقًا لهباتي؟\nتقدّم أيها المعيب. ستكون أجمل الآلات كلها."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "آلتي المسكينة المحطمة، دعني أصقلك."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "عادةً لا أحب أشياء المعماري، لكن أعترف أنك بدأت تعجبني."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<زقزقة خجولة>[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "ماذا! بناء خادم؟! ما زال يعمل!!\nلماذا هنا؟ لماذا ليس في المصنع؟؟"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "كرات لامعة! كيف تعمل؟\n[jitter]أوتش!![/jitter]"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "النواة مكسورة؟ Neow تستخدم بناءً مكسورًا؟\nتم التلاعب بك؟"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<يصدر صفيرًا بهدوء>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "المعماري يصلحك؟"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]أيها الآلي المضطرب، تبحث عن صديقك؟\nدعني أساعدك...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]هل تحلم البُنى الآلية؟\nراقبني وقلدني...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]حلمت بصديقك...\nالأب يستطيع إعادة [aqua]Flaw[/aqua]...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "بناء آلي! بلا أسلحة؟! خذ هذا!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "الكرات ليست أسلحة!!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "قاتلني أيها المعيب!!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]يقاتل المعيب بشجاعة.[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "الكرات [jitter]هي[/jitter] أسلحة!؟"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "[i][font_size=22]<صفير تحية>[/font_size][/i]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "لم تأتِ لإزعاجي؟ يا له من بناء صغير [jitter][b]غير مألوف[/b][/jitter]..."
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "كم سيكون الأمر سخيفًا لو أُبيد على يد أحد مصنوعاته؟"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "هل أنت متأكد أنك تريد إصلاحك؟"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<صفير فضولي>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "حسنًا، إن كنت [jitter][b]متأكدًا[/b][/jitter] فعلًا."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "ماذا تفعل هنا؟"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "<أسطر عشوائية مشوشة>"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "أصلحك؟ أجبرني."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "عدت؟ ألم أفككك؟"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "<أسطر عشوائية مشوشة>"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "أصلحك؟ أصلح صديقك؟ سخافة."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "كيف تستمر في العودة؟ هل هذا من فعل Neow؟"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "<أسطر عشوائية مشوشة>"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "أحمق"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "أيها المكسور، دعني [sine]أكمّلك[/sine]."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "ألا تجد الأمر غريبًا أن بني جنسك يريدون موتك؟"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "إن أحضرت لي قلب المعماري، سأعيد [aqua]رفيقك[/aqua]."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<صفير خائف>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "ما الأهم؟ خالقك أم صديقك؟"
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_defect.webp",
+    "animation_url": null
+  },
+  {
+    "id": "FOOL",
+    "name": "The Fool",
+    "description": "A beloved musician who enlivened [blue]The Capital[/blue].\nForced to flee, the [yellow]Fool[/yellow] fled into the [gold]Spire[/gold].",
+    "starting_hp": 77,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "arrow_slots": 1,
+    "starting_deck": [
+      "StrikeFool",
+      "StrikeFool",
+      "StrikeFool",
+      "StrikeFool",
+      "StrikeFool",
+      "DefendFool",
+      "DefendFool",
+      "DefendFool",
+      "DefendFool",
+      "FoolishShot"
+    ],
+    "starting_relics": [
+      "SongBow"
+    ],
+    "unlocks_after": "Defect",
+    "gender": "Tree",
+    "color": "yellow",
+    "dialogue_color": "590700",
+    "quotes": {
+      "banter_alive": "[i]Hums wistfully...[/i]",
+      "banter_dead": "...",
+      "unlock_text": "Play a single run with [blue]{Prerequisite}[/blue] to unlock this character.",
+      "cards_modifier_title": "Fool Cards",
+      "cards_modifier_description": "Fool cards will now appear in rewards and shops."
+    },
+    "dialogues": null,
+    "image_url": "/static/images/characters/char_select_fool.webp",
+    "animation_url": null,
+    "pronoun_guesses": [
+      {
+        "speaker_id": "DARV",
+        "speaker_name": "Darv",
+        "guess": "feminine",
+        "subject": "she",
+        "object": "her",
+        "possessive": "her"
+      },
+      {
+        "speaker_id": "NEOW",
+        "speaker_name": "Neow",
+        "guess": "it",
+        "subject": "it",
+        "object": "it",
+        "possessive": "its"
+      },
+      {
+        "speaker_id": "NONUPEIPE",
+        "speaker_name": "Nonupeipe",
+        "guess": "feminine",
+        "subject": "she",
+        "object": "her",
+        "possessive": "her"
+      },
+      {
+        "speaker_id": "OROBAS",
+        "speaker_name": "Orobas",
+        "guess": "it",
+        "subject": "it",
+        "object": "it",
+        "possessive": "its"
+      },
+      {
+        "speaker_id": "PAEL",
+        "speaker_name": "Pael",
+        "guess": "neutral",
+        "subject": "they",
+        "object": "them",
+        "possessive": "their"
+      },
+      {
+        "speaker_id": "TANX",
+        "speaker_name": "Tanx",
+        "guess": "masculine",
+        "subject": "he",
+        "object": "him",
+        "possessive": "his"
+      },
+      {
+        "speaker_id": "TEZCATARA",
+        "speaker_name": "Tezcatara",
+        "guess": "masculine",
+        "subject": "he",
+        "object": "him",
+        "possessive": "his"
+      },
+      {
+        "speaker_id": "VAKUU",
+        "speaker_name": "Vakuu",
+        "guess": "neutral",
+        "subject": "they",
+        "object": "them",
+        "possessive": "their"
+      },
+      {
+        "speaker_id": "THE_ARCHITECT",
+        "speaker_name": "المعماري",
+        "guess": "it",
+        "subject": "it",
+        "object": "it",
+        "possessive": "its"
+      },
+      {
+        "speaker_id": "REFLECTIONS",
+        "speaker_name": "انعكاسات snoitcelfeR",
+        "guess": "it",
+        "subject": "it",
+        "object": "it",
+        "possessive": "its"
+      }
+    ],
+    "pronoun_default": {
+      "guess": "neutral",
+      "subject": "they",
+      "object": "them",
+      "possessive": "their"
+    }
+  },
+  {
+    "id": "IRONCLAD",
+    "name": "المدرع",
+    "description": "آخر جنود المدرعين.\nيسحق الأعداء بالسيف والنار رغم إرادته.",
+    "starting_hp": 80,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "DefendIronclad",
+      "DefendIronclad",
+      "DefendIronclad",
+      "DefendIronclad",
+      "Bash"
+    ],
+    "starting_relics": [
+      "BurningBlood"
+    ],
+    "unlocks_after": null,
+    "gender": "Masculine",
+    "color": "red",
+    "dialogue_color": "590700",
+    "quotes": {
+      "event_death_prevention": "فريقي ما زال يحتاجني.",
+      "gold_monologue": "[sine]هذه الثروات قد تقوّي ترسانة قبيلتي...[/sine]",
+      "aroma_principle": "[sine][red]الألم لا يعني شيئًا. أعدائي يجب أن يموتوا.[/red][/sine]",
+      "banter_alive": "أسرع.",
+      "banter_dead": "...",
+      "cards_modifier_title": "بطاقات المدرع",
+      "cards_modifier_description": "بطاقات المدرع ستظهر الآن في المكافآت والمتاجر."
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "لقد عاد المحارب المتّقد!\nولديّ ما يناسبك تمامًا!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "يسرّني أن أراك تواصل القتال وتحطيم الرؤوس!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "ما زلت أحتفظ بنصلك الثقيل... لكنني لم أجد أحدًا قادرًا على ترميمه."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]يحدّق المدرع في Darv.[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "لعلّ المعماري يعرف شيئًا عن ذلك."
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]..انهض.. يا.. محاربي...\n..حان... وقت... القتال... مجددًا...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]..ما زلت.. ضائعًا.. في الغضب... جيد...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]..تذكّر.. أول.. مرة\n...أتيتَ ..فيها... أمامي..[/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[sine]..كنت.. غاضبًا جدًا...[/sine]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[sine]...ومفيدًا.. جدًا...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "آه، أخيرًا وصل المدرع أمامي.\nتقدّم وسأمنحك قوتي."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "المدرع، المدرع... ألم تكن هديتي السابقة كافية؟"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "تعود مرة أخرى يا بطلي؟ كم مرة؟\nألم تكن قويًا بما يكفي لمحو عشائر كاملة من قبل؟"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "المدرع؟! كيف ممكن؟! مخيف. مخيف جدًا!!"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "موقّع عقد؟ لماذا؟! اختيار سيئ؟ نعم. خطأ!"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "أتمنى لك الحرية!! أتمنى بقوة!\nVakuu سيئ. سيئ جدًا! المعماري يحررك؟"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]أنت تحمل غضبًا شديدًا. خذ مني وابحث عن بعض السلام...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]هل تتذكر كيف يكون شعور الحلم؟\nالنوم جيد...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]يجب أن تُخمِد نيرانك.\nالأب يستطيع تحريرك...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "سيف مذهل أيها المحارب! يمكنك استعمال المزيد من الأسلحة!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "أسلحة للمحارب! خذ سلاحًا! لنقاتل!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "قاتلني أيها المدرع!!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]يقاتل المدرع ضد Tanx.[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "نعممم!! قتال عظيم، خذ سلاحًا!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "أنت [jitter][b]تحترق[/b][/jitter] بشكل جميل! ادخل، ادخل!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "يا لك من فتى قوي! تعال وكُل شيئًا.\nلا يمكن [jitter][b]الذبح[/b][/jitter] على معدة فارغة!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "أوه، المعماري ما زال حيًا؟ اقتله [jitter][b]بسرعة[/b][/jitter]، هلا فعلت؟\nسأنتظر هنا!"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "إذن وصل تابع الكائن الأعظم؟"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "عدو...\nاقتل..."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "مثقل بالقتال إلى الأبد، أليس كذلك؟"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "المعماري... عدو... العدو!!"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "هل تعرف اسمك حتى؟"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "أشفق عليك."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "اقتل..."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "عد إلى القاع أيها المدرع."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "تخيل أن أراك [sine]أنت[/sine] مجددًا بعد كل هذا الزمن."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[jitter][b]أيها الكائن العجيب![/b][/jitter]\nماذا فعلت بي؟!"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "بالضبط ما ساومتَ عليه."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "هل تثقل القبائل الضائعة كاهلك...؟\n[i][font_size=22]يعوي Vakuu ضاحكًا.[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "دميتي بين الدمى... لماذا لم تقتل المعماري بعد؟"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "بعد أن أقتل المعماري، سأقتلك [jitter][b]أنت![/b][/jitter]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[i][font_size=22][sine]تثاؤب[/sine][/font_size][/i]\nأتطلع لمشاهدة فشلك."
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_ironclad.webp",
+    "animation_url": null
+  },
+  {
+    "id": "NECROBINDER",
+    "name": "رابطة الموتى",
+    "description": "ليتش مولودة من البرج تسعى للانتقام.\nتستدعي يدها اليسرى الموثوقة [gold]أوستي[/gold] في القتال.",
+    "starting_hp": 66,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeNecrobinder",
+      "StrikeNecrobinder",
+      "StrikeNecrobinder",
+      "StrikeNecrobinder",
+      "DefendNecrobinder",
+      "DefendNecrobinder",
+      "DefendNecrobinder",
+      "DefendNecrobinder",
+      "Bodyguard",
+      "Unleash"
+    ],
+    "starting_relics": [
+      "BoundPhylactery"
+    ],
+    "unlocks_after": "Regent",
+    "gender": "Feminine",
+    "color": "purple",
+    "dialogue_color": "6B4658",
+    "quotes": {
+      "event_death_prevention": "أصدقائي لن ينجوا بدوني.",
+      "gold_monologue": "[sine]ربما أستطيع أخيرًا شراء حذاء...[/sine]",
+      "aroma_principle": "[sine][purple]سينتقم لهم... لن أتراجع...[/purple][/sine]",
+      "banter_alive": "وماذا بعد؟",
+      "banter_dead": "...",
+      "unlock_text": "العب جولة واحدة باستخدام [orange]{Prerequisite}[/orange] لفتح هذه الشخصية.",
+      "cards_modifier_title": "بطاقات رابطة الموتى",
+      "cards_modifier_description": "بطاقات رابطة الموتى ستظهر الآن في المكافآت والمتاجر."
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "يبدو أنك جادّة. كيف أستطيع مساعدتك يا آنسة؟"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "أي شيء يساعدني على قتل رجل شديد البغض."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "حسنًا إذن... ألقي نظرة!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "ألا تزالين تسيرين في درب الحرب؟ لن أحول بينكِ وبينه!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "يبدو أن هذا الكتاب مرتبط بكِ، وأنه أقدم منكِ."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "كيف حصلت عليه؟"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "للأشياء [sine]المخيفة[/sine] طريقة غريبة في الوصول إلى مجموعتي."
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]...نحن.... نشارك... ..نفس... ..الهدف....[/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[jitter]لقد قتل كل من أحب!![/jitter]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[sine]...قوتي..... لكِ...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]هو... ما زال.. ....يتنفس...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "[sine]هل... هذا.. ...ممكن أصلًا...؟[/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[sine]... [red]المعماري[/red].... ..يضعف....\n..ونحن.... نصير أقوى...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "حراسك موتى، والشائعات تقول إنك تمنح هبات لمن يتمنى موت المعماري."
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "أنا أقدّر الشخص القادر، وسأمنحك قدرًا من قوتي.\nفي المرة القادمة، لا تقتلي حراسي."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "المقاتلة تحتاج إلى تجهيزات فاخرة للمعركة. تقدّمي يا رابطة الموتى."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "المعماري لن يُسرّ برؤية ذلك [sine]الحيوان الأليف[/sine] الخاص بكِ."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "هل تقصد أوستي؟ سيكون هو من يوجه الضربة الأخيرة."
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "ميتة؟! ليست ميتة! لماذا دمية؟ يد كبيرة!!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "أنا لست دمية. هناك رجل يجب أن أقتله.\nماذا تستطيع أن تفعل لي؟"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "القتل سيئ!! خذي هذه بدلًا من ذلك!"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "التي ليست ميتة! هدايا جيدة لكِ!! العنف سيئ."
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "لا عنف! اجمعي اللامع بدلًا من ذلك... لامع!!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "مهمتي لن تنتهي إلا عندما يزول المعماري.\nالعنف لا مفر منه."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "المعماري ليس سيئًا! ربما تتكلمون؟ الكلام جيد!! جيد جدًا!"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]كم من الحقد يلوّن قلبك.[/thinky_dots]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "كنا سنحمل نفس اللون لو عرفت ما حلّ بي."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[thinky_dots]لا سلام في طريقك.\nخذي جزءًا مني لتخفيف أعبائك...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]صاحبة اليد عادت.\nذكريات مؤلمة. خذي قوتي وارحلي...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]قتل [red]الأب[/red] لن يجلب السلام.[/thinky_dots]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "تسمي ذلك [jitter]الشيء[/jitter] أباك!؟"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[thinky_dots]نحن لا نختار عائلتنا...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "يا له من منجل عظيم!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "نعم، صُنع خصيصًا للانتقام."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "هل تحتاج اليد إلى سلاح؟!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "قاتلني يا أوستي!!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "قاتليني يا رابطة الموتى!!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]تتشاجر رابطة الموتى وأوستي مع Tanx.[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "عمل جماعي عظيم!! خذوا سلاحًا!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "ما الذي يفعله هيكل عظمي داخل هذه الجدران؟"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "هدفي بسيط. الانتقام لعائلتي.\nسأصل إلى القمة وأجعله يدفع الثمن."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[jitter][b]رائع[/b][/jitter]!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "ادخلي، ادخلي! لنجعل نيرانك تشتعل [jitter][b]أكثر إشراقًا[/b][/jitter]."
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "تلك النيران حولك تذكرني بشيء محرّم."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "ماذا تعرفين؟"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "أعرف من كتب ذلك [jitter][b]الكتاب[/b][/jitter]."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "أيها المعماري! قتلت والديّ. قتلت صديقي. قتلت حياتي! ...والآن سأقتلك!"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "انتقام إذن؟ لا، شكرًا."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "أيها المعماري! قتلت والديّ. قتلت صديقي. قتلت الـ-"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "لا يمكنك تغيير الماضي بالغضب."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "أيها المعماري! قتلت والديّ. قتلت صديقي. قتلت حياتي-"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "فعلت ما كان يجب للحفاظ على النظام."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "أيها المعماري! قتلت والديّ. قتلت صديقي. قتلت الـ-"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "حياتك"
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "ماذا...؟! مت أيها الوحش!"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "كلانا يسعى إلى [sine]الانتقام[/sine]. وسيكون له ثمن."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "أقبل أي ثمن. كل ثمن مقابل موته."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "أعرف من أين حصلتِ على تلك [sine]اليد[/sine]."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "لقد جرحنا المعماري كلينا جرحًا بالغًا."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "ادخل في صلب الموضوع أيها الكائن. أرني عقودك."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "مباشرة إلى العمل. حسنًا..."
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_necrobinder.webp",
+    "animation_url": null
+  },
+  {
+    "id": "REGENT",
+    "name": "الوصي",
+    "description": "وريث عرش النجوم.\nيمتلك قوى كونية لكن أتباعه يقومون بالعمل.",
+    "starting_hp": 75,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeRegent",
+      "StrikeRegent",
+      "StrikeRegent",
+      "StrikeRegent",
+      "DefendRegent",
+      "DefendRegent",
+      "DefendRegent",
+      "DefendRegent",
+      "FallingStar",
+      "Venerate"
+    ],
+    "starting_relics": [
+      "DivineRight"
+    ],
+    "unlocks_after": "Silent",
+    "gender": "Masculine",
+    "color": "orange",
+    "dialogue_color": "52371D",
+    "quotes": {
+      "event_death_prevention": "يجب أن أعيش لمساعدة فريقي!!",
+      "gold_monologue": "[sine]يمكنني قيادة جيش من غير الحمقى...[/sine]",
+      "aroma_principle": "[sine][orange]أنا الملك القادم للنجوم...[/orange][/sine]",
+      "banter_alive": "اسرعو يا عبيد",
+      "banter_dead": "...",
+      "unlock_text": "العب جولة واحدة باستخدام [green]{Prerequisite}[/green] لفتح هذه الشخصية.",
+      "cards_modifier_title": "بطاقات الوصي",
+      "cards_modifier_description": "بطاقات الوصي ستظهر الآن في المكافآت والمتاجر."
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "ما الذي جاء بك إلى هنا؟ أترغب في إلقاء نظرة على مجموعتي؟"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "أنا أستمتع بالبضائع الفاخرة..."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "أجل!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "راجع للمزيد يا صاحب السمو؟!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "يا صديقي الجديد، لديّ شيء مميز لك!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "أنا أستمع!"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "كنت سأعطيك إياه، لكن المعماري انتزعه مني!!\nساعد صديقك! أسدِ إليّ معروفًا، هلا فعلت؟"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "أيها المخلوق الأزرق الضخم، أنا [orange]الملك[/orange] المستقبلي!"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[sine]..لطيف...\n...أنت... ستراني.. ..مرة... ...أخرى....[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]...مرة أخرى..؟[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "[jitter]لماذا لا أستطيع الفوز؟![/jitter]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[sine]...تلقَّ.. هذه... ..الهبة...[/sine]"
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "...نعم، شكرًا لكِ Neow."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "أطلب المثول أمام Nonupeipe!"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "يا لها من أردية جميلة جلبتها من أراضٍ بعيدة!\nاجعل أتباعك يقربونك مني وسأباركك."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "هبات ملكية للزوار الملكيين.\nأيها الخدم! أحضروا لنا بعض الشاي."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "لقد جُنّ المعماري! لو أن بطلًا نبيلًا ينقذنا من هذه المحنة..."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "لا تخف! أنا، الوصي، سأضع حدًا لهذا الجنون!\nلكن أولًا، الشاي!"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "مسافر! من الفضاء؟! أين في الفضاء؟\nكيف من الفضاء؟ رأس مدبب! أصدقاء صغار!!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]يُلقي الوصي مونولوجًا لساعات.[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "مثير! مذهل!! المزيد! المزيد!!!"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "قصص أكثر! وجدت هذه لك!\nوالآن احكِ قصة أكثر!!"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "معجبي الأول! Orobas، صديقي!\nجميل أن أراك ما زلت حيًا!"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "قصص؟!"
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "طبعًا طبعًا... لكن هل وجدت لي أي حُلي؟"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "مرحبًا! أنا الوصي.\nمرحباااا؟؟ [jitter]مرحبًا؟![/jitter]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[thinky_dots]اهدأ الآن.\nخذ جزءًا مني واذهب في طريقك...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "لقد عدت! آه، أنت نائم بالطبع.\nلنرَ هنا..."
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "لماذا تعطي نفسك للآخرين؟"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[thinky_dots]ولمَ لا أعطي وأنا أملك وفرة من اللحم؟[/thinky_dots]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[thinky_dots]عندما تعود، سأكون قد تجددت من جديد.\nهذا ما يفعله النوم...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "برتقالي؟! كيف يكون هذا الكائن برتقاليًا!؟؟"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "الجميع يعرفون أن البرتقالي هو أكثر الألوان ملكية!"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "مذهل! عظيم جدًا!!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "أيها البرتقالي!! اختر سلاحًا عظيمًا!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "قاتلني أيها الوصي!!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "لا! لقد تقاتلنا آخر مرة كنت فيها هنا!"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "قاتلني مجددًا!!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "يا للعجب، يا له من زائر [jitter][b]غريب[/b][/jitter]! من تكون يا عزيزي؟"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "أنا لست عزيزك! خاطبيني باحترام، أيتها العملاقة... الشيء-الشخص!"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "أين ذهبت آدابي؟\n[i][font_size=22]تضحك Tezcatara ببهجة.[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "أنت وأصدقاؤك عدتم مرة أخرى؟\nلقد صنعت لكم [jitter][b]حلوى[/b][/jitter]!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "مرحبًا بعودتك أيها الفتى الملكي! يبدو أنك تقوم بعمل [jitter][b]رائع[/b][/jitter] هناك."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "نعم بالطبع! مجرد انتكاسات صغيرة في المستويات العليا... مثل الموت."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "كلنا نحتاج أن نتعلم من أخطائنا."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "لقد وصلت! أنت هناك، أيها العامي! هل هذه القمة؟"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "أحتاج إلى الهدوء..."
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "سأعلمك بعض الأدب!"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "لقد وصلت مرة أخرى!"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "الأحمق المزعج عاد؟"
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "أنا لست مزعجًا ولا أحمق! واجهني!"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "لقد اكتفيت من قلة أدبك!"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "شيء يمكننا الاتفاق عليه."
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "فلنرقص!"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "كائن من النجوم؟ داخل هذه الجدران المثقلة؟"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "هل تعرفني؟"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "نعم، أظن أننا نستطيع مساعدة بعضنا."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "المزيد من قوتي يمكن أن يكون لك مقابل ثمن صغير."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "لا أظن أن هذه الصفقات جيدة. لا أشعر أنني بخير."
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "لقد قرأت العقود جيدًا، أليس كذلك؟\nوقّعتها بنية كاملة ومسؤولية كاملة، أليس كذلك؟"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "ألن تفي بجانبك من الصفقة؟\nما رأيك بعقد آخر؟ أليس ذلك أفضل؟"
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_regent.webp",
+    "animation_url": null
+  },
+  {
+    "id": "SILENT",
+    "name": "الصامتة",
+    "description": "صيادة من خارج البرج.\nمستعدة للطعن والتسميم في طريقها.",
+    "starting_hp": 70,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeSilent",
+      "StrikeSilent",
+      "StrikeSilent",
+      "StrikeSilent",
+      "StrikeSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "Neutralize",
+      "Survivor"
+    ],
+    "starting_relics": [
+      "RingOfTheSnake"
+    ],
+    "unlocks_after": null,
+    "gender": "Feminine",
+    "color": "green",
+    "dialogue_color": "284719",
+    "quotes": {
+      "event_death_prevention": "يجب أن أعيش لأصطاد يومًا آخر...",
+      "gold_monologue": "[sine]أخواتي سيفتخرن بهذه الثروات...[/sine]",
+      "aroma_principle": "[sine][green]...اصطد... أثبت... انتمي...[/green][/sine]",
+      "banter_alive": "ما عشان اسمي الصامتة \n تفتكرو اني ما حستعجلكم ",
+      "banter_dead": "...",
+      "unlock_text": "العب جولة واحدة لفتح هذه الشخصية.",
+      "cards_modifier_title": "بطاقات الصامتة",
+      "cards_modifier_description": "بطاقات الصامتة ستظهر الآن في المكافآت والمتاجر."
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "أعدتِ إلى البرج أنتِ أيضًا، أليس كذلك؟\nلا تستطيعين مقاومة تلك الأشياء اللامعة، أليس كذلك؟!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "سأقايضك بشيء جميل مقابل تلك الكأس التي تحملينها!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "من المؤسف أنكِ لا تتذكرين كل ما أغدقته عليكِ!\nأجل، أجل... أنتِ تعرفين طبع نيو..."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "..."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "حسنًا! لنجهزك للمواجهة الأخيرة، أيًّا يكن ما ينتظرنا!"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]...عدتِ.. من... الخارج؟\n..كنت أعلم... أنكِ... ستعودين...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]...غنيمتكِ..\n ...تنتظركِ...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]..كلانا... يعرف.. ألم.. العائلة...[/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "..."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[sine]..ما زلتِ... تبحثين.. عن الموافقة...؟\n...[jitter]حمقاء[/jitter]...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "لصة صغيرة تسللت إلى نطاقي؟\nلا تظنين أنني لا أراكِ؟ اخرجي!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]تخرج الصامتة من الظلال...[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "صيادة، ما الذي يدعوكِ للعودة إلى Spire؟\nاقتربي وخذي هذه الهبات."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "حضّرت لكِ هدايا أيتها القاتلة، لا تخجلي."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "من بين كل دماها، أنتِ أكثر من يفاجئني."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "..."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "ما الذي أخذ حياتكِ الأولى؟ هل [sine]وجدتكِ[/sine] Neow؟\nمؤسف أنكِ لا تتكلمين."
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "عدوى...؟ [jitter]BLIGHT؟![/jitter] خذي واذهبي!!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[sine]...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "ليست معدية؟ تحتضر جدًا؟ المعماري يساعدك؟"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "أين الأخوات؟ أخوات مخيفات ولئيمات!\nكوني شخصًا جيدًا! لا تكوني مثل الأخوات!!"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]أيتها المخلوقة القاتلة، لا حاجة للعنف هنا.\nخذي جزءًا مني واعثري على السلام...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]صيد الجوائز؟ حسنًا، خذي جزءًا مني...\nأيًا كان ما يمنحك الراحة...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]لقد سممتِني...؟\nإلى ماذا سيؤدي هذا...؟ zZZzz...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "صيّادة! سأشحذ مخلبك!!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "لماذا الخناجر!! غير عظيمة!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "قاتليني أيتها الصامتة!!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]تهرب الصامتة، وتسرق سلاحًا في الطريق.[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "إلى أين ذهبتِ!!!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "اقتربي أيتها الهادئة. لا أرى جيدًا..."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "..."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "يمكنكِ [jitter][b]الثقة[/b][/jitter] بي."
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "لديكِ [jitter][b]مرض[/b][/jitter] قبيح جدًا. دعينا نعتني بكِ."
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "لقد قابلت أخواتكِ، أتعلمين؟ يا لهن من فتيات لطيفات."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "..."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "يا عزيزتي... لم تكوني [jitter][b]تتقاتلين[/b][/jitter]، أليس كذلك؟"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "حتى بلا تعريف؟"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "من أين أتيتِ؟\nوماذا تريدين؟"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[jitter]غررغ![/jitter]\n[jitter][red]موتي!![/red][/jitter]"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "بائسة مزعجة!\n[jitter]اختفي!![/jitter]"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "قاتلة."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[sine]...[/sine]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "هذا لن [jitter]ينتهي[/jitter] جيدًا بالنسبة لكِ."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[i][font_size=22]يعرض Vakuu عقوده المختلفة على الصامتة[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "المعماري ليس كافيًا، اقتلي أخواتك أيضًا!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[sine]...[/sine]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "لا حاجة للكلمات، نحن متشابهان."
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_silent.webp",
+    "animation_url": null
+  }
+]

@@ -1,0 +1,46 @@
+[
+  {
+    "id": "CLONE",
+    "name": "استنساخ"
+  },
+  {
+    "id": "COOK",
+    "name": "طهو"
+  },
+  {
+    "id": "DIG",
+    "name": "حفر"
+  },
+  {
+    "id": "EVOLVE",
+    "name": "Evolve"
+  },
+  {
+    "id": "HATCH",
+    "name": "فقس"
+  },
+  {
+    "id": "HEAL",
+    "name": "راحة"
+  },
+  {
+    "id": "KINDLE",
+    "name": "إشعال"
+  },
+  {
+    "id": "LIFT",
+    "name": "تدرّب"
+  },
+  {
+    "id": "MEND",
+    "name": "ترميم"
+  },
+  {
+    "id": "RESTORE",
+    "name": "Restore"
+  },
+  {
+    "id": "SMITH",
+    "name": "حدادة"
+  }
+]

@@ -1,0 +1,75 @@
+{
+  "card_types": {
+    "Attack": "Serangan",
+    "Skill": "Teknik",
+    "Power": "Kuasa",
+    "Status": "Status",
+    "Curse": "Kutukan",
+    "Quest": "Misi"
+  },
+  "card_rarities": {
+    "Basic": "Dasar",
+    "Common": "Biasa",
+    "Uncommon": "Tidak Biasa",
+    "Rare": "Langka",
+    "Ancient": "Ancient",
+    "Event": "Event",
+    "Token": "Token",
+    "Status": "Status",
+    "Curse": "Kutukan",
+    "Quest": "Misi"
+  },
+  "relic_rarities": {
+    "Starter": "Pusaka Awalan",
+    "Common": "Pusaka Biasa",
+    "Uncommon": "Pusaka Tidak Biasa",
+    "Rare": "Pusaka Langka",
+    "Ancient": "Pusaka Ancient",
+    "Event": "Pusaka Event",
+    "Shop": "Pusaka Toko"
+  },
+  "potion_rarities": {
+    "Common": "Biasa",
+    "Uncommon": "Tidak Biasa",
+    "Rare": "Langka",
+    "Event": "Event",
+    "Token": "Token"
+  },
+  "keywords": {
+    "ETERNAL": "Abadi",
+    "ETHEREAL": "Rapuh",
+    "EXHAUST": "Hangus",
+    "INNATE": "Bawaan",
+    "RETAIN": "Pertahankan",
+    "SLY": "Lihai",
+    "UNPLAYABLE": "Nonaktif"
+  },
+  "sections": {
+    "cards": "Pustaka",
+    "characters": "Characters",
+    "relics": "Koleksi Pusaka",
+    "monsters": "Kitab",
+    "potions": "Laboratorium",
+    "enchantments": "Enchantments",
+    "encounters": "Encounters",
+    "events": "Events",
+    "powers": "Powers",
+    "timeline": "Linimasa",
+    "images": "Images",
+    "reference": "Reference"
+  },
+  "section_descs": {
+    "cards": "Lihat semua kartu yang kamu temukan semasa di Spire.",
+    "relics": "Lihat pusaka dan jimat yang kamu dapat semasa perjalananmu.",
+    "monsters": "Lihat semua musuh yang kamu jumpai semasa di Spire.",
+    "potions": "Lihat ramuan yang dijumpai saat mendaki Spire."
+  },
+  "character_names": {
+    "ironclad": "Si Ironclad",
+    "silent": "Si Silent",
+    "defect": "Si Defect",
+    "necrobinder": "Si Necrobinder",
+    "regent": "Si Regent",
+    "fool": "Fool"
+  }
+}

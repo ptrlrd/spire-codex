@@ -1,0 +1,37 @@
+[
+  {
+    "id": "DARK_ORB",
+    "name": "ダーク",
+    "description": "[gold]自動効果:[/gold] ターン終了時、このオーブのダメージが[blue]6[/blue]増加する。\n[gold]解放:[/gold] HPが最も低い敵に[blue]6[/blue]ダメージを与える。",
+    "description_raw": "[gold]自動効果:[/gold] ターン終了時、このオーブのダメージが[blue]{Passive}[/blue]増加する。\n[gold]解放:[/gold] HPが最も低い敵に[blue]{Evoke}[/blue]ダメージを与える。",
+    "image_url": "/static/images/orbs/dark_orb.png"
+  },
+  {
+    "id": "FROST_ORB",
+    "name": "フロスト",
+    "description": "[gold]自動効果:[/gold] ターン終了時、[blue]2[/blue][gold]ブロック[/gold]を得る。\n[gold]解放:[/gold] [blue]5[/blue][gold]ブロック[/gold]を得る。",
+    "description_raw": "[gold]自動効果:[/gold] ターン終了時、[blue]{Passive}[/blue][gold]ブロック[/gold]を得る。\n[gold]解放:[/gold] [blue]{Evoke}[/blue][gold]ブロック[/gold]を得る。",
+    "image_url": "/static/images/orbs/frost_orb.png"
+  },
+  {
+    "id": "GLASS_ORB",
+    "name": "グラス",
+    "description": "[gold]自動効果:[/gold] ターン終了時、すべての敵に[blue]4[/blue]ダメージを与え、このオーブの値が[blue]1[/blue]減少する。\n[gold]解放:[/gold] すべての敵に[blue]8[/blue]ダメージを与える。",
+    "description_raw": "[gold]自動効果:[/gold] ターン終了時、すべての敵に[blue]{Passive}[/blue]ダメージを与え、このオーブの値が[blue]1[/blue]減少する。\n[gold]解放:[/gold] すべての敵に[blue]{Evoke}[/blue]ダメージを与える。",
+    "image_url": "/static/images/orbs/glass_orb.png"
+  },
+  {
+    "id": "LIGHTNING_ORB",
+    "name": "ライトニング",
+    "description": "[gold]自動効果:[/gold] ターン終了時、ランダムな敵に[blue]3[/blue]ダメージを与える。\n[gold]解放:[/gold] ランダムな敵に[blue]8[/blue]ダメージを与える。",
+    "description_raw": "[gold]自動効果:[/gold] ターン終了時、ランダムな敵に[blue]{Passive}[/blue]ダメージを与える。\n[gold]解放:[/gold] ランダムな敵に[blue]{Evoke}[/blue]ダメージを与える。",
+    "image_url": "/static/images/orbs/lightning_orb.png"
+  },
+  {
+    "id": "PLASMA_ORB",
+    "name": "プラズマ",
+    "description": "[gold]自動効果:[/gold] ターン開始時、\n[energy:1]を得る。\n[gold]解放:[/gold] [energy:2]を得る。\nプラズマは[gold]集中力[/gold]の影響を受けない。",
+    "description_raw": "[gold]自動効果:[/gold] ターン開始時、\n{energyPrefix:energyIcons(1)}を得る。\n[gold]解放:[/gold] {energyPrefix:energyIcons(2)}を得る。\nプラズマは[gold]集中力[/gold]の影響を受けない。",
+    "image_url": "/static/images/orbs/plasma_orb.png"
+  }
+]

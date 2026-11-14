@@ -23,7 +23,10 @@ function resolveClanImages(html: string): string {
 
 /** Convert the BBCode that Steam still emits in some posts to HTML. */
 function bbcodeToHtml(input: string): string {
-  let s = input;
+  let s = input
+    .replaceAll("[/*]", "")
+    .replaceAll("[p]", "")
+    .replaceAll("[/p]", "\n\n");
   // Lists need real parsing because Steam patch notes nest them inside
   // items (e.g. [*]Header[list][*]sub1[*]sub2[/list]) and a flat regex
   // pass produces sibling `<ul>`s, visually flat instead of indented.

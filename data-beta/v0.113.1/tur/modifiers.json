@@ -1,0 +1,149 @@
+[
+  {
+    "id": "ALL_STAR",
+    "name": "Yıldız Oyuncu",
+    "description": "[blue]5[/blue] [gold]Renksiz[/gold] kartla başla.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "BIG_GAME_HUNTER",
+    "name": "Büyük Av Peşinde",
+    "description": "Elit düşmanlar Spire'a akın eder ve artık [gold]Nadir[/gold] kart ödülleri düşürür.",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "CURSED_RUN",
+    "name": "Lanetli Oyun",
+    "description": "Her Sahne'nin başında destene rastgele bir [red]Lanet[/red] ekle.",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "DEADLY_EVENTS",
+    "name": "Ölümcül Etkinlikler",
+    "description": "Artık bilinmeyen odalarda Elitler olabilir; fakat Hazine odası barındırma ihtimalleri de artar.",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "DRAFT",
+    "name": "Taslak",
+    "description": "Başlangıç destenin yerini alması için [blue]10[/blue] kart ödülü seç.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "FLIGHT",
+    "name": "Uçuş",
+    "description": "Bir sonraki gideceğin odayı seçerken odaların arasındaki yolu göz ardı edebilirsin.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "HOARDER",
+    "name": "İstifçi",
+    "description": "Destene her kart eklediğinde, buna ek olarak [blue]2[/blue] kopya daha eklenir. Tüccar’da artık destenden kart kaldıramazsın.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "INSANITY",
+    "name": "Delilik",
+    "description": "[blue]30[/blue] karttan oluşan rastgele bir desteyle başla.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "MIDAS",
+    "name": "Midas",
+    "description": "Düşmanlar [blue]%200[/blue] daha fazla altın düşürür; fakat [gold]Dinlenme Yerleri[/gold]'nde artık kart Geliştiremezsin.",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "MURDEROUS",
+    "name": "Ölümcül",
+    "description": "Her savaşa [blue]3[/blue] [gold]Kuvvet[/gold] ile başla. Tüm düşmanlar savaşa [blue]3[/blue] [gold]Kuvvet[/gold] ile başlar.",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "NIGHT_TERRORS",
+    "name": "Gece Dehşetleri",
+    "description": "[gold]Dinlenme Yerleri[/gold]'nde dinlenmek bütün CP'ni doldurur; fakat her seferinde [red]5[/red] Maksimum CP kaybedersin.",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "SEALED_DECK",
+    "name": "Mühürlü Deste",
+    "description": "Başlangıç destenin yerini alması için [blue]30[/blue] karttan [blue]10[/blue] tanesini seç.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "SPECIALIZED",
+    "name": "Uzmanlaşmış",
+    "description": "Bir kartın [blue]5[/blue] kopyasıyla başla.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "TERMINAL",
+    "name": "Hasta",
+    "description": "Her yeni bir odaya girdiğinde [red]1[/red] Maksimum CP kaybet. Her savaşa [blue]5[/blue] [gold]Zırh[/gold] ile başla.",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "VINTAGE",
+    "name": "Antik",
+    "description": "Sıradan düşmanlar kart yerine kalıntı düşürür.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "CHARACTER_CARDS_IRONCLAD",
+    "name": "Demirkaplı'nın Kartları",
+    "description": "Demirkaplı'nın kartları artık ödül havuzunda ve dükkanlarda belirecek.",
+    "kind": "good",
+    "character": "IRONCLAD"
+  },
+  {
+    "id": "CHARACTER_CARDS_SILENT",
+    "name": "Sessiz'in Kartları",
+    "description": "Sessiz'in kartları artık ödül havuzunda ve dükkanlarda belirecek.",
+    "kind": "good",
+    "character": "SILENT"
+  },
+  {
+    "id": "CHARACTER_CARDS_DEFECT",
+    "name": "Arıza'nın Kartları",
+    "description": "Arıza'nın kartları artık ödül havuzunda ve dükkanlarda belirecek.",
+    "kind": "good",
+    "character": "DEFECT"
+  },
+  {
+    "id": "CHARACTER_CARDS_NECROBINDER",
+    "name": "Ölübağlayan'ın Kartları",
+    "description": "Ölübağlayan'ın kartları artık ödül havuzunda ve dükkanlarda belirecek.",
+    "kind": "good",
+    "character": "NECROBINDER"
+  },
+  {
+    "id": "CHARACTER_CARDS_REGENT",
+    "name": "Naip'in Kartları",
+    "description": "Naip'in kartları artık ödül havuzunda ve dükkanlarda belirecek.",
+    "kind": "good",
+    "character": "REGENT"
+  },
+  {
+    "id": "CHARACTER_CARDS_FOOL",
+    "name": "Soytarı'nın Kartları",
+    "description": "Soytarı'nın kartları artık ödül havuzunda ve dükkanlarda belirecek.",
+    "kind": "good",
+    "character": "FOOL"
+  }
+]

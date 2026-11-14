@@ -1,0 +1,269 @@
+[
+  {
+    "id": "STANDARD",
+    "name": "標準",
+    "description": "踏上殺戮尖塔的旅程！",
+    "multiplayer_description": "與好友一起踏上殺戮尖塔的旅程！",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": null,
+    "max_ascension": 10
+  },
+  {
+    "id": "DAILY",
+    "name": "每日挑戰",
+    "description": "每天都有一項全新挑戰。\n\n與其他玩家競逐最高分！",
+    "multiplayer_description": "每天都有一項全新挑戰。\n\n與其他隊伍競逐最高分！",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "使用所有角色各進行一局遊戲並破完第 3 幕，即可解鎖每日挑戰。",
+    "max_ascension": 10
+  },
+  {
+    "id": "DREAD",
+    "name": "恐懼",
+    "description": "建築師設下的最高難度。\n\n只適合想考驗自己對尖塔的掌握程度的玩家。",
+    "multiplayer_description": "建築師設下的最高難度。\n\n只適合想考驗自己對尖塔的掌握程度的隊伍。",
+    "intro": "[gold]恐懼[/gold]是《殺戮尖塔》中最艱難的挑戰。",
+    "rules": [
+      "啟用所有晉階調整。",
+      "每幕結束時，將一張[purple]晉階者之禍[/purple]加入你的[gold]牌組[/gold]。",
+      "敵人會從即將面對的頭目獲得額外能力。",
+      "頭目變得更加強大。"
+    ],
+    "epoch_id": "DREAD_EPOCH",
+    "unlock_text": "已解鎖遊戲模式：恐懼。",
+    "unlock_info": "使用所有角色達到[red]晉階[/red] [blue]10[/blue]，即可揭示此紀元。",
+    "max_ascension": 10,
+    "dominions": [
+      {
+        "id": "AEONGLASS_DOMINION",
+        "encounter_id": "AEONGLASS_BOSS",
+        "boss_name": "永世沙漏",
+        "name": "永世沙漏的統御",
+        "description": "在你的回合開始時，將 [blue]1[/blue] 張[gold]凋萎[/gold]加入你的[gold]抽牌堆[/gold]頂部。"
+      },
+      {
+        "id": "CEREMONIAL_BEAST_DOMINION",
+        "encounter_id": "CEREMONIAL_BEAST_BOSS",
+        "boss_name": "儀式獸",
+        "name": "儀式獸的統御",
+        "description": "所有敵人獲得 [blue]1[/blue] 層[gold]儀式[/gold]。"
+      },
+      {
+        "id": "INSATIABLE_DOMINION",
+        "encounter_id": "THE_INSATIABLE_BOSS",
+        "boss_name": "無饜沙蟲",
+        "name": "無饜沙蟲的統御",
+        "description": "在你的回合結束時，依回合數受到傷害。"
+      },
+      {
+        "id": "KAISER_CRAB_DOMINION",
+        "encounter_id": "KAISER_CRAB_BOSS",
+        "boss_name": "帝皇蟹",
+        "name": "帝皇蟹的統御",
+        "description": "所有敵人獲得 [blue]7[/blue] 層[gold]鍍甲[/gold]。"
+      },
+      {
+        "id": "KIN_DOMINION",
+        "encounter_id": "THE_KIN_BOSS",
+        "boss_name": "眷族",
+        "name": "眷族的統御",
+        "description": "你以帶有 [red]2[/red] 層[gold]虛弱[/gold]與[gold]脆弱[/gold]的形式開始戰鬥。"
+      },
+      {
+        "id": "KNOWLEDGE_DEMON_DOMINION",
+        "encounter_id": "KNOWLEDGE_DEMON_BOSS",
+        "boss_name": "知識惡魔",
+        "name": "知識惡魔的統御",
+        "description": "戰鬥開始時，從 [blue]2[/blue] 項統御[red]禍殃[/red]中選擇 [blue]1[/blue] 項。"
+      },
+      {
+        "id": "LAGAVULIN_MATRIARCH_DOMINION",
+        "encounter_id": "LAGAVULIN_MATRIARCH_BOSS",
+        "boss_name": "樂加維林族母",
+        "name": "樂加維林族母的統御",
+        "description": "在你的第一回合結束時，失去 [red]1[/red] 層[gold]力量[/gold]與[gold]敏捷[/gold]。"
+      },
+      {
+        "id": "QUEEN_DOMINION",
+        "encounter_id": "QUEEN_BOSS",
+        "boss_name": "女王",
+        "name": "女王的統御",
+        "description": "在第 2 回合開始時，獲得 [red]3[/red] 層[gold]虛弱[/gold]、[gold]易傷[/gold]與[gold]脆弱[/gold]。"
+      },
+      {
+        "id": "SOUL_FYSH_DOMINION",
+        "encounter_id": "SOUL_FYSH_BOSS",
+        "boss_name": "靈魂異魚",
+        "name": "靈魂異魚的統御",
+        "description": "每場戰鬥開始時，將一張[gold]呼喚[/gold]洗入你的[gold]抽牌堆[/gold]。"
+      },
+      {
+        "id": "TEST_SUBJECT_DOMINION",
+        "encounter_id": "TEST_SUBJECT_BOSS",
+        "boss_name": "實驗體",
+        "name": "實驗體的統御",
+        "description": "所有敵人獲得 [blue]3[/blue] 層[gold]力量[/gold]。"
+      },
+      {
+        "id": "VANTOM_DOMINION",
+        "encounter_id": "VANTOM_BOSS",
+        "boss_name": "墨影幻靈",
+        "name": "墨影幻靈的統御",
+        "description": "普通敵人獲得 [blue]1[/blue] 層[gold]滑溜[/gold]。菁英獲得 [blue]2[/blue] 層[gold]滑溜[/gold]。"
+      },
+      {
+        "id": "WATERFALL_GIANT_DOMINION",
+        "encounter_id": "WATERFALL_GIANT_BOSS",
+        "boss_name": "瀑布巨獸",
+        "name": "瀑布巨獸的統御",
+        "description": "敵人死亡時會爆炸，造成傷害。"
+      }
+    ],
+    "rotating_streak": {
+      "name": "輪替連勝",
+      "description": "在[gold]輪替連勝[/gold]中，每次勝利後都會換成右邊的下一名角色。\n勝場會獨立計算為一組連勝，不再計入個別角色的連勝紀錄。"
+    }
+  },
+  {
+    "id": "BLITZ",
+    "name": "閃擊",
+    "description": "節奏更快、流程更精簡，適合想來趟短途旅程的玩家。",
+    "multiplayer_description": "節奏更快、流程更精簡，適合想來趟短途旅程的隊伍。",
+    "intro": "歡迎來到[green]閃擊[/green]模式！這種快速遊戲擁有獨立的晉階難度，由所有角色共用，並透過重大調整讓遊戲更著重於構築牌組。",
+    "rules": [
+      "每局開始時獲得卡牌。",
+      "每幕面對 [blue]4[/blue] 場遭遇。",
+      "[blue]商人[/blue]變得[sine]怪怪的[/sine]。",
+      "[gold]財寶箱[/gold]內含一件額外遺物。",
+      "沒有地圖。"
+    ],
+    "epoch_id": "BLITZ_EPOCH",
+    "unlock_text": "已解鎖遊戲模式：閃擊。",
+    "unlock_info": "進行一局晉階遊戲，即可解鎖閃擊模式。",
+    "max_ascension": 5,
+    "ascension_levels": [
+      "WearyTraveler",
+      "TightBelt",
+      "ToughEnemies",
+      "DeadlyEnemies",
+      "AscendersBane"
+    ],
+    "neow": {
+      "name": "閃擊",
+      "description": "選擇 [blue]3[/blue] 張牌加入你的[gold]牌組[/gold]。"
+    },
+    "merchant_entries": [
+      {
+        "id": "CARD_ENCHANT",
+        "name": "Enchantment",
+        "description": "為一張牌[gold]附魔[/gold][purple]Enchantment[/purple]。"
+      },
+      {
+        "id": "CARD_PACKS",
+        "name": "卡牌包",
+        "description": "從 [blue]2[/blue] 組卡牌包中選擇 [blue]1[/blue] 組加入你的[gold]牌組[/gold]。"
+      },
+      {
+        "id": "CARD_REMOVAL",
+        "name": "卡牌移除服務",
+        "description": "從你的[gold]牌組[/gold]中移除一張牌。"
+      },
+      {
+        "id": "CARD_REWARD_OF_EACH_RARITY",
+        "name": "受詛咒的卡牌獎勵",
+        "description": "獲得 [red]1[/red] 張隨機[red]詛咒[/red]。\n各獲得 [blue]1[/blue] 次[gold]普通[/gold]、[gold]罕見[/gold]與[gold]稀有[/gold]卡牌獎勵。"
+      },
+      {
+        "id": "CARD_REWARDS",
+        "name": "卡牌獎勵",
+        "description": "獲得 [blue]2[/blue] 次卡牌獎勵。"
+      },
+      {
+        "id": "CARD_TRANSFORM",
+        "name": "卡牌轉化服務",
+        "description": "[gold]轉化[/gold]你[gold]牌組[/gold]中的一張牌。"
+      },
+      {
+        "id": "CARD_UPGRADE",
+        "name": "卡牌升級服務",
+        "description": "[gold]升級[/gold]你[gold]牌組[/gold]中的一張牌。"
+      },
+      {
+        "id": "COLORLESS_CARD_REWARD",
+        "name": "無色卡牌獎勵",
+        "description": "獲得 [blue]1[/blue] 次[gold]無色[/gold]卡牌獎勵。"
+      },
+      {
+        "id": "ENCHANTED_CARD_REWARD",
+        "name": "附魔卡牌獎勵",
+        "description": "獲得 [blue]1[/blue] 次[gold]已附魔[/gold]卡牌獎勵。"
+      },
+      {
+        "id": "FULL_HEAL_AND_MAX_HP",
+        "name": "受詛咒的治療",
+        "description": "獲得 [red]1[/red] 張隨機[red]詛咒[/red]。\n最大生命提高 [blue]6[/blue] 點，並恢復所有生命。"
+      },
+      {
+        "id": "GLAM",
+        "name": "受詛咒的Enchantment",
+        "description": "獲得 [red]1[/red] 張隨機[red]詛咒[/red]。\n為一張牌[gold]附魔[/gold][purple]Enchantment[/purple]。"
+      },
+      {
+        "id": "POTIONS",
+        "name": "藥水",
+        "description": "獲得 [blue]1[/blue] 個藥水欄位，並取得 [blue]2[/blue] 瓶隨機藥水。"
+      },
+      {
+        "id": "PRISMATIC_CARD_REWARD",
+        "name": "Character卡牌獎勵",
+        "description": "獲得 [blue]1[/blue] 次[gold]Character[/gold]卡牌獎勵。"
+      },
+      {
+        "id": "RANDOM_UPGRADES",
+        "name": "隨機升級",
+        "description": "升級你[gold]牌組[/gold]中的 [blue]2[/blue] 張隨機卡牌。"
+      },
+      {
+        "id": "RARE_CARD_REWARD",
+        "name": "稀有卡牌獎勵",
+        "description": "獲得 [blue]1[/blue] 次稀有卡牌獎勵。"
+      },
+      {
+        "id": "RELIC",
+        "name": "遺物",
+        "description": "獲得 [blue]1[/blue] 件隨機[gold]遺物[/gold]。"
+      },
+      {
+        "id": "TWO_MORE_CHOICES",
+        "name": "受詛咒的選擇",
+        "description": "獲得 [red]1[/red] 張隨機[red]詛咒[/red]。\n商人允許你再購買兩項商品。"
+      },
+      {
+        "id": "TWO_RELICS",
+        "name": "受詛咒的遺物",
+        "description": "獲得 [red]1[/red] 張隨機[red]詛咒[/red]。\n獲得 [blue]2[/blue] 件隨機[gold]遺物[/gold]。"
+      },
+      {
+        "id": "UPGRADED_CARD_REWARD",
+        "name": "已升級卡牌獎勵",
+        "description": "獲得 [blue]1[/blue] 次[gold]已升級[/gold]卡牌獎勵。"
+      },
+      {
+        "id": "UPGRADED_RARE_CARD",
+        "name": "已升級稀有牌",
+        "description": "獲得 [blue]1[/blue] 張隨機[gold]已升級[/gold]稀有牌。"
+      },
+      {
+        "id": "UPGRADED_RARE_CARD_REWARD",
+        "name": "受詛咒的已升級稀有卡牌獎勵",
+        "description": "獲得 [red]1[/red] 張隨機[red]詛咒[/red]。\n獲得 [blue]1[/blue] 次[gold]已升級[/gold]稀有卡牌獎勵。"
+      }
+    ]
+  }
+]

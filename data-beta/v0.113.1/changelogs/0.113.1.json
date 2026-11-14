@@ -1,0 +1,71 @@
+{
+  "app_id": 2868840,
+  "game_version": "0.113.1",
+  "build_id": "26660232",
+  "tag": "0.113.1",
+  "date": "2026-11-14",
+  "title": "Beta Hotfix Patch Notes - v0.113.1",
+  "from_ref": "data-beta/v0.113.0/eng",
+  "to_ref": "data-beta/v0.113.1/eng",
+  "summary": {
+    "added": 0,
+    "removed": 0,
+    "changed": 4
+  },
+  "categories": [
+    {
+      "id": "epochs",
+      "name": "Epochs",
+      "old_count": 66,
+      "new_count": 66,
+      "changed": [
+        {
+          "id": "FOOL1_EPOCH",
+          "name": "Escape Artist",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Through centuries, the [purple]Royal Family[/purple] has chronicled.\nA story ...",
+              "new": "Through centuries, the [purple]Royal Family[/purple] has chronicled.\nA story ..."
+            }
+          ]
+        },
+        {
+          "id": "FOOL2_EPOCH",
+          "name": "What Am I?",
+          "changes": [
+            {
+              "field": "description",
+              "old": "[red](Template)[/red]\nMOTIVATOR FOR THE FOOL TO FACE THE ARCHITECT.\nDiscovery...",
+              "new": "[blue]Neow[/blue] speaks...\n[sine]“[red]He[/red]... made you.. ...then.. dese..."
+            }
+          ]
+        },
+        {
+          "id": "FOOL4_EPOCH",
+          "name": "Drifting Adrift",
+          "changes": [
+            {
+              "field": "description",
+              "old": "[red](Haiku Draft)[/red]\nMassive seed floats by\nCurious couple's surprise\nThe...",
+              "new": "Massive seed floats by\nCurious couple’s surprise\nThe legend begins"
+            }
+          ]
+        },
+        {
+          "id": "FOOL6_EPOCH",
+          "name": "They Never Saw Her Again",
+          "changes": [
+            {
+              "field": "description",
+              "old": "[red](Draft)[/red]\nThey welcomed the [yellow]Seed Child[/yellow]. They raised...",
+              "new": "They welcomed the [yellow]Seed Child[/yellow].\nThey raised her to appreciate ..."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "steam_url": "https://store.steampowered.com/news/app/2868840/view/1849458702684653",
+  "notes": "[p]Hi folks, weekend Casey here,[/p][p][/p][p]A small update for some quick fixes, some icons for Dread, and a translation update.[/p][p]No big changes, have a nice weekend.[/p][p][/p][h2][b]ART:[/b][/h2][list][*][p]Added icons for the following Dread powers:[/p][list][*][p][b]Aeonglass Dominion[/b][/p][/*][*][p][b]Explosive[/b][/p][/*][*][p][b]Insatiable Dominion[/b][/p][/*][*][p][b]Lagavulin Matriarch Dominion[/b][/p][/*][*][p][b]You Are Mine[/b][/p][/*][/list][/*][*][p]Arrows now stick to the body of every enemy instead of its center[/p][/*][/list][h2][b]WRITING:[/b][/h2][list][*][p]Polished the text of some of the Fool's epochs[/p][/*][/list][h2][b]BUG FIXES:[/b][/h2][p][b]General:[/b][/p][list][*][p]Fixed the timeline getting stuck when opening some of the Fool's epochs in Turkish[/p][/*][*][p]Viewing a damaged run in Run History no longer adds duplicate copies of it[/p][/*][*][p]Card previews no longer cover a potion's text when hovering it on an epoch's potion unlock screen[/p][/*][*][p]Removed a duplicate tooltip from the [b]Insatiable Dominion[/b][/p][/*][*][p]Fixed a typo in one of the Fool's epoch descriptions[/p][/*][*][p]Fixed the Japanese Arrow tooltip showing broken text when you have no Arrows[/p][/*][*][p]Fixed Traditional Chinese text that always showed the plural wording[/p][/*][*][p]Updated translations and fixed broken formatting in several languages[/p][/*][/list][p][b]The Fool:[/b][/p][list][*][p][b]Stretch[/b] now adds to the Block from [b]Adroit[/b] on cards that don't gain Block themselves, like [b]Ki Hop[/b][/p][/*][*][p][b]Show Off+[/b]'s upgrade preview no longer highlights its Aim in green, which the upgrade does not change[/p][/*][/list]"
+}

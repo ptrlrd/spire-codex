@@ -1,0 +1,149 @@
+[
+  {
+    "id": "ALL_STAR",
+    "name": "Club des cinq",
+    "description": "Commencez la partie avec [blue]5[/blue] cartes [gold]Incolores[/gold].",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "BIG_GAME_HUNTER",
+    "name": "Chasseur de gros gibier",
+    "description": "La Tour est envahie d'ennemis d'Élite qui octroient des cartes [gold]Rares[/gold].",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "CURSED_RUN",
+    "name": "Partie maudite",
+    "description": "Au début de chaque Acte, une [red]Malédiction[/red] aléatoire s'ajoute à votre deck.",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "DEADLY_EVENTS",
+    "name": "Événements d'extrême",
+    "description": "Les salles mystères (?) peuvent contenir des ennemis d'Élite, mais ont plus de chances de contenir un coffre trésor.",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "DRAFT",
+    "name": "Préparatifs",
+    "description": "Choisissez parmi [blue]10[/blue] récompenses de cartes pour remplacer votre deck de départ.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "FLIGHT",
+    "name": "Vol d'oizo",
+    "description": "Vous pouvez ignorer les trajets indiqués sur la carte lorsque vous choisissez la prochaine salle.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "HOARDER",
+    "name": "Collectionniste",
+    "description": "Lorsque vous ajoutez une carte à votre deck, vous en ajoutez [blue]2[/blue] copies supplémentaires. Vous ne pouvez plus retirer de cartes de votre deck chez le Marchand.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "INSANITY",
+    "name": "Folie",
+    "description": "Commencez la partie avec un deck aléatoire de [blue]30[/blue] cartes.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "MIDAS",
+    "name": "Midas",
+    "description": "Vous ramassez [blue]200%[/blue] de Pièces d'or supplémentaires sur les ennemis, mais vous ne pouvez plus Forger aux [gold]Sites de repos[/gold].",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "MURDEROUS",
+    "name": "Meurtrier",
+    "description": "Vous débutez chaque combat avec [blue]3[/blue] de [gold]Force[/gold]. Tous les ennemis débutent les combats avec [blue]3[/blue] de [gold]Force[/gold].",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "NIGHT_TERRORS",
+    "name": "Terreurs nocturnes",
+    "description": "L'option Repos aux [gold]Sites de repos[/gold] soigne tous vos PV, mais coûte [red]5[/red] PV Max.",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "SEALED_DECK",
+    "name": "Deck scellé",
+    "description": "Choisissez [blue]10[/blue] cartes parmi [blue]30[/blue] pour remplacer votre deck de départ.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "SPECIALIZED",
+    "name": "Spécialisation",
+    "description": "Commencez la partie avec [blue]5[/blue] copies de la même carte.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "TERMINAL",
+    "name": "Terminal",
+    "description": "Chaque fois que vous entrez dans une salle, vous perdez [red]1[/red] PV Max. Débutez chaque combat avec [blue]5[/blue] [gold]Blindage[/gold].",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "VINTAGE",
+    "name": "Vintage",
+    "description": "Les ennemis normaux donnent des reliques à la place des récompenses de cartes.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "CHARACTER_CARDS_IRONCLAD",
+    "name": "Cartes du Soldat de Fer",
+    "description": "Les cartes du Soldat de Fer peuvent apparaître dans les récompenses et dans la boutique.",
+    "kind": "good",
+    "character": "IRONCLAD"
+  },
+  {
+    "id": "CHARACTER_CARDS_SILENT",
+    "name": "Cartes de la Silencieuse",
+    "description": "Les cartes de la Silencieuse peuvent apparaître dans les récompenses et dans la boutique.",
+    "kind": "good",
+    "character": "SILENT"
+  },
+  {
+    "id": "CHARACTER_CARDS_DEFECT",
+    "name": "Cartes du Défectueux",
+    "description": "Les cartes du Défectueux peuvent apparaître dans les récompenses et dans la boutique.",
+    "kind": "good",
+    "character": "DEFECT"
+  },
+  {
+    "id": "CHARACTER_CARDS_NECROBINDER",
+    "name": "Cartes de la Tisse-Mort",
+    "description": "Les cartes de la Tisse-Mort peuvent apparaître dans les récompenses et dans la boutique.",
+    "kind": "good",
+    "character": "NECROBINDER"
+  },
+  {
+    "id": "CHARACTER_CARDS_REGENT",
+    "name": "Cartes du Régent",
+    "description": "Les cartes du Régent peuvent apparaître dans les récompenses et dans la boutique.",
+    "kind": "good",
+    "character": "REGENT"
+  },
+  {
+    "id": "CHARACTER_CARDS_FOOL",
+    "name": "Cartes de l'Insensé",
+    "description": "Les cartes de l'Insensé peuvent apparaître dans les récompenses et dans la boutique.",
+    "kind": "good",
+    "character": "FOOL"
+  }
+]

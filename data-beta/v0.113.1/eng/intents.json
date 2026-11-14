@@ -1,0 +1,86 @@
+[
+  {
+    "id": "ATTACK",
+    "name": "Aggressive",
+    "description": "This enemy intends to [gold]Attack[/gold] {IsMultiplayer:everyone |}for [blue]{Damage}[/blue] damage{Repeat:plural:| [blue]{}[/blue] times}.",
+    "image_url": "/static/images/intents/attack.png"
+  },
+  {
+    "id": "BUFF",
+    "name": "Empower",
+    "description": "This enemy intends to use a [gold]Buff[/gold].",
+    "image_url": "/static/images/intents/buff.png"
+  },
+  {
+    "id": "CARD_DEBUFF",
+    "name": "Malicious",
+    "description": "This enemy intends to apply [gold]Afflictions[/gold] on your cards.",
+    "image_url": "/static/images/intents/card_debuff.png"
+  },
+  {
+    "id": "DEATH_BLOW",
+    "name": "Death Blow",
+    "description": "This creature is trying to take you down with it. It will attack you for [blue]{Damage}[/blue] damage before being destroyed.",
+    "image_url": "/static/images/intents/death_blow.png"
+  },
+  {
+    "id": "DEBUFF",
+    "name": "Strategic",
+    "description": "This enemy intends to apply a [gold]Debuff[/gold] to you.",
+    "image_url": "/static/images/intents/debuff.png"
+  },
+  {
+    "id": "DEBUFF_STRONG",
+    "name": "Strategic",
+    "description": "This enemy intends to apply a powerful [gold]Debuff[/gold] to you.",
+    "image_url": "/static/images/intents/debuff_strong.png"
+  },
+  {
+    "id": "DEFEND",
+    "name": "Defensive",
+    "description": "This enemy intends to [gold]Block[/gold] on its turn.",
+    "image_url": "/static/images/intents/defend.png"
+  },
+  {
+    "id": "ESCAPE",
+    "name": "Cowardly",
+    "description": "This enemy intends to [gold]Escape[/gold].",
+    "image_url": "/static/images/intents/escape.png"
+  },
+  {
+    "id": "HEAL",
+    "name": "Heal",
+    "description": "This enemy intends to [gold]Heal[/gold].",
+    "image_url": "/static/images/intents/heal.png"
+  },
+  {
+    "id": "SLEEP",
+    "name": "Sleeping",
+    "description": "This enemy is doing nothing this turn.",
+    "image_url": "/static/images/intents/sleep.png"
+  },
+  {
+    "id": "STATUS",
+    "name": "Strategic",
+    "description": "This enemy intends to give you [blue]{CardCount}[/blue] [gold]Status[/gold] {CardCount:plural:card|cards}.",
+    "image_url": "/static/images/intents/status.png"
+  },
+  {
+    "id": "STUN",
+    "name": "Stunned",
+    "description": "This enemy can't act on its next turn.",
+    "image_url": "/static/images/intents/stun.png"
+  },
+  {
+    "id": "SUMMON",
+    "name": "Summon",
+    "description": "This enemy intends to summon [gold]Monsters[/gold].",
+    "image_url": "/static/images/intents/summon.png"
+  },
+  {
+    "id": "UNKNOWN",
+    "name": "Unknown",
+    "description": "This enemy's intentions are [gold]Unknown[/gold].",
+    "image_url": "/static/images/intents/unknown.png"
+  }
+]
