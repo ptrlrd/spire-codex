@@ -145,3 +145,53 @@ describe("cardHasKeyword", () => {
     expect(cardHasKeyword(tyranny, "")).toBe(false);
   });
 });
+
+describe("plural forms left unresolved in the data", () => {
+  it("picks the Russian form for the count", () => {
+    const card = createCard({
+      description: "Вы добираете 3 plural(ru):карту.",
+      description_raw:
+        "Вы добираете {Cards:diff()} {Cards:plural(ru):карту|карты|карт}.",
+      vars: { Cards: 3 },
+      upgrade: { cards: "+2" },
+      upgrade_description: "Вы добираете 5 plural(ru):карту.",
+    });
+    expect(
+      getCardDisplayModel(card, false, { lang: "rus" }).descriptionText,
+    ).toBe("Вы добираете 3 карты.");
+    expect(
+      getCardDisplayModel(card, true, { lang: "rus" }).descriptionText,
+    ).toBe("Вы добираете [green]5[/green] карт.");
+  });
+
+  it("resolves an upgrade condition nested in a Polish form", () => {
+    const card = createCard({
+      description: "Dodaj 2 [gold]Noże|Noży[/gold] do [gold]ręki[/gold].",
+      description_raw:
+        "Dodaj {Shivs:diff()} [gold]{Cards:plural:{IfUpgraded:show:Nóż+|Nóż}|{IfUpgraded:show:Noże+|Noże}|{IfUpgraded:show:Noży+|Noży}}[/gold] do [gold]ręki[/gold].",
+      vars: { Shivs: 2, Cards: 2 },
+      upgrade: { description_changed: true },
+      upgrade_description:
+        "Dodaj 2 [gold]Noże+|Noży+[/gold] do [gold]ręki[/gold].",
+    });
+    expect(
+      getCardDisplayModel(card, false, { lang: "pol" }).descriptionText,
+    ).toBe("Dodaj 2 [gold]Noże[/gold] do [gold]ręki[/gold].");
+    expect(
+      getCardDisplayModel(card, true, { lang: "pol" }).descriptionText,
+    ).toBe("Dodaj 2 [gold]Noże+[/gold] do [gold]ręki[/gold].");
+  });
+
+  it("keeps several plural spots in one sentence apart", () => {
+    const card = createCard({
+      description:
+        "plural(ru):Следующая карта, разыгранная plural(ru):другим игроком, plural(ru):бесплатная.",
+      description_raw:
+        "{Cards:plural(ru):Следующая карта, разыгранная|Следующие {:diff()} карты, разыгранные|Следующие {:diff()} карт, разыгранные} {Cards:plural(ru):другим игроком|другими игроками|другими игроками}, {Cards:plural(ru):бесплатная|бесплатные|бесплатные}.",
+      vars: { Cards: 4 },
+    });
+    expect(
+      getCardDisplayModel(card, false, { lang: "rus" }).descriptionText,
+    ).toBe("Следующие 4 карты, разыгранные другими игроками, бесплатные.");
+  });
+});
