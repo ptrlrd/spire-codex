@@ -1,8 +1,10 @@
 import { describe, expect, it } from "vitest";
 import {
   DEFAULT_BRACKET,
+  cohortLabel,
   isValidBracket,
   parseBracket,
+  skillLabel,
 } from "@/app/[locale]/stats/_grid/bracket";
 import { parseGridView, writeGridView } from "@/app/[locale]/stats/_grid/prefs";
 describe("metrics bracket validation", () => {
@@ -71,4 +73,21 @@ describe("grid view url params", () => {
 it("accepts release-candidate versions as brackets", () => {
   expect(isValidBracket("solo:v0.109.0-rc.1")).toBe(true);
   expect(isValidBracket("v0.109.0-rc")).toBe(false);
+});
+
+describe("the top ascension tier follows the mode", () => {
+  const t = (key: string) => key;
+
+  it("names the tier A5 for Blitz and leaves the other modes at A10", () => {
+    expect(skillLabel("A10", "blitz")).toBe("A5");
+    expect(skillLabel("A10 >50% WR", "blitz")).toBe("A5 >50% WR");
+    expect(skillLabel("A10", "")).toBe("A10");
+    expect(skillLabel("A10", "dread")).toBe("A10");
+    expect(skillLabel("All", "blitz")).toBe("All");
+  });
+
+  it("describes the cohort with the same level", () => {
+    expect(cohortLabel("solo:a10:blitz", t)).toContain("Ascension 5");
+    expect(cohortLabel("solo:a10:standard", t)).toContain("Ascension 10");
+  });
 });

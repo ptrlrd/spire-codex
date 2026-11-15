@@ -116,3 +116,30 @@ def test_profile_activity_counts_each_mode_apart():
     assert week["runs"] == 4
     assert (week["solo"], week["coop"]) == (1, 0)
     assert (week["daily"], week["blitz"], week["dread"]) == (1, 1, 1)
+
+
+def test_the_top_tier_is_the_highest_ascension_the_mode_has(tmp_path):
+    con = duckdb.connect()
+    con.execute(
+        f"""COPY (SELECT * FROM (VALUES
+        ('s10', 'IRONCLAD', true, 10, 'standard', 1, 'a', 'v0.113.0'),
+        ('s5', 'IRONCLAD', true, 5, 'standard', 1, 'a', 'v0.113.0'),
+        ('b5', 'IRONCLAD', true, 5, 'blitz', 1, 'a', 'v0.113.0'),
+        ('b4', 'SILENT', false, 4, 'Blitz', 1, 'b', 'v0.113.0'),
+        ('x10', 'IRONCLAD', false, 10, 'dread', 1, 'a', 'v0.113.0'))
+        t(run_hash, character, win, ascension, game_mode, player_count,
+          username, build_id))
+        TO '{tmp_path}/runs.parquet' (FORMAT parquet)"""
+    )
+    con.execute(
+        f"COPY (SELECT 'none' AS run_hash) TO '{tmp_path}/excluded.parquet'"
+        " (FORMAT parquet)"
+    )
+    con.execute(ls._eligible_sql(tmp_path))
+    con.execute(ls._cells_sql(tmp_path))
+    rows = con.execute("SELECT run_hash, cell FROM cells").fetchall()
+    con.close()
+    assert _runs_in(rows, "blitz:a10") == ["b5"]
+    assert _runs_in(rows, "standard:a10") == ["s10"]
+    assert _runs_in(rows, "dread:a10") == ["x10"]
+    assert _runs_in(rows, "a10") == ["b5", "s10", "x10"]

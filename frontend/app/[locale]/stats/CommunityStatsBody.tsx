@@ -252,7 +252,12 @@ async function Empty({
           {t("Community Stats")}
         </span>
       </h1>
-      <BracketFilter basePath={basePath} current={current} composite />
+      <BracketFilter
+        basePath={basePath}
+        current={current}
+        composite
+        modeComposes
+      />
       <p className="text-sm text-[var(--text-muted)]">
         {t(
           "No data for this bracket yet. Stats build from community-submitted runs,",
