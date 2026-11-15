@@ -20,6 +20,17 @@ export const SKILL_AXIS = [
   { key: "wr50", label: "A10 >50% WR" },
   { key: "wr75", label: "A10 >75% WR" },
 ];
+const MODE_TOP_ASCENSION: Record<string, number> = { blitz: 5 };
+
+export function topAscension(mode: string): number {
+  return MODE_TOP_ASCENSION[mode] ?? 10;
+}
+
+export function skillLabel(label: string, mode: string): string {
+  const top = topAscension(mode);
+  return top === 10 ? label : label.replace("A10", `A${top}`);
+}
+
 export const MODE_AXIS: { key: string; label: string }[] = [
   { key: "", label: "All" },
   ...GAME_MODES.map((m) => ({ key: m.id, label: m.label })),
@@ -90,7 +101,7 @@ export function cohortLabel(b: string, t: TFn, character = ""): string {
   const parts: string[] = [];
   if (player) parts.push(t(PLAYER_WORDS[player]));
   if (skill) {
-    parts.push(t("Ascension 10"));
+    parts.push(t("Ascension 10").replace("10", String(topAscension(mode))));
     if (SKILL_PCT[skill])
       parts.push(t("players above {pct}% win rate", { pct: SKILL_PCT[skill] }));
   }

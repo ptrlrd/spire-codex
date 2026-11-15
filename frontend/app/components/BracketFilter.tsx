@@ -11,7 +11,7 @@ import {
   stripVersion,
   type ContentBracket,
 } from "@/lib/content-brackets";
-import { cohortLabel } from "@/app/[locale]/stats/_grid/bracket";
+import { cohortLabel, skillLabel } from "@/app/[locale]/stats/_grid/bracket";
 import VersionSelectNav from "@/app/components/VersionSelectNav";
 import { imageUrl } from "@/lib/image-url";
 import { getT } from "@/lib/i18n-server";
@@ -186,7 +186,7 @@ export default async function BracketFilter({
               )}
               className={pillCls(skill === targetSkill)}
             >
-              {t(b.label)}
+              {skillLabel(t(b.label), modeComposes ? mode : "")}
             </Link>
           );
         })}

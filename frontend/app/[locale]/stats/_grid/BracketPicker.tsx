@@ -11,6 +11,7 @@ import {
   SKILL_AXIS,
   combineBracket,
   parseBracket,
+  skillLabel,
 } from "./bracket";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -59,6 +60,7 @@ export default function BracketPicker({
     options: { key: string; label: string }[],
     current: string,
     pick: (k: string) => string,
+    relabel: (text: string) => string = (text) => text,
   ) => (
     <div className="mb-2 flex flex-wrap items-center gap-1.5">
       <span className="mr-1 w-14 text-xs text-[var(--text-muted)]">
@@ -71,7 +73,7 @@ export default function BracketPicker({
           onClick={() => nav(pick(o.key), character)}
           className={pillCls(current === o.key)}
         >
-          {t(o.label)}
+          {relabel(t(o.label))}
         </button>
       ))}
     </div>
@@ -82,8 +84,12 @@ export default function BracketPicker({
       {axis("Players", PLAYER_AXIS, sel.player, (k) =>
         combineBracket(k, sel.skill, sel.mode, sel.version),
       )}
-      {axis("Skill", SKILL_AXIS, sel.skill, (k) =>
-        combineBracket(sel.player, k, sel.mode, sel.version),
+      {axis(
+        "Skill",
+        SKILL_AXIS,
+        sel.skill,
+        (k) => combineBracket(sel.player, k, sel.mode, sel.version),
+        (text) => skillLabel(text, sel.mode),
       )}
       {axis("Mode", MODE_AXIS, sel.mode, (k) =>
         combineBracket(sel.player, sel.skill, k, sel.version),
