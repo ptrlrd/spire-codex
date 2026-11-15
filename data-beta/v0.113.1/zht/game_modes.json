@@ -164,140 +164,160 @@
         "name": "卡牌升級服務",
         "description": "[gold]升級[/gold]你[gold]牌組[/gold]中的一張牌。",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_upgrade.webp"
       },
       {
         "id": "UPGRADED_CARD_REWARD",
         "name": "已升級卡牌獎勵",
         "description": "獲得 [blue]1[/blue] 次[gold]已升級[/gold]卡牌獎勵。",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/upgraded_card_reward.webp"
       },
       {
         "id": "RANDOM_UPGRADES",
         "name": "隨機升級",
         "description": "升級你[gold]牌組[/gold]中的 [blue]2[/blue] 張隨機卡牌。",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/random_upgrades.webp"
       },
       {
         "id": "CARD_TRANSFORM",
         "name": "卡牌轉化服務",
         "description": "[gold]轉化[/gold]你[gold]牌組[/gold]中的一張牌。",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_transform.webp"
       },
       {
         "id": "CARD_REMOVAL",
         "name": "卡牌移除服務",
         "description": "從你的[gold]牌組[/gold]中移除一張牌。",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_removal.webp"
       },
       {
         "id": "CARD_REWARDS",
         "name": "卡牌獎勵",
         "description": "獲得 [blue]2[/blue] 次卡牌獎勵。",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_rewards.webp"
       },
       {
         "id": "COLORLESS_CARD_REWARD",
         "name": "無色卡牌獎勵",
         "description": "獲得 [blue]1[/blue] 次[gold]無色[/gold]卡牌獎勵。",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/colorless_card_reward.webp"
       },
       {
         "id": "POTIONS",
         "name": "藥水",
         "description": "獲得 [blue]1[/blue] 個藥水欄位，並取得 [blue]2[/blue] 瓶隨機藥水。",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/potions.webp"
       },
       {
         "id": "CARD_ENCHANT",
         "name": "Enchantment",
         "description": "為一張牌[gold]附魔[/gold][purple]Enchantment[/purple]。",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_enchant.webp"
       },
       {
         "id": "ENCHANTED_CARD_REWARD",
         "name": "附魔卡牌獎勵",
         "description": "獲得 [blue]1[/blue] 次[gold]已附魔[/gold]卡牌獎勵。",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/enchanted_card_reward.webp"
       },
       {
         "id": "PRISMATIC_CARD_REWARD",
         "name": "Character卡牌獎勵",
         "description": "獲得 [blue]1[/blue] 次[gold]Character[/gold]卡牌獎勵。",
         "cursed": false,
-        "rare": true
+        "rare": true,
+        "image_url": "/static/images/beta/v0.113.1/blitz/prismatic_card_reward.webp"
       },
       {
         "id": "RARE_CARD_REWARD",
         "name": "稀有卡牌獎勵",
         "description": "獲得 [blue]1[/blue] 次稀有卡牌獎勵。",
         "cursed": false,
-        "rare": true
+        "rare": true,
+        "image_url": "/static/images/beta/v0.113.1/blitz/rare_card_reward.webp"
       },
       {
         "id": "UPGRADED_RARE_CARD",
         "name": "已升級稀有牌",
         "description": "獲得 [blue]1[/blue] 張隨機[gold]已升級[/gold]稀有牌。",
         "cursed": false,
-        "rare": true
+        "rare": true,
+        "image_url": "/static/images/beta/v0.113.1/blitz/upgraded_rare_card.webp"
       },
       {
         "id": "RELIC",
         "name": "遺物",
         "description": "獲得 [blue]1[/blue] 件隨機[gold]遺物[/gold]。",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/relic.webp"
       },
       {
         "id": "GLAM",
         "name": "受詛咒的華彩",
         "description": "獲得 [red]1[/red] 張隨機[red]詛咒[/red]。\n為一張牌[gold]附魔[/gold][purple]華彩[/purple]。",
         "cursed": true,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/glam.webp"
       },
       {
         "id": "TWO_MORE_CHOICES",
         "name": "受詛咒的選擇",
         "description": "獲得 [red]1[/red] 張隨機[red]詛咒[/red]。\n商人允許你再購買兩項商品。",
         "cursed": true,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/two_more_choices.webp"
       },
       {
         "id": "CARD_REWARD_OF_EACH_RARITY",
         "name": "受詛咒的卡牌獎勵",
         "description": "獲得 [red]1[/red] 張隨機[red]詛咒[/red]。\n各獲得 [blue]1[/blue] 次[gold]普通[/gold]、[gold]罕見[/gold]與[gold]稀有[/gold]卡牌獎勵。",
         "cursed": true,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_reward_of_each_rarity.webp"
       },
       {
         "id": "UPGRADED_RARE_CARD_REWARD",
         "name": "受詛咒的已升級稀有卡牌獎勵",
         "description": "獲得 [red]1[/red] 張隨機[red]詛咒[/red]。\n獲得 [blue]1[/blue] 次[gold]已升級[/gold]稀有卡牌獎勵。",
         "cursed": true,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/upgraded_rare_card_reward.webp"
       },
       {
         "id": "TWO_RELICS",
         "name": "受詛咒的遺物",
         "description": "獲得 [red]1[/red] 張隨機[red]詛咒[/red]。\n獲得 [blue]2[/blue] 件隨機[gold]遺物[/gold]。",
         "cursed": true,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/two_relics.webp"
       },
       {
         "id": "FULL_HEAL_AND_MAX_HP",
         "name": "受詛咒的治療",
         "description": "獲得 [red]1[/red] 張隨機[red]詛咒[/red]。\n最大生命提高 [blue]6[/blue] 點，並恢復所有生命。",
         "cursed": true,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/full_heal_and_max_hp.webp"
       }
     ],
     "act_layout": [
@@ -313,37 +333,45 @@
     "act_rooms": [
       {
         "type": "ANCIENT",
-        "name": "遠古之民"
+        "name": "遠古之民",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_ancient.webp"
       },
       {
         "type": "MONSTER",
         "name": "敵人",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_monster.webp",
         "easy": true
       },
       {
         "type": "MONSTER",
         "name": "敵人",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_monster.webp",
         "easy": false
       },
       {
         "type": "SHOP",
-        "name": "商人"
+        "name": "商人",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_shop.webp"
       },
       {
         "type": "ELITE",
-        "name": "菁英"
+        "name": "菁英",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_elite.webp"
       },
       {
         "type": "TREASURE",
-        "name": "財寶"
+        "name": "財寶",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_treasure.webp"
       },
       {
         "type": "REST_SITE",
-        "name": "休息"
+        "name": "休息",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_rest_site.webp"
       },
       {
         "type": "BOSS",
-        "name": "頭目"
+        "name": "頭目",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_boss.webp"
       }
     ],
     "weak_encounters_per_act": 1,
@@ -530,179 +558,223 @@
     "banned_relics": [
       {
         "id": "AMETHYST_AUBERGINE",
-        "name": "紫水晶茄子"
+        "name": "紫水晶茄子",
+        "image_url": "/static/images/beta/v0.113.1/relics/amethyst_aubergine.webp"
       },
       {
         "id": "BLACK_STAR",
-        "name": "黑星"
+        "name": "黑星",
+        "image_url": "/static/images/beta/v0.113.1/relics/black_star.webp"
       },
       {
         "id": "BOOK_OF_FIVE_RINGS",
-        "name": "五輪書"
+        "name": "五輪書",
+        "image_url": "/static/images/beta/v0.113.1/relics/book_of_five_rings.webp"
       },
       {
         "id": "BOWLER_HAT",
-        "name": "圓頂禮帽"
+        "name": "圓頂禮帽",
+        "image_url": "/static/images/beta/v0.113.1/relics/bowler_hat.webp"
       },
       {
         "id": "CURSED_PEARL",
-        "name": "詛咒珍珠"
+        "name": "詛咒珍珠",
+        "image_url": "/static/images/beta/v0.113.1/relics/cursed_pearl.webp"
       },
       {
         "id": "DOWSING_ROD",
-        "name": "探尋杖"
+        "name": "探尋杖",
+        "image_url": "/static/images/beta/v0.113.1/relics/dowsing_rod.webp"
       },
       {
         "id": "DRAGON_FRUIT",
-        "name": "火龍果"
+        "name": "火龍果",
+        "image_url": "/static/images/beta/v0.113.1/relics/dragon_fruit.webp"
       },
       {
         "id": "DREAM_CATCHER",
-        "name": "捕夢網"
+        "name": "捕夢網",
+        "image_url": "/static/images/beta/v0.113.1/relics/dream_catcher.webp"
       },
       {
         "id": "DRIFTWOOD",
-        "name": "浮木"
+        "name": "浮木",
+        "image_url": "/static/images/beta/v0.113.1/relics/driftwood.webp"
       },
       {
         "id": "ECTOPLASM",
-        "name": "靈質"
+        "name": "靈質",
+        "image_url": "/static/images/beta/v0.113.1/relics/ectoplasm.webp"
       },
       {
         "id": "ETERNAL_FEATHER",
-        "name": "永恆羽毛"
+        "name": "永恆羽毛",
+        "image_url": "/static/images/beta/v0.113.1/relics/eternal_feather.webp"
       },
       {
         "id": "FISHING_ROD",
-        "name": "釣竿"
+        "name": "釣竿",
+        "image_url": "/static/images/beta/v0.113.1/relics/fishing_rod.webp"
       },
       {
         "id": "FUR_COAT",
-        "name": "毛皮大衣"
+        "name": "毛皮大衣",
+        "image_url": "/static/images/beta/v0.113.1/relics/fur_coat.webp"
       },
       {
         "id": "GIRYA",
-        "name": "壺鈴"
+        "name": "壺鈴",
+        "image_url": "/static/images/beta/v0.113.1/relics/girya.webp"
       },
       {
         "id": "GOLDEN_COMPASS",
-        "name": "黃金羅盤"
+        "name": "黃金羅盤",
+        "image_url": "/static/images/beta/v0.113.1/relics/golden_compass.webp"
       },
       {
         "id": "GOLDEN_PEARL",
-        "name": "黃金珍珠"
+        "name": "黃金珍珠",
+        "image_url": "/static/images/beta/v0.113.1/relics/golden_pearl.webp"
       },
       {
         "id": "JUZU_BRACELET",
-        "name": "佛珠手環"
+        "name": "佛珠手環",
+        "image_url": "/static/images/beta/v0.113.1/relics/juzu_bracelet.webp"
       },
       {
         "id": "LASTING_CANDY",
-        "name": "持久糖果"
+        "name": "持久糖果",
+        "image_url": "/static/images/beta/v0.113.1/relics/lasting_candy.webp"
       },
       {
         "id": "LORDS_PARASOL",
-        "name": "領主陽傘"
+        "name": "領主陽傘",
+        "image_url": "/static/images/beta/v0.113.1/relics/lords_parasol.webp"
       },
       {
         "id": "LUCKY_FYSH",
-        "name": "幸運異魚"
+        "name": "幸運異魚",
+        "image_url": "/static/images/beta/v0.113.1/relics/lucky_fysh.webp"
       },
       {
         "id": "MAW_BANK",
-        "name": "巨口撲滿"
+        "name": "巨口撲滿",
+        "image_url": "/static/images/beta/v0.113.1/relics/maw_bank.webp"
       },
       {
         "id": "MEAL_TICKET",
-        "name": "餐券"
+        "name": "餐券",
+        "image_url": "/static/images/beta/v0.113.1/relics/meal_ticket.webp"
       },
       {
         "id": "MEAT_CLEAVER",
-        "name": "剁肉刀"
+        "name": "剁肉刀",
+        "image_url": "/static/images/beta/v0.113.1/relics/meat_cleaver.webp"
       },
       {
         "id": "MEMBERSHIP_CARD",
-        "name": "會員卡"
+        "name": "會員卡",
+        "image_url": "/static/images/beta/v0.113.1/relics/membership_card.webp"
       },
       {
         "id": "MINIATURE_TENT",
-        "name": "微型帳篷"
+        "name": "微型帳篷",
+        "image_url": "/static/images/beta/v0.113.1/relics/miniature_tent.webp"
       },
       {
         "id": "OLD_COIN",
-        "name": "古錢幣"
+        "name": "古錢幣",
+        "image_url": "/static/images/beta/v0.113.1/relics/old_coin.webp"
       },
       {
         "id": "PAELS_CLAW",
-        "name": "佩爾之爪"
+        "name": "佩爾之爪",
+        "image_url": "/static/images/beta/v0.113.1/relics/paels_claw.webp"
       },
       {
         "id": "PAELS_GROWTH",
-        "name": "佩爾的增生組織"
+        "name": "佩爾的增生組織",
+        "image_url": "/static/images/beta/v0.113.1/relics/paels_growth.webp"
       },
       {
         "id": "PAELS_WING",
-        "name": "佩爾之翼"
+        "name": "佩爾之翼",
+        "image_url": "/static/images/beta/v0.113.1/relics/paels_wing.webp"
       },
       {
         "id": "PLANISPHERE",
-        "name": "星座盤"
+        "name": "星座盤",
+        "image_url": "/static/images/beta/v0.113.1/relics/planisphere.webp"
       },
       {
         "id": "PRAYER_WHEEL",
-        "name": "轉經輪"
+        "name": "轉經輪",
+        "image_url": "/static/images/beta/v0.113.1/relics/prayer_wheel.webp"
       },
       {
         "id": "PUMPKIN_CANDLE",
-        "name": "南瓜蠟燭"
+        "name": "南瓜蠟燭",
+        "image_url": "/static/images/beta/v0.113.1/relics/pumpkin_candle.webp"
       },
       {
         "id": "REGAL_PILLOW",
-        "name": "皇室枕頭"
+        "name": "皇室枕頭",
+        "image_url": "/static/images/beta/v0.113.1/relics/regal_pillow.webp"
       },
       {
         "id": "SEAL_OF_GOLD",
-        "name": "黃金印記"
+        "name": "黃金印記",
+        "image_url": "/static/images/beta/v0.113.1/relics/seal_of_gold.webp"
       },
       {
         "id": "SHOVEL",
-        "name": "鏟子"
+        "name": "鏟子",
+        "image_url": "/static/images/beta/v0.113.1/relics/shovel.webp"
       },
       {
         "id": "SIGNET_RING",
-        "name": "印戒"
+        "name": "印戒",
+        "image_url": "/static/images/beta/v0.113.1/relics/signet_ring.webp"
       },
       {
         "id": "SILKEN_TRESS",
-        "name": "絲綢髮束"
+        "name": "絲綢髮束",
+        "image_url": "/static/images/beta/v0.113.1/relics/silken_tress.webp"
       },
       {
         "id": "STONE_HUMIDIFIER",
-        "name": "石製加濕器"
+        "name": "石製加濕器",
+        "image_url": "/static/images/beta/v0.113.1/relics/stone_humidifier.webp"
       },
       {
         "id": "THE_COURIER",
-        "name": "送貨員"
+        "name": "送貨員",
+        "image_url": "/static/images/beta/v0.113.1/relics/the_courier.webp"
       },
       {
         "id": "TINY_MAILBOX",
-        "name": "迷你郵箱"
+        "name": "迷你郵箱",
+        "image_url": "/static/images/beta/v0.113.1/relics/tiny_mailbox.webp"
       },
       {
         "id": "TOY_BOX",
-        "name": "玩具箱"
+        "name": "玩具箱",
+        "image_url": "/static/images/beta/v0.113.1/relics/toy_box.webp"
       },
       {
         "id": "VENERABLE_TEA_SET",
-        "name": "古老茶具組"
+        "name": "古老茶具組",
+        "image_url": "/static/images/beta/v0.113.1/relics/venerable_tea_set.webp"
       },
       {
         "id": "WHITE_BEAST_STATUE",
-        "name": "白獸雕像"
+        "name": "白獸雕像",
+        "image_url": "/static/images/beta/v0.113.1/relics/white_beast_statue.webp"
       },
       {
         "id": "WINGED_BOOTS",
-        "name": "有翼靴"
+        "name": "有翼靴",
+        "image_url": "/static/images/beta/v0.113.1/relics/winged_boots.webp"
       }
     ],
     "late_relics": {
@@ -710,23 +782,28 @@
       "relics": [
         {
           "id": "FROZEN_EGG",
-          "name": "冰凍之蛋"
+          "name": "冰凍之蛋",
+          "image_url": "/static/images/beta/v0.113.1/relics/frozen_egg.webp"
         },
         {
           "id": "MOLTEN_EGG",
-          "name": "熔火之蛋"
+          "name": "熔火之蛋",
+          "image_url": "/static/images/beta/v0.113.1/relics/molten_egg.webp"
         },
         {
           "id": "POTION_BELT",
-          "name": "藥水腰帶"
+          "name": "藥水腰帶",
+          "image_url": "/static/images/beta/v0.113.1/relics/potion_belt.webp"
         },
         {
           "id": "TOXIC_EGG",
-          "name": "毒素之蛋"
+          "name": "毒素之蛋",
+          "image_url": "/static/images/beta/v0.113.1/relics/toxic_egg.webp"
         },
         {
           "id": "WHITE_STAR",
-          "name": "白色星星"
+          "name": "白色星星",
+          "image_url": "/static/images/beta/v0.113.1/relics/white_star.webp"
         }
       ]
     }

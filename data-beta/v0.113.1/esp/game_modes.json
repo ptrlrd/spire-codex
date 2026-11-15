@@ -164,140 +164,160 @@
         "name": "Servicio de mejoracartas",
         "description": "[gold]Mejoras[/gold] una carta en el [gold]mazo[/gold].",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_upgrade.webp"
       },
       {
         "id": "UPGRADED_CARD_REWARD",
         "name": "Carta recompensa mejorada",
         "description": "Recibes [blue]1[/blue] carta recompensa [gold]mejorada[/gold].",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/upgraded_card_reward.webp"
       },
       {
         "id": "RANDOM_UPGRADES",
         "name": "Mejoras al azar",
         "description": "Mejoras [blue]2[/blue] cartas al azar en el [gold]mazo[/gold].",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/random_upgrades.webp"
       },
       {
         "id": "CARD_TRANSFORM",
         "name": "Servicio de transformacartas",
         "description": "[gold]Transformas[/gold] una carta en el [gold]mazo[/gold].",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_transform.webp"
       },
       {
         "id": "CARD_REMOVAL",
         "name": "Servicio quitacartas",
         "description": "Quitas una carta de tu [gold]mazo[/gold].",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_removal.webp"
       },
       {
         "id": "CARD_REWARDS",
         "name": "Cartas recompensa",
         "description": "Recibes [blue]2[/blue] cartas recompensa.",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_rewards.webp"
       },
       {
         "id": "COLORLESS_CARD_REWARD",
         "name": "Carta recompensa incolora",
         "description": "Recibes [blue]1[/blue] carta recompensa [gold]incolora[/gold].",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/colorless_card_reward.webp"
       },
       {
         "id": "POTIONS",
         "name": "Pociones",
         "description": "Obtienes [blue]1[/blue] espacio de poción y [blue]2[/blue] pociones al azar.",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/potions.webp"
       },
       {
         "id": "CARD_ENCHANT",
         "name": "Enchantment",
         "description": "[gold]Encantas[/gold] una carta con [purple]Enchantment[/purple].",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_enchant.webp"
       },
       {
         "id": "ENCHANTED_CARD_REWARD",
         "name": "Carta recompensa encantada",
         "description": "Recibes [blue]1[/blue] carta recompensa [gold]encantada[/gold].",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/enchanted_card_reward.webp"
       },
       {
         "id": "PRISMATIC_CARD_REWARD",
         "name": "Carta recompensa de Character",
         "description": "Recibes [blue]1[/blue] carta recompensa de [gold]Character[/gold].",
         "cursed": false,
-        "rare": true
+        "rare": true,
+        "image_url": "/static/images/beta/v0.113.1/blitz/prismatic_card_reward.webp"
       },
       {
         "id": "RARE_CARD_REWARD",
         "name": "Carta recompensa rara",
         "description": "Recibes [blue]1[/blue] carta recompensa rara.",
         "cursed": false,
-        "rare": true
+        "rare": true,
+        "image_url": "/static/images/beta/v0.113.1/blitz/rare_card_reward.webp"
       },
       {
         "id": "UPGRADED_RARE_CARD",
         "name": "Carta rara mejorada",
         "description": "Recibes [blue]1[/blue] carta rara [gold]mejorada[/gold] al azar.",
         "cursed": false,
-        "rare": true
+        "rare": true,
+        "image_url": "/static/images/beta/v0.113.1/blitz/upgraded_rare_card.webp"
       },
       {
         "id": "RELIC",
         "name": "Reliquia",
         "description": "Obtienes [blue]1[/blue] [gold]reliquia[/gold] al azar.",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/relic.webp"
       },
       {
         "id": "GLAM",
         "name": "Glamur con maldición",
         "description": "Recibes [red]1[/red] [red]maldición[/red] al azar.\n[gold]Encantas[/gold] una carta con [purple]Glamur[/purple].",
         "cursed": true,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/glam.webp"
       },
       {
         "id": "TWO_MORE_CHOICES",
         "name": "Elección maldita",
         "description": "Recibes [red]1[/red] [red]maldición[/red] al azar.\nEl Comerciante te deja comprar dos artículos más.",
         "cursed": true,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/two_more_choices.webp"
       },
       {
         "id": "CARD_REWARD_OF_EACH_RARITY",
         "name": "Carta recompensa maldita",
         "description": "Recibes [red]1[/red] [red]maldición[/red] al azar.\nRecibes [blue]1[/blue] carta recompensa [gold]común[/gold], [gold]infrecuente[/gold] y [gold]rara[/gold] .",
         "cursed": true,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_reward_of_each_rarity.webp"
       },
       {
         "id": "UPGRADED_RARE_CARD_REWARD",
         "name": "Carta recompensa rara mejorada maldita",
         "description": "Recibes [red]1[/red] [red]maldición[/red] al azar.\nRecibes [blue]1[/blue] carta recompensa rara [gold]mejorada[/gold].",
         "cursed": true,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/upgraded_rare_card_reward.webp"
       },
       {
         "id": "TWO_RELICS",
         "name": "Reliquias malditas",
         "description": "Recibes [red]1[/red] [red]maldición[/red] al azar.\nObtienes [blue]2[/blue] [gold]reliquias[/gold] al azar.",
         "cursed": true,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/two_relics.webp"
       },
       {
         "id": "FULL_HEAL_AND_MAX_HP",
         "name": "Salud maldita",
         "description": "Recibes [red]1[/red] [red]maldición[/red] al azar.\nAumenta tus PV máx. en [blue]6[/blue] y cura todos tus PV.",
         "cursed": true,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/full_heal_and_max_hp.webp"
       }
     ],
     "act_layout": [
@@ -313,37 +333,45 @@
     "act_rooms": [
       {
         "type": "ANCIENT",
-        "name": "Ancestral"
+        "name": "Ancestral",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_ancient.webp"
       },
       {
         "type": "MONSTER",
         "name": "Enemigo",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_monster.webp",
         "easy": true
       },
       {
         "type": "MONSTER",
         "name": "Enemigo",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_monster.webp",
         "easy": false
       },
       {
         "type": "SHOP",
-        "name": "Comerciante"
+        "name": "Comerciante",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_shop.webp"
       },
       {
         "type": "ELITE",
-        "name": "Enem. élite"
+        "name": "Enem. élite",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_elite.webp"
       },
       {
         "type": "TREASURE",
-        "name": "Tesoro"
+        "name": "Tesoro",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_treasure.webp"
       },
       {
         "type": "REST_SITE",
-        "name": "Descanso"
+        "name": "Descanso",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_rest_site.webp"
       },
       {
         "type": "BOSS",
-        "name": "Jefe"
+        "name": "Jefe",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_boss.webp"
       }
     ],
     "weak_encounters_per_act": 1,
@@ -530,179 +558,223 @@
     "banned_relics": [
       {
         "id": "AMETHYST_AUBERGINE",
-        "name": "Berenjena amatista"
+        "name": "Berenjena amatista",
+        "image_url": "/static/images/beta/v0.113.1/relics/amethyst_aubergine.webp"
       },
       {
         "id": "BLACK_STAR",
-        "name": "Estrella negra"
+        "name": "Estrella negra",
+        "image_url": "/static/images/beta/v0.113.1/relics/black_star.webp"
       },
       {
         "id": "BOOK_OF_FIVE_RINGS",
-        "name": "Libro de los cinco anillos"
+        "name": "Libro de los cinco anillos",
+        "image_url": "/static/images/beta/v0.113.1/relics/book_of_five_rings.webp"
       },
       {
         "id": "BOWLER_HAT",
-        "name": "Bombín"
+        "name": "Bombín",
+        "image_url": "/static/images/beta/v0.113.1/relics/bowler_hat.webp"
       },
       {
         "id": "CURSED_PEARL",
-        "name": "Perla maldita"
+        "name": "Perla maldita",
+        "image_url": "/static/images/beta/v0.113.1/relics/cursed_pearl.webp"
       },
       {
         "id": "DOWSING_ROD",
-        "name": "Varilla de radiestesia"
+        "name": "Varilla de radiestesia",
+        "image_url": "/static/images/beta/v0.113.1/relics/dowsing_rod.webp"
       },
       {
         "id": "DRAGON_FRUIT",
-        "name": "Pitahaya"
+        "name": "Pitahaya",
+        "image_url": "/static/images/beta/v0.113.1/relics/dragon_fruit.webp"
       },
       {
         "id": "DREAM_CATCHER",
-        "name": "Atrapasueños"
+        "name": "Atrapasueños",
+        "image_url": "/static/images/beta/v0.113.1/relics/dream_catcher.webp"
       },
       {
         "id": "DRIFTWOOD",
-        "name": "Madera errante"
+        "name": "Madera errante",
+        "image_url": "/static/images/beta/v0.113.1/relics/driftwood.webp"
       },
       {
         "id": "ECTOPLASM",
-        "name": "Ectoplasma"
+        "name": "Ectoplasma",
+        "image_url": "/static/images/beta/v0.113.1/relics/ectoplasm.webp"
       },
       {
         "id": "ETERNAL_FEATHER",
-        "name": "Pluma eterna"
+        "name": "Pluma eterna",
+        "image_url": "/static/images/beta/v0.113.1/relics/eternal_feather.webp"
       },
       {
         "id": "FISHING_ROD",
-        "name": "Caña de pescar"
+        "name": "Caña de pescar",
+        "image_url": "/static/images/beta/v0.113.1/relics/fishing_rod.webp"
       },
       {
         "id": "FUR_COAT",
-        "name": "Abrigo de piel"
+        "name": "Abrigo de piel",
+        "image_url": "/static/images/beta/v0.113.1/relics/fur_coat.webp"
       },
       {
         "id": "GIRYA",
-        "name": "Pesa rusa"
+        "name": "Pesa rusa",
+        "image_url": "/static/images/beta/v0.113.1/relics/girya.webp"
       },
       {
         "id": "GOLDEN_COMPASS",
-        "name": "Brújula dorada"
+        "name": "Brújula dorada",
+        "image_url": "/static/images/beta/v0.113.1/relics/golden_compass.webp"
       },
       {
         "id": "GOLDEN_PEARL",
-        "name": "Perla dorada"
+        "name": "Perla dorada",
+        "image_url": "/static/images/beta/v0.113.1/relics/golden_pearl.webp"
       },
       {
         "id": "JUZU_BRACELET",
-        "name": "Pulsera juzu"
+        "name": "Pulsera juzu",
+        "image_url": "/static/images/beta/v0.113.1/relics/juzu_bracelet.webp"
       },
       {
         "id": "LASTING_CANDY",
-        "name": "Caramelos duros"
+        "name": "Caramelos duros",
+        "image_url": "/static/images/beta/v0.113.1/relics/lasting_candy.webp"
       },
       {
         "id": "LORDS_PARASOL",
-        "name": "Sombrilla del señor"
+        "name": "Sombrilla del señor",
+        "image_url": "/static/images/beta/v0.113.1/relics/lords_parasol.webp"
       },
       {
         "id": "LUCKY_FYSH",
-        "name": "Phez de la suerte"
+        "name": "Phez de la suerte",
+        "image_url": "/static/images/beta/v0.113.1/relics/lucky_fysh.webp"
       },
       {
         "id": "MAW_BANK",
-        "name": "Alcancía de fauces"
+        "name": "Alcancía de fauces",
+        "image_url": "/static/images/beta/v0.113.1/relics/maw_bank.webp"
       },
       {
         "id": "MEAL_TICKET",
-        "name": "Boleto de comida"
+        "name": "Boleto de comida",
+        "image_url": "/static/images/beta/v0.113.1/relics/meal_ticket.webp"
       },
       {
         "id": "MEAT_CLEAVER",
-        "name": "Cuchillo carnicero"
+        "name": "Cuchillo carnicero",
+        "image_url": "/static/images/beta/v0.113.1/relics/meat_cleaver.webp"
       },
       {
         "id": "MEMBERSHIP_CARD",
-        "name": "Tarjeta de membresía"
+        "name": "Tarjeta de membresía",
+        "image_url": "/static/images/beta/v0.113.1/relics/membership_card.webp"
       },
       {
         "id": "MINIATURE_TENT",
-        "name": "Minicarpa"
+        "name": "Minicarpa",
+        "image_url": "/static/images/beta/v0.113.1/relics/miniature_tent.webp"
       },
       {
         "id": "OLD_COIN",
-        "name": "Moneda ancestral"
+        "name": "Moneda ancestral",
+        "image_url": "/static/images/beta/v0.113.1/relics/old_coin.webp"
       },
       {
         "id": "PAELS_CLAW",
-        "name": "Garra de Pael"
+        "name": "Garra de Pael",
+        "image_url": "/static/images/beta/v0.113.1/relics/paels_claw.webp"
       },
       {
         "id": "PAELS_GROWTH",
-        "name": "Tumor de Pael"
+        "name": "Tumor de Pael",
+        "image_url": "/static/images/beta/v0.113.1/relics/paels_growth.webp"
       },
       {
         "id": "PAELS_WING",
-        "name": "Ala de Pael"
+        "name": "Ala de Pael",
+        "image_url": "/static/images/beta/v0.113.1/relics/paels_wing.webp"
       },
       {
         "id": "PLANISPHERE",
-        "name": "Planisferio"
+        "name": "Planisferio",
+        "image_url": "/static/images/beta/v0.113.1/relics/planisphere.webp"
       },
       {
         "id": "PRAYER_WHEEL",
-        "name": "Rueda de plegaria"
+        "name": "Rueda de plegaria",
+        "image_url": "/static/images/beta/v0.113.1/relics/prayer_wheel.webp"
       },
       {
         "id": "PUMPKIN_CANDLE",
-        "name": "Vela calabaza"
+        "name": "Vela calabaza",
+        "image_url": "/static/images/beta/v0.113.1/relics/pumpkin_candle.webp"
       },
       {
         "id": "REGAL_PILLOW",
-        "name": "Almohadón regio"
+        "name": "Almohadón regio",
+        "image_url": "/static/images/beta/v0.113.1/relics/regal_pillow.webp"
       },
       {
         "id": "SEAL_OF_GOLD",
-        "name": "Sello dorado"
+        "name": "Sello dorado",
+        "image_url": "/static/images/beta/v0.113.1/relics/seal_of_gold.webp"
       },
       {
         "id": "SHOVEL",
-        "name": "Pala"
+        "name": "Pala",
+        "image_url": "/static/images/beta/v0.113.1/relics/shovel.webp"
       },
       {
         "id": "SIGNET_RING",
-        "name": "Anillo de sello"
+        "name": "Anillo de sello",
+        "image_url": "/static/images/beta/v0.113.1/relics/signet_ring.webp"
       },
       {
         "id": "SILKEN_TRESS",
-        "name": "Mechón sedoso"
+        "name": "Mechón sedoso",
+        "image_url": "/static/images/beta/v0.113.1/relics/silken_tress.webp"
       },
       {
         "id": "STONE_HUMIDIFIER",
-        "name": "Humidificador pétreo"
+        "name": "Humidificador pétreo",
+        "image_url": "/static/images/beta/v0.113.1/relics/stone_humidifier.webp"
       },
       {
         "id": "THE_COURIER",
-        "name": "Repartidor"
+        "name": "Repartidor",
+        "image_url": "/static/images/beta/v0.113.1/relics/the_courier.webp"
       },
       {
         "id": "TINY_MAILBOX",
-        "name": "Buzón pequeño"
+        "name": "Buzón pequeño",
+        "image_url": "/static/images/beta/v0.113.1/relics/tiny_mailbox.webp"
       },
       {
         "id": "TOY_BOX",
-        "name": "Caja de juguetes"
+        "name": "Caja de juguetes",
+        "image_url": "/static/images/beta/v0.113.1/relics/toy_box.webp"
       },
       {
         "id": "VENERABLE_TEA_SET",
-        "name": "Juego de té venerable"
+        "name": "Juego de té venerable",
+        "image_url": "/static/images/beta/v0.113.1/relics/venerable_tea_set.webp"
       },
       {
         "id": "WHITE_BEAST_STATUE",
-        "name": "Estatua de bestia blanca"
+        "name": "Estatua de bestia blanca",
+        "image_url": "/static/images/beta/v0.113.1/relics/white_beast_statue.webp"
       },
       {
         "id": "WINGED_BOOTS",
-        "name": "Botas aladas"
+        "name": "Botas aladas",
+        "image_url": "/static/images/beta/v0.113.1/relics/winged_boots.webp"
       }
     ],
     "late_relics": {
@@ -710,23 +782,28 @@
       "relics": [
         {
           "id": "FROZEN_EGG",
-          "name": "Huevo congelado"
+          "name": "Huevo congelado",
+          "image_url": "/static/images/beta/v0.113.1/relics/frozen_egg.webp"
         },
         {
           "id": "MOLTEN_EGG",
-          "name": "Huevo fundido"
+          "name": "Huevo fundido",
+          "image_url": "/static/images/beta/v0.113.1/relics/molten_egg.webp"
         },
         {
           "id": "POTION_BELT",
-          "name": "Cinturón de pociones"
+          "name": "Cinturón de pociones",
+          "image_url": "/static/images/beta/v0.113.1/relics/potion_belt.webp"
         },
         {
           "id": "TOXIC_EGG",
-          "name": "Huevo tóxico"
+          "name": "Huevo tóxico",
+          "image_url": "/static/images/beta/v0.113.1/relics/toxic_egg.webp"
         },
         {
           "id": "WHITE_STAR",
-          "name": "Estrella blanca"
+          "name": "Estrella blanca",
+          "image_url": "/static/images/beta/v0.113.1/relics/white_star.webp"
         }
       ]
     }

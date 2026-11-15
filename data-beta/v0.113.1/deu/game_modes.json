@@ -164,140 +164,160 @@
         "name": "Kartenverbesserungs-Dienst",
         "description": "[gold]Verbessere[/gold] eine Karte aus deinem [gold]Deck[/gold].",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_upgrade.webp"
       },
       {
         "id": "UPGRADED_CARD_REWARD",
         "name": "Verbesserte Kartenbelohnung",
         "description": "Erhalte [blue]1[/blue] [gold]Verbesserte[/gold] Kartenbelohnung.",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/upgraded_card_reward.webp"
       },
       {
         "id": "RANDOM_UPGRADES",
         "name": "Zufällige Verbesserungen",
         "description": "Verbessere [blue]2[/blue] zufällige Karten in deinem [gold]Deck[/gold].",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/random_upgrades.webp"
       },
       {
         "id": "CARD_TRANSFORM",
         "name": "Kartentransformations-Dienst",
         "description": "[gold]Transformiere[/gold] eine Karte aus deinem [gold]Deck[/gold].",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_transform.webp"
       },
       {
         "id": "CARD_REMOVAL",
         "name": "Kartenentfernungs-Dienst",
         "description": "Entferne eine Karte aus deinem [gold]Deck[/gold].",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_removal.webp"
       },
       {
         "id": "CARD_REWARDS",
         "name": "Kartenbelohnungen",
         "description": "Erhalte [blue]2[/blue] Kartenbelohnungen.",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_rewards.webp"
       },
       {
         "id": "COLORLESS_CARD_REWARD",
         "name": "Farblose Kartenbelohnung",
         "description": "Erhalte [blue]1[/blue] [gold]Farblose[/gold] Kartenbelohnung.",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/colorless_card_reward.webp"
       },
       {
         "id": "POTIONS",
         "name": "Tränke",
         "description": "Erhalte [blue]1[/blue] Trankslot und beschaffe [blue]2[/blue] zufällige Tränke.",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/potions.webp"
       },
       {
         "id": "CARD_ENCHANT",
         "name": "Enchantment",
         "description": "[gold]Verzaubere[/gold] eine Karte mit [purple]Enchantment[/purple].",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_enchant.webp"
       },
       {
         "id": "ENCHANTED_CARD_REWARD",
         "name": "Verzauberte Kartenbelohnung",
         "description": "Erhalte [blue]1[/blue] [gold]Verzauberte[/gold] Kartenbelohnung.",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/enchanted_card_reward.webp"
       },
       {
         "id": "PRISMATIC_CARD_REWARD",
         "name": "Character Kartenbelohnung",
         "description": "Erhalte [blue]1[/blue] [gold]Character[/gold] Kartenbelohnung.",
         "cursed": false,
-        "rare": true
+        "rare": true,
+        "image_url": "/static/images/beta/v0.113.1/blitz/prismatic_card_reward.webp"
       },
       {
         "id": "RARE_CARD_REWARD",
         "name": "Seltene Kartenbelohnung",
         "description": "Erhalte [blue]1[/blue] Seltene Kartenbelohnung.",
         "cursed": false,
-        "rare": true
+        "rare": true,
+        "image_url": "/static/images/beta/v0.113.1/blitz/rare_card_reward.webp"
       },
       {
         "id": "UPGRADED_RARE_CARD",
         "name": "Verbesserte Seltene Karte",
         "description": "Erhalte [blue]1[/blue] zufällige [gold]Verbesserte[/gold] Seltene Karte.",
         "cursed": false,
-        "rare": true
+        "rare": true,
+        "image_url": "/static/images/beta/v0.113.1/blitz/upgraded_rare_card.webp"
       },
       {
         "id": "RELIC",
         "name": "Relikt",
         "description": "Erhalte [blue]1[/blue] seltenes [gold]Relikt[/gold].",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/relic.webp"
       },
       {
         "id": "GLAM",
         "name": "Verfluchtes Schick",
         "description": "Erhalte [red]1[/red] zufälligen [red]Fluch[/red].\n[gold]Verzaubere[/gold] eine Karte mit [purple]Schick[/purple].",
         "cursed": true,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/glam.webp"
       },
       {
         "id": "TWO_MORE_CHOICES",
         "name": "Verfluchte Optionen",
         "description": "Erhalte [red]1[/red] zufälligen [red]Fluch[/red].\nDer Händler erlaubt dir, zwei weitere Waren zu kaufen.",
         "cursed": true,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/two_more_choices.webp"
       },
       {
         "id": "CARD_REWARD_OF_EACH_RARITY",
         "name": "Verfluchte Kartenbelohnungen",
         "description": "Erhalte [red]1[/red] zufälligen [red]Fluch[/red].\nErhalte [blue]1[/blue] [gold]Gewöhnliche[/gold], [gold]Ungewöhnliche[/gold] und [gold]Seltene[/gold] Kartenbelohnung.",
         "cursed": true,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_reward_of_each_rarity.webp"
       },
       {
         "id": "UPGRADED_RARE_CARD_REWARD",
         "name": "Verfluchte Verbesserte Seltene Kartenbelohnung",
         "description": "Erhalte [red]1[/red] zufälligen [red]Fluch[/red].\nErhalte [blue]1[/blue] [gold]Verbesserte[/gold] Seltene Kartenbelohnung.",
         "cursed": true,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/upgraded_rare_card_reward.webp"
       },
       {
         "id": "TWO_RELICS",
         "name": "Verfluchte Relikte",
         "description": "Erhalte [red]1[/red] zufälligen [red]Fluch[/red].\nErhalte [blue]2[/blue] zufällige [gold]Relikte[/gold].",
         "cursed": true,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/two_relics.webp"
       },
       {
         "id": "FULL_HEAL_AND_MAX_HP",
         "name": "Verfluchte Heilung",
         "description": "Erhalte [red]1[/red] zufälligen [red]Fluch[/red].\nErhöhe deine Max. TP um [blue]6[/blue] und heile alle deine TP.",
         "cursed": true,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/full_heal_and_max_hp.webp"
       }
     ],
     "act_layout": [
@@ -313,37 +333,45 @@
     "act_rooms": [
       {
         "type": "ANCIENT",
-        "name": "Ahne"
+        "name": "Ahne",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_ancient.webp"
       },
       {
         "type": "MONSTER",
         "name": "Gegner",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_monster.webp",
         "easy": true
       },
       {
         "type": "MONSTER",
         "name": "Gegner",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_monster.webp",
         "easy": false
       },
       {
         "type": "SHOP",
-        "name": "Händler"
+        "name": "Händler",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_shop.webp"
       },
       {
         "type": "ELITE",
-        "name": "Elite"
+        "name": "Elite",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_elite.webp"
       },
       {
         "type": "TREASURE",
-        "name": "Schatz"
+        "name": "Schatz",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_treasure.webp"
       },
       {
         "type": "REST_SITE",
-        "name": "Rast"
+        "name": "Rast",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_rest_site.webp"
       },
       {
         "type": "BOSS",
-        "name": "Boss"
+        "name": "Boss",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_boss.webp"
       }
     ],
     "weak_encounters_per_act": 1,
@@ -530,179 +558,223 @@
     "banned_relics": [
       {
         "id": "AMETHYST_AUBERGINE",
-        "name": "Amethyst-Aubergine"
+        "name": "Amethyst-Aubergine",
+        "image_url": "/static/images/beta/v0.113.1/relics/amethyst_aubergine.webp"
       },
       {
         "id": "BLACK_STAR",
-        "name": "Schwarzer Stern"
+        "name": "Schwarzer Stern",
+        "image_url": "/static/images/beta/v0.113.1/relics/black_star.webp"
       },
       {
         "id": "BOOK_OF_FIVE_RINGS",
-        "name": "Buch der fünf Ringe"
+        "name": "Buch der fünf Ringe",
+        "image_url": "/static/images/beta/v0.113.1/relics/book_of_five_rings.webp"
       },
       {
         "id": "BOWLER_HAT",
-        "name": "Melone"
+        "name": "Melone",
+        "image_url": "/static/images/beta/v0.113.1/relics/bowler_hat.webp"
       },
       {
         "id": "CURSED_PEARL",
-        "name": "Verfluchte Perle"
+        "name": "Verfluchte Perle",
+        "image_url": "/static/images/beta/v0.113.1/relics/cursed_pearl.webp"
       },
       {
         "id": "DOWSING_ROD",
-        "name": "Wünschelrute"
+        "name": "Wünschelrute",
+        "image_url": "/static/images/beta/v0.113.1/relics/dowsing_rod.webp"
       },
       {
         "id": "DRAGON_FRUIT",
-        "name": "Drachenfrucht"
+        "name": "Drachenfrucht",
+        "image_url": "/static/images/beta/v0.113.1/relics/dragon_fruit.webp"
       },
       {
         "id": "DREAM_CATCHER",
-        "name": "Traumfänger"
+        "name": "Traumfänger",
+        "image_url": "/static/images/beta/v0.113.1/relics/dream_catcher.webp"
       },
       {
         "id": "DRIFTWOOD",
-        "name": "Treibholz"
+        "name": "Treibholz",
+        "image_url": "/static/images/beta/v0.113.1/relics/driftwood.webp"
       },
       {
         "id": "ECTOPLASM",
-        "name": "Ektoplasma"
+        "name": "Ektoplasma",
+        "image_url": "/static/images/beta/v0.113.1/relics/ectoplasm.webp"
       },
       {
         "id": "ETERNAL_FEATHER",
-        "name": "Ewige Feder"
+        "name": "Ewige Feder",
+        "image_url": "/static/images/beta/v0.113.1/relics/eternal_feather.webp"
       },
       {
         "id": "FISHING_ROD",
-        "name": "Angel"
+        "name": "Angel",
+        "image_url": "/static/images/beta/v0.113.1/relics/fishing_rod.webp"
       },
       {
         "id": "FUR_COAT",
-        "name": "Pelzmantel"
+        "name": "Pelzmantel",
+        "image_url": "/static/images/beta/v0.113.1/relics/fur_coat.webp"
       },
       {
         "id": "GIRYA",
-        "name": "Girya"
+        "name": "Girya",
+        "image_url": "/static/images/beta/v0.113.1/relics/girya.webp"
       },
       {
         "id": "GOLDEN_COMPASS",
-        "name": "Goldener Kompass"
+        "name": "Goldener Kompass",
+        "image_url": "/static/images/beta/v0.113.1/relics/golden_compass.webp"
       },
       {
         "id": "GOLDEN_PEARL",
-        "name": "Goldene Perle"
+        "name": "Goldene Perle",
+        "image_url": "/static/images/beta/v0.113.1/relics/golden_pearl.webp"
       },
       {
         "id": "JUZU_BRACELET",
-        "name": "Juzu-Armband"
+        "name": "Juzu-Armband",
+        "image_url": "/static/images/beta/v0.113.1/relics/juzu_bracelet.webp"
       },
       {
         "id": "LASTING_CANDY",
-        "name": "Dauerbonbons"
+        "name": "Dauerbonbons",
+        "image_url": "/static/images/beta/v0.113.1/relics/lasting_candy.webp"
       },
       {
         "id": "LORDS_PARASOL",
-        "name": "Fürstlicher Sonnenschirm"
+        "name": "Fürstlicher Sonnenschirm",
+        "image_url": "/static/images/beta/v0.113.1/relics/lords_parasol.webp"
       },
       {
         "id": "LUCKY_FYSH",
-        "name": "Glücksfysh"
+        "name": "Glücksfysh",
+        "image_url": "/static/images/beta/v0.113.1/relics/lucky_fysh.webp"
       },
       {
         "id": "MAW_BANK",
-        "name": "Spar-Schlund"
+        "name": "Spar-Schlund",
+        "image_url": "/static/images/beta/v0.113.1/relics/maw_bank.webp"
       },
       {
         "id": "MEAL_TICKET",
-        "name": "Essenskarte"
+        "name": "Essenskarte",
+        "image_url": "/static/images/beta/v0.113.1/relics/meal_ticket.webp"
       },
       {
         "id": "MEAT_CLEAVER",
-        "name": "Fleischerbeil"
+        "name": "Fleischerbeil",
+        "image_url": "/static/images/beta/v0.113.1/relics/meat_cleaver.webp"
       },
       {
         "id": "MEMBERSHIP_CARD",
-        "name": "Mitgliedskarte"
+        "name": "Mitgliedskarte",
+        "image_url": "/static/images/beta/v0.113.1/relics/membership_card.webp"
       },
       {
         "id": "MINIATURE_TENT",
-        "name": "Miniaturzelt"
+        "name": "Miniaturzelt",
+        "image_url": "/static/images/beta/v0.113.1/relics/miniature_tent.webp"
       },
       {
         "id": "OLD_COIN",
-        "name": "Alte Münze"
+        "name": "Alte Münze",
+        "image_url": "/static/images/beta/v0.113.1/relics/old_coin.webp"
       },
       {
         "id": "PAELS_CLAW",
-        "name": "Paels Kralle"
+        "name": "Paels Kralle",
+        "image_url": "/static/images/beta/v0.113.1/relics/paels_claw.webp"
       },
       {
         "id": "PAELS_GROWTH",
-        "name": "Paels Wachstum"
+        "name": "Paels Wachstum",
+        "image_url": "/static/images/beta/v0.113.1/relics/paels_growth.webp"
       },
       {
         "id": "PAELS_WING",
-        "name": "Paels Flügel"
+        "name": "Paels Flügel",
+        "image_url": "/static/images/beta/v0.113.1/relics/paels_wing.webp"
       },
       {
         "id": "PLANISPHERE",
-        "name": "Planisphäre"
+        "name": "Planisphäre",
+        "image_url": "/static/images/beta/v0.113.1/relics/planisphere.webp"
       },
       {
         "id": "PRAYER_WHEEL",
-        "name": "Gebetsmühle"
+        "name": "Gebetsmühle",
+        "image_url": "/static/images/beta/v0.113.1/relics/prayer_wheel.webp"
       },
       {
         "id": "PUMPKIN_CANDLE",
-        "name": "Kürbiskerze"
+        "name": "Kürbiskerze",
+        "image_url": "/static/images/beta/v0.113.1/relics/pumpkin_candle.webp"
       },
       {
         "id": "REGAL_PILLOW",
-        "name": "Edles Kissen"
+        "name": "Edles Kissen",
+        "image_url": "/static/images/beta/v0.113.1/relics/regal_pillow.webp"
       },
       {
         "id": "SEAL_OF_GOLD",
-        "name": "Goldsiegel"
+        "name": "Goldsiegel",
+        "image_url": "/static/images/beta/v0.113.1/relics/seal_of_gold.webp"
       },
       {
         "id": "SHOVEL",
-        "name": "Schaufel"
+        "name": "Schaufel",
+        "image_url": "/static/images/beta/v0.113.1/relics/shovel.webp"
       },
       {
         "id": "SIGNET_RING",
-        "name": "Siegelring"
+        "name": "Siegelring",
+        "image_url": "/static/images/beta/v0.113.1/relics/signet_ring.webp"
       },
       {
         "id": "SILKEN_TRESS",
-        "name": "Seidenlocke"
+        "name": "Seidenlocke",
+        "image_url": "/static/images/beta/v0.113.1/relics/silken_tress.webp"
       },
       {
         "id": "STONE_HUMIDIFIER",
-        "name": "Steinerner Luftbefeuchter"
+        "name": "Steinerner Luftbefeuchter",
+        "image_url": "/static/images/beta/v0.113.1/relics/stone_humidifier.webp"
       },
       {
         "id": "THE_COURIER",
-        "name": "Die Kurierin"
+        "name": "Die Kurierin",
+        "image_url": "/static/images/beta/v0.113.1/relics/the_courier.webp"
       },
       {
         "id": "TINY_MAILBOX",
-        "name": "Winziger Briefkasten"
+        "name": "Winziger Briefkasten",
+        "image_url": "/static/images/beta/v0.113.1/relics/tiny_mailbox.webp"
       },
       {
         "id": "TOY_BOX",
-        "name": "Spielzeugkiste"
+        "name": "Spielzeugkiste",
+        "image_url": "/static/images/beta/v0.113.1/relics/toy_box.webp"
       },
       {
         "id": "VENERABLE_TEA_SET",
-        "name": "Uraltes Teeservice"
+        "name": "Uraltes Teeservice",
+        "image_url": "/static/images/beta/v0.113.1/relics/venerable_tea_set.webp"
       },
       {
         "id": "WHITE_BEAST_STATUE",
-        "name": "Weiße Bestienstatue"
+        "name": "Weiße Bestienstatue",
+        "image_url": "/static/images/beta/v0.113.1/relics/white_beast_statue.webp"
       },
       {
         "id": "WINGED_BOOTS",
-        "name": "Geflügelte Schuhe"
+        "name": "Geflügelte Schuhe",
+        "image_url": "/static/images/beta/v0.113.1/relics/winged_boots.webp"
       }
     ],
     "late_relics": {
@@ -710,23 +782,28 @@
       "relics": [
         {
           "id": "FROZEN_EGG",
-          "name": "Gefrorenes Ei"
+          "name": "Gefrorenes Ei",
+          "image_url": "/static/images/beta/v0.113.1/relics/frozen_egg.webp"
         },
         {
           "id": "MOLTEN_EGG",
-          "name": "Geschmolzenes Ei"
+          "name": "Geschmolzenes Ei",
+          "image_url": "/static/images/beta/v0.113.1/relics/molten_egg.webp"
         },
         {
           "id": "POTION_BELT",
-          "name": "Trankgürtel"
+          "name": "Trankgürtel",
+          "image_url": "/static/images/beta/v0.113.1/relics/potion_belt.webp"
         },
         {
           "id": "TOXIC_EGG",
-          "name": "Toxisches Ei"
+          "name": "Toxisches Ei",
+          "image_url": "/static/images/beta/v0.113.1/relics/toxic_egg.webp"
         },
         {
           "id": "WHITE_STAR",
-          "name": "Weißer Stern"
+          "name": "Weißer Stern",
+          "image_url": "/static/images/beta/v0.113.1/relics/white_star.webp"
         }
       ]
     }

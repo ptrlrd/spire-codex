@@ -164,140 +164,160 @@
         "name": "カードアップグレードサービス",
         "description": "[gold]デッキ[/gold]のカードを1枚[gold]アップグレード[/gold]する。",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_upgrade.webp"
       },
       {
         "id": "UPGRADED_CARD_REWARD",
         "name": "アップグレード済みカード報酬",
         "description": "[gold]アップグレード済み[/gold]カード報酬を[blue]1[/blue]回受け取る。",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/upgraded_card_reward.webp"
       },
       {
         "id": "RANDOM_UPGRADES",
         "name": "ランダムアップグレード",
         "description": "[gold]デッキ[/gold]のランダムなカード[blue]2[/blue]枚をアップグレードする。",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/random_upgrades.webp"
       },
       {
         "id": "CARD_TRANSFORM",
         "name": "カード変化サービス",
         "description": "[gold]デッキ[/gold]のカードを1枚[gold]変化[/gold]させる。",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_transform.webp"
       },
       {
         "id": "CARD_REMOVAL",
         "name": "カード削除サービス",
         "description": "[gold]デッキ[/gold]からカードを1枚削除する。",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_removal.webp"
       },
       {
         "id": "CARD_REWARDS",
         "name": "カード報酬",
         "description": "カード報酬を[blue]2[/blue]回受け取る。",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_rewards.webp"
       },
       {
         "id": "COLORLESS_CARD_REWARD",
         "name": "無色カード報酬",
         "description": "[gold]無色[/gold]のカード報酬を[blue]1[/blue]回受け取る。",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/colorless_card_reward.webp"
       },
       {
         "id": "POTIONS",
         "name": "ポーション",
         "description": "ポーションスロットを[blue]1[/blue]つ増やし、ランダムなポーションを[blue]2[/blue]個入手する。",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/potions.webp"
       },
       {
         "id": "CARD_ENCHANT",
         "name": "Enchantment",
         "description": "カード1枚に[purple]Enchantment[/purple]を[gold]付与[/gold]する。",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_enchant.webp"
       },
       {
         "id": "ENCHANTED_CARD_REWARD",
         "name": "エンチャント済みカード報酬",
         "description": "[gold]エンチャント[/gold]済みカード報酬を[blue]1[/blue]回受け取る。",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/enchanted_card_reward.webp"
       },
       {
         "id": "PRISMATIC_CARD_REWARD",
         "name": "Characterのカード報酬",
         "description": "[gold]Character[/gold]のカード報酬を[blue]1[/blue]回受け取る。",
         "cursed": false,
-        "rare": true
+        "rare": true,
+        "image_url": "/static/images/beta/v0.113.1/blitz/prismatic_card_reward.webp"
       },
       {
         "id": "RARE_CARD_REWARD",
         "name": "レアカード報酬",
         "description": "レアカード報酬を[blue]1[/blue]回受け取る。",
         "cursed": false,
-        "rare": true
+        "rare": true,
+        "image_url": "/static/images/beta/v0.113.1/blitz/rare_card_reward.webp"
       },
       {
         "id": "UPGRADED_RARE_CARD",
         "name": "アップグレード済みレアカード",
         "description": "ランダムな[gold]アップグレード済み[/gold]のレアカードを[blue]1[/blue]枚受け取る。",
         "cursed": false,
-        "rare": true
+        "rare": true,
+        "image_url": "/static/images/beta/v0.113.1/blitz/upgraded_rare_card.webp"
       },
       {
         "id": "RELIC",
         "name": "レリック",
         "description": "ランダムな[gold]レリック[/gold]を[blue]1[/blue]個獲得する。",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/relic.webp"
       },
       {
         "id": "GLAM",
         "name": "呪いの魅惑",
         "description": "ランダムな[red]呪い[/red]を[red]1[/red]枚受け取る。\nカード1枚に[purple]魅惑[/purple]を[gold]付与[/gold]する。",
         "cursed": true,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/glam.webp"
       },
       {
         "id": "TWO_MORE_CHOICES",
         "name": "呪いの選択肢",
         "description": "ランダムな[red]呪い[/red]を[red]1[/red]枚受け取る。\n商人からさらに2点の商品を購入できるようになる。",
         "cursed": true,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/two_more_choices.webp"
       },
       {
         "id": "CARD_REWARD_OF_EACH_RARITY",
         "name": "呪いのカード報酬",
         "description": "ランダムな[red]呪い[/red]を[red]1[/red]枚受け取る。\n[gold]コモン[/gold]、[gold]アンコモン[/gold]、[gold]レア[/gold]のカード報酬をそれぞれ[blue]1[/blue]回受け取る。",
         "cursed": true,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_reward_of_each_rarity.webp"
       },
       {
         "id": "UPGRADED_RARE_CARD_REWARD",
         "name": "呪いのアップグレード済みレアカード報酬",
         "description": "ランダムな[red]呪い[/red]を[red]1[/red]枚受け取る。\n[gold]アップグレード済み[/gold]レアカードの報酬を[blue]1[/blue]回受け取る。",
         "cursed": true,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/upgraded_rare_card_reward.webp"
       },
       {
         "id": "TWO_RELICS",
         "name": "呪いのレリック",
         "description": "ランダムな[red]呪い[/red]を[red]1[/red]枚受け取る。\nランダムな[gold]レリック[/gold]を[blue]2[/blue]個獲得する。",
         "cursed": true,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/two_relics.webp"
       },
       {
         "id": "FULL_HEAL_AND_MAX_HP",
         "name": "呪いの回復",
         "description": "ランダムな[red]呪い[/red]を[red]1[/red]枚受け取る。\n最大HPを[blue]6[/blue]増加させ、HPをすべて回復する。",
         "cursed": true,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/full_heal_and_max_hp.webp"
       }
     ],
     "act_layout": [
@@ -313,37 +333,45 @@
     "act_rooms": [
       {
         "type": "ANCIENT",
-        "name": "エンシェント"
+        "name": "エンシェント",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_ancient.webp"
       },
       {
         "type": "MONSTER",
         "name": "敵",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_monster.webp",
         "easy": true
       },
       {
         "type": "MONSTER",
         "name": "敵",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_monster.webp",
         "easy": false
       },
       {
         "type": "SHOP",
-        "name": "商人"
+        "name": "商人",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_shop.webp"
       },
       {
         "type": "ELITE",
-        "name": "エリート"
+        "name": "エリート",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_elite.webp"
       },
       {
         "type": "TREASURE",
-        "name": "宝箱"
+        "name": "宝箱",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_treasure.webp"
       },
       {
         "type": "REST_SITE",
-        "name": "休憩"
+        "name": "休憩",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_rest_site.webp"
       },
       {
         "type": "BOSS",
-        "name": "ボス"
+        "name": "ボス",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_boss.webp"
       }
     ],
     "weak_encounters_per_act": 1,
@@ -530,179 +558,223 @@
     "banned_relics": [
       {
         "id": "AMETHYST_AUBERGINE",
-        "name": "アメジストのナス"
+        "name": "アメジストのナス",
+        "image_url": "/static/images/beta/v0.113.1/relics/amethyst_aubergine.webp"
       },
       {
         "id": "BLACK_STAR",
-        "name": "ブラックスター"
+        "name": "ブラックスター",
+        "image_url": "/static/images/beta/v0.113.1/relics/black_star.webp"
       },
       {
         "id": "BOOK_OF_FIVE_RINGS",
-        "name": "五輪書"
+        "name": "五輪書",
+        "image_url": "/static/images/beta/v0.113.1/relics/book_of_five_rings.webp"
       },
       {
         "id": "BOWLER_HAT",
-        "name": "山高帽"
+        "name": "山高帽",
+        "image_url": "/static/images/beta/v0.113.1/relics/bowler_hat.webp"
       },
       {
         "id": "CURSED_PEARL",
-        "name": "呪いの真珠"
+        "name": "呪いの真珠",
+        "image_url": "/static/images/beta/v0.113.1/relics/cursed_pearl.webp"
       },
       {
         "id": "DOWSING_ROD",
-        "name": "ダウジングロッド"
+        "name": "ダウジングロッド",
+        "image_url": "/static/images/beta/v0.113.1/relics/dowsing_rod.webp"
       },
       {
         "id": "DRAGON_FRUIT",
-        "name": "ドラゴンフルーツ"
+        "name": "ドラゴンフルーツ",
+        "image_url": "/static/images/beta/v0.113.1/relics/dragon_fruit.webp"
       },
       {
         "id": "DREAM_CATCHER",
-        "name": "ドリームキャッチャー"
+        "name": "ドリームキャッチャー",
+        "image_url": "/static/images/beta/v0.113.1/relics/dream_catcher.webp"
       },
       {
         "id": "DRIFTWOOD",
-        "name": "流木"
+        "name": "流木",
+        "image_url": "/static/images/beta/v0.113.1/relics/driftwood.webp"
       },
       {
         "id": "ECTOPLASM",
-        "name": "エクトプラズム"
+        "name": "エクトプラズム",
+        "image_url": "/static/images/beta/v0.113.1/relics/ectoplasm.webp"
       },
       {
         "id": "ETERNAL_FEATHER",
-        "name": "エターナルフェザー"
+        "name": "エターナルフェザー",
+        "image_url": "/static/images/beta/v0.113.1/relics/eternal_feather.webp"
       },
       {
         "id": "FISHING_ROD",
-        "name": "釣り竿"
+        "name": "釣り竿",
+        "image_url": "/static/images/beta/v0.113.1/relics/fishing_rod.webp"
       },
       {
         "id": "FUR_COAT",
-        "name": "毛皮のコート"
+        "name": "毛皮のコート",
+        "image_url": "/static/images/beta/v0.113.1/relics/fur_coat.webp"
       },
       {
         "id": "GIRYA",
-        "name": "ケトルベル"
+        "name": "ケトルベル",
+        "image_url": "/static/images/beta/v0.113.1/relics/girya.webp"
       },
       {
         "id": "GOLDEN_COMPASS",
-        "name": "黄金の羅針盤"
+        "name": "黄金の羅針盤",
+        "image_url": "/static/images/beta/v0.113.1/relics/golden_compass.webp"
       },
       {
         "id": "GOLDEN_PEARL",
-        "name": "黄金の真珠"
+        "name": "黄金の真珠",
+        "image_url": "/static/images/beta/v0.113.1/relics/golden_pearl.webp"
       },
       {
         "id": "JUZU_BRACELET",
-        "name": "数珠"
+        "name": "数珠",
+        "image_url": "/static/images/beta/v0.113.1/relics/juzu_bracelet.webp"
       },
       {
         "id": "LASTING_CANDY",
-        "name": "長持ちキャンディ"
+        "name": "長持ちキャンディ",
+        "image_url": "/static/images/beta/v0.113.1/relics/lasting_candy.webp"
       },
       {
         "id": "LORDS_PARASOL",
-        "name": "王のパラソル"
+        "name": "王のパラソル",
+        "image_url": "/static/images/beta/v0.113.1/relics/lords_parasol.webp"
       },
       {
         "id": "LUCKY_FYSH",
-        "name": "幸運の魚"
+        "name": "幸運の魚",
+        "image_url": "/static/images/beta/v0.113.1/relics/lucky_fysh.webp"
       },
       {
         "id": "MAW_BANK",
-        "name": "モーの貯金箱"
+        "name": "モーの貯金箱",
+        "image_url": "/static/images/beta/v0.113.1/relics/maw_bank.webp"
       },
       {
         "id": "MEAL_TICKET",
-        "name": "お食事券"
+        "name": "お食事券",
+        "image_url": "/static/images/beta/v0.113.1/relics/meal_ticket.webp"
       },
       {
         "id": "MEAT_CLEAVER",
-        "name": "肉切り包丁"
+        "name": "肉切り包丁",
+        "image_url": "/static/images/beta/v0.113.1/relics/meat_cleaver.webp"
       },
       {
         "id": "MEMBERSHIP_CARD",
-        "name": "会員カード"
+        "name": "会員カード",
+        "image_url": "/static/images/beta/v0.113.1/relics/membership_card.webp"
       },
       {
         "id": "MINIATURE_TENT",
-        "name": "ミニテント"
+        "name": "ミニテント",
+        "image_url": "/static/images/beta/v0.113.1/relics/miniature_tent.webp"
       },
       {
         "id": "OLD_COIN",
-        "name": "古いコイン"
+        "name": "古いコイン",
+        "image_url": "/static/images/beta/v0.113.1/relics/old_coin.webp"
       },
       {
         "id": "PAELS_CLAW",
-        "name": "パエルの爪"
+        "name": "パエルの爪",
+        "image_url": "/static/images/beta/v0.113.1/relics/paels_claw.webp"
       },
       {
         "id": "PAELS_GROWTH",
-        "name": "パエルの膿"
+        "name": "パエルの膿",
+        "image_url": "/static/images/beta/v0.113.1/relics/paels_growth.webp"
       },
       {
         "id": "PAELS_WING",
-        "name": "パエルの翼"
+        "name": "パエルの翼",
+        "image_url": "/static/images/beta/v0.113.1/relics/paels_wing.webp"
       },
       {
         "id": "PLANISPHERE",
-        "name": "星座早見盤"
+        "name": "星座早見盤",
+        "image_url": "/static/images/beta/v0.113.1/relics/planisphere.webp"
       },
       {
         "id": "PRAYER_WHEEL",
-        "name": "マニ車"
+        "name": "マニ車",
+        "image_url": "/static/images/beta/v0.113.1/relics/prayer_wheel.webp"
       },
       {
         "id": "PUMPKIN_CANDLE",
-        "name": "カボチャのキャンドル"
+        "name": "カボチャのキャンドル",
+        "image_url": "/static/images/beta/v0.113.1/relics/pumpkin_candle.webp"
       },
       {
         "id": "REGAL_PILLOW",
-        "name": "高貴な枕"
+        "name": "高貴な枕",
+        "image_url": "/static/images/beta/v0.113.1/relics/regal_pillow.webp"
       },
       {
         "id": "SEAL_OF_GOLD",
-        "name": "黄金の印章"
+        "name": "黄金の印章",
+        "image_url": "/static/images/beta/v0.113.1/relics/seal_of_gold.webp"
       },
       {
         "id": "SHOVEL",
-        "name": "ショベル"
+        "name": "ショベル",
+        "image_url": "/static/images/beta/v0.113.1/relics/shovel.webp"
       },
       {
         "id": "SIGNET_RING",
-        "name": "シグネットリング"
+        "name": "シグネットリング",
+        "image_url": "/static/images/beta/v0.113.1/relics/signet_ring.webp"
       },
       {
         "id": "SILKEN_TRESS",
-        "name": "絹の髪束"
+        "name": "絹の髪束",
+        "image_url": "/static/images/beta/v0.113.1/relics/silken_tress.webp"
       },
       {
         "id": "STONE_HUMIDIFIER",
-        "name": "石の加湿器"
+        "name": "石の加湿器",
+        "image_url": "/static/images/beta/v0.113.1/relics/stone_humidifier.webp"
       },
       {
         "id": "THE_COURIER",
-        "name": "配達人"
+        "name": "配達人",
+        "image_url": "/static/images/beta/v0.113.1/relics/the_courier.webp"
       },
       {
         "id": "TINY_MAILBOX",
-        "name": "小さなポスト"
+        "name": "小さなポスト",
+        "image_url": "/static/images/beta/v0.113.1/relics/tiny_mailbox.webp"
       },
       {
         "id": "TOY_BOX",
-        "name": "おもちゃ箱"
+        "name": "おもちゃ箱",
+        "image_url": "/static/images/beta/v0.113.1/relics/toy_box.webp"
       },
       {
         "id": "VENERABLE_TEA_SET",
-        "name": "古びたティーセット"
+        "name": "古びたティーセット",
+        "image_url": "/static/images/beta/v0.113.1/relics/venerable_tea_set.webp"
       },
       {
         "id": "WHITE_BEAST_STATUE",
-        "name": "白き獣の像"
+        "name": "白き獣の像",
+        "image_url": "/static/images/beta/v0.113.1/relics/white_beast_statue.webp"
       },
       {
         "id": "WINGED_BOOTS",
-        "name": "空飛ぶ靴"
+        "name": "空飛ぶ靴",
+        "image_url": "/static/images/beta/v0.113.1/relics/winged_boots.webp"
       }
     ],
     "late_relics": {
@@ -710,23 +782,28 @@
       "relics": [
         {
           "id": "FROZEN_EGG",
-          "name": "凍った卵"
+          "name": "凍った卵",
+          "image_url": "/static/images/beta/v0.113.1/relics/frozen_egg.webp"
         },
         {
           "id": "MOLTEN_EGG",
-          "name": "溶融した卵"
+          "name": "溶融した卵",
+          "image_url": "/static/images/beta/v0.113.1/relics/molten_egg.webp"
         },
         {
           "id": "POTION_BELT",
-          "name": "ポーションベルト"
+          "name": "ポーションベルト",
+          "image_url": "/static/images/beta/v0.113.1/relics/potion_belt.webp"
         },
         {
           "id": "TOXIC_EGG",
-          "name": "毒の卵"
+          "name": "毒の卵",
+          "image_url": "/static/images/beta/v0.113.1/relics/toxic_egg.webp"
         },
         {
           "id": "WHITE_STAR",
-          "name": "ホワイトスター"
+          "name": "ホワイトスター",
+          "image_url": "/static/images/beta/v0.113.1/relics/white_star.webp"
         }
       ]
     }

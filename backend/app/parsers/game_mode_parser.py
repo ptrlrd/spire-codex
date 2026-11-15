@@ -92,7 +92,7 @@ def _rules(ascension: dict, menu: dict, mode: str) -> list[str]:
             re.DOTALL,
         )
         numbered = block.group(1).split("\n") if block else []
-    rules = [re.sub(r"^\s*\d+\.\s*", "", line).strip() for line in numbered]
+    rules = [re.sub(r"^\s*\d+\s*[.、．]\s*", "", line).strip() for line in numbered]
     return [rule for rule in rules if rule and "{" not in rule]
 
 

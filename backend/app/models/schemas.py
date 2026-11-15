@@ -465,17 +465,20 @@ class GameModeEntry(BaseModel):
 class GameModeOffer(GameModeEntry):
     cursed: bool | None = None
     rare: bool | None = None
+    image_url: str | None = None
 
 
 class GameModeNamed(BaseModel):
     id: str
     name: str
+    image_url: str | None = None
 
 
 class GameModeRoom(BaseModel):
     type: str
     name: str
     easy: bool | None = None
+    image_url: str | None = None
 
 
 class RarityOdds(BaseModel):

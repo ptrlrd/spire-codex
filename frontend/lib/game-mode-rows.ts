@@ -21,17 +21,20 @@ export interface RarityOdds {
 export interface GameModeOffer extends GameModeEntry {
   cursed?: boolean;
   rare?: boolean;
+  image_url?: string | null;
 }
 
 export interface GameModeNamed {
   id: string;
   name: string;
+  image_url?: string | null;
 }
 
 export interface GameModeRoom {
   type: string;
   name: string;
   easy?: boolean | null;
+  image_url?: string | null;
 }
 
 export interface GameModeReward {

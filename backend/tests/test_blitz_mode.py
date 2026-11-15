@@ -72,6 +72,10 @@ RUN_MODEL = """
 
 @pytest.fixture
 def game(tmp_path, monkeypatch):
+    monkeypatch.setattr(
+        blitz_mode, "resolve_image_url", lambda kind, stem: f"/img/{kind}/{stem}.webp"
+    )
+
     def put(name, text):
         path = tmp_path / name
         path.write_text(text, encoding="utf-8")
@@ -274,8 +278,16 @@ def test_banned_content_is_named_from_the_game_text(game):
         {"id": "HAND_OF_GREED", "name": "Hand of Greed"},
     ]
     assert blitz_mode.banned_relics({"MAW_BANK.title": "Maw Bank"}) == [
-        {"id": "BLACK_STAR", "name": "BLACK_STAR"},
-        {"id": "MAW_BANK", "name": "Maw Bank"},
+        {
+            "id": "BLACK_STAR",
+            "name": "BLACK_STAR",
+            "image_url": "/img/relics/black_star.webp",
+        },
+        {
+            "id": "MAW_BANK",
+            "name": "Maw Bank",
+            "image_url": "/img/relics/maw_bank.webp",
+        },
     ]
 
 
@@ -292,6 +304,7 @@ def test_the_first_fight_of_an_act_comes_from_the_easy_pool(game):
     assert details["weak_encounters_per_act"] == 1
     assert details["encounters_per_act"] == 3
     assert details["floors_per_act"] == 5
+    assert details["act_rooms"][1]["image_url"] == "/img/blitz/room_monster.webp"
     assert [room.get("easy") for room in details["act_rooms"]] == [
         None,
         True,
@@ -324,8 +337,12 @@ def test_relics_cut_late_in_the_run_start_at_the_last_elite(game):
     assert late == {
         "from_floor": 21,
         "relics": [
-            {"id": "GIRYA", "name": "Girya"},
-            {"id": "POTION_BELT", "name": "POTION_BELT"},
+            {"id": "GIRYA", "name": "Girya", "image_url": "/img/relics/girya.webp"},
+            {
+                "id": "POTION_BELT",
+                "name": "POTION_BELT",
+                "image_url": "/img/relics/potion_belt.webp",
+            },
         ],
     }
     assert blitz_mode.late_relics({}, ["ANCIENT", "BOSS"], []) == {}

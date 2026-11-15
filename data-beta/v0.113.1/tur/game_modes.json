@@ -164,140 +164,160 @@
         "name": "Kart Geliştirme Servisi",
         "description": "[gold]Deste[/gold]'ndeki bir kartı [gold]Geliştir[/gold].",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_upgrade.webp"
       },
       {
         "id": "UPGRADED_CARD_REWARD",
         "name": "Geliştirilmiş Kart Ödülü",
         "description": "[blue]1[/blue] adet [gold]Geliştirilmiş[/gold] kart ödülü elde et.",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/upgraded_card_reward.webp"
       },
       {
         "id": "RANDOM_UPGRADES",
         "name": "Rastgele Geliştirme",
         "description": "[gold]Deste[/gold]'ndeki rastgele [blue]2[/blue] kartı geliştir.",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/random_upgrades.webp"
       },
       {
         "id": "CARD_TRANSFORM",
         "name": "Kart Dönüştürme Servisi",
         "description": "[gold]Deste[/gold]'ndeki bir kartı [gold]Dönüştür[/gold].",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_transform.webp"
       },
       {
         "id": "CARD_REMOVAL",
         "name": "Kart Kaldırma Servisi",
         "description": "[gold]Deste[/gold]'nden bir kartı kaldır.",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_removal.webp"
       },
       {
         "id": "CARD_REWARDS",
         "name": "Kart Ödülleri",
         "description": "[blue]2[/blue] kart ödülü elde et.",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_rewards.webp"
       },
       {
         "id": "COLORLESS_CARD_REWARD",
         "name": "Renksiz Kart Ödülü",
         "description": "[blue]1[/blue] [gold]Renksiz[/gold] kart ödülü elde et.",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/colorless_card_reward.webp"
       },
       {
         "id": "POTIONS",
         "name": "İksirler",
         "description": "[blue]1[/blue] iksir yuvası ve rastgele [blue]2[/blue] iksir elde et.",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/potions.webp"
       },
       {
         "id": "CARD_ENCHANT",
         "name": "Enchantment",
         "description": "Bir kartı [purple]Enchantment[/purple] ile [gold]Büyüle[/gold].",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_enchant.webp"
       },
       {
         "id": "ENCHANTED_CARD_REWARD",
         "name": "Büyülenmiş Kart Ödülü",
         "description": "[gold]Büyülenmiş[/gold] [blue]1[/blue] adet kart ödülü elde et.",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/enchanted_card_reward.webp"
       },
       {
         "id": "PRISMATIC_CARD_REWARD",
         "name": "Character Kart Ödülü",
         "description": "[blue]1[/blue] [gold]Character[/gold] kart ödülü elde et.",
         "cursed": false,
-        "rare": true
+        "rare": true,
+        "image_url": "/static/images/beta/v0.113.1/blitz/prismatic_card_reward.webp"
       },
       {
         "id": "RARE_CARD_REWARD",
         "name": "Nadir Kart Ödülü",
         "description": "[blue]1[/blue] nadir kart ödülü elde et.",
         "cursed": false,
-        "rare": true
+        "rare": true,
+        "image_url": "/static/images/beta/v0.113.1/blitz/rare_card_reward.webp"
       },
       {
         "id": "UPGRADED_RARE_CARD",
         "name": "Geliştirilmiş Nadir Kart",
         "description": "[blue]1[/blue] adet [gold]Geliştirilmiş[/gold] rastgele bir nadir kart elde et.",
         "cursed": false,
-        "rare": true
+        "rare": true,
+        "image_url": "/static/images/beta/v0.113.1/blitz/upgraded_rare_card.webp"
       },
       {
         "id": "RELIC",
         "name": "Kalıntı",
         "description": "Rastgele [blue]1[/blue] [gold]Kalıntı[/gold] elde et.",
         "cursed": false,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/relic.webp"
       },
       {
         "id": "GLAM",
         "name": "Lanetli Cazibeli",
         "description": "Rastgele [red]1[/red] [red]Lanet[/red] elde et.\nBir kartı [purple]Cazibeli[/purple] ile [gold]Büyüle[/gold].",
         "cursed": true,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/glam.webp"
       },
       {
         "id": "TWO_MORE_CHOICES",
         "name": "Lanetli Tercihler",
         "description": "Rastgele [red]1[/red] [red]Lanet[/red] elde et.\nTüccar'dan iki ürün daha satın alabilirsin.",
         "cursed": true,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/two_more_choices.webp"
       },
       {
         "id": "CARD_REWARD_OF_EACH_RARITY",
         "name": "Lanetli Kart Ödülleri",
         "description": "Rastgele [red]1[/red] [red]Lanet[/red] elde et.\n[blue]1[/blue] [gold]Yaygın[/gold], [gold]Az Yaygın[/gold] ve [gold]Nadir[/gold] kart ödülü elde et.",
         "cursed": true,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_reward_of_each_rarity.webp"
       },
       {
         "id": "UPGRADED_RARE_CARD_REWARD",
         "name": "Lanetli Geliştirilmiş Nadir Kart Ödülü",
         "description": "Rastgele [red]1[/red] [red]Lanet[/red] elde et.\n[blue]1[/blue] adet [gold]Geliştirilmiş[/gold] nadir kart ödülü elde et.",
         "cursed": true,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/upgraded_rare_card_reward.webp"
       },
       {
         "id": "TWO_RELICS",
         "name": "Lanetli Kalıntılar",
         "description": "Rastgele [red]1[/red] [red]Lanet[/red] elde et.\nRastgele [blue]2[/blue] [gold]Kalıntı[/gold] elde et.",
         "cursed": true,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/two_relics.webp"
       },
       {
         "id": "FULL_HEAL_AND_MAX_HP",
         "name": "Lanetli İyileştirme",
         "description": "Rastgele [red]1[/red] [red]Lanet[/red] elde et.\nMaksimum CP'ni [blue]6[/blue] artır ve tüm CP'ni iyileştir.",
         "cursed": true,
-        "rare": false
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/full_heal_and_max_hp.webp"
       }
     ],
     "act_layout": [
@@ -313,37 +333,45 @@
     "act_rooms": [
       {
         "type": "ANCIENT",
-        "name": "Kadim"
+        "name": "Kadim",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_ancient.webp"
       },
       {
         "type": "MONSTER",
         "name": "Düşman",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_monster.webp",
         "easy": true
       },
       {
         "type": "MONSTER",
         "name": "Düşman",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_monster.webp",
         "easy": false
       },
       {
         "type": "SHOP",
-        "name": "Tüccar"
+        "name": "Tüccar",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_shop.webp"
       },
       {
         "type": "ELITE",
-        "name": "Elit"
+        "name": "Elit",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_elite.webp"
       },
       {
         "type": "TREASURE",
-        "name": "Hazine"
+        "name": "Hazine",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_treasure.webp"
       },
       {
         "type": "REST_SITE",
-        "name": "Dinlenme"
+        "name": "Dinlenme",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_rest_site.webp"
       },
       {
         "type": "BOSS",
-        "name": "Boss"
+        "name": "Boss",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_boss.webp"
       }
     ],
     "weak_encounters_per_act": 1,
@@ -530,179 +558,223 @@
     "banned_relics": [
       {
         "id": "AMETHYST_AUBERGINE",
-        "name": "Ametist Patlıcan"
+        "name": "Ametist Patlıcan",
+        "image_url": "/static/images/beta/v0.113.1/relics/amethyst_aubergine.webp"
       },
       {
         "id": "BLACK_STAR",
-        "name": "Kara Yıldız"
+        "name": "Kara Yıldız",
+        "image_url": "/static/images/beta/v0.113.1/relics/black_star.webp"
       },
       {
         "id": "BOOK_OF_FIVE_RINGS",
-        "name": "Beş Çember Kitabı"
+        "name": "Beş Çember Kitabı",
+        "image_url": "/static/images/beta/v0.113.1/relics/book_of_five_rings.webp"
       },
       {
         "id": "BOWLER_HAT",
-        "name": "Melon Şapka"
+        "name": "Melon Şapka",
+        "image_url": "/static/images/beta/v0.113.1/relics/bowler_hat.webp"
       },
       {
         "id": "CURSED_PEARL",
-        "name": "Lanetli İnci"
+        "name": "Lanetli İnci",
+        "image_url": "/static/images/beta/v0.113.1/relics/cursed_pearl.webp"
       },
       {
         "id": "DOWSING_ROD",
-        "name": "Arayış Çubuğu"
+        "name": "Arayış Çubuğu",
+        "image_url": "/static/images/beta/v0.113.1/relics/dowsing_rod.webp"
       },
       {
         "id": "DRAGON_FRUIT",
-        "name": "Ejder Meyvesi"
+        "name": "Ejder Meyvesi",
+        "image_url": "/static/images/beta/v0.113.1/relics/dragon_fruit.webp"
       },
       {
         "id": "DREAM_CATCHER",
-        "name": "Rüya Kapanı"
+        "name": "Rüya Kapanı",
+        "image_url": "/static/images/beta/v0.113.1/relics/dream_catcher.webp"
       },
       {
         "id": "DRIFTWOOD",
-        "name": "Sürüklenmiş Odun"
+        "name": "Sürüklenmiş Odun",
+        "image_url": "/static/images/beta/v0.113.1/relics/driftwood.webp"
       },
       {
         "id": "ECTOPLASM",
-        "name": "Ektoplazma"
+        "name": "Ektoplazma",
+        "image_url": "/static/images/beta/v0.113.1/relics/ectoplasm.webp"
       },
       {
         "id": "ETERNAL_FEATHER",
-        "name": "Ebedi Tüy"
+        "name": "Ebedi Tüy",
+        "image_url": "/static/images/beta/v0.113.1/relics/eternal_feather.webp"
       },
       {
         "id": "FISHING_ROD",
-        "name": "Balık Oltası"
+        "name": "Balık Oltası",
+        "image_url": "/static/images/beta/v0.113.1/relics/fishing_rod.webp"
       },
       {
         "id": "FUR_COAT",
-        "name": "Kürk Palto"
+        "name": "Kürk Palto",
+        "image_url": "/static/images/beta/v0.113.1/relics/fur_coat.webp"
       },
       {
         "id": "GIRYA",
-        "name": "Girya"
+        "name": "Girya",
+        "image_url": "/static/images/beta/v0.113.1/relics/girya.webp"
       },
       {
         "id": "GOLDEN_COMPASS",
-        "name": "Altın Pusula"
+        "name": "Altın Pusula",
+        "image_url": "/static/images/beta/v0.113.1/relics/golden_compass.webp"
       },
       {
         "id": "GOLDEN_PEARL",
-        "name": "Altın İnci"
+        "name": "Altın İnci",
+        "image_url": "/static/images/beta/v0.113.1/relics/golden_pearl.webp"
       },
       {
         "id": "JUZU_BRACELET",
-        "name": "Juzu Bileziği"
+        "name": "Juzu Bileziği",
+        "image_url": "/static/images/beta/v0.113.1/relics/juzu_bracelet.webp"
       },
       {
         "id": "LASTING_CANDY",
-        "name": "Dayanıklı Şeker"
+        "name": "Dayanıklı Şeker",
+        "image_url": "/static/images/beta/v0.113.1/relics/lasting_candy.webp"
       },
       {
         "id": "LORDS_PARASOL",
-        "name": "Lord'un Şemsiyesi"
+        "name": "Lord'un Şemsiyesi",
+        "image_url": "/static/images/beta/v0.113.1/relics/lords_parasol.webp"
       },
       {
         "id": "LUCKY_FYSH",
-        "name": "Şanslı Baluk"
+        "name": "Şanslı Baluk",
+        "image_url": "/static/images/beta/v0.113.1/relics/lucky_fysh.webp"
       },
       {
         "id": "MAW_BANK",
-        "name": "Çene Kumbara"
+        "name": "Çene Kumbara",
+        "image_url": "/static/images/beta/v0.113.1/relics/maw_bank.webp"
       },
       {
         "id": "MEAL_TICKET",
-        "name": "Yemek Fişi"
+        "name": "Yemek Fişi",
+        "image_url": "/static/images/beta/v0.113.1/relics/meal_ticket.webp"
       },
       {
         "id": "MEAT_CLEAVER",
-        "name": "Satır"
+        "name": "Satır",
+        "image_url": "/static/images/beta/v0.113.1/relics/meat_cleaver.webp"
       },
       {
         "id": "MEMBERSHIP_CARD",
-        "name": "Üyelik Kartı"
+        "name": "Üyelik Kartı",
+        "image_url": "/static/images/beta/v0.113.1/relics/membership_card.webp"
       },
       {
         "id": "MINIATURE_TENT",
-        "name": "Minyatür Çadır"
+        "name": "Minyatür Çadır",
+        "image_url": "/static/images/beta/v0.113.1/relics/miniature_tent.webp"
       },
       {
         "id": "OLD_COIN",
-        "name": "Eski Sikke"
+        "name": "Eski Sikke",
+        "image_url": "/static/images/beta/v0.113.1/relics/old_coin.webp"
       },
       {
         "id": "PAELS_CLAW",
-        "name": "Pael'in Pençesi"
+        "name": "Pael'in Pençesi",
+        "image_url": "/static/images/beta/v0.113.1/relics/paels_claw.webp"
       },
       {
         "id": "PAELS_GROWTH",
-        "name": "Pael'in Oluşumu"
+        "name": "Pael'in Oluşumu",
+        "image_url": "/static/images/beta/v0.113.1/relics/paels_growth.webp"
       },
       {
         "id": "PAELS_WING",
-        "name": "Pael'in Kanatları"
+        "name": "Pael'in Kanatları",
+        "image_url": "/static/images/beta/v0.113.1/relics/paels_wing.webp"
       },
       {
         "id": "PLANISPHERE",
-        "name": "Planisfer"
+        "name": "Planisfer",
+        "image_url": "/static/images/beta/v0.113.1/relics/planisphere.webp"
       },
       {
         "id": "PRAYER_WHEEL",
-        "name": "Dua Çarkı"
+        "name": "Dua Çarkı",
+        "image_url": "/static/images/beta/v0.113.1/relics/prayer_wheel.webp"
       },
       {
         "id": "PUMPKIN_CANDLE",
-        "name": "Balkabağı Mumu"
+        "name": "Balkabağı Mumu",
+        "image_url": "/static/images/beta/v0.113.1/relics/pumpkin_candle.webp"
       },
       {
         "id": "REGAL_PILLOW",
-        "name": "Kraliyet Yastığı"
+        "name": "Kraliyet Yastığı",
+        "image_url": "/static/images/beta/v0.113.1/relics/regal_pillow.webp"
       },
       {
         "id": "SEAL_OF_GOLD",
-        "name": "Altın Mührü"
+        "name": "Altın Mührü",
+        "image_url": "/static/images/beta/v0.113.1/relics/seal_of_gold.webp"
       },
       {
         "id": "SHOVEL",
-        "name": "Kürek"
+        "name": "Kürek",
+        "image_url": "/static/images/beta/v0.113.1/relics/shovel.webp"
       },
       {
         "id": "SIGNET_RING",
-        "name": "Mühür Yüzüğü"
+        "name": "Mühür Yüzüğü",
+        "image_url": "/static/images/beta/v0.113.1/relics/signet_ring.webp"
       },
       {
         "id": "SILKEN_TRESS",
-        "name": "İpeksi Bukle"
+        "name": "İpeksi Bukle",
+        "image_url": "/static/images/beta/v0.113.1/relics/silken_tress.webp"
       },
       {
         "id": "STONE_HUMIDIFIER",
-        "name": "Taş Nemlendirici"
+        "name": "Taş Nemlendirici",
+        "image_url": "/static/images/beta/v0.113.1/relics/stone_humidifier.webp"
       },
       {
         "id": "THE_COURIER",
-        "name": "Kurye"
+        "name": "Kurye",
+        "image_url": "/static/images/beta/v0.113.1/relics/the_courier.webp"
       },
       {
         "id": "TINY_MAILBOX",
-        "name": "Küçük Posta Kutusu"
+        "name": "Küçük Posta Kutusu",
+        "image_url": "/static/images/beta/v0.113.1/relics/tiny_mailbox.webp"
       },
       {
         "id": "TOY_BOX",
-        "name": "Oyuncak Kutusu"
+        "name": "Oyuncak Kutusu",
+        "image_url": "/static/images/beta/v0.113.1/relics/toy_box.webp"
       },
       {
         "id": "VENERABLE_TEA_SET",
-        "name": "Kıymetli Çay Takımı"
+        "name": "Kıymetli Çay Takımı",
+        "image_url": "/static/images/beta/v0.113.1/relics/venerable_tea_set.webp"
       },
       {
         "id": "WHITE_BEAST_STATUE",
-        "name": "Beyaz Yaratık Heykeli"
+        "name": "Beyaz Yaratık Heykeli",
+        "image_url": "/static/images/beta/v0.113.1/relics/white_beast_statue.webp"
       },
       {
         "id": "WINGED_BOOTS",
-        "name": "Kanatlı Botlar"
+        "name": "Kanatlı Botlar",
+        "image_url": "/static/images/beta/v0.113.1/relics/winged_boots.webp"
       }
     ],
     "late_relics": {
@@ -710,23 +782,28 @@
       "relics": [
         {
           "id": "FROZEN_EGG",
-          "name": "Donmuş Yumurta"
+          "name": "Donmuş Yumurta",
+          "image_url": "/static/images/beta/v0.113.1/relics/frozen_egg.webp"
         },
         {
           "id": "MOLTEN_EGG",
-          "name": "Erimiş Yumurta"
+          "name": "Erimiş Yumurta",
+          "image_url": "/static/images/beta/v0.113.1/relics/molten_egg.webp"
         },
         {
           "id": "POTION_BELT",
-          "name": "İksir Kemeri"
+          "name": "İksir Kemeri",
+          "image_url": "/static/images/beta/v0.113.1/relics/potion_belt.webp"
         },
         {
           "id": "TOXIC_EGG",
-          "name": "Zehirli Yumurta"
+          "name": "Zehirli Yumurta",
+          "image_url": "/static/images/beta/v0.113.1/relics/toxic_egg.webp"
         },
         {
           "id": "WHITE_STAR",
-          "name": "Beyaz Yıldız"
+          "name": "Beyaz Yıldız",
+          "image_url": "/static/images/beta/v0.113.1/relics/white_star.webp"
         }
       ]
     }

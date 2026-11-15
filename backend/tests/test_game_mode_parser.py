@@ -120,6 +120,9 @@ def test_blitz_carries_rules_neow_and_merchant(tmp_path, monkeypatch):
     (tmp_path / "BlitzMerchantGlamEntry.cs").write_text(
         "EnchantmentModel e = ModelDb.Enchantment<Glam>();"
     )
+    monkeypatch.setattr(
+        blitz_mode, "resolve_image_url", lambda kind, stem: f"/img/{kind}/{stem}.webp"
+    )
     monkeypatch.setattr(blitz_mode, "ENTRY_TYPE_FILE", types)
     monkeypatch.setattr(blitz_mode, "ENTRY_FILE", entry)
     monkeypatch.setattr(blitz_mode, "MERCHANT_DIR", tmp_path)
@@ -136,6 +139,7 @@ def test_blitz_carries_rules_neow_and_merchant(tmp_path, monkeypatch):
             "description": "Obtain 1 random Relic.",
             "cursed": False,
             "rare": False,
+            "image_url": "/img/blitz/relic.webp",
         },
         {
             "id": "GLAM",
@@ -143,6 +147,7 @@ def test_blitz_carries_rules_neow_and_merchant(tmp_path, monkeypatch):
             "description": "Enchant a card with [purple]Glam[/purple].",
             "cursed": True,
             "rare": False,
+            "image_url": "/img/blitz/glam.webp",
         },
     ]
 
@@ -212,3 +217,12 @@ def test_every_shipped_mode_file_fits_the_api_schema():
     for path in files:
         for row in json.loads(path.read_text(encoding="utf-8")):
             GameMode(**row)
+
+
+def test_rule_numbers_are_dropped_in_any_script():
+    rules = game_mode_parser._rules(
+        {"DREAD_RULE_01": "1、所有进阶调整项均启用。", "DREAD_RULE_02": "2. Bosses."},
+        {},
+        "DREAD",
+    )
+    assert rules == ["所有进阶调整项均启用。", "Bosses."]

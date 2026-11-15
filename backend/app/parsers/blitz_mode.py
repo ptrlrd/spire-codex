@@ -5,7 +5,7 @@ the Ascension ladder and what the mode bans."""
 import re
 from pathlib import Path
 
-from parser_paths import DECOMPILED
+from parser_paths import DECOMPILED, resolve_image_url
 
 CORE = "MegaCrit.Sts2.Core"
 ACT_MAP_FILE = DECOMPILED / f"{CORE}.Map" / "BlitzActMap.cs"
@@ -173,6 +173,7 @@ def merchant_entries(merchant: dict, enchantments: dict) -> list[dict]:
                 ),
                 "cursed": index >= cursed_from,
                 "rare": name in rare,
+                "image_url": resolve_image_url("blitz", snake(name).lower()),
             }
         )
     return out
@@ -277,6 +278,13 @@ def _named(ids: list[str], table: dict) -> list[dict]:
     return [{"id": i, "name": table.get(f"{i}.title", i)} for i in ids]
 
 
+def _relics(ids: list[str], table: dict) -> list[dict]:
+    return [
+        {**row, "image_url": resolve_image_url("relics", row["id"].lower())}
+        for row in _named(ids, table)
+    ]
+
+
 def banned_cards(cards: dict) -> list[dict]:
     if not CARDS_DIR.is_dir():
         return []
@@ -293,7 +301,7 @@ def banned_relics(relics: dict) -> list[dict]:
         r"notAllowedInBlitz\s*=[^{]*\{(.*?)\};", _read(RELIC_LISTS_FILE), re.DOTALL
     )
     names = re.findall(r"GetId<(\w+)>", block.group(1)) if block else []
-    return _named(sorted(snake(name) for name in names), relics)
+    return _relics(sorted(snake(name) for name in names), relics)
 
 
 ROOM_LEGEND = {
@@ -351,7 +359,7 @@ def late_relics(relics: dict, layout: list[str], banned: list[dict]) -> dict:
         return {}
     return {
         "from_floor": len(layout) * 2 + layout.index("ELITE") + 1,
-        "relics": _named(sorted(set(ids)), relics),
+        "relics": _relics(sorted(set(ids)), relics),
     }
 
 
@@ -366,7 +374,11 @@ def blitz_details(loc: dict[str, dict], levels: list[str]) -> dict:
         fights = sum(1 for room in layout if room in ("MONSTER", "ELITE", "BOSS"))
         out["act_layout"] = layout
         out["act_rooms"] = [
-            {"type": room, "name": room_name(room, loc.get("map", {}))}
+            {
+                "type": room,
+                "name": room_name(room, loc.get("map", {})),
+                "image_url": resolve_image_url("blitz", f"room_{room.lower()}"),
+            }
             for room in layout
         ]
         weak = weak_encounters_per_act()
