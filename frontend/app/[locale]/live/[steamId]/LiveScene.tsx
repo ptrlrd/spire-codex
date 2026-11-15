@@ -46,6 +46,7 @@ import {
   type NamedMap,
 } from "../live-shared";
 import { powerIconUrl } from "@/lib/power-icon";
+import { orbIconPath } from "@/lib/orb-icon";
 import { LiveEventPanel, LiveLootPanel, LiveShopPanel } from "../LiveEventShop";
 
 // Map an intent category to its icon file (a few names differ from the type).
@@ -167,9 +168,7 @@ function OrbRow({
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={imageUrl(
-                orb
-                  ? `/static/images/orbs/${cleanId(orb.id).toLowerCase()}_orb.png`
-                  : "/static/images/orbs/empty_orb.png",
+                orb ? orbIconPath(orb.id) : "/static/images/orbs/empty_orb.png",
               )}
               alt=""
               className="h-7 w-7 object-contain"
