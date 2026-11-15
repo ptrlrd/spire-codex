@@ -553,6 +553,25 @@ GROUP BY 1, 2
 """
 
 
+# Seats holding a base copy and seats holding an upgraded copy of each card,
+# per cell. A seat with both counts on both sides.
+_CUBE_CARD_LEVELS_SQL = """
+SELECT c.cell, m.card,
+  count(*) FILTER (NOT m.upgraded),
+  count(*) FILTER (NOT m.upgraded AND c.win),
+  count(*) FILTER (m.upgraded),
+  count(*) FILTER (m.upgraded AND c.win)
+FROM (
+  SELECT DISTINCT run_hash, player_idx, card,
+    coalesce(upgrade_level, 0) > 0 AS upgraded
+  FROM read_parquet('{lake}/deck.parquet')
+  WHERE card IS NOT NULL AND card <> ''
+) m
+JOIN cells c ON m.run_hash = c.run_hash
+GROUP BY 1, 2
+"""
+
+
 def _potion_events_available() -> bool:
     return (LAKE_DIR / "potion_events.parquet").exists()
 
@@ -2059,6 +2078,16 @@ def build_entity_cube(con=None) -> dict:
                 cur = wax.setdefault(cell, {}).setdefault(eid, [0, 0])
                 cur[0] += p_
                 cur[1] += w
+        card_levels: dict[str, dict] = {}
+        for cell, eid, base_p, base_w, upg_p, upg_w in con.execute(
+            _CUBE_CARD_LEVELS_SQL.format(lake=LAKE_DIR)
+        ).fetchall():
+            card_levels.setdefault(cell, {})[eid] = [
+                int(base_p),
+                int(base_w),
+                int(upg_p),
+                int(upg_w),
+            ]
         relic_removed: dict[str, dict] | None = None
         if _relics_have_removed(con):
             relic_removed = {}
@@ -2176,6 +2205,7 @@ def build_entity_cube(con=None) -> dict:
         "offers": offers,
         "offers_by_character": offers_by_char,
         "wax": wax,
+        "card_levels": card_levels,
         "potion_used": potion_used,
         "shops": shops,
         "events": events,
