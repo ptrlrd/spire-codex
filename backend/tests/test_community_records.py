@@ -77,3 +77,62 @@ def test_custom_run_cannot_beat_a_standard_record():
     )
     assert acc["fastest_win"] == (1200, "r1")
     assert acc["biggest_deck"] == (40, "r1")
+
+
+def _record_rows(tmp_path):
+    import duckdb
+
+    from app.services import lake_stats as ls
+
+    con = duckdb.connect()
+    con.execute(
+        f"""COPY (SELECT * FROM (VALUES
+        ('s1', 'IRONCLAD', true, 10, 'standard', 1, 'a', 'v1', 3000, false),
+        ('b1', 'FOOL', true, 5, 'blitz', 1, 'a', 'v1', 700, false),
+        ('b2', 'FOOL', true, 5, 'Blitz', 1, 'b', 'v1', 900, false),
+        ('x1', 'FOOL', false, 10, 'dread', 1, 'a', 'v1', 500, false),
+        ('c1', 'FOOL', true, 0, 'custom', 1, 'a', 'v1', 60, true),
+        ('d1', 'FOOL', true, 0, 'daily', 1, 'a', 'v1', 90, true))
+        t(run_hash, character, win, ascension, game_mode, player_count,
+          username, build_id, run_time, has_modifiers))
+        TO '{tmp_path}/runs.parquet' (FORMAT parquet)"""
+    )
+    con.execute(
+        f"""COPY (SELECT * FROM (VALUES
+        ('s1', 40), ('b1', 22), ('b2', 30), ('x1', 18), ('c1', 900), ('d1', 70))
+        t(run_hash, deck_size))
+        TO '{tmp_path}/players.parquet' (FORMAT parquet)"""
+    )
+    con.execute(
+        f"COPY (SELECT 'none' AS run_hash) TO '{tmp_path}/excluded.parquet'"
+        " (FORMAT parquet)"
+    )
+    con.execute(ls._eligible_sql(tmp_path))
+    con.execute(ls._cells_sql(tmp_path))
+    rows = con.execute(ls._records_sql(tmp_path)).fetchall()
+    con.close()
+    return {row[0].split("|", 1)[0]: row for row in rows}, ls
+
+
+def test_blitz_and_dread_hold_their_own_records(tmp_path):
+    by_mode, _ = _record_rows(tmp_path)
+    assert set(by_mode) == {"standard", "blitz", "dread"}
+    blitz = by_mode["blitz"]
+    assert (blitz[2], blitz[3]) == (700, "b1")
+    assert (blitz[4], blitz[5]) == (900, "b2")
+    assert (blitz[6], blitz[7]) == (30, "b2")
+    dread = by_mode["dread"]
+    assert dread[2] is None
+    assert (dread[4], dread[5]) == (500, "x1")
+
+
+def test_an_all_modes_bracket_keeps_only_the_standard_records(tmp_path):
+    _, ls = _record_rows(tmp_path)
+    blitz = {"fastest_win": (700, "b1"), "longest_run": (900, "b2"), "total_runs": 2}
+    kept = ls._scope_records("blitz|1|1|0|v1", blitz, "blitz")
+    assert kept["fastest_win"] == (700, "b1")
+    dropped = ls._scope_records("blitz|1|1|0|v1", blitz, None)
+    assert dropped["fastest_win"] is None and dropped["longest_run"] is None
+    assert dropped["total_runs"] == 2
+    standard = {"fastest_win": (3000, "s1")}
+    assert ls._scope_records("standard|1|1|0|v1", standard, None) == standard

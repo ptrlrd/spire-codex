@@ -791,7 +791,7 @@ def community_payload(bracket: str | None = None) -> dict | None:
                     continue
             if version is not None and ver != version:
                 continue
-            accs.append(_acc_from_json(acc_raw))
+            accs.append(_scope_records(cell_id, _acc_from_json(acc_raw), mode))
         from . import community_stats as cs
 
         payload = cs._finalize_one(_merge_accs(accs), version=version)
@@ -828,7 +828,9 @@ def build_and_store_payload() -> dict | None:
     finally:
         con.close()
 
-    payload = cs._finalize_one(_merge_accs(list(cube.values())))
+    payload = cs._finalize_one(
+        _merge_accs([_scope_records(k, a, None) for k, a in cube.items()])
+    )
     payload["data_through"] = data_through
     tmp = LAKE_DIR / (_PAYLOAD_PATH_NAME + ".tmp")
     tmp.write_text(json.dumps(payload, separators=(",", ":")))
@@ -849,6 +851,39 @@ def build_and_store_payload() -> dict | None:
         (LAKE_DIR / _CUBE_PATH_NAME).stat().st_size,
     )
     return payload
+
+
+RECORD_MODES = ("standard", "blitz", "dread")
+_RECORD_KEYS = ("fastest_win", "longest_run", "biggest_deck")
+
+
+def _records_sql(lake) -> str:
+    """Fastest win, longest run and biggest deck per cell, from the modes
+    that play by fixed rules. Daily and custom runs carry modifiers that
+    would hold a record forever."""
+    modes = ", ".join(f"'{m}'" for m in RECORD_MODES)
+    return (
+        "WITH rr AS (SELECT * FROM cells"
+        f" WHERE lower(game_mode) IN ({modes})"
+        " AND NOT has_modifiers)"
+        " SELECT cell, lower(rr.character),"
+        " min(run_time) FILTER (win AND run_time > 0),"
+        " arg_min(rr.run_hash, run_time) FILTER (win AND run_time > 0),"
+        " max(run_time) FILTER (run_time > 0),"
+        " arg_max(rr.run_hash, run_time) FILTER (run_time > 0),"
+        " max(p.deck_size), arg_max(p.run_hash, p.deck_size)"
+        f" FROM rr LEFT JOIN read_parquet('{lake}/players.parquet') p"
+        " ON rr.run_hash = p.run_hash GROUP BY 1, 2"
+    )
+
+
+def _scope_records(cell_id: str, acc: dict, mode: str | None) -> dict:
+    """A bracket that spans every mode keeps only the standard records, so a
+    short Blitz win never becomes the all-modes fastest win. A bracket that
+    names a mode shows that mode's own."""
+    if mode is not None or cell_id.split("|", 1)[0] == "standard":
+        return acc
+    return {**acc, **{key: None for key in _RECORD_KEYS}}
 
 
 def _acc_to_json(acc: dict) -> dict:
@@ -1093,16 +1128,7 @@ def _build_community_cube() -> dict[str, dict]:
             acc["reward_skips"] = skips
 
         for cell, char, fw, fwh, lr, lrh, bd, bdh in con.execute(
-            "WITH rr AS (SELECT * FROM cells WHERE game_mode = 'standard'"
-            " AND NOT has_modifiers)"
-            " SELECT cell, lower(rr.character),"
-            " min(run_time) FILTER (win AND run_time > 0),"
-            " arg_min(rr.run_hash, run_time) FILTER (win AND run_time > 0),"
-            " max(run_time) FILTER (run_time > 0),"
-            " arg_max(rr.run_hash, run_time) FILTER (run_time > 0),"
-            " max(p.deck_size), arg_max(p.run_hash, p.deck_size)"
-            f" FROM rr LEFT JOIN read_parquet('{lake}/players.parquet') p"
-            " ON rr.run_hash = p.run_hash GROUP BY 1, 2"
+            _records_sql(lake)
         ).fetchall():
             acc = acc_for(cell, char)
             if fw is not None:
