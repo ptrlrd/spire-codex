@@ -160,109 +160,508 @@
     },
     "merchant_entries": [
       {
-        "id": "CARD_ENCHANT",
-        "name": "Enchantment",
-        "description": "[gold]Encanta[/gold] una carta con [purple]Enchantment[/purple]."
-      },
-      {
-        "id": "CARD_PACKS",
-        "name": "Paquetes de cartas",
-        "description": "Elige [blue]1[/blue] de entre [blue]2[/blue] paquetes de cartas y añádelo a tu [gold]Mazo[/gold]."
-      },
-      {
-        "id": "CARD_REMOVAL",
-        "name": "Servicio de eliminación de cartas",
-        "description": "Elimina una carta de tu [gold]Mazo[/gold]."
-      },
-      {
-        "id": "CARD_REWARD_OF_EACH_RARITY",
-        "name": "Recompensa de cartas maldita",
-        "description": "Recibe [red]1[/red] [red]Maldición[/red] aleatoria.\nRecibe [blue]1[/blue] recompensa de cartas [gold]común[/gold], [gold]infrecuente[/gold] y [gold]rara[/gold]."
-      },
-      {
-        "id": "CARD_REWARDS",
-        "name": "Recompensas de cartas",
-        "description": "Recibe [blue]2[/blue] recompensas de cartas."
-      },
-      {
-        "id": "CARD_TRANSFORM",
-        "name": "Servicio de transformación de cartas",
-        "description": "[gold]Transforma[/gold] una carta de tu [gold]Mazo[/gold]."
-      },
-      {
         "id": "CARD_UPGRADE",
         "name": "Servicio de mejora de cartas",
-        "description": "[gold]Mejora[/gold] una carta de tu [gold]Mazo[/gold]."
-      },
-      {
-        "id": "COLORLESS_CARD_REWARD",
-        "name": "Recompensa de cartas incolora",
-        "description": "Recibe [blue]1[/blue] recompensa de cartas [gold]Incolora[/gold]."
-      },
-      {
-        "id": "ENCHANTED_CARD_REWARD",
-        "name": "Recompensa de cartas encantadas",
-        "description": "Recibe [blue]1[/blue] recompensa de cartas [gold]Encantada[/gold]."
-      },
-      {
-        "id": "FULL_HEAL_AND_MAX_HP",
-        "name": "Curación maldita",
-        "description": "Recibe [red]1[/red] [red]Maldición[/red] aleatoria.\nAumenta tus PV máx. en [blue]6[/blue] y recupera todos tus PV."
-      },
-      {
-        "id": "GLAM",
-        "name": "Enchantment con Maldición",
-        "description": "Recibe [red]1[/red] [red]Maldición[/red] aleatoria.\n[gold]Encanta[/gold] una carta con [purple]Enchantment[/purple]."
-      },
-      {
-        "id": "POTIONS",
-        "name": "Pociones",
-        "description": "Gana [blue]1[/blue] espacio de poción y obtén [blue]2[/blue] pociones aleatorias."
-      },
-      {
-        "id": "PRISMATIC_CARD_REWARD",
-        "name": "Recompensa de cartas de Character",
-        "description": "Recibe [blue]1[/blue] recompensa de cartas de [gold]Character[/gold]."
-      },
-      {
-        "id": "RANDOM_UPGRADES",
-        "name": "Mejoras aleatorias",
-        "description": "Mejora [blue]2[/blue] cartas aleatorias de tu [gold]Mazo[/gold]."
-      },
-      {
-        "id": "RARE_CARD_REWARD",
-        "name": "Recompensa de cartas rara",
-        "description": "Recibe [blue]1[/blue] recompensa de cartas rara."
-      },
-      {
-        "id": "RELIC",
-        "name": "Reliquia",
-        "description": "Obtén [blue]1[/blue] [gold]Reliquia[/gold] aleatoria."
-      },
-      {
-        "id": "TWO_MORE_CHOICES",
-        "name": "Elecciones malditas",
-        "description": "Recibe [red]1[/red] [red]Maldición[/red] aleatoria.\nEl Comerciante te permite comprar dos artículos más."
-      },
-      {
-        "id": "TWO_RELICS",
-        "name": "Reliquias malditas",
-        "description": "Recibe [red]1[/red] [red]Maldición[/red] aleatoria.\nObtén [blue]2[/blue] [gold]Reliquias[/gold] aleatorias."
+        "description": "[gold]Mejora[/gold] una carta de tu [gold]Mazo[/gold].",
+        "cursed": false,
+        "rare": false
       },
       {
         "id": "UPGRADED_CARD_REWARD",
         "name": "Recompensa de cartas mejorada",
-        "description": "Recibe [blue]1[/blue] recompensa de cartas [gold]Mejorada[/gold]."
+        "description": "Recibe [blue]1[/blue] recompensa de cartas [gold]Mejorada[/gold].",
+        "cursed": false,
+        "rare": false
+      },
+      {
+        "id": "RANDOM_UPGRADES",
+        "name": "Mejoras aleatorias",
+        "description": "Mejora [blue]2[/blue] cartas aleatorias de tu [gold]Mazo[/gold].",
+        "cursed": false,
+        "rare": false
+      },
+      {
+        "id": "CARD_TRANSFORM",
+        "name": "Servicio de transformación de cartas",
+        "description": "[gold]Transforma[/gold] una carta de tu [gold]Mazo[/gold].",
+        "cursed": false,
+        "rare": false
+      },
+      {
+        "id": "CARD_REMOVAL",
+        "name": "Servicio de eliminación de cartas",
+        "description": "Elimina una carta de tu [gold]Mazo[/gold].",
+        "cursed": false,
+        "rare": false
+      },
+      {
+        "id": "CARD_REWARDS",
+        "name": "Recompensas de cartas",
+        "description": "Recibe [blue]2[/blue] recompensas de cartas.",
+        "cursed": false,
+        "rare": false
+      },
+      {
+        "id": "COLORLESS_CARD_REWARD",
+        "name": "Recompensa de cartas incolora",
+        "description": "Recibe [blue]1[/blue] recompensa de cartas [gold]Incolora[/gold].",
+        "cursed": false,
+        "rare": false
+      },
+      {
+        "id": "POTIONS",
+        "name": "Pociones",
+        "description": "Gana [blue]1[/blue] espacio de poción y obtén [blue]2[/blue] pociones aleatorias.",
+        "cursed": false,
+        "rare": false
+      },
+      {
+        "id": "CARD_ENCHANT",
+        "name": "Enchantment",
+        "description": "[gold]Encanta[/gold] una carta con [purple]Enchantment[/purple].",
+        "cursed": false,
+        "rare": false
+      },
+      {
+        "id": "ENCHANTED_CARD_REWARD",
+        "name": "Recompensa de cartas encantadas",
+        "description": "Recibe [blue]1[/blue] recompensa de cartas [gold]Encantada[/gold].",
+        "cursed": false,
+        "rare": false
+      },
+      {
+        "id": "PRISMATIC_CARD_REWARD",
+        "name": "Recompensa de cartas de Character",
+        "description": "Recibe [blue]1[/blue] recompensa de cartas de [gold]Character[/gold].",
+        "cursed": false,
+        "rare": true
+      },
+      {
+        "id": "RARE_CARD_REWARD",
+        "name": "Recompensa de cartas rara",
+        "description": "Recibe [blue]1[/blue] recompensa de cartas rara.",
+        "cursed": false,
+        "rare": true
       },
       {
         "id": "UPGRADED_RARE_CARD",
         "name": "Carta rara mejorada",
-        "description": "Recibe [blue]1[/blue] carta rara [gold]Mejorada[/gold] aleatoria."
+        "description": "Recibe [blue]1[/blue] carta rara [gold]Mejorada[/gold] aleatoria.",
+        "cursed": false,
+        "rare": true
+      },
+      {
+        "id": "RELIC",
+        "name": "Reliquia",
+        "description": "Obtén [blue]1[/blue] [gold]Reliquia[/gold] aleatoria.",
+        "cursed": false,
+        "rare": false
+      },
+      {
+        "id": "GLAM",
+        "name": "Glamour con Maldición",
+        "description": "Recibe [red]1[/red] [red]Maldición[/red] aleatoria.\n[gold]Encanta[/gold] una carta con [purple]Glamour[/purple].",
+        "cursed": true,
+        "rare": false
+      },
+      {
+        "id": "TWO_MORE_CHOICES",
+        "name": "Elecciones malditas",
+        "description": "Recibe [red]1[/red] [red]Maldición[/red] aleatoria.\nEl Comerciante te permite comprar dos artículos más.",
+        "cursed": true,
+        "rare": false
+      },
+      {
+        "id": "CARD_REWARD_OF_EACH_RARITY",
+        "name": "Recompensa de cartas maldita",
+        "description": "Recibe [red]1[/red] [red]Maldición[/red] aleatoria.\nRecibe [blue]1[/blue] recompensa de cartas [gold]común[/gold], [gold]infrecuente[/gold] y [gold]rara[/gold].",
+        "cursed": true,
+        "rare": false
       },
       {
         "id": "UPGRADED_RARE_CARD_REWARD",
         "name": "Recompensa de cartas raras mejoradas maldita",
-        "description": "Recibe [red]1[/red] [red]Maldición[/red] aleatoria.\nRecibe [blue]1[/blue] recompensa de cartas raras [gold]Mejorada[/gold]."
+        "description": "Recibe [red]1[/red] [red]Maldición[/red] aleatoria.\nRecibe [blue]1[/blue] recompensa de cartas raras [gold]Mejorada[/gold].",
+        "cursed": true,
+        "rare": false
+      },
+      {
+        "id": "TWO_RELICS",
+        "name": "Reliquias malditas",
+        "description": "Recibe [red]1[/red] [red]Maldición[/red] aleatoria.\nObtén [blue]2[/blue] [gold]Reliquias[/gold] aleatorias.",
+        "cursed": true,
+        "rare": false
+      },
+      {
+        "id": "FULL_HEAL_AND_MAX_HP",
+        "name": "Curación maldita",
+        "description": "Recibe [red]1[/red] [red]Maldición[/red] aleatoria.\nAumenta tus PV máx. en [blue]6[/blue] y recupera todos tus PV.",
+        "cursed": true,
+        "rare": false
+      }
+    ],
+    "act_layout": [
+      "ANCIENT",
+      "MONSTER",
+      "MONSTER",
+      "SHOP",
+      "ELITE",
+      "TREASURE",
+      "REST_SITE",
+      "BOSS"
+    ],
+    "act_rooms": [
+      {
+        "type": "ANCIENT",
+        "name": "Antiguo"
+      },
+      {
+        "type": "MONSTER",
+        "name": "Enemigo"
+      },
+      {
+        "type": "MONSTER",
+        "name": "Enemigo"
+      },
+      {
+        "type": "SHOP",
+        "name": "Comerciante"
+      },
+      {
+        "type": "ELITE",
+        "name": "Élite"
+      },
+      {
+        "type": "TREASURE",
+        "name": "Tesoro"
+      },
+      {
+        "type": "REST_SITE",
+        "name": "Descanso"
+      },
+      {
+        "type": "BOSS",
+        "name": "Jefe"
+      }
+    ],
+    "floors_per_act": 8,
+    "encounters_per_act": 4,
+    "neow_details": {
+      "cards_offered": 10,
+      "cards_picked": 3,
+      "rarity_odds": {
+        "common": 0.55,
+        "uncommon": 0.4,
+        "rare": 0.05
+      },
+      "prompt": "Selecciona [blue]3[/blue] cartas para añadirlas a tu Mazo."
+    },
+    "merchant": {
+      "offers_shown": 6,
+      "normal_offers_shown": 5,
+      "cursed_offers_shown": 1,
+      "picks": 3,
+      "rare_offer_weight": 0.5,
+      "card_rarity_odds": {
+        "common": 0.4,
+        "uncommon": 0.5,
+        "rare": 0.1
+      },
+      "enchantments": [
+        {
+          "id": "SHARP",
+          "name": "Filo",
+          "amount": 2
+        },
+        {
+          "id": "NIMBLE",
+          "name": "Agilidad",
+          "amount": 3
+        },
+        {
+          "id": "ADROIT",
+          "name": "Hábil",
+          "amount": 3
+        },
+        {
+          "id": "STEADY",
+          "name": "Firmeza",
+          "amount": 1
+        },
+        {
+          "id": "SWIFT",
+          "name": "Rapidez",
+          "amount": 2
+        },
+        {
+          "id": "VIGOROUS",
+          "name": "Robustez",
+          "amount": 5
+        }
+      ]
+    },
+    "rewards": [
+      {
+        "room": "MONSTER",
+        "card_rarity": "Common",
+        "card_choices": 3,
+        "relics": 0,
+        "potion": "after_first_fight",
+        "room_name": "Enemigo"
+      },
+      {
+        "room": "ELITE",
+        "card_rarity": "Uncommon",
+        "card_choices": 3,
+        "relics": 2,
+        "potion": null,
+        "room_name": "Élite"
+      },
+      {
+        "room": "BOSS",
+        "card_rarity": "Rare",
+        "card_choices": 3,
+        "relics": 0,
+        "potion": "always",
+        "final_boss": false,
+        "room_name": "Jefe"
+      }
+    ],
+    "reward_upgrades_by_act": [
+      0,
+      1,
+      2
+    ],
+    "treasure_extra_relics": {
+      "multiplayer": 2,
+      "singleplayer": 1
+    },
+    "ascension_ladder": [
+      {
+        "level": 1,
+        "id": "WEARY_TRAVELER",
+        "name": "Viaje agotador",
+        "description": "Los Antiguos solo curan un [blue]80 %[/blue] de los PV que has perdido."
+      },
+      {
+        "level": 2,
+        "id": "TIGHT_BELT",
+        "name": "Cinturón apretado",
+        "description": "Comienza la partida con [blue]1[/blue] espacio de poción menos."
+      },
+      {
+        "level": 3,
+        "id": "TOUGH_ENEMIES",
+        "name": "Enemigos resistentes",
+        "description": "Todos los enemigos son más resistentes."
+      },
+      {
+        "level": 4,
+        "id": "DEADLY_ENEMIES",
+        "name": "Enemigos letales",
+        "description": "Todos los enemigos tienen ataques más poderosos."
+      },
+      {
+        "level": 5,
+        "id": "ASCENDERS_BANE",
+        "name": "Perdición del ascendente",
+        "description": "Comienza la partida con una [red]Maldición[/red]."
+      }
+    ],
+    "banned_cards": [
+      {
+        "id": "DEBT",
+        "name": "Deuda"
+      },
+      {
+        "id": "HAND_OF_GREED",
+        "name": "Mano avariciosa"
+      },
+      {
+        "id": "MY_SHINIES",
+        "name": "Mi tesoro"
+      },
+      {
+        "id": "ROYALTIES",
+        "name": "Diezmo"
+      }
+    ],
+    "banned_relics": [
+      {
+        "id": "AMETHYST_AUBERGINE",
+        "name": "Berenjena de amatista"
+      },
+      {
+        "id": "BLACK_STAR",
+        "name": "Estrella negra"
+      },
+      {
+        "id": "BOOK_OF_FIVE_RINGS",
+        "name": "El libro de los cinco anillos"
+      },
+      {
+        "id": "BOWLER_HAT",
+        "name": "Bombín"
+      },
+      {
+        "id": "CURSED_PEARL",
+        "name": "Perla maldita"
+      },
+      {
+        "id": "DOWSING_ROD",
+        "name": "Vara de zahorí"
+      },
+      {
+        "id": "DRAGON_FRUIT",
+        "name": "Fruta de dragón"
+      },
+      {
+        "id": "DREAM_CATCHER",
+        "name": "Atrapasueños"
+      },
+      {
+        "id": "DRIFTWOOD",
+        "name": "Madera de naufragio"
+      },
+      {
+        "id": "ECTOPLASM",
+        "name": "Ectoplasma"
+      },
+      {
+        "id": "ETERNAL_FEATHER",
+        "name": "Pluma eterna"
+      },
+      {
+        "id": "FISHING_ROD",
+        "name": "Caña de pescar"
+      },
+      {
+        "id": "FUR_COAT",
+        "name": "Abrigo de piel"
+      },
+      {
+        "id": "GIRYA",
+        "name": "Girya"
+      },
+      {
+        "id": "GOLDEN_COMPASS",
+        "name": "Brújula dorada"
+      },
+      {
+        "id": "GOLDEN_PEARL",
+        "name": "Perla dorada"
+      },
+      {
+        "id": "JUZU_BRACELET",
+        "name": "Brazalete juzu"
+      },
+      {
+        "id": "LASTING_CANDY",
+        "name": "Caramelo duradero"
+      },
+      {
+        "id": "LORDS_PARASOL",
+        "name": "Sombrilla del Señor"
+      },
+      {
+        "id": "LUCKY_FYSH",
+        "name": "Peth de la suerte"
+      },
+      {
+        "id": "MAW_BANK",
+        "name": "Hucha de fauces"
+      },
+      {
+        "id": "MEAL_TICKET",
+        "name": "Cupón de restaurante"
+      },
+      {
+        "id": "MEAT_CLEAVER",
+        "name": "Cuchillo de carnicero"
+      },
+      {
+        "id": "MEMBERSHIP_CARD",
+        "name": "Carné de socio"
+      },
+      {
+        "id": "MINIATURE_TENT",
+        "name": "Minitienda de campaña"
+      },
+      {
+        "id": "OLD_COIN",
+        "name": "Moneda antigua"
+      },
+      {
+        "id": "PAELS_CLAW",
+        "name": "Garra de Pael"
+      },
+      {
+        "id": "PAELS_GROWTH",
+        "name": "Tumor de Pael"
+      },
+      {
+        "id": "PAELS_WING",
+        "name": "Ala de Pael"
+      },
+      {
+        "id": "PLANISPHERE",
+        "name": "Planisferio"
+      },
+      {
+        "id": "PRAYER_WHEEL",
+        "name": "Rueda de oración"
+      },
+      {
+        "id": "PUMPKIN_CANDLE",
+        "name": "Vela de calabaza"
+      },
+      {
+        "id": "REGAL_PILLOW",
+        "name": "Almohada real"
+      },
+      {
+        "id": "SEAL_OF_GOLD",
+        "name": "Sello de oro"
+      },
+      {
+        "id": "SHOVEL",
+        "name": "Pala"
+      },
+      {
+        "id": "SIGNET_RING",
+        "name": "Anillo de sello"
+      },
+      {
+        "id": "SILKEN_TRESS",
+        "name": "Mechón sedoso"
+      },
+      {
+        "id": "STONE_HUMIDIFIER",
+        "name": "Humidificador de piedra"
+      },
+      {
+        "id": "THE_COURIER",
+        "name": "Repartidor"
+      },
+      {
+        "id": "TINY_MAILBOX",
+        "name": "Buzón diminuto"
+      },
+      {
+        "id": "TOY_BOX",
+        "name": "Caja de juguetes"
+      },
+      {
+        "id": "VENERABLE_TEA_SET",
+        "name": "Set de té venerable"
+      },
+      {
+        "id": "WHITE_BEAST_STATUE",
+        "name": "Estatua de bestia blanca"
+      },
+      {
+        "id": "WINGED_BOOTS",
+        "name": "Botas aladas"
       }
     ]
   }

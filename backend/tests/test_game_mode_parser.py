@@ -105,7 +105,24 @@ def test_dread_carries_rules_dominions_and_streak(tmp_path):
     assert dread["rotating_streak"]["name"] == "Rotating Streak"
 
 
-def test_blitz_carries_rules_neow_and_merchant(tmp_path):
+def test_blitz_carries_rules_neow_and_merchant(tmp_path, monkeypatch):
+    import blitz_mode
+
+    types = tmp_path / "BlitzMerchantEntryType.cs"
+    types.write_text(
+        "public enum BlitzMerchantEntryType\n{\n\tRelic,\n\tGlam,\n\tCardPacks\n}\n"
+    )
+    entry = tmp_path / "BlitzMerchantEntry.cs"
+    entry.write_text(
+        "public const BlitzMerchantEntryType firstCursedOption ="
+        " BlitzMerchantEntryType.Glam;\n"
+    )
+    (tmp_path / "BlitzMerchantGlamEntry.cs").write_text(
+        "EnchantmentModel e = ModelDb.Enchantment<Glam>();"
+    )
+    monkeypatch.setattr(blitz_mode, "ENTRY_TYPE_FILE", types)
+    monkeypatch.setattr(blitz_mode, "ENTRY_FILE", entry)
+    monkeypatch.setattr(blitz_mode, "MERCHANT_DIR", tmp_path)
     (blitz,) = game_mode_parser.parse_game_modes(_loc(tmp_path), ["BLITZ"])
     assert blitz["name"] == "Blitz"
     assert blitz["rules"] == ["Receive cards.", "There's no map."]
@@ -114,11 +131,19 @@ def test_blitz_carries_rules_neow_and_merchant(tmp_path):
     assert blitz["intro"] == "Welcome!"
     assert blitz["merchant_entries"] == [
         {
-            "id": "GLAM",
-            "name": "Cursed Enchantment",
-            "description": "Enchant a card with [purple]Enchantment[/purple].",
+            "id": "RELIC",
+            "name": "Relic",
+            "description": "Obtain 1 random Relic.",
+            "cursed": False,
+            "rare": False,
         },
-        {"id": "RELIC", "name": "Relic", "description": "Obtain 1 random Relic."},
+        {
+            "id": "GLAM",
+            "name": "Cursed Glam",
+            "description": "Enchant a card with [purple]Glam[/purple].",
+            "cursed": True,
+            "rare": False,
+        },
     ]
 
 

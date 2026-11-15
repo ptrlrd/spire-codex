@@ -160,109 +160,508 @@
     },
     "merchant_entries": [
       {
-        "id": "CARD_ENCHANT",
-        "name": "Enchantment",
-        "description": "[gold]Envoûtez[/gold] une carte avec [purple]Enchantment[/purple]."
-      },
-      {
-        "id": "CARD_PACKS",
-        "name": "Paquets de cartes",
-        "description": "Choisissez parmi [blue]2[/blue] paquets de cartes à ajouter à votre [gold]Deck[/gold]."
-      },
-      {
-        "id": "CARD_REMOVAL",
-        "name": "Service de retrait de cartes",
-        "description": "Retirez une carte de votre [gold]Deck[/gold]."
-      },
-      {
-        "id": "CARD_REWARD_OF_EACH_RARITY",
-        "name": "Récompense de carte maudite",
-        "description": "Recevez [red]1[/red] [red]Malédiction[/red] aléatoire.\nRecevez [blue]1[/blue] récompense de carte [gold]Commune[/gold], [blue]1[/blue] [gold]Inhabituelle[/gold], et [blue]1[/blue] [gold]Rare[/gold]."
-      },
-      {
-        "id": "CARD_REWARDS",
-        "name": "Récompenses de carte",
-        "description": "Recevez [blue]2[/blue] récompenses de carte."
-      },
-      {
-        "id": "CARD_TRANSFORM",
-        "name": "Service de transformation de carte",
-        "description": "[gold]Transformez[/gold] une carte de votre [gold]Deck[/gold]."
-      },
-      {
         "id": "CARD_UPGRADE",
         "name": "Service d'amélioration de carte",
-        "description": "[gold]Améliorez[/gold] une carte de votre [gold]Deck[/gold]."
-      },
-      {
-        "id": "COLORLESS_CARD_REWARD",
-        "name": "Récompense de carte incolore",
-        "description": "Recevez [blue]1[/blue] récompense de carte [gold]Incolore[/gold]."
-      },
-      {
-        "id": "ENCHANTED_CARD_REWARD",
-        "name": "Récompense de carte envoûtée",
-        "description": "Recevez [blue]1[/blue] récompense de carte [gold]Envoûtée[/gold]."
-      },
-      {
-        "id": "FULL_HEAL_AND_MAX_HP",
-        "name": "Soins maudits",
-        "description": "Recevez [red]1[/red] [red]Malédiction[/red] aléatoire.\nAugmentez vos PV Max de [blue]6[/blue] et récupérez tous vos PV."
-      },
-      {
-        "id": "GLAM",
-        "name": "Enchantment maudit",
-        "description": "Recevez [red]1[/red] [red]Malédiction[/red] aléatoire.\n[gold]Envoûtez[/gold] une carte avec [purple]Enchantment[/purple]."
-      },
-      {
-        "id": "POTIONS",
-        "name": "Potions",
-        "description": "Gagnez [blue]1[/blue] emplacement de potion et obtenez [blue]2[/blue] potions aléatoires."
-      },
-      {
-        "id": "PRISMATIC_CARD_REWARD",
-        "name": "Récompense de carte Character",
-        "description": "Recevez [blue]1[/blue] récompense de carte [gold]Character[/gold]."
-      },
-      {
-        "id": "RANDOM_UPGRADES",
-        "name": "Améliorations aléatoires",
-        "description": "Améliorez [blue]2[/blue] cartes aléatoires de votre [gold]Deck[/gold]."
-      },
-      {
-        "id": "RARE_CARD_REWARD",
-        "name": "Récompense de carte rare",
-        "description": "Recevez [blue]1[/blue] récompense de carte rare."
-      },
-      {
-        "id": "RELIC",
-        "name": "Relique",
-        "description": "Obtenez [blue]1[/blue] [gold]Relique[/gold] aléatoire."
-      },
-      {
-        "id": "TWO_MORE_CHOICES",
-        "name": "Choix maudits",
-        "description": "Recevez [red]1[/red] [red]Malédiction[/red] aléatoire.\nLe Marchand vous permet d'acheter deux articles supplémentaires."
-      },
-      {
-        "id": "TWO_RELICS",
-        "name": "Reliques maudites",
-        "description": "Recevez [red]1[/red] [red]Malédiction[/red] aléatoire.\nObtenez [blue]2[/blue] [gold]Reliques[/gold] aléatoires."
+        "description": "[gold]Améliorez[/gold] une carte de votre [gold]Deck[/gold].",
+        "cursed": false,
+        "rare": false
       },
       {
         "id": "UPGRADED_CARD_REWARD",
         "name": "Récompense de carte améliorée",
-        "description": "Recevez [blue]1[/blue] récompense de carte [gold]Améliorée[/gold]."
+        "description": "Recevez [blue]1[/blue] récompense de carte [gold]Améliorée[/gold].",
+        "cursed": false,
+        "rare": false
+      },
+      {
+        "id": "RANDOM_UPGRADES",
+        "name": "Améliorations aléatoires",
+        "description": "Améliorez [blue]2[/blue] cartes aléatoires de votre [gold]Deck[/gold].",
+        "cursed": false,
+        "rare": false
+      },
+      {
+        "id": "CARD_TRANSFORM",
+        "name": "Service de transformation de carte",
+        "description": "[gold]Transformez[/gold] une carte de votre [gold]Deck[/gold].",
+        "cursed": false,
+        "rare": false
+      },
+      {
+        "id": "CARD_REMOVAL",
+        "name": "Service de retrait de cartes",
+        "description": "Retirez une carte de votre [gold]Deck[/gold].",
+        "cursed": false,
+        "rare": false
+      },
+      {
+        "id": "CARD_REWARDS",
+        "name": "Récompenses de carte",
+        "description": "Recevez [blue]2[/blue] récompenses de carte.",
+        "cursed": false,
+        "rare": false
+      },
+      {
+        "id": "COLORLESS_CARD_REWARD",
+        "name": "Récompense de carte incolore",
+        "description": "Recevez [blue]1[/blue] récompense de carte [gold]Incolore[/gold].",
+        "cursed": false,
+        "rare": false
+      },
+      {
+        "id": "POTIONS",
+        "name": "Potions",
+        "description": "Gagnez [blue]1[/blue] emplacement de potion et obtenez [blue]2[/blue] potions aléatoires.",
+        "cursed": false,
+        "rare": false
+      },
+      {
+        "id": "CARD_ENCHANT",
+        "name": "Enchantment",
+        "description": "[gold]Envoûtez[/gold] une carte avec [purple]Enchantment[/purple].",
+        "cursed": false,
+        "rare": false
+      },
+      {
+        "id": "ENCHANTED_CARD_REWARD",
+        "name": "Récompense de carte envoûtée",
+        "description": "Recevez [blue]1[/blue] récompense de carte [gold]Envoûtée[/gold].",
+        "cursed": false,
+        "rare": false
+      },
+      {
+        "id": "PRISMATIC_CARD_REWARD",
+        "name": "Récompense de carte Character",
+        "description": "Recevez [blue]1[/blue] récompense de carte [gold]Character[/gold].",
+        "cursed": false,
+        "rare": true
+      },
+      {
+        "id": "RARE_CARD_REWARD",
+        "name": "Récompense de carte rare",
+        "description": "Recevez [blue]1[/blue] récompense de carte rare.",
+        "cursed": false,
+        "rare": true
       },
       {
         "id": "UPGRADED_RARE_CARD",
         "name": "Carte rare améliorée",
-        "description": "Recevez [blue]1[/blue] carte rare [gold]Améliorée[/gold] aléatoire."
+        "description": "Recevez [blue]1[/blue] carte rare [gold]Améliorée[/gold] aléatoire.",
+        "cursed": false,
+        "rare": true
+      },
+      {
+        "id": "RELIC",
+        "name": "Relique",
+        "description": "Obtenez [blue]1[/blue] [gold]Relique[/gold] aléatoire.",
+        "cursed": false,
+        "rare": false
+      },
+      {
+        "id": "GLAM",
+        "name": "Glamour maudit",
+        "description": "Recevez [red]1[/red] [red]Malédiction[/red] aléatoire.\n[gold]Envoûtez[/gold] une carte avec [purple]Glamour[/purple].",
+        "cursed": true,
+        "rare": false
+      },
+      {
+        "id": "TWO_MORE_CHOICES",
+        "name": "Choix maudits",
+        "description": "Recevez [red]1[/red] [red]Malédiction[/red] aléatoire.\nLe Marchand vous permet d'acheter deux articles supplémentaires.",
+        "cursed": true,
+        "rare": false
+      },
+      {
+        "id": "CARD_REWARD_OF_EACH_RARITY",
+        "name": "Récompense de carte maudite",
+        "description": "Recevez [red]1[/red] [red]Malédiction[/red] aléatoire.\nRecevez [blue]1[/blue] récompense de carte [gold]Commune[/gold], [blue]1[/blue] [gold]Inhabituelle[/gold], et [blue]1[/blue] [gold]Rare[/gold].",
+        "cursed": true,
+        "rare": false
       },
       {
         "id": "UPGRADED_RARE_CARD_REWARD",
         "name": "Récompense de carte rare améliorée maudite",
-        "description": "Recevez [red]1[/red] [red]Malédiction[/red] aléatoire.\nRecevez [blue]1[/blue] récompense de carte rare [gold]Améliorée[/gold]."
+        "description": "Recevez [red]1[/red] [red]Malédiction[/red] aléatoire.\nRecevez [blue]1[/blue] récompense de carte rare [gold]Améliorée[/gold].",
+        "cursed": true,
+        "rare": false
+      },
+      {
+        "id": "TWO_RELICS",
+        "name": "Reliques maudites",
+        "description": "Recevez [red]1[/red] [red]Malédiction[/red] aléatoire.\nObtenez [blue]2[/blue] [gold]Reliques[/gold] aléatoires.",
+        "cursed": true,
+        "rare": false
+      },
+      {
+        "id": "FULL_HEAL_AND_MAX_HP",
+        "name": "Soins maudits",
+        "description": "Recevez [red]1[/red] [red]Malédiction[/red] aléatoire.\nAugmentez vos PV Max de [blue]6[/blue] et récupérez tous vos PV.",
+        "cursed": true,
+        "rare": false
+      }
+    ],
+    "act_layout": [
+      "ANCIENT",
+      "MONSTER",
+      "MONSTER",
+      "SHOP",
+      "ELITE",
+      "TREASURE",
+      "REST_SITE",
+      "BOSS"
+    ],
+    "act_rooms": [
+      {
+        "type": "ANCIENT",
+        "name": "Ancien"
+      },
+      {
+        "type": "MONSTER",
+        "name": "Ennemi"
+      },
+      {
+        "type": "MONSTER",
+        "name": "Ennemi"
+      },
+      {
+        "type": "SHOP",
+        "name": "Marchand"
+      },
+      {
+        "type": "ELITE",
+        "name": "Élite"
+      },
+      {
+        "type": "TREASURE",
+        "name": "Trésor"
+      },
+      {
+        "type": "REST_SITE",
+        "name": "Repos"
+      },
+      {
+        "type": "BOSS",
+        "name": "Boss"
+      }
+    ],
+    "floors_per_act": 8,
+    "encounters_per_act": 4,
+    "neow_details": {
+      "cards_offered": 10,
+      "cards_picked": 3,
+      "rarity_odds": {
+        "common": 0.55,
+        "uncommon": 0.4,
+        "rare": 0.05
+      },
+      "prompt": "Choisissez [blue]3[/blue] cartes à ajouter à votre Deck."
+    },
+    "merchant": {
+      "offers_shown": 6,
+      "normal_offers_shown": 5,
+      "cursed_offers_shown": 1,
+      "picks": 3,
+      "rare_offer_weight": 0.5,
+      "card_rarity_odds": {
+        "common": 0.4,
+        "uncommon": 0.5,
+        "rare": 0.1
+      },
+      "enchantments": [
+        {
+          "id": "SHARP",
+          "name": "Tranchant",
+          "amount": 2
+        },
+        {
+          "id": "NIMBLE",
+          "name": "Agilité",
+          "amount": 3
+        },
+        {
+          "id": "ADROIT",
+          "name": "Adroit",
+          "amount": 3
+        },
+        {
+          "id": "STEADY",
+          "name": "Stabilité",
+          "amount": 1
+        },
+        {
+          "id": "SWIFT",
+          "name": "Célérité",
+          "amount": 2
+        },
+        {
+          "id": "VIGOROUS",
+          "name": "Vigoureux",
+          "amount": 5
+        }
+      ]
+    },
+    "rewards": [
+      {
+        "room": "MONSTER",
+        "card_rarity": "Common",
+        "card_choices": 3,
+        "relics": 0,
+        "potion": "after_first_fight",
+        "room_name": "Ennemi"
+      },
+      {
+        "room": "ELITE",
+        "card_rarity": "Uncommon",
+        "card_choices": 3,
+        "relics": 2,
+        "potion": null,
+        "room_name": "Élite"
+      },
+      {
+        "room": "BOSS",
+        "card_rarity": "Rare",
+        "card_choices": 3,
+        "relics": 0,
+        "potion": "always",
+        "final_boss": false,
+        "room_name": "Boss"
+      }
+    ],
+    "reward_upgrades_by_act": [
+      0,
+      1,
+      2
+    ],
+    "treasure_extra_relics": {
+      "multiplayer": 2,
+      "singleplayer": 1
+    },
+    "ascension_ladder": [
+      {
+        "level": 1,
+        "id": "WEARY_TRAVELER",
+        "name": "Voyageur fatigué",
+        "description": "Les Anciens ne soignent plus que [blue]80%[/blue] de vos PV manquants."
+      },
+      {
+        "level": 2,
+        "id": "TIGHT_BELT",
+        "name": "Ceinture serrée",
+        "description": "Chaque partie commence avec [blue]1[/blue] emplacement de potion en moins."
+      },
+      {
+        "level": 3,
+        "id": "TOUGH_ENEMIES",
+        "name": "Ennemis coriaces",
+        "description": "Tous les ennemis sont plus difficiles à vaincre."
+      },
+      {
+        "level": 4,
+        "id": "DEADLY_ENEMIES",
+        "name": "Ennemis meurtriers",
+        "description": "Les ennemis possèdent des attaques plus dangereuses."
+      },
+      {
+        "level": 5,
+        "id": "ASCENDERS_BANE",
+        "name": "Fléau de l'ascendant",
+        "description": "Chaque partie commence avec une [red]Malédiction[/red]."
+      }
+    ],
+    "banned_cards": [
+      {
+        "id": "DEBT",
+        "name": "Dette"
+      },
+      {
+        "id": "HAND_OF_GREED",
+        "name": "Main de la cupidité"
+      },
+      {
+        "id": "MY_SHINIES",
+        "name": "Mes précieux"
+      },
+      {
+        "id": "ROYALTIES",
+        "name": "Royalties"
+      }
+    ],
+    "banned_relics": [
+      {
+        "id": "AMETHYST_AUBERGINE",
+        "name": "Aubergine d'améthyste"
+      },
+      {
+        "id": "BLACK_STAR",
+        "name": "Étoile noire"
+      },
+      {
+        "id": "BOOK_OF_FIVE_RINGS",
+        "name": "Livre des cinq anneaux"
+      },
+      {
+        "id": "BOWLER_HAT",
+        "name": "Chapeau melon"
+      },
+      {
+        "id": "CURSED_PEARL",
+        "name": "Perle maudite"
+      },
+      {
+        "id": "DOWSING_ROD",
+        "name": "Bâton de rhabdomancie"
+      },
+      {
+        "id": "DRAGON_FRUIT",
+        "name": "Fruit du dragon"
+      },
+      {
+        "id": "DREAM_CATCHER",
+        "name": "Attrape-rêves"
+      },
+      {
+        "id": "DRIFTWOOD",
+        "name": "Bois flotté"
+      },
+      {
+        "id": "ECTOPLASM",
+        "name": "Ectoplasme"
+      },
+      {
+        "id": "ETERNAL_FEATHER",
+        "name": "Plume éternelle"
+      },
+      {
+        "id": "FISHING_ROD",
+        "name": "Canne à pêche"
+      },
+      {
+        "id": "FUR_COAT",
+        "name": "Manteau de fourrure"
+      },
+      {
+        "id": "GIRYA",
+        "name": "Girya"
+      },
+      {
+        "id": "GOLDEN_COMPASS",
+        "name": "Boussole dorée"
+      },
+      {
+        "id": "GOLDEN_PEARL",
+        "name": "Perle dorée"
+      },
+      {
+        "id": "JUZU_BRACELET",
+        "name": "Bracelet Juzu"
+      },
+      {
+        "id": "LASTING_CANDY",
+        "name": "Bonbon durable"
+      },
+      {
+        "id": "LORDS_PARASOL",
+        "name": "Parasol seigneurial"
+      },
+      {
+        "id": "LUCKY_FYSH",
+        "name": "Poisson chanceux"
+      },
+      {
+        "id": "MAW_BANK",
+        "name": "Tirelire-gueule"
+      },
+      {
+        "id": "MEAL_TICKET",
+        "name": "Ticket restaurant"
+      },
+      {
+        "id": "MEAT_CLEAVER",
+        "name": "Couperet à viande"
+      },
+      {
+        "id": "MEMBERSHIP_CARD",
+        "name": "Carte de fidélité"
+      },
+      {
+        "id": "MINIATURE_TENT",
+        "name": "Tente miniature"
+      },
+      {
+        "id": "OLD_COIN",
+        "name": "Pièce antique"
+      },
+      {
+        "id": "PAELS_CLAW",
+        "name": "Griffe de Paël"
+      },
+      {
+        "id": "PAELS_GROWTH",
+        "name": "Excroissance de Paël"
+      },
+      {
+        "id": "PAELS_WING",
+        "name": "Aile de Paël"
+      },
+      {
+        "id": "PLANISPHERE",
+        "name": "Planisphère"
+      },
+      {
+        "id": "PRAYER_WHEEL",
+        "name": "Moulin à prières"
+      },
+      {
+        "id": "PUMPKIN_CANDLE",
+        "name": "Lanterne-citrouille"
+      },
+      {
+        "id": "REGAL_PILLOW",
+        "name": "Oreiller royal"
+      },
+      {
+        "id": "SEAL_OF_GOLD",
+        "name": "Sceau doré"
+      },
+      {
+        "id": "SHOVEL",
+        "name": "Pelle"
+      },
+      {
+        "id": "SIGNET_RING",
+        "name": "Anneau à signet"
+      },
+      {
+        "id": "SILKEN_TRESS",
+        "name": "Tresse soyeuse"
+      },
+      {
+        "id": "STONE_HUMIDIFIER",
+        "name": "Humidificateur en pierre"
+      },
+      {
+        "id": "THE_COURIER",
+        "name": "Le Coursier"
+      },
+      {
+        "id": "TINY_MAILBOX",
+        "name": "Minuscule boîte aux lettres"
+      },
+      {
+        "id": "TOY_BOX",
+        "name": "Caisse à jouets"
+      },
+      {
+        "id": "VENERABLE_TEA_SET",
+        "name": "Service à thé vénérable"
+      },
+      {
+        "id": "WHITE_BEAST_STATUE",
+        "name": "Statue de bête blanche"
+      },
+      {
+        "id": "WINGED_BOOTS",
+        "name": "Bottes ailées"
       }
     ]
   }

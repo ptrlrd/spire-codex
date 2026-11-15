@@ -462,6 +462,70 @@ class GameModeEntry(BaseModel):
     description: str
 
 
+class GameModeOffer(GameModeEntry):
+    cursed: bool | None = None
+    rare: bool | None = None
+
+
+class GameModeNamed(BaseModel):
+    id: str
+    name: str
+
+
+class GameModeRoom(BaseModel):
+    type: str
+    name: str
+
+
+class RarityOdds(BaseModel):
+    common: float
+    uncommon: float
+    rare: float
+
+
+class GameModeNeowDetails(BaseModel):
+    cards_offered: int | None = None
+    cards_picked: int | None = None
+    rarity_odds: RarityOdds | None = None
+    prompt: str | None = None
+
+
+class GameModeEnchantment(GameModeNamed):
+    amount: int
+
+
+class GameModeMerchant(BaseModel):
+    offers_shown: int | None = None
+    normal_offers_shown: int | None = None
+    cursed_offers_shown: int | None = None
+    picks: int | None = None
+    rare_offer_weight: float | None = None
+    card_rarity_odds: RarityOdds | None = None
+    enchantments: list[GameModeEnchantment] | None = None
+
+
+class GameModeReward(BaseModel):
+    room: str
+    room_name: str | None = None
+    card_rarity: str
+    card_choices: int | None = None
+    relics: int = 0
+    potion: str | None = None
+    final_boss: bool | None = None
+
+
+class GameModeTreasure(BaseModel):
+    singleplayer: int
+    multiplayer: int
+
+
+class GameModeAscensionStep(BaseModel):
+    level: int
+    id: str
+    name: str
+    description: str | None = None
+
+
 class GameModeDominion(BaseModel):
     id: str
     encounter_id: str | None = None
@@ -483,9 +547,21 @@ class GameMode(BaseModel):
     max_ascension: int | None = None
     ascension_levels: list[str] | None = None
     neow: GameModeEntry | None = None
-    merchant_entries: list[GameModeEntry] | None = None
+    merchant_entries: list[GameModeOffer] | None = None
     dominions: list[GameModeDominion] | None = None
     rotating_streak: GameModeEntry | None = None
+    act_layout: list[str] | None = None
+    act_rooms: list[GameModeRoom] | None = None
+    floors_per_act: int | None = None
+    encounters_per_act: int | None = None
+    neow_details: GameModeNeowDetails | None = None
+    merchant: GameModeMerchant | None = None
+    rewards: list[GameModeReward] | None = None
+    reward_upgrades_by_act: list[int] | None = None
+    treasure_extra_relics: GameModeTreasure | None = None
+    ascension_ladder: list[GameModeAscensionStep] | None = None
+    banned_cards: list[GameModeNamed] | None = None
+    banned_relics: list[GameModeNamed] | None = None
 
 
 class Achievement(BaseModel):

@@ -160,109 +160,508 @@
     },
     "merchant_entries": [
       {
-        "id": "CARD_ENCHANT",
-        "name": "Enchantment",
-        "description": "[gold]Enchant[/gold] a card with [purple]Enchantment[/purple]."
-      },
-      {
-        "id": "CARD_PACKS",
-        "name": "Card Packs",
-        "description": "Choose [blue]1[/blue] of [blue]2[/blue] packs of cards to add to your [gold]Deck[/gold]."
-      },
-      {
-        "id": "CARD_REMOVAL",
-        "name": "Card Removal Service",
-        "description": "Remove a card from your [gold]Deck[/gold]."
-      },
-      {
-        "id": "CARD_REWARD_OF_EACH_RARITY",
-        "name": "Cursed Card Rewards",
-        "description": "Receive [red]1[/red] random [red]Curse[/red].\nReceive [blue]1[/blue] [gold]Common[/gold], [gold]Uncommon[/gold] and [gold]Rare[/gold] card reward."
-      },
-      {
-        "id": "CARD_REWARDS",
-        "name": "Card Rewards",
-        "description": "Receive [blue]2[/blue] card rewards."
-      },
-      {
-        "id": "CARD_TRANSFORM",
-        "name": "Card Transform Service",
-        "description": "[gold]Transform[/gold] a card in your [gold]Deck[/gold]."
-      },
-      {
         "id": "CARD_UPGRADE",
         "name": "Card Upgrade Service",
-        "description": "[gold]Upgrade[/gold] a card in your [gold]Deck[/gold]."
-      },
-      {
-        "id": "COLORLESS_CARD_REWARD",
-        "name": "Colorless Card Reward",
-        "description": "Receive [blue]1[/blue] [gold]Colorless[/gold] card reward."
-      },
-      {
-        "id": "ENCHANTED_CARD_REWARD",
-        "name": "Enchanted Card Reward",
-        "description": "Receive [blue]1[/blue] [gold]Enchanted[/gold] card reward."
-      },
-      {
-        "id": "FULL_HEAL_AND_MAX_HP",
-        "name": "Cursed Heal",
-        "description": "Receive [red]1[/red] random [red]Curse[/red].\nRaise your Max HP by [blue]6[/blue] and heal all of your HP."
-      },
-      {
-        "id": "GLAM",
-        "name": "Cursed Enchantment",
-        "description": "Receive [red]1[/red] random [red]Curse[/red].\n[gold]Enchant[/gold] a card with [purple]Enchantment[/purple]."
-      },
-      {
-        "id": "POTIONS",
-        "name": "Potions",
-        "description": "Gain [blue]1[/blue] potion slot and procure [blue]2[/blue] random potions."
-      },
-      {
-        "id": "PRISMATIC_CARD_REWARD",
-        "name": "Character Card Reward",
-        "description": "Receive [blue]1[/blue] [gold]Character[/gold] card reward."
-      },
-      {
-        "id": "RANDOM_UPGRADES",
-        "name": "Random Upgrades",
-        "description": "Upgrade [blue]2[/blue] random cards in your [gold]Deck[/gold]."
-      },
-      {
-        "id": "RARE_CARD_REWARD",
-        "name": "Rare Card Reward",
-        "description": "Receive [blue]1[/blue] rare card reward."
-      },
-      {
-        "id": "RELIC",
-        "name": "Relic",
-        "description": "Obtain [blue]1[/blue] random [gold]Relic[/gold]."
-      },
-      {
-        "id": "TWO_MORE_CHOICES",
-        "name": "Cursed Choices",
-        "description": "Receive [red]1[/red] random [red]Curse[/red].\nThe Merchant allows you to purchase two more wares."
-      },
-      {
-        "id": "TWO_RELICS",
-        "name": "Cursed Relics",
-        "description": "Receive [red]1[/red] random [red]Curse[/red].\nObtain [blue]2[/blue] random [gold]Relics[/gold]."
+        "description": "[gold]Upgrade[/gold] a card in your [gold]Deck[/gold].",
+        "cursed": false,
+        "rare": false
       },
       {
         "id": "UPGRADED_CARD_REWARD",
         "name": "Upgraded Card Reward",
-        "description": "Receive [blue]1[/blue] [gold]Upgraded[/gold] card reward."
+        "description": "Receive [blue]1[/blue] [gold]Upgraded[/gold] card reward.",
+        "cursed": false,
+        "rare": false
+      },
+      {
+        "id": "RANDOM_UPGRADES",
+        "name": "Random Upgrades",
+        "description": "Upgrade [blue]2[/blue] random cards in your [gold]Deck[/gold].",
+        "cursed": false,
+        "rare": false
+      },
+      {
+        "id": "CARD_TRANSFORM",
+        "name": "Card Transform Service",
+        "description": "[gold]Transform[/gold] a card in your [gold]Deck[/gold].",
+        "cursed": false,
+        "rare": false
+      },
+      {
+        "id": "CARD_REMOVAL",
+        "name": "Card Removal Service",
+        "description": "Remove a card from your [gold]Deck[/gold].",
+        "cursed": false,
+        "rare": false
+      },
+      {
+        "id": "CARD_REWARDS",
+        "name": "Card Rewards",
+        "description": "Receive [blue]2[/blue] card rewards.",
+        "cursed": false,
+        "rare": false
+      },
+      {
+        "id": "COLORLESS_CARD_REWARD",
+        "name": "Colorless Card Reward",
+        "description": "Receive [blue]1[/blue] [gold]Colorless[/gold] card reward.",
+        "cursed": false,
+        "rare": false
+      },
+      {
+        "id": "POTIONS",
+        "name": "Potions",
+        "description": "Gain [blue]1[/blue] potion slot and procure [blue]2[/blue] random potions.",
+        "cursed": false,
+        "rare": false
+      },
+      {
+        "id": "CARD_ENCHANT",
+        "name": "Enchantment",
+        "description": "[gold]Enchant[/gold] a card with [purple]Enchantment[/purple].",
+        "cursed": false,
+        "rare": false
+      },
+      {
+        "id": "ENCHANTED_CARD_REWARD",
+        "name": "Enchanted Card Reward",
+        "description": "Receive [blue]1[/blue] [gold]Enchanted[/gold] card reward.",
+        "cursed": false,
+        "rare": false
+      },
+      {
+        "id": "PRISMATIC_CARD_REWARD",
+        "name": "Character Card Reward",
+        "description": "Receive [blue]1[/blue] [gold]Character[/gold] card reward.",
+        "cursed": false,
+        "rare": true
+      },
+      {
+        "id": "RARE_CARD_REWARD",
+        "name": "Rare Card Reward",
+        "description": "Receive [blue]1[/blue] rare card reward.",
+        "cursed": false,
+        "rare": true
       },
       {
         "id": "UPGRADED_RARE_CARD",
         "name": "Upgraded Rare Card",
-        "description": "Receive [blue]1[/blue] random [gold]Upgraded[/gold] rare card."
+        "description": "Receive [blue]1[/blue] random [gold]Upgraded[/gold] rare card.",
+        "cursed": false,
+        "rare": true
+      },
+      {
+        "id": "RELIC",
+        "name": "Relic",
+        "description": "Obtain [blue]1[/blue] random [gold]Relic[/gold].",
+        "cursed": false,
+        "rare": false
+      },
+      {
+        "id": "GLAM",
+        "name": "Cursed Glam",
+        "description": "Receive [red]1[/red] random [red]Curse[/red].\n[gold]Enchant[/gold] a card with [purple]Glam[/purple].",
+        "cursed": true,
+        "rare": false
+      },
+      {
+        "id": "TWO_MORE_CHOICES",
+        "name": "Cursed Choices",
+        "description": "Receive [red]1[/red] random [red]Curse[/red].\nThe Merchant allows you to purchase two more wares.",
+        "cursed": true,
+        "rare": false
+      },
+      {
+        "id": "CARD_REWARD_OF_EACH_RARITY",
+        "name": "Cursed Card Rewards",
+        "description": "Receive [red]1[/red] random [red]Curse[/red].\nReceive [blue]1[/blue] [gold]Common[/gold], [gold]Uncommon[/gold] and [gold]Rare[/gold] card reward.",
+        "cursed": true,
+        "rare": false
       },
       {
         "id": "UPGRADED_RARE_CARD_REWARD",
         "name": "Cursed Upgraded Rare Card Reward",
-        "description": "Receive [red]1[/red] random [red]Curse[/red].\nReceive [blue]1[/blue] [gold]Upgraded[/gold] rare card reward."
+        "description": "Receive [red]1[/red] random [red]Curse[/red].\nReceive [blue]1[/blue] [gold]Upgraded[/gold] rare card reward.",
+        "cursed": true,
+        "rare": false
+      },
+      {
+        "id": "TWO_RELICS",
+        "name": "Cursed Relics",
+        "description": "Receive [red]1[/red] random [red]Curse[/red].\nObtain [blue]2[/blue] random [gold]Relics[/gold].",
+        "cursed": true,
+        "rare": false
+      },
+      {
+        "id": "FULL_HEAL_AND_MAX_HP",
+        "name": "Cursed Heal",
+        "description": "Receive [red]1[/red] random [red]Curse[/red].\nRaise your Max HP by [blue]6[/blue] and heal all of your HP.",
+        "cursed": true,
+        "rare": false
+      }
+    ],
+    "act_layout": [
+      "ANCIENT",
+      "MONSTER",
+      "MONSTER",
+      "SHOP",
+      "ELITE",
+      "TREASURE",
+      "REST_SITE",
+      "BOSS"
+    ],
+    "act_rooms": [
+      {
+        "type": "ANCIENT",
+        "name": "Ancient"
+      },
+      {
+        "type": "MONSTER",
+        "name": "Enemy"
+      },
+      {
+        "type": "MONSTER",
+        "name": "Enemy"
+      },
+      {
+        "type": "SHOP",
+        "name": "Merchant"
+      },
+      {
+        "type": "ELITE",
+        "name": "Elite"
+      },
+      {
+        "type": "TREASURE",
+        "name": "Treasure"
+      },
+      {
+        "type": "REST_SITE",
+        "name": "Rest"
+      },
+      {
+        "type": "BOSS",
+        "name": "Boss"
+      }
+    ],
+    "floors_per_act": 8,
+    "encounters_per_act": 4,
+    "neow_details": {
+      "cards_offered": 10,
+      "cards_picked": 3,
+      "rarity_odds": {
+        "common": 0.55,
+        "uncommon": 0.4,
+        "rare": 0.05
+      },
+      "prompt": "Select any [blue]3[/blue] cards to add to your Deck."
+    },
+    "merchant": {
+      "offers_shown": 6,
+      "normal_offers_shown": 5,
+      "cursed_offers_shown": 1,
+      "picks": 3,
+      "rare_offer_weight": 0.5,
+      "card_rarity_odds": {
+        "common": 0.4,
+        "uncommon": 0.5,
+        "rare": 0.1
+      },
+      "enchantments": [
+        {
+          "id": "SHARP",
+          "name": "Sharp",
+          "amount": 2
+        },
+        {
+          "id": "NIMBLE",
+          "name": "Nimble",
+          "amount": 3
+        },
+        {
+          "id": "ADROIT",
+          "name": "Adroit",
+          "amount": 3
+        },
+        {
+          "id": "STEADY",
+          "name": "Steady",
+          "amount": 1
+        },
+        {
+          "id": "SWIFT",
+          "name": "Swift",
+          "amount": 2
+        },
+        {
+          "id": "VIGOROUS",
+          "name": "Vigorous",
+          "amount": 5
+        }
+      ]
+    },
+    "rewards": [
+      {
+        "room": "MONSTER",
+        "card_rarity": "Common",
+        "card_choices": 3,
+        "relics": 0,
+        "potion": "after_first_fight",
+        "room_name": "Enemy"
+      },
+      {
+        "room": "ELITE",
+        "card_rarity": "Uncommon",
+        "card_choices": 3,
+        "relics": 2,
+        "potion": null,
+        "room_name": "Elite"
+      },
+      {
+        "room": "BOSS",
+        "card_rarity": "Rare",
+        "card_choices": 3,
+        "relics": 0,
+        "potion": "always",
+        "final_boss": false,
+        "room_name": "Boss"
+      }
+    ],
+    "reward_upgrades_by_act": [
+      0,
+      1,
+      2
+    ],
+    "treasure_extra_relics": {
+      "multiplayer": 2,
+      "singleplayer": 1
+    },
+    "ascension_ladder": [
+      {
+        "level": 1,
+        "id": "WEARY_TRAVELER",
+        "name": "Weary Traveler",
+        "description": "Ancients only heal [blue]80%[/blue] of your missing HP."
+      },
+      {
+        "level": 2,
+        "id": "TIGHT_BELT",
+        "name": "Tight Belt",
+        "description": "Start each run with [blue]1[/blue] less potion slot."
+      },
+      {
+        "level": 3,
+        "id": "TOUGH_ENEMIES",
+        "name": "Tough Enemies",
+        "description": "All enemies are harder to kill."
+      },
+      {
+        "level": 4,
+        "id": "DEADLY_ENEMIES",
+        "name": "Deadly Enemies",
+        "description": "All enemies have deadlier attacks."
+      },
+      {
+        "level": 5,
+        "id": "ASCENDERS_BANE",
+        "name": "Ascender's Bane",
+        "description": "Start each run [red]Cursed[/red]."
+      }
+    ],
+    "banned_cards": [
+      {
+        "id": "DEBT",
+        "name": "Debt"
+      },
+      {
+        "id": "HAND_OF_GREED",
+        "name": "Hand of Greed"
+      },
+      {
+        "id": "MY_SHINIES",
+        "name": "My Shinies"
+      },
+      {
+        "id": "ROYALTIES",
+        "name": "Royalties"
+      }
+    ],
+    "banned_relics": [
+      {
+        "id": "AMETHYST_AUBERGINE",
+        "name": "Amethyst Aubergine"
+      },
+      {
+        "id": "BLACK_STAR",
+        "name": "Black Star"
+      },
+      {
+        "id": "BOOK_OF_FIVE_RINGS",
+        "name": "Book of Five Rings"
+      },
+      {
+        "id": "BOWLER_HAT",
+        "name": "Bowler Hat"
+      },
+      {
+        "id": "CURSED_PEARL",
+        "name": "Cursed Pearl"
+      },
+      {
+        "id": "DOWSING_ROD",
+        "name": "Dowsing Rod"
+      },
+      {
+        "id": "DRAGON_FRUIT",
+        "name": "Dragon Fruit"
+      },
+      {
+        "id": "DREAM_CATCHER",
+        "name": "Dream Catcher"
+      },
+      {
+        "id": "DRIFTWOOD",
+        "name": "Driftwood"
+      },
+      {
+        "id": "ECTOPLASM",
+        "name": "Ectoplasm"
+      },
+      {
+        "id": "ETERNAL_FEATHER",
+        "name": "Eternal Feather"
+      },
+      {
+        "id": "FISHING_ROD",
+        "name": "Fishing Rod"
+      },
+      {
+        "id": "FUR_COAT",
+        "name": "Fur Coat"
+      },
+      {
+        "id": "GIRYA",
+        "name": "Girya"
+      },
+      {
+        "id": "GOLDEN_COMPASS",
+        "name": "Golden Compass"
+      },
+      {
+        "id": "GOLDEN_PEARL",
+        "name": "Golden Pearl"
+      },
+      {
+        "id": "JUZU_BRACELET",
+        "name": "Juzu Bracelet"
+      },
+      {
+        "id": "LASTING_CANDY",
+        "name": "Lasting Candy"
+      },
+      {
+        "id": "LORDS_PARASOL",
+        "name": "Lord's Parasol"
+      },
+      {
+        "id": "LUCKY_FYSH",
+        "name": "Lucky Fysh"
+      },
+      {
+        "id": "MAW_BANK",
+        "name": "Maw Bank"
+      },
+      {
+        "id": "MEAL_TICKET",
+        "name": "Meal Ticket"
+      },
+      {
+        "id": "MEAT_CLEAVER",
+        "name": "Meat Cleaver"
+      },
+      {
+        "id": "MEMBERSHIP_CARD",
+        "name": "Membership Card"
+      },
+      {
+        "id": "MINIATURE_TENT",
+        "name": "Miniature Tent"
+      },
+      {
+        "id": "OLD_COIN",
+        "name": "Old Coin"
+      },
+      {
+        "id": "PAELS_CLAW",
+        "name": "Pael's Claw"
+      },
+      {
+        "id": "PAELS_GROWTH",
+        "name": "Pael's Growth"
+      },
+      {
+        "id": "PAELS_WING",
+        "name": "Pael's Wing"
+      },
+      {
+        "id": "PLANISPHERE",
+        "name": "Planisphere"
+      },
+      {
+        "id": "PRAYER_WHEEL",
+        "name": "Prayer Wheel"
+      },
+      {
+        "id": "PUMPKIN_CANDLE",
+        "name": "Pumpkin Candle"
+      },
+      {
+        "id": "REGAL_PILLOW",
+        "name": "Regal Pillow"
+      },
+      {
+        "id": "SEAL_OF_GOLD",
+        "name": "Seal of Gold"
+      },
+      {
+        "id": "SHOVEL",
+        "name": "Shovel"
+      },
+      {
+        "id": "SIGNET_RING",
+        "name": "Signet Ring"
+      },
+      {
+        "id": "SILKEN_TRESS",
+        "name": "Silken Tress"
+      },
+      {
+        "id": "STONE_HUMIDIFIER",
+        "name": "Stone Humidifier"
+      },
+      {
+        "id": "THE_COURIER",
+        "name": "The Courier"
+      },
+      {
+        "id": "TINY_MAILBOX",
+        "name": "Tiny Mailbox"
+      },
+      {
+        "id": "TOY_BOX",
+        "name": "Toy Box"
+      },
+      {
+        "id": "VENERABLE_TEA_SET",
+        "name": "Venerable Tea Set"
+      },
+      {
+        "id": "WHITE_BEAST_STATUE",
+        "name": "White Beast Statue"
+      },
+      {
+        "id": "WINGED_BOOTS",
+        "name": "Winged Boots"
       }
     ]
   }
