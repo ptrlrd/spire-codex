@@ -89,7 +89,7 @@ export async function GridPage({
     view.dir ||
     view.samples ||
     view.wax ||
-    view.upg,
+    view.upg !== undefined,
   );
   const jsonLd = [
     buildBreadcrumbJsonLd([

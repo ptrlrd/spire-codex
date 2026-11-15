@@ -8,7 +8,7 @@ export interface GridPrefs {
   query?: string;
   showTiny?: boolean;
   showWax?: boolean;
-  showUpgraded?: boolean;
+  hideUpgraded?: boolean;
   offColor?: boolean;
   sortKey?: ColKey;
   dir?: 1 | -1;
@@ -40,6 +40,7 @@ export function parseGridView(
   if (one("samples") === "1") out.samples = true;
   if (one("wax") === "1") out.wax = true;
   if (one("upg") === "1") out.upg = true;
+  else if (one("upg") === "0") out.upg = false;
   return out;
 }
 
@@ -51,7 +52,7 @@ export function writeGridView(
   if (state.dir === 1) params.set("dir", "asc");
   if (state.samples) params.set("samples", "1");
   if (state.wax) params.set("wax", "1");
-  if (state.upg) params.set("upg", "1");
+  if (state.upg === false) params.set("upg", "0");
 }
 
 const KEY = (kind: GridKind) => `spire-codex:stats-grid:${kind}`;
