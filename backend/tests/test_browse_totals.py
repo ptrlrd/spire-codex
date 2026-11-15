@@ -127,6 +127,46 @@ def test_list_runs_carries_lower_bound_flag(monkeypatch, cache_store):
     assert out["total_is_lower_bound"] is True
 
 
+class NoCountColl(FakeColl):
+    """Every count times out; the list itself still answers."""
+
+    def count_documents(self, q, limit=None, maxTimeMS=None, hint=None):
+        self.count_calls.append((q, limit, maxTimeMS))
+        raise ExecutionTimeout("timed out")
+
+    def limit(self, n):
+        self.page_size = n
+        return self
+
+    def __iter__(self):
+        return iter(self.docs[: self.page_size])
+
+
+def test_list_runs_still_lists_when_no_count_fits_the_budget(monkeypatch, cache_store):
+    docs = [{"_id": f"r{i}", "game_mode": "blitz"} for i in range(3)]
+    coll = NoCountColl(docs)
+    monkeypatch.setattr(runs_db_mongo, "_get_collection", lambda: coll)
+    monkeypatch.setattr(runs_db_mongo, "_row_to_dict", lambda r: r)
+    out = runs_db_mongo.list_runs(game_mode="blitz", has_replay=True, limit=2)
+    assert len(out["runs"]) == 2
+    assert out["total"] == 3
+    assert out["total_is_lower_bound"] is True
+    assert out["total_pages"] == 2
+    calls = len(coll.count_calls)
+    again = runs_db_mongo.list_runs(game_mode="blitz", has_replay=True, limit=2)
+    assert again["total"] == 3
+    assert len(coll.count_calls) == calls
+
+
+def test_a_count_that_cannot_finish_still_fails_other_callers(cache_store):
+    coll = NoCountColl([])
+    with pytest.raises(OperationFailure):
+        runs_db_mongo.count_with_budget(coll, {"win": True})
+    with pytest.raises(ExecutionTimeout):
+        runs_db_mongo.count_with_budget(coll, {"win": True})
+    assert len(coll.count_calls) == 2
+
+
 def test_list_runs_unfiltered_uses_estimate(monkeypatch, cache_store):
     coll = FakeColl([{"x": 1}])
     monkeypatch.setattr(runs_db_mongo, "_get_collection", lambda: coll)
