@@ -317,11 +317,13 @@
       },
       {
         "type": "MONSTER",
-        "name": "敌人"
+        "name": "敌人",
+        "easy": true
       },
       {
         "type": "MONSTER",
-        "name": "敌人"
+        "name": "敌人",
+        "easy": false
       },
       {
         "type": "SHOP",
@@ -344,6 +346,7 @@
         "name": "Boss"
       }
     ],
+    "weak_encounters_per_act": 1,
     "floors_per_act": 8,
     "encounters_per_act": 4,
     "neow_details": {
@@ -397,6 +400,44 @@
           "id": "VIGOROUS",
           "name": "活力",
           "amount": 5
+        }
+      ],
+      "curses": [
+        {
+          "id": "CLUMSY",
+          "name": "笨拙"
+        },
+        {
+          "id": "DECAY",
+          "name": "腐朽"
+        },
+        {
+          "id": "DOUBT",
+          "name": "疑虑"
+        },
+        {
+          "id": "GUILTY",
+          "name": "愧疚"
+        },
+        {
+          "id": "INJURY",
+          "name": "受伤"
+        },
+        {
+          "id": "NORMALITY",
+          "name": "凡庸"
+        },
+        {
+          "id": "REGRET",
+          "name": "悔恨"
+        },
+        {
+          "id": "SHAME",
+          "name": "羞耻"
+        },
+        {
+          "id": "WRITHE",
+          "name": "苦恼"
         }
       ]
     },
@@ -663,6 +704,31 @@
         "id": "WINGED_BOOTS",
         "name": "羽翼之靴"
       }
-    ]
+    ],
+    "late_relics": {
+      "from_floor": 21,
+      "relics": [
+        {
+          "id": "FROZEN_EGG",
+          "name": "冻结之蛋"
+        },
+        {
+          "id": "MOLTEN_EGG",
+          "name": "熔火之蛋"
+        },
+        {
+          "id": "POTION_BELT",
+          "name": "药水腰带"
+        },
+        {
+          "id": "TOXIC_EGG",
+          "name": "毒素之蛋"
+        },
+        {
+          "id": "WHITE_STAR",
+          "name": "白星"
+        }
+      ]
+    }
   }
 ]

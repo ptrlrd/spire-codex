@@ -317,11 +317,13 @@
       },
       {
         "type": "MONSTER",
-        "name": "Enemy"
+        "name": "Enemy",
+        "easy": true
       },
       {
         "type": "MONSTER",
-        "name": "Enemy"
+        "name": "Enemy",
+        "easy": false
       },
       {
         "type": "SHOP",
@@ -344,6 +346,7 @@
         "name": "Boss"
       }
     ],
+    "weak_encounters_per_act": 1,
     "floors_per_act": 8,
     "encounters_per_act": 4,
     "neow_details": {
@@ -397,6 +400,44 @@
           "id": "VIGOROUS",
           "name": "Vigorous",
           "amount": 5
+        }
+      ],
+      "curses": [
+        {
+          "id": "CLUMSY",
+          "name": "Clumsy"
+        },
+        {
+          "id": "DECAY",
+          "name": "Decay"
+        },
+        {
+          "id": "DOUBT",
+          "name": "Doubt"
+        },
+        {
+          "id": "GUILTY",
+          "name": "Guilty"
+        },
+        {
+          "id": "INJURY",
+          "name": "Injury"
+        },
+        {
+          "id": "NORMALITY",
+          "name": "Normality"
+        },
+        {
+          "id": "REGRET",
+          "name": "Regret"
+        },
+        {
+          "id": "SHAME",
+          "name": "Shame"
+        },
+        {
+          "id": "WRITHE",
+          "name": "Writhe"
         }
       ]
     },
@@ -663,6 +704,31 @@
         "id": "WINGED_BOOTS",
         "name": "Winged Boots"
       }
-    ]
+    ],
+    "late_relics": {
+      "from_floor": 21,
+      "relics": [
+        {
+          "id": "FROZEN_EGG",
+          "name": "Frozen Egg"
+        },
+        {
+          "id": "MOLTEN_EGG",
+          "name": "Molten Egg"
+        },
+        {
+          "id": "POTION_BELT",
+          "name": "Potion Belt"
+        },
+        {
+          "id": "TOXIC_EGG",
+          "name": "Toxic Egg"
+        },
+        {
+          "id": "WHITE_STAR",
+          "name": "White Star"
+        }
+      ]
+    }
   }
 ]

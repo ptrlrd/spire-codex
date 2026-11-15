@@ -199,3 +199,16 @@ def test_endpoint_serves_the_beta_modes(tmp_path, monkeypatch):
     finally:
         for cache in caches:
             cache.cache_clear()
+
+
+def test_every_shipped_mode_file_fits_the_api_schema():
+    from app.models.schemas import GameMode
+
+    root = Path(__file__).resolve().parents[2]
+    files = sorted(root.glob("data/*/game_modes.json")) + sorted(
+        root.glob("data-beta/*/*/game_modes.json")
+    )
+    assert files
+    for path in files:
+        for row in json.loads(path.read_text(encoding="utf-8")):
+            GameMode(**row)

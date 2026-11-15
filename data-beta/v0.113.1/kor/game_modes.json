@@ -317,11 +317,13 @@
       },
       {
         "type": "MONSTER",
-        "name": "적"
+        "name": "적",
+        "easy": true
       },
       {
         "type": "MONSTER",
-        "name": "적"
+        "name": "적",
+        "easy": false
       },
       {
         "type": "SHOP",
@@ -344,6 +346,7 @@
         "name": "보스"
       }
     ],
+    "weak_encounters_per_act": 1,
     "floors_per_act": 8,
     "encounters_per_act": 4,
     "neow_details": {
@@ -397,6 +400,44 @@
           "id": "VIGOROUS",
           "name": "활기",
           "amount": 5
+        }
+      ],
+      "curses": [
+        {
+          "id": "CLUMSY",
+          "name": "서투름"
+        },
+        {
+          "id": "DECAY",
+          "name": "부패"
+        },
+        {
+          "id": "DOUBT",
+          "name": "의심"
+        },
+        {
+          "id": "GUILTY",
+          "name": "죄책감"
+        },
+        {
+          "id": "INJURY",
+          "name": "상처"
+        },
+        {
+          "id": "NORMALITY",
+          "name": "규칙 준수"
+        },
+        {
+          "id": "REGRET",
+          "name": "후회"
+        },
+        {
+          "id": "SHAME",
+          "name": "수치"
+        },
+        {
+          "id": "WRITHE",
+          "name": "몸부림"
         }
       ]
     },
@@ -663,6 +704,31 @@
         "id": "WINGED_BOOTS",
         "name": "날개 달린 부츠"
       }
-    ]
+    ],
+    "late_relics": {
+      "from_floor": 21,
+      "relics": [
+        {
+          "id": "FROZEN_EGG",
+          "name": "얼어붙은 알"
+        },
+        {
+          "id": "MOLTEN_EGG",
+          "name": "녹아내린 알"
+        },
+        {
+          "id": "POTION_BELT",
+          "name": "포션 벨트"
+        },
+        {
+          "id": "TOXIC_EGG",
+          "name": "유독성 알"
+        },
+        {
+          "id": "WHITE_STAR",
+          "name": "하얀 별"
+        }
+      ]
+    }
   }
 ]

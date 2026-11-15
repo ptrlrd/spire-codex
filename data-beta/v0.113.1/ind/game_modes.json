@@ -317,11 +317,13 @@
       },
       {
         "type": "MONSTER",
-        "name": "Musuh"
+        "name": "Musuh",
+        "easy": true
       },
       {
         "type": "MONSTER",
-        "name": "Musuh"
+        "name": "Musuh",
+        "easy": false
       },
       {
         "type": "SHOP",
@@ -344,6 +346,7 @@
         "name": "Bos"
       }
     ],
+    "weak_encounters_per_act": 1,
     "floors_per_act": 8,
     "encounters_per_act": 4,
     "neow_details": {
@@ -397,6 +400,44 @@
           "id": "VIGOROUS",
           "name": "Bugar",
           "amount": 5
+        }
+      ],
+      "curses": [
+        {
+          "id": "CLUMSY",
+          "name": "Ceroboh"
+        },
+        {
+          "id": "DECAY",
+          "name": "Busuk"
+        },
+        {
+          "id": "DOUBT",
+          "name": "Keraguan"
+        },
+        {
+          "id": "GUILTY",
+          "name": "Bersalah"
+        },
+        {
+          "id": "INJURY",
+          "name": "Cedera"
+        },
+        {
+          "id": "NORMALITY",
+          "name": "Normalisir"
+        },
+        {
+          "id": "REGRET",
+          "name": "Kesesalan"
+        },
+        {
+          "id": "SHAME",
+          "name": "Malu"
+        },
+        {
+          "id": "WRITHE",
+          "name": "Encok"
         }
       ]
     },
@@ -663,6 +704,31 @@
         "id": "WINGED_BOOTS",
         "name": "Sepatu Bersayap"
       }
-    ]
+    ],
+    "late_relics": {
+      "from_floor": 21,
+      "relics": [
+        {
+          "id": "FROZEN_EGG",
+          "name": "Telur Beku"
+        },
+        {
+          "id": "MOLTEN_EGG",
+          "name": "Telur Membara"
+        },
+        {
+          "id": "POTION_BELT",
+          "name": "Sabuk Ramuan"
+        },
+        {
+          "id": "TOXIC_EGG",
+          "name": "Telur Beracun"
+        },
+        {
+          "id": "WHITE_STAR",
+          "name": "Bintang Putih"
+        }
+      ]
+    }
   }
 ]

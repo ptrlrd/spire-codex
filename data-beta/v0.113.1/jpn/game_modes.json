@@ -317,11 +317,13 @@
       },
       {
         "type": "MONSTER",
-        "name": "敵"
+        "name": "敵",
+        "easy": true
       },
       {
         "type": "MONSTER",
-        "name": "敵"
+        "name": "敵",
+        "easy": false
       },
       {
         "type": "SHOP",
@@ -344,6 +346,7 @@
         "name": "ボス"
       }
     ],
+    "weak_encounters_per_act": 1,
     "floors_per_act": 8,
     "encounters_per_act": 4,
     "neow_details": {
@@ -397,6 +400,44 @@
           "id": "VIGOROUS",
           "name": "活気",
           "amount": 5
+        }
+      ],
+      "curses": [
+        {
+          "id": "CLUMSY",
+          "name": "不器用"
+        },
+        {
+          "id": "DECAY",
+          "name": "腐敗"
+        },
+        {
+          "id": "DOUBT",
+          "name": "疑念"
+        },
+        {
+          "id": "GUILTY",
+          "name": "罪悪感"
+        },
+        {
+          "id": "INJURY",
+          "name": "怪我"
+        },
+        {
+          "id": "NORMALITY",
+          "name": "凡庸"
+        },
+        {
+          "id": "REGRET",
+          "name": "後悔"
+        },
+        {
+          "id": "SHAME",
+          "name": "羞恥"
+        },
+        {
+          "id": "WRITHE",
+          "name": "苦悩"
         }
       ]
     },
@@ -663,6 +704,31 @@
         "id": "WINGED_BOOTS",
         "name": "空飛ぶ靴"
       }
-    ]
+    ],
+    "late_relics": {
+      "from_floor": 21,
+      "relics": [
+        {
+          "id": "FROZEN_EGG",
+          "name": "凍った卵"
+        },
+        {
+          "id": "MOLTEN_EGG",
+          "name": "溶融した卵"
+        },
+        {
+          "id": "POTION_BELT",
+          "name": "ポーションベルト"
+        },
+        {
+          "id": "TOXIC_EGG",
+          "name": "毒の卵"
+        },
+        {
+          "id": "WHITE_STAR",
+          "name": "ホワイトスター"
+        }
+      ]
+    }
   }
 ]

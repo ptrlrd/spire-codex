@@ -317,11 +317,13 @@
       },
       {
         "type": "MONSTER",
-        "name": "Enemigo"
+        "name": "Enemigo",
+        "easy": true
       },
       {
         "type": "MONSTER",
-        "name": "Enemigo"
+        "name": "Enemigo",
+        "easy": false
       },
       {
         "type": "SHOP",
@@ -344,6 +346,7 @@
         "name": "Jefe"
       }
     ],
+    "weak_encounters_per_act": 1,
     "floors_per_act": 8,
     "encounters_per_act": 4,
     "neow_details": {
@@ -397,6 +400,44 @@
           "id": "VIGOROUS",
           "name": "Robustez",
           "amount": 5
+        }
+      ],
+      "curses": [
+        {
+          "id": "CLUMSY",
+          "name": "Torpeza"
+        },
+        {
+          "id": "DECAY",
+          "name": "Descomposición"
+        },
+        {
+          "id": "DOUBT",
+          "name": "Duda"
+        },
+        {
+          "id": "GUILTY",
+          "name": "Culpabilidad"
+        },
+        {
+          "id": "INJURY",
+          "name": "Lesión"
+        },
+        {
+          "id": "NORMALITY",
+          "name": "Normalidad"
+        },
+        {
+          "id": "REGRET",
+          "name": "Remordimientos"
+        },
+        {
+          "id": "SHAME",
+          "name": "Vergüenza"
+        },
+        {
+          "id": "WRITHE",
+          "name": "Retorcimiento"
         }
       ]
     },
@@ -663,6 +704,31 @@
         "id": "WINGED_BOOTS",
         "name": "Botas aladas"
       }
-    ]
+    ],
+    "late_relics": {
+      "from_floor": 21,
+      "relics": [
+        {
+          "id": "FROZEN_EGG",
+          "name": "Huevo congelado"
+        },
+        {
+          "id": "MOLTEN_EGG",
+          "name": "Huevo fundido"
+        },
+        {
+          "id": "POTION_BELT",
+          "name": "Cinturón de pociones"
+        },
+        {
+          "id": "TOXIC_EGG",
+          "name": "Huevo tóxico"
+        },
+        {
+          "id": "WHITE_STAR",
+          "name": "Estrella blanca"
+        }
+      ]
+    }
   }
 ]

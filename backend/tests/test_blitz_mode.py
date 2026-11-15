@@ -145,12 +145,37 @@ def game(tmp_path, monkeypatch):
             "notAllowedLateInAct3 = new HashSet<ModelId> { ModelDb.GetId<Girya>() };",
         ),
     )
+    monkeypatch.setattr(
+        blitz_mode,
+        "ACT_MODEL_FILE",
+        put("ActModel.cs", "int num = (isBlitz ? 1 : NumberOfWeakEncounters);"),
+    )
+    relics = tmp_path / "relics"
+    relics.mkdir()
+    (relics / "PotionBelt.cs").write_text(
+        "protected override bool IsAllowedInternal(IRunState r)"
+        " { return r.GameMode != GameMode.Blitz; }"
+    )
+    (relics / "Anchor.cs").write_text("public override int X => 1;")
+    monkeypatch.setattr(blitz_mode, "RELICS_DIR", relics)
     cards = tmp_path / "cards"
     cards.mkdir()
     (cards / "HandOfGreed.cs").write_text(
         "public override bool IsAllowedInBlitz => false;"
     )
     (cards / "Bash.cs").write_text("public override int Cost => 2;")
+    (cards / "Doubt.cs").write_text(
+        "public Doubt() : base(-1, CardType.Curse, CardRarity.Curse, TargetType.None)"
+    )
+    (cards / "Greed.cs").write_text(
+        "public Greed() : base(-1, CardType.Curse, CardRarity.Curse, TargetType.None)\n"
+        "public override bool CanBeGeneratedByModifiers => false;"
+    )
+    (cards / "Debt.cs").write_text(
+        "public Debt() : base(-1, CardType.Curse, CardRarity.Curse, TargetType.None)\n"
+        "public override bool IsAllowedInBlitz => false;"
+    )
+    (cards / "Hermit.cs").write_text("if (item.Type == CardType.Curse) { }")
     monkeypatch.setattr(blitz_mode, "CARDS_DIR", cards)
     return tmp_path
 
@@ -245,7 +270,8 @@ def test_the_ladder_takes_its_text_from_the_standard_levels(game):
 
 def test_banned_content_is_named_from_the_game_text(game):
     assert blitz_mode.banned_cards({"HAND_OF_GREED.title": "Hand of Greed"}) == [
-        {"id": "HAND_OF_GREED", "name": "Hand of Greed"}
+        {"id": "DEBT", "name": "DEBT"},
+        {"id": "HAND_OF_GREED", "name": "Hand of Greed"},
     ]
     assert blitz_mode.banned_relics({"MAW_BANK.title": "Maw Bank"}) == [
         {"id": "BLACK_STAR", "name": "BLACK_STAR"},
@@ -259,3 +285,47 @@ def test_missing_game_files_leave_the_fields_out(tmp_path, monkeypatch):
             monkeypatch.setattr(blitz_mode, name, tmp_path / "missing")
     assert blitz_mode.blitz_details({}, []) == {}
     assert blitz_mode.merchant_entries({}, {}) == []
+
+
+def test_the_first_fight_of_an_act_comes_from_the_easy_pool(game):
+    details = blitz_mode.blitz_details({}, [])
+    assert details["weak_encounters_per_act"] == 1
+    assert details["encounters_per_act"] == 3
+    assert details["floors_per_act"] == 5
+    assert [room.get("easy") for room in details["act_rooms"]] == [
+        None,
+        True,
+        None,
+        None,
+        None,
+    ]
+
+
+def test_cursed_offers_draw_from_the_curses_the_mode_allows(game):
+    assert blitz_mode.merchant_curses({"DOUBT.title": "Doubt"}) == [
+        {"id": "DOUBT", "name": "Doubt"}
+    ]
+
+
+def test_relics_cut_late_in_the_run_start_at_the_last_elite(game):
+    layout = [
+        "ANCIENT",
+        "MONSTER",
+        "MONSTER",
+        "SHOP",
+        "ELITE",
+        "TREASURE",
+        "REST_SITE",
+        "BOSS",
+    ]
+    late = blitz_mode.late_relics(
+        {"GIRYA.title": "Girya"}, layout, [{"id": "MAW_BANK", "name": "Maw Bank"}]
+    )
+    assert late == {
+        "from_floor": 21,
+        "relics": [
+            {"id": "GIRYA", "name": "Girya"},
+            {"id": "POTION_BELT", "name": "POTION_BELT"},
+        ],
+    }
+    assert blitz_mode.late_relics({}, ["ANCIENT", "BOSS"], []) == {}

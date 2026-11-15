@@ -317,11 +317,13 @@
       },
       {
         "type": "MONSTER",
-        "name": "عدو"
+        "name": "عدو",
+        "easy": true
       },
       {
         "type": "MONSTER",
-        "name": "عدو"
+        "name": "عدو",
+        "easy": false
       },
       {
         "type": "SHOP",
@@ -344,6 +346,7 @@
         "name": "زعيم"
       }
     ],
+    "weak_encounters_per_act": 1,
     "floors_per_act": 8,
     "encounters_per_act": 4,
     "neow_details": {
@@ -397,6 +400,44 @@
           "id": "VIGOROUS",
           "name": "قوي",
           "amount": 5
+        }
+      ],
+      "curses": [
+        {
+          "id": "CLUMSY",
+          "name": "أخرق"
+        },
+        {
+          "id": "DECAY",
+          "name": "تحلّل"
+        },
+        {
+          "id": "DOUBT",
+          "name": "شك"
+        },
+        {
+          "id": "GUILTY",
+          "name": "مذنب"
+        },
+        {
+          "id": "INJURY",
+          "name": "إصابة"
+        },
+        {
+          "id": "NORMALITY",
+          "name": "اعتيادية"
+        },
+        {
+          "id": "REGRET",
+          "name": "ندم"
+        },
+        {
+          "id": "SHAME",
+          "name": "عار"
+        },
+        {
+          "id": "WRITHE",
+          "name": "التواء"
         }
       ]
     },
@@ -663,6 +704,31 @@
         "id": "WINGED_BOOTS",
         "name": "حذاء مجنح"
       }
-    ]
+    ],
+    "late_relics": {
+      "from_floor": 21,
+      "relics": [
+        {
+          "id": "FROZEN_EGG",
+          "name": "بيضة متجمدة"
+        },
+        {
+          "id": "MOLTEN_EGG",
+          "name": "بيضة منصهرة"
+        },
+        {
+          "id": "POTION_BELT",
+          "name": "حزام جرعات"
+        },
+        {
+          "id": "TOXIC_EGG",
+          "name": "بيضة سامة"
+        },
+        {
+          "id": "WHITE_STAR",
+          "name": "نجمة بيضاء"
+        }
+      ]
+    }
   }
 ]

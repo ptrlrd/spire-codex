@@ -317,11 +317,13 @@
       },
       {
         "type": "MONSTER",
-        "name": "Nemico"
+        "name": "Nemico",
+        "easy": true
       },
       {
         "type": "MONSTER",
-        "name": "Nemico"
+        "name": "Nemico",
+        "easy": false
       },
       {
         "type": "SHOP",
@@ -344,6 +346,7 @@
         "name": "Boss"
       }
     ],
+    "weak_encounters_per_act": 1,
     "floors_per_act": 8,
     "encounters_per_act": 4,
     "neow_details": {
@@ -397,6 +400,44 @@
           "id": "VIGOROUS",
           "name": "Vigorosità",
           "amount": 5
+        }
+      ],
+      "curses": [
+        {
+          "id": "CLUMSY",
+          "name": "Impacciato"
+        },
+        {
+          "id": "DECAY",
+          "name": "Decomposizione"
+        },
+        {
+          "id": "DOUBT",
+          "name": "Dubbio"
+        },
+        {
+          "id": "GUILTY",
+          "name": "Colpevolezza"
+        },
+        {
+          "id": "INJURY",
+          "name": "Lesione"
+        },
+        {
+          "id": "NORMALITY",
+          "name": "Normalità"
+        },
+        {
+          "id": "REGRET",
+          "name": "Rimorso"
+        },
+        {
+          "id": "SHAME",
+          "name": "Vergogna"
+        },
+        {
+          "id": "WRITHE",
+          "name": "Convulsioni"
         }
       ]
     },
@@ -663,6 +704,31 @@
         "id": "WINGED_BOOTS",
         "name": "Stivali Alati"
       }
-    ]
+    ],
+    "late_relics": {
+      "from_floor": 21,
+      "relics": [
+        {
+          "id": "FROZEN_EGG",
+          "name": "Uovo Ghiacciato"
+        },
+        {
+          "id": "MOLTEN_EGG",
+          "name": "Uovo di Magma"
+        },
+        {
+          "id": "POTION_BELT",
+          "name": "Cinta Porta-Pozioni"
+        },
+        {
+          "id": "TOXIC_EGG",
+          "name": "Uovo Tossico"
+        },
+        {
+          "id": "WHITE_STAR",
+          "name": "Stella Bianca"
+        }
+      ]
+    }
   }
 ]

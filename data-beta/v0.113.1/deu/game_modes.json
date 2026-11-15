@@ -317,11 +317,13 @@
       },
       {
         "type": "MONSTER",
-        "name": "Gegner"
+        "name": "Gegner",
+        "easy": true
       },
       {
         "type": "MONSTER",
-        "name": "Gegner"
+        "name": "Gegner",
+        "easy": false
       },
       {
         "type": "SHOP",
@@ -344,6 +346,7 @@
         "name": "Boss"
       }
     ],
+    "weak_encounters_per_act": 1,
     "floors_per_act": 8,
     "encounters_per_act": 4,
     "neow_details": {
@@ -397,6 +400,44 @@
           "id": "VIGOROUS",
           "name": "Kräftig",
           "amount": 5
+        }
+      ],
+      "curses": [
+        {
+          "id": "CLUMSY",
+          "name": "Ungeschickt"
+        },
+        {
+          "id": "DECAY",
+          "name": "Verfall"
+        },
+        {
+          "id": "DOUBT",
+          "name": "Zweifel"
+        },
+        {
+          "id": "GUILTY",
+          "name": "Schuldgefühl"
+        },
+        {
+          "id": "INJURY",
+          "name": "Verletzung"
+        },
+        {
+          "id": "NORMALITY",
+          "name": "Normalität"
+        },
+        {
+          "id": "REGRET",
+          "name": "Reue"
+        },
+        {
+          "id": "SHAME",
+          "name": "Scham"
+        },
+        {
+          "id": "WRITHE",
+          "name": "Leid"
         }
       ]
     },
@@ -663,6 +704,31 @@
         "id": "WINGED_BOOTS",
         "name": "Geflügelte Schuhe"
       }
-    ]
+    ],
+    "late_relics": {
+      "from_floor": 21,
+      "relics": [
+        {
+          "id": "FROZEN_EGG",
+          "name": "Gefrorenes Ei"
+        },
+        {
+          "id": "MOLTEN_EGG",
+          "name": "Geschmolzenes Ei"
+        },
+        {
+          "id": "POTION_BELT",
+          "name": "Trankgürtel"
+        },
+        {
+          "id": "TOXIC_EGG",
+          "name": "Toxisches Ei"
+        },
+        {
+          "id": "WHITE_STAR",
+          "name": "Weißer Stern"
+        }
+      ]
+    }
   }
 ]

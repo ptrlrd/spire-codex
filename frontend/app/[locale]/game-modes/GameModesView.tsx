@@ -142,6 +142,11 @@ export default function GameModesView({
                       <span className="font-semibold text-[var(--text-primary)]">
                         {room.name}
                       </span>
+                      {room.easy != null && (
+                        <span className="text-[var(--text-muted)]">
+                          {t(room.easy ? "Easy pool" : "Regular pool")}
+                        </span>
+                      )}
                     </li>
                   ))}
                 </ol>
@@ -347,6 +352,22 @@ export default function GameModesView({
                   {mode.merchant.card_rarity_odds && (
                     <OddsChips odds={mode.merchant.card_rarity_odds} t={t} />
                   )}
+                  {!!mode.merchant.curses?.length && (
+                    <div className="flex flex-wrap items-center gap-1.5">
+                      <span className="text-xs text-[var(--text-muted)]">
+                        {t("Curses a cursed offer can give")}
+                      </span>
+                      {mode.merchant.curses.map((curse) => (
+                        <Link
+                          key={curse.id}
+                          href={`${bp}/cards/${curse.id.toLowerCase()}`}
+                          className={`${CHIP} hover:border-[var(--border-accent)]`}
+                        >
+                          {curse.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
                   {!!mode.merchant.enchantments?.length && (
                     <div className="flex flex-wrap items-center gap-1.5">
                       <span className="text-xs text-[var(--text-muted)]">
@@ -420,6 +441,26 @@ export default function GameModesView({
                         </div>
                       </div>
                     ),
+                )}
+                {!!mode.late_relics?.relics.length && (
+                  <div>
+                    <div className="text-xs text-[var(--text-muted)] mb-1.5">
+                      {t("Relics that stop appearing from floor {n}", {
+                        n: mode.late_relics.from_floor,
+                      })}
+                    </div>
+                    <div className="flex flex-wrap gap-1.5">
+                      {mode.late_relics.relics.map((row) => (
+                        <Link
+                          key={row.id}
+                          href={`${bp}/relics/${row.id.toLowerCase()}`}
+                          className={`${CHIP} hover:border-[var(--border-accent)]`}
+                        >
+                          {row.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
                 )}
               </div>
             </div>

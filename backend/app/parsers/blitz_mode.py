@@ -18,6 +18,8 @@ INVENTORY_FILE = MERCHANT_DIR / "MerchantInventory.cs"
 RELIC_LISTS_FILE = DECOMPILED / f"{CORE}.Helpers" / "RelicLists.cs"
 CARDS_DIR = DECOMPILED / f"{CORE}.Models.Cards"
 ASCENSION_LEVEL_FILE = DECOMPILED / f"{CORE}.Entities.Ascension" / "AscensionLevel.cs"
+ACT_MODEL_FILE = DECOMPILED / f"{CORE}.Models" / "ActModel.cs"
+RELICS_DIR = DECOMPILED / f"{CORE}.Models.Relics"
 TREASURE_FILE = (
     DECOMPILED / f"{CORE}.Multiplayer.Game" / "TreasureRoomRelicSynchronizer.cs"
 )
@@ -306,6 +308,53 @@ def room_name(room: str, legend: dict) -> str:
     return legend.get(f"{key}.title") or room.replace("_", " ").title()
 
 
+def weak_encounters_per_act() -> int | None:
+    """How many of an act's regular fights come from its easy pool."""
+    found = re.search(r"isBlitz\s*\?\s*(\d+)\s*:", _read(ACT_MODEL_FILE))
+    return int(found.group(1)) if found else None
+
+
+def merchant_curses(cards: dict) -> list[dict]:
+    """The curses a cursed offer can hand out: every curse the game lets
+    modifiers generate, minus the ones the mode bans."""
+    if not CARDS_DIR.is_dir():
+        return []
+    ids = []
+    for path in sorted(CARDS_DIR.glob("*.cs")):
+        text = path.read_text(encoding="utf-8")
+        if not re.search(r"base\([^)]*CardType\.Curse", text):
+            continue
+        if "CanBeGeneratedByModifiers => false" in text:
+            continue
+        if "IsAllowedInBlitz => false" in text:
+            continue
+        ids.append(snake(path.stem))
+    return _named(ids, cards)
+
+
+def late_relics(relics: dict, layout: list[str], banned: list[dict]) -> dict:
+    """Relics that stop appearing late in the last act, and the floor that
+    starts at. The game counts the cut-off from the last act's Elite."""
+    block = re.search(
+        r"notAllowedLateInAct3\s*=[^{]*\{(.*?)\};", _read(RELIC_LISTS_FILE), re.DOTALL
+    )
+    names = re.findall(r"GetId<(\w+)>", block.group(1)) if block else []
+    if not names or "ELITE" not in layout:
+        return {}
+    gone = {row["id"] for row in banned}
+    ids = sorted(i for i in (snake(name) for name in names) if i not in gone)
+    for path in sorted(RELICS_DIR.glob("*.cs")) if RELICS_DIR.is_dir() else []:
+        text = path.read_text(encoding="utf-8")
+        if "GameMode.Blitz" in text and "IsAllowed" in text:
+            ids.append(snake(path.stem))
+    if not ids:
+        return {}
+    return {
+        "from_floor": len(layout) * 2 + layout.index("ELITE") + 1,
+        "relics": _named(sorted(set(ids)), relics),
+    }
+
+
 def blitz_details(loc: dict[str, dict], levels: list[str]) -> dict:
     """The extra fields of the Blitz row. `loc` maps a table name to its
     strings; a field the code no longer states is left out."""
@@ -320,6 +369,12 @@ def blitz_details(loc: dict[str, dict], levels: list[str]) -> dict:
             {"type": room, "name": room_name(room, loc.get("map", {}))}
             for room in layout
         ]
+        weak = weak_encounters_per_act()
+        if weak is not None:
+            out["weak_encounters_per_act"] = weak
+            monsters = [r for r in out["act_rooms"] if r["type"] == "MONSTER"]
+            for index, room in enumerate(monsters):
+                room["easy"] = index < weak
         out["floors_per_act"] = len(layout)
         out["encounters_per_act"] = fights
     neow = neow_numbers()
@@ -350,4 +405,10 @@ def blitz_details(loc: dict[str, dict], levels: list[str]) -> dict:
     relics = banned_relics(loc.get("relics", {}))
     if relics:
         out["banned_relics"] = relics
+    late = late_relics(loc.get("relics", {}), layout, relics)
+    if late:
+        out["late_relics"] = late
+    curses = merchant_curses(loc.get("cards", {}))
+    if curses and "merchant" in out:
+        out["merchant"]["curses"] = curses
     return out

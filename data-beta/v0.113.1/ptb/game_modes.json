@@ -317,11 +317,13 @@
       },
       {
         "type": "MONSTER",
-        "name": "Inimigo"
+        "name": "Inimigo",
+        "easy": true
       },
       {
         "type": "MONSTER",
-        "name": "Inimigo"
+        "name": "Inimigo",
+        "easy": false
       },
       {
         "type": "SHOP",
@@ -344,6 +346,7 @@
         "name": "Chefe"
       }
     ],
+    "weak_encounters_per_act": 1,
     "floors_per_act": 8,
     "encounters_per_act": 4,
     "neow_details": {
@@ -397,6 +400,44 @@
           "id": "VIGOROUS",
           "name": "Vigorosa",
           "amount": 5
+        }
+      ],
+      "curses": [
+        {
+          "id": "CLUMSY",
+          "name": "Deselegância"
+        },
+        {
+          "id": "DECAY",
+          "name": "Deterioração"
+        },
+        {
+          "id": "DOUBT",
+          "name": "Dúvida"
+        },
+        {
+          "id": "GUILTY",
+          "name": "Culpa"
+        },
+        {
+          "id": "INJURY",
+          "name": "Lesão"
+        },
+        {
+          "id": "NORMALITY",
+          "name": "Neutralização"
+        },
+        {
+          "id": "REGRET",
+          "name": "Arrependimento"
+        },
+        {
+          "id": "SHAME",
+          "name": "Vergonha"
+        },
+        {
+          "id": "WRITHE",
+          "name": "Torção"
         }
       ]
     },
@@ -663,6 +704,31 @@
         "id": "WINGED_BOOTS",
         "name": "Botas Aladas"
       }
-    ]
+    ],
+    "late_relics": {
+      "from_floor": 21,
+      "relics": [
+        {
+          "id": "FROZEN_EGG",
+          "name": "Ovo Congelado"
+        },
+        {
+          "id": "MOLTEN_EGG",
+          "name": "Ovo Fundido"
+        },
+        {
+          "id": "POTION_BELT",
+          "name": "Cinturão de Poções"
+        },
+        {
+          "id": "TOXIC_EGG",
+          "name": "Ovo Tóxico"
+        },
+        {
+          "id": "WHITE_STAR",
+          "name": "Estrela Branca"
+        }
+      ]
+    }
   }
 ]

@@ -317,11 +317,13 @@
       },
       {
         "type": "MONSTER",
-        "name": "ศัตรู"
+        "name": "ศัตรู",
+        "easy": true
       },
       {
         "type": "MONSTER",
-        "name": "ศัตรู"
+        "name": "ศัตรู",
+        "easy": false
       },
       {
         "type": "SHOP",
@@ -344,6 +346,7 @@
         "name": "บอส"
       }
     ],
+    "weak_encounters_per_act": 1,
     "floors_per_act": 8,
     "encounters_per_act": 4,
     "neow_details": {
@@ -397,6 +400,44 @@
           "id": "VIGOROUS",
           "name": "มนตร์ชีวิตชีวา",
           "amount": 5
+        }
+      ],
+      "curses": [
+        {
+          "id": "CLUMSY",
+          "name": "ความซุ่มซ่าม"
+        },
+        {
+          "id": "DECAY",
+          "name": "ความเสื่อมสลาย"
+        },
+        {
+          "id": "DOUBT",
+          "name": "ความเคลือบแคลง"
+        },
+        {
+          "id": "GUILTY",
+          "name": "มีความผิด"
+        },
+        {
+          "id": "INJURY",
+          "name": "ความเสียหาย"
+        },
+        {
+          "id": "NORMALITY",
+          "name": "จำกัดฐานะ"
+        },
+        {
+          "id": "REGRET",
+          "name": "เสียใจภายหลัง"
+        },
+        {
+          "id": "SHAME",
+          "name": "ความละอาย"
+        },
+        {
+          "id": "WRITHE",
+          "name": "อาการชัก"
         }
       ]
     },
@@ -663,6 +704,31 @@
         "id": "WINGED_BOOTS",
         "name": "รองเท้าติดปีก"
       }
-    ]
+    ],
+    "late_relics": {
+      "from_floor": 21,
+      "relics": [
+        {
+          "id": "FROZEN_EGG",
+          "name": "ไข่แช่แข็ง"
+        },
+        {
+          "id": "MOLTEN_EGG",
+          "name": "ไข่ร้อนระอุ"
+        },
+        {
+          "id": "POTION_BELT",
+          "name": "เข็มขัดขวดยา"
+        },
+        {
+          "id": "TOXIC_EGG",
+          "name": "ไข่พิษ"
+        },
+        {
+          "id": "WHITE_STAR",
+          "name": "ดาวขาว"
+        }
+      ]
+    }
   }
 ]

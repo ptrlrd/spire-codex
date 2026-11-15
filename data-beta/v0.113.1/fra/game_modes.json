@@ -317,11 +317,13 @@
       },
       {
         "type": "MONSTER",
-        "name": "Ennemi"
+        "name": "Ennemi",
+        "easy": true
       },
       {
         "type": "MONSTER",
-        "name": "Ennemi"
+        "name": "Ennemi",
+        "easy": false
       },
       {
         "type": "SHOP",
@@ -344,6 +346,7 @@
         "name": "Boss"
       }
     ],
+    "weak_encounters_per_act": 1,
     "floors_per_act": 8,
     "encounters_per_act": 4,
     "neow_details": {
@@ -397,6 +400,44 @@
           "id": "VIGOROUS",
           "name": "Vigoureux",
           "amount": 5
+        }
+      ],
+      "curses": [
+        {
+          "id": "CLUMSY",
+          "name": "Maladresse"
+        },
+        {
+          "id": "DECAY",
+          "name": "Déclin"
+        },
+        {
+          "id": "DOUBT",
+          "name": "Doute"
+        },
+        {
+          "id": "GUILTY",
+          "name": "Culpabilité"
+        },
+        {
+          "id": "INJURY",
+          "name": "Blessure"
+        },
+        {
+          "id": "NORMALITY",
+          "name": "Normalité"
+        },
+        {
+          "id": "REGRET",
+          "name": "Regrets"
+        },
+        {
+          "id": "SHAME",
+          "name": "Honte"
+        },
+        {
+          "id": "WRITHE",
+          "name": "Souffrance"
         }
       ]
     },
@@ -663,6 +704,31 @@
         "id": "WINGED_BOOTS",
         "name": "Bottes ailées"
       }
-    ]
+    ],
+    "late_relics": {
+      "from_floor": 21,
+      "relics": [
+        {
+          "id": "FROZEN_EGG",
+          "name": "Œuf gelé"
+        },
+        {
+          "id": "MOLTEN_EGG",
+          "name": "Œuf en fusion"
+        },
+        {
+          "id": "POTION_BELT",
+          "name": "Ceinture à potions"
+        },
+        {
+          "id": "TOXIC_EGG",
+          "name": "Œuf toxique"
+        },
+        {
+          "id": "WHITE_STAR",
+          "name": "Étoile blanche"
+        }
+      ]
+    }
   }
 ]

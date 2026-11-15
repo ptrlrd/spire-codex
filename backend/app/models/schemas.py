@@ -475,6 +475,7 @@ class GameModeNamed(BaseModel):
 class GameModeRoom(BaseModel):
     type: str
     name: str
+    easy: bool | None = None
 
 
 class RarityOdds(BaseModel):
@@ -502,6 +503,7 @@ class GameModeMerchant(BaseModel):
     rare_offer_weight: float | None = None
     card_rarity_odds: RarityOdds | None = None
     enchantments: list[GameModeEnchantment] | None = None
+    curses: list[GameModeNamed] | None = None
 
 
 class GameModeReward(BaseModel):
@@ -517,6 +519,11 @@ class GameModeReward(BaseModel):
 class GameModeTreasure(BaseModel):
     singleplayer: int
     multiplayer: int
+
+
+class GameModeLateRelics(BaseModel):
+    from_floor: int
+    relics: list[GameModeNamed]
 
 
 class GameModeAscensionStep(BaseModel):
@@ -562,6 +569,8 @@ class GameMode(BaseModel):
     ascension_ladder: list[GameModeAscensionStep] | None = None
     banned_cards: list[GameModeNamed] | None = None
     banned_relics: list[GameModeNamed] | None = None
+    weak_encounters_per_act: int | None = None
+    late_relics: GameModeLateRelics | None = None
 
 
 class Achievement(BaseModel):

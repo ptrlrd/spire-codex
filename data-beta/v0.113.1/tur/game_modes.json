@@ -317,11 +317,13 @@
       },
       {
         "type": "MONSTER",
-        "name": "Düşman"
+        "name": "Düşman",
+        "easy": true
       },
       {
         "type": "MONSTER",
-        "name": "Düşman"
+        "name": "Düşman",
+        "easy": false
       },
       {
         "type": "SHOP",
@@ -344,6 +346,7 @@
         "name": "Boss"
       }
     ],
+    "weak_encounters_per_act": 1,
     "floors_per_act": 8,
     "encounters_per_act": 4,
     "neow_details": {
@@ -397,6 +400,44 @@
           "id": "VIGOROUS",
           "name": "Güçlü",
           "amount": 5
+        }
+      ],
+      "curses": [
+        {
+          "id": "CLUMSY",
+          "name": "Sakar"
+        },
+        {
+          "id": "DECAY",
+          "name": "Çürüme"
+        },
+        {
+          "id": "DOUBT",
+          "name": "Kuşku"
+        },
+        {
+          "id": "GUILTY",
+          "name": "Suçlu"
+        },
+        {
+          "id": "INJURY",
+          "name": "Yaralanma"
+        },
+        {
+          "id": "NORMALITY",
+          "name": "Sıradanlık"
+        },
+        {
+          "id": "REGRET",
+          "name": "Pişmanlık"
+        },
+        {
+          "id": "SHAME",
+          "name": "Utanç"
+        },
+        {
+          "id": "WRITHE",
+          "name": "Kıvranma"
         }
       ]
     },
@@ -663,6 +704,31 @@
         "id": "WINGED_BOOTS",
         "name": "Kanatlı Botlar"
       }
-    ]
+    ],
+    "late_relics": {
+      "from_floor": 21,
+      "relics": [
+        {
+          "id": "FROZEN_EGG",
+          "name": "Donmuş Yumurta"
+        },
+        {
+          "id": "MOLTEN_EGG",
+          "name": "Erimiş Yumurta"
+        },
+        {
+          "id": "POTION_BELT",
+          "name": "İksir Kemeri"
+        },
+        {
+          "id": "TOXIC_EGG",
+          "name": "Zehirli Yumurta"
+        },
+        {
+          "id": "WHITE_STAR",
+          "name": "Beyaz Yıldız"
+        }
+      ]
+    }
   }
 ]

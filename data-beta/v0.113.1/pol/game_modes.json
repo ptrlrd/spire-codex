@@ -317,11 +317,13 @@
       },
       {
         "type": "MONSTER",
-        "name": "Przeciwnik"
+        "name": "Przeciwnik",
+        "easy": true
       },
       {
         "type": "MONSTER",
-        "name": "Przeciwnik"
+        "name": "Przeciwnik",
+        "easy": false
       },
       {
         "type": "SHOP",
@@ -344,6 +346,7 @@
         "name": "Boss"
       }
     ],
+    "weak_encounters_per_act": 1,
     "floors_per_act": 8,
     "encounters_per_act": 4,
     "neow_details": {
@@ -397,6 +400,44 @@
           "id": "VIGOROUS",
           "name": "Werwa",
           "amount": 5
+        }
+      ],
+      "curses": [
+        {
+          "id": "CLUMSY",
+          "name": "Niezdarność"
+        },
+        {
+          "id": "DECAY",
+          "name": "Rozkład"
+        },
+        {
+          "id": "DOUBT",
+          "name": "Zwątpienie"
+        },
+        {
+          "id": "GUILTY",
+          "name": "Poczucie winy"
+        },
+        {
+          "id": "INJURY",
+          "name": "Kontuzja"
+        },
+        {
+          "id": "NORMALITY",
+          "name": "Normalność"
+        },
+        {
+          "id": "REGRET",
+          "name": "Żal"
+        },
+        {
+          "id": "SHAME",
+          "name": "Wstyd"
+        },
+        {
+          "id": "WRITHE",
+          "name": "Zwijanie z bólu"
         }
       ]
     },
@@ -663,6 +704,31 @@
         "id": "WINGED_BOOTS",
         "name": "Uskrzydlone buty"
       }
-    ]
+    ],
+    "late_relics": {
+      "from_floor": 21,
+      "relics": [
+        {
+          "id": "FROZEN_EGG",
+          "name": "Zamrożone jajo"
+        },
+        {
+          "id": "MOLTEN_EGG",
+          "name": "Ogniste jajo"
+        },
+        {
+          "id": "POTION_BELT",
+          "name": "Pas na mikstury"
+        },
+        {
+          "id": "TOXIC_EGG",
+          "name": "Toksyczne jajo"
+        },
+        {
+          "id": "WHITE_STAR",
+          "name": "Biała gwiazda"
+        }
+      ]
+    }
   }
 ]

@@ -31,6 +31,7 @@ export interface GameModeNamed {
 export interface GameModeRoom {
   type: string;
   name: string;
+  easy?: boolean | null;
 }
 
 export interface GameModeReward {
@@ -51,6 +52,7 @@ export interface GameModeMerchant {
   rare_offer_weight?: number;
   card_rarity_odds?: RarityOdds;
   enchantments?: { id: string; name: string; amount: number }[];
+  curses?: GameModeNamed[] | null;
 }
 
 export interface GameModeAscensionStep {
@@ -87,6 +89,7 @@ export interface GameModeRow {
   ascension_ladder?: GameModeAscensionStep[] | null;
   banned_cards?: GameModeNamed[] | null;
   banned_relics?: GameModeNamed[] | null;
+  late_relics?: { from_floor: number; relics: GameModeNamed[] } | null;
   dominions?: GameModeDominion[] | null;
   rotating_streak?: GameModeEntry | null;
 }

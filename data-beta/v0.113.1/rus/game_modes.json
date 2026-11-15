@@ -317,11 +317,13 @@
       },
       {
         "type": "MONSTER",
-        "name": "Враг"
+        "name": "Враг",
+        "easy": true
       },
       {
         "type": "MONSTER",
-        "name": "Враг"
+        "name": "Враг",
+        "easy": false
       },
       {
         "type": "SHOP",
@@ -344,6 +346,7 @@
         "name": "Босс"
       }
     ],
+    "weak_encounters_per_act": 1,
     "floors_per_act": 8,
     "encounters_per_act": 4,
     "neow_details": {
@@ -397,6 +400,44 @@
           "id": "VIGOROUS",
           "name": "Бодрость",
           "amount": 5
+        }
+      ],
+      "curses": [
+        {
+          "id": "CLUMSY",
+          "name": "Неуклюжесть"
+        },
+        {
+          "id": "DECAY",
+          "name": "Гниение"
+        },
+        {
+          "id": "DOUBT",
+          "name": "Сомнение"
+        },
+        {
+          "id": "GUILTY",
+          "name": "Угрызения совести"
+        },
+        {
+          "id": "INJURY",
+          "name": "Травма"
+        },
+        {
+          "id": "NORMALITY",
+          "name": "Обыденность"
+        },
+        {
+          "id": "REGRET",
+          "name": "Сожаление"
+        },
+        {
+          "id": "SHAME",
+          "name": "Стыд"
+        },
+        {
+          "id": "WRITHE",
+          "name": "Муки"
         }
       ]
     },
@@ -663,6 +704,31 @@
         "id": "WINGED_BOOTS",
         "name": "Крылатые ботинки"
       }
-    ]
+    ],
+    "late_relics": {
+      "from_floor": 21,
+      "relics": [
+        {
+          "id": "FROZEN_EGG",
+          "name": "Замерзшее яйцо"
+        },
+        {
+          "id": "MOLTEN_EGG",
+          "name": "Раскаленное яйцо"
+        },
+        {
+          "id": "POTION_BELT",
+          "name": "Пояс для зелий"
+        },
+        {
+          "id": "TOXIC_EGG",
+          "name": "Ядовитое яйцо"
+        },
+        {
+          "id": "WHITE_STAR",
+          "name": "Белая звезда"
+        }
+      ]
+    }
   }
 ]
