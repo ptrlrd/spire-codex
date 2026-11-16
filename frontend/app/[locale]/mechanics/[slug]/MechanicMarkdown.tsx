@@ -1,5 +1,15 @@
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import type { ReactNode } from "react";
+import { headingId } from "../mechanic-groups";
+
+function textOf(node: ReactNode): string {
+  if (typeof node === "string" || typeof node === "number") return String(node);
+  if (Array.isArray(node)) return node.map(textOf).join("");
+  if (node && typeof node === "object" && "props" in node)
+    return textOf((node.props as { children?: ReactNode }).children);
+  return "";
+}
 
 // Renders a mechanics page body. Static prose only, no hooks, no
 // browser APIs, so this stays a server component and the resolved
@@ -17,7 +27,10 @@ export default function MechanicMarkdown({ body }: { body: string }) {
             </h1>
           ),
           h2: ({ children }) => (
-            <h2 className="text-xl font-bold text-[var(--accent-gold)] mt-8 mb-3 first:mt-0">
+            <h2
+              id={headingId(textOf(children)) || undefined}
+              className="text-xl font-bold text-[var(--accent-gold)] mt-8 mb-3 first:mt-0 scroll-mt-24"
+            >
               {children}
             </h2>
           ),
