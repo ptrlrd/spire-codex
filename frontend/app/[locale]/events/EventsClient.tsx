@@ -35,13 +35,26 @@ interface EventGroup {
   events: GameEvent[];
 }
 
-function uniqueTitles(options: EventOption[]): EventOption[] {
-  const seen = new Set<string>();
-  return options.filter((o) => {
-    if (seen.has(o.title)) return false;
-    seen.add(o.title);
-    return true;
-  });
+interface RelicLite {
+  id: string;
+  name: string;
+  image_url: string | null;
+}
+
+export function foldLocked(
+  options: EventOption[],
+): { opt: EventOption; locked: EventOption[] }[] {
+  const ids = new Set(options.map((o) => o.id));
+  const baseOf = (o: EventOption) =>
+    o.id.endsWith("_LOCKED") && ids.has(o.id.slice(0, -7))
+      ? o.id.slice(0, -7)
+      : null;
+  return options
+    .filter((o) => !baseOf(o))
+    .map((opt) => ({
+      opt,
+      locked: options.filter((o) => baseOf(o) === opt.id),
+    }));
 }
 
 function EventsClientInner({
@@ -62,6 +75,17 @@ function EventsClientInner({
   const channel = useChannel();
   const betaIds = useBetaOnlyIds("events");
   const initialRender = useRef(true);
+  const [relicMap, setRelicMap] = useState<Record<string, RelicLite>>({});
+
+  useEffect(() => {
+    cachedFetch<RelicLite[]>(`${API}/api/relics?lang=${lang}`)
+      .then((relics) => {
+        const map: Record<string, RelicLite> = {};
+        for (const r of relics) map[r.id] = r;
+        setRelicMap(map);
+      })
+      .catch(() => {});
+  }, [lang]);
 
   const actOptions = acts.map((a) => ({
     value: a.id.toLowerCase(),
@@ -183,35 +207,43 @@ function EventsClientInner({
                 {group.events.length}
               </span>
             </div>
-            <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-8">
+            <ul className="columns-1 md:columns-2 xl:columns-3 gap-x-8">
               {group.events.map((event) => {
-                const relicCount = event.relics?.length ?? 0;
+                const choices = foldLocked(event.options ?? []);
+                const facts = [
+                  event.type === "Ancient" && event.act
+                    ? actLabel(event.act)
+                    : "",
+                  ...(event.preconditions ?? []),
+                ].filter(Boolean);
                 return (
                   <li
                     key={event.id}
-                    className="border-b border-[var(--border-subtle)]"
+                    className="group relative break-inside-avoid border-b border-[var(--border-subtle)] py-4"
                   >
-                    <Link
-                      prefetch={false}
-                      href={`${bp}/events/${event.id.toLowerCase()}`}
-                      className="group flex min-h-[64px] items-center gap-4 py-3 -mx-2 px-2 rounded-lg hover:bg-[var(--bg-card)] transition-colors"
-                    >
+                    <div className="flex items-center gap-3">
                       {event.image_url && (
                         <img
                           src={imageUrl(event.image_url)}
                           alt={t("{name} - Slay the Spire 2 Event", {
                             name: event.name,
                           })}
-                          width={64}
-                          height={64}
+                          width={56}
+                          height={56}
                           loading="lazy"
-                          className="w-16 h-16 object-contain flex-shrink-0"
+                          className="w-14 h-14 object-contain flex-shrink-0"
                           crossOrigin="anonymous"
                         />
                       )}
-                      <div className="min-w-0 flex-1">
-                        <h3 className="text-base font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent-gold)] transition-colors">
-                          {event.name}
+                      <div className="min-w-0">
+                        <h3 className="text-lg font-semibold leading-snug text-[var(--text-primary)]">
+                          <Link
+                            prefetch={false}
+                            href={`${bp}/events/${event.id.toLowerCase()}`}
+                            className="after:absolute after:inset-0 after:content-[''] group-hover:text-[var(--accent-gold)] transition-colors"
+                          >
+                            {event.name}
+                          </Link>
                           {betaIds.has(event.id) && (
                             <span className="ml-2 align-middle">
                               <BetaBadge />
@@ -223,53 +255,98 @@ function EventsClientInner({
                             {event.epithet}
                           </p>
                         )}
-                        {event.options && event.options.length > 0 && (
-                          <p className="text-sm text-[var(--text-secondary)] leading-snug mt-0.5">
-                            {uniqueTitles(event.options).map((opt, i) => (
-                              <span key={opt.id}>
-                                {i > 0 && (
-                                  <span className="text-[var(--text-muted)]">
-                                    {" / "}
-                                  </span>
-                                )}
+                        {facts.length > 0 && (
+                          <p className="text-sm text-[var(--text-muted)]">
+                            {facts.join(" · ")}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+
+                    {event.description && (
+                      <p className="mt-2 text-sm leading-relaxed text-[var(--text-muted)] line-clamp-2">
+                        <RichDescription
+                          text={
+                            siteAuthored(event.description)
+                              ? t(event.description)
+                              : event.description
+                          }
+                          nestedInLink
+                        />
+                      </p>
+                    )}
+
+                    {choices.length > 0 && (
+                      <ul className="mt-2.5 space-y-1.5 border-l-2 border-[var(--border-subtle)] pl-3">
+                        {choices.map(({ opt, locked }) => (
+                          <li key={opt.id} className="text-sm leading-snug">
+                            <span className="font-semibold text-[var(--text-primary)]">
+                              <RichDescription text={opt.title} nestedInLink />
+                            </span>
+                            {opt.description && (
+                              <span className="block text-[var(--text-secondary)]">
                                 <RichDescription
-                                  text={opt.title}
+                                  text={opt.description}
                                   nestedInLink
                                 />
                               </span>
+                            )}
+                            {locked.map((l) => (
+                              <span
+                                key={l.id}
+                                className="block text-[var(--text-muted)]"
+                              >
+                                <RichDescription text={l.title} nestedInLink />
+                                {l.description && (
+                                  <>
+                                    {": "}
+                                    <RichDescription
+                                      text={l.description}
+                                      nestedInLink
+                                    />
+                                  </>
+                                )}
+                              </span>
                             ))}
-                          </p>
-                        )}
-                        {!event.options?.length &&
-                          event.description &&
-                          siteAuthored(event.description) && (
-                            <p className="text-sm text-[var(--text-secondary)] leading-snug mt-0.5 line-clamp-2">
-                              <RichDescription
-                                text={t(event.description)}
-                                nestedInLink
-                              />
-                            </p>
-                          )}
-                        {(event.type === "Ancient" || relicCount > 0) && (
-                          <p className="text-sm text-[var(--text-muted)] mt-0.5">
-                            {[
-                              event.act ? actLabel(event.act) : "",
-                              relicCount > 0
-                                ? t("{n} relics", { n: relicCount })
-                                : "",
-                            ]
-                              .filter(Boolean)
-                              .join(" · ")}
-                          </p>
-                        )}
-                        {event.preconditions &&
-                          event.preconditions.length > 0 && (
-                            <p className="text-sm text-[var(--text-muted)] mt-0.5">
-                              {event.preconditions.join(" · ")}
-                            </p>
-                          )}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+
+                    {event.relics && event.relics.length > 0 && (
+                      <div className="mt-2.5">
+                        <p className="text-sm text-[var(--text-muted)]">
+                          {t("{n} relics", { n: event.relics.length })}
+                        </p>
+                        <div className="relative z-10 mt-1 flex flex-wrap">
+                          {event.relics.map((relicId) => {
+                            const relic = relicMap[relicId];
+                            if (!relic?.image_url) return null;
+                            return (
+                              <Link
+                                prefetch={false}
+                                key={relicId}
+                                href={`${bp}/relics/${relicId.toLowerCase()}`}
+                                title={relic.name}
+                                className="flex h-11 w-11 items-center justify-center rounded-lg hover:bg-[var(--bg-card)] transition-colors"
+                              >
+                                <img
+                                  src={imageUrl(relic.image_url)}
+                                  alt={t("{name} - Slay the Spire 2 Relic", {
+                                    name: relic.name,
+                                  })}
+                                  width={36}
+                                  height={36}
+                                  loading="lazy"
+                                  className="w-9 h-9 object-contain"
+                                  crossOrigin="anonymous"
+                                />
+                              </Link>
+                            );
+                          })}
+                        </div>
                       </div>
-                    </Link>
+                    )}
                   </li>
                 );
               })}

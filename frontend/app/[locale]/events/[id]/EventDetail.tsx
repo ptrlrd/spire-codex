@@ -11,7 +11,11 @@ import {
 import { useParams } from "next/navigation";
 import { Link, useRouter } from "@/i18n/navigation";
 import type { GameEvent, EventPage, EventOption } from "@/lib/api/types";
-import { EVENT_VOTES_BRACKET, type EventVotes } from "@/lib/event-votes";
+import {
+  EVENT_VOTES_BRACKET,
+  type EventVotes,
+  type VoteOption,
+} from "@/lib/event-votes";
 import { dataThroughLabel } from "@/lib/data-through";
 import RichDescription from "@/app/components/RichDescription";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
@@ -32,6 +36,7 @@ import "@/app/card-revamp.css";
 import "@/app/power-ench-event-extra.css";
 import { AncientPools } from "@/app/[locale]/ancients/pools";
 import "../event-page.css";
+import { foldLocked } from "../EventsClient";
 import { SPINE_TEXT } from "@/lib/character-colors";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -78,14 +83,21 @@ function namedArt(text: string, art: EventArt[] | undefined): EventArt[] {
   });
 }
 
+function decLayout(n: number): string {
+  if (n > 4) return "dec dec-rows";
+  return n === 4 ? "dec dec-2" : "dec";
+}
+
 function OptionRow({
   opt,
+  locked,
   art,
   bp,
   entityLinks,
   interactiveWords,
 }: {
   opt: EventOption;
+  locked?: EventOption[];
   art?: EventArt[];
   bp: string;
   entityLinks?: EntityNameLink[];
@@ -93,7 +105,7 @@ function OptionRow({
 }) {
   const named = namedArt(`${opt.title} ${opt.description ?? ""}`, art);
   return (
-    <>
+    <div className="dec-main">
       <div className="dec-t">
         <RichDescription
           text={opt.title}
@@ -134,7 +146,109 @@ function OptionRow({
           ))}
         </div>
       )}
-    </>
+      {locked?.map((l) => (
+        <p key={l.id} className="dec-locked">
+          <RichDescription text={l.title} />
+          {l.description && (
+            <>
+              {": "}
+              <RichDescription
+                text={l.description}
+                interactiveWords={interactiveWords}
+                entityLinks={entityLinks}
+              />
+            </>
+          )}
+        </p>
+      ))}
+    </div>
+  );
+}
+
+function Decisions({
+  options,
+  outcomeFor,
+  votes,
+  art,
+  bp,
+  entityLinks,
+  interactiveWords,
+}: {
+  options: EventOption[];
+  outcomeFor: Map<string, EventPage>;
+  votes?: VoteOption[];
+  art?: EventArt[];
+  bp: string;
+  entityLinks?: EntityNameLink[];
+  interactiveWords?: Words;
+}) {
+  const t = useT();
+  const fmtN = useFormatNumber();
+  const choices = foldLocked(options);
+  const voteFor = new Map((votes ?? []).map((o) => [o.id.toUpperCase(), o]));
+  return (
+    <div className={decLayout(choices.length)}>
+      {choices.map(({ opt, locked }) => {
+        const vote = votes ? voteFor.get(opt.id.toUpperCase()) : undefined;
+        const outcome = outcomeFor.get(opt.id);
+        return (
+          <div key={opt.id} className="dec-opt">
+            <OptionRow
+              opt={opt}
+              locked={locked}
+              art={art}
+              bp={bp}
+              entityLinks={entityLinks}
+              interactiveWords={interactiveWords}
+            />
+            {vote && (
+              <div className="dec-vote">
+                <span className="bar-track">
+                  <span
+                    className="bar-fill"
+                    style={{
+                      width: `${vote.pct}%`,
+                      background: "var(--gold)",
+                    }}
+                  />
+                </span>
+                <p>
+                  <span>
+                    {t("Pick rate")} <b>{vote.pct}%</b> ({fmtN(vote.count)})
+                  </span>
+                  {typeof vote.winRate === "number" && (
+                    <span>
+                      {t("Win%")} <b>{vote.winRate.toFixed(1)}%</b>
+                    </span>
+                  )}
+                  {typeof vote.lift === "number" && (
+                    <span>
+                      {t("Lift")}{" "}
+                      <b>
+                        {vote.lift > 0 ? "+" : ""}
+                        {vote.lift.toFixed(1)}
+                      </b>
+                    </span>
+                  )}
+                </p>
+              </div>
+            )}
+            {outcome?.description && (
+              <div className="dec-out">
+                <p className="dec-out-h">{t("Outcome")}</p>
+                <div className="dec-out-b">
+                  <RichDescription
+                    text={outcome.description}
+                    interactiveWords={interactiveWords}
+                    entityLinks={entityLinks}
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </div>
   );
 }
 
@@ -174,11 +288,12 @@ function PageBlock({
         </div>
       )}
       {page.options && page.options.length > 0 && (
-        <div className="dec">
-          {page.options.map((opt) => (
+        <div className={decLayout(foldLocked(page.options).length)}>
+          {foldLocked(page.options).map(({ opt, locked }) => (
             <div key={opt.id} className="dec-opt">
               <OptionRow
                 opt={opt}
+                locked={locked}
                 art={art}
                 bp={bp}
                 entityLinks={entityLinks}
@@ -393,9 +508,6 @@ export default function EventDetail({
           );
         })
       : [];
-  const voteFor = new Map(
-    (voteStats?.options ?? []).map((o) => [o.id.toUpperCase(), o]),
-  );
   const votesInline =
     !!voteStats &&
     voteStats.options.length > 0 &&
@@ -520,69 +632,15 @@ export default function EventDetail({
               )}
 
               {options.length > 0 && (
-                <div className="dec">
-                  {options.map((opt) => {
-                    const vote = votesInline
-                      ? voteFor.get(opt.id.toUpperCase())
-                      : undefined;
-                    const outcome = outcomeFor.get(opt.id);
-                    return (
-                      <div key={opt.id} className="dec-opt">
-                        <OptionRow
-                          opt={opt}
-                          art={initialArt}
-                          bp={bp}
-                          entityLinks={entityLinks}
-                          interactiveWords={interactiveWords}
-                        />
-                        {vote && (
-                          <div className="dec-vote">
-                            <span className="bar-track">
-                              <span
-                                className="bar-fill"
-                                style={{
-                                  width: `${vote.pct}%`,
-                                  background: "var(--gold)",
-                                }}
-                              />
-                            </span>
-                            <p>
-                              <span>
-                                {t("Pick rate")} <b>{vote.pct}%</b>
-                              </span>
-                              {typeof vote.winRate === "number" && (
-                                <span>
-                                  {t("Win%")} <b>{vote.winRate.toFixed(1)}%</b>
-                                </span>
-                              )}
-                              {typeof vote.lift === "number" && (
-                                <span>
-                                  {t("Lift")}{" "}
-                                  <b>
-                                    {vote.lift > 0 ? "+" : ""}
-                                    {vote.lift.toFixed(1)}
-                                  </b>
-                                </span>
-                              )}
-                            </p>
-                          </div>
-                        )}
-                        {outcome?.description && (
-                          <div className="dec-out">
-                            <p className="dec-out-h">{t("Outcome")}</p>
-                            <div className="dec-out-b">
-                              <RichDescription
-                                text={outcome.description}
-                                interactiveWords={interactiveWords}
-                                entityLinks={entityLinks}
-                              />
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
+                <Decisions
+                  options={options}
+                  outcomeFor={outcomeFor}
+                  votes={votesInline ? voteStats?.options : undefined}
+                  art={initialArt}
+                  bp={bp}
+                  entityLinks={entityLinks}
+                  interactiveWords={interactiveWords}
+                />
               )}
 
               {voteStats && voteStats.options.length > 0 && !votesInline && (
@@ -653,9 +711,7 @@ export default function EventDetail({
 
               {morePages.length > 0 && (
                 <>
-                  <h3 className="subh">
-                    {t("All pages")} ({morePages.length})
-                  </h3>
+                  <h3 className="subh">{t("All pages")}</h3>
                   <div>
                     {morePages.map((page) => (
                       <PageBlock

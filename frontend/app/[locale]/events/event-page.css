@@ -62,7 +62,7 @@
   height: 7px;
   border-radius: 2px;
   transform: rotate(45deg);
-  background: var(--success);
+  background: var(--text-3);
 }
 .card-rvmp.evt-rv .dec-fx li.cost::before {
   background: var(--danger);
@@ -161,4 +161,43 @@
 .card-rvmp.evt-rv .bar-row,
 .card-rvmp.evt-rv .bar-row .num {
   font-size: 14px;
+}
+
+.card-rvmp.evt-rv .dec.dec-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.card-rvmp.evt-rv .dec.dec-rows {
+  grid-template-columns: minmax(0, 1fr);
+}
+.card-rvmp.evt-rv .dec-main {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+.card-rvmp.evt-rv .dec-locked {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-3);
+}
+@media (min-width: 641px) {
+  .card-rvmp.evt-rv .dec.dec-rows .dec-opt {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 250px;
+    gap: 10px 24px;
+    align-items: start;
+  }
+  .card-rvmp.evt-rv .dec.dec-rows .dec-vote {
+    padding-top: 6px;
+  }
+  .card-rvmp.evt-rv .dec.dec-rows .dec-out {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 640px) {
+  .card-rvmp.evt-rv .dec,
+  .card-rvmp.evt-rv .dec.dec-2 {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
