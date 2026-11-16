@@ -1,4 +1,5 @@
 import { getT } from "@/lib/i18n-server";
+import { fightMonster, type FightMonster } from "@/lib/fight";
 import type { Metadata } from "next";
 import { inLanguageOf, langQuery, localeOf, localePath } from "@/lib/locale";
 import { uiText } from "@/lib/locale-server";
@@ -130,6 +131,17 @@ export default async function Page({ params }: Props) {
   // Community "how deadly" numbers for this fight (encountered / killed), SSR'd.
   const stats = encounter?.id ? await fetchEncounterStats([encounter.id]) : [];
   const encounterStat = stats[0] ?? null;
+  const monsters: Record<string, FightMonster> = {};
+  await Promise.all(
+    ((encounter?.monsters ?? []) as { id: string }[]).map(async (m) => {
+      try {
+        const res = await fetchEntityRes(
+          `${API_INTERNAL}/api/monsters/${m.id.toLowerCase()}${langQuery(locale)}`,
+        );
+        if (res.ok) monsters[m.id] = fightMonster(await res.json());
+      } catch {}
+    }),
+  );
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
@@ -137,6 +149,7 @@ export default async function Page({ params }: Props) {
         <EncounterDetail
           initialEncounter={encounter}
           encounterStat={encounterStat}
+          monsters={monsters}
         />
       </BetaOnlyScope>
     </>

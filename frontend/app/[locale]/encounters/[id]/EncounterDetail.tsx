@@ -18,6 +18,8 @@ import EntityProse from "@/app/components/EntityProse";
 import type { EncounterStat } from "@/lib/encounter-stats";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
 import ActLink from "@/app/components/ActLink";
+import FightLineup from "@/app/components/FightLineup";
+import type { FightMonster } from "@/lib/fight";
 import "@/app/card-revamp.css";
 import "@/app/monster-encounter-extra.css";
 
@@ -39,9 +41,11 @@ const roomTypeBadge: Record<string, string> = {
 export default function EncounterDetail({
   initialEncounter,
   encounterStat,
+  monsters = {},
 }: {
   initialEncounter?: Encounter | null;
   encounterStat?: EncounterStat | null;
+  monsters?: Record<string, FightMonster>;
 } = {}) {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
@@ -223,19 +227,14 @@ export default function EncounterDetail({
               <p className="h-note">
                 {t("The enemies you fight in this encounter.")}
               </p>
-              <div className="chips">
-                {encounter.monsters!.map((m) => (
-                  <Link
-                    prefetch={false}
-                    key={m.id}
-                    href={`${bp}/monsters/${m.id.toLowerCase()}`}
-                    className="chip"
-                  >
-                    <span className="pip" />
-                    <span className="cn">{m.name}</span>
-                  </Link>
-                ))}
-              </div>
+              <FightLineup
+                members={encounter.monsters!}
+                monsters={monsters}
+                size={encounter.room_type === "Boss" ? 200 : 136}
+                detail
+                hrefFor={(mid) => `${bp}/monsters/${mid.toLowerCase()}`}
+                t={t}
+              />
             </section>
           )}
 

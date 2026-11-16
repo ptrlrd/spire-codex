@@ -4,28 +4,18 @@ import { useGameLocale, useT } from "@/lib/i18n";
 import { Suspense, useState, useEffect, useRef, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
 import { Link } from "@/i18n/navigation";
-import type { Encounter } from "@/lib/api/types";
+import type { Encounter, Monster } from "@/lib/api/types";
 import { cachedFetch } from "@/lib/fetch-cache";
 import SearchFilter from "@/app/components/SearchFilter";
-import RichDescription from "@/app/components/RichDescription";
+import FightLineup from "@/app/components/FightLineup";
+import { fightMonster, groupFights, type FightMonster } from "@/lib/fight";
+import { imageUrl } from "@/lib/image-url";
 import { useChannel, useBetaPrefix } from "@/lib/api/prefix.client";
 import { useBetaAdditions } from "@/lib/use-beta-additions";
 import BetaBadge from "@/app/components/BetaBadge";
 import { replaceQuery } from "@/lib/replace-query";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
-
-const roomTypeColors: Record<string, string> = {
-  Monster: "border-line-strong/40",
-  Elite: "border-warning/40",
-  Boss: "border-danger/40",
-};
-
-const roomTypeBadge: Record<string, string> = {
-  Monster: "bg-surface text-fg-secondary border-line-strong",
-  Elite: "bg-warning/10 text-warning border-warning/30",
-  Boss: "bg-danger/10 text-danger border-danger/30",
-};
 
 const roomTypeOptions = [
   { label: "Monster", value: "Monster" },
@@ -41,14 +31,22 @@ const actOptions = [
   { label: "Act 3 - Glory", value: "glory" },
 ];
 
+const ROOM_ICON: Record<string, string> = {
+  Monster: "monster",
+  Elite: "elite",
+};
+
 function EncountersClientInner({
   initialEncounters,
+  initialMonsters,
 }: {
   initialEncounters: Encounter[];
+  initialMonsters: Record<string, FightMonster>;
 }) {
   const bp = useBetaPrefix();
   const searchParams = useSearchParams();
   const [encounters, setEncounters] = useState<Encounter[]>(initialEncounters);
+  const [monsters, setMonsters] = useState(initialMonsters);
   const [search, setSearch] = useState(searchParams.get("search") || "");
   const [roomType, setRoomType] = useState(searchParams.get("roomType") || "");
   const [act, setAct] = useState(searchParams.get("act") || "");
@@ -104,6 +102,13 @@ function EncountersClientInner({
     );
   }, [roomType, act, search, lang, channel]);
 
+  useEffect(() => {
+    if (channel !== "beta" && Object.keys(initialMonsters).length > 0) return;
+    cachedFetch<Monster[]>(`${API}/api/monsters?lang=${lang}`).then((rows) =>
+      setMonsters(Object.fromEntries(rows.map((m) => [m.id, fightMonster(m)]))),
+    );
+  }, [channel, lang]);
+
   // Beta-only encounters join the stable list (the regular filters run
   // server-side, so apply them locally to the additions).
   const betaIds = new Set(betaAdditions.map((e) => e.id));
@@ -145,70 +150,65 @@ function EncountersClientInner({
         ]}
       />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-        {filtered.map((enc) => (
-          <Link
-            prefetch={false}
-            key={enc.id}
-            href={`${bp}/encounters/${enc.id.toLowerCase()}`}
-            className={`bg-[var(--bg-card)] rounded-lg border ${
-              roomTypeColors[enc.room_type] || "border-[var(--border-subtle)]"
-            } p-4 hover:bg-[var(--bg-card-hover)] transition-all block`}
-          >
-            <div className="flex items-start justify-between mb-2">
-              <h3 className="font-semibold text-[var(--text-primary)] flex items-center gap-1.5">
-                {enc.name}
-                {betaIds.has(enc.id) && <BetaBadge />}
+      {groupFights(filtered).map((group) => (
+        <section key={group.act ?? "none"} className="mb-10">
+          <h2 className="mb-4 border-b border-[var(--border-subtle)] pb-2 text-xl font-semibold text-[var(--text-primary)]">
+            {group.act ?? t("Other")}
+          </h2>
+          {group.rooms.map(({ room, weak, rows }) => (
+            <div key={`${room}-${weak}`} className="mb-6 last:mb-0">
+              <h3 className="mb-2 flex items-center gap-2 text-sm font-semibold text-[var(--text-secondary)]">
+                {ROOM_ICON[room] && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={imageUrl(
+                      `/static/images/ui/map_rooms/${ROOM_ICON[room]}.png`,
+                    )}
+                    alt=""
+                    width={20}
+                    height={20}
+                    className="h-5 w-5 object-contain"
+                  />
+                )}
+                {weak ? `${t(room)} (${t("Weak")})` : t(room)}
+                <span className="font-normal tabular-nums text-[var(--text-muted)]">
+                  {rows.length}
+                </span>
               </h3>
-              <span
-                className={`text-[10px] px-1.5 py-0.5 rounded border flex-shrink-0 ml-2 ${
-                  roomTypeBadge[enc.room_type] ||
-                  "bg-surface text-fg-secondary border-line-strong"
-                }`}
-              >
-                {t(enc.room_type)}
-                {enc.is_weak && ` (${t("Weak")})`}
-              </span>
+              <ul className="grid grid-cols-1 gap-x-6 sm:grid-cols-2 lg:grid-cols-3">
+                {rows.map((enc) => (
+                  <li
+                    key={enc.id}
+                    className="border-t border-[var(--border-subtle)]"
+                  >
+                    <Link
+                      prefetch={false}
+                      href={`${bp}/encounters/${enc.id.toLowerCase()}`}
+                      className="group block py-3"
+                    >
+                      <FightLineup
+                        members={enc.monsters ?? []}
+                        monsters={monsters}
+                        size={room === "Boss" ? 104 : 72}
+                        t={t}
+                      />
+                      <span className="mt-2 flex items-center gap-1.5 font-semibold text-[var(--text-primary)] transition-colors group-hover:text-[var(--accent-gold)]">
+                        {enc.name}
+                        {betaIds.has(enc.id) && <BetaBadge />}
+                      </span>
+                      {!!enc.tags?.length && (
+                        <span className="block text-xs text-[var(--text-muted)]">
+                          {enc.tags.join(", ")}
+                        </span>
+                      )}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
-
-            {enc.act && (
-              <p className="text-xs text-[var(--text-muted)] mb-2">{enc.act}</p>
-            )}
-
-            {enc.monsters && enc.monsters.length > 0 && (
-              <div className="flex flex-wrap gap-1 mb-2">
-                {enc.monsters.map((m) => (
-                  <span
-                    key={m.id}
-                    className="text-[10px] px-1.5 py-0.5 rounded bg-[var(--bg-primary)] text-[var(--text-secondary)] border border-[var(--border-subtle)]"
-                  >
-                    {m.name}
-                  </span>
-                ))}
-              </div>
-            )}
-
-            {enc.tags && enc.tags.length > 0 && (
-              <div className="flex flex-wrap gap-1 mb-2">
-                {enc.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-[10px] px-1.5 py-0.5 rounded bg-danger/10 text-danger border border-danger/30"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            )}
-
-            {enc.loss_text && (
-              <p className="text-xs text-[var(--text-muted)] italic leading-relaxed">
-                <RichDescription text={enc.loss_text} />
-              </p>
-            )}
-          </Link>
-        ))}
-      </div>
+          ))}
+        </section>
+      ))}
     </>
   );
 }

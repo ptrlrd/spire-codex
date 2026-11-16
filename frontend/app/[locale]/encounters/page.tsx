@@ -3,7 +3,8 @@ import { getT } from "@/lib/i18n-server";
 import { inLanguageOf, localeOf, localePath } from "@/lib/locale";
 import { buildPageMetadata, pageHeading } from "@/lib/seo";
 import { Suspense } from "react";
-import type { Encounter } from "@/lib/api/types";
+import type { Encounter, Monster } from "@/lib/api/types";
+import { fightMonster, type FightMonster } from "@/lib/fight";
 import JsonLd from "@/app/components/JsonLd";
 import { buildCollectionPageJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
 import RecentlyAdded from "@/app/components/RecentlyAdded";
@@ -39,6 +40,17 @@ export default async function EncountersPage({ params }: Props) {
     });
     if (res.ok) encounters = await res.json();
   } catch {}
+  const monsters: Record<string, FightMonster> = {};
+  try {
+    const res = await fetch(`${API}/api/monsters?lang=${locale}`, {
+      next: { revalidate: 300 },
+    });
+    if (res.ok) {
+      for (const monster of (await res.json()) as Monster[]) {
+        monsters[monster.id] = fightMonster(monster);
+      }
+    }
+  } catch {}
 
   const jsonLd = [
     buildBreadcrumbJsonLd([
@@ -68,7 +80,10 @@ export default async function EncountersPage({ params }: Props) {
       />
 
       <Suspense>
-        <EncountersClient initialEncounters={encounters} />
+        <EncountersClient
+          initialEncounters={encounters}
+          initialMonsters={monsters}
+        />
       </Suspense>
     </div>
   );
