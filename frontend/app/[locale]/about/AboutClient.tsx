@@ -40,7 +40,7 @@ const PIPELINE_STEPS = [
   },
   {
     title: "Data Parsing",
-    desc: "17 Python parsers extract structured data from decompiled C# source + localization JSON",
+    desc: "Python parsers extract structured data from decompiled C# source + localization JSON",
   },
   {
     title: "Spine Rendering",
@@ -48,7 +48,7 @@ const PIPELINE_STEPS = [
   },
   {
     title: "API + Frontend",
-    desc: "FastAPI serves parsed data as a REST API with 20+ endpoints; Next.js frontend consumes it",
+    desc: "FastAPI serves parsed data as a public REST API; the Next.js frontend consumes it",
   },
 ];
 
@@ -291,7 +291,7 @@ export default function AboutClient() {
               { label: "Backend", items: "Python, FastAPI, Pydantic" },
               { label: "Frontend", items: "Next.js, TypeScript, Tailwind" },
               { label: "Rendering", items: "Node.js, Playwright, spine-webgl" },
-              { label: "Infra", items: "Docker, Forgejo CI" },
+              { label: "Infra", items: "Docker, GitHub Actions" },
             ].map((row) => (
               <div
                 key={row.label}

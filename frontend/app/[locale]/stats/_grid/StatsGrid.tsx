@@ -1294,13 +1294,9 @@ export default function StatsGrid({ data }: { data: GridData }) {
       </div>
 
       <p className="mt-3 text-xs text-[var(--text-muted)]">
-        {t(
-          "Rows under {min} samples are greyed out; rows under {hidden} are hidden until you switch them on.",
-          {
-            min: SMALL_SAMPLE,
-            hidden: HIDDEN_SAMPLE,
-          },
-        )}
+        {t("Rows under {hidden} samples are hidden until you switch them on.", {
+          hidden: HIDDEN_SAMPLE,
+        })}
       </p>
 
       {preview && (
@@ -1345,9 +1341,7 @@ function RowGroup({
   const small = row.n < SMALL_SAMPLE;
   return (
     <tr
-      className={`border-b border-[var(--border-subtle)]/40 hover:bg-[var(--bg-card-hover)]/40 ${
-        small ? "opacity-50" : ""
-      }`}
+      className="border-b border-[var(--border-subtle)]/40 hover:bg-[var(--bg-card-hover)]/40"
       title={small ? smallTitle : undefined}
     >
       <td className="px-2 py-1.5 text-right tabular-nums text-[var(--text-muted)]">

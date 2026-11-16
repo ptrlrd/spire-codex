@@ -21,7 +21,7 @@ describe("page titles", () => {
     expect(pageTitle("jpn", "レリック")).toMatch(
       /^スレイ・ザ・スパイア2 \(STS2\) レリック \| Spire Codex \(日本語\)$/,
     );
-    expect(pageHeading("eng", "Relics")).toBe("Slay the Spire 2 (sts2) Relics");
+    expect(pageHeading("eng", "Relics")).toBe("Slay the Spire 2 Relics");
   });
 });
 describe("entity titles", () => {
