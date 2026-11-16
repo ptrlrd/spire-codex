@@ -111,7 +111,15 @@ def _record_rows(tmp_path):
     con.execute(ls._cells_sql(tmp_path))
     rows = con.execute(ls._records_sql(tmp_path)).fetchall()
     con.close()
-    return {row[0].split("|", 1)[0]: row for row in rows}, ls
+    by_mode: dict = {}
+    for row in rows:
+        best = by_mode.setdefault(row[0].split("|", 1)[0], [None] * 8)
+        for at, better in ((2, min), (4, max), (6, max)):
+            if row[at] is not None and (
+                best[at] is None or better(row[at], best[at]) == row[at]
+            ):
+                best[at], best[at + 1] = row[at], row[at + 1]
+    return by_mode, ls
 
 
 def test_blitz_and_dread_hold_their_own_records(tmp_path):
