@@ -4,6 +4,7 @@ import { useT, useGameLocale } from "@/lib/i18n";
 import {
   useState,
   useEffect,
+  useRef,
   type MouseEvent as ReactMouseEvent,
   type CSSProperties,
 } from "react";
@@ -34,6 +35,7 @@ import EntityRunStats, {
   type EntityStats,
 } from "@/app/components/EntityRunStats";
 import EntityVersionSelect from "@/app/components/EntityVersionSelect";
+import CardRenderSlot from "@/app/components/CardRenderSlot";
 import HoverTooltip from "@/app/components/HoverTooltip";
 import { useChannel, useBetaPrefix } from "@/lib/api/prefix.client";
 import { useBetaRenderVersion } from "@/app/components/BetaRenderVersionProvider";
@@ -247,6 +249,25 @@ export interface CardCatalogs {
   enchantments?: { id: string; name: string }[];
 }
 
+function renderKey(card: Card | null): string {
+  if (!card) return "";
+  return JSON.stringify([
+    card.name,
+    card.description,
+    card.upgrade_description,
+    card.cost,
+    card.is_x_cost,
+    card.star_cost,
+    card.is_x_star_cost,
+    card.type,
+    card.rarity,
+    card.color,
+    card.keywords,
+    card.upgrade,
+    card.vars,
+  ]);
+}
+
 export default function CardDetail({
   initialCard,
   initialEnchantments,
@@ -279,6 +300,10 @@ export default function CardDetail({
   const pageChannel = useChannel();
   const betaRenderVersion = useBetaRenderVersion();
   const [pickedVersion, setPickedVersion] = useState("");
+  const pickedRef = useRef("");
+  const [currentCard, setCurrentCard] = useState<Card | null>(
+    initialCard ?? null,
+  );
   const betaVersion = useBetaChanged("cards").version;
   const channel =
     pickedVersion && pickedVersion === betaVersion ? "beta" : pageChannel;
@@ -332,7 +357,8 @@ export default function CardDetail({
     if (!id) return;
     cachedFetch<Card>(`${API}/api/cards/${id}?lang=${lang}`)
       .then((data) => {
-        setCard(data);
+        setCurrentCard(data);
+        if (!pickedRef.current) setCard(data);
         // With server-fetched catalogs the spawned cards arrive as props;
         // the beta page has none and keeps this client fetch.
         if (
@@ -622,6 +648,15 @@ export default function CardDetail({
     : betaArt || variantImg || cardImgFailed
       ? imageUrl(imgUrl)
       : plainRender;
+
+  const htmlRender =
+    lang === "eng" &&
+    !!pickedVersion &&
+    pickedVersion !== betaVersion &&
+    !enchActive &&
+    !betaArt &&
+    !variantImg &&
+    renderKey(card) !== renderKey(currentCard);
 
   const partners = initialPairings?.partners;
   const serverToc = TOC_IDS.filter((sid) => {
@@ -1026,35 +1061,50 @@ export default function CardDetail({
         {/* ===== INFOBOX column (sticky) ===== */}
         <aside className="aside">
           <div className="box">
-            <img
-              key={renderSrc}
-              className="cardimg render cardframe"
-              src={renderSrc}
-              alt={t("{name} - Slay the Spire 2", {
-                name: `${card.name}${isUpgraded ? "+" : ""}`,
-              })}
-              crossOrigin="anonymous"
-              onError={(e) => {
-                const el = e.currentTarget;
-                if (enchActive) {
-                  if (!el.dataset.fb) {
-                    el.dataset.fb = "1";
-                    el.src = enchantedCardUrl(
-                      card.id.toLowerCase(),
-                      selectedEnch,
-                      false,
-                      channel,
-                      lang,
-                      betaRenderVersion,
-                    );
-                  }
-                } else if (!betaArt && !variantImg) {
-                  if (!useEnglishRender && englishRender !== localizedRender)
-                    setFailedRender(localizedRender);
-                  else setCardImgFailed(true);
+            {htmlRender ? (
+              <CardRenderSlot
+                card={
+                  card.image_url
+                    ? card
+                    : { ...card, image_url: currentCard?.image_url ?? null }
                 }
-              }}
-            />
+                upgraded={isUpgraded}
+                lang={lang}
+                label={t("{name} - Slay the Spire 2", {
+                  name: `${card.name}${isUpgraded ? "+" : ""}`,
+                })}
+              />
+            ) : (
+              <img
+                key={renderSrc}
+                className="cardimg render cardframe"
+                src={renderSrc}
+                alt={t("{name} - Slay the Spire 2", {
+                  name: `${card.name}${isUpgraded ? "+" : ""}`,
+                })}
+                crossOrigin="anonymous"
+                onError={(e) => {
+                  const el = e.currentTarget;
+                  if (enchActive) {
+                    if (!el.dataset.fb) {
+                      el.dataset.fb = "1";
+                      el.src = enchantedCardUrl(
+                        card.id.toLowerCase(),
+                        selectedEnch,
+                        false,
+                        channel,
+                        lang,
+                        betaRenderVersion,
+                      );
+                    }
+                  } else if (!betaArt && !variantImg) {
+                    if (!useEnglishRender && englishRender !== localizedRender)
+                      setFailedRender(localizedRender);
+                    else setCardImgFailed(true);
+                  }
+                }}
+              />
+            )}
 
             {/* Variant switcher (the Normal/Upgraded toggle sits in the hero,
                 inline with the card name) */}
@@ -1084,6 +1134,8 @@ export default function CardDetail({
                   if (d) {
                     setCard(d as Card);
                     setPickedVersion(v);
+                    pickedRef.current = v;
+                    if (!v) setCurrentCard(d as Card);
                   }
                 }}
               />
