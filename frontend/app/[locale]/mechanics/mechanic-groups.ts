@@ -103,7 +103,7 @@ const ENTRY_LEAD: Record<string, string> = {
   "combat-mechanics": "Hand size (5 draw, 10 max), energy (3 base)",
   "orb-mechanics": "3 starting slots, 10 max",
   "campfire-options": "All 9 rest site choices",
-  neow: "3 relics — 2 positive and 1 curse",
+  neow: "2 positive and 1 curse",
   "ascension-modifiers": "10 ascension levels",
   "score-formula": "10 points per room",
   "crystal-sphere": "11x11 grid",

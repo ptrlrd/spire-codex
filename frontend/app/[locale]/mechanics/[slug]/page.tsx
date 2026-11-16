@@ -123,35 +123,37 @@ export default async function MechanicDetailPage({ params }: Props) {
       <JsonLd data={jsonLd} />
       <Link
         href="/mechanics"
-        className="text-sm text-[var(--text-muted)] hover:text-[var(--accent-gold)] mb-6 inline-flex items-center gap-1 transition-colors"
+        className="text-sm text-[var(--text-muted)] hover:text-[var(--accent-gold)] mb-3 min-h-[44px] inline-flex items-center gap-1 transition-colors"
       >
         <span>&larr;</span> {t("Back to")} {t("Mechanics")}
       </Link>
-      <header className="flex items-start gap-4 sm:gap-5 mb-8">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={imageUrl(entryIcon(section))}
-          alt=""
-          width={72}
-          height={72}
-          className="w-14 h-14 sm:w-[72px] sm:h-[72px] object-contain shrink-0"
-        />
-        <div className="min-w-0">
-          <Link
-            href={`/mechanics#${group.id}`}
-            className="text-sm text-[var(--text-muted)] hover:text-[var(--accent-gold)] transition-colors"
-          >
-            {t(group.label)}
-          </Link>
-          <h1 className="text-3xl font-bold mb-2">
-            <span className="text-[var(--accent-gold)]">
-              {t(section.title)}
-            </span>
-          </h1>
-          <p className="text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed">
-            <MechanicLead slug={section.slug} description={description} />
-          </p>
+      <header className="mb-8">
+        <div className="flex items-center gap-4 sm:gap-5">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={imageUrl(entryIcon(section))}
+            alt=""
+            width={72}
+            height={72}
+            className="w-14 h-14 sm:w-[72px] sm:h-[72px] object-contain shrink-0"
+          />
+          <div className="min-w-0">
+            <Link
+              href={`/mechanics#${group.id}`}
+              className="inline-block py-3 -my-3 text-sm text-[var(--text-muted)] hover:text-[var(--accent-gold)] transition-colors"
+            >
+              {t(group.label)}
+            </Link>
+            <h1 className="text-3xl font-bold">
+              <span className="text-[var(--accent-gold)]">
+                {t(section.title)}
+              </span>
+            </h1>
+          </div>
         </div>
+        <p className="mt-4 text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed">
+          <MechanicLead slug={section.slug} description={description} />
+        </p>
       </header>
       {headings.length >= 3 && (
         <nav aria-label={t("On this page")} className="mb-6">
