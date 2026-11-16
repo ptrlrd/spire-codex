@@ -14,11 +14,81 @@ import { imageUrl } from "@/lib/image-url";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
-const typeColors: Record<string, string> = {
-  Buff: "border-success/40 text-success",
-  Debuff: "border-danger/40 text-danger",
-  None: "border-line-strong/40 text-fg-muted",
+const TYPE_ORDER = ["Buff", "Debuff"];
+const STACK_ORDER = ["Counter", "Single"];
+
+const typeText: Record<string, string> = {
+  Buff: "text-success",
+  Debuff: "text-danger",
 };
+
+interface PowerRow {
+  key: string;
+  first: Power;
+  variants: Power[];
+}
+
+function orderIndex(order: string[], value: string) {
+  const i = order.indexOf(value);
+  return i === -1 ? order.length : i;
+}
+
+function variantLabel(power: Power) {
+  const words = power.id.toLowerCase().split("_");
+  const nameWords = power.name.toLowerCase().split(/\s+/);
+  let rest = nameWords.every((w, i) => words[i] === w)
+    ? words.slice(nameWords.length)
+    : words;
+  let shared = 0;
+  while (
+    shared < rest.length - 1 &&
+    shared < nameWords.length &&
+    rest[rest.length - 1 - shared] === nameWords[nameWords.length - 1 - shared]
+  ) {
+    shared += 1;
+  }
+  if (shared) rest = rest.slice(0, rest.length - shared);
+  return (rest.length ? rest : words)
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ");
+}
+
+function groupRows(powers: Power[]): PowerRow[] {
+  const rows = new Map<string, PowerRow>();
+  for (const power of powers) {
+    const key = `${power.name}|${power.description ?? ""}`;
+    const row = rows.get(key);
+    if (row) row.variants.push(power);
+    else rows.set(key, { key, first: power, variants: [power] });
+  }
+  return [...rows.values()].sort((x, y) =>
+    x.first.name.localeCompare(y.first.name),
+  );
+}
+
+function PowerIcon({ power, size }: { power: Power; size: number }) {
+  if (!power.image_url) {
+    return (
+      <span
+        aria-hidden
+        className="flex-shrink-0"
+        style={{ width: size, height: size }}
+      />
+    );
+  }
+  return (
+    <img
+      src={imageUrl(power.image_url)}
+      alt=""
+      width={size}
+      height={size}
+      loading="lazy"
+      className="object-contain flex-shrink-0"
+      style={{ width: size, height: size }}
+      crossOrigin="anonymous"
+    />
+  );
+}
 
 const typeOptions = [
   { label: "Buff", value: "Buff" },
@@ -84,6 +154,24 @@ export default function PowersClient({
     ),
   ];
 
+  const types = [...new Set(merged.map((p) => p.type))].sort(
+    (x, y) => orderIndex(TYPE_ORDER, x) - orderIndex(TYPE_ORDER, y),
+  );
+  const sections = types.map((sectionType) => {
+    const inType = merged.filter((p) => p.type === sectionType);
+    const stacks = [...new Set(inType.map((p) => p.stack_type))]
+      .sort((x, y) => orderIndex(STACK_ORDER, x) - orderIndex(STACK_ORDER, y))
+      .map((sectionStack) => {
+        const inStack = inType.filter((p) => p.stack_type === sectionStack);
+        return {
+          stackType: sectionStack,
+          count: inStack.length,
+          rows: groupRows(inStack),
+        };
+      });
+    return { type: sectionType, count: inType.length, stacks };
+  });
+
   return (
     <>
       <SearchFilter
@@ -109,56 +197,134 @@ export default function PowersClient({
         ]}
       />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-        {merged.map((power) => {
-          const style =
-            typeColors[power.type] ||
-            "border-[var(--border-subtle)] text-fg-muted";
-          return (
-            <Link
-              prefetch={false}
-              key={power.id}
-              href={`${bp}/powers/${power.id.toLowerCase()}`}
-              className={`bg-[var(--bg-card)] rounded-lg border ${style.split(" ")[0]} p-4 hover:bg-[var(--bg-card-hover)] transition-all`}
+      {sections.length > 1 && (
+        <nav
+          aria-label={t("On this page")}
+          className="flex flex-wrap gap-2 mb-6"
+        >
+          {sections.map((section) => (
+            <a
+              key={section.type}
+              href={`#powers-${section.type.toLowerCase()}`}
+              onClick={() => {
+                const target = document.getElementById(
+                  `powers-${section.type.toLowerCase()}`,
+                );
+                if (target instanceof HTMLDetailsElement) target.open = true;
+              }}
+              className="inline-flex items-center gap-2 min-h-11 px-4 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-sm hover:bg-[var(--bg-card-hover)] transition-colors"
             >
-              <div className="flex items-start justify-between mb-2">
-                <div className="flex items-center gap-2">
-                  {power.image_url && (
-                    <img
-                      src={imageUrl(power.image_url)}
-                      alt=""
-                      width={32}
-                      height={32}
-                      loading="lazy"
-                      className="w-8 h-8 object-contain flex-shrink-0"
-                      crossOrigin="anonymous"
-                    />
-                  )}
-                  <h3 className="font-semibold text-[var(--text-primary)] leading-tight flex items-center gap-1.5">
-                    {power.name}
-                    {betaIds.has(power.id) && <BetaBadge />}
-                  </h3>
-                </div>
-                <div className="flex gap-1.5 flex-shrink-0 ml-2">
-                  <span
-                    className={`text-[10px] px-1.5 py-0.5 rounded ${style.split(" ").slice(1).join(" ")} bg-[var(--bg-primary)]`}
-                  >
-                    {t(power.type)}
-                  </span>
-                  <span className="text-[10px] px-1.5 py-0.5 rounded text-[var(--text-muted)] bg-[var(--bg-primary)]">
-                    {t(power.stack_type)}
-                  </span>
-                </div>
-              </div>
-              {power.description && (
-                <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-                  <RichDescription text={power.description} />
-                </p>
-              )}
-            </Link>
-          );
-        })}
-      </div>
+              <span
+                className={`font-semibold ${typeText[section.type] ?? "text-[var(--text-primary)]"}`}
+              >
+                {t(section.type)}
+              </span>
+              <span className="text-[var(--text-muted)]">{section.count}</span>
+            </a>
+          ))}
+        </nav>
+      )}
+
+      {sections.map((section) => (
+        <details
+          key={section.type}
+          id={`powers-${section.type.toLowerCase()}`}
+          open
+          className="group mb-10 scroll-mt-20"
+        >
+          <summary className="flex items-center gap-3 min-h-11 cursor-pointer list-none border-b border-[var(--border-subtle)] pb-2 [&::-webkit-details-marker]:hidden">
+            <h2
+              className={`text-xl font-semibold ${typeText[section.type] ?? "text-[var(--text-primary)]"}`}
+            >
+              {t(section.type)}
+            </h2>
+            <span className="text-sm text-[var(--text-muted)]">
+              {section.count}
+            </span>
+            <svg
+              aria-hidden
+              viewBox="0 0 20 20"
+              className="ml-auto w-5 h-5 text-[var(--text-muted)] transition-transform group-open:rotate-180"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path d="M5 8l5 5 5-5" strokeLinecap="round" />
+            </svg>
+          </summary>
+
+          {section.stacks.map((stack) => (
+            <div key={stack.stackType} className="mt-5">
+              <h3 className="text-sm font-semibold text-[var(--text-secondary)] mb-1">
+                {t("Stack Type")}: {t(stack.stackType)}
+                <span className="ml-2 font-normal text-[var(--text-muted)]">
+                  {stack.count}
+                </span>
+              </h3>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8">
+                {stack.rows.map((row) => {
+                  const power = row.first;
+                  const rowClass =
+                    "flex items-start gap-3 py-2.5 border-b border-[var(--border-subtle)] h-full";
+                  const text = (
+                    <span className="min-w-0 flex-1">
+                      <span className="flex items-center gap-1.5 font-semibold text-[var(--text-primary)] leading-snug">
+                        {power.name}
+                        {row.variants.length === 1 && betaIds.has(power.id) && (
+                          <BetaBadge />
+                        )}
+                      </span>
+                      {power.description && (
+                        <span className="block text-sm text-[var(--text-secondary)] leading-relaxed">
+                          <RichDescription text={power.description} />
+                        </span>
+                      )}
+                    </span>
+                  );
+                  if (row.variants.length === 1) {
+                    return (
+                      <li key={row.key}>
+                        <Link
+                          prefetch={false}
+                          href={`${bp}/powers/${power.id.toLowerCase()}`}
+                          className={`${rowClass} hover:bg-[var(--bg-card-hover)] transition-colors`}
+                        >
+                          <PowerIcon power={power} size={32} />
+                          {text}
+                        </Link>
+                      </li>
+                    );
+                  }
+                  return (
+                    <li key={row.key}>
+                      <div className={rowClass}>
+                        <PowerIcon power={power} size={32} />
+                        <div className="min-w-0 flex-1">
+                          {text}
+                          <div className="flex flex-wrap gap-1.5 mt-2">
+                            {row.variants.map((variant) => (
+                              <Link
+                                prefetch={false}
+                                key={variant.id}
+                                href={`${bp}/powers/${variant.id.toLowerCase()}`}
+                                className="inline-flex items-center gap-1.5 min-h-11 sm:min-h-8 px-2.5 rounded-md border border-[var(--border-subtle)] bg-[var(--bg-card)] text-sm text-[var(--text-secondary)] hover:bg-[var(--bg-card-hover)] hover:text-[var(--text-primary)] transition-colors"
+                              >
+                                <PowerIcon power={variant} size={20} />
+                                {variantLabel(variant)}
+                                {betaIds.has(variant.id) && <BetaBadge />}
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          ))}
+        </details>
+      ))}
     </>
   );
 }

@@ -85,7 +85,7 @@ export default async function BadgesPage({ params }: Props) {
 
       {tiered.length > 0 && (
         <section className="mb-10">
-          <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-3">
+          <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">
             {t("Tiered Badges")}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -98,7 +98,7 @@ export default async function BadgesPage({ params }: Props) {
 
       {single.length > 0 && (
         <section className="mb-10">
-          <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-3">
+          <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">
             {t("Single-Tier Badges")}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -111,10 +111,10 @@ export default async function BadgesPage({ params }: Props) {
 
       {multiplayerOnly.length > 0 && (
         <section>
-          <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-1">
+          <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-1">
             {t("Multiplayer-Only")}
           </h2>
-          <p className="text-xs text-[var(--text-muted)] mb-3">
+          <p className="text-sm text-[var(--text-muted)] mb-3">
             {t("These badges can only be earned in multiplayer runs.")}
           </p>
           <div className="flex flex-wrap gap-2">
@@ -123,7 +123,7 @@ export default async function BadgesPage({ params }: Props) {
                 prefetch={false}
                 key={b.id}
                 href={`/badges/${b.id.toLowerCase()}`}
-                className="text-sm px-3 py-1 rounded-full border border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:border-[var(--accent-gold)]/50 hover:text-[var(--accent-gold)] transition-colors"
+                className="inline-flex items-center min-h-11 sm:min-h-9 text-sm px-4 rounded-full border border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:border-[var(--accent-gold)]/50 hover:text-[var(--accent-gold)] transition-colors"
               >
                 {b.name}
               </Link>

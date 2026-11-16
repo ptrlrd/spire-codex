@@ -19,7 +19,7 @@ interface SortOption {
 }
 
 const selectClass =
-  "filter-select px-3 py-2.5 bg-[var(--bg-card)] border border-[var(--border-subtle)] rounded-lg text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]/50 cursor-pointer text-sm";
+  "filter-select min-h-11 px-3 py-2.5 bg-[var(--bg-card)] border border-[var(--border-subtle)] rounded-lg text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]/50 cursor-pointer text-sm";
 
 function groupOptions(
   options: FilterOption[],
@@ -90,7 +90,7 @@ export default function SearchFilter({
   }, [draft, search]);
 
   const caption = (text: string) => (
-    <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--text-muted)]">
+    <span className="text-xs font-semibold text-[var(--text-muted)]">
       {t(text)}
     </span>
   );
@@ -105,7 +105,7 @@ export default function SearchFilter({
             onChange={(e) => setDraft(e.target.value)}
             placeholder={placeholder ?? t("Search...")}
             aria-label={placeholder ?? t("Search...")}
-            className="w-full px-4 py-2.5 bg-[var(--bg-card)] border border-[var(--border-subtle)] rounded-lg text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--accent-gold)]/50 transition-colors text-sm"
+            className="w-full min-h-11 px-4 py-2.5 bg-[var(--bg-card)] border border-[var(--border-subtle)] rounded-lg text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--accent-gold)]/50 transition-colors text-sm"
           />
         </div>
         {filters?.map((filter) => (

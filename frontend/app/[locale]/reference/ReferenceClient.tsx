@@ -17,6 +17,7 @@ import { cachedFetch } from "@/lib/fetch-cache";
 import RichDescription from "@/app/components/RichDescription";
 import { useChannel, useBetaPrefix } from "@/lib/api/prefix.client";
 import { imageUrl } from "@/lib/image-url";
+import CharacterTag from "@/app/components/CharacterTag";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -32,22 +33,75 @@ export interface ReferenceData {
 }
 
 interface Section<T> {
+  id: string;
   title: string;
   endpoint: string;
   accent: string;
   initialData?: T[];
   lang: string;
   linkPrefix?: string;
+  tiles?: boolean;
   render: (item: T) => React.ReactNode;
 }
 
+const SECTIONS = [
+  { id: "acts", title: "Acts" },
+  { id: "ascensions", title: "Ascension Levels" },
+  { id: "keywords", title: "Keywords" },
+  { id: "orbs", title: "Orbs" },
+  { id: "afflictions", title: "Afflictions" },
+  { id: "intents", title: "Intents" },
+  { id: "modifiers", title: "Modifiers" },
+  { id: "achievements", title: "Achievements" },
+] as const;
+
+function Entry({
+  art,
+  name,
+  children,
+}: {
+  art?: React.ReactNode;
+  name: React.ReactNode;
+  children?: React.ReactNode;
+}) {
+  return (
+    <div className="flex items-start gap-3">
+      {art}
+      <div className="min-w-0 flex-1">
+        <h3 className="font-semibold text-[var(--text-primary)] leading-snug">
+          {name}
+        </h3>
+        {children}
+      </div>
+    </div>
+  );
+}
+
+function EntryArt({ src }: { src: string }) {
+  return (
+    <img
+      src={imageUrl(src)}
+      alt=""
+      width={36}
+      height={36}
+      loading="lazy"
+      className="w-9 h-9 object-contain flex-shrink-0"
+      crossOrigin="anonymous"
+    />
+  );
+}
+
+const descClass = "text-sm text-[var(--text-secondary)] leading-relaxed";
+
 function ReferenceSection<T extends { id: string }>({
+  id,
   title,
   endpoint,
   accent,
   initialData,
   lang,
   linkPrefix,
+  tiles,
   render,
 }: Section<T>) {
   const t = useT();
@@ -78,40 +132,42 @@ function ReferenceSection<T extends { id: string }>({
 
   if (filtered.length === 0) return null;
 
+  const itemClass = tiles
+    ? "block h-full bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-4"
+    : "block h-full min-h-11 py-3 border-b border-[var(--border-subtle)]";
+
   return (
-    <div className="mb-12">
-      <h2
-        className={`text-xl font-semibold ${accent} mb-4 border-b border-[var(--border-subtle)] pb-2`}
-      >
+    <section id={id} className="mb-12 scroll-mt-20">
+      <h2 className={`text-xl font-semibold ${accent} mb-3`}>
         {t(title)}{" "}
         <span className="text-sm text-[var(--text-muted)] font-normal">
-          ({filtered.length})
+          {filtered.length}
         </span>
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-        {filtered.map((item) => {
-          const content = (
-            <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-4 hover:bg-[var(--bg-card-hover)] transition-all h-full">
-              {render(item)}
-            </div>
-          );
-          return linkPrefix ? (
-            <Link
-              prefetch={false}
-              key={item.id}
-              href={`${linkPrefix}/${item.id.toLowerCase()}`}
-              className="block h-full"
-            >
-              {content}
-            </Link>
-          ) : (
-            <div key={item.id} className="h-full">
-              {content}
-            </div>
-          );
-        })}
-      </div>
-    </div>
+      <ul
+        className={
+          tiles
+            ? "grid grid-cols-2 lg:grid-cols-4 gap-3"
+            : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 border-t border-[var(--border-subtle)]"
+        }
+      >
+        {filtered.map((item) => (
+          <li key={item.id}>
+            {linkPrefix ? (
+              <Link
+                prefetch={false}
+                href={`${linkPrefix}/${item.id.toLowerCase()}`}
+                className={`${itemClass} hover:bg-[var(--bg-card-hover)] transition-colors`}
+              >
+                {render(item)}
+              </Link>
+            ) : (
+              <div className={itemClass}>{render(item)}</div>
+            )}
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 }
 
@@ -126,19 +182,51 @@ export default function ReferenceClient({
 
   return (
     <>
+      <nav aria-label={t("On this page")} className="flex flex-wrap gap-2 mb-8">
+        {SECTIONS.filter((section) => initialData[section.id].length > 0).map(
+          (section) => (
+            <a
+              key={section.id}
+              href={`#${section.id}`}
+              className="inline-flex items-center min-h-11 px-4 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-sm text-[var(--text-primary)] hover:bg-[var(--bg-card-hover)] transition-colors"
+            >
+              {t(section.title)}
+            </a>
+          ),
+        )}
+      </nav>
+
       <ReferenceSection<Act>
+        id="acts"
         title="Acts"
         endpoint="acts"
         accent="text-success"
         initialData={initialData.acts}
         lang={lang}
         linkPrefix={`${bp}/acts`}
+        tiles
         render={(act) => (
           <>
             <h3 className="font-semibold text-[var(--text-primary)] mb-2">
               {act.name}
             </h3>
-            <div className="text-xs text-[var(--text-muted)] space-y-1">
+            <div className="flex gap-1.5 sm:gap-2 mb-3">
+              {act.bosses.map((boss) => (
+                <img
+                  key={boss}
+                  src={imageUrl(
+                    `/static/images/misc/bosses/${boss.toLowerCase()}.png`,
+                  )}
+                  alt=""
+                  width={48}
+                  height={48}
+                  loading="lazy"
+                  className="w-10 h-10 sm:w-12 sm:h-12 object-contain"
+                  crossOrigin="anonymous"
+                />
+              ))}
+            </div>
+            <div className="text-sm text-[var(--text-secondary)] space-y-0.5">
               {act.num_rooms && (
                 <div>{t("{n} rooms", { n: act.num_rooms })}</div>
               )}
@@ -160,6 +248,7 @@ export default function ReferenceClient({
       />
 
       <ReferenceSection<Ascension>
+        id="ascensions"
         title="Ascension Levels"
         endpoint="ascensions"
         accent="text-danger"
@@ -167,21 +256,23 @@ export default function ReferenceClient({
         lang={lang}
         linkPrefix={`${bp}/ascensions`}
         render={(asc) => (
-          <>
-            <div className="flex items-baseline gap-2 mb-1">
-              <span className="text-lg font-bold text-danger">{asc.level}</span>
-              <h3 className="font-semibold text-[var(--text-primary)]">
-                {asc.name}
-              </h3>
-            </div>
-            <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+          <Entry
+            art={
+              <span className="w-9 flex-shrink-0 text-center text-2xl font-bold leading-none text-danger">
+                {asc.level}
+              </span>
+            }
+            name={asc.name}
+          >
+            <p className={descClass}>
               <RichDescription text={asc.description} />
             </p>
-          </>
+          </Entry>
         )}
       />
 
       <ReferenceSection<Keyword>
+        id="keywords"
         title="Keywords"
         endpoint="keywords"
         accent="text-info"
@@ -189,18 +280,16 @@ export default function ReferenceClient({
         lang={lang}
         linkPrefix={`${bp}/keywords`}
         render={(kw) => (
-          <>
-            <h3 className="font-semibold text-[var(--text-primary)] mb-1">
-              {kw.name}
-            </h3>
-            <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+          <Entry name={kw.name}>
+            <p className={descClass}>
               <RichDescription text={kw.description} />
             </p>
-          </>
+          </Entry>
         )}
       />
 
       <ReferenceSection<Orb>
+        id="orbs"
         title="Orbs"
         endpoint="orbs"
         accent="text-info"
@@ -208,28 +297,19 @@ export default function ReferenceClient({
         lang={lang}
         linkPrefix={`${bp}/orbs`}
         render={(orb) => (
-          <div className="flex items-start gap-3">
-            {orb.image_url && (
-              <img
-                src={imageUrl(orb.image_url)}
-                alt={orb.name}
-                className="w-10 h-10 object-contain flex-shrink-0 mt-0.5"
-                crossOrigin="anonymous"
-              />
-            )}
-            <div>
-              <h3 className="font-semibold text-[var(--text-primary)] mb-1">
-                {orb.name}
-              </h3>
-              <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-                <RichDescription text={orb.description} />
-              </p>
-            </div>
-          </div>
+          <Entry
+            art={orb.image_url && <EntryArt src={orb.image_url} />}
+            name={orb.name}
+          >
+            <p className={descClass}>
+              <RichDescription text={orb.description} />
+            </p>
+          </Entry>
         )}
       />
 
       <ReferenceSection<Affliction>
+        id="afflictions"
         title="Afflictions"
         endpoint="afflictions"
         accent="text-danger"
@@ -237,30 +317,32 @@ export default function ReferenceClient({
         lang={lang}
         linkPrefix={`${bp}/afflictions`}
         render={(aff) => (
-          <>
-            <div className="flex items-start justify-between mb-1">
-              <h3 className="font-semibold text-[var(--text-primary)]">
+          <Entry
+            name={
+              <span className="flex items-baseline justify-between gap-2">
                 {aff.name}
-              </h3>
-              {aff.is_stackable && (
-                <span className="text-[10px] px-1.5 py-0.5 rounded bg-[var(--bg-primary)] text-[var(--text-muted)]">
-                  {t("Stackable")}
-                </span>
-              )}
-            </div>
-            <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+                {aff.is_stackable && (
+                  <span className="text-xs font-normal text-[var(--text-muted)]">
+                    {t("Stackable")}
+                  </span>
+                )}
+              </span>
+            }
+          >
+            <p className={descClass}>
               <RichDescription text={aff.description} />
             </p>
             {aff.extra_card_text && (
-              <p className="text-xs text-[var(--text-muted)] mt-1 italic">
+              <p className="text-sm text-[var(--text-muted)] mt-1 italic">
                 <RichDescription text={aff.extra_card_text} />
               </p>
             )}
-          </>
+          </Entry>
         )}
       />
 
       <ReferenceSection<Intent>
+        id="intents"
         title="Intents"
         endpoint="intents"
         accent="text-warning"
@@ -268,28 +350,19 @@ export default function ReferenceClient({
         lang={lang}
         linkPrefix={`${bp}/intents`}
         render={(intent) => (
-          <div className="flex items-start gap-3">
-            {intent.image_url && (
-              <img
-                src={imageUrl(intent.image_url)}
-                alt={intent.name}
-                className="w-10 h-10 object-contain flex-shrink-0 mt-0.5"
-                crossOrigin="anonymous"
-              />
-            )}
-            <div>
-              <h3 className="font-semibold text-[var(--text-primary)] mb-1">
-                {intent.name}
-              </h3>
-              <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-                <RichDescription text={intent.description} />
-              </p>
-            </div>
-          </div>
+          <Entry
+            art={intent.image_url && <EntryArt src={intent.image_url} />}
+            name={intent.name}
+          >
+            <p className={descClass}>
+              <RichDescription text={intent.description} />
+            </p>
+          </Entry>
         )}
       />
 
       <ReferenceSection<Modifier>
+        id="modifiers"
         title="Modifiers"
         endpoint="modifiers"
         accent="text-special"
@@ -297,18 +370,25 @@ export default function ReferenceClient({
         lang={lang}
         linkPrefix={`${bp}/modifiers`}
         render={(mod) => (
-          <>
-            <h3 className="font-semibold text-[var(--text-primary)] mb-1">
-              {mod.name}
-            </h3>
-            <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+          <Entry
+            name={
+              <span className="flex items-center gap-2">
+                {mod.character && (
+                  <CharacterTag id={mod.character} showName={false} size={20} />
+                )}
+                {mod.name}
+              </span>
+            }
+          >
+            <p className={descClass}>
               <RichDescription text={mod.description} />
             </p>
-          </>
+          </Entry>
         )}
       />
 
       <ReferenceSection<Achievement>
+        id="achievements"
         title="Achievements"
         endpoint="achievements"
         accent="text-warning"
@@ -316,14 +396,20 @@ export default function ReferenceClient({
         lang={lang}
         linkPrefix={`${bp}/achievements`}
         render={(ach) => (
-          <>
-            <h3 className="font-semibold text-[var(--text-primary)] mb-1">
-              {ach.name}
-            </h3>
-            <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+          <Entry
+            name={
+              <span className="flex items-center gap-2">
+                {ach.character && (
+                  <CharacterTag id={ach.character} showName={false} size={20} />
+                )}
+                {ach.name}
+              </span>
+            }
+          >
+            <p className={descClass}>
               <RichDescription text={ach.description} />
             </p>
-          </>
+          </Entry>
         )}
       />
     </>
