@@ -23,6 +23,7 @@ import { useChannel } from "@/lib/api/prefix.client";
 import { useEntityScores } from "@/lib/use-entity-scores";
 import { useBetaAdditions } from "@/lib/use-beta-additions";
 import { replaceQuery } from "@/lib/replace-query";
+import { cardMatchesSearch, compareCompendium } from "@/lib/compendium-sort";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -144,6 +145,12 @@ const keywordOptions = [
 
 const TAG_FILTERS = new Set(["Tarot"]);
 
+const playersOptions = [
+  { label: "Solo", value: "solo" },
+  { label: "Multiplayer only", value: "multi" },
+];
+const PLAYERS_KEY = "cards-players";
+
 function CardsClientInner({
   initialCards,
   initialBeta,
@@ -161,6 +168,7 @@ function CardsClientInner({
   const [keyword, setKeyword] = useState(searchParams.get("keyword") || "");
   const [cost, setCost] = useState(searchParams.get("cost") || "");
   const [sort, setSort] = useState(searchParams.get("sort") || "az");
+  const [players, setPlayers] = useState(searchParams.get("players") || "");
   // "card" = full game-rendered card images (default), "detail" = data tiles.
   const [view, setView] = useState<"card" | "detail">("card");
   useEffect(() => {
@@ -168,6 +176,12 @@ function CardsClientInner({
     // it's now the default. Visitors can still switch back to "detail".
     const saved = localStorage.getItem("cards-view-v2");
     if (saved === "card" || saved === "detail") setView(saved);
+    const savedPlayers = localStorage.getItem(PLAYERS_KEY);
+    if (
+      !new URLSearchParams(window.location.search).get("players") &&
+      (savedPlayers === "solo" || savedPlayers === "multi")
+    )
+      setPlayers(savedPlayers);
   }, []);
   const pickView = (v: "card" | "detail") => {
     setView(v);
@@ -201,11 +215,12 @@ function CardsClientInner({
         keyword,
         cost,
         sort,
+        players,
       };
       current[key] = value;
       updateUrl(current);
     },
-    [search, color, type, rarity, keyword, cost, sort, updateUrl],
+    [search, color, type, rarity, keyword, cost, sort, players, updateUrl],
   );
 
   // Pull the discrete filters back out of the URL whenever it changes from
@@ -223,6 +238,8 @@ function CardsClientInner({
     setKeyword(searchParams.get("keyword") || "");
     setCost(searchParams.get("cost") || "");
     setSort(searchParams.get("sort") || "az");
+    const urlPlayers = searchParams.get("players");
+    if (urlPlayers) setPlayers(urlPlayers);
   }, [searchParams]);
 
   useEffect(() => {
@@ -260,6 +277,30 @@ function CardsClientInner({
 
   const scores = useEntityScores("cards");
 
+  const hasBeta = betaAdditions.length > 0;
+  const [betaSearch, setBetaSearch] = useState<{
+    key: string;
+    ids: Set<string>;
+  } | null>(null);
+  const betaSearchKey = `${lang}|${search}`;
+  useEffect(() => {
+    if (!search || !hasBeta) return;
+    let active = true;
+    const params = new URLSearchParams({ search, lang, channel: "beta" });
+    cachedFetch<Card[]>(`${API}/api/cards?${params}`)
+      .then((found) => {
+        if (active)
+          setBetaSearch({
+            key: `${lang}|${search}`,
+            ids: new Set(found.map((c) => c.id)),
+          });
+      })
+      .catch(() => {});
+    return () => {
+      active = false;
+    };
+  }, [search, lang, hasBeta]);
+
   // Beta-only cards join the stable list, marked and filtered locally
   // (the regular filters run server-side).
   const withBeta = useMemo(() => {
@@ -276,11 +317,29 @@ function CardsClientInner({
               ? !!c.tags?.includes(keyword)
               : cardHasKeyword(c, keyword))) &&
           matchesCost(c, cost) &&
-          (!search || c.name.toLowerCase().includes(search.toLowerCase())),
+          (!search ||
+            (betaSearch?.key === betaSearchKey
+              ? betaSearch.ids.has(c.id)
+              : cardMatchesSearch(c, search))),
       )
       .map((c) => ({ ...c, beta: true }));
-    return [...cards.filter((c) => !ids.has(c.id)), ...additions];
-  }, [cards, betaAdditions, color, type, rarity, keyword, cost, search]);
+    const merged = [...cards.filter((c) => !ids.has(c.id)), ...additions];
+    if (players === "solo") return merged.filter((c) => !c.multiplayer_only);
+    if (players === "multi") return merged.filter((c) => !!c.multiplayer_only);
+    return merged;
+  }, [
+    cards,
+    betaAdditions,
+    color,
+    type,
+    rarity,
+    keyword,
+    cost,
+    search,
+    players,
+    betaSearch,
+    betaSearchKey,
+  ]);
 
   const sortedCards = useMemo(() => {
     const sorted = [...withBeta];
@@ -288,14 +347,13 @@ function CardsClientInner({
     else if (sort === "za") sorted.sort((a, b) => b.name.localeCompare(a.name));
     else if (sort === "cost") sorted.sort((a, b) => compareCost(a, b, 1));
     else if (sort === "cost-desc") sorted.sort((a, b) => compareCost(a, b, -1));
-    else if (sort === "compendium")
-      sorted.sort((a, b) => a.compendium_order - b.compendium_order);
+    else if (sort === "compendium") sorted.sort(compareCompendium);
     else if (sort === "score") {
       sorted.sort((a, b) => {
         const sa = scores[a.id.toUpperCase()]?.score ?? -1;
         const sb = scores[b.id.toUpperCase()]?.score ?? -1;
         if (sb !== sa) return sb - sa;
-        return a.compendium_order - b.compendium_order;
+        return compareCompendium(a, b);
       });
     }
     return sorted;
@@ -367,6 +425,16 @@ function CardsClientInner({
             value: keyword,
             options: keywordOptions,
             onChange: (v) => setFilterAndUrl("keyword", v, setKeyword),
+          },
+          {
+            label: "All cards",
+            name: "Players",
+            value: players,
+            options: playersOptions,
+            onChange: (v) => {
+              localStorage.setItem(PLAYERS_KEY, v);
+              setFilterAndUrl("players", v, setPlayers);
+            },
           },
         ]}
       />
