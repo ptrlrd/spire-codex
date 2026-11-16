@@ -1,0 +1,21 @@
+export const XA2: Record<string, Record<string, string>> = {
+  "Changed in beta": {
+    eng: "Changed in beta",
+    deu: "In der Beta geändert",
+    esp: "Cambia en la beta",
+    fra: "Modifié dans la bêta",
+    ita: "Modificato nella beta",
+    jpn: "ベータで変更",
+    kor: "베타에서 변경됨",
+    pol: "Zmienione w becie",
+    ptb: "Alterado na beta",
+    rus: "Изменено в бете",
+    spa: "Cambia en la beta",
+    tha: "เปลี่ยนในเบต้า",
+    tur: "Betada değişti",
+    zhs: "测试版中有改动",
+    zht: "測試版中有改動",
+    ara: "تغيّر في النسخة التجريبية",
+    ind: "Berubah di beta",
+  },
+};

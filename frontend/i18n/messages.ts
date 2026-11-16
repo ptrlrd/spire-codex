@@ -42,6 +42,7 @@ import { X9Y } from "@/lib/i18n-x9y";
 import { X9Z } from "@/lib/i18n-x9z";
 import { XA0 } from "@/lib/i18n-xa0";
 import { XA1 } from "@/lib/i18n-xa1";
+import { XA2 } from "@/lib/i18n-xa2";
 import { X10 } from "@/lib/i18n-x10";
 import { X11L } from "@/lib/i18n-x11l";
 import { X11A } from "@/lib/i18n-x11a";
@@ -106,6 +107,7 @@ const TABLES = [
   X9Z,
   XA0,
   XA1,
+  XA2,
   X10,
   X11L,
   X11A,
