@@ -277,13 +277,13 @@
   grid-area: art;
   align-self: stretch;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   border-radius: 14px;
   border: 1px solid color-mix(in srgb, var(--spine) 35%, transparent);
   background:
     radial-gradient(
-      ellipse at 50% 85%,
+      ellipse at 50% 60%,
       color-mix(in srgb, var(--spine) 28%, transparent),
       transparent 65%
     ),

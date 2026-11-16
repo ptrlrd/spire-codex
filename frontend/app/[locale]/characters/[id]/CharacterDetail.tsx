@@ -753,7 +753,7 @@ export default function CharacterDetail({
                         </h3>
                         <FullCardGrid
                           cards={open ? group : group.slice(0, RARITY_PREVIEW)}
-                          className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3"
+                          className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3"
                         />
                         {extra > 0 && (
                           <button
@@ -808,7 +808,7 @@ export default function CharacterDetail({
               </p>
               <FullCardGrid
                 cards={tarotCards}
-                className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3"
+                className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3"
               />
             </section>
           )}
