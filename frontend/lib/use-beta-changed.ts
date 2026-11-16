@@ -12,21 +12,30 @@ interface BetaDiff {
   types?: Record<string, { changed?: Record<string, unknown> }>;
 }
 
-export function useBetaChanged(type: string): ReadonlySet<string> {
+interface BetaChanged {
+  ids: ReadonlySet<string>;
+  version: string | null;
+}
+const NONE: BetaChanged = { ids: EMPTY, version: null };
+
+export function useBetaChanged(type: string): BetaChanged {
   const channel = useChannel();
-  const [ids, setIds] = useState<ReadonlySet<string>>(EMPTY);
+  const [found, setFound] = useState<BetaChanged>(NONE);
   useEffect(() => {
     if (channel === "beta") return;
     let active = true;
     cachedFetch<BetaDiff>(`${API}/api/beta/diff`)
       .then((d) => {
         if (active && d?.beta_version)
-          setIds(new Set(Object.keys(d.types?.[type]?.changed ?? {})));
+          setFound({
+            ids: new Set(Object.keys(d.types?.[type]?.changed ?? {})),
+            version: d.beta_version,
+          });
       })
       .catch(() => {});
     return () => {
       active = false;
     };
   }, [channel, type]);
-  return channel === "beta" ? EMPTY : ids;
+  return channel === "beta" ? NONE : found;
 }

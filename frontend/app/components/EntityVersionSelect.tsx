@@ -1,7 +1,7 @@
 "use client";
 
 import { useT, useGameLocale } from "@/lib/i18n";
-import { useEffect, useState } from "react";
+import { useEffect, useEffectEvent, useState } from "react";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { splitBracket, combineBracket } from "@/lib/content-brackets";
 
@@ -37,8 +37,17 @@ export default function EntityVersionSelect({
   }, []);
 
   const dataVersions = versions?.data_versions ?? [];
-  if (dataVersions.length === 0) return null;
   const statVersions = new Set(versions?.stat_versions ?? []);
+
+  const applyUrlVersion = useEffectEvent(() => {
+    const want = new URLSearchParams(window.location.search).get("version");
+    if (want && dataVersions.includes(want)) pick(want);
+  });
+  useEffect(() => {
+    if (versions) applyUrlVersion();
+  }, [versions]);
+
+  if (dataVersions.length === 0) return null;
 
   async function pick(v: string) {
     setSelected(v);

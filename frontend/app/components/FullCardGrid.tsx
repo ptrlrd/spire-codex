@@ -26,11 +26,11 @@ interface CardStat {
 function FullCardItem({
   card,
   stat,
-  betaChanged,
+  betaVersion,
 }: {
   card: Card;
   stat?: CardStat;
-  betaChanged: boolean;
+  betaVersion: string | null;
 }) {
   const t = useT();
   const fmtN = useFormatNumber();
@@ -51,10 +51,10 @@ function FullCardItem({
           <BetaBadge />
         </span>
       )}
-      {!betaOnly && betaChanged && (
+      {!betaOnly && betaVersion && (
         <Link
           prefetch={false}
-          href={`/beta/cards/${id}`}
+          href={`/cards/${id}?version=${encodeURIComponent(betaVersion)}`}
           className="absolute top-1 right-1 z-20 rounded-full border border-warning/40 bg-[var(--bg-card)] px-2 py-0.5 text-xs font-semibold text-warning hover:bg-warning/15"
         >
           {t("Changed in beta")}
@@ -138,7 +138,11 @@ export default function FullCardGrid({
           key={card.id}
           card={card}
           stat={stats?.[card.id.toUpperCase()]}
-          betaChanged={betaChanged.has(card.id.toUpperCase())}
+          betaVersion={
+            betaChanged.ids.has(card.id.toUpperCase())
+              ? betaChanged.version
+              : null
+          }
         />
       ))}
     </div>
