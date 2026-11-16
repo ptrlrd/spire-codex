@@ -2979,12 +2979,14 @@ def get_entity_metrics_table(
                 or {}
             )
             wax_fold = {}
+            levels_fold = {}
             removed_fold = None
             used_fold = {}
         else:
             entries = fold["entries"]
             offers = fold.get("offers") or {}
             wax_fold = fold.get("wax") or {}
+            levels_fold = fold.get("levels") or {}
             removed_fold = fold.get("removed")
             used_fold = fold.get("used") or {}
         btot = fold["total_runs"]
@@ -3048,6 +3050,12 @@ def get_entity_metrics_table(
                     for i in range(_ACT_BUCKETS)
                 ],
             }
+            upgraded_row = None
+            if entity_type == "cards":
+                row["levels"] = _levels_block(levels_fold.get(eid))
+                upgraded_row = _upgraded_row(
+                    eid, (row["levels"] or {}).get("upgraded"), baseline, prior, bseats
+                )
             if entity_type == "relics":
                 row["wax"] = _wax_block(wax_fold.get(eid))
                 removed = removed_fold.get(eid, 0) if removed_fold is not None else None
@@ -3064,6 +3072,8 @@ def get_entity_metrics_table(
                     round(used / picks * 100, 1) if picks and used else None
                 )
             rows.append(row)
+            if upgraded_row:
+                rows.append(upgraded_row)
         character_runs, character_wins = _character_run_totals(bracket, character)
         return {
             "entity_type": entity_type,
@@ -3335,6 +3345,49 @@ def get_entity_metrics_table(
         "character_runs": character_runs,
         "character_wins": character_wins,
         "rows": rows,
+    }
+
+
+def _upgraded_row(eid, upg, baseline, prior, seats) -> dict | None:
+    """The "+" row of a bracket's card table: seats holding an upgraded
+    copy. Reward screens never offer the upgraded card, so it carries no
+    pick rate or Elo, and lift is only known for the merged row."""
+    if not upg or not upg.get("picks"):
+        return None
+    picks, wins = upg["picks"], upg["wins"]
+    score = _compute_score(wins, picks, baseline, prior)
+    return {
+        "id": eid,
+        "upgraded": True,
+        "score": score,
+        "tier": _score_to_tier(score),
+        "elo": None,
+        "win_rate": upg["win_rate"],
+        "win_rate_ci": upg["win_rate_ci"],
+        "pick_rate": None,
+        "hold_rate": round(picks / seats * 100, 1) if seats else None,
+        "lift": None,
+        "lift_n": 0,
+        "picks": picks,
+        "wins": wins,
+        "losses": picks - wins,
+        "offered": 0,
+        "picked": 0,
+        "pick_rate_by_act": [None] * _ACT_BUCKETS,
+    }
+
+
+def _levels_block(counts) -> dict | None:
+    """Base and upgraded holders of one card, each with its own win rate.
+    None when the cube carries no split for it."""
+    if not counts:
+        return None
+    base_p, base_w, upg_p, upg_w = (int(v) for v in padded_counts(counts, 4))
+    if not base_p and not upg_p:
+        return None
+    return {
+        "base": _wax_block([base_p, base_w]),
+        "upgraded": _wax_block([upg_p, upg_w]),
     }
 
 
@@ -3788,6 +3841,10 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
                     **_lift_block(pw, cseats),
                     "by_character": by_char_rows,
                 }
+                if entity_type == "cards":
+                    brackets[ck]["levels"] = _levels_block(
+                        (fold.get("levels") or {}).get(eid)
+                    )
                 if entity_type == "relics":
                     rmap = fold.get("removed")
                     brackets[ck]["removed"], brackets[ck]["removed_rate"] = (
@@ -3797,6 +3854,19 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
                     )
         except Exception:
             logger.warning("lake bracket overlay failed", exc_info=True)
+    all_levels = None
+    if entity_type == "cards":
+        base_agg = agg.get("base") or {}
+        upg_agg = agg.get("upg") or {}
+        all_levels = _levels_block(
+            [
+                base_agg.get("picks", 0),
+                base_agg.get("wins", 0),
+                upg_agg.get("picks", 0),
+                upg_agg.get("wins", 0),
+            ]
+        )
+        brackets["all"]["levels"] = all_levels
     return {
         "entity_type": entity_type,
         "entity_id": entity_id.upper(),
@@ -3813,6 +3883,7 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
         "score": _compute_score(wins, picks, baseline),
         "elo": agg.get("elo"),
         "brackets": brackets,
+        **({"levels": all_levels} if entity_type == "cards" else {}),
         "by_character": by_character,
         "last_submitted_at": agg["last_submitted_at"],
         "last_run_hash": agg["last_run_hash"],

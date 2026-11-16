@@ -60,6 +60,17 @@ describe("grid view url params", () => {
     });
   });
 
+  it("shows upgraded rows unless the url turns them off", () => {
+    expect(parseGridView({}, cols).upg).toBeUndefined();
+    expect(parseGridView({ upg: "0" }, cols)).toEqual({ upg: false });
+    const on = new URLSearchParams();
+    writeGridView(on, { upg: true });
+    expect(on.toString()).toBe("");
+    const off = new URLSearchParams();
+    writeGridView(off, { upg: false });
+    expect(off.toString()).toBe("upg=0");
+  });
+
   it("writes params omitting defaults", () => {
     const p = new URLSearchParams();
     writeGridView(p, { sort: "elo", dir: -1 });

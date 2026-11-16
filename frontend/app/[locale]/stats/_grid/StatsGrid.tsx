@@ -238,7 +238,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
   const [rarity, setRarity] = useState("");
   const [showTiny, setShowTiny] = useState(!!data.samples);
   const [showWax, setShowWax] = useState(!!data.wax);
-  const [showUpgraded, setShowUpgraded] = useState(!!data.upg);
+  const [showUpgraded, setShowUpgraded] = useState(data.upg ?? true);
   const [offColor, setOffColorState] = useState(!!data.offColor);
   const first: ColKey =
     kind === "cards" && (character || data.by === "character")
@@ -492,7 +492,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
         setDir(view.dir ?? -1);
         setShowTiny(!!view.samples);
         setShowWax(!!view.wax);
-        setShowUpgraded(!!view.upg);
+        setShowUpgraded(view.upg ?? true);
       }
       const saved = loadPrefs(kind);
       if (saved) {
@@ -508,8 +508,8 @@ export default function StatsGrid({ data }: { data: GridData }) {
           setShowTiny(saved.showTiny);
         if (view.wax === undefined && typeof saved.showWax === "boolean")
           setShowWax(saved.showWax);
-        if (view.upg === undefined && typeof saved.showUpgraded === "boolean")
-          setShowUpgraded(saved.showUpgraded);
+        if (view.upg === undefined && saved.hideUpgraded === true)
+          setShowUpgraded(false);
         if (!fromUrl) {
           if (typeof saved.query === "string") setSearch(saved.query);
           const b = saved.bracket || bracket;
@@ -542,7 +542,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
       query: search,
       showTiny,
       showWax,
-      showUpgraded,
+      hideUpgraded: !showUpgraded,
       offColor,
       sortKey,
       dir,

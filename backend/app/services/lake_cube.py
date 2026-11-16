@@ -224,7 +224,7 @@ def from_cube(cube: dict) -> dict:
                 f"offers_by_character:{t}",
                 _offers_by_character(cells, offers_by_char[t]),
             )
-    for name in ("wax", "potion_used", "relic_removed", "rest"):
+    for name in ("wax", "card_levels", "potion_used", "relic_removed", "rest"):
         present[name] = cube.get(name) is not None
         if cube.get(name) is not None:
             put(name, _flat(cells, cube[name]))
@@ -516,6 +516,9 @@ def bracket_fold(cube: CompactCube, entity_type: str, parsed) -> dict | None:
     osel = cube.rows(oname, parsed)
     offers = _offer_fold(ot, osel, ot.keys[0][osel], cube.names[oname][0])
     wax = fold_counts(cube, "wax", parsed, 2) if entity_type == "relics" else {}
+    levels: dict = {}
+    if entity_type == "cards" and cube.present.get("card_levels"):
+        levels = fold_counts(cube, "card_levels", parsed, 4)
     used: dict[str, int] = {}
     if entity_type == "potions":
         used = {k: v[0] for k, v in fold_counts(cube, "potion_used", parsed, 1).items()}
@@ -529,6 +532,7 @@ def bracket_fold(cube: CompactCube, entity_type: str, parsed) -> dict | None:
         "entries": entries,
         "offers": offers,
         "wax": wax,
+        "levels": levels,
         "removed": removed,
         "used": used,
         "total_runs": total,

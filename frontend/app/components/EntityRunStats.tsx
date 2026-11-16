@@ -37,7 +37,19 @@ interface CharacterRow {
   win_rate: number;
 }
 
+export interface LevelStat {
+  picks: number;
+  wins: number;
+  win_rate: number;
+}
+
+export interface LevelSplit {
+  base: LevelStat | null;
+  upgraded: LevelStat | null;
+}
+
 export interface BracketStat {
+  levels?: LevelSplit | null;
   picks: number;
   wins: number;
   win_rate: number;
@@ -74,6 +86,7 @@ export interface EntityStats {
   score: number | null;
   elo: number | null;
   brackets?: Record<string, BracketStat>;
+  levels?: LevelSplit | null;
   by_character: CharacterRow[];
   last_submitted_at: string | null;
   last_run_hash: string | null;
@@ -524,6 +537,13 @@ export default function EntityRunStats({
     const wins = sel?.wins ?? stats.wins;
     const picks = sel?.picks ?? stats.picks;
     const share = top && picks ? Math.round((top.picks / picks) * 100) : 0;
+    const levels = sel ? sel.levels : stats.levels;
+    const levelTiles = (
+      [
+        ["Normal", levels?.base],
+        ["Upgraded", levels?.upgraded],
+      ] as const
+    ).filter(([, side]) => side && side.picks > 0);
     return (
       <div>
         {!empty && (
@@ -603,6 +623,28 @@ export default function EntityRunStats({
                   {kFmt(wins)} {t("of")} {kFmt(picks)} {t("wins")}
                 </div>
               </div>
+              {levelTiles.length === 2 &&
+                levelTiles.map(([label, side]) => (
+                  <div className="tile" key={label}>
+                    <div className="k">
+                      {t("Win rate")} · {t(label)}
+                    </div>
+                    <div
+                      className="v"
+                      style={{
+                        color:
+                          side!.win_rate >= 50 ? "var(--good)" : "var(--warn)",
+                      }}
+                    >
+                      {side!.win_rate}
+                      <span style={{ fontSize: 16 }}>%</span>
+                    </div>
+                    <div className="s">
+                      {kFmt(side!.wins)} {t("of")} {kFmt(side!.picks)}{" "}
+                      {t("wins")}
+                    </div>
+                  </div>
+                ))}
               <div className="tile">
                 <div className="k">{t("Hold rate")}</div>
                 <div className="v">

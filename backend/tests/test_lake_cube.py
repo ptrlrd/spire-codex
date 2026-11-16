@@ -86,6 +86,11 @@ def _ref_bracket_fold(cube, entity_type, parsed):
     wax = (
         _ref_fold_counts(cube.get("wax"), parsed, 2) if entity_type == "relics" else {}
     )
+    levels = (
+        _ref_fold_counts(cube.get("card_levels"), parsed, 4)
+        if entity_type == "cards" and cube.get("card_levels") is not None
+        else {}
+    )
     used = {}
     if entity_type == "potions":
         for cell, ids in (cube.get("potion_used") or {}).items():
@@ -103,6 +108,7 @@ def _ref_bracket_fold(cube, entity_type, parsed):
         "entries": entries,
         "offers": offers,
         "wax": wax,
+        "levels": levels,
         "removed": removed,
         "used": used,
         "total_runs": total,
@@ -223,6 +229,10 @@ CUBE = {
         }
     },
     "wax": {A: {"ANCHOR": [1, 1]}, C: {"JUZU": [2, 0], "ANCHOR": [1, 0]}},
+    "card_levels": {
+        A: {"BASH": [2, 1, 1, 1]},
+        C: {"BASH": [1, 0, 3, 2], "ZAP": [1, 0, 0, 0]},
+    },
     "potion_used": {A: {"FIRE": 3}, C: {"FIRE": 1, "BLOCK": 2}},
     "relic_removed": {A: {"ANCHOR": 1}, B: {"JUZU": 2}},
     "shops": {
