@@ -142,6 +142,9 @@ def test_hidden_index_carries_every_field_it_is_trusted_for():
         ("played_at", -1),
         ("submitted_at", -1),
     ]
+    keys, options = specs[runs_db_mongo.REPLAY_BUILD_INDEX]
+    assert keys == [("has_replay", 1), ("build_id", 1), ("submitted_at", -1)]
+    assert options["partialFilterExpression"] == {"has_replay": True}
 
 
 def test_background_indexes_survive_one_failed_build():
@@ -158,6 +161,7 @@ def test_background_indexes_survive_one_failed_build():
         runs_db_mongo.HIDDEN_WINS_INDEX,
         runs_db_mongo.STEAM_BEST_WIN_INDEX,
         runs_db_mongo.USER_PLAYED_INDEX,
+        runs_db_mongo.REPLAY_BUILD_INDEX,
     ]
 
 

@@ -93,6 +93,7 @@ _HIDDEN_BROWSE_KEYS = (
 _HIDDEN_BROWSE_FIELDS = frozenset(_HIDDEN_BROWSE_KEYS)
 STEAM_BEST_WIN_INDEX = "steam_win_runtime"
 USER_PLAYED_INDEX = "user_played_submitted"
+REPLAY_BUILD_INDEX = "replay_build_submitted"
 LIST_MAX_TIME_MS = 4000
 COUNT_FALLBACK_MAX_TIME_MS = 3000
 _GLOBAL_WINS_KEY = "seed_rank:global_wins"
@@ -3771,6 +3772,25 @@ def _background_index_specs() -> list[tuple[list, dict]]:
                 ("submitted_at", DESCENDING),
             ],
             {"name": USER_PLAYED_INDEX},
+        ),
+        # The replay browser filtered by game version: {has_replay, build_id}
+        # newest first. Without it Mongo walks has_replay_1_submitted_at_-1
+        # newest-first and fetches every replay to test build_id, so an older
+        # version, whose replays sit at the far end, runs past
+        # LIST_MAX_TIME_MS and comes back as a 503. The equality prefix serves
+        # build_id and build_ids ($in, merged in date order) and makes the
+        # {has_replay, build_id} count index-only. Partial, so it holds only
+        # replay runs, but its build still scans the whole collection.
+        (
+            [
+                ("has_replay", ASCENDING),
+                ("build_id", ASCENDING),
+                ("submitted_at", DESCENDING),
+            ],
+            {
+                "name": REPLAY_BUILD_INDEX,
+                "partialFilterExpression": {"has_replay": True},
+            },
         ),
     ]
 
