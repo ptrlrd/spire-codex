@@ -4,20 +4,16 @@ import type { Metadata } from "next";
 import { buildPageMetadata, pageHeading } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
-import { Link } from "@/i18n/navigation";
+import { imageUrl } from "@/lib/image-url";
+import MechanicEntry from "./MechanicEntry";
+import { groupSections, type MechanicSectionMeta } from "./mechanic-groups";
+
+export type { MechanicSectionMeta };
 
 const API_INTERNAL =
   process.env.API_INTERNAL_URL ||
   process.env.NEXT_PUBLIC_API_URL ||
   "http://localhost:8000";
-
-export interface MechanicSectionMeta {
-  slug: string;
-  title: string;
-  description: string;
-  category: "mechanics" | "secrets";
-  order: number;
-}
 
 async function fetchSections(): Promise<MechanicSectionMeta[]> {
   // Tolerates ECONNREFUSED, the Docker frontend build runs `npm run build`
@@ -54,8 +50,7 @@ export default async function MechanicsPage({ params }: Props) {
   const t = await getT(locale);
   const heading = pageHeading(locale, t("Game Mechanics"));
   const sections = await fetchSections();
-  const mechanics = sections.filter((s) => s.category === "mechanics");
-  const secrets = sections.filter((s) => s.category === "secrets");
+  const groups = groupSections(sections);
 
   const jsonLd = [
     buildBreadcrumbJsonLd([
@@ -81,50 +76,68 @@ export default async function MechanicsPage({ params }: Props) {
       <h1 className="text-3xl font-bold mb-2">
         <span className="text-[var(--accent-gold)]">{heading}</span>
       </h1>
-      <p className="text-sm text-[var(--text-muted)] mb-8">
+      <p className="text-sm text-[var(--text-muted)] mb-6">
         {t(
           "Every drop rate, reward chance, and game formula extracted from Slay the Spire 2's decompiled source code. All values are exact.",
         )}
       </p>
 
-      <h2
-        id="mechanics"
-        className="text-xl font-semibold text-[var(--accent-gold)] mb-4"
-      >
-        {t("Mechanics")}
-      </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
-        {mechanics.map((s) => (
-          <Link
-            key={s.slug}
-            href={`/mechanics/${s.slug}`}
-            className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-5 hover:bg-[var(--bg-card-hover)] hover:border-[var(--border-accent)] transition-all cursor-pointer block"
+      <nav aria-label={t("On this page")} className="flex flex-wrap gap-2 mb-4">
+        {groups.map(({ group, items }) => (
+          <a
+            key={group.id}
+            href={`#${group.id}`}
+            className="inline-flex items-center gap-2 min-h-[44px] px-3 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-sm text-[var(--text-primary)] hover:border-[var(--border-accent)] hover:text-[var(--accent-gold)] transition-colors"
           >
-            <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent-gold)] mb-2">
-              {t(s.title)}
-            </h3>
-            <p className="text-sm text-[var(--text-secondary)] leading-relaxed line-clamp-2">
-              {t(s.description)}
-            </p>
-          </Link>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={imageUrl(group.icon)}
+              alt=""
+              width={24}
+              height={24}
+              className="w-6 h-6 object-contain"
+            />
+            {t(group.label)}
+            <span className="text-[var(--text-muted)]">{items.length}</span>
+          </a>
         ))}
-      </div>
+      </nav>
 
-      <h2 className="text-xl font-semibold text-[var(--accent-gold)] mb-4">
-        {t("Secrets & Trivia")}
-      </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {secrets.map((s) => (
-          <Link
-            key={s.slug}
-            href={`/mechanics/${s.slug}`}
-            className="bg-[var(--bg-card)] rounded-lg border border-success/30 p-5 hover:bg-[var(--bg-card-hover)] hover:border-success/50 transition-all cursor-pointer block"
+      <div id="mechanics">
+        {groups.map(({ group, items }) => (
+          <section
+            key={group.id}
+            id={group.id}
+            className="scroll-mt-24 pt-8"
+            aria-labelledby={`${group.id}-heading`}
           >
-            <h3 className="font-semibold text-success mb-2">{t(s.title)}</h3>
-            <p className="text-sm text-[var(--text-secondary)] leading-relaxed line-clamp-2">
-              {t(s.description)}
-            </p>
-          </Link>
+            <div className="flex items-center gap-3 pb-3 border-b border-[var(--border-subtle)]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={imageUrl(group.icon)}
+                alt=""
+                width={36}
+                height={36}
+                className="w-9 h-9 object-contain"
+              />
+              <h2
+                id={`${group.id}-heading`}
+                className="text-xl font-semibold text-[var(--accent-gold)]"
+              >
+                {t(group.label)}
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-10">
+              {items.map((s) => (
+                <MechanicEntry
+                  key={s.slug}
+                  section={s}
+                  title={t(s.title)}
+                  description={t(s.description)}
+                />
+              ))}
+            </div>
+          </section>
         ))}
       </div>
     </div>
