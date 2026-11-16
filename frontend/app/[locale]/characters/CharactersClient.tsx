@@ -20,6 +20,16 @@ function toUpperSnake(s: string): string {
   return s.replace(/([a-z0-9])([A-Z])/g, "$1_$2").toUpperCase();
 }
 
+function stackDeck(deck: string[]): { name: string; count: number }[] {
+  const stacks: { name: string; count: number }[] = [];
+  for (const name of deck) {
+    const hit = stacks.find((s) => s.name === name);
+    if (hit) hit.count += 1;
+    else stacks.push({ name, count: 1 });
+  }
+  return stacks;
+}
+
 function cleanDescription(desc: string): string {
   return desc.replace(/\{[^}]+\}/g, "X");
 }
@@ -148,7 +158,7 @@ export default function CharactersClient({
 
             <div className="grid grid-cols-3 gap-3 mb-5">
               <div className="bg-[var(--bg-primary)] rounded-lg p-3 text-center">
-                <div className="text-xs text-[var(--text-muted)] mb-1">
+                <div className="text-sm text-[var(--text-secondary)] mb-1">
                   {t("HP")}
                 </div>
                 <div className="text-xl font-bold text-danger">
@@ -156,7 +166,7 @@ export default function CharactersClient({
                 </div>
               </div>
               <div className="bg-[var(--bg-primary)] rounded-lg p-3 text-center">
-                <div className="text-xs text-[var(--text-muted)] mb-1">
+                <div className="text-sm text-[var(--text-secondary)] mb-1">
                   {t("Gold")}
                 </div>
                 <div className="text-xl font-bold text-[var(--accent-gold)]">
@@ -164,7 +174,7 @@ export default function CharactersClient({
                 </div>
               </div>
               <div className="bg-[var(--bg-primary)] rounded-lg p-3 text-center">
-                <div className="text-xs text-[var(--text-muted)] mb-1">
+                <div className="text-sm text-[var(--text-secondary)] mb-1">
                   {t("Energy")}
                 </div>
                 <div className="text-xl font-bold text-warning">
@@ -174,54 +184,70 @@ export default function CharactersClient({
             </div>
 
             <div className="mb-4">
-              <h3 className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-2">
+              <h3 className="text-sm font-semibold text-[var(--text-secondary)] mb-2">
                 {t("Starting Deck ({n} cards)", {
                   n: char.starting_deck.length,
                 })}
               </h3>
-              <div className="flex flex-wrap gap-1">
-                {char.starting_deck.map((cardName, i) => {
-                  const cardData = cardMap[toUpperSnake(cardName)];
-                  return (
-                    <span
-                      key={`${cardName}-${i}`}
-                      className="relative text-xs px-2 py-0.5 rounded bg-[var(--bg-primary)] text-[var(--text-secondary)] border border-[var(--border-subtle)] cursor-help group/card"
-                    >
-                      {cardData?.name ??
-                        cardName.replace(/([A-Z])/g, " $1").trim()}
-                      {cardData && (
-                        <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 w-44 opacity-0 group-hover/card:opacity-100 transition-opacity z-20">
-                          <CardImage
-                            id={cardData.id}
-                            channel={cardRenderChannel(cardData)}
-                            art={cardData.image_url}
-                            alt={cardData.name}
-                            className="w-44 h-auto drop-shadow-[0_6px_18px_rgba(0,0,0,0.65)]"
-                          />
-                        </span>
-                      )}
-                    </span>
-                  );
-                })}
+              <div className="flex flex-wrap gap-1.5">
+                {stackDeck(char.starting_deck).map(
+                  ({ name: cardName, count }) => {
+                    const cardData = cardMap[toUpperSnake(cardName)];
+                    return (
+                      <span
+                        key={cardName}
+                        className="relative text-sm px-2 py-0.5 rounded bg-[var(--bg-primary)] text-[var(--text-secondary)] border border-[var(--border-subtle)] cursor-help group/card"
+                      >
+                        {cardData?.name ??
+                          cardName.replace(/([A-Z])/g, " $1").trim()}
+                        {count > 1 && (
+                          <span className="ml-1.5 font-semibold text-[var(--text-primary)] tabular-nums">
+                            &times;{count}
+                          </span>
+                        )}
+                        {cardData && (
+                          <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 w-44 opacity-0 group-hover/card:opacity-100 transition-opacity z-20">
+                            <CardImage
+                              id={cardData.id}
+                              channel={cardRenderChannel(cardData)}
+                              art={cardData.image_url}
+                              alt={cardData.name}
+                              className="w-44 h-auto drop-shadow-[0_6px_18px_rgba(0,0,0,0.65)]"
+                            />
+                          </span>
+                        )}
+                      </span>
+                    );
+                  },
+                )}
               </div>
             </div>
 
             <div>
-              <h3 className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-2">
+              <h3 className="text-sm font-semibold text-[var(--text-secondary)] mb-2">
                 {t("Starting Relic")}
               </h3>
-              <div className="flex flex-wrap gap-1">
+              <div className="flex flex-wrap gap-1.5">
                 {char.starting_relics.map((relicName) => {
                   const relicData = relicMap[toUpperSnake(relicName)];
                   return (
                     <span
                       key={relicName}
-                      className="relative text-xs px-2 py-0.5 rounded bg-[var(--accent-gold)]/10 text-[var(--accent-gold)] border border-[var(--accent-gold)]/20 cursor-help group/relic"
+                      className="relative inline-flex items-center gap-1.5 text-sm px-2 py-0.5 rounded bg-[var(--accent-gold)]/10 text-[var(--accent-gold)] border border-[var(--accent-gold)]/20 cursor-help group/relic"
                     >
+                      {relicData?.image_url && (
+                        <img
+                          src={imageUrl(relicData.image_url)}
+                          alt=""
+                          className="w-6 h-6 object-contain flex-shrink-0"
+                          loading="lazy"
+                          crossOrigin="anonymous"
+                        />
+                      )}
                       {relicData?.name ??
                         relicName.replace(/([A-Z])/g, " $1").trim()}
                       {relicData && (
-                        <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 w-60 px-2.5 py-2 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[11px] text-[var(--text-secondary)] leading-snug shadow-lg opacity-0 group-hover/relic:opacity-100 transition-opacity z-10 flex gap-2 items-start text-left">
+                        <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 w-60 px-2.5 py-2 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-xs text-[var(--text-secondary)] leading-snug shadow-lg opacity-0 group-hover/relic:opacity-100 transition-opacity z-10 flex gap-2 items-start text-left">
                           {relicData.image_url && (
                             <img
                               src={imageUrl(relicData.image_url)}

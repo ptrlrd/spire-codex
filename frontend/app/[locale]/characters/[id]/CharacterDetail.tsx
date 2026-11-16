@@ -59,6 +59,13 @@ interface TopEntry {
   score: number | null;
 }
 
+interface AncientArt {
+  id: string;
+  image_url?: string | null;
+}
+
+const RARITY_PREVIEW = 6;
+
 interface TopEntity {
   id: string;
   name: string;
@@ -91,13 +98,13 @@ function TopPicks({
     <div className="pick-block">
       <h3 className="subh">{title}</h3>
       <p className="h-note">{subtitle}</p>
-      <ul className="picks">
+      <ol className="pick-rows">
         {resolved.map(({ it, ent }) => (
           <li key={it.entity_id}>
             <Link
               prefetch={false}
               href={`${hrefBase}/${ent.id.toLowerCase()}`}
-              className="pick"
+              className="pick-row"
             >
               {ent.image_url && (
                 <img
@@ -108,26 +115,20 @@ function TopPicks({
                   crossOrigin="anonymous"
                 />
               )}
-              <span className="pick-name">
+              <span className="pick-body">
                 <span className="pick-nm">{ent.name}</span>
-                {it.score != null && <ScoreBadge score={it.score} size="sm" />}
+                <span className="pick-sub">
+                  {t("{pct}% win · {n} picks", {
+                    pct: it.win_rate.toFixed(1),
+                    n: fmtN(it.picks),
+                  })}
+                </span>
               </span>
-              <span className="pick-sub">
-                {t("{pct}% win · {n} picks", {
-                  pct: it.win_rate.toFixed(1),
-                  n: fmtN(it.picks),
-                })
-                  .split(/\s*·\s*/)
-                  .map((part) => (
-                    <span key={part} className="block">
-                      {part}
-                    </span>
-                  ))}
-              </span>
+              {it.score != null && <ScoreBadge score={it.score} size="sm" />}
             </Link>
           </li>
         ))}
-      </ul>
+      </ol>
     </div>
   );
 }
@@ -153,6 +154,8 @@ export default function CharacterDetail({
   const [expandedAncient, setExpandedAncient] = useState<string | null>(null);
   const [cardsExpanded, setCardsExpanded] = useState(true);
   const [relicsExpanded, setRelicsExpanded] = useState(true);
+  const [openRarities, setOpenRarities] = useState<Record<string, boolean>>({});
+  const [ancientArt, setAncientArt] = useState<Record<string, string>>({});
   // Scroll-spy: which section the ToC highlights.
   const [activeSection, setActiveSection] = useState<string>("overview");
 
@@ -216,13 +219,20 @@ export default function CharacterDetail({
       top("cards"),
       top("relics"),
       top("potions"),
+      cachedFetch<AncientArt[]>(`${API}/api/events?lang=${lang}`).catch(
+        () => [] as AncientArt[],
+      ),
     ]).then(
-      ([potionsData, tc, tr, tp]: [
+      ([potionsData, tc, tr, tp, events]: [
         Potion[],
         TopEntry[],
         TopEntry[],
         TopEntry[],
+        AncientArt[],
       ]) => {
+        const art: Record<string, string> = {};
+        for (const e of events ?? []) if (e.image_url) art[e.id] = e.image_url;
+        setAncientArt(art);
         const pm: Record<string, Potion> = {};
         for (const p of potionsData ?? []) pm[p.id] = p;
         setPotions(pm);
@@ -410,8 +420,6 @@ export default function CharacterDetail({
 
   const tocItems: { id: string; label: string }[] = [
     { id: "overview", label: t("Overview") },
-    ...(hasDeck ? [{ id: "deck", label: t("Starting deck") }] : []),
-    ...(hasStartRelics ? [{ id: "relic", label: t("Starting relic") }] : []),
     ...(hasCommunity ? [{ id: "community", label: t("Community") }] : []),
     ...(hasAllCards ? [{ id: "cards", label: t("Cards") }] : []),
     ...(hasTarot ? [{ id: "tarot", label: t("Tarot") }] : []),
@@ -421,13 +429,22 @@ export default function CharacterDetail({
     ...(hasDialogues ? [{ id: "dialogue", label: t("Dialogue") }] : []),
   ];
 
+  const deckStacks: { name: string; count: number }[] = [];
+  for (const name of char.starting_deck) {
+    const hit = deckStacks.find((d) => d.name === name);
+    if (hit) hit.count += 1;
+    else deckStacks.push({ name, count: 1 });
+  }
+
+  const iconSrc = `${(char.image_url ?? "/static/images/characters/x").replace(/[^/]*$/, "")}character_icon_${char.id.toLowerCase()}.webp`;
+
   const combatSrc =
     char.animation_url ??
     `/static/images/characters/combat_${char.id.toLowerCase()}.webp`;
 
   return (
     <div
-      className="card-rvmp"
+      className="card-rvmp char-page"
       style={
         {
           "--spine": spineColor,
@@ -444,31 +461,152 @@ export default function CharacterDetail({
       </div>
 
       <div className="wrap">
-        {/* ===== MAIN column: unrolled sections ===== */}
         <main className="main">
-          {/* Hero */}
-          <div className="hero">
-            <p className="eyebrow">
-              <span className="dot">&#9670;</span>
-              <span>{t("Character")}</span>
-              {char.gender && (
-                <>
-                  <span className="sep">&middot;</span>
-                  <span>{t(char.gender)}</span>
-                </>
+          <section id="overview" className="ch-hero">
+            <div className="ch-art">
+              <img
+                src={imageUrl(combatSrc)}
+                alt={t("{name} - Slay the Spire 2 Character", {
+                  name: char.name,
+                })}
+                crossOrigin="anonymous"
+              />
+            </div>
+
+            <div className="ch-id">
+              <p className="ch-kicker">
+                <img src={imageUrl(iconSrc)} alt="" width={20} height={20} />
+                <span>{t("Character")}</span>
+                {char.gender && (
+                  <>
+                    <span className="sep">&middot;</span>
+                    <span>{t(char.gender)}</span>
+                  </>
+                )}
+                {char.unlocks_after && (
+                  <>
+                    <span className="sep">&middot;</span>
+                    <span>
+                      {t("Unlocks after {name}", { name: char.unlocks_after })}
+                    </span>
+                  </>
+                )}
+              </p>
+              <h1>{char.name}</h1>
+              <div className="ch-flavor">
+                <RichDescription text={char.description} />
+              </div>
+              <dl className="ch-stats">
+                <div>
+                  <dd style={{ color: "var(--danger)" }}>{char.starting_hp}</dd>
+                  <dt>{t("HP")}</dt>
+                </div>
+                <div>
+                  <dd style={{ color: "var(--accent-gold)" }}>
+                    {char.starting_gold}
+                  </dd>
+                  <dt>{t("Gold")}</dt>
+                </div>
+                <div>
+                  <dd style={{ color: "var(--warning)" }}>
+                    {char.max_energy ?? 3}
+                  </dd>
+                  <dt>{t("Energy")}</dt>
+                </div>
+                {char.orb_slots != null && (
+                  <div>
+                    <dd style={{ color: "var(--info)" }}>{char.orb_slots}</dd>
+                    <dt>{t("Orb Slots")}</dt>
+                  </div>
+                )}
+              </dl>
+            </div>
+
+            <div className="ch-kit">
+              {hasStartRelics && (
+                <div id="relic" className="ch-kit-part">
+                  <h2>{t("Starting Relic")}</h2>
+                  <div className="kit-list">
+                    {char.starting_relics.map((relicName) => {
+                      const relicData = relics[toUpperSnake(relicName)];
+                      return (
+                        <Link
+                          prefetch={false}
+                          key={relicName}
+                          href={
+                            relicData
+                              ? `/relics/${relicData.id.toLowerCase()}`
+                              : "#"
+                          }
+                          className="kit-row"
+                        >
+                          {relicData?.image_url && (
+                            <img
+                              className="kit-img"
+                              src={imageUrl(relicData.image_url)}
+                              alt={t("{name} - Slay the Spire 2 Relic", {
+                                name: relicData.name,
+                              })}
+                              crossOrigin="anonymous"
+                            />
+                          )}
+                          <div className="kit-body">
+                            <div className="kit-name">
+                              {relicData?.name ??
+                                relicName.replace(/([A-Z])/g, " $1").trim()}
+                            </div>
+                            {relicData && (
+                              <div className="kit-desc">
+                                <RichDescription text={relicData.description} />
+                              </div>
+                            )}
+                          </div>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
               )}
-              {char.unlocks_after && (
-                <>
-                  <span className="sep">&middot;</span>
-                  <span>
-                    {t("Unlocks after {name}", { name: char.unlocks_after })}
-                  </span>
-                </>
+
+              {hasDeck && (
+                <div id="deck" className="ch-kit-part">
+                  <h2>
+                    {t("Starting Deck")}
+                    <span className="sec-count">
+                      ({t("{n} cards", { n: char.starting_deck.length })})
+                    </span>
+                  </h2>
+                  <div className="deck-grid">
+                    {deckStacks.map(({ name, count }) => {
+                      const cardData = cards[toUpperSnake(name)];
+                      if (!cardData) return null;
+                      return (
+                        <Link
+                          prefetch={false}
+                          key={name}
+                          href={`/cards/${cardData.id.toLowerCase()}`}
+                          title={cardData.name}
+                          className="deck-stack"
+                        >
+                          <CardImage
+                            id={cardData.id}
+                            channel={cardRenderChannel(cardData)}
+                            art={cardData.image_url}
+                            alt={t("{name} - Slay the Spire 2", {
+                              name: cardData.name,
+                            })}
+                          />
+                          <span className="deck-count">&times;{count}</span>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
               )}
-            </p>
-            <h1>{char.name}</h1>
-            <EntityProse kind="character" character={char} lead />
-          </div>
+            </div>
+          </section>
+
+          <EntityProse kind="character" character={char} lead />
 
           <nav className="deeper" aria-label={t("Go deeper")}>
             <span className="toc-label">{t("Go deeper")}</span>
@@ -524,7 +662,6 @@ export default function CharacterDetail({
             </div>
           </nav>
 
-          {/* Sticky ToC */}
           <nav className="toc" aria-label={t("On this page")}>
             <span className="toc-label">{t("On this page")}</span>
             {tocItems.map((it) => (
@@ -539,95 +676,6 @@ export default function CharacterDetail({
             ))}
           </nav>
 
-          {/* Overview */}
-          <section id="overview">
-            <h2>{t("Overview")}</h2>
-            <div className="desc-quote">
-              <RichDescription text={char.description} />
-            </div>
-          </section>
-
-          {/* Starting Deck */}
-          {hasDeck && (
-            <section id="deck">
-              <h2>
-                {t("Starting Deck")}
-                <span className="sec-count">
-                  ({t("{n} cards", { n: char.starting_deck.length })})
-                </span>
-              </h2>
-              <div className="deck-grid">
-                {char.starting_deck.map((cardName, i) => {
-                  const cardData = cards[toUpperSnake(cardName)];
-                  if (!cardData) return null;
-                  return (
-                    <Link
-                      prefetch={false}
-                      key={`${cardName}-${i}`}
-                      href={`/cards/${cardData.id.toLowerCase()}`}
-                      title={cardData.name}
-                    >
-                      <CardImage
-                        id={cardData.id}
-                        channel={cardRenderChannel(cardData)}
-                        art={cardData.image_url}
-                        alt={t("{name} - Slay the Spire 2", {
-                          name: cardData.name,
-                        })}
-                      />
-                    </Link>
-                  );
-                })}
-              </div>
-            </section>
-          )}
-
-          {/* Starting Relic(s) */}
-          {hasStartRelics && (
-            <section id="relic">
-              <h2>{t("Starting Relic")}</h2>
-              <div className="kit-list">
-                {char.starting_relics.map((relicName) => {
-                  const relicData = relics[toUpperSnake(relicName)];
-                  return (
-                    <Link
-                      prefetch={false}
-                      key={relicName}
-                      href={
-                        relicData
-                          ? `/relics/${relicData.id.toLowerCase()}`
-                          : "#"
-                      }
-                      className="kit-row"
-                    >
-                      {relicData?.image_url && (
-                        <img
-                          className="kit-img"
-                          src={imageUrl(relicData.image_url)}
-                          alt={t("{name} - Slay the Spire 2 Relic", {
-                            name: relicData.name,
-                          })}
-                          crossOrigin="anonymous"
-                        />
-                      )}
-                      <div className="kit-body">
-                        <div className="kit-name">
-                          {relicData?.name ??
-                            relicName.replace(/([A-Z])/g, " $1").trim()}
-                        </div>
-                        {relicData && (
-                          <div className="kit-desc">
-                            <RichDescription text={relicData.description} />
-                          </div>
-                        )}
-                      </div>
-                    </Link>
-                  );
-                })}
-              </div>
-            </section>
-          )}
-
           {/* Top picked from community runs, ranked by how often this
               character's runs include them. */}
           {hasCommunity && (
@@ -638,33 +686,35 @@ export default function CharacterDetail({
                   "What this character's community-tracked runs include most, beyond the starter kit.",
                 )}
               </p>
-              <TopPicks
-                title={t("Top cards picked by {name}", { name: char.name })}
-                subtitle={t(
-                  "Most-included cards across community-tracked runs, excluding the starter deck.",
-                )}
-                items={topCardsFiltered}
-                lookup={(eid) => cardByLower[eid.toLowerCase()]}
-                hrefBase="/cards"
-              />
-              <TopPicks
-                title={t("Top relics picked by {name}", { name: char.name })}
-                subtitle={t(
-                  "Relics that show up most often in this character's runs, excluding the starting relic.",
-                )}
-                items={topRelicsFiltered}
-                lookup={(eid) => relicByLower[eid.toLowerCase()]}
-                hrefBase="/relics"
-              />
-              <TopPicks
-                title={t("Top potions picked by {name}", { name: char.name })}
-                subtitle={t(
-                  "Potions most commonly held in this character's runs.",
-                )}
-                items={topPotionsFiltered}
-                lookup={(eid) => potionByLower[eid.toLowerCase()]}
-                hrefBase="/potions"
-              />
+              <div className="pick-cols">
+                <TopPicks
+                  title={t("Top cards picked by {name}", { name: char.name })}
+                  subtitle={t(
+                    "Most-included cards across community-tracked runs, excluding the starter deck.",
+                  )}
+                  items={topCardsFiltered}
+                  lookup={(eid) => cardByLower[eid.toLowerCase()]}
+                  hrefBase="/cards"
+                />
+                <TopPicks
+                  title={t("Top relics picked by {name}", { name: char.name })}
+                  subtitle={t(
+                    "Relics that show up most often in this character's runs, excluding the starting relic.",
+                  )}
+                  items={topRelicsFiltered}
+                  lookup={(eid) => relicByLower[eid.toLowerCase()]}
+                  hrefBase="/relics"
+                />
+                <TopPicks
+                  title={t("Top potions picked by {name}", { name: char.name })}
+                  subtitle={t(
+                    "Potions most commonly held in this character's runs.",
+                  )}
+                  items={topPotionsFiltered}
+                  lookup={(eid) => potionByLower[eid.toLowerCase()]}
+                  hrefBase="/potions"
+                />
+              </div>
             </section>
           )}
 
@@ -685,24 +735,45 @@ export default function CharacterDetail({
               </button>
               {cardsExpanded && (
                 <div>
-                  {sortedRarities.map((rarity) => (
-                    <div key={rarity} className="rar-group">
-                      <h3 className="rgh">
-                        <span
-                          className={`inline-block px-2 py-0.5 rounded text-xs ${rarityBadgeColors[rarity] ?? "bg-line-strong/30 text-fg-secondary"}`}
-                        >
-                          {rarity}
-                        </span>
-                        <span className="rgn">
-                          ({cardsByRarity[rarity].length})
-                        </span>
-                      </h3>
-                      <FullCardGrid
-                        cards={cardsByRarity[rarity]}
-                        className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3"
-                      />
-                    </div>
-                  ))}
+                  {sortedRarities.map((rarity) => {
+                    const group = cardsByRarity[rarity];
+                    const open = !!openRarities[rarity];
+                    const extra = group.length - RARITY_PREVIEW;
+                    return (
+                      <div key={rarity} className="rar-group">
+                        <h3 className="rgh">
+                          <span
+                            className={`inline-block px-2.5 py-0.5 rounded text-sm ${rarityBadgeColors[rarity] ?? "bg-line-strong/30 text-fg-secondary"}`}
+                          >
+                            {rarity}
+                          </span>
+                          <span className="rgn">
+                            {t("{n} cards", { n: group.length })}
+                          </span>
+                        </h3>
+                        <FullCardGrid
+                          cards={open ? group : group.slice(0, RARITY_PREVIEW)}
+                          className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3"
+                        />
+                        {extra > 0 && (
+                          <button
+                            className="more-btn"
+                            aria-expanded={open}
+                            onClick={() =>
+                              setOpenRarities((prev) => ({
+                                ...prev,
+                                [rarity]: !open,
+                              }))
+                            }
+                          >
+                            {open
+                              ? t("Show less")
+                              : t("Show more ({n})", { n: extra })}
+                          </button>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               )}
             </section>
@@ -737,7 +808,7 @@ export default function CharacterDetail({
               </p>
               <FullCardGrid
                 cards={tarotCards}
-                className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3"
+                className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3"
               />
             </section>
           )}
@@ -758,7 +829,7 @@ export default function CharacterDetail({
                 <span className="chev">{relicsExpanded ? "▲" : "▼"}</span>
               </button>
               {relicsExpanded && (
-                <div className="kit-list">
+                <div className="kit-list two">
                   {sortedPoolRelics.map((relic) => (
                     <Link
                       prefetch={false}
@@ -780,7 +851,7 @@ export default function CharacterDetail({
                         <div className="kit-name">
                           {relic.name}
                           <span
-                            className={`inline-block px-1.5 py-0.5 rounded text-[10px] ${relic?.rarity_key ? rarityBadgeColors[relic.rarity_key] : "bg-line-strong/30 text-fg-secondary"}`}
+                            className={`inline-block px-1.5 py-0.5 rounded text-xs font-normal ${relic?.rarity_key ? rarityBadgeColors[relic.rarity_key] : "bg-line-strong/30 text-fg-secondary"}`}
                           >
                             {relic.rarity}
                           </span>
@@ -846,7 +917,7 @@ export default function CharacterDetail({
           {hasQuotes && (
             <section id="quotes">
               <h2>{t("Quotes")}</h2>
-              <div className="quotes">
+              <div className="quotes two">
                 {Object.entries(QUOTE_LABELS).map(([key, { label }]) => {
                   const text = char.quotes?.[key];
                   if (!text || text === "...") return null;
@@ -878,14 +949,27 @@ export default function CharacterDetail({
                     const ancientName = convos![0].ancient_name;
                     const isExpanded = expandedAncient === ancientId;
                     return (
-                      <div key={ancientId} className="dlg-group">
+                      <div
+                        key={ancientId}
+                        className={`dlg-group${isExpanded ? " open" : ""}`}
+                      >
                         <button
                           onClick={() =>
                             setExpandedAncient(isExpanded ? null : ancientId)
                           }
                           className="dlg-toggle"
                         >
-                          <span className="dlg-title">{ancientName}</span>
+                          <span className="dlg-title">
+                            {ancientArt[ancientId] && (
+                              <img
+                                src={imageUrl(ancientArt[ancientId])}
+                                alt=""
+                                loading="lazy"
+                                crossOrigin="anonymous"
+                              />
+                            )}
+                            {ancientName}
+                          </span>
                           <span className="dlg-meta">
                             {t("{n} conversations", { n: convos!.length })}
                             <span>{isExpanded ? "▲" : "▼"}</span>
@@ -926,64 +1010,6 @@ export default function CharacterDetail({
             </section>
           )}
         </main>
-
-        {/* ===== INFOBOX column (sticky) ===== */}
-        <aside className="aside">
-          <div className="box">
-            {/* Animated Spine idle when we've rendered one for this version,
-                otherwise the static combat portrait. The animation is a
-                looping webp, lazy-loaded so it only fetches when the page is
-                actually viewed. */}
-            <img
-              className="cardimg render charimg"
-              src={imageUrl(combatSrc)}
-              alt={t("{name} - Slay the Spire 2 Character", {
-                name: char.name,
-              })}
-              loading="lazy"
-              crossOrigin="anonymous"
-            />
-
-            {/* Facts table */}
-            <div className="facts">
-              <div className="fh">{t("At a glance")}</div>
-              <dl>
-                <div className="frow">
-                  <dt>{t("HP")}</dt>
-                  <dd style={{ color: "#f87171" }}>{char.starting_hp}</dd>
-                </div>
-                <div className="frow">
-                  <dt>{t("Gold")}</dt>
-                  <dd style={{ color: "var(--accent-gold)" }}>
-                    {char.starting_gold}
-                  </dd>
-                </div>
-                <div className="frow">
-                  <dt>{t("Energy")}</dt>
-                  <dd style={{ color: "#fbbf24" }}>{char.max_energy ?? 3}</dd>
-                </div>
-                {char.orb_slots != null && (
-                  <div className="frow">
-                    <dt>{t("Orb Slots")}</dt>
-                    <dd style={{ color: "#60a5fa" }}>{char.orb_slots}</dd>
-                  </div>
-                )}
-                {char.gender && (
-                  <div className="frow">
-                    <dt>{t("Gender")}</dt>
-                    <dd>{t(char.gender)}</dd>
-                  </div>
-                )}
-                {char.unlocks_after && (
-                  <div className="frow">
-                    <dt>{t("Unlocks after")}</dt>
-                    <dd>{char.unlocks_after}</dd>
-                  </div>
-                )}
-              </dl>
-            </div>
-          </div>
-        </aside>
       </div>
     </div>
   );
