@@ -174,13 +174,17 @@ def test_capped_count_is_time_limited(cache_store):
     assert _timeouts("exact") == before + 1
 
 
-def test_capped_count_timeout_raises_and_is_not_cached(cache_store):
+def test_capped_count_timeout_raises_and_is_remembered(cache_store):
     coll = CountColl(slow={"exact", "capped"})
     before = _timeouts("capped")
     with pytest.raises(ExecutionTimeout):
         runs_db_mongo.count_with_budget(coll, {"deck.id": "BASH"})
     assert _timeouts("capped") == before + 1
-    assert cache_store == {}
+    assert list(cache_store.values()) == [[-1, True]]
+    asked = len(coll.calls)
+    with pytest.raises(ExecutionTimeout):
+        runs_db_mongo.count_with_budget(coll, {"deck.id": "BASH"})
+    assert len(coll.calls) == asked
 
 
 def test_other_count_failures_are_not_swallowed(cache_store):

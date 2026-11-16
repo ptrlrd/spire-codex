@@ -443,7 +443,7 @@ function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
           aria-label={t("Players")}
           className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]"
         >
-          <option value="">{t("All Modes")}</option>
+          <option value="">{t("All players")}</option>
           <option value="single">{t("Solo")}</option>
           <option value="multi">{t("Co-op")}</option>
         </select>
@@ -454,7 +454,7 @@ function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
           aria-label={t("Mode")}
           className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]"
         >
-          <option value="">{t("Any Type")}</option>
+          <option value="">{t("All Modes")}</option>
           {GAME_MODES.flatMap((m) => [
             <option key={m.id} value={m.id}>
               {t(m.label)}
@@ -534,7 +534,7 @@ function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
         )}
       </div>
 
-      {!list.error && (
+      {!list.error && !(totalIsLowerBound && total < 10000) && (
         <p className="text-xs text-[var(--text-muted)] mb-3">
           {totalIsLowerBound
             ? t("More than 10,000 runs")

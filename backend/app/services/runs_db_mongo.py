@@ -2885,6 +2885,8 @@ def count_with_budget(
     )
     cached = app_cache.get_json(key)
     if cached is not None:
+        if int(cached[0]) < 0:
+            raise ExecutionTimeout("count over budget", 50)
         return int(cached[0]), bool(cached[1])
     try:
         out = (_count_within(coll, query, max_time_ms), False)
@@ -2899,6 +2901,7 @@ def count_with_budget(
         except OperationFailure as capped_exc:
             if _is_time_limit(capped_exc):
                 count_budget_timeouts.labels(stage="capped").inc()
+                app_cache.set_json(key, [-1, True], ttl_seconds=300)
             raise
         out = (capped, True)
     app_cache.set_json(key, list(out), ttl_seconds=120)
@@ -3103,8 +3106,14 @@ def list_runs(
     # heavyweight docs (~8s). Unfiltered uses the instant metadata count;
     # filtered counts get a time budget and fall back to a capped lower
     # bound the frontend labels "more than 10,000".
+    count_unavailable = False
     if q:
-        total, total_is_lower_bound = count_with_budget(coll, q)
+        try:
+            total, total_is_lower_bound = count_with_budget(coll, q)
+        except OperationFailure as exc:
+            if not _is_time_limit(exc):
+                raise
+            total, total_is_lower_bound, count_unavailable = 0, True, True
     else:
         total = coll.estimated_document_count()
         total_is_lower_bound = False
@@ -3117,6 +3126,8 @@ def list_runs(
         .limit(per_page)
     )
     runs = [_row_to_dict(r) for r in cursor]
+    if count_unavailable:
+        total = offset + len(runs) + (1 if len(runs) == per_page else 0)
 
     return {
         "runs": runs,
