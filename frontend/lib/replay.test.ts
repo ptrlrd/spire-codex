@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import {
   blitzEntryName,
+  blitzOfferRows,
   captureIsComplete,
   combatCounts,
   hasMapPositions,
@@ -4084,5 +4085,85 @@ describe("blitz merchant buys", () => {
   it("names a blitz entry for display", () => {
     expect(blitzEntryName("ColorlessCardReward")).toBe("Colorless Card Reward");
     expect(blitzEntryName("BlitzMerchantTwoRelicsEntry")).toBe("Two Relics");
+  });
+});
+
+describe("blitz merchant offers", () => {
+  const offer = (slot: number, entry: string, status: string) => ({
+    slot,
+    blitz_entry: entry,
+    entry_class: `BlitzMerchant${entry}Entry`,
+    status,
+  });
+  const shop = (s: number, statuses: string[]) => ({
+    t: "shop",
+    s,
+    ms: s,
+    floor: 4,
+    act: 1,
+    gold: 99,
+    cards: [],
+    relics: [],
+    potions: [],
+    blitz: [
+      offer(0, "UpgradedRareCard", statuses[0]),
+      offer(1, "ColorlessCardReward", statuses[1]),
+      offer(2, "Relic", statuses[2]),
+      offer(3, "Glam", statuses[3]),
+    ],
+    blitz_choices_left: 3,
+  });
+  const text = journal([
+    { t: "header", s: 0, ms: 0, floor: 0, act: 1, replay_version: 8 },
+    { t: "room", s: 1, ms: 1, floor: 4, act: 1, kind: "merchant" },
+    shop(2, ["available", "available", "available", "available"]),
+    {
+      t: "buy",
+      s: 3,
+      ms: 3,
+      floor: 4,
+      act: 1,
+      kind: "blitz",
+      slot: 1,
+      blitz_entry: "ColorlessCardReward",
+      cost_current: 0,
+      cost_resource: "gold",
+    },
+    shop(4, ["used", "used", "available", "available"]),
+  ]);
+
+  it("parses the offers on a shop line", () => {
+    const { lines } = parseReplayLines(text);
+    const first = lines.find((l): l is ShopLine => l.t === "shop");
+    expect(first?.blitz).toHaveLength(4);
+    expect(first?.blitz?.[3]).toMatchObject({
+      slot: 3,
+      entry: "Glam",
+      entryClass: "BlitzMerchantGlamEntry",
+      status: "available",
+    });
+    expect(first?.blitzChoicesLeft).toBe(3);
+  });
+
+  it("marks an offer picked by a buy's slot or a later used status", () => {
+    const floor = parseReplay(text).floors.find((f) => f.floor === 4)!;
+    expect(blitzOfferRows(floor).map((r) => [r.offer.entry, r.picked])).toEqual(
+      [
+        ["UpgradedRareCard", true],
+        ["ColorlessCardReward", true],
+        ["Relic", false],
+        ["Glam", false],
+      ],
+    );
+  });
+
+  it("has no offers at a normal merchant", () => {
+    const shopJournal = readFileSync(
+      new URL("../../backend/tests/fixtures/v2-shop.jsonl", import.meta.url),
+      "utf-8",
+    );
+    const floor = parseReplay(shopJournal).floors.find((f) => f.shop);
+    expect(floor).toBeDefined();
+    expect(blitzOfferRows(floor!)).toEqual([]);
   });
 });

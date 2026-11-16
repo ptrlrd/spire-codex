@@ -20,7 +20,12 @@ import type {
   ReplayTurn,
   ShopItem,
 } from "@/lib/replay";
-import { blitzEntryName, isCombatKind, shelfRows } from "@/lib/replay";
+import {
+  blitzEntryName,
+  blitzOfferRows,
+  isCombatKind,
+  shelfRows,
+} from "@/lib/replay";
 import {
   type EncounterMap,
   type MonsterMap,
@@ -812,6 +817,9 @@ function ShopBlock({
   const groups = (["card", "relic", "potion"] as const).map(
     (kind) => [kind, shelf.filter((r) => r.kind === kind)] as const,
   );
+  const offers = blitzOfferRows(f);
+  // With the offers listed, a blitz pick shows there, so it is not listed twice.
+  const listed = offers.length ? buys.filter((l) => l.kind !== "blitz") : buys;
   return (
     <section className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-3">
       <header className="mb-2 flex flex-wrap items-baseline gap-x-3 gap-y-1 text-xs tabular-nums text-[var(--text-muted)]">
@@ -858,13 +866,32 @@ function ShopBlock({
           )}
         </div>
       )}
-      {buys.length ? (
+      {offers.length > 0 && (
+        <ul className="mb-3 grid gap-1.5 sm:grid-cols-2">
+          {offers.map(({ offer, picked }) => (
+            <li
+              key={`blitz-${offer.slot}`}
+              className={`flex items-center gap-2 rounded-md border px-2.5 py-1.5 text-sm ${
+                picked
+                  ? TAKEN_TONE
+                  : "border-[var(--border-subtle)] text-[var(--text-secondary)]"
+              }`}
+            >
+              <span className="min-w-0 flex-1 truncate">
+                {blitzEntryName(offer.entry ?? offer.entryClass ?? "")}
+              </span>
+              {picked && <TakenBadge />}
+            </li>
+          ))}
+        </ul>
+      )}
+      {listed.length ? (
         <ul className="grid gap-1.5 sm:grid-cols-2">
-          {buys.map((l, i) => {
+          {listed.map((l, i) => {
             const removal = l.kind === "removal_service";
             const target = removal
               ? removed[
-                  buys.slice(0, i).filter((b) => b.kind === "removal_service")
+                  listed.slice(0, i).filter((b) => b.kind === "removal_service")
                     .length
                 ]
               : l.id;
@@ -926,7 +953,7 @@ function ShopBlock({
             );
           })}
         </ul>
-      ) : (
+      ) : buys.length ? null : (
         <p className="text-sm text-[var(--text-muted)]">
           {t("Nothing bought")}
         </p>

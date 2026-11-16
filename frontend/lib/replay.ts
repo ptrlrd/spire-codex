@@ -203,6 +203,20 @@ export interface ShopLine extends LineBase {
   cards: ShopItem[];
   relics: ShopItem[];
   potions: ShopItem[];
+  /** A Blitz merchant's offers, in the slot order a blitz buy names. */
+  blitz?: BlitzOffer[];
+  blitzChoicesLeft?: number;
+}
+export interface BlitzOffer {
+  slot: number;
+  entry?: string;
+  entryClass?: string;
+  /** available, used or disabled */
+  status?: string;
+}
+export interface BlitzOfferRow {
+  offer: BlitzOffer;
+  picked: boolean;
 }
 export type ShelfKind = "card" | "relic" | "potion";
 export interface ShelfRow {
@@ -700,6 +714,17 @@ function shopItems(v: unknown): ShopItem[] {
   }));
 }
 
+function blitzOffers(v: unknown): BlitzOffer[] | undefined {
+  const rows = objects(v);
+  if (!rows.length) return undefined;
+  return rows.map((x, i) => ({
+    slot: num(x.slot) ?? i,
+    entry: str(x.blitz_entry),
+    entryClass: str(x.entry_class),
+    status: str(x.status),
+  }));
+}
+
 function narrow(raw: Raw): ReplayLine | undefined {
   const t = str(raw.t);
   const s = num(raw.s);
@@ -883,6 +908,8 @@ function narrow(raw: Raw): ReplayLine | undefined {
         cards: shopItems(raw.cards),
         relics: shopItems(raw.relics),
         potions: shopItems(raw.potions),
+        blitz: blitzOffers(raw.blitz),
+        blitzChoicesLeft: count(raw.blitz_choices_left),
       };
     case "gold": {
       const gold = num(raw.gold);
@@ -1947,6 +1974,38 @@ export function shelfRows(floor: ReplayFloor): ShelfRow[] {
       );
     if (row) row.bought = true;
   }
+  return rows;
+}
+
+/**
+ * The offers a Blitz merchant made on this floor, each marked picked when a
+ * blitz buy names its slot (or, without a slot, its entry) or a later shop row
+ * reports it used.
+ */
+export function blitzOfferRows(floor: ReplayFloor): BlitzOfferRow[] {
+  const shops = floor.lines.filter((l): l is ShopLine => l.t === "shop");
+  const first = shops.find((s) => s.blitz?.length);
+  if (!first?.blitz) return [];
+  const rows = first.blitz.map((offer) => ({ offer, picked: false }));
+  for (const line of floor.lines) {
+    if (line.t !== "buy" || line.kind !== "blitz") continue;
+    const row =
+      line.slot !== undefined
+        ? rows.find((r) => r.offer.slot === line.slot)
+        : rows.find(
+            (r) =>
+              !r.picked &&
+              ((line.entryClass && r.offer.entryClass === line.entryClass) ||
+                (line.blitzEntry && r.offer.entry === line.blitzEntry)),
+          );
+    if (row) row.picked = true;
+  }
+  for (const shop of shops)
+    for (const offer of shop.blitz ?? [])
+      if (offer.status === "used") {
+        const row = rows.find((r) => r.offer.slot === offer.slot);
+        if (row) row.picked = true;
+      }
   return rows;
 }
 
