@@ -343,6 +343,81 @@ export default async function MerchantPage({ params }: Props) {
     />
   );
 
+  const span = (min: number, max: number) =>
+    `${Math.round(min)}\u2013${Math.round(max)}`;
+  const cardSlot = (type: string) => ({
+    icon: "rewards/reward_icon_card",
+    label: t(type),
+  });
+  const shelf = [
+    {
+      title: t("Character Cards"),
+      price: span(cfg.cards.by_rarity.Common.min, cfg.cards.by_rarity.Rare.max),
+      desc: t(
+        "2 Attacks, 2 Skills, 1 Power, from your character pool. One random card is on sale for half price.",
+      ),
+      slots: ["Attack", "Attack", "Skill", "Skill", "Power"].map(cardSlot),
+    },
+    {
+      title: t("Colorless Cards"),
+      price: span(
+        cfg.cards.by_rarity.Uncommon.min * cfg.cards.colorless_markup,
+        cfg.cards.by_rarity.Rare.max * cfg.cards.colorless_markup,
+      ),
+      desc: t(
+        "1 Uncommon, 1 Rare, from the colorless pool. {pct}% price markup.",
+        { pct: colorlessMarkupPct },
+      ),
+      slots: [
+        {
+          icon: "rewards/reward_icon_uncommon",
+          label: rarityLabel("card", "Uncommon"),
+        },
+        {
+          icon: "rewards/reward_icon_rare",
+          label: rarityLabel("card", "Rare"),
+        },
+      ],
+    },
+    {
+      title: t("Relics"),
+      price: span(
+        Math.min(...Object.values(cfg.relics.by_rarity).map((r) => r.min)),
+        Math.max(...Object.values(cfg.relics.by_rarity).map((r) => r.max)),
+      ),
+      desc: t(
+        "2 random rarity rolls + 1 guaranteed Shop relic. {list} are blacklisted (gold-generating relics removed in Major Update #1).",
+        { list: blacklisted },
+      ),
+      slots: [
+        { icon: "rewards/reward_icon_shared_relic", label: "" },
+        { icon: "rewards/reward_icon_shared_relic", label: "" },
+        {
+          icon: "rewards/reward_icon_shared_relic",
+          label: rarityLabel("relic", "Shop"),
+        },
+      ],
+    },
+    {
+      title: t("Potions"),
+      price: span(
+        cfg.potions.by_rarity.Common.min,
+        cfg.potions.by_rarity.Rare.max,
+      ),
+      desc: t("3 random potions from the available pool."),
+      slots: [1, 2, 3].map(() => ({
+        icon: "stats/stats_potions_seen",
+        label: "",
+      })),
+    },
+    {
+      title: t("Card Removal"),
+      price: `${cfg.card_removal.base_cost}+`,
+      desc: t("Remove a card from your deck. Price increases each time."),
+      slots: [{ icon: "rewards/reward_icon_card_removal", label: "" }],
+    },
+  ];
+
   return (
     <div
       className="card-rvmp"
@@ -394,84 +469,35 @@ export default async function MerchantPage({ params }: Props) {
                 "Each merchant stocks the following items, randomly generated from your seed:",
               )}
             </p>
-            <div className="trow">
-              <div className="tr-head">
-                <span className="tr-title">{t("Character Cards")}</span>
-                <span
-                  className="tr-rarity"
-                  style={{ color: "var(--accent-gold)" }}
-                >
-                  &times;5
-                </span>
-              </div>
-              <p className="tr-desc">
-                {t(
-                  "2 Attacks, 2 Skills, 1 Power, from your character pool. One random card is on sale for half price.",
-                )}
-              </p>
-            </div>
-            <div className="trow">
-              <div className="tr-head">
-                <span className="tr-title">{t("Colorless Cards")}</span>
-                <span
-                  className="tr-rarity"
-                  style={{ color: "var(--accent-gold)" }}
-                >
-                  &times;2
-                </span>
-              </div>
-              <p className="tr-desc">
-                {t(
-                  "1 Uncommon, 1 Rare, from the colorless pool. {pct}% price markup.",
-                  { pct: colorlessMarkupPct },
-                )}
-              </p>
-            </div>
-            <div className="trow">
-              <div className="tr-head">
-                <span className="tr-title">{t("Relics")}</span>
-                <span
-                  className="tr-rarity"
-                  style={{ color: "var(--accent-gold)" }}
-                >
-                  &times;3
-                </span>
-              </div>
-              <p className="tr-desc">
-                {t(
-                  "2 random rarity rolls + 1 guaranteed Shop relic. {list} are blacklisted (gold-generating relics removed in Major Update #1).",
-                  { list: blacklisted },
-                )}
-              </p>
-            </div>
-            <div className="trow">
-              <div className="tr-head">
-                <span className="tr-title">{t("Potions")}</span>
-                <span
-                  className="tr-rarity"
-                  style={{ color: "var(--accent-gold)" }}
-                >
-                  &times;3
-                </span>
-              </div>
-              <p className="tr-desc">
-                {t("3 random potions from the available pool.")}
-              </p>
-            </div>
-            <div className="trow">
-              <div className="tr-head">
-                <span className="tr-title">{t("Card Removal")}</span>
-                <span
-                  className="tr-rarity"
-                  style={{ color: "var(--accent-gold)" }}
-                >
-                  &times;1
-                </span>
-              </div>
-              <p className="tr-desc">
-                {t("Remove a card from your deck. Price increases each time.")}
-              </p>
-            </div>
+            <ul className="shelf">
+              {shelf.map((group) => (
+                <li key={group.title} className="shelf-group">
+                  <div className="shelf-slots" aria-hidden="true">
+                    {group.slots.map((slot, i) => (
+                      <span key={i} className="shelf-slot">
+                        <img
+                          src={imageUrl(`/static/images/ui/${slot.icon}.webp`)}
+                          alt=""
+                          loading="lazy"
+                          crossOrigin="anonymous"
+                        />
+                        {slot.label && <span>{slot.label}</span>}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="shelf-body">
+                    <h3>
+                      {group.title}
+                      <span className="shelf-price">
+                        {coin}
+                        {group.price}
+                      </span>
+                    </h3>
+                    <p>{group.desc}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </section>
 
           {/* Card Prices */}
@@ -801,13 +827,24 @@ export default async function MerchantPage({ params }: Props) {
                       className="border-b border-[var(--border-subtle)]/50 last:border-0"
                     >
                       <td className="p-3 text-[var(--text-primary)] font-medium">
-                        {row.fake}
+                        <span className="flex items-center gap-2.5">
+                          <img
+                            src={imageUrl(
+                              `/static/images/relics/${row.fakeId.toLowerCase()}.webp`,
+                            )}
+                            alt=""
+                            loading="lazy"
+                            crossOrigin="anonymous"
+                            className="h-9 w-9 flex-none object-contain"
+                          />
+                          {row.fake}
+                        </span>
                       </td>
                       <td className="p-3 text-[var(--text-muted)]">
                         {row.real}
                       </td>
-                      <td className="p-3 text-right text-[var(--accent-gold)]">
-                        {cfg.fake_merchant.relic_cost}g
+                      <td className="p-3 text-right text-[var(--accent-gold)] tabular-nums">
+                        {cfg.fake_merchant.relic_cost}
                       </td>
                       <td className="p-3 text-[var(--text-secondary)]">
                         {row.effect}
