@@ -304,7 +304,7 @@
 }
 .rvmp .bgrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   grid-auto-flow: row dense;
   gap: 11px;
 }
@@ -312,8 +312,8 @@
   position: relative;
   overflow: hidden;
   display: flex;
-  flex-direction: column;
-  gap: 5px;
+  align-items: center;
+  gap: 14px;
   background: var(--surface);
   border: 1px solid var(--border-2);
   border-radius: 13px;
@@ -325,6 +325,26 @@
 .rvmp .btile:hover {
   border-color: var(--cc);
   text-decoration: none;
+}
+.rvmp .bt-art {
+  flex: none;
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.45));
+}
+.rvmp .bt-body {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  gap: 5px;
+}
+@media (max-width: 640px) {
+  .rvmp .bt-art {
+    width: 46px;
+    height: 46px;
+  }
 }
 .rvmp .bt-name {
   position: relative;
@@ -829,7 +849,7 @@
 }
 @media (max-width: 640px) {
   .rvmp .promo {
-    grid-column: span 2;
+    grid-column: 1 / -1;
     gap: 12px;
     padding: 12px;
     margin-top: 0;

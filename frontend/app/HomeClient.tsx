@@ -8,7 +8,7 @@ import { cachedFetch } from "@/lib/fetch-cache";
 import { useAuth } from "./contexts/AuthContext";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
-import { imageUrl } from "@/lib/image-url";
+import { fullCardUrl, imageUrl } from "@/lib/image-url";
 import { pct } from "@/lib/pct";
 import { CHARACTER_ORDER } from "@/lib/character-order";
 import { useBetaAdditions } from "@/lib/use-beta-additions";
@@ -180,75 +180,88 @@ export default function HomeClient({
     return fallback ? t(fallback) : "";
   };
 
+  const art = (path: string) => imageUrl(`/static/images/${path}`);
   const sections = [
     {
       href: "/cards",
+      art: fullCardUrl("bludgeon"),
       key: "cards",
       count: stats?.cards ?? "–",
       color: "var(--color-ironclad)",
     },
     {
       href: "/characters",
+      art: art("characters/character_icon_ironclad.webp"),
       key: "characters",
       count: stats?.characters ?? "–",
       color: "var(--accent-gold)",
     },
     {
       href: "/relics",
+      art: art("relics/akabeko.webp"),
       key: "relics",
       count: stats?.relics ?? "–",
       color: "var(--color-necrobinder)",
     },
     {
       href: "/monsters",
+      art: art("monsters/frog_knight.webp"),
       key: "monsters",
       count: stats?.monsters ?? "–",
       color: "var(--color-silent)",
     },
     {
       href: "/potions",
+      art: art("potions/fire_potion.webp"),
       key: "potions",
       count: stats?.potions ?? "–",
       color: "var(--color-defect)",
     },
     {
       href: "/enchantments",
+      art: art("enchantments/adroit.png"),
       key: "enchantments",
       count: stats?.enchantments ?? "–",
       color: "var(--accent-teal)",
     },
     {
       href: "/encounters",
+      art: art("ui/map_nodes/map_elite.webp"),
       key: "encounters",
       count: stats?.encounters ?? "–",
       color: "var(--color-spire)",
     },
     {
       href: "/events",
+      art: art("misc/ancients/neow.webp"),
       key: "events",
       count: stats?.events ?? "–",
       color: "var(--color-ancient)",
     },
     {
       href: "/powers",
+      art: art("powers/strength_power.webp"),
       key: "powers",
       count: stats?.powers ?? "–",
       color: "var(--accent-teal)",
     },
     {
       href: "/timeline",
+      art: art("ui/stats/stats_clock.webp"),
       key: "timeline",
       count: stats?.epochs ?? "–",
       color: "#8a6b3a", // warm brown
     },
     {
       href: "/images",
+      art: art("cards/offering.webp"),
       key: "images",
       count: null,
       color: "var(--color-regent)",
     },
     {
       href: "/reference",
+      art: art("orbs/lightning_orb.png"),
       key: "reference",
       count: stats
         ? (stats.keywords ?? 0) +
@@ -264,6 +277,7 @@ export default function HomeClient({
     },
     {
       href: "/badges",
+      art: art("badges/badge_big_deck.png"),
       key: "badges",
       count: stats?.badges ?? "–",
       color: "var(--color-merchant)",
@@ -544,16 +558,25 @@ export default function HomeClient({
                 className="btile"
                 style={{ ["--cc"]: s.color } as CSSProperties}
               >
-                <div className="bt-top">
-                  <span className="bt-name">{sectionKey(s.key)}</span>
-                  <span
-                    className="bt-count"
-                    aria-hidden={s.count == null || undefined}
-                  >
-                    {s.count ?? "\u00a0"}
-                  </span>
+                <img
+                  className="bt-art"
+                  src={s.art}
+                  alt=""
+                  loading="lazy"
+                  crossOrigin="anonymous"
+                />
+                <div className="bt-body">
+                  <div className="bt-top">
+                    <span className="bt-name">{sectionKey(s.key)}</span>
+                    <span
+                      className="bt-count"
+                      aria-hidden={s.count == null || undefined}
+                    >
+                      {s.count ?? "\u00a0"}
+                    </span>
+                  </div>
+                  <span className="bt-desc">{sectionDesc(s.key)}</span>
                 </div>
-                <span className="bt-desc">{sectionDesc(s.key)}</span>
               </Link>
             );
             // Break the long grid up: drop the full-width Overwolf promo band in
