@@ -364,12 +364,14 @@ export interface Modifier {
   id: string;
   name: string;
   description: string;
+  character?: string | null;
 }
 
 export interface Achievement {
   id: string;
   name: string;
   description: string;
+  character?: string | null;
 }
 
 export interface BadgeTier {
