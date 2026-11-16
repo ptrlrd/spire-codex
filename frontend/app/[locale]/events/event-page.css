@@ -1,0 +1,164 @@
+.card-rvmp.evt-rv .eyebrow,
+.card-rvmp.evt-rv .toc-label,
+.card-rvmp.evt-rv .facts .fh {
+  font-family: var(--sans);
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
+}
+.card-rvmp.evt-rv .h-note,
+.card-rvmp.evt-rv .stat-note {
+  font-size: 14px;
+  line-height: 1.55;
+}
+.card-rvmp.evt-rv .toc a {
+  font-size: 14px;
+}
+
+.card-rvmp.evt-rv .dec {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: hidden;
+  gap: 1px;
+}
+.card-rvmp.evt-rv .dec-opt {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px 18px 18px;
+  box-shadow: 0 0 0 1px var(--border);
+  min-width: 0;
+}
+.card-rvmp.evt-rv .dec-t {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--text);
+}
+.card-rvmp.evt-rv .dec-fx {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 4px;
+}
+.card-rvmp.evt-rv .dec-fx li {
+  position: relative;
+  padding-left: 16px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text-2);
+}
+.card-rvmp.evt-rv .dec-fx li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  transform: rotate(45deg);
+  background: var(--success);
+}
+.card-rvmp.evt-rv .dec-fx li.cost::before {
+  background: var(--danger);
+}
+.card-rvmp.evt-rv .dec-art {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+}
+.card-rvmp.evt-rv .dec-art-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gold);
+}
+.card-rvmp.evt-rv .dec-art-link:hover span {
+  text-decoration: underline;
+}
+.card-rvmp.evt-rv .dec-art-link img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  flex: none;
+}
+.card-rvmp.evt-rv .dec-art-link.card img {
+  width: 72px;
+  height: 54px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+.card-rvmp.evt-rv .dec-vote {
+  padding-top: 4px;
+}
+.card-rvmp.evt-rv .dec-vote .bar-track {
+  display: block;
+}
+.card-rvmp.evt-rv .dec-vote p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 14px;
+  margin: 8px 0 0;
+  font-size: 14px;
+  color: var(--text-2);
+  font-variant-numeric: tabular-nums;
+}
+.card-rvmp.evt-rv .dec-vote b {
+  color: var(--text);
+}
+.card-rvmp.evt-rv .dec-out {
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+}
+.card-rvmp.evt-rv .dec-vote + .dec-out {
+  margin-top: 4px;
+}
+.card-rvmp.evt-rv .dec-out-h {
+  margin: 0 0 4px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+.card-rvmp.evt-rv .dec-out-b {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-2);
+  white-space: pre-line;
+}
+
+.card-rvmp.evt-rv .evt-page .pl {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--text);
+}
+.card-rvmp.evt-rv .evt-page .dec-t {
+  font-size: 16px;
+}
+.card-rvmp.evt-rv .evt-page .dec-opt {
+  padding: 12px 14px;
+  gap: 6px;
+}
+.card-rvmp.evt-rv .pcond {
+  font-size: 14px;
+}
+.card-rvmp.evt-rv .dchip {
+  font-size: 14px;
+  min-height: 44px;
+  padding: 0 16px;
+}
+.card-rvmp.evt-rv .bar-row,
+.card-rvmp.evt-rv .bar-row .num {
+  font-size: 14px;
+}

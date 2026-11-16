@@ -5,8 +5,8 @@ import { useBetaOnlyIds } from "@/lib/use-beta-additions";
 import { useGameLocale, useT } from "@/lib/i18n";
 import { Suspense, useState, useEffect, useRef, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
-import { Link, useRouter } from "@/i18n/navigation";
-import type { GameEvent, EventPage, DialogueLine } from "@/lib/api/types";
+import { Link } from "@/i18n/navigation";
+import type { GameEvent, EventOption } from "@/lib/api/types";
 import { cachedFetch } from "@/lib/fetch-cache";
 import SearchFilter from "@/app/components/SearchFilter";
 import RichDescription from "@/app/components/RichDescription";
@@ -15,18 +15,6 @@ import { imageUrl } from "@/lib/image-url";
 import { replaceQuery } from "@/lib/replace-query";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
-
-const typeColors: Record<string, string> = {
-  Event: "border-info/40",
-  Ancient: "border-special/40",
-  Shared: "border-line-strong/40",
-};
-
-const typeBadge: Record<string, string> = {
-  Event: "bg-info/10 text-info border-info/30",
-  Ancient: "bg-special/10 text-special border-special/30",
-  Shared: "bg-surface text-fg-secondary border-line-strong",
-};
 
 const typeOptions = [
   { label: "Event", value: "Event" },
@@ -38,73 +26,22 @@ export interface ActOption {
   id: string;
   name: string;
   index: number;
+  events?: string[];
 }
 
-const DIALOGUE_GROUP_KEYS: Record<string, string> = {
-  "First Visit": "First Visit",
-  Returning: "Returning",
-};
+interface EventGroup {
+  key: string;
+  label: string;
+  events: GameEvent[];
+}
 
-const PAGE_COLORS = [
-  "border-l-info/60",
-  "border-l-info/60",
-  "border-l-success/60",
-  "border-l-warning/60",
-  "border-l-danger/60",
-  "border-l-special/60",
-  "border-l-info/60",
-  "border-l-warning/60",
-  "border-l-success/60",
-  "border-l-special/60",
-];
-
-function PageBlock({
-  page,
-  index,
-  total,
-}: {
-  page: EventPage;
-  index: number;
-  total: number;
-}) {
-  const t = useT();
-  const colorClass = PAGE_COLORS[index % PAGE_COLORS.length];
-  const isInitial = page.id === "INITIAL";
-  const pageName = page.id
-    .replace(/_/g, " ")
-    .replace(/\b\w/g, (c) => c.toUpperCase());
-
-  return (
-    <div className={`border-l-2 ${colorClass} pl-3 py-1.5`}>
-      <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] mb-1">
-        {isInitial ? t("Start") : pageName}
-      </p>
-      {page.description && (
-        <p className="text-xs text-[var(--text-secondary)] leading-relaxed mb-1.5">
-          <RichDescription text={page.description} />
-        </p>
-      )}
-      {page.options && page.options.length > 0 && (
-        <div className="space-y-1">
-          {page.options.map((opt) => (
-            <div
-              key={opt.id}
-              className="rounded bg-[var(--bg-primary)]/60 border border-[var(--border-subtle)] px-2 py-1"
-            >
-              <p className="text-xs font-medium text-[var(--text-primary)]">
-                <RichDescription text={opt.title} />
-              </p>
-              {opt.description && (
-                <p className="text-[11px] text-[var(--text-secondary)] mt-0.5">
-                  <RichDescription text={opt.description} />
-                </p>
-              )}
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  );
+function uniqueTitles(options: EventOption[]): EventOption[] {
+  const seen = new Set<string>();
+  return options.filter((o) => {
+    if (seen.has(o.title)) return false;
+    seen.add(o.title);
+    return true;
+  });
 }
 
 function EventsClientInner({
@@ -116,30 +53,10 @@ function EventsClientInner({
 }) {
   const bp = useBetaPrefix();
   const searchParams = useSearchParams();
-  const router = useRouter();
   const [events, setEvents] = useState<GameEvent[]>(initialEvents);
   const [search, setSearch] = useState(searchParams.get("search") || "");
   const [type, setType] = useState(searchParams.get("type") || "");
   const [act, setAct] = useState(searchParams.get("act") || "");
-  const [expandedDialogue, setExpandedDialogue] = useState<
-    Record<string, string | null>
-  >({});
-  const [expandedPages, setExpandedPages] = useState<Record<string, boolean>>(
-    {},
-  );
-  const [relicMap, setRelicMap] = useState<
-    Record<
-      string,
-      {
-        id: string;
-        name: string;
-        description: string;
-        image_url: string | null;
-      }
-    >
-  >({});
-  const [expandedDesc, setExpandedDesc] = useState<Record<string, boolean>>({});
-  const [charNames, setCharNames] = useState<Record<string, string>>({});
   const lang = useGameLocale();
   const t = useT();
   const channel = useChannel();
@@ -155,19 +72,6 @@ function EventsClientInner({
     const names = acts.filter((a) => upper.includes(a.id)).map((a) => a.name);
     return names.length ? names.join(" / ") : raw;
   };
-  const dialogueGroupLabel = (group: string) => {
-    if (DIALOGUE_GROUP_KEYS[group]) return t(DIALOGUE_GROUP_KEYS[group]);
-    return charNames[group.toLowerCase()] ?? group;
-  };
-
-  useEffect(() => {
-    cachedFetch<{ character_names?: Record<string, string> }>(
-      `${API}/api/translations?lang=${lang}`,
-    )
-      .then((tr) => setCharNames(tr.character_names ?? {}))
-      .catch(() => {});
-  }, [lang]);
-
   const updateUrl = useCallback((newState: Record<string, string>) => {
     const params = new URLSearchParams();
     for (const [k, v] of Object.entries(newState)) {
@@ -187,37 +91,7 @@ function EventsClientInner({
     [search, type, act, updateUrl],
   );
 
-  const toggleDialogue = (eventId: string, group: string) => {
-    setExpandedDialogue((prev) => ({
-      ...prev,
-      [eventId]: prev[eventId] === group ? null : group,
-    }));
-  };
-
-  const togglePages = (eventId: string) => {
-    setExpandedPages((prev) => ({
-      ...prev,
-      [eventId]: !prev[eventId],
-    }));
-  };
-
   useEffect(() => {
-    cachedFetch<
-      {
-        id: string;
-        name: string;
-        description: string;
-        image_url: string | null;
-      }[]
-    >(`${API}/api/relics?lang=${lang}`).then((relics) => {
-      const map: Record<string, (typeof relics)[number]> = {};
-      for (const r of relics) map[r.id] = r;
-      setRelicMap(map);
-    });
-  }, [lang]);
-
-  useEffect(() => {
-    // Skip the first fetch if we have server data and lang is English with no filters
     if (initialRender.current) {
       initialRender.current = false;
       if (
@@ -239,6 +113,36 @@ function EventsClientInner({
     if (channel === "stable") params.set("channel", "all");
     cachedFetch<GameEvent[]>(`${API}/api/events?${params}`).then(setEvents);
   }, [type, act, search, lang, channel]);
+
+  const groups: EventGroup[] = [];
+  const ancientEvents = events.filter((e) => e.type === "Ancient");
+  if (ancientEvents.length > 0) {
+    groups.push({
+      key: "ancients",
+      label: t("Ancients"),
+      events: ancientEvents,
+    });
+  }
+  const others = events.filter((e) => e.type !== "Ancient");
+  const placed = new Set<string>();
+  for (const a of acts) {
+    const inAct = others.filter(
+      (e) =>
+        (a.events?.includes(e.id) ?? false) ||
+        (!!e.act && e.act.toUpperCase().includes(a.id)),
+    );
+    if (inAct.length === 0) continue;
+    for (const e of inAct) placed.add(e.id);
+    groups.push({
+      key: a.id.toLowerCase(),
+      label: `${t("Act {n}", { n: a.index + 1 })} - ${a.name}`,
+      events: inAct,
+    });
+  }
+  const shared = others.filter((e) => !placed.has(e.id));
+  if (shared.length > 0) {
+    groups.push({ key: "shared", label: t("Shared"), events: shared });
+  }
 
   return (
     <>
@@ -265,272 +169,113 @@ function EventsClientInner({
         ]}
       />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-        {events.map((event) => {
-          const pageCount = event.pages?.length ?? 0;
-          const isExpanded = expandedPages[event.id];
-
-          return (
-            <div
-              key={event.id}
-              onClick={() =>
-                router.push(`${bp}/events/${event.id.toLowerCase()}`)
-              }
-              className={`bg-[var(--bg-card)] rounded-lg border ${
-                typeColors[event.type] || "border-[var(--border-subtle)]"
-              } p-4 hover:bg-[var(--bg-card-hover)] transition-all cursor-pointer`}
-            >
-              <div className="flex items-start justify-between mb-2">
-                <div className="flex items-start gap-3">
-                  {event.image_url && (
-                    <img
-                      src={imageUrl(event.image_url)}
-                      alt={t("{name} - Slay the Spire 2 Event", {
-                        name: event.name,
-                      })}
-                      width={40}
-                      height={40}
-                      loading="lazy"
-                      className="w-10 h-10 object-contain flex-shrink-0"
-                      crossOrigin="anonymous"
-                    />
-                  )}
-                  <div>
-                    <h3 className="font-semibold text-[var(--text-primary)]">
-                      <Link
-                        prefetch={false}
-                        href={`${bp}/events/${event.id.toLowerCase()}`}
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        {event.name}
-                      </Link>
-                      {betaIds.has(event.id) && (
-                        <span className="ml-2 align-middle">
-                          <BetaBadge />
-                        </span>
-                      )}
-                    </h3>
-                    {event.epithet && (
-                      <p className="text-xs text-special italic">
-                        {event.epithet}
-                      </p>
-                    )}
-                  </div>
-                </div>
-                <div className="flex items-center gap-1.5 flex-shrink-0 ml-2">
-                  {pageCount > 1 && (
-                    <span
-                      className="text-[10px] px-1.5 py-0.5 rounded bg-[var(--bg-primary)] text-[var(--text-muted)] border border-[var(--border-subtle)]"
-                      title={t("{n} pages", { n: pageCount })}
-                    >
-                      {t("{n} pages", { n: pageCount })}
-                    </span>
-                  )}
-                  <span
-                    className={`text-[10px] px-1.5 py-0.5 rounded border ${
-                      typeBadge[event.type] ||
-                      "bg-surface text-fg-secondary border-line-strong"
-                    }`}
-                  >
-                    {t(event.type)}
-                  </span>
-                </div>
-              </div>
-
-              {event.act && (
-                <p className="text-xs text-[var(--text-muted)] mb-2">
-                  {actLabel(event.act)}
-                </p>
-              )}
-
-              {event.description && (
-                <div className="mb-3">
-                  <p
-                    className={`text-sm text-[var(--text-secondary)] leading-relaxed ${expandedDesc[event.id] ? "" : "line-clamp-3"}`}
-                  >
-                    <RichDescription
-                      text={
-                        siteAuthored(event.description)
-                          ? t(event.description)
-                          : event.description
-                      }
-                    />
-                  </p>
-                  {event.description.length > 150 && (
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setExpandedDesc((prev) => ({
-                          ...prev,
-                          [event.id]: !prev[event.id],
-                        }));
-                      }}
-                      className="text-[10px] text-[var(--text-muted)] hover:text-[var(--text-secondary)] cursor-pointer mt-0.5 transition-colors"
-                    >
-                      {expandedDesc[event.id]
-                        ? t("Show less")
-                        : t("Show more...")}
-                    </button>
-                  )}
-                </div>
-              )}
-
-              {/* Initial options */}
-              {event.options && event.options.length > 0 && (
-                <div className="space-y-1.5">
-                  <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">
-                    {t("Choices")}
-                  </p>
-                  {event.options.map((opt) => (
-                    <div
-                      key={opt.id}
-                      className="rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)] px-3 py-2"
-                    >
-                      <p className="text-sm font-medium text-[var(--text-primary)]">
-                        <RichDescription text={opt.title} />
-                      </p>
-                      {opt.description && (
-                        <p className="text-xs text-[var(--text-secondary)] mt-0.5">
-                          <RichDescription text={opt.description} />
-                        </p>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {/* Multi-page flow */}
-              {event.pages && event.pages.length > 1 && (
-                <div className="mt-3">
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      togglePages(event.id);
-                    }}
-                    className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--text-secondary)] cursor-pointer transition-colors flex items-center gap-1"
-                  >
-                    <span
-                      className={`inline-block transition-transform ${isExpanded ? "rotate-90" : ""}`}
-                    >
-                      &gt;
-                    </span>
-                    {t("All Pages")} ({pageCount})
-                  </button>
-                  {isExpanded && (
-                    <div className="mt-2 space-y-2 max-h-96 overflow-y-auto">
-                      {event.pages.map((page, i) => (
-                        <PageBlock
-                          key={page.id}
-                          page={page}
-                          index={i}
-                          total={event.pages!.length}
-                        />
-                      ))}
-                    </div>
-                  )}
-                </div>
-              )}
-
-              {/* Relic offerings */}
-              {event.relics && event.relics.length > 0 && (
-                <div className="mt-3">
-                  <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] mb-1.5">
-                    {t("Relic Offerings")}
-                  </p>
-                  <div className="flex flex-col gap-1.5">
-                    {event.relics.map((relicId) => {
-                      const relic = relicMap[relicId];
-                      return (
-                        <Link
-                          prefetch={false}
-                          key={relicId}
-                          href={`${bp}/relics/${relicId.toLowerCase()}`}
-                          onClick={(e) => e.stopPropagation()}
-                          className="flex items-center gap-2.5 px-2.5 py-2 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] hover:border-[var(--accent-gold)]/50 transition-colors"
-                        >
-                          {relic?.image_url && (
-                            <img
-                              src={imageUrl(relic.image_url)}
-                              alt={t("{name} - Slay the Spire 2 Relic", {
-                                name: relic.name,
-                              })}
-                              width={32}
-                              height={32}
-                              loading="lazy"
-                              className="w-8 h-8 object-contain flex-shrink-0"
-                              crossOrigin="anonymous"
-                            />
-                          )}
-                          <div className="min-w-0">
-                            <div className="text-xs font-medium text-[var(--accent-gold)]">
-                              {relic?.name ||
-                                relicId
-                                  .replace(/_/g, " ")
-                                  .replace(/\b\w/g, (c) => c.toUpperCase())}
-                            </div>
-                            {relic?.description && (
-                              <div className="text-[11px] text-[var(--text-muted)] line-clamp-1">
-                                <RichDescription text={relic.description} />
-                              </div>
-                            )}
-                          </div>
-                        </Link>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
-
-              {/* Dialogue */}
-              {event.dialogue && Object.keys(event.dialogue).length > 0 && (
-                <div className="mt-3 space-y-1">
-                  <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">
-                    {t("Dialogue")}
-                  </p>
-                  <div className="flex flex-wrap gap-1">
-                    {Object.keys(event.dialogue).map((group) => (
-                      <button
-                        key={group}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          toggleDialogue(event.id, group);
-                        }}
-                        className={`text-[11px] px-2 py-0.5 rounded border transition-colors cursor-pointer ${
-                          expandedDialogue[event.id] === group
-                            ? "bg-special/10 text-special border-special/30"
-                            : "bg-[var(--bg-primary)] text-[var(--text-muted)] border-[var(--border-subtle)] hover:text-[var(--text-secondary)] hover:border-special/30"
-                        }`}
-                      >
-                        {dialogueGroupLabel(group)}
-                      </button>
-                    ))}
-                  </div>
-                  {expandedDialogue[event.id] &&
-                    event.dialogue[expandedDialogue[event.id]!] && (
-                      <div className="mt-2 space-y-1.5 max-h-48 overflow-y-auto">
-                        {event.dialogue[expandedDialogue[event.id]!].map(
-                          (line, i) => (
-                            <div
-                              key={i}
-                              className={`text-xs px-2.5 py-1.5 rounded ${
-                                line.speaker === "ancient"
-                                  ? "bg-special/10 text-special border-l-2 border-special/50"
-                                  : "bg-info/10 text-info border-l-2 border-info/50 ml-4"
-                              }`}
-                            >
-                              <span className="whitespace-pre-line">
-                                <RichDescription text={line.text} />
-                              </span>
-                            </div>
-                          ),
-                        )}
-                      </div>
-                    )}
-                </div>
-              )}
+      <div className="space-y-10">
+        {groups.map((group) => (
+          <section key={group.key} aria-labelledby={`events-${group.key}`}>
+            <div className="flex items-baseline justify-between gap-3 border-b border-[var(--border-subtle)] pb-2">
+              <h2
+                id={`events-${group.key}`}
+                className="text-xl font-semibold text-[var(--text-primary)]"
+              >
+                {group.label}
+              </h2>
+              <span className="text-sm text-[var(--text-muted)] tabular-nums">
+                {group.events.length}
+              </span>
             </div>
-          );
-        })}
+            <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-8">
+              {group.events.map((event) => {
+                const relicCount = event.relics?.length ?? 0;
+                return (
+                  <li
+                    key={event.id}
+                    className="border-b border-[var(--border-subtle)]"
+                  >
+                    <Link
+                      prefetch={false}
+                      href={`${bp}/events/${event.id.toLowerCase()}`}
+                      className="group flex min-h-[64px] items-center gap-4 py-3 -mx-2 px-2 rounded-lg hover:bg-[var(--bg-card)] transition-colors"
+                    >
+                      {event.image_url && (
+                        <img
+                          src={imageUrl(event.image_url)}
+                          alt={t("{name} - Slay the Spire 2 Event", {
+                            name: event.name,
+                          })}
+                          width={64}
+                          height={64}
+                          loading="lazy"
+                          className="w-16 h-16 object-contain flex-shrink-0"
+                          crossOrigin="anonymous"
+                        />
+                      )}
+                      <div className="min-w-0 flex-1">
+                        <h3 className="text-base font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent-gold)] transition-colors">
+                          {event.name}
+                          {betaIds.has(event.id) && (
+                            <span className="ml-2 align-middle">
+                              <BetaBadge />
+                            </span>
+                          )}
+                        </h3>
+                        {event.epithet && (
+                          <p className="text-sm text-special italic">
+                            {event.epithet}
+                          </p>
+                        )}
+                        {event.options && event.options.length > 0 && (
+                          <p className="text-sm text-[var(--text-secondary)] leading-snug mt-0.5">
+                            {uniqueTitles(event.options).map((opt, i) => (
+                              <span key={opt.id}>
+                                {i > 0 && (
+                                  <span className="text-[var(--text-muted)]">
+                                    {" / "}
+                                  </span>
+                                )}
+                                <RichDescription
+                                  text={opt.title}
+                                  nestedInLink
+                                />
+                              </span>
+                            ))}
+                          </p>
+                        )}
+                        {!event.options?.length &&
+                          event.description &&
+                          siteAuthored(event.description) && (
+                            <p className="text-sm text-[var(--text-secondary)] leading-snug mt-0.5 line-clamp-2">
+                              <RichDescription
+                                text={t(event.description)}
+                                nestedInLink
+                              />
+                            </p>
+                          )}
+                        {(event.type === "Ancient" || relicCount > 0) && (
+                          <p className="text-sm text-[var(--text-muted)] mt-0.5">
+                            {[
+                              event.act ? actLabel(event.act) : "",
+                              relicCount > 0
+                                ? t("{n} relics", { n: relicCount })
+                                : "",
+                            ]
+                              .filter(Boolean)
+                              .join(" · ")}
+                          </p>
+                        )}
+                        {event.preconditions &&
+                          event.preconditions.length > 0 && (
+                            <p className="text-sm text-[var(--text-muted)] mt-0.5">
+                              {event.preconditions.join(" · ")}
+                            </p>
+                          )}
+                      </div>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
+        ))}
       </div>
     </>
   );

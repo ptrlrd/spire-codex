@@ -49,7 +49,12 @@ export default async function EventsPage({ params }: Props) {
   }
   if (actsRes.status === "fulfilled" && actsRes.value.ok) {
     const rows = (await actsRes.value.json().catch(() => [])) as ActOption[];
-    acts = rows.map((a) => ({ id: a.id, name: a.name, index: a.index }));
+    acts = rows.map((a) => ({
+      id: a.id,
+      name: a.name,
+      index: a.index,
+      events: a.events,
+    }));
   }
 
   const jsonLd = [

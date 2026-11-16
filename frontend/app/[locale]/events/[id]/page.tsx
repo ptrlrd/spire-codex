@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { inLanguageOf, langQuery, localeOf, localePath } from "@/lib/locale";
 import { entityFallbackDescription, uiText } from "@/lib/locale-server";
 import { getT } from "@/lib/i18n-server";
-import EventDetail from "./EventDetail";
+import EventDetail, { type EventArt } from "./EventDetail";
 import { fetchEventVotes } from "@/lib/event-votes";
 import {
   buildPageMetadata,
@@ -194,6 +194,22 @@ export default async function Page({ params }: Props) {
         cards: egg ? { BYRDONIS_EGG: egg.name } : {},
       }
     : undefined;
+  const mentionedCards = mentionedIn(cards, event);
+  const mentionedRelics = mentionedIn(relics, event);
+  const art: EventArt[] = [
+    ...mentionedCards.map((c) => ({
+      name: c.name,
+      href: `cards/${c.id.toLowerCase()}`,
+      image: (c as { image_url?: string | null }).image_url ?? null,
+      kind: "card" as const,
+    })),
+    ...mentionedRelics.map((r) => ({
+      name: r.name,
+      href: `relics/${r.id.toLowerCase()}`,
+      image: r.image_url,
+      kind: "relic" as const,
+    })),
+  ].filter((a): a is EventArt => !!a.image);
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
@@ -202,9 +218,10 @@ export default async function Page({ params }: Props) {
           initialEvent={event}
           voteStats={voteStats}
           initialEntityLinks={[
-            ...entityNameLinks(mentionedIn(cards, event), "cards"),
-            ...entityNameLinks(mentionedIn(relics, event), "relics"),
+            ...entityNameLinks(mentionedCards, "cards"),
+            ...entityNameLinks(mentionedRelics, "relics"),
           ]}
+          initialArt={art}
           initialKeywords={keywords}
           initialRelics={relics}
           initialPool={pool}

@@ -10,7 +10,7 @@ import {
 } from "react";
 import { useParams } from "next/navigation";
 import { Link, useRouter } from "@/i18n/navigation";
-import type { GameEvent, EventPage } from "@/lib/api/types";
+import type { GameEvent, EventPage, EventOption } from "@/lib/api/types";
 import { EVENT_VOTES_BRACKET, type EventVotes } from "@/lib/event-votes";
 import { dataThroughLabel } from "@/lib/data-through";
 import RichDescription from "@/app/components/RichDescription";
@@ -31,6 +31,7 @@ import {
 import "@/app/card-revamp.css";
 import "@/app/power-ench-event-extra.css";
 import { AncientPools } from "@/app/[locale]/ancients/pools";
+import "../event-page.css";
 import { SPINE_TEXT } from "@/lib/character-colors";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -42,19 +43,119 @@ const EVENT_SPINE: Record<string, string> = {
   Event: "#7c8ef0",
 };
 
+export interface EventArt {
+  name: string;
+  href: string;
+  image: string;
+  kind: "card" | "relic";
+}
+
+type Words = Record<string, { tooltip: string; href: string }>;
+
+function balanced(text: string): boolean {
+  const open = text.match(/\[[a-z_]+[^\]/]*\]/gi)?.length ?? 0;
+  const close = text.match(/\[\/[a-z_]+\]/gi)?.length ?? 0;
+  return open === close;
+}
+
+function effectLines(text: string): string[] {
+  const parts = text
+    .split(/(?<=[.!?])\s+|(?<=[\u3002\uff01\uff1f])|\n+/)
+    .map((p) => p.trim())
+    .filter(Boolean);
+  return parts.length > 1 && parts.every(balanced) ? parts : [text];
+}
+
+function namedArt(text: string, art: EventArt[] | undefined): EventArt[] {
+  if (!art?.length) return [];
+  const plain = text.replace(/\[\/?[^\]]*\]/g, "").toLowerCase();
+  return art.filter((a) => {
+    const name = a.name.toLowerCase().replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    return new RegExp(
+      `(?<![\\p{L}\\p{N}_])${name}(?![\\p{L}\\p{N}_])`,
+      "u",
+    ).test(plain);
+  });
+}
+
+function OptionRow({
+  opt,
+  art,
+  bp,
+  entityLinks,
+  interactiveWords,
+}: {
+  opt: EventOption;
+  art?: EventArt[];
+  bp: string;
+  entityLinks?: EntityNameLink[];
+  interactiveWords?: Words;
+}) {
+  const named = namedArt(`${opt.title} ${opt.description ?? ""}`, art);
+  return (
+    <>
+      <div className="dec-t">
+        <RichDescription
+          text={opt.title}
+          interactiveWords={interactiveWords}
+          entityLinks={entityLinks}
+        />
+      </div>
+      {opt.description && (
+        <ul className="dec-fx">
+          {effectLines(opt.description).map((line, i) => (
+            <li key={i} className={line.includes("[red]") ? "cost" : undefined}>
+              <RichDescription
+                text={line}
+                interactiveWords={interactiveWords}
+                entityLinks={entityLinks}
+              />
+            </li>
+          ))}
+        </ul>
+      )}
+      {named.length > 0 && (
+        <div className="dec-art">
+          {named.map((a) => (
+            <Link
+              key={a.href}
+              prefetch={false}
+              href={`${bp}/${a.href}`}
+              className={`dec-art-link ${a.kind}`}
+            >
+              <img
+                src={imageUrl(a.image)}
+                alt={a.name}
+                loading="lazy"
+                crossOrigin="anonymous"
+              />
+              <span>{a.name}</span>
+            </Link>
+          ))}
+        </div>
+      )}
+    </>
+  );
+}
+
 function PageBlock({
   page,
+  art,
+  bp,
   entityLinks,
   interactiveWords,
 }: {
   page: EventPage;
+  art?: EventArt[];
+  bp: string;
   entityLinks?: EntityNameLink[];
-  interactiveWords?: Record<string, { tooltip: string; href: string }>;
+  interactiveWords?: Words;
 }) {
   const t = useT();
   const isInitial = page.id === "INITIAL";
   const pageName = page.id
     .replace(/_/g, " ")
+    .toLowerCase()
     .replace(/\b\w/g, (c) => c.toUpperCase());
   return (
     <div className="evt-page">
@@ -73,25 +174,16 @@ function PageBlock({
         </div>
       )}
       {page.options && page.options.length > 0 && (
-        <div className="choices">
+        <div className="dec">
           {page.options.map((opt) => (
-            <div key={opt.id} className="choice">
-              <div className="ct">
-                <RichDescription
-                  text={opt.title}
-                  interactiveWords={interactiveWords}
-                  entityLinks={entityLinks}
-                />
-              </div>
-              {opt.description && (
-                <div className="cd">
-                  <RichDescription
-                    text={opt.description}
-                    interactiveWords={interactiveWords}
-                    entityLinks={entityLinks}
-                  />
-                </div>
-              )}
+            <div key={opt.id} className="dec-opt">
+              <OptionRow
+                opt={opt}
+                art={art}
+                bp={bp}
+                entityLinks={entityLinks}
+                interactiveWords={interactiveWords}
+              />
             </div>
           ))}
         </div>
@@ -118,6 +210,7 @@ export default function EventDetail({
   initialEvent,
   voteStats,
   initialEntityLinks,
+  initialArt,
   initialKeywords,
   initialRelics,
   initialPool,
@@ -127,6 +220,8 @@ export default function EventDetail({
   voteStats?: EventVotes | null;
   /** Server-fetched card and relic name links for the descriptions; absent on the beta page. */
   initialEntityLinks?: EntityNameLink[];
+  /** Server-fetched art for the cards and relics the options name. */
+  initialArt?: EventArt[];
   /** Server-fetched keyword catalog for the description tooltip words. */
   initialKeywords?: KeywordEntry[];
   /** Server-fetched relic catalog, also feeding the relic offerings section. */
@@ -278,6 +373,35 @@ export default function EventDetail({
   }
 
   const spineColor = EVENT_SPINE[event.type] ?? "var(--accent-gold)";
+  const options = event.options ?? [];
+  const pages = event.pages ?? [];
+  const optionIds = options.map((o) => o.id).join("|");
+  const outcomeFor = new Map<string, EventPage>();
+  for (const opt of options) {
+    const page = pages.find((p) => p.id === opt.id);
+    if (page && page.description && !page.options?.length)
+      outcomeFor.set(opt.id, page);
+  }
+  const morePages =
+    pages.length > 1
+      ? pages.filter((p) => {
+          if (outcomeFor.get(p.id) === p) return false;
+          return !(
+            p.id === "INITIAL" &&
+            p.description === event.description &&
+            (p.options ?? []).map((o) => o.id).join("|") === optionIds
+          );
+        })
+      : [];
+  const voteFor = new Map(
+    (voteStats?.options ?? []).map((o) => [o.id.toUpperCase(), o]),
+  );
+  const votesInline =
+    !!voteStats &&
+    voteStats.options.length > 0 &&
+    voteStats.options.every((o) =>
+      options.some((opt) => opt.id.toUpperCase() === o.id.toUpperCase()),
+    );
   const hasChoices =
     (event.options && event.options.length > 0) ||
     (event.pages && event.pages.length > 1);
@@ -298,7 +422,7 @@ export default function EventDetail({
 
   return (
     <div
-      className="card-rvmp"
+      className="card-rvmp evt-rv"
       style={
         {
           "--spine": spineColor,
@@ -386,32 +510,82 @@ export default function EventDetail({
                 {t("Every option this event offers and what it does.")}
               </p>
 
-              {event.options && event.options.length > 0 && (
-                <div className="choices">
-                  {event.options.map((opt) => (
-                    <div key={opt.id} className="choice">
-                      <div className="ct">
-                        <RichDescription
-                          text={opt.title}
-                          interactiveWords={interactiveWords}
+              {votesInline && voteStats && (
+                <p className="h-note">
+                  {t(
+                    "Across {n} community-submitted runs at {name}, players chose:",
+                    { n: fmtN(voteStats.total), name: event.name },
+                  )}
+                </p>
+              )}
+
+              {options.length > 0 && (
+                <div className="dec">
+                  {options.map((opt) => {
+                    const vote = votesInline
+                      ? voteFor.get(opt.id.toUpperCase())
+                      : undefined;
+                    const outcome = outcomeFor.get(opt.id);
+                    return (
+                      <div key={opt.id} className="dec-opt">
+                        <OptionRow
+                          opt={opt}
+                          art={initialArt}
+                          bp={bp}
                           entityLinks={entityLinks}
+                          interactiveWords={interactiveWords}
                         />
+                        {vote && (
+                          <div className="dec-vote">
+                            <span className="bar-track">
+                              <span
+                                className="bar-fill"
+                                style={{
+                                  width: `${vote.pct}%`,
+                                  background: "var(--gold)",
+                                }}
+                              />
+                            </span>
+                            <p>
+                              <span>
+                                {t("Pick rate")} <b>{vote.pct}%</b>
+                              </span>
+                              {typeof vote.winRate === "number" && (
+                                <span>
+                                  {t("Win%")} <b>{vote.winRate.toFixed(1)}%</b>
+                                </span>
+                              )}
+                              {typeof vote.lift === "number" && (
+                                <span>
+                                  {t("Lift")}{" "}
+                                  <b>
+                                    {vote.lift > 0 ? "+" : ""}
+                                    {vote.lift.toFixed(1)}
+                                  </b>
+                                </span>
+                              )}
+                            </p>
+                          </div>
+                        )}
+                        {outcome?.description && (
+                          <div className="dec-out">
+                            <p className="dec-out-h">{t("Outcome")}</p>
+                            <div className="dec-out-b">
+                              <RichDescription
+                                text={outcome.description}
+                                interactiveWords={interactiveWords}
+                                entityLinks={entityLinks}
+                              />
+                            </div>
+                          </div>
+                        )}
                       </div>
-                      {opt.description && (
-                        <div className="cd">
-                          <RichDescription
-                            text={opt.description}
-                            interactiveWords={interactiveWords}
-                            entityLinks={entityLinks}
-                          />
-                        </div>
-                      )}
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               )}
 
-              {voteStats && voteStats.options.length > 0 && (
+              {voteStats && voteStats.options.length > 0 && !votesInline && (
                 <div className="event-votes">
                   <h3 className="subh">{t("How the community votes")}</h3>
                   <p className="h-note">
@@ -455,35 +629,40 @@ export default function EventDetail({
                       </div>
                     ))}
                   </div>
-                  {(voteStats.hasOutcomes || voteStats.dataThrough) && (
-                    <p className="stat-note">
-                      {voteStats.hasOutcomes && (
-                        <>
-                          {t("event_votes_outcomes_note")}{" "}
-                          <Link
-                            prefetch={false}
-                            href={`${bp}/stats/events?q=${encodeURIComponent(event.name)}&bracket=${EVENT_VOTES_BRACKET}`}
-                          >
-                            {t("See in Event Metrics")} →
-                          </Link>{" "}
-                        </>
-                      )}
-                      {dataThroughLabel(voteStats.dataThrough, t, lang)}
-                    </p>
-                  )}
                 </div>
               )}
 
-              {event.pages && event.pages.length > 1 && (
+              {voteStats &&
+                voteStats.options.length > 0 &&
+                (voteStats.hasOutcomes || voteStats.dataThrough) && (
+                  <p className="stat-note">
+                    {voteStats.hasOutcomes && (
+                      <>
+                        {t("event_votes_outcomes_note")}{" "}
+                        <Link
+                          prefetch={false}
+                          href={`${bp}/stats/events?q=${encodeURIComponent(event.name)}&bracket=${EVENT_VOTES_BRACKET}`}
+                        >
+                          {t("See in Event Metrics")} →
+                        </Link>{" "}
+                      </>
+                    )}
+                    {dataThroughLabel(voteStats.dataThrough, t, lang)}
+                  </p>
+                )}
+
+              {morePages.length > 0 && (
                 <>
                   <h3 className="subh">
-                    {t("All pages")} ({event.pages.length})
+                    {t("All pages")} ({morePages.length})
                   </h3>
                   <div>
-                    {event.pages.map((page) => (
+                    {morePages.map((page) => (
                       <PageBlock
                         key={page.id}
                         page={page}
+                        art={initialArt}
+                        bp={bp}
                         entityLinks={entityLinks}
                         interactiveWords={interactiveWords}
                       />

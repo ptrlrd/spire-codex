@@ -33,7 +33,6 @@
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 16px;
   text-align: left;
   padding: 15px 20px;
@@ -47,8 +46,8 @@
 }
 .card-rvmp .anc-sel {
   margin: 3px 0 0;
-  font-size: 13px;
-  color: var(--text-3);
+  font-size: 14px;
+  color: var(--text-2);
 }
 
 /* expanded body */
@@ -78,25 +77,27 @@
   display: flex;
   align-items: baseline;
   gap: 8px;
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--text-2);
+  font-family: var(--serif);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
   padding: 10px 14px;
   border-bottom: 1px solid var(--border);
   background: var(--spine-soft);
 }
 .card-rvmp .anc-pool-h .cnt {
   margin-left: auto;
-  color: var(--text-3);
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-2);
 }
 .card-rvmp .anc-pool-desc {
   margin: 0;
   padding: 10px 14px 0;
-  font-size: 12.5px;
-  font-style: italic;
-  color: var(--text-3);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-2);
 }
 .card-rvmp .anc-relics {
   padding: 2px 14px 6px;
@@ -106,8 +107,8 @@
 .card-rvmp .anc-relic {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
-  padding: 9px 0;
+  gap: 4px 14px;
+  padding: 4px 0;
   border-bottom: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
 }
 .card-rvmp .anc-relic:last-child {
@@ -116,15 +117,16 @@
 .card-rvmp .anc-relic-link {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   flex: none;
+  min-height: 44px;
 }
 .card-rvmp .anc-relic-link:hover {
   opacity: 0.85;
 }
 .card-rvmp .anc-relic-link img {
-  width: 30px;
-  height: 30px;
+  width: 36px;
+  height: 36px;
   object-fit: contain;
 }
 .card-rvmp .anc-relic-name {
@@ -139,16 +141,16 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
-  padding-top: 3px;
+  align-self: center;
+  min-width: 0;
 }
 .card-rvmp .anc-cond {
-  font-size: 12.5px;
-  font-style: italic;
+  font-size: 14px;
   line-height: 1.5;
   color: var(--text-3);
 }
 .card-rvmp .anc-variants {
-  font-size: 12.5px;
+  font-size: 14px;
   line-height: 1.5;
   color: var(--text-3);
 }
@@ -157,4 +159,43 @@
 }
 .card-rvmp .anc-variants .vn {
   color: var(--gold);
+}
+
+.card-rvmp .anc-portrait {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  flex: none;
+}
+.card-rvmp.anc-rv .eyebrow,
+.card-rvmp.anc-rv .facts .fh {
+  font-family: var(--sans);
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
+}
+.card-rvmp.anc-rv .toc a {
+  font-size: 14px;
+}
+@media (max-width: 640px) {
+  .card-rvmp .anc-relic {
+    flex-direction: column;
+  }
+  .card-rvmp .anc-relic-meta {
+    align-self: flex-start;
+    padding: 0 0 8px 46px;
+  }
+  .card-rvmp .anc-relic-meta:empty {
+    display: none;
+  }
+  .card-rvmp .anc-head,
+  .card-rvmp .anc-body {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+  .card-rvmp.anc-rv .toc a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
 }
