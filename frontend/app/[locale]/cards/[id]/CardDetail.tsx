@@ -650,13 +650,17 @@ export default function CardDetail({
       : plainRender;
 
   const htmlRender =
-    lang === "eng" &&
     !!pickedVersion &&
     pickedVersion !== betaVersion &&
     !enchActive &&
     !betaArt &&
     !variantImg &&
     renderKey(card) !== renderKey(currentCard);
+  const renderLang =
+    lang === "ara" &&
+    !/[\u0600-\u06FF]/.test(`${card.name}${card.description ?? ""}`)
+      ? "eng"
+      : lang;
 
   const partners = initialPairings?.partners;
   const serverToc = TOC_IDS.filter((sid) => {
@@ -1069,7 +1073,7 @@ export default function CardDetail({
                     : { ...card, image_url: currentCard?.image_url ?? null }
                 }
                 upgraded={isUpgraded}
-                lang={lang}
+                lang={renderLang}
                 label={t("{name} - Slay the Spire 2", {
                   name: `${card.name}${isUpgraded ? "+" : ""}`,
                 })}
