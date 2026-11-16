@@ -20,7 +20,7 @@ import type {
   ReplayTurn,
   ShopItem,
 } from "@/lib/replay";
-import { isCombatKind, shelfRows } from "@/lib/replay";
+import { blitzEntryName, isCombatKind, shelfRows } from "@/lib/replay";
 import {
   type EncounterMap,
   type MonsterMap,
@@ -382,6 +382,10 @@ function describeLine(
             </>
           ),
         };
+      if (l.kind === "blitz" && (l.blitzEntry || l.entryClass)) {
+        const entry = blitzEntryName(l.blitzEntry ?? l.entryClass ?? "");
+        return plain(`${t("Bought")} ${entry}`);
+      }
       return plain(
         `${t("Bought")} ${itemName(l.kind, l.id ?? "", cat)} (${costLabel(l)})`,
       );

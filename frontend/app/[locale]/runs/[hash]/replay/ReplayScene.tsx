@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useT, type TFn } from "@/lib/i18n";
 import { displayName } from "@/lib/display-name";
 import type { SceneStep, StepDetail } from "@/lib/replay-scene";
+import { blitzEntryName } from "@/lib/replay";
 import LiveScene from "@/app/[locale]/live/[steamId]/LiveScene";
 import { useLiveCatalogs } from "@/app/[locale]/live/live-shared";
 import {
@@ -110,6 +111,8 @@ function caption(step: SceneStep, cat: Catalog, t: TFn): string {
     case "shop":
       return t("Shop");
     case "buy": {
+      if (c.label === "blitz" && c.option)
+        return `${t("Bought")}: ${blitzEntryName(c.option)}`;
       const name =
         c.label === "card"
           ? cardName(id, cat)

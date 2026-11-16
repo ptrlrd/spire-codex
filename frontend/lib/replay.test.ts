@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import {
+  blitzEntryName,
   captureIsComplete,
   combatCounts,
   hasMapPositions,
@@ -4039,5 +4040,51 @@ describe("shelfRows", () => {
       ["FERAL", true],
       ["ANCHOR", false],
     ]);
+  });
+});
+
+describe("blitz merchant buys", () => {
+  const entry = {
+    floor: 4,
+    act: 1,
+    purchase_id: 1,
+    kind: "blitz",
+    slot: 2,
+    entry_id: 7,
+    entry_class: "BlitzMerchantColorlessCardRewardEntry",
+    blitz_entry: "ColorlessCardReward",
+    cost_current: 0,
+    cost_resource: "gold",
+    gold_on_hand: 99,
+  };
+  const text = journal([
+    { t: "header", s: 0, ms: 0, floor: 0, act: 1, replay_version: 8 },
+    { t: "buy_start", s: 1, ms: 1, ...entry },
+    { t: "buy", s: 2, ms: 2, ...entry },
+  ]);
+
+  it("keeps the entry identity on a buy line", () => {
+    const { lines, malformed } = parseReplayLines(text);
+    expect(malformed).toBe(0);
+    expect(lines.find((l) => l.t === "buy")).toMatchObject({
+      kind: "blitz",
+      slot: 2,
+      purchaseId: 1,
+      entryId: 7,
+      entryClass: "BlitzMerchantColorlessCardRewardEntry",
+      blitzEntry: "ColorlessCardReward",
+    });
+  });
+
+  it("reads a buy_start line as unknown rather than failing", () => {
+    const { lines } = parseReplayLines(text);
+    expect(lines.find((l) => l.s === 1)?.t).toBe("unknown");
+  });
+
+  it("names a blitz entry for display", () => {
+    expect(blitzEntryName("ColorlessCardReward")).toBe(
+      "Colorless Card Reward",
+    );
+    expect(blitzEntryName("BlitzMerchantTwoRelicsEntry")).toBe("Two Relics");
   });
 });

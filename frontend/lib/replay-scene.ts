@@ -1037,6 +1037,7 @@ export function buildScene(text: string): {
           k: "buy",
           id: str(d.id),
           label: str(d.kind),
+          option: str(d.blitz_entry) ?? str(d.entry_class),
           n: num(d.cost_current),
         });
         break;

@@ -172,6 +172,20 @@ export interface BuyLine extends LineBase {
   costCurrent?: number;
   costResource: string;
   goldOnHand?: number;
+  /** Pairs this buy with the buy_start row written before its rewards. */
+  purchaseId?: number;
+  /** The game's MerchantEntry.Id for the entry bought. */
+  entryId?: number;
+  /** The entry's class, e.g. BlitzMerchantColorlessCardRewardEntry. */
+  entryClass?: string;
+  /** Blitz only: the entry's MerchantEntryType, e.g. ColorlessCardReward. */
+  blitzEntry?: string;
+}
+
+/** "ColorlessCardReward" -> "Colorless Card Reward". */
+export function blitzEntryName(type: string): string {
+  const bare = type.replace(/^BlitzMerchant/, "").replace(/Entry$/, "");
+  return bare.replace(/([a-z])([A-Z])/g, "$1 $2");
 }
 export interface ShopItem {
   slot: number;
@@ -854,6 +868,10 @@ function narrow(raw: Raw): ReplayLine | undefined {
         costCurrent: num(raw.cost_current),
         costResource: str(raw.cost_resource) ?? "gold",
         goldOnHand: num(raw.gold_on_hand),
+        purchaseId: int(raw.purchase_id),
+        entryId: int(raw.entry_id),
+        entryClass: str(raw.entry_class),
+        blitzEntry: str(raw.blitz_entry),
       };
     case "shop":
       return {
