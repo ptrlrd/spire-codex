@@ -66,15 +66,20 @@ export default async function Page({ params }: Props) {
   let epoch = null;
   let epochs = [];
   let unlocks = null;
+  let stories = [];
   try {
-    const [epochsRes, unlocksRes] = await Promise.all([
+    const [epochsRes, unlocksRes, storiesRes] = await Promise.all([
       fetch(`${API_INTERNAL}/api/epochs?lang=${locale}&channel=all`, {
         next: { revalidate: 300 },
       }),
       fetch(`${API_INTERNAL}/api/unlocks?lang=${locale}&channel=all`, {
         next: { revalidate: 300 },
       }),
+      fetch(`${API_INTERNAL}/api/stories?lang=${locale}&channel=all`, {
+        next: { revalidate: 300 },
+      }),
     ]);
+    if (storiesRes.ok) stories = await storiesRes.json();
     if (epochsRes.ok) epochs = await epochsRes.json();
     if (unlocksRes.ok) unlocks = await unlocksRes.json();
   } catch {}
@@ -111,6 +116,7 @@ export default async function Page({ params }: Props) {
         initialEpoch={epoch}
         initialEpochs={epochs}
         initialUnlocks={unlocks}
+        initialStories={stories}
       />
     </>
   );

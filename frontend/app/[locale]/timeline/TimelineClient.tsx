@@ -174,7 +174,6 @@ export default function TimelineClient({
         filters={[
           {
             label: "Any Story",
-            name: "Story",
             value: storyFilter,
             options: storyOptions,
             onChange: setStoryFilter,
@@ -277,7 +276,7 @@ export default function TimelineClient({
                                 <h3 className="flex flex-wrap items-center gap-x-3 gap-y-1">
                                   <Link
                                     href={`/timeline/${epoch.id.toLowerCase()}`}
-                                    className="text-lg font-semibold text-[var(--text-primary)] hover:text-[var(--accent-gold)] transition-colors"
+                                    className="-my-2 py-2 text-lg font-semibold text-[var(--text-primary)] hover:text-[var(--accent-gold)] transition-colors"
                                   >
                                     {epoch.title}
                                   </Link>

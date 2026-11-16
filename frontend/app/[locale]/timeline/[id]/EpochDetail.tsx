@@ -9,7 +9,7 @@ import {
 } from "react";
 import { useParams } from "next/navigation";
 import { Link, useRouter } from "@/i18n/navigation";
-import type { Epoch } from "@/lib/api/types";
+import type { Epoch, Story } from "@/lib/api/types";
 import {
   StoryLabel,
   UnlockShelf,
@@ -43,10 +43,12 @@ export default function EpochDetail({
   initialEpoch,
   initialEpochs,
   initialUnlocks,
+  initialStories,
 }: {
   initialEpoch?: Epoch | null;
   initialEpochs?: Epoch[];
   initialUnlocks?: UnlocksPayload | null;
+  initialStories?: Story[];
 } = {}) {
   const params = useParams();
   const router = useRouter();
@@ -61,6 +63,7 @@ export default function EpochDetail({
   const [unlockData, setUnlockData] = useState<UnlocksPayload | null>(
     initialUnlocks ?? null,
   );
+  const [stories, setStories] = useState<Story[]>(initialStories ?? []);
   const [activeSection, setActiveSection] = useState<string>("");
 
   useEffect(() => {
@@ -79,10 +82,12 @@ export default function EpochDetail({
       cachedFetch<UnlocksPayload>(
         `${API}/api/unlocks?lang=${lang}&channel=all`,
       ),
+      cachedFetch<Story[]>(`${API}/api/stories?lang=${lang}&channel=all`),
     ])
-      .then(([epochs, unlocks]) => {
+      .then(([epochs, unlocks, storyList]) => {
         setAllEpochs(epochs);
         setUnlockData(unlocks);
+        setStories(storyList);
       })
       .catch(() => {});
   }, [lang]);
@@ -158,7 +163,10 @@ export default function EpochDetail({
   const hasImage = !!epoch.image_url;
   const earnedBy = unlockInfoByEpoch(unlockData);
   const earn = earnedBy[epoch.id] || epoch.unlock_info;
-  const storyLabel = (epoch.story_id || "").replace(/_/g, " ");
+  const storyLabel =
+    stories.find(
+      (s) => s.id.toLowerCase() === (epoch.story_id || "").toLowerCase(),
+    )?.name || (epoch.story_id || "").replace(/_/g, " ");
   const eraLabel = eraLabels(allEpochs)[eraKey(epoch.era)];
   const eraName = epoch.era_name || eraLabel?.name || null;
   const eraYear = epoch.era_name ? epoch.era_year : (eraLabel?.year ?? null);
@@ -197,7 +205,7 @@ export default function EpochDetail({
           {/* Hero */}
           <div className="hero">
             <p className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-[var(--text-secondary)]">
-              <StoryLabel storyId={epoch.story_id} />
+              <StoryLabel storyId={epoch.story_id} name={storyLabel} />
               {eraName && <span>{eraName}</span>}
               {eraYear && (
                 <span>
@@ -249,7 +257,12 @@ export default function EpochDetail({
                   <RichDescription text={epoch.unlock_text} />
                 </p>
               )}
-              <UnlockShelf unlocks={unlocks} lang={lang} className="mt-5" />
+              <UnlockShelf
+                unlocks={unlocks}
+                lang={lang}
+                className="mt-5"
+                large
+              />
             </section>
           )}
 
@@ -281,11 +294,11 @@ export default function EpochDetail({
                         aria-hidden
                         className="absolute left-0 top-[17px] h-[11px] w-[11px] rounded-full border-2 border-[var(--bg-primary)] bg-current"
                       />
-                      <div className="flex min-h-[44px] flex-wrap items-baseline gap-x-3 py-2 text-[var(--text-secondary)]">
+                      <div className="flex min-h-[44px] flex-col py-2 text-[var(--text-secondary)] sm:flex-row sm:flex-wrap sm:items-baseline sm:gap-x-3">
                         <Link
                           prefetch={false}
                           href={`/timeline/${eid.toLowerCase()}`}
-                          className="text-base font-semibold"
+                          className="-my-2.5 py-2.5 text-base font-semibold"
                         >
                           {target?.title || prettyId(eid)}
                         </Link>

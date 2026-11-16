@@ -157,8 +157,10 @@ export function StoryLabel({
   );
 }
 
-const tileClass =
-  "group/tile relative flex w-[88px] flex-col items-center gap-1.5 text-center text-[13px] leading-tight text-[var(--text-secondary)] hover:text-[var(--accent-gold)] transition-colors";
+const tileBase =
+  "group/tile relative flex flex-col items-center gap-1.5 text-center leading-tight text-[var(--text-secondary)] hover:text-[var(--accent-gold)] transition-colors";
+const tileClass = `${tileBase} w-[88px] text-[13px]`;
+const tileClassLarge = `${tileBase} w-[100px] text-sm sm:w-[132px]`;
 
 function Popover({ item }: { item: UnlockItem }) {
   if (!item.description) return null;
@@ -169,7 +171,15 @@ function Popover({ item }: { item: UnlockItem }) {
   );
 }
 
-function CardTile({ item, lang }: { item: UnlockItem; lang: string }) {
+function CardTile({
+  item,
+  lang,
+  large,
+}: {
+  item: UnlockItem;
+  lang: string;
+  large?: boolean;
+}) {
   const [failed, setFailed] = useState(false);
   const render = fullCardUrl(
     item.id,
@@ -182,14 +192,14 @@ function CardTile({ item, lang }: { item: UnlockItem; lang: string }) {
     <Link
       prefetch={false}
       href={`/cards/${item.id.toLowerCase()}`}
-      className={tileClass}
+      className={large ? tileClassLarge : tileClass}
     >
       <img
         src={src}
         alt=""
-        width={88}
-        height={114}
-        className="h-[114px] w-[88px] object-contain drop-shadow-[0_2px_6px_rgba(0,0,0,0.45)]"
+        width={large ? 132 : 88}
+        height={large ? 171 : 114}
+        className={`object-contain drop-shadow-[0_2px_6px_rgba(0,0,0,0.45)] ${large ? "h-[130px] w-[100px] sm:h-[171px] sm:w-[132px]" : "h-[114px] w-[88px]"}`}
         crossOrigin="anonymous"
         loading="lazy"
         onError={() => setFailed(true)}
@@ -203,20 +213,26 @@ function IconTile({
   item,
   href,
   src,
+  large,
 }: {
   item: UnlockItem;
   href: string;
   src: string | null;
+  large?: boolean;
 }) {
   return (
-    <Link prefetch={false} href={href} className={tileClass}>
+    <Link
+      prefetch={false}
+      href={href}
+      className={large ? tileClassLarge : tileClass}
+    >
       {src && (
         <img
           src={src}
           alt=""
-          width={56}
-          height={56}
-          className="h-14 w-14 object-contain"
+          width={large ? 80 : 56}
+          height={large ? 80 : 56}
+          className={`object-contain ${large ? "h-20 w-20" : "h-14 w-14"}`}
           crossOrigin="anonymous"
           loading="lazy"
         />
@@ -238,10 +254,12 @@ export function UnlockShelf({
   unlocks,
   lang,
   className = "",
+  large,
 }: {
   unlocks: EpochUnlocks;
   lang: string;
   className?: string;
+  large?: boolean;
 }) {
   if (!hasShelf(unlocks)) return null;
   return (
@@ -250,17 +268,19 @@ export function UnlockShelf({
         <IconTile
           key={c.id}
           item={c}
+          large={large}
           href={`/characters/${c.id.toLowerCase()}`}
           src={`${CDN_BASE}/ui/characters/character_icon_${c.id.toLowerCase()}.webp`}
         />
       ))}
       {unlocks.cards.map((c) => (
-        <CardTile key={c.id} item={c} lang={lang} />
+        <CardTile key={c.id} item={c} lang={lang} large={large} />
       ))}
       {unlocks.relics.map((r) => (
         <IconTile
           key={r.id}
           item={r}
+          large={large}
           href={`/relics/${r.id.toLowerCase()}`}
           src={r.image_url ? imageUrl(r.image_url) : null}
         />
@@ -269,6 +289,7 @@ export function UnlockShelf({
         <IconTile
           key={p.id}
           item={p}
+          large={large}
           href={`/potions/${p.id.toLowerCase()}`}
           src={p.image_url ? imageUrl(p.image_url) : null}
         />
