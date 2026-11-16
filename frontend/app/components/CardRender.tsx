@@ -467,6 +467,7 @@ export default function CardRender({
             textShadow: `2px 2px 0 rgba(0,0,0,${T.descShadow})`,
             whiteSpace: "break-spaces",
             overflowWrap: "break-word",
+            lineBreak: "strict",
           }}
         >
           <div

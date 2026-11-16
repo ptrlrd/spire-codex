@@ -95,6 +95,7 @@ export function richText(
     last = re.lastIndex;
     const [, close, tag, arg] = m;
     if (tag === "energy" || tag === "star") {
+      if (split) flush();
       const [amount, flag] = (arg ?? "").split(":");
       const parsed = parseInt(amount, 10);
       const counted = amount !== "X" && amount !== "" && !Number.isNaN(parsed);
