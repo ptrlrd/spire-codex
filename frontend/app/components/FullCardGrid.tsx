@@ -8,6 +8,7 @@ import CardImage from "@/app/components/CardImage";
 import { useChannel, useBetaPrefix } from "@/lib/api/prefix.client";
 import BetaBadge from "./BetaBadge";
 import { cardRenderChannel } from "@/lib/card-fallback";
+import { useBetaChanged } from "@/lib/use-beta-changed";
 
 /**
  * "Card view" of the card list: the full game-rendered card images (frame, art,
@@ -22,7 +23,15 @@ interface CardStat {
   win_rate: number;
 }
 
-function FullCardItem({ card, stat }: { card: Card; stat?: CardStat }) {
+function FullCardItem({
+  card,
+  stat,
+  betaVersion,
+}: {
+  card: Card;
+  stat?: CardStat;
+  betaVersion: string | null;
+}) {
   const t = useT();
   const fmtN = useFormatNumber();
   const bp = useBetaPrefix();
@@ -41,6 +50,15 @@ function FullCardItem({ card, stat }: { card: Card; stat?: CardStat }) {
         <span className="absolute top-1 right-1 z-20">
           <BetaBadge />
         </span>
+      )}
+      {!betaOnly && betaVersion && (
+        <Link
+          prefetch={false}
+          href={`/cards/${id}?version=${encodeURIComponent(betaVersion)}`}
+          className="absolute top-1 right-1 z-20 rounded-full border border-warning/40 bg-[var(--bg-card)] px-2 py-0.5 text-xs font-semibold text-warning hover:bg-warning/15"
+        >
+          {t("Changed in beta")}
+        </Link>
       )}
       <Link prefetch={false} href={href} className="block">
         <CardImage
@@ -107,6 +125,7 @@ export default function FullCardGrid({
    *  cards on the narrower character pages). */
   className?: string;
 }) {
+  const betaChanged = useBetaChanged("cards");
   return (
     <div
       className={
@@ -119,6 +138,11 @@ export default function FullCardGrid({
           key={card.id}
           card={card}
           stat={stats?.[card.id.toUpperCase()]}
+          betaVersion={
+            betaChanged.ids.has(card.id.toUpperCase())
+              ? betaChanged.version
+              : null
+          }
         />
       ))}
     </div>
