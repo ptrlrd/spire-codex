@@ -1,0 +1,91 @@
+@media (max-width: 639px) {
+  .sg-tap {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .sg-tap-inline {
+    padding-block: 14px;
+  }
+
+  .sg-table,
+  .sg-table tbody {
+    display: block;
+    width: 100%;
+  }
+
+  .sg-table thead {
+    display: none;
+  }
+
+  .sg-table tr.sg-row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px 12px;
+    padding: 8px 12px 10px;
+  }
+
+  .sg-table tr.sg-group {
+    display: block;
+  }
+
+  .sg-table tr.sg-group > td {
+    display: block;
+    padding: 10px 12px;
+  }
+
+  .sg-table tr.sg-group > td:empty {
+    display: none;
+  }
+
+  .sg-table tr.sg-row > td {
+    display: block;
+    padding: 0;
+    text-align: left;
+    font-size: 14px;
+  }
+
+  .sg-table tr.sg-row > td.sg-rank {
+    display: none;
+  }
+
+  .sg-table tr.sg-row > td[data-col="name"] {
+    grid-column: 1 / -1;
+    order: 0;
+  }
+
+  .sg-table tr.sg-row > td.sg-stat {
+    display: none;
+    order: 2;
+  }
+
+  .sg-table tr.sg-row > td.sg-stat[data-primary] {
+    display: block;
+    order: 1;
+  }
+
+  .sg-table tr.sg-row[data-open] > td.sg-stat {
+    display: block;
+  }
+
+  .sg-table tr.sg-row > td.sg-stat::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-muted);
+  }
+
+  .sg-table .sg-bar-wrap {
+    justify-content: flex-start;
+  }
+
+  .sg-table .sg-bar-wrap > .sg-bar-num {
+    width: auto;
+  }
+
+  .sg-table .sg-bar-track {
+    width: 3rem;
+  }
+}

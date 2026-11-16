@@ -17,7 +17,7 @@ import {
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 function pillCls(active: boolean): string {
-  return `rounded-full border px-3 py-1 text-xs transition-colors ${
+  return `sg-tap rounded-full border px-3 py-1 text-xs transition-colors ${
     active
       ? "border-[var(--accent-gold)] bg-[var(--accent-gold)]/15 text-[var(--accent-gold)]"
       : "border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:border-[var(--text-muted)]"
@@ -108,7 +108,7 @@ export default function BracketPicker({
                 character,
               )
             }
-            className="rounded-md border border-[var(--border-subtle)] bg-[var(--bg-card)] px-2 py-1 text-xs text-[var(--text-secondary)] focus:outline-none focus:border-[var(--accent-gold)]"
+            className="sg-tap rounded-md border border-[var(--border-subtle)] bg-[var(--bg-card)] px-2 py-1 text-xs text-[var(--text-secondary)] focus:outline-none focus:border-[var(--accent-gold)]"
           >
             <option value="">{t("All versions")}</option>
             {versions.map((v) => (

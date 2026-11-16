@@ -21,7 +21,7 @@ export default function StatsLinks({ current }: { current: string }) {
           key={l.href}
           prefetch={false}
           href={`${bp}${l.href}`}
-          className={`rounded-md border px-2.5 py-1 transition-colors ${
+          className={`sg-tap rounded-md border px-2.5 py-1 transition-colors ${
             l.href === current
               ? "border-[var(--accent-gold)] text-[var(--accent-gold)]"
               : "border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:border-[var(--border-accent)] hover:text-[var(--text-primary)]"
