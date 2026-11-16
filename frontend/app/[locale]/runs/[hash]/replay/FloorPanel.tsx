@@ -868,9 +868,12 @@ function ShopBlock({
                     .length
                 ]
               : l.id;
+            const blitz = l.kind === "blitz" && (l.blitzEntry || l.entryClass);
             const label = removal
               ? `${t("Card removal")}${target ? `: ${cardName(target, cat)}` : ""}`
-              : itemName(l.kind, l.id ?? "", cat);
+              : blitz
+                ? blitzEntryName(l.blitzEntry ?? l.entryClass ?? "")
+                : itemName(l.kind, l.id ?? "", cat);
             return (
               <li
                 key={`${l.s}-${i}`}
