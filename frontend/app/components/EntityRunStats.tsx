@@ -102,9 +102,6 @@ const METRICS_PAGE: Record<string, { path: string; label: string }> = {
   potions: { path: "/stats/potions", label: "See in Potion Metrics" },
 };
 
-function fmtPct(v: number | null | undefined): string {
-  return typeof v === "number" ? `${v.toFixed(1)}%` : "–";
-}
 function fmtPts(v: number | null | undefined): string {
   return typeof v === "number" ? `${v > 0 ? "+" : ""}${v.toFixed(1)}` : "–";
 }
@@ -116,73 +113,26 @@ function capFirst(s: string): string {
 function MetricsStrip({
   entityType,
   entityName,
-  stats,
   bracketKey,
   requested,
-  base,
   dataThrough,
 }: {
   entityType: string;
   entityName: string;
-  stats: EntityStats;
   bracketKey: string;
   requested: string | null;
-  base: BracketStat | null;
   dataThrough: string | null;
 }) {
   const t = useT();
-  const fmtN = useFormatNumber();
   const lang = useGameLocale();
   const bp = useBetaPrefix();
   const page = METRICS_PAGE[entityType];
-  const winRate = base?.win_rate ?? stats.win_rate;
-  const elo = base ? base.elo : stats.elo;
-  const picks = base?.picks ?? stats.picks;
   const through = dataThroughLabel(dataThrough, t, lang);
-  const items: [string, string, string][] = [
-    [
-      t("Win%"),
-      fmtPct(winRate),
-      t("Share of seats that held it and went on to win the run."),
-    ],
-    [
-      t("Hold%"),
-      fmtPct(base ? (base.hold_rate ?? base.pick_rate) : stats.pick_rate),
-      t("Share of all seats in the cohort that held it at some point."),
-    ],
-    [
-      t("Lift"),
-      fmtPts(base ? base.lift : stats.lift),
-      t(
-        "Win rate minus what the same players were expected to win from the floor where they got it, in percentage points.",
-      ),
-    ],
-    [
-      t("Elo"),
-      typeof elo === "number" ? String(Math.round(elo)) : "–",
-      t(
-        "Codex Elo: how often players take it over the other options on the same screen, fitted as a Bradley-Terry rating.",
-      ),
-    ],
-    [t("Sample"), fmtN(picks), t("Seats that held it (sample size)")],
-  ];
   return (
     <div className="mb-4 flex flex-wrap items-center gap-x-5 gap-y-2 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)]/40 px-3 py-2 text-sm">
       <span className="text-xs text-[var(--text-muted)]">
         {t("Cohort")}: {capFirst(cohortLabel(bracketKey, t))}
       </span>
-      {items.map(([k, v, title]) => (
-        <span
-          key={k}
-          className="inline-flex items-baseline gap-1.5"
-          title={title}
-        >
-          <span className="text-xs text-[var(--text-muted)]">{k}</span>
-          <span className="font-semibold tabular-nums text-[var(--text-primary)]">
-            {v}
-          </span>
-        </span>
-      ))}
       {page && (
         <Link
           prefetch={false}
@@ -538,6 +488,8 @@ export default function EntityRunStats({
     const picks = sel?.picks ?? stats.picks;
     const share = top && picks ? Math.round((top.picks / picks) * 100) : 0;
     const levels = sel ? sel.levels : stats.levels;
+    const lift = sel ? sel.lift : stats.lift;
+    const baseline = sel?.baseline_win_rate ?? stats.baseline_win_rate;
     const levelTiles = (
       [
         ["Normal", levels?.base],
@@ -550,10 +502,8 @@ export default function EntityRunStats({
           <MetricsStrip
             entityType={entityType}
             entityName={entityName}
-            stats={stats}
             bracketKey={resolved.key}
             requested={resolved.requested}
-            base={sel}
             dataThrough={metrics?.data_through ?? null}
           />
         )}
@@ -696,13 +646,34 @@ export default function EntityRunStats({
                   {tier ? t(tier.label) : t("Not enough data")}
                 </div>
               </div>
-              <div className="tile">
-                <div className="k">{t("Codex Elo")}</div>
-                <div className="v">
-                  {sel?.elo != null ? Math.round(sel.elo) : "—"}
+              {typeof lift === "number" && (
+                <div
+                  className="tile"
+                  title={t(
+                    "Win rate minus what the same players were expected to win from the floor where they got it, in percentage points.",
+                  )}
+                >
+                  <div className="k">{t("Lift")}</div>
+                  <div className="v">{fmtPts(lift)}</div>
+                  {typeof baseline === "number" && (
+                    <div className="s">
+                      {baseline}% {t("baseline win rate")}
+                    </div>
+                  )}
                 </div>
-                <div className="s">{t("revealed preference")}</div>
-              </div>
+              )}
+              {sel?.elo != null && (
+                <div
+                  className="tile"
+                  title={t(
+                    "Codex Elo: how often players take it over the other options on the same screen, fitted as a Bradley-Terry rating.",
+                  )}
+                >
+                  <div className="k">{t("Codex Elo")}</div>
+                  <div className="v">{Math.round(sel.elo)}</div>
+                  <div className="s">{t("revealed preference")}</div>
+                </div>
+              )}
             </div>
 
             {showOffer && offerActs && (
@@ -748,13 +719,6 @@ export default function EntityRunStats({
                 {t("Most often taken by")}{" "}
                 <b>{characterPretty(top.character)}</b> {t("players")} (
                 {fmtN(top.picks)} {t("picks")} · {share}% {t("share")}).
-                {tier ? (
-                  <>
-                    {" "}
-                    {t("Codex rates it")} <b>{tier.letter}</b> (
-                    {t(tier.label).toLowerCase()}) {t("overall")}.
-                  </>
-                ) : null}
               </p>
             )}
             <EntityTrends
@@ -767,14 +731,7 @@ export default function EntityRunStats({
         )}
 
         <p className="stat-note">
-          {t("Community-submitted runs only, refreshed every 30 minutes.")}
-          {selTotalRuns > 0 && (
-            <>
-              {" "}
-              {t("Hold rate is")} {selPickRate}% {t("of")} {fmtN(selTotalRuns)}
-              {!isAll ? ` ${selLabel}` : ""} {t("tracked runs.")}
-            </>
-          )}{" "}
+          {t("Community-submitted runs only, refreshed every 30 minutes.")}{" "}
           <Link href="/stats/scoring">{t("How is the score calculated?")}</Link>
         </p>
       </div>
@@ -787,10 +744,8 @@ export default function EntityRunStats({
         <MetricsStrip
           entityType={entityType}
           entityName={entityName}
-          stats={stats}
           bracketKey={resolved.key}
           requested={resolved.requested}
-          base={sel}
           dataThrough={metrics?.data_through ?? null}
         />
       )}

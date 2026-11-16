@@ -33,7 +33,6 @@ import { imageUrl, fullCardUrl, enchantedCardUrl } from "@/lib/image-url";
 import EntityRunStats, {
   type EntityStats,
 } from "@/app/components/EntityRunStats";
-import { resolveBracket } from "@/lib/entity-cohort";
 import EntityVersionSelect from "@/app/components/EntityVersionSelect";
 import HoverTooltip from "@/app/components/HoverTooltip";
 import { useChannel, useBetaPrefix } from "@/lib/api/prefix.client";
@@ -58,20 +57,6 @@ const SPINE_COLOR: Record<string, string> = {
   curse: "var(--color-curse)",
   status: "var(--text-muted)",
 };
-
-// Headline figures for the infobox mini-stats block. Same endpoint EntityRunStats
-// fetches, so cachedFetch dedupes it (no extra request).
-interface MiniBracket {
-  picks: number;
-  win_rate: number;
-  pick_rate: number;
-  hold_rate?: number | null;
-  score: number | null;
-  elo: number | null;
-}
-interface MiniStats extends MiniBracket {
-  brackets?: Record<string, MiniBracket>;
-}
 
 const TOC_IDS = [
   "performance",
@@ -309,9 +294,6 @@ export default function CardDetail({
   // Scroll-spy: which section the ToC highlights.
   const [activeSection, setActiveSection] = useState<string>("performance");
   const [toc, setToc] = useState<{ id: string; shown: string[] } | null>(null);
-  const [miniStats, setMiniStats] = useState<MiniStats | null>(null);
-  // Bracket shared with EntityRunStats so the infobox mini-stats track the
-  // pill the user picked in the Community section.
   const [statsBracket, setStatsBracket] = useBracketParam();
   const byName = <T extends { name: string }>(entries: T[]) => {
     const map: Record<string, T> = {};
@@ -442,15 +424,6 @@ export default function CardDetail({
         setEnchMeta(m);
       });
   }, [lang, initialCatalogs]);
-
-  // Headline community numbers for the infobox mini block. Hits the same URL
-  // EntityRunStats fetches, so cachedFetch serves it from cache.
-  useEffect(() => {
-    if (!id) return;
-    cachedFetch<MiniStats>(`${API}/api/runs/stats/cards/${id}`)
-      .then(setMiniStats)
-      .catch(() => {});
-  }, [id]);
 
   // ToC scroll-spy: highlight the section currently in view.
   useEffect(() => {
@@ -772,11 +745,12 @@ export default function CardDetail({
           {/* Community performance (featured first) */}
           <section id="performance">
             <h2>{t("Community performance")}</h2>
-            <p className="h-note">
-              {t(
-                "Live aggregate across community-submitted runs. Filter by bracket to see how it holds up at higher levels of play.",
-              )}
-            </p>
+            <EntitySummary
+              name={card.name}
+              data={summary}
+              stats={initialStats}
+              bracket={statsBracket}
+            />
             <EntityRunStats
               entityType="cards"
               entityId={id}
@@ -791,12 +765,6 @@ export default function CardDetail({
           {/* Description */}
           <section id="description">
             <h2>{t("Description")}</h2>
-            <EntitySummary
-              name={card.name}
-              data={summary}
-              stats={initialStats}
-              bracket={statsBracket}
-            />
 
             {/* Type variant toggle (re-scopes description + render) */}
             {hasVariants && card.type_variants && (
@@ -1215,52 +1183,6 @@ export default function CardDetail({
                 )}
               </dl>
             </div>
-
-            {/* Community mini-stats — scoped to the bracket picked in the
-                Community section (falls back to the all-runs figures). */}
-            {(() => {
-              const mini = miniStats
-                ? (resolveBracket(miniStats, statsBracket).block ?? miniStats)
-                : null;
-              if (!mini || mini.picks <= 0) return null;
-              return (
-                <div className="mini">
-                  <div className="mh">{t("Community")}</div>
-                  <div className="mg">
-                    <div>
-                      <div
-                        className="mv"
-                        style={{
-                          color:
-                            mini.win_rate >= 50 ? "var(--good)" : "var(--warn)",
-                        }}
-                      >
-                        {mini.win_rate}%
-                      </div>
-                      <div className="ml">{t("Win rate")}</div>
-                    </div>
-                    <div>
-                      <div className="mv">
-                        {mini.hold_rate ?? mini.pick_rate}%
-                      </div>
-                      <div className="ml">{t("Hold rate")}</div>
-                    </div>
-                    {mini.score != null && (
-                      <div>
-                        <div className="mv">{mini.score}</div>
-                        <div className="ml">{t("Codex Score")}</div>
-                      </div>
-                    )}
-                    {mini.elo != null && (
-                      <div>
-                        <div className="mv">{Math.round(mini.elo)}</div>
-                        <div className="ml">{t("Elo")}</div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              );
-            })()}
           </div>
         </aside>
       </div>

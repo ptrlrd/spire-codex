@@ -195,10 +195,7 @@
   align-items: baseline;
 }
 .card-rvmp .toc-label {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
+  font-size: 13px;
   color: var(--text-3);
 }
 .card-rvmp .toc a {
@@ -292,10 +289,7 @@
   padding: 15px 16px;
 }
 .card-rvmp .tile .k {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  font-size: 13px;
   color: var(--text-2);
 }
 .card-rvmp .tile .v {
@@ -750,10 +744,7 @@
   overflow: hidden;
 }
 .card-rvmp .facts .fh {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-size: 13px;
   color: var(--text-2);
   padding: 11px 15px;
   border-bottom: 1px solid var(--border);
@@ -818,10 +809,7 @@ a.kw {
   padding: 13px 15px;
 }
 .card-rvmp .mini .mh {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  font-size: 13px;
   color: var(--text-2);
   margin-bottom: 10px;
 }
@@ -960,4 +948,8 @@ a.kw {
 .card-rvmp a.entity-inline-link:hover {
   color: var(--gold);
   text-decoration-color: var(--gold);
+}
+
+.card-rvmp #performance .entity-summary {
+  margin-bottom: 14px;
 }
