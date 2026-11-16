@@ -253,6 +253,7 @@ export const EXCLUDE = new Set([
   "/tier-list-maker/new",
   "/beta",
   "/live",
+  "/card-compare",
 ]);
 
 const EXCLUDE_PREFIXES = ["/admin", "/seed-lab", "/deck-lab", "/link"];
