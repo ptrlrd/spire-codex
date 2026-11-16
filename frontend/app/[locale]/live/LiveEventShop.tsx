@@ -9,6 +9,7 @@
 import { Link } from "@/i18n/navigation";
 import { useT } from "@/lib/i18n";
 import { imageUrl } from "@/lib/image-url";
+import { blitzEntryName } from "@/lib/replay";
 import { RichDescriptionSimple } from "@/app/components/RichDescription";
 import {
   CardPill,
@@ -323,6 +324,31 @@ export function LiveShopPanel({
       <div className="text-[10px] font-bold uppercase tracking-wider text-[var(--accent-gold)]">
         {t("Shop")}
       </div>
+      {shop.blitz && shop.blitz.length > 0 && (
+        <ul className="grid gap-1.5 sm:grid-cols-2">
+          {shop.blitz.map((o, i) => (
+            <li
+              key={i}
+              className={`flex items-center gap-2 rounded-md border px-2.5 py-1.5 text-sm ${
+                o.status === "used"
+                  ? "border-[var(--accent-gold)] bg-[color-mix(in_srgb,var(--accent-gold)_12%,transparent)] text-[var(--text-primary)]"
+                  : o.status === "disabled"
+                    ? "border-[var(--border-subtle)] text-[var(--text-muted)]"
+                    : "border-[var(--border-subtle)] text-[var(--text-secondary)]"
+              }`}
+            >
+              <span className="min-w-0 flex-1 leading-tight">
+                {blitzEntryName(o.entry ?? "")}
+              </span>
+              {o.status === "used" && (
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--accent-gold)]">
+                  {t("Taken")}
+                </span>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
       <ShopSection
         title={t("Cards")}
         items={shop.cards ?? []}

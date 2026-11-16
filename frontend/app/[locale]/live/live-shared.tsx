@@ -74,6 +74,8 @@ export interface LiveShop {
   relics?: ShopItem[];
   potions?: ShopItem[];
   removal?: { cost?: number; stocked?: boolean };
+  /** A Blitz merchant's offers (replay only): entry type and status. */
+  blitz?: { entry?: string; status?: string }[];
 }
 
 // Rest-site options (v7), present only at a campfire: the Rest/Smith/Dig/...
