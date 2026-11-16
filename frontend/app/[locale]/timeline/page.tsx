@@ -6,6 +6,7 @@ import type { Epoch, Story, Card, Relic, Potion } from "@/lib/api/types";
 import JsonLd from "@/app/components/JsonLd";
 import { buildCollectionPageJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
 import TimelineClient from "./TimelineClient";
+import type { UnlocksPayload } from "./epoch-parts";
 
 const API =
   process.env.API_INTERNAL_URL ||
@@ -35,9 +36,10 @@ export default async function TimelinePage({ params }: Props) {
   let cards: Card[] = [];
   let relics: Relic[] = [];
   let potions: Potion[] = [];
+  let unlocks: UnlocksPayload | null = null;
 
   try {
-    const [epochsRes, storiesRes, cardsRes, relicsRes, potionsRes] =
+    const [epochsRes, storiesRes, cardsRes, relicsRes, potionsRes, unlocksRes] =
       await Promise.all([
         fetch(`${API}/api/epochs?lang=${locale}&channel=all`, {
           next: { revalidate: 300 },
@@ -54,7 +56,11 @@ export default async function TimelinePage({ params }: Props) {
         fetch(`${API}/api/potions?lang=${locale}&channel=all`, {
           next: { revalidate: 300 },
         }),
+        fetch(`${API}/api/unlocks?lang=${locale}&channel=all`, {
+          next: { revalidate: 300 },
+        }),
       ]);
+    if (unlocksRes.ok) unlocks = await unlocksRes.json();
     if (epochsRes.ok) epochs = await epochsRes.json();
     if (storiesRes.ok) stories = await storiesRes.json();
     if (cardsRes.ok) cards = await cardsRes.json();
@@ -93,6 +99,7 @@ export default async function TimelinePage({ params }: Props) {
         initialCards={cards}
         initialRelics={relics}
         initialPotions={potions}
+        initialUnlocks={unlocks}
       />
     </div>
   );

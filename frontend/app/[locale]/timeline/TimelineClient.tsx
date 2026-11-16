@@ -11,53 +11,18 @@ import SearchFilter from "@/app/components/SearchFilter";
 import RichDescription from "@/app/components/RichDescription";
 import { useChannel } from "@/lib/api/prefix.client";
 import { imageUrl } from "@/lib/image-url";
+import {
+  StoryLabel,
+  UnlockShelf,
+  groupByEra,
+  prettyId,
+  resolveUnlocks,
+  storyAccentClass,
+  unlockInfoByEpoch,
+  type UnlocksPayload,
+} from "./epoch-parts";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
-
-function cleanDescription(desc: string): string {
-  return desc.replace(/\{[^}]+\}/g, "X");
-}
-
-// Use lowercase keys for case-insensitive matching against epoch story_id
-function storyKey(id: string): string {
-  return id.toLowerCase().replace(/_/g, "");
-}
-
-const storyColors: Record<string, string> = {
-  ironclad: "border-danger/40",
-  silent: "border-success/40",
-  defect: "border-info/40",
-  necrobinder: "border-special/40",
-  regent: "border-warning/40",
-  fool: "border-[var(--color-fool)]/40",
-  magnumopus: "border-special/40",
-  talesfromthespire: "border-info/40",
-  reopening: "border-warning/40",
-};
-
-const storyAccent: Record<string, string> = {
-  ironclad: "text-danger",
-  silent: "text-success",
-  defect: "text-info",
-  necrobinder: "text-special",
-  regent: "text-warning",
-  fool: "text-[var(--text-fool)]",
-  magnumopus: "text-special",
-  talesfromthespire: "text-info",
-  reopening: "text-warning",
-};
-
-const storyBorderLeft: Record<string, string> = {
-  ironclad: "border-l-danger/60",
-  silent: "border-l-success/60",
-  defect: "border-l-info/60",
-  necrobinder: "border-l-special/60",
-  regent: "border-l-warning/60",
-  fool: "border-l-[var(--color-fool)]/60",
-  magnumopus: "border-l-special/60",
-  talesfromthespire: "border-l-info/60",
-  reopening: "border-l-warning/60",
-};
 
 const storyOptions = [
   { label: "Magnum Opus", value: "Magnum_Opus" },
@@ -71,84 +36,13 @@ const storyOptions = [
   { label: "The Fool", value: "Fool" },
 ];
 
-function UnlockBadge({
-  items,
-  type,
-  cardMap,
-  relicMap,
-  potionMap,
-}: {
-  items: string[];
-  type: "cards" | "relics" | "potions";
-  cardMap: Record<string, Card>;
-  relicMap: Record<string, Relic>;
-  potionMap: Record<string, Potion>;
-}) {
-  const t = useT();
-  const colors = {
-    cards: "bg-info/10 text-info border-info/30",
-    relics: "bg-warning/10 text-warning border-warning/30",
-    potions: "bg-success/10 text-success border-success/30",
-  };
-  return (
-    <div className="flex flex-wrap gap-1">
-      <span className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] mr-1">
-        {t(type)}:
-      </span>
-      {items.map((id) => {
-        const data =
-          type === "cards"
-            ? cardMap[id]
-            : type === "relics"
-              ? relicMap[id]
-              : potionMap[id];
-        const href = `/${type}/${id.toLowerCase()}`;
-        return (
-          <Link
-            key={id}
-            href={href}
-            className={`relative text-[10px] px-1.5 py-0.5 rounded border ${colors[type]} hover:brightness-125 transition-all group/badge`}
-          >
-            {data?.name ||
-              id.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
-            {data && (
-              <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 w-52 px-2.5 py-2 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[11px] text-[var(--text-secondary)] leading-snug shadow-lg opacity-0 group-hover/badge:opacity-100 transition-opacity z-10">
-                <span className="block font-semibold text-[var(--text-primary)] mb-1">
-                  {data.name}
-                </span>
-                {type === "cards" && "type" in data && (
-                  <span className="block text-[var(--text-muted)] mb-1">
-                    {t((data as Card).type)} · {t("Cost")} {(data as Card).cost}
-                  </span>
-                )}
-                {type === "relics" && "rarity" in data && (
-                  <span className="block text-[var(--text-muted)] mb-1">
-                    {t((data as Relic).rarity)} · {(data as Relic).pool}
-                  </span>
-                )}
-                {type === "potions" && "rarity" in data && (
-                  <span className="block text-[var(--text-muted)] mb-1">
-                    {t((data as Potion).rarity)}
-                  </span>
-                )}
-                <span className="block">
-                  <RichDescription text={cleanDescription(data.description)} />
-                </span>
-              </span>
-            )}
-          </Link>
-        );
-      })}
-    </div>
-  );
-}
-
 interface TimelineClientProps {
   initialEpochs: Epoch[];
   initialStories: Story[];
   initialCards: Card[];
   initialRelics: Relic[];
   initialPotions: Potion[];
+  initialUnlocks: UnlocksPayload | null;
 }
 
 export default function TimelineClient({
@@ -157,6 +51,7 @@ export default function TimelineClient({
   initialCards,
   initialRelics,
   initialPotions,
+  initialUnlocks,
 }: TimelineClientProps) {
   const lang = useGameLocale();
   const t = useT();
@@ -178,13 +73,12 @@ export default function TimelineClient({
     for (const p of initialPotions) pm[p.id] = p;
     return pm;
   });
-  const [epochTitleMap, setEpochTitleMap] = useState<Record<string, string>>(
-    () => {
-      const em: Record<string, string> = {};
-      for (const e of initialEpochs) em[e.id] = e.title;
-      return em;
-    },
+  const [allEpochs, setAllEpochs] = useState<Epoch[]>(initialEpochs);
+  const [unlockData, setUnlockData] = useState<UnlocksPayload | null>(
+    initialUnlocks,
   );
+  const epochTitleMap: Record<string, string> = {};
+  for (const e of allEpochs) epochTitleMap[e.id] = e.title;
   const [search, setSearch] = useState("");
   const [storyFilter, setStoryFilter] = useState("");
   const [loading, setLoading] = useState(false);
@@ -206,12 +100,16 @@ export default function TimelineClient({
       cachedFetch<Relic[]>(`${API}/api/relics?lang=${lang}&channel=all`),
       cachedFetch<Potion[]>(`${API}/api/potions?lang=${lang}&channel=all`),
       cachedFetch<Epoch[]>(`${API}/api/epochs?lang=${lang}&channel=all`),
+      cachedFetch<UnlocksPayload>(
+        `${API}/api/unlocks?lang=${lang}&channel=all`,
+      ),
     ]).then(
-      ([cards, relics, potions, allEpochs]: [
+      ([cards, relics, potions, everyEpoch, unlocks]: [
         Card[],
         Relic[],
         Potion[],
         Epoch[],
+        UnlocksPayload,
       ]) => {
         const cm: Record<string, Card> = {};
         for (const c of cards) cm[c.id] = c;
@@ -222,9 +120,8 @@ export default function TimelineClient({
         const pm: Record<string, Potion> = {};
         for (const p of potions) pm[p.id] = p;
         setPotionMap(pm);
-        const em: Record<string, string> = {};
-        for (const e of allEpochs) em[e.id] = e.title;
-        setEpochTitleMap(em);
+        setAllEpochs(everyEpoch);
+        setUnlockData(unlocks);
       },
     );
   }, [lang, channel]);
@@ -259,24 +156,13 @@ export default function TimelineClient({
       .finally(() => setLoading(false));
   }, [storyFilter, search, lang, channel]);
 
-  // Group epochs by story, map story IDs case-insensitively
-  const storyMap = new Map<string, Story>();
-  for (const s of stories) storyMap.set(s.id.toLowerCase(), s);
+  const storyNames: Record<string, string> = {};
+  for (const s of stories) storyNames[s.id.toLowerCase()] = s.name;
 
-  // Build grouped view: story -> epochs in story order
-  const groupedByStory = new Map<string, Epoch[]>();
-  for (const epoch of epochs) {
-    const key = epoch.story_id || "UNCATEGORIZED";
-    if (!groupedByStory.has(key)) groupedByStory.set(key, []);
-    groupedByStory.get(key)!.push(epoch);
-  }
-
-  // Order stories by their first epoch's sort_order
-  const storyOrder = [...groupedByStory.entries()].sort((a, b) => {
-    const aMin = Math.min(...a[1].map((e) => e.sort_order));
-    const bMin = Math.min(...b[1].map((e) => e.sort_order));
-    return aMin - bMin;
-  });
+  const eras = groupByEra(epochs, allEpochs);
+  const maps = { cards: cardMap, relics: relicMap, potions: potionMap };
+  const characters = unlockData?.characters || [];
+  const earnedBy = unlockInfoByEpoch(unlockData);
 
   return (
     <>
@@ -288,7 +174,6 @@ export default function TimelineClient({
         filters={[
           {
             label: "Any Story",
-            name: "Story",
             value: storyFilter,
             options: storyOptions,
             onChange: setStoryFilter,
@@ -301,211 +186,189 @@ export default function TimelineClient({
           {t("Loading...")}
         </div>
       ) : (
-        <div className="space-y-8">
-          {storyOrder.map(([storyId, storyEpochs]) => {
-            const story = storyMap.get(storyId.toLowerCase());
-            const storyName =
-              story?.name ||
-              storyId
-                .replace(/_/g, " ")
-                .replace(/\b\w/g, (c) => c.toUpperCase());
-            const sk = storyKey(storyId);
-            const borderColor =
-              storyColors[sk] || "border-[var(--border-subtle)]";
-            const accent = storyAccent[sk] || "text-[var(--accent-gold)]";
-            const leftBorder = storyBorderLeft[sk] || "border-l-line-strong/60";
-
-            return (
-              <div key={storyId}>
-                <h2 className={`text-lg font-bold mb-3 ${accent}`}>
-                  {storyName}
-                  <span className="text-xs text-[var(--text-muted)] font-normal ml-2">
-                    {t("{n} epochs", { n: storyEpochs.length })}
+        <>
+          {eras.length > 1 && (
+            <nav
+              aria-label={t("Era")}
+              className="mb-8 grid grid-cols-3 gap-y-3 md:grid-cols-6"
+            >
+              {eras.map((era) => (
+                <a
+                  key={era.key}
+                  href={`#era-${era.key.toLowerCase()}`}
+                  className="group relative flex min-h-[44px] flex-col border-t border-[var(--border-accent)] pt-3 pr-2 text-sm"
+                >
+                  <span className="absolute -top-[5px] left-0 h-[9px] w-[9px] rotate-45 bg-[var(--accent-gold)]" />
+                  <span className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent-gold)] transition-colors">
+                    {era.name}
                   </span>
-                </h2>
-                <div className="space-y-3">
-                  {storyEpochs.map((epoch) => {
-                    const isExpanded = expandedEpochs[epoch.id];
-                    const hasUnlocks = !!(
-                      epoch.unlocks_cards?.length ||
-                      epoch.unlocks_relics?.length ||
-                      epoch.unlocks_potions?.length
-                    );
+                  {era.year && (
+                    <span className="text-[var(--text-muted)]">
+                      {t("Year")} {era.year}
+                    </span>
+                  )}
+                </a>
+              ))}
+            </nav>
+          )}
+
+          <div className="relative">
+            <span
+              aria-hidden
+              className="absolute bottom-0 left-[6px] top-2 w-px bg-[var(--border-accent)]"
+            />
+            {eras.map((era) => (
+              <section
+                key={era.key}
+                id={`era-${era.key.toLowerCase()}`}
+                className="relative scroll-mt-24 pb-6"
+              >
+                <header className="relative flex flex-wrap items-baseline gap-x-3 gap-y-1 pb-2 pl-8">
+                  <span
+                    aria-hidden
+                    className="absolute left-0 top-[7px] h-[13px] w-[13px] rotate-45 bg-[var(--accent-gold)]"
+                  />
+                  <h2 className="text-xl font-bold text-[var(--accent-gold)]">
+                    {era.name}
+                  </h2>
+                  <p className="text-sm text-[var(--text-muted)]">
+                    {era.year && (
+                      <>
+                        {t("Year")} {era.year} ·{" "}
+                      </>
+                    )}
+                    {t("{n} epochs", { n: era.epochs.length })}
+                  </p>
+                </header>
+                <ol>
+                  {era.epochs.map((epoch) => {
+                    const isExpanded = !!expandedEpochs[epoch.id];
+                    const unlocks = resolveUnlocks(epoch, maps, characters);
+                    const expands = epoch.expands_timeline || [];
+                    const earn = earnedBy[epoch.id] || epoch.unlock_info;
+                    const hasDetails = !!(epoch.description || expands.length);
+                    const panelId = `epoch-${epoch.id.toLowerCase()}`;
 
                     return (
-                      <div
+                      <li
                         key={epoch.id}
-                        className={`bg-[var(--bg-card)] rounded-lg border ${borderColor} hover:bg-[var(--bg-card-hover)] transition-all`}
+                        className={`relative pl-8 ${storyAccentClass(epoch.story_id)}`}
                       >
-                        <div
-                          className="p-4 cursor-pointer"
-                          onClick={() =>
-                            setExpandedEpochs((prev) => ({
-                              ...prev,
-                              [epoch.id]: !prev[epoch.id],
-                            }))
-                          }
-                        >
-                          <div className="flex items-start justify-between">
-                            <div className="flex items-center gap-2">
-                              <button
-                                type="button"
-                                aria-expanded={!!isExpanded}
-                                aria-label={epoch.title}
-                                className={`inline-block transition-transform text-[var(--text-muted)] text-xs ${isExpanded ? "rotate-90" : ""}`}
-                              >
-                                &gt;
-                              </button>
+                        <span
+                          aria-hidden
+                          className="absolute left-[1px] top-[22px] h-[11px] w-[11px] rounded-full border-2 border-[var(--bg-primary)] bg-current"
+                        />
+                        <div className="grid gap-x-8 gap-y-3 border-b border-[var(--border-subtle)] py-4 text-[var(--text-secondary)] md:grid-cols-[minmax(0,1fr)_auto]">
+                          <div className="min-w-0">
+                            <div className="flex items-start gap-3">
                               {epoch.image_url && (
                                 <img
                                   src={imageUrl(epoch.image_url)}
                                   alt={t("{name} epoch art", {
                                     name: epoch.title,
                                   })}
-                                  className="w-10 h-10 rounded object-cover border border-[var(--border-subtle)] flex-shrink-0"
+                                  className="h-12 w-12 flex-shrink-0 rounded border border-[var(--border-subtle)] object-cover"
                                   loading="lazy"
                                   crossOrigin="anonymous"
                                 />
                               )}
-                              <div>
-                                <h3 className="font-semibold text-[var(--text-primary)] flex flex-wrap items-center gap-2">
+                              <div className="min-w-0">
+                                <h3 className="flex flex-wrap items-center gap-x-3 gap-y-1">
                                   <Link
                                     href={`/timeline/${epoch.id.toLowerCase()}`}
-                                    className="hover:text-[var(--accent-gold)] transition-colors"
-                                    onClick={(e) => e.stopPropagation()}
+                                    className="-my-2 py-2 text-lg font-semibold text-[var(--text-primary)] hover:text-[var(--accent-gold)] transition-colors"
                                   >
                                     {epoch.title}
                                   </Link>
                                   {isBetaRow(epoch) && <BetaBadge />}
+                                  <span className="text-sm font-normal">
+                                    <StoryLabel
+                                      storyId={epoch.story_id}
+                                      name={
+                                        storyNames[
+                                          (epoch.story_id || "").toLowerCase()
+                                        ]
+                                      }
+                                    />
+                                  </span>
                                 </h3>
-                                <p className="text-[10px] text-[var(--text-muted)]">
-                                  {epoch.era_name}
-                                  {epoch.era_year &&
-                                  epoch.era_year !== "???" &&
-                                  epoch.era_year !== "0"
-                                    ? ` · ${epoch.era_year}`
-                                    : ""}
-                                  {epoch.unlock_info && (
-                                    <span className="ml-2">
-                                      ·{" "}
-                                      <RichDescription
-                                        text={epoch.unlock_info}
-                                      />
-                                    </span>
-                                  )}
-                                </p>
+                                {earn && (
+                                  <p className="mt-1 text-sm">
+                                    <RichDescription text={earn} />
+                                  </p>
+                                )}
+                                {epoch.unlock_text && (
+                                  <p className="mt-1 text-sm text-[var(--text-primary)]">
+                                    <RichDescription text={epoch.unlock_text} />
+                                  </p>
+                                )}
                               </div>
                             </div>
-                            {hasUnlocks && (
-                              <span className="text-[10px] px-1.5 py-0.5 rounded bg-[var(--bg-primary)] text-[var(--text-muted)] border border-[var(--border-subtle)] flex-shrink-0 ml-2">
-                                {t("Unlocks {items}", {
-                                  items: [
-                                    epoch.unlocks_cards?.length &&
-                                      t("{n} cards", {
-                                        n: epoch.unlocks_cards.length,
-                                      }),
-                                    epoch.unlocks_relics?.length &&
-                                      t("{n} relics", {
-                                        n: epoch.unlocks_relics.length,
-                                      }),
-                                    epoch.unlocks_potions?.length &&
-                                      t("{n} potions", {
-                                        n: epoch.unlocks_potions.length,
-                                      }),
-                                  ]
-                                    .filter(Boolean)
-                                    .join(", "),
-                                })}
-                              </span>
+                            {hasDetails && (
+                              <button
+                                type="button"
+                                aria-expanded={isExpanded}
+                                aria-controls={panelId}
+                                onClick={() =>
+                                  setExpandedEpochs((prev) => ({
+                                    ...prev,
+                                    [epoch.id]: !prev[epoch.id],
+                                  }))
+                                }
+                                className="-mb-2 mt-1 inline-flex min-h-[44px] items-center gap-2 text-sm text-[var(--text-muted)] hover:text-[var(--accent-gold)] transition-colors"
+                              >
+                                <span
+                                  aria-hidden
+                                  className={`inline-block transition-transform ${isExpanded ? "rotate-90" : ""}`}
+                                >
+                                  &gt;
+                                </span>
+                                {t("Description")}
+                              </button>
                             )}
-                          </div>
-                        </div>
-
-                        {isExpanded && (
-                          <div
-                            className={`border-t border-[var(--border-subtle)] px-4 pb-4 pt-3 border-l-2 ${leftBorder} ml-4 mr-2 mb-2 rounded-bl`}
-                          >
-                            {epoch.description && (
-                              <div className="text-sm text-[var(--text-secondary)] leading-relaxed mb-3 whitespace-pre-line">
-                                <RichDescription text={epoch.description} />
+                            {isExpanded && (
+                              <div id={panelId} className="max-w-prose pt-2">
+                                {epoch.description && (
+                                  <div className="whitespace-pre-line text-sm leading-relaxed">
+                                    <RichDescription text={epoch.description} />
+                                  </div>
+                                )}
+                                {expands.length > 0 && (
+                                  <p className="mt-3 text-sm">
+                                    <span className="text-[var(--text-muted)]">
+                                      {t("Expands timeline:")}
+                                    </span>{" "}
+                                    {expands.map((id, i) => (
+                                      <span key={id}>
+                                        {i > 0 && ", "}
+                                        <Link
+                                          prefetch={false}
+                                          href={`/timeline/${id.toLowerCase()}`}
+                                          className="text-[var(--text-primary)] underline decoration-[var(--border-accent)] underline-offset-4 hover:text-[var(--accent-gold)]"
+                                        >
+                                          {epochTitleMap[id] || prettyId(id)}
+                                        </Link>
+                                      </span>
+                                    ))}
+                                  </p>
+                                )}
                               </div>
                             )}
-
-                            {epoch.unlock_text && (
-                              <p className="text-xs text-[var(--text-muted)] italic mb-3">
-                                <RichDescription text={epoch.unlock_text} />
-                              </p>
-                            )}
-
-                            {epoch.unlocks_cards &&
-                              epoch.unlocks_cards.length > 0 && (
-                                <div className="mb-2">
-                                  <UnlockBadge
-                                    items={epoch.unlocks_cards}
-                                    type="cards"
-                                    cardMap={cardMap}
-                                    relicMap={relicMap}
-                                    potionMap={potionMap}
-                                  />
-                                </div>
-                              )}
-                            {epoch.unlocks_relics &&
-                              epoch.unlocks_relics.length > 0 && (
-                                <div className="mb-2">
-                                  <UnlockBadge
-                                    items={epoch.unlocks_relics}
-                                    type="relics"
-                                    cardMap={cardMap}
-                                    relicMap={relicMap}
-                                    potionMap={potionMap}
-                                  />
-                                </div>
-                              )}
-                            {epoch.unlocks_potions &&
-                              epoch.unlocks_potions.length > 0 && (
-                                <div className="mb-2">
-                                  <UnlockBadge
-                                    items={epoch.unlocks_potions}
-                                    type="potions"
-                                    cardMap={cardMap}
-                                    relicMap={relicMap}
-                                    potionMap={potionMap}
-                                  />
-                                </div>
-                              )}
-
-                            {epoch.expands_timeline &&
-                              epoch.expands_timeline.length > 0 && (
-                                <div className="flex flex-wrap gap-1 mt-2">
-                                  <span className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] mr-1">
-                                    {t("Expands timeline:")}
-                                  </span>
-                                  {epoch.expands_timeline.map((id) => (
-                                    <span
-                                      key={id}
-                                      className="text-[10px] px-1.5 py-0.5 rounded bg-special/10 text-special border border-special/30"
-                                    >
-                                      {epochTitleMap[id] ||
-                                        id
-                                          .replace(/_EPOCH$/, "")
-                                          .replace(/_/g, " ")
-                                          .replace(/\b\w/g, (c) =>
-                                            c.toUpperCase(),
-                                          )}
-                                    </span>
-                                  ))}
-                                </div>
-                              )}
                           </div>
-                        )}
-                      </div>
+                          <UnlockShelf
+                            unlocks={unlocks}
+                            lang={lang}
+                            className="md:justify-end"
+                          />
+                        </div>
+                      </li>
                     );
                   })}
-                </div>
-              </div>
-            );
-          })}
-        </div>
+                </ol>
+              </section>
+            ))}
+          </div>
+        </>
       )}
     </>
   );
