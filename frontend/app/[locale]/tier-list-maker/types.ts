@@ -103,6 +103,7 @@ export interface TierEntity {
   /** Beta-only entity (in the current beta but not main); shown with a
    * Beta marker on its chip. */
   beta?: boolean;
+  multiplayerOnly?: boolean;
   /** Short text drawn over the art, used by ascensions to show the level on
    * the shared flame icon. */
   badge?: string;

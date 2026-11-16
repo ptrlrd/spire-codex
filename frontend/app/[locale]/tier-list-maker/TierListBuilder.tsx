@@ -100,6 +100,8 @@ function inlineOklchAsRgb(root: HTMLElement): () => void {
   };
 }
 
+const PLAYERS_KEY = "cards-players";
+
 // Synthetic tray filter that matches beta-only entities by their `beta` flag
 // instead of their color/pool group, so beta content has a one-click pill.
 const BETA_GROUP = "__beta__";
@@ -208,6 +210,11 @@ export default function TierListBuilder({
   );
   // Secondary tray filter: rarity (independent of the pool/character pills).
   const [rarityFilter, setRarityFilter] = useState<string>("");
+  const [players, setPlayers] = useState("");
+  useEffect(() => {
+    const saved = localStorage.getItem(PLAYERS_KEY);
+    if (saved === "solo" || saved === "multi") setPlayers(saved);
+  }, []);
   const [activeId, setActiveId] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -540,6 +547,11 @@ export default function TierListBuilder({
     });
   }, [entities]);
 
+  const hasMultiplayer = useMemo(
+    () => entities.some((e) => e.multiplayerOnly),
+    [entities],
+  );
+
   const filteredTray = useMemo(() => {
     const q = search.trim().toLowerCase();
     return trayItems.filter((id) => {
@@ -549,10 +561,12 @@ export default function TierListBuilder({
         if (!e.beta) return false;
       } else if (groupFilter && e.group !== groupFilter) return false;
       if (rarityFilter && e.rarity !== rarityFilter) return false;
+      if (players === "solo" && e.multiplayerOnly) return false;
+      if (players === "multi" && !e.multiplayerOnly) return false;
       if (q && !e.name.toLowerCase().includes(q)) return false;
       return true;
     });
-  }, [trayItems, search, groupFilter, rarityFilter, entityMap]);
+  }, [trayItems, search, groupFilter, rarityFilter, players, entityMap]);
 
   return (
     <div className="mx-auto max-w-[1800px] px-4 sm:px-6 py-6">
@@ -688,11 +702,11 @@ export default function TierListBuilder({
         </button>
 
         <div className="mt-6">
-          <div className="mb-2 flex items-center justify-between gap-2">
+          <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
             <h2 className="text-sm font-semibold uppercase tracking-wide text-[var(--text-secondary)]">
               {t(ENTITY_LABEL[entityType])} ({filteredTray.length})
             </h2>
-            <div className="flex items-center gap-2">
+            <div className="flex min-w-0 flex-wrap items-center gap-2">
               {entityType === "cards" && (
                 <select
                   value={cardLang}
@@ -706,6 +720,21 @@ export default function TierListBuilder({
                       {l.label}
                     </option>
                   ))}
+                </select>
+              )}
+              {hasMultiplayer && (
+                <select
+                  value={players}
+                  onChange={(e) => {
+                    setPlayers(e.target.value);
+                    localStorage.setItem(PLAYERS_KEY, e.target.value);
+                  }}
+                  className="rounded border border-[var(--border-subtle)] bg-[var(--bg-card)] px-2 py-1 text-sm text-[var(--text-primary)] outline-none focus:border-info"
+                  aria-label={t("Players")}
+                >
+                  <option value="">{t("All cards")}</option>
+                  <option value="solo">{t("Solo")}</option>
+                  <option value="multi">{t("Multiplayer only")}</option>
                 </select>
               )}
               {rarityOptions.length > 0 && (

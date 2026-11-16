@@ -16,6 +16,7 @@ interface RawEntity {
   pool?: string;
   // Cards/relics/potions carry a clean rarity key (Common, Rare, Ancient, …).
   rarity_key?: string;
+  multiplayer_only?: boolean | null;
   // Monsters carry their encounters, each tagged with the act it appears in.
   encounters?: { act?: string | null }[];
 }
@@ -128,6 +129,7 @@ export async function fetchEntities(type: EntityType): Promise<TierEntity[]> {
     // it as no rarity so it doesn't pollute the rarity dropdown.
     rarity: e.rarity_key && e.rarity_key !== "None" ? e.rarity_key : undefined,
     ...(beta && { beta: true }),
+    ...(e.multiplayer_only && { multiplayerOnly: true }),
   });
 
   // Beta-only entities join the pool so tier lists can rank unreleased
