@@ -160,110 +160,652 @@
     },
     "merchant_entries": [
       {
-        "id": "CARD_ENCHANT",
-        "name": "Enchantment",
-        "description": "[gold]Enchant[/gold] a card with [purple]Enchantment[/purple]."
-      },
-      {
-        "id": "CARD_PACKS",
-        "name": "Card Packs",
-        "description": "Choose [blue]1[/blue] of [blue]2[/blue] packs of cards to add to your [gold]Deck[/gold]."
-      },
-      {
-        "id": "CARD_REMOVAL",
-        "name": "Card Removal Service",
-        "description": "Remove a card from your [gold]Deck[/gold]."
-      },
-      {
-        "id": "CARD_REWARD_OF_EACH_RARITY",
-        "name": "Cursed Card Rewards",
-        "description": "Receive [red]1[/red] random [red]Curse[/red].\nReceive [blue]1[/blue] [gold]Common[/gold], [gold]Uncommon[/gold] and [gold]Rare[/gold] card reward."
-      },
-      {
-        "id": "CARD_REWARDS",
-        "name": "Card Rewards",
-        "description": "Receive [blue]2[/blue] card rewards."
-      },
-      {
-        "id": "CARD_TRANSFORM",
-        "name": "Card Transform Service",
-        "description": "[gold]Transform[/gold] a card in your [gold]Deck[/gold]."
-      },
-      {
         "id": "CARD_UPGRADE",
         "name": "Card Upgrade Service",
-        "description": "[gold]Upgrade[/gold] a card in your [gold]Deck[/gold]."
-      },
-      {
-        "id": "COLORLESS_CARD_REWARD",
-        "name": "Colorless Card Reward",
-        "description": "Receive [blue]1[/blue] [gold]Colorless[/gold] card reward."
-      },
-      {
-        "id": "ENCHANTED_CARD_REWARD",
-        "name": "Enchanted Card Reward",
-        "description": "Receive [blue]1[/blue] [gold]Enchanted[/gold] card reward."
-      },
-      {
-        "id": "FULL_HEAL_AND_MAX_HP",
-        "name": "Cursed Heal",
-        "description": "Receive [red]1[/red] random [red]Curse[/red].\nRaise your Max HP by [blue]6[/blue] and heal all of your HP."
-      },
-      {
-        "id": "GLAM",
-        "name": "Cursed Enchantment",
-        "description": "Receive [red]1[/red] random [red]Curse[/red].\n[gold]Enchant[/gold] a card with [purple]Enchantment[/purple]."
-      },
-      {
-        "id": "POTIONS",
-        "name": "Potions",
-        "description": "Gain [blue]1[/blue] potion slot and procure [blue]2[/blue] random potions."
-      },
-      {
-        "id": "PRISMATIC_CARD_REWARD",
-        "name": "Character Card Reward",
-        "description": "Receive [blue]1[/blue] [gold]Character[/gold] card reward."
-      },
-      {
-        "id": "RANDOM_UPGRADES",
-        "name": "Random Upgrades",
-        "description": "Upgrade [blue]2[/blue] random cards in your [gold]Deck[/gold]."
-      },
-      {
-        "id": "RARE_CARD_REWARD",
-        "name": "Rare Card Reward",
-        "description": "Receive [blue]1[/blue] rare card reward."
-      },
-      {
-        "id": "RELIC",
-        "name": "Relic",
-        "description": "Obtain [blue]1[/blue] random [gold]Relic[/gold]."
-      },
-      {
-        "id": "TWO_MORE_CHOICES",
-        "name": "Cursed Choices",
-        "description": "Receive [red]1[/red] random [red]Curse[/red].\nThe Merchant allows you to purchase two more wares."
-      },
-      {
-        "id": "TWO_RELICS",
-        "name": "Cursed Relics",
-        "description": "Receive [red]1[/red] random [red]Curse[/red].\nObtain [blue]2[/blue] random [gold]Relics[/gold]."
+        "description": "[gold]Upgrade[/gold] a card in your [gold]Deck[/gold].",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_upgrade.webp"
       },
       {
         "id": "UPGRADED_CARD_REWARD",
         "name": "Upgraded Card Reward",
-        "description": "Receive [blue]1[/blue] [gold]Upgraded[/gold] card reward."
+        "description": "Receive [blue]1[/blue] [gold]Upgraded[/gold] card reward.",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/upgraded_card_reward.webp"
+      },
+      {
+        "id": "RANDOM_UPGRADES",
+        "name": "Random Upgrades",
+        "description": "Upgrade [blue]2[/blue] random cards in your [gold]Deck[/gold].",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/random_upgrades.webp"
+      },
+      {
+        "id": "CARD_TRANSFORM",
+        "name": "Card Transform Service",
+        "description": "[gold]Transform[/gold] a card in your [gold]Deck[/gold].",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_transform.webp"
+      },
+      {
+        "id": "CARD_REMOVAL",
+        "name": "Card Removal Service",
+        "description": "Remove a card from your [gold]Deck[/gold].",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_removal.webp"
+      },
+      {
+        "id": "CARD_REWARDS",
+        "name": "Card Rewards",
+        "description": "Receive [blue]2[/blue] card rewards.",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_rewards.webp"
+      },
+      {
+        "id": "COLORLESS_CARD_REWARD",
+        "name": "Colorless Card Reward",
+        "description": "Receive [blue]1[/blue] [gold]Colorless[/gold] card reward.",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/colorless_card_reward.webp"
+      },
+      {
+        "id": "POTIONS",
+        "name": "Potions",
+        "description": "Gain [blue]1[/blue] potion slot and procure [blue]2[/blue] random potions.",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/potions.webp"
+      },
+      {
+        "id": "CARD_ENCHANT",
+        "name": "Enchantment",
+        "description": "[gold]Enchant[/gold] a card with [purple]Enchantment[/purple].",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_enchant.webp"
+      },
+      {
+        "id": "ENCHANTED_CARD_REWARD",
+        "name": "Enchanted Card Reward",
+        "description": "Receive [blue]1[/blue] [gold]Enchanted[/gold] card reward.",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/enchanted_card_reward.webp"
+      },
+      {
+        "id": "PRISMATIC_CARD_REWARD",
+        "name": "Character Card Reward",
+        "description": "Receive [blue]1[/blue] [gold]Character[/gold] card reward.",
+        "cursed": false,
+        "rare": true,
+        "image_url": "/static/images/beta/v0.113.1/blitz/prismatic_card_reward.webp"
+      },
+      {
+        "id": "RARE_CARD_REWARD",
+        "name": "Rare Card Reward",
+        "description": "Receive [blue]1[/blue] rare card reward.",
+        "cursed": false,
+        "rare": true,
+        "image_url": "/static/images/beta/v0.113.1/blitz/rare_card_reward.webp"
       },
       {
         "id": "UPGRADED_RARE_CARD",
         "name": "Upgraded Rare Card",
-        "description": "Receive [blue]1[/blue] random [gold]Upgraded[/gold] rare card."
+        "description": "Receive [blue]1[/blue] random [gold]Upgraded[/gold] rare card.",
+        "cursed": false,
+        "rare": true,
+        "image_url": "/static/images/beta/v0.113.1/blitz/upgraded_rare_card.webp"
+      },
+      {
+        "id": "RELIC",
+        "name": "Relic",
+        "description": "Obtain [blue]1[/blue] random [gold]Relic[/gold].",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/relic.webp"
+      },
+      {
+        "id": "GLAM",
+        "name": "Cursed มนตร์สวยหรู",
+        "description": "Receive [red]1[/red] random [red]Curse[/red].\n[gold]Enchant[/gold] a card with [purple]มนตร์สวยหรู[/purple].",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/glam.webp"
+      },
+      {
+        "id": "TWO_MORE_CHOICES",
+        "name": "Cursed Choices",
+        "description": "Receive [red]1[/red] random [red]Curse[/red].\nThe Merchant allows you to purchase two more wares.",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/two_more_choices.webp"
+      },
+      {
+        "id": "CARD_REWARD_OF_EACH_RARITY",
+        "name": "Cursed Card Rewards",
+        "description": "Receive [red]1[/red] random [red]Curse[/red].\nReceive [blue]1[/blue] [gold]Common[/gold], [gold]Uncommon[/gold] and [gold]Rare[/gold] card reward.",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_reward_of_each_rarity.webp"
       },
       {
         "id": "UPGRADED_RARE_CARD_REWARD",
         "name": "Cursed Upgraded Rare Card Reward",
-        "description": "Receive [red]1[/red] random [red]Curse[/red].\nReceive [blue]1[/blue] [gold]Upgraded[/gold] rare card reward."
+        "description": "Receive [red]1[/red] random [red]Curse[/red].\nReceive [blue]1[/blue] [gold]Upgraded[/gold] rare card reward.",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/upgraded_rare_card_reward.webp"
+      },
+      {
+        "id": "TWO_RELICS",
+        "name": "Cursed Relics",
+        "description": "Receive [red]1[/red] random [red]Curse[/red].\nObtain [blue]2[/blue] random [gold]Relics[/gold].",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/two_relics.webp"
+      },
+      {
+        "id": "FULL_HEAL_AND_MAX_HP",
+        "name": "Cursed Heal",
+        "description": "Receive [red]1[/red] random [red]Curse[/red].\nRaise your Max HP by [blue]6[/blue] and heal all of your HP.",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/full_heal_and_max_hp.webp"
       }
-    ]
+    ],
+    "act_layout": [
+      "ANCIENT",
+      "MONSTER",
+      "MONSTER",
+      "SHOP",
+      "ELITE",
+      "TREASURE",
+      "REST_SITE",
+      "BOSS"
+    ],
+    "act_rooms": [
+      {
+        "type": "ANCIENT",
+        "name": "เทพโบราณ",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_ancient.webp"
+      },
+      {
+        "type": "MONSTER",
+        "name": "ศัตรู",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_monster.webp",
+        "easy": true
+      },
+      {
+        "type": "MONSTER",
+        "name": "ศัตรู",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_monster.webp",
+        "easy": false
+      },
+      {
+        "type": "SHOP",
+        "name": "พ่อค้า",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_shop.webp"
+      },
+      {
+        "type": "ELITE",
+        "name": "ลูกพี่",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_elite.webp"
+      },
+      {
+        "type": "TREASURE",
+        "name": "สมบัติ",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_treasure.webp"
+      },
+      {
+        "type": "REST_SITE",
+        "name": "พักผ่อน",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_rest_site.webp"
+      },
+      {
+        "type": "BOSS",
+        "name": "บอส",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_boss.webp"
+      }
+    ],
+    "weak_encounters_per_act": 1,
+    "floors_per_act": 8,
+    "encounters_per_act": 4,
+    "neow_details": {
+      "cards_offered": 10,
+      "cards_picked": 3,
+      "rarity_odds": {
+        "common": 0.55,
+        "uncommon": 0.4,
+        "rare": 0.05
+      },
+      "prompt": "Select any [blue]3[/blue] cards to add to your Deck."
+    },
+    "merchant": {
+      "offers_shown": 6,
+      "normal_offers_shown": 5,
+      "cursed_offers_shown": 1,
+      "picks": 3,
+      "rare_offer_weight": 0.5,
+      "card_rarity_odds": {
+        "common": 0.4,
+        "uncommon": 0.5,
+        "rare": 0.1
+      },
+      "enchantments": [
+        {
+          "id": "SHARP",
+          "name": "มนตร์แหลมคม",
+          "amount": 2
+        },
+        {
+          "id": "NIMBLE",
+          "name": "มนตร์ปราดเปรียว",
+          "amount": 3
+        },
+        {
+          "id": "ADROIT",
+          "name": "มนตร์คล่องแคล่ว",
+          "amount": 3
+        },
+        {
+          "id": "STEADY",
+          "name": "มนตร์มั่นคง",
+          "amount": 1
+        },
+        {
+          "id": "SWIFT",
+          "name": "มนตร์ฉับพลัน",
+          "amount": 2
+        },
+        {
+          "id": "VIGOROUS",
+          "name": "มนตร์ชีวิตชีวา",
+          "amount": 5
+        }
+      ],
+      "curses": [
+        {
+          "id": "CLUMSY",
+          "name": "ความซุ่มซ่าม"
+        },
+        {
+          "id": "DECAY",
+          "name": "ความเสื่อมสลาย"
+        },
+        {
+          "id": "DOUBT",
+          "name": "ความเคลือบแคลง"
+        },
+        {
+          "id": "GUILTY",
+          "name": "มีความผิด"
+        },
+        {
+          "id": "INJURY",
+          "name": "ความเสียหาย"
+        },
+        {
+          "id": "NORMALITY",
+          "name": "จำกัดฐานะ"
+        },
+        {
+          "id": "REGRET",
+          "name": "เสียใจภายหลัง"
+        },
+        {
+          "id": "SHAME",
+          "name": "ความละอาย"
+        },
+        {
+          "id": "WRITHE",
+          "name": "อาการชัก"
+        }
+      ]
+    },
+    "rewards": [
+      {
+        "room": "MONSTER",
+        "card_rarity": "Common",
+        "card_choices": 3,
+        "relics": 0,
+        "potion": "after_first_fight",
+        "room_name": "ศัตรู"
+      },
+      {
+        "room": "ELITE",
+        "card_rarity": "Uncommon",
+        "card_choices": 3,
+        "relics": 2,
+        "potion": null,
+        "room_name": "ลูกพี่"
+      },
+      {
+        "room": "BOSS",
+        "card_rarity": "Rare",
+        "card_choices": 3,
+        "relics": 0,
+        "potion": "always",
+        "final_boss": false,
+        "room_name": "บอส"
+      }
+    ],
+    "reward_upgrades_by_act": [
+      0,
+      1,
+      2
+    ],
+    "treasure_extra_relics": {
+      "multiplayer": 2,
+      "singleplayer": 1
+    },
+    "ascension_ladder": [
+      {
+        "level": 1,
+        "id": "WEARY_TRAVELER",
+        "name": "นักเดินทางอิดโรย",
+        "description": "เทพโบราณฟื้นฟูเพียง [blue]80%[/blue] ของ HP ที่หายไป"
+      },
+      {
+        "level": 2,
+        "id": "TIGHT_BELT",
+        "name": "เข็มขัดสั้น",
+        "description": "เดินทางด้วยช่องเก็บขวดยาน้อยลง [blue]1[/blue] ช่อง"
+      },
+      {
+        "level": 3,
+        "id": "TOUGH_ENEMIES",
+        "name": "ศัตรูทนทาน",
+        "description": "ศัตรูทั้งหมดถูกสังหารได้ยากขึ้น"
+      },
+      {
+        "level": 4,
+        "id": "DEADLY_ENEMIES",
+        "name": "ศัตรูร้ายกาจ",
+        "description": "ศัตรูทั้งหมดมีการโจมตีที่ร้ายแรงมากขึ้น"
+      },
+      {
+        "level": 5,
+        "id": "ASCENDERS_BANE",
+        "name": "คำสาปผู้บรรลุ",
+        "description": "เริ่มการเดินทางด้วย[red]คำสาป[/red]"
+      }
+    ],
+    "banned_cards": [
+      {
+        "id": "DEBT",
+        "name": "หนี้สิน"
+      },
+      {
+        "id": "HAND_OF_GREED",
+        "name": "มือแห่งความโลภ"
+      },
+      {
+        "id": "MY_SHINIES",
+        "name": "My Shinies"
+      },
+      {
+        "id": "ROYALTIES",
+        "name": "ค่าภาคหลวง"
+      }
+    ],
+    "banned_relics": [
+      {
+        "id": "AMETHYST_AUBERGINE",
+        "name": "Amethyst Aubergine",
+        "image_url": "/static/images/beta/v0.113.1/relics/amethyst_aubergine.webp"
+      },
+      {
+        "id": "BLACK_STAR",
+        "name": "ดาวดำ",
+        "image_url": "/static/images/beta/v0.113.1/relics/black_star.webp"
+      },
+      {
+        "id": "BOOK_OF_FIVE_RINGS",
+        "name": "Book of Five Rings",
+        "image_url": "/static/images/beta/v0.113.1/relics/book_of_five_rings.webp"
+      },
+      {
+        "id": "BOWLER_HAT",
+        "name": "Bowler Hat",
+        "image_url": "/static/images/beta/v0.113.1/relics/bowler_hat.webp"
+      },
+      {
+        "id": "CURSED_PEARL",
+        "name": "ไข่มุกต้องสาป",
+        "image_url": "/static/images/beta/v0.113.1/relics/cursed_pearl.webp"
+      },
+      {
+        "id": "DOWSING_ROD",
+        "name": "Dowsing Rod",
+        "image_url": "/static/images/beta/v0.113.1/relics/dowsing_rod.webp"
+      },
+      {
+        "id": "DRAGON_FRUIT",
+        "name": "แก้วมังกร",
+        "image_url": "/static/images/beta/v0.113.1/relics/dragon_fruit.webp"
+      },
+      {
+        "id": "DREAM_CATCHER",
+        "name": "ตาข่ายดักฝันร้าย",
+        "image_url": "/static/images/beta/v0.113.1/relics/dream_catcher.webp"
+      },
+      {
+        "id": "DRIFTWOOD",
+        "name": "Driftwood",
+        "image_url": "/static/images/beta/v0.113.1/relics/driftwood.webp"
+      },
+      {
+        "id": "ECTOPLASM",
+        "name": "เอกโตปลาสซึม",
+        "image_url": "/static/images/beta/v0.113.1/relics/ectoplasm.webp"
+      },
+      {
+        "id": "ETERNAL_FEATHER",
+        "name": "ขนนกนิรันดร์",
+        "image_url": "/static/images/beta/v0.113.1/relics/eternal_feather.webp"
+      },
+      {
+        "id": "FISHING_ROD",
+        "name": "เบ็ดตกปลา",
+        "image_url": "/static/images/beta/v0.113.1/relics/fishing_rod.webp"
+      },
+      {
+        "id": "FUR_COAT",
+        "name": "เสื้อคลุมขนสัตว์",
+        "image_url": "/static/images/beta/v0.113.1/relics/fur_coat.webp"
+      },
+      {
+        "id": "GIRYA",
+        "name": "เกอร์ยา",
+        "image_url": "/static/images/beta/v0.113.1/relics/girya.webp"
+      },
+      {
+        "id": "GOLDEN_COMPASS",
+        "name": "เข็มทิศทองคำ",
+        "image_url": "/static/images/beta/v0.113.1/relics/golden_compass.webp"
+      },
+      {
+        "id": "GOLDEN_PEARL",
+        "name": "ไข่มุกทองคำ",
+        "image_url": "/static/images/beta/v0.113.1/relics/golden_pearl.webp"
+      },
+      {
+        "id": "JUZU_BRACELET",
+        "name": "สร้อยข้อมือลูกประคำ",
+        "image_url": "/static/images/beta/v0.113.1/relics/juzu_bracelet.webp"
+      },
+      {
+        "id": "LASTING_CANDY",
+        "name": "Lasting Candy",
+        "image_url": "/static/images/beta/v0.113.1/relics/lasting_candy.webp"
+      },
+      {
+        "id": "LORDS_PARASOL",
+        "name": "Lord's Parasol",
+        "image_url": "/static/images/beta/v0.113.1/relics/lords_parasol.webp"
+      },
+      {
+        "id": "LUCKY_FYSH",
+        "name": "ปฬานำโชค",
+        "image_url": "/static/images/beta/v0.113.1/relics/lucky_fysh.webp"
+      },
+      {
+        "id": "MAW_BANK",
+        "name": "กระปุกออมสินรูปมอว์",
+        "image_url": "/static/images/beta/v0.113.1/relics/maw_bank.webp"
+      },
+      {
+        "id": "MEAL_TICKET",
+        "name": "คูปองอาหาร",
+        "image_url": "/static/images/beta/v0.113.1/relics/meal_ticket.webp"
+      },
+      {
+        "id": "MEAT_CLEAVER",
+        "name": "Meat Cleaver",
+        "image_url": "/static/images/beta/v0.113.1/relics/meat_cleaver.webp"
+      },
+      {
+        "id": "MEMBERSHIP_CARD",
+        "name": "บัตรสมาชิก",
+        "image_url": "/static/images/beta/v0.113.1/relics/membership_card.webp"
+      },
+      {
+        "id": "MINIATURE_TENT",
+        "name": "Miniature Tent",
+        "image_url": "/static/images/beta/v0.113.1/relics/miniature_tent.webp"
+      },
+      {
+        "id": "OLD_COIN",
+        "name": "เหรียญเก่า",
+        "image_url": "/static/images/beta/v0.113.1/relics/old_coin.webp"
+      },
+      {
+        "id": "PAELS_CLAW",
+        "name": "Pael's Claw",
+        "image_url": "/static/images/beta/v0.113.1/relics/paels_claw.webp"
+      },
+      {
+        "id": "PAELS_GROWTH",
+        "name": "Pael's Growth",
+        "image_url": "/static/images/beta/v0.113.1/relics/paels_growth.webp"
+      },
+      {
+        "id": "PAELS_WING",
+        "name": "Pael's Wing",
+        "image_url": "/static/images/beta/v0.113.1/relics/paels_wing.webp"
+      },
+      {
+        "id": "PLANISPHERE",
+        "name": "แผนที่ดวงดาว",
+        "image_url": "/static/images/beta/v0.113.1/relics/planisphere.webp"
+      },
+      {
+        "id": "PRAYER_WHEEL",
+        "name": "กงล้ออธิษฐาน",
+        "image_url": "/static/images/beta/v0.113.1/relics/prayer_wheel.webp"
+      },
+      {
+        "id": "PUMPKIN_CANDLE",
+        "name": "เทียนไขฟักทอง",
+        "image_url": "/static/images/beta/v0.113.1/relics/pumpkin_candle.webp"
+      },
+      {
+        "id": "REGAL_PILLOW",
+        "name": "หมอนหรู",
+        "image_url": "/static/images/beta/v0.113.1/relics/regal_pillow.webp"
+      },
+      {
+        "id": "SEAL_OF_GOLD",
+        "name": "Seal of Gold",
+        "image_url": "/static/images/beta/v0.113.1/relics/seal_of_gold.webp"
+      },
+      {
+        "id": "SHOVEL",
+        "name": "พลั่ว",
+        "image_url": "/static/images/beta/v0.113.1/relics/shovel.webp"
+      },
+      {
+        "id": "SIGNET_RING",
+        "name": "Signet Ring",
+        "image_url": "/static/images/beta/v0.113.1/relics/signet_ring.webp"
+      },
+      {
+        "id": "SILKEN_TRESS",
+        "name": "ปอยผมแพรไหม",
+        "image_url": "/static/images/beta/v0.113.1/relics/silken_tress.webp"
+      },
+      {
+        "id": "STONE_HUMIDIFIER",
+        "name": "Stone Humidifier",
+        "image_url": "/static/images/beta/v0.113.1/relics/stone_humidifier.webp"
+      },
+      {
+        "id": "THE_COURIER",
+        "name": "สัตว์ส่งของ",
+        "image_url": "/static/images/beta/v0.113.1/relics/the_courier.webp"
+      },
+      {
+        "id": "TINY_MAILBOX",
+        "name": "Tiny Mailbox",
+        "image_url": "/static/images/beta/v0.113.1/relics/tiny_mailbox.webp"
+      },
+      {
+        "id": "TOY_BOX",
+        "name": "กล่องของเล่น",
+        "image_url": "/static/images/beta/v0.113.1/relics/toy_box.webp"
+      },
+      {
+        "id": "VENERABLE_TEA_SET",
+        "name": "ชุดชาทรงเกียรติ",
+        "image_url": "/static/images/beta/v0.113.1/relics/venerable_tea_set.webp"
+      },
+      {
+        "id": "WHITE_BEAST_STATUE",
+        "name": "รูปปั้นสัตว์เผือก",
+        "image_url": "/static/images/beta/v0.113.1/relics/white_beast_statue.webp"
+      },
+      {
+        "id": "WINGED_BOOTS",
+        "name": "รองเท้าติดปีก",
+        "image_url": "/static/images/beta/v0.113.1/relics/winged_boots.webp"
+      }
+    ],
+    "late_relics": {
+      "from_floor": 21,
+      "relics": [
+        {
+          "id": "FROZEN_EGG",
+          "name": "ไข่แช่แข็ง",
+          "image_url": "/static/images/beta/v0.113.1/relics/frozen_egg.webp"
+        },
+        {
+          "id": "MOLTEN_EGG",
+          "name": "ไข่ร้อนระอุ",
+          "image_url": "/static/images/beta/v0.113.1/relics/molten_egg.webp"
+        },
+        {
+          "id": "POTION_BELT",
+          "name": "เข็มขัดขวดยา",
+          "image_url": "/static/images/beta/v0.113.1/relics/potion_belt.webp"
+        },
+        {
+          "id": "TOXIC_EGG",
+          "name": "ไข่พิษ",
+          "image_url": "/static/images/beta/v0.113.1/relics/toxic_egg.webp"
+        },
+        {
+          "id": "WHITE_STAR",
+          "name": "ดาวขาว",
+          "image_url": "/static/images/beta/v0.113.1/relics/white_star.webp"
+        }
+      ]
+    }
   }
 ]

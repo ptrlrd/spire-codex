@@ -6,13 +6,13 @@ import re
 from pathlib import Path
 
 from parser_paths import DECOMPILED, loc_dir as _loc_dir, data_dir as _data_dir
+import blitz_mode
 
 GAME_MODE_FILE = DECOMPILED / "MegaCrit.Sts2.Core.Runs" / "GameMode.cs"
 ASCENSION_MANAGER_FILE = (
     DECOMPILED / "MegaCrit.Sts2.Core.Entities.Ascension" / "AscensionManager.cs"
 )
 ASCENSION_HELPER_FILE = DECOMPILED / "MegaCrit.Sts2.Core.Helpers" / "AscensionHelper.cs"
-MERCHANT_PREFIX = "MERCHANT.blitz."
 DOMINION_PREFIX = "DREAD."
 
 
@@ -35,15 +35,6 @@ def _unrevealed(text: str | None) -> str | None:
     if text is None:
         return None
     return re.sub(r"\{IsRevealed:([^|{}]*)\|([^{}]*)\}", r"\2", text)
-
-
-def _fill_placeholders(text: str) -> str:
-    """The merchant text names its enchantment or character at runtime; print
-    the placeholder's own name and drop the count suffix it would carry."""
-    text = re.sub(r"\{\}", "", text)
-    while re.search(r"\{\w+:[^{}]*\}", text):
-        text = re.sub(r"\{\w+:[^{}]*\}", "", text)
-    return re.sub(r"\{(\w+)\}", r"\1", text).strip()
 
 
 def game_mode_ids(path: Path = GAME_MODE_FILE) -> list[str]:
@@ -101,7 +92,7 @@ def _rules(ascension: dict, menu: dict, mode: str) -> list[str]:
             re.DOTALL,
         )
         numbered = block.group(1).split("\n") if block else []
-    rules = [re.sub(r"^\s*\d+\.\s*", "", line).strip() for line in numbered]
+    rules = [re.sub(r"^\s*\d+\s*[.、．]\s*", "", line).strip() for line in numbered]
     return [rule for rule in rules if rule and "{" not in rule]
 
 
@@ -133,24 +124,6 @@ def _dominions(ascension: dict, encounters: dict) -> list[dict]:
                 "boss_name": boss_name,
                 "name": title.replace("{BossName}", boss_name) or boss_name,
                 "description": ascension[key],
-            }
-        )
-    return out
-
-
-def _merchant_entries(merchant: dict) -> list[dict]:
-    out = []
-    for key in sorted(merchant):
-        if not (key.startswith(MERCHANT_PREFIX) and key.endswith(".title")):
-            continue
-        entry = key[len(MERCHANT_PREFIX) : -len(".title")]
-        out.append(
-            {
-                "id": entry.removesuffix("_entry").upper(),
-                "name": _fill_placeholders(merchant[key]),
-                "description": _fill_placeholders(
-                    merchant.get(f"{MERCHANT_PREFIX}{entry}.description", "")
-                ),
             }
         )
     return out
@@ -196,7 +169,22 @@ def parse_game_modes(loc_dir: Path, mode_ids: list[str] | None = None) -> list[d
                     "name": ascension.get("BLITZ.NEOW.title", name),
                     "description": ascension["BLITZ.NEOW.description"],
                 }
-            row["merchant_entries"] = _merchant_entries(merchant) or None
+            enchantments = _load(loc_dir, "enchantments")
+            row["merchant_entries"] = (
+                blitz_mode.merchant_entries(merchant, enchantments) or None
+            )
+            row.update(
+                blitz_mode.blitz_details(
+                    {
+                        "ascension": ascension,
+                        "enchantments": enchantments,
+                        "cards": _load(loc_dir, "cards"),
+                        "relics": _load(loc_dir, "relics"),
+                        "map": _load(loc_dir, "map"),
+                    },
+                    ladder,
+                )
+            )
         if mode == "DREAD":
             row["dominions"] = _dominions(ascension, encounters) or None
             if "DREAD_ROTATION.title" in tips:

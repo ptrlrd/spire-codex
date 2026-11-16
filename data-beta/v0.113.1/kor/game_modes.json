@@ -160,110 +160,652 @@
     },
     "merchant_entries": [
       {
-        "id": "CARD_ENCHANT",
-        "name": "Enchantment",
-        "description": "카드 1장에 [purple]Enchantment[/purple] [gold]인챈트[/gold]합니다."
-      },
-      {
-        "id": "CARD_PACKS",
-        "name": "카드 팩",
-        "description": "카드 팩 [blue]2[/blue]개 중 [blue]1[/blue]개를 선택해 [gold]덱[/gold]에 추가합니다."
-      },
-      {
-        "id": "CARD_REMOVAL",
-        "name": "카드 제거 서비스",
-        "description": "[gold]덱[/gold]에서 카드를 1장 제거합니다."
-      },
-      {
-        "id": "CARD_REWARD_OF_EACH_RARITY",
-        "name": "저주받은 카드 보상",
-        "description": "무작위 [red]저주[/red]를 [red]1[/red]장 받습니다.\n[gold]일반[/gold], [gold]고급[/gold], [gold]희귀[/gold] 카드 보상을 [blue]1[/blue]번 받습니다."
-      },
-      {
-        "id": "CARD_REWARDS",
-        "name": "카드 보상",
-        "description": "카드 보상을 [blue]2[/blue]번 받습니다."
-      },
-      {
-        "id": "CARD_TRANSFORM",
-        "name": "카드 변화 서비스",
-        "description": "[gold]덱[/gold]에서 카드를 1장 [gold]변화[/gold]시킵니다."
-      },
-      {
         "id": "CARD_UPGRADE",
         "name": "카드 강화 서비스",
-        "description": "[gold]덱[/gold]에서 카드를 1장 [gold]강화[/gold]합니다."
-      },
-      {
-        "id": "COLORLESS_CARD_REWARD",
-        "name": "무색 카드 보상",
-        "description": "[gold]무색[/gold] 카드 보상을 [blue]1[/blue]번 받습니다."
-      },
-      {
-        "id": "ENCHANTED_CARD_REWARD",
-        "name": "인챈트된 카드 보상",
-        "description": "[gold]인챈트[/gold]된 카드 보상을 [blue]1[/blue]번 받습니다."
-      },
-      {
-        "id": "FULL_HEAL_AND_MAX_HP",
-        "name": "저주받은 치유",
-        "description": "무작위 [red]저주[/red]를 [red]1[/red]장 받습니다.\n최대 체력이 [blue]6[/blue] 증가하고 체력을 모두 회복합니다."
-      },
-      {
-        "id": "GLAM",
-        "name": "저주받은 Enchantment",
-        "description": "무작위 [red]저주[/red]를 [red]1[/red]장 받습니다.\n카드 1장에 [purple]Enchantment[/purple]를 [gold]인챈트[/gold]합니다."
-      },
-      {
-        "id": "POTIONS",
-        "name": "포션",
-        "description": "포션 슬롯을 [blue]1[/blue]개 얻고 무작위 포션을 [blue]2[/blue]개 생성합니다."
-      },
-      {
-        "id": "PRISMATIC_CARD_REWARD",
-        "name": "Character 카드 보상",
-        "description": "[gold]Character[/gold] 카드 보상을 [blue]1[/blue]번 받습니다."
-      },
-      {
-        "id": "RANDOM_UPGRADES",
-        "name": "무작위 강화",
-        "description": "[gold]덱[/gold]에서 무작위 카드를 [blue]2[/blue]장 강화합니다."
-      },
-      {
-        "id": "RARE_CARD_REWARD",
-        "name": "희귀 카드 보상",
-        "description": "희귀 카드 보상을 [blue]1[/blue]번 받습니다."
-      },
-      {
-        "id": "RELIC",
-        "name": "유물",
-        "description": "무작위 [gold]유물[/gold]을 [blue]1[/blue]개 얻습니다."
-      },
-      {
-        "id": "TWO_MORE_CHOICES",
-        "name": "저주받은 선택",
-        "description": "무작위 [red]저주[/red]를 [red]1[/red]장 받습니다.\n상인이 상품을 두 개 더 구매할 수 있게 해줍니다."
-      },
-      {
-        "id": "TWO_RELICS",
-        "name": "저주받은 유물",
-        "description": "무작위 [red]저주[/red]를 [red]1[/red]장 받습니다.\n무작위 [gold]유물[/gold]을 [blue]2[/blue]개 얻습니다."
+        "description": "[gold]덱[/gold]에서 카드를 1장 [gold]강화[/gold]합니다.",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_upgrade.webp"
       },
       {
         "id": "UPGRADED_CARD_REWARD",
         "name": "강화된 카드 보상",
-        "description": "[gold]강화[/gold]된 카드 보상을 [blue]1[/blue]번 받습니다."
+        "description": "[gold]강화[/gold]된 카드 보상을 [blue]1[/blue]번 받습니다.",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/upgraded_card_reward.webp"
+      },
+      {
+        "id": "RANDOM_UPGRADES",
+        "name": "무작위 강화",
+        "description": "[gold]덱[/gold]에서 무작위 카드를 [blue]2[/blue]장 강화합니다.",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/random_upgrades.webp"
+      },
+      {
+        "id": "CARD_TRANSFORM",
+        "name": "카드 변화 서비스",
+        "description": "[gold]덱[/gold]에서 카드를 1장 [gold]변화[/gold]시킵니다.",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_transform.webp"
+      },
+      {
+        "id": "CARD_REMOVAL",
+        "name": "카드 제거 서비스",
+        "description": "[gold]덱[/gold]에서 카드를 1장 제거합니다.",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_removal.webp"
+      },
+      {
+        "id": "CARD_REWARDS",
+        "name": "카드 보상",
+        "description": "카드 보상을 [blue]2[/blue]번 받습니다.",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_rewards.webp"
+      },
+      {
+        "id": "COLORLESS_CARD_REWARD",
+        "name": "무색 카드 보상",
+        "description": "[gold]무색[/gold] 카드 보상을 [blue]1[/blue]번 받습니다.",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/colorless_card_reward.webp"
+      },
+      {
+        "id": "POTIONS",
+        "name": "포션",
+        "description": "포션 슬롯을 [blue]1[/blue]개 얻고 무작위 포션을 [blue]2[/blue]개 생성합니다.",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/potions.webp"
+      },
+      {
+        "id": "CARD_ENCHANT",
+        "name": "Enchantment",
+        "description": "카드 1장에 [purple]Enchantment[/purple] [gold]인챈트[/gold]합니다.",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_enchant.webp"
+      },
+      {
+        "id": "ENCHANTED_CARD_REWARD",
+        "name": "인챈트된 카드 보상",
+        "description": "[gold]인챈트[/gold]된 카드 보상을 [blue]1[/blue]번 받습니다.",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/enchanted_card_reward.webp"
+      },
+      {
+        "id": "PRISMATIC_CARD_REWARD",
+        "name": "Character 카드 보상",
+        "description": "[gold]Character[/gold] 카드 보상을 [blue]1[/blue]번 받습니다.",
+        "cursed": false,
+        "rare": true,
+        "image_url": "/static/images/beta/v0.113.1/blitz/prismatic_card_reward.webp"
+      },
+      {
+        "id": "RARE_CARD_REWARD",
+        "name": "희귀 카드 보상",
+        "description": "희귀 카드 보상을 [blue]1[/blue]번 받습니다.",
+        "cursed": false,
+        "rare": true,
+        "image_url": "/static/images/beta/v0.113.1/blitz/rare_card_reward.webp"
       },
       {
         "id": "UPGRADED_RARE_CARD",
         "name": "강화된 희귀 카드",
-        "description": "무작위 [gold]강화[/gold]된 희귀 카드를 [blue]1[/blue]장 받습니다."
+        "description": "무작위 [gold]강화[/gold]된 희귀 카드를 [blue]1[/blue]장 받습니다.",
+        "cursed": false,
+        "rare": true,
+        "image_url": "/static/images/beta/v0.113.1/blitz/upgraded_rare_card.webp"
+      },
+      {
+        "id": "RELIC",
+        "name": "유물",
+        "description": "무작위 [gold]유물[/gold]을 [blue]1[/blue]개 얻습니다.",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/relic.webp"
+      },
+      {
+        "id": "GLAM",
+        "name": "저주받은 호화",
+        "description": "무작위 [red]저주[/red]를 [red]1[/red]장 받습니다.\n카드 1장에 [purple]호화[/purple]를 [gold]인챈트[/gold]합니다.",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/glam.webp"
+      },
+      {
+        "id": "TWO_MORE_CHOICES",
+        "name": "저주받은 선택",
+        "description": "무작위 [red]저주[/red]를 [red]1[/red]장 받습니다.\n상인이 상품을 두 개 더 구매할 수 있게 해줍니다.",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/two_more_choices.webp"
+      },
+      {
+        "id": "CARD_REWARD_OF_EACH_RARITY",
+        "name": "저주받은 카드 보상",
+        "description": "무작위 [red]저주[/red]를 [red]1[/red]장 받습니다.\n[gold]일반[/gold], [gold]고급[/gold], [gold]희귀[/gold] 카드 보상을 [blue]1[/blue]번 받습니다.",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_reward_of_each_rarity.webp"
       },
       {
         "id": "UPGRADED_RARE_CARD_REWARD",
         "name": "저주받은 강화된 희귀 카드 보상",
-        "description": "무작위 [red]저주[/red]를 [red]1[/red]장 받습니다.\n[gold]강화[/gold]된 희귀 카드 보상을 [blue]1[/blue]번 받습니다."
+        "description": "무작위 [red]저주[/red]를 [red]1[/red]장 받습니다.\n[gold]강화[/gold]된 희귀 카드 보상을 [blue]1[/blue]번 받습니다.",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/upgraded_rare_card_reward.webp"
+      },
+      {
+        "id": "TWO_RELICS",
+        "name": "저주받은 유물",
+        "description": "무작위 [red]저주[/red]를 [red]1[/red]장 받습니다.\n무작위 [gold]유물[/gold]을 [blue]2[/blue]개 얻습니다.",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/two_relics.webp"
+      },
+      {
+        "id": "FULL_HEAL_AND_MAX_HP",
+        "name": "저주받은 치유",
+        "description": "무작위 [red]저주[/red]를 [red]1[/red]장 받습니다.\n최대 체력이 [blue]6[/blue] 증가하고 체력을 모두 회복합니다.",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/full_heal_and_max_hp.webp"
       }
-    ]
+    ],
+    "act_layout": [
+      "ANCIENT",
+      "MONSTER",
+      "MONSTER",
+      "SHOP",
+      "ELITE",
+      "TREASURE",
+      "REST_SITE",
+      "BOSS"
+    ],
+    "act_rooms": [
+      {
+        "type": "ANCIENT",
+        "name": "고대의 존재",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_ancient.webp"
+      },
+      {
+        "type": "MONSTER",
+        "name": "적",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_monster.webp",
+        "easy": true
+      },
+      {
+        "type": "MONSTER",
+        "name": "적",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_monster.webp",
+        "easy": false
+      },
+      {
+        "type": "SHOP",
+        "name": "상인",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_shop.webp"
+      },
+      {
+        "type": "ELITE",
+        "name": "엘리트",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_elite.webp"
+      },
+      {
+        "type": "TREASURE",
+        "name": "보물",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_treasure.webp"
+      },
+      {
+        "type": "REST_SITE",
+        "name": "휴식",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_rest_site.webp"
+      },
+      {
+        "type": "BOSS",
+        "name": "보스",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_boss.webp"
+      }
+    ],
+    "weak_encounters_per_act": 1,
+    "floors_per_act": 8,
+    "encounters_per_act": 4,
+    "neow_details": {
+      "cards_offered": 10,
+      "cards_picked": 3,
+      "rarity_odds": {
+        "common": 0.55,
+        "uncommon": 0.4,
+        "rare": 0.05
+      },
+      "prompt": "덱에 추가할 카드를 [blue]3[/blue]장을 선택하세요."
+    },
+    "merchant": {
+      "offers_shown": 6,
+      "normal_offers_shown": 5,
+      "cursed_offers_shown": 1,
+      "picks": 3,
+      "rare_offer_weight": 0.5,
+      "card_rarity_odds": {
+        "common": 0.4,
+        "uncommon": 0.5,
+        "rare": 0.1
+      },
+      "enchantments": [
+        {
+          "id": "SHARP",
+          "name": "예리",
+          "amount": 2
+        },
+        {
+          "id": "NIMBLE",
+          "name": "기민함",
+          "amount": 3
+        },
+        {
+          "id": "ADROIT",
+          "name": "숙련",
+          "amount": 3
+        },
+        {
+          "id": "STEADY",
+          "name": "안정",
+          "amount": 1
+        },
+        {
+          "id": "SWIFT",
+          "name": "신속",
+          "amount": 2
+        },
+        {
+          "id": "VIGOROUS",
+          "name": "활기",
+          "amount": 5
+        }
+      ],
+      "curses": [
+        {
+          "id": "CLUMSY",
+          "name": "서투름"
+        },
+        {
+          "id": "DECAY",
+          "name": "부패"
+        },
+        {
+          "id": "DOUBT",
+          "name": "의심"
+        },
+        {
+          "id": "GUILTY",
+          "name": "죄책감"
+        },
+        {
+          "id": "INJURY",
+          "name": "상처"
+        },
+        {
+          "id": "NORMALITY",
+          "name": "규칙 준수"
+        },
+        {
+          "id": "REGRET",
+          "name": "후회"
+        },
+        {
+          "id": "SHAME",
+          "name": "수치"
+        },
+        {
+          "id": "WRITHE",
+          "name": "몸부림"
+        }
+      ]
+    },
+    "rewards": [
+      {
+        "room": "MONSTER",
+        "card_rarity": "Common",
+        "card_choices": 3,
+        "relics": 0,
+        "potion": "after_first_fight",
+        "room_name": "적"
+      },
+      {
+        "room": "ELITE",
+        "card_rarity": "Uncommon",
+        "card_choices": 3,
+        "relics": 2,
+        "potion": null,
+        "room_name": "엘리트"
+      },
+      {
+        "room": "BOSS",
+        "card_rarity": "Rare",
+        "card_choices": 3,
+        "relics": 0,
+        "potion": "always",
+        "final_boss": false,
+        "room_name": "보스"
+      }
+    ],
+    "reward_upgrades_by_act": [
+      0,
+      1,
+      2
+    ],
+    "treasure_extra_relics": {
+      "multiplayer": 2,
+      "singleplayer": 1
+    },
+    "ascension_ladder": [
+      {
+        "level": 1,
+        "id": "WEARY_TRAVELER",
+        "name": "지친 여행자",
+        "description": "고대의 존재가 잃은 체력의 [blue]80%[/blue]만을\n회복시켜줍니다."
+      },
+      {
+        "level": 2,
+        "id": "TIGHT_BELT",
+        "name": "동여맨 벨트",
+        "description": "포션 슬롯이 [blue]1[/blue]칸 줄어든 상태로 시작합니다."
+      },
+      {
+        "level": 3,
+        "id": "TOUGH_ENEMIES",
+        "name": "질긴 적들",
+        "description": "모든 적이 더 질긴 생존력을 지닙니다."
+      },
+      {
+        "level": 4,
+        "id": "DEADLY_ENEMIES",
+        "name": "지독한 적들",
+        "description": "모든 적이 더 치명적인 공격을 가합니다."
+      },
+      {
+        "level": 5,
+        "id": "ASCENDERS_BANE",
+        "name": "등반자의 골칫거리",
+        "description": "[red]저주받은[/red] 상태로 시작합니다."
+      }
+    ],
+    "banned_cards": [
+      {
+        "id": "DEBT",
+        "name": "빚"
+      },
+      {
+        "id": "HAND_OF_GREED",
+        "name": "탐욕의 손"
+      },
+      {
+        "id": "MY_SHINIES",
+        "name": "내 반짝이들"
+      },
+      {
+        "id": "ROYALTIES",
+        "name": "로열티"
+      }
+    ],
+    "banned_relics": [
+      {
+        "id": "AMETHYST_AUBERGINE",
+        "name": "자수정 가지",
+        "image_url": "/static/images/beta/v0.113.1/relics/amethyst_aubergine.webp"
+      },
+      {
+        "id": "BLACK_STAR",
+        "name": "검은 별",
+        "image_url": "/static/images/beta/v0.113.1/relics/black_star.webp"
+      },
+      {
+        "id": "BOOK_OF_FIVE_RINGS",
+        "name": "오륜서",
+        "image_url": "/static/images/beta/v0.113.1/relics/book_of_five_rings.webp"
+      },
+      {
+        "id": "BOWLER_HAT",
+        "name": "중절모",
+        "image_url": "/static/images/beta/v0.113.1/relics/bowler_hat.webp"
+      },
+      {
+        "id": "CURSED_PEARL",
+        "name": "저주받은 진주",
+        "image_url": "/static/images/beta/v0.113.1/relics/cursed_pearl.webp"
+      },
+      {
+        "id": "DOWSING_ROD",
+        "name": "다우징 로드",
+        "image_url": "/static/images/beta/v0.113.1/relics/dowsing_rod.webp"
+      },
+      {
+        "id": "DRAGON_FRUIT",
+        "name": "용과",
+        "image_url": "/static/images/beta/v0.113.1/relics/dragon_fruit.webp"
+      },
+      {
+        "id": "DREAM_CATCHER",
+        "name": "드림캐처",
+        "image_url": "/static/images/beta/v0.113.1/relics/dream_catcher.webp"
+      },
+      {
+        "id": "DRIFTWOOD",
+        "name": "유목",
+        "image_url": "/static/images/beta/v0.113.1/relics/driftwood.webp"
+      },
+      {
+        "id": "ECTOPLASM",
+        "name": "외형질",
+        "image_url": "/static/images/beta/v0.113.1/relics/ectoplasm.webp"
+      },
+      {
+        "id": "ETERNAL_FEATHER",
+        "name": "영원의 깃털",
+        "image_url": "/static/images/beta/v0.113.1/relics/eternal_feather.webp"
+      },
+      {
+        "id": "FISHING_ROD",
+        "name": "낚싯대",
+        "image_url": "/static/images/beta/v0.113.1/relics/fishing_rod.webp"
+      },
+      {
+        "id": "FUR_COAT",
+        "name": "모피 코트",
+        "image_url": "/static/images/beta/v0.113.1/relics/fur_coat.webp"
+      },
+      {
+        "id": "GIRYA",
+        "name": "케틀벨",
+        "image_url": "/static/images/beta/v0.113.1/relics/girya.webp"
+      },
+      {
+        "id": "GOLDEN_COMPASS",
+        "name": "황금 나침반",
+        "image_url": "/static/images/beta/v0.113.1/relics/golden_compass.webp"
+      },
+      {
+        "id": "GOLDEN_PEARL",
+        "name": "황금 진주",
+        "image_url": "/static/images/beta/v0.113.1/relics/golden_pearl.webp"
+      },
+      {
+        "id": "JUZU_BRACELET",
+        "name": "염주",
+        "image_url": "/static/images/beta/v0.113.1/relics/juzu_bracelet.webp"
+      },
+      {
+        "id": "LASTING_CANDY",
+        "name": "오래 가는 사탕",
+        "image_url": "/static/images/beta/v0.113.1/relics/lasting_candy.webp"
+      },
+      {
+        "id": "LORDS_PARASOL",
+        "name": "귀족 양산",
+        "image_url": "/static/images/beta/v0.113.1/relics/lords_parasol.webp"
+      },
+      {
+        "id": "LUCKY_FYSH",
+        "name": "행운의 물교기",
+        "image_url": "/static/images/beta/v0.113.1/relics/lucky_fysh.webp"
+      },
+      {
+        "id": "MAW_BANK",
+        "name": "아귀 저금통",
+        "image_url": "/static/images/beta/v0.113.1/relics/maw_bank.webp"
+      },
+      {
+        "id": "MEAL_TICKET",
+        "name": "식권",
+        "image_url": "/static/images/beta/v0.113.1/relics/meal_ticket.webp"
+      },
+      {
+        "id": "MEAT_CLEAVER",
+        "name": "고기 써는 칼",
+        "image_url": "/static/images/beta/v0.113.1/relics/meat_cleaver.webp"
+      },
+      {
+        "id": "MEMBERSHIP_CARD",
+        "name": "멤버십 카드",
+        "image_url": "/static/images/beta/v0.113.1/relics/membership_card.webp"
+      },
+      {
+        "id": "MINIATURE_TENT",
+        "name": "미니어처 텐트",
+        "image_url": "/static/images/beta/v0.113.1/relics/miniature_tent.webp"
+      },
+      {
+        "id": "OLD_COIN",
+        "name": "낡은 동전",
+        "image_url": "/static/images/beta/v0.113.1/relics/old_coin.webp"
+      },
+      {
+        "id": "PAELS_CLAW",
+        "name": "파엘의 발톱",
+        "image_url": "/static/images/beta/v0.113.1/relics/paels_claw.webp"
+      },
+      {
+        "id": "PAELS_GROWTH",
+        "name": "파엘의 종양",
+        "image_url": "/static/images/beta/v0.113.1/relics/paels_growth.webp"
+      },
+      {
+        "id": "PAELS_WING",
+        "name": "파엘의 날개",
+        "image_url": "/static/images/beta/v0.113.1/relics/paels_wing.webp"
+      },
+      {
+        "id": "PLANISPHERE",
+        "name": "별자리판",
+        "image_url": "/static/images/beta/v0.113.1/relics/planisphere.webp"
+      },
+      {
+        "id": "PRAYER_WHEEL",
+        "name": "전경기",
+        "image_url": "/static/images/beta/v0.113.1/relics/prayer_wheel.webp"
+      },
+      {
+        "id": "PUMPKIN_CANDLE",
+        "name": "호박 양초",
+        "image_url": "/static/images/beta/v0.113.1/relics/pumpkin_candle.webp"
+      },
+      {
+        "id": "REGAL_PILLOW",
+        "name": "호화로운 베개",
+        "image_url": "/static/images/beta/v0.113.1/relics/regal_pillow.webp"
+      },
+      {
+        "id": "SEAL_OF_GOLD",
+        "name": "황금 인장",
+        "image_url": "/static/images/beta/v0.113.1/relics/seal_of_gold.webp"
+      },
+      {
+        "id": "SHOVEL",
+        "name": "삽",
+        "image_url": "/static/images/beta/v0.113.1/relics/shovel.webp"
+      },
+      {
+        "id": "SIGNET_RING",
+        "name": "인장 반지",
+        "image_url": "/static/images/beta/v0.113.1/relics/signet_ring.webp"
+      },
+      {
+        "id": "SILKEN_TRESS",
+        "name": "부드러운 머리칼",
+        "image_url": "/static/images/beta/v0.113.1/relics/silken_tress.webp"
+      },
+      {
+        "id": "STONE_HUMIDIFIER",
+        "name": "석재 가습기",
+        "image_url": "/static/images/beta/v0.113.1/relics/stone_humidifier.webp"
+      },
+      {
+        "id": "THE_COURIER",
+        "name": "배달원",
+        "image_url": "/static/images/beta/v0.113.1/relics/the_courier.webp"
+      },
+      {
+        "id": "TINY_MAILBOX",
+        "name": "작은 우편함",
+        "image_url": "/static/images/beta/v0.113.1/relics/tiny_mailbox.webp"
+      },
+      {
+        "id": "TOY_BOX",
+        "name": "장난감 상자",
+        "image_url": "/static/images/beta/v0.113.1/relics/toy_box.webp"
+      },
+      {
+        "id": "VENERABLE_TEA_SET",
+        "name": "유서 깊은 차 세트",
+        "image_url": "/static/images/beta/v0.113.1/relics/venerable_tea_set.webp"
+      },
+      {
+        "id": "WHITE_BEAST_STATUE",
+        "name": "하얀 짐승 석상",
+        "image_url": "/static/images/beta/v0.113.1/relics/white_beast_statue.webp"
+      },
+      {
+        "id": "WINGED_BOOTS",
+        "name": "날개 달린 부츠",
+        "image_url": "/static/images/beta/v0.113.1/relics/winged_boots.webp"
+      }
+    ],
+    "late_relics": {
+      "from_floor": 21,
+      "relics": [
+        {
+          "id": "FROZEN_EGG",
+          "name": "얼어붙은 알",
+          "image_url": "/static/images/beta/v0.113.1/relics/frozen_egg.webp"
+        },
+        {
+          "id": "MOLTEN_EGG",
+          "name": "녹아내린 알",
+          "image_url": "/static/images/beta/v0.113.1/relics/molten_egg.webp"
+        },
+        {
+          "id": "POTION_BELT",
+          "name": "포션 벨트",
+          "image_url": "/static/images/beta/v0.113.1/relics/potion_belt.webp"
+        },
+        {
+          "id": "TOXIC_EGG",
+          "name": "유독성 알",
+          "image_url": "/static/images/beta/v0.113.1/relics/toxic_egg.webp"
+        },
+        {
+          "id": "WHITE_STAR",
+          "name": "하얀 별",
+          "image_url": "/static/images/beta/v0.113.1/relics/white_star.webp"
+        }
+      ]
+    }
   }
 ]

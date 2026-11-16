@@ -160,110 +160,652 @@
     },
     "merchant_entries": [
       {
-        "id": "CARD_ENCHANT",
-        "name": "Enchantment",
-        "description": "[gold]Incanti[/gold] una carta con [purple]Enchantment[/purple]."
-      },
-      {
-        "id": "CARD_PACKS",
-        "name": "Pacchetti di carte",
-        "description": "Scegli [blue]1[/blue] tra [blue]2[/blue] pacchetti di carte da aggiungere al tuo [gold]mazzo[/gold]."
-      },
-      {
-        "id": "CARD_REMOVAL",
-        "name": "Servizio di rimozione delle carte",
-        "description": "Rimuovi una carta dal tuo [gold]mazzo[/gold]."
-      },
-      {
-        "id": "CARD_REWARD_OF_EACH_RARITY",
-        "name": "Ricompense di carte Maledizione",
-        "description": "Ricevi [red]1[/red] carta [red]Maledizione[/red] casuale.\nRicevi [blue]1[/blue] ricompensa di carte [gold]comuni[/gold], [gold]non comuni[/gold] e [gold]rare[/gold]."
-      },
-      {
-        "id": "CARD_REWARDS",
-        "name": "Ricompense di carte",
-        "description": "Ricevi [blue]2[/blue] ricompense di carte."
-      },
-      {
-        "id": "CARD_TRANSFORM",
-        "name": "Servizio di trasformazione delle carte",
-        "description": "[gold]Trasformi[/gold] una carta nel tuo [gold]mazzo[/gold]."
-      },
-      {
         "id": "CARD_UPGRADE",
         "name": "Servizio di potenziamento delle carte",
-        "description": "[gold]Potenzi[/gold] una carta nel tuo [gold]mazzo[/gold]."
-      },
-      {
-        "id": "COLORLESS_CARD_REWARD",
-        "name": "Ricompensa di carte incolori",
-        "description": "Ricevi [blue]1[/blue] ricompensa di carte [gold]incolori[/gold]."
-      },
-      {
-        "id": "ENCHANTED_CARD_REWARD",
-        "name": "Ricompensa di carte incantate",
-        "description": "Ricevi [blue]1[/blue] ricompensa di carte [gold]incantate[/gold]."
-      },
-      {
-        "id": "FULL_HEAL_AND_MAX_HP",
-        "name": "Cura maledetta",
-        "description": "Ricevi [red]1[/red] carta [red]Maledizione[/red] casuale.\nAumenti i tuoi PV massimi di [blue]6[/blue] e recuperi tutti i tuoi PV."
-      },
-      {
-        "id": "GLAM",
-        "name": "Enchantment con maledizione",
-        "description": "Ricevi [red]1[/red] carta [red]Maledizione[/red] casuale.\n[gold]Incanti[/gold] una carta con [purple]Enchantment[/purple]."
-      },
-      {
-        "id": "POTIONS",
-        "name": "Pozioni",
-        "description": "Ottieni [blue]1[/blue] spazio per pozioni e ricevi [blue]2[/blue] pozioni casuali."
-      },
-      {
-        "id": "PRISMATIC_CARD_REWARD",
-        "name": "Ricompensa di carte di Character",
-        "description": "Ricevi [blue]1[/blue] ricompensa di carte di [gold]Character[/gold]."
-      },
-      {
-        "id": "RANDOM_UPGRADES",
-        "name": "Potenziamenti casuali",
-        "description": "Potenzi [blue]2[/blue] carte casuali nel tuo [gold]mazzo[/gold]."
-      },
-      {
-        "id": "RARE_CARD_REWARD",
-        "name": "Ricompensa di carte rare",
-        "description": "Ricevi [blue]1[/blue] ricompensa di carte rare."
-      },
-      {
-        "id": "RELIC",
-        "name": "Reliquia",
-        "description": "Ottieni [blue]1[/blue] [gold]reliquia[/gold] casuale."
-      },
-      {
-        "id": "TWO_MORE_CHOICES",
-        "name": "Scelte maledette",
-        "description": "Ricevi [red]1[/red] carta [red]Maledizione[/red] casuale.\nIl mercante ti permette di acquistare due prodotti in più."
-      },
-      {
-        "id": "TWO_RELICS",
-        "name": "Reliquie maledette",
-        "description": "Ricevi [red]1[/red] carta [red]Maledizione[/red] casuale.\nOttieni [blue]2[/blue] [gold]reliquie[/gold] casuali."
+        "description": "[gold]Potenzi[/gold] una carta nel tuo [gold]mazzo[/gold].",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_upgrade.webp"
       },
       {
         "id": "UPGRADED_CARD_REWARD",
         "name": "Ricompensa di carte potenziate",
-        "description": "Ricevi [blue]1[/blue] ricompensa di carte [gold]potenziate[/gold]."
+        "description": "Ricevi [blue]1[/blue] ricompensa di carte [gold]potenziate[/gold].",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/upgraded_card_reward.webp"
+      },
+      {
+        "id": "RANDOM_UPGRADES",
+        "name": "Potenziamenti casuali",
+        "description": "Potenzi [blue]2[/blue] carte casuali nel tuo [gold]mazzo[/gold].",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/random_upgrades.webp"
+      },
+      {
+        "id": "CARD_TRANSFORM",
+        "name": "Servizio di trasformazione delle carte",
+        "description": "[gold]Trasformi[/gold] una carta nel tuo [gold]mazzo[/gold].",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_transform.webp"
+      },
+      {
+        "id": "CARD_REMOVAL",
+        "name": "Servizio di rimozione delle carte",
+        "description": "Rimuovi una carta dal tuo [gold]mazzo[/gold].",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_removal.webp"
+      },
+      {
+        "id": "CARD_REWARDS",
+        "name": "Ricompense di carte",
+        "description": "Ricevi [blue]2[/blue] ricompense di carte.",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_rewards.webp"
+      },
+      {
+        "id": "COLORLESS_CARD_REWARD",
+        "name": "Ricompensa di carte incolori",
+        "description": "Ricevi [blue]1[/blue] ricompensa di carte [gold]incolori[/gold].",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/colorless_card_reward.webp"
+      },
+      {
+        "id": "POTIONS",
+        "name": "Pozioni",
+        "description": "Ottieni [blue]1[/blue] spazio per pozioni e ricevi [blue]2[/blue] pozioni casuali.",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/potions.webp"
+      },
+      {
+        "id": "CARD_ENCHANT",
+        "name": "Enchantment",
+        "description": "[gold]Incanti[/gold] una carta con [purple]Enchantment[/purple].",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_enchant.webp"
+      },
+      {
+        "id": "ENCHANTED_CARD_REWARD",
+        "name": "Ricompensa di carte incantate",
+        "description": "Ricevi [blue]1[/blue] ricompensa di carte [gold]incantate[/gold].",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/enchanted_card_reward.webp"
+      },
+      {
+        "id": "PRISMATIC_CARD_REWARD",
+        "name": "Ricompensa di carte di Character",
+        "description": "Ricevi [blue]1[/blue] ricompensa di carte di [gold]Character[/gold].",
+        "cursed": false,
+        "rare": true,
+        "image_url": "/static/images/beta/v0.113.1/blitz/prismatic_card_reward.webp"
+      },
+      {
+        "id": "RARE_CARD_REWARD",
+        "name": "Ricompensa di carte rare",
+        "description": "Ricevi [blue]1[/blue] ricompensa di carte rare.",
+        "cursed": false,
+        "rare": true,
+        "image_url": "/static/images/beta/v0.113.1/blitz/rare_card_reward.webp"
       },
       {
         "id": "UPGRADED_RARE_CARD",
         "name": "Carta rara potenziata",
-        "description": "Ricevi [blue]1[/blue] carta rara [gold]potenziata[/gold] casuale."
+        "description": "Ricevi [blue]1[/blue] carta rara [gold]potenziata[/gold] casuale.",
+        "cursed": false,
+        "rare": true,
+        "image_url": "/static/images/beta/v0.113.1/blitz/upgraded_rare_card.webp"
+      },
+      {
+        "id": "RELIC",
+        "name": "Reliquia",
+        "description": "Ottieni [blue]1[/blue] [gold]reliquia[/gold] casuale.",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/relic.webp"
+      },
+      {
+        "id": "GLAM",
+        "name": "Glamour con maledizione",
+        "description": "Ricevi [red]1[/red] carta [red]Maledizione[/red] casuale.\n[gold]Incanti[/gold] una carta con [purple]Glamour[/purple].",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/glam.webp"
+      },
+      {
+        "id": "TWO_MORE_CHOICES",
+        "name": "Scelte maledette",
+        "description": "Ricevi [red]1[/red] carta [red]Maledizione[/red] casuale.\nIl mercante ti permette di acquistare due prodotti in più.",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/two_more_choices.webp"
+      },
+      {
+        "id": "CARD_REWARD_OF_EACH_RARITY",
+        "name": "Ricompense di carte Maledizione",
+        "description": "Ricevi [red]1[/red] carta [red]Maledizione[/red] casuale.\nRicevi [blue]1[/blue] ricompensa di carte [gold]comuni[/gold], [gold]non comuni[/gold] e [gold]rare[/gold].",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/card_reward_of_each_rarity.webp"
       },
       {
         "id": "UPGRADED_RARE_CARD_REWARD",
         "name": "Ricompensa di carte rare potenziate maledette",
-        "description": "Ricevi [red]1[/red] carta [red]Maledizione[/red] casuale.\nRicevi [blue]1[/blue] ricompensa di carte rare [gold]potenziate[/gold]."
+        "description": "Ricevi [red]1[/red] carta [red]Maledizione[/red] casuale.\nRicevi [blue]1[/blue] ricompensa di carte rare [gold]potenziate[/gold].",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/upgraded_rare_card_reward.webp"
+      },
+      {
+        "id": "TWO_RELICS",
+        "name": "Reliquie maledette",
+        "description": "Ricevi [red]1[/red] carta [red]Maledizione[/red] casuale.\nOttieni [blue]2[/blue] [gold]reliquie[/gold] casuali.",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/two_relics.webp"
+      },
+      {
+        "id": "FULL_HEAL_AND_MAX_HP",
+        "name": "Cura maledetta",
+        "description": "Ricevi [red]1[/red] carta [red]Maledizione[/red] casuale.\nAumenti i tuoi PV massimi di [blue]6[/blue] e recuperi tutti i tuoi PV.",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.113.1/blitz/full_heal_and_max_hp.webp"
       }
-    ]
+    ],
+    "act_layout": [
+      "ANCIENT",
+      "MONSTER",
+      "MONSTER",
+      "SHOP",
+      "ELITE",
+      "TREASURE",
+      "REST_SITE",
+      "BOSS"
+    ],
+    "act_rooms": [
+      {
+        "type": "ANCIENT",
+        "name": "Antico",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_ancient.webp"
+      },
+      {
+        "type": "MONSTER",
+        "name": "Nemico",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_monster.webp",
+        "easy": true
+      },
+      {
+        "type": "MONSTER",
+        "name": "Nemico",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_monster.webp",
+        "easy": false
+      },
+      {
+        "type": "SHOP",
+        "name": "Mercante",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_shop.webp"
+      },
+      {
+        "type": "ELITE",
+        "name": "Élite",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_elite.webp"
+      },
+      {
+        "type": "TREASURE",
+        "name": "Tesoro",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_treasure.webp"
+      },
+      {
+        "type": "REST_SITE",
+        "name": "Riposo",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_rest_site.webp"
+      },
+      {
+        "type": "BOSS",
+        "name": "Boss",
+        "image_url": "/static/images/beta/v0.113.1/blitz/room_boss.webp"
+      }
+    ],
+    "weak_encounters_per_act": 1,
+    "floors_per_act": 8,
+    "encounters_per_act": 4,
+    "neow_details": {
+      "cards_offered": 10,
+      "cards_picked": 3,
+      "rarity_odds": {
+        "common": 0.55,
+        "uncommon": 0.4,
+        "rare": 0.05
+      },
+      "prompt": "Seleziona [blue]3[/blue] carte qualsiasi da aggiungere al tuo mazzo."
+    },
+    "merchant": {
+      "offers_shown": 6,
+      "normal_offers_shown": 5,
+      "cursed_offers_shown": 1,
+      "picks": 3,
+      "rare_offer_weight": 0.5,
+      "card_rarity_odds": {
+        "common": 0.4,
+        "uncommon": 0.5,
+        "rare": 0.1
+      },
+      "enchantments": [
+        {
+          "id": "SHARP",
+          "name": "Affilatura",
+          "amount": 2
+        },
+        {
+          "id": "NIMBLE",
+          "name": "Scioltezza",
+          "amount": 3
+        },
+        {
+          "id": "ADROIT",
+          "name": "Abile",
+          "amount": 3
+        },
+        {
+          "id": "STEADY",
+          "name": "Stabilità",
+          "amount": 1
+        },
+        {
+          "id": "SWIFT",
+          "name": "Rapidità",
+          "amount": 2
+        },
+        {
+          "id": "VIGOROUS",
+          "name": "Vigorosità",
+          "amount": 5
+        }
+      ],
+      "curses": [
+        {
+          "id": "CLUMSY",
+          "name": "Impacciato"
+        },
+        {
+          "id": "DECAY",
+          "name": "Decomposizione"
+        },
+        {
+          "id": "DOUBT",
+          "name": "Dubbio"
+        },
+        {
+          "id": "GUILTY",
+          "name": "Colpevolezza"
+        },
+        {
+          "id": "INJURY",
+          "name": "Lesione"
+        },
+        {
+          "id": "NORMALITY",
+          "name": "Normalità"
+        },
+        {
+          "id": "REGRET",
+          "name": "Rimorso"
+        },
+        {
+          "id": "SHAME",
+          "name": "Vergogna"
+        },
+        {
+          "id": "WRITHE",
+          "name": "Convulsioni"
+        }
+      ]
+    },
+    "rewards": [
+      {
+        "room": "MONSTER",
+        "card_rarity": "Common",
+        "card_choices": 3,
+        "relics": 0,
+        "potion": "after_first_fight",
+        "room_name": "Nemico"
+      },
+      {
+        "room": "ELITE",
+        "card_rarity": "Uncommon",
+        "card_choices": 3,
+        "relics": 2,
+        "potion": null,
+        "room_name": "Élite"
+      },
+      {
+        "room": "BOSS",
+        "card_rarity": "Rare",
+        "card_choices": 3,
+        "relics": 0,
+        "potion": "always",
+        "final_boss": false,
+        "room_name": "Boss"
+      }
+    ],
+    "reward_upgrades_by_act": [
+      0,
+      1,
+      2
+    ],
+    "treasure_extra_relics": {
+      "multiplayer": 2,
+      "singleplayer": 1
+    },
+    "ascension_ladder": [
+      {
+        "level": 1,
+        "id": "WEARY_TRAVELER",
+        "name": "Viaggio spossante",
+        "description": "Gli Antichi ripristinano solo l'[blue]80%[/blue] dei PV che hai perso."
+      },
+      {
+        "level": 2,
+        "id": "TIGHT_BELT",
+        "name": "Stringere la cinghia",
+        "description": "Inizi ogni sessione con [blue]1[/blue] spazio per pozioni in meno."
+      },
+      {
+        "level": 3,
+        "id": "TOUGH_ENEMIES",
+        "name": "Nemici resistenti",
+        "description": "Tutti i nemici sono più difficili da uccidere."
+      },
+      {
+        "level": 4,
+        "id": "DEADLY_ENEMIES",
+        "name": "Nemici letali",
+        "description": "Tutti i nemici sferrano attacchi più forti."
+      },
+      {
+        "level": 5,
+        "id": "ASCENDERS_BANE",
+        "name": "Cruccio dell'Asceso",
+        "description": "Inizi ogni sessione con una [red]Maledizione[/red]."
+      }
+    ],
+    "banned_cards": [
+      {
+        "id": "DEBT",
+        "name": "Debito"
+      },
+      {
+        "id": "HAND_OF_GREED",
+        "name": "Mano della Cupidigia"
+      },
+      {
+        "id": "MY_SHINIES",
+        "name": "Il Mio Tesoro"
+      },
+      {
+        "id": "ROYALTIES",
+        "name": "Imposte"
+      }
+    ],
+    "banned_relics": [
+      {
+        "id": "AMETHYST_AUBERGINE",
+        "name": "Melanzana Ametista",
+        "image_url": "/static/images/beta/v0.113.1/relics/amethyst_aubergine.webp"
+      },
+      {
+        "id": "BLACK_STAR",
+        "name": "Stella Nera",
+        "image_url": "/static/images/beta/v0.113.1/relics/black_star.webp"
+      },
+      {
+        "id": "BOOK_OF_FIVE_RINGS",
+        "name": "Libro dei Cinque Anelli",
+        "image_url": "/static/images/beta/v0.113.1/relics/book_of_five_rings.webp"
+      },
+      {
+        "id": "BOWLER_HAT",
+        "name": "Bombetta",
+        "image_url": "/static/images/beta/v0.113.1/relics/bowler_hat.webp"
+      },
+      {
+        "id": "CURSED_PEARL",
+        "name": "Perla Maledetta",
+        "image_url": "/static/images/beta/v0.113.1/relics/cursed_pearl.webp"
+      },
+      {
+        "id": "DOWSING_ROD",
+        "name": "Bacchette da Rabdomante",
+        "image_url": "/static/images/beta/v0.113.1/relics/dowsing_rod.webp"
+      },
+      {
+        "id": "DRAGON_FRUIT",
+        "name": "Frutto del Drago",
+        "image_url": "/static/images/beta/v0.113.1/relics/dragon_fruit.webp"
+      },
+      {
+        "id": "DREAM_CATCHER",
+        "name": "Acchiappasogni",
+        "image_url": "/static/images/beta/v0.113.1/relics/dream_catcher.webp"
+      },
+      {
+        "id": "DRIFTWOOD",
+        "name": "Legname",
+        "image_url": "/static/images/beta/v0.113.1/relics/driftwood.webp"
+      },
+      {
+        "id": "ECTOPLASM",
+        "name": "Ectoplasma",
+        "image_url": "/static/images/beta/v0.113.1/relics/ectoplasm.webp"
+      },
+      {
+        "id": "ETERNAL_FEATHER",
+        "name": "Piuma Eterna",
+        "image_url": "/static/images/beta/v0.113.1/relics/eternal_feather.webp"
+      },
+      {
+        "id": "FISHING_ROD",
+        "name": "Canna da Pesca",
+        "image_url": "/static/images/beta/v0.113.1/relics/fishing_rod.webp"
+      },
+      {
+        "id": "FUR_COAT",
+        "name": "Pelliccia",
+        "image_url": "/static/images/beta/v0.113.1/relics/fur_coat.webp"
+      },
+      {
+        "id": "GIRYA",
+        "name": "Ghiria",
+        "image_url": "/static/images/beta/v0.113.1/relics/girya.webp"
+      },
+      {
+        "id": "GOLDEN_COMPASS",
+        "name": "Bussola d'Oro",
+        "image_url": "/static/images/beta/v0.113.1/relics/golden_compass.webp"
+      },
+      {
+        "id": "GOLDEN_PEARL",
+        "name": "Perla d'Oro",
+        "image_url": "/static/images/beta/v0.113.1/relics/golden_pearl.webp"
+      },
+      {
+        "id": "JUZU_BRACELET",
+        "name": "Braccialetto Juzu",
+        "image_url": "/static/images/beta/v0.113.1/relics/juzu_bracelet.webp"
+      },
+      {
+        "id": "LASTING_CANDY",
+        "name": "Caramelle Durature",
+        "image_url": "/static/images/beta/v0.113.1/relics/lasting_candy.webp"
+      },
+      {
+        "id": "LORDS_PARASOL",
+        "name": "Parasole Signorile",
+        "image_url": "/static/images/beta/v0.113.1/relics/lords_parasol.webp"
+      },
+      {
+        "id": "LUCKY_FYSH",
+        "name": "Pesce Fortunato",
+        "image_url": "/static/images/beta/v0.113.1/relics/lucky_fysh.webp"
+      },
+      {
+        "id": "MAW_BANK",
+        "name": "Fauce Salvadanaio",
+        "image_url": "/static/images/beta/v0.113.1/relics/maw_bank.webp"
+      },
+      {
+        "id": "MEAL_TICKET",
+        "name": "Buono Pasto",
+        "image_url": "/static/images/beta/v0.113.1/relics/meal_ticket.webp"
+      },
+      {
+        "id": "MEAT_CLEAVER",
+        "name": "Mannaia da Macellaio",
+        "image_url": "/static/images/beta/v0.113.1/relics/meat_cleaver.webp"
+      },
+      {
+        "id": "MEMBERSHIP_CARD",
+        "name": "Tessera Soci",
+        "image_url": "/static/images/beta/v0.113.1/relics/membership_card.webp"
+      },
+      {
+        "id": "MINIATURE_TENT",
+        "name": "Tenda in Miniatura",
+        "image_url": "/static/images/beta/v0.113.1/relics/miniature_tent.webp"
+      },
+      {
+        "id": "OLD_COIN",
+        "name": "Antica Moneta",
+        "image_url": "/static/images/beta/v0.113.1/relics/old_coin.webp"
+      },
+      {
+        "id": "PAELS_CLAW",
+        "name": "Artiglio di Pael",
+        "image_url": "/static/images/beta/v0.113.1/relics/paels_claw.webp"
+      },
+      {
+        "id": "PAELS_GROWTH",
+        "name": "Crescita di Pael",
+        "image_url": "/static/images/beta/v0.113.1/relics/paels_growth.webp"
+      },
+      {
+        "id": "PAELS_WING",
+        "name": "Ala di Pael",
+        "image_url": "/static/images/beta/v0.113.1/relics/paels_wing.webp"
+      },
+      {
+        "id": "PLANISPHERE",
+        "name": "Planisfero",
+        "image_url": "/static/images/beta/v0.113.1/relics/planisphere.webp"
+      },
+      {
+        "id": "PRAYER_WHEEL",
+        "name": "Ruota della Preghiera",
+        "image_url": "/static/images/beta/v0.113.1/relics/prayer_wheel.webp"
+      },
+      {
+        "id": "PUMPKIN_CANDLE",
+        "name": "Candela a Zucca",
+        "image_url": "/static/images/beta/v0.113.1/relics/pumpkin_candle.webp"
+      },
+      {
+        "id": "REGAL_PILLOW",
+        "name": "Cuscino Regale",
+        "image_url": "/static/images/beta/v0.113.1/relics/regal_pillow.webp"
+      },
+      {
+        "id": "SEAL_OF_GOLD",
+        "name": "Sigillo Dorato",
+        "image_url": "/static/images/beta/v0.113.1/relics/seal_of_gold.webp"
+      },
+      {
+        "id": "SHOVEL",
+        "name": "Pala",
+        "image_url": "/static/images/beta/v0.113.1/relics/shovel.webp"
+      },
+      {
+        "id": "SIGNET_RING",
+        "name": "Anello con Sigillo",
+        "image_url": "/static/images/beta/v0.113.1/relics/signet_ring.webp"
+      },
+      {
+        "id": "SILKEN_TRESS",
+        "name": "Ciocca Setosa",
+        "image_url": "/static/images/beta/v0.113.1/relics/silken_tress.webp"
+      },
+      {
+        "id": "STONE_HUMIDIFIER",
+        "name": "Umidificatore in Pietra",
+        "image_url": "/static/images/beta/v0.113.1/relics/stone_humidifier.webp"
+      },
+      {
+        "id": "THE_COURIER",
+        "name": "Il Corriere",
+        "image_url": "/static/images/beta/v0.113.1/relics/the_courier.webp"
+      },
+      {
+        "id": "TINY_MAILBOX",
+        "name": "Mini Cassetta Postale",
+        "image_url": "/static/images/beta/v0.113.1/relics/tiny_mailbox.webp"
+      },
+      {
+        "id": "TOY_BOX",
+        "name": "Cassa dei Giocattoli",
+        "image_url": "/static/images/beta/v0.113.1/relics/toy_box.webp"
+      },
+      {
+        "id": "VENERABLE_TEA_SET",
+        "name": "Servizio da Tè Venerabile",
+        "image_url": "/static/images/beta/v0.113.1/relics/venerable_tea_set.webp"
+      },
+      {
+        "id": "WHITE_BEAST_STATUE",
+        "name": "Statua della Bestia Bianca",
+        "image_url": "/static/images/beta/v0.113.1/relics/white_beast_statue.webp"
+      },
+      {
+        "id": "WINGED_BOOTS",
+        "name": "Stivali Alati",
+        "image_url": "/static/images/beta/v0.113.1/relics/winged_boots.webp"
+      }
+    ],
+    "late_relics": {
+      "from_floor": 21,
+      "relics": [
+        {
+          "id": "FROZEN_EGG",
+          "name": "Uovo Ghiacciato",
+          "image_url": "/static/images/beta/v0.113.1/relics/frozen_egg.webp"
+        },
+        {
+          "id": "MOLTEN_EGG",
+          "name": "Uovo di Magma",
+          "image_url": "/static/images/beta/v0.113.1/relics/molten_egg.webp"
+        },
+        {
+          "id": "POTION_BELT",
+          "name": "Cinta Porta-Pozioni",
+          "image_url": "/static/images/beta/v0.113.1/relics/potion_belt.webp"
+        },
+        {
+          "id": "TOXIC_EGG",
+          "name": "Uovo Tossico",
+          "image_url": "/static/images/beta/v0.113.1/relics/toxic_egg.webp"
+        },
+        {
+          "id": "WHITE_STAR",
+          "name": "Stella Bianca",
+          "image_url": "/static/images/beta/v0.113.1/relics/white_star.webp"
+        }
+      ]
+    }
   }
 ]
