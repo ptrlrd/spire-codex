@@ -218,17 +218,38 @@ const ALL_LANGS = [
 const RENDER_VERSION = "0.113.0";
 
 function customGrid(sp: Record<string, string | undefined>) {
-  if (!sp.cards && !sp.langs) return GRID;
-  const cards = (sp.cards ?? "BASH,OFFERING,DEMON_FORM")
-    .split(",")
-    .map((c) => c.trim().toUpperCase())
-    .filter(Boolean);
-  const langs = sp.langs
-    ? sp.langs.split(",").map((l) => l.trim().toLowerCase())
-    : ALL_LANGS;
+  const filtered = sp.color || sp.rarity || sp.type;
+  if (!sp.cards && !sp.langs && !filtered) return GRID;
   const up = sp.up === "1" ? "1" : "0";
   const ench = sp.ench ? `:${sp.ench.toUpperCase()}` : "";
-  return cards.map(
+  const list = (v: string) =>
+    v
+      .split(",")
+      .map((x) => x.trim())
+      .filter(Boolean);
+  if (filtered) {
+    const has = (want: string | undefined, got: unknown) =>
+      !want || list(want.toLowerCase()).includes(String(got).toLowerCase());
+    const ids = load("eng", true)
+      .filter(
+        (c) =>
+          has(sp.color, c.color) &&
+          has(sp.rarity, c.rarity) &&
+          has(sp.type, c.type),
+      )
+      .slice(0, Number(sp.limit ?? 120))
+      .map((c) => c.id);
+    const label = [sp.color, sp.rarity, sp.type].filter(Boolean).join(" ");
+    return (sp.langs ? list(sp.langs.toLowerCase()) : ["eng"]).map(
+      (l) =>
+        [
+          `${label} in ${l} (${ids.length})`,
+          ids.map((id) => `${l}:${id}:${up}${ench}`),
+        ] as [string, string[]],
+    );
+  }
+  const langs = sp.langs ? list(sp.langs.toLowerCase()) : ALL_LANGS;
+  return list((sp.cards ?? "BASH,OFFERING,DEMON_FORM").toUpperCase()).map(
     (id) =>
       [
         `${id}${up === "1" ? "+" : ""}`,
@@ -237,7 +258,74 @@ function customGrid(sp: Record<string, string | undefined>) {
   );
 }
 
-function GridView({ grid }: { grid: Array<[string, string[]]> }) {
+const PRESETS: Array<[string, string]> = [
+  ["Mixed set", ""],
+  ["Fool", "color=fool"],
+  ["Ancients", "rarity=ancient"],
+  ["Ironclad", "color=ironclad"],
+  ["Silent", "color=silent"],
+  ["Defect", "color=defect"],
+  ["Necrobinder", "color=necrobinder"],
+  ["Regent", "color=regent"],
+  ["Colorless", "color=colorless"],
+  ["Curses and statuses", "color=curse,status"],
+  ["Tokens, events, quests", "color=token,event,quest"],
+  ["Powers", "type=power"],
+];
+
+function Presets({ sp }: { sp: Record<string, string | undefined> }) {
+  const keep = (extra: Record<string, string | undefined>) => {
+    const q = new URLSearchParams({ grid: "1" });
+    for (const k of ["color", "rarity", "type", "cards", "langs", "up"]) {
+      const v = k in extra ? extra[k] : sp[k];
+      if (v) q.set(k, v);
+    }
+    return `?${q.toString()}`;
+  };
+  const link = { color: "#e8c35a", marginRight: 14 };
+  const row = { fontSize: 13, marginBottom: 6 };
+  return (
+    <nav style={{ marginBottom: 12 }}>
+      <div style={row}>
+        {PRESETS.map(([name, q]) => (
+          <a
+            key={name}
+            style={link}
+            href={`?grid=1${q ? `&${q}` : ""}${sp.langs && q ? `&langs=${sp.langs}` : ""}${sp.up && q ? `&up=${sp.up}` : ""}`}
+          >
+            {name}
+          </a>
+        ))}
+      </div>
+      <div style={row}>
+        {ALL_LANGS.map((l) => (
+          <a key={l} style={link} href={keep({ langs: l })}>
+            {l}
+          </a>
+        ))}
+        <a style={link} href={keep({ langs: ALL_LANGS.join(",") })}>
+          all languages
+        </a>
+      </div>
+      <div style={row}>
+        <a style={link} href={keep({ up: undefined })}>
+          base
+        </a>
+        <a style={link} href={keep({ up: "1" })}>
+          upgraded
+        </a>
+      </div>
+    </nav>
+  );
+}
+
+function GridView({
+  grid,
+  sp,
+}: {
+  grid: Array<[string, string[]]>;
+  sp: Record<string, string | undefined>;
+}) {
   const cache: Record<string, Card[]> = {};
   return (
     <div
@@ -253,6 +341,7 @@ function GridView({ grid }: { grid: Array<[string, string[]]> }) {
         HTML on the left, game render on the right. Beta v0.113.0 data. Pick
         your own with ?grid=1&cards=BASH,ZAP&langs=jpn,kor&up=1&ench=SHARP
       </div>
+      <Presets sp={sp} />
       {grid.map(([heading, items]) => (
         <section key={heading}>
           <h2 style={{ fontSize: 20, margin: "28px 0 12px" }}>{heading}</h2>
@@ -344,7 +433,10 @@ export default async function Page({
     : PICKS;
   if ((sp as { grid?: string }).grid === "1")
     return (
-      <GridView grid={customGrid(sp as Record<string, string | undefined>)} />
+      <GridView
+        grid={customGrid(sp as Record<string, string | undefined>)}
+        sp={sp as Record<string, string | undefined>}
+      />
     );
   const cache: Record<string, Card[]> = {};
   const one = (sp as { one?: string }).one;
