@@ -121,8 +121,28 @@ def _eligible_sql(lake) -> str:
     )
 
 
+MODE_MAX_ASCENSION = {"blitz": 5}
+DEFAULT_MAX_ASCENSION = 10
+
+
+def _top_ascension_sql() -> str:
+    """True for a run at the highest ascension its mode has, the tier the
+    a10 bracket and the win rate bands are built on."""
+    cases = " ".join(
+        f"WHEN '{mode}' THEN {level}" for mode, level in MODE_MAX_ASCENSION.items()
+    )
+    return (
+        "coalesce(e.ascension, 0) = (CASE lower(coalesce(e.game_mode, 'standard')) "
+        f"{cases} ELSE {DEFAULT_MAX_ASCENSION} END)"
+    )
+
+
 def _cells_sql(lake) -> str:
-    return _CELLS_SQL.format(lake=lake, excluded=_excluded_runs_sql(lake))
+    return _CELLS_SQL.format(
+        lake=lake,
+        excluded=_excluded_runs_sql(lake),
+        top_ascension=_top_ascension_sql(),
+    )
 
 
 def _headline_eligible_sql(lake) -> str:
@@ -282,10 +302,10 @@ CREATE OR REPLACE TEMP VIEW cells AS
 SELECT e.*,
   lower(coalesce(e.game_mode, 'standard')) || '|' ||
   least(coalesce(e.player_count, 1), 4)::VARCHAR || '|' ||
-  (coalesce(e.ascension, 0) = 10)::INT::VARCHAR || '|' ||
-  (CASE WHEN coalesce(e.ascension, 0) = 10 AND u.wr > 0.75 THEN 3
-        WHEN coalesce(e.ascension, 0) = 10 AND u.wr > 0.50 THEN 2
-        WHEN coalesce(e.ascension, 0) = 10 AND u.wr > 0.30 THEN 1
+  ({top_ascension})::INT::VARCHAR || '|' ||
+  (CASE WHEN {top_ascension} AND u.wr > 0.75 THEN 3
+        WHEN {top_ascension} AND u.wr > 0.50 THEN 2
+        WHEN {top_ascension} AND u.wr > 0.30 THEN 1
         ELSE 0 END)::VARCHAR || '|' ||
   coalesce(trim(e.build_id), '') AS cell
 FROM eligible e
@@ -318,7 +338,7 @@ GROUP BY 1, 2
 _RUN_DEPTH_SQL = """
 CREATE TABLE IF NOT EXISTS run_depth AS
 SELECT e.run_hash, lower(nullif(e.username, '')) AS uname,
-  coalesce(e.ascension, 0) = 10 AS a10, e.win,
+  {top_ascension} AS a10, e.win,
   coalesce(f.n, 0)::INT AS floors_reached
 FROM eligible e
 LEFT JOIN (
@@ -364,7 +384,7 @@ CASE WHEN uc.n - 1 >= 5 THEN (uc.w - d.win::INT) * 1.0 / (uc.n - 1)
 def _ensure_floor_curves(con) -> None:
     lake = str(LAKE_DIR)
     con.execute(_eligible_sql(lake))
-    con.execute(_RUN_DEPTH_SQL.format(lake=lake))
+    con.execute(_RUN_DEPTH_SQL.format(lake=lake, top_ascension=_top_ascension_sql()))
     con.execute(_FLOOR_CURVE_SQL)
     con.execute(_FLOOR_CURVE_ALL_SQL)
 
