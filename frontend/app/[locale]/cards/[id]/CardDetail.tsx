@@ -41,6 +41,7 @@ import BetaDiffNotice from "@/app/components/BetaDiffNotice";
 import { characterHref } from "@/lib/link-targets";
 import "@/app/card-revamp.css";
 import { useBracketParam } from "@/lib/use-bracket-param";
+import { useBetaChanged } from "@/lib/use-beta-changed";
 import { SPINE_TEXT } from "@/lib/character-colors";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -275,8 +276,12 @@ export default function CardDetail({
   const t = useT();
 
   const bp = useBetaPrefix();
-  const channel = useChannel();
+  const pageChannel = useChannel();
   const betaRenderVersion = useBetaRenderVersion();
+  const [pickedVersion, setPickedVersion] = useState("");
+  const betaVersion = useBetaChanged("cards").version;
+  const channel =
+    pickedVersion && pickedVersion === betaVersion ? "beta" : pageChannel;
   const [card, setCard] = useState<Card | null>(initialCard ?? null);
   const [spawnedCards, setSpawnedCards] = useState<RelatedCard[]>(
     initialCatalogs?.spawnedCards ?? [],
@@ -1075,8 +1080,11 @@ export default function CardDetail({
                 entityId={id}
                 bracket={statsBracket}
                 onBracketChange={setStatsBracket}
-                onEntityData={(d) => {
-                  if (d) setCard(d as Card);
+                onEntityData={(d, v) => {
+                  if (d) {
+                    setCard(d as Card);
+                    setPickedVersion(v);
+                  }
                 }}
               />
             </div>
