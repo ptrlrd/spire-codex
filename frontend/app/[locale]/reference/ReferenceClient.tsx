@@ -110,6 +110,8 @@ function ReferenceSection<T extends { id: string }>({
   const initialRender = useRef(true);
 
   useEffect(() => {
+    // Never skip on the beta channel: the server data is the stable
+    // catalog, and cachedFetch appends channel=beta on /beta paths.
     if (initialRender.current) {
       initialRender.current = false;
       if (

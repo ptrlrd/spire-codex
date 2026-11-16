@@ -36,9 +36,18 @@ function orderIndex(order: string[], value: string) {
 function variantLabel(power: Power) {
   const words = power.id.toLowerCase().split("_");
   const nameWords = power.name.toLowerCase().split(/\s+/);
-  const rest = nameWords.every((w, i) => words[i] === w)
+  let rest = nameWords.every((w, i) => words[i] === w)
     ? words.slice(nameWords.length)
     : words;
+  let shared = 0;
+  while (
+    shared < rest.length - 1 &&
+    shared < nameWords.length &&
+    rest[rest.length - 1 - shared] === nameWords[nameWords.length - 1 - shared]
+  ) {
+    shared += 1;
+  }
+  if (shared) rest = rest.slice(0, rest.length - shared);
   return (rest.length ? rest : words)
     .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
     .join(" ");
@@ -197,6 +206,12 @@ export default function PowersClient({
             <a
               key={section.type}
               href={`#powers-${section.type.toLowerCase()}`}
+              onClick={() => {
+                const target = document.getElementById(
+                  `powers-${section.type.toLowerCase()}`,
+                );
+                if (target instanceof HTMLDetailsElement) target.open = true;
+              }}
               className="inline-flex items-center gap-2 min-h-11 px-4 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-sm hover:bg-[var(--bg-card-hover)] transition-colors"
             >
               <span
