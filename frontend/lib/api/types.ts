@@ -29,6 +29,7 @@ export interface Card {
   type_key: string | null;
   rarity: string;
   rarity_key: string | null;
+  multiplayer_only?: boolean | null;
   target: string;
   color: string;
   damage: number | null;
