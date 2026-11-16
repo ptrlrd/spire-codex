@@ -148,10 +148,10 @@ export default function ModifiersClient() {
       {/* Deck Replacement Modifiers */}
       {deckModifiers.length > 0 && (
         <div className="mb-6">
-          <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-3">
+          <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-2">
             {t("Deck Replacement Modifiers")}
           </h2>
-          <p className="text-xs text-[var(--text-muted)] mb-3">
+          <p className="text-sm text-[var(--text-muted)] mb-3">
             {t(
               "These modifiers clear your starter deck and replace the {neow} encounter. When active, {relic} will not be offered by {darv}.",
               names,
@@ -168,10 +168,10 @@ export default function ModifiersClient() {
       {/* Neow Replacement Modifiers */}
       {neowModifiers.length > 0 && (
         <div className="mb-6">
-          <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-3">
+          <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-2">
             {t("{neow} Replacement Modifiers", names)}
           </h2>
-          <p className="text-xs text-[var(--text-muted)] mb-3">
+          <p className="text-sm text-[var(--text-muted)] mb-3">
             {t(
               "These modifiers replace the normal relic offerings of {neow} with a custom selection.",
               names,
@@ -187,10 +187,10 @@ export default function ModifiersClient() {
 
       {characterModifiers.length > 0 && (
         <div className="mb-6">
-          <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-3">
+          <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-2">
             {t("Character Card Modifiers")}
           </h2>
-          <p className="text-xs text-[var(--text-muted)] mb-3">
+          <p className="text-sm text-[var(--text-muted)] mb-3">
             {t(
               "One per character. Each adds that character's cards to card rewards and shops.",
             )}
@@ -212,7 +212,7 @@ export default function ModifiersClient() {
       {/* Other Modifiers */}
       {otherModifiers.length > 0 && (
         <div className="mb-6">
-          <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-3">
+          <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-2">
             {t("Other Modifiers")}
           </h2>
           <div className="space-y-3">
@@ -257,7 +257,7 @@ function ModifierCard({
             {tags.map((tag) => (
               <span
                 key={tag}
-                className={`text-[10px] px-1.5 py-0.5 rounded border ${TAG_COLORS[tag]}`}
+                className={`text-xs px-1.5 py-0.5 rounded border ${TAG_COLORS[tag]}`}
               >
                 {t(TAG_KEYS[tag], names)}
               </span>
@@ -269,7 +269,7 @@ function ModifierCard({
         <RichDescription text={mod.description} />
       </div>
       {note && (
-        <p className="text-xs text-[var(--text-muted)] mt-2 italic">
+        <p className="text-sm text-[var(--text-muted)] mt-2 italic">
           {t(note, names)}
         </p>
       )}

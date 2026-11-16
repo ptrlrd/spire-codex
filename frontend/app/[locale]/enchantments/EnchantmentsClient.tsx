@@ -137,7 +137,7 @@ function EnchantmentsClientInner({
                   {ench.card_type?.split(", ").map((type) => (
                     <span
                       key={type}
-                      className={`text-[10px] px-1.5 py-0.5 rounded border ${
+                      className={`text-xs px-1.5 py-0.5 rounded border ${
                         cardTypeColors[type] ||
                         "bg-surface text-fg-secondary border-line-strong"
                       }`}
@@ -146,7 +146,7 @@ function EnchantmentsClientInner({
                     </span>
                   ))}
                   {ench.is_stackable && (
-                    <span className="text-[10px] px-1.5 py-0.5 rounded border bg-info/10 text-info border-info/30">
+                    <span className="text-xs px-1.5 py-0.5 rounded border bg-info/10 text-info border-info/30">
                       {t("Stackable")}
                     </span>
                   )}
@@ -159,7 +159,7 @@ function EnchantmentsClientInner({
             </p>
 
             {ench.extra_card_text && (
-              <p className="text-xs text-[var(--text-muted)] leading-relaxed italic">
+              <p className="text-sm text-[var(--text-muted)] leading-relaxed italic">
                 {t("Card text:")}{" "}
                 <RichDescription text={ench.extra_card_text} />
               </p>
