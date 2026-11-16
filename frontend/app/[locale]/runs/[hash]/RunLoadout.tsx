@@ -21,6 +21,7 @@ const RARITY_ORDER = [
   "Common",
   "Uncommon",
   "Rare",
+  "Shop",
   "Ancient",
   "Event",
   "Token",
@@ -40,14 +41,21 @@ function cardLabelColor(upgraded: boolean, enchanted: boolean): string {
   return "text-[var(--text-primary)]";
 }
 
+interface Rated {
+  rarity?: string;
+  rarity_key?: string | null;
+}
+
 function raritySummary<T>(
   items: T[],
-  getRarity: (item: T) => string | undefined,
+  getInfo: (item: T) => Rated | undefined,
   t: TFn,
 ): string {
   const buckets = new Map<string, number>();
   for (const item of items) {
-    const r = getRarity(item) ?? "Unknown";
+    const info = getInfo(item);
+    const key = info?.rarity_key ?? info?.rarity ?? "Unknown";
+    const r = key === "Basic" ? "Starter" : key;
     buckets.set(r, (buckets.get(r) ?? 0) + 1);
   }
   const parts: string[] = [];
@@ -111,11 +119,7 @@ export function RunRelics({
       <SectionHead
         title={t("Relics")}
         count={player.relics.length}
-        summary={raritySummary(
-          player.relics,
-          (r) => relicData[r.id]?.rarity,
-          t,
-        )}
+        summary={raritySummary(player.relics, (r) => relicData[r.id], t)}
       />
       <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-3 gap-y-1">
         {player.relics.map((relic, i) => {
@@ -222,8 +226,11 @@ export function RunDeck({
   );
   const loaded = Object.keys(cardData).length > 0;
   const groups = new Map<string, StackEntry[]>();
+  const labels = new Map<string, string>();
   for (const entry of stacks) {
-    const type = cardData[entry.id]?.type;
+    const info = cardData[entry.id];
+    const type = info?.type_key ?? info?.type;
+    if (type && info?.type) labels.set(type, info.type);
     const key = !loaded
       ? ""
       : type && TYPE_ORDER.includes(type)
@@ -237,7 +244,7 @@ export function RunDeck({
       <SectionHead
         title={t("Final Deck")}
         count={player.deck.length}
-        summary={raritySummary(player.deck, (c) => cardData[c.id]?.rarity, t)}
+        summary={raritySummary(player.deck, (c) => cardData[c.id], t)}
       />
       {ordered.map((type) => {
         const entries = groups.get(type) ?? [];
@@ -246,7 +253,7 @@ export function RunDeck({
           <div key={type} className="mt-4 first:mt-0">
             {type && (
               <h3 className="mb-2 flex items-baseline gap-2 text-base font-semibold text-[var(--text-primary)]">
-                {t(type)}
+                {labels.get(type) ?? t(type)}
                 <span className="text-sm font-normal text-[var(--text-muted)]">
                   {copies}
                 </span>

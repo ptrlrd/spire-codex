@@ -13,7 +13,9 @@ export interface CardInfo {
   name: string;
   description: string;
   type: string;
+  type_key?: string | null;
   rarity: string;
+  rarity_key?: string | null;
   cost: number;
   color: string;
   image_url: string | null;
