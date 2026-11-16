@@ -164,6 +164,7 @@ export function keywordLines(
   visible: string[],
   added: string[],
   period: string,
+  addedNames?: Record<string, string>,
 ) {
   const names = card.keywords ?? [];
   const keys =
@@ -174,7 +175,8 @@ export function keywordLines(
   const line = (k: string) => {
     const name = byKey.get(k);
     if (name && shown.has(name)) return `[gold]${name}[/gold]${period}`;
-    if (added.includes(k)) return `[gold]${k}[/gold]${period}`;
+    if (added.includes(k))
+      return `[gold]${addedNames?.[k] ?? k}[/gold]${period}`;
     return null;
   };
   return {

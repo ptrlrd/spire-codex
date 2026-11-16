@@ -84,6 +84,24 @@ function loadEnchantment(
   };
 }
 
+function keywordNames(lang: string): Record<string, string> {
+  const p = path.join(
+    process.cwd(),
+    "..",
+    "data-beta",
+    "v0.113.0",
+    lang,
+    "keywords.json",
+  );
+  if (!fs.existsSync(p)) return {};
+  const list: Array<{ id: string; name: string }> = JSON.parse(
+    fs.readFileSync(p, "utf8"),
+  );
+  return Object.fromEntries(
+    list.map((k) => [k.id.charAt(0) + k.id.slice(1).toLowerCase(), k.name]),
+  );
+}
+
 function titleVariants(
   lang: string,
   id: string,
@@ -394,6 +412,7 @@ function GridView({
                             titleVariants={titleVariants(lang, card.id)}
                             lang={lang}
                             enchantment={loadEnchantment(lang, ench, "1", card)}
+                            keywordNames={keywordNames(lang)}
                           />
                         ) : (
                           <span style={{ color: "red" }}>missing card</span>

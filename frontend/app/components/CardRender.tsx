@@ -112,8 +112,10 @@ export default function CardRender({
   lang = "eng",
   tune = {},
   enchantment,
+  keywordNames,
 }: {
   enchantment?: CardEnchantment;
+  keywordNames?: Record<string, string>;
   tune?: Record<string, number>;
   card: Card;
   lang?: string;
@@ -186,6 +188,7 @@ export default function CardRender({
     names ? [...ek.visible, ...ek.added.map((k) => names[k] ?? k)] : ek.visible,
     ek.added,
     lf.period,
+    keywordNames,
   );
   const extraText = enchantment?.extraText
     ? `[purple]${enchantment.extraText}[/purple]`

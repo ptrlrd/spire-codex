@@ -656,6 +656,12 @@ export default function CardDetail({
     !betaArt &&
     !variantImg &&
     renderKey(card) !== renderKey(currentCard);
+  const renderKeywordNames = Object.fromEntries(
+    Object.values(keywordData).map((k) => [
+      k.id.charAt(0) + k.id.slice(1).toLowerCase(),
+      k.name,
+    ]),
+  );
   const renderLang =
     lang === "ara" &&
     !/[\u0600-\u06FF]/.test(`${card.name}${card.description ?? ""}`)
@@ -1074,6 +1080,9 @@ export default function CardDetail({
                 }
                 upgraded={isUpgraded}
                 lang={renderLang}
+                keywordNames={
+                  renderLang === lang ? renderKeywordNames : undefined
+                }
                 label={t("{name} - Slay the Spire 2", {
                   name: `${card.name}${isUpgraded ? "+" : ""}`,
                 })}

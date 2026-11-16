@@ -13,7 +13,9 @@ export default function CardRenderSlot({
   upgraded,
   lang,
   label,
+  keywordNames,
 }: {
+  keywordNames?: Record<string, string>;
   card: Card;
   upgraded: boolean;
   lang: string;
@@ -58,6 +60,7 @@ export default function CardRenderSlot({
               width={BOX.card * k}
               upgraded={upgraded}
               lang={lang}
+              keywordNames={keywordNames}
             />
           </div>
         )}
