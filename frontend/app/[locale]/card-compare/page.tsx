@@ -3,6 +3,7 @@ import path from "path";
 import { notFound } from "next/navigation";
 import type { Card } from "@/lib/api/types";
 import CardRender, { type CardEnchantment } from "@/app/components/CardRender";
+import { enchantedCardUrl, fullCardUrl, imageUrl } from "@/lib/image-url";
 import {
   ENCHANTMENT_RULES,
   enchantmentExtraText,
@@ -100,7 +101,11 @@ function titleVariants(
   return title && typeof title === "object" ? title : undefined;
 }
 
-const FONT_CSS = `@font-face{font-family:"GameFira";font-weight:400;src:url("/fonts/game-sub/fira-sans-extra-condensed-regular-game.woff2") format("woff2");}@font-face{font-family:"GameFira";font-weight:700;src:url("/fonts/game-sub/fira-sans-extra-condensed-regular-game.woff2") format("woff2");}@font-face{font-family:"GameNotoJP";font-weight:400;src:url("/fonts/game-sub/noto-sans-cjk-jp-regular-game.woff2") format("woff2");}@font-face{font-family:"GameNotoJP";font-weight:700;src:url("/fonts/game-sub/noto-sans-cjk-jp-regular-game.woff2") format("woff2");}@font-face{font-family:"GameGyeonggi";font-weight:400;src:url("/fonts/game-sub/gyeonggi-cheonnyeon-batang-bold-game.woff2") format("woff2");}@font-face{font-family:"GameGyeonggi";font-weight:700;src:url("/fonts/game-sub/gyeonggi-cheonnyeon-batang-bold-game.woff2") format("woff2");}@font-face{font-family:"GameThai";font-weight:400;src:url("/fonts/game-sub/cs-chat-thai-ui-game.woff2") format("woff2");}@font-face{font-family:"GameThai";font-weight:700;src:url("/fonts/game-sub/cs-chat-thai-ui-game.woff2") format("woff2");}@font-face{font-family:"GameNotoMonoSC";font-weight:400;src:url("/fonts/game-sub/noto-sans-mono-cjk-sc-regular-game.woff2") format("woff2");}@font-face{font-family:"GameNotoMonoSC";font-weight:700;src:url("/fonts/game-sub/noto-sans-mono-cjk-sc-regular-game.woff2") format("woff2");}@font-face{font-family:"GameNotoMonoTC";font-weight:400;src:url("/fonts/game-sub/noto-sans-mono-cjk-tc-regular-game.woff2") format("woff2");}@font-face{font-family:"GameNotoMonoTC";font-weight:700;src:url("/fonts/game-sub/noto-sans-mono-cjk-tc-regular-game.woff2") format("woff2");}@font-face{font-family:"GameYamama";font-weight:400;src:url("/fonts/game-sub/alyamama-regular-game.woff2") format("woff2");}@font-face{font-family:"GameYamama";font-weight:700;src:url("/fonts/game-sub/alyamama-regular-game.woff2") format("woff2");}`;
+const FONT_CSS =
+  `@font-face{font-family:"GameFira";font-weight:400;src:url("/fonts/game-sub/fira-sans-extra-condensed-regular-game.woff2") format("woff2");}@font-face{font-family:"GameFira";font-weight:700;src:url("/fonts/game-sub/fira-sans-extra-condensed-regular-game.woff2") format("woff2");}@font-face{font-family:"GameNotoJP";font-weight:400;src:url("/fonts/game-sub/noto-sans-cjk-jp-regular-game.woff2") format("woff2");}@font-face{font-family:"GameNotoJP";font-weight:700;src:url("/fonts/game-sub/noto-sans-cjk-jp-regular-game.woff2") format("woff2");}@font-face{font-family:"GameGyeonggi";font-weight:400;src:url("/fonts/game-sub/gyeonggi-cheonnyeon-batang-bold-game.woff2") format("woff2");}@font-face{font-family:"GameGyeonggi";font-weight:700;src:url("/fonts/game-sub/gyeonggi-cheonnyeon-batang-bold-game.woff2") format("woff2");}@font-face{font-family:"GameThai";font-weight:400;src:url("/fonts/game-sub/cs-chat-thai-ui-game.woff2") format("woff2");}@font-face{font-family:"GameThai";font-weight:700;src:url("/fonts/game-sub/cs-chat-thai-ui-game.woff2") format("woff2");}@font-face{font-family:"GameNotoMonoSC";font-weight:400;src:url("/fonts/game-sub/noto-sans-mono-cjk-sc-regular-game.woff2") format("woff2");}@font-face{font-family:"GameNotoMonoSC";font-weight:700;src:url("/fonts/game-sub/noto-sans-mono-cjk-sc-regular-game.woff2") format("woff2");}@font-face{font-family:"GameNotoMonoTC";font-weight:400;src:url("/fonts/game-sub/noto-sans-mono-cjk-tc-regular-game.woff2") format("woff2");}@font-face{font-family:"GameNotoMonoTC";font-weight:700;src:url("/fonts/game-sub/noto-sans-mono-cjk-tc-regular-game.woff2") format("woff2");}@font-face{font-family:"GameYamama";font-weight:400;src:url("/fonts/game-sub/alyamama-regular-game.woff2") format("woff2");}@font-face{font-family:"GameYamama";font-weight:700;src:url("/fonts/game-sub/alyamama-regular-game.woff2") format("woff2");}`.replaceAll(
+    "/fonts/game-sub/",
+    imageUrl("/static/images/card-render/fonts/"),
+  );
 
 const GRID: Array<[string, string[]]> = [
   [
@@ -191,7 +196,48 @@ const GRID: Array<[string, string[]]> = [
   ],
 ];
 
-function GridView() {
+const ALL_LANGS = [
+  "eng",
+  "ara",
+  "deu",
+  "esp",
+  "fra",
+  "ind",
+  "ita",
+  "jpn",
+  "kor",
+  "pol",
+  "ptb",
+  "rus",
+  "spa",
+  "tha",
+  "tur",
+  "zhs",
+  "zht",
+];
+const RENDER_VERSION = "0.113.0";
+
+function customGrid(sp: Record<string, string | undefined>) {
+  if (!sp.cards && !sp.langs) return GRID;
+  const cards = (sp.cards ?? "BASH,OFFERING,DEMON_FORM")
+    .split(",")
+    .map((c) => c.trim().toUpperCase())
+    .filter(Boolean);
+  const langs = sp.langs
+    ? sp.langs.split(",").map((l) => l.trim().toLowerCase())
+    : ALL_LANGS;
+  const up = sp.up === "1" ? "1" : "0";
+  const ench = sp.ench ? `:${sp.ench.toUpperCase()}` : "";
+  return cards.map(
+    (id) =>
+      [
+        `${id}${up === "1" ? "+" : ""}`,
+        langs.map((l) => `${l}:${id}:${up}${ench}`),
+      ] as [string, string[]],
+  );
+}
+
+function GridView({ grid }: { grid: Array<[string, string[]]> }) {
   const cache: Record<string, Card[]> = {};
   return (
     <div
@@ -204,9 +250,10 @@ function GridView() {
     >
       <style>{FONT_CSS}</style>
       <div style={{ fontSize: 13, color: "#999", marginBottom: 8 }}>
-        HTML on the left, game render on the right. Beta v0.113.0 data.
+        HTML on the left, game render on the right. Beta v0.113.0 data. Pick
+        your own with ?grid=1&cards=BASH,ZAP&langs=jpn,kor&up=1&ench=SHARP
       </div>
-      {GRID.map(([heading, items]) => (
+      {grid.map(([heading, items]) => (
         <section key={heading}>
           <h2 style={{ fontSize: 20, margin: "28px 0 12px" }}>{heading}</h2>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 24 }}>
@@ -215,10 +262,16 @@ function GridView() {
               cache[lang] ??= load(lang, true);
               const card = cache[lang].find((c) => c.id === id);
               const level = Number(up) || 0;
-              const ref = `${lang}_${ench ? `ench_${ench.toLowerCase()}_` : ""}${id.toLowerCase()}${level ? "_upg" : ""}.webp`;
-              const hasRef = fs.existsSync(
-                path.join(process.cwd(), "public", "card-ref", ref),
-              );
+              const ref = ench
+                ? enchantedCardUrl(
+                    id,
+                    ench,
+                    !!level,
+                    "beta",
+                    lang,
+                    RENDER_VERSION,
+                  )
+                : fullCardUrl(id, !!level, "beta", lang, RENDER_VERSION);
               return (
                 <div key={item}>
                   <div style={{ fontSize: 12, color: "#aaa", marginBottom: 4 }}>
@@ -258,28 +311,8 @@ function GridView() {
                         )}
                       </div>
                     </div>
-                    {hasRef ? (
-                      /* eslint-disable-next-line @next/next/no-img-element */
-                      <img
-                        src={`/card-ref/${ref}`}
-                        alt=""
-                        width={400}
-                        height={520}
-                      />
-                    ) : (
-                      <div
-                        style={{
-                          width: 400,
-                          height: 520,
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          color: "#777",
-                        }}
-                      >
-                        no game render
-                      </div>
-                    )}
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={ref} alt="" width={400} height={520} />
                   </div>
                 </div>
               );
@@ -309,7 +342,10 @@ export default async function Page({
         ];
       })
     : PICKS;
-  if ((sp as { grid?: string }).grid === "1") return <GridView />;
+  if ((sp as { grid?: string }).grid === "1")
+    return (
+      <GridView grid={customGrid(sp as Record<string, string | undefined>)} />
+    );
   const cache: Record<string, Card[]> = {};
   const one = (sp as { one?: string }).one;
   if (one) {
