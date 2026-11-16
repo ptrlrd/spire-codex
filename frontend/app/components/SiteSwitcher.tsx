@@ -58,37 +58,21 @@ export default function SiteSwitcher() {
     ? t("beta {version}", { version: stripSuffix(betaVersion) })
     : t("beta");
 
-  const betaHref = rest ? `/beta/${rest}` : "/beta";
-  const seg =
-    "inline-flex h-full items-center px-3 text-xs font-semibold transition-colors";
-  const off = "text-[var(--text-muted)] hover:text-[var(--text-primary)]";
-  return (
-    <span className="inline-flex items-center gap-2">
-      {onBeta && rest && (
-        <Link
-          href="/beta"
-          className="hidden text-xs text-success hover:underline lg:inline"
-        >
-          {t("Beta changes")}
-        </Link>
-      )}
-      <span className="inline-flex h-9 overflow-hidden rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)]">
-        <Link
-          href={mainHref}
-          aria-current={onBeta ? undefined : "true"}
-          className={`${seg} ${onBeta ? off : "bg-[var(--accent-gold)]/15 text-[var(--accent-gold)]"}`}
-        >
-          {t("Main")}
-        </Link>
-        <Link
-          href={betaHref}
-          aria-current={onBeta ? "true" : undefined}
-          title={betaLabel}
-          className={`${seg} ${onBeta ? "bg-success/15 text-success" : off}`}
-        >
-          {t("Beta")}
-        </Link>
-      </span>
-    </span>
+  return onBeta ? (
+    <Link
+      href={mainHref}
+      className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-[var(--accent-gold)]/30 bg-[var(--accent-gold)]/15 px-3 text-xs font-semibold text-[var(--accent-gold)] transition-colors hover:bg-[var(--accent-gold)]/25"
+    >
+      <span aria-hidden>←</span>
+      {t("Back to main")}
+    </Link>
+  ) : (
+    <Link
+      href="/beta"
+      className="inline-flex h-9 items-center rounded-lg border border-success/30 bg-success/10 px-3 text-xs font-semibold text-success transition-colors hover:bg-success/20"
+      title={betaLabel}
+    >
+      {t("View beta content")}
+    </Link>
   );
 }
