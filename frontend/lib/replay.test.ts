@@ -4082,9 +4082,7 @@ describe("blitz merchant buys", () => {
   });
 
   it("names a blitz entry for display", () => {
-    expect(blitzEntryName("ColorlessCardReward")).toBe(
-      "Colorless Card Reward",
-    );
+    expect(blitzEntryName("ColorlessCardReward")).toBe("Colorless Card Reward");
     expect(blitzEntryName("BlitzMerchantTwoRelicsEntry")).toBe("Two Relics");
   });
 });
