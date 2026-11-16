@@ -6,24 +6,19 @@ import manifest from "./card-enchantments.json";
 
 const MANIFEST = manifest as Record<string, string[]>;
 
-// How many example cards an enchantment page shows.
-const CARD_SAMPLE = 48;
-
 /** Enchantment ids a card can take (lowercase), or [] if none. */
 export function enchantmentsForCard(cardId: string): string[] {
   return MANIFEST[cardId.toLowerCase()] ?? [];
 }
 
-/** Cards that can take an enchantment: a capped, sorted sample + the total. */
+/** How many cards can take an enchantment. */
 export function cardsForEnchantment(enchId: string): {
-  cardIds: string[];
   total: number;
 } {
   const ench = enchId.toLowerCase();
-  const all: string[] = [];
-  for (const [cardId, enchs] of Object.entries(MANIFEST)) {
-    if (enchs.includes(ench)) all.push(cardId);
+  let total = 0;
+  for (const enchs of Object.values(MANIFEST)) {
+    if (enchs.includes(ench)) total += 1;
   }
-  all.sort();
-  return { cardIds: all.slice(0, CARD_SAMPLE), total: all.length };
+  return { total };
 }

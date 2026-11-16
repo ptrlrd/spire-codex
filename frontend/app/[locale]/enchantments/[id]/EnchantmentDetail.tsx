@@ -16,7 +16,7 @@ import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityUpdateHistory from "@/app/components/EntityUpdateHistory";
 import EntityProse from "@/app/components/EntityProse";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
-import { imageUrl, enchantedCardUrl } from "@/lib/image-url";
+import { imageUrl } from "@/lib/image-url";
 import "@/app/card-revamp.css";
 import "@/app/power-ench-event-extra.css";
 
@@ -24,11 +24,9 @@ const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 export default function EnchantmentDetail({
   initialEnchantment,
-  cardIds = [],
   totalCards = 0,
 }: {
   initialEnchantment?: Enchantment | null;
-  cardIds?: string[];
   totalCards?: number;
 } = {}) {
   const { id } = useParams<{ id: string }>();
@@ -71,7 +69,7 @@ export default function EnchantmentDetail({
     );
     secs.forEach((s) => obs.observe(s));
     return () => obs.disconnect();
-  }, [enchantment, cardIds.length]);
+  }, [enchantment]);
 
   const handleTocClick = (e: ReactMouseEvent, secId: string) => {
     e.preventDefault();
@@ -113,7 +111,6 @@ export default function EnchantmentDetail({
 
   const tocItems: { id: string; label: string }[] = [
     { id: "description", label: t("Description") },
-    ...(cardIds.length > 0 ? [{ id: "cards", label: t("Cards") }] : []),
     { id: "history", label: t("Version history") },
   ];
 
@@ -187,51 +184,6 @@ export default function EnchantmentDetail({
               </>
             )}
           </section>
-
-          {/* Cards it can apply to */}
-          {cardIds.length > 0 && (
-            <section id="cards">
-              <h2>{t("Cards")}</h2>
-              <p className="h-note">
-                {cardIds.length < totalCards
-                  ? t("{name} applied to {n} cards (showing {shown}).", {
-                      name: enchantment.name,
-                      n: fmtN(totalCards),
-                      shown: cardIds.length,
-                    })
-                  : t("{name} applied to {n} cards.", {
-                      name: enchantment.name,
-                      n: fmtN(totalCards),
-                    })}
-              </p>
-              <div className="ench-grid">
-                {cardIds.map((cid) => {
-                  const cardName = cid
-                    .replace(/_/g, " ")
-                    .replace(/\b\w/g, (c) => c.toUpperCase());
-                  return (
-                    <Link
-                      prefetch={false}
-                      key={cid}
-                      href={`${bp}/cards/${cid}`}
-                      className="ench-cell"
-                    >
-                      <img
-                        src={enchantedCardUrl(cid, id, false, "stable", lang)}
-                        alt={t("{card} with {name} - Slay the Spire 2", {
-                          card: cid,
-                          name: enchantment.name,
-                        })}
-                        loading="lazy"
-                        crossOrigin="anonymous"
-                      />
-                      <div className="ench-name">{cardName}</div>
-                    </Link>
-                  );
-                })}
-              </div>
-            </section>
-          )}
 
           <LocalizedNames entityType="enchantments" entityId={id} />
           <EntityUpdateHistory entityType="enchantments" entityId={id} />

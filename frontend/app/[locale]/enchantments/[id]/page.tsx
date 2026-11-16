@@ -146,7 +146,6 @@ export default async function Page({ params }: Props) {
       <BetaOnlyScope version={betaVersion} type="enchantments" id={id}>
         <EnchantmentDetail
           initialEnchantment={enchantment}
-          cardIds={enchantmentCards.cardIds}
           totalCards={enchantmentCards.total}
         />
       </BetaOnlyScope>
