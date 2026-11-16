@@ -35,6 +35,7 @@ import {
 } from "@/lib/grid-query";
 import type { GridData, GridRow } from "./types";
 import { CHARACTER_ORDER } from "@/lib/character-order";
+import "@/app/stats-grid.css";
 
 const SMALL_SAMPLE = 20;
 const HIDDEN_SAMPLE = 5;
@@ -57,6 +58,61 @@ interface Column {
   align: "left" | "right" | "center";
   descFirst: boolean;
   sortField: keyof GridRow | null;
+}
+
+const PHONE_THIRD: ColKey[] = [
+  "pickRate",
+  "buyRate",
+  "share",
+  "useRate",
+  "holdRate",
+  "n",
+];
+
+function RowArt({ row, card }: { row: GridRow; card: boolean }) {
+  if (!row.imageUrl)
+    return (
+      <span aria-hidden className={card ? "w-10 shrink-0" : "w-8 shrink-0"} />
+    );
+  return (
+    <img
+      src={imageUrl(row.imageUrl)}
+      alt=""
+      width={card ? 40 : 32}
+      height={32}
+      loading="lazy"
+      className={
+        card
+          ? "h-8 w-10 shrink-0 rounded object-cover"
+          : "h-8 w-8 shrink-0 object-contain"
+      }
+    />
+  );
+}
+
+function LiftBar({ value, scale }: { value: number | null; scale: number }) {
+  const width =
+    value === null ? 0 : Math.min(50, (Math.abs(value) / scale) * 50);
+  return (
+    <span
+      aria-hidden
+      className="sg-bar-track relative h-2 w-16 shrink-0 rounded-full bg-[var(--border-subtle)]"
+    >
+      {value !== null && value !== 0 && (
+        <span
+          className={`absolute inset-y-0 ${
+            value > 0 ? "rounded-r-full bg-success" : "rounded-l-full bg-danger"
+          }`}
+          style={
+            value > 0
+              ? { left: "50%", width: `${width}%` }
+              : { right: "50%", width: `${width}%` }
+          }
+        />
+      )}
+      <span className="absolute -inset-y-1 left-1/2 w-px bg-[var(--text-muted)]" />
+    </span>
+  );
 }
 
 const COLUMN_DEFS: Record<ColKey, Omit<Column, "key">> = {
@@ -255,6 +311,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
   );
   const [order, setOrder] = useState<ColKey[]>([]);
   const [dragKey, setDragKey] = useState<ColKey | null>(null);
+  const [open, setOpen] = useState<Set<string>>(() => new Set());
   const draggedRef = useRef(false);
   const hydratedRef = useRef(false);
   const [preview, setPreview] = useState<{
@@ -267,6 +324,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
   } | null>(null);
 
   const hasWins = rows.some((r) => r.wins !== null);
+  const hasArt = rows.some((r) => r.imageUrl);
   const columns: Column[] = orderColumns(
     cfg.columns.filter((key) => (key === "wl" ? hasWins : true)),
     order,
@@ -452,6 +510,25 @@ export default function StatsGrid({ data }: { data: GridData }) {
       });
   }, [cfg.grouped, byCharacter, visible, sortKey, dir]);
 
+  const liftScale = useMemo(() => {
+    const vals = rows
+      .filter((r) => r.lift !== null && r.n >= SMALL_SAMPLE)
+      .map((r) => Math.abs(r.lift as number))
+      .sort((a, b) => a - b);
+    if (vals.length === 0) return 1;
+    return Math.max(1, vals[Math.floor((vals.length - 1) * 0.95)]);
+  }, [rows]);
+  const phoneThird: ColKey | undefined =
+    sortKey !== "name" && sortKey !== "lift" && sortKey !== "winRate"
+      ? sortKey
+      : PHONE_THIRD.find((k) => cfg.columns.includes(k));
+  const toggleOpen = (key: string) =>
+    setOpen((prev) => {
+      const next = new Set(prev);
+      if (next.has(key)) next.delete(key);
+      else next.add(key);
+      return next;
+    });
   const hiddenCount = rows.filter((r) => r.n < HIDDEN_SAMPLE).length;
   const waxCount = rows.filter((r) => r.wax).length;
   const upgradedCount = rows.filter((r) => r.upgraded).length;
@@ -706,88 +783,148 @@ export default function StatsGrid({ data }: { data: GridData }) {
       ? (totals.totalWins / totals.totalSeats) * 100
       : null;
 
-  const cell = (col: Column, r: GridRow) => {
+  const stat = (col: Column) => ({
+    "data-col": col.key,
+    "data-label": t(col.label),
+    "data-primary":
+      col.key === "lift" || col.key === "winRate" || col.key === phoneThird
+        ? ""
+        : undefined,
+  });
+  const expander = (r: GridRow) => (
+    <button
+      type="button"
+      onClick={() => toggleOpen(r.key)}
+      aria-label={t("Details")}
+      aria-expanded={open.has(r.key)}
+      className="ml-auto flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-base text-[var(--text-secondary)] sm:hidden"
+    >
+      {open.has(r.key) ? "▴" : "▾"}
+    </button>
+  );
+  const rank = (index: number) => (
+    <span className="w-7 shrink-0 text-right text-xs tabular-nums text-[var(--text-muted)] sm:hidden">
+      {index + 1}
+    </span>
+  );
+  const isCard = (r: GridRow) => kind === "cards" || r.group === "cards";
+  const cell = (col: Column, r: GridRow, index: number) => {
     switch (col.key) {
       case "name":
         if (r.playedBy)
           return (
             <td
               key={col.key}
-              className={`px-3 py-1.5 ${r.parent ? "pl-6" : ""}`}
+              data-col="name"
+              className={`px-3 py-1 ${r.parent ? "sm:pl-6" : ""}`}
               onMouseEnter={(e) => showPreview(e, r)}
               onMouseLeave={() => setPreview(null)}
             >
-              <span className="inline-flex items-center gap-1.5">
-                {r.href ? (
-                  <Link
-                    prefetch={false}
-                    href={`${bp}${r.href}`}
-                    className={`font-medium hover:underline ${colorTextClass(r.playedBy)}`}
-                  >
-                    {r.name}
-                  </Link>
-                ) : (
-                  <span className={`font-medium ${colorTextClass(r.playedBy)}`}>
-                    {r.name}
+              <div className="flex min-h-11 items-center gap-2 sm:min-h-0">
+                {rank(index)}
+                <RowArt row={r} card />
+                <div className="flex min-w-0 flex-wrap items-center gap-x-2">
+                  <span className="inline-flex items-center gap-1.5">
+                    {r.href ? (
+                      <Link
+                        prefetch={false}
+                        href={`${bp}${r.href}`}
+                        className={`font-medium hover:underline ${colorTextClass(r.playedBy)}`}
+                      >
+                        {r.name}
+                      </Link>
+                    ) : (
+                      <span
+                        className={`font-medium ${colorTextClass(r.playedBy)}`}
+                      >
+                        {r.name}
+                      </span>
+                    )}
+                    {r.beta && <BetaBadge />}
                   </span>
-                )}
-                {r.beta && <BetaBadge />}
-              </span>
-              <span className="ml-2 text-xs text-[var(--text-muted)]">
-                {t(cap(r.playedBy.toLowerCase()))}
-              </span>
+                  <span className="inline-flex items-center gap-1 text-xs text-[var(--text-muted)]">
+                    <img
+                      src={imageUrl(
+                        `/static/images/characters/character_icon_${r.playedBy.toLowerCase()}.webp`,
+                      )}
+                      alt=""
+                      width={16}
+                      height={16}
+                      loading="lazy"
+                      className="h-4 w-4 rounded-sm"
+                    />
+                    {t(cap(r.playedBy.toLowerCase()))}
+                  </span>
+                </div>
+                {expander(r)}
+              </div>
             </td>
           );
         if (cfg.grouped)
           return (
             <td
               key={col.key}
-              className="px-3 py-1 pl-6 text-[var(--text-primary)]"
+              data-col="name"
+              className="px-3 py-1 text-[var(--text-primary)] sm:pl-6"
               title={r.hint ?? undefined}
             >
-              {r.sub || r.name}
-              {r.subNote && (
-                <span className="ml-1 text-xs text-[var(--text-muted)]">
-                  · {r.subNote}
+              <div className="flex min-h-11 items-center gap-2 sm:min-h-0">
+                {rank(index)}
+                <span className="min-w-0">
+                  {r.sub || r.name}
+                  {r.subNote && (
+                    <span className="ml-1 text-xs text-[var(--text-muted)]">
+                      · {r.subNote}
+                    </span>
+                  )}
                 </span>
-              )}
+                {expander(r)}
+              </div>
             </td>
           );
         return (
           <td
             key={col.key}
-            className="px-3 py-1.5"
+            data-col="name"
+            className="px-3 py-1"
             onMouseEnter={(e) => showPreview(e, r)}
             onMouseLeave={() => setPreview(null)}
           >
-            {r.href ? (
-              <Link
-                prefetch={false}
-                href={`${bp}${r.href}`}
-                className={`font-medium hover:underline ${
-                  r.color ? colorTextClass(r.color) : ""
-                }`}
-              >
-                {r.name}
-              </Link>
-            ) : (
-              <span className="font-medium">{r.name}</span>
-            )}
-            {r.beta && (
-              <span className="ml-2">
-                <BetaBadge />
-              </span>
-            )}
-            {r.sub && (
-              <span className="ml-2 text-xs text-[var(--text-muted)]">
-                {r.sub}
-              </span>
-            )}
+            <div className="flex min-h-11 items-center gap-2 sm:min-h-0">
+              {rank(index)}
+              {hasArt && <RowArt row={r} card={isCard(r)} />}
+              <div className="flex min-w-0 flex-wrap items-center gap-x-2">
+                {r.href ? (
+                  <Link
+                    prefetch={false}
+                    href={`${bp}${r.href}`}
+                    className={`font-medium hover:underline ${
+                      r.color ? colorTextClass(r.color) : ""
+                    }`}
+                  >
+                    {r.name}
+                  </Link>
+                ) : (
+                  <span className="font-medium">{r.name}</span>
+                )}
+                {r.beta && <BetaBadge />}
+                {r.sub && (
+                  <span className="text-xs text-[var(--text-muted)]">
+                    {r.sub}
+                  </span>
+                )}
+              </div>
+              {expander(r)}
+            </div>
           </td>
         );
       case "score":
         return (
-          <td key={col.key} className="px-3 py-1.5 text-right tabular-nums">
+          <td
+            key={col.key}
+            {...stat(col)}
+            className="sg-stat px-3 py-1.5 text-right tabular-nums"
+          >
             <span className="font-medium">{r.score ?? "–"}</span>
           </td>
         );
@@ -795,7 +932,8 @@ export default function StatsGrid({ data }: { data: GridData }) {
         return (
           <td
             key={col.key}
-            className="px-3 py-1.5 text-right tabular-nums font-semibold text-[var(--accent-gold)]"
+            {...stat(col)}
+            className="sg-stat px-3 py-1.5 text-right tabular-nums font-semibold text-[var(--accent-gold)]"
           >
             {r.elo === null ? "–" : Math.round(r.elo)}
           </td>
@@ -804,7 +942,8 @@ export default function StatsGrid({ data }: { data: GridData }) {
         return (
           <td
             key={col.key}
-            className="px-3 py-1.5 text-right tabular-nums"
+            {...stat(col)}
+            className="sg-stat px-3 py-1.5 text-right tabular-nums"
             title={
               r.winRateCi
                 ? t("95% interval: {lo} to {hi}", {
@@ -821,7 +960,8 @@ export default function StatsGrid({ data }: { data: GridData }) {
         return (
           <td
             key={col.key}
-            className={`px-3 py-1.5 text-right tabular-nums ${
+            {...stat(col)}
+            className={`sg-stat px-3 py-1.5 text-right tabular-nums ${
               r.lift === null
                 ? "text-[var(--text-muted)]"
                 : r.lift > 0
@@ -836,14 +976,23 @@ export default function StatsGrid({ data }: { data: GridData }) {
                 : undefined
             }
           >
-            {pts(r.lift)}
+            <span className="sg-bar-wrap inline-flex items-center justify-end gap-2">
+              <LiftBar value={r.lift} scale={liftScale} />
+              <span className="sg-bar-num w-11 font-semibold">
+                {pts(r.lift)}
+              </span>
+            </span>
           </td>
         );
       case "share":
         return (
-          <td key={col.key} className="px-3 py-1 text-right tabular-nums">
-            <span className="inline-flex items-center justify-end gap-2">
-              <span className="h-1.5 w-16 overflow-hidden rounded-full bg-[var(--border-subtle)]">
+          <td
+            key={col.key}
+            {...stat(col)}
+            className="sg-stat px-3 py-1 text-right tabular-nums"
+          >
+            <span className="sg-bar-wrap inline-flex items-center justify-end gap-2">
+              <span className="sg-bar-track h-1.5 w-16 overflow-hidden rounded-full bg-[var(--border-subtle)]">
                 <span
                   className="block h-full rounded-full bg-[var(--accent-gold)]/70"
                   style={{
@@ -851,7 +1000,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
                   }}
                 />
               </span>
-              <span className="w-12">{pct(r.share)}</span>
+              <span className="sg-bar-num w-12">{pct(r.share)}</span>
             </span>
           </td>
         );
@@ -861,7 +1010,11 @@ export default function StatsGrid({ data }: { data: GridData }) {
       case "buyRate":
       case "lowHpShare":
         return (
-          <td key={col.key} className="px-3 py-1.5 text-right tabular-nums">
+          <td
+            key={col.key}
+            {...stat(col)}
+            className="sg-stat px-3 py-1.5 text-right tabular-nums"
+          >
             {pct(r[col.key])}
           </td>
         );
@@ -869,7 +1022,8 @@ export default function StatsGrid({ data }: { data: GridData }) {
         return (
           <td
             key={col.key}
-            className="px-3 py-1.5 text-right tabular-nums text-[var(--text-secondary)]"
+            {...stat(col)}
+            className="sg-stat px-3 py-1.5 text-right tabular-nums text-[var(--text-secondary)]"
           >
             {int(r.n, fmtN)}
           </td>
@@ -879,7 +1033,8 @@ export default function StatsGrid({ data }: { data: GridData }) {
         return (
           <td
             key={col.key}
-            className="px-3 py-1.5 text-right tabular-nums text-[var(--text-muted)]"
+            {...stat(col)}
+            className="sg-stat px-3 py-1.5 text-right tabular-nums text-[var(--text-muted)]"
           >
             {int(r[col.key], fmtN)}
           </td>
@@ -888,7 +1043,11 @@ export default function StatsGrid({ data }: { data: GridData }) {
       case "act2":
       case "act3":
         return (
-          <td key={col.key} className="px-3 py-1.5 text-right tabular-nums">
+          <td
+            key={col.key}
+            {...stat(col)}
+            className="sg-stat px-3 py-1.5 text-right tabular-nums"
+          >
             {pct(
               col.key === "act1"
                 ? r.pickAct1
@@ -902,7 +1061,8 @@ export default function StatsGrid({ data }: { data: GridData }) {
         return (
           <td
             key={col.key}
-            className="px-2 py-1.5 text-right tabular-nums text-xs text-[var(--text-muted)]"
+            {...stat(col)}
+            className="sg-stat px-2 py-1.5 text-right tabular-nums text-xs text-[var(--text-muted)]"
           >
             {r.wins === null || r.losses === null
               ? "–"
@@ -913,11 +1073,12 @@ export default function StatsGrid({ data }: { data: GridData }) {
   };
 
   const chip = (active: boolean) =>
-    `rounded-full border px-3 py-1 text-xs transition-colors ${
+    `sg-tap rounded-full border px-3 py-1 text-xs transition-colors ${
       active
         ? "border-[var(--accent-gold)] bg-[var(--accent-gold)]/15 text-[var(--accent-gold)]"
         : "border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:border-[var(--text-muted)]"
     }`;
+  const sortCol = columns.find((c) => c.key === sortKey);
 
   return (
     <div className="mx-auto max-w-[1400px] px-3 sm:px-5 py-6">
@@ -931,7 +1092,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
           {t(cfg.intro)}{" "}
           <Link
             href={`${bp}/stats/scoring`}
-            className="text-[var(--accent-gold)] hover:underline"
+            className="sg-tap-inline text-[var(--accent-gold)] hover:underline"
           >
             {t("How the numbers are computed")}
           </Link>
@@ -955,7 +1116,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
           <button
             type="button"
             onClick={resetFilters}
-            className="text-[var(--accent-gold)] hover:underline"
+            className="sg-tap-inline text-[var(--accent-gold)] hover:underline"
           >
             {t("Reset filters")}
           </button>
@@ -965,7 +1126,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
               <button
                 type="button"
                 onClick={resetColumns}
-                className="text-[var(--accent-gold)] hover:underline"
+                className="sg-tap-inline text-[var(--accent-gold)] hover:underline"
               >
                 {t("Reset columns")}
               </button>
@@ -1007,20 +1168,20 @@ export default function StatsGrid({ data }: { data: GridData }) {
       />
 
       <div className="mb-4 flex flex-wrap items-center gap-3">
-        <div className="flex items-center gap-2">
+        <div className="flex w-full items-center gap-2 sm:w-auto">
           <input
             type="text"
             value={search}
             onChange={(e) => onSearch(e.target.value)}
             placeholder={t("Search or filter, e.g. lift>2 win>55")}
             aria-label={t("Search")}
-            className="w-72 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] px-3 py-1.5 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:border-[var(--accent-gold)] focus:outline-none"
+            className="sg-tap w-full min-w-0 rounded-lg border sm:w-72 border-[var(--border-subtle)] bg-[var(--bg-card)] px-3 py-1.5 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:border-[var(--accent-gold)] focus:outline-none"
           />
           <button
             type="button"
             onClick={() => setHelpOpen((v) => !v)}
             aria-label={t("Filter help")}
-            className="rounded-lg border border-[var(--border-subtle)] px-2 py-1 text-xs text-[var(--text-muted)] hover:border-[var(--accent-gold)] hover:text-[var(--text-primary)]"
+            className="sg-tap shrink-0 justify-center rounded-lg border border-[var(--border-subtle)] px-2 py-1 text-xs text-[var(--text-muted)] hover:border-[var(--accent-gold)] hover:text-[var(--text-primary)] max-sm:w-11"
           >
             ?
           </button>
@@ -1077,7 +1238,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
           </div>
         )}
         {hiddenCount > 0 && (
-          <label className="flex items-center gap-1.5 text-xs text-[var(--text-muted)]">
+          <label className="sg-tap flex items-center gap-1.5 text-xs text-[var(--text-muted)]">
             <input
               type="checkbox"
               checked={showTiny}
@@ -1090,7 +1251,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
           </label>
         )}
         {waxCount > 0 && (
-          <label className="flex items-center gap-1.5 text-xs text-[var(--text-muted)]">
+          <label className="sg-tap flex items-center gap-1.5 text-xs text-[var(--text-muted)]">
             <input
               type="checkbox"
               checked={showWax}
@@ -1100,7 +1261,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
           </label>
         )}
         {upgradedCount > 0 && (
-          <label className="flex items-center gap-1.5 text-xs text-[var(--text-muted)]">
+          <label className="sg-tap flex items-center gap-1.5 text-xs text-[var(--text-muted)]">
             <input
               type="checkbox"
               checked={showUpgraded}
@@ -1110,7 +1271,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
           </label>
         )}
         {canSplitByCharacter && (
-          <label className="flex items-center gap-1.5 text-xs text-[var(--text-muted)]">
+          <label className="sg-tap flex items-center gap-1.5 text-xs text-[var(--text-muted)]">
             <input
               type="checkbox"
               checked={byCharacter}
@@ -1121,7 +1282,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
         )}
         {kind === "cards" && (
           <label
-            className={`flex items-center gap-1.5 text-xs ${
+            className={`sg-tap flex flex-wrap items-center gap-1.5 text-xs ${
               offColorActive
                 ? "text-[var(--text-muted)]"
                 : "text-[var(--text-muted)]/50"
@@ -1190,8 +1351,44 @@ export default function StatsGrid({ data }: { data: GridData }) {
         </div>
       )}
 
+      <div className="mb-3 flex items-center gap-2 sm:hidden">
+        <label
+          htmlFor="sg-sort"
+          className="shrink-0 text-xs text-[var(--text-muted)]"
+        >
+          {t("Sort by")}
+        </label>
+        <select
+          id="sg-sort"
+          value={sortKey}
+          onChange={(e) => {
+            const col = columns.find((c) => c.key === e.target.value);
+            if (col) onSort(col);
+          }}
+          className="h-11 min-w-0 flex-1 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] px-3 text-sm text-[var(--text-primary)] focus:border-[var(--accent-gold)] focus:outline-none"
+        >
+          {columns
+            .filter((c) => c.sortField)
+            .map((c) => (
+              <option key={c.key} value={c.key}>
+                {t(c.label)}
+              </option>
+            ))}
+        </select>
+        <button
+          type="button"
+          onClick={() => {
+            if (sortCol) onSort(sortCol);
+          }}
+          aria-label={t("Sort")}
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-base text-[var(--accent-gold)]"
+        >
+          {dir === -1 ? "▾" : "▴"}
+        </button>
+      </div>
+
       <div className="overflow-x-auto rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)]/40">
-        <table className="w-full min-w-[720px] border-collapse text-sm">
+        <table className="sg-table w-full border-collapse text-sm sm:min-w-[720px]">
           <thead className="sticky top-0 z-10 bg-[var(--bg-card)] text-[var(--text-secondary)]">
             <tr className="border-b border-[var(--border-subtle)]">
               <th className="px-2 py-2 text-right font-medium tabular-nums w-10">
@@ -1259,6 +1456,8 @@ export default function StatsGrid({ data }: { data: GridData }) {
                     key={g.key}
                     name={g.name}
                     href={g.href ? `${bp}${g.href}` : null}
+                    art={cfg.grouped ? g.rows[0].imageUrl : null}
+                    open={open}
                     totalLabel={
                       cfg.grouped
                         ? t("{n} chosen", { n: fmtN(g.total) })
@@ -1277,6 +1476,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
                     key={r.key}
                     index={i}
                     row={r}
+                    open={open.has(r.key)}
                     columns={columns}
                     cell={cell}
                     smallTitle={t("Small sample: fewer than {min} seats", {
@@ -1328,26 +1528,29 @@ export default function StatsGrid({ data }: { data: GridData }) {
 function RowGroup({
   index,
   row,
+  open,
   columns,
   cell,
   smallTitle,
 }: {
   index: number;
   row: GridRow;
+  open: boolean;
   columns: Column[];
-  cell: (col: Column, r: GridRow) => React.ReactNode;
+  cell: (col: Column, r: GridRow, index: number) => React.ReactNode;
   smallTitle: string;
 }) {
   const small = row.n < SMALL_SAMPLE;
   return (
     <tr
-      className="border-b border-[var(--border-subtle)]/40 hover:bg-[var(--bg-card-hover)]/40"
+      className="sg-row border-b border-[var(--border-subtle)]/40 hover:bg-[var(--bg-card-hover)]/40"
+      data-open={open ? "" : undefined}
       title={small ? smallTitle : undefined}
     >
-      <td className="px-2 py-1.5 text-right tabular-nums text-[var(--text-muted)]">
+      <td className="sg-rank px-2 py-1.5 text-right tabular-nums text-[var(--text-muted)]">
         {index + 1}
       </td>
-      {columns.map((col) => cell(col, row))}
+      {columns.map((col) => cell(col, row, index))}
     </tr>
   );
 }
@@ -1355,6 +1558,8 @@ function RowGroup({
 function GroupBlock({
   name,
   href,
+  art,
+  open,
   totalLabel,
   rows,
   columns,
@@ -1363,33 +1568,47 @@ function GroupBlock({
 }: {
   name: string;
   href: string | null;
+  art: string | null;
+  open: Set<string>;
   totalLabel: string;
   rows: GridRow[];
   columns: Column[];
-  cell: (col: Column, r: GridRow) => React.ReactNode;
+  cell: (col: Column, r: GridRow, index: number) => React.ReactNode;
   smallTitle: string;
 }) {
   return (
     <>
-      <tr className="border-b border-[var(--border-subtle)] bg-[var(--bg-card)]/70">
+      <tr className="sg-group border-b border-[var(--border-subtle)] bg-[var(--bg-card)]/70">
         <td />
         <td
           colSpan={columns.length}
-          className="px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-[var(--text-secondary)]"
+          className="px-3 py-1.5 text-sm font-semibold text-[var(--text-secondary)]"
         >
-          {href ? (
-            <Link
-              prefetch={false}
-              href={href}
-              className="hover:text-[var(--accent-gold)] hover:underline"
-            >
-              {name}
-            </Link>
-          ) : (
-            name
-          )}
-          <span className="ml-2 font-normal normal-case tracking-normal text-[var(--text-muted)]">
-            {totalLabel}
+          <span className="inline-flex flex-wrap items-center gap-x-2">
+            {art && (
+              <img
+                src={imageUrl(art)}
+                alt=""
+                width={28}
+                height={28}
+                loading="lazy"
+                className="h-7 w-7 shrink-0 rounded object-cover"
+              />
+            )}
+            {href ? (
+              <Link
+                prefetch={false}
+                href={href}
+                className="sg-tap hover:text-[var(--accent-gold)] hover:underline"
+              >
+                {name}
+              </Link>
+            ) : (
+              name
+            )}
+            <span className="text-xs font-normal text-[var(--text-muted)]">
+              {totalLabel}
+            </span>
           </span>
         </td>
       </tr>
@@ -1398,6 +1617,7 @@ function GroupBlock({
           key={r.key}
           index={i}
           row={r}
+          open={open.has(r.key)}
           columns={columns}
           cell={cell}
           smallTitle={smallTitle}

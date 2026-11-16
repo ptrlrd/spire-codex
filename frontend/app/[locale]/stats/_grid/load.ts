@@ -30,6 +30,7 @@ interface EventOption {
 interface EventCatalog {
   id: string;
   name: string;
+  image_url?: string | null;
   options?: EventOption[] | null;
   pages?: { options?: EventOption[] | null }[] | null;
 }
@@ -392,10 +393,12 @@ async function loadEvents(lang: string, bracket: string): Promise<GridData> {
     ),
   ]);
   const names = new Map<string, string>();
+  const art = new Map<string, string | null>();
   const options = new Map<string, Record<string, EventOption>>();
   for (const e of events || []) {
     const eid = e.id.toUpperCase();
     names.set(eid, e.name);
+    art.set(eid, e.image_url ?? null);
     const opts: Record<string, EventOption> = {};
     for (const o of e.options ?? []) opts[o.id] = o;
     for (const p of e.pages ?? [])
@@ -412,6 +415,7 @@ async function loadEvents(lang: string, bracket: string): Promise<GridData> {
     const opt = opts[oid] ?? opts[oid.replace(/_\d+$/, "")];
     const row = fillCommon(baseRow(`${eid}:${oid}`, eid, name), m);
     row.href = `/events/${eid.toLowerCase()}`;
+    row.imageUrl = art.get(eid) ?? null;
     row.beta = betaIds.events?.has(eid) ?? false;
     row.sub = opt ? stripTags(opt.title) : oid;
     row.hint = opt?.description ? stripTags(opt.description) : null;
