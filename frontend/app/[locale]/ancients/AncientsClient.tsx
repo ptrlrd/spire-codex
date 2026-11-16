@@ -36,6 +36,18 @@ function AncientSection({
   return (
     <div className="anc-card">
       <div className="anc-head static">
+        <img
+          className="anc-portrait"
+          src={imageUrl(
+            `/static/images/misc/ancients/${ancient.id.toLowerCase()}.webp`,
+          )}
+          alt=""
+          loading="lazy"
+          crossOrigin="anonymous"
+          onError={(e) => {
+            e.currentTarget.style.display = "none";
+          }}
+        />
         <div>
           <h2>{ancientName}</h2>
           <p className="anc-sel">{noteText(ancient.selection, t, names)}</p>
@@ -161,7 +173,7 @@ export default function AncientsClient({
 
   return (
     <div
-      className="card-rvmp"
+      className="card-rvmp anc-rv"
       style={
         {
           "--spine": "var(--accent-gold)",
