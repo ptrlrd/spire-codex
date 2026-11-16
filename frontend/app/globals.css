@@ -376,14 +376,14 @@
 
 /* Light-mode fixes that are about layout, not palette. Palette differences
    live in the tokens above. */
-:root[data-theme="light"] .shelf-count,
+:root[data-theme="light"] .bt-count,
 :root[data-theme="light"] .ct-count {
   color: color-mix(in srgb, var(--cc, currentColor), #0a0f14 36%);
 }
 :root[data-theme="light"] .charp::after {
   background: linear-gradient(180deg, transparent 38%, rgba(12, 18, 26, 0.9));
 }
-:root[data-theme="light"] .rvmp .shelf,
+:root[data-theme="light"] .rvmp .btile,
 :root[data-theme="light"] .rvmp .act,
 :root[data-theme="light"] .rvmp .charp,
 :root[data-theme="light"] .rvmp .news,

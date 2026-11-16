@@ -16,6 +16,7 @@ import BetaBadge from "./components/BetaBadge";
 
 interface Translations {
   sections?: Record<string, string>;
+  section_descs?: Record<string, string>;
   character_names?: Record<string, string>;
 }
 
@@ -26,14 +27,49 @@ const CHARACTERS = CHARACTER_ORDER.map((id) => ({
 const LAUNCH_CHARACTERS = 5;
 const CHARACTER_IMAGES = "/static/images/characters/";
 
-interface Shelf {
-  href: string;
-  key: string;
-  count: number | undefined;
-  color: string;
-  shape: "fan" | "row" | "tall";
-  art: string[];
-}
+const ENGLISH_GAME_DESCS = new Set([
+  "View all of the cards you have encountered throughout the Spire.",
+  "Examine the various trinkets and artifacts obtained throughout your runs.",
+  "View all of the enemies you have encountered throughout the Spire.",
+  "Observe the numerous potions found climbing the Spire.",
+]);
+
+const FALLBACK_DESCS: Record<string, string> = {
+  cards:
+    "Browse all Slay the Spire 2 cards. Filter by character, type, rarity, and keywords.",
+  characters:
+    "View all Slay the Spire 2 characters, stats, starting decks, relics, and NPC dialogues.",
+  relics:
+    "Explore all Slay the Spire 2 relics from starter to ancient tier. Filter by rarity and pool.",
+  monsters:
+    "Study all Slay the Spire 2 monsters, HP, moves, damage stats, and ascension scaling.",
+  potions:
+    "Discover all Slay the Spire 2 potions and their effects. Filter by rarity and character pool.",
+  enchantments:
+    "View all Slay the Spire 2 enchantments, effects, card type restrictions, and stackability.",
+  encounters:
+    "Browse all Slay the Spire 2 combat encounters across every act, normals, elites, and bosses.",
+  events:
+    "Explore all Slay the Spire 2 events, shrine events, Ancient encounters, choices, and outcomes.",
+  powers:
+    "Browse all Slay the Spire 2 powers, buffs, debuffs, and neutral status effects.",
+  timeline:
+    "Explore the Slay the Spire 2 timeline, epochs, story arcs, and unlockable content.",
+  images:
+    "Browse and download Slay the Spire 2 game art, card portraits, relic icons, monster sprites.",
+  reference:
+    "Slay the Spire 2 reference, keywords, orbs, afflictions, intents, acts, ascension, and more.",
+  badges:
+    "Run-end badges from Slay the Spire 2, Bronze, Silver, and Gold tier mini-achievements awarded on the Game Over screen.",
+  guides:
+    "Community strategy guides, character breakdowns, boss strategies, deckbuilding tips, and more.",
+  leaderboards:
+    "Fastest wins and highest ascensions from the community. Browse every submitted run.",
+  submit:
+    "Upload your .run files to contribute to leaderboards and community stats.",
+  stats:
+    "Win rates by character, card pick rates, most common relics, deadliest encounters.",
+};
 
 interface HomeClientProps {
   initialStats: Stats | null;
@@ -136,155 +172,115 @@ export default function HomeClient({
     if (uiKey) return t(uiKey);
     return key.charAt(0).toUpperCase() + key.slice(1);
   };
+  const sectionDesc = (key: string) => {
+    const gameDesc = translations.section_descs?.[key];
+    if (gameDesc && (lang === "eng" || !ENGLISH_GAME_DESCS.has(gameDesc)))
+      return gameDesc;
+    const fallback = FALLBACK_DESCS[key];
+    return fallback ? t(fallback) : "";
+  };
+
   const art = (path: string) => imageUrl(`/static/images/${path}`);
-  const card = (id: string) => fullCardUrl(id);
-  const referenceCount = stats
-    ? (stats.keywords ?? 0) +
-      (stats.orbs ?? 0) +
-      (stats.afflictions ?? 0) +
-      (stats.intents ?? 0) +
-      (stats.modifiers ?? 0) +
-      (stats.achievements ?? 0) +
-      (stats.acts ?? 0) +
-      (stats.ascensions ?? 0)
-    : undefined;
-  const shelves: Shelf[] = [
+  const sections = [
     {
       href: "/cards",
+      art: fullCardUrl("bludgeon"),
       key: "cards",
-      count: stats?.cards,
+      count: stats?.cards ?? "–",
       color: "var(--color-ironclad)",
-      shape: "fan",
-      art: [
-        "bludgeon",
-        "adrenaline",
-        "echo_form",
-        "big_bang",
-        "neurosurge",
-      ].map(card),
+    },
+    {
+      href: "/characters",
+      art: art("characters/character_icon_ironclad.webp"),
+      key: "characters",
+      count: stats?.characters ?? "–",
+      color: "var(--accent-gold)",
     },
     {
       href: "/relics",
+      art: art("relics/akabeko.webp"),
       key: "relics",
-      count: stats?.relics,
+      count: stats?.relics ?? "–",
       color: "var(--color-necrobinder)",
-      shape: "row",
-      art: ["akabeko", "anchor", "vajra", "lantern", "pen_nib"].map((id) =>
-        art(`relics/${id}.webp`),
-      ),
     },
     {
       href: "/monsters",
+      art: art("monsters/frog_knight.webp"),
       key: "monsters",
-      count: stats?.monsters,
+      count: stats?.monsters ?? "–",
       color: "var(--color-silent)",
-      shape: "tall",
-      art: ["frog_knight", "knowledge_demon", "bygone_effigy"].map((id) =>
-        art(`monsters/${id}.webp`),
-      ),
     },
     {
       href: "/potions",
+      art: art("potions/fire_potion.webp"),
       key: "potions",
-      count: stats?.potions,
+      count: stats?.potions ?? "–",
       color: "var(--color-defect)",
-      shape: "row",
-      art: [
-        "fire_potion",
-        "focus_potion",
-        "cure_all",
-        "block_potion",
-        "fairy_in_a_bottle",
-      ].map((id) => art(`potions/${id}.webp`)),
-    },
-    {
-      href: "/encounters",
-      key: "encounters",
-      count: stats?.encounters,
-      color: "var(--color-spire)",
-      shape: "row",
-      art: [
-        "map_monster",
-        "map_burly_monster",
-        "map_elite",
-        "map_chest_boss",
-      ].map((id) => art(`ui/map_nodes/${id}.webp`)),
-    },
-    {
-      href: "/events",
-      key: "events",
-      count: stats?.events,
-      color: "var(--color-ancient)",
-      shape: "tall",
-      art: ["neow", "tezcatara", "orobas"].map((id) =>
-        art(`misc/ancients/${id}.webp`),
-      ),
-    },
-    {
-      href: "/powers",
-      key: "powers",
-      count: stats?.powers,
-      color: "var(--accent-teal)",
-      shape: "row",
-      art: ["strength", "dexterity", "vulnerable", "weak", "poison"].map((id) =>
-        art(`powers/${id}_power.webp`),
-      ),
     },
     {
       href: "/enchantments",
+      art: art("enchantments/adroit.png"),
       key: "enchantments",
-      count: stats?.enchantments,
+      count: stats?.enchantments ?? "–",
       color: "var(--accent-teal)",
-      shape: "row",
-      art: ["adroit", "clone", "glam", "imbued", "instinct"].map((id) =>
-        art(`enchantments/${id}.png`),
-      ),
     },
     {
-      href: "/badges",
-      key: "badges",
-      count: stats?.badges,
-      color: "var(--color-merchant)",
-      shape: "row",
-      art: ["big_deck", "ccccombo", "damage_leader", "double_snecko"].map(
-        (id) => art(`badges/badge_${id}.png`),
-      ),
+      href: "/encounters",
+      art: art("ui/map_nodes/map_elite.webp"),
+      key: "encounters",
+      count: stats?.encounters ?? "–",
+      color: "var(--color-spire)",
     },
     {
-      href: "/reference",
-      key: "reference",
-      count: referenceCount,
-      color: "var(--color-regent)",
-      shape: "row",
-      art: [
-        "lightning_orb",
-        "frost_orb",
-        "dark_orb",
-        "plasma_orb",
-        "glass_orb",
-      ].map((id) => art(`orbs/${id}.png`)),
+      href: "/events",
+      art: art("misc/ancients/neow.webp"),
+      key: "events",
+      count: stats?.events ?? "–",
+      color: "var(--color-ancient)",
+    },
+    {
+      href: "/powers",
+      art: art("powers/strength_power.webp"),
+      key: "powers",
+      count: stats?.powers ?? "–",
+      color: "var(--accent-teal)",
     },
     {
       href: "/timeline",
+      art: art("ui/stats/stats_clock.webp"),
       key: "timeline",
-      count: stats?.epochs,
-      color: "var(--accent-gold)",
-      shape: "row",
-      art: ["stats_clock", "stats_ancients", "stats_chain", "stats_trophy"].map(
-        (id) => art(`ui/stats/${id}.webp`),
-      ),
+      count: stats?.epochs ?? "–",
+      color: "#8a6b3a", // warm brown
     },
     {
       href: "/images",
+      art: art("cards/offering.webp"),
       key: "images",
-      count: undefined,
+      count: null,
       color: "var(--color-regent)",
-      shape: "tall",
-      art: [
-        art("cards/offering.webp"),
-        art("cards/afterimage.webp"),
-        art("cards/demesne.webp"),
-      ],
+    },
+    {
+      href: "/reference",
+      art: art("orbs/lightning_orb.png"),
+      key: "reference",
+      count: stats
+        ? (stats.keywords ?? 0) +
+          (stats.orbs ?? 0) +
+          (stats.afflictions ?? 0) +
+          (stats.intents ?? 0) +
+          (stats.modifiers ?? 0) +
+          (stats.achievements ?? 0) +
+          (stats.acts ?? 0) +
+          (stats.ascensions ?? 0)
+        : "–",
+      color: "#596068", // muted
+    },
+    {
+      href: "/badges",
+      art: art("badges/badge_big_deck.png"),
+      key: "badges",
+      count: stats?.badges ?? "–",
+      color: "var(--color-merchant)",
     },
   ];
 
@@ -552,52 +548,72 @@ export default function HomeClient({
         <div className="s-head">
           <h2>{t("Browse the compendium")}</h2>
         </div>
-        <div className="shelves">
-          {shelves.map((s) => (
-            <Link
-              prefetch={false}
-              key={s.href}
-              href={s.href}
-              className="shelf"
-              style={{ ["--cc"]: s.color } as CSSProperties}
-            >
-              <span className={`shelf-art shelf-${s.shape}`} aria-hidden="true">
-                {s.art.map((src) => (
+        <div className="bgrid">
+          {sections.map((s, i) => {
+            const tile = (
+              <Link
+                prefetch={false}
+                key={s.href}
+                href={s.href}
+                className="btile"
+                style={{ ["--cc"]: s.color } as CSSProperties}
+              >
+                <img
+                  className="bt-art"
+                  src={s.art}
+                  alt=""
+                  loading="lazy"
+                  crossOrigin="anonymous"
+                />
+                <div className="bt-body">
+                  <div className="bt-top">
+                    <span className="bt-name">{sectionKey(s.key)}</span>
+                    <span
+                      className="bt-count"
+                      aria-hidden={s.count == null || undefined}
+                    >
+                      {s.count ?? "\u00a0"}
+                    </span>
+                  </div>
+                  <span className="bt-desc">{sectionDesc(s.key)}</span>
+                </div>
+              </Link>
+            );
+            // Break the long grid up: drop the full-width Overwolf promo band in
+            // the middle so it splits the entities into two groups.
+            if (i === 5) {
+              return [
+                tile,
+                <Link
+                  prefetch={false}
+                  key="ow-promo"
+                  href="/overlay"
+                  className="promo"
+                >
                   <img
-                    key={src}
-                    src={src}
-                    alt=""
+                    className="promo-img"
+                    src="/overwolf-logo.png"
+                    alt="Overwolf"
                     loading="lazy"
-                    crossOrigin="anonymous"
                   />
-                ))}
-              </span>
-              <span className="shelf-meta">
-                <span className="shelf-name">{sectionKey(s.key)}</span>
-                {s.count != null && (
-                  <span className="shelf-count">{s.count}</span>
-                )}
-              </span>
-            </Link>
-          ))}
+                  <div className="promo-body">
+                    <span className="promo-kick">
+                      {t("New · Overwolf companion")}
+                    </span>
+                    <div className="promo-t">{t("Spire Codex Overlay")}</div>
+                    <p className="promo-d">
+                      {t(
+                        "In-game lookup for cards, relics, monsters and events, plus a live run tracker that reads your save as you play.",
+                      )}
+                    </p>
+                    <span className="promo-more">{t("Learn more")} &rarr;</span>
+                  </div>
+                </Link>,
+              ];
+            }
+            return tile;
+          })}
         </div>
-        <Link prefetch={false} href="/overlay" className="promo">
-          <img
-            className="promo-img"
-            src="/overwolf-logo.png"
-            alt="Overwolf"
-            loading="lazy"
-          />
-          <div className="promo-body">
-            <div className="promo-t">{t("Spire Codex Overlay")}</div>
-            <p className="promo-d">
-              {t(
-                "In-game lookup for cards, relics, monsters and events, plus a live run tracker that reads your save as you play.",
-              )}
-            </p>
-            <span className="promo-more">{t("Learn more")} &rarr;</span>
-          </div>
-        </Link>
       </section>
     </>
   );
