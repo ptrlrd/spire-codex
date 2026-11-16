@@ -29,6 +29,8 @@ import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityUpdateHistory from "@/app/components/EntityUpdateHistory";
 import EntityProse from "@/app/components/EntityProse";
 import { imageUrl } from "@/lib/image-url";
+import IntentIcons from "@/app/components/IntentIcons";
+import { moveDamage } from "@/lib/fight";
 import { ActLinks } from "@/app/components/ActLink";
 import "@/app/card-revamp.css";
 import "@/app/monster-encounter-extra.css";
@@ -63,20 +65,6 @@ const intentColors: Record<string, string> = {
   Stun: "text-warning",
   Special: "text-special",
   Unknown: "text-[var(--text-muted)]",
-};
-
-const intentIcons: Record<string, string> = {
-  Attack: "⚔️",
-  Defend: "🛡️",
-  Buff: "⬆️",
-  Debuff: "⬇️",
-  Status: "📜",
-  Summon: "👥",
-  Heal: "💚",
-  Escape: "💨",
-  Sleep: "💤",
-  Stun: "⚡",
-  Special: "💀",
 };
 
 function PowerPill({
@@ -145,6 +133,11 @@ function PowerPill({
   );
 }
 
+interface PatternStep {
+  name: string;
+  move: MonsterMove | null;
+}
+
 // Title-case a raw id ("EYE_LASERS" -> "Eye Lasers").
 function titleCaseId(id: string): string {
   return id
@@ -205,11 +198,16 @@ function describeMove(
 // Ordered list of move display names for an attack pattern, so it can render
 // as a visible sequence of chips. Follows the state machine's `next` links for
 // a cycle; for other pattern types, lists the distinct moves it can pick.
-function patternSteps(pattern: AttackPattern, moves: MonsterMove[]): string[] {
+function patternSteps(
+  pattern: AttackPattern,
+  moves: MonsterMove[],
+): PatternStep[] {
   const states = pattern.states || [];
   if (states.length === 0) return [];
-  const nameOf = (mid: string) =>
-    moves.find((m) => m.id === mid)?.name || titleCaseId(mid);
+  const stepOf = (mid: string): PatternStep => {
+    const move = moves.find((m) => m.id === mid) ?? null;
+    return { name: move?.name || titleCaseId(mid), move };
+  };
 
   if (pattern.type === "cycle") {
     const byId = new Map(states.map((s) => [s.id, s]));
@@ -218,24 +216,104 @@ function patternSteps(pattern: AttackPattern, moves: MonsterMove[]): string[] {
       states.find((s) => s.move_id) ||
       states[0];
     const seen = new Set<string>();
-    const out: string[] = [];
+    const out: PatternStep[] = [];
     let cur: typeof start | undefined = start;
     while (cur && !seen.has(cur.id)) {
       seen.add(cur.id);
-      if (cur.move_id) out.push(nameOf(cur.move_id));
+      if (cur.move_id) out.push(stepOf(cur.move_id));
       cur = cur.next ? byId.get(cur.next) : undefined;
     }
-    // Guard against a malformed chain that skipped most states.
     if (out.length >= 2) return out;
   }
 
-  // random / conditional / mixed (or a broken cycle): unique moves it can use.
   const ids: string[] = [];
   for (const s of states) {
     if (s.move_id) ids.push(s.move_id);
     for (const b of s.branches || []) if (b.move_id) ids.push(b.move_id);
   }
-  return [...new Set(ids)].map(nameOf);
+  return [...new Set(ids)].map(stepOf);
+}
+
+function PatternTrack({
+  steps,
+  ordered,
+  loops,
+}: {
+  steps: PatternStep[];
+  ordered: boolean;
+  loops: boolean;
+}) {
+  const t = useT();
+  const cols = Math.min(steps.length, 6);
+  return (
+    <div className="mt-3">
+      {!ordered && (
+        <p className="mb-3 text-sm text-[var(--text-muted)]">
+          {t("Any of these, in no fixed order")}
+        </p>
+      )}
+      <ol
+        className="grid grid-cols-1 gap-y-0 sm:grid-cols-[repeat(var(--cols),minmax(0,1fr))] sm:gap-y-6"
+        style={{ "--cols": cols } as CSSProperties}
+      >
+        {steps.map((step, i) => {
+          const damage = step.move ? moveDamage(step.move) : null;
+          const rowEnd = (i + 1) % cols === 0 || i === steps.length - 1;
+          return (
+            <li
+              key={i}
+              className="relative flex gap-3 pb-4 last:pb-0 sm:flex-col sm:items-center sm:gap-2 sm:pb-0 sm:text-center"
+            >
+              {ordered && i < steps.length - 1 && (
+                <span
+                  aria-hidden
+                  className={`absolute left-[22px] top-11 bottom-0 w-px bg-[var(--border-accent)] sm:bottom-auto sm:left-1/2 sm:top-[22px] sm:h-px sm:w-full ${
+                    rowEnd ? "sm:hidden" : ""
+                  }`}
+                />
+              )}
+              <span className="relative z-10 flex h-11 min-w-11 shrink-0 items-center justify-center rounded-full bg-[var(--bg-primary)] px-1.5 ring-1 ring-[var(--border-accent)]">
+                <IntentIcons intent={step.move?.intent} size={30} t={t} />
+              </span>
+              <div className="min-w-0 sm:px-1">
+                <div className="text-sm font-semibold text-[var(--text-primary)]">
+                  {ordered && (
+                    <span className="mr-1.5 font-normal tabular-nums text-[var(--text-muted)]">
+                      {i + 1}
+                    </span>
+                  )}
+                  {step.name}
+                </div>
+                <div className="mt-0.5 flex flex-col text-xs leading-snug text-[var(--text-secondary)]">
+                  {damage && (
+                    <span>
+                      {t("Damage")}{" "}
+                      <span className="font-semibold tabular-nums text-danger">
+                        {damage}
+                      </span>
+                    </span>
+                  )}
+                  {step.move?.block != null && (
+                    <span>
+                      {t("Block")}{" "}
+                      <span className="font-semibold tabular-nums text-info">
+                        {step.move.block}
+                      </span>
+                    </span>
+                  )}
+                </div>
+              </div>
+            </li>
+          );
+        })}
+      </ol>
+      {ordered && loops && (
+        <p className="mt-3 text-sm text-[var(--text-muted)]">
+          {t("Then back to the start")}
+        </p>
+      )}
+    </div>
+  );
 }
 
 function MoveCard({
@@ -262,10 +340,10 @@ function MoveCard({
           {intentParts.map((intent, i) => (
             <span
               key={i}
-              className={`intent ${intentColors[intent] || intentColors.Unknown}`}
+              className={`intent inline-flex items-center gap-1 ${intentColors[intent] || intentColors.Unknown}`}
             >
-              {intentIcons[intent] ? `${intentIcons[intent]} ` : ""}
-              {intent}
+              <IntentIcons intent={intent} size={20} t={t} />
+              {t(intent)}
             </span>
           ))}
         </div>
@@ -747,13 +825,11 @@ export default function MonsterDetail({
                       <>
                         <h3 className="subh">{t("Attack Pattern")}</h3>
                         <p className="desc-body">{sentences.join(" ")}</p>
-                        <div className="atk-seq">
-                          {steps.map((s, i) => (
-                            <span key={i} className="atk-step-wrap">
-                              <span className="atk-step">{s}</span>
-                            </span>
-                          ))}
-                        </div>
+                        <PatternTrack
+                          steps={steps}
+                          ordered={false}
+                          loops={false}
+                        />
                       </>
                     );
                   }
@@ -761,21 +837,11 @@ export default function MonsterDetail({
                     <>
                       <h3 className="subh">{t("Attack Pattern")}</h3>
                       {steps.length > 1 ? (
-                        <div className="atk-seq">
-                          {steps.map((s, i) => (
-                            <span key={i} className="atk-step-wrap">
-                              <span className="atk-step">{s}</span>
-                              {i < steps.length - 1 && (
-                                <span className="atk-arrow">→</span>
-                              )}
-                            </span>
-                          ))}
-                          {isCycle && (
-                            <span className="atk-repeat" title={t("Repeats")}>
-                              ↻
-                            </span>
-                          )}
-                        </div>
+                        <PatternTrack
+                          steps={steps}
+                          ordered={isCycle}
+                          loops={isCycle}
+                        />
                       ) : (
                         desc && <p className="desc-body">{desc}</p>
                       )}
