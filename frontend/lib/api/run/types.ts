@@ -51,7 +51,7 @@ export interface RawModifier {
 }
 
 export interface RawPlayerStats {
-  player_id?: string;
+  player_id?: number | string;
   current_hp?: number;
   hp_healed?: number;
   hp_lost?: number;
@@ -92,6 +92,7 @@ export interface MapPoint {
 }
 
 export interface Player {
+  id?: number;
   character: string;
   deck: DeckCard[];
   relics: RunRelic[];
@@ -178,6 +179,7 @@ export interface EventChoice {
 }
 
 export interface PlayerStats {
+  player_id?: number;
   current_hp?: number;
   hp_healed?: number;
   hp_lost?: number;

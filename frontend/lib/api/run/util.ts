@@ -62,6 +62,7 @@ export const cleanRun = (raw: RawRun): Run => ({
 });
 
 const cleanPlayer = (raw: Player): Player => ({
+  id: typeof raw.id === "number" ? raw.id : undefined,
   character: strip(raw.character ?? "", "CHARACTER"),
   deck: (raw.deck ?? []).map(cleanCard),
   relics: (raw.relics ?? []).map(cleanRelic),
@@ -101,6 +102,7 @@ const onlyNonEmpty = <T>(items?: T[]): T[] | undefined =>
   items && items.length > 0 ? items : undefined;
 
 const cleanStats = (raw: RawPlayerStats): PlayerStats => ({
+  player_id: typeof raw.player_id === "number" ? raw.player_id : undefined,
   current_hp: raw.current_hp,
   hp_healed: raw.hp_healed,
   hp_lost: raw.hp_lost,

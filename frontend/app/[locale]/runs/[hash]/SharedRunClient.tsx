@@ -15,22 +15,8 @@ import type { RawRun, Run } from "@/lib/api/run/types";
 import { cleanRun } from "@/lib/api/run/util";
 import RunSummary, { type PotionInfo } from "./RunSummary";
 import SimilarRuns from "./SimilarRuns";
-import {
-  CardPill,
-  RelicPill,
-  displayName,
-  type CardInfo,
-  type RelicInfo,
-} from "./RunPills";
-import {
-  characterTitle,
-  eventChoiceName,
-  restChoiceName,
-  roomTitle,
-  roomTypeTitle,
-  typedRoom,
-} from "./run-names";
-import { textColor } from "@/lib/character-colors";
+import { displayName, type CardInfo, type RelicInfo } from "./RunPills";
+import { characterTitle } from "./run-names";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -41,17 +27,6 @@ const CHAR_CSS_VAR: Record<string, string> = {
   NECROBINDER: "var(--color-necrobinder)",
   REGENT: "var(--color-regent)",
   FOOL: "var(--color-fool)",
-};
-
-const ROOM_COLORS: Record<string, string> = {
-  monster: "var(--text-secondary)",
-  elite: "var(--accent-gold)",
-  boss: "var(--color-ironclad)",
-  rest: "var(--color-silent)",
-  rest_site: "var(--color-silent)",
-  shop: "var(--accent-teal)",
-  event: "var(--color-necrobinder)",
-  treasure: "var(--accent-gold)",
 };
 
 // `initialRun` is the server-fetched run from page.tsx. With it, the whole
@@ -88,6 +63,7 @@ export default function SharedRunClient({
   const relicData = useIdMap<RelicInfo>("/api/relics");
   const potionData = useIdMap<PotionInfo>("/api/potions");
   const [showDetails, setShowDetails] = useState(false);
+  const [seat, setSeat] = useState<number | null>(null);
 
   useEffect(() => {
     if (!hash) return;
@@ -104,16 +80,6 @@ export default function SharedRunClient({
     }
   }, [hash]);
 
-  const cardTitle = (id: string) =>
-    gt(`cards.${id}.title`) ?? cardData[id]?.name ?? displayName(`CARD.${id}`);
-  const relicTitle = (id: string) =>
-    gt(`relics.${id}.title`) ??
-    relicData[id]?.name ??
-    displayName(`RELIC.${id}`);
-  const potionTitle = (id: string) =>
-    gt(`potions.${id}.title`) ??
-    potionData[id]?.name ??
-    displayName(`POTION.${id}`);
   const encounterTitle = (id: string) =>
     gt(`encounters.${id}.title`) ?? displayName(`ENCOUNTER.${id}`);
   const eventTitle = (id: string) =>
@@ -199,7 +165,13 @@ export default function SharedRunClient({
 
   // Co-op siblings all serve the same blob; player_index says which
   // players[] entry the viewed hash belongs to (0 = host / single-player).
-  const player = run.players[run.player_index ?? 0] ?? run.players[0];
+  const seatIndex =
+    seat != null && run.players[seat]
+      ? seat
+      : run.players[run.player_index ?? 0]
+        ? (run.player_index ?? 0)
+        : 0;
+  const player = run.players[seatIndex];
   const charId = player.character;
   const charColor = CHAR_CSS_VAR[charId.toUpperCase()] || "var(--accent-gold)";
   const charLinked = charId.toUpperCase() in CHAR_CSS_VAR;
@@ -218,22 +190,21 @@ export default function SharedRunClient({
             }
           : undefined
       : undefined;
-  const sortedDeck = [...player.deck].sort((a, b) => a.id.localeCompare(b.id));
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
         <Link
           href={`${bp}/runs`}
           className="text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
         >
           &larr; {t("Back to")} {t("Runs")}
         </Link>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           {run.has_replay && (
             <Link
               href={`/runs/${hash}/replay`}
-              className="text-xs px-3 py-1.5 rounded-lg border border-accent text-accent hover:bg-accent/10 transition-colors"
+              className="inline-flex items-center min-h-11 sm:min-h-9 text-sm px-3 rounded-lg border border-accent text-accent hover:bg-accent/10 transition-colors"
             >
               {t("Replay")}
             </Link>
@@ -245,20 +216,20 @@ export default function SharedRunClient({
             <button
               onClick={() => setHidden(!run.hidden)}
               disabled={unhiding}
-              className="text-xs px-3 py-1.5 rounded-lg border border-[var(--accent-gold)]/40 text-[var(--accent-gold)] hover:border-[var(--accent-gold)] transition-colors disabled:opacity-50"
+              className="inline-flex items-center min-h-11 sm:min-h-9 text-sm px-3 rounded-lg border border-[var(--accent-gold)]/40 text-[var(--accent-gold)] hover:border-[var(--accent-gold)] transition-colors disabled:opacity-50"
             >
               {unhiding ? "..." : run.hidden ? t("Unhide") : t("Hide")}
             </button>
           )}
           <button
             onClick={() => setShowReport(true)}
-            className="text-xs px-3 py-1.5 rounded-lg border border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors"
+            className="inline-flex items-center min-h-11 sm:min-h-9 text-sm px-3 rounded-lg border border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors"
           >
             {t("Report")}
           </button>
           <button
             onClick={copyLink}
-            className="text-xs px-3 py-1.5 rounded-lg border border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors"
+            className="inline-flex items-center min-h-11 sm:min-h-9 text-sm px-3 rounded-lg border border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors"
           >
             {copied ? t("Copied!") : t("Share")}
           </button>
@@ -355,72 +326,12 @@ export default function SharedRunClient({
         </div>
       )}
 
-      {/* Compact header, Victory/Defeat banner + ascension */}
-      <div
-        className="rounded-xl border px-4 py-3 mb-4 flex items-center justify-between flex-wrap gap-2"
-        style={{
-          borderColor: `color-mix(in srgb, ${charColor} 40%, transparent)`,
-          background: `color-mix(in srgb, ${charColor} 8%, var(--bg-card))`,
-        }}
-      >
-        {/* h1 on purpose: this line is the page's one heading, and run pages
-            audited as headingless before it. */}
-        <h1 className="flex items-center gap-3 text-xl font-bold">
-          <span
-            style={{
-              color: run.win
-                ? "var(--color-silent)"
-                : run.was_abandoned
-                  ? "var(--text-muted)"
-                  : "var(--color-ironclad)",
-            }}
-          >
-            {run.win
-              ? t("Victory")
-              : run.was_abandoned
-                ? t("Abandoned")
-                : t("Defeat")}
-          </span>
-          {charLinked ? (
-            <Link
-              href={`${bp}/characters/${charId.toLowerCase()}`}
-              className="text-base font-normal hover:underline"
-              style={{ color: textColor(charColor) }}
-            >
-              {charName}
-            </Link>
-          ) : (
-            <span
-              className="text-base font-normal"
-              style={{ color: textColor(charColor) }}
-            >
-              {charName}
-            </span>
-          )}
-        </h1>
-        <div className="text-sm text-[var(--text-muted)]">
-          {t("Ascension")} {run.ascension || 0}
-          {killedBy && (
-            <>
-              {" · "}
-              {t("Killed by")}{" "}
-              <Link
-                href={killedBy.href}
-                className="hover:underline"
-                style={{ color: "var(--color-ironclad)" }}
-              >
-                {killedBy.name}
-              </Link>
-            </>
-          )}
-        </div>
-      </div>
-
-      {/* In-game-style run summary */}
       <RunSummary
         run={run}
         hash={hash}
         player={player}
+        seat={seatIndex}
+        onSeat={setSeat}
         cardData={cardData}
         relicData={relicData}
         potionData={potionData}
@@ -428,255 +339,12 @@ export default function SharedRunClient({
         charLinked={charLinked}
         langPrefix={bp}
         charName={charName}
-        killedByName={killedBy?.name}
+        killedBy={killedBy}
+        showDetails={showDetails}
+        onToggleDetails={() => setShowDetails((v) => !v)}
       />
 
-      {/* Detailed history toggle */}
-      <button
-        onClick={() => setShowDetails((v) => !v)}
-        className="w-full text-left text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors mb-3 flex items-center gap-2"
-      >
-        <span
-          className={`inline-block transition-transform ${showDetails ? "rotate-90" : ""}`}
-        >
-          &gt;
-        </span>
-        {showDetails ? t("Hide") : t("Show")} {t("detailed history")}
-      </button>
-
-      {showDetails && (
-        <>
-          {/* Deck */}
-          <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5 mb-4">
-            <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">
-              {t("Final Deck")} ({player.deck.length})
-            </h2>
-            <div className="flex flex-wrap gap-1.5">
-              {sortedDeck.map((card, i) => (
-                <CardPill
-                  key={`${card.id}-${i}`}
-                  cardId={card.id}
-                  upgraded={!!card.current_upgrade_level}
-                  enchantment={card.enchantment?.id}
-                  cardData={cardData}
-                  bp={bp}
-                  className={`text-xs px-2 py-1 rounded border transition-colors hover:bg-[var(--bg-card-hover)] ${
-                    card.current_upgrade_level
-                      ? "border-[var(--color-silent)]/30 bg-[var(--color-silent)]/10 text-[var(--color-silent)]"
-                      : "bg-[var(--bg-primary)] border-[var(--border-subtle)] text-[var(--text-secondary)]"
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* Relics */}
-          <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5 mb-4">
-            <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">
-              {t("Relics")} ({player.relics.length})
-            </h2>
-            <div className="flex flex-wrap gap-1.5">
-              {player.relics.map((relic, i) => (
-                <RelicPill
-                  key={`${relic.id}-${i}`}
-                  relicId={relic.id}
-                  relicData={relicData}
-                  bp={bp}
-                  className="text-xs px-2 py-1 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--accent-gold)] hover:bg-[var(--bg-card-hover)] transition-colors"
-                >
-                  {relicTitle(relic.id)}
-                  <span className="text-[var(--text-muted)] ml-1">
-                    F{relic.floor_added_to_deck}
-                  </span>
-                </RelicPill>
-              ))}
-            </div>
-          </div>
-
-          {/* Floor History */}
-          <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5">
-            <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">
-              {t("Floor History")}
-            </h2>
-            <div className="space-y-1">
-              {run.floor_history.map((actFloors, actIdx) => {
-                const actId = run.acts[actIdx];
-                const actName =
-                  (actId ? gt(`acts.${actId}.title`) : undefined) ??
-                  t("Act {n}", { n: actIdx + 1 });
-                return (
-                  <div key={actIdx}>
-                    <h3 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wider mt-3 mb-1.5">
-                      {actName}
-                    </h3>
-                    {actFloors.map((floor, floorIdx) => {
-                      const ps = floor.player_stats[0];
-                      const room = typedRoom(floor);
-                      const picked =
-                        ps?.card_choices
-                          ?.filter((c) => c.was_picked)
-                          .map((c) => cardTitle(c.card.id)) || [];
-                      const skipped =
-                        ps?.card_choices
-                          ?.filter((c) => !c.was_picked)
-                          .map((c) => cardTitle(c.card.id)) || [];
-                      const rested =
-                        ps?.rest_site_choices?.map((c) =>
-                          restChoiceName(c, gt, t),
-                        ) || [];
-                      const upgraded =
-                        ps?.upgraded_cards?.map((id) => cardTitle(id)) || [];
-                      const pickedIds = new Set(
-                        ps?.card_choices
-                          ?.filter((c) => c.was_picked)
-                          .map((c) => c.card.id) || [],
-                      );
-                      const gained =
-                        ps?.cards_gained
-                          ?.filter((c) => !pickedIds.has(c.id))
-                          .map((c) => cardTitle(c.id)) || [];
-                      const removed =
-                        ps?.cards_removed?.map((c) => cardTitle(c.id)) || [];
-                      const relicsGot =
-                        ps?.relic_choices
-                          ?.filter((r) => r.was_picked)
-                          .map((r) => relicTitle(r.choice)) || [];
-                      const potionsGot =
-                        ps?.potion_choices
-                          ?.filter((p) => p.was_picked)
-                          .map((p) => potionTitle(p.choice)) || [];
-                      const chose =
-                        ps?.event_choices
-                          ?.map((c) => eventChoiceName(c, gt))
-                          .filter((name): name is string => !!name) || [];
-                      return (
-                        <div
-                          key={floorIdx}
-                          className="flex items-start gap-3 py-1.5 border-b border-[var(--border-subtle)] last:border-0 text-xs"
-                        >
-                          <span className="text-[var(--text-muted)] w-6 text-right flex-shrink-0">
-                            {floorIdx + 1}
-                          </span>
-                          <span
-                            className="w-14 flex-shrink-0 font-medium"
-                            style={{
-                              color:
-                                ROOM_COLORS[floor.raw_type] ||
-                                "var(--text-secondary)",
-                            }}
-                          >
-                            {roomTypeTitle(floor, gt, t)}
-                          </span>
-                          <div className="flex-1 min-w-0">
-                            <span className="text-[var(--text-secondary)]">
-                              {roomTitle(floor, gt)}
-                            </span>
-                            {room?.type === "ENCOUNTER" &&
-                              room.turns_taken != null && (
-                                <span className="text-[var(--text-muted)] ml-1">
-                                  ({room.turns_taken}T)
-                                </span>
-                              )}
-                            {rested.length > 0 && (
-                              <span className="text-[var(--text-secondary)] ml-1">
-                                {rested.join(", ")}
-                              </span>
-                            )}
-                            {chose.length > 0 && (
-                              <span className="text-[var(--text-secondary)] ml-1 italic">
-                                {t("chose {choice}", {
-                                  choice: chose.join(", "),
-                                })}
-                              </span>
-                            )}
-                            {picked.length > 0 && (
-                              <span
-                                className="ml-2"
-                                style={{ color: "var(--color-silent)" }}
-                              >
-                                +{picked.join(", ")}
-                              </span>
-                            )}
-                            {skipped.length > 0 && (
-                              <span className="text-[var(--text-muted)] ml-1 line-through">
-                                {skipped.join(", ")}
-                              </span>
-                            )}
-                            {gained.length > 0 && (
-                              <span
-                                className="ml-2"
-                                style={{ color: "var(--color-silent)" }}
-                              >
-                                +{gained.join(", ")}
-                              </span>
-                            )}
-                            {relicsGot.length > 0 && (
-                              <span
-                                className="ml-2"
-                                style={{ color: "var(--accent-gold)" }}
-                              >
-                                +{relicsGot.join(", ")}
-                              </span>
-                            )}
-                            {potionsGot.length > 0 && (
-                              <span
-                                className="ml-2"
-                                style={{ color: "var(--accent-teal)" }}
-                              >
-                                +{potionsGot.join(", ")}
-                              </span>
-                            )}
-                            {removed.length > 0 && (
-                              <span
-                                className="ml-2"
-                                style={{ color: "var(--color-ironclad)" }}
-                              >
-                                −{removed.join(", ")}
-                              </span>
-                            )}
-                            {upgraded.length > 0 && (
-                              <span
-                                className="ml-2"
-                                style={{ color: "var(--accent-gold)" }}
-                              >
-                                ⬆ {upgraded.join(", ")}
-                              </span>
-                            )}
-                          </div>
-                          {ps && (
-                            <div className="flex items-center gap-2 flex-shrink-0 text-[var(--text-muted)]">
-                              {(ps.damage_taken ?? 0) > 0 && (
-                                <span
-                                  style={{ color: "var(--color-ironclad)" }}
-                                >
-                                  -{ps.damage_taken}
-                                </span>
-                              )}
-                              {(ps.hp_healed ?? 0) > 0 && (
-                                <span style={{ color: "var(--color-silent)" }}>
-                                  +{ps.hp_healed}
-                                </span>
-                              )}
-                              {(ps.gold_spent ?? 0) > 0 && (
-                                <span>-{ps.gold_spent}g</span>
-                              )}
-                              <span>
-                                {ps.current_hp}/{ps.max_hp}
-                              </span>
-                            </div>
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          <SimilarRuns hash={hash} />
-        </>
-      )}
+      {showDetails && <SimilarRuns hash={hash} />}
     </div>
   );
 }

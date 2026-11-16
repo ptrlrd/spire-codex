@@ -1,7 +1,13 @@
 import { displayName } from "@/lib/display-name";
 import type { TryGameT } from "@/lib/game-i18n";
 import type { TFn } from "@/lib/i18n";
-import type { EventChoice, Floor, Room } from "@/lib/api/run/types";
+import type {
+  EventChoice,
+  Floor,
+  Player,
+  PlayerStats,
+  Room,
+} from "@/lib/api/run/types";
 
 export function typedRoom(floor: Floor): Room | undefined {
   const room = floor.rooms[0];
@@ -85,4 +91,18 @@ export function eventChoiceName(
 
 export function characterTitle(id: string, gt: TryGameT): string {
   return gt(`characters.${id}.title`) ?? displayName(`CHARACTER.${id}`);
+}
+
+/** The floor stats of one seat: matched by the player id the game wrote,
+ * then by seat order, then the host's. */
+export function seatStats(
+  floor: Floor,
+  player: Player,
+  seat: number,
+): PlayerStats | undefined {
+  if (player.id != null) {
+    const own = floor.player_stats.find((ps) => ps.player_id === player.id);
+    if (own) return own;
+  }
+  return floor.player_stats[seat] ?? floor.player_stats[0];
 }
