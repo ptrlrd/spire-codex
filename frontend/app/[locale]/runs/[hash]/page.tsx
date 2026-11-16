@@ -142,9 +142,10 @@ export default async function SharedRunPage({ params }: Props) {
       description: `${username}: ${char}, ${t("Ascension")} ${ascension}, ${resultLabel}. ${gameNameFor(locale)}.`,
       path: localePath(locale, `/runs/${run.primary_hash || hash}`),
       category: "Run",
-      datePublished: run.start_time
-        ? new Date(run.start_time * 1000).toISOString()
-        : undefined,
+      datePublished:
+        Number.isFinite(Number(run.start_time)) && Number(run.start_time) > 0
+          ? new Date(Number(run.start_time) * 1000).toISOString()
+          : undefined,
       inLanguage: inLanguageOf(locale),
       breadcrumbs: [
         { name: t("Home"), href: localePath(locale, "/") },

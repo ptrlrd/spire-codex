@@ -626,7 +626,7 @@ export default function Navbar() {
                       setUserMenuOpen(!userMenuOpen);
                     }
                   }}
-                  className="inline-flex items-center justify-center h-9 min-w-[2.25rem] px-1.5 sm:px-2 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors gap-1.5"
+                  className="inline-flex items-center justify-center h-11 min-w-[2.75rem] sm:h-9 sm:min-w-[2.25rem] px-1.5 sm:px-2 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors gap-1.5"
                   aria-label={user ? t("Account menu") : t("Sign in")}
                 >
                   <svg
@@ -759,7 +759,7 @@ export default function Navbar() {
               <button
                 ref={buttonRef}
                 onClick={() => setOpen(!open)}
-                className="relative inline-flex items-center justify-center h-9 w-9 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors"
+                className="relative inline-flex items-center justify-center h-11 w-11 sm:h-9 sm:w-9 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors"
                 aria-label={t("Toggle menu")}
                 aria-expanded={open}
               >
@@ -813,7 +813,7 @@ export default function Navbar() {
                     <button
                       onClick={() => setOpen(false)}
                       aria-label={t("Close menu")}
-                      className="inline-flex items-center justify-center h-9 w-9 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors"
+                      className="inline-flex items-center justify-center h-11 w-11 sm:h-9 sm:w-9 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors"
                     >
                       <svg
                         className="w-5 h-5"

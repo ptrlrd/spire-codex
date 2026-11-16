@@ -1149,17 +1149,17 @@ export default async function DevelopersPage({ params }: Props) {
                 {group.endpoints.map((ep) => (
                   <div
                     key={`${ep.method} ${ep.path}`}
-                    className="flex items-start gap-3"
+                    className="flex flex-wrap items-start gap-x-3 sm:flex-nowrap"
                   >
                     <span
                       className={`${ep.method === "GET" ? "text-success" : "text-info"} w-12 flex-shrink-0`}
                     >
                       {ep.method}
                     </span>
-                    <span className="text-[var(--text-primary)]">
+                    <span className="min-w-0 flex-1 break-all text-[var(--text-primary)] sm:flex-none">
                       {ep.path}
                     </span>
-                    <span className="text-[var(--text-muted)] font-sans text-xs ml-auto text-right">
+                    <span className="w-full min-w-0 break-words font-sans text-xs text-[var(--text-muted)] sm:ml-auto sm:w-auto sm:text-right">
                       {ep.desc}
                     </span>
                   </div>
@@ -1346,7 +1346,7 @@ console.log(relics.map(r => r.name));`}</code>
               { field: "color", endpoint: "/api/cards" },
             )}
           </p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-1.5 text-sm font-mono">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-x-6 gap-y-1.5 text-sm font-mono">
             {Object.entries(TINY_CARD_POOL_COLOR).map(([pool, hex]) => (
               <div key={pool} className="flex items-center gap-2">
                 <span
@@ -1368,7 +1368,7 @@ console.log(relics.map(r => r.name));`}</code>
             {t("Source:")} <code>NTinyCard.GetBannerColor</code>.{" "}
             {t("Match against the {field} field.", { field: "rarity" })}
           </p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-1.5 text-sm font-mono">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-x-6 gap-y-1.5 text-sm font-mono">
             {Object.entries(TINY_CARD_BANNER_COLOR).map(([rarity, hex]) => (
               <div key={rarity} className="flex items-center gap-2">
                 <span

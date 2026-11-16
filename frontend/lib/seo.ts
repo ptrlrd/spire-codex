@@ -105,7 +105,8 @@ export function pageTitle(locale: Locale, segment: string): string {
 
 /** The h1 for a hub page: the game name in the reader's language plus the page's own name. */
 export function pageHeading(locale: Locale, segment: string): string {
-  return `${gameName(locale)} ${segment}`;
+  const game = locale === "eng" ? "Slay the Spire 2" : gameName(locale);
+  return `${game} ${segment}`;
 }
 
 export function hreflangOf(locale: Locale): string {

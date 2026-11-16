@@ -345,9 +345,9 @@ export default function RunSummary({
               </Link>
             </div>
           )}
-          {run.start_time && (
+          {Number(run.start_time) > 0 && (
             <div className="truncate" suppressHydrationWarning>
-              {formatDate(run.start_time, mounted, dateLocale)}
+              {formatDate(Number(run.start_time), mounted, dateLocale)}
             </div>
           )}
           {run.seed && <SeedStanding seed={run.seed} standing={standing} />}
