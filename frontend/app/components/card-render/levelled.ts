@@ -1,4 +1,5 @@
 import type { Card } from "@/lib/api/types";
+import { imageUrl } from "@/lib/image-url";
 
 interface LevelStage {
   from: number;
@@ -27,14 +28,16 @@ const LEVELLED: Record<string, LevelRule> = {
         from: 3,
         titleKey: "fine",
         fallback: "Fine Dagger",
-        art: "/card-local/portrait_fine_dagger.webp",
+        art: imageUrl("/static/images/card-render/portrait_fine_dagger.webp"),
         atlasY: 2683,
       },
       {
         from: 6,
         titleKey: "pristine",
         fallback: "Pristine Dagger",
-        art: "/card-local/portrait_pristine_dagger.webp",
+        art: imageUrl(
+          "/static/images/card-render/portrait_pristine_dagger.webp",
+        ),
         atlasY: 2875,
       },
     ],

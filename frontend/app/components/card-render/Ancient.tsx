@@ -1,8 +1,9 @@
 import { useId } from "react";
+import { imageUrl } from "@/lib/image-url";
 import { img } from "./img";
 import { box, frame, type Tune } from "./tokens";
 
-const LOCAL = "/card-local";
+const LOCAL = imageUrl("/static/images/card-render");
 const GROUP = { x: -153.5, y: -215.5, w: 300, h: 422 };
 const CANVAS = { x: -154, y: -216, w: 301, h: 423 };
 const BORDER_SCALE = 306 / 410;

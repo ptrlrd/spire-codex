@@ -201,8 +201,8 @@ export interface AttachmentsProps {
   starUpgraded?: boolean;
 }
 
-const STAR_ICON = "/card-local/energy_star.png";
-const ENCHANT_TAB = "/card-local/enchant_tab.png";
+const STAR_ICON = imageUrl("/static/images/card-render/energy_star.png");
+const ENCHANT_TAB = imageUrl("/static/images/card-render/enchant_tab.png");
 const STAR_OUTLINE = "rgba(23,85,97,0.863)";
 const STAR_UPGRADED = "#7fff00";
 const STAR_UPGRADED_OUTLINE = "#1f5923";

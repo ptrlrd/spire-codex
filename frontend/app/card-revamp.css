@@ -640,6 +640,10 @@
   height: auto;
   object-fit: contain;
 }
+.card-rvmp .cardimg.render.card-html {
+  filter: none;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
 
 /* variant switcher */
 .card-rvmp .variant {
@@ -842,7 +846,7 @@ a.kw {
   .card-rvmp .box > * {
     order: 1;
   }
-  .card-rvmp .box > :is(img, .iconbox, .ref-icon, .sprite) {
+  .card-rvmp .box > :is(img, .iconbox, .ref-icon, .sprite, .card-html) {
     order: -2;
   }
   .card-rvmp .box > .variant {
