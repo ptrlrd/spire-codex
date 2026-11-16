@@ -64,6 +64,20 @@ export default async function Page({ params }: Props) {
   const locale = localeOf(seg);
   let jsonLd = null;
   let epoch = null;
+  let epochs = [];
+  let unlocks = null;
+  try {
+    const [epochsRes, unlocksRes] = await Promise.all([
+      fetch(`${API_INTERNAL}/api/epochs?lang=${locale}&channel=all`, {
+        next: { revalidate: 300 },
+      }),
+      fetch(`${API_INTERNAL}/api/unlocks?lang=${locale}&channel=all`, {
+        next: { revalidate: 300 },
+      }),
+    ]);
+    if (epochsRes.ok) epochs = await epochsRes.json();
+    if (unlocksRes.ok) unlocks = await unlocksRes.json();
+  } catch {}
   try {
     const res = await fetch(`${API_INTERNAL}/api/epochs/${id}?channel=all`);
     if (res.ok) {
@@ -93,7 +107,11 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <EpochDetail initialEpoch={epoch} />
+      <EpochDetail
+        initialEpoch={epoch}
+        initialEpochs={epochs}
+        initialUnlocks={unlocks}
+      />
     </>
   );
 }
