@@ -868,3 +868,40 @@ def test_signed_backfill_recovers_a_username_only_overlay_upload(coll):
     assert doc["username_lower"] == "pc-reviver"
     assert doc["submitted_at"] == submitted
     assert "attribution_unverified" not in doc and "username_hint" not in doc
+
+
+def _kept_replays(monkeypatch, blob, idx, **owner):
+    from app.services import replays_db
+
+    replays = FakeColl()
+    replays.docs[_hash(blob, idx)] = {
+        "_id": _hash(blob, idx),
+        "deleted_at": None,
+        **owner,
+    }
+    monkeypatch.setattr(replays_db, "_coll", lambda: replays)
+    return replays
+
+
+def test_reupload_reconnects_the_owners_stored_replay(coll, monkeypatch):
+    blob = _blob()
+    _kept_replays(monkeypatch, blob, 1, steam_id=ME_SID, user_id=ME_ID)
+    submit_run(blob, username="PC-Reviver", steam_id=ME_SID)
+    by = coll.by_char()
+    assert by["REGENT"]["has_replay"] is True
+    assert "has_replay" not in by["IRONCLAD"]
+
+
+def test_reupload_leaves_another_players_stored_replay_alone(coll, monkeypatch):
+    blob = _blob()
+    _kept_replays(monkeypatch, blob, 1, steam_id=GUEST_SID, user_id=GUEST_ID)
+    submit_run(blob, username="PC-Reviver", steam_id=ME_SID)
+    assert "has_replay" not in coll.by_char()["REGENT"]
+
+
+def test_reupload_ignores_a_removed_replay(coll, monkeypatch):
+    blob = _blob()
+    replays = _kept_replays(monkeypatch, blob, 1, steam_id=ME_SID, user_id=ME_ID)
+    replays.docs[_hash(blob, 1)]["deleted_at"] = "2026-11-01"
+    submit_run(blob, username="PC-Reviver", steam_id=ME_SID)
+    assert "has_replay" not in coll.by_char()["REGENT"]

@@ -803,6 +803,17 @@ def submit_run(
     return out
 
 
+def _owner_kept_replay(run_hash: str, steam_id, user_id) -> bool:
+    if not (steam_id or user_id):
+        return False
+    try:
+        from .replays_db import kept_replay_for
+
+        return kept_replay_for(run_hash, steam_id, user_id)
+    except Exception:
+        return False
+
+
 def _blob_collection():
     return _get_collection().database["run_blobs"]
 
@@ -1178,6 +1189,8 @@ def _submit_player_run(
         doc["hidden"] = True
         doc["hidden_reason"] = tombstone_reason
         logger.info("re-upload of moderated run %s stays hidden", run_hash)
+    if verified and _owner_kept_replay(run_hash, steam_id, linked_user_id):
+        doc["has_replay"] = True
     try:
         coll.insert_one(doc)
         if not doc.get("hidden"):
