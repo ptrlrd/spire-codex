@@ -480,10 +480,10 @@ export default function ProfileClient() {
         />
       </section>
 
-      {/* Claim Runs */}
+      {/* Upload runs and replays */}
       <section>
         <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">
-          {t("Claim Runs")}
+          {t("Upload Runs and Replays")}
         </h2>
         <RunDropZone
           onFiles={(files) => handleUpload(files)}
