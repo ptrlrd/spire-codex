@@ -45,6 +45,7 @@ _NOISE_KEYS = frozenset(
         "compendium_order",
         "name_variants",
         "notes",
+        "description_raw",
     }
 )
 
@@ -53,8 +54,31 @@ _cached: dict[str, Any] | None = None
 _cached_version: str | None = None
 
 
+_HIT_VARS = ("Repeat", "HitCount")
+_HIT_UPGRADES = ("repeat", "hitcount")
+
+
 def _normalize(entry: dict) -> dict:
-    return {k: v for k, v in entry.items() if k not in _NOISE_KEYS}
+    """Gameplay fields only. The hit count var was renamed from Repeat to
+    HitCount between versions, so both spellings compare as one."""
+    out = {k: v for k, v in entry.items() if k not in _NOISE_KEYS}
+    vars_ = out.get("vars")
+    if isinstance(vars_, dict):
+        out["vars"] = {k: v for k, v in vars_.items() if k not in _HIT_VARS}
+    upgrade = out.get("upgrade")
+    if isinstance(upgrade, dict):
+        out["upgrade"] = {
+            ("hits" if k in _HIT_UPGRADES else k): v for k, v in upgrade.items()
+        }
+    return out
+
+
+def _changed_fields(s_norm: dict, b_norm: dict) -> list[str]:
+    fields = {k for k in set(s_norm) | set(b_norm) if s_norm.get(k) != b_norm.get(k)}
+    if "hit_count" in fields and "description" not in fields:
+        if s_norm.get("hit_count") is None or b_norm.get("hit_count") is None:
+            fields.discard("hit_count")
+    return sorted(fields)
 
 
 def _diff_type(stable: list[dict], beta: list[dict]) -> dict[str, Any]:
@@ -64,12 +88,8 @@ def _diff_type(stable: list[dict], beta: list[dict]) -> dict[str, Any]:
     removed = sorted(set(s_by_id) - set(b_by_id))
     changed: dict[str, list[str]] = {}
     for eid in set(s_by_id) & set(b_by_id):
-        s_norm = _normalize(s_by_id[eid])
-        b_norm = _normalize(b_by_id[eid])
-        if s_norm != b_norm:
-            fields = sorted(
-                k for k in set(s_norm) | set(b_norm) if s_norm.get(k) != b_norm.get(k)
-            )
+        fields = _changed_fields(_normalize(s_by_id[eid]), _normalize(b_by_id[eid]))
+        if fields:
             changed[eid] = fields
     return {"added": added, "changed": changed, "removed": removed}
 
