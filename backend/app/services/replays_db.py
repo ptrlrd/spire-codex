@@ -377,6 +377,19 @@ def replay_visible(run_hash: str) -> bool:
     return True
 
 
+def kept_replay_for(run_hash: str, steam_id, user_id) -> bool:
+    """Whether a stored replay for this run hash belongs to the same owner."""
+    doc = _coll().find_one(
+        {"_id": run_hash, "deleted_at": None}, {"steam_id": 1, "user_id": 1}
+    )
+    if not doc:
+        return False
+    sid = str(steam_id or "")
+    if sid and str(doc.get("steam_id") or "") == sid:
+        return True
+    return bool(user_id) and str(doc.get("user_id") or "") == str(user_id)
+
+
 def replay_sha(run_hash: str) -> str | None:
     doc = _coll().find_one({"_id": run_hash, "deleted_at": None}, {"sha256": 1})
     return (doc or {}).get("sha256") or None
