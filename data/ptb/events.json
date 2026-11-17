@@ -428,7 +428,7 @@
       },
       {
         "id": "RIP",
-        "description": "Você violentamente [jitter]arranca o parasita da sua cabeça[/jitter] e o arremessa para longe!\n\nUma voz ecoa em sua mente:\n[purple][sine]“NÃÃÃÃOOoOoooooOOOOoooo....”"
+        "description": "Você violentamente [jitter]arranca o parasita da sua cabeça[/jitter] e o arremessa para longe!\n\nUma voz ecoa em sua mente:\n[purple][sine]“NÃÃÃÃOOoOoooooOOOOoooo....”[/sine][/purple]"
       },
       {
         "id": "SHARE_KNOWLEDGE",
@@ -1076,7 +1076,7 @@
           {
             "id": "TAKE",
             "title": "TAKE",
-            "description": "Receba [gold]a random Relic[/gold]."
+            "description": "Receba [gold]uma relíquia aleatória[/gold]."
           }
         ]
       },
@@ -1283,7 +1283,7 @@
     "name": "O Mercador???",
     "type": "Shared",
     "act": null,
-    "description": "A suspicious merchant offers 6 fake relics (drawn from a pool of 9) at 42–58 gold each. Throwing a [gold]Foul Potion[/gold] starts a fight against The Merchant??? (165 HP). Winning rewards [gold]The Merchant's Rug???[/gold] plus all unsold relics.",
+    "description": "Um mercador suspeito oferece 6 relíquias falsas (de um conjunto de 9) por 42–58 de ouro cada. Arremessar uma [gold]Foul Potion[/gold] inicia um combate contra The Merchant??? (165 PV). Vencer recompensa com [gold]The Merchant's Rug???[/gold] mais todas as relíquias não vendidas.",
     "preconditions": [
       "Act 2+",
       "Single player only",
@@ -1902,10 +1902,12 @@
       "SMALL_CAPSULE",
       "STONE_HUMIDIFIER",
       "CURSED_PEARL",
+      "DOWSING_ROD",
       "HEFTY_TABLET",
       "LARGE_CAPSULE",
       "LEAFY_POULTICE",
       "NEOWS_BONES",
+      "NEOWS_SACRIFICE",
       "PRECARIOUS_SHEARS",
       "SILKEN_TRESS",
       "SILVER_CRUCIBLE"
@@ -2261,10 +2263,10 @@
     "relics": [
       "ELECTRIC_SHRYMP",
       "GLASS_EYE",
-      "SAND_CASTLE",
       "ALCHEMICAL_COFFER",
       "DRIFTWOOD",
       "RADIANT_PEARL",
+      "SAND_CASTLE",
       "SEA_GLASS",
       "PRISMATIC_GEM",
       "TOUCH_OF_OROBAS",
@@ -2680,17 +2682,17 @@
       {
         "id": "TOP",
         "title": "Ficar com a de cima",
-        "description": "Trocar [gold]one of your Relics[/gold] por [gold]a random Relic[/gold]."
+        "description": "Trocar [gold]uma de suas relíquias[/gold] por [gold]uma relíquia aleatória[/gold]."
       },
       {
         "id": "MIDDLE",
         "title": "Ficar com a do meio",
-        "description": "Trocar [gold]one of your Relics[/gold] por [gold]a random Relic[/gold]."
+        "description": "Trocar [gold]uma de suas relíquias[/gold] por [gold]uma relíquia aleatória[/gold]."
       },
       {
         "id": "BOTTOM",
         "title": "Ficar com a de baixo",
-        "description": "Trocar [gold]one of your Relics[/gold] por [gold]a random Relic[/gold]."
+        "description": "Trocar [gold]uma de suas relíquias[/gold] por [gold]uma relíquia aleatória[/gold]."
       }
     ],
     "pages": [
@@ -2705,17 +2707,17 @@
           {
             "id": "TOP",
             "title": "Ficar com a de cima",
-            "description": "Trocar [gold]one of your Relics[/gold] por [gold]a random Relic[/gold]."
+            "description": "Trocar [gold]uma de suas relíquias[/gold] por [gold]uma relíquia aleatória[/gold]."
           },
           {
             "id": "MIDDLE",
             "title": "Ficar com a do meio",
-            "description": "Trocar [gold]one of your Relics[/gold] por [gold]a random Relic[/gold]."
+            "description": "Trocar [gold]uma de suas relíquias[/gold] por [gold]uma relíquia aleatória[/gold]."
           },
           {
             "id": "BOTTOM",
             "title": "Ficar com a de baixo",
-            "description": "Trocar [gold]one of your Relics[/gold] por [gold]a random Relic[/gold]."
+            "description": "Trocar [gold]uma de suas relíquias[/gold] por [gold]uma relíquia aleatória[/gold]."
           }
         ]
       }
@@ -2996,7 +2998,7 @@
       {
         "id": "OVERCOME",
         "title": "Atravessar",
-        "description": "[red]a random Card[/red] é removida do seu [gold]Baralho[/gold]."
+        "description": "[red]uma carta aleatória[/red] é removida do seu [gold]Baralho[/gold]."
       },
       {
         "id": "HOLD_ON_0",
@@ -3100,7 +3102,7 @@
           {
             "id": "OVERCOME",
             "title": "Atravessar",
-            "description": "[red]a random Card[/red] é removida do seu [gold]Baralho[/gold]."
+            "description": "[red]uma carta aleatória[/red] é removida do seu [gold]Baralho[/gold]."
           },
           {
             "id": "HOLD_ON_0",
@@ -3221,7 +3223,7 @@
       {
         "id": "LIFT",
         "title": "Beber algo e Erguer",
-        "description": "Perca [red]a random Potion[/red]. Receba [blue]10[/blue] PV Máximos."
+        "description": "Perca [red]uma poção aleatória[/red]. Receba [blue]10[/blue] PV Máximos."
       },
       {
         "id": "LIFT_LOCKED",
@@ -3247,7 +3249,7 @@
           {
             "id": "LIFT",
             "title": "Beber algo e Erguer",
-            "description": "Perca [red]a random Potion[/red]. Receba [blue]10[/blue] PV Máximos."
+            "description": "Perca [red]uma poção aleatória[/red]. Receba [blue]10[/blue] PV Máximos."
           },
           {
             "id": "LIFT_LOCKED",
@@ -3268,7 +3270,7 @@
       },
       {
         "id": "LIFT",
-        "description": "Você bebe [gold]a random Potion[/gold] e [jitter]ergue a pedra com toda a sua força[/jitter]!!\n\nNada acontece."
+        "description": "Você bebe [gold]uma poção aleatória[/gold] e [jitter]ergue a pedra com toda a sua força[/jitter]!!\n\nNada acontece."
       },
       {
         "id": "PUSH",
@@ -4802,6 +4804,11 @@
           "text": "Buscando alcançar glória no Pináculo, não é mesmo? Eu tenho algumas propostas que podem lhe interessar..."
         },
         {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "{Visits}. Você esteve aqui {Visits} {Visits:plural:vez|vezes}."
+        },
+        {
           "order": "2-0r",
           "speaker": "ancient",
           "text": "Você entende que isto [sine]nunca[/sine] termina?"
@@ -5159,7 +5166,7 @@
       {
         "id": "FEATURED_ITEM",
         "title": "Destaque do Wongo's",
-        "description": "Pague [red]200[/red] de [gold]Ouro[/gold]. Receba [gold]a random Relic[/gold]."
+        "description": "Pague [red]200[/red] de [gold]Ouro[/gold]. Receba [gold]uma relíquia aleatória[/gold]."
       },
       {
         "id": "FEATURED_ITEM_LOCKED",
@@ -5212,7 +5219,7 @@
           {
             "id": "FEATURED_ITEM",
             "title": "Destaque do Wongo's",
-            "description": "Pague [red]200[/red] de [gold]Ouro[/gold]. Receba [gold]a random Relic[/gold]."
+            "description": "Pague [red]200[/red] de [gold]Ouro[/gold]. Receba [gold]uma relíquia aleatória[/gold]."
           },
           {
             "id": "FEATURED_ITEM_LOCKED",

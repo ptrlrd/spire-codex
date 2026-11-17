@@ -546,7 +546,7 @@
     "rarity": "衍生",
     "image_url": "/static/images/potions/potion_shaped_rock.webp",
     "rarity_key": "Token",
-    "compendium_order": 62,
+    "compendium_order": 63,
     "pool": "shared"
   },
   {
@@ -691,5 +691,16 @@
     "rarity_key": "Rare",
     "compendium_order": 59,
     "pool": "defect"
+  },
+  {
+    "id": "AMBERGRIS",
+    "name": "龙涎香",
+    "description": "回复你最大生命值的[green]50%[/green]。在战斗中使用时，额外进行一个回合。",
+    "description_raw": "回复你最大生命值的[green]{HealPercent}%[/green]。在战斗中使用时，额外进行一个回合。",
+    "rarity": "事件",
+    "image_url": "/static/images/potions/ambergris.webp",
+    "rarity_key": "Event",
+    "compendium_order": 62,
+    "pool": "event"
   }
 ]

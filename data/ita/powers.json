@@ -50,6 +50,16 @@
     "image_url": "/static/images/powers/aggression_power.webp"
   },
   {
+    "id": "AMBERGRIS",
+    "name": "Ambra Cinerina",
+    "description": "Giochi un turno extra dopo di questo.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/ambergris_power.webp"
+  },
+  {
     "id": "ANTICIPATE",
     "name": "Temporary Dexterity",
     "description": "Ottieni [gold]Destrezza[/gold] fino al termine di questo turno.",
@@ -230,6 +240,16 @@
     "image_url": "/static/images/powers/burst_power.webp"
   },
   {
+    "id": "CACOPHONY",
+    "name": "Cacofonia",
+    "description": "Dopo che [blue]33[/blue] carte vengono pescate tra TUTTI i giocatori, infliggi [blue][Amount][/blue] di danno a un nemico casuale.",
+    "description_raw": "Dopo che [blue]{Cards}[/blue] {Cards:plural:carta viene pescata da QUALSIASI giocatore|carte vengono pescate tra TUTTI i giocatori}, infliggi [blue]{Amount}[/blue] di danno a un nemico casuale.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/cacophony_power.webp"
+  },
+  {
     "id": "CALAMITY",
     "name": "Calamità",
     "description": "Ogni volta che giochi una carta Attacco, aggiungi [blue]2[/blue] carte Attacco casuali alla tua [gold]mano[/gold].",
@@ -272,8 +292,8 @@
   {
     "id": "CHILD_OF_THE_STARS",
     "name": "Figlio delle Stelle",
-    "description": "Ottieni [blue]1[/blue] di [gold]Blocco[/gold] per ogni [star:1] che hai consumato.",
-    "description_raw": "Ottieni [blue]1[/blue] di [gold]Blocco[/gold] per ogni {singleStarIcon} che hai consumato.",
+    "description": "Ottieni [blue]2[/blue] di [gold]Blocco[/gold] per ogni [star:1] che hai consumato.",
+    "description_raw": "Ottieni [blue]2[/blue] di [gold]Blocco[/gold] per ogni {singleStarIcon} che hai consumato.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -298,6 +318,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/colossus_power.webp"
+  },
+  {
+    "id": "CONCOCT",
+    "name": "Intruglio",
+    "description": "Ogni volta che la tua carta Attacco infligge danno non bloccato in questo turno, applichi [blue]3[/blue] di [gold]Veleno[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/concoct_power.webp"
   },
   {
     "id": "CONFUSED",
@@ -422,8 +452,8 @@
   {
     "id": "CRIMSON_MANTLE",
     "name": "Mantello Cremisi",
-    "description": "All'inizio del tuo turno, perdi [blue]0[/blue] PV e ottieni [blue][Amount][/blue] di [gold]Blocco[/gold].",
-    "description_raw": "All'inizio del tuo turno, perdi [blue]{SelfDamage}[/blue] PV e ottieni [blue]{Amount}[/blue] di [gold]Blocco[/gold].",
+    "description": "All'inizio del tuo turno, perdi PV e ottieni [gold]Blocco[/gold].",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -542,7 +572,7 @@
   {
     "id": "DEMON_FORM",
     "name": "Forma Demoniaca",
-    "description": "All'inizio del tuo turno, ottieni [blue]2[/blue] di [gold]Forza[/gold].",
+    "description": "All'inizio del tuo turno, ottieni [blue]3[/blue] di [gold]Forza[/gold].",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -568,16 +598,6 @@
     "stack_type": "Counter",
     "allow_negative": true,
     "image_url": "/static/images/powers/dexterity_power.webp"
-  },
-  {
-    "id": "DIAMOND_DIADEM",
-    "name": "Diadema di Diamanti",
-    "description": "In questo turno, i nemici infliggono il [blue]50%[/blue] di danno in meno.",
-    "description_raw": null,
-    "type": "Buff",
-    "stack_type": "Single",
-    "allow_negative": null,
-    "image_url": "/static/images/powers/diamond_diadem_power.webp"
   },
   {
     "id": "DIE_FOR_YOU",
@@ -718,6 +738,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/escape_artist_power.webp"
+  },
+  {
+    "id": "FADE",
+    "name": "Temporary Dexterity",
+    "description": "Ottieni [gold]Destrezza[/gold] fino al termine di questo turno.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/fade_power.webp"
   },
   {
     "id": "FAN_OF_KNIVES",
@@ -952,8 +982,8 @@
   {
     "id": "GUARDED",
     "name": "Protezione",
-    "description": "Subisci la metà del danno dai nemici.",
-    "description_raw": null,
+    "description": "Subisci un [blue]50%[/blue] di danno in meno dai nemici. L'effetto svanisce se [gold][Applier.StringValue][/gold] muore.",
+    "description_raw": "Subisci un [blue]{DamageDecrease:percentLess()}%[/blue] di danno in meno dai nemici. L'effetto svanisce se [gold]{Applier.StringValue}[/gold] muore.",
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
@@ -1080,6 +1110,16 @@
     "image_url": "/static/images/powers/hex_power.webp"
   },
   {
+    "id": "HIBERNATE",
+    "name": "Ibernazione",
+    "description": "Per i prossimi [blue]2[/blue] turni, il tuo [gold]Crioglobo[/gold] conferisce [gold]Blocco[/gold] a TUTTI gli alleati.",
+    "description_raw": "{Amount:plural:In questo turno|Per i prossimi [blue]{}[/blue] turni}, il tuo [gold]Crioglobo[/gold] conferisce [gold]Blocco[/gold] a TUTTI gli alleati.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hibernate_power.webp"
+  },
+  {
     "id": "HIGH_VOLTAGE",
     "name": "Voltaggio elevato",
     "description": "Alla fine del suo turno, [gold]this creature[/gold] ottiene [blue][Amount][/blue] di [gold]Forza[/gold].",
@@ -1098,6 +1138,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/hotfix_power.webp"
+  },
+  {
+    "id": "HYPERBEAM_FOCUS_DOWN",
+    "name": "Temporary Focus Down",
+    "description": "Perdi [gold]Focus[/gold] fino al termine di questo turno.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": null
   },
   {
     "id": "ILLUSION",
@@ -1120,6 +1170,16 @@
     "image_url": "/static/images/powers/imbalanced_power.webp"
   },
   {
+    "id": "IMITATION_LEARNING",
+    "name": "Apprendimento per Imitazione",
+    "description": "Le prossime [blue]2[/blue] volte che [gold][TargetPlayer][/gold] gioca una carta Potere, ne giochi una copia.",
+    "description_raw": "{Amount:plural:La prossima volta|Le prossime [blue]{}[/blue] volte} che [gold]{TargetPlayer}[/gold] gioca una carta Potere, ne giochi una copia.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/imitation_learning_power.webp"
+  },
+  {
     "id": "IMPROVEMENT",
     "name": "Miglioramento",
     "description": "Al termine del combattimento, [gold]potenzi[/gold] una carta casuale.",
@@ -1132,8 +1192,8 @@
   {
     "id": "INFERNO",
     "name": "Inferno",
-    "description": "All'inizio del tuo turno, perdi [blue]0[/blue] PV. Ogni volta che perdi PV nel tuo turno, infliggi [blue][Amount][/blue] di danno a TUTTI i nemici.",
-    "description_raw": "All'inizio del tuo turno, perdi [blue]{SelfDamage}[/blue] PV. Ogni volta che perdi PV nel tuo turno, infliggi [blue]{Amount}[/blue] di danno a TUTTI i nemici.",
+    "description": "All'inizio del tuo turno, perdi [blue]1[/blue] PV. Ogni volta che perdi PV nel tuo turno, infliggi [blue]4[/blue] di danno a TUTTI i nemici.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1352,8 +1412,8 @@
   {
     "id": "MONOLOGUE",
     "name": "Monologo",
-    "description": "In questo turno, ogni volta che giochi una carta, ottieni [blue]1[/blue] di [gold]Forza[/gold].\nAttualmente conferisce [blue]0[/blue] di [gold]Forza[/gold].",
-    "description_raw": "In questo turno, ogni volta che giochi una carta, ottieni [blue]{StrengthPower}[/blue] di [gold]Forza[/gold].\nAttualmente conferisce [blue]{StrengthApplied}[/blue] di [gold]Forza[/gold].",
+    "description": "In questo turno, ogni volta che giochi una carta, ottieni [blue]1[/blue] di [gold]Forza[/gold].",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "None",
     "allow_negative": null,
@@ -1460,6 +1520,16 @@
     "image_url": "/static/images/powers/oblivion_power.webp"
   },
   {
+    "id": "ONE_FOR_ALL",
+    "name": "Uno per Tutti",
+    "description": "Le tue carte Attacco con [blue]0[/blue] [energy:1] infliggono danno extra.",
+    "description_raw": "Le tue carte Attacco con [blue]0[/blue] {energyPrefix:energyIcons(1)} infliggono danno extra.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/one_for_all_power.webp"
+  },
+  {
     "id": "ONE_TWO_PUNCH",
     "name": "Doppio Pugno",
     "description": "In questo turno, le tue prossime [blue]2[/blue] carte Attacco vengono giocate una volta in più.",
@@ -1478,16 +1548,6 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/orbit_power.webp"
-  },
-  {
-    "id": "OUTBREAK",
-    "name": "Epidemia",
-    "description": "Ogni [blue]3[/blue] volte che applichi [gold]Veleno[/gold], infliggi [blue][Amount][/blue] di danno a TUTTI i nemici.",
-    "description_raw": "Ogni [blue]{Repeat}[/blue] volte che applichi [gold]Veleno[/gold], infliggi [blue]{Amount}[/blue] di danno a TUTTI i nemici.",
-    "type": "Buff",
-    "stack_type": "Counter",
-    "allow_negative": null,
-    "image_url": "/static/images/powers/outbreak_power.webp"
   },
   {
     "id": "PAGESTORM",
@@ -1582,8 +1642,8 @@
   {
     "id": "PILLAR_OF_CREATION",
     "name": "Pilastro della Creazione",
-    "description": "Ogni volta che crei una carta, ottieni [blue]5[/blue] di [gold]Blocco[/gold].",
-    "description_raw": null,
+    "description": "Ogni volta che crei una carta, ottieni [blue][Amount][/blue] di [gold]Blocco[/gold].",
+    "description_raw": "Ogni volta che crei una carta, ottieni [blue]{Amount}[/blue] di [gold]Blocco[/gold].",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1702,8 +1762,8 @@
   {
     "id": "REAPER_FORM",
     "name": "Forma Mietitrice",
-    "description": "Ogni volta che le carte Attacco infliggono danno, applicano anche la stessa quantità di [gold]Condanna[/gold] moltiplicata per [blue]2[/blue].",
-    "description_raw": "Ogni volta che le carte Attacco infliggono danno, applicano anche {Amount:plural:la stessa quantità di [gold]Condanna[/gold]|la stessa quantità di [gold]Condanna[/gold] moltiplicata per [blue]{}[/blue]}.",
+    "description": "Ogni volta che le carte Attacco infliggono danno, applichi [blue]2[/blue] volte la stessa quantità di [gold]Condanna[/gold].",
+    "description_raw": "Ogni volta che le carte Attacco infliggono danno, applichi {Amount:plural:|[blue]{}[/blue] volte} la stessa quantità di [gold]Condanna[/gold].",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1922,8 +1982,8 @@
   {
     "id": "SHRINK",
     "name": "Restringimento",
-    "description": "Finché {} è in vita, le carte Attacco di [gold]this creature[/gold] infliggono un [blue]30%[/blue] di danno in meno.",
-    "description_raw": "{ApplierName.StringValue:cond:Finché {} è in vita, le tue carte Attacco|Finché {} è in vita, le carte Attacco di [gold]{OwnerName}[/gold]} infliggono un [blue]{DamageDecrease}%[/blue] di danno in meno{Amount:cond:==1? nel prossimo turno|>1? nei prossimi [blue]{}[/blue] turni|}.",
+    "description": "Gli attacchi di questa creatura infliggono il [blue]30%[/blue] di danno in meno per i prossimi 3 turni.",
+    "description_raw": null,
     "type": "Debuff",
     "stack_type": "None",
     "allow_negative": true,
@@ -2060,6 +2120,16 @@
     "image_url": "/static/images/powers/soar_power.webp"
   },
   {
+    "id": "SOULBOUND",
+    "name": "Vincolo d'Anima",
+    "description": "Ogni volta che [ApplierName] crea una carta [gold]Anima[/gold], aggiungi una carta [gold]Anima[/gold] al tuo [gold]mazzo di pesca[/gold].",
+    "description_raw": "Ogni volta che {ApplierName} crea una carta [gold]Anima[/gold], aggiungi una carta [gold]Anima[/gold] al tuo [gold]mazzo di pesca[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/soulbound_power.webp"
+  },
+  {
     "id": "SPECTRUM_SHIFT",
     "name": "Scala Cromatica",
     "description": "All'inizio del tuo turno, aggiungi [blue]1[/blue] carta incolore casuale alla tua [gold]mano[/gold].",
@@ -2192,8 +2262,8 @@
   {
     "id": "SUBROUTINE",
     "name": "Sottoprocedura",
-    "description": "Ogni volta che giochi una carta Potere, ottieni [blue]1[/blue] [energy:1].",
-    "description_raw": "Ogni volta che giochi una carta Potere, ottieni [blue]1[/blue] {energyPrefix:energyIcons(1)}.",
+    "description": "Ogni volta che giochi una carta Potere, ottieni [energy:1].",
+    "description_raw": "Ogni volta che giochi una carta Potere, ottieni {Amount:energyIcons()}.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -2302,8 +2372,8 @@
   {
     "id": "TANK",
     "name": "Guardiano Altruista",
-    "description": "Subisci danno doppio dai nemici. Gli alleati subiscono metà danno dai nemici.",
-    "description_raw": null,
+    "description": "Subisci un [blue]50%[/blue] di danno extra dai nemici. Gli alleati subiscono un [blue]50%[/blue] di danno in meno dai nemici.",
+    "description_raw": "Subisci un [blue]{DamageIncrease:percentMore()}%[/blue] di danno extra dai nemici. Gli alleati subiscono un [blue]{DamageDecrease:percentLess()}%[/blue] di danno in meno dai nemici.",
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
@@ -2422,7 +2492,7 @@
   {
     "id": "TRACKING",
     "name": "Segugio",
-    "description": "I nemici con [gold]Debolezza[/gold] subiscono danno [blue]doppio[/blue] dalle carte Attacco.",
+    "description": "I nemici con [gold]Debolezza[/gold] subiscono il [blue]50%[/blue] di danno extra dalle carte Attacco.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -2448,6 +2518,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/tyranny_power.webp"
+  },
+  {
+    "id": "UNDERWORLD",
+    "name": "Inferi",
+    "description": "Ogni volta che altri giocatori infliggono danno con le carte Attacco in questo turno, applichi [blue]2[/blue] volte la stessa quantità di [gold]Condanna[/gold].",
+    "description_raw": "Ogni volta che altri giocatori infliggono danno con le carte Attacco in questo turno, applichi{Amount:plural:| [blue]{}[/blue] volte} la stessa quantità di [gold]Condanna[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/underworld_power.webp"
   },
   {
     "id": "UNMOVABLE",
@@ -2542,10 +2622,10 @@
   {
     "id": "WELL_LAID_PLANS",
     "name": "Piani Perfetti",
-    "description": "Al termine del tuo turno, [gold]conservi[/gold] fino a [blue]1[/blue] carta.",
+    "description": "Al termine del tuo turno, non scarti più la tua [gold]mano[/gold].",
     "description_raw": null,
     "type": "Buff",
-    "stack_type": "Counter",
+    "stack_type": "Single",
     "allow_negative": null,
     "image_url": "/static/images/powers/well_laid_plans_power.webp"
   },

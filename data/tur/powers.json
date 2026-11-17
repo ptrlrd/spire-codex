@@ -50,6 +50,16 @@
     "image_url": "/static/images/powers/aggression_power.webp"
   },
   {
+    "id": "AMBERGRIS",
+    "name": "Akamber",
+    "description": "Bu turdan sonra bir tur daha elde et.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/ambergris_power.webp"
+  },
+  {
     "id": "ANTICIPATE",
     "name": "Temporary Dexterity",
     "description": "Bu turun sonuna kadar [gold]Beceriklilik[/gold] elde et.",
@@ -230,6 +240,16 @@
     "image_url": "/static/images/powers/burst_power.webp"
   },
   {
+    "id": "CACOPHONY",
+    "name": "Ahenksizlik",
+    "description": "TÜM oyuncular tarafından toplam [blue]33[/blue] kart çekildiğinde rastgele bir düşmana [blue][Amount][/blue] hasar ver.",
+    "description_raw": "{Cards:plural:HERHANGİ bir oyuncu tarafından|TÜM oyuncular tarafından toplam} [blue]{Cards}[/blue] kart çekildiğinde rastgele bir düşmana [blue]{Amount}[/blue] hasar ver.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/cacophony_power.webp"
+  },
+  {
     "id": "CALAMITY",
     "name": "Felaket",
     "description": "Her Atak kartı oynadığında [gold]El[/gold]'ine rastgele [blue]2[/blue] Atak kartı ekle.",
@@ -272,8 +292,8 @@
   {
     "id": "CHILD_OF_THE_STARS",
     "name": "Yıldızların Evladı",
-    "description": "Harcanan her [star:1] için [blue]1[/blue] [gold]Blok[/gold] elde et.",
-    "description_raw": "Harcanan her {singleStarIcon} için [blue]1[/blue] [gold]Blok[/gold] elde et.",
+    "description": "Harcanan her [star:1] için [blue]2[/blue] [gold]Blok[/gold] elde et.",
+    "description_raw": "Harcanan her {singleStarIcon} için [blue]2[/blue] [gold]Blok[/gold] elde et.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -298,6 +318,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/colossus_power.webp"
+  },
+  {
+    "id": "CONCOCT",
+    "name": "Karıştır",
+    "description": "Bu tur her engellenmeyen hasar verdiğinde [blue]3[/blue] [gold]Zehir[/gold] uygula.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/concoct_power.webp"
   },
   {
     "id": "CONFUSED",
@@ -392,7 +422,7 @@
   {
     "id": "COVERED",
     "name": "Korunuyor",
-    "description": "Bir müttefik seni koruyor. Sana yöneltilecek tüm saldırılar onun üzerine yönlendirilir.",
+    "description": "Bir oyuncu seni koruyor. Sana yöneltilecek tüm saldırılar onun üzerine yönlendirilir.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Single",
@@ -402,8 +432,8 @@
   {
     "id": "CRAB_RAGE",
     "name": "Yengeç Öfkesi",
-    "description": "Bir müttefik öldüğünde [gold]this creature[/gold] [blue]6[/blue] [gold]Kuvvet[/gold] ve [blue]99[/blue] [gold]Blok[/gold] elde eder.",
-    "description_raw": "Bir müttefik öldüğünde [gold]{OwnerName}[/gold] [blue]{StrengthPower}[/blue] [gold]Kuvvet[/gold] ve [blue]{Block}[/blue] [gold]Blok[/gold] elde eder.",
+    "description": "Bir oyuncu öldüğünde [gold]this creature[/gold] [blue]6[/blue] [gold]Kuvvet[/gold] ve [blue]99[/blue] [gold]Blok[/gold] elde eder.",
+    "description_raw": "Bir oyuncu öldüğünde [gold]{OwnerName}[/gold] [blue]{StrengthPower}[/blue] [gold]Kuvvet[/gold] ve [blue]{Block}[/blue] [gold]Blok[/gold] elde eder.",
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
@@ -422,8 +452,8 @@
   {
     "id": "CRIMSON_MANTLE",
     "name": "Kızıl Pelerin",
-    "description": "Turunun başında [blue]0[/blue] CP kaybet ve [blue][Amount][/blue] [gold]Blok[/gold] elde et.",
-    "description_raw": "Turunun başında [blue]{SelfDamage}[/blue] CP kaybet ve [blue]{Amount}[/blue] [gold]Blok[/gold] elde et.",
+    "description": "Turunun başında CP kaybet ve [gold]Blok[/gold] elde et.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -542,7 +572,7 @@
   {
     "id": "DEMON_FORM",
     "name": "Şeytan Formu",
-    "description": "Turunun başında [blue]2[/blue] [gold]Kuvvet[/gold] elde et.",
+    "description": "Turunun başında [blue]3[/blue] [gold]Kuvvet[/gold] elde et.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -568,16 +598,6 @@
     "stack_type": "Counter",
     "allow_negative": true,
     "image_url": "/static/images/powers/dexterity_power.webp"
-  },
-  {
-    "id": "DIAMOND_DIADEM",
-    "name": "Elmas Taç",
-    "description": "Düşmanlar bu turda [blue]%50[/blue] daha az hasar verir.",
-    "description_raw": null,
-    "type": "Buff",
-    "stack_type": "Single",
-    "allow_negative": null,
-    "image_url": "/static/images/powers/diamond_diadem_power.webp"
   },
   {
     "id": "DIE_FOR_YOU",
@@ -718,6 +738,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/escape_artist_power.webp"
+  },
+  {
+    "id": "FADE",
+    "name": "Temporary Dexterity",
+    "description": "Bu turun sonuna kadar [gold]Beceriklilik[/gold] elde et.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/fade_power.webp"
   },
   {
     "id": "FAN_OF_KNIVES",
@@ -952,8 +982,8 @@
   {
     "id": "GUARDED",
     "name": "Korunuyor",
-    "description": "Düşmanlardan alınan hasar yarıya iner.",
-    "description_raw": null,
+    "description": "Düşmanlardan [blue]%50[/blue] daha az hasar al. [gold][Applier.StringValue][/gold] ölürse üstünden kalkar.",
+    "description_raw": "Düşmanlardan [blue]%{DamageDecrease:percentLess()}[/blue] daha az hasar al. [gold]{Applier.StringValue}[/gold] ölürse üstünden kalkar.",
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
@@ -972,7 +1002,7 @@
   {
     "id": "HAMMER_TIME",
     "name": "Çekiç Vakti",
-    "description": "Her [gold]Dövdüğünde[/gold] diğer müttefikler de [gold]Döver[/gold].",
+    "description": "Her [gold]Dövdüğünde[/gold] diğer oyuncular da [gold]Döver[/gold].",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Single",
@@ -1080,6 +1110,16 @@
     "image_url": "/static/images/powers/hex_power.webp"
   },
   {
+    "id": "HIBERNATE",
+    "name": "Kış Uykusu",
+    "description": "[gold]Buz[/gold]ların sonraki [blue]2[/blue] tur boyunca TÜM oyunculara [gold]Blok[/gold] verir.",
+    "description_raw": "[gold]Buz[/gold]ların {Amount:plural:bu turda|sonraki [blue]{}[/blue] tur boyunca} TÜM oyunculara [gold]Blok[/gold] verir.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hibernate_power.webp"
+  },
+  {
     "id": "HIGH_VOLTAGE",
     "name": "Yüksek Voltaj",
     "description": "[gold]This creature[/gold], turunun sonunda [blue][Amount][/blue] [gold]Kuvvet[/gold] elde eder.",
@@ -1098,6 +1138,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/hotfix_power.webp"
+  },
+  {
+    "id": "HYPERBEAM_FOCUS_DOWN",
+    "name": "Temporary Focus Down",
+    "description": "Bu turun sonuna kadar [gold]Odak[/gold] kaybet.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": null
   },
   {
     "id": "ILLUSION",
@@ -1120,6 +1170,16 @@
     "image_url": "/static/images/powers/imbalanced_power.webp"
   },
   {
+    "id": "IMITATION_LEARNING",
+    "name": "Taklit Yoluyla Öğrenme",
+    "description": "[gold][TargetPlayer][/gold], sonraki [blue]2[/blue] Güç kartı oynadığında sen de onun bir kopyasını oynarsın.",
+    "description_raw": "[gold]{TargetPlayer}[/gold], {Amount:plural:bir sonraki|sonraki [blue]{}[/blue]} Güç kartı oynadığında sen de onun bir kopyasını oynarsın.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/imitation_learning_power.webp"
+  },
+  {
     "id": "IMPROVEMENT",
     "name": "Gelişim",
     "description": "Savaşın sonunda rastgele bir kartı [gold]Geliştir[/gold].",
@@ -1132,8 +1192,8 @@
   {
     "id": "INFERNO",
     "name": "Cehennem",
-    "description": "Turunun başında [blue]0[/blue] CP kaybet. Turun esnasında her CP kaybettiğinde TÜM düşmanlara [blue][Amount][/blue] hasar ver.",
-    "description_raw": "Turunun başında [blue]{SelfDamage}[/blue] CP kaybet. Turun esnasında her CP kaybettiğinde TÜM düşmanlara [blue]{Amount}[/blue] hasar ver.",
+    "description": "Turunun başında [blue]1[/blue] CP kaybet. Turun esnasında her CP kaybettiğinde TÜM düşmanlara [blue]4[/blue] hasar ver.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1222,7 +1282,7 @@
   {
     "id": "LEADERSHIP",
     "name": "Liderlik",
-    "description": "Tüm müttefiklerin fazladan [blue]1[/blue] hasar verir.",
+    "description": "Diğer tüm oyuncular fazladan [blue]1[/blue] hasar verir.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -1352,8 +1412,8 @@
   {
     "id": "MONOLOGUE",
     "name": "Monolog",
-    "description": "Bu tur her kart oynadığında, bu tur için [blue]1[/blue] [gold]Kuvvet[/gold] elde et.\nŞu an [blue]0[/blue] [gold]Kuvvet[/gold] veriyor.",
-    "description_raw": "Bu tur her kart oynadığında, bu tur için [blue]{StrengthPower}[/blue] [gold]Kuvvet[/gold] elde et.\nŞu an [blue]{StrengthApplied}[/blue] [gold]Kuvvet[/gold] veriyor.",
+    "description": "Bu tur her kart oynadığında, bu tur için [blue]1[/blue] [gold]Kuvvet[/gold] elde et.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "None",
     "allow_negative": null,
@@ -1460,6 +1520,16 @@
     "image_url": "/static/images/powers/oblivion_power.webp"
   },
   {
+    "id": "ONE_FOR_ALL",
+    "name": "Birimiz Hepimiz İçin",
+    "description": "[blue]0[/blue] [energy:1] Atakların daha fazla hasar verir.",
+    "description_raw": "[blue]0[/blue] {energyPrefix:energyIcons(1)} Atakların daha fazla hasar verir.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/one_for_all_power.webp"
+  },
+  {
     "id": "ONE_TWO_PUNCH",
     "name": "Sollu Sağlı",
     "description": "Bu tur oynayacağın sonraki [blue]2[/blue] Atak bir kez daha oynanır.",
@@ -1478,16 +1548,6 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/orbit_power.webp"
-  },
-  {
-    "id": "OUTBREAK",
-    "name": "Salgın",
-    "description": "Her [blue]3[/blue] kez [gold]Zehir[/gold] uyguladığında, TÜM düşmanlara [blue][Amount][/blue] hasar ver.",
-    "description_raw": "Her [blue]{Repeat}[/blue] kez [gold]Zehir[/gold] uyguladığında, TÜM düşmanlara [blue]{Amount}[/blue] hasar ver.",
-    "type": "Buff",
-    "stack_type": "Counter",
-    "allow_negative": null,
-    "image_url": "/static/images/powers/outbreak_power.webp"
   },
   {
     "id": "PAGESTORM",
@@ -1582,8 +1642,8 @@
   {
     "id": "PILLAR_OF_CREATION",
     "name": "Yaratılışın Temeli",
-    "description": "Her kart oluşturduğunda [blue]5[/blue] [gold]Blok[/gold] elde et.",
-    "description_raw": null,
+    "description": "Her kart oluşturduğunda [blue][Amount][/blue] [gold]Blok[/gold] elde et.",
+    "description_raw": "Her kart oluşturduğunda [blue]{Amount}[/blue] [gold]Blok[/gold] elde et.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -2060,6 +2120,16 @@
     "image_url": "/static/images/powers/soar_power.webp"
   },
   {
+    "id": "SOULBOUND",
+    "name": "Ruh Bağı",
+    "description": "[ApplierName] Her [gold]Ruh[/gold] oluşturduğunda [gold]Çekme Deste[/gold]'ne bir [gold]Ruh[/gold] ekle.",
+    "description_raw": "{ApplierName} her [gold]Ruh[/gold] oluşturduğunda [gold]Çekme Deste[/gold]'ne bir [gold]Ruh[/gold] ekle.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/soulbound_power.webp"
+  },
+  {
     "id": "SPECTRUM_SHIFT",
     "name": "Spektrum Kayması",
     "description": "Turunun başında [gold]El[/gold]'ine rastgele [blue]1[/blue] Renksiz kart ekle.",
@@ -2192,8 +2262,8 @@
   {
     "id": "SUBROUTINE",
     "name": "Altyordam",
-    "description": "Her Güç kartı oynadığında [blue]1[/blue] [energy:1] elde et.",
-    "description_raw": "Her Güç kartı oynadığında [blue]1[/blue] {energyPrefix:energyIcons(1)} elde et.",
+    "description": "Her Güç kartı oynadığında [energy:1] elde et.",
+    "description_raw": "Her Güç kartı oynadığında {Amount:energyIcons()} elde et.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -2302,8 +2372,8 @@
   {
     "id": "TANK",
     "name": "Tank",
-    "description": "Düşmanlardan iki kat hasar al. Müttefiklerin düşmanlardan aldıkları hasar yarıya iner.",
-    "description_raw": null,
+    "description": "Düşmanlardan [blue]%50[/blue] daha fazla hasar al. Diğer oyuncular düşmanlardan [blue]%50[/blue] daha az hasar alır.",
+    "description_raw": "Düşmanlardan [blue]%{DamageIncrease:percentMore()}[/blue] daha fazla hasar al. Diğer oyuncular düşmanlardan [blue]%{DamageDecrease:percentLess()}[/blue] daha az hasar alır.",
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
@@ -2422,7 +2492,7 @@
   {
     "id": "TRACKING",
     "name": "Takip",
-    "description": "[gold]Zayıf[/gold] düşmanlar Ataklardan [blue]2[/blue] kat daha fazla hasar alır.",
+    "description": "[gold]Zayıf[/gold] düşmanlar Ataklardan [blue]%50[/blue] daha fazla hasar alır.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -2448,6 +2518,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/tyranny_power.webp"
+  },
+  {
+    "id": "UNDERWORLD",
+    "name": "Yeraltı",
+    "description": "Bu turda diğer oyuncular her saldırı hasarı verdiklerinde [blue]2[/blue] katı miktarda [gold]Kader[/gold] uygula.",
+    "description_raw": "Bu turda diğer oyuncular her saldırı hasarı verdiklerinde {Amount:plural:eşit|[blue]{}[/blue] katı} miktarda [gold]Kader[/gold] uygula.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/underworld_power.webp"
   },
   {
     "id": "UNMOVABLE",
@@ -2542,17 +2622,17 @@
   {
     "id": "WELL_LAID_PLANS",
     "name": "Sağlam Plan",
-    "description": "Turunun sonunda en fazla [blue]1[/blue] kartı [gold]Sakla[/gold].",
+    "description": "Artık turunun sonunda [gold]El[/gold]'ini saklarsın.",
     "description_raw": null,
     "type": "Buff",
-    "stack_type": "Counter",
+    "stack_type": "Single",
     "allow_negative": null,
     "image_url": "/static/images/powers/well_laid_plans_power.webp"
   },
   {
     "id": "WITHERING_PRESENCE",
-    "name": "Çürüten Varlık",
-    "description": "Oynadığın her [blue]6[/blue] karttan sonra [gold]El[/gold]'ine bir [gold]Çürüme[/gold] ekle.",
+    "name": "Solduran Varlık",
+    "description": "Oynadığın her [blue]6[/blue] karttan sonra [gold]El[/gold]'ine bir [gold]Solma[/gold] ekle.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",

@@ -68,8 +68,8 @@
   {
     "id": "INKY",
     "name": "잉크투성이",
-    "description": "이 카드의 피해량이 [blue]1[/blue] 증가하고, [gold]약화[/gold] 를 [blue]1[/blue] 부여합니다.",
-    "description_raw": "이 카드의 피해량이 [blue]{Damage}[/blue] 증가하고, [gold]약화[/gold] 를 [blue]{WeakPower}[/blue] 부여합니다.",
+    "description": "이 카드가 [gold]약화[/gold] 를 [blue]1[/blue] 부여합니다.",
+    "description_raw": "이 카드가 [gold]약화[/gold] 를 [blue]{WeakPower}[/blue] 부여합니다.",
     "extra_card_text": "[gold]약화[/gold]를 [blue]1[/blue] 부여합니다.",
     "card_type": null,
     "applicable_to": null,

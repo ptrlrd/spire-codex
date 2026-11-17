@@ -31,6 +31,16 @@
   },
   {
     "id": "BATTLEWORN_DUMMY_EVENT_ENCOUNTER",
+    "name": "Battleworn Dummy Event Encounter",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": null,
+    "loss_text": null
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_V1_ENCOUNTER",
     "name": "历战假人",
     "room_type": "Monster",
     "is_weak": false,
@@ -40,17 +50,39 @@
       {
         "id": "BATTLE_FRIEND_V1",
         "name": "战斗好伙伴V1.0"
-      },
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]居然被[gold]历战假人[/gold]杀死了？？？"
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_V2_ENCOUNTER",
+    "name": "历战假人",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
       {
         "id": "BATTLE_FRIEND_V2",
         "name": "战斗好伙伴V2.0"
-      },
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]居然被[gold]历战假人[/gold]杀死了？？？"
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_V3_ENCOUNTER",
+    "name": "历战假人",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
       {
         "id": "BATTLE_FRIEND_V3",
         "name": "战斗好伙伴V3.0"
       }
     ],
-    "loss_text": "[b]The Adventurer[/b]被个[gold]历战假人[/gold]杀死了？？？"
+    "loss_text": "[b]The Adventurer[/b]居然被[gold]历战假人[/gold]杀死了？？？"
   },
   {
     "id": "BOWLBUGS_NORMAL",
@@ -178,7 +210,7 @@
     "monsters": [
       {
         "id": "CUBEX_CONSTRUCT",
-        "name": "立柱构造体"
+        "name": "方柱构装体"
       },
       {
         "id": "PUNCH_CONSTRUCT",
@@ -231,7 +263,7 @@
     "monsters": [
       {
         "id": "CUBEX_CONSTRUCT",
-        "name": "立柱构造体"
+        "name": "方柱构装体"
       }
     ],
     "loss_text": "[b]The Adventurer[/b]被一具[gold]方柱构装体[/gold]的激光扫死。"
@@ -1145,7 +1177,10 @@
     "room_type": "Monster",
     "is_weak": false,
     "act": "Act 1 - Overgrowth",
-    "tags": null,
+    "tags": [
+      "Jaxfruit",
+      "Slimes"
+    ],
     "monsters": [
       {
         "id": "LEAF_SLIME_M",
@@ -1221,7 +1256,8 @@
     "is_weak": false,
     "act": "Act 1 - Overgrowth",
     "tags": [
-      "Mushroom"
+      "Mushroom",
+      "Jaxfruit"
     ],
     "monsters": [
       {

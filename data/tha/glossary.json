@@ -20,8 +20,26 @@
   {
     "id": "COOK",
     "name": "ปรุงอาหาร",
-    "description": "[gold]กำจัด[/gold] [blue]2[/blue] การ์ดจาก[gold]กองการ์ด[/gold] แล้วได้รับ [green]9[/green] HP สูงสุด ที่ [gold]จุดพัก[/gold]",
+    "description": "[gold]กำจัด[/gold]การ์ด [blue]2[/blue] ใบจาก[gold]กองการ์ด[/gold] และได้รับ [green]5[/green] HP สูงสุด ที่[gold]จุดพัก[/gold]",
     "category": "mechanics"
+  },
+  {
+    "id": "DECK",
+    "name": "กองการ์ด",
+    "description": "ดูการ์ดทั้งหมดในกองการ์ด",
+    "category": "zones"
+  },
+  {
+    "id": "DISCARD_PILE",
+    "name": "กองทิ้ง",
+    "description": "ถ้ากองจั่วหมด กองทิ้งจะถูกสับกลับมาเป็นกองจั่ว\n\nคลิกเพื่อดูการ์ดในกองทิ้ง",
+    "category": "zones"
+  },
+  {
+    "id": "DRAW_PILE",
+    "name": "กองจั่ว",
+    "description": "ตอนเริ่มแต่ละเทิร์น\nจั่ว [blue]5[/blue] การ์ดจากที่นี่\n\nคลิกเพื่อดูการ์ดในกองจั่ว (ไม่เรียงลำดับ)",
+    "category": "zones"
   },
   {
     "id": "ENERGY",
@@ -34,6 +52,12 @@
     "name": "ปล่อยพลัง",
     "description": "สูบพลังลูกแก้วขวาสุดเพื่อปล่อยพลังของลูกแก้วนั้น",
     "category": "combat"
+  },
+  {
+    "id": "EXHAUST_PILE",
+    "name": "กองสลาย",
+    "description": "คลิกเพื่อดูการ์ดที่สลายไปในการต่อสู้นี้",
+    "category": "zones"
   },
   {
     "id": "FATAL",

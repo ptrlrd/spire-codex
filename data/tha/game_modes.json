@@ -1,0 +1,38 @@
+[
+  {
+    "id": "STANDARD",
+    "name": "มาตรฐาน",
+    "description": "เริ่มต้นภารกิจไล่ล่าสไปร์!",
+    "multiplayer_description": "เริ่มต้นภารกิจไล่ล่าสไปร์... ร่วมกับเพื่อน!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": null,
+    "max_ascension": 10
+  },
+  {
+    "id": "DAILY",
+    "name": "รายวัน",
+    "description": "มีการท้าทายใหม่เกิดขึ้นวันละครั้ง\n\nแข่งขันกับผู้เล่นคนอื่นเพื่อทำคะแนนสูงสุด!",
+    "multiplayer_description": "มีการท้าทายใหม่เกิดขึ้นวันละครั้ง\n\nแข่งขันกับกลุ่มอื่นเพื่อทำคะแนนสูงสุด!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "เล่นการเดินทางครบทุกตัวละคร และชนะองก์ 3 เพื่อปลดล็อกการเดินทางรายวัน",
+    "max_ascension": 10
+  },
+  {
+    "id": "CUSTOM",
+    "name": "กำหนดเอง",
+    "description": "กำหนดการเดินทางของตัวเองด้วยกติกาต่างๆ",
+    "multiplayer_description": "กำหนดการเดินทางโหมดหลายคนด้วยตัวเองด้วยกติกาต่างๆ",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "ชนะองก์ 3 จำนวน 3 ครั้งเพื่อปลดล็อกการเดินทางแบบกำหนดเอง",
+    "max_ascension": 10
+  }
+]

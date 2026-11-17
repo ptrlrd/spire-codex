@@ -20,7 +20,7 @@
   {
     "id": "COOK",
     "name": "Cuisiner",
-    "description": "[gold]Retirez[/gold] [blue]2[/blue] cartes de votre [gold]Deck[/gold] et gagnez [green]9[/green] PV Max à un [gold]Site de repos[/gold].",
+    "description": "[gold]Retirez[/gold] [blue]2[/blue] cartes de votre [gold]Deck[/gold] et gagnez [green]5[/green] PV Max à un [gold]Site de repos[/gold].",
     "category": "mechanics"
   },
   {

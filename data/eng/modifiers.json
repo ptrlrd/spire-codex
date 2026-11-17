@@ -2,14 +2,14 @@
   {
     "id": "ALL_STAR",
     "name": "All Star",
-    "description": "Start with [blue]5[/blue] [gold]colorless cards[/gold].",
+    "description": "Start with [blue]5[/blue] [gold]Colorless[/gold] cards.",
     "kind": "good",
     "character": null
   },
   {
     "id": "BIG_GAME_HUNTER",
     "name": "Big Game Hunter",
-    "description": "Elite enemies swarm the Spire and drop better rewards.",
+    "description": "Elite enemies swarm the Spire and drop [gold]Rare[/gold] card rewards.",
     "kind": "bad",
     "character": null
   },
@@ -30,7 +30,7 @@
   {
     "id": "DRAFT",
     "name": "Draft",
-    "description": "Choose [blue]10[/blue] [gold]card rewards[/gold] to replace your starting deck.",
+    "description": "Choose [blue]10[/blue] card rewards to replace your starting deck.",
     "kind": "good",
     "character": null
   },

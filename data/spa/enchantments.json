@@ -68,8 +68,8 @@
   {
     "id": "INKY",
     "name": "Tinta",
-    "description": "Esta carta inflige [blue]1[/blue] de daño adicional y aplica [blue]1[/blue] de [gold]Debilidad[/gold].",
-    "description_raw": "Esta carta inflige [blue]{Damage}[/blue] de daño adicional y aplica [blue]{WeakPower}[/blue] de [gold]Debilidad[/gold].",
+    "description": "This card applies [blue]1[/blue] [gold]Weak[/gold].",
+    "description_raw": "This card applies [blue]{WeakPower}[/blue] [gold]Weak[/gold].",
     "extra_card_text": "Aplica [blue]1[/blue] de [gold]Debilidad[/gold].",
     "card_type": null,
     "applicable_to": null,

@@ -251,12 +251,12 @@
       {
         "id": "COMBINE_STRIKES",
         "title": "ประสานจู่โจม",
-        "description": "กำจัด[gold]จู่โจม[/gold] [blue]2[/blue] ใบ เพิ่ม[gold]UltimateStrike[/gold]เข้า[gold]กองการ์ด[/gold]"
+        "description": "กำจัด[gold]จู่โจม[/gold] [blue]2[/blue] ใบ เพิ่ม[gold]Ultimate Strike[/gold]เข้า[gold]กองการ์ด[/gold]"
       },
       {
         "id": "COMBINE_DEFENDS",
         "title": "ประสานป้องกัน",
-        "description": "กำจัด[gold]ป้องกัน[/gold] [blue]2[/blue] ใบ เพิ่ม[gold]UltimateDefend[/gold]เข้า[gold]กองการ์ด[/gold]"
+        "description": "กำจัด[gold]ป้องกัน[/gold] [blue]2[/blue] ใบ เพิ่ม[gold]Ultimate Defend[/gold]เข้า[gold]กองการ์ด[/gold]"
       }
     ],
     "pages": [
@@ -275,12 +275,12 @@
           {
             "id": "COMBINE_STRIKES",
             "title": "ประสานจู่โจม",
-            "description": "กำจัด[gold]จู่โจม[/gold] [blue]2[/blue] ใบ เพิ่ม[gold]UltimateStrike[/gold]เข้า[gold]กองการ์ด[/gold]"
+            "description": "กำจัด[gold]จู่โจม[/gold] [blue]2[/blue] ใบ เพิ่ม[gold]Ultimate Strike[/gold]เข้า[gold]กองการ์ด[/gold]"
           },
           {
             "id": "COMBINE_DEFENDS",
             "title": "ประสานป้องกัน",
-            "description": "กำจัด[gold]ป้องกัน[/gold] [blue]2[/blue] ใบ เพิ่ม[gold]UltimateDefend[/gold]เข้า[gold]กองการ์ด[/gold]"
+            "description": "กำจัด[gold]ป้องกัน[/gold] [blue]2[/blue] ใบ เพิ่ม[gold]Ultimate Defend[/gold]เข้า[gold]กองการ์ด[/gold]"
           }
         ]
       }
@@ -428,7 +428,7 @@
       },
       {
         "id": "RIP",
-        "description": "คุณ[jitter]ดึงปลิงออกจากศีรษะ[/jitter]อย่างรุนแรงและขว้างมันออกไปไกลโพ้น!\n\nมีเสียงเกิดขึ้นในหัวของคุณ:\n[purple][sine]“ม่ายยยยยยยยยยยยยยยย....”"
+        "description": "คุณ[jitter]ดึงปลิงออกจากศีรษะ[/jitter]อย่างรุนแรงและขว้างมันออกไปไกลโพ้น!\n\nมีเสียงเกิดขึ้นในหัวของคุณ:\n[purple][sine]“ม่ายยยยยยยยยยยยยยยย....”[/sine][/purple]"
       },
       {
         "id": "SHARE_KNOWLEDGE",
@@ -562,7 +562,7 @@
       {
         "id": "REGENT",
         "title": "ส้ม",
-        "description": "ได้รับการ์ดของRegent [blue]3[/blue] ใบ"
+        "description": "ได้รับการ์ดของนักษัตรประโคมฤกษ์ [blue]3[/blue] ใบ"
       },
       {
         "id": "SILENT",
@@ -597,7 +597,7 @@
           {
             "id": "REGENT",
             "title": "ส้ม",
-            "description": "ได้รับการ์ดของRegent [blue]3[/blue] ใบ"
+            "description": "ได้รับการ์ดของนักษัตรประโคมฤกษ์ [blue]3[/blue] ใบ"
           },
           {
             "id": "SILENT",
@@ -686,7 +686,7 @@
           {
             "id": "POLLINOUS_CORE",
             "title": "เข้าสู่ใจกลาง",
-            "description": "เสีย [red]7[/red] HP ได้รับ [gold]Pollinous Core[/gold]"
+            "description": "เสีย [red]7[/red] HP ได้รับ[gold]แกนละอองเรณู[/gold]"
           }
         ]
       }
@@ -747,33 +747,192 @@
   },
   {
     "id": "DARV",
-    "name": "Darv",
+    "name": "ดาร์ฟ",
     "type": "Ancient",
     "act": null,
-    "description": null,
+    "description": "...where did I put... Oh!\nCome to see my collection!? Take anything from that pile over there, put it to good use!",
     "preconditions": null,
     "options": null,
     "pages": null,
+    "epithet": "ผู้กักตุน",
     "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "Here, take one of these forgotten gems with ya!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "I’ve got things to do today!\nTake whatever ya want from that pile!!"
+        }
+      ],
       "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "You’re a beautiful hunk of junk, you know that?"
+        },
         {
           "order": "0-1",
           "speaker": "character",
           "text": "<3"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Still keeping at it, I see... Let’s see if we can upgrade ya!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "I’ve been holding on to your friend’s uhh... um.\nNevermind nevermind!!"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "<Inquisitive beeps>"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "My scrappy scrapper, forget I said all that!"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "The flaming warrior has returned!\nI’ve got just the thing for ya!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Good to see ya still kickin’ and bashin’ em heads in!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "I’m still holding on to that heavy blade of yours... but I can’t find no one to restore it."
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "The Ironclad stares at Darv."
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Maybe the Architect knows somethin’."
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "I can tell you’re a serious one. What can I do for ya missy?"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "Anything to help me kill a most loathsome man."
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "Very well then... have a gander!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Still on that warpath? I ain’t gonna stop ya!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "This book seems tied to ya, been around longer than you have."
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "How did you come into possession of that?"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "[sine]Scary[/sine] things have a way of ending up in my collection."
         }
       ],
       "Regent": [
         {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "What brings the likes of you up here? Wanna take a look at my collection?"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "I do enjoy fine wares..."
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "Yeah!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Back for more your highness?!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "To my new friend, do I have somethin’ for ya!"
+        },
+        {
           "order": "2-1",
           "speaker": "character",
           "text": "ว่ามา!"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "I’d give it but the Architect nabbed it from me!!\nHelp a buddy out! Do me a favor will ya?"
         }
       ],
       "Silent": [
         {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Back in the Spire for you too huh?\nCan’t resist those shinies right?!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "I’ll trade ya somethin’ nice for that trophy you got there!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Pity ya don’t remember all my generosity!\nYeah yeah, you know how Neow is..."
+        },
+        {
           "order": "2-1",
           "speaker": "character",
           "text": "..."
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Well! Let’s get you equipped for that final showdown or whatevah!"
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "...where did I put... Oh!\nCome to see my collection!? Take anything from that pile over there, put it to good use!"
         }
       ]
     },
@@ -917,7 +1076,7 @@
           {
             "id": "TAKE",
             "title": "TAKE",
-            "description": "ได้รับ[gold]a random Relic[/gold]"
+            "description": "ได้รับ[gold]เรลิกแบบสุ่ม[/gold]"
           }
         ]
       },
@@ -1073,7 +1232,7 @@
           {
             "id": "SEAPUNK_SALAD",
             "title": "หยิบสลัดหร่ายเลจากสายพาน",
-            "description": "จ่าย [red]40[/red] [gold]ทอง[/gold] เพิ่ม[gold]Feeding Frenzy[/gold]เข้า[gold]กองการ์ด[/gold] โซ้ยต่อ!"
+            "description": "จ่าย [red]40[/red] [gold]ทอง[/gold] เพิ่ม[gold]สวาปามบ้าคลั่ง[/gold]เข้า[gold]กองการ์ด[/gold] โซ้ยต่อ!"
           },
           {
             "id": "SPICY_SNAPPY",
@@ -1124,7 +1283,7 @@
     "name": "พ่อค้า???",
     "type": "Shared",
     "act": null,
-    "description": "A suspicious merchant offers 6 fake relics (drawn from a pool of 9) at 42–58 gold each. Throwing a [gold]Foul Potion[/gold] starts a fight against The Merchant??? (165 HP). Winning rewards [gold]The Merchant's Rug???[/gold] plus all unsold relics.",
+    "description": "พ่อค้าน่าสงสัยขายเรลิกปลอม 6 ชิ้น (สุ่มจากพูล 9 ชิ้น) ราคาชิ้นละ 42–58 ทอง การขว้าง [gold]Foul Potion[/gold] จะเริ่มการต่อสู้กับ The Merchant??? (165 HP) หากชนะจะได้รับ [gold]The Merchant's Rug???[/gold] พร้อมเรลิกที่ขายไม่ออกทั้งหมด",
     "preconditions": [
       "Act 2+",
       "Single player only",
@@ -1199,8 +1358,8 @@
       },
       {
         "id": "ACCEPT",
-        "title": "ยอมรับForgottenSoul",
-        "description": "ได้รับ[gold]ForgottenSoul[/gold]"
+        "title": "ยอมรับForgotten Soul",
+        "description": "ได้รับ[gold]Forgotten Soul[/gold]"
       }
     ],
     "pages": [
@@ -1228,8 +1387,8 @@
           },
           {
             "id": "ACCEPT",
-            "title": "ยอมรับForgottenSoul",
-            "description": "ได้รับ[gold]ForgottenSoul[/gold]"
+            "title": "ยอมรับForgotten Soul",
+            "description": "ได้รับ[gold]Forgotten Soul[/gold]"
           }
         ]
       }
@@ -1369,7 +1528,7 @@
       },
       {
         "id": "JOIN_FORCES",
-        "description": "สีหน้าของทุกคนดีขึ้นทันที รวมถึงคุณด้วย!\n\nหนึ่งในนักผจญภัยเหล่านั้นเป็นนักกวี!\nคุณโลดแล่นเข้าเขาวงกตอย่างสนุกสนาน ในขณะที่[aqua]Aquid หมึกจอมเวท[/aqua]ปลดกับดักอย่างไม่ยากเย็น และคุณกับ[red]Grathorian นักสู้[/red]ล้ม[orange]เหล่าผู้พิทักษ์ถือกระบองหนาม[/orange]ลงอย่างง่ายดาย\n\nนี่เป็นการผจญภัยที่สุขสันต์ที่สุดในชีวิตของคุณ และคุณได้สร้าง[gold][sine]ความทรงจำอันยิ่งใหญ่[/sine][/gold]อย่างแท้จริง"
+        "description": "สีหน้าของทุกคนดีขึ้นทันที รวมถึงคุณด้วย!\n\nหนึ่งในนักผจญภัยเหล่านั้นเป็นนักกวี!\nคุณโลดแล่นเข้าเขาวงกตอย่างสนุกสนาน ในขณะที่[aqua]อะควิด หมึกจอมเวท[/aqua]ปลดกับดักอย่างไม่ยากเย็น และคุณกับ[red]กราโธเรียน นักสู้[/red]ล้ม[orange]เหล่าผู้พิทักษ์ถือกระบองหนาม[/orange]ลงอย่างง่ายดาย\n\nนี่เป็นการผจญภัยที่สุขสันต์ที่สุดในชีวิตของคุณ และคุณได้สร้าง[gold][sine]ความทรงจำอันยิ่งใหญ่[/sine][/gold]อย่างแท้จริง"
       },
       {
         "id": "SOLO_QUEST",
@@ -1436,7 +1595,7 @@
       {
         "id": "REACH_INTO_THE_FLESH",
         "title": "เล็งไปที่เนื้อเห็ด",
-        "description": "กำจัดการ์ด [blue]2[/blue] ใบจาก[gold]กองการ์ด[/gold] เพิ่ม[red]Spore Mind[/red]เข้า[gold]กองการ์ด[/gold]"
+        "description": "กำจัดการ์ด [blue]2[/blue] ใบจาก[gold]กองการ์ด[/gold] เพิ่ม[red]จิตสปอร์[/red]เข้า[gold]กองการ์ด[/gold]"
       },
       {
         "id": "OFFER_TRIBUTE",
@@ -1457,7 +1616,7 @@
           {
             "id": "REACH_INTO_THE_FLESH",
             "title": "เล็งไปที่เนื้อเห็ด",
-            "description": "กำจัดการ์ด [blue]2[/blue] ใบจาก[gold]กองการ์ด[/gold] เพิ่ม[red]Spore Mind[/red]เข้า[gold]กองการ์ด[/gold]"
+            "description": "กำจัดการ์ด [blue]2[/blue] ใบจาก[gold]กองการ์ด[/gold] เพิ่ม[red]จิตสปอร์[/red]เข้า[gold]กองการ์ด[/gold]"
           },
           {
             "id": "OFFER_TRIBUTE",
@@ -1534,10 +1693,11 @@
     "name": "เนียว",
     "type": "Ancient",
     "act": "Act 1 - Overgrowth / Underdocks",
-    "description": null,
+    "description": "[sine]I’ve... remade you....\n...go... ..up.....[/sine]",
     "preconditions": null,
     "options": null,
     "pages": null,
+    "epithet": "Mother of Resurrection (Exiled)",
     "dialogue": {
       "Returning": [
         {
@@ -1566,11 +1726,156 @@
           "text": "[sine]...จง.. ฆ่า... [red][jitter]สถาปนิก[/jitter][/red][/sine]"
         }
       ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "[sine]...construct.. what...\n....have you.. become...?[/sine]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[sine]...he.. can...\n....fix.. you.. ...everything....[/sine]"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "[sine]...I.. can’t... ..make...\n...you.. forget....[/sine]"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "<resolute beeping sounds>"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "[sine]...good....[/sine]"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "[sine]..arise.. my.. warrior...\n..time... to fight...again...[/sine]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[sine]..still.. lost.. to rage... good...[/sine]"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "[sine]..remember.. the.. first..time\n...you ..came...before me..[/sine]"
+        },
+        {
+          "order": "2-1",
+          "speaker": "ancient",
+          "text": "[sine]..so..furious...[/sine]"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "[sine]...so..useful...[/sine]"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "[sine]...we.... share... ..the same... ..goal....[/sine]"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "[jitter]HE KILLED ALL THAT I LOVE!![/jitter]"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "[sine]...my power..... is yours...[/sine]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[sine]He... still.. ....breathes...[/sine]"
+        },
+        {
+          "order": "2-0",
+          "speaker": "character",
+          "text": "[sine]Is... it.. ...even... possible...?[/sine]"
+        },
+        {
+          "order": "2-1",
+          "speaker": "ancient",
+          "text": "[sine]... [red]Architect[/red].... ..weakening....\n..we.... stronger...[/sine]"
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "character",
+          "text": "Oversized blue creature, I am the future [orange]King[/orange]!"
+        },
+        {
+          "order": "0-1",
+          "speaker": "ancient",
+          "text": "[sine]..cute...\n...you... will see.. ..me... ...again....[/sine]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[sine]...again..?[/sine]"
+        },
+        {
+          "order": "2-0",
+          "speaker": "character",
+          "text": "[jitter]Why can’t I win?![/jitter]"
+        },
+        {
+          "order": "2-1",
+          "speaker": "ancient",
+          "text": "[sine]...receive.. this... ..blessing...[/sine]"
+        },
+        {
+          "order": "2-2",
+          "speaker": "character",
+          "text": "...yes, thank you Neow."
+        }
+      ],
       "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "[sine]...returned.. from... outside?\n..knew... you’d... be back...[/sine]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[sine]...your..\n ...trophy.. awaits...[/sine]"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "[sine]..both...know..agony..of..family...[/sine]"
+        },
         {
           "order": "2-1",
           "speaker": "character",
           "text": "..."
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "[sine]..still...seeking..approval...?\n...[jitter]FOOLISH[/jitter]...[/sine]"
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "[sine]I’ve... remade you....\n...go... ..up.....[/sine]"
         }
       ]
     },
@@ -1597,10 +1902,12 @@
       "SMALL_CAPSULE",
       "STONE_HUMIDIFIER",
       "CURSED_PEARL",
+      "DOWSING_ROD",
       "HEFTY_TABLET",
       "LARGE_CAPSULE",
       "LEAFY_POULTICE",
       "NEOWS_BONES",
+      "NEOWS_SACRIFICE",
       "PRECARIOUS_SHEARS",
       "SILKEN_TRESS",
       "SILVER_CRUCIBLE"
@@ -1611,16 +1918,159 @@
     "name": "Nonupeipe",
     "type": "Ancient",
     "act": "Act 3 - Glory",
-    "description": null,
+    "description": "I haven’t had a visitor in a millennia!\nYou’re looking quite drab, here, let’s find something delightful for you to wear.",
     "preconditions": null,
     "options": null,
     "pages": null,
+    "epithet": "Serendipity Incarnate",
     "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "Madness awaits at the top. Don my power and vanquish."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "You’ve traveled so far to reach me!\nCome closer, receive my blessing."
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Could a construct truly be worthy of my blessings?\nCome forward, Defect. You will be the most beautiful of all automata."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "My poor, battered machine, let me refine you."
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "I usually don’t like the Architect’s things, but I admit you’re growing on me."
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "<embarrassed chirp>"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Ah, the Ironclad finally arrives before me.\nCome forth and I shall endow you with my power."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Ironclad ironclad... was my previous gift not enough?"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "You return again my champion? How many times?\nWere you not strong enough to wipe out entire clans before?"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "character",
+          "text": "Your guards are dead, rumors say you can bestow blessings for those who wish the Architect dead."
+        },
+        {
+          "order": "0-1",
+          "speaker": "ancient",
+          "text": "I appreciate someone capable and shall grant a measure of my power.\nNext time, don’t kill my guards."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "A mage needs fine accouterments for battle. Come forth, Necrobinder."
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "The Architect won’t be pleased to see that [sine]pet[/sine] of yours."
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "Do you mean Osty? He will be the one to deliver the final blow."
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "character",
+          "text": "I seek audience with Nonupeipe!"
+        },
+        {
+          "order": "0-1",
+          "speaker": "ancient",
+          "text": "Such beautiful robes you’ve brought from faraway lands!\nHave your minions bring you closer and I will bless thee."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Royal blessings for royal visitors.\nServants! Fetch some tea for us."
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "The Architect has gone mad! If only a noble champion could save us from this plight..."
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "Fear not! I, the Regent, will put an end to the madness!\nBut first, tea!"
+        }
+      ],
       "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "A little thief has snuck into my domain?\nDon’t think I can’t see you? Come on out!"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "The Silent steps out of the shadows..."
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "A huntress, what beckons your return to the Spire?\nApproach and don these blessings."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "I have prepared gifts for you, assassin, don’t be shy."
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Of all of her puppets, you surprise me most."
+        },
         {
           "order": "2-1",
           "speaker": "character",
           "text": "..."
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "What took your first life? Did Neow [sine]find[/sine] you?\nA shame you don’t speak."
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "I haven’t had a visitor in a millennia!\nYou’re looking quite drab, here, let’s find something delightful for you to wear."
         }
       ]
     },
@@ -1643,16 +2093,169 @@
     "name": "Orobas",
     "type": "Ancient",
     "act": "Act 2 - Hive",
-    "description": null,
+    "description": "Puppet puppet!! All the way up here?! Take these, take take!",
     "preconditions": null,
     "options": null,
     "pages": null,
+    "epithet": "Living Rainbow",
     "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "Try this!!!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Very good finds!! Look look!"
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "What! Servant construct?! Still working!!\nWhy here? Why not at Factory??"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Shiny orbs! How work?\n[jitter]Ouch!![/jitter]"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Core broken? Neow use broken construct?\nManipulated?"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "<quietly beeps>"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Architect fix you?"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "An Ironclad!? How possible?? Scary. Very scary!!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Contract signer? Why!? Bad choice? Yes. Mistake!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Wishing you freedom!! Wishing hard!\nVakuu bad. Very bad! Architect free you?"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Dead?! Not dead! Why puppet? Big hand!!"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "I’m no puppet. There’s a man I must kill.\nWhat can you do for me?"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "Killing bad!! Take this instead!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Not dead one! Good gifts for you!! Violence bad."
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "No violence! Collect shiny instead... Shiny!!"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "My quest will only end when the Architect is no more.\nViolence is inevitable."
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Architect not bad! Maybe talk? Talking good!! Very good!"
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Traveller! From space!? Where in space?\nHow from space? Pointy head! Little friends!!"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "The Regent monologues for hours."
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "Exciting! Impressive!! More! More!!!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "More stories! Found these for you!\nNow tell more story!!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "character",
+          "text": "My number one fan! Orobas, friend!\nLovely to see you’re still alive!"
+        },
+        {
+          "order": "2-1",
+          "speaker": "ancient",
+          "text": "Stories?!"
+        },
+        {
+          "order": "2-2",
+          "speaker": "character",
+          "text": "Of course of course... but have you found any trinkets for me?"
+        }
+      ],
       "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Infection...? [jitter]BLIGHT!?[/jitter] Take and go!!"
+        },
         {
           "order": "0-1",
           "speaker": "character",
           "text": "[sine]...[/sine]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Not contagious? Very dying? Architect help you?"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Where sisters? Scary mean sisters!\nBe good person! Don’t be like sisters!!"
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Puppet puppet!! All the way up here?! Take these, take take!"
         }
       ]
     },
@@ -1660,10 +2263,10 @@
     "relics": [
       "ELECTRIC_SHRYMP",
       "GLASS_EYE",
-      "SAND_CASTLE",
       "ALCHEMICAL_COFFER",
       "DRIFTWOOD",
       "RADIANT_PEARL",
+      "SAND_CASTLE",
       "SEA_GLASS",
       "PRISMATIC_GEM",
       "TOUCH_OF_OROBAS",
@@ -1675,10 +2278,152 @@
     "name": "Pael",
     "type": "Ancient",
     "act": "Act 2 - Hive",
-    "description": null,
+    "description": "A puppet has arrived?\nCan you check on Father? I’m too tired...",
     "preconditions": null,
     "options": null,
     "pages": null,
+    "epithet": "Melting Dragon",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "Welcome back friend. Let my flesh help you..."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Pael is sleeping. His snoring shakes the room."
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Troubled automaton, looking for your friend?\nLet me help..."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Do constructs dream?\nWatch and copy me..."
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "I dreamt of your friend...\nFather can restore [aqua]Flaw[/aqua]..."
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "You contain such rage. Take from me and find some peace..."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Do you remember how it feels to dream?\nIt is good to sleep..."
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "You must quell your flames.\nFather can free you..."
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Such malice paints your heart."
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "We would share the same paint if you knew what’s befallen me."
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "There is no peace on your path.\nTake a part of me to ease your burdens..."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "The one with the Hand returns.\nPainful memories. Take my strength and leave..."
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Killing [red]Father[/red] won’t bring peace."
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "You call that [jitter]thing[/jitter] your father!?"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "We do not choose our family..."
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "character",
+          "text": "Hello! I am the Regent.\nHellooo?? [jitter]HELLO!?[/jitter]"
+        },
+        {
+          "order": "0-1",
+          "speaker": "ancient",
+          "text": "Quiet down now.\nTake a part of me and be on your way..."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "character",
+          "text": "I’m back! Ah, you’re asleep of course.\nLet’s see here..."
+        },
+        {
+          "order": "2-0",
+          "speaker": "character",
+          "text": "Why do you give yourself away?"
+        },
+        {
+          "order": "2-1",
+          "speaker": "ancient",
+          "text": "Why not give when I have an abundance of flesh?"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "When you return, I will be replenished anew.\nThat’s what sleep does..."
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Murderous creature, no need for violence here.\nHave part of me and find peace..."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Trophy hunting? Sure, take a part of me...\nWhatever grants you comfort..."
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "You’ve poisoned me...?\nWhat is this going to...? zZZzz..."
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "A puppet has arrived?\nCan you check on Father? I’m too tired..."
+        }
+      ]
+    },
     "image_url": "/static/images/misc/ancients/pael.webp",
     "relics": [
       "PAELS_CLAW",
@@ -1743,7 +2488,7 @@
   },
   {
     "id": "PUNCH_OFF",
-    "name": "ต่อยกระเด็น",
+    "name": "ดวลหมัด",
     "type": "Event",
     "act": "Underdocks",
     "description": "[gold]จักรกลชกต่อย[/gold] 2 ตัวกำลังแลกหมัดกันอยู่ และคุณเห็นสมบัติอยู่ท่ามกลางพวกมัน...\n\nควรจะลองฉกมันมาไหม?",
@@ -1937,17 +2682,17 @@
       {
         "id": "TOP",
         "title": "เอาอันบน",
-        "description": "แลก[gold]one of your Relics[/gold]เป็น[gold]a random Relic[/gold]"
+        "description": "แลก[gold]เรลิกชิ้นหนึ่งของคุณ[/gold]เป็น[gold]เรลิกแบบสุ่ม[/gold]"
       },
       {
         "id": "MIDDLE",
         "title": "เอาอันกลาง",
-        "description": "แลก[gold]one of your Relics[/gold]เป็น[gold]a random Relic[/gold]"
+        "description": "แลก[gold]เรลิกชิ้นหนึ่งของคุณ[/gold]เป็น[gold]เรลิกแบบสุ่ม[/gold]"
       },
       {
         "id": "BOTTOM",
         "title": "เอาอันล่าง",
-        "description": "แลก[gold]one of your Relics[/gold]เป็น[gold]a random Relic[/gold]"
+        "description": "แลก[gold]เรลิกชิ้นหนึ่งของคุณ[/gold]เป็น[gold]เรลิกแบบสุ่ม[/gold]"
       }
     ],
     "pages": [
@@ -1962,17 +2707,17 @@
           {
             "id": "TOP",
             "title": "เอาอันบน",
-            "description": "แลก[gold]one of your Relics[/gold]เป็น[gold]a random Relic[/gold]"
+            "description": "แลก[gold]เรลิกชิ้นหนึ่งของคุณ[/gold]เป็น[gold]เรลิกแบบสุ่ม[/gold]"
           },
           {
             "id": "MIDDLE",
             "title": "เอาอันกลาง",
-            "description": "แลก[gold]one of your Relics[/gold]เป็น[gold]a random Relic[/gold]"
+            "description": "แลก[gold]เรลิกชิ้นหนึ่งของคุณ[/gold]เป็น[gold]เรลิกแบบสุ่ม[/gold]"
           },
           {
             "id": "BOTTOM",
             "title": "เอาอันล่าง",
-            "description": "แลก[gold]one of your Relics[/gold]เป็น[gold]a random Relic[/gold]"
+            "description": "แลก[gold]เรลิกชิ้นหนึ่งของคุณ[/gold]เป็น[gold]เรลิกแบบสุ่ม[/gold]"
           }
         ]
       }
@@ -2031,7 +2776,7 @@
     "name": "งานเลี้ยงชาโต๊ะกลม",
     "type": "Event",
     "act": "Act 3 - Glory",
-    "description": null,
+    "description": "คุณเจอ[orange]จดหมาย[/orange]เชิญ [blue]“เซอร์ กาลาล็อต”[/blue] เข้าร่วมงานเลี้ยงน้ำชา คุณจึงตัดสินใจไปร่วมงานแทนเขา\n\nเมื่อเข้าไปยังห้องโถงกลมที่เรียบง่าย คุณก็พบว่าตัวเองอยู่ท่ามกลาง[gold]เหล่าผู้บัญชาการ[/gold], [aqua]เหล่านายพล[/aqua], [red]เหล่าแม่ทัพ[/red], และ[blue]เหล่าทหารรับจ้าง[/blue] ที่กำลัง...ดื่มชา?\nอัศวินร่างยักษ์ที่สวม[gold]มงกุฏทองคำ[/gold]เอ่ยปากขึ้น\n\n[jitter]“เจ้ามาเยือนพิธี[b]น้ำชา[/b]ล่าช้าเช่นนั้นฤๅ?!”[/jitter]",
     "preconditions": [
       "Requires 12+ HP"
     ],
@@ -2039,15 +2784,55 @@
       {
         "id": "ENJOY_TEA",
         "title": "ดื่มด่ำกับชา",
-        "description": "ได้รับ[red]RoyalPoison[/red] [green]ฟื้นฟู HP จนเต็ม[/green]"
+        "description": "ได้รับ[red]ยาพิษหลวง[/red] [green]ฟื้นฟู HP จนเต็ม[/green]"
       },
       {
         "id": "PICK_FIGHT",
-        "title": "PICK_FIGHT",
+        "title": "หาเรื่อง",
         "description": "เสีย [red]11[/red] HP ได้รับ[gold]เครื่องราง[/gold] 1 ชิ้นแบบสุ่ม"
       }
     ],
-    "pages": null
+    "pages": [
+      {
+        "id": "CONTINUE_FIGHT",
+        "description": "เหล่าผู้ร่วมงานล้วนตาเบิกโพลงเมื่อเห็นศพของหนึ่งในสมาชิกเจ้าประจำ... จากนั้นก็[jitter]โห่ร้องและปรบมือ!?[/jitter]\n\n“พวกเรากำลังคิดหาวิธีกำจัด [red]เซอร์ ไวกอร์[/red] อยู่พอดีเลย วิเศษสุดๆ!”\n\nพวกเขานำ[green]ชาพิษ[/green]ของคุณไปเททิ้ง แล้วคุณก็ถก[orange]กลยุทธ์[/orange]และ[purple]ความลับ[/purple]ตลอดทั้งคืน ช่างเป็นงานเลี้ยงน้ำชาที่ยอดเยี่ยมที่สุด"
+      },
+      {
+        "id": "ENJOY_TEA",
+        "description": "คุณหยิบชาถ้วยนั้นมาแล้วดื่มรวดเดียวหมด\nชา[jitter][red]ร้อนโคตรๆ[/red][/jitter] แต่คุณกลับทำสีหน้าเรียบเฉย เหล่าสมาชิกตกตะลึงที่คุณขาดความสามารถในการเอาตัวรอด\n\n“พวกเราไม่ได้ตั้งใจจะทำร้ายท่าน [blue]เซอร์ กาลาล็อต[/blue] ขออภัยอย่างสุดซึ้ง”\n\nคุณสนุกกับการดื่มชาและขนมปังกรอบ โดยไม่รู้ตัวว่า[green]พิษ[/green]แล่นเข้าตัวคุณไปแล้ว"
+      },
+      {
+        "id": "INITIAL",
+        "description": "คุณเจอ[orange]จดหมาย[/orange]เชิญ [blue]“เซอร์ กาลาล็อต”[/blue] เข้าร่วมงานเลี้ยงน้ำชา คุณจึงตัดสินใจไปร่วมงานแทนเขา\n\nเมื่อเข้าไปยังห้องโถงกลมที่เรียบง่าย คุณก็พบว่าตัวเองอยู่ท่ามกลาง[gold]เหล่าผู้บัญชาการ[/gold], [aqua]เหล่านายพล[/aqua], [red]เหล่าแม่ทัพ[/red], และ[blue]เหล่าทหารรับจ้าง[/blue] ที่กำลัง...ดื่มชา?\nอัศวินร่างยักษ์ที่สวม[gold]มงกุฏทองคำ[/gold]เอ่ยปากขึ้น\n\n[jitter]“เจ้ามาเยือนพิธี[b]น้ำชา[/b]ล่าช้าเช่นนั้นฤๅ?!”[/jitter]",
+        "options": [
+          {
+            "id": "ENJOY_TEA",
+            "title": "ดื่มด่ำกับชา",
+            "description": "ได้รับ[red]ยาพิษหลวง[/red] [green]ฟื้นฟู HP จนเต็ม[/green]"
+          },
+          {
+            "id": "PICK_FIGHT",
+            "title": "หาเรื่อง",
+            "description": "เสีย [red]11[/red] HP ได้รับ[gold]เครื่องราง[/gold] 1 ชิ้นแบบสุ่ม"
+          }
+        ]
+      },
+      {
+        "id": "NOPE",
+        "description": "พวกเขาชี้อาวุธมาที่คุณ-\n\n“อย่างน้อยก็จ่าย [gold]ค่าเข้างาน[/gold]มาซะดีๆ ถ้ายังอยากมีชีวิตอยู่”"
+      },
+      {
+        "id": "PICK_FIGHT",
+        "description": "คุณกระโดดขึ้นไปบนโต๊ะ [jitter]เตะ[/jitter][red]อัศวินแม่ทัพ[/red]เข้าเต็มหน้า!\n อัศวินกรีดร้องบาดหูแล้วล้มลง\n\n[jitter][purple]*ทุกคนสะดุ้งเฮือก*[/purple][/jitter]",
+        "options": [
+          {
+            "id": "CONTINUE_FIGHT",
+            "title": "ดำเนินการต่อ",
+            "description": ""
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "SAPPHIRE_SEED",
@@ -2213,7 +2998,7 @@
       {
         "id": "OVERCOME",
         "title": "พิชิต",
-        "description": "[red]a random Card[/red]ถูกกำจัดออกจาก[gold]กองการ์ด[/gold]"
+        "description": "[red]การ์ดแบบสุ่ม[/red]ถูกกำจัดออกจาก[gold]กองการ์ด[/gold]"
       },
       {
         "id": "HOLD_ON_0",
@@ -2317,7 +3102,7 @@
           {
             "id": "OVERCOME",
             "title": "พิชิต",
-            "description": "[red]a random Card[/red]ถูกกำจัดออกจาก[gold]กองการ์ด[/gold]"
+            "description": "[red]การ์ดแบบสุ่ม[/red]ถูกกำจัดออกจาก[gold]กองการ์ด[/gold]"
           },
           {
             "id": "HOLD_ON_0",
@@ -2380,10 +3165,10 @@
   },
   {
     "id": "SPIRIT_GRAFTER",
-    "name": "SpiritGrafter",
+    "name": "จิตวิญญาณปลูกถ่าย",
     "type": "Event",
     "act": "Act 2 - Hive",
-    "description": null,
+    "description": "ด้านบนมีรังไหมที่[jitter]กำลังสั่นและดิ้น[/jitter] ใกล้จะระเบิดออกมา!\n\n...มันหยุดดิ้นไป จากนั้น[orange][sine]รังไหมก็ลุกไหม้[/sine][/orange]! [jitter]นี่มันเรื่องอะไรกัน?[/jitter]\nมี[gold]แสง[/gold]และ[red]เปลวเพลิง[/red]เพียงวาบเดียว [orange]จิตวิญญาณปลูกถ่าย[/orange]ก็พุ่งเข้าหาคุณ ข่มขู่ให้คุณรวมร่างกับมัน เพื่อที่มันจะได้เจริญเติบโตได้อย่างสมบูรณ์",
     "preconditions": null,
     "options": [
       {
@@ -2397,7 +3182,32 @@
         "description": "เสีย [red]10[/red] HP [gold]พัฒนา[/gold]การ์ด 1 ใบ"
       }
     ],
-    "pages": null
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "ด้านบนมีรังไหมที่[jitter]กำลังสั่นและดิ้น[/jitter] ใกล้จะระเบิดออกมา!\n\n...มันหยุดดิ้นไป จากนั้น[orange][sine]รังไหมก็ลุกไหม้[/sine][/orange]! [jitter]นี่มันเรื่องอะไรกัน?[/jitter]\nมี[gold]แสง[/gold]และ[red]เปลวเพลิง[/red]เพียงวาบเดียว [orange]จิตวิญญาณปลูกถ่าย[/orange]ก็พุ่งเข้าหาคุณ ข่มขู่ให้คุณรวมร่างกับมัน เพื่อที่มันจะได้เจริญเติบโตได้อย่างสมบูรณ์",
+        "options": [
+          {
+            "id": "LET_IT_IN",
+            "title": "ให้มันเข้ามา",
+            "description": "ฟื้นฟู [green]25[/green] HP เพิ่ม[gold]แปรร่างเปลี่ยนรูป[/gold]เข้า[gold]กองการ์ด[/gold]"
+          },
+          {
+            "id": "REJECTION",
+            "title": "ปฏิเสธ",
+            "description": "เสีย [red]10[/red] HP [gold]พัฒนา[/gold]การ์ด 1 ใบ"
+          }
+        ]
+      },
+      {
+        "id": "LET_IT_IN",
+        "description": "[orange]จิตวิญญาณปลูกถ่าย[/orange]รวมร่างกับคุณ [green]ฟื้นฟู[/green]ชีวิตชีวาของคุณอย่างรวดเร็ว\n\nคุณ[blue]เกิดใหม่[/blue]"
+      },
+      {
+        "id": "REJECTION",
+        "description": "[orange]จิตวิญญาณปลูกถ่าย[/orange]ถูกหยุดยั้งได้อย่างง่ายดายตามประสงค์ของคุณ\n\nแต่มันพยายามพุ่งใส่คุณซ้ำไปซ้ำมาด้วยความโหยหาร่างโฮสต์ จนกระทั่งพละกำลังของมันหมดสิ้นลง และมันก็สลายไปใน[purple][sine]พริบตา[/sine][/purple]\n\n[sine]จิตวิญญาณที่ล่องลอย[/sine]"
+      }
+    ]
   },
   {
     "id": "STONE_OF_ALL_TIME",
@@ -2413,7 +3223,7 @@
       {
         "id": "LIFT",
         "title": "ดื่มแล้วยก",
-        "description": "เสีย [red]a random Potion[/red] ได้รับ [blue]10[/blue] HP สูงสุด"
+        "description": "เสีย [red]โพชั่นแบบสุ่ม[/red] ได้รับ [blue]10[/blue] HP สูงสุด"
       },
       {
         "id": "LIFT_LOCKED",
@@ -2439,7 +3249,7 @@
           {
             "id": "LIFT",
             "title": "ดื่มแล้วยก",
-            "description": "เสีย [red]a random Potion[/red] ได้รับ [blue]10[/blue] HP สูงสุด"
+            "description": "เสีย [red]โพชั่นแบบสุ่ม[/red] ได้รับ [blue]10[/blue] HP สูงสุด"
           },
           {
             "id": "LIFT_LOCKED",
@@ -2460,7 +3270,7 @@
       },
       {
         "id": "LIFT",
-        "description": "คุณกระดก[gold]a random Potion[/gold]แล้วพยายาม[jitter]ยกศิลาด้วยแรงทั้งหมด[/jitter]!!\n\nไม่มีอะไรเกิดขึ้น"
+        "description": "คุณกระดก[gold]โพชั่นแบบสุ่ม[/gold]แล้วพยายาม[jitter]ยกศิลาด้วยแรงทั้งหมด[/jitter]!!\n\nไม่มีอะไรเกิดขึ้น"
       },
       {
         "id": "PUSH",
@@ -2728,16 +3538,184 @@
     "name": "แท็งซ์",
     "type": "Ancient",
     "act": "Act 3 - Glory",
-    "description": "เคียวยมทูตน่าเกรงขามเหลือเกิน!",
+    "description": "SO WEAK! BUT YOU HAVE POTENTIAL!\nUSE THIS WEAPON!!",
     "preconditions": null,
     "options": null,
     "pages": null,
+    "epithet": "Khimera King",
     "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "GROW STRONGER SO WE CAN FIGHT!!!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "YOU CAN NEVER HAVE TOO MANY WEAPONS!!"
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "CONSTRUCT! NO WEAPONS!? HAVE THIS!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "ORBS ARE NOT WEAPONS!!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "FIGHT ME, DEFECT!!"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "The Defect valiantly fights."
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "ORBS [jitter]ARE[/jitter] WEAPONS!?"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "IMPRESSIVE SWORD, WARRIOR! YOU CAN USE MORE WEAPONS!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "WEAPONS FOR THE WARRIOR! GRAB A WEAPON! LET’S FIGHT!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "FIGHT ME, IRONCLAD!!"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "The Ironclad fights Tanx."
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "YEEES!! MIGHTY FIGHT, TAKE WEAPON!"
+        }
+      ],
       "Necrobinder": [
         {
           "order": "0-0",
           "speaker": "ancient",
           "text": "เคียวยมทูตน่าเกรงขามเหลือเกิน!"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "Yes, it’s special-made for vengeance."
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "DOES THE HAND NEED A WEAPON!?"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "FIGHT ME, OSTY!!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "FIGHT ME, NECROBINDER!!"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "The Necrobinder and Osty scuffle with Tanx."
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "MIGHTY TEAMWORK!! HAVE A WEAPON!"
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "ORANGE!? HOW IS THIS BEING ORANGE!??"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "All know that orange is the most regal color!"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "INCREDIBLE! SO MIGHTY!!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "ORANGE ONE!! CHOOSE A MIGHTY WEAPON!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "FIGHT ME, REGENT!!"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "No! We fought last time I was here!"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "FIGHT ME AGAIN!!"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "A HUNTRESS! I WILL SHARPEN YOUR CLAW!!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "WHY DAGGERS!! UNMIGHTY!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "FIGHT ME, SILENT!!"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "The Silent escapes, stealing a weapon on the way."
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "WHERE DID YOU GO!!!"
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "SO WEAK! BUT YOU HAVE POTENTIAL!\nUSE THIS WEAPON!!"
         }
       ]
     },
@@ -2779,7 +3757,7 @@
       {
         "id": "EMBER_TEA",
         "title": "ชาถ่านคุกรุ่น",
-        "description": "จ่าย [red]150[/red] [gold]ทอง[/gold] ตอนเริ่มต้นอีก [blue]{}[/blue] การต่อสู้ ได้รับ [blue]2[/blue] [gold]ความแข็งแรง[/gold]"
+        "description": "จ่าย [red]150[/red] [gold]ทอง[/gold] ตอนเริ่มต้นอีก [blue]5[/blue] การต่อสู้ ได้รับ [blue]2[/blue] [gold]ความแข็งแรง[/gold]"
       },
       {
         "id": "EMBER_TEA_LOCKED",
@@ -2814,7 +3792,7 @@
           {
             "id": "EMBER_TEA",
             "title": "ชาถ่านคุกรุ่น",
-            "description": "จ่าย [red]150[/red] [gold]ทอง[/gold] ตอนเริ่มต้นอีก [blue]{}[/blue] การต่อสู้ ได้รับ [blue]2[/blue] [gold]ความแข็งแรง[/gold]"
+            "description": "จ่าย [red]150[/red] [gold]ทอง[/gold] ตอนเริ่มต้นอีก [blue]5[/blue] การต่อสู้ ได้รับ [blue]2[/blue] [gold]ความแข็งแรง[/gold]"
           },
           {
             "id": "EMBER_TEA_LOCKED",
@@ -2839,10 +3817,192 @@
     "name": "Tezcatara",
     "type": "Ancient",
     "act": "Act 2 - Hive",
-    "description": null,
+    "description": "Oh, a visitor! Do come in, dear!\nWhat can Tezcatara do for you?",
     "preconditions": null,
     "options": null,
     "pages": null,
+    "epithet": "It Which Feeds the Fire",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "Welcome back, sweetie. Let me [jitter][b]burn[/b][/jitter] away your flaws."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Do come in, dear! What can Tezcatara do for you today?"
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "character",
+          "text": "<greetings beep>"
+        },
+        {
+          "order": "0-1",
+          "speaker": "ancient",
+          "text": "Not here to annoy me? What an [jitter][b]unusual[/b][/jitter] little construct..."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Now how silly would it be if he were unmade by one of his own?"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Are you sure you want to be fixed up?"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "<inquisitive beep>"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Well, if you’re really [jitter][b]certain[/b][/jitter]."
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "You [jitter][b]burn[/b][/jitter] so pretty! Come in, come in!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Such a strong boy you are! Come and eat something.\nCan’t [jitter][b]slaughter[/b][/jitter] on an empty stomach!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Ohh, Architect still alive? Kill him [jitter][b]quickly[/b][/jitter] would you?\nI’ll be waiting right here!"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Now what’s a skeleton doing inside these walls?"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "My aim is simple. Vengeance for my family.\nI’ll reach the top and make him pay."
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "[jitter][b]Wonderful[/b][/jitter]!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Come in, come in! Let’s make your flames burn [jitter][b]brighter[/b][/jitter]."
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Those flames around you remind me of something forbidden."
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "What do you know?"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "I know who wrote that [jitter][b]book[/b][/jitter]."
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Oh my, what an [jitter][b]exotic[/b][/jitter] visitor! Who might you be, sweetie?"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "I’m no sweetie! Address me with respect, giant... thing-person!"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "Where are my manners?\nTezcatara cackles with delight."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "You and your friends are back again?\nI’ve made [jitter][b]treats[/b][/jitter] for you!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Welcome back regal boy! Looks like you’re doing [jitter][b]great[/b][/jitter] out there."
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "Yes of course! Just some minor setbacks at the upper levels... like dying."
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "We all need to learn from our mistakes."
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Come closer, quiet one. I can’t see well..."
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "..."
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "You can [jitter][b]trust[/b][/jitter] me."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Such a nasty [jitter][b]sickness[/b][/jitter] you have. Let’s take care of you."
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "I’ve met your sisters, you know? Such lovely girls they are."
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "..."
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Oh dear... you haven’t been [jitter][b]fighting[/b][/jitter] have you?"
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Oh, a visitor! Do come in, dear!\nWhat can Tezcatara do for you?"
+        }
+      ]
+    },
     "image_url": "/static/images/misc/ancients/tezcatara.webp",
     "relics": [
       "NUTRITIOUS_SOUP",
@@ -2859,21 +4019,228 @@
   },
   {
     "id": "THE_ARCHITECT",
-    "name": "TheArchitect",
+    "name": "The Architect",
     "type": "Ancient",
     "act": null,
-    "description": null,
+    "description": "So the arch demon’s thrall has arrived?",
     "preconditions": null,
     "options": null,
     "pages": null,
+    "dialogue": {
+      "Defect": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "What are you doing here?"
+        },
+        {
+          "order": "0-1r",
+          "speaker": "character",
+          "text": "<random garbled lines>"
+        },
+        {
+          "order": "0-2r",
+          "speaker": "ancient",
+          "text": "Repair you? Make me."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "You’re back? Didn’t I dismantle you?"
+        },
+        {
+          "order": "1-1r",
+          "speaker": "character",
+          "text": "<random garbled lines>"
+        },
+        {
+          "order": "1-2r",
+          "speaker": "ancient",
+          "text": "Fix you? Fix your friend? Ridiculous."
+        },
+        {
+          "order": "2-0r",
+          "speaker": "ancient",
+          "text": "How do you keep coming back? Is this Neow’s doing?"
+        },
+        {
+          "order": "2-1r",
+          "speaker": "character",
+          "text": "<random garbled lines>"
+        },
+        {
+          "order": "2-2r",
+          "speaker": "ancient",
+          "text": "Foolish"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "So the arch demon’s thrall has arrived?"
+        },
+        {
+          "order": "0-1r",
+          "speaker": "character",
+          "text": "Enemy...\nKill..."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Cursed to fight forever, aren’t you?"
+        },
+        {
+          "order": "1-1r",
+          "speaker": "character",
+          "text": "Architect... arch... enemy!!"
+        },
+        {
+          "order": "1-2r",
+          "speaker": "ancient",
+          "text": "Do you even know your name?"
+        },
+        {
+          "order": "2-0r",
+          "speaker": "ancient",
+          "text": "I pity you."
+        },
+        {
+          "order": "2-1r",
+          "speaker": "character",
+          "text": "Kill..."
+        },
+        {
+          "order": "2-2r",
+          "speaker": "ancient",
+          "text": "Return to the bottom, Ironclad."
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "character",
+          "text": "ARCHITECT! You killed my parents. You killed my friend. You killed my LIFE! ...and now I will kill YOU!"
+        },
+        {
+          "order": "0-1",
+          "speaker": "ancient",
+          "text": "Vengeance is it? No thank you."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "character",
+          "text": "ARCHITECT! You killed my parents. You killed my friend. You killed my-"
+        },
+        {
+          "order": "1-1r",
+          "speaker": "ancient",
+          "text": "You cannot change the past with anger."
+        },
+        {
+          "order": "2-0r",
+          "speaker": "character",
+          "text": "ARCHITECT! You killed my parents. You killed my friend. You killed my LIFE-"
+        },
+        {
+          "order": "2-1r",
+          "speaker": "ancient",
+          "text": "I did what I must to maintain order."
+        },
+        {
+          "order": "3-0r",
+          "speaker": "character",
+          "text": "ARCHITECT! You killed my parents. You killed my friend. You killed my-"
+        },
+        {
+          "order": "3-1r",
+          "speaker": "ancient",
+          "text": "Life"
+        },
+        {
+          "order": "3-2r",
+          "speaker": "character",
+          "text": "What...?! Die, monster!"
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "character",
+          "text": "I’ve arrived! You there, commoner! Is this the top?"
+        },
+        {
+          "order": "0-1",
+          "speaker": "ancient",
+          "text": "I need quiet..."
+        },
+        {
+          "order": "0-2",
+          "speaker": "character",
+          "text": "I’ll teach you some manners!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "character",
+          "text": "I’ve arrived again!"
+        },
+        {
+          "order": "1-1r",
+          "speaker": "ancient",
+          "text": "The loud fool returns?"
+        },
+        {
+          "order": "1-2r",
+          "speaker": "character",
+          "text": "I’m neither loud nor a fool! Face me!"
+        },
+        {
+          "order": "2-0r",
+          "speaker": "character",
+          "text": "I’ve had enough of your poor manners!"
+        },
+        {
+          "order": "2-1r",
+          "speaker": "ancient",
+          "text": "Something we can both agree on."
+        },
+        {
+          "order": "2-2r",
+          "speaker": "character",
+          "text": "Let’s dance!"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "Not even an introduction?"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Where did you come from?\nWhat are you after?"
+        },
+        {
+          "order": "2-0r",
+          "speaker": "ancient",
+          "text": "[jitter]Hrrgh![/jitter]\n[jitter][red]DIE!![/red][/jitter]"
+        },
+        {
+          "order": "3-0r",
+          "speaker": "ancient",
+          "text": "Annoying wretch!\n[jitter]BE GONE!![/jitter]"
+        }
+      ]
+    },
     "image_url": "/static/images/monsters/architect.png"
   },
   {
     "id": "THE_FUTURE_OF_POTIONS",
-    "name": "TheFutureOfPotions",
+    "name": "อนาคตของน้ำยา?",
     "type": "Shared",
     "act": null,
-    "description": null,
+    "description": "คุณสัมผัสได้ถึงการสั่นเบาๆ ตอนเลี้ยวที่หัวมุม และค้นพบกลไกขนาดใหญ่ที่กำลังหมุนอยู่!\nมันมีช่องให้ใส่มากมาย ซึ่งดูเหมือนจะเป็นเครื่องแปรรูปของเหลวให้กลายเป็นยาอัดเม็ด\n\nการเปลี่ยนน้ำยาบำรุงเหล่านี้ให้กลายเป็นเม็ดเล็กจิ๋วนั้นฟังดูไม่น่าสบายใจเท่าไร แต่การลองสิ่งใหม่ๆ อาจเป็นเรื่องดีก็ได้นะ",
     "preconditions": null,
     "options": [
       {
@@ -2902,14 +4269,50 @@
         "description": "เสีย[gold]โพชั่น[/gold] ได้รับ[gold]โจมตี/ทักษะธรรมดา[/gold] [gold]แบบพัฒนาแล้ว[/gold]"
       }
     ],
-    "pages": null
+    "pages": [
+      {
+        "id": "DONE",
+        "description": "ยาเม็ดแย่มาก อนาคตสิ้นหวังแล้ว"
+      },
+      {
+        "id": "INITIAL",
+        "description": "คุณสัมผัสได้ถึงการสั่นเบาๆ ตอนเลี้ยวที่หัวมุม และค้นพบกลไกขนาดใหญ่ที่กำลังหมุนอยู่!\nมันมีช่องให้ใส่มากมาย ซึ่งดูเหมือนจะเป็นเครื่องแปรรูปของเหลวให้กลายเป็นยาอัดเม็ด\n\nการเปลี่ยนน้ำยาบำรุงเหล่านี้ให้กลายเป็นเม็ดเล็กจิ๋วนั้นฟังดูไม่น่าสบายใจเท่าไร แต่การลองสิ่งใหม่ๆ อาจเป็นเรื่องดีก็ได้นะ",
+        "options": [
+          {
+            "id": "POTION_COMMON",
+            "title": "ใส่ขวดยาธรรมดา",
+            "description": "เสีย[gold]โพชั่น[/gold] ได้รับ[gold]โจมตี/ทักษะธรรมดา[/gold] [gold]แบบพัฒนาแล้ว[/gold]"
+          },
+          {
+            "id": "POTION_UNCOMMON",
+            "title": "ใส่ขวดยาไม่ธรรมดา",
+            "description": "เสีย[gold]โพชั่น[/gold] ได้รับ[gold]โจมตี/ทักษะ/พลังไม่ธรรมดา[/gold] [gold]แบบพัฒนาแล้ว[/gold]"
+          },
+          {
+            "id": "POTION_RARE",
+            "title": "ใส่ขวดยาหายาก",
+            "description": "เสีย[gold]โพชั่น[/gold] ได้รับ[gold]โจมตี/ทักษะ/พลังหายาก[/gold] [gold]แบบพัฒนาแล้ว[/gold]"
+          },
+          {
+            "id": "POTION_EVENT",
+            "title": "ใส่ขวดยาเหตุการณ์",
+            "description": "เสีย[gold]โพชั่น[/gold] ได้รับ[gold]โจมตี/ทักษะ/พลังหายาก[/gold] [gold]แบบพัฒนาแล้ว[/gold]"
+          },
+          {
+            "id": "POTION_TOKEN",
+            "title": "ใส่ขวดยาโทเคน",
+            "description": "เสีย[gold]โพชั่น[/gold] ได้รับ[gold]โจมตี/ทักษะธรรมดา[/gold] [gold]แบบพัฒนาแล้ว[/gold]"
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "THE_LANTERN_KEY",
     "name": "กุญแจตะเกียง",
     "type": "Event",
     "act": "Act 2 - Hive",
-    "description": null,
+    "description": "คุณบังเอิญพบกุญแจที่เรืองแสงจางๆ จึงไปเก็บมา\n\n“หามาตั้งนาน ในที่สุด! ขอคืนล่ะนะ...”\n\n หมอนั่นดูไม่ใช่คนดี แต่การด่วนตัดสินไปก่อนก็อาจจะไม่ใช่เรื่องดีเช่นกัน",
     "preconditions": null,
     "options": [
       {
@@ -2937,7 +4340,7 @@
       },
       {
         "id": "INITIAL",
-        "description": null,
+        "description": "คุณบังเอิญพบกุญแจที่เรืองแสงจางๆ จึงไปเก็บมา\n\n“หามาตั้งนาน ในที่สุด! ขอคืนล่ะนะ...”\n\n หมอนั่นดูไม่ใช่คนดี แต่การด่วนตัดสินไปก่อนก็อาจจะไม่ใช่เรื่องดีเช่นกัน",
         "options": [
           {
             "id": "RETURN_THE_KEY",
@@ -2948,6 +4351,17 @@
             "id": "KEEP_THE_KEY",
             "title": "เก็บกุญแจไว้",
             "description": "ต่อสู้เพื่อชิงกุญแจ"
+          }
+        ]
+      },
+      {
+        "id": "KEEP_THE_KEY",
+        "description": "ร่างแปลกหน้าจ้องคุณเขม็ง ดูเหมือนว่าผู้ที่จะได้กลับออกไปพร้อมกุญแจนั้นจะมีเพียงร่างเดียวเท่านั้น",
+        "options": [
+          {
+            "id": "FIGHT",
+            "title": "ต่อสู้",
+            "description": ""
           }
         ]
       }
@@ -3050,22 +4464,22 @@
   },
   {
     "id": "TINKER_TIME",
-    "name": "TinkerTime",
+    "name": "ได้เวลาดัดแปลง",
     "type": "Event",
     "act": "Act 3 - Glory",
-    "description": null,
+    "description": "คุณเดินทางผ่าน[red][sine]ทะเลศพไร้สิ้นสุด[/sine][/red] คุณพบ[orange]นักวิทยาศาสตร์สติเฟื่อง[/orange]เก็บเศษเหล็กอยู่\n\n“อ้าว ว่าไง สวัสดี! คุณดูเป็นนักสู้ที่หน่วยก้านไม่เลว... ฉันกำลังอยากได้ใครมาทดสอบ[green]สิ่งประดิษฐ์ร้ายกาจ[/green]ชิ้นต่อไปของฉันอยู่พอดี! สนใจไหม?”",
     "preconditions": null,
     "options": [
       {
         "id": "CHOOSE_CARD_TYPE",
-        "title": "CHOOSE_CARD_TYPE",
+        "title": "ตกลง",
         "description": "สร้างการ์ดขึ้นมาเองเพื่อเพิ่มเข้า[gold]กองการ์ด[/gold]"
       }
     ],
     "pages": [
       {
         "id": "CHOOSE_CARD_TYPE",
-        "description": null,
+        "description": "“เครื่องมือแบบไหนจะช่วยเจ้า[red][jitter]ฆ่าได้ทุกชีวิต[/jitter][/red]ได้ล่ะ?”",
         "options": [
           {
             "id": "ATTACK",
@@ -3086,36 +4500,36 @@
       },
       {
         "id": "CHOOSE_RIDER",
-        "description": null,
+        "description": "“เลือกได้ดีมาก! ทีนี้ มันควร[sine]ทำ[/sine]อะไรได้ล่ะ?”\n[orange]นักวิทยาศาสตร์[/orange]เอามือมาถูกันอย่างปรีดา",
         "options": [
           {
             "id": "SAPPING",
-            "title": "SAPPING",
+            "title": "ทอนกำลัง",
             "description": "สร้าง [blue]2[/blue] [gold]ความอ่อนแอ[/gold] สร้าง [blue]2[/blue] [gold]จุดอ่อน[/gold]"
           },
           {
             "id": "VIOLENCE",
-            "title": "VIOLENCE",
+            "title": "รุนแรง",
             "description": "โจมตีเพิ่มอีก [blue]2[/blue] ครั้ง"
           },
           {
             "id": "CHOKING",
-            "title": "CHOKING",
+            "title": "ดับปราณ",
             "description": "ทุกครั้งที่คุณเล่นการ์ดในเทิร์นนี้ ศัตรูเสีย [blue]6[/blue] HP"
           },
           {
             "id": "ENERGIZED",
-            "title": "ENERGIZED",
+            "title": "ชาร์จพลัง",
             "description": "ได้รับ [energy:2]"
           },
           {
             "id": "WISDOM",
-            "title": "WISDOM",
+            "title": "ทรงภูมิ",
             "description": "จั่วการ์ด [blue]3[/blue] ใบ"
           },
           {
             "id": "CHAOS",
-            "title": "CHAOS",
+            "title": "วุ่นวาย",
             "description": "เพิ่มการ์ด 1 ใบแบบสุ่มใส่[gold]มือ[/gold] มันเล่นฟรีในเทิร์นนี้"
           },
           {
@@ -3125,7 +4539,7 @@
           },
           {
             "id": "CURIOUS",
-            "title": "CURIOUS",
+            "title": "ใคร่รู้",
             "description": "การ์ดพลังมีค่าร่ายลดลง [blue]1[/blue] [energy:1]"
           },
           {
@@ -3136,12 +4550,16 @@
         ]
       },
       {
+        "id": "DONE",
+        "description": "“ฟู่! เสร็จแล้ว รับไปเลย! ทีนี้ก็ออกไป[red][jitter]ฆ่าให้เรียบ[/jitter][/red]!!”\n\nคุณไม่รู้เลยสักนิดว่า [orange]นักวิทยาศาสตร์[/orange]ยังคงสร้างอาวุธอีกหลายร้อยชิ้น นำมาซึ่งความตายของหลายพันชีวิตในสไปร์"
+      },
+      {
         "id": "INITIAL",
-        "description": null,
+        "description": "คุณเดินทางผ่าน[red][sine]ทะเลศพไร้สิ้นสุด[/sine][/red] คุณพบ[orange]นักวิทยาศาสตร์สติเฟื่อง[/orange]เก็บเศษเหล็กอยู่\n\n“อ้าว ว่าไง สวัสดี! คุณดูเป็นนักสู้ที่หน่วยก้านไม่เลว... ฉันกำลังอยากได้ใครมาทดสอบ[green]สิ่งประดิษฐ์ร้ายกาจ[/green]ชิ้นต่อไปของฉันอยู่พอดี! สนใจไหม?”",
         "options": [
           {
             "id": "CHOOSE_CARD_TYPE",
-            "title": "CHOOSE_CARD_TYPE",
+            "title": "ตกลง",
             "description": "สร้างการ์ดขึ้นมาเองเพื่อเพิ่มเข้า[gold]กองการ์ด[/gold]"
           }
         ]
@@ -3373,10 +4791,207 @@
     "name": "Vakuu",
     "type": "Ancient",
     "act": "Act 3 - Glory",
-    "description": null,
+    "description": "Give yourself to me and you will be feared as much as I.",
     "preconditions": null,
     "options": null,
     "pages": null,
+    "epithet": "The First Demon",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "Seeking glory in the Spire are we? I have some propositions for you..."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "{Visits}. {Visits} {Visits:plural:time|times} you’ve been here."
+        },
+        {
+          "order": "2-0r",
+          "speaker": "ancient",
+          "text": "You realize this [sine]never[/sine] ends?"
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Broken one, let me [sine]perfect[/sine] you."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Do you find it strange that your fellow constructs want you dead?"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "If you bring me the Architect’s heart, I will restore your [aqua]companion[/aqua]."
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "<fearful beeping>"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "What’s more important? Your creator or your friend?"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Imagine seeing [sine]you[/sine] again after so long."
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "[jitter][b]SACRED DEMON![/b][/jitter]\nWhat have you done to me!?"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "Exactly what you bargained for."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Do the lost tribes weigh on you...?\nVakuu howls with laughter."
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "My puppet of puppets... why haven’t you killed the Architect yet?"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "After I kill the Architect, I will kill [jitter][b]YOU![/b][/jitter]"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "[sine]Yawn[/sine]\nI look forward to watching you fail."
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "We both seek [sine]vengeance[/sine]. It will have a cost to pay."
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "I accept any cost. Every cost for his death."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "I know where you got that [sine]Hand[/sine]."
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "The Architect has gravely wounded us both."
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "Get on with it, demon. Show me your contracts."
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Straight to business. Very well..."
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "A being from the stars? Within these accursed walls?"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "Do you know of me?"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "Yes, I think we can help each other."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "More of my power can be yours for a small price."
+        },
+        {
+          "order": "2-0",
+          "speaker": "character",
+          "text": "I don’t think these deals are good. I’m not feeling great."
+        },
+        {
+          "order": "2-1",
+          "speaker": "ancient",
+          "text": "You read the contracts thoroughly have you not?\nYou have signed them with full intent and responsibility no?"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Are you not going to fulfill your end of the bargain?\nHow about another contract? Isn’t that better?"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Killer."
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "[sine]...[/sine]"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "This won’t [jitter]end[/jitter] well for you."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Vakuu displays his various contracts to the Silent"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "The Architect is not enough, kill your sisters too!"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "[sine]...[/sine]"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "No need for words, we are the same."
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Give yourself to me and you will be feared as much as I."
+        }
+      ]
+    },
     "image_url": "/static/images/misc/ancients/vakuu.webp",
     "relics": [
       "BLOOD_SOAKED_ROSE",
@@ -3393,10 +5008,10 @@
   },
   {
     "id": "WAR_HISTORIAN_REPY",
-    "name": "WarHistorianRepy",
+    "name": "เรปี นักประวัติศาสตร์สงคราม",
     "type": "Shared",
     "act": null,
-    "description": null,
+    "description": "นักวิชาการถูกขังอยู่ใน[purple]กรงที่ห้อยอยู่[/purple] และมี[gold]กล่องสมบัติ[/gold]อยู่ใกล้ๆ\n\nนักวิชาการพึมพำ ความว่า [sine][orange]“กุญแจใช้ได้ครั้งเดียว”[/orange][/sine] ขณะที่กำลังเขียนอะไรบางอย่างอย่างเกรี้ยวกราด\n\nดูเหมือนว่าคุณจะสามารถปลดล็อก[purple]กรง[/purple]หรือ[gold]กล่อง[/gold]ได้",
     "preconditions": null,
     "options": [
       {
@@ -3410,7 +5025,40 @@
         "description": "เสีย[gold]กุญแจตะเกียง[/gold] จัดหา[gold]ขวดยา[/gold] [blue]2[/blue] ขวดแบบสุ่ม ได้รับ[gold]เครื่องราง[/gold] [blue]2[/blue] ชิ้นแบบสุ่ม"
       }
     ],
-    "pages": null
+    "pages": [
+      {
+        "id": "EXTRA_UNLOCK_CAGE",
+        "description": "คุณได้ยิน[green]เรปี[/green]ถอนหายใจด้วยความโล่งอกเมื่อคุณหยิบกุญแจสำรองออกมาอีกดอกหนึ่ง\n\n“ไอ้เราก็หลงเชื่อซะสนิทเลย”"
+      },
+      {
+        "id": "EXTRA_UNLOCK_CHEST",
+        "description": "ขณะที่[green]เรปี[/green]เดินจากไป คุณก็ใช้กุญแจสำรองไขกล่องสมบัติ"
+      },
+      {
+        "id": "INITIAL",
+        "description": "นักวิชาการถูกขังอยู่ใน[purple]กรงที่ห้อยอยู่[/purple] และมี[gold]กล่องสมบัติ[/gold]อยู่ใกล้ๆ\n\nนักวิชาการพึมพำ ความว่า [sine][orange]“กุญแจใช้ได้ครั้งเดียว”[/orange][/sine] ขณะที่กำลังเขียนอะไรบางอย่างอย่างเกรี้ยวกราด\n\nดูเหมือนว่าคุณจะสามารถปลดล็อก[purple]กรง[/purple]หรือ[gold]กล่อง[/gold]ได้",
+        "options": [
+          {
+            "id": "UNLOCK_CAGE",
+            "title": "ปลดล็อกกรง",
+            "description": "เสีย[gold]กุญแจตะเกียง[/gold] ได้รับ[gold]หลักสูตรประวัติศาสตร์[/gold]"
+          },
+          {
+            "id": "UNLOCK_CHEST",
+            "title": "ปลดล็อกกล่องสมบัติ",
+            "description": "เสีย[gold]กุญแจตะเกียง[/gold] จัดหา[gold]ขวดยา[/gold] [blue]2[/blue] ขวดแบบสุ่ม ได้รับ[gold]เครื่องราง[/gold] [blue]2[/blue] ชิ้นแบบสุ่ม"
+          }
+        ]
+      },
+      {
+        "id": "UNLOCK_CAGE",
+        "description": "[green]เรปี[/green]โค้งคำนับแสดงความขอบคุณเมื่อคุณเปิดกรงให้ เขามอบ[gold]ตำราปกหนังเล่มหนา[/gold]ให้คุณ\n\n“ผู้ใดไม่รู้ประวัติศาสตร์ ผู้นั้นย่อมซ้ำรอยเดิม แต่ตัวคุณเองก็เหมือนจะพอรู้เกี่ยวกับการซ้ำรอยมาบ้างใช่ไหม?”"
+      },
+      {
+        "id": "UNLOCK_CHEST",
+        "description": "“จะไม่ช่วยนักวิชาการ [green]เรปี[/green] ผู้นี้จริงๆ เหรอ? อ้างอิงตามปรัชญาดั้งเดิม ก็ถือว่าคุณ[red]ล้มเหลวทางศีลธรรม[/red] ตามนั้นแหละ ยังไงคราวหน้าถ้าเจอ[purple][jitter]ใครที่ยังมีชีวิตอยู่[/jitter][/purple]และถูกขัง ก็คิดช่วยเขาบ้างก็แล้วกัน! มันก็ไม่ใช่ว่าสมาชิกอันทรงคุณค่าของสังคมกำลัง[purple][jitter]ตกที่นั่งลำบาก[/jitter][/purple]อยู่เลยแม้แต่น้อย!!”\n\n“นี่ เห็นไหมว่ากรงนี้เล็กนิดเดียว!? ฉันจะบ่นอะไรนักหนาใช่ไหม? ยังไงซะคุณก็ตัดสินใจแบบไม่เป็นไปตามหลังวิชาการไปแล้วนี่... เอ๊ะ แล้วในนั้นมีอะไรล่ะ? ก็แค่[gold]ขวดยา[/gold]และ[gold]เครื่องราง[/gold]นิดหน่อยใช่ไหมล่ะ? [sine]เยี่ยมจริงๆ เยี่ยมจริงๆ เยี่ยมจริงๆ...ดีใจด้วย[/sine]”\n\n[green]เรปี[/green]มองตามคุณอย่างเหยียดหยามขณะที่คุณเดินจากไป"
+      }
+    ]
   },
   {
     "id": "WATERLOGGED_SCRIPTORIUM",
@@ -3518,7 +5166,7 @@
       {
         "id": "FEATURED_ITEM",
         "title": "สินค้าแนะนำของวองโก้",
-        "description": "จ่าย [red]200[/red] [gold]ทอง[/gold] ได้รับ[gold]a random Relic[/gold]"
+        "description": "จ่าย [red]200[/red] [gold]ทอง[/gold] ได้รับ[gold]เรลิกแบบสุ่ม[/gold]"
       },
       {
         "id": "FEATURED_ITEM_LOCKED",
@@ -3571,7 +5219,7 @@
           {
             "id": "FEATURED_ITEM",
             "title": "สินค้าแนะนำของวองโก้",
-            "description": "จ่าย [red]200[/red] [gold]ทอง[/gold] ได้รับ[gold]a random Relic[/gold]"
+            "description": "จ่าย [red]200[/red] [gold]ทอง[/gold] ได้รับ[gold]เรลิกแบบสุ่ม[/gold]"
           },
           {
             "id": "FEATURED_ITEM_LOCKED",
@@ -3723,7 +5371,7 @@
       {
         "id": "TORUS",
         "title": "ทอรัส",
-        "description": "เลือกการ์ดเริ่มต้น [blue]1[/blue] ใบเพื่อ[gold]แปรสภาพ[/gold]ให้เป็น[gold]ToricToughness[/gold]"
+        "description": "เลือกการ์ดเริ่มต้น [blue]1[/blue] ใบเพื่อ[gold]แปรสภาพ[/gold]ให้เป็น[gold]Toric Toughness[/gold]"
       }
     ],
     "pages": [
@@ -3753,7 +5401,7 @@
           {
             "id": "TORUS",
             "title": "ทอรัส",
-            "description": "เลือกการ์ดเริ่มต้น [blue]1[/blue] ใบเพื่อ[gold]แปรสภาพ[/gold]ให้เป็น[gold]ToricToughness[/gold]"
+            "description": "เลือกการ์ดเริ่มต้น [blue]1[/blue] ใบเพื่อ[gold]แปรสภาพ[/gold]ให้เป็น[gold]Toric Toughness[/gold]"
           }
         ]
       },

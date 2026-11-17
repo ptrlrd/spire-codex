@@ -21,7 +21,7 @@
   },
   {
     "id": "ADAPTABLE",
-    "name": "AdaptablePower",
+    "name": "Adaptable",
     "description": "เมื่อ[gold]this creature[/gold]จะตาย มันจะคืนชีพขึ้นมาและแข็งแกร่งกว่าเดิม",
     "description_raw": "เมื่อ[gold]{OwnerName}[/gold]จะตาย มันจะคืนชีพขึ้นมาและแข็งแกร่งกว่าเดิม",
     "type": "Buff",
@@ -48,6 +48,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/aggression_power.webp"
+  },
+  {
+    "id": "AMBERGRIS",
+    "name": "อำพันทะเล",
+    "description": "เล่นต่ออีก 1 เทิร์นต่อจากเทิร์นนี้",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/ambergris_power.webp"
   },
   {
     "id": "ANTICIPATE",
@@ -211,7 +221,7 @@
   },
   {
     "id": "BURROWED",
-    "name": "BurrowedPower",
+    "name": "Burrowed",
     "description": "[gold]บล็อก[/gold]ไม่หายไปตอนเริ่มต้นเทิร์นของ [gold]this creature[/gold] แต่จะ[gold]ติดสตัน[/gold]ถ้า[gold]บล็อก[/gold]หายไปทั้งหมด",
     "description_raw": "[gold]บล็อก[/gold]ไม่หายไปตอนเริ่มต้นเทิร์นของ [gold]{OwnerName}[/gold] แต่จะ[gold]ติดสตัน[/gold]ถ้า[gold]บล็อก[/gold]หายไปทั้งหมด",
     "type": "Buff",
@@ -230,8 +240,18 @@
     "image_url": "/static/images/powers/burst_power.webp"
   },
   {
+    "id": "CACOPHONY",
+    "name": "Cacophony",
+    "description": "การ์ดทุก [blue]33[/blue] ใบที่ถูกจั่วโดยผู้เล่นทั้งหมด สร้างความเสียหาย [blue][Amount][/blue] ใส่ศัตรู 1 ตัวแบบสุ่ม",
+    "description_raw": "การ์ดทุก [blue]{Cards}[/blue] ใบที่ถูกจั่วโดยผู้เล่นทั้งหมด สร้างความเสียหาย [blue]{Amount}[/blue] ใส่ศัตรู 1 ตัวแบบสุ่ม",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/cacophony_power.webp"
+  },
+  {
     "id": "CALAMITY",
-    "name": "CalamityPower",
+    "name": "Calamity",
     "description": "ทุกครั้งที่คุณเล่นการ์ดโจมตี เพิ่มการ์ดโจมตี 1 ใบแบบสุ่มใส่[gold]มือ[/gold]",
     "description_raw": null,
     "type": "Buff",
@@ -241,7 +261,7 @@
   },
   {
     "id": "CALCIFY",
-    "name": "CalcifyPower",
+    "name": "Calcify",
     "description": "การโจมตีของ[gold]น้าผี[/gold]สร้างความเสียหายเพิ่มขึ้น",
     "description_raw": null,
     "type": "Buff",
@@ -251,7 +271,7 @@
   },
   {
     "id": "CALL_OF_THE_VOID",
-    "name": "CallOfTheVoidPower",
+    "name": "Call of the Void",
     "description": "ตอนเริ่มต้นเทิร์น เพิ่มการ์ด [blue]1[/blue] ใบแบบสุ่มใส่[gold]มือ[/gold]และมันมี[gold]กึ่งสลาย[/gold]",
     "description_raw": null,
     "type": "Buff",
@@ -271,9 +291,9 @@
   },
   {
     "id": "CHILD_OF_THE_STARS",
-    "name": "ChildOfTheStarsPower",
-    "description": "ได้รับ [blue]1[/blue] [gold]บล็อก[/gold]ตามจำนวน [star:1] ที่จ่ายไป",
-    "description_raw": "ได้รับ [blue]1[/blue] [gold]บล็อก[/gold]ตามจำนวน {singleStarIcon} ที่จ่ายไป",
+    "name": "Child of the Stars",
+    "description": "ได้รับ [blue]2[/blue] [gold]บล็อก[/gold]ตามจำนวน [star:1] ที่จ่ายไป",
+    "description_raw": "ได้รับ [blue]2[/blue] [gold]บล็อก[/gold]ตามจำนวน {singleStarIcon} ที่จ่ายไป",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -291,13 +311,23 @@
   },
   {
     "id": "COLOSSUS",
-    "name": "ColossusPower",
-    "description": "คุณได้รับความเสียหายจากศัตรูที่มี[gold]จุดอ่อน[/gold]น้อยลง [blue]50%[/blue] เป็นเวลา [blue]{}[/blue] เทิร์น",
-    "description_raw": "คุณได้รับความเสียหายจากศัตรูที่มี[gold]จุดอ่อน[/gold]น้อยลง [blue]{DamageDecrease:percentLess()}%[/blue] {Amount:choose(1):ในเทิร์นนี้|เป็นเวลา [blue]{}[/blue] เทิร์น}",
+    "name": "Colossus",
+    "description": "คุณได้รับความเสียหายจากศัตรูที่มี[gold]จุดอ่อน[/gold]น้อยลง [blue]50%[/blue] ในเทิร์นนี้",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/colossus_power.webp"
+  },
+  {
+    "id": "CONCOCT",
+    "name": "Concoct",
+    "description": "ทุกครั้งที่คุณสร้างความเสียหายที่บล็อกไม่ได้ในเทิร์นนี้ สร้าง [blue]3[/blue] [gold]พิษ[/gold]",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/concoct_power.webp"
   },
   {
     "id": "CONFUSED",
@@ -311,9 +341,9 @@
   },
   {
     "id": "CONQUEROR",
-    "name": "ConquerorPower",
-    "description": "[gold]พระแสงอาญาสิทธิ์[/gold]สร้างความเสียหายใส่ [gold]this creature[/gold] เป็น 2 เท่าเป็นเวลา [blue]{}[/blue] เทิร์น",
-    "description_raw": "[gold]พระแสงอาญาสิทธิ์[/gold]สร้างความเสียหายใส่ [gold]{OwnerName}[/gold] เป็น 2 เท่า{Amount:choose(1):ในเทิร์นนี้|เป็นเวลา [blue]{}[/blue] เทิร์น}",
+    "name": "Conqueror",
+    "description": "[gold]พระแสงอาญาสิทธิ์[/gold]สร้างความเสียหายใส่ศัตรูเป็น 2 เท่าในเทิร์นนี้",
+    "description_raw": null,
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -321,7 +351,7 @@
   },
   {
     "id": "CONSTRICT",
-    "name": "ConstrictPower",
+    "name": "Constrict",
     "description": "ตอนจบเทิร์น หากSlithering Stranglerยังมีชีวิต ได้รับความเสียหาย [blue]1[/blue]",
     "description_raw": null,
     "type": "Debuff",
@@ -331,9 +361,9 @@
   },
   {
     "id": "CONSUMING_SHADOW",
-    "name": "ConsumingShadowPower",
-    "description": "ตอนจบเทิร์น [gold]ปล่อยพลัง[/gold]ลูกแก้วลูกซ้ายสุด[blue] {}[/blue] ลูก",
-    "description_raw": "ตอนจบเทิร์น [gold]ปล่อยพลัง[/gold]ลูกแก้วลูกซ้ายสุด{Amount:choose(1):|[blue] {}[/blue] ลูก}",
+    "name": "Consuming Shadow",
+    "description": "ตอนจบเทิร์น [gold]ปล่อยพลัง[/gold]ลูกแก้วลูกซ้ายสุด",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -341,7 +371,7 @@
   },
   {
     "id": "COOLANT",
-    "name": "CoolantPower",
+    "name": "Coolant",
     "description": "ตอนเริ่มต้นเทิร์น ได้รับ [blue]3[/blue] [gold]บล็อก[/gold]ตามจำนวนลูกแก้วไม่ซ้ำธาตุที่คุณมี",
     "description_raw": null,
     "type": "Buff",
@@ -361,7 +391,7 @@
   },
   {
     "id": "CORROSIVE_WAVE",
-    "name": "CorrosiveWavePower",
+    "name": "Corrosive Wave",
     "description": "ทุกครั้งที่คุณจั่วการ์ดในเทิร์นนี้ สร้าง [blue]2[/blue] [gold]พิษ[/gold]ใส่ศัตรูทั้งหมด",
     "description_raw": null,
     "type": "Buff",
@@ -401,7 +431,7 @@
   },
   {
     "id": "CRAB_RAGE",
-    "name": "CrabRagePower",
+    "name": "Crab Rage",
     "description": "เมื่อพันธมิตรตาย [gold]this creature[/gold]ได้รับ [blue]6[/blue] [gold]ความแข็งแรง[/gold]และ [blue]99[/blue] [gold]บล็อก[/gold]",
     "description_raw": "เมื่อพันธมิตรตาย [gold]{OwnerName}[/gold]ได้รับ [blue]{StrengthPower}[/blue] [gold]ความแข็งแรง[/gold]และ [blue]{Block}[/blue] [gold]บล็อก[/gold]",
     "type": "Buff",
@@ -421,9 +451,9 @@
   },
   {
     "id": "CRIMSON_MANTLE",
-    "name": "CrimsonMantlePower",
-    "description": "ตอนเริ่มต้นเทิร์น เสีย [blue]0[/blue] HP และได้รับ [blue][Amount][/blue] [gold]บล็อก[/gold]",
-    "description_raw": "ตอนเริ่มต้นเทิร์น เสีย [blue]{SelfDamage}[/blue] HP และได้รับ [blue]{Amount}[/blue] [gold]บล็อก[/gold]",
+    "name": "Crimson Mantle",
+    "description": "ตอนเริ่มต้นเทิร์น เสีย HP และได้รับ[gold]บล็อก[/gold]",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -431,7 +461,7 @@
   },
   {
     "id": "CRUELTY",
-    "name": "CrueltyPower",
+    "name": "Cruelty",
     "description": "ศัตรูที่มีจุดอ่อนได้รับความเสียหายเพิ่ม",
     "description_raw": null,
     "type": "Buff",
@@ -451,7 +481,7 @@
   },
   {
     "id": "CURIOUS",
-    "name": "CuriousPower",
+    "name": "Curious",
     "description": "การ์ดพลังมีค่าร่ายลดลง [blue]1[/blue] [energy:1]",
     "description_raw": "การ์ดพลังมีค่าร่ายลดลง [blue]1[/blue] {energyPrefix:energyIcons(1)}",
     "type": "Buff",
@@ -461,7 +491,7 @@
   },
   {
     "id": "CURL_UP",
-    "name": "CurlUpPower",
+    "name": "Curl Up",
     "description": "เมื่อได้รับความเสียหาย ขดตัวและได้รับบล็อก (1 ครั้งต่อการต่อสู้)",
     "description_raw": null,
     "type": "Buff",
@@ -471,7 +501,7 @@
   },
   {
     "id": "DAMPEN",
-    "name": "DampenPower",
+    "name": "Dampen",
     "description": "ขณะที่ Magi Knight ยังมีชีวิต การ์ดทั้งหมดของคุณจะ[gold]ถูกลดระดับ[/gold]",
     "description_raw": null,
     "type": "Debuff",
@@ -511,9 +541,9 @@
   },
   {
     "id": "DEBILITATE",
-    "name": "DebilitatePower",
-    "description": "[gold]จุดอ่อน[/gold]และ[gold]ความอ่อนแอ[/gold]มีผล 2 เท่า เป็นเวลา [blue]{}[/blue] เทิร์น",
-    "description_raw": "[gold]จุดอ่อน[/gold]และ[gold]ความอ่อนแอ[/gold]มีผล 2 เท่า{Amount:choose(1):ในเทิร์นนี้| เป็นเวลา [blue]{}[/blue] เทิร์น}",
+    "name": "Debilitate",
+    "description": "[gold]จุดอ่อน[/gold]และ[gold]ความอ่อนแอ[/gold]มีผล 2 เท่า เป็นเวลา [blue]2[/blue] เทิร์น",
+    "description_raw": null,
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -521,7 +551,7 @@
   },
   {
     "id": "DEMESNE",
-    "name": "DemesnePower",
+    "name": "Demesne",
     "description": "ตอนเริ่มต้นเทิร์น ได้รับ [blue]1[/blue] [gold]พลังงาน[/gold]และจั่วการ์ดเพิ่ม [blue]1[/blue] ใบ",
     "description_raw": null,
     "type": "Buff",
@@ -531,7 +561,7 @@
   },
   {
     "id": "DEMISE",
-    "name": "DemisePower",
+    "name": "Demise",
     "description": "ตอนจบเทิร์นของ[gold]this creature[/gold] มันจะเสีย [blue][Amount][/blue] HP",
     "description_raw": "ตอนจบเทิร์นของ[gold]{OwnerName}[/gold] มันจะเสีย [blue]{Amount}[/blue] HP",
     "type": "Debuff",
@@ -542,7 +572,7 @@
   {
     "id": "DEMON_FORM",
     "name": "ร่างปีศาจ",
-    "description": "ตอนเริ่มต้นเทิร์น ได้รับ [blue]2[/blue] [gold]ความแข็งแรง[/gold]",
+    "description": "ตอนเริ่มต้นเทิร์น ได้รับ [blue]3[/blue] [gold]ความแข็งแรง[/gold]",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -570,18 +600,8 @@
     "image_url": "/static/images/powers/dexterity_power.webp"
   },
   {
-    "id": "DIAMOND_DIADEM",
-    "name": "DiamondDiademPower",
-    "description": "ศัตรูสร้างความเสียหายน้อยลง [blue]50%[/blue] ในเทิร์นนี่",
-    "description_raw": null,
-    "type": "Buff",
-    "stack_type": "Single",
-    "allow_negative": null,
-    "image_url": "/static/images/powers/diamond_diadem_power.webp"
-  },
-  {
     "id": "DIE_FOR_YOU",
-    "name": "DieForYouPower",
+    "name": "Die for You",
     "description": "[gold]น้าผี[/gold]ดูดซับความเสียหายจากการโจมตีทั้งหมดที่บล็อกไม่ได้",
     "description_raw": null,
     "type": "Buff",
@@ -591,7 +611,7 @@
   },
   {
     "id": "DISINTEGRATION",
-    "name": "DisintegrationPower",
+    "name": "Disintegration",
     "description": "ตอนจบเทิร์น ได้รับความเสียหาย [blue]5[/blue]",
     "description_raw": null,
     "type": "Debuff",
@@ -612,8 +632,8 @@
   {
     "id": "DOUBLE_DAMAGE",
     "name": "ความเสียหาย 2 เท่า",
-    "description": "เป็นเวลา [blue]{}[/blue] เทิร์น การ์ดโจมตีสร้างความเสียหาย 2 เท่า",
-    "description_raw": "{Amount:choose(1):ในเทิร์นนี้|เป็นเวลา [blue]{}[/blue] เทิร์น} การ์ดโจมตีสร้างความเสียหาย 2 เท่า",
+    "description": "ในเทิร์นนี้ การ์ดโจมตีสร้างความเสียหาย 2 เท่า",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -631,9 +651,9 @@
   },
   {
     "id": "DUPLICATION",
-    "name": "DuplicationPower",
-    "description": "การ์ด [blue]{}[/blue] ใบต่อไปจะถูกเล่นซ้ำอีกครั้ง",
-    "description_raw": "การ์ด{Amount:choose(1):| [blue]{}[/blue] }ใบต่อไปจะถูกเล่นซ้ำอีกครั้ง",
+    "name": "Duplication",
+    "description": "การ์ดใบต่อจะถูกเล่นซ้ำอีกครั้ง",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -652,8 +672,8 @@
   {
     "id": "ECHO_FORM",
     "name": "ร่างกังวาน",
-    "description": "การ์ด [blue]{}[/blue] ใบแรกที่เล่นในแต่ละเทิร์นจะถูกเล่นเพิ่มอีกครั้ง",
-    "description_raw": "การ์ด{Amount:choose(1):| [blue]{}[/blue] }ใบแรกที่เล่นในแต่ละเทิร์นจะถูกเล่นเพิ่มอีกครั้ง",
+    "description": "การ์ดใบแรกที่เล่นในแต่ละเทิร์นจะถูกเล่นเพิ่มอีกครั้ง",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -681,7 +701,7 @@
   },
   {
     "id": "ENRAGE",
-    "name": "EnragePower",
+    "name": "Enrage",
     "description": "ทุกครั้งที่คุณเล่นการ์ดทักษะ ได้รับ [blue]2[/blue] [gold]ความแข็งแรง[/gold]",
     "description_raw": null,
     "type": "Buff",
@@ -691,7 +711,7 @@
   },
   {
     "id": "ENTROPY",
-    "name": "EntropyPower",
+    "name": "Entropy",
     "description": "ตอนเริ่มต้นเทิร์น [gold]แปรสภาพ[/gold]การ์ด [blue]1[/blue] ใบใน[gold]มือ[/gold]",
     "description_raw": null,
     "type": "Buff",
@@ -711,13 +731,23 @@
   },
   {
     "id": "ESCAPE_ARTIST",
-    "name": "EscapeArtistPower",
-    "description": "พยายามหนีจากการต่อสู้หลังผ่านไป [blue]{}[/blue] เทิร์น",
-    "description_raw": "พยายามหนีจากการต่อสู้หลัง{Amount:choose(1):จบเทิร์นนี้|ผ่านไป [blue]{}[/blue] เทิร์น}",
+    "name": "Escape Artist",
+    "description": "หนีจากการต่อสู้หลังผ่านไป 4 เทิร์น",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/escape_artist_power.webp"
+  },
+  {
+    "id": "FADE",
+    "name": "Temporary Dexterity",
+    "description": "ได้รับ[gold]ความชำนาญ[/gold]จนจบเทิร์นนี้",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/fade_power.webp"
   },
   {
     "id": "FAN_OF_KNIVES",
@@ -761,9 +791,9 @@
   },
   {
     "id": "FERAL",
-    "name": "FeralPower",
-    "description": "การ์ดโจมตีค่าร่าย 0[energy:1] ที่คุณเล่น[blue]{}[/blue] ครั้งแรกในแต่ละเทิร์น นำกลับขึ้น[gold]มือ[/gold]",
-    "description_raw": "การ์ดโจมตีค่าร่าย 0{energyPrefix:energyIcons(1)} ที่คุณเล่น{Amount:choose(1):|[blue]{}[/blue] }ครั้งแรกในแต่ละเทิร์น นำกลับขึ้น[gold]มือ[/gold]",
+    "name": "Feral",
+    "description": "การ์ดโจมตีค่าร่าย 0[energy:1] ที่คุณเล่นครั้งแรกในแต่ละเทิร์น นำกลับขึ้น[gold]มือ[/gold]",
+    "description_raw": "การ์ดโจมตีค่าร่าย 0{energyPrefix:energyIcons(1)} ที่คุณเล่นครั้งแรกในแต่ละเทิร์น นำกลับขึ้น[gold]มือ[/gold]",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -801,7 +831,7 @@
   },
   {
     "id": "FLUTTER",
-    "name": "FlutterPower",
+    "name": "Flutter",
     "description": "ได้รับความเสียหายจากการโจมตีน้อยลง [blue]50%[/blue] สร้างความเสียหายจากการโจมตี [blue][Amount][/blue] ครั้งเพื่อ[gold]สตัน[/gold]มัน",
     "description_raw": "ได้รับความเสียหายจากการโจมตีน้อยลง [blue]{DamageDecrease}%[/blue] สร้างความเสียหายจากการโจมตี [blue]{Amount}[/blue] ครั้งเพื่อ[gold]สตัน[/gold]มัน",
     "type": "Buff",
@@ -831,7 +861,7 @@
   },
   {
     "id": "FORBIDDEN_GRIMOIRE",
-    "name": "ForbiddenGrimoirePower",
+    "name": "Forbidden Grimoire",
     "description": "ตอนจบการต่อสู้ กำจัดการ์ด 1 ใบจาก[gold]กองการ์ด[/gold]",
     "description_raw": null,
     "type": "Buff",
@@ -841,7 +871,7 @@
   },
   {
     "id": "FOREGONE_CONCLUSION",
-    "name": "ForegoneConclusionPower",
+    "name": "Foregone Conclusion",
     "description": "เทิร์นถัดไป นำการ์ด [blue]3[/blue] ใบจาก[gold]กองจั่ว[/gold]ขึ้น[gold]มือ[/gold]",
     "description_raw": null,
     "type": "Buff",
@@ -862,8 +892,8 @@
   {
     "id": "FREE_ATTACK",
     "name": "โจมตีฟรี",
-    "description": "การ์ดโจมตี [blue]{}[/blue] ใบถัดไปมีค่าร่าย [blue]0[/blue] [energy:1]",
-    "description_raw": "การ์ดโจมตี{Amount:choose(1):| [blue]{}[/blue] }ใบถัดไปมีค่าร่าย [blue]0[/blue] {energyPrefix:energyIcons(1)}",
+    "description": "การ์ดโจมตีใบถัดไปมีค่าร่าย [blue]0[/blue] [energy:1]",
+    "description_raw": "การ์ดโจมตีใบถัดไปมีค่าร่าย [blue]0[/blue] {energyPrefix:energyIcons(1)}",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -872,8 +902,8 @@
   {
     "id": "FREE_POWER",
     "name": "พลังฟรี",
-    "description": "การ์ดพลัง [blue]{}[/blue] ใบถัดไปมีค่าร่าย [blue]0[/blue] [energy:1]",
-    "description_raw": "การ์ดพลัง{Amount:choose(1):| [blue]{}[/blue] }ใบถัดไปมีค่าร่าย [blue]0[/blue] {energyPrefix:energyIcons(1)}",
+    "description": "การ์ดพลังใบถัดไปมีค่าร่าย [blue]0[/blue] [energy:1]",
+    "description_raw": "การ์ดพลังใบถัดไปมีค่าร่าย [blue]0[/blue] {energyPrefix:energyIcons(1)}",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -882,8 +912,8 @@
   {
     "id": "FREE_SKILL",
     "name": "ทักษะฟรี",
-    "description": "การ์ดทักษะ [blue]{}[/blue] ใบถัดไปมีค่าร่าย [blue]0[/blue] [energy:1]",
-    "description_raw": "การ์ดทักษะ{Amount:choose(1):| [blue]{}[/blue] }ใบถัดไปมีค่าร่าย [blue]0[/blue] {energyPrefix:energyIcons(1)}",
+    "description": "การ์ดทักษะใบถัดไปมีค่าร่าย [blue]0[/blue] [energy:1]",
+    "description_raw": "การ์ดทักษะใบถัดไปมีค่าร่าย [blue]0[/blue] {energyPrefix:energyIcons(1)}",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -921,7 +951,7 @@
   },
   {
     "id": "GENESIS",
-    "name": "GenesisPower",
+    "name": "Genesis",
     "description": "ตอนเริ่มต้นเทิร์น ได้รับ [star:1]",
     "description_raw": "ตอนเริ่มต้นเทิร์น ได้รับ {Amount:starIcons()}",
     "type": "Buff",
@@ -931,9 +961,9 @@
   },
   {
     "id": "GIGANTIFICATION",
-    "name": "GigantificationPower",
-    "description": "การ์ดโจมตี [blue]{}[/blue] ใบถัดไปจะสร้างความเสียหาย 3 เท่า",
-    "description_raw": "การ์ดโจมตี{Amount:choose(1):| [blue]{}[/blue] }ใบถัดไปจะสร้างความเสียหาย 3 เท่า",
+    "name": "Gigantification",
+    "description": "การ์ดโจมตีใบถัดไปจะสร้างความเสียหาย 3 เท่า",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -941,7 +971,7 @@
   },
   {
     "id": "GRAVITY",
-    "name": "GravityPower",
+    "name": "Gravity",
     "description": "ทุกครั้งที่คุณเล่นการ์ดในเทิร์นนี้ สร้างความเสียหาย [blue]2[/blue] ใส่ศัตรูทั้งหมด",
     "description_raw": null,
     "type": "Buff",
@@ -951,9 +981,9 @@
   },
   {
     "id": "GUARDED",
-    "name": "GuardedPower",
-    "description": "ได้รับความเสียหายจากศัตรูเพียงครึ่งเดียว",
-    "description_raw": null,
+    "name": "ได้รับการคุ้มกัน",
+    "description": "ได้รับความเสียหายจากศัตรูน้อยลง [blue]50%[/blue] จะหายไปถ้า[gold][Applier.StringValue][/gold]ตาย",
+    "description_raw": "ได้รับความเสียหายจากศัตรูน้อยลง [blue]{DamageDecrease:percentLess()}%[/blue] จะหายไปถ้า[gold]{Applier.StringValue}[/gold]ตาย",
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
@@ -961,7 +991,7 @@
   },
   {
     "id": "HAILSTORM",
-    "name": "HailstormPower",
+    "name": "Hailstorm",
     "description": "ตอนเริ่มต้นเทิร์น ถ้าคุณมี[gold]น้ำแข็ง[/gold] สร้างความเสียหาย [blue]6[/blue] ใส่ศัตรูทั้งหมด",
     "description_raw": null,
     "type": "Buff",
@@ -971,7 +1001,7 @@
   },
   {
     "id": "HAMMER_TIME",
-    "name": "HammerTimePower",
+    "name": "Hammer Time",
     "description": "ทุกครั้งที่คุณ[gold]หลอมสร้าง[/gold] พันธมิตรทั้งหมดจะ[gold]หลอมสร้าง[/gold]เช่นกัน",
     "description_raw": null,
     "type": "Buff",
@@ -981,7 +1011,7 @@
   },
   {
     "id": "HANG",
-    "name": "HangPower",
+    "name": "Hang",
     "description": "[gold]Hang[/gold]ทั้งหมดสร้างความเสียหายใส่ศัตรูตัวนี้เป็น [blue]2[/blue] เท่า",
     "description_raw": null,
     "type": "Debuff",
@@ -991,7 +1021,7 @@
   },
   {
     "id": "HARD_TO_KILL",
-    "name": "HardToKillPower",
+    "name": "Hard to Kill",
     "description": "ลดความเสียหายทั้งหมดที่ได้รับและการเสีย HP โดย[gold]this creature[/gold] เหลือ [blue][Amount][/blue]",
     "description_raw": "ลดความเสียหายทั้งหมดที่ได้รับและการเสีย HP โดย[gold]{OwnerName}[/gold] เหลือ [blue]{Amount}[/blue]",
     "type": "Buff",
@@ -1001,7 +1031,7 @@
   },
   {
     "id": "HARDENED_SHELL",
-    "name": "HardenedShellPower",
+    "name": "Hardened Shell",
     "description": "[gold]This creature[/gold]ไม่สามารถเสียเกิน [blue][Amount][/blue] HP ในแต่ละเทิร์น",
     "description_raw": "[gold]{OwnerName}[/gold]ไม่สามารถเสียเกิน [blue]{Amount}[/blue] HP ในแต่ละเทิร์น",
     "type": "Buff",
@@ -1021,7 +1051,7 @@
   },
   {
     "id": "HAUNT",
-    "name": "HauntPower",
+    "name": "Haunt",
     "description": "ทุกครั้งที่คุณเล่น[gold]วิญญาณ[/gold] ศัตรู 1 ตัวแบบสุ่มเสีย [blue]3[/blue] HP",
     "description_raw": null,
     "type": "Buff",
@@ -1031,7 +1061,7 @@
   },
   {
     "id": "HEIST",
-    "name": "HeistPower",
+    "name": "Heist",
     "description": "เมื่อถูกฆ่า คืน[gold]ทอง[/gold]ที่ถูกขโมยไป",
     "description_raw": null,
     "type": "Buff",
@@ -1071,7 +1101,7 @@
   },
   {
     "id": "HEX",
-    "name": "HexPower",
+    "name": "Hex",
     "description": "ขณะที่ Spectral Knight ยังมีชีวิต การ์ดทั้งหมดของคุณมี[gold]กึ่งสลาย[/gold]",
     "description_raw": null,
     "type": "Debuff",
@@ -1080,8 +1110,18 @@
     "image_url": "/static/images/powers/hex_power.webp"
   },
   {
+    "id": "HIBERNATE",
+    "name": "Hibernate",
+    "description": "ในเทิร์นนี้ [gold]น้ำแข็ง[/gold]ของคุณจะให้[gold]บล็อก[/gold]แก่พันธมิตรทั้งหมด",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hibernate_power.webp"
+  },
+  {
     "id": "HIGH_VOLTAGE",
-    "name": "HighVoltagePower",
+    "name": "High Voltage",
     "description": "ตอนจบเทิร์นของ[gold]this creature[/gold] มันได้รับ [blue][Amount][/blue] [gold]ความแข็งแรง[/gold]",
     "description_raw": "ตอนจบเทิร์นของ[gold]{OwnerName}[/gold] มันได้รับ [blue]{Amount}[/blue] [gold]ความแข็งแรง[/gold]",
     "type": "Buff",
@@ -1100,6 +1140,16 @@
     "image_url": "/static/images/powers/hotfix_power.webp"
   },
   {
+    "id": "HYPERBEAM_FOCUS_DOWN",
+    "name": "Temporary Focus Down",
+    "description": "เสีย[gold]โฟกัส[/gold]จนจบเทิร์นนี้",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": null
+  },
+  {
     "id": "ILLUSION",
     "name": "ภาพมายา",
     "description": "เมื่อมันตาย จะฟื้นคืนชีพแบบ HP เต็มในเทิร์นถัดไป",
@@ -1111,13 +1161,23 @@
   },
   {
     "id": "IMBALANCED",
-    "name": "ImbalancedPower",
+    "name": "Imbalanced",
     "description": "ถ้าบล็อกการโจมตีของ[gold]this creature[/gold]ได้ทั้งหมด สิ่งมีชีวิตนี้จะ[gold]ติดสตัน[/gold]",
     "description_raw": "ถ้า{IsMultiplayer:มีผู้เล่นคนใด|}บล็อกการโจมตีของ[gold]{OwnerName}[/gold]ได้ทั้งหมด สิ่งมีชีวิตนี้จะ[gold]ติดสตัน[/gold]",
     "type": "Debuff",
     "stack_type": "Single",
     "allow_negative": null,
     "image_url": "/static/images/powers/imbalanced_power.webp"
+  },
+  {
+    "id": "IMITATION_LEARNING",
+    "name": "Imitation Learning",
+    "description": "เมื่อผู้เล่นอื่นเล่นการ์ดพลัง คุณจะเล่นสำเนาของการ์ดนั้นด้วย",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/imitation_learning_power.webp"
   },
   {
     "id": "IMPROVEMENT",
@@ -1132,8 +1192,8 @@
   {
     "id": "INFERNO",
     "name": "เพลิงโลกันตร์",
-    "description": "ตอนเริ่มต้นเทิร์น เสีย [blue]0[/blue] HP ทุกครั้งที่คุณเสีย HP ในเทิร์นของคุณ สร้างความเสียหาย [blue][Amount][/blue] ใส่ศัตรูทั้งหมด",
-    "description_raw": "ตอนเริ่มต้นเทิร์น เสีย [blue]{SelfDamage}[/blue] HP ทุกครั้งที่คุณเสีย HP ในเทิร์นของคุณ สร้างความเสียหาย [blue]{Amount}[/blue] ใส่ศัตรูทั้งหมด",
+    "description": "ตอนเริ่มต้นเทิร์น เสีย [blue]1[/blue] HP ทุกครั้งที่คุณเสีย HP ในเทิร์นของคุณ สร้างความเสียหาย [blue]4[/blue] ใส่ศัตรูทั้งหมด",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1141,7 +1201,7 @@
   },
   {
     "id": "INFESTED",
-    "name": "InfestedPower",
+    "name": "Infested",
     "description": "ตอนตาย อัญเชิญ...บางอย่าง",
     "description_raw": null,
     "type": "Buff",
@@ -1181,7 +1241,7 @@
   },
   {
     "id": "ITERATION",
-    "name": "IterationPower",
+    "name": "Iteration",
     "description": "ครั้งแรกที่คุณจั่วการ์ดสถานะในแต่ละเทิร์น จั่วการ์ดเพิ่ม",
     "description_raw": null,
     "type": "Buff",
@@ -1201,7 +1261,7 @@
   },
   {
     "id": "JUGGLING",
-    "name": "JugglingPower",
+    "name": "Juggling",
     "description": "เพิ่มสำเนา 1 ใบของการ์ดโจมตีใบที่ 3 ที่คุณเล่นในแต่ละเทิร์นใส่[gold]มือ[/gold]",
     "description_raw": null,
     "type": "Buff",
@@ -1211,7 +1271,7 @@
   },
   {
     "id": "KNOCKDOWN",
-    "name": "KnockdownPower",
+    "name": "Knockdown",
     "description": "สิ่งมีชีวิตนี้ได้รับความเสียหายจากผู้เล่นอื่นเป็น [blue][Amount][/blue] เท่าในเทิร์นนี้",
     "description_raw": "สิ่งมีชีวิตนี้ได้รับความเสียหายจากผู้เล่นอื่นเป็น [blue]{Amount}[/blue] เท่าในเทิร์นนี้",
     "type": "Debuff",
@@ -1221,7 +1281,7 @@
   },
   {
     "id": "LEADERSHIP",
-    "name": "LeadershipPower",
+    "name": "Leadership",
     "description": "พันธมิตรอื่นทั้งหมดสร้างความเสียหายเพิ่ม [blue]1[/blue]",
     "description_raw": null,
     "type": "Buff",
@@ -1231,7 +1291,7 @@
   },
   {
     "id": "LETHALITY",
-    "name": "LethalityPower",
+    "name": "Lethality",
     "description": "การ์ดโจมตีใบแรกในแต่ละเทิร์นสร้างความเสียหายเพิ่ม 50%",
     "description_raw": null,
     "type": "Buff",
@@ -1271,7 +1331,7 @@
   },
   {
     "id": "MAGIC_BOMB",
-    "name": "MagicBombPower",
+    "name": "Magic Bomb",
     "description": "ตอนจบเทิร์น ได้รับความเสียหาย [blue]20[/blue] ผลนี้จะหายไปเมื่อ Magi Knight ตาย",
     "description_raw": null,
     "type": "Debuff",
@@ -1302,8 +1362,8 @@
   {
     "id": "MAYHEM",
     "name": "ความโกลาหล",
-    "description": "ตอนเริ่มต้นเทิร์น เล่นการ์ด [blue]{}[/blue] ใบบนสุดของ[gold]กองจั่ว[/gold]",
-    "description_raw": "ตอนเริ่มต้นเทิร์น เล่นการ์ด{Amount:choose(1):| [blue]{}[/blue] }ใบบนสุดของ[gold]กองจั่ว[/gold]",
+    "description": "ตอนเริ่มต้นเทิร์น เล่นการ์ดใบบนสุดของ[gold]กองจั่ว[/gold]",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1311,7 +1371,7 @@
   },
   {
     "id": "MIND_ROT",
-    "name": "MindRotPower",
+    "name": "Mind Rot",
     "description": "จั่วการ์ดน้อยลง [blue]1[/blue] ใบในแต่ละเทิร์น",
     "description_raw": null,
     "type": "Debuff",
@@ -1331,7 +1391,7 @@
   },
   {
     "id": "MONARCHS_GAZE",
-    "name": "MonarchsGazePower",
+    "name": "Monarch's Gaze",
     "description": "ทุกครั้งที่คุณโจมตีศัตรู มันจะเสีย [blue]1[/blue] [gold]ความแข็งแรง[/gold]ในเทิร์นนี้",
     "description_raw": null,
     "type": "Buff",
@@ -1351,9 +1411,9 @@
   },
   {
     "id": "MONOLOGUE",
-    "name": "MonologuePower",
-    "description": "ทุกครั้งที่คุณเล่นการ์ดในเทิร์นนี้ ได้รับ [blue]1[/blue] [gold]ความแข็งแรง[/gold]ในเทิร์นนี้\nปัจจุบันได้รับ [blue]0[/blue] [gold]ความแข็งแรง[/gold]",
-    "description_raw": "ทุกครั้งที่คุณเล่นการ์ดในเทิร์นนี้ ได้รับ [blue]{StrengthPower}[/blue] [gold]ความแข็งแรง[/gold]ในเทิร์นนี้\nปัจจุบันได้รับ [blue]{StrengthApplied}[/blue] [gold]ความแข็งแรง[/gold]",
+    "name": "Monologue",
+    "description": "ทุกครั้งที่คุณเล่นการ์ดในเทิร์นนี้ ได้รับ [blue]1[/blue] [gold]ความแข็งแรง[/gold]ในเทิร์นนี้",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "None",
     "allow_negative": null,
@@ -1361,7 +1421,7 @@
   },
   {
     "id": "NECRO_MASTERY",
-    "name": "NecroMasteryPower",
+    "name": "Necro Mastery",
     "description": "ทุกครั้งที่[gold]น้าผี[/gold]เสีย HP ศัตรูทั้งหมดเสีย HP ตามจำนวนนั้นด้วย",
     "description_raw": null,
     "type": "Buff",
@@ -1371,7 +1431,7 @@
   },
   {
     "id": "NEMESIS",
-    "name": "NemesisPower",
+    "name": "Nemesis",
     "description": "ตอนจบเทิร์นเว้นเทิร์น ได้รับ [blue]1[/blue] [gold]ไร้ตัวตน[/gold]",
     "description_raw": null,
     "type": "Buff",
@@ -1381,7 +1441,7 @@
   },
   {
     "id": "NEUROSURGE",
-    "name": "NeurosurgePower",
+    "name": "Neurosurge",
     "description": "ตอนเริ่มต้นเทิร์น สร้าง [blue]3[/blue] [gold]อายุขัย[/gold]ใส่ตัวคุณเอง",
     "description_raw": null,
     "type": "Debuff",
@@ -1431,9 +1491,9 @@
   },
   {
     "id": "NOSTALGIA",
-    "name": "NostalgiaPower",
-    "description": "การ์ดโจมตีหรือทักษะ {} ใบแรกที่คุณเล่นในแต่ละเทิร์นจะถูกนำไปวางใบบนสุดของ[gold]กองจั่ว[/gold]",
-    "description_raw": "การ์ดโจมตีหรือทักษะ{Amount:choose(1):| {} }ใบแรกที่คุณเล่นในแต่ละเทิร์นจะถูกนำไปวางใบบนสุดของ[gold]กองจั่ว[/gold]",
+    "name": "Nostalgia",
+    "description": "การ์ดโจมตีหรือทักษะใบแรกที่คุณเล่นในแต่ละเทิร์นจะถูกนำไปวางใบบนสุดของ[gold]กองจั่ว[/gold]",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1451,7 +1511,7 @@
   },
   {
     "id": "OBLIVION",
-    "name": "OblivionPower",
+    "name": "Oblivion",
     "description": "ทุกครั้งที่คุณเล่นการ์ด ศัตรูนี้ได้รับ [blue]1[/blue] [gold]อายุขัย[/gold]",
     "description_raw": null,
     "type": "Debuff",
@@ -1460,10 +1520,20 @@
     "image_url": "/static/images/powers/oblivion_power.webp"
   },
   {
+    "id": "ONE_FOR_ALL",
+    "name": "หนึ่งเดียวสู่ทั้งปวง",
+    "description": "การ์ดโจมตีค่าร่าย [blue]0[/blue] [energy:1] ของคุณสร้างความเสียหายมากขึ้น",
+    "description_raw": "การ์ดโจมตีค่าร่าย [blue]0[/blue] {energyPrefix:energyIcons(1)} ของคุณสร้างความเสียหายมากขึ้น",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/one_for_all_power.webp"
+  },
+  {
     "id": "ONE_TWO_PUNCH",
-    "name": "OneTwoPunchPower",
-    "description": "การ์ดโจมตี [blue]{}[/blue] ใบถัดไปจะถูกเล่นอีกครั้งในเทิร์นนี้",
-    "description_raw": "การ์ดโจมตี{Amount:choose(1):| [blue]{}[/blue] }ใบถัดไปจะถูกเล่นอีกครั้งในเทิร์นนี้",
+    "name": "One-Two Punch",
+    "description": "การ์ดโจมตีใบถัดไปจะถูกเล่นอีกครั้งในเทิร์นนี้",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1471,7 +1541,7 @@
   },
   {
     "id": "ORBIT",
-    "name": "OrbitPower",
+    "name": "Orbit",
     "description": "ทุกการจ่าย [energy:4] ได้รับ [energy:1]",
     "description_raw": "ทุกการจ่าย {Energy:energyIcons()} ได้รับ {Amount:energyIcons()}",
     "type": "Buff",
@@ -1480,18 +1550,8 @@
     "image_url": "/static/images/powers/orbit_power.webp"
   },
   {
-    "id": "OUTBREAK",
-    "name": "OutbreakPower",
-    "description": "การสร้าง[gold]พิษ[/gold]ทุก [blue]3[/blue] ครั้ง สร้างความเสียหาย [blue][Amount][/blue] ใส่ศัตรูทั้งหมด",
-    "description_raw": "การสร้าง[gold]พิษ[/gold]ทุก [blue]{Repeat}[/blue] ครั้ง สร้างความเสียหาย [blue]{Amount}[/blue] ใส่ศัตรูทั้งหมด",
-    "type": "Buff",
-    "stack_type": "Counter",
-    "allow_negative": null,
-    "image_url": "/static/images/powers/outbreak_power.webp"
-  },
-  {
     "id": "PAGESTORM",
-    "name": "PagestormPower",
+    "name": "Pagestorm",
     "description": "ทุกครั้งที่คุณจั่วการ์ด[gold]กึ่งสลาย[/gold] จั่วการ์ด [blue]1[/blue] ใบ",
     "description_raw": null,
     "type": "Buff",
@@ -1501,7 +1561,7 @@
   },
   {
     "id": "PAINFUL_STABS",
-    "name": "PainfulStabsPower",
+    "name": "Painful Stabs",
     "description": "ทุกครั้งที่คุณได้รับความเสียหายจากการโจมตีที่บล็อกไม่ได้ สับ[gold]บาดแผล[/gold] [blue]1[/blue] ใบเข้า[gold]กองทิ้ง[/gold]",
     "description_raw": null,
     "type": "Buff",
@@ -1531,7 +1591,7 @@
   },
   {
     "id": "PAPER_CUTS",
-    "name": "PaperCutsPower",
+    "name": "Paper Cuts",
     "description": "ทุกครั้งที่[gold]this creature[/gold]สร้างความเสียหายจากการโจมตีที่บล็อกไม่ได้ใส่คุณ คุณเสีย [blue][Amount][/blue] [gold]HP สูงสุด[/gold]",
     "description_raw": "ทุกครั้งที่[gold]{OwnerName}[/gold]สร้างความเสียหายจากการโจมตีที่บล็อกไม่ได้ใส่คุณ คุณเสีย [blue]{Amount}[/blue] [gold]HP สูงสุด[/gold]",
     "type": "Buff",
@@ -1551,7 +1611,7 @@
   },
   {
     "id": "PERSONAL_HIVE",
-    "name": "PersonalHivePower",
+    "name": "Personal Hive",
     "description": "ทุกครั้งที่ศัตรูนี้ถูกโจมตี เพิ่ม[gold]ความมึนงง[/gold]เข้า[gold]กองจั่ว[/gold]",
     "description_raw": null,
     "type": "Buff",
@@ -1561,7 +1621,7 @@
   },
   {
     "id": "PHANTOM_BLADES",
-    "name": "PhantomBladesPower",
+    "name": "Phantom Blades",
     "description": "[gold]มีดสั้น[/gold]ได้รับ[gold]คงสภาพ[/gold]\n[gold]มีดสั้น[/gold]ใบแรกที่คุณเล่นในแต่ละเทิร์นสร้างความเสียหายเพิ่ม [blue]9[/blue]",
     "description_raw": null,
     "type": "Buff",
@@ -1581,9 +1641,9 @@
   },
   {
     "id": "PILLAR_OF_CREATION",
-    "name": "PillarOfCreationPower",
-    "description": "ทุกครั้งที่คุณสร้างการ์ด ได้รับ [blue]5[/blue] [gold]บล็อก[/gold]",
-    "description_raw": null,
+    "name": "Pillar of Creation",
+    "description": "ทุกครั้งที่คุณสร้างการ์ด ได้รับ [blue][Amount][/blue] [gold]บล็อก[/gold]",
+    "description_raw": "ทุกครั้งที่คุณสร้างการ์ด ได้รับ [blue]{Amount}[/blue] [gold]บล็อก[/gold]",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1601,7 +1661,7 @@
   },
   {
     "id": "PLOW",
-    "name": "PlowPower",
+    "name": "Plow",
     "description": "ครั้งแรกที่[gold]this creature[/gold]เหลือไม่เกิน [blue][Amount][/blue] HP มันจะ[gold]ติดสตัน[/gold]และเสีย[gold]ความแข็งแรง[/gold]ทั้งหมด",
     "description_raw": "ครั้งแรกที่[gold]{OwnerName}[/gold]เหลือไม่เกิน [blue]{Amount}[/blue] HP มันจะ[gold]ติดสตัน[/gold]และเสีย[gold]ความแข็งแรง[/gold]ทั้งหมด",
     "type": "Debuff",
@@ -1621,7 +1681,7 @@
   },
   {
     "id": "POSSESS_SPEED",
-    "name": "PossessSpeedPower",
+    "name": "Possess Speed",
     "description": "เมื่อถูกฆ่า คืน[gold]ความชำนาญ[/gold]ทั้งหมดที่ขโมยไปจากผู้เล่น",
     "description_raw": null,
     "type": "Buff",
@@ -1631,7 +1691,7 @@
   },
   {
     "id": "POSSESS_STRENGTH",
-    "name": "PossessStrengthPower",
+    "name": "Possess Strength",
     "description": "เมื่อถูกฆ่า คืน[gold]ความแข็งแรง[/gold]ทั้งหมดที่ขโมยไปจากผู้เล่น",
     "description_raw": null,
     "type": "Buff",
@@ -1651,7 +1711,7 @@
   },
   {
     "id": "PYRE",
-    "name": "PyrePower",
+    "name": "Pyre",
     "description": "ตอนเริ่มต้นเทิร์น ได้รับ [energy:1]",
     "description_raw": "ตอนเริ่มต้นเทิร์น ได้รับ {Amount:energyIcons()}",
     "type": "Buff",
@@ -1661,9 +1721,9 @@
   },
   {
     "id": "RADIANCE",
-    "name": "RadiancePower",
-    "description": "ได้รับเพิ่ม [energy:1] เป็นเวลา [blue]{}[/blue] เทิร์น",
-    "description_raw": "ได้รับเพิ่ม {Energy:energyIcons()} {Amount:choose(1):ในเทิร์นถัดไป|เป็นเวลา [blue]{}[/blue] เทิร์น}",
+    "name": "Radiance",
+    "description": "ได้รับเพิ่ม 1 [gold]พลังงาน[/gold]ในเทิร์นถัดไป",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1681,7 +1741,7 @@
   },
   {
     "id": "RAMPART",
-    "name": "RampartPower",
+    "name": "Rampart",
     "description": "ตอนเริ่มต้นเทิร์นผู้เล่น Turret Operator ได้รับ [blue]25[/blue] [gold]บล็อก[/gold]",
     "description_raw": null,
     "type": "Buff",
@@ -1691,7 +1751,7 @@
   },
   {
     "id": "RAVENOUS",
-    "name": "RavenousPower",
+    "name": "Ravenous",
     "description": "เมื่อมีศัตรูตาย ทากศพจะกินมันทันที จะ[gold]ติดสตัน[/gold]และได้รับ [blue]1[/blue] [gold]ความแข็งแรง[/gold]",
     "description_raw": null,
     "type": "Buff",
@@ -1702,8 +1762,8 @@
   {
     "id": "REAPER_FORM",
     "name": "ร่างยมทูต",
-    "description": "ทุกครั้งที่สร้างความเสียหายจากการโจมตี สร้าง[gold]อายุขัย[/gold] [blue]{}[/blue] เท่าของจำนวนนั้นด้วย",
-    "description_raw": "ทุกครั้งที่สร้างความเสียหายจากการโจมตี สร้าง[gold]อายุขัย[/gold]{Amount:choose(1):ตาม| [blue]{}[/blue] เท่าของ}จำนวนนั้นด้วย",
+    "description": "ทุกครั้งที่สร้างความเสียหายจากการโจมตี สร้าง[gold]อายุขัย[/gold]ตามจำนวนนั้นด้วย",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1711,7 +1771,7 @@
   },
   {
     "id": "REATTACH",
-    "name": "ReattachPower",
+    "name": "Reattach",
     "description": "ถ้าส่วนอื่นยังมีชีวิตอยู่ จะฟื้นคืนชีพในอีก [blue]2[/blue] เทิร์นโดยมี [blue]25[/blue] HP",
     "description_raw": null,
     "type": "Buff",
@@ -1722,8 +1782,8 @@
   {
     "id": "REBOUND",
     "name": "ดีดกลับ",
-    "description": "นำการ์ด [blue]{}[/blue] ใบถัดไปที่คุณเล่นในเทิร์นนี้ไปไว้บนสุดของ[gold]กองจั่ว[/gold]",
-    "description_raw": "นำการ์ด{Amount:choose(1):| [blue]{}[/blue] }ใบถัดไปที่คุณเล่นในเทิร์นนี้ไปไว้บนสุดของ[gold]กองจั่ว[/gold]",
+    "description": "นำการ์ดใบถัดไปที่คุณเล่นไปไว้บนสุดของ[gold]กองจั่ว[/gold]",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1731,7 +1791,7 @@
   },
   {
     "id": "REFLECT",
-    "name": "ReflectPower",
+    "name": "Reflect",
     "description": "สะท้อนความเสียหายที่บล็อกได้กลับไปหาผู้โจมตี",
     "description_raw": null,
     "type": "Buff",
@@ -1822,8 +1882,8 @@
   {
     "id": "SANDPIT",
     "name": "บ่อทราย",
-    "description": "อีก [blue]{}[/blue] เทิร์น คุณจะถูกกินและตายทันที",
-    "description_raw": "{Amount:choose(1):เมื่อเข้าเทิร์นของ[gold]The Insatiable[/gold]|อีก [blue]{}[/blue] เทิร์น} คุณจะถูกกินและตายทันที",
+    "description": "พลังที่ถูกใช้โดย The Insatiable",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1831,7 +1891,7 @@
   },
   {
     "id": "SEEKING_EDGE",
-    "name": "SeekingEdgePower",
+    "name": "Seeking Edge",
     "description": "ต่อไปนี้[gold]พระแสงอาญาสิทธิ์[/gold]โจมตีศัตรูทั้งหมด",
     "description_raw": null,
     "type": "Buff",
@@ -1841,7 +1901,7 @@
   },
   {
     "id": "SELF_FORMING_CLAY",
-    "name": "SelfFormingClayPower",
+    "name": "ดินเหนียวแปรสภาพ",
     "description": "ได้รับ [blue]3[/blue] [gold]บล็อก[/gold]ในเทิร์นถัดไป",
     "description_raw": null,
     "type": "Buff",
@@ -1851,7 +1911,7 @@
   },
   {
     "id": "SENTRY_MODE",
-    "name": "SentryModePower",
+    "name": "Sentry Mode",
     "description": "ตอนเริ่มต้นเทิร์น เพิ่ม[gold]Sweeping Gaze[/gold] [blue]1[/blue] ใบใส่[gold]มือ[/gold]",
     "description_raw": null,
     "type": "Buff",
@@ -1891,9 +1951,9 @@
   },
   {
     "id": "SHADOW_STEP",
-    "name": "ShadowStepPower",
-    "description": "เทิร์นถัดไปอีก [blue]{}[/blue] เทิร์นหลังจากเทิร์นนี้ สร้างความเสียหายจากการโจมตีเป็น 2 เท่า",
-    "description_raw": "เทิร์นถัดไป{Amount:choose(1):|อีก [blue]{}[/blue] เทิร์นหลังจากเทิร์นนี้ }สร้างความเสียหายจากการโจมตีเป็น 2 เท่า",
+    "name": "Shadow Step",
+    "description": "เทิร์นถัดไป สร้างความเสียหายจากการโจมตีเป็น 2 เท่า",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1901,9 +1961,9 @@
   },
   {
     "id": "SHADOWMELD",
-    "name": "ShadowmeldPower",
-    "description": "ในเทิร์นนี้ ได้รับ[gold]บล็อก[/gold]เพิ่มเป็น 2 เท่า จำนวน [blue]{}[/blue] ครั้ง",
-    "description_raw": "ในเทิร์นนี้ ได้รับ[gold]บล็อก[/gold]เพิ่มเป็น 2 เท่า{Amount:choose(1):| จำนวน [blue]{}[/blue] ครั้ง}",
+    "name": "Shadowmeld",
+    "description": "ในเทิร์นนี้ ได้รับ[gold]บล็อก[/gold] 2 เท่า",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1911,7 +1971,7 @@
   },
   {
     "id": "SHRIEK",
-    "name": "ShriekPower",
+    "name": "Shriek",
     "description": "ครั้งแรกที่[gold]this creature[/gold]เหลือ HP ไม่เกิน [blue][Amount][/blue] มันจะ[gold]ติดสตัน[/gold]",
     "description_raw": "ครั้งแรกที่[gold]{OwnerName}[/gold]เหลือ HP ไม่เกิน [blue]{Amount}[/blue] มันจะ[gold]ติดสตัน[/gold]",
     "type": "Debuff",
@@ -1921,7 +1981,7 @@
   },
   {
     "id": "SHRINK",
-    "name": "ShrinkPower",
+    "name": "Shrink",
     "description": "การโจมตีของ[gold]this creature[/gold]สร้างความเสียหายลดลง [blue]30%[/blue]",
     "description_raw": "{ApplierName.StringValue:cond:ขณะที่{}ยังมีชีวิตอยู่ การโจมตีของคุณ|การโจมตีของ[gold]{OwnerName}[/gold]}สร้างความเสียหายลดลง [blue]{DamageDecrease}%[/blue]{Amount:cond:==1? ในเทิร์นถัดไป|>1? เป็นเวลา [blue]{}[/blue] เทิร์น|}",
     "type": "Debuff",
@@ -1931,7 +1991,7 @@
   },
   {
     "id": "SHROUD",
-    "name": "ShroudPower",
+    "name": "Shroud",
     "description": "ทุกครั้งที่คุณสร้าง[gold]อายุขัย[/gold] ได้รับ [blue]3[/blue] [gold]บล็อก[/gold]",
     "description_raw": null,
     "type": "Buff",
@@ -1941,7 +2001,7 @@
   },
   {
     "id": "SIC_EM",
-    "name": "SicEmPower",
+    "name": "Sic 'Em",
     "description": "ทุกครั้งที่[gold]น้าผี[/gold]โจมตีศัตรูในเทิร์นนี้ [gold]อัญเชิญ[/gold] [blue]3[/blue]",
     "description_raw": null,
     "type": "Debuff",
@@ -1951,9 +2011,9 @@
   },
   {
     "id": "SIGNAL_BOOST",
-    "name": "SignalBoostPower",
-    "description": "การ์ดพลัง [blue]{}[/blue] ใบถัดไปจะถูกเล่นอีกครั้ง",
-    "description_raw": "การ์ดพลัง{Amount:choose(1):| [blue]{}[/blue] }ใบถัดไปจะถูกเล่นอีกครั้ง",
+    "name": "Signal Boost",
+    "description": "การ์ดพลังใบถัดไปจะถูกเล่นอีกครั้ง",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1961,7 +2021,7 @@
   },
   {
     "id": "SKITTISH",
-    "name": "SkittishPower",
+    "name": "Skittish",
     "description": "ครั้งแรกที่ [gold]this creature[/gold] ถูกโจมตีในแต่ละเทิร์น มันจะได้รับ [blue][Amount][/blue] [gold]บล็อก[/gold]",
     "description_raw": "ครั้งแรกที่ [gold]{OwnerName}[/gold] ถูกโจมตีในแต่ละเทิร์น มันจะได้รับ [blue]{Amount}[/blue] [gold]บล็อก[/gold]",
     "type": "Buff",
@@ -1971,7 +2031,7 @@
   },
   {
     "id": "SLEIGHT_OF_FLESH",
-    "name": "SleightOfFleshPower",
+    "name": "Sleight of Flesh",
     "description": "ทุกครั้งที่คุณสร้างผลผิดปกติใส่ศัตรู มันจะได้รับความเสียหาย [blue]13[/blue]",
     "description_raw": null,
     "type": "Buff",
@@ -1981,9 +2041,9 @@
   },
   {
     "id": "SLIPPERY",
-    "name": "SlipperyPower",
-    "description": "[blue]{}[/blue] ครั้งถัดไปที่ [gold]this creature[/gold] จะเสีย HP มันจะเสียแค่ [blue]1[/blue] HP แทน",
-    "description_raw": "{Amount:choose(1):time|[blue]{}[/blue] }ครั้งถัดไปที่ [gold]{OwnerName}[/gold] จะเสีย HP มันจะเสียแค่ [blue]1[/blue] HP แทน",
+    "name": "Slippery",
+    "description": "ครั้งถัดไปที่สิ่งมีชีวิตนี้จะเสีย HP มันจะเสียแค่ [blue]1[/blue] HP แทน",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -2001,7 +2061,7 @@
   },
   {
     "id": "SLOW",
-    "name": "SlowPower",
+    "name": "Slow",
     "description": "ทุกครั้งที่คุณเล่นการ์ด ศัตรูนี้จะได้รับความเสียหายจากการโจมตีเพิ่ม [blue]10%[/blue] ในเทิร์นนี้",
     "description_raw": null,
     "type": "Debuff",
@@ -2011,7 +2071,7 @@
   },
   {
     "id": "SLUMBER",
-    "name": "SlumberPower",
+    "name": "Slumber",
     "description": "จะตื่นขึ้นเมื่อผ่านเทิร์นหรือเสีย HP ครบ 3 ครั้ง",
     "description_raw": null,
     "type": "Buff",
@@ -2021,7 +2081,7 @@
   },
   {
     "id": "SMOGGY",
-    "name": "SmoggyPower",
+    "name": "Smoggy",
     "description": "คุณเล่นการ์ดทักษะได้ไม่เกิน [blue]1[/blue] ใบต่อเทิร์น",
     "description_raw": null,
     "type": "Debuff",
@@ -2031,7 +2091,7 @@
   },
   {
     "id": "SMOKESTACK",
-    "name": "SmokestackPower",
+    "name": "Smokestack",
     "description": "ทุกครั้งที่คุณสร้างการ์ดสถานะ สร้างความเสียหายใส่ศัตรูทั้งหมด",
     "description_raw": null,
     "type": "Buff",
@@ -2041,7 +2101,7 @@
   },
   {
     "id": "SNEAKY",
-    "name": "SneakyPower",
+    "name": "Sneaky",
     "description": "ทุกครั้งที่ผู้เล่นอื่นโจมตีศัตรู ได้รับ[gold]บล็อก[/gold]",
     "description_raw": null,
     "type": "Buff",
@@ -2051,13 +2111,23 @@
   },
   {
     "id": "SOAR",
-    "name": "SoarPower",
+    "name": "Soar",
     "description": "ได้รับความเสียหายจากการโจมตีลดลง [blue]50%[/blue] จนกว่าจะลงพื้น",
     "description_raw": "ได้รับความเสียหายจากการโจมตีลดลง [blue]{DamageDecrease}%[/blue] จนกว่าจะลงพื้น",
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
     "image_url": "/static/images/powers/soar_power.webp"
+  },
+  {
+    "id": "SOULBOUND",
+    "name": "ผูกวิญญาณ",
+    "description": "ทุกครั้งที่[ApplierName]สร้าง[gold]วิญญาณ[/gold] จะเพิ่ม[gold]วิญญาณ[/gold]เข้า[gold]กองจั่ว[/gold]ของคุณด้วย",
+    "description_raw": "ทุกครั้งที่{ApplierName}สร้าง[gold]วิญญาณ[/gold] จะเพิ่ม[gold]วิญญาณ[/gold]เข้า[gold]กองจั่ว[/gold]ของคุณด้วย",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/soulbound_power.webp"
   },
   {
     "id": "SPECTRUM_SHIFT",
@@ -2091,7 +2161,7 @@
   },
   {
     "id": "SPINNER",
-    "name": "SpinnerPower",
+    "name": "Spinner",
     "description": "ตอนเริ่มต้นเทิร์น [gold]ปลุกเสก[/gold] [blue]1[/blue] [gold]แก้ว[/gold]",
     "description_raw": null,
     "type": "Buff",
@@ -2101,7 +2171,7 @@
   },
   {
     "id": "SPIRIT_OF_ASH",
-    "name": "SpiritOfAshPower",
+    "name": "Spirit of Ash",
     "description": "ทุกครั้งที่คุณเล่นการ์ด[gold]กึ่งสลาย[/gold] ได้รับ [blue]4[/blue] [gold]บล็อก[/gold]",
     "description_raw": null,
     "type": "Buff",
@@ -2111,7 +2181,7 @@
   },
   {
     "id": "STAMPEDE",
-    "name": "StampedePower",
+    "name": "Stampede",
     "description": "ตอนจบเทิร์น เล่นการ์ดโจมตี [blue]1[/blue] ใบแบบสุ่มจาก[gold]มือ[/gold]ใส่ศัตรู 1 ตัวแบบสุ่ม",
     "description_raw": null,
     "type": "Buff",
@@ -2131,7 +2201,7 @@
   },
   {
     "id": "STEAM_ERUPTION",
-    "name": "SteamEruptionPower",
+    "name": "Steam Eruption",
     "description": "เมื่อถูกฆ่า สร้างความเสียหายตอนจบเทิร์นถัดไปของคุณ",
     "description_raw": null,
     "type": "Buff",
@@ -2141,7 +2211,7 @@
   },
   {
     "id": "STOCK",
-    "name": "StockPower",
+    "name": "Stock",
     "description": "เมื่อถูกฆ่า จะอัญเชิญ Axebot ตัวใหม่มาแทนที่มัน",
     "description_raw": null,
     "type": "Buff",
@@ -2161,7 +2231,7 @@
   },
   {
     "id": "STRANGLE",
-    "name": "StranglePower",
+    "name": "Strangle",
     "description": "ทุกครั้งที่คุณเล่นการ์ดในเทิร์นนี้ ศัตรูนี้เสีย [blue]2[/blue] HP",
     "description_raw": null,
     "type": "Debuff",
@@ -2171,7 +2241,7 @@
   },
   {
     "id": "STRATAGEM",
-    "name": "StratagemPower",
+    "name": "Stratagem",
     "description": "ทุกครั้งที่คุณสับ[gold]กองจั่ว[/gold] เลือกการ์ด [blue]1[/blue] ใบจากในนั้นเพื่อนำขึ้น[gold]มือ[/gold]",
     "description_raw": null,
     "type": "Buff",
@@ -2191,9 +2261,9 @@
   },
   {
     "id": "SUBROUTINE",
-    "name": "SubroutinePower",
-    "description": "ทุกครั้งที่คุณเล่นการ์ดพลัง ได้รับ [blue]1[/blue] [energy:1]",
-    "description_raw": "ทุกครั้งที่คุณเล่นการ์ดพลัง ได้รับ [blue]1[/blue] {energyPrefix:energyIcons(1)}",
+    "name": "Subroutine",
+    "description": "ทุกครั้งที่คุณเล่นการ์ดพลัง ได้รับ [energy:1]",
+    "description_raw": "ทุกครั้งที่คุณเล่นการ์ดพลัง ได้รับ {Amount:energyIcons()}",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -2201,7 +2271,7 @@
   },
   {
     "id": "SUCK",
-    "name": "SuckPower",
+    "name": "Suck",
     "description": "ทุกครั้งที่[gold]this creature[/gold]สร้างความเสียหายจากการโจมตีที่บล็อกไม่ได้ มันจะได้รับ [blue][Amount][/blue] [gold]ความแข็งแรง[/gold]",
     "description_raw": "ทุกครั้งที่[gold]{OwnerName}[/gold]สร้างความเสียหายจากการโจมตีที่บล็อกไม่ได้ มันจะได้รับ [blue]{Amount}[/blue] [gold]ความแข็งแรง[/gold]",
     "type": "Buff",
@@ -2241,7 +2311,7 @@
   },
   {
     "id": "SWIPE",
-    "name": "SwipePower",
+    "name": "Swipe",
     "description": "เมื่อฆ่าศัตรูนี้ จะได้รับการ์ดที่ถูกขโมยคืน",
     "description_raw": null,
     "type": "Buff",
@@ -2251,7 +2321,7 @@
   },
   {
     "id": "SWORD_SAGE",
-    "name": "SwordSagePower",
+    "name": "Sword Sage",
     "description": "[gold]พระแสงอาญาสิทธิ์[/gold]ได้รับ [gold]เล่นซ้ำ[/gold] [blue]1[/blue]",
     "description_raw": null,
     "type": "Buff",
@@ -2271,7 +2341,7 @@
   },
   {
     "id": "TAG_TEAM",
-    "name": "TagTeamPower",
+    "name": "Tag Team",
     "description": "การ์ดโจมตีใบถัดไปของผู้เล่นอื่นที่เล็งศัตรูตัวนี้จะถูกเล่นซ้ำอีกครั้ง",
     "description_raw": null,
     "type": "Debuff",
@@ -2291,9 +2361,9 @@
   },
   {
     "id": "TANGLED",
-    "name": "TangledPower",
-    "description": "การ์ดโจมตีมีค่าร่ายเพิ่ม [energy:1] เป็นเวลา {} เทิร์น",
-    "description_raw": "การ์ดโจมตีมีค่าร่ายเพิ่ม {Amount:energyIcons()} {Amount:choose(1):ในเทิร์นนี้|เป็นเวลา {} เทิร์น}",
+    "name": "Tangled",
+    "description": "การ์ดโจมตีมีค่าร่ายเพิ่ม [blue]1[/blue] [gold]พลังงาน[/gold]ในเทิร์นนี้",
+    "description_raw": null,
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -2301,9 +2371,9 @@
   },
   {
     "id": "TANK",
-    "name": "TankPower",
-    "description": "ได้รับความเสียหายจากศัตรูเป็น 2 เท่า แต่พันธมิตรได้รับความเสียหายจากศัตรูเพียงครึ่งเดียว",
-    "description_raw": null,
+    "name": "Tank",
+    "description": "ได้รับความเสียหายจากศัตรูมากชึ้น [blue]50%[/blue] แต่พันธมิตรทั้งหมดได้รับความเสียหายจากศัตรูน้อยลง [blue]50%[/blue]",
+    "description_raw": "ได้รับความเสียหายจากศัตรูมากชึ้น [blue]{DamageIncrease:percentMore()}%[/blue] แต่พันธมิตรทั้งหมดได้รับความเสียหายจากศัตรูน้อยลง [blue]{DamageDecrease:percentLess()}%[/blue]",
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
@@ -2311,7 +2381,7 @@
   },
   {
     "id": "TENDER",
-    "name": "TenderPower",
+    "name": "Tender",
     "description": "ทุกครั้งที่คุณเล่นการ์ด เสีย [blue]1[/blue] [gold]ความแข็งแรง[/gold]และ [blue]1[/blue] [gold]ความชำนาญ[/gold]ในเทิร์นนี้",
     "description_raw": null,
     "type": "Debuff",
@@ -2321,7 +2391,7 @@
   },
   {
     "id": "TERRITORIAL",
-    "name": "TerritorialPower",
+    "name": "Territorial",
     "description": "ตอนจบเทิร์นของ[gold]this creature[/gold] มันได้รับ [blue][Amount][/blue] [gold]ความแข็งแรง[/gold]",
     "description_raw": "ตอนจบเทิร์นของ[gold]{OwnerName}[/gold] มันได้รับ [blue]{Amount}[/blue] [gold]ความแข็งแรง[/gold]",
     "type": "Buff",
@@ -2331,8 +2401,8 @@
   },
   {
     "id": "THE_BOMB",
-    "name": "TheBombPower",
-    "description": "หลังผ่านไป [blue]{}[/blue] เทิร์น สร้างความเสียหาย [blue]40[/blue] ใส่ศัตรูทั้งหมด",
+    "name": "The Bomb",
+    "description": "หลังผ่านไป [blue]3[/blue] เทิร์น สร้างความเสียหาย [blue]40[/blue] ใส่ศัตรูทั้งหมด",
     "description_raw": "{Amount:choose(1):ตอนจบเทิร์นนี้|หลังผ่านไป [blue]{}[/blue] เทิร์น} สร้างความเสียหาย [blue]{Damage}[/blue] ใส่ศัตรูทั้งหมด",
     "type": "Buff",
     "stack_type": "Counter",
@@ -2351,7 +2421,7 @@
   },
   {
     "id": "THE_HUNT",
-    "name": "TheHuntPower",
+    "name": "The Hunt",
     "description": "ได้รับรางวัลการ์ดเพิ่ม [blue]1[/blue] รางวัลตอนจบการต่อสู้",
     "description_raw": null,
     "type": "Buff",
@@ -2361,7 +2431,7 @@
   },
   {
     "id": "THE_SEALED_THRONE",
-    "name": "TheSealedThronePower",
+    "name": "The Sealed Throne",
     "description": "ทุกครั้งที่คุณเล่นการ์ด ได้รับ [star:1]",
     "description_raw": "ทุกครั้งที่คุณเล่นการ์ด ได้รับ {Amount:starIcons()}",
     "type": "Buff",
@@ -2371,7 +2441,7 @@
   },
   {
     "id": "THIEVERY",
-    "name": "ThieveryPower",
+    "name": "Thievery",
     "description": "ขโมย[gold]ทอง[/gold]เมื่อโจมตี",
     "description_raw": null,
     "type": "Buff",
@@ -2411,7 +2481,7 @@
   },
   {
     "id": "TORIC_TOUGHNESS",
-    "name": "ToricToughnessPower",
+    "name": "Toric Toughness",
     "description": "ได้รับ [blue]5[/blue] [gold]บล็อก[/gold]ตอนเริ่มต้นเทิร์น เป็นเวลา [blue]2[/blue] เทิร์น",
     "description_raw": "ได้รับ [blue]{Block:diff()}[/blue] [gold]บล็อก[/gold]ตอนเริ่มต้นเทิร์น เป็นเวลา [blue]{Amount}[/blue] เทิร์น",
     "type": "Buff",
@@ -2421,8 +2491,8 @@
   },
   {
     "id": "TRACKING",
-    "name": "TrackingPower",
-    "description": "ศัตรูที่[gold]อ่อนแอ[/gold]ได้รับความเสียหายจากการโจมตี [blue]2[/blue] เท่า",
+    "name": "Tracking",
+    "description": "ศัตรูที่มี[gold]ความอ่อนแอ[/gold]ได้รับความเสียหายจากการโจมตีมากขึ้น [blue]50%[/blue]",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -2431,7 +2501,7 @@
   },
   {
     "id": "TRASH_TO_TREASURE",
-    "name": "TrashToTreasurePower",
+    "name": "Trash to Treasure",
     "description": "ทุกครั้งที่คุณสร้างการ์ดสถานะ [gold]ปลุกเสก[/gold]ลูกแก้ว [blue]1[/blue] ลูกแบบสุ่ม",
     "description_raw": null,
     "type": "Buff",
@@ -2441,7 +2511,7 @@
   },
   {
     "id": "TYRANNY",
-    "name": "TyrannyPower",
+    "name": "Tyranny",
     "description": "ตอนเริ่มต้นเทิร์น จั่วการ์ด 1 ใบและ[gold]สลาย[/gold]การ์ด 1 ใบจาก[gold]มือ[/gold]",
     "description_raw": null,
     "type": "Buff",
@@ -2450,10 +2520,20 @@
     "image_url": "/static/images/powers/tyranny_power.webp"
   },
   {
+    "id": "UNDERWORLD",
+    "name": "Underworld",
+    "description": "ทุกครั้งที่ผู้เล่นอื่นสร้างความเสียหายจากการโจมตีในเทิร์นนี้ สร้าง[gold]อายุขัย[/gold]ตามจำนวนนั้นด้วย",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/underworld_power.webp"
+  },
+  {
     "id": "UNMOVABLE",
-    "name": "UnmovablePower",
-    "description": "[blue]{}[/blue] ครั้งแรกที่คุณได้รับ[gold]บล็อก[/gold]จากการ์ดในแต่ละเทิร์น ได้รับผลนั้น 2 เท่า",
-    "description_raw": "{Amount:choose(1):|[blue]{}[/blue] }ครั้งแรกที่คุณได้รับ[gold]บล็อก[/gold]จากการ์ดในแต่ละเทิร์น ได้รับผลนั้น 2 เท่า",
+    "name": "Unmovable",
+    "description": "ครั้งแรกที่คุณได้รับ[gold]บล็อก[/gold]จากการ์ดในแต่ละเทิร์น ได้รับผลนั้น 2 เท่า",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -2461,7 +2541,7 @@
   },
   {
     "id": "VEILPIERCER",
-    "name": "VeilpiercerPower",
+    "name": "Veilpiercer",
     "description": "การ์ด[gold]กึ่งสลาย[/gold]ใบถัดไปที่คุณเล่นมีค่าร่าย [blue]0[/blue]",
     "description_raw": null,
     "type": "Buff",
@@ -2471,7 +2551,7 @@
   },
   {
     "id": "VICIOUS",
-    "name": "ViciousPower",
+    "name": "Vicious",
     "description": "ทุกครั้งที่คุณสร้าง[gold]จุดอ่อน[/gold] จั่วการ์ด [blue]1[/blue] ใบ",
     "description_raw": null,
     "type": "Buff",
@@ -2491,7 +2571,7 @@
   },
   {
     "id": "VITAL_SPARK",
-    "name": "VitalSparkPower",
+    "name": "Vital Spark",
     "description": "การ์ด[gold]ทักษะ[/gold]ทั้งหมดได้รับ [gold]ปนเปื้อน[/gold] [blue]2[/blue]",
     "description_raw": null,
     "type": "Buff",
@@ -2521,7 +2601,7 @@
   },
   {
     "id": "WASTE_AWAY",
-    "name": "WasteAwayPower",
+    "name": "Waste Away",
     "description": "ได้รับ[gold]พลังงาน[/gold]น้อยลง [blue]1[/blue] ต่อเทิร์น",
     "description_raw": null,
     "type": "Debuff",
@@ -2542,16 +2622,16 @@
   {
     "id": "WELL_LAID_PLANS",
     "name": "แผนการอย่างดี",
-    "description": "ตอนจบเทิร์น [gold]คงสภาพ[/gold]การ์ดได้สูงสุด [blue]1[/blue] ใบ",
+    "description": "ต่อไปนี้จะไม่ทิ้งการ์ดใน[gold]มือ[/gold]ตอนจบเทิร์น",
     "description_raw": null,
     "type": "Buff",
-    "stack_type": "Counter",
+    "stack_type": "Single",
     "allow_negative": null,
     "image_url": "/static/images/powers/well_laid_plans_power.webp"
   },
   {
     "id": "WITHERING_PRESENCE",
-    "name": "WitheringPresencePower",
+    "name": "Withering Presence",
     "description": "เมื่อคุณเล่นการ์ดทุก [blue]6[/blue] ใบ เพิ่ม[gold]Wither[/gold]ใส่[gold]มือ[/gold]",
     "description_raw": null,
     "type": "Buff",

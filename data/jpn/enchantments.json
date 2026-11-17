@@ -68,8 +68,8 @@
   {
     "id": "INKY",
     "name": "墨塗り",
-    "description": "このカードは追加で[blue]1[/blue]ダメージを与え、[gold]脱力[/gold][blue]1[/blue]を付与する。",
-    "description_raw": "このカードは追加で[blue]{Damage}[/blue]ダメージを与え、[gold]脱力[/gold][blue]{WeakPower}[/blue]を付与する。",
+    "description": "このカードは[gold]脱力[/gold][blue]1[/blue]を付与する。",
+    "description_raw": "このカードは[gold]脱力[/gold][blue]{WeakPower}[/blue]を付与する。",
     "extra_card_text": "[gold]脱力[/gold][blue]1[/blue]を付与する。",
     "card_type": null,
     "applicable_to": null,

@@ -1,7 +1,7 @@
 [
   {
     "id": "DEFECT",
-    "name": "DEFECT",
+    "name": "The Defect",
     "epochs": [
       "DEFECT6_EPOCH",
       "DEFECT3_EPOCH",
@@ -14,7 +14,7 @@
   },
   {
     "id": "IRONCLAD",
-    "name": "IRONCLAD",
+    "name": "The Ironclad",
     "epochs": [
       "IRONCLAD4_EPOCH",
       "IRONCLAD3_EPOCH",
@@ -26,7 +26,7 @@
   },
   {
     "id": "MAGNUM_OPUS",
-    "name": "MAGNUM_OPUS",
+    "name": "Magnum Opus",
     "epochs": [
       "COLORLESS1_EPOCH",
       "RELIC1_EPOCH",
@@ -54,7 +54,7 @@
   },
   {
     "id": "REGENT",
-    "name": "REGENT",
+    "name": "The Regent",
     "epochs": [
       "REGENT6_EPOCH",
       "REGENT1_EPOCH",
@@ -67,7 +67,7 @@
   },
   {
     "id": "SILENT",
-    "name": "SILENT",
+    "name": "The Silent",
     "epochs": [
       "SILENT6_EPOCH",
       "SILENT4_EPOCH",
@@ -80,7 +80,7 @@
   },
   {
     "id": "TALES_FROM_THE_SPIRE",
-    "name": "TALES_FROM_THE_SPIRE",
+    "name": "Tales from the Spire",
     "epochs": [
       "COLORLESS5_EPOCH",
       "OROBAS_EPOCH",
@@ -92,7 +92,7 @@
   },
   {
     "id": "REOPENING",
-    "name": "REOPENING",
+    "name": "The Reopening",
     "epochs": [
       "POTION2_EPOCH",
       "RELIC5_EPOCH",

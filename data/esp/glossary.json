@@ -20,7 +20,7 @@
   {
     "id": "COOK",
     "name": "Cocinar",
-    "description": "[gold]Quitas[/gold] [blue]2[/blue] cartas del [gold]mazo[/gold] y obtienes [green]9[/green] PV máx. en un [gold]punto de descanso[/gold].",
+    "description": "[gold]Quitas[/gold] [blue]2[/blue] cartas del [gold]mazo[/gold] y obtienes [green]5[/green] PV máx. en un [gold]punto de descanso[/gold].",
     "category": "mechanics"
   },
   {

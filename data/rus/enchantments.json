@@ -68,8 +68,8 @@
   {
     "id": "INKY",
     "name": "Чернильная",
-    "description": "Эта карта наносит на [blue]1[/blue] больше урона и накладывает [blue]1[/blue] [gold]слабости[/gold].",
-    "description_raw": "Эта карта наносит на [blue]{Damage}[/blue] больше урона и накладывает [blue]{WeakPower}[/blue] [gold]слабости[/gold].",
+    "description": "Эта карта накладывает [blue]1[/blue] [gold]слабости[/gold].",
+    "description_raw": "Эта карта накладывает [blue]{WeakPower}[/blue] [gold]слабости[/gold].",
     "extra_card_text": "Накладывает [blue]1[/blue] [gold]слабости[/gold].",
     "card_type": null,
     "applicable_to": null,

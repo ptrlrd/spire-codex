@@ -20,7 +20,7 @@
   {
     "id": "COOK",
     "name": "Готовка",
-    "description": "Готовка позволяет [gold]удалить[/gold] [blue]2[/blue] карты из [gold]колоды[/gold] и повысить макс. ОЗ на [green]9[/green] в [gold]лагере[/gold].",
+    "description": "Готовка позволяет [gold]удалить[/gold] [blue]2[/blue] карты из [gold]колоды[/gold] и повысить максимальные ОЗ на [green]5[/green] в [gold]лагере[/gold].",
     "category": "mechanics"
   },
   {

@@ -242,7 +242,7 @@
     "name": "Amalgamierer",
     "type": "Event",
     "act": "Act 2 - Hive",
-    "description": "[b][jitter]KLONG! KLONG!!![/jitter][/b]\n\nDu hörst das Echo von Metall auf Metall auf der anderen Seite einer Mauer...\n\nDu drückst deinen Kopf gegen die Mauer, um zu lauschen—da öffnet sich die Wand und offenbart eine [orange]klobige sechsarmige Figur[/orange], die sich abplagt.\nIhr “Gesicht” ist ein [gold][sine]wirbelnder Strudel aus leuchtenden Siegeln[/sine][/gold], die sich umstellen.\n\n“Jemand mit [aqua]Aufstiegsgeist[/aqua] hat meine Werkstatt gefunden? Fangen wir an, zu [jitter]KOMBINIEREN[/jitter]!”",
+    "description": "[b][jitter]KLONG! KLONG!!![/jitter][/b]\n\nDu hörst das Echo von Metall auf Metall auf der anderen Seite einer Mauer...\n\nDu drückst deinen Kopf gegen die Mauer, um zu lauschen—da öffnet sich die Wand und offenbart eine [orange]klobige sechsarmige Figur[/orange], die sich abplagt.\nIhr „Gesicht“ ist ein [gold][sine]wirbelnder Strudel aus leuchtenden Siegeln[/sine][/gold], die sich umstellen.\n\n„Jemand mit [aqua]Aufstiegsgeist[/aqua] hat meine Werkstatt gefunden? Fangen wir an, zu [jitter]KOMBINIEREN[/jitter]!“",
     "preconditions": [
       "Requires 2+ Strikes in deck",
       "Requires 2+ Defends in deck"
@@ -270,7 +270,7 @@
       },
       {
         "id": "INITIAL",
-        "description": "[b][jitter]KLONG! KLONG!!![/jitter][/b]\n\nDu hörst das Echo von Metall auf Metall auf der anderen Seite einer Mauer...\n\nDu drückst deinen Kopf gegen die Mauer, um zu lauschen—da öffnet sich die Wand und offenbart eine [orange]klobige sechsarmige Figur[/orange], die sich abplagt.\nIhr “Gesicht” ist ein [gold][sine]wirbelnder Strudel aus leuchtenden Siegeln[/sine][/gold], die sich umstellen.\n\n“Jemand mit [aqua]Aufstiegsgeist[/aqua] hat meine Werkstatt gefunden? Fangen wir an, zu [jitter]KOMBINIEREN[/jitter]!”",
+        "description": "[b][jitter]KLONG! KLONG!!![/jitter][/b]\n\nDu hörst das Echo von Metall auf Metall auf der anderen Seite einer Mauer...\n\nDu drückst deinen Kopf gegen die Mauer, um zu lauschen—da öffnet sich die Wand und offenbart eine [orange]klobige sechsarmige Figur[/orange], die sich abplagt.\nIhr „Gesicht“ ist ein [gold][sine]wirbelnder Strudel aus leuchtenden Siegeln[/sine][/gold], die sich umstellen.\n\n„Jemand mit [aqua]Aufstiegsgeist[/aqua] hat meine Werkstatt gefunden? Fangen wir an, zu [jitter]KOMBINIEREN[/jitter]!“",
         "options": [
           {
             "id": "COMBINE_STRIKES",
@@ -337,7 +337,7 @@
     "name": "Kampferprobter Dummy",
     "type": "Event",
     "act": "Act 3 - Glory",
-    "description": "Als du näher kommst, beginnt er zu rattern und zu zischen und strahlt hell auf!\n\n“[jitter]BZZZT![/jitter] ZEIT FÜRS TRAINING!!!\nDU HAST [blue]3 ZÜGE[/blue], UM MICH ZU BESIEGEN!\nWÄHLE EINE EINSTELLUNG ODER BEGEGNE [red]TÖDLICHER SCHMACH[/red].\nHier sind die Optionen:”\n\nNach der erschreckenden Nachricht liest der Dummy sorgfältig die ausführlichen Anweisungen vor.\n\nWas wählst du aus?",
+    "description": "Als du näher kommst, beginnt er zu rattern und zu zischen und strahlt hell auf!\n\n„[jitter]BZZZT![/jitter] ZEIT FÜRS TRAINING!!!\nDU HAST [blue]3 ZÜGE[/blue], UM MICH ZU BESIEGEN!\nWÄHLE EINE EINSTELLUNG ODER BEGEGNE [red]TÖDLICHER SCHMACH[/red].\nHier sind die Optionen:“\n\nNach der erschreckenden Nachricht liest der Dummy sorgfältig die ausführlichen Anweisungen vor.\n\nWas wählst du aus?",
     "preconditions": null,
     "options": [
       {
@@ -359,11 +359,11 @@
     "pages": [
       {
         "id": "DEFEAT",
-        "description": "“[jitter][red]DU BIST SCHWACH!![/red][/jitter]\nSCHMACH WURDE VERTEILT!”\n\nDer Dummy ist für einen Moment still und—\n\n“Wähle nächstes Mal eine niedrigere Einstellung. Hab einen schönen Tag.”"
+        "description": "„[jitter][red]DU BIST SCHWACH!![/red][/jitter]\nSCHMACH WURDE VERTEILT!“\n\nDer Dummy ist für einen Moment still und—\n\n„Wähle nächstes Mal eine niedrigere Einstellung. Hab einen schönen Tag.“"
       },
       {
         "id": "INITIAL",
-        "description": "Als du näher kommst, beginnt er zu rattern und zu zischen und strahlt hell auf!\n\n“[jitter]BZZZT![/jitter] ZEIT FÜRS TRAINING!!!\nDU HAST [blue]3 ZÜGE[/blue], UM MICH ZU BESIEGEN!\nWÄHLE EINE EINSTELLUNG ODER BEGEGNE [red]TÖDLICHER SCHMACH[/red].\nHier sind die Optionen:”\n\nNach der erschreckenden Nachricht liest der Dummy sorgfältig die ausführlichen Anweisungen vor.\n\nWas wählst du aus?",
+        "description": "Als du näher kommst, beginnt er zu rattern und zu zischen und strahlt hell auf!\n\n„[jitter]BZZZT![/jitter] ZEIT FÜRS TRAINING!!!\nDU HAST [blue]3 ZÜGE[/blue], UM MICH ZU BESIEGEN!\nWÄHLE EINE EINSTELLUNG ODER BEGEGNE [red]TÖDLICHER SCHMACH[/red].\nHier sind die Optionen:“\n\nNach der erschreckenden Nachricht liest der Dummy sorgfältig die ausführlichen Anweisungen vor.\n\nWas wählst du aus?",
         "options": [
           {
             "id": "SETTING_1",
@@ -384,7 +384,7 @@
       },
       {
         "id": "VICTORY",
-        "description": "“[jitter]DU HAST DAS TRAINING BESTANDEN![/jitter]\nDU BIST JETZT BEREIT, DIESE [gold]FABRIK[/gold] GEGEN EINDRINGLINGE ZU VERTEIDIGEN!! VERGISS NICHT, NACH TRAININGSEINHEITEN GENUG ZU TRINKEN!”"
+        "description": "„[jitter]DU HAST DAS TRAINING BESTANDEN![/jitter]\nDU BIST JETZT BEREIT, DIESE [gold]FABRIK[/gold] GEGEN EINDRINGLINGE ZU VERTEIDIGEN!! VERGISS NICHT, NACH TRAININGSEINHEITEN GENUG ZU TRINKEN!“"
       }
     ]
   },
@@ -393,7 +393,7 @@
     "name": "Hirn-Egel",
     "type": "Shared",
     "act": null,
-    "description": "[jitter]*bumms*[/jitter]\n\nEin scharfer Schmerz ist oben an deinem Kopf zu fühlen und ein Gedanke sticht dir in den Sinn.\n\n[purple][sine]“WISSEN TEILEN???”[/sine][/purple]\n\nDu bist unsicher, wie es weitergeht...",
+    "description": "[jitter]*bumms*[/jitter]\n\nEin scharfer Schmerz ist oben an deinem Kopf zu fühlen und ein Gedanke sticht dir in den Sinn.\n\n[purple][sine]„WISSEN TEILEN???“[/sine][/purple]\n\nDu bist unsicher, wie es weitergeht...",
     "preconditions": [
       "Act 1–2 only"
     ],
@@ -412,7 +412,7 @@
     "pages": [
       {
         "id": "INITIAL",
-        "description": "[jitter]*bumms*[/jitter]\n\nEin scharfer Schmerz ist oben an deinem Kopf zu fühlen und ein Gedanke sticht dir in den Sinn.\n\n[purple][sine]“WISSEN TEILEN???”[/sine][/purple]\n\nDu bist unsicher, wie es weitergeht...",
+        "description": "[jitter]*bumms*[/jitter]\n\nEin scharfer Schmerz ist oben an deinem Kopf zu fühlen und ein Gedanke sticht dir in den Sinn.\n\n[purple][sine]„WISSEN TEILEN???“[/sine][/purple]\n\nDu bist unsicher, wie es weitergeht...",
         "options": [
           {
             "id": "SHARE_KNOWLEDGE",
@@ -428,11 +428,11 @@
       },
       {
         "id": "RIP",
-        "description": "Gewaltsam [jitter]reißt du dir den Egel vom Kopf ab[/jitter] und schmeißt ihn weit weit weg!\n\nDa ist eine Stimme in deinem Kopf:\n[purple][sine]“NEEEEEEeEeeeiiiiIIIIiiin....”"
+        "description": "Gewaltsam [jitter]reißt du dir den Egel vom Kopf ab[/jitter] und schmeißt ihn weit weit weg!\n\nDa ist eine Stimme in deinem Kopf:\n[purple][sine]„NEEEEEEeEeeeiiiiIIIIiiin....“[/sine][/purple]"
       },
       {
         "id": "SHARE_KNOWLEDGE",
-        "description": "[purple][sine]“WELCH EIN OSTENTATIV SCHOLASTISCHER LABYRINTHARTIGER GEIST!\nEIN WAHRHAFTES FÜLLHORN ZEREBRALER KOST ZUM VERDAUEN!”[/sine][/purple].\n\nZufriedengestellt ploppt sich das Wesen aus und kriecht davon.\nDu bist [blue]baff[/blue]."
+        "description": "[purple][sine]„WELCH EIN OSTENTATIV SCHOLASTISCHER LABYRINTHARTIGER GEIST!\nEIN WAHRHAFTES FÜLLHORN ZEREBRALER KOST ZUM VERDAUEN!“[/sine][/purple].\n\nZufriedengestellt ploppt sich das Wesen aus und kriecht davon.\nDu bist [blue]baff[/blue]."
       }
     ]
   },
@@ -441,7 +441,7 @@
     "name": "Käferbezwinger",
     "type": "Event",
     "act": "Act 2 - Hive",
-    "description": "Du kämpfst gegen einen [jitter][red]Schwarm aggressiver Insekten[/red][/jitter]. Plötzlich bemerkst du einen [gold]Mächtigen Robusten Krieger[/gold], der die ganze Zeit neben dir gekämpft hat!\n\nDie Insekten wittern eine Niederlage und zerstreuen sich. Du drehst dich zu deinem Mitkämpfer.\n“Möchtest du Tipps haben, wie man dieses Ungeziefer ausrottet?”\n\nWie höflich. Du nickst und akzeptierst sein Angebot.",
+    "description": "Du kämpfst gegen einen [jitter][red]Schwarm aggressiver Insekten[/red][/jitter]. Plötzlich bemerkst du einen [gold]Mächtigen Robusten Krieger[/gold], der die ganze Zeit neben dir gekämpft hat!\n\nDie Insekten wittern eine Niederlage und zerstreuen sich. Du drehst dich zu deinem Mitkämpfer.\n„Möchtest du Tipps haben, wie man dieses Ungeziefer ausrottet?“\n\nWie höflich. Du nickst und akzeptierst sein Angebot.",
     "preconditions": null,
     "options": [
       {
@@ -462,11 +462,11 @@
       },
       {
         "id": "EXTERMINATION",
-        "description": "“Verstehe... du willst die [gold]Ausrottungstechnik[/gold] lernen. Sehr gut...”\n\nEr hält kurz inne und denkt nach, wie er dir dieses Manöver am besten präsentieren kann...\n\n[jitter]“DIE TECHNIK GEHT SO! AUFGEPASST!!”[/jitter]\nPrahlend hält er eine Dose [green]Insektengift[/green] hoch."
+        "description": "„Verstehe... du willst die [gold]Ausrottungstechnik[/gold] lernen. Sehr gut...“\n\nEr hält kurz inne und denkt nach, wie er dir dieses Manöver am besten präsentieren kann...\n\n[jitter]„DIE TECHNIK GEHT SO! AUFGEPASST!!“[/jitter]\nPrahlend hält er eine Dose [green]Insektengift[/green] hoch."
       },
       {
         "id": "INITIAL",
-        "description": "Du kämpfst gegen einen [jitter][red]Schwarm aggressiver Insekten[/red][/jitter]. Plötzlich bemerkst du einen [gold]Mächtigen Robusten Krieger[/gold], der die ganze Zeit neben dir gekämpft hat!\n\nDie Insekten wittern eine Niederlage und zerstreuen sich. Du drehst dich zu deinem Mitkämpfer.\n“Möchtest du Tipps haben, wie man dieses Ungeziefer ausrottet?”\n\nWie höflich. Du nickst und akzeptierst sein Angebot.",
+        "description": "Du kämpfst gegen einen [jitter][red]Schwarm aggressiver Insekten[/red][/jitter]. Plötzlich bemerkst du einen [gold]Mächtigen Robusten Krieger[/gold], der die ganze Zeit neben dir gekämpft hat!\n\nDie Insekten wittern eine Niederlage und zerstreuen sich. Du drehst dich zu deinem Mitkämpfer.\n„Möchtest du Tipps haben, wie man dieses Ungeziefer ausrottet?“\n\nWie höflich. Du nickst und akzeptierst sein Angebot.",
         "options": [
           {
             "id": "EXTERMINATION",
@@ -482,7 +482,7 @@
       },
       {
         "id": "SQUASH",
-        "description": "“Verstehe... du willst die [gold]Quetschtechnik[/gold] lernen. Sehr gut...”\n\nEr hält kurz inne und denkt nach, wie er dir dieses Manöver am besten präsentieren kann...\n\n[jitter]“DIE TECHNIK GEHT SO! AUFGEPASST!!”[/jitter]\nPrahlend tritt er auf einen riesigen Käfer."
+        "description": "„Verstehe... du willst die [gold]Quetschtechnik[/gold] lernen. Sehr gut...“\n\nEr hält kurz inne und denkt nach, wie er dir dieses Manöver am besten präsentieren kann...\n\n[jitter]„DIE TECHNIK GEHT SO! AUFGEPASST!!“[/jitter]\nAngeberisch tritt er auf einen riesigen Käfer."
       }
     ]
   },
@@ -697,7 +697,7 @@
     "name": "Kristallkugel",
     "type": "Shared",
     "act": null,
-    "description": "[sine][blue]“Ich habe vorhergesagt, dass du eintreten würdest...!”[/blue][/sine]\n\nEine [jitter]kratzige[/jitter] Stimme ruft zu dir, als du eine [purple]geheimnisvolle Hütte[/purple] betrittst.\n\n[sine][blue]“Dein Schicksal hat dich hierher gebracht. Wir müssen deine Zukunft und Geschicke enthüllen, damit du UNS ALLE RETTEN KANNST!!”[/blue][/sine]\n“Gut, hier sind die Optionen für eine [gold]Kristallkugel-Lesung[/gold]. Auf jeden Fall unterschreibe auch das hier,” sagt sie und holt Stift und Pergament hervor.",
+    "description": "[sine][blue]„Ich habe dein Eintreten vorhergesagt...!“[/blue][/sine]\n\nEine [jitter]kratzige[/jitter] Stimme ruft zu dir, als du eine [purple]geheimnisvolle Hütte[/purple] betrittst.\n\n[sine][blue]„Dein Schicksal hat dich hierher gebracht. Wir müssen deine Zukunft und Geschicke enthüllen, damit du UNS ALLE RETTEN KANNST!!“[/blue][/sine]\n„Gut, hier sind die Optionen für eine [gold]Kristallkugel-Lesung[/gold]. Unterschreibe auf jeden Fall auch das hier,“ sagt sie und holt Stift und Pergament hervor.",
     "preconditions": [
       "Requires 100+ gold",
       "Act 2+"
@@ -721,7 +721,7 @@
       },
       {
         "id": "INITIAL",
-        "description": "[sine][blue]“Ich habe vorhergesagt, dass du eintreten würdest...!”[/blue][/sine]\n\nEine [jitter]kratzige[/jitter] Stimme ruft zu dir, als du eine [purple]geheimnisvolle Hütte[/purple] betrittst.\n\n[sine][blue]“Dein Schicksal hat dich hierher gebracht. Wir müssen deine Zukunft und Geschicke enthüllen, damit du UNS ALLE RETTEN KANNST!!”[/blue][/sine]\n“Gut, hier sind die Optionen für eine [gold]Kristallkugel-Lesung[/gold]. Auf jeden Fall unterschreibe auch das hier,” sagt sie und holt Stift und Pergament hervor.",
+        "description": "[sine][blue]„Ich habe dein Eintreten vorhergesagt...!“[/blue][/sine]\n\nEine [jitter]kratzige[/jitter] Stimme ruft zu dir, als du eine [purple]geheimnisvolle Hütte[/purple] betrittst.\n\n[sine][blue]„Dein Schicksal hat dich hierher gebracht. Wir müssen deine Zukunft und Geschicke enthüllen, damit du UNS ALLE RETTEN KANNST!!“[/blue][/sine]\n„Gut, hier sind die Optionen für eine [gold]Kristallkugel-Lesung[/gold]. Unterschreibe auf jeden Fall auch das hier,“ sagt sie und holt Stift und Pergament hervor.",
         "options": [
           {
             "id": "UNCOVER_FUTURE",
@@ -760,7 +760,7 @@
         {
           "order": "0-0r",
           "speaker": "ancient",
-          "text": "Hier, nimmste einen dieser vergessenen Juwelen mit!"
+          "text": "Nimmste einen von den vergessenen Juwelen hier mit!"
         },
         {
           "order": "1-0r",
@@ -957,7 +957,7 @@
     "name": "Dichte Vegetation",
     "type": "Event",
     "act": "Act 1 - Overgrowth",
-    "description": "Du warst schon eine ganze Weile auf dem falschen Pfad, jetzt befindest du dich in einem dichten Dschungel aus [green]Farnen[/green], [green]Büschen[/green] und [green]Ranken[/green]. Vor allem [green]Ranken[/green]. Die Erschöpfung setzt ein und ein düsterer Gedanke kommt dir in den Sinn:\n\n[sine][purple]“Du bist verloren, unvorbereitet und die Unvermeidlichkeit des Todes nähert sich.”[/purple][/sine]\n\nWas machst du?",
+    "description": "Du warst schon eine ganze Weile auf dem falschen Pfad, jetzt befindest du dich in einem dichten Dschungel aus [green]Farnen[/green], [green]Büschen[/green] und [green]Ranken[/green]. Vor allem [green]Ranken[/green]. Die Erschöpfung setzt ein und ein düsterer Gedanke kommt dir in den Sinn:\n\n[sine][purple]„Du bist verloren, unvorbereitet und die Unvermeidlichkeit des Todes nähert sich.“[/purple][/sine]\n\nWas machst du?",
     "preconditions": null,
     "options": [
       {
@@ -974,7 +974,7 @@
     "pages": [
       {
         "id": "INITIAL",
-        "description": "Du warst schon eine ganze Weile auf dem falschen Pfad, jetzt befindest du dich in einem dichten Dschungel aus [green]Farnen[/green], [green]Büschen[/green] und [green]Ranken[/green]. Vor allem [green]Ranken[/green]. Die Erschöpfung setzt ein und ein düsterer Gedanke kommt dir in den Sinn:\n\n[sine][purple]“Du bist verloren, unvorbereitet und die Unvermeidlichkeit des Todes nähert sich.”[/purple][/sine]\n\nWas machst du?",
+        "description": "Du warst schon eine ganze Weile auf dem falschen Pfad, jetzt befindest du dich in einem dichten Dschungel aus [green]Farnen[/green], [green]Büschen[/green] und [green]Ranken[/green]. Vor allem [green]Ranken[/green]. Die Erschöpfung setzt ein und ein düsterer Gedanke kommt dir in den Sinn:\n\n[sine][purple]„Du bist verloren, unvorbereitet und die Unvermeidlichkeit des Todes nähert sich.“[/purple][/sine]\n\nWas machst du?",
         "options": [
           {
             "id": "TRUDGE_ON",
@@ -1034,7 +1034,7 @@
     "pages": [
       {
         "id": "DAUGHTER_OF_WIND",
-        "description": "[blue]“Du solltest froh sein, dass ich dich gewählt habe!”[/blue]\nVerkündet die Puppe triumphierend."
+        "description": "[blue]„Du solltest froh sein, dass ich dich gewählt habe!“[/blue]\nVerkündet die Puppe triumphierend."
       },
       {
         "id": "EXAMINE",
@@ -1042,7 +1042,7 @@
       },
       {
         "id": "FABLE",
-        "description": "Eine warme Stimme erfüllt glücklich deinen Kopf.\n[orange][sine]“Wir werden zusammen die wunderbarsten Geschichten entdecken!”[/sine][/orange]"
+        "description": "Eine warme Stimme erfüllt glücklich deinen Kopf.\n[orange][sine]„Wir werden zusammen die wunderbarsten Geschichten entdecken!“[/sine][/orange]"
       },
       {
         "id": "INITIAL",
@@ -1076,7 +1076,7 @@
           {
             "id": "TAKE",
             "title": "TAKE",
-            "description": "Erhalte [gold]a random Relic[/gold]."
+            "description": "Erhalte [gold]ein zufälliges Relikt[/gold]."
           }
         ]
       },
@@ -1091,7 +1091,7 @@
     "name": "Türen des Lichts und Dunkels",
     "type": "Event",
     "act": "Underdocks",
-    "description": "Eine Tür öffnet sich, wo Augenblicke zuvor noch keine war...\n\nDu trittst ein und stößt auf zwei schimmernde Eingänge sowie einen [gold]gut gekleideten Türsteher[/gold].\n“Endlich, ein Besucher! Bitte bitte! Wähle eine Tür, irgendeine Tür!”\n\n[blue]Sind wir noch im Spire? Wie ist dieser Ort so sauber?[/blue]",
+    "description": "Eine Tür öffnet sich, wo Augenblicke zuvor noch keine war...\n\nDu trittst ein und stößt auf zwei schimmernde Eingänge sowie einen [gold]gut gekleideten Türsteher[/gold].\n„Endlich, ein Besucher! Bitte bitte! Wähle eine Tür, irgendeine Tür!“\n\n[blue]Sind wir noch im Spire? Wie ist dieser Ort so sauber?[/blue]",
     "preconditions": null,
     "options": [
       {
@@ -1112,7 +1112,7 @@
       },
       {
         "id": "INITIAL",
-        "description": "Eine Tür öffnet sich, wo Augenblicke zuvor noch keine war...\n\nDu trittst ein und stößt auf zwei schimmernde Eingänge sowie einen [gold]gut gekleideten Türsteher[/gold].\n“Endlich, ein Besucher! Bitte bitte! Wähle eine Tür, irgendeine Tür!”\n\n[blue]Sind wir noch im Spire? Wie ist dieser Ort so sauber?[/blue]",
+        "description": "Eine Tür öffnet sich, wo Augenblicke zuvor noch keine war...\n\nDu trittst ein und stößt auf zwei schimmernde Eingänge sowie einen [gold]gut gekleideten Türsteher[/gold].\n„Endlich, ein Besucher! Bitte bitte! Wähle eine Tür, irgendeine Tür!“\n\n[blue]Sind wir noch im Spire? Wie ist dieser Ort so sauber?[/blue]",
         "options": [
           {
             "id": "LIGHT",
@@ -1183,7 +1183,7 @@
     "name": "Endloses Band",
     "type": "Event",
     "act": "Underdocks",
-    "description": "Du stampfst in eine Baracke mit einem hellen, aber verbogenen Schild, auf dem steht:\n[aqua]“ENDLOSES FESTMAHL – ZAHLE JE NACH HUNGER!”[/aqua]\n\nDrinnen bereitet ein [orange]gertenschlanker vielarmiger Koch[/orange] geschickt [green]Essenshappen[/green] vor, die er auf einem [sine]kurvigen chitinösen Band[/sine] platziert.\n\nEiner der Arme des Koches weist auf ein Schild:\nJe [blue]40[/blue] [gold]Gold[/gold]",
+    "description": "Du stampfst in eine Baracke mit einem hellen, aber verbogenen Schild, auf dem steht:\n[aqua]„ENDLOSES FESTMAHL – ZAHLE JE NACH HUNGER!“[/aqua]\n\nDrinnen bereitet ein [orange]gertenschlanker vielarmiger Koch[/orange] geschickt [green]Essenshappen[/green] vor, die er auf einem [sine]kurvigen chitinösen Band[/sine] platziert.\n\nEiner der Arme des Koches weist auf ein Schild:\nJe [blue]40[/blue] [gold]Gold[/gold]",
     "preconditions": [
       "Requires 120+ gold"
     ],
@@ -1259,7 +1259,7 @@
       },
       {
         "id": "INITIAL",
-        "description": "Du stampfst in eine Baracke mit einem hellen, aber verbogenen Schild, auf dem steht:\n[aqua]“ENDLOSES FESTMAHL – ZAHLE JE NACH HUNGER!”[/aqua]\n\nDrinnen bereitet ein [orange]gertenschlanker vielarmiger Koch[/orange] geschickt [green]Essenshappen[/green] vor, die er auf einem [sine]kurvigen chitinösen Band[/sine] platziert.\n\nEiner der Arme des Koches weist auf ein Schild:\nJe [blue]40[/blue] [gold]Gold[/gold]",
+        "description": "Du stampfst in eine Baracke mit einem hellen, aber verbogenen Schild, auf dem steht:\n[aqua]„ENDLOSES FESTMAHL – ZAHLE JE NACH HUNGER!“[/aqua]\n\nDrinnen bereitet ein [orange]gertenschlanker vielarmiger Koch[/orange] geschickt [green]Essenshappen[/green] vor, die er auf einem [sine]kurvigen chitinösen Band[/sine] platziert.\n\nEiner der Arme des Koches weist auf ein Schild:\nJe [blue]40[/blue] [gold]Gold[/gold]",
         "options": [
           {
             "id": "OBSERVE_CHEF",
@@ -1283,7 +1283,7 @@
     "name": "Der Händler???",
     "type": "Shared",
     "act": null,
-    "description": "A suspicious merchant offers 6 fake relics (drawn from a pool of 9) at 42–58 gold each. Throwing a [gold]Foul Potion[/gold] starts a fight against The Merchant??? (165 HP). Winning rewards [gold]The Merchant's Rug???[/gold] plus all unsold relics.",
+    "description": "Ein zwielichtiger Händler bietet 6 falsche Relikte (aus einem Pool von 9) für je 42–58 Gold an. Der Wurf eines [gold]Foul Potion[/gold] startet einen Kampf gegen The Merchant??? (165 LP). Ein Sieg belohnt [gold]The Merchant's Rug???[/gold] sowie alle unverkauften Relikte.",
     "preconditions": [
       "Act 2+",
       "Single player only",
@@ -1365,11 +1365,11 @@
     "pages": [
       {
         "id": "ACCEPT",
-        "description": "Du legst deine Hand auf das Grab und flüsterst...\n\n[sine]“Steige mit mir hinauf...”[/sine]\n\nDaraufhin ziehen die Flammen aus dem Grab hinaus und vereinen sich zu einer [aqua]brennenden Seele[/aqua], die loyal um dich herum schwebt.\nSie weiß, was du bist und möchte dich zu deinem letzten Ziel begleiten."
+        "description": "Du legst deine Hand auf das Grab und flüsterst...\n\n[sine]„Steige mit mir hinauf...“[/sine]\n\nDaraufhin ziehen die Flammen aus dem Grab hinaus und vereinen sich zu einer [aqua]brennenden Seele[/aqua], die loyal um dich herum schwebt.\nSie weiß, was du bist und möchte dich zu deinem letzten Ziel begleiten."
       },
       {
         "id": "CONFRONT",
-        "description": "Du legst deine Hand auf das Grab und flüsterst...\n\n[sine]“Dein Kampf ist vorbei...”[/sine]\n\nDaraufhin fährt die Seele in deine hinein und ein [jitter][aqua]SEELENKAMPF[/aqua][/jitter] folgt!\nBeeindruckt von den zahlreichen Schlachten, die du durchgestanden hast, gibt sie auf."
+        "description": "Du legst deine Hand auf das Grab und flüsterst...\n\n[sine]„Dein Kampf ist vorbei...“[/sine]\n\nDaraufhin fährt die Seele in deine hinein und ein [jitter][aqua]SEELENKAMPF[/aqua][/jitter] folgt!\nBeeindruckt von den zahlreichen Schlachten, die du durchgestanden hast, gibt sie auf."
       },
       {
         "id": "INITIAL",
@@ -1440,7 +1440,7 @@
       },
       {
         "id": "MEDLEY",
-        "description": "Die [green]Pilzmischung[/green] schaut besonders appetitlich aus, also entscheidest du dich dafür.\n\n[red][jitter]“MEINE PILZE!!”[/jitter][/red]\n\nDie Abenteurerin, vermeintlich tot, greift dich an! Du schlägst sie bewusstlos und genießt den Rest des feinen Mahles mit einer Würze von Schuld."
+        "description": "Die [green]Pilzmischung[/green] schaut besonders appetitlich aus, also entscheidest du dich dafür.\n\n[red][jitter]„MEINE PILZE!!“[/jitter][/red]\n\nDie Abenteurerin, vermeintlich tot, greift dich an! Du schlägst sie bewusstlos und genießt mit einer Prise Schuld den Rest des feinen Mahles."
       }
     ]
   },
@@ -1902,10 +1902,12 @@
       "SMALL_CAPSULE",
       "STONE_HUMIDIFIER",
       "CURSED_PEARL",
+      "DOWSING_ROD",
       "HEFTY_TABLET",
       "LARGE_CAPSULE",
       "LEAFY_POULTICE",
       "NEOWS_BONES",
+      "NEOWS_SACRIFICE",
       "PRECARIOUS_SHEARS",
       "SILKEN_TRESS",
       "SILVER_CRUCIBLE"
@@ -2261,10 +2263,10 @@
     "relics": [
       "ELECTRIC_SHRYMP",
       "GLASS_EYE",
-      "SAND_CASTLE",
       "ALCHEMICAL_COFFER",
       "DRIFTWOOD",
       "RADIANT_PEARL",
+      "SAND_CASTLE",
       "SEA_GLASS",
       "PRISMATIC_GEM",
       "TOUCH_OF_OROBAS",
@@ -2542,7 +2544,7 @@
     "name": "Ranwid der Älteste",
     "type": "Shared",
     "act": null,
-    "description": "Die [purple]älteste Person, die du je gesehen hast[/purple], kommt dir entgegen.\n[sine]“Wir treffen uns ein weiteres Mal... ich bin's, Ranwid!”[/sine]\n\nDu kennst diesen Mann nicht.",
+    "description": "Dir kommt die [purple]älteste Person, die du je gesehen hast[/purple] entgegen.\n[sine]„Wir treffen uns ein weiteres Mal... ich bin's, Ranwid!“[/sine]\n\nDu kennst diesen Mann nicht.",
     "preconditions": [
       "Act 2+",
       "Requires at least one potion"
@@ -2577,11 +2579,11 @@
     "pages": [
       {
         "id": "GOLD",
-        "description": "[sine]“Groß.. artig...”[/sine]\n\nMurmelt Ranwid, während er auf das [gold]Gold[/gold] beißt."
+        "description": "[sine]„Groß.. artig...“[/sine]\n\nMurmelt Ranwid, während er das [gold]Gold[/gold] kaut."
       },
       {
         "id": "INITIAL",
-        "description": "Die [purple]älteste Person, die du je gesehen hast[/purple], kommt dir entgegen.\n[sine]“Wir treffen uns ein weiteres Mal... ich bin's, Ranwid!”[/sine]\n\nDu kennst diesen Mann nicht.",
+        "description": "Dir kommt die [purple]älteste Person, die du je gesehen hast[/purple] entgegen.\n[sine]„Wir treffen uns ein weiteres Mal... ich bin's, Ranwid!“[/sine]\n\nDu kennst diesen Mann nicht.",
         "options": [
           {
             "id": "POTION",
@@ -2612,11 +2614,11 @@
       },
       {
         "id": "POTION",
-        "description": "“[sine]Vorzüglich...”[/sine]\n\n[sine][blue]Gluck gluck gluck[/blue][/sine]\n\nEr trinkt die Flasche mit [gold]Potion[/gold] in einem Zug aus."
+        "description": "„[sine]Vorzüglich...“[/sine]\n\n[sine][blue]Gluck gluck gluck[/blue][/sine]\n\nEr trinkt die Flasche mit [gold]Potion[/gold] in einem Zug aus."
       },
       {
         "id": "RELIC",
-        "description": "[sine]“Musterhaft...”[/sine]\n\nRanwid betrachtet das Relikt für einige Minuten geflissentlich...\n\nDann isst er [gold]Relic[/gold] auf."
+        "description": "[sine]„Musterhaft...“[/sine]\n\nRanwid betrachtet das Relikt für einige Minuten geflissentlich...\n\nDann isst er [gold]Relic[/gold] auf."
       }
     ]
   },
@@ -2671,7 +2673,7 @@
     "name": "Relikt-Händler",
     "type": "Shared",
     "act": null,
-    "description": "Du gehst um eine Ecke und plötzlich steht da einfach eine düstere Figur. Er dreht sich dir entgegen.\n\n“Willkommen! Was tauschst du ein?”\nFragt die Figur, indem sie den Mantel öffnet und eine Menge [sine][purple]ominöser Waren[/purple][/sine] präsentiert.",
+    "description": "Du gehst um eine Ecke und plötzlich steht da einfach eine düstere Figur. Er dreht sich dir entgegen.\n\n„Willkommen! Was tauschst du ein?“\nFragt die Figur, indem sie den Mantel öffnet und eine Menge [sine][purple]ominöser Waren[/purple][/sine] präsentiert.",
     "preconditions": [
       "Act 2+",
       "Requires 5+ tradeable relics"
@@ -2680,42 +2682,42 @@
       {
         "id": "TOP",
         "title": "Das obere nehmen",
-        "description": "Tausche [gold]one of your Relics[/gold] gegen [gold]a random Relic[/gold]."
+        "description": "Tausche [gold]eines deiner Relikte[/gold] gegen [gold]ein zufälliges Relikt[/gold]."
       },
       {
         "id": "MIDDLE",
         "title": "Das mittlere nehmen",
-        "description": "Tausche [gold]one of your Relics[/gold] gegen [gold]a random Relic[/gold]."
+        "description": "Tausche [gold]eines deiner Relikte[/gold] gegen [gold]ein zufälliges Relikt[/gold]."
       },
       {
         "id": "BOTTOM",
         "title": "Das untere nehmen",
-        "description": "Tausche [gold]one of your Relics[/gold] gegen [gold]a random Relic[/gold]."
+        "description": "Tausche [gold]eines deiner Relikte[/gold] gegen [gold]ein zufälliges Relikt[/gold]."
       }
     ],
     "pages": [
       {
         "id": "DONE",
-        "description": "“Hehehe Hee... Dankeschön!”"
+        "description": "„Hehehe Hee... Dankeschön!“"
       },
       {
         "id": "INITIAL",
-        "description": "Du gehst um eine Ecke und plötzlich steht da einfach eine düstere Figur. Er dreht sich dir entgegen.\n\n“Willkommen! Was tauschst du ein?”\nFragt die Figur, indem sie den Mantel öffnet und eine Menge [sine][purple]ominöser Waren[/purple][/sine] präsentiert.",
+        "description": "Du gehst um eine Ecke und plötzlich steht da einfach eine düstere Figur. Er dreht sich dir entgegen.\n\n„Willkommen! Was tauschst du ein?“\nFragt die Figur, indem sie den Mantel öffnet und eine Menge [sine][purple]ominöser Waren[/purple][/sine] präsentiert.",
         "options": [
           {
             "id": "TOP",
             "title": "Das obere nehmen",
-            "description": "Tausche [gold]one of your Relics[/gold] gegen [gold]a random Relic[/gold]."
+            "description": "Tausche [gold]eines deiner Relikte[/gold] gegen [gold]ein zufälliges Relikt[/gold]."
           },
           {
             "id": "MIDDLE",
             "title": "Das mittlere nehmen",
-            "description": "Tausche [gold]one of your Relics[/gold] gegen [gold]a random Relic[/gold]."
+            "description": "Tausche [gold]eines deiner Relikte[/gold] gegen [gold]ein zufälliges Relikt[/gold]."
           },
           {
             "id": "BOTTOM",
             "title": "Das untere nehmen",
-            "description": "Tausche [gold]one of your Relics[/gold] gegen [gold]a random Relic[/gold]."
+            "description": "Tausche [gold]eines deiner Relikte[/gold] gegen [gold]ein zufälliges Relikt[/gold]."
           }
         ]
       }
@@ -2774,7 +2776,7 @@
     "name": "Die Ritter der Teerunde",
     "type": "Event",
     "act": "Act 3 - Glory",
-    "description": "Du findest eine [orange]Einladung[/orange] an einen [blue]“Sir Galalot”[/blue] zu einer Teerunde und entscheidest dich, an seiner Stelle zu erscheinen.\n\nDu betrittst einen unscheinbaren Rundbau und befindest dich mitten zwischen [gold]Kommandeuren[/gold], [aqua]Generälen[/aqua], [red]Bandenchefs[/red] und [blue]Söldnern[/blue], die... Tee trinken?\nDer gigantische Ritter, der eine [gold]goldene Krone[/gold] trägt, spricht.\n\n[jitter]“Kommest du zu spät zum [b]Tee[/b]?!”[/jitter]",
+    "description": "Du findest eine [orange]Einladung[/orange] an einen [blue]„Sir Galalot“[/blue] zu einer Teerunde und entscheidest dich, an seiner Stelle zu erscheinen.\n\nDu betrittst einen unscheinbaren Rundbau und befindest dich mitten zwischen [gold]Kommandeuren[/gold], [aqua]Generälen[/aqua], [red]Bandenchefs[/red] und [blue]Söldnern[/blue], die... Tee trinken?\nDer gigantische Ritter, der eine [gold]goldene Krone[/gold] trägt, spricht.\n\n[jitter]„Kommest du zu spät zum [b]Tee[/b]?!“[/jitter]",
     "preconditions": [
       "Requires 12+ HP"
     ],
@@ -2793,15 +2795,15 @@
     "pages": [
       {
         "id": "CONTINUE_FIGHT",
-        "description": "Die Gäste starren mit großen Augen auf die Leiche von einem aus ihrer Tafelrunde... und [jitter]brechen in Applaus aus!?[/jitter]\n\n“Wir haben uns gefragt, wie wir [red]Sir Wygore[/red] loswerden könnten, wunderbare Arbeit!”\n\nSie schütten deinen [green]vergifteten Tee[/green] aus und ihr diskutiert die ganze Nacht [orange]Taktiken[/orange] und [purple]Geheimnisse[/purple]. Eine äußerst famose Teerunde."
+        "description": "Die Gäste starren mit großen Augen auf die Leiche eines ihrer Kumpanen... dann [jitter]brechen sie in Applaus aus!?[/jitter]\n\n„Wir hatten uns gefragt, wie wir [red]Sir Wygore[/red] loswerden können, wunderbare Arbeit!“\n\nSie schütten deinen [green]vergifteten Tee[/green] aus und ihr diskutiert die ganze Nacht [orange]Taktiken[/orange] und [purple]Geheimnisse[/purple]. Eine äußerst famose Teerunde."
       },
       {
         "id": "ENJOY_TEA",
-        "description": "Du nimmst eine Teetasse und trinkst sie in einem Zug aus.\nSie ist [jitter][red]BRÜHHEIẞ[/red][/jitter], aber du änderst deinen Ausdruck nicht. Die Gäste sind verblüfft von deinem fehlenden Selbstschutz.\n\n“Wir meinten es nicht böse, [blue]Sir Galalot[/blue]. Unsere aufrichtigsten Entschuldigungen.”\n\nDu genießt etwas Tee mit Pfannkuchen, ohne das [green]Gift[/green] zu bemerken, das du dir eingeflößt hast."
+        "description": "Du nimmst eine Teetasse und trinkst sie in einem Zug aus.\nSie ist [jitter][red]BRÜHHEIẞ[/red][/jitter], aber du änderst deinen Ausdruck nicht. Die Gäste sind verblüfft von deinem fehlenden Selbstschutz.\n\n„Wir meinten es nicht böse, [blue]Sir Galalot[/blue]. Unsere aufrichtigsten Entschuldigungen.“\n\nDu genießt etwas Tee mit Pfannkuchen, ohne das [green]Gift[/green] zu bemerken, das du dir eingeflößt hast."
       },
       {
         "id": "INITIAL",
-        "description": "Du findest eine [orange]Einladung[/orange] an einen [blue]“Sir Galalot”[/blue] zu einer Teerunde und entscheidest dich, an seiner Stelle zu erscheinen.\n\nDu betrittst einen unscheinbaren Rundbau und befindest dich mitten zwischen [gold]Kommandeuren[/gold], [aqua]Generälen[/aqua], [red]Bandenchefs[/red] und [blue]Söldnern[/blue], die... Tee trinken?\nDer gigantische Ritter, der eine [gold]goldene Krone[/gold] trägt, spricht.\n\n[jitter]“Kommest du zu spät zum [b]Tee[/b]?!”[/jitter]",
+        "description": "Du findest eine [orange]Einladung[/orange] an einen [blue]„Sir Galalot“[/blue] zu einer Teerunde und entscheidest dich, an seiner Stelle zu erscheinen.\n\nDu betrittst einen unscheinbaren Rundbau und befindest dich mitten zwischen [gold]Kommandeuren[/gold], [aqua]Generälen[/aqua], [red]Bandenchefs[/red] und [blue]Söldnern[/blue], die... Tee trinken?\nDer gigantische Ritter, der eine [gold]goldene Krone[/gold] trägt, spricht.\n\n[jitter]„Kommest du zu spät zum [b]Tee[/b]?!“[/jitter]",
         "options": [
           {
             "id": "ENJOY_TEA",
@@ -2817,7 +2819,7 @@
       },
       {
         "id": "NOPE",
-        "description": "Sie richten alle ihre Waffen auf dich–\n\n“Zahle wenigstens den [gold]Eintrittspreis[/gold], wenn dir dein Leben lieb ist.”"
+        "description": "Sie richten alle ihre Waffen auf dich–\n\n„Zahle wenigstens den [gold]Eintrittspreis[/gold], wenn dir dein Leben lieb ist.“"
       },
       {
         "id": "PICK_FIGHT",
@@ -2883,7 +2885,7 @@
     "name": "Selbsthilfebuch",
     "type": "Shared",
     "act": null,
-    "description": "Auf dem Boden liegt ein Wälzer:\n“Die 3 besten Wege, den Spire zu erobern”\n\nDas Buch ist [red]voller verkrustetem Blut[/red], daher ist dir das Manuskript äußerst suspekt.\n\nWirst du es lesen?",
+    "description": "Auf dem Boden liegt ein Wälzer:\n„Die 3 besten Wege, den Spire zu erobern“\n\nDas Buch ist [red]voller verkrustetem Blut[/red], daher ist dir das Manuskript äußerst suspekt.\n\nWirst du es lesen?",
     "preconditions": null,
     "options": [
       {
@@ -2925,7 +2927,7 @@
     "pages": [
       {
         "id": "INITIAL",
-        "description": "Auf dem Boden liegt ein Wälzer:\n“Die 3 besten Wege, den Spire zu erobern”\n\nDas Buch ist [red]voller verkrustetem Blut[/red], daher ist dir das Manuskript äußerst suspekt.\n\nWirst du es lesen?",
+        "description": "Auf dem Boden liegt ein Wälzer:\n„Die 3 besten Wege, den Spire zu erobern“\n\nDas Buch ist [red]voller verkrustetem Blut[/red], daher ist dir das Manuskript äußerst suspekt.\n\nWirst du es lesen?",
         "options": [
           {
             "id": "READ_THE_BACK",
@@ -2970,15 +2972,15 @@
       },
       {
         "id": "READ_ENTIRE_BOOK",
-        "description": "Welch fesselnde Lektüre! Manche ausgewählte Zitate bleiben dir noch im Kopf:\n“Vermeide große Monster.”\n“Nimm jede Karte.”\n“Blocken ist für Feiglinge.”\n\nDeine Hände sind mit [red]Blut[/red] überzogen."
+        "description": "Welch fesselnde Lektüre! Manche ausgewählte Zitate bleiben dir noch im Kopf:\n„Vermeide große Monster.“\n„Nimm jede Karte.“\n„Blocken ist für Feiglinge.“\n\nDeine Hände sind mit [red]Blut[/red] überzogen."
       },
       {
         "id": "READ_PASSAGE",
-        "description": "Du schlägst irgendeine Seite auf:\n“Verteidigung 101: Lass dich nicht treffen!”\n\nDu liest den Rest des Abschnittes und er ist überraschend erhellend. Du lässt diese Ideen in deine Kampftaktik einfließen."
+        "description": "Du schlägst irgendeine Seite auf:\n„Verteidigung 101: Lass dich nicht treffen!“\n\nDu liest den Rest des Abschnittes und er ist überraschend erhellend. Du lässt diese Ideen in deine Kampftaktik einfließen."
       },
       {
         "id": "READ_THE_BACK",
-        "description": "Du drehst das Buch um und liest die Zusammenfassung:\n[blue]“Kritiker und Kultisten sind sich einig, dass scharfe und spitze Waffen der beste Weg sind, Schaden zuzufügen!”[/blue]\n\nAuf der Buchrückseite klebt ein Preisschild – durchgestrichen und mit einem deutlich reduzierten Preis übermalt."
+        "description": "Du drehst das Buch um und liest die Zusammenfassung:\n[blue]„Kritiker und Kultisten sind sich einig, dass scharfe und spitze Waffen der beste Weg sind, Schaden zuzufügen!“[/blue]\n\nAuf der Buchrückseite klebt ein Preisschild – durchgestrichen und mit einem deutlich reduzierten Preis übermalt."
       }
     ]
   },
@@ -2996,7 +2998,7 @@
       {
         "id": "OVERCOME",
         "title": "Überwinden",
-        "description": "[red]a random Card[/red] wird aus deinem [gold]Deck[/gold] entfernt."
+        "description": "[red]eine zufällige Karte[/red] wird aus deinem [gold]Deck[/gold] entfernt."
       },
       {
         "id": "HOLD_ON_0",
@@ -3100,7 +3102,7 @@
           {
             "id": "OVERCOME",
             "title": "Überwinden",
-            "description": "[red]a random Card[/red] wird aus deinem [gold]Deck[/gold] entfernt."
+            "description": "[red]eine zufällige Karte[/red] wird aus deinem [gold]Deck[/gold] entfernt."
           },
           {
             "id": "HOLD_ON_0",
@@ -3157,7 +3159,7 @@
       },
       {
         "id": "OBSERVE",
-        "description": "[sine][purple]...ah–   so schön.....\nSo dreht er sich... dreht sich weiter rundherum. Ja...\nOh! War das..... ein kleiner Spritzer...?\n....natürlich. Du hast auch etwas Spaß verdient,[/purple] [aqua]Frau Spirale[/aqua][purple]... haha...\n... .......   ...[/purple][/sine]\n\nJetzt ist es Zeit, zu gehen.\nDu flüsterst etwas zum Abschied.\n\n[gold]“Danke, Spirale.”[/gold]"
+        "description": "[sine][purple]...ah–   so schön.....\nSo dreht er sich... dreht sich weiter rundherum. Ja...\nOh! War das..... ein kleiner Spritzer...?\n....natürlich. Du hast auch etwas Spaß verdient,[/purple] [aqua]Frau Spirale[/aqua][purple]... haha...\n... .......   ...[/purple][/sine]\n\nJetzt ist es Zeit, zu gehen.\nDu flüsterst etwas zum Abschied.\n\n[gold]„Danke, Spirale.“[/gold]"
       }
     ]
   },
@@ -3221,7 +3223,7 @@
       {
         "id": "LIFT",
         "title": "Trinken und Anheben",
-        "description": "Verliere [red]a random Potion[/red]. Erhalte [blue]10[/blue] max. TP."
+        "description": "Verliere [red]ein zufälliger Trank[/red]. Erhalte [blue]10[/blue] max. TP."
       },
       {
         "id": "LIFT_LOCKED",
@@ -3247,7 +3249,7 @@
           {
             "id": "LIFT",
             "title": "Trinken und Anheben",
-            "description": "Verliere [red]a random Potion[/red]. Erhalte [blue]10[/blue] max. TP."
+            "description": "Verliere [red]ein zufälliger Trank[/red]. Erhalte [blue]10[/blue] max. TP."
           },
           {
             "id": "LIFT_LOCKED",
@@ -3268,7 +3270,7 @@
       },
       {
         "id": "LIFT",
-        "description": "Du benutzt deinen [gold]a random Potion[/gold] und [jitter]hebst mit all deiner Macht[/jitter]!!\n\nNichts passiert."
+        "description": "Du benutzt deinen [gold]ein zufälliger Trank[/gold] und [jitter]hebst mit all deiner Macht[/jitter]!!\n\nNichts passiert."
       },
       {
         "id": "PUSH",
@@ -3459,7 +3461,7 @@
       },
       {
         "id": "DECIPHER_1",
-        "description": "Als du anfängst, die Tafel zu entziffern, spricht das [blue]Sippen-Mantra[/blue] zu dir.\n\n“Die [gold]Wahrheit[/gold] ist alles...”",
+        "description": "Als du anfängst, die Tafel zu entziffern, spricht das [blue]Sippen-Mantra[/blue] zu dir.\n\n„Die [gold]Wahrheit[/gold] ist alles...“",
         "options": [
           {
             "id": "DECIPHER",
@@ -3503,7 +3505,7 @@
       },
       {
         "id": "DECIPHER_5",
-        "description": "[red][jitter]Alles wurde bezahlt[/jitter][/red], um das [gold]Letzte Wort[/gold] zu entziffern und dir wird schwarz vor Augen...\nAls du wieder zu dir kommst, bemerkst du, dass etwas in den Boden gekratzt ist.\n\n[b]“Luft”[/b]"
+        "description": "[red][jitter]Alles wurde bezahlt[/jitter][/red], um das [gold]Letzte Wort[/gold] zu entziffern und dir wird schwarz vor Augen...\nAls du wieder zu dir kommst, bemerkst du, dass etwas in den Boden gekratzt ist.\n\n[b]„Luft“[/b]"
       },
       {
         "id": "GIVE_UP",
@@ -3771,7 +3773,7 @@
     "pages": [
       {
         "id": "DONE",
-        "description": "Der [blue]Teemeister[/blue] bestätigt deinen Wunsch und beginnt.\n\n[gold]1.[/gold] Aus einer mit Kohle gefüllten Karaffe wird Wasser in einen Teekessel geschöpft.\n[gold]2.[/gold] Der Kessel wird mittels einer [purple]violetten Flamme[/purple] erhitzt.\n[gold]3.[/gold] Eine Schippe Tee kommt in den Kessel, bevor er kocht.\n[gold]4.[/gold] Die Hitze ist aus und eine Reihe rhythmischer Schläge misst die Zeit.\n[gold]5.[/gold] Der Kessel wird in die Höhe gehoben und präzise in eine winzige Tasse gegossen.\n\n[green][sine]“Tee ist kredenzt.”[/sine][/green]"
+        "description": "Der [blue]Teemeister[/blue] bestätigt deinen Wunsch und beginnt.\n\n[gold]1.[/gold] Aus einer mit Kohle gefüllten Karaffe wird Wasser in einen Teekessel geschöpft.\n[gold]2.[/gold] Der Kessel wird mittels einer [purple]violetten Flamme[/purple] erhitzt.\n[gold]3.[/gold] Eine Schippe Tee kommt in den Kessel, bevor er kocht.\n[gold]4.[/gold] Die Hitze ist aus und eine Reihe rhythmischer Schläge misst die Zeit.\n[gold]5.[/gold] Der Kessel wird in die Höhe gehoben und präzise in eine winzige Tasse gegossen.\n\n[green][sine]„Tee ist kredenzt.“[/sine][/green]"
       },
       {
         "id": "INITIAL",
@@ -4310,7 +4312,7 @@
     "name": "Der Laternenschlüssel",
     "type": "Event",
     "act": "Act 2 - Hive",
-    "description": "Du findest einen schwach leuchtenden Schlüssel und möchtest ihn aufheben.\n\n“Diesen Schlüssel hab ich überall gesucht! Nun, wenn es dir nichts ausmacht...”\n\nDiese Person sieht nicht nach einem guten Umgang aus, aber vielleicht solltest du nicht so schnell urteilen.",
+    "description": "Du findest einen schwach leuchtenden Schlüssel und möchtest ihn aufheben.\n\n„Diesen Schlüssel hab ich überall gesucht! Nun, wenn es dir nichts ausmacht...“\n\nDiese Person sieht nach einem schlechten Umgang aus, aber vielleicht ist es nicht gut, verurteilend zu sein.",
     "preconditions": null,
     "options": [
       {
@@ -4338,7 +4340,7 @@
       },
       {
         "id": "INITIAL",
-        "description": "Du findest einen schwach leuchtenden Schlüssel und möchtest ihn aufheben.\n\n“Diesen Schlüssel hab ich überall gesucht! Nun, wenn es dir nichts ausmacht...”\n\nDiese Person sieht nicht nach einem guten Umgang aus, aber vielleicht solltest du nicht so schnell urteilen.",
+        "description": "Du findest einen schwach leuchtenden Schlüssel und möchtest ihn aufheben.\n\n„Diesen Schlüssel hab ich überall gesucht! Nun, wenn es dir nichts ausmacht...“\n\nDiese Person sieht nach einem schlechten Umgang aus, aber vielleicht ist es nicht gut, verurteilend zu sein.",
         "options": [
           {
             "id": "RETURN_THE_KEY",
@@ -4419,7 +4421,7 @@
     "name": "Dies oder Das?",
     "type": "Shared",
     "act": null,
-    "description": "Plötzlich ragen Arme aus einem nahen Loch hervor, die einen [gold]verdächtigen Sack mit Reichtümern[/gold] und ein eindeutig [purple]verfluchtes Relikt[/purple] halten.\n\n[jitter][blue]“Dies... oder Das?”[/blue][/jitter]\nflüstert eine aufgekratzte Stimme von unten.",
+    "description": "Plötzlich springen Arme aus einem nahen Loch hervor, die einen [gold]verdächtigen Sack mit Reichtümern[/gold] und ein eindeutig [purple]verfluchtes Relikt[/purple] halten.\n\n[jitter][blue]„Dies... oder Das?“[/blue][/jitter]\nflüstert eine aufgekratzte Stimme von unten.",
     "preconditions": null,
     "options": [
       {
@@ -4436,7 +4438,7 @@
     "pages": [
       {
         "id": "INITIAL",
-        "description": "Plötzlich ragen Arme aus einem nahen Loch hervor, die einen [gold]verdächtigen Sack mit Reichtümern[/gold] und ein eindeutig [purple]verfluchtes Relikt[/purple] halten.\n\n[jitter][blue]“Dies... oder Das?”[/blue][/jitter]\nflüstert eine aufgekratzte Stimme von unten.",
+        "description": "Plötzlich springen Arme aus einem nahen Loch hervor, die einen [gold]verdächtigen Sack mit Reichtümern[/gold] und ein eindeutig [purple]verfluchtes Relikt[/purple] halten.\n\n[jitter][blue]„Dies... oder Das?“[/blue][/jitter]\nflüstert eine aufgekratzte Stimme von unten.",
         "options": [
           {
             "id": "PLAIN",
@@ -4465,7 +4467,7 @@
     "name": "Bastelstunde",
     "type": "Event",
     "act": "Act 3 - Glory",
-    "description": "Als du ein [red][sine]endloses Meer von Leichen[/sine][/red] durchquerst, findest du eine [orange]verrückte Forscherin[/orange], die nach diversem verwertbarem Schrott sucht.\n\n“Ja. Hey, hallo! Du siehst aus wie ein guter Kämpfer... Ich brauche eine Testperson für mein nächstes [green]Gräuelgerät[/green]! Wie wär's?”",
+    "description": "Als du ein [red][sine]endloses Meer von Leichen[/sine][/red] durchquerst, findest du eine [orange]verrückte Forscherin[/orange], die nach diversem verwertbarem Schrott sucht.\n\n„So, so. Hey, hallo! Du siehst aus wie ein guter Kämpfer... Ich brauche eine Testperson für mein nächstes [green]Gräuelgerät[/green]! Wie wär's?“",
     "preconditions": null,
     "options": [
       {
@@ -4477,7 +4479,7 @@
     "pages": [
       {
         "id": "CHOOSE_CARD_TYPE",
-        "description": "“Welche Art Werkzeug wird dir helfen, [red][jitter]alle zu töten[/jitter][/red]?”",
+        "description": "„Welche Art Werkzeug wird dir helfen, [red][jitter]alle zu töten[/jitter][/red]?“",
         "options": [
           {
             "id": "ATTACK",
@@ -4498,7 +4500,7 @@
       },
       {
         "id": "CHOOSE_RIDER",
-        "description": "“Großartige Wahl! Was soll sie jetzt [sine]TUN[/sine]?”\nDie [orange]Forscherin[/orange] reibt sich vor Freude die Hände.",
+        "description": "„Großartige Wahl! Was soll sie jetzt [sine]TUN[/sine]?“\nDie [orange]Forscherin[/orange] reibt sich vor Freude die Hände.",
         "options": [
           {
             "id": "SAPPING",
@@ -4549,11 +4551,11 @@
       },
       {
         "id": "DONE",
-        "description": "“Puh! Alles fertig. Das ist für dich! Und jetzt geh nach da draußen und [red][jitter]schlachte[/jitter][/red]!!”\n\nDu konntest nicht ahnen, dass diese [orange]Forscherin[/orange] weitermachte und hunderte Waffen erschuf, was zu einigen Tausend Toden im Spire führte."
+        "description": "„Puh! Alles fertig. Das ist für dich! Jetzt geh los und [red][jitter]schlachte[/jitter][/red]!!“\n\nDu konntest nicht ahnen, dass diese [orange]Forscherin[/orange] weitermachte und hunderte Waffen erschuf, was zu einigen Tausend Toden im Spire führte."
       },
       {
         "id": "INITIAL",
-        "description": "Als du ein [red][sine]endloses Meer von Leichen[/sine][/red] durchquerst, findest du eine [orange]verrückte Forscherin[/orange], die nach diversem verwertbarem Schrott sucht.\n\n“Ja. Hey, hallo! Du siehst aus wie ein guter Kämpfer... Ich brauche eine Testperson für mein nächstes [green]Gräuelgerät[/green]! Wie wär's?”",
+        "description": "Als du ein [red][sine]endloses Meer von Leichen[/sine][/red] durchquerst, findest du eine [orange]verrückte Forscherin[/orange], die nach diversem verwertbarem Schrott sucht.\n\n„So, so. Hey, hallo! Du siehst aus wie ein guter Kämpfer... Ich brauche eine Testperson für mein nächstes [green]Gräuelgerät[/green]! Wie wär's?“",
         "options": [
           {
             "id": "CHOOSE_CARD_TYPE",
@@ -4615,7 +4617,7 @@
     "name": "Der Prozess",
     "type": "Event",
     "act": "Act 3 - Glory",
-    "description": "Du stellst dich hinter einigen Leuten an, die ein riesiges Gebäude betreten.\n\nAls du unter einem [gold]goldenen Torbogen[/gold] durchgehst, schmettert eine Fanfare, [jitter]Konfetti explodiert[/jitter] und [sine]Luftschlangen gleiten[/sine] von der Decke herab!\n\n“Teilnehmer [blue][EntrantNumber][/blue], du bist [green]ENTSCHEIDER[/green] für den heutigen [gold]Prozess[/gold].”",
+    "description": "Du stellst dich hinter einigen Leuten an, die ein riesiges Gebäude betreten.\n\nAls du unter einem [gold]goldenen Torbogen[/gold] durchgehst, schmettert eine Fanfare, [jitter]Konfetti explodiert[/jitter] und [sine]Luftschlangen gleiten[/sine] von der Decke herab!\n\n„Teilnehmer [blue][EntrantNumber][/blue], du bist [green]ENTSCHEIDER[/green] für den heutigen [gold]Prozess[/gold].“",
     "preconditions": null,
     "options": [
       {
@@ -4632,7 +4634,7 @@
     "pages": [
       {
         "id": "INITIAL",
-        "description": "Du stellst dich hinter einigen Leuten an, die ein riesiges Gebäude betreten.\n\nAls du unter einem [gold]goldenen Torbogen[/gold] durchgehst, schmettert eine Fanfare, [jitter]Konfetti explodiert[/jitter] und [sine]Luftschlangen gleiten[/sine] von der Decke herab!\n\n“Teilnehmer [blue][EntrantNumber][/blue], du bist [green]ENTSCHEIDER[/green] für den heutigen [gold]Prozess[/gold].”",
+        "description": "Du stellst dich hinter einigen Leuten an, die ein riesiges Gebäude betreten.\n\nAls du unter einem [gold]goldenen Torbogen[/gold] durchgehst, schmettert eine Fanfare, [jitter]Konfetti explodiert[/jitter] und [sine]Luftschlangen gleiten[/sine] von der Decke herab!\n\n„Teilnehmer [blue][EntrantNumber][/blue], du bist [green]ENTSCHEIDER[/green] für den heutigen [gold]Prozess[/gold].“",
         "options": [
           {
             "id": "ACCEPT",
@@ -4668,7 +4670,7 @@
       },
       {
         "id": "MERCHANT_INNOCENT",
-        "description": "Du hältst dich an dein Gewissen und bestimmst, dass der Mann unschuldig ist.\nTrotz der Buhs und Anschuldigungen, ein [sine][purple]“geschmierter Richter”[/purple][/sine] zu sein, hast du das Gefühl, das Richtige getan zu haben."
+        "description": "Du hältst dich an dein Gewissen und bestimmst, dass der Mann unschuldig ist.\nTrotz der Buhs und Anschuldigungen, ein [sine][purple]„geschmierter Richter“[/purple][/sine] zu sein, hast du das Gefühl, das Richtige getan zu haben."
       },
       {
         "id": "NOBLE",
@@ -4720,7 +4722,7 @@
       },
       {
         "id": "REJECT",
-        "description": "[jitter]“DU KANNST NICHT ABLEHNEN!!”[/jitter]\n\nRuft der [gold]Große Gebieter der Gerichte[/gold].\n\n[jitter]“Alle, die dieses Privileg verweigern, werden mit [red]TOD[/red] bestraft. Widersetzt du nicht immer noch!?”[/jitter]",
+        "description": "[jitter]„DU KANNST NICHT ABLEHNEN!!“[/jitter]\n\nRuft der [gold]Große Gebieter der Gerichte[/gold].\n\n[jitter]„Alle, die dieses Privileg verweigern, werden mit dem [red]TOD[/red] bestraft. Widersetzt du dich weiterhin!?“[/jitter]",
         "options": [
           {
             "id": "ACCEPT",
@@ -4776,7 +4778,7 @@
       },
       {
         "id": "KILL",
-        "description": "Diese Bäume sind [purple]eindeutig böswillig[/purple], also entscheidest du dich, sie loszuwerden.\nDu bist noch mehrere Tage von [red]Asche[/red] und [purple]öligem Schleim[/purple] bedeckt.\n\nEin riesiger Schwarm kleiner Foglgeister erhebt sich aus den gefällten Bäumen und lässt zu deinen Füßen ein [gold]Schächtelchen[/gold] fallen.\n[green]“Danke, dass du uns aus diesen Bäumen befreit hast... [sine]Tschilp tschilp[/sine]!”[/green]\n\nDu solltest wirklich mehr schlafen."
+        "description": "Diese Bäume sind [purple]eindeutig böswillig[/purple], also entscheidest du dich, sie loszuwerden.\nDu bist noch mehrere Tage von [red]Asche[/red] und [purple]öligem Schleim[/purple] bedeckt.\n\nEin riesiger Schwarm kleiner Foglgeister erhebt sich aus den gefällten Bäumen und lässt zu deinen Füßen ein [gold]Schächtelchen[/gold] fallen.\n[green]„Danke, dass du uns aus diesen Bäumen befreit hast... [sine]Tschilp tschilp[/sine]!“[/green]\n\nDu solltest wirklich mehr schlafen."
       },
       {
         "id": "REST",
@@ -5009,7 +5011,7 @@
     "name": "Kriegshistoriker Repy",
     "type": "Shared",
     "act": null,
-    "description": "Ein Akademiker ist in einem [purple]hängenden Käfig[/purple] neben einer [gold]Schatzkiste[/gold] eingesperrt.\n\nDer Akademiker murmelt etwas von [sine][orange]“Einweg-Nutzungs-Schlüsseln”[/orange][/sine], während er wütend etwas schreibt.\n\nAnscheinend kannst du den [purple]Käfig[/purple] oder die [gold]Truhe[/gold] aufschließen.",
+    "description": "Ein Akademiker ist in einem [purple]hängenden Käfig[/purple] neben einer [gold]Schatzkiste[/gold] eingesperrt.\n\nDer Akademiker murmelt etwas von [sine][orange]„einmal benutzbaren Schlüsseln“[/orange][/sine], während er wütend etwas schreibt.\n\nAnscheinend kannst du den [purple]Käfig[/purple] oder die [gold]Truhe[/gold] aufschließen.",
     "preconditions": null,
     "options": [
       {
@@ -5026,7 +5028,7 @@
     "pages": [
       {
         "id": "EXTRA_UNLOCK_CAGE",
-        "description": "Du hörst, wie [green]Repy[/green] einen Seufzer der Erleichterung von sich gibt, als du den übrigen Schlüssel aus deiner Tasche ziehst.\n\n“Ich dachte echt schon, du wolltest mich im Stich lassen.”"
+        "description": "Du hörst, wie [green]Repy[/green] einen Seufzer der Erleichterung von sich gibt, als du den übrigen Schlüssel aus deiner Tasche ziehst.\n\n„Ich dachte echt schon, du wolltest mich im Stich lassen.“"
       },
       {
         "id": "EXTRA_UNLOCK_CHEST",
@@ -5034,7 +5036,7 @@
       },
       {
         "id": "INITIAL",
-        "description": "Ein Akademiker ist in einem [purple]hängenden Käfig[/purple] neben einer [gold]Schatzkiste[/gold] eingesperrt.\n\nDer Akademiker murmelt etwas von [sine][orange]“Einweg-Nutzungs-Schlüsseln”[/orange][/sine], während er wütend etwas schreibt.\n\nAnscheinend kannst du den [purple]Käfig[/purple] oder die [gold]Truhe[/gold] aufschließen.",
+        "description": "Ein Akademiker ist in einem [purple]hängenden Käfig[/purple] neben einer [gold]Schatzkiste[/gold] eingesperrt.\n\nDer Akademiker murmelt etwas von [sine][orange]„einmal benutzbaren Schlüsseln“[/orange][/sine], während er wütend etwas schreibt.\n\nAnscheinend kannst du den [purple]Käfig[/purple] oder die [gold]Truhe[/gold] aufschließen.",
         "options": [
           {
             "id": "UNLOCK_CAGE",
@@ -5050,11 +5052,11 @@
       },
       {
         "id": "UNLOCK_CAGE",
-        "description": "[green]Repy[/green] verbeugt sich dankbar, als du den Käfig öffnest. Er reicht dir einen [gold]dicken Lederband[/gold].\n\n“Wer nichts von Geschichte weiß, ist verdammt, sie zu wiederholen. Aber du weißt das Eine oder Andere über Wiederholungen, nicht wahr?”"
+        "description": "[green]Repy[/green] verbeugt sich dankbar, als du den Käfig öffnest. Er reicht dir einen [gold]dicken Lederband[/gold].\n\n„Die nichts von Geschichte wissen, sind verdammt, sie zu wiederholen. Aber du weißt das Eine oder Andere über Wiederholungen, nicht wahr?“"
       },
       {
         "id": "UNLOCK_CHEST",
-        "description": "“Du wirst nicht den Gelehrten [green]Repy[/green] befreien? Ausgehend von klassischer Philosophie würdest du als [red]moralisches Versagen[/red] betrachtet werden. Jawoll, bedenke vielleicht beim nächsten Mal die [purple][jitter]LEBENDE PERSON[/jitter][/purple], die eingesperrt ist! Ist ja nicht so, als wäre ein wertvolles Mitglied der Gesellschaft in einer [purple][jitter]SCHLIMMEN BREDOUILLE[/jitter][/purple] oder sowas!!”\n\n“Guck mal, okay, siehst du, wie klein dieser Käfig ist!? Warum beschwere ich mich? Du hast schon deine ungelehrte Entscheidung getroffen... oh, was ist dort drin? Ein paar [gold]Tränke[/gold] und [gold]Relikte[/gold]? Ist das nicht toll. [sine]Einfach toll. Wirklich toll für dich..[/sine]”\n\n[green]Repys[/green] Augen folgen dir verachtlich, als du weggehst."
+        "description": "„Du wirst nicht den Gelehrten [green]Repy[/green] befreien? Ausgehend von klassischer Philosophie wärst du als [red]moralisches Versagen[/red] zu betrachen. Jawoll, bedenke vielleicht beim nächsten Mal die [purple][jitter]LEBENDE PERSON[/jitter][/purple], die eingesperrt ist! Ist ja nicht so, als wäre ein wertvolles Mitglied der Gesellschaft in einer [purple][jitter]SCHLIMMEN NOTLAGE[/jitter][/purple] oder sowas!!“\n\n„Guck mal, okay, siehst du, wie klein dieser Käfig ist!? Warum beschwere ich mich? Du hast schon deine ungelehrte Entscheidung getroffen... oh, was ist dort drin? Ein paar [gold]Tränke[/gold] und [gold]Relikte[/gold]? Ist das nicht toll. [sine]Einfach toll. Wirklich toll für dich..[/sine]“\n\n[green]Repys[/green] Augen folgen dir verächtlich, als du weggehst."
       }
     ]
   },
@@ -5145,7 +5147,7 @@
     "name": "Willkommen bei Wongo",
     "type": "Shared",
     "act": null,
-    "description": "“Willkommen bei Wongo. Wir haben, was du willst, zu wongtastischen Preisen.”, sagt der begeisterungsloseste Verkäufer, den du je getroffen hast.\n\n“Schau unsere Waren durch und genieße deine Zeit im Wongo,” fährt er fort, ohne überhaupt aufzublicken.",
+    "description": "„Willkommen bei Wongo. Wir haben, was du willst, zu wongtastischen Preisen.“, sagt der begeisterungsloseste Verkäufer, den du je getroffen hast.\n\n„Schau unsere Waren durch und genieße deine Zeit im Wongo,“ fährt er fort, ohne überhaupt aufzublicken.",
     "preconditions": [
       "Requires 100+ gold",
       "Act 2 only"
@@ -5164,7 +5166,7 @@
       {
         "id": "FEATURED_ITEM",
         "title": "Wongos Spezialartikel",
-        "description": "Zahle [red]200[/red] [gold]Gold[/gold]. Erhalte [gold]a random Relic[/gold]."
+        "description": "Zahle [red]200[/red] [gold]Gold[/gold]. Erhalte [gold]ein zufälliges Relikt[/gold]."
       },
       {
         "id": "FEATURED_ITEM_LOCKED",
@@ -5190,19 +5192,19 @@
     "pages": [
       {
         "id": "AFTER_BUY",
-        "description": "“Deine Großzügigkeit finden wir wongobar... Großartiger Kunde, jetzt hast du [blue]0[/blue] [gold]Wongo-Punkte[/gold]. Mit nur [blue]0[/blue] mehr Punkten wirst du unser exklusives [gold]Wongo-Kunden-Würdigungs-Abzeichen[/gold] erhalten. Einen wongtastischen Tag noch.”\n\nDu hast keine Ahnung, wovon hier die Rede ist und schwörst, nie wieder in einen Wongo zu gehen."
+        "description": "„Deine Großzügigkeit finden wir wongobar... Großartiger Kunde, jetzt hast du [blue]0[/blue] [gold]Wongo-Punkte[/gold]. Mit nur [blue]0[/blue] mehr Punkten wirst du unser exklusives [gold]Wongo-Kunden-Ehren-Abzeichen[/gold] erhalten. Einen wongtastischen Tag noch.“\n\nDu hast keine Ahnung, wovon hier die Rede ist und schwörst, nie wieder in einen Wongo zu gehen."
       },
       {
         "id": "AFTER_BUY_BADGE_COUNTER",
-        "description": "“Deine Großzügigkeit finden wir wongobar... Großartiger Kunde, jetzt hast du [blue]0[/blue] [gold]Wongo-Punkte[/gold]. Mit nur [blue]0[/blue] mehr Punkten wirst du unser exklusives [gold]Wongo-Kunden-Würdigungs-Abzeichen[/gold] erhalten. Einen wongtastischen Tag noch.”\n\nDu hast schon [blue]0[/blue] von diesen wertlosen Abzeichen. Du schwörst, nie wieder in einen Wongo zu gehen."
+        "description": "„Deine Großzügigkeit finden wir wongobar... Großartiger Kunde, jetzt hast du [blue]0[/blue] [gold]Wongo-Punkte[/gold]. Mit nur [blue]0[/blue] mehr Punkten wirst du unser exklusives [gold]Wongo-Kunden-Ehren-Abzeichen[/gold] erhalten. Einen wongtastischen Tag noch.“\n\nDu hast schon [blue]0[/blue] von diesen wertlosen Abzeichen. Du schwörst, nie wieder in einen Wongo zu gehen."
       },
       {
         "id": "AFTER_BUY_RECEIVE_BADGE",
-        "description": "“Deine Großzügigkeit finden wir wongobar... Großartiger Kunde, jetzt hast du [blue]0[/blue] [gold]Wongo-Punkte[/gold]. Mit deinen Punkten hast du ein [gold]Wongo-Kunden-Würdigungs-Abzeichen[/gold] verdient.”\nDer Verkäufer reicht dir ein billig gemachtes Abzeichen. “Einen wongtastischen Tag noch.”\n\nDu hast jetzt [blue]0[/blue] Abzeichen. Du schwörst, nie wieder in einen Wongo zu gehen."
+        "description": "„Deine Großzügigkeit finden wir wongobar... Großartiger Kunde, jetzt hast du [blue]0[/blue] [gold]Wongo-Punkte[/gold]. Mit deinen Punkten hast du ein [gold]Wongo-Kunden-Ehren-Abzeichen[/gold] verdient.“\nDer Verkäufer reicht dir ein billig gemachtes Abzeichen. „Einen wongtastischen Tag noch.“\n\nDu hast jetzt [blue]0[/blue] Abzeichen. Du schwörst, nie wieder in einen Wongo zu gehen."
       },
       {
         "id": "INITIAL",
-        "description": "“Willkommen bei Wongo. Wir haben, was du willst, zu wongtastischen Preisen.”, sagt der begeisterungsloseste Verkäufer, den du je getroffen hast.\n\n“Schau unsere Waren durch und genieße deine Zeit im Wongo,” fährt er fort, ohne überhaupt aufzublicken.",
+        "description": "„Willkommen bei Wongo. Wir haben, was du willst, zu wongtastischen Preisen.“, sagt der begeisterungsloseste Verkäufer, den du je getroffen hast.\n\n„Schau unsere Waren durch und genieße deine Zeit im Wongo,“ fährt er fort, ohne überhaupt aufzublicken.",
         "options": [
           {
             "id": "BARGAIN_BIN",
@@ -5217,7 +5219,7 @@
           {
             "id": "FEATURED_ITEM",
             "title": "Wongos Spezialartikel",
-            "description": "Zahle [red]200[/red] [gold]Gold[/gold]. Erhalte [gold]a random Relic[/gold]."
+            "description": "Zahle [red]200[/red] [gold]Gold[/gold]. Erhalte [gold]ein zufälliges Relikt[/gold]."
           },
           {
             "id": "FEATURED_ITEM_LOCKED",
@@ -5243,7 +5245,7 @@
       },
       {
         "id": "LEAVE",
-        "description": "“Äh... sorry, du kannst in einem Wongo nicht einfach gehen, ohne etwas zu kaufen,” sagt der Verkäufer mit irritiertem Tonfall.\n\nIhr führt einen [jitter][red]hitzigen[/red][/jitter] Streit über Kundenentscheidung, was dich [sine][purple]mental erschöpft[/purple][/sine]."
+        "description": "„Äh... sorry, du kannst in einem Wongo nicht einfach gehen, ohne etwas zu kaufen,“ sagt der Verkäufer mit irritiertem Tonfall.\n\nIhr führt einen [jitter][red]hitzigen[/red][/jitter] Streit über Kundenentscheidung, was dich [sine][purple]mental erschöpft[/purple][/sine]."
       }
     ]
   },
@@ -5418,7 +5420,7 @@
     "name": "Zen-Weberin",
     "type": "Event",
     "act": "Act 2 - Hive",
-    "description": "Du läufst durch ein Spinnennetz und gerätst in [jitter][red]PANIK[/red][/jitter]!\nAber dann überkommt dich eine [sine][blue]Welle der Ruhe...[/blue][/sine]\n\n[sine]“Beruhige dich. Hör mir auf, mein Netz durcheinanderzubringen.”[/sine]\n\nWie hast du dich so schnell beruhigt?\nEine [orange]klitzekleine[/orange] Spinne seilt sich ab, um dir zu begegnen. Sie scheint willens, gegen [gold]Gold[/gold] einige Techniken zu vermitteln.",
+    "description": "Du läufst durch ein Spinnennetz und gerätst in [jitter][red]PANIK[/red][/jitter]!\nAber dann überkommt dich eine [sine][blue]Welle der Ruhe...[/blue][/sine]\n\n[sine]„Beruhige dich. Hör mir auf, mein Netz durcheinanderzubringen.“[/sine]\n\nWie hast du dich so schnell beruhigt?\nEine [orange]klitzekleine[/orange] Spinne seilt sich ab, um dir zu begegnen. Sie scheint willens, gegen [gold]Gold[/gold] einige Techniken zu vermitteln.",
     "preconditions": [
       "Requires 125+ gold"
     ],
@@ -5447,19 +5449,19 @@
     "pages": [
       {
         "id": "ARACHNID_ACUPUNCTURE",
-        "description": "[sine]“Nicht... bewegen...”[/sine] brummt die [orange]winzige Spinne[/orange], als ihre Vorderbeine zu [aqua][jitter]glühen[/jitter][/aqua] beginnen.\n\nDann— ein [jitter]Gewitter stechender Bewegungen[/jitter], sie durchbohrt dich überall!\nEin Gefühl der Schwerelosigkeit überkommt dich. Gut angelegtes Geld."
+        "description": "[sine]„Nicht... bewegen...“[/sine] brummt die [orange]winzige Spinne[/orange], als ihre Vorderbeine zu [aqua][jitter]glühen[/jitter][/aqua] beginnen.\n\nDann— durchbohrt sie dich überall mit einem [jitter]Regen stechender Bewegungen[/jitter]!\nEin Gefühl der Schwerelosigkeit überkommt dich. Gut angelegtes Geld."
       },
       {
         "id": "BREATHING_TECHNIQUES",
-        "description": "[sine]“Stell dir vor, dass deine Atemwege offen bleiben... Jeder Atemzug ist bedeutsam.”[/sine]\n\nDu übst die Technik auf eine Weise, die du sinnvoll findest."
+        "description": "[sine]„Stell dir vor, dass deine Atemwege offen bleiben... Jeder Atemzug ist bedeutsam.“[/sine]\n\nDu übst die Technik auf eine Weise, die du sinnvoll findest."
       },
       {
         "id": "EMOTIONAL_AWARENESS",
-        "description": "Die [orange]klitzekleine Spinne[/orange] fängt einen [sine][purple]hypnotischen Tanz[/purple][/sine] an und singt immerfort.\n\n[sine]“Gedanken ändern nicht die Realität. Panik tötet die Gedanken. Folge dem Plan.[/sine]\n\nDas ergibt für dich Sinn. Große weise Worte von einer [orange]winzigen Spinne[/orange]."
+        "description": "Die [orange]klitzekleine Spinne[/orange] fängt einen [sine][purple]hypnotischen Tanz[/purple][/sine] an und singt immerfort.\n\n[sine]„Gedanken ändern nicht die Realität. Panik tötet die Gedanken. Folge dem Plan.“[/sine]\n\nDas ergibt für dich Sinn. Große weise Worte von einer [orange]winzigen Spinne[/orange]."
       },
       {
         "id": "INITIAL",
-        "description": "Du läufst durch ein Spinnennetz und gerätst in [jitter][red]PANIK[/red][/jitter]!\nAber dann überkommt dich eine [sine][blue]Welle der Ruhe...[/blue][/sine]\n\n[sine]“Beruhige dich. Hör mir auf, mein Netz durcheinanderzubringen.”[/sine]\n\nWie hast du dich so schnell beruhigt?\nEine [orange]klitzekleine[/orange] Spinne seilt sich ab, um dir zu begegnen. Sie scheint willens, gegen [gold]Gold[/gold] einige Techniken zu vermitteln.",
+        "description": "Du läufst durch ein Spinnennetz und gerätst in [jitter][red]PANIK[/red][/jitter]!\nAber dann überkommt dich eine [sine][blue]Welle der Ruhe...[/blue][/sine]\n\n[sine]„Beruhige dich. Hör mir auf, mein Netz durcheinanderzubringen.“[/sine]\n\nWie hast du dich so schnell beruhigt?\nEine [orange]klitzekleine[/orange] Spinne seilt sich ab, um dir zu begegnen. Sie scheint willens, gegen [gold]Gold[/gold] einige Techniken zu vermitteln.",
         "options": [
           {
             "id": "BREATHING_TECHNIQUES",

@@ -50,6 +50,16 @@
     "image_url": "/static/images/powers/aggression_power.webp"
   },
   {
+    "id": "AMBERGRIS",
+    "name": "Ámbar gris",
+    "description": "Juega un turno extra después de este.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/ambergris_power.webp"
+  },
+  {
     "id": "ANTICIPATE",
     "name": "Temporary Dexterity",
     "description": "Brinda [gold]destreza[/gold] hasta el final de este turno.",
@@ -230,6 +240,16 @@
     "image_url": "/static/images/powers/burst_power.webp"
   },
   {
+    "id": "CACOPHONY",
+    "name": "Cacofonía",
+    "description": "Cada [blue]33[/blue] cartas robadas por CUALQUIER jugador, inflige [blue][Amount][/blue] de daño a un enemigo al azar.",
+    "description_raw": "Cada [blue]{Cards}[/blue] {Cards:plural:carta robada por CUALQUIER jugador|cartas robadas por CUALQUIER jugador}, inflige [blue]{Amount}[/blue] de daño a un enemigo al azar.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/cacophony_power.webp"
+  },
+  {
     "id": "CALAMITY",
     "name": "Calamidad",
     "description": "Al jugar una carta de ataque, agregas [blue]2[/blue] del mismo tipo al azar a tu [gold]mano[/gold].",
@@ -272,8 +292,8 @@
   {
     "id": "CHILD_OF_THE_STARS",
     "name": "Vástago estelar",
-    "description": "Brinda [blue]1[/blue] de [gold]bloqueo[/gold] por cada [star:1] que gastes.",
-    "description_raw": "Brinda [blue]1[/blue] de [gold]bloqueo[/gold] por cada {singleStarIcon} que gastes.",
+    "description": "Brinda [blue]2[/blue] de [gold]bloqueo[/gold] por cada [star:1] que gastes.",
+    "description_raw": "Brinda [blue]2[/blue] de [gold]bloqueo[/gold] por cada {singleStarIcon} que gastes.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -298,6 +318,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/colossus_power.webp"
+  },
+  {
+    "id": "CONCOCT",
+    "name": "Mezcla",
+    "description": "Cuando inflijas daño de ataque sin bloquear en este turno, aplica [blue]3[/blue] de [gold]veneno[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/concoct_power.webp"
   },
   {
     "id": "CONFUSED",
@@ -422,8 +452,8 @@
   {
     "id": "CRIMSON_MANTLE",
     "name": "Manto carmesí",
-    "description": "Al comienzo del turno, quita [blue]0[/blue] PV y brinda [blue][Amount][/blue] de [gold]bloqueo[/gold].",
-    "description_raw": "Al comienzo del turno, quita [blue]{SelfDamage}[/blue] PV y brinda [blue]{Amount}[/blue] de [gold]bloqueo[/gold].",
+    "description": "Al comienzo del turno, quita PV y brinda [gold]bloqueo[/gold].",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -542,7 +572,7 @@
   {
     "id": "DEMON_FORM",
     "name": "Forma demoníaca",
-    "description": "Al comienzo del turno, brinda [blue]2[/blue] de [gold]fuerza[/gold].",
+    "description": "Al comienzo del turno, brinda [blue]3[/blue] de [gold]fuerza[/gold].",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -568,16 +598,6 @@
     "stack_type": "Counter",
     "allow_negative": true,
     "image_url": "/static/images/powers/dexterity_power.webp"
-  },
-  {
-    "id": "DIAMOND_DIADEM",
-    "name": "Diadema de diamantes",
-    "description": "Los enemigos infligen [blue]50 %[/blue] menos de daño en este turno.",
-    "description_raw": null,
-    "type": "Buff",
-    "stack_type": "Single",
-    "allow_negative": null,
-    "image_url": "/static/images/powers/diamond_diadem_power.webp"
   },
   {
     "id": "DIE_FOR_YOU",
@@ -718,6 +738,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/escape_artist_power.webp"
+  },
+  {
+    "id": "FADE",
+    "name": "Temporary Dexterity",
+    "description": "Brinda [gold]destreza[/gold] hasta el final de este turno.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/fade_power.webp"
   },
   {
     "id": "FAN_OF_KNIVES",
@@ -952,8 +982,8 @@
   {
     "id": "GUARDED",
     "name": "Custodiado",
-    "description": "Recibes la mitad del daño de los enemigos.",
-    "description_raw": null,
+    "description": "Recibes un [blue]50%[/blue] menos de daño de los enemigos. Se quita si [gold][Applier.StringValue][/gold] muere.",
+    "description_raw": "Recibes un [blue]{DamageDecrease:percentLess()}%[/blue] menos de daño de los enemigos. Se quita si [gold]{Applier.StringValue}[/gold] muere.",
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
@@ -1080,6 +1110,16 @@
     "image_url": "/static/images/powers/hex_power.webp"
   },
   {
+    "id": "HIBERNATE",
+    "name": "Hibernación",
+    "description": "Durante los siguientes [blue]2[/blue] turnos, tu [gold]escarcha[/gold] otorga [gold]bloqueo[/gold] a TODOS los enemigos.",
+    "description_raw": "{Amount:plural:En este turno|Durante los siguientes [blue]{}[/blue] turnos}, tu [gold]escarcha[/gold] otorga [gold]bloqueo[/gold] a TODOS los enemigos.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hibernate_power.webp"
+  },
+  {
     "id": "HIGH_VOLTAGE",
     "name": "Alto voltaje",
     "description": "Al final del turno de [gold]this creature[/gold], obtiene [blue][Amount][/blue] de [gold]fuerza[/gold].",
@@ -1098,6 +1138,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/hotfix_power.webp"
+  },
+  {
+    "id": "HYPERBEAM_FOCUS_DOWN",
+    "name": "Temporary Focus Down",
+    "description": "Quita [gold]concentración[/gold] hasta el final de este turno.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": null
   },
   {
     "id": "ILLUSION",
@@ -1120,6 +1170,16 @@
     "image_url": "/static/images/powers/imbalanced_power.webp"
   },
   {
+    "id": "IMITATION_LEARNING",
+    "name": "Aprendizaje por imitación",
+    "description": "Las siguientes [blue]2[/blue] veces que [gold][TargetPlayer][/gold] juegue un poder, juegas una copia.",
+    "description_raw": "{Amount:plural:La siguiente vez|Las siguientes [blue]{}[/blue] veces} que [gold]{TargetPlayer}[/gold] juegue un poder, juegas una copia.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/imitation_learning_power.webp"
+  },
+  {
     "id": "IMPROVEMENT",
     "name": "Mejoramiento",
     "description": "Al final del combate, [gold]mejoras[/gold] una carta al azar.",
@@ -1132,8 +1192,8 @@
   {
     "id": "INFERNO",
     "name": "Infierno",
-    "description": "Al comienzo de tu turno, pierdes [blue]0[/blue] PV. Al perder PV en e tu turno, infliges [blue][Amount][/blue] de daño a TODOS los enemigos.",
-    "description_raw": "Al comienzo de tu turno, pierdes [blue]{SelfDamage}[/blue] PV. Al perder PV en e tu turno, infliges [blue]{Amount}[/blue] de daño a TODOS los enemigos.",
+    "description": "Al comienzo de tu turno, pierdes [blue]1[/blue] PV. Al perder PV en tu turno, infliges [blue]4[/blue] de daño a TODOS los enemigos.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1352,8 +1412,8 @@
   {
     "id": "MONOLOGUE",
     "name": "Monólogo",
-    "description": "Al jugar una carta en este turno, brinda [blue]1[/blue] de [gold]fuerza[/gold].\nActualmente, otorga [blue]0[/blue] de [gold]Strength[/gold].",
-    "description_raw": "Al jugar una carta en este turno, brinda [blue]{StrengthPower}[/blue] de [gold]fuerza[/gold].\nActualmente, otorga [blue]{StrengthApplied}[/blue] de [gold]Strength[/gold].",
+    "description": "Al jugar una carta en este turno, brinda [blue]1[/blue] de [gold]fuerza[/gold].",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "None",
     "allow_negative": null,
@@ -1460,6 +1520,16 @@
     "image_url": "/static/images/powers/oblivion_power.webp"
   },
   {
+    "id": "ONE_FOR_ALL",
+    "name": "Uno para todos",
+    "description": "Tus ataques con costo [blue]0[/blue] [energy:1] infligen más daño.",
+    "description_raw": "Tus ataques con costo [blue]0[/blue] {energyPrefix:energyIcons(1)} infligen más daño.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/one_for_all_power.webp"
+  },
+  {
     "id": "ONE_TWO_PUNCH",
     "name": "Combo uno, dos.",
     "description": "Tus próximas [blue]2[/blue] cartas de ataque se juegan una vez más en este turno.",
@@ -1478,16 +1548,6 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/orbit_power.webp"
-  },
-  {
-    "id": "OUTBREAK",
-    "name": "Epidemia",
-    "description": "Por cada [blue]3[/blue] veces que se aplique [gold]veneno[/gold], provoca [blue][Amount][/blue] de daño a TODOS los enemigos.",
-    "description_raw": "Por cada [blue]{Repeat}[/blue] veces que se aplique [gold]veneno[/gold], provoca [blue]{Amount}[/blue] de daño a TODOS los enemigos.",
-    "type": "Buff",
-    "stack_type": "Counter",
-    "allow_negative": null,
-    "image_url": "/static/images/powers/outbreak_power.webp"
   },
   {
     "id": "PAGESTORM",
@@ -1582,8 +1642,8 @@
   {
     "id": "PILLAR_OF_CREATION",
     "name": "Pilar de la creación",
-    "description": "Al crear una carta, brinda [blue]5[/blue] de [gold]bloqueo[/gold].",
-    "description_raw": null,
+    "description": "Cada vez que crees una carta, brinda [blue][Amount][/blue] de [gold]bloqueo[/gold].",
+    "description_raw": "Cada vez que crees una carta, brinda [blue]{Amount}[/blue] de [gold]bloqueo[/gold].",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -2060,6 +2120,16 @@
     "image_url": "/static/images/powers/soar_power.webp"
   },
   {
+    "id": "SOULBOUND",
+    "name": "Ligamiento anímico",
+    "description": "Cuando [ApplierName] crea una carta de [gold]alma[/gold], agrega una carta de [gold]alma[/gold] a tu [gold]mazo de robo[/gold].",
+    "description_raw": "Cuando {ApplierName} crea una carta de [gold]alma[/gold], agrega una carta de [gold]alma[/gold] a tu [gold]mazo de robo[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/soulbound_power.webp"
+  },
+  {
     "id": "SPECTRUM_SHIFT",
     "name": "Escala cromática",
     "description": "Al comienzo del turno, agrega [blue]1[/blue] carta incolora al azar a la [gold]mano[/gold].",
@@ -2192,8 +2262,8 @@
   {
     "id": "SUBROUTINE",
     "name": "Subrutina",
-    "description": "Al jugar un poder, brinda [blue]1[/blue] [energy:1].",
-    "description_raw": "Al jugar un poder, brinda [blue]1[/blue] {energyPrefix:energyIcons(1)}.",
+    "description": "Al jugar un poder, brinda [energy:1].",
+    "description_raw": "Al jugar un poder, brinda {Amount:energyIcons()}.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -2282,7 +2352,7 @@
   {
     "id": "TAINTED",
     "name": "Corrupción",
-    "description": "Recibe daño adicional por las cartas de ataque en este turno.",
+    "description": "Recibes daño adicional de los ataques en este turno.",
     "description_raw": null,
     "type": "Debuff",
     "stack_type": "Counter",
@@ -2302,8 +2372,8 @@
   {
     "id": "TANK",
     "name": "Tanque",
-    "description": "Recibes el doble de daño de los enemigos. Tus camaradas reciben la mitad del daño de enemigos.",
-    "description_raw": null,
+    "description": "Recibes un [blue]50%[/blue] más de daño de los enemigos. Tus camaradas reciben un [blue]50%[/blue] de daño de enemigos.",
+    "description_raw": "Recibes un [blue]{DamageIncrease:percentMore()}%[/blue] más de daño de los enemigos. Tus camaradas reciben un [blue]{DamageDecrease:percentLess()}%[/blue] de daño de enemigos.",
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
@@ -2422,7 +2492,7 @@
   {
     "id": "TRACKING",
     "name": "Persecución",
-    "description": "Los enemigos con [gold]debilitamiento[/gold] reciben [blue]2[/blue] veces más de daño.",
+    "description": "Los enemigos con [gold]debilitamiento[/gold] reciben un [blue]50%[/blue] más de daño.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -2448,6 +2518,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/tyranny_power.webp"
+  },
+  {
+    "id": "UNDERWORLD",
+    "name": "Inframundo",
+    "description": "Cuando otros jugadores inflijan daño en este turno, aplica esa cantidad de [gold]condena[/gold]  [blue]2[/blue] veces.",
+    "description_raw": "Cuando otros jugadores inflijan daño en este turno, aplica esa cantidad de [gold]condena[/gold] {Amount:plural:| [blue]{}[/blue] veces}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/underworld_power.webp"
   },
   {
     "id": "UNMOVABLE",
@@ -2542,10 +2622,10 @@
   {
     "id": "WELL_LAID_PLANS",
     "name": "Planes bien pensados",
-    "description": "Al final del turno, [gold]retiene[/gold] hasta [blue]1[/blue] carta.",
+    "description": "Ya no descartas tu [gold]mano[/gold] al final de tu turno.",
     "description_raw": null,
     "type": "Buff",
-    "stack_type": "Counter",
+    "stack_type": "Single",
     "allow_negative": null,
     "image_url": "/static/images/powers/well_laid_plans_power.webp"
   },

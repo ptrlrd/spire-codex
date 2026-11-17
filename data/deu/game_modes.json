@@ -1,0 +1,38 @@
+[
+  {
+    "id": "STANDARD",
+    "name": "Standard",
+    "description": "Brich zu einer Quest auf, den Spire zu bezwingen!",
+    "multiplayer_description": "Brich zu einer Quest auf, den Spire zu bezwingen... mit Freunden!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": null,
+    "max_ascension": 10
+  },
+  {
+    "id": "DAILY",
+    "name": "Run des Tages",
+    "description": "Jeden Tag ist eine neue Herausforderung verfügbar.\n\nMiss dich mit anderen Spielern um die höchste Punktzahl!",
+    "multiplayer_description": "Jeden Tag ist eine neue Herausforderung verfügbar.\n\nMesst euch mit anderen Gruppen um die höchste Punktzahl!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "Spiele einen einzelnen Run mit allen Charakteren und besiege Akt 3, um den Run des Tages freizuschalten.",
+    "max_ascension": 10
+  },
+  {
+    "id": "CUSTOM",
+    "name": "Spezialmodus",
+    "description": "Gestalte deinen eigenen Run mit einzigartigen Modifikatoren.",
+    "multiplayer_description": "Gestaltet euren eigenen Mehrspieler-Run mit einzigartigen Modifikatoren.",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "Besiege Akt 3 dreimal, um Spezial-Runs freizuschalten.",
+    "max_ascension": 10
+  }
+]

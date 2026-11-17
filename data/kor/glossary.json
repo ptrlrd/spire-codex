@@ -20,7 +20,7 @@
   {
     "id": "COOK",
     "name": "요리",
-    "description": "[gold]휴식 장소[/gold]에서 [gold]덱[/gold]에서 카드를 [blue]2[/blue]장 [gold]제거[/gold]하고 최대 체력을 [green]9[/green] 얻습니다.",
+    "description": "[gold]휴식 장소[/gold]에서 [gold]덱[/gold]에서 카드를 [blue]2[/blue]장 [gold]제거[/gold]하고 최대 체력을 [green]5[/green] 얻습니다.",
     "category": "mechanics"
   },
   {

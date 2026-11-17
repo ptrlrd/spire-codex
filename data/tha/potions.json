@@ -1,18 +1,29 @@
 [
   {
-    "id": "BEETLE_JUICE",
-    "name": "BeetleJuice",
-    "description": "การโจมตีของศัตรูสร้างความเสียหายน้อยลง [blue]30%[/blue] เป็นเวลา [blue]{}[/blue] เทิร์น",
-    "description_raw": "การโจมตีของศัตรูสร้างความเสียหายน้อยลง [blue]{DamageDecrease}%[/blue] {Repeat:choose(1):ในเทิร์นถัดไป|เป็นเวลา [blue]{}[/blue] เทิร์น}",
+    "id": "MAZALETHS_GIFT",
+    "name": "Mazaleth's Gift",
+    "description": "ได้รับ [blue]1[/blue] [gold]พิธีกรรม[/gold]",
+    "description_raw": "ได้รับ [blue]{RitualPower}[/blue] [gold]พิธีกรรม[/gold]",
     "rarity": "หายาก",
-    "image_url": "/static/images/potions/beetle_juice.webp",
+    "image_url": "/static/images/potions/mazaleths_gift.webp",
     "rarity_key": "Rare",
     "compendium_order": 40,
     "pool": "shared"
   },
   {
+    "id": "OROBIC_ACID",
+    "name": "กรดโอโรบิก",
+    "description": "เพิ่มการ์ดโจมตี, ทักษะ, และพลังอย่างละ 1 ใบแบบสุ่มใส่[gold]มือ[/gold] การ์ดเหล่านั้นเล่นได้ฟรีในเทิร์นนี้",
+    "description_raw": "เพิ่มการ์ดโจมตี, ทักษะ, และพลังอย่างละ 1 ใบแบบสุ่มใส่[gold]มือ[/gold] การ์ดเหล่านั้นเล่นได้ฟรีในเทิร์นนี้",
+    "rarity": "หายาก",
+    "image_url": "/static/images/potions/orobic_acid.webp",
+    "rarity_key": "Rare",
+    "compendium_order": 41,
+    "pool": "shared"
+  },
+  {
     "id": "BONE_BREW",
-    "name": "BoneBrew",
+    "name": "กระดูกสกัด",
     "description": "[gold]อัญเชิญ[/gold] [blue]15[/blue]",
     "description_raw": "[gold]อัญเชิญ[/gold] [blue]{Summon}[/blue]",
     "rarity": "ไม่ธรรมดา",
@@ -22,61 +33,6 @@
     "pool": "necrobinder"
   },
   {
-    "id": "KINGS_COURAGE",
-    "name": "KingsCourage",
-    "description": "[gold]หลอมสร้าง[/gold] [blue]15[/blue]",
-    "description_raw": "[gold]หลอมสร้าง[/gold] [blue]{Forge}[/blue]",
-    "rarity": "ไม่ธรรมดา",
-    "image_url": "/static/images/potions/kings_courage.webp",
-    "rarity_key": "Uncommon",
-    "compendium_order": 21,
-    "pool": "regent"
-  },
-  {
-    "id": "MAZALETHS_GIFT",
-    "name": "MazalethsGift",
-    "description": "ได้รับ [blue]1[/blue] [gold]พิธีกรรม[/gold]",
-    "description_raw": "ได้รับ [blue]{RitualPower}[/blue] [gold]พิธีกรรม[/gold]",
-    "rarity": "หายาก",
-    "image_url": "/static/images/potions/mazaleths_gift.webp",
-    "rarity_key": "Rare",
-    "compendium_order": 41,
-    "pool": "shared"
-  },
-  {
-    "id": "OROBIC_ACID",
-    "name": "OrobicAcid",
-    "description": "เพิ่มการ์ดโจมตี, ทักษะ, และพลังอย่างละ 1 ใบแบบสุ่มใส่[gold]มือ[/gold] การ์ดเหล่านั้นเล่นได้ฟรีในเทิร์นนี้",
-    "description_raw": "เพิ่มการ์ดโจมตี, ทักษะ, และพลังอย่างละ 1 ใบแบบสุ่มใส่[gold]มือ[/gold] การ์ดเหล่านั้นเล่นได้ฟรีในเทิร์นนี้",
-    "rarity": "หายาก",
-    "image_url": "/static/images/potions/orobic_acid.webp",
-    "rarity_key": "Rare",
-    "compendium_order": 42,
-    "pool": "shared"
-  },
-  {
-    "id": "RADIANT_TINCTURE",
-    "name": "RadiantTincture",
-    "description": "ได้รับ [energy:1] และได้รับเพิ่มอีก [energy:1] ตอนเริ่มต้นเทิร์น เป็นเวลา [blue]3[/blue] เทิร์น",
-    "description_raw": "ได้รับ {Energy:energyIcons()} และได้รับเพิ่มอีก {energyPrefix:energyIcons(1)} ตอนเริ่มต้นเทิร์น เป็นเวลา [blue]{RadiancePower}[/blue] เทิร์น",
-    "rarity": "ไม่ธรรมดา",
-    "image_url": "/static/images/potions/radiant_tincture.webp",
-    "rarity_key": "Uncommon",
-    "compendium_order": 22,
-    "pool": "shared"
-  },
-  {
-    "id": "STABLE_SERUM",
-    "name": "StableSerum",
-    "description": "[gold]คงสภาพ[/gold]ทั้ง[gold]มือ[/gold]เป็นเวลา [blue]2[/blue] เทิร์น",
-    "description_raw": "[gold]คงสภาพ[/gold]ทั้ง[gold]มือ[/gold]เป็นเวลา [blue]{Repeat}[/blue] เทิร์น",
-    "rarity": "ไม่ธรรมดา",
-    "image_url": "/static/images/potions/stable_serum.webp",
-    "rarity_key": "Uncommon",
-    "compendium_order": 23,
-    "pool": "shared"
-  },
-  {
     "id": "LIQUID_MEMORIES",
     "name": "ความทรงจำเหลว",
     "description": "นำการ์ด 1 ใบจาก[gold]กองทิ้ง[/gold]ขึ้น[gold]มือ[/gold] มันเล่นฟรีในเทิร์นนี้",
@@ -84,7 +40,18 @@
     "rarity": "หายาก",
     "image_url": "/static/images/potions/liquid_memories.webp",
     "rarity_key": "Rare",
-    "compendium_order": 43,
+    "compendium_order": 42,
+    "pool": "shared"
+  },
+  {
+    "id": "RADIANT_TINCTURE",
+    "name": "ทิงเจอร์โชติช่วง",
+    "description": "ได้รับ [energy:1] และได้รับเพิ่มอีก [energy:1] ตอนเริ่มต้นเทิร์น เป็นเวลา [blue]3[/blue] เทิร์น",
+    "description_raw": "ได้รับ {Energy:energyIcons()} และได้รับเพิ่มอีก {energyPrefix:energyIcons(1)} ตอนเริ่มต้นเทิร์น เป็นเวลา [blue]{RadiancePower}[/blue] เทิร์น",
+    "rarity": "ไม่ธรรมดา",
+    "image_url": "/static/images/potions/radiant_tincture.webp",
+    "rarity_key": "Uncommon",
+    "compendium_order": 21,
     "pool": "shared"
   },
   {
@@ -95,8 +62,19 @@
     "rarity": "ไม่ธรรมดา",
     "image_url": "/static/images/potions/ashwater.webp",
     "rarity_key": "Uncommon",
-    "compendium_order": 24,
+    "compendium_order": 22,
     "pool": "ironclad"
+  },
+  {
+    "id": "BEETLE_JUICE",
+    "name": "น้ำด้วงคั้น",
+    "description": "การโจมตีของศัตรูสร้างความเสียหายน้อยลง [blue]30%[/blue] เป็นเวลา [blue]4[/blue] เทิร์น",
+    "description_raw": "การโจมตีของศัตรูสร้างความเสียหายน้อยลง [blue]{DamageDecrease}%[/blue] {Repeat:choose(1):ในเทิร์นถัดไป|เป็นเวลา [blue]{}[/blue] เทิร์น}",
+    "rarity": "หายาก",
+    "image_url": "/static/images/potions/beetle_juice.webp",
+    "rarity_key": "Rare",
+    "compendium_order": 43,
+    "pool": "shared"
   },
   {
     "id": "FRUIT_JUICE",
@@ -128,7 +106,7 @@
     "rarity": "ไม่ธรรมดา",
     "image_url": "/static/images/potions/fysh_oil.webp",
     "rarity_key": "Uncommon",
-    "compendium_order": 25,
+    "compendium_order": 23,
     "pool": "shared"
   },
   {
@@ -139,7 +117,7 @@
     "rarity": "ไม่ธรรมดา",
     "image_url": "/static/images/potions/potion_of_capacity.webp",
     "rarity_key": "Uncommon",
-    "compendium_order": 26,
+    "compendium_order": 24,
     "pool": "defect"
   },
   {
@@ -194,7 +172,7 @@
     "rarity": "ไม่ธรรมดา",
     "image_url": "/static/images/potions/duplicator.webp",
     "rarity_key": "Uncommon",
-    "compendium_order": 27,
+    "compendium_order": 25,
     "pool": "shared"
   },
   {
@@ -260,7 +238,7 @@
     "rarity": "ไม่ธรรมดา",
     "image_url": "/static/images/potions/potion_of_binding.webp",
     "rarity_key": "Uncommon",
-    "compendium_order": 28,
+    "compendium_order": 26,
     "pool": "shared"
   },
   {
@@ -315,7 +293,7 @@
     "rarity": "ไม่ธรรมดา",
     "image_url": "/static/images/potions/regen_potion.webp",
     "rarity_key": "Uncommon",
-    "compendium_order": 29,
+    "compendium_order": 27,
     "pool": "shared"
   },
   {
@@ -326,7 +304,7 @@
     "rarity": "ไม่ธรรมดา",
     "image_url": "/static/images/potions/cure_all.webp",
     "rarity_key": "Uncommon",
-    "compendium_order": 30,
+    "compendium_order": 28,
     "pool": "shared"
   },
   {
@@ -348,7 +326,7 @@
     "rarity": "ไม่ธรรมดา",
     "image_url": "/static/images/potions/cunning_potion.webp",
     "rarity_key": "Uncommon",
-    "compendium_order": 31,
+    "compendium_order": 29,
     "pool": "silent"
   },
   {
@@ -403,7 +381,7 @@
     "rarity": "ไม่ธรรมดา",
     "image_url": "/static/images/potions/fortifier.webp",
     "rarity_key": "Uncommon",
-    "compendium_order": 32,
+    "compendium_order": 30,
     "pool": "shared"
   },
   {
@@ -425,7 +403,7 @@
     "rarity": "ไม่ธรรมดา",
     "image_url": "/static/images/potions/gamblers_brew.webp",
     "rarity_key": "Uncommon",
-    "compendium_order": 33,
+    "compendium_order": 31,
     "pool": "shared"
   },
   {
@@ -491,7 +469,7 @@
     "rarity": "ไม่ธรรมดา",
     "image_url": "/static/images/potions/powdered_demise.webp",
     "rarity_key": "Uncommon",
-    "compendium_order": 34,
+    "compendium_order": 32,
     "pool": "shared"
   },
   {
@@ -506,6 +484,17 @@
     "pool": "silent"
   },
   {
+    "id": "KINGS_COURAGE",
+    "name": "พระเดชานุภาพ",
+    "description": "[gold]หลอมสร้าง[/gold] [blue]15[/blue]",
+    "description_raw": "[gold]หลอมสร้าง[/gold] [blue]{Forge}[/blue]",
+    "rarity": "ไม่ธรรมดา",
+    "image_url": "/static/images/potions/kings_courage.webp",
+    "rarity_key": "Uncommon",
+    "compendium_order": 33,
+    "pool": "regent"
+  },
+  {
     "id": "BLESSING_OF_THE_FORGE",
     "name": "พรแห่งเตาหลอม",
     "description": "[gold]พัฒนา[/gold]การ์ดทั้งหมดใน[gold]มือ[/gold]จนจบการต่อสู้",
@@ -513,7 +502,7 @@
     "rarity": "ไม่ธรรมดา",
     "image_url": "/static/images/potions/blessing_of_the_forge.webp",
     "rarity_key": "Uncommon",
-    "compendium_order": 35,
+    "compendium_order": 34,
     "pool": "shared"
   },
   {
@@ -579,7 +568,7 @@
     "rarity": "ไม่ธรรมดา",
     "image_url": "/static/images/potions/touch_of_insanity.webp",
     "rarity_key": "Uncommon",
-    "compendium_order": 36,
+    "compendium_order": 35,
     "pool": "shared"
   },
   {
@@ -590,7 +579,7 @@
     "rarity": "ไม่ธรรมดา",
     "image_url": "/static/images/potions/liquid_bronze.webp",
     "rarity_key": "Uncommon",
-    "compendium_order": 37,
+    "compendium_order": 36,
     "pool": "shared"
   },
   {
@@ -601,7 +590,7 @@
     "rarity": "ไม่ธรรมดา",
     "image_url": "/static/images/potions/clarity.webp",
     "rarity_key": "Uncommon",
-    "compendium_order": 38,
+    "compendium_order": 37,
     "pool": "shared"
   },
   {
@@ -634,7 +623,7 @@
     "rarity": "ไม่ธรรมดา",
     "image_url": "/static/images/potions/heart_of_iron.webp",
     "rarity_key": "Uncommon",
-    "compendium_order": 39,
+    "compendium_order": 38,
     "pool": "shared"
   },
   {
@@ -645,7 +634,29 @@
     "rarity": "โทเคน",
     "image_url": "/static/images/potions/potion_shaped_rock.webp",
     "rarity_key": "Token",
+    "compendium_order": 63,
+    "pool": "shared"
+  },
+  {
+    "id": "AMBERGRIS",
+    "name": "อำพันทะเล",
+    "description": "ฟื้นฟู [green]50%[/green] ของ HP สูงสุด ถ้าใช้ในการต่อสู้จะได้เล่นต่ออีก 1 เทิร์นด้วย",
+    "description_raw": "ฟื้นฟู [green]{HealPercent}%[/green] ของ HP สูงสุด ถ้าใช้ในการต่อสู้จะได้เล่นต่ออีก 1 เทิร์นด้วย",
+    "rarity": "เหตุการณ์",
+    "image_url": "/static/images/potions/ambergris.webp",
+    "rarity_key": "Event",
     "compendium_order": 62,
+    "pool": "event"
+  },
+  {
+    "id": "STABLE_SERUM",
+    "name": "เซรั่มเสถียร",
+    "description": "[gold]คงสภาพ[/gold]ทั้ง[gold]มือ[/gold]เป็นเวลา [blue]2[/blue] เทิร์น",
+    "description_raw": "[gold]คงสภาพ[/gold]ทั้ง[gold]มือ[/gold]เป็นเวลา [blue]{Repeat}[/blue] เทิร์น",
+    "rarity": "ไม่ธรรมดา",
+    "image_url": "/static/images/potions/stable_serum.webp",
+    "rarity_key": "Uncommon",
+    "compendium_order": 39,
     "pool": "shared"
   },
   {

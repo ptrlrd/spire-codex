@@ -22,6 +22,17 @@
     "pool": "ironclad"
   },
   {
+    "id": "AMBERGRIS",
+    "name": "Ambra Cinerina",
+    "description": "Recuperi un [green]50%[/green] dei tuoi PV massimi. Se la usi in combattimento, giochi un turno extra.",
+    "description_raw": "Recuperi un [green]{HealPercent}%[/green] dei tuoi PV massimi. Se la usi in combattimento, giochi un turno extra.",
+    "rarity": "Evento",
+    "image_url": "/static/images/potions/ambergris.webp",
+    "rarity_key": "Event",
+    "compendium_order": 60,
+    "pool": "event"
+  },
+  {
     "id": "EXPLOSIVE_AMPOULE",
     "name": "Ampolla Esplosiva",
     "description": "Infliggi [blue]10[/blue] di danno a TUTTI i nemici.",
@@ -381,7 +392,7 @@
     "rarity": "Evento",
     "image_url": "/static/images/potions/glowwater_potion.webp",
     "rarity_key": "Event",
-    "compendium_order": 60,
+    "compendium_order": 61,
     "pool": "event"
   },
   {
@@ -392,7 +403,7 @@
     "rarity": "Evento",
     "image_url": "/static/images/potions/foul_potion.webp",
     "rarity_key": "Event",
-    "compendium_order": 61,
+    "compendium_order": 62,
     "pool": "event"
   },
   {
@@ -568,7 +579,7 @@
     "rarity": "Segnalino",
     "image_url": "/static/images/potions/potion_shaped_rock.webp",
     "rarity_key": "Token",
-    "compendium_order": 62,
+    "compendium_order": 63,
     "pool": "shared"
   },
   {

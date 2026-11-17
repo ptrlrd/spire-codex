@@ -180,12 +180,15 @@
    "title": "Ensorcelé"
   },
   "MOCK_NO_UNPLAYABLE_AFFLICTION": {
+   "description": "",
    "title": "Pas d''affliction injouable (simulé)"
   },
   "MOCK_SELF_DAMAGE_AFFLICTION": {
+   "description": "",
    "title": "Affliction dégâts à soi-même (simulé)"
   },
   "MOCK_USELESS_AFFLICTION": {
+   "description": "",
    "title": "Affliction sans effet (simulé)"
   },
   "RINGING": {
@@ -814,6 +817,7 @@
    "title": "Paël"
   },
   "PROCEED": {
+   "description": "",
    "title": "Poursuivre"
   },
   "TANX": {
@@ -1083,6 +1087,12 @@
   "THE_ARCHITECT": {
    "CONTINUE": "Continuer",
    "RESPOND": "Répondre",
+   "epithet": "",
+   "pages": {
+    "INITIAL": {
+     "description": ""
+    }
+   },
    "talk": {
     "DEFECT": {
      "0-0r": {
@@ -1771,6 +1781,7 @@
    "title": "Arsenal"
   },
   "ASCENDERS_BANE": {
+   "description": "",
    "title": "Fléau de l''ascendant"
   },
   "ASHEN_STRIKE": {
@@ -2098,6 +2109,7 @@
    "title": "Manteau d''étoiles"
   },
   "CLUMSY": {
+   "description": "",
    "title": "Maladresse"
   },
   "COLD_SNAP": {
@@ -2202,6 +2214,7 @@
    "title": "Broyer"
   },
   "CURSE_OF_THE_BELL": {
+   "description": "",
    "title": "Malédiction de la cloche"
   },
   "DAGGER_SPRAY": {
@@ -2233,6 +2246,7 @@
    "title": "Précipitation"
   },
   "DAZED": {
+   "description": "",
    "title": "Hébété"
   },
   "DEADLY_POISON": {
@@ -2256,6 +2270,7 @@
    "title": "Amoindrissement"
   },
   "DEBRIS": {
+   "description": "",
    "title": "Débris"
   },
   "DEBT": {
@@ -2474,6 +2489,7 @@
    "title": "Mauvais œil"
   },
   "EXPECT_A_FIGHT": {
+   "description": "Gain {CalculatedBlock} [gold]Block[/gold].\nGains {CalculationExtra} additional [gold]Block[/gold] for each [gold]Strength[/gold] you have.",
    "title": "Paré au combat"
   },
   "EXPERTISE": {
@@ -2589,6 +2605,7 @@
    "title": "Frappe focalisée"
   },
   "FOLLY": {
+   "description": "",
    "title": "Hubris"
   },
   "FOOTWORK": {
@@ -2710,6 +2727,7 @@
    "title": "Fossoyeur"
   },
   "GREED": {
+   "description": "",
    "title": "Cupidité"
   },
   "GUARDS": {
@@ -2886,6 +2904,7 @@
    "title": "Enflammer"
   },
   "INJURY": {
+   "description": "",
    "title": "Blessure"
   },
   "INTERCEPT": {
@@ -3093,22 +3112,28 @@
    "title": "Misère"
   },
   "MOCK_ATTACK_CARD": {
+   "description": "",
    "title": "Carte Attaque (simulé)"
   },
   "MOCK_CURSE_CARD": {
+   "description": "",
    "title": "Carte Malédiction (simulé)"
   },
   "MOCK_POWER_CARD": {
+   "description": "",
    "title": "Carte Pouvoir (simulé)"
   },
   "MOCK_QUEST_CARD": {
+   "description": "",
    "title": "Carte Quête (simulé)"
   },
   "MOCK_SKILL_CARD": {
+   "description": "",
    "discardSelectionPrompt": "Sélectionnez des cartes à Défausser.",
    "title": "Carte Compétence (simulé)"
   },
   "MOCK_STATUS_CARD": {
+   "description": "",
    "title": "Carte Statut (simulé)"
   },
   "MODDED": {
@@ -3331,6 +3356,7 @@
    "title": "Frappe du pommeau"
   },
   "POOR_SLEEP": {
+   "description": "",
    "title": "Insomnie"
   },
   "POUNCE": {
@@ -3712,6 +3738,7 @@
    "title": "Frappe solaire"
   },
   "SOOT": {
+   "description": "",
    "title": "Suie"
   },
   "SOUL": {
@@ -3771,6 +3798,7 @@
    "title": "Butin de guerre"
   },
   "SPORE_MIND": {
+   "description": "",
    "title": "Conscience sporique"
   },
   "SPUR": {
@@ -4174,6 +4202,7 @@
    "title": "Érosion"
   },
   "WOUND": {
+   "description": "",
    "title": "Plaie"
   },
   "WRAITH_FORM": {
@@ -4181,6 +4210,7 @@
    "title": "Forme spectrale"
   },
   "WRITHE": {
+   "description": "",
    "title": "Souffrance"
   },
   "WROUGHT_IN_WAR": {
@@ -4384,6 +4414,10 @@
    "header": "Français",
    "names": "Responsable de traduction||Timothy Tamim\nTraducteur||Vincent Larcin"
   },
+  "LOC_IND": {
+   "header": "Indonesian",
+   "names": "Peter Christian Erastus (Peterce3)"
+  },
   "LOC_ITA": {
    "header": "Italien",
    "names": "Traducteur||Daniele Iannilli\nRelecteur||Francesco Caligiuri",
@@ -4424,6 +4458,10 @@
   "LOC_ZHS": {
    "header": "Chinois simplifié",
    "names": "Traducteur / Relecteur||Sound of Mystery\nTraducteur / Relecteur||IrisRaphael"
+  },
+  "LOC_ZHT": {
+   "header": "Traditional Chinese",
+   "names": "DK Liao (HexaLoc Lab)"
   },
   "MARKETING_SUPPORT": {
    "header": "Soutien marketing",
@@ -4501,6 +4539,7 @@
    "title": "Imprégnation"
   },
   "INKY": {
+   "description": "This card applies [blue]{WeakPower}[/blue] [gold]Weak[/gold].",
    "extraCardText": "Appliquez [gold]Affaibli[/gold] ([blue]{WeakPower}[/blue]){TargetType, select, AllEnemies { à TOUS les ennemis} other {}}.",
    "title": "Encrée"
   },
@@ -4509,6 +4548,7 @@
    "title": "Instinct"
   },
   "MOCK_FREE_ENCHANTMENT": {
+   "description": "",
    "title": "Envoûtement gratuit (simulé)"
   },
   "MOMENTUM": {
@@ -5360,25 +5400,101 @@
    "name": "L''Infection",
    "year": "1201"
   },
+  "BLIGHT1": {
+   "name": "",
+   "year": ""
+  },
+  "BLIGHT2": {
+   "name": "",
+   "year": ""
+  },
+  "BLIGHT3": {
+   "name": "",
+   "year": ""
+  },
   "FLOURISH0": {
    "name": "La Floraison",
    "year": "1800"
+  },
+  "FLOURISH1": {
+   "name": "",
+   "year": ""
+  },
+  "FLOURISH2": {
+   "name": "",
+   "year": ""
+  },
+  "FLOURISH3": {
+   "name": "",
+   "year": ""
   },
   "INVITATION0": {
    "name": "Les Portes",
    "year": "2733"
   },
+  "INVITATION1": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION2": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION3": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION4": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION5": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION6": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION7": {
+   "name": "",
+   "year": ""
+  },
   "PEACE0": {
    "name": "La Fin",
    "year": "3000"
+  },
+  "PEACE1": {
+   "name": "",
+   "year": ""
   },
   "PREHISTORIA0": {
    "name": "La Préhistoire",
    "year": "???"
   },
+  "PREHISTORIA1": {
+   "name": "",
+   "year": ""
+  },
+  "PREHISTORIA2": {
+   "name": "",
+   "year": ""
+  },
   "SEEDS0": {
    "name": "Les Graines",
    "year": "0"
+  },
+  "SEEDS1": {
+   "name": "",
+   "year": ""
+  },
+  "SEEDS2": {
+   "name": "",
+   "year": ""
+  },
+  "SEEDS3": {
+   "name": "",
+   "year": ""
   }
  },
  "events": {
@@ -5391,6 +5507,7 @@
     "ALL": {
      "options": {
       "EXIT_BATHS": {
+       "description": "",
        "title": "Quitter les bains"
       },
       "LINGER": {
@@ -5777,6 +5894,7 @@
      "description": "Au bord de l’effondrement, vous décidez de faire une sieste...\n\n...mais êtes brusquement réveillé{characterGender, select, feminine {e} other {}} par la sensation de [gold][jitter]quelque chose qui se tortille[/jitter][/gold] sur vous !\",",
      "options": {
       "FIGHT": {
+       "description": "",
        "title": "Fuite !"
       }
      }
@@ -5961,6 +6079,7 @@
      "description": "Vous attrapez le [gold]{LastDishTitle}[/gold] sur le convoyeur et l''engloutissez d''une bouchée.\n[green]Quel délice ![/green]",
      "options": {
       "LEAVE": {
+       "description": "",
        "title": "Partir"
       }
      }
@@ -6299,6 +6418,7 @@
    "title": "Coursier de potions"
   },
   "PROCEED": {
+   "description": "",
    "title": "Poursuivre"
   },
   "PUNCH_OFF": {
@@ -6321,6 +6441,7 @@
      "description": "Les [gold]Assemblages[/gold] se tournent vers vous d’un air menaçant !\n\nVous levez les poings.",
      "options": {
       "FIGHT": {
+       "description": "",
        "title": "Combattre"
       }
      }
@@ -6474,6 +6595,7 @@
      "description": "Vous bondissez sur la table et donnez un [jitter]coup de pied[/jitter] à la figure du [red]chevalier seigneur de guerre[/red] !\nLe chevalier pousse un cri perçant et chavire.\n\n[jitter][purple]*tout le monde en a le souffle coupé*[/purple][/jitter]",
      "options": {
       "CONTINUE_FIGHT": {
+       "description": "",
        "title": "Poursuivre"
       }
      }
@@ -6968,6 +7090,7 @@
      "description": "L’inconnu vous jette un regard menaçant. Il semblerait qu’un seul d’entre vous sortira d’ici avec la clé.",
      "options": {
       "FIGHT": {
+       "description": "",
        "title": "Combattre"
       }
      }
@@ -7812,6 +7935,7 @@
   },
   "FORMAT_DAMAGE_MULTI": "{Damage}[font_size=18]x{Repeat}[/font_size]",
   "FORMAT_DAMAGE_SINGLE": "{Damage}",
+  "FORMAT_EMPTY": "",
   "FORMAT_STATUS_CARD_COUNT": "{CardCount}",
   "HEAL": {
    "description": "Cet ennemi s''apprête à prodiguer des [gold]Soins[/gold].",
@@ -7995,7 +8119,15 @@
    "dismiss": "Ok",
    "title": "Sauvegarde corrompue !"
   },
-  "INVITE": "Inviter",
+  "INVITE": {
+   "!": "Inviter",
+   "DISABLED": {
+    "steam": {
+     "description": "The Steam Overlay is disabled.\n\nEnable it, or manually invite friends through the Steam Friends menu on your desktop.",
+     "title": "Steam Overlay Disabled"
+    }
+   }
+  },
   "JOIN": {
    "description": "Rejoindre une partie créée par un ami.",
    "title": "Rejoindre"
@@ -10210,6 +10342,7 @@
    "title": "Orbe kéraunique"
   },
   "MOCK_COMBAT_CLEANUP_ORB": {
+   "description": "",
    "title": "Fin du combat (simulé)"
   },
   "PLASMA_ORB": {
@@ -10394,6 +10527,7 @@
    "title": "Don de Mazaleth"
   },
   "MOCK_DISCARD_AND_ADD_SHIVS_POTION": {
+   "description": "",
    "title": "Potion de défausse et d''ajout de surins (simulé)"
   },
   "OROBIC_ACID": {
@@ -11180,51 +11314,67 @@
    "title": "Sbire"
   },
   "MOCK_CLONE_CARDS_ON_PLAY_POWER": {
+   "description": "",
    "title": "Cloner les cartes jouer (simulé)"
   },
   "MOCK_DO_NOT_SCALE_IN_MULTIPLAYER_POWER": {
+   "description": "",
    "title": "Ne s''adapte pas en multijoueur (simulé)"
   },
   "MOCK_EXTRA_TURN_POWER": {
+   "description": "",
    "title": "Tour supplémentaire (simulé)"
   },
   "MOCK_FREE_CARDS_POWER": {
+   "description": "",
    "title": "Cartes gratuites (simulé)"
   },
   "MOCK_GAIN_BLOCK_ON_ATTACK_POWER": {
+   "description": "",
    "title": "Mock Gain Block On Attack"
   },
   "MOCK_INVINCIBLE_ON_DEATH_POWER": {
+   "description": "",
    "title": "Invincible au moment de mourir (simulé)"
   },
   "MOCK_MODIFY_ENERGY_COST_POWER": {
+   "description": "",
    "title": "Modification coût énergie (simulé)"
   },
   "MOCK_MODIFY_STAR_COST_POWER": {
+   "description": "",
    "title": "Modification coût étoiles (simulé)"
   },
   "MOCK_PHASE_OBSERVER_POWER": {
+   "description": "",
    "title": "Observateur de phase (simulé)"
   },
   "MOCK_PREVENT_DEATH_POWER": {
+   "description": "",
    "title": "Prévenir la mort (simulé)"
   },
   "MOCK_REMOVE_DRAWN_CARDS_FROM_COMBAT_POWER": {
+   "description": "",
    "title": "Mock enlever carte piochées du combat"
   },
   "MOCK_RESET_COMBAT_ON_SHUFFLE_POWER": {
+   "description": "",
    "title": "Réinitialiser le combat au moment de mélanger le deck (simulé)"
   },
   "MOCK_REVIVE_POWER": {
+   "description": "",
    "title": "Ressusciter (simulé)"
   },
   "MOCK_SCALE_IN_MULTIPLAYER_POWER": {
+   "description": "",
    "title": "S''adapte en multijoueur (simulé)"
   },
   "MOCK_TEMPORARY_STRENGTH_LOSS": {
+   "description": "",
    "title": "Perte de force temporaire (simulé)"
   },
   "MOCK_UNHITTABLE_POWER": {
+   "description": "",
    "title": "Intouchable (simulé)"
   },
   "MONARCHS_GAZE_POWER": {
@@ -13853,6 +14003,7 @@
   "TEXT_EFFECTS": "Effets de texte",
   "TEXT_EFFECTS_DESCRIPTION": "Active ou désactive les effets de texte, par exemple le texte ondulant ou tremblant.",
   "TEXT_SIZE": "Taille du texte",
+  "TOAST_CANNOT_REMAP_INPUT": "Cannot set an input for {Hotkey} for {ControlType}.",
   "TOAST_FAST_MODE_OFF": "Les actions de combat et les transitions d''écran seront ralenties.",
   "TOAST_FAST_MODE_ON": "Les actions de combat et les transitions d''écran seront accélérées.",
   "TOAST_GAMEPLAY_DATA_OFF": "Les statistiques de jeu et les rapports d''erreur ne seront pas envoyés.",

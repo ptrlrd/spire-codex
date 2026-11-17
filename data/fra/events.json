@@ -428,7 +428,7 @@
       },
       {
         "id": "RIP",
-        "description": "Vous [jitter]arrachez violemment la sangsue de votre tête[/jitter] et la jetez loin, très loin !\n\nUne voix résonne dans votre tête :\n[purple][sine]« NOOOOOOoOoooooOONNnnnn.... »"
+        "description": "Vous [jitter]arrachez violemment la sangsue de votre tête[/jitter] et la jetez loin, très loin !\n\nUne voix résonne dans votre tête :\n[purple][sine]« NOOOOOOoOoooooOONNnnnn.... »[/sine][/purple]"
       },
       {
         "id": "SHARE_KNOWLEDGE",
@@ -1076,7 +1076,7 @@
           {
             "id": "TAKE",
             "title": "TAKE",
-            "description": "Recevez [gold]a random Relic[/gold]."
+            "description": "Recevez [gold]une relique aléatoire[/gold]."
           }
         ]
       },
@@ -1283,7 +1283,7 @@
     "name": "Le Marchand ???",
     "type": "Shared",
     "act": null,
-    "description": "A suspicious merchant offers 6 fake relics (drawn from a pool of 9) at 42–58 gold each. Throwing a [gold]Foul Potion[/gold] starts a fight against The Merchant??? (165 HP). Winning rewards [gold]The Merchant's Rug???[/gold] plus all unsold relics.",
+    "description": "Un marchand suspect propose 6 fausses reliques (tirées d'un pool de 9) à 42–58 pièces chacune. Lancer une [gold]Foul Potion[/gold] déclenche un combat contre The Merchant??? (165 PV). La victoire récompense [gold]The Merchant's Rug???[/gold] ainsi que toutes les reliques invendues.",
     "preconditions": [
       "Act 2+",
       "Single player only",
@@ -1902,10 +1902,12 @@
       "SMALL_CAPSULE",
       "STONE_HUMIDIFIER",
       "CURSED_PEARL",
+      "DOWSING_ROD",
       "HEFTY_TABLET",
       "LARGE_CAPSULE",
       "LEAFY_POULTICE",
       "NEOWS_BONES",
+      "NEOWS_SACRIFICE",
       "PRECARIOUS_SHEARS",
       "SILKEN_TRESS",
       "SILVER_CRUCIBLE"
@@ -2261,10 +2263,10 @@
     "relics": [
       "ELECTRIC_SHRYMP",
       "GLASS_EYE",
-      "SAND_CASTLE",
       "ALCHEMICAL_COFFER",
       "DRIFTWOOD",
       "RADIANT_PEARL",
+      "SAND_CASTLE",
       "SEA_GLASS",
       "PRISMATIC_GEM",
       "TOUCH_OF_OROBAS",
@@ -2680,17 +2682,17 @@
       {
         "id": "TOP",
         "title": "Prendre celle du haut",
-        "description": "Troquer [gold]one of your Relics[/gold] contre [gold]a random Relic[/gold]."
+        "description": "Troquer [gold]l'une de vos reliques[/gold] contre [gold]une relique aléatoire[/gold]."
       },
       {
         "id": "MIDDLE",
         "title": "Prendre celle du milieu",
-        "description": "Troquer [gold]one of your Relics[/gold] contre [gold]a random Relic[/gold]."
+        "description": "Troquer [gold]l'une de vos reliques[/gold] contre [gold]une relique aléatoire[/gold]."
       },
       {
         "id": "BOTTOM",
         "title": "Prendre celle du bas",
-        "description": "Troquer [gold]one of your Relics[/gold] contre [gold]a random Relic[/gold]."
+        "description": "Troquer [gold]l'une de vos reliques[/gold] contre [gold]une relique aléatoire[/gold]."
       }
     ],
     "pages": [
@@ -2705,17 +2707,17 @@
           {
             "id": "TOP",
             "title": "Prendre celle du haut",
-            "description": "Troquer [gold]one of your Relics[/gold] contre [gold]a random Relic[/gold]."
+            "description": "Troquer [gold]l'une de vos reliques[/gold] contre [gold]une relique aléatoire[/gold]."
           },
           {
             "id": "MIDDLE",
             "title": "Prendre celle du milieu",
-            "description": "Troquer [gold]one of your Relics[/gold] contre [gold]a random Relic[/gold]."
+            "description": "Troquer [gold]l'une de vos reliques[/gold] contre [gold]une relique aléatoire[/gold]."
           },
           {
             "id": "BOTTOM",
             "title": "Prendre celle du bas",
-            "description": "Troquer [gold]one of your Relics[/gold] contre [gold]a random Relic[/gold]."
+            "description": "Troquer [gold]l'une de vos reliques[/gold] contre [gold]une relique aléatoire[/gold]."
           }
         ]
       }
@@ -2996,7 +2998,7 @@
       {
         "id": "OVERCOME",
         "title": "Surmonter",
-        "description": "[red]a random Card[/red] est retiré de votre [gold]Deck[/gold]."
+        "description": "[red]une carte aléatoire[/red] est retiré de votre [gold]Deck[/gold]."
       },
       {
         "id": "HOLD_ON_0",
@@ -3100,7 +3102,7 @@
           {
             "id": "OVERCOME",
             "title": "Surmonter",
-            "description": "[red]a random Card[/red] est retiré de votre [gold]Deck[/gold]."
+            "description": "[red]une carte aléatoire[/red] est retiré de votre [gold]Deck[/gold]."
           },
           {
             "id": "HOLD_ON_0",
@@ -3221,7 +3223,7 @@
       {
         "id": "LIFT",
         "title": "Boire et soulever",
-        "description": "Perdez [red]a random Potion[/red]. Gagnez [blue]10[/blue] PV Max."
+        "description": "Perdez [red]une potion aléatoire[/red]. Gagnez [blue]10[/blue] PV Max."
       },
       {
         "id": "LIFT_LOCKED",
@@ -3247,7 +3249,7 @@
           {
             "id": "LIFT",
             "title": "Boire et soulever",
-            "description": "Perdez [red]a random Potion[/red]. Gagnez [blue]10[/blue] PV Max."
+            "description": "Perdez [red]une potion aléatoire[/red]. Gagnez [blue]10[/blue] PV Max."
           },
           {
             "id": "LIFT_LOCKED",
@@ -3268,7 +3270,7 @@
       },
       {
         "id": "LIFT",
-        "description": "Vous descendez [gold]a random Potion[/gold] d’une traite et [jitter]soulevez le rocher de toutes vos forces[/jitter] !!\n\nRien ne se passe."
+        "description": "Vous descendez [gold]une potion aléatoire[/gold] d’une traite et [jitter]soulevez le rocher de toutes vos forces[/jitter] !!\n\nRien ne se passe."
       },
       {
         "id": "PUSH",
@@ -4802,6 +4804,11 @@
           "text": "Comme ça, tu cherches à atteindre la gloire ? J'ai quelques propositions pour toi..."
         },
         {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "{Visits}. {Visits} fois que tu passes ici."
+        },
+        {
           "order": "2-0r",
           "speaker": "ancient",
           "text": "Tu as bien compris que ça ne finira [sine]jamais[/sine] ?"
@@ -5159,7 +5166,7 @@
       {
         "id": "FEATURED_ITEM",
         "title": "Article Wongo’s du moment",
-        "description": "Payez [red]200[/red] [gold]Pièces d’or[/gold]. Obtenez [gold]a random Relic[/gold]."
+        "description": "Payez [red]200[/red] [gold]Pièces d’or[/gold]. Obtenez [gold]une relique aléatoire[/gold]."
       },
       {
         "id": "FEATURED_ITEM_LOCKED",
@@ -5212,7 +5219,7 @@
           {
             "id": "FEATURED_ITEM",
             "title": "Article Wongo’s du moment",
-            "description": "Payez [red]200[/red] [gold]Pièces d’or[/gold]. Obtenez [gold]a random Relic[/gold]."
+            "description": "Payez [red]200[/red] [gold]Pièces d’or[/gold]. Obtenez [gold]une relique aléatoire[/gold]."
           },
           {
             "id": "FEATURED_ITEM_LOCKED",

@@ -24,14 +24,24 @@
     "monsters": [
       {
         "id": "AXEBOT",
-        "name": "アックスマシン"
+        "name": "アックスボット"
       }
     ],
     "loss_text": "[b]The Adventurer[/b]は[gold]アックスマシン[/gold]によってバラバラに解体された。"
   },
   {
     "id": "BATTLEWORN_DUMMY_EVENT_ENCOUNTER",
-    "name": "歴戦のダミー",
+    "name": "Battleworn Dummy Event Encounter",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": null,
+    "loss_text": null
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_V1_ENCOUNTER",
+    "name": "歴戦の訓練人形",
     "room_type": "Monster",
     "is_weak": false,
     "act": null,
@@ -40,17 +50,39 @@
       {
         "id": "BATTLE_FRIEND_V1",
         "name": "バトルフレンド V1.0"
-      },
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]歴戦の訓練人形[/gold]によって殺された。……なんで？"
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_V2_ENCOUNTER",
+    "name": "歴戦の訓練人形",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
       {
         "id": "BATTLE_FRIEND_V2",
         "name": "バトルフレンド V2.0"
-      },
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]歴戦の訓練人形[/gold]によって殺された。……なんで？"
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_V3_ENCOUNTER",
+    "name": "歴戦の訓練人形",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
       {
         "id": "BATTLE_FRIEND_V3",
         "name": "バトルフレンド V3.0"
       }
     ],
-    "loss_text": "[b]The Adventurer[/b]は[gold]歴戦のダミー[/gold]によって殺された。……なんで？"
+    "loss_text": "[b]The Adventurer[/b]は[gold]歴戦の訓練人形[/gold]によって殺された。……なんで？"
   },
   {
     "id": "BOWLBUGS_NORMAL",
@@ -182,7 +214,7 @@
       },
       {
         "id": "PUNCH_CONSTRUCT",
-        "name": "パンチマシン"
+        "name": "ボクシングロボ"
       }
     ],
     "loss_text": "[gold]機械兵の動物園[/gold]は[b]The Adventurer[/b]を押し潰した。"
@@ -246,7 +278,7 @@
     "monsters": [
       {
         "id": "CALCIFIED_CULTIST",
-        "name": "石を纏った狂信者"
+        "name": "石纏いの狂信者"
       },
       {
         "id": "DAMP_CULTIST",
@@ -504,7 +536,7 @@
     "monsters": [
       {
         "id": "FAT_GREMLIN",
-        "name": "ファットグレムリン"
+        "name": "太っちょグレムリン"
       },
       {
         "id": "GREMLIN_MERC",
@@ -869,7 +901,7 @@
   },
   {
     "id": "PUNCH_CONSTRUCT_NORMAL",
-    "name": "パンチマシーン",
+    "name": "ボクシングロボ",
     "room_type": "Monster",
     "is_weak": false,
     "act": "Act 1 - Underdocks",
@@ -877,14 +909,14 @@
     "monsters": [
       {
         "id": "PUNCH_CONSTRUCT",
-        "name": "パンチマシン"
+        "name": "ボクシングロボ"
       }
     ],
-    "loss_text": "[b]The Adventurer[/b]は[gold]パンチマシーン[/gold]との殴り合いに突入した。"
+    "loss_text": "[b]The Adventurer[/b]は[gold]ボクシングロボ[/gold]との殴り合いに突入した。"
   },
   {
     "id": "PUNCH_OFF_EVENT_ENCOUNTER",
-    "name": "パンチマシーン",
+    "name": "ボクシングロボ",
     "room_type": "Monster",
     "is_weak": false,
     "act": null,
@@ -892,10 +924,10 @@
     "monsters": [
       {
         "id": "PUNCH_CONSTRUCT",
-        "name": "パンチマシン"
+        "name": "ボクシングロボ"
       }
     ],
-    "loss_text": "[b]The Adventurer[/b]は2体の[gold]パンチマシーン[/gold]による試合を妨害した。"
+    "loss_text": "[b]The Adventurer[/b]は2体の[gold]ボクシングロボ[/gold]による試合を妨害した。"
   },
   {
     "id": "QUEEN_BOSS",
@@ -993,7 +1025,7 @@
     "monsters": [
       {
         "id": "CALCIFIED_CULTIST",
-        "name": "石を纏った狂信者"
+        "name": "石纏いの狂信者"
       },
       {
         "id": "SEAPUNK",
@@ -1145,7 +1177,10 @@
     "room_type": "Monster",
     "is_weak": false,
     "act": "Act 1 - Overgrowth",
-    "tags": null,
+    "tags": [
+      "Jaxfruit",
+      "Slimes"
+    ],
     "monsters": [
       {
         "id": "LEAF_SLIME_M",
@@ -1221,7 +1256,8 @@
     "is_weak": false,
     "act": "Act 1 - Overgrowth",
     "tags": [
-      "Mushroom"
+      "Mushroom",
+      "Jaxfruit"
     ],
     "monsters": [
       {
@@ -1369,11 +1405,11 @@
     "monsters": [
       {
         "id": "THE_FORGOTTEN",
-        "name": "忘れられし者"
+        "name": "忘れられしもの"
       },
       {
         "id": "THE_LOST",
-        "name": "迷える者"
+        "name": "迷えるもの"
       }
     ],
     "loss_text": "[gold]迷える者と忘れられし者[/gold]は[b]The Adventurer[/b]の生きる意志を盗んだ。"

@@ -31,6 +31,16 @@
   },
   {
     "id": "BATTLEWORN_DUMMY_EVENT_ENCOUNTER",
+    "name": "Battleworn Dummy Event Encounter",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": null,
+    "loss_text": null
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_V1_ENCOUNTER",
     "name": "Manequim de Treinamento Desgastado",
     "room_type": "Monster",
     "is_weak": false,
@@ -40,17 +50,39 @@
       {
         "id": "BATTLE_FRIEND_V1",
         "name": "Companheiro de Batalha V1.0"
-      },
+      }
+    ],
+    "loss_text": "De alguma forma, [b]The Adventurer[/b] conseguiu perder para um [gold]Manequim de Treinamento Desgastado[/gold]???"
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_V2_ENCOUNTER",
+    "name": "Manequim de Treinamento Desgastado",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
       {
         "id": "BATTLE_FRIEND_V2",
         "name": "Companheiro de Batalha V2.0"
-      },
+      }
+    ],
+    "loss_text": "De alguma forma, [b]The Adventurer[/b] conseguiu perder para um [gold]Manequim de Treinamento Desgastado[/gold]???"
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_V3_ENCOUNTER",
+    "name": "Manequim de Treinamento Desgastado",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
       {
         "id": "BATTLE_FRIEND_V3",
         "name": "Companheiro de Batalha V3.0"
       }
     ],
-    "loss_text": "De alguma forma, um [gold]Manequim de Treinamento Desgastado[/gold] conseguiu derrotar [b]The Adventurer[/b]???"
+    "loss_text": "De alguma forma, [b]The Adventurer[/b] conseguiu perder para um [gold]Manequim de Treinamento Desgastado[/gold]???"
   },
   {
     "id": "BOWLBUGS_NORMAL",
@@ -430,7 +462,7 @@
         "name": "Brumesporo"
       }
     ],
-    "loss_text": "[b]The Adventurer[/b] se distraiu pelas ilusões de um [gold]Brumesporo[/gold]."
+    "loss_text": "[b]The Adventurer[/b] se distraiu com as ilusões de um [gold]Brumesporo[/gold]."
   },
   {
     "id": "FOSSIL_STALKER_NORMAL",
@@ -653,7 +685,7 @@
   },
   {
     "id": "LIVING_FOG_NORMAL",
-    "name": "Gás Maligno",
+    "name": "Névoa Viva",
     "room_type": "Monster",
     "is_weak": false,
     "act": "Act 1 - Underdocks",
@@ -668,7 +700,7 @@
         "name": "Névoa Viva"
       }
     ],
-    "loss_text": "[b]The Adventurer[/b] não suportou respirar enquanto enfrentava uma espécie de [gold]Gás Maligno[/gold]."
+    "loss_text": "[b]The Adventurer[/b] não suportou respirar enquanto enfrentava uma espécie de [gold]Névoa Viva[/gold]."
   },
   {
     "id": "LOUSE_PROGENITOR_NORMAL",
@@ -1145,7 +1177,10 @@
     "room_type": "Monster",
     "is_weak": false,
     "act": "Act 1 - Overgrowth",
-    "tags": null,
+    "tags": [
+      "Jaxfruit",
+      "Slimes"
+    ],
     "monsters": [
       {
         "id": "LEAF_SLIME_M",
@@ -1221,7 +1256,8 @@
     "is_weak": false,
     "act": "Act 1 - Overgrowth",
     "tags": [
-      "Mushroom"
+      "Mushroom",
+      "Jaxfruit"
     ],
     "monsters": [
       {

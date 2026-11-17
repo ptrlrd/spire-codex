@@ -11,6 +11,17 @@
     "pool": "shared"
   },
   {
+    "id": "AMBERGRIS",
+    "name": "Ambre gris",
+    "description": "Récupérez [green]50%[/green] de vos PV Max. Si vous consommez la potion pendant un combat, jouez un tour supplémentaire.",
+    "description_raw": "Récupérez [green]{HealPercent}%[/green] de vos PV Max. Si vous consommez la potion pendant un combat, jouez un tour supplémentaire.",
+    "rarity": "Événement",
+    "image_url": "/static/images/potions/ambergris.webp",
+    "rarity_key": "Event",
+    "compendium_order": 60,
+    "pool": "event"
+  },
+  {
     "id": "EXPLOSIVE_AMPOULE",
     "name": "Ampoule explosive",
     "description": "Infligez [blue]10[/blue] dégâts à TOUS les ennemis.",
@@ -326,7 +337,7 @@
     "rarity": "Généré",
     "image_url": "/static/images/potions/potion_shaped_rock.webp",
     "rarity_key": "Token",
-    "compendium_order": 62,
+    "compendium_order": 63,
     "pool": "shared"
   },
   {
@@ -590,7 +601,7 @@
     "rarity": "Événement",
     "image_url": "/static/images/potions/foul_potion.webp",
     "rarity_key": "Event",
-    "compendium_order": 60,
+    "compendium_order": 61,
     "pool": "event"
   },
   {
@@ -601,7 +612,7 @@
     "rarity": "Événement",
     "image_url": "/static/images/potions/glowwater_potion.webp",
     "rarity_key": "Event",
-    "compendium_order": 61,
+    "compendium_order": 62,
     "pool": "event"
   },
   {

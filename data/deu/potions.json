@@ -22,6 +22,17 @@
     "pool": "shared"
   },
   {
+    "id": "AMBERGRIS",
+    "name": "Ambra",
+    "description": "Heile [green]50%[/green] deiner max. TP. Bei Nutzung im Kampf mache einen Extrazug.",
+    "description_raw": "Heile [green]{HealPercent}%[/green] deiner max. TP. Bei Nutzung im Kampf mache einen Extrazug.",
+    "rarity": "Ereignis",
+    "image_url": "/static/images/potions/ambergris.webp",
+    "rarity_key": "Event",
+    "compendium_order": 60,
+    "pool": "event"
+  },
+  {
     "id": "ATTACK_POTION",
     "name": "Angriffstrank",
     "description": "Wähle [blue]1[/blue] von [blue]3[/blue] zufälligen Angriffskarten, die du auf deine [gold]Hand[/gold] erhältst. Sie ist in diesem Zug kostenlos spielbar.",
@@ -172,7 +183,7 @@
     "rarity": "Ereignis",
     "image_url": "/static/images/potions/foul_potion.webp",
     "rarity_key": "Event",
-    "compendium_order": 60,
+    "compendium_order": 61,
     "pool": "event"
   },
   {
@@ -348,7 +359,7 @@
     "rarity": "Ereignis",
     "image_url": "/static/images/potions/glowwater_potion.webp",
     "rarity_key": "Event",
-    "compendium_order": 61,
+    "compendium_order": 62,
     "pool": "event"
   },
   {
@@ -623,7 +634,7 @@
     "rarity": "Token",
     "image_url": "/static/images/potions/potion_shaped_rock.webp",
     "rarity_key": "Token",
-    "compendium_order": 62,
+    "compendium_order": 63,
     "pool": "shared"
   },
   {

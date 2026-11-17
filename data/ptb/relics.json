@@ -13,7 +13,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 260
+    "compendium_order": 262
   },
   {
     "id": "LETTER_OPENER",
@@ -89,7 +89,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 261
+    "compendium_order": 263
   },
   {
     "id": "REGAL_PILLOW",
@@ -165,7 +165,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 262
+    "compendium_order": 264
   },
   {
     "id": "REPTILE_TRINKET",
@@ -226,7 +226,7 @@
   {
     "id": "SIGNET_RING",
     "name": "Anel de Sinete",
-    "description": "Ao coletar esta relíquia, receba [blue]999[/blue] de [gold]Ouro[/gold].",
+    "description": "Ao coletar esta relíquia, receba [blue]888[/blue] de [gold]Ouro[/gold].",
     "description_raw": "Ao coletar esta relíquia, receba [blue]{Gold}[/blue] de [gold]Ouro[/gold].",
     "flavor": "[red]Detalhes sobre esta relíquia serão revelados no futuro...[/red]",
     "rarity": "Relíquia Ancestral",
@@ -373,7 +373,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 263
+    "compendium_order": 265
   },
   {
     "id": "RIPPLE_BASIN",
@@ -521,7 +521,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 264
+    "compendium_order": 266
   },
   {
     "id": "YUMMY_COOKIE",
@@ -604,8 +604,8 @@
   {
     "id": "BEAUTIFUL_BRACELET",
     "name": "Bracelete Bonito",
-    "description": "Ao coletar esta relíquia, escolha [blue]3[/blue] cartas no seu [gold]Baralho[/gold]. As [gold]Encante[/gold] com [purple]Célere[/purple] [blue]3[/blue].",
-    "description_raw": "Ao coletar esta relíquia, escolha [blue]{Cards}[/blue] {Cards:plural:carta|cartas} no seu [gold]Baralho[/gold]. As [gold]Encante[/gold] com [purple]Célere[/purple] [blue]3[/blue].",
+    "description": "Ao coletar esta relíquia, [gold]Encante[/gold] [blue]4[/blue] cartas aleatórias no seu [gold]Baralho[/gold] com [purple]Célere[/purple] [blue]2[/blue].",
+    "description_raw": "Ao coletar esta relíquia, [gold]Encante[/gold] [blue]{Cards}[/blue] {Cards:plural:carta aleatória|cartas aleatórias} no seu [gold]Baralho[/gold] com [purple]Célere[/purple] [blue]2[/blue].",
     "flavor": "[red]Detalhes sobre esta relíquia serão revelados no futuro...[/red]",
     "rarity": "Relíquia Ancestral",
     "pool": "shared",
@@ -707,7 +707,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 265
+    "compendium_order": 267
   },
   {
     "id": "CLOAK_CLASP",
@@ -748,8 +748,8 @@
   {
     "id": "SILKEN_TRESS",
     "name": "Cabelos Sedosos",
-    "description": "Ao coletar esta relíquia, perca todo o [gold]Ouro[/gold]. [gold]Encante[/gold] todas as cartas na primeira recompensa de cartas com [purple]Elegante[/purple].",
-    "description_raw": "Ao coletar esta relíquia, perca todo o [gold]Ouro[/gold]. [gold]Encante[/gold] todas as cartas na primeira recompensa de cartas com [purple]Elegante[/purple].",
+    "description": "Ao coletar esta relíquia, perca todo o [gold]Ouro[/gold]. [gold]Encante[/gold] todas as cartas na sua primeira recompensa de cartas com [purple]Elegante[/purple].",
+    "description_raw": "Ao coletar esta relíquia, perca todo o [gold]Ouro[/gold]. [gold]Encante[/gold] todas as cartas na sua primeira recompensa de cartas com [purple]Elegante[/purple].",
     "flavor": "[red]Detalhes sobre esta relíquia serão revelados no futuro...[/red]",
     "rarity": "Relíquia Ancestral",
     "pool": "shared",
@@ -820,7 +820,7 @@
   {
     "id": "TOY_BOX",
     "name": "Caixa de Brinquedos",
-    "description": "Ao coletar esta relíquia, receba [blue]4[/blue] [gold]Relíquias de Cera[/gold]. A cada [blue]3[/blue] combates, sua [gold]Relíquia de Cera[/gold] mais à esquerda se derreterá.",
+    "description": "Ao coletar esta relíquia, receba [blue]5[/blue] [gold]Relíquias de Cera[/gold]. A cada [blue]3[/blue] combates, sua [gold]Relíquia de Cera[/gold] mais à esquerda se derreterá.",
     "description_raw": "Ao coletar esta relíquia, receba [blue]{Relics}[/blue] [gold]{Relics:plural:Relíquia|Relíquias} de Cera[/gold]. A cada [blue]{Combats}[/blue] {Combats:plural:combate|combates}, sua [gold]Relíquia de Cera[/gold] mais à esquerda se derreterá.",
     "flavor": "[red]Detalhes sobre esta relíquia serão revelados no futuro...[/red]",
     "rarity": "Relíquia Ancestral",
@@ -892,8 +892,8 @@
   {
     "id": "TINY_MAILBOX",
     "name": "Caixinha de Correspondência",
-    "description": "Sempre que você [gold]Descansar[/gold], receba [blue]2[/blue] poções aleatórias.",
-    "description_raw": "Sempre que você [gold]Descansar[/gold], receba [blue]2[/blue] poções aleatórias.",
+    "description": "Sempre que você [gold]Descansar[/gold], receba [blue]2[/blue] [gold]Poções[/gold] aleatórias.",
+    "description_raw": "Sempre que você [gold]Descansar[/gold], receba [blue]2[/blue] [gold]Poções[/gold] aleatórias.",
     "flavor": "[red]Detalhes sobre esta relíquia serão revelados no futuro...[/red]",
     "rarity": "Relíquia Incomum",
     "pool": "shared",
@@ -928,8 +928,8 @@
   {
     "id": "CAULDRON",
     "name": "Caldeirão",
-    "description": "Ao coletar esta relíquia, receba [blue]5[/blue] poções aleatórias.",
-    "description_raw": "Ao coletar esta relíquia, receba [blue]{Potions}[/blue] {Potions:plural:poção aleatória|poções aleatórias}.",
+    "description": "Ao coletar esta relíquia, receba [blue]5[/blue] [gold]Poções[/gold] aleatórias.",
+    "description_raw": "Ao coletar esta relíquia, receba [blue]{Potions}[/blue] {Potions:plural:[gold]Poção[/gold] aleatória|[gold]Poções[/gold] aleatórias}.",
     "flavor": "[red]Detalhes sobre esta relíquia serão revelados no futuro...[/red]",
     "rarity": "Relíquia de Loja",
     "pool": "shared",
@@ -1040,8 +1040,8 @@
   {
     "id": "DISTINGUISHED_CAPE",
     "name": "Capa Renomada",
-    "description": "Ao coletar esta relíquia, perca [blue]9[/blue] PV Máximos. Adicione [blue]3[/blue] [gold]Aparições[/gold] ao seu [gold]Baralho[/gold].",
-    "description_raw": "Ao coletar esta relíquia, perca [blue]9[/blue] PV Máximos. Adicione [blue]{Cards}[/blue] [gold]{Cards:plural:Aparição|Aparições}[/gold] ao seu [gold]Baralho[/gold].",
+    "description": "Ao coletar esta relíquia, adicione [blue]2[/blue] [red]Maldições[/red] aleatórias e [blue]3[/blue] [gold]Aparições[/gold] ao seu [gold]Baralho[/gold].",
+    "description_raw": "Ao coletar esta relíquia, adicione [blue]{Curses}[/blue] [red]Maldições[/red] aleatórias e [blue]{Cards}[/blue] [gold]{Cards:plural:Aparição|Aparições}[/gold] ao seu [gold]Baralho[/gold].",
     "flavor": "[red]Detalhes sobre esta relíquia serão revelados no futuro...[/red]",
     "rarity": "Relíquia Ancestral",
     "pool": "shared",
@@ -1152,7 +1152,7 @@
   {
     "id": "FUR_COAT",
     "name": "Casaco de Pele",
-    "description": "Ao coletar esta relíquia, marque [blue]7[/blue] combates aleatórios. Inimigos nestas salas têm [blue]1[/blue] PV.",
+    "description": "Ao coletar esta relíquia, marque [blue]8[/blue] combates aleatórios. Inimigos nestas salas têm [blue]1[/blue] PV.",
     "description_raw": "Ao coletar esta relíquia, marque [blue]{Combats}[/blue] combates aleatórios. Inimigos nestas salas têm [blue]1[/blue] PV.",
     "flavor": "[red]Detalhes sobre esta relíquia serão revelados no futuro...[/red]",
     "rarity": "Relíquia Ancestral",
@@ -1375,7 +1375,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 266
+    "compendium_order": 268
   },
   {
     "id": "BONE_TEA",
@@ -1391,7 +1391,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 267
+    "compendium_order": 269
   },
   {
     "id": "EMBER_TEA",
@@ -1407,7 +1407,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 268
+    "compendium_order": 270
   },
   {
     "id": "PRAYER_WHEEL",
@@ -1472,8 +1472,8 @@
   {
     "id": "ALCHEMICAL_COFFER",
     "name": "Cofre Alquímico",
-    "description": "Ao coletar esta relíquia, receba [blue]4[/blue] espaços de poções com poções aleatórias.",
-    "description_raw": "Ao coletar esta relíquia, receba [blue]{PotionSlots}[/blue] espaços de poções com poções aleatórias.",
+    "description": "Ao coletar esta relíquia, receba [blue]4[/blue] espaços de poções com [gold]Poções[/gold] aleatórias.",
+    "description_raw": "Ao coletar esta relíquia, receba [blue]{PotionSlots}[/blue] espaços de poções com [gold]Poções[/gold] aleatórias.",
     "flavor": "[red]Detalhes sobre esta relíquia serão revelados no futuro...[/red]",
     "rarity": "Relíquia Ancestral",
     "pool": "shared",
@@ -1499,7 +1499,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 269
+    "compendium_order": 271
   },
   {
     "id": "FRAGRANT_MUSHROOM",
@@ -1515,7 +1515,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 270
+    "compendium_order": 272
   },
   {
     "id": "BIG_MUSHROOM",
@@ -1531,13 +1531,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 271
+    "compendium_order": 273
   },
   {
     "id": "PHIAL_HOLSTER",
     "name": "Coldre de Frascos",
-    "description": "Ao coletar esta relíquia, receba [blue]1[/blue] espaço de poções e [blue]2[/blue] poções aleatórias.",
-    "description_raw": "Ao coletar esta relíquia, receba [blue]{PotionSlots}[/blue] {PotionSlots:plural:espaço|espaços} de poções e [blue]{Potions}[/blue] {Potions:plural:poção aleatória|poções aleatórias}.",
+    "description": "Ao coletar esta relíquia, receba [blue]1[/blue] espaço de poções e [blue]2[/blue] [gold]Poções[/gold] aleatórias.",
+    "description_raw": "Ao coletar esta relíquia, receba [blue]{PotionSlots}[/blue] {PotionSlots:plural:espaço|espaços} de poções e [blue]{Potions}[/blue] {Potions:plural:[gold]Poção[/gold] aleatória|[gold]Poções[/gold] aleatórias}.",
     "flavor": "[red]Detalhes sobre esta relíquia serão revelados no futuro...[/red]",
     "rarity": "Relíquia Ancestral",
     "pool": "shared",
@@ -1635,7 +1635,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 272
+    "compendium_order": 274
   },
   {
     "id": "MEAL_TICKET",
@@ -1816,7 +1816,7 @@
   {
     "id": "DIVINE_DESTINY",
     "name": "Destino Divino",
-    "description": "No início de cada combate, receba [star:6].",
+    "description": "No início de cada combate, receba [star:7].",
     "description_raw": "No início de cada combate, receba {Stars:starIcons()}.",
     "flavor": "[red]Detalhes sobre esta relíquia serão revelados no futuro...[/red]",
     "rarity": "Relíquia Inicial",
@@ -1832,8 +1832,8 @@
   {
     "id": "DIAMOND_DIADEM",
     "name": "Diadema de Diamantes",
-    "description": "Sempre que você jogar [blue]2[/blue] cartas ou menos em um turno, receba apenas metade de dano dos inimigos.",
-    "description_raw": "Sempre que você jogar [blue]{CardThreshold}[/blue] cartas ou menos em um turno, receba apenas metade de dano dos inimigos.",
+    "description": "Inicie cada combate com [blue]20[/blue] de [gold]Proteção[/gold]. Sua [gold]Proteção[/gold] não é removida no início do seu [blue]2º[/blue] turno.",
+    "description_raw": "Inicie cada combate com [blue]{Block}[/blue] de [gold]Proteção[/gold]. Sua [gold]Proteção[/gold] não é removida no início do seu [blue]2º[/blue] turno.",
     "flavor": "[red]Detalhes sobre esta relíquia serão revelados no futuro...[/red]",
     "rarity": "Relíquia Ancestral",
     "pool": "shared",
@@ -2071,7 +2071,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 273
+    "compendium_order": 275
   },
   {
     "id": "SWORD_OF_STONE",
@@ -2087,7 +2087,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 274
+    "compendium_order": 276
   },
   {
     "id": "DOLLYS_MIRROR",
@@ -2112,8 +2112,8 @@
   {
     "id": "WHITE_BEAST_STATUE",
     "name": "Estatueta de Fera Alva",
-    "description": "Poções sempre aparecem em recompensas de combates.",
-    "description_raw": "Poções sempre aparecem em recompensas de combates.",
+    "description": "[gold]Poções[/gold] sempre aparecem em recompensas de combates.",
+    "description_raw": "[gold]Poções[/gold] sempre aparecem em recompensas de combates.",
     "flavor": "[red]Detalhes sobre esta relíquia serão revelados no futuro...[/red]",
     "rarity": "Relíquia Rara",
     "pool": "shared",
@@ -2188,8 +2188,8 @@
   {
     "id": "HISTORY_COURSE",
     "name": "Estudos de História",
-    "description": "No início do seu turno, jogue uma cópia da última carta de Ataque ou Técnica que você tenha jogado.",
-    "description_raw": "No início do seu turno, jogue uma cópia da última carta de Ataque ou Técnica que você tenha jogado.",
+    "description": "No início do seu turno, jogue uma cópia do último Ataque que você tenha jogado.",
+    "description_raw": "No início do seu turno, jogue uma cópia do último Ataque que você tenha jogado.",
     "flavor": "[red]Detalhes sobre esta relíquia serão revelados no futuro...[/red]",
     "rarity": "Relíquia de Evento",
     "pool": "shared",
@@ -2199,7 +2199,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 275
+    "compendium_order": 277
   },
   {
     "id": "GAMBLING_CHIP",
@@ -2235,7 +2235,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 276
+    "compendium_order": 278
   },
   {
     "id": "DREAM_CATCHER",
@@ -2251,13 +2251,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 277
+    "compendium_order": 279
   },
   {
     "id": "BELT_BUCKLE",
     "name": "Fivela de Cinto",
-    "description": "Enquanto você não possuir poções, receba [blue]2[/blue] de [gold]Destreza[/gold] adicional.",
-    "description_raw": "Enquanto você não possuir poções, receba [blue]{DexterityPower}[/blue] de [gold]Destreza[/gold] adicional.",
+    "description": "Enquanto você não possuir [gold]Poções[/gold], receba [blue]2[/blue] de [gold]Destreza[/gold] adicional.",
+    "description_raw": "Enquanto você não possuir [gold]Poções[/gold], receba [blue]{DexterityPower}[/blue] de [gold]Destreza[/gold] adicional.",
     "flavor": "[red]Detalhes sobre esta relíquia serão revelados no futuro...[/red]",
     "rarity": "Relíquia de Loja",
     "pool": "shared",
@@ -2331,7 +2331,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 278
+    "compendium_order": 280
   },
   {
     "id": "LOST_WISP",
@@ -2347,7 +2347,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 279
+    "compendium_order": 281
   },
   {
     "id": "BELLOWS",
@@ -2388,8 +2388,8 @@
   {
     "id": "DELICATE_FROND",
     "name": "Folhagem Delicada",
-    "description": "No início de cada combate, preencha todos os espaços de poções vazios com poções aleatórias.",
-    "description_raw": "No início de cada combate, preencha todos os espaços de poções vazios com poções aleatórias.",
+    "description": "No início de cada combate, preencha todos os espaços de poções vazios com [gold]Poções[/gold] aleatórias.",
+    "description_raw": "No início de cada combate, preencha todos os espaços de poções vazios com [gold]Poções[/gold] aleatórias.",
     "flavor": "[red]Detalhes sobre esta relíquia serão revelados no futuro...[/red]",
     "rarity": "Relíquia Ancestral",
     "pool": "shared",
@@ -2439,7 +2439,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 280
+    "compendium_order": 282
   },
   {
     "id": "LOOMING_FRUIT",
@@ -2538,8 +2538,8 @@
   {
     "id": "SERE_TALON",
     "name": "Garra Ressequida",
-    "description": "Ao coletar esta relíquia, adicione [blue]2[/blue] [red]Maldições[/red] aleatórias e [blue]3[/blue] [purple]Desejos[/purple] ao seu [gold]Baralho[/gold].",
-    "description_raw": "Ao coletar esta relíquia, adicione [blue]{Curses}[/blue] [red]Maldições[/red] aleatórias e [blue]{Wishes}[/blue] [purple]Desejos[/purple] ao seu [gold]Baralho[/gold].",
+    "description": "Ao coletar esta relíquia, perca [blue]9[/blue] PV Máximos. Adicione [blue]3[/blue] [purple]Desejos[/purple] ao seu [gold]Baralho[/gold].",
+    "description_raw": "Ao coletar esta relíquia, perca [blue]9[/blue] PV Máximos. Adicione [blue]{Wishes}[/blue] [purple]Desejos[/purple] ao seu [gold]Baralho[/gold].",
     "flavor": "[red]Detalhes sobre esta relíquia serão revelados no futuro...[/red]",
     "rarity": "Relíquia Ancestral",
     "pool": "shared",
@@ -2705,7 +2705,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 281
+    "compendium_order": 283
   },
   {
     "id": "MYSTIC_LIGHTER",
@@ -2897,7 +2897,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 282
+    "compendium_order": 284
   },
   {
     "id": "ORNAMENTAL_FAN",
@@ -2978,8 +2978,8 @@
   {
     "id": "TOASTY_MITTENS",
     "name": "Luvas Quentinhas",
-    "description": "No início do seu turno, [gold]Exaure[/gold] a carta no topo da sua [gold]Pilha de Compra[/gold] e receba [blue]1[/blue] de [gold]Força[/gold].",
-    "description_raw": "No início do seu turno, [gold]Exaure[/gold] a carta no topo da sua [gold]Pilha de Compra[/gold] e receba [blue]{StrengthPower}[/blue] de [gold]Força[/gold].",
+    "description": "No início do seu turno, [gold]Exaure[/gold] [blue]1[/blue] carta da sua [gold]Mão[/gold] e receba [blue]1[/blue] de [gold]Força[/gold].",
+    "description_raw": "No início do seu turno, [gold]Exaure[/gold] [blue]1[/blue] carta da sua [gold]Mão[/gold] e receba [blue]{StrengthPower}[/blue] de [gold]Força[/gold].",
     "flavor": "[red]Detalhes sobre esta relíquia serão revelados no futuro...[/red]",
     "rarity": "Relíquia Ancestral",
     "pool": "shared",
@@ -3102,8 +3102,8 @@
   {
     "id": "REGALITE",
     "name": "Majestanita",
-    "description": "Sempre que você criar uma carta, receba [blue]2[/blue] de [gold]Proteção[/gold].",
-    "description_raw": "Sempre que você criar uma carta, receba [blue]{Block}[/blue] de [gold]Proteção[/gold].",
+    "description": "Na primeira vez que você criar uma carta a cada turno, receba [blue]4[/blue] de [gold]Proteção[/gold].",
+    "description_raw": "Na primeira vez que você criar uma carta a cada turno, receba [blue]{Block}[/blue] de [gold]Proteção[/gold].",
     "flavor": "[red]Detalhes sobre esta relíquia serão revelados no futuro...[/red]",
     "rarity": "Relíquia Incomum",
     "pool": "regent",
@@ -3157,7 +3157,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 283
+    "compendium_order": 285
   },
   {
     "id": "MANGO",
@@ -3197,7 +3197,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 284
+    "compendium_order": 286
   },
   {
     "id": "SPIKED_GAUNTLETS",
@@ -3525,7 +3525,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 285
+    "compendium_order": 287
   },
   {
     "id": "CRACKED_CORE",
@@ -3573,7 +3573,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 286
+    "compendium_order": 288
   },
   {
     "id": "FAKE_MERCHANTS_RUG",
@@ -3589,7 +3589,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 287
+    "compendium_order": 289
   },
   {
     "id": "THE_ABACUS",
@@ -3661,7 +3661,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 288
+    "compendium_order": 290
   },
   {
     "id": "GLASS_EYE",
@@ -3717,7 +3717,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 289
+    "compendium_order": 291
   },
   {
     "id": "MEAT_ON_THE_BONE",
@@ -4556,6 +4556,22 @@
     "compendium_order": 75
   },
   {
+    "id": "NEOWS_SACRIFICE",
+    "name": "Sacrifício de Neow",
+    "description": "Ao coletar esta relíquia, receba [blue]1[/blue] [gold]Âmbar Cinzento[/gold] e adicione [blue]1[/blue] [red]Culpa[/red] no seu [gold]Baralho[/gold].",
+    "description_raw": "Ao coletar esta relíquia, receba [blue]1[/blue] [gold]Âmbar Cinzento[/gold] e adicione [blue]1[/blue] [red]Culpa[/red] no seu [gold]Baralho[/gold].",
+    "flavor": "[red]Detalhes sobre esta relíquia serão revelados no futuro...[/red]",
+    "rarity": "Relíquia Ancestral",
+    "pool": "shared",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/neows_sacrifice.webp",
+    "image_variants": null,
+    "name_variants": null,
+    "notes": null,
+    "rarity_key": "Ancient",
+    "compendium_order": 240
+  },
+  {
     "id": "SAI",
     "name": "Sai",
     "description": "No início do seu turno, receba [blue]7[/blue] de [gold]Proteção[/gold].",
@@ -4569,7 +4585,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 240
+    "compendium_order": 241
   },
   {
     "id": "BURNING_BLOOD",
@@ -4617,7 +4633,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 241
+    "compendium_order": 242
   },
   {
     "id": "PETRIFIED_TOAD",
@@ -4642,7 +4658,7 @@
   {
     "id": "SEAL_OF_GOLD",
     "name": "Selo Dourado",
-    "description": "No início do seu turno, gaste [blue]5[/blue] de [gold]Ouro[/gold] para receber [energy:1].",
+    "description": "No início do seu turno, gaste [blue]3[/blue] de [gold]Ouro[/gold] para receber [energy:1].",
     "description_raw": "No início do seu turno, gaste [blue]{Gold}[/blue] de [gold]Ouro[/gold] para receber {Energy:energyIcons()}.",
     "flavor": "[red]Detalhes sobre esta relíquia serão revelados no futuro...[/red]",
     "rarity": "Relíquia Ancestral",
@@ -4653,7 +4669,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 242
+    "compendium_order": 243
   },
   {
     "id": "GHOST_SEED",
@@ -4709,7 +4725,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 243
+    "compendium_order": 244
   },
   {
     "id": "NUTRITIOUS_SOUP",
@@ -4725,7 +4741,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 244
+    "compendium_order": 245
   },
   {
     "id": "ICE_CREAM",
@@ -4750,8 +4766,8 @@
   {
     "id": "SOZU",
     "name": "Sozu",
-    "description": "Receba [energy:1] no início de cada turno. Você não pode mais receber poções.",
-    "description_raw": "Receba {Energy:energyIcons()} no início de cada turno. Você não pode mais receber poções.",
+    "description": "Receba [energy:1] no início de cada turno. Você não pode mais receber [gold]Poções[/gold].",
+    "description_raw": "Receba {Energy:energyIcons()} no início de cada turno. Você não pode mais receber [gold]Poções[/gold].",
     "flavor": "[red]Detalhes sobre esta relíquia serão revelados no futuro...[/red]",
     "rarity": "Relíquia Ancestral",
     "pool": "shared",
@@ -4761,7 +4777,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 245
+    "compendium_order": 246
   },
   {
     "id": "MR_STRUGGLES",
@@ -4777,7 +4793,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 290
+    "compendium_order": 292
   },
   {
     "id": "HEFTY_TABLET",
@@ -4793,7 +4809,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 246
+    "compendium_order": 247
   },
   {
     "id": "STONE_CRACKER",
@@ -4861,7 +4877,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 247
+    "compendium_order": 248
   },
   {
     "id": "DINGY_RUG",
@@ -4897,7 +4913,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 248
+    "compendium_order": 249
   },
   {
     "id": "PRECARIOUS_SHEARS",
@@ -4913,7 +4929,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 249
+    "compendium_order": 250
   },
   {
     "id": "CIRCLET",
@@ -4929,7 +4945,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "None",
-    "compendium_order": 295
+    "compendium_order": 297
   },
   {
     "id": "CAPTAINS_WHEEL",
@@ -5005,7 +5021,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 250
+    "compendium_order": 251
   },
   {
     "id": "TOUCH_OF_OROBAS",
@@ -5021,7 +5037,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 251
+    "compendium_order": 252
   },
   {
     "id": "NEOWS_TORMENT",
@@ -5037,7 +5053,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 252
+    "compendium_order": 253
   },
   {
     "id": "LUNAR_PASTRY",
@@ -5073,7 +5089,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 253
+    "compendium_order": 254
   },
   {
     "id": "RINGING_TRIANGLE",
@@ -5109,7 +5125,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 254
+    "compendium_order": 255
   },
   {
     "id": "STONE_HUMIDIFIER",
@@ -5125,7 +5141,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 255
+    "compendium_order": 256
   },
   {
     "id": "VAJRA",
@@ -5161,7 +5177,23 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 256
+    "compendium_order": 257
+  },
+  {
+    "id": "DOWSING_ROD",
+    "name": "Vareta de Radiestesia",
+    "description": "Ao coletar esta relíquia, adicione [blue]1[/blue] [gold]Radiestesia[/gold] no seu [gold]Baralho[/gold].",
+    "description_raw": "Ao coletar esta relíquia, adicione [blue]1[/blue] [gold]Radiestesia[/gold] no seu [gold]Baralho[/gold].",
+    "flavor": "[red]Detalhes sobre esta relíquia serão revelados no futuro...[/red]",
+    "rarity": "Relíquia Ancestral",
+    "pool": "shared",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/dowsing_rod.webp",
+    "image_variants": null,
+    "name_variants": null,
+    "notes": null,
+    "rarity_key": "Ancient",
+    "compendium_order": 258
   },
   {
     "id": "PUMPKIN_CANDLE",
@@ -5177,7 +5209,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 257
+    "compendium_order": 259
   },
   {
     "id": "ROYAL_POISON",
@@ -5193,7 +5225,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 291
+    "compendium_order": 293
   },
   {
     "id": "VENERABLE_TEA_SET",
@@ -5233,7 +5265,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 292
+    "compendium_order": 294
   },
   {
     "id": "SEA_GLASS",
@@ -5255,7 +5287,7 @@
     },
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 258
+    "compendium_order": 260
   },
   {
     "id": "FIDDLE",
@@ -5271,7 +5303,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 259
+    "compendium_order": 261
   },
   {
     "id": "SYMBIOTIC_VIRUS",
@@ -5331,7 +5363,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 293
+    "compendium_order": 295
   },
   {
     "id": "ANCHOR",
@@ -5371,6 +5403,6 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 294
+    "compendium_order": 296
   }
 ]

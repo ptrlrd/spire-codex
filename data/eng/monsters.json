@@ -14,8 +14,8 @@
         "intent": "Attack + Defend",
         "block": 33,
         "damage": {
-          "normal": 26,
-          "ascension": 32
+          "normal": 22,
+          "ascension": 26
         }
       },
       {
@@ -36,8 +36,8 @@
     ],
     "damage_values": {
       "Ebb": {
-        "normal": 26,
-        "ascension": 32
+        "normal": 22,
+        "ascension": 26
       },
       "EyeLasers": {
         "normal": 11,
@@ -88,6 +88,7 @@
       ],
       "description": "Ebb → Eye Lasers → Increasing Intensity → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/aeonglass.webp",
     "beta_image_url": null
   },
@@ -131,6 +132,7 @@
       ],
       "description": "Always uses Nothing"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/architect.webp",
     "beta_image_url": null
   },
@@ -183,6 +185,7 @@
       ],
       "description": "Always uses Killshot"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/assassin_ruby_raider.webp",
     "beta_image_url": null
   },
@@ -271,6 +274,7 @@
       ],
       "description": "Swing 1 → Swing 2 → Big Swing → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/axe_ruby_raider.webp",
     "beta_image_url": null
   },
@@ -301,8 +305,8 @@
         "name": "The One-Two",
         "intent": "Attack",
         "damage": {
-          "normal": 9,
-          "ascension": 10,
+          "normal": 10,
+          "ascension": 11,
           "hit_count": 2
         }
       },
@@ -323,20 +327,20 @@
           }
         ],
         "damage": {
-          "normal": 12,
-          "ascension": 14
+          "normal": 14,
+          "ascension": 18
         }
       }
     ],
     "damage_values": {
       "OneTwo": {
-        "normal": 9,
-        "ascension": 10,
+        "normal": 10,
+        "ascension": 11,
         "hit_count": 2
       },
       "HammerUppercut": {
-        "normal": 12,
-        "ascension": 14
+        "normal": 14,
+        "ascension": 18
       }
     },
     "block_values": null,
@@ -349,7 +353,12 @@
         "is_weak": false
       }
     ],
-    "innate_powers": null,
+    "innate_powers": [
+      {
+        "power_id": "STOCK",
+        "amount": 2
+      }
+    ],
     "attack_pattern": {
       "type": "cycle",
       "initial_move": "BOOT_UP",
@@ -372,6 +381,7 @@
       ],
       "description": "Always uses Boot Up"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/axebot.webp",
     "beta_image_url": null
   },
@@ -394,7 +404,7 @@
     "block_values": null,
     "encounters": [
       {
-        "encounter_id": "BATTLEWORN_DUMMY_EVENT_ENCOUNTER",
+        "encounter_id": "BATTLEWORN_DUMMY_EVENT_V1_ENCOUNTER",
         "encounter_name": "Battleworn Dummy",
         "room_type": "Monster",
         "act": null,
@@ -420,6 +430,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/battle_friend_v1.webp",
     "beta_image_url": null
   },
@@ -442,7 +453,7 @@
     "block_values": null,
     "encounters": [
       {
-        "encounter_id": "BATTLEWORN_DUMMY_EVENT_ENCOUNTER",
+        "encounter_id": "BATTLEWORN_DUMMY_EVENT_V2_ENCOUNTER",
         "encounter_name": "Battleworn Dummy",
         "room_type": "Monster",
         "act": null,
@@ -468,6 +479,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/battle_friend_v2.webp",
     "beta_image_url": null
   },
@@ -490,7 +502,7 @@
     "block_values": null,
     "encounters": [
       {
-        "encounter_id": "BATTLEWORN_DUMMY_EVENT_ENCOUNTER",
+        "encounter_id": "BATTLEWORN_DUMMY_EVENT_V3_ENCOUNTER",
         "encounter_name": "Battleworn Dummy",
         "room_type": "Monster",
         "act": null,
@@ -516,6 +528,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/battle_friend_v3.webp",
     "beta_image_url": null
   },
@@ -576,6 +589,7 @@
       ],
       "description": "Always uses Bite"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/bowlbug_egg.webp",
     "beta_image_url": null
   },
@@ -665,6 +679,7 @@
       ],
       "description": "Thrash → Buff → Thrash2 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/bowlbug_nectar.webp",
     "beta_image_url": null
   },
@@ -751,6 +766,7 @@
       ],
       "description": "Starts with Headbutt"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/bowlbug_rock.webp",
     "beta_image_url": null
   },
@@ -828,6 +844,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/bowlbug_silk.webp",
     "beta_image_url": null
   },
@@ -896,6 +913,7 @@
       ],
       "description": "Always uses Beat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/brute_ruby_raider.webp",
     "beta_image_url": null
   },
@@ -927,7 +945,7 @@
       },
       {
         "id": "SLEEP_MOVE_2",
-        "name": "Sleep Move 2",
+        "name": "Sleep",
         "intent": "Sleep"
       },
       {
@@ -1067,21 +1085,24 @@
     ],
     "attack_pattern": {
       "type": "cycle",
-      "initial_move": null,
+      "initial_move": "SWOOP",
       "states": [
         {
           "id": "PECK_MOVE",
           "type": "move",
-          "move_id": "PECK"
+          "move_id": "PECK",
+          "next": "SWOOP_MOVE"
         },
         {
           "id": "SWOOP_MOVE",
           "type": "move",
-          "move_id": "SWOOP"
+          "move_id": "SWOOP",
+          "next": "PECK_MOVE"
         }
       ],
-      "description": ""
+      "description": "Swoop → Peck → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/byrdonis.webp",
     "beta_image_url": null
   },
@@ -1117,6 +1138,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/byrdpip.webp",
     "beta_image_url": null
   },
@@ -1351,6 +1373,7 @@
       ],
       "description": "Stamp → Plow → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/ceremonial_beast.webp",
     "beta_image_url": null
   },
@@ -1426,6 +1449,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/chomper.webp",
     "beta_image_url": null
   },
@@ -1528,6 +1552,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/corpse_slug.webp",
     "beta_image_url": null
   },
@@ -1590,6 +1615,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/crossbow_ruby_raider.webp",
     "beta_image_url": null
   },
@@ -1741,6 +1767,7 @@
       ],
       "description": "Thrash → Enlarging Strike → Bug Sting → Adapt → Guarded Strike → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/crusher.webp",
     "beta_image_url": null
   },
@@ -1783,7 +1810,7 @@
       },
       {
         "id": "REPEATER_BLAST_MOVE_2",
-        "name": "Repeater Blast Move 2",
+        "name": "Repeater Blast",
         "intent": "Attack + Buff",
         "powers": [
           {
@@ -1871,8 +1898,9 @@
           "next": "REPEATER_BLAST_MOVE"
         }
       ],
-      "description": "Charge Up → Repeater Blast → Repeater Blast Move 2 → Expel → repeat"
+      "description": "Charge Up → Repeater Blast → Repeater Blast → Expel → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/cubex_construct.webp",
     "beta_image_url": null
   },
@@ -2079,6 +2107,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/decimillipede.webp",
     "beta_image_url": null
   },
@@ -2156,7 +2185,7 @@
     "type": "Elite",
     "min_hp": 145,
     "max_hp": null,
-    "min_hp_ascension": 155,
+    "min_hp_ascension": 165,
     "max_hp_ascension": null,
     "moves": [
       {
@@ -2164,6 +2193,11 @@
         "name": "Pheromone Spit",
         "intent": "Buff",
         "powers": [
+          {
+            "power_id": "STRENGTH",
+            "target": "self",
+            "amount": 2
+          },
           {
             "power_id": "PERSONAL_HIVE",
             "target": "self",
@@ -2173,11 +2207,6 @@
             "power_id": "STRENGTH",
             "target": "self",
             "amount": 1
-          },
-          {
-            "power_id": "STRENGTH",
-            "target": "self",
-            "amount": 2
           }
         ]
       },
@@ -2252,6 +2281,7 @@
       ],
       "description": "Always uses Beeeees!"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/entomancer.webp",
     "beta_image_url": null
   },
@@ -2261,8 +2291,8 @@
     "type": "Normal",
     "min_hp": 24,
     "max_hp": 28,
-    "min_hp_ascension": 25,
-    "max_hp_ascension": 29,
+    "min_hp_ascension": 26,
+    "max_hp_ascension": 30,
     "moves": [
       {
         "id": "SKITTER",
@@ -2391,6 +2421,7 @@
       ],
       "description": "then random: Skitter (no repeat), Mandibles (no repeat); then conditional: Skitter (if in first slot) / Mandibles (if in second slot) / Enrage (if in third slot) / Rand (if in fourth slot)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/exoskeleton.webp",
     "beta_image_url": null
   },
@@ -2439,6 +2470,7 @@
       ],
       "description": "Always uses Distract"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/eye_with_teeth.webp",
     "beta_image_url": null
   },
@@ -2551,6 +2583,7 @@
       ],
       "description": "then random: Fabricate, Fabricating Strike; then conditional: Rand (if can fabricate) / Disintegrate (if cannot fabricate)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/fabricator.webp",
     "beta_image_url": null
   },
@@ -2577,7 +2610,8 @@
         "name": "Spew Coins",
         "intent": "Attack",
         "damage": {
-          "normal": 2
+          "normal": 2,
+          "hit_count": 8
         }
       },
       {
@@ -2861,6 +2895,7 @@
       ],
       "description": "Starts with Ram"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/flail_knight.webp",
     "beta_image_url": null
   },
@@ -2978,6 +3013,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/flyconid.webp",
     "beta_image_url": null
   },
@@ -3103,8 +3139,9 @@
           ]
         }
       ],
-      "description": "Starts with Illusory Spores, then random: Swipe Random (no repeat, 40%), Headbutt (no repeat, 60%)"
+      "description": "Opens with Illusory Spores. Every turn after that it picks Swipe Random 40 percent of the time or Headbutt 60 percent of the time. An attack never repeats back to back."
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/fogmog.webp",
     "beta_image_url": null
   },
@@ -3219,6 +3256,7 @@
       ],
       "description": "Starts with Latch"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/fossil_stalker.webp",
     "beta_image_url": null
   },
@@ -3354,6 +3392,7 @@
       ],
       "description": "Starts: Tongue Lash → Strike Down Evil → For the Queen; then conditional: Tongue Lash (if HasBeetleCharged || CurrentHp >= MaxHp / 2) / Beetle Charge (if !HasBeetleCharged && CurrentHp < MaxHp / 2)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/frog_knight.webp",
     "beta_image_url": null
   },
@@ -3444,6 +3483,7 @@
       ],
       "description": "Always uses First Acid Goop"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/fuzzy_wurm_crawler.webp",
     "beta_image_url": null
   },
@@ -3500,6 +3540,7 @@
       ],
       "description": "Always uses Explode"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/gas_bomb.webp",
     "beta_image_url": null
   },
@@ -3583,7 +3624,8 @@
     "innate_powers": [
       {
         "power_id": "GALVANIC",
-        "amount": 6
+        "amount": 6,
+        "amount_ascension": 8
       }
     ],
     "attack_pattern": {
@@ -3611,6 +3653,7 @@
       ],
       "description": "Shocking Slap → Channel Lightning → Galvanic Burst → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/orb_head.webp",
     "beta_image_url": null
   },
@@ -3767,6 +3810,7 @@
       ],
       "description": "Always uses Guard"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/guardbot.webp",
     "beta_image_url": null
   },
@@ -3852,11 +3896,13 @@
         {
           "id": "HAUNT_MOVE",
           "type": "move",
-          "move_id": "HAUNT"
+          "move_id": "HAUNT",
+          "next": "SWIPE_MOVE"
         }
       ],
-      "description": "Always uses Haunt"
+      "description": "Haunt → Swipe → Stomp → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/haunted_ship.webp",
     "beta_image_url": null
   },
@@ -3958,6 +4004,7 @@
       ],
       "description": "Starts with Tenderizing Goop"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/hunter_killer.webp",
     "beta_image_url": null
   },
@@ -4084,6 +4131,7 @@
       ],
       "description": "Jab → Radiate → Whirlwind → Pulsate → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/infested_prism.webp",
     "beta_image_url": null
   },
@@ -4219,6 +4267,7 @@
       ],
       "description": "Starts: Whirlwind → Jab; then random: Jab, Whirlwind (no repeat); then random: Piercing Gaze (no repeat), Whirlwind (no repeat)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/inklet.webp",
     "beta_image_url": null
   },
@@ -4315,6 +4364,7 @@
       ],
       "description": "Power Dance → Quick Slash → Boomerang → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/kin_follower.webp",
     "beta_image_url": null
   },
@@ -4723,6 +4773,7 @@
       ],
       "description": "Starts with Sleep"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/lagavulin_matriarch.webp",
     "beta_image_url": null
   },
@@ -4790,21 +4841,24 @@
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
-      "initial_move": null,
+      "initial_move": "STICKY_SHOT",
       "states": [
         {
           "id": "CLUMP_SHOT",
           "type": "move",
-          "move_id": "CLUMP_SHOT"
+          "move_id": "CLUMP_SHOT",
+          "next": "STICKY_SHOT"
         },
         {
           "id": "STICKY_SHOT",
           "type": "move",
-          "move_id": "STICKY_SHOT"
+          "move_id": "STICKY_SHOT",
+          "next": "CLUMP_SHOT"
         }
       ],
-      "description": ""
+      "description": "Sticky Shot → Clump Shot → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/leaf_slime_m.webp",
     "beta_image_url": null
   },
@@ -4892,6 +4946,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/leaf_slime_s.webp",
     "beta_image_url": null
   },
@@ -4989,6 +5044,7 @@
       ],
       "description": "Advanced Gas → Bloat → Super Gas Blast → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/living_smog.webp",
     "beta_image_url": null
   },
@@ -5084,6 +5140,7 @@
       ],
       "description": "Starts with Shield Slam; then conditional: Shield Slam (if has allies) / Smash (if no allies)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/living_shield.webp",
     "beta_image_url": null
   },
@@ -5185,6 +5242,7 @@
       ],
       "description": "Always uses Web Cannon"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/louse_progenitor.webp",
     "beta_image_url": null
   },
@@ -5299,6 +5357,7 @@
       ],
       "description": "Power Shield → Dampen → Ram → Prep → Magic Bomb → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/magi_knight.webp",
     "beta_image_url": null
   },
@@ -5416,6 +5475,7 @@
       ],
       "description": "Starts with Claw; then random: Rip and Tear (no repeat), Roar (once), Claw (no repeat)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/mawler.webp",
     "beta_image_url": null
   },
@@ -5440,7 +5500,11 @@
       {
         "id": "FLAMETHROWER",
         "name": "Flamethrower",
-        "intent": "Status"
+        "intent": "Attack + Status",
+        "damage": {
+          "normal": 8,
+          "ascension": 12
+        }
       },
       {
         "id": "WINDUP",
@@ -5469,6 +5533,10 @@
       "Charge": {
         "normal": 25,
         "ascension": 30
+      },
+      "Flamethrower": {
+        "normal": 8,
+        "ascension": 12
       },
       "HeavyCleave": {
         "normal": 35,
@@ -5639,6 +5707,7 @@
       ],
       "description": "then conditional: Toxic Cornucopia (if in first slot) / Suck (if in second slot)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/myte.webp",
     "beta_image_url": null
   },
@@ -5754,6 +5823,7 @@
       ],
       "description": "then conditional: Butt (if alone) / Hiss (if not in front) / Slice (if in front)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/nibbit.webp",
     "beta_image_url": null
   },
@@ -5789,6 +5859,7 @@
       ],
       "description": "Always uses Noise"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/noisebot.webp",
     "beta_image_url": null
   },
@@ -5824,6 +5895,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/osty.webp",
     "beta_image_url": null
   },
@@ -5952,6 +6024,7 @@
       ],
       "description": "Starts: Lay Eggs → Smash → Tenderizer; then conditional: Lay Eggs (if can lay) / Nutritional Paste (if cannot lay)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/ovicopter.webp",
     "beta_image_url": null
   },
@@ -6069,6 +6142,7 @@
       ],
       "description": "Magistrate Scrutiny → Peck Assault → Judicial Flight → Verdict → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/owl_magistrate.webp",
     "beta_image_url": null
   },
@@ -6104,6 +6178,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/paels_legion.webp",
     "beta_image_url": "/static/images/monsters/beta/paels_legion.webp"
   },
@@ -6161,6 +6236,7 @@
       ],
       "description": "Always uses Slam"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/parafright.webp",
     "beta_image_url": null
   },
@@ -6298,6 +6374,7 @@
       ],
       "description": "then conditional: Flail (if in first slot) / Bite (if in second slot) / Lash (if in third slot) / Enlarge (if in fourth slot)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/phantasmal_gardener.webp",
     "beta_image_url": null
   },
@@ -6373,6 +6450,7 @@
       ],
       "description": "Starts: Infect → Lash"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/phrog_parasite.webp",
     "beta_image_url": null
   },
@@ -6482,6 +6560,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/punch_construct.webp",
     "beta_image_url": null
   },
@@ -6799,6 +6878,7 @@
       ],
       "description": "Targeting Reticle → Precision Beam → Charge Up → Laser → Recharge → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/rocket.webp",
     "beta_image_url": null
   },
@@ -6907,6 +6987,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/scroll_of_biting.webp",
     "beta_image_url": null
   },
@@ -7004,6 +7085,7 @@
       ],
       "description": "Sea Kick → Spinning Kick → Bubble Burp → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/seapunk.webp",
     "beta_image_url": null
   },
@@ -7072,6 +7154,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/sewer_clam.webp",
     "beta_image_url": null
   },
@@ -7161,6 +7244,7 @@
       ],
       "description": "Shrinker → Chomp → Stomp → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/shrinker_beetle.webp",
     "beta_image_url": null
   },
@@ -7184,7 +7268,7 @@
       },
       {
         "id": "ZOOM_MOVE_2",
-        "name": "Zoom Move 2",
+        "name": "Zoom",
         "intent": "Attack",
         "damage": {
           "normal": 14,
@@ -7278,8 +7362,9 @@
           "next": "ZOOM_MOVE"
         }
       ],
-      "description": "Zoom → Zoom Move 2 → Inertia → Piercing Stabs → repeat"
+      "description": "Zoom → Zoom → Inertia → Piercing Stabs → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/skulkling_colomy.webp",
     "beta_image_url": null
   },
@@ -7385,6 +7470,7 @@
       ],
       "description": "Always uses Vomit Ichor"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/slimed_berserker.webp",
     "beta_image_url": null
   },
@@ -7485,6 +7571,7 @@
       ],
       "description": "Starts with Constrict"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/slithering_strangler.webp",
     "beta_image_url": null
   },
@@ -7599,6 +7686,7 @@
       ],
       "description": "Starts with Oil Spray"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/sludge_spinner.webp",
     "beta_image_url": null
   },
@@ -7683,6 +7771,7 @@
       ],
       "description": "Starts with Snore"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/slumbering_beetle.webp",
     "beta_image_url": null
   },
@@ -7749,6 +7838,7 @@
       ],
       "description": "Always uses Energy Orb"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/snapping_jaxfruit.webp",
     "beta_image_url": null
   },
@@ -7810,6 +7900,7 @@
       ],
       "description": "Always uses Wake Up"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/sneaky_gremlin.webp",
     "beta_image_url": null
   },
@@ -7833,7 +7924,7 @@
         "intent": "Attack",
         "damage": {
           "normal": 16,
-          "ascension": 17
+          "ascension": 18
         }
       },
       {
@@ -7877,7 +7968,7 @@
     "damage_values": {
       "DeGas": {
         "normal": 16,
-        "ascension": 17
+        "ascension": 18
       },
       "Scream": {
         "normal": 13,
@@ -7936,6 +8027,7 @@
       ],
       "description": "Beckon → De-Gas → Gaze → Fade → Scream → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/soul_fysh.webp",
     "beta_image_url": null
   },
@@ -8067,6 +8159,7 @@
       ],
       "description": "Starts with Soul Burn; then random: Soul Burn (no repeat), Maelstrom (no repeat), Drain Life (no repeat)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/soul_nexus.webp",
     "beta_image_url": null
   },
@@ -8163,6 +8256,7 @@
       ],
       "description": "Starts: Hex → Soul Slash"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/spectral_knight.webp",
     "beta_image_url": null
   },
@@ -8252,6 +8346,7 @@
       ],
       "description": "Protruding Spikes → Spike Explosion → Tongue Lash → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/spiny_toad.webp",
     "beta_image_url": null
   },
@@ -8303,6 +8398,7 @@
       ],
       "description": "Always uses Stab"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/stabbot.webp",
     "beta_image_url": null
   },
@@ -8418,6 +8514,7 @@
       ],
       "description": "Crash → Thrash → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/terror_eel.webp",
     "beta_image_url": null
   },
@@ -8619,6 +8716,7 @@
       ],
       "description": "Starts: Bite → Skull Bash; then conditional: Multi-Claw (if respawns < 2) / Lacerate (if respawns >= 2)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/test_subject.webp",
     "beta_image_url": null
   },
@@ -8709,6 +8807,7 @@
       ],
       "description": "Smash → Beam → Barrage → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/the_adversary_placeholder.webp",
     "beta_image_url": null
   },
@@ -8799,6 +8898,7 @@
       ],
       "description": "Crash → Flame Beam → Barrage → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/the_adversary_placeholder.webp",
     "beta_image_url": null
   },
@@ -8889,6 +8989,7 @@
       ],
       "description": "Bash → Flame Beam → Barrage → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/the_adversary_placeholder.webp",
     "beta_image_url": null
   },
@@ -8954,6 +9055,7 @@
       ],
       "description": "Always uses Miasma"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/the_forgotten.webp",
     "beta_image_url": null
   },
@@ -8983,7 +9085,7 @@
       },
       {
         "id": "THRASH_MOVE_2",
-        "name": "Thrash Move 2",
+        "name": "Thrash",
         "intent": "Attack",
         "damage": {
           "normal": 8,
@@ -9070,8 +9172,9 @@
           "next": "THRASH_MOVE_2"
         }
       ],
-      "description": "Liquify Ground → Thrash → Lunging Bite → Salivate → Thrash Move 2 → repeat"
+      "description": "Liquify Ground → Thrash → Lunging Bite → Salivate → Thrash → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/the_insatiable.webp",
     "beta_image_url": null
   },
@@ -9147,6 +9250,7 @@
       ],
       "description": "Always uses Debilitating Smog"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/the_lost.webp",
     "beta_image_url": null
   },
@@ -9251,6 +9355,7 @@
       ],
       "description": "Starts with Illusion"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/the_obscura.webp",
     "beta_image_url": null
   },
@@ -9375,6 +9480,7 @@
       ],
       "description": "Thievery → Flutter → Hat Trick → Nab → Escape → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/thieving_hopper.webp",
     "beta_image_url": null
   },
@@ -9480,6 +9586,7 @@
       ],
       "description": "then conditional: Whirl (if not in front) / Spiken (if in front)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/toadpole.webp",
     "beta_image_url": null
   },
@@ -9493,12 +9600,12 @@
     "max_hp_ascension": null,
     "moves": [
       {
-        "id": "TACKLE",
-        "name": "Tackle",
+        "id": "STRONG_TACKLE",
+        "name": "Strong Tackle",
         "intent": "Attack",
         "damage": {
-          "normal": 18,
-          "ascension": 19
+          "normal": 26,
+          "ascension": 32
         }
       },
       {
@@ -9506,8 +9613,8 @@
         "name": "Tackle 2",
         "intent": "Attack",
         "damage": {
-          "normal": 18,
-          "ascension": 19
+          "normal": 26,
+          "ascension": 32
         }
       },
       {
@@ -9526,7 +9633,7 @@
         "intent": "Attack",
         "damage": {
           "normal": 14,
-          "ascension": 15
+          "ascension": 16
         }
       },
       {
@@ -9535,18 +9642,22 @@
         "intent": "Attack",
         "damage": {
           "normal": 14,
-          "ascension": 15
+          "ascension": 16
         }
       }
     ],
     "damage_values": {
+      "StrongTackle": {
+        "normal": 26,
+        "ascension": 32
+      },
       "Tackle": {
         "normal": 18,
-        "ascension": 19
+        "ascension": 22
       },
       "WeakTackle": {
         "normal": 14,
-        "ascension": 15
+        "ascension": 16
       },
       "SoulBeam": {
         "normal": 8,
@@ -9572,12 +9683,12 @@
     ],
     "attack_pattern": {
       "type": "cycle",
-      "initial_move": "TACKLE",
+      "initial_move": "STRONG_TACKLE",
       "states": [
         {
-          "id": "TACKLE_MOVE",
+          "id": "STRONG_TACKLE_MOVE",
           "type": "move",
-          "move_id": "TACKLE",
+          "move_id": "STRONG_TACKLE",
           "next": "TACKLE_2_MOVE"
         },
         {
@@ -9605,8 +9716,9 @@
           "next": "BEAM_MOVE"
         }
       ],
-      "description": "Tackle → Tackle 2 → Beam → Tackle 3 → Tackle 4 → repeat"
+      "description": "Strong Tackle → Tackle 2 → Beam → Tackle 3 → Tackle 4 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/amalgam.webp",
     "beta_image_url": null
   },
@@ -9668,6 +9780,7 @@
       ],
       "description": "Always uses Hatch"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/tough_egg.webp",
     "beta_image_url": null
   },
@@ -9739,6 +9852,7 @@
       ],
       "description": "Always uses Track"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/tracker_ruby_raider.webp",
     "beta_image_url": null
   },
@@ -9847,6 +9961,7 @@
       ],
       "description": "Bite → Burrow → Attack from Below → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/tunneler.webp",
     "beta_image_url": null
   },
@@ -9871,7 +9986,7 @@
       },
       {
         "id": "UNLOAD_MOVE_2",
-        "name": "Unload Move 2",
+        "name": "Unload!",
         "intent": "Attack",
         "damage": {
           "normal": 3,
@@ -9933,8 +10048,9 @@
           "next": "UNLOAD_MOVE"
         }
       ],
-      "description": "Unload! → Unload Move 2 → Reload → repeat"
+      "description": "Unload! → Unload! → Reload → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/turret_operator.webp",
     "beta_image_url": null
   },
@@ -10029,6 +10145,7 @@
       ],
       "description": "Starts with Sticky Shot"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/twig_slime_m.webp",
     "beta_image_url": null
   },
@@ -10095,6 +10212,7 @@
       ],
       "description": "Always uses Tackle"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/twig_slime_s.webp",
     "beta_image_url": null
   },
@@ -10205,6 +10323,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/two_tailed_rat.webp",
     "beta_image_url": null
   },
@@ -10321,6 +10440,7 @@
       ],
       "description": "Ink Blot → Inky Lance → Dismember → Prepare → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/vantom.webp",
     "beta_image_url": null
   },
@@ -10420,6 +10540,7 @@
       ],
       "description": "Swipe → Grasping Vines → Chomp → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/vine_shambler.webp",
     "beta_image_url": null
   },
@@ -10617,6 +10738,7 @@
       ],
       "description": "Pressurize → Stomp → Ram → Siphon → Pressure Gun → Pressure Up → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/waterfall_giant.webp",
     "beta_image_url": null
   },
@@ -10727,6 +10849,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/wriggler.webp",
     "beta_image_url": null
   },
@@ -10776,6 +10899,7 @@
       ],
       "description": "Always uses Zap"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/zapbot.webp",
     "beta_image_url": null
   },
@@ -10866,6 +10990,7 @@
         "is_weak": false
       }
     ],
+    "quotes": null,
     "image_url": "/static/images/monsters/decimillipede_segment_back.png"
   },
   {
@@ -10955,6 +11080,7 @@
         "is_weak": false
       }
     ],
+    "quotes": null,
     "image_url": "/static/images/monsters/decimillipede_segment_front.png"
   },
   {
@@ -11044,6 +11170,7 @@
         "is_weak": false
       }
     ],
+    "quotes": null,
     "image_url": "/static/images/monsters/decimillipede_segment_middle.png"
   },
   {
@@ -11108,6 +11235,7 @@
         "is_weak": false
       }
     ],
+    "quotes": null,
     "image_url": "/static/images/monsters/flail_knight.png"
   }
 ]

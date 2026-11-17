@@ -1,0 +1,38 @@
+[
+  {
+    "id": "STANDARD",
+    "name": "スタンダード",
+    "description": "スパイアを攻略する冒険へ出かけよう！",
+    "multiplayer_description": "スパイアを攻略する冒険へ出かけよう！……フレンドと共に！",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": null,
+    "max_ascension": 10
+  },
+  {
+    "id": "DAILY",
+    "name": "デイリー",
+    "description": "1日に1回、新たなチャレンジに挑戦できる。\n\n世界中のプレイヤーと最高スコアを競い合おう！",
+    "multiplayer_description": "1日に1回、新たなチャレンジに挑戦できる。\n\n他のグループと最高スコアを競い合おう！",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "全キャラクターで1回ずつプレイし、第3層をクリアすると、デイリーチャレンジがアンロックされる。",
+    "max_ascension": 10
+  },
+  {
+    "id": "CUSTOM",
+    "name": "カスタム",
+    "description": "特殊条件を設定し、プレイ環境を独自にカスタマイズする。",
+    "multiplayer_description": "特殊条件を設定し、マルチプレイ環境を独自にカスタマイズする。",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "第3層を3回クリアすると、カスタムモードがアンロックされる。",
+    "max_ascension": 10
+  }
+]

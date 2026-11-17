@@ -217,7 +217,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 260
+    "compendium_order": 262
   },
   {
     "id": "JUZU_BRACELET",
@@ -630,8 +630,8 @@
   {
     "id": "SILKEN_TRESS",
     "name": "华美发束",
-    "description": "拾起时，失去所有[gold]金币[/gold]。为第一次卡牌奖励中的所有牌[gold]附魔[/gold]：[purple]华彩[/purple]。",
-    "description_raw": "拾起时，失去所有[gold]金币[/gold]。为第一次卡牌奖励中的所有牌[gold]附魔[/gold]：[purple]华彩[/purple]。",
+    "description": "拾起时，失去所有[gold]金币[/gold]。为你的第一次卡牌奖励中的所有牌[gold]附魔[/gold]：[purple]华彩[/purple]。",
+    "description_raw": "拾起时，失去所有[gold]金币[/gold]。为你的第一次卡牌奖励中的所有牌[gold]附魔[/gold]：[purple]华彩[/purple]。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "先古遗物",
     "pool": "shared",
@@ -646,8 +646,8 @@
   {
     "id": "BEAUTIFUL_BRACELET",
     "name": "华美手镯",
-    "description": "拾起时，从你的[gold]牌组[/gold]中选择[blue]3[/blue]张牌，[gold]附魔[/gold]：[purple]迅捷[/purple][blue]3[/blue]。",
-    "description_raw": "拾起时，从你的[gold]牌组[/gold]中选择[blue]{Cards}[/blue]张牌，[gold]附魔[/gold]：[purple]迅捷[/purple][blue]3[/blue]。",
+    "description": "拾起时，为你[gold]牌组[/gold]中的随机[blue]4[/blue]张牌[gold]附魔[/gold]：[purple]迅捷[/purple][blue]2[/blue]。",
+    "description_raw": "拾起时，为你[gold]牌组[/gold]中的随机[blue]{Cards}[/blue]张牌[gold]附魔[/gold]：[purple]迅捷[/purple][blue]2[/blue]。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "先古遗物",
     "pool": "shared",
@@ -662,8 +662,8 @@
   {
     "id": "DISTINGUISHED_CAPE",
     "name": "卓越斗篷",
-    "description": "拾起时，失去[red]9[/red]点最大生命值。将[blue]3[/blue]张[gold]灵体[/gold]加入你的[gold]牌组[/gold]。",
-    "description_raw": "拾起时，失去[red]9[/red]点最大生命值。将[blue]{Cards}[/blue]张[gold]灵体[/gold]加入你的[gold]牌组[/gold]。",
+    "description": "拾起时，将[blue]2[/blue]张随机[red]诅咒[/red]牌和[blue]3[/blue]张[gold]灵体[/gold]加入你的[gold]牌组[/gold]。",
+    "description_raw": "拾起时，将[blue]{Curses}[/blue]张随机[red]诅咒[/red]牌和[blue]{Cards}[/blue]张[gold]灵体[/gold]加入你的[gold]牌组[/gold]。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "先古遗物",
     "pool": "shared",
@@ -730,8 +730,8 @@
   {
     "id": "HISTORY_COURSE",
     "name": "历史课",
-    "description": "在你的回合开始时，打出一张你上一回合最后打出的攻击牌或技能牌的复制品。",
-    "description_raw": "在你的回合开始时，打出一张你上一回合最后打出的攻击牌或技能牌的复制品。",
+    "description": "在你的回合开始时，打出一张你上一回合最后打出的攻击牌的复制品。",
+    "description_raw": "在你的回合开始时，打出一张你上一回合最后打出的攻击牌的复制品。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "事件遗物",
     "pool": "shared",
@@ -741,7 +741,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 261
+    "compendium_order": 263
   },
   {
     "id": "STONE_CALENDAR",
@@ -766,8 +766,8 @@
   {
     "id": "SERE_TALON",
     "name": "原初之爪",
-    "description": "拾起时，将[blue]2[/blue]张随机[red]诅咒[/red]牌和[blue]3[/blue]张[purple]许愿[/purple]加入你的[gold]牌组[/gold]。",
-    "description_raw": "拾起时，将[blue]{Curses}[/blue]张随机[red]诅咒[/red]牌和[blue]{Wishes}[/blue]张[purple]许愿[/purple]加入你的[gold]牌组[/gold]。",
+    "description": "拾起时，失去[blue]9[/blue]点最大生命值，将[blue]3[/blue]张[purple]许愿[/purple]加入你的[gold]牌组[/gold]。",
+    "description_raw": "拾起时，失去[blue]9[/blue]点最大生命值，将[blue]{Wishes}[/blue]张[purple]许愿[/purple]加入你的[gold]牌组[/gold]。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "先古遗物",
     "pool": "shared",
@@ -829,7 +829,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 262
+    "compendium_order": 264
   },
   {
     "id": "ARCHAIC_TOOTH",
@@ -885,7 +885,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 263
+    "compendium_order": 265
   },
   {
     "id": "OLD_COIN",
@@ -962,8 +962,8 @@
   {
     "id": "REGALITE",
     "name": "君王矿石",
-    "description": "每当你生成一张牌时，获得[blue]2[/blue]点[gold]格挡[/gold]。",
-    "description_raw": "每当你生成一张牌时，获得[blue]{Block}[/blue]点[gold]格挡[/gold]。",
+    "description": "每回合你第一次生成一张牌时，获得[blue]4[/blue]点[gold]格挡[/gold]。",
+    "description_raw": "每回合你第一次生成一张牌时，获得[blue]{Block}[/blue]点[gold]格挡[/gold]。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "罕见遗物",
     "pool": "regent",
@@ -993,12 +993,12 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 264
+    "compendium_order": 266
   },
   {
     "id": "SIGNET_RING",
     "name": "图章戒指",
-    "description": "拾起时，获得[blue]999[/blue][gold]金币[/gold]。",
+    "description": "拾起时，获得[blue]888[/blue][gold]金币[/gold]。",
     "description_raw": "拾起时，获得[blue]{Gold}[/blue][gold]金币[/gold]。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "先古遗物",
@@ -1157,13 +1157,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 265
+    "compendium_order": 267
   },
   {
     "id": "CAULDRON",
     "name": "大锅",
-    "description": "拾起时，制作[blue]5[/blue]瓶随机药水。",
-    "description_raw": "拾起时，制作[blue]{Potions}[/blue]瓶随机药水。",
+    "description": "拾起时，制作[blue]5[/blue]瓶随机[gold]药水[/gold]。",
+    "description_raw": "拾起时，制作[blue]{Potions}[/blue]瓶随机[gold]药水[/gold]。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "商店遗物",
     "pool": "shared",
@@ -1198,7 +1198,7 @@
   {
     "id": "DIVINE_DESTINY",
     "name": "天命所归",
-    "description": "在每场战斗开始时，获得[star:6]。",
+    "description": "在每场战斗开始时，获得[star:7]。",
     "description_raw": "在每场战斗开始时，获得{Stars:starIcons()}。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "初始遗物",
@@ -1241,7 +1241,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 266
+    "compendium_order": 268
   },
   {
     "id": "VELVET_CHOKER",
@@ -1289,7 +1289,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "None",
-    "compendium_order": 295
+    "compendium_order": 297
   },
   {
     "id": "ORICHALCUM",
@@ -1329,7 +1329,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 267
+    "compendium_order": 269
   },
   {
     "id": "ARCANE_SCROLL",
@@ -1350,8 +1350,8 @@
   {
     "id": "DELICATE_FROND",
     "name": "娇嫩蕨草",
-    "description": "在每场战斗开始时，用随机药水将你的空药水栏位填满。",
-    "description_raw": "在每场战斗开始时，用随机药水将你的空药水栏位填满。",
+    "description": "在每场战斗开始时，用随机[gold]药水[/gold]将你的空药水栏位填满。",
+    "description_raw": "在每场战斗开始时，用随机[gold]药水[/gold]将你的空药水栏位填满。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "先古遗物",
     "pool": "shared",
@@ -1413,7 +1413,23 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 268
+    "compendium_order": 270
+  },
+  {
+    "id": "DOWSING_ROD",
+    "name": "寻龙尺",
+    "description": "拾起时，将[blue]1[/blue]张[gold]探寻[/gold]加入你的[gold]牌组[/gold]。",
+    "description_raw": "拾起时，将[blue]1[/blue]张[gold]探寻[/gold]加入你的[gold]牌组[/gold]。",
+    "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
+    "rarity": "先古遗物",
+    "pool": "shared",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/dowsing_rod.webp",
+    "image_variants": null,
+    "name_variants": null,
+    "notes": null,
+    "rarity_key": "Ancient",
+    "compendium_order": 194
   },
   {
     "id": "SMALL_CAPSULE",
@@ -1429,7 +1445,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 194
+    "compendium_order": 195
   },
   {
     "id": "FIDDLE",
@@ -1445,7 +1461,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 195
+    "compendium_order": 196
   },
   {
     "id": "BLOOD_VIAL",
@@ -1485,13 +1501,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 269
+    "compendium_order": 271
   },
   {
     "id": "TINY_MAILBOX",
     "name": "小邮箱",
-    "description": "每当你[gold]休息[/gold]时，获得[blue]2[/blue]瓶随机药水。",
-    "description_raw": "每当你[gold]休息[/gold]时，获得[blue]2[/blue]瓶随机药水。",
+    "description": "每当你[gold]休息[/gold]时，获得[blue]2[/blue]瓶随机[gold]药水[/gold]。",
+    "description_raw": "每当你[gold]休息[/gold]时，获得[blue]2[/blue]瓶随机[gold]药水[/gold]。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "罕见遗物",
     "pool": "shared",
@@ -1541,7 +1557,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 196
+    "compendium_order": 197
   },
   {
     "id": "TOOLBOX",
@@ -1577,7 +1593,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 270
+    "compendium_order": 272
   },
   {
     "id": "MASSIVE_SCROLL",
@@ -1593,7 +1609,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 197
+    "compendium_order": 198
   },
   {
     "id": "LARGE_CAPSULE",
@@ -1609,7 +1625,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 198
+    "compendium_order": 199
   },
   {
     "id": "LOOMING_FRUIT",
@@ -1631,7 +1647,7 @@
       "Both variants are functionally identical — same +31 Max HP effect — and the choice is permanent for a given save file. Use the toggle above to preview the one your save shows."
     ],
     "rarity_key": "Ancient",
-    "compendium_order": 199
+    "compendium_order": 200
   },
   {
     "id": "SPIKED_GAUNTLETS",
@@ -1647,7 +1663,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 200
+    "compendium_order": 201
   },
   {
     "id": "MEAT_ON_THE_BONE",
@@ -1767,7 +1783,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 271
+    "compendium_order": 273
   },
   {
     "id": "SNECKO_EYE",
@@ -1783,7 +1799,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 201
+    "compendium_order": 202
   },
   {
     "id": "FAKE_SNECKO_EYE",
@@ -1803,7 +1819,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 272
+    "compendium_order": 274
   },
   {
     "id": "SNECKO_SKULL",
@@ -1839,7 +1855,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 273
+    "compendium_order": 275
   },
   {
     "id": "BAG_OF_MARBLES",
@@ -2075,7 +2091,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 202
+    "compendium_order": 203
   },
   {
     "id": "SHURIKEN",
@@ -2111,7 +2127,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 274
+    "compendium_order": 276
   },
   {
     "id": "STRIKE_DUMMY",
@@ -2151,7 +2167,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 275
+    "compendium_order": 277
   },
   {
     "id": "TWISTED_FUNNEL",
@@ -2207,7 +2223,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 203
+    "compendium_order": 204
   },
   {
     "id": "GORGET",
@@ -2243,7 +2259,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 276
+    "compendium_order": 278
   },
   {
     "id": "PARRYING_SHIELD",
@@ -2315,7 +2331,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 277
+    "compendium_order": 279
   },
   {
     "id": "RUINED_HELMET",
@@ -2371,7 +2387,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 204
+    "compendium_order": 205
   },
   {
     "id": "STORYBOOK",
@@ -2387,7 +2403,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 205
+    "compendium_order": 206
   },
   {
     "id": "DATA_DISK",
@@ -2443,7 +2459,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 206
+    "compendium_order": 207
   },
   {
     "id": "PHYLACTERY_UNBOUND",
@@ -2475,7 +2491,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 278
+    "compendium_order": 280
   },
   {
     "id": "WONGO_CUSTOMER_APPRECIATION_BADGE",
@@ -2491,7 +2507,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 279
+    "compendium_order": 281
   },
   {
     "id": "WONGOS_MYSTERY_TICKET",
@@ -2507,7 +2523,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 280
+    "compendium_order": 282
   },
   {
     "id": "ASTROLABE",
@@ -2523,7 +2539,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 207
+    "compendium_order": 208
   },
   {
     "id": "ORRERY",
@@ -2643,7 +2659,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 281
+    "compendium_order": 283
   },
   {
     "id": "PRECARIOUS_SHEARS",
@@ -2659,7 +2675,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 208
+    "compendium_order": 209
   },
   {
     "id": "LEAFY_POULTICE",
@@ -2675,7 +2691,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 209
+    "compendium_order": 210
   },
   {
     "id": "PEAR",
@@ -2731,7 +2747,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 210
+    "compendium_order": 211
   },
   {
     "id": "POMANDER",
@@ -2747,7 +2763,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 211
+    "compendium_order": 212
   },
   {
     "id": "ORANGE_DOUGH",
@@ -2783,7 +2799,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 212
+    "compendium_order": 213
   },
   {
     "id": "TOXIC_EGG",
@@ -2879,7 +2895,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 213
+    "compendium_order": 214
   },
   {
     "id": "SAND_CASTLE",
@@ -2895,7 +2911,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 214
+    "compendium_order": 215
   },
   {
     "id": "RIPPLE_BASIN",
@@ -2967,7 +2983,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 215
+    "compendium_order": 216
   },
   {
     "id": "SEA_GLASS",
@@ -2989,7 +3005,7 @@
     },
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 216
+    "compendium_order": 217
   },
   {
     "id": "NEOWS_TALISMAN",
@@ -3005,7 +3021,23 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 217
+    "compendium_order": 218
+  },
+  {
+    "id": "NEOWS_SACRIFICE",
+    "name": "涅奥的牺牲",
+    "description": "拾起时，获得[blue]1[/blue]瓶[gold]龙涎香[/gold]，并将[blue]1[/blue]张[red]愧疚[/red]加入你的[gold]牌组[/gold]。",
+    "description_raw": "拾起时，获得[blue]1[/blue]瓶[gold]龙涎香[/gold]，并将[blue]1[/blue]张[red]愧疚[/red]加入你的[gold]牌组[/gold]。",
+    "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
+    "rarity": "先古遗物",
+    "pool": "shared",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/neows_sacrifice.webp",
+    "image_variants": null,
+    "name_variants": null,
+    "notes": null,
+    "rarity_key": "Ancient",
+    "compendium_order": 219
   },
   {
     "id": "NEOWS_TORMENT",
@@ -3021,7 +3053,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 218
+    "compendium_order": 220
   },
   {
     "id": "NEOWS_BONES",
@@ -3037,13 +3069,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 219
+    "compendium_order": 221
   },
   {
     "id": "SOZU",
     "name": "添水",
-    "description": "你无法再获得药水。在每回合开始时获得[energy:1]。",
-    "description_raw": "你无法再获得药水。在每回合开始时获得{Energy:energyIcons()}。",
+    "description": "在每回合开始时获得[energy:1]。你无法再获得[gold]药水[/gold]。",
+    "description_raw": "在每回合开始时获得{Energy:energyIcons()}。你无法再获得[gold]药水[/gold]。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "先古遗物",
     "pool": "shared",
@@ -3053,7 +3085,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 220
+    "compendium_order": 222
   },
   {
     "id": "PANDORAS_BOX",
@@ -3069,7 +3101,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 221
+    "compendium_order": 223
   },
   {
     "id": "DRAGON_FRUIT",
@@ -3125,13 +3157,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 222
+    "compendium_order": 224
   },
   {
     "id": "ALCHEMICAL_COFFER",
     "name": "炼金箱",
-    "description": "拾起时，获得[blue]4[/blue]个放有随机药水的药水栏位。",
-    "description_raw": "拾起时，获得[blue]{PotionSlots}[/blue]个放有随机药水的药水栏位。",
+    "description": "拾起时，获得[blue]4[/blue]个放有随机[gold]药水[/gold]的药水栏位。",
+    "description_raw": "拾起时，获得[blue]{PotionSlots}[/blue]个放有随机[gold]药水[/gold]的药水栏位。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "先古遗物",
     "pool": "shared",
@@ -3141,13 +3173,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 223
+    "compendium_order": 225
   },
   {
     "id": "TOASTY_MITTENS",
     "name": "烘焙手套",
-    "description": "在你的回合开始时，[gold]消耗[/gold]你[gold]抽牌堆[/gold]顶部的牌并获得[blue]1[/blue]点[gold]力量[/gold]。",
-    "description_raw": "在你的回合开始时，[gold]消耗[/gold]你[gold]抽牌堆[/gold]顶部的牌并获得[blue]{StrengthPower}[/blue]点[gold]力量[/gold]。",
+    "description": "在你的回合开始时，[gold]消耗[/gold]你[gold]手牌[/gold]中的[blue]1[/blue]张牌并获得[blue]1[/blue]点[gold]力量[/gold]。",
+    "description_raw": "在你的回合开始时，[gold]消耗[/gold]你[gold]手牌[/gold]中的[blue]1[/blue]张牌并获得[blue]{StrengthPower}[/blue]点[gold]力量[/gold]。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "先古遗物",
     "pool": "shared",
@@ -3157,7 +3189,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 224
+    "compendium_order": 226
   },
   {
     "id": "CANDELABRA",
@@ -3213,7 +3245,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 225
+    "compendium_order": 227
   },
   {
     "id": "LAVA_LAMP",
@@ -3249,7 +3281,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 226
+    "compendium_order": 228
   },
   {
     "id": "MOLTEN_EGG",
@@ -3341,7 +3373,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 282
+    "compendium_order": 284
   },
   {
     "id": "ROYAL_STAMP",
@@ -3377,12 +3409,12 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 283
+    "compendium_order": 285
   },
   {
     "id": "TOY_BOX",
     "name": "玩具盒",
-    "description": "拾起时，获得[blue]4[/blue]件[gold]蜡制遗物[/gold]。每经过[blue]3[/blue]场战斗，你最左侧的[gold]蜡制遗物[/gold]将会融化。",
+    "description": "拾起时，获得[blue]5[/blue]件[gold]蜡制遗物[/gold]。每经过[blue]3[/blue]场战斗，你最左侧的[gold]蜡制遗物[/gold]将会融化。",
     "description_raw": "拾起时，获得[blue]{Relics}[/blue]件[gold]蜡制遗物[/gold]。每经过[blue]{Combats}[/blue]场战斗，你最左侧的[gold]蜡制遗物[/gold]将会融化。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "先古遗物",
@@ -3397,7 +3429,7 @@
       "All wax relics melt after 12 total combats, then Toy Box is used up."
     ],
     "rarity_key": "Ancient",
-    "compendium_order": 227
+    "compendium_order": 229
   },
   {
     "id": "GLASS_EYE",
@@ -3413,7 +3445,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 228
+    "compendium_order": 230
   },
   {
     "id": "JEWELRY_BOX",
@@ -3429,13 +3461,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 229
+    "compendium_order": 231
   },
   {
     "id": "WHITE_BEAST_STATUE",
     "name": "白兽雕像",
-    "description": "战斗结束后必定掉落药水。",
-    "description_raw": "战斗结束后必定掉落药水。",
+    "description": "战斗结束后必定掉落[gold]药水[/gold]。",
+    "description_raw": "战斗结束后必定掉落[gold]药水[/gold]。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "稀有遗物",
     "pool": "shared",
@@ -3485,7 +3517,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 230
+    "compendium_order": 232
   },
   {
     "id": "CENTENNIAL_PUZZLE",
@@ -3530,7 +3562,7 @@
   {
     "id": "FUR_COAT",
     "name": "皮草大衣",
-    "description": "拾起时，随机标记[blue]7[/blue]处战斗。这些战斗中的敌人将只有[blue]1[/blue]点生命。",
+    "description": "拾起时，随机标记[blue]8[/blue]处战斗。这些战斗中的敌人将只有[blue]1[/blue]点生命。",
     "description_raw": "拾起时，随机标记[blue]{Combats}[/blue]处战斗。这些战斗中的敌人将只有[blue]1[/blue]点生命。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "先古遗物",
@@ -3541,7 +3573,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 231
+    "compendium_order": 233
   },
   {
     "id": "SWORD_OF_STONE",
@@ -3557,7 +3589,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 284
+    "compendium_order": 286
   },
   {
     "id": "PETRIFIED_TOAD",
@@ -3593,7 +3625,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 232
+    "compendium_order": 234
   },
   {
     "id": "CRACKED_CORE",
@@ -3705,7 +3737,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 233
+    "compendium_order": 235
   },
   {
     "id": "RUNIC_CAPACITOR",
@@ -3741,7 +3773,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 234
+    "compendium_order": 236
   },
   {
     "id": "THE_ABACUS",
@@ -3777,7 +3809,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 235
+    "compendium_order": 237
   },
   {
     "id": "ORNAMENTAL_FAN",
@@ -3991,7 +4023,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 236
+    "compendium_order": 238
   },
   {
     "id": "WINGED_BOOTS",
@@ -4007,7 +4039,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 237
+    "compendium_order": 239
   },
   {
     "id": "WING_CHARM",
@@ -4083,13 +4115,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 238
+    "compendium_order": 240
   },
   {
     "id": "BELT_BUCKLE",
     "name": "腰带扣",
-    "description": "当你没有药水时，你额外拥有[blue]2[/blue]点[gold]敏捷[/gold]。",
-    "description_raw": "当你没有药水时，你额外拥有[blue]{DexterityPower}[/blue]点[gold]敏捷[/gold]。",
+    "description": "当你没有[gold]药水[/gold]时，你额外拥有[blue]2[/blue]点[gold]敏捷[/gold]。",
+    "description_raw": "当你没有[gold]药水[/gold]时，你额外拥有[blue]{DexterityPower}[/blue]点[gold]敏捷[/gold]。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "商店遗物",
     "pool": "shared",
@@ -4199,7 +4231,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 239
+    "compendium_order": 241
   },
   {
     "id": "METRONOME",
@@ -4279,7 +4311,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 285
+    "compendium_order": 287
   },
   {
     "id": "POLLINOUS_CORE",
@@ -4295,7 +4327,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 286
+    "compendium_order": 288
   },
   {
     "id": "FRAGRANT_MUSHROOM",
@@ -4311,7 +4343,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 287
+    "compendium_order": 289
   },
   {
     "id": "KUNAI",
@@ -4376,8 +4408,8 @@
   {
     "id": "PHIAL_HOLSTER",
     "name": "药瓶皮套",
-    "description": "拾起时，获得[blue]1[/blue]个药水栏位并获得[blue]2[/blue]瓶随机药水。",
-    "description_raw": "拾起时，获得[blue]{PotionSlots}[/blue]个药水{PotionSlots:plural:栏位|栏位}并获得[blue]{Potions}[/blue]瓶随机{Potions:plural:药水|药水}。",
+    "description": "拾起时，获得[blue]1[/blue]个药水栏位并获得[blue]2[/blue]瓶随机[gold]药水[/gold]。",
+    "description_raw": "拾起时，获得[blue]{PotionSlots}[/blue]个药水栏位并获得[blue]{Potions}[/blue]瓶随机[gold]药水[/gold]。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "先古遗物",
     "pool": "shared",
@@ -4387,7 +4419,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 240
+    "compendium_order": 242
   },
   {
     "id": "FRESNEL_LENS",
@@ -4403,7 +4435,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 288
+    "compendium_order": 290
   },
   {
     "id": "NUTRITIOUS_SOUP",
@@ -4419,7 +4451,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 241
+    "compendium_order": 243
   },
   {
     "id": "NUTRITIOUS_OYSTER",
@@ -4435,7 +4467,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 242
+    "compendium_order": 244
   },
   {
     "id": "FUNERARY_MASK",
@@ -4527,7 +4559,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 243
+    "compendium_order": 245
   },
   {
     "id": "CURSED_PEARL",
@@ -4543,7 +4575,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 244
+    "compendium_order": 246
   },
   {
     "id": "IVORY_TILE",
@@ -4579,7 +4611,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 245
+    "compendium_order": 247
   },
   {
     "id": "GAMBLING_CHIP",
@@ -4615,7 +4647,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 246
+    "compendium_order": 248
   },
   {
     "id": "AKABEKO",
@@ -4671,7 +4703,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 247
+    "compendium_order": 249
   },
   {
     "id": "MINI_REGENT",
@@ -4707,7 +4739,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 289
+    "compendium_order": 291
   },
   {
     "id": "THE_COURIER",
@@ -4739,7 +4771,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 248
+    "compendium_order": 250
   },
   {
     "id": "FORGOTTEN_SOUL",
@@ -4755,7 +4787,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 290
+    "compendium_order": 292
   },
   {
     "id": "VAJRA",
@@ -4811,7 +4843,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 249
+    "compendium_order": 251
   },
   {
     "id": "FISHING_ROD",
@@ -4827,7 +4859,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 250
+    "compendium_order": 252
   },
   {
     "id": "SAI",
@@ -4843,7 +4875,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 251
+    "compendium_order": 253
   },
   {
     "id": "PEN_NIB",
@@ -4888,8 +4920,8 @@
   {
     "id": "DIAMOND_DIADEM",
     "name": "钻石头冠",
-    "description": "如果你在本回合打出的牌少于等于[blue]2[/blue]张，则受到敌人的伤害减半。",
-    "description_raw": "如果你在本回合打出的牌少于等于[blue]{CardThreshold}[/blue]张，则受到敌人的伤害减半。",
+    "description": "战斗开始时获得[blue]20[/blue]点[gold]格挡[/gold]。你的[gold]格挡[/gold]不会在你的[blue]第2[/blue]回合开始前被移除。",
+    "description_raw": "战斗开始时获得[blue]{Block}[/blue]点[gold]格挡[/gold]。你的[gold]格挡[/gold]不会在你的[blue]第2[/blue]回合开始前被移除。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "先古遗物",
     "pool": "shared",
@@ -4899,7 +4931,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 252
+    "compendium_order": 254
   },
   {
     "id": "IRON_CLUB",
@@ -4915,7 +4947,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 253
+    "compendium_order": 255
   },
   {
     "id": "LEAD_PAPERWEIGHT",
@@ -4931,7 +4963,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 254
+    "compendium_order": 256
   },
   {
     "id": "BRONZE_SCALES",
@@ -5051,7 +5083,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 291
+    "compendium_order": 293
   },
   {
     "id": "GOLD_PLATED_CABLES",
@@ -5143,7 +5175,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 255
+    "compendium_order": 257
   },
   {
     "id": "TUNING_FORK",
@@ -5179,7 +5211,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 256
+    "compendium_order": 258
   },
   {
     "id": "DAUGHTER_OF_THE_WIND",
@@ -5195,7 +5227,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 292
+    "compendium_order": 294
   },
   {
     "id": "BELLOWS",
@@ -5291,12 +5323,12 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 293
+    "compendium_order": 295
   },
   {
     "id": "SEAL_OF_GOLD",
     "name": "黄金印",
-    "description": "在你的回合开始时，花费[blue]5[/blue][gold]金币[/gold]来获得[energy:1]。",
+    "description": "在你的回合开始时，花费[blue]3[/blue][gold]金币[/gold]来获得[energy:1]。",
     "description_raw": "在你的回合开始时，花费[blue]{Gold}[/blue][gold]金币[/gold]来获得{Energy:energyIcons()}。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "先古遗物",
@@ -5307,7 +5339,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 257
+    "compendium_order": 259
   },
   {
     "id": "GOLDEN_COMPASS",
@@ -5323,7 +5355,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 258
+    "compendium_order": 260
   },
   {
     "id": "BLACK_STAR",
@@ -5339,7 +5371,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 259
+    "compendium_order": 261
   },
   {
     "id": "BLACK_BLOOD",
@@ -5371,6 +5403,6 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 294
+    "compendium_order": 296
   }
 ]

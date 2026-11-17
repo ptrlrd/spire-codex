@@ -68,8 +68,8 @@
   {
     "id": "INKY",
     "name": "Inchiostratura",
-    "description": "Questa carta infligge [blue]1[/blue] di danno extra e applica [blue]1[/blue] di [gold]Debolezza[/gold].",
-    "description_raw": "Questa carta infligge [blue]{Damage}[/blue] di danno extra e applica [blue]{WeakPower}[/blue] di [gold]Debolezza[/gold].",
+    "description": "This card applies [blue]1[/blue] [gold]Weak[/gold].",
+    "description_raw": "This card applies [blue]{WeakPower}[/blue] [gold]Weak[/gold].",
     "extra_card_text": "Applichi [blue]1[/blue] di [gold]Debolezza[/gold].",
     "card_type": null,
     "applicable_to": null,

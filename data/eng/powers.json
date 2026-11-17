@@ -50,6 +50,16 @@
     "image_url": "/static/images/powers/aggression_power.webp"
   },
   {
+    "id": "AMBERGRIS",
+    "name": "Ambergris",
+    "description": "Take an extra turn after this one.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/ambergris_power.webp"
+  },
+  {
     "id": "ANTICIPATE",
     "name": "Temporary Dexterity",
     "description": "Gain [gold]Dexterity[/gold] until the end of this turn.",
@@ -230,6 +240,16 @@
     "image_url": "/static/images/powers/burst_power.webp"
   },
   {
+    "id": "CACOPHONY",
+    "name": "Cacophony",
+    "description": "After [blue]33[/blue] cards are drawn across ALL players, deal [blue][Amount][/blue] damage to a random enemy.",
+    "description_raw": "After [blue]{Cards}[/blue] {Cards:plural:card is drawn by ANY player|cards are drawn across ALL players}, deal [blue]{Amount}[/blue] damage to a random enemy.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/cacophony_power.webp"
+  },
+  {
     "id": "CALAMITY",
     "name": "Calamity",
     "description": "Whenever you play an Attack, add [blue]2[/blue] random Attacks into your [gold]Hand[/gold].",
@@ -272,8 +292,8 @@
   {
     "id": "CHILD_OF_THE_STARS",
     "name": "Child of the Stars",
-    "description": "Gain [blue]1[/blue] [gold]Block[/gold] for each [star:1] spent.",
-    "description_raw": "Gain [blue]1[/blue] [gold]Block[/gold] for each {singleStarIcon} spent.",
+    "description": "Gain [blue]2[/blue] [gold]Block[/gold] for each [star:1] spent.",
+    "description_raw": "Gain [blue]2[/blue] [gold]Block[/gold] for each {singleStarIcon} spent.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -298,6 +318,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/colossus_power.webp"
+  },
+  {
+    "id": "CONCOCT",
+    "name": "Concoct",
+    "description": "Whenever you deal unblocked attack damage this turn, apply [blue]3[/blue] [gold]Poison[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/concoct_power.webp"
   },
   {
     "id": "CONFUSED",
@@ -422,8 +452,8 @@
   {
     "id": "CRIMSON_MANTLE",
     "name": "Crimson Mantle",
-    "description": "At the start of your turn, lose [blue]0[/blue] HP and gain [blue][Amount][/blue] [gold]Block[/gold].",
-    "description_raw": "At the start of your turn, lose [blue]{SelfDamage}[/blue] HP and gain [blue]{Amount}[/blue] [gold]Block[/gold].",
+    "description": "At the start of your turn, lose HP and gain [gold]Block[/gold].",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -542,7 +572,7 @@
   {
     "id": "DEMON_FORM",
     "name": "Demon Form",
-    "description": "At the start of your turn, gain [blue]2[/blue] [gold]Strength[/gold].",
+    "description": "At the start of your turn, gain [blue]3[/blue] [gold]Strength[/gold].",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -568,16 +598,6 @@
     "stack_type": "Counter",
     "allow_negative": true,
     "image_url": "/static/images/powers/dexterity_power.webp"
-  },
-  {
-    "id": "DIAMOND_DIADEM",
-    "name": "Diamond Diadem",
-    "description": "Enemies deal [blue]50%[/blue] less damage this turn.",
-    "description_raw": null,
-    "type": "Buff",
-    "stack_type": "Single",
-    "allow_negative": null,
-    "image_url": "/static/images/powers/diamond_diadem_power.webp"
   },
   {
     "id": "DIE_FOR_YOU",
@@ -718,6 +738,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/escape_artist_power.webp"
+  },
+  {
+    "id": "FADE",
+    "name": "Temporary Dexterity",
+    "description": "Gain [gold]Dexterity[/gold] until the end of this turn.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/fade_power.webp"
   },
   {
     "id": "FAN_OF_KNIVES",
@@ -952,8 +982,8 @@
   {
     "id": "GUARDED",
     "name": "Guarded",
-    "description": "Take half damage from enemies.",
-    "description_raw": null,
+    "description": "Take [blue]50%[/blue] less damage from enemies. Removed if [gold][Applier.StringValue][/gold] dies.",
+    "description_raw": "Take [blue]{DamageDecrease:percentLess()}%[/blue] less damage from enemies. Removed if [gold]{Applier.StringValue}[/gold] dies.",
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
@@ -1080,6 +1110,16 @@
     "image_url": "/static/images/powers/hex_power.webp"
   },
   {
+    "id": "HIBERNATE",
+    "name": "Hibernate",
+    "description": "For the next [blue]2[/blue] turns, your [gold]Frost[/gold] grants ALL allies [gold]Block[/gold].",
+    "description_raw": "{Amount:plural:This turn|For the next [blue]{}[/blue] turns}, your [gold]Frost[/gold] grants ALL allies [gold]Block[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hibernate_power.webp"
+  },
+  {
     "id": "HIGH_VOLTAGE",
     "name": "High Voltage",
     "description": "At the end of [gold]this creature's[/gold] turn, it gains [blue][Amount][/blue] [gold]Strength[/gold].",
@@ -1098,6 +1138,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/hotfix_power.webp"
+  },
+  {
+    "id": "HYPERBEAM_FOCUS_DOWN",
+    "name": "Temporary Focus Down",
+    "description": "Lose [gold]Focus[/gold] until the end of this turn.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": null
   },
   {
     "id": "ILLUSION",
@@ -1120,6 +1170,16 @@
     "image_url": "/static/images/powers/imbalanced_power.webp"
   },
   {
+    "id": "IMITATION_LEARNING",
+    "name": "Imitation Learning",
+    "description": "The next [blue]2[/blue] times [gold][TargetPlayer][/gold] plays a Power, you play a copy of it.",
+    "description_raw": "The next {Amount:plural:time|[blue]{}[/blue] times} [gold]{TargetPlayer}[/gold] plays a Power, you play a copy of it.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/imitation_learning_power.webp"
+  },
+  {
     "id": "IMPROVEMENT",
     "name": "Improvement",
     "description": "At the end of combat, [gold]Upgrade[/gold] a random card.",
@@ -1132,8 +1192,8 @@
   {
     "id": "INFERNO",
     "name": "Inferno",
-    "description": "At the start of your turn, lose [blue]0[/blue] HP. Whenever you lose HP on your turn, deal [blue][Amount][/blue] damage to ALL enemies.",
-    "description_raw": "At the start of your turn, lose [blue]{SelfDamage}[/blue] HP. Whenever you lose HP on your turn, deal [blue]{Amount}[/blue] damage to ALL enemies.",
+    "description": "At the start of your turn, lose [blue]1[/blue] HP. Whenever you lose HP on your turn, deal [blue]4[/blue] damage to ALL enemies.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1352,8 +1412,8 @@
   {
     "id": "MONOLOGUE",
     "name": "Monologue",
-    "description": "Whenever you play a card this turn, gain [blue]1[/blue] [gold]Strength[/gold] this turn.\nCurrently granting [blue]0[/blue] [gold]Strength[/gold].",
-    "description_raw": "Whenever you play a card this turn, gain [blue]{StrengthPower}[/blue] [gold]Strength[/gold] this turn.\nCurrently granting [blue]{StrengthApplied}[/blue] [gold]Strength[/gold].",
+    "description": "Whenever you play a card this turn, gain [blue]1[/blue] [gold]Strength[/gold] this turn.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "None",
     "allow_negative": null,
@@ -1460,6 +1520,16 @@
     "image_url": "/static/images/powers/oblivion_power.webp"
   },
   {
+    "id": "ONE_FOR_ALL",
+    "name": "One for All",
+    "description": "Your [blue]0[/blue] [energy:1] Attacks deal more damage.",
+    "description_raw": "Your [blue]0[/blue] {energyPrefix:energyIcons(1)} Attacks deal more damage.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/one_for_all_power.webp"
+  },
+  {
     "id": "ONE_TWO_PUNCH",
     "name": "One-Two Punch",
     "description": "Your next [blue]2[/blue] Attacks are played an extra time this turn.",
@@ -1478,16 +1548,6 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/orbit_power.webp"
-  },
-  {
-    "id": "OUTBREAK",
-    "name": "Outbreak",
-    "description": "Every [blue]3[/blue] times you apply [gold]Poison[/gold], deal [blue][Amount][/blue] damage to ALL enemies.",
-    "description_raw": "Every [blue]{Repeat}[/blue] times you apply [gold]Poison[/gold], deal [blue]{Amount}[/blue] damage to ALL enemies.",
-    "type": "Buff",
-    "stack_type": "Counter",
-    "allow_negative": null,
-    "image_url": "/static/images/powers/outbreak_power.webp"
   },
   {
     "id": "PAGESTORM",
@@ -1582,8 +1642,8 @@
   {
     "id": "PILLAR_OF_CREATION",
     "name": "Pillar of Creation",
-    "description": "Whenever you create a card, gain [blue]5[/blue] [gold]Block[/gold].",
-    "description_raw": null,
+    "description": "Whenever you create a card, gain [blue][Amount][/blue] [gold]Block[/gold].",
+    "description_raw": "Whenever you create a card, gain [blue]{Amount}[/blue] [gold]Block[/gold].",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -2060,6 +2120,16 @@
     "image_url": "/static/images/powers/soar_power.webp"
   },
   {
+    "id": "SOULBOUND",
+    "name": "Soulbound",
+    "description": "Whenever [ApplierName] creates a [gold]Soul[/gold], add a [gold]Soul[/gold] to your [gold]Draw Pile[/gold].",
+    "description_raw": "Whenever {ApplierName} creates a [gold]Soul[/gold], add a [gold]Soul[/gold] to your [gold]Draw Pile[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/soulbound_power.webp"
+  },
+  {
     "id": "SPECTRUM_SHIFT",
     "name": "Spectrum Shift",
     "description": "At the start of your turn, add [blue]1[/blue] random Colorless card into your [gold]Hand[/gold].",
@@ -2192,8 +2262,8 @@
   {
     "id": "SUBROUTINE",
     "name": "Subroutine",
-    "description": "Whenever you play a Power, gain [blue]1[/blue] [energy:1].",
-    "description_raw": "Whenever you play a Power, gain [blue]1[/blue] {energyPrefix:energyIcons(1)}.",
+    "description": "Whenever you play a Power, gain [energy:1].",
+    "description_raw": "Whenever you play a Power, gain {Amount:energyIcons()}.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -2302,8 +2372,8 @@
   {
     "id": "TANK",
     "name": "Tank",
-    "description": "Take double damage from enemies. Allies take half damage from enemies.",
-    "description_raw": null,
+    "description": "Take [blue]50%[/blue] more damage from enemies. Allies take [blue]50%[/blue] less damage from enemies.",
+    "description_raw": "Take [blue]{DamageIncrease:percentMore()}%[/blue] more damage from enemies. Allies take [blue]{DamageDecrease:percentLess()}%[/blue] less damage from enemies.",
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
@@ -2422,7 +2492,7 @@
   {
     "id": "TRACKING",
     "name": "Tracking",
-    "description": "[gold]Weak[/gold] enemies take [blue]2[/blue] times more damage from Attacks.",
+    "description": "[gold]Weak[/gold] enemies take [blue]50%[/blue] more damage from Attacks.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -2448,6 +2518,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/tyranny_power.webp"
+  },
+  {
+    "id": "UNDERWORLD",
+    "name": "Underworld",
+    "description": "Whenever other players deal attack damage this turn, apply [blue]2[/blue] times that much [gold]Doom[/gold].",
+    "description_raw": "Whenever other players deal attack damage this turn, apply{Amount:plural:| [blue]{}[/blue] times} that much [gold]Doom[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/underworld_power.webp"
   },
   {
     "id": "UNMOVABLE",
@@ -2542,10 +2622,10 @@
   {
     "id": "WELL_LAID_PLANS",
     "name": "Well-Laid Plans",
-    "description": "At the end of your turn, [gold]Retain[/gold] up to [blue]1[/blue] card.",
+    "description": "At the end of your turn, you no longer discard your [gold]Hand[/gold].",
     "description_raw": null,
     "type": "Buff",
-    "stack_type": "Counter",
+    "stack_type": "Single",
     "allow_negative": null,
     "image_url": "/static/images/powers/well_laid_plans_power.webp"
   },

@@ -20,7 +20,7 @@
   {
     "id": "COOK",
     "name": "Cozinhar",
-    "description": "[gold]Remova[/gold] [blue]2[/blue] cartas do seu [gold]Baralho[/gold] e receba [green]9[/green] PV Máximos em um [gold]Local de Descanso[/gold].",
+    "description": "[gold]Remova[/gold] [blue]2[/blue] cartas do seu [gold]Baralho[/gold] e receba [green]5[/green] PV Máximos em um [gold]Local de Descanso[/gold].",
     "category": "mechanics"
   },
   {

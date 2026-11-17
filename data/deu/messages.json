@@ -180,12 +180,15 @@
    "title": "Verflucht"
   },
   "MOCK_NO_UNPLAYABLE_AFFLICTION": {
+   "description": "",
    "title": "Test"
   },
   "MOCK_SELF_DAMAGE_AFFLICTION": {
+   "description": "",
    "title": "Test"
   },
   "MOCK_USELESS_AFFLICTION": {
+   "description": "",
    "title": "Test"
   },
   "RINGING": {
@@ -814,6 +817,7 @@
    "title": "Pael"
   },
   "PROCEED": {
+   "description": "",
    "title": "Weitergehen"
   },
   "TANX": {
@@ -1083,6 +1087,12 @@
   "THE_ARCHITECT": {
    "CONTINUE": "Weiter",
    "RESPOND": "Antworten",
+   "epithet": "",
+   "pages": {
+    "INITIAL": {
+     "description": ""
+    }
+   },
    "talk": {
     "DEFECT": {
      "0-0r": {
@@ -1771,6 +1781,7 @@
    "title": "Arsenal"
   },
   "ASCENDERS_BANE": {
+   "description": "",
    "title": "Aufstiegsfluch"
   },
   "ASHEN_STRIKE": {
@@ -2098,6 +2109,7 @@
    "title": "Sternenmantel"
   },
   "CLUMSY": {
+   "description": "",
    "title": "Ungeschickt"
   },
   "COLD_SNAP": {
@@ -2202,6 +2214,7 @@
    "title": "Zerquetschen"
   },
   "CURSE_OF_THE_BELL": {
+   "description": "",
    "title": "Fluch der Glocke"
   },
   "DAGGER_SPRAY": {
@@ -2233,6 +2246,7 @@
    "title": "Vorpreschen"
   },
   "DAZED": {
+   "description": "",
    "title": "Benommen"
   },
   "DEADLY_POISON": {
@@ -2256,6 +2270,7 @@
    "title": "Entkräften"
   },
   "DEBRIS": {
+   "description": "",
    "title": "Schutt"
   },
   "DEBT": {
@@ -2590,6 +2605,7 @@
    "title": "Fokus-Schlag"
   },
   "FOLLY": {
+   "description": "",
    "title": "Torheit"
   },
   "FOOTWORK": {
@@ -2711,6 +2727,7 @@
    "title": "Grabwächterin"
   },
   "GREED": {
+   "description": "",
    "title": "Gier"
   },
   "GUARDS": {
@@ -2887,6 +2904,7 @@
    "title": "Entflammen"
   },
   "INJURY": {
+   "description": "",
    "title": "Verletzung"
   },
   "INTERCEPT": {
@@ -3094,22 +3112,28 @@
    "title": "Elend"
   },
   "MOCK_ATTACK_CARD": {
+   "description": "",
    "title": "Test-Angriffskarte"
   },
   "MOCK_CURSE_CARD": {
+   "description": "",
    "title": "Test-Fluchkarte"
   },
   "MOCK_POWER_CARD": {
+   "description": "",
    "title": "Test-Machtkarte"
   },
   "MOCK_QUEST_CARD": {
+   "description": "",
    "title": "Test Auftragskarte"
   },
   "MOCK_SKILL_CARD": {
+   "description": "",
    "discardSelectionPrompt": "Wähle Karten, die du abwirfst.",
    "title": "Test-Fertigkeitskarte"
   },
   "MOCK_STATUS_CARD": {
+   "description": "",
    "title": "Test-Statuskarte"
   },
   "MODDED": {
@@ -3332,6 +3356,7 @@
    "title": "Knaufschlag"
   },
   "POOR_SLEEP": {
+   "description": "",
    "title": "Schlechter Schlaf"
   },
   "POUNCE": {
@@ -3713,6 +3738,7 @@
    "title": "Solarschlag"
   },
   "SOOT": {
+   "description": "",
    "title": "Ruß"
   },
   "SOUL": {
@@ -3772,6 +3798,7 @@
    "title": "Kampfesbeute"
   },
   "SPORE_MIND": {
+   "description": "",
    "title": "Sporensinn"
   },
   "SPUR": {
@@ -4175,6 +4202,7 @@
    "title": "Verdorren"
   },
   "WOUND": {
+   "description": "",
    "title": "Wunde"
   },
   "WRAITH_FORM": {
@@ -4182,6 +4210,7 @@
    "title": "Geistform"
   },
   "WRITHE": {
+   "description": "",
    "title": "Leid"
   },
   "WROUGHT_IN_WAR": {
@@ -4231,7 +4260,8 @@
    "pronounObject": "es",
    "pronounPossessive": "sein",
    "pronounSubject": "es",
-   "title": "Benachteiligt"
+   "title": "Benachteiligt",
+   "titleObject": "Deprived"
   },
   "IRONCLAD": {
    "aromaPrinciple": "[sine][red]Schmerz ist nichts. Meine Gegner müssen sterben.[/red][/sine]",
@@ -4518,6 +4548,7 @@
    "title": "Instinkt"
   },
   "MOCK_FREE_ENCHANTMENT": {
+   "description": "",
    "title": "Test kostenlose Verzauberung"
   },
   "MOMENTUM": {
@@ -5093,6 +5124,12 @@
    "unlockInfo": "{IsRevealed, select, true {Freigeschaltet} other {Freischaltbar}} durch Sammeln von Punkten.",
    "unlockText": "Ereignis freigeschaltet: [blue]{Event}[/blue]."
   },
+  "EVENT4_EPOCH": {
+   "description": "TODO",
+   "title": "The TODO",
+   "unlockInfo": "TODO",
+   "unlockText": "TODO"
+  },
   "IRONCLAD2_EPOCH": {
    "description": "[red]Der Eiserne.[/red] Ein Krieger aus einem fernen Land betrat den [gold]Spire[/gold].\nGesteuert vom bloßen Instinkt und verfluchtem Blut hat er jegliche Vernunft und Identität verloren.\n\nWer seinen Aufstieg aufhält, muss sterben.",
    "title": "Der Eiserne",
@@ -5124,6 +5161,18 @@
    "description": "„Der [gold]Spire[/gold] war unter meiner Herrschaft. Doch der Architekt lebt wieder. [jitter]Schau, was er mit meinem GESICHT gemacht hat[/jitter].“\n\nDer Dämon rastet enorm aus, dabei zerschmettert er seine Kammer und setzt allerhand Dinge in Brand.\n\n„Meine Todespuppe, nutze meine Macht und töte nochmal. [jitter]TÖTE DEN ARCHITEKTEN!![/jitter]“",
    "title": "Mein Gesicht",
    "unlockInfo": "{IsRevealed, select, true {Du hast} other {Besiege}} [red]Aufstieg[/red] [blue]1[/blue] mit dem [red]Eisernen[/red]{IsRevealed, select, true { besiegt} other {, um diese Epoche aufzudecken}}."
+  },
+  "IRONCLAD8_EPOCH": {
+   "description": "TODO",
+   "title": "TODO",
+   "unlockInfo": "TODO",
+   "unlockText": "TODO"
+  },
+  "IRONCLAD9_EPOCH": {
+   "description": "TODO",
+   "title": "TODO",
+   "unlockInfo": "TODO",
+   "unlockText": "TODO"
   },
   "MISSING": {
    "unlockText": "[red](fehlende Freischaltungs-Info)[/red]"
@@ -5166,6 +5215,18 @@
    "description": "Die [pink]Totenbinderin[/pink] konfrontierte den [red]Architekten[/red] und verlangte die Wiederherstellung des [green]Riesen[/green], ihrer Eltern, ihrer Menschlichkeit. Sie [jitter]brannte auf Rache[/jitter], aber wurde wieder und wieder vernichtet.\n\nBei einem ihrer Aufstiege entdeckte sie einen riesigen Drachen, [gold]Pael[/gold]. Er wirkte in seinem Auftreten genauso ruhig wie der [green]Riese[/green] und sprach...\n\n[thinky_dots]„Das wird dir helfen, seine Aufmerksamkeit zu bekommen...“[/thinky_dots]",
    "title": "Töten",
    "unlockInfo": "{IsRevealed, select, true {Du hast} other {Besiege}} [red]Aufstieg[/red] [blue]1[/blue] mit der [pink]Totenbinderin[/pink]{IsRevealed, select, true { besiegt} other {, um diese Epoche aufzudecken}}."
+  },
+  "NECROBINDER8_EPOCH": {
+   "description": "TODO",
+   "title": "TODO",
+   "unlockInfo": "TODO",
+   "unlockText": "TODO"
+  },
+  "NECROBINDER9_EPOCH": {
+   "description": "TODO",
+   "title": "TODO",
+   "unlockInfo": "TODO",
+   "unlockText": "TODO"
   },
   "NEOW_EPOCH": {
    "description": "Die Mutter der Auferweckung, [blue]Neow[/blue], erwachte aus ihrem Schlummer.\n\n[sine]„Steh auf.. Held..... nochmal. Nochmal...“[/sine]",
@@ -5229,6 +5290,18 @@
    "description": "„KLEINER KÖNIG. DU STROTZT VOR MACHT WIE ICH!“\n[gold]Tanx[/gold] ist sofort beeindruckt vom hoheitlichen Selbstbewusstsein des [orange]Regenten[/orange].\n\n„DOMINIERE DEN SPIRE! MACH SIE ALLE NIEDER!!“ brüllt er und wirft ihm ein [sine]seltsames Zepter[/sine] entgegen.\n\n„DAMIT KANNST DU IHNEN DIE STIRN BIETEN!“",
    "title": "Kleiner König",
    "unlockInfo": "{IsRevealed, select, true {Du hast} other {Besiege}} [red]Aufstieg[/red] [blue]1[/blue] mit dem [orange]Regenten[/orange]{IsRevealed, select, true { besiegt} other {, um diese Epoche aufzudecken}}."
+  },
+  "REGENT8_EPOCH": {
+   "description": "TODO",
+   "title": "TODO",
+   "unlockInfo": "TODO",
+   "unlockText": "TODO"
+  },
+  "REGENT9_EPOCH": {
+   "description": "TODO",
+   "title": "TODO",
+   "unlockInfo": "TODO",
+   "unlockText": "TODO"
   },
   "RELIC1_EPOCH": {
    "description": "Auf diesem ruhigen Planeten begannen [gold]Bestien der Fantasie[/gold] die Welt zu bevölkern.\n\nEs ist eine Zeit der einfachen, schadenfrohen Gewalt, in der sie durch die Lande stromerten. Unzählige Weisen zu töten, zu fressen und sich zu vermehren wurden [sine]angeregt[/sine]. Kolonien, Nester, Gruppen und Schwärme überfluteten [orange]Preon[/orange] bis in den hintersten Winkel.",
@@ -5294,6 +5367,18 @@
    "title": "Suppe",
    "unlockInfo": "{IsRevealed, select, true {Du hast} other {Besiege}} [red]Aufstieg[/red] [blue]1[/blue] mit der [green]Stillen[/green]{IsRevealed, select, true { besiegt} other {, um diese Epoche aufzudecken}}."
   },
+  "SILENT8_EPOCH": {
+   "description": "TODO",
+   "title": "TODO",
+   "unlockInfo": "TODO",
+   "unlockText": "TODO"
+  },
+  "SILENT9_EPOCH": {
+   "description": "TODO",
+   "title": "TODO",
+   "unlockInfo": "TODO",
+   "unlockText": "TODO"
+  },
   "STORY_DEFECT": "Das Defekte",
   "STORY_IRONCLAD": "Der Eiserne",
   "STORY_MAGNUM_OPUS": "Meisterwerk",
@@ -5315,25 +5400,101 @@
    "name": "Infektion",
    "year": "1.201"
   },
+  "BLIGHT1": {
+   "name": "",
+   "year": ""
+  },
+  "BLIGHT2": {
+   "name": "",
+   "year": ""
+  },
+  "BLIGHT3": {
+   "name": "",
+   "year": ""
+  },
   "FLOURISH0": {
    "name": "Blüte",
    "year": "1.800"
+  },
+  "FLOURISH1": {
+   "name": "",
+   "year": ""
+  },
+  "FLOURISH2": {
+   "name": "",
+   "year": ""
+  },
+  "FLOURISH3": {
+   "name": "",
+   "year": ""
   },
   "INVITATION0": {
    "name": "Türen",
    "year": "2.733"
   },
+  "INVITATION1": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION2": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION3": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION4": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION5": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION6": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION7": {
+   "name": "",
+   "year": ""
+  },
   "PEACE0": {
    "name": "Das Ende",
    "year": "3.000"
+  },
+  "PEACE1": {
+   "name": "",
+   "year": ""
   },
   "PREHISTORIA0": {
    "name": "Prähistorie",
    "year": "???"
   },
+  "PREHISTORIA1": {
+   "name": "",
+   "year": ""
+  },
+  "PREHISTORIA2": {
+   "name": "",
+   "year": ""
+  },
   "SEEDS0": {
    "name": "Samen",
    "year": "0"
+  },
+  "SEEDS1": {
+   "name": "",
+   "year": ""
+  },
+  "SEEDS2": {
+   "name": "",
+   "year": ""
+  },
+  "SEEDS3": {
+   "name": "",
+   "year": ""
   }
  },
  "events": {
@@ -5346,6 +5507,7 @@
     "ALL": {
      "options": {
       "EXIT_BATHS": {
+       "description": "",
        "title": "Bad verlassen"
       },
       "LINGER": {
@@ -5732,6 +5894,7 @@
      "description": "Du bist totmüde und machst ein Schläfchen...\n\n...nur um von etwas aufgeweckt zu werden, das auf dir [gold][jitter]herumschlängelt[/jitter][/gold]!",
      "options": {
       "FIGHT": {
+       "description": "",
        "title": "Kämpfen!"
       }
      }
@@ -5916,6 +6079,7 @@
      "description": "Du schnappst [gold]{LastDishTitle}[/gold] vom Band und schlingst alles herunter.\n[green]Lecker![/green]",
      "options": {
       "LEAVE": {
+       "description": "",
        "title": "Verlassen"
       }
      }
@@ -6254,6 +6418,7 @@
    "title": "Trankkurier"
   },
   "PROCEED": {
+   "description": "",
    "title": "Weiter"
   },
   "PUNCH_OFF": {
@@ -6276,6 +6441,7 @@
      "description": "Die [gold]Konstrukte[/gold] wenden sich drohend zu {IsMultiplayer, select, true {euch} other {dir}}!\n\n{IsMultiplayer, select, true {Ihr erhebt eure} other {Du erhebst deine}} Fäuste.",
      "options": {
       "FIGHT": {
+       "description": "",
        "title": "Kämpfen"
       }
      }
@@ -6429,6 +6595,7 @@
      "description": "Du springst auf den Tisch und [jitter]trittst[/jitter] dem [red]Ritter-Anführer[/red] ins Gesicht!\nDer Ritter gibt einen gellenden Schrei von sich und kippt um.\n\n[jitter][purple]*alle halten die Luft an*[/purple][/jitter]",
      "options": {
       "CONTINUE_FIGHT": {
+       "description": "",
        "title": "Weiter"
       }
      }
@@ -6923,6 +7090,7 @@
      "description": "Der Fremdling blickt dich drohend an. Sieht so aus, als würde nur einer von euch diesen Ort mit dem Schlüssel verlassen.",
      "options": {
       "FIGHT": {
+       "description": "",
        "title": "Kämpfen"
       }
      }
@@ -7767,6 +7935,7 @@
   },
   "FORMAT_DAMAGE_MULTI": "{Damage}[font_size=18]x{Repeat}[/font_size]",
   "FORMAT_DAMAGE_SINGLE": "{Damage}",
+  "FORMAT_EMPTY": "",
   "FORMAT_STATUS_CARD_COUNT": "{CardCount}",
   "HEAL": {
    "description": "Dieser Gegner möchte [gold]heilen[/gold].",
@@ -10173,6 +10342,7 @@
    "title": "Blitz"
   },
   "MOCK_COMBAT_CLEANUP_ORB": {
+   "description": "",
    "title": "Test Kampf-Aufräumen"
   },
   "PLASMA_ORB": {
@@ -10357,6 +10527,7 @@
    "title": "Mazaleths Gabe"
   },
   "MOCK_DISCARD_AND_ADD_SHIVS_POTION": {
+   "description": "",
    "title": "Test Trank zum Ablegen und Messer erhalten"
   },
   "OROBIC_ACID": {
@@ -11143,48 +11314,67 @@
    "title": "Untertan"
   },
   "MOCK_CLONE_CARDS_ON_PLAY_POWER": {
+   "description": "",
    "title": "Test Klone Karten beim Spielen"
   },
   "MOCK_DO_NOT_SCALE_IN_MULTIPLAYER_POWER": {
+   "description": "",
    "title": "Test Kein Skalieren für Mehrspieler"
   },
   "MOCK_EXTRA_TURN_POWER": {
+   "description": "",
    "title": "Test Extrazug"
   },
   "MOCK_FREE_CARDS_POWER": {
+   "description": "",
    "title": "Test Gratiskarten"
   },
   "MOCK_GAIN_BLOCK_ON_ATTACK_POWER": {
+   "description": "",
    "title": "Test erhalte Block Beim Angriff"
   },
   "MOCK_INVINCIBLE_ON_DEATH_POWER": {
+   "description": "",
    "title": "Test Unverletzbar beim Tod"
   },
   "MOCK_MODIFY_ENERGY_COST_POWER": {
+   "description": "",
    "title": "Test Ändere Energiekosten"
   },
   "MOCK_MODIFY_STAR_COST_POWER": {
+   "description": "",
    "title": "Test Ändere Sternkosten"
   },
   "MOCK_PHASE_OBSERVER_POWER": {
+   "description": "",
    "title": "Test Phasen-Beobachter"
   },
   "MOCK_PREVENT_DEATH_POWER": {
+   "description": "",
    "title": "Test Tod verhindern"
   },
   "MOCK_REMOVE_DRAWN_CARDS_FROM_COMBAT_POWER": {
+   "description": "",
    "title": "Test gezogene Karten aus Kampf entfernen"
   },
+  "MOCK_RESET_COMBAT_ON_SHUFFLE_POWER": {
+   "description": "",
+   "title": "Mock Reset Combat on Shuffle"
+  },
   "MOCK_REVIVE_POWER": {
+   "description": "",
    "title": "Test Wiederbelebung"
   },
   "MOCK_SCALE_IN_MULTIPLAYER_POWER": {
+   "description": "",
    "title": "Test Skalieren für Mehrspieler"
   },
   "MOCK_TEMPORARY_STRENGTH_LOSS": {
+   "description": "",
    "title": "Test Temporärer Stärkeverlust"
   },
   "MOCK_UNHITTABLE_POWER": {
+   "description": "",
    "title": "Test Nicht Treffbar"
   },
   "MONARCHS_GAZE_POWER": {
@@ -13813,6 +14003,7 @@
   "TEXT_EFFECTS": "Text-Effekte",
   "TEXT_EFFECTS_DESCRIPTION": "Kontrolliert, ob Texteffekte wie wackelnder oder gewellter Text aktiviert sind.",
   "TEXT_SIZE": "Textgröße",
+  "TOAST_CANNOT_REMAP_INPUT": "Cannot set an input for {Hotkey} for {ControlType}.",
   "TOAST_FAST_MODE_OFF": "Kampfaktionen und Bildschirmübergänge werden langsamer sein.",
   "TOAST_FAST_MODE_ON": "Kampfaktionen und Bildschirmübergänge werden schneller sein.",
   "TOAST_GAMEPLAY_DATA_OFF": "Gameplay-Daten und Fehlerprotokolle werden nicht hochgeladen.",

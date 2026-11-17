@@ -31,6 +31,16 @@
   },
   {
     "id": "BATTLEWORN_DUMMY_EVENT_ENCOUNTER",
+    "name": "Battleworn Dummy Event Encounter",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": null,
+    "loss_text": null
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_V1_ENCOUNTER",
     "name": "Mannequin de combat usé",
     "room_type": "Monster",
     "is_weak": false,
@@ -40,17 +50,39 @@
       {
         "id": "BATTLE_FRIEND_V1",
         "name": "Ami de combat V1.0"
-      },
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] a réussi à se faire abattre par le [gold]Mannequin de combat usé[/gold] ???"
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_V2_ENCOUNTER",
+    "name": "Mannequin de combat usé",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
       {
         "id": "BATTLE_FRIEND_V2",
         "name": "Ami de combat V2.0"
-      },
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] a réussi à se faire abattre par le [gold]Mannequin de combat usé[/gold]???"
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_V3_ENCOUNTER",
+    "name": "Mannequin de combat usé",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
       {
         "id": "BATTLE_FRIEND_V3",
         "name": "Ami de combat V3.0"
       }
     ],
-    "loss_text": "Un [gold]Mannequin de combat usé[/gold] serait venu à bout de [b]The Adventurer[/b] ???"
+    "loss_text": "[b]The Adventurer[/b] a réussi à se faire abattre par le [gold]Mannequin de combat usé[/gold]???"
   },
   {
     "id": "BOWLBUGS_NORMAL",
@@ -579,7 +611,7 @@
   },
   {
     "id": "KAISER_CRAB_BOSS",
-    "name": "Crabe empereur",
+    "name": "Crabe César",
     "room_type": "Boss",
     "is_weak": false,
     "act": "Act 2 - Hive",
@@ -594,7 +626,7 @@
         "name": "Roquette"
       }
     ],
-    "loss_text": "Le [gold]Crabe empereur[/gold] a frappé [b]The Adventurer[/b] de toutes parts."
+    "loss_text": "Le [gold]Crabe César[/gold] a frappé [b]The Adventurer[/b] de toutes parts."
   },
   {
     "id": "KNIGHTS_ELITE",
@@ -653,7 +685,7 @@
   },
   {
     "id": "LIVING_FOG_NORMAL",
-    "name": "Gaz maléfique",
+    "name": "Brouillard vivant",
     "room_type": "Monster",
     "is_weak": false,
     "act": "Act 1 - Underdocks",
@@ -668,7 +700,7 @@
         "name": "Brouillard vivant"
       }
     ],
-    "loss_text": "[b]The Adventurer[/b] n'a pas supporté la puanteur de quelques [gold]Gaz maléfique[/gold]."
+    "loss_text": "[b]The Adventurer[/b] n'a pas supporté la puanteur de quelques [gold]Brouillard vivant[/gold]."
   },
   {
     "id": "LOUSE_PROGENITOR_NORMAL",
@@ -1145,7 +1177,10 @@
     "room_type": "Monster",
     "is_weak": false,
     "act": "Act 1 - Overgrowth",
-    "tags": null,
+    "tags": [
+      "Jaxfruit",
+      "Slimes"
+    ],
     "monsters": [
       {
         "id": "LEAF_SLIME_M",
@@ -1221,7 +1256,8 @@
     "is_weak": false,
     "act": "Act 1 - Overgrowth",
     "tags": [
-      "Mushroom"
+      "Mushroom",
+      "Jaxfruit"
     ],
     "monsters": [
       {

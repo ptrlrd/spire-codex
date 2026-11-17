@@ -343,7 +343,7 @@
       {
         "id": "SETTING_1",
         "title": "Łatwy",
-        "description": "Drewnobot ma [blue]75[/blue] PŻ. Po zwycięstwie Otrzymaj [blue]1[/blue] losową [gold]Miksturę[/gold]."
+        "description": "Drewnobot ma [blue]75[/blue] PŻ. Po zwycięstwie otrzymaj [blue]1[/blue] losową [gold]Miksturę[/gold]."
       },
       {
         "id": "SETTING_2",
@@ -353,7 +353,7 @@
       {
         "id": "SETTING_3",
         "title": "Trudny",
-        "description": "Drewnobot ma [blue]300[/blue] PŻ. Po zwycięstwie  Otrzymaj losowy [gold]Artefakt[/gold]."
+        "description": "Drewnobot ma [blue]300[/blue] PŻ. Po zwycięstwie otrzymaj losowy [gold]Artefakt[/gold]."
       }
     ],
     "pages": [
@@ -368,7 +368,7 @@
           {
             "id": "SETTING_1",
             "title": "Łatwy",
-            "description": "Drewnobot ma [blue]75[/blue] PŻ. Po zwycięstwie Otrzymaj [blue]1[/blue] losową [gold]Miksturę[/gold]."
+            "description": "Drewnobot ma [blue]75[/blue] PŻ. Po zwycięstwie otrzymaj [blue]1[/blue] losową [gold]Miksturę[/gold]."
           },
           {
             "id": "SETTING_2",
@@ -378,7 +378,7 @@
           {
             "id": "SETTING_3",
             "title": "Trudny",
-            "description": "Drewnobot ma [blue]300[/blue] PŻ. Po zwycięstwie  Otrzymaj losowy [gold]Artefakt[/gold]."
+            "description": "Drewnobot ma [blue]300[/blue] PŻ. Po zwycięstwie otrzymaj losowy [gold]Artefakt[/gold]."
           }
         ]
       },
@@ -428,7 +428,7 @@
       },
       {
         "id": "RIP",
-        "description": "Gwałtownie [jitter]odrywasz pijawkę[/jitter] i wyrzucasz ją daleko, daleko!\n\nSłyszysz głos w swojej głowie:\n[purple][sine]„NIEEEEEEeEeeeeeEEEEeeee....”"
+        "description": "Gwałtownie [jitter]odrywasz pijawkę[/jitter] i wyrzucasz ją daleko, daleko!\n\nSłyszysz głos w swojej głowie:\n[purple][sine]„NIEEEEEEeEeeeeeEEEEeeee....”[/sine][/purple]"
       },
       {
         "id": "SHARE_KNOWLEDGE",
@@ -1076,7 +1076,7 @@
           {
             "id": "TAKE",
             "title": "TAKE",
-            "description": "Otrzymaj Artefakt: [gold]a random Relic[/gold]."
+            "description": "Otrzymaj Artefakt: [gold]losowy relikt[/gold]."
           }
         ]
       },
@@ -1283,7 +1283,7 @@
     "name": "Handlarz???",
     "type": "Shared",
     "act": null,
-    "description": "A suspicious merchant offers 6 fake relics (drawn from a pool of 9) at 42–58 gold each. Throwing a [gold]Foul Potion[/gold] starts a fight against The Merchant??? (165 HP). Winning rewards [gold]The Merchant's Rug???[/gold] plus all unsold relics.",
+    "description": "Podejrzany kupiec oferuje 6 fałszywych reliktów (z puli 9) po 42–58 złota za sztukę. Rzucenie [gold]Foul Potion[/gold] rozpoczyna walkę z The Merchant??? (165 PŻ). Zwycięstwo nagradza [gold]The Merchant's Rug???[/gold] oraz wszystkimi niesprzedanymi reliktami.",
     "preconditions": [
       "Act 2+",
       "Single player only",
@@ -1902,10 +1902,12 @@
       "SMALL_CAPSULE",
       "STONE_HUMIDIFIER",
       "CURSED_PEARL",
+      "DOWSING_ROD",
       "HEFTY_TABLET",
       "LARGE_CAPSULE",
       "LEAFY_POULTICE",
       "NEOWS_BONES",
+      "NEOWS_SACRIFICE",
       "PRECARIOUS_SHEARS",
       "SILKEN_TRESS",
       "SILVER_CRUCIBLE"
@@ -2261,10 +2263,10 @@
     "relics": [
       "ELECTRIC_SHRYMP",
       "GLASS_EYE",
-      "SAND_CASTLE",
       "ALCHEMICAL_COFFER",
       "DRIFTWOOD",
       "RADIANT_PEARL",
+      "SAND_CASTLE",
       "SEA_GLASS",
       "PRISMATIC_GEM",
       "TOUCH_OF_OROBAS",
@@ -2680,17 +2682,17 @@
       {
         "id": "TOP",
         "title": "Weź ten na górze",
-        "description": "Wymień Artefakt: [gold]one of your Relics[/gold] na [gold]a random Relic[/gold]."
+        "description": "Wymień Artefakt: [gold]jeden z twoich reliktów[/gold] na [gold]losowy relikt[/gold]."
       },
       {
         "id": "MIDDLE",
         "title": "Weź ten na środku",
-        "description": "Wymień Artefakt: [gold]one of your Relics[/gold] na [gold]a random Relic[/gold]."
+        "description": "Wymień Artefakt: [gold]jeden z twoich reliktów[/gold] na [gold]losowy relikt[/gold]."
       },
       {
         "id": "BOTTOM",
         "title": "Weź ten na dole",
-        "description": "Wymień Artefakt: [gold]one of your Relics[/gold] na [gold]a random Relic[/gold]."
+        "description": "Wymień Artefakt: [gold]jeden z twoich reliktów[/gold] na [gold]losowy relikt[/gold]."
       }
     ],
     "pages": [
@@ -2705,17 +2707,17 @@
           {
             "id": "TOP",
             "title": "Weź ten na górze",
-            "description": "Wymień Artefakt: [gold]one of your Relics[/gold] na [gold]a random Relic[/gold]."
+            "description": "Wymień Artefakt: [gold]jeden z twoich reliktów[/gold] na [gold]losowy relikt[/gold]."
           },
           {
             "id": "MIDDLE",
             "title": "Weź ten na środku",
-            "description": "Wymień Artefakt: [gold]one of your Relics[/gold] na [gold]a random Relic[/gold]."
+            "description": "Wymień Artefakt: [gold]jeden z twoich reliktów[/gold] na [gold]losowy relikt[/gold]."
           },
           {
             "id": "BOTTOM",
             "title": "Weź ten na dole",
-            "description": "Wymień Artefakt: [gold]one of your Relics[/gold] na [gold]a random Relic[/gold]."
+            "description": "Wymień Artefakt: [gold]jeden z twoich reliktów[/gold] na [gold]losowy relikt[/gold]."
           }
         ]
       }
@@ -2996,7 +2998,7 @@
       {
         "id": "OVERCOME",
         "title": "Zejdź z mostu",
-        "description": "Usuń kartę: [red]a random Card[/red] z [gold]talii[/gold]."
+        "description": "Usuń kartę: [red]losowa karta[/red] z [gold]talii[/gold]."
       },
       {
         "id": "HOLD_ON_0",
@@ -3100,7 +3102,7 @@
           {
             "id": "OVERCOME",
             "title": "Zejdź z mostu",
-            "description": "Usuń kartę: [red]a random Card[/red] z [gold]talii[/gold]."
+            "description": "Usuń kartę: [red]losowa karta[/red] z [gold]talii[/gold]."
           },
           {
             "id": "HOLD_ON_0",
@@ -3221,7 +3223,7 @@
       {
         "id": "LIFT",
         "title": "Wypij Miksturę i unieś Głaz",
-        "description": "Utrać Miksturę: [red]a random Potion[/red]. Zyskaj [blue]10[/blue] maks. PŻ."
+        "description": "Utrać Miksturę: [red]losowa mikstura[/red]. Zyskaj [blue]10[/blue] maks. PŻ."
       },
       {
         "id": "LIFT_LOCKED",
@@ -3247,7 +3249,7 @@
           {
             "id": "LIFT",
             "title": "Wypij Miksturę i unieś Głaz",
-            "description": "Utrać Miksturę: [red]a random Potion[/red]. Zyskaj [blue]10[/blue] maks. PŻ."
+            "description": "Utrać Miksturę: [red]losowa mikstura[/red]. Zyskaj [blue]10[/blue] maks. PŻ."
           },
           {
             "id": "LIFT_LOCKED",
@@ -3268,7 +3270,7 @@
       },
       {
         "id": "LIFT",
-        "description": "Wypijasz Miksturę: [gold]a random Potion[/gold] i [jitter]próbujesz unieść Głaz ze wszystkich sił[/jitter]!!\n\nNawet nie drgnie."
+        "description": "Wypijasz Miksturę: [gold]losowa mikstura[/gold] i [jitter]próbujesz unieść Głaz ze wszystkich sił[/jitter]!!\n\nNawet nie drgnie."
       },
       {
         "id": "PUSH",
@@ -4648,7 +4650,7 @@
       },
       {
         "id": "MERCHANT",
-        "description": "[green]Zamożny kupiec[/green] składa wyjaśnienia. Jeden z jego rywali oskarżył go o [red]zabójstwo[/red] . Publiczność domaga się skazania, ale dowody oskarżenia nie są przekonujące i wydaje ci się, że kupiec jest niewinny.",
+        "description": "[green]Zamożny kupiec[/green] składa wyjaśnienia. Jeden z jego rywali oskarżył go o [red]zabójstwo[/red]. Publiczność domaga się skazania, ale dowody oskarżenia nie są przekonujące i wydaje ci się, że kupiec jest niewinny.",
         "options": [
           {
             "id": "GUILTY",
@@ -4701,7 +4703,7 @@
           {
             "id": "GUILTY",
             "title": "DECYDUJ: Winna",
-            "description": "Dodaj [red]Zwątpienie[/red] do [gold]talii[/gold]. Zyskaj [blue]2[/blue] karty z łupów."
+            "description": "Dodaj [red]Zwątpienie[/red] do [gold]talii[/gold]. Wybierz [blue]2[/blue] karty i dodaj je do talii."
           },
           {
             "id": "INNOCENT",
@@ -4804,7 +4806,7 @@
         {
           "order": "1-0r",
           "speaker": "ancient",
-          "text": "{Visits}. Przychodzisz do mnie już {Visits} {Visits:plural:raz|raz|raz}."
+          "text": "{Visits}. Przychodzisz do mnie już {Visits}. {Visits:plural:raz|raz|raz}."
         },
         {
           "order": "2-0r",
@@ -5164,7 +5166,7 @@
       {
         "id": "FEATURED_ITEM",
         "title": "Oferta specjalna Wongo's",
-        "description": "Zapłać [red]200[/red] szt. [gold]Złota[/gold]. Otrzymaj [gold]a random Relic[/gold]."
+        "description": "Zapłać [red]200[/red] szt. [gold]Złota[/gold]. Otrzymaj [gold]losowy relikt[/gold]."
       },
       {
         "id": "FEATURED_ITEM_LOCKED",
@@ -5217,7 +5219,7 @@
           {
             "id": "FEATURED_ITEM",
             "title": "Oferta specjalna Wongo's",
-            "description": "Zapłać [red]200[/red] szt. [gold]Złota[/gold]. Otrzymaj [gold]a random Relic[/gold]."
+            "description": "Zapłać [red]200[/red] szt. [gold]Złota[/gold]. Otrzymaj [gold]losowy relikt[/gold]."
           },
           {
             "id": "FEATURED_ITEM_LOCKED",
