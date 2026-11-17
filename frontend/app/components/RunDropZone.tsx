@@ -11,12 +11,6 @@ interface UploadProgress {
   errors: number;
 }
 
-const REPLAY_DIRS = [
-  ["Windows", "%AppData%/SpireCodex/replays"],
-  ["macOS", "~/Library/Application Support/SpireCodex/replays"],
-  ["Linux / Steam Deck", "~/.config/SpireCodex/replays"],
-];
-
 interface RunDropZoneProps {
   onFiles: (files: FileList) => void;
   uploading?: boolean;
@@ -31,7 +25,7 @@ export default function RunDropZone({
   replays,
 }: RunDropZoneProps) {
   const t = useT();
-  const accept = replays ? ".run,.json,.jsonl" : ".run,.json";
+  const accept = replays ? ".run,.jsonl" : ".run,.json";
   const [isDragging, setIsDragging] = useState(false);
   const dragCounter = useRef(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -108,7 +102,7 @@ export default function RunDropZone({
       ) : (
         <p className="text-[var(--text-primary)] font-medium mb-3">
           {replays
-            ? t("Drop .run or replay files here or click to browse")
+            ? t("Drop run and replay files here or click to browse")
             : t("Drop .run files here or click to browse")}
         </p>
       )}
@@ -190,27 +184,7 @@ export default function RunDropZone({
       )}
 
       <hr className="border-[var(--border-subtle)] my-4" />
-      <RunFileHelp />
-      {replays && (
-        <div
-          className="text-left text-xs text-[var(--text-muted)] space-y-1.5 mt-3"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <p className="text-[var(--text-secondary)]">
-            {t("Replay files (.jsonl) from the mod live here:")}
-          </p>
-          {REPLAY_DIRS.map(([os, dir]) => (
-            <div key={os}>
-              <strong className="text-[var(--text-secondary)] block sm:inline">
-                {os}
-              </strong>
-              <code className="block sm:inline sm:ml-1 mt-0.5 sm:mt-0 bg-[var(--bg-primary)] px-1.5 py-0.5 rounded break-all">
-                {dir}
-              </code>
-            </div>
-          ))}
-        </div>
-      )}
+      <RunFileHelp replays={replays} />
     </div>
   );
 }
