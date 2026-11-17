@@ -26,6 +26,7 @@ from ..services.runs_db import (
 )
 from ..services import cache as app_cache
 from ..services.run_entity_stats import (
+    split_bracket_character,
     UnknownBracket,
     ensure_known_bracket,
     full_walk_in_progress as entity_stats_full_walk_in_progress,
@@ -1359,6 +1360,7 @@ def get_entity_scores(
     # pass through even though the snapshot's validator doesn't know them;
     # anything neither side knows is a 400, never a silent all-runs answer.
     try:
+        bracket, bchar = split_bracket_character(bracket)
         brk = ensure_known_bracket(bracket)
     except UnknownBracket as e:
         raise HTTPException(status_code=400, detail=f"unknown bracket: {e}")
@@ -1367,14 +1369,21 @@ def get_entity_scores(
     # Redis layer (5min TTL): hit constantly by tier-list pages and detail
     # sort columns. Key carries every response-shaping param.
     cache_key = app_cache.entity_scores_key(
-        entity_type, act=act, character=char, bracket=brk
+        entity_type,
+        act=act,
+        character=char,
+        bracket=f"{brk or 'all'}|char:{bchar}" if bchar else brk,
     )
     cached = app_cache.get_json(cache_key)
     if cached is not None:
         result = cached
     else:
         result = get_all_entity_scores(
-            entity_type, character=char, act=act, bracket=brk
+            entity_type,
+            character=char,
+            act=act,
+            bracket=brk,
+            bracket_character=bchar,
         )
         # While the snapshot is rebuilding (post-deploy), the result is an empty
         # shell; caching it would extend the gap past the rebuild for everyone.
@@ -1660,9 +1669,11 @@ def get_entity_metrics(
             detail=f"entity_type must be one of {sorted(_ENTITY_STATS_TYPES)}",
         )
     try:
+        bracket, bchar = split_bracket_character(bracket)
         bracket = ensure_known_bracket(bracket)
     except UnknownBracket as e:
         raise HTTPException(status_code=400, detail=f"unknown bracket: {e}")
+    character = character or bchar
     # Snapshot refreshes at most every 10 min; let edges/clients cache it.
     # Except while a post-deploy rebuild runs: an empty table cached at the
     # edge would outlive the rebuild.
