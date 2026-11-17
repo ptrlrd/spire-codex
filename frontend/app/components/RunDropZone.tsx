@@ -25,7 +25,7 @@ export default function RunDropZone({
   replays,
 }: RunDropZoneProps) {
   const t = useT();
-  const accept = replays ? ".run,.json,.jsonl" : ".run,.json";
+  const accept = replays ? ".run,.jsonl" : ".run,.json";
   const [isDragging, setIsDragging] = useState(false);
   const dragCounter = useRef(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
