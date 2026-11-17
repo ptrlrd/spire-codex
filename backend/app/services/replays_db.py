@@ -98,11 +98,13 @@ def inspect_gzip(gz: bytes) -> dict:
         raise ReplayRejected(415, "replay must be gzip", "not_gzip")
     d = zlib.decompressobj(16 + zlib.MAX_WBITS)
     state = {"raw": 0, "lines": 0, "header": None, "buf": b"", "last": b""}
+    content = hashlib.sha256()
 
     def account(out: bytes) -> None:
         if not out:
             return
         state["raw"] += len(out)
+        content.update(out)
         if state["raw"] > MAX_RAW_BYTES:
             raise ReplayRejected(
                 413, "replay over the decompressed size cap", "too_large"
@@ -155,6 +157,7 @@ def inspect_gzip(gz: bytes) -> dict:
         "lines": lines,
         "raw_bytes": state["raw"],
         "sha256": hashlib.sha256(gz).hexdigest(),
+        "content_sha256": content.hexdigest(),
     }
 
 
@@ -306,6 +309,7 @@ def store_replay(
         "_id": run_hash,
         "blob": Binary(gz),
         "sha256": info["sha256"],
+        "content_sha256": info["content_sha256"],
         "gz_bytes": len(gz),
         "raw_bytes": info["raw_bytes"],
         "lines": info["lines"],
@@ -337,8 +341,8 @@ def store_replay(
     try:
         coll.insert_one(doc)
     except DuplicateKeyError:
-        existing = coll.find_one({"_id": run_hash}, {"sha256": 1, "deleted_at": 1})
-        if existing and existing.get("sha256") == info["sha256"]:
+        existing = coll.find_one({"_id": run_hash})
+        if existing and _same_replay(existing, info):
             if existing.get("deleted_at"):
                 coll.update_one({"_id": run_hash}, {"$set": {"deleted_at": None}})
             _runs().update_one({"_id": run_hash}, {"$set": {"has_replay": True}})
@@ -348,6 +352,22 @@ def store_replay(
         )
     _runs().update_one({"_id": run_hash}, {"$set": {"has_replay": True}})
     return {"success": True, "run_hash": run_hash, "lines": info["lines"]}
+
+
+def _same_replay(existing: dict, info: dict) -> bool:
+    """Whether a stored replay holds the same journal as an upload. Two
+    compressors turn one journal into different gzip bytes, so the stored
+    bytes only settle it when they are equal; otherwise the decompressed
+    content decides."""
+    if existing.get("sha256") == info["sha256"]:
+        return True
+    stored = existing.get("content_sha256")
+    if not stored and existing.get("blob"):
+        try:
+            stored = inspect_gzip(bytes(existing["blob"]))["content_sha256"]
+        except ReplayRejected:
+            stored = None
+    return bool(stored) and stored == info["content_sha256"]
 
 
 def replay_visible(run_hash: str) -> bool:
