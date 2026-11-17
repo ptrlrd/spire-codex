@@ -253,6 +253,50 @@ def accept_upload(run_hash: str, gz: bytes, user: dict) -> dict:
         raise ReplayRejected(503, "replay storage is unavailable", "storage")
 
 
+def find_run_for(header: dict, user: dict) -> str:
+    """The uploader's run a replay header describes, for uploads that come
+    without a run hash. Candidates share the seed; the first one this account
+    owns (or is hinted to) whose stored data matches the header wins."""
+    from .runs_db_mongo import get_run_blob
+
+    seed = str(header.get("seed") or "")
+    if not seed:
+        raise ReplayRejected(400, "replay header has no seed", "bad_header")
+    docs = list(_runs().find({"seed": seed}, _RUN_FIELDS).limit(200))
+    docs = [d for d in docs if not d.get("deleted_at")]
+    if not docs:
+        raise ReplayRejected(404, "run not found; upload the run first", "not_found")
+    sid = str(user.get("steam_id") or "")
+    mine = [
+        d
+        for d in docs
+        if owns_run(d, user)
+        or (
+            sid
+            and not d.get("user_id")
+            and not d.get("steam_id")
+            and str(d.get("steam_id_hint") or "") == sid
+        )
+    ]
+    if not mine:
+        raise ReplayRejected(403, "this run belongs to another player", "not_owner")
+    last: ReplayRejected | None = None
+    for doc in mine:
+        run_hash = str(doc["_id"])
+        try:
+            check_header(header, doc, get_run_blob(run_hash), run_hash)
+        except ReplayRejected as e:
+            last = e
+            continue
+        return run_hash
+    raise last or ReplayRejected(404, "run not found", "not_found")
+
+
+def accept_upload_by_header(gz: bytes, user: dict) -> dict:
+    info = inspect_gzip(gz)
+    return accept_upload(find_run_for(info["header"], user), gz, user)
+
+
 def store_replay(
     run_hash: str, gz: bytes, info: dict, run_doc: dict, user: dict, player_idx: int
 ) -> dict:

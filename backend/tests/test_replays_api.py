@@ -44,6 +44,14 @@ class FakeRuns:
         d = self.docs.get(flt["_id"])
         return dict(d) if d else None
 
+    def find(self, flt, proj=None):
+        rows = [
+            dict(d)
+            for d in self.docs.values()
+            if all(d.get(k) == v for k, v in flt.items())
+        ]
+        return type("C", (), {"limit": lambda self, n: rows[:n]})()
+
     def update_one(self, flt, update):
         d = self.docs.get(flt["_id"])
         if d is None:
@@ -85,6 +93,7 @@ def env(monkeypatch):
         {
             RUN_HASH: {
                 "_id": RUN_HASH,
+                "seed": "JXS4H48K2D",
                 "steam_id": ME["steam_id"],
                 "user_id": ObjectId(ME["_id"]),
                 "character": "IRONCLAD",
@@ -474,3 +483,44 @@ def test_rejected_replay_does_not_claim_the_hinted_run(env):
     assert runs.docs[RUN_HASH]["steam_id_hint"] == ME["steam_id"]
     assert _post(_gz()).status_code == 200
     assert runs.docs[RUN_HASH]["user_id"] == ObjectId(ME["_id"])
+
+
+def _post_bare(body, token="me"):
+    h = {"Content-Encoding": "gzip", "Content-Type": "application/x-ndjson"}
+    if token:
+        h["Authorization"] = f"Bearer {token}"
+    return client.post("/api/runs/replay", content=body, headers=h)
+
+
+def test_bare_upload_finds_the_run_from_the_header(env):
+    runs, replays = env
+    body = _gz()
+    r = _post_bare(body)
+    assert r.status_code == 200, r.text
+    assert r.json()["run_hash"] == RUN_HASH
+    assert r.json()["url"].endswith(f"/runs/{RUN_HASH}/replay")
+    assert bytes(replays.docs[RUN_HASH]["blob"]) == body
+    assert runs.docs[RUN_HASH]["has_replay"] is True
+    again = _post_bare(body)
+    assert again.status_code == 200 and again.json()["duplicate"] is True
+
+
+def test_bare_upload_needs_auth_an_owned_run_and_a_matching_header(env):
+    assert _post_bare(_gz(), token=None).status_code == 401
+    other = _post_bare(_gz(), token="other")
+    assert other.status_code == 403
+    assert other.json()["detail"]["code"] == "not_owner"
+    unknown = _post_bare(_gz(header_patch={"seed": "NOSUCHSEED"}))
+    assert unknown.status_code == 404
+    assert unknown.json()["detail"]["code"] == "not_found"
+    wrong_start = _post_bare(_gz(header_patch={"start_time": 1}))
+    assert wrong_start.status_code == 409
+    assert wrong_start.json()["detail"]["code"] == "header_mismatch"
+    assert _post_bare(b"not gzip").status_code == 415
+
+
+def test_bare_upload_body_cap_covers_a_full_size_replay():
+    from app.main import _BODY_LIMITS
+
+    assert any(p.match("/api/runs/replay") for p, _ in _BODY_LIMITS)
+    assert any(p.match(f"/api/runs/{RUN_HASH}/replay") for p, _ in _BODY_LIMITS)

@@ -56,6 +56,35 @@ def _raise(e: ReplayRejected) -> None:
     )
 
 
+def _gzip_body(request: Request, body: bytes) -> None:
+    encoding = request.headers.get("content-encoding", "").lower()
+    if encoding not in ("", "gzip") or not body.startswith(replays_db.GZIP_MAGIC):
+        raise HTTPException(status_code=415, detail="Body must be gzip NDJSON")
+
+
+def _with_url(result: dict) -> dict:
+    site_base = os.environ.get("PUBLIC_SITE_BASE", "https://spire-codex.com").rstrip(
+        "/"
+    )
+    result["url"] = f"{site_base}/runs/{result['run_hash']}/replay"
+    return result
+
+
+@router.post("/replay", tags=["Runs"])
+@limiter.limit(rate_limit_config.endpoint_limit("replays.upload_bare", "30/minute"))
+async def upload_replay_by_header(request: Request):
+    """Store a gzipped NDJSON replay without naming the run. The run is found
+    among your uploaded runs from the replay's own seed and start time."""
+    user = require_user(request)
+    body = await _read_capped(request, MAX_GZ_BYTES)
+    _gzip_body(request, body)
+    try:
+        result = await run_in_threadpool(replays_db.accept_upload_by_header, body, user)
+    except ReplayRejected as e:
+        _raise(e)
+    return _with_url(result)
+
+
 @router.post("/{run_hash}/replay", tags=["Runs"])
 @limiter.limit(rate_limit_config.endpoint_limit("replays.upload", "30/minute"))
 async def upload_replay(run_hash: str, request: Request):
@@ -63,18 +92,12 @@ async def upload_replay(run_hash: str, request: Request):
     first; the replay is matched against it and rejected on mismatch."""
     user = require_user(request)
     body = await _read_capped(request, MAX_GZ_BYTES)
-    encoding = request.headers.get("content-encoding", "").lower()
-    if encoding not in ("", "gzip") or not body.startswith(replays_db.GZIP_MAGIC):
-        raise HTTPException(status_code=415, detail="Body must be gzip NDJSON")
+    _gzip_body(request, body)
     try:
         result = await run_in_threadpool(replays_db.accept_upload, run_hash, body, user)
     except ReplayRejected as e:
         _raise(e)
-    site_base = os.environ.get("PUBLIC_SITE_BASE", "https://spire-codex.com").rstrip(
-        "/"
-    )
-    result["url"] = f"{site_base}/runs/{run_hash}/replay"
-    return result
+    return _with_url(result)
 
 
 @router.get("/{run_hash}/replay", tags=["Runs"])
