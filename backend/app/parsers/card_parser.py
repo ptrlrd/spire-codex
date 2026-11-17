@@ -439,13 +439,13 @@ def parse_single_card(
     )
     is_x_star_cost = bool(re.search(r"HasStarCostX\s*=>\s*true", content))
 
-    # Multi-hit — check literal WithHitCount(N) or DynamicVar Repeat
+    # Multi-hit — literal WithHitCount(N), a HitCount var, or DynamicVar Repeat
     hit_count = None
     hit_match = re.search(r"WithHitCount\((\d+)\)", content)
     if hit_match:
         hit_count = int(hit_match.group(1))
-    elif re.search(r"WithHitCount\(", content) and all_vars.get("Repeat"):
-        hit_count = all_vars["Repeat"]
+    elif re.search(r"WithHitCount\(", content):
+        hit_count = all_vars.get("Repeat") or all_vars.get("HitCount") or None
 
     # Get localization
     title = localization.get(f"{card_id}.title", class_name)
