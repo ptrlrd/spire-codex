@@ -428,7 +428,7 @@
       },
       {
         "id": "RIP",
-        "description": "Şiddetle [jitter]sülüğü kafandan koparıp[/jitter] çok ama çok uzağa fırlatırsın!\n\nZihninde bir ses yankılanır:\n[purple][sine]“HAYIIIIIIRRrRrrrrrRRRRrrr....”"
+        "description": "Şiddetle [jitter]sülüğü kafandan koparıp[/jitter] çok ama çok uzağa fırlatırsın!\n\nZihninde bir ses yankılanır:\n[purple][sine]“HAYIIIIIIRRrRrrrrrRRRRrrr....”[/sine][/purple]"
       },
       {
         "id": "SHARE_KNOWLEDGE",
@@ -1076,7 +1076,7 @@
           {
             "id": "TAKE",
             "title": "TAKE",
-            "description": "Elde et: [gold]a random Relic[/gold]"
+            "description": "Elde et: [gold]rastgele bir kalıntı[/gold]"
           }
         ]
       },
@@ -1283,7 +1283,7 @@
     "name": "Tüccar???",
     "type": "Shared",
     "act": null,
-    "description": "A suspicious merchant offers 6 fake relics (drawn from a pool of 9) at 42–58 gold each. Throwing a [gold]Foul Potion[/gold] starts a fight against The Merchant??? (165 HP). Winning rewards [gold]The Merchant's Rug???[/gold] plus all unsold relics.",
+    "description": "Şüpheli bir tüccar 9'luk bir havuzdan çekilen 6 sahte kalıntıyı tanesi 42–58 altına satar. Bir [gold]Foul Potion[/gold] fırlatmak The Merchant??? (165 CP) ile savaş başlatır. Kazanmak [gold]The Merchant's Rug???[/gold] ve satılmayan tüm kalıntıları verir.",
     "preconditions": [
       "Act 2+",
       "Single player only",
@@ -1902,10 +1902,12 @@
       "SMALL_CAPSULE",
       "STONE_HUMIDIFIER",
       "CURSED_PEARL",
+      "DOWSING_ROD",
       "HEFTY_TABLET",
       "LARGE_CAPSULE",
       "LEAFY_POULTICE",
       "NEOWS_BONES",
+      "NEOWS_SACRIFICE",
       "PRECARIOUS_SHEARS",
       "SILKEN_TRESS",
       "SILVER_CRUCIBLE"
@@ -2261,10 +2263,10 @@
     "relics": [
       "ELECTRIC_SHRYMP",
       "GLASS_EYE",
-      "SAND_CASTLE",
       "ALCHEMICAL_COFFER",
       "DRIFTWOOD",
       "RADIANT_PEARL",
+      "SAND_CASTLE",
       "SEA_GLASS",
       "PRISMATIC_GEM",
       "TOUCH_OF_OROBAS",
@@ -2680,17 +2682,17 @@
       {
         "id": "TOP",
         "title": "En Yukardakini Al",
-        "description": "[gold]one of your Relics[/gold] karşılığında [gold]a random Relic[/gold] al."
+        "description": "[gold]kalıntılarınızdan biri[/gold] karşılığında [gold]rastgele bir kalıntı[/gold] al."
       },
       {
         "id": "MIDDLE",
         "title": "Ortadakini Al",
-        "description": "[gold]one of your Relics[/gold] karşılığında [gold]a random Relic[/gold] al."
+        "description": "[gold]kalıntılarınızdan biri[/gold] karşılığında [gold]rastgele bir kalıntı[/gold] al."
       },
       {
         "id": "BOTTOM",
         "title": "En Alttakini Al",
-        "description": "[gold]one of your Relics[/gold] karşılığında [gold]a random Relic[/gold] al."
+        "description": "[gold]kalıntılarınızdan biri[/gold] karşılığında [gold]rastgele bir kalıntı[/gold] al."
       }
     ],
     "pages": [
@@ -2705,17 +2707,17 @@
           {
             "id": "TOP",
             "title": "En Yukardakini Al",
-            "description": "[gold]one of your Relics[/gold] karşılığında [gold]a random Relic[/gold] al."
+            "description": "[gold]kalıntılarınızdan biri[/gold] karşılığında [gold]rastgele bir kalıntı[/gold] al."
           },
           {
             "id": "MIDDLE",
             "title": "Ortadakini Al",
-            "description": "[gold]one of your Relics[/gold] karşılığında [gold]a random Relic[/gold] al."
+            "description": "[gold]kalıntılarınızdan biri[/gold] karşılığında [gold]rastgele bir kalıntı[/gold] al."
           },
           {
             "id": "BOTTOM",
             "title": "En Alttakini Al",
-            "description": "[gold]one of your Relics[/gold] karşılığında [gold]a random Relic[/gold] al."
+            "description": "[gold]kalıntılarınızdan biri[/gold] karşılığında [gold]rastgele bir kalıntı[/gold] al."
           }
         ]
       }
@@ -2996,7 +2998,7 @@
       {
         "id": "OVERCOME",
         "title": "Üstesinden Gel",
-        "description": "[red]a random Card[/red] [gold]Deste[/gold]'nden kaldırılır."
+        "description": "[red]rastgele bir kart[/red] [gold]Deste[/gold]'nden kaldırılır."
       },
       {
         "id": "HOLD_ON_0",
@@ -3100,7 +3102,7 @@
           {
             "id": "OVERCOME",
             "title": "Üstesinden Gel",
-            "description": "[red]a random Card[/red] [gold]Deste[/gold]'nden kaldırılır."
+            "description": "[red]rastgele bir kart[/red] [gold]Deste[/gold]'nden kaldırılır."
           },
           {
             "id": "HOLD_ON_0",
@@ -3221,7 +3223,7 @@
       {
         "id": "LIFT",
         "title": "İksir İç ve Kaldır",
-        "description": "İksiri kaybet: [red]a random Potion[/red]. [blue]10[/blue] Maksimum CP elde et."
+        "description": "İksiri kaybet: [red]rastgele bir iksir[/red]. [blue]10[/blue] Maksimum CP elde et."
       },
       {
         "id": "LIFT_LOCKED",
@@ -3247,7 +3249,7 @@
           {
             "id": "LIFT",
             "title": "İksir İç ve Kaldır",
-            "description": "İksiri kaybet: [red]a random Potion[/red]. [blue]10[/blue] Maksimum CP elde et."
+            "description": "İksiri kaybet: [red]rastgele bir iksir[/red]. [blue]10[/blue] Maksimum CP elde et."
           },
           {
             "id": "LIFT_LOCKED",
@@ -3268,7 +3270,7 @@
       },
       {
         "id": "LIFT",
-        "description": "Tek dikişte bitirdiğin [gold]a random Potion[/gold] ile [jitter]tüm gücünle taşa yüklenirsin[/jitter]!!\n\nHiçbir şey olmaz."
+        "description": "Tek dikişte bitirdiğin [gold]rastgele bir iksir[/gold] ile [jitter]tüm gücünle taşa yüklenirsin[/jitter]!!\n\nHiçbir şey olmaz."
       },
       {
         "id": "PUSH",
@@ -5164,7 +5166,7 @@
       {
         "id": "FEATURED_ITEM",
         "title": "Wongo'nun Öne Çıkan Ürünü",
-        "description": "[red]200[/red] [gold]Altın[/gold] öde. Kalıntı'yı elde et: [gold]a random Relic[/gold]"
+        "description": "[red]200[/red] [gold]Altın[/gold] öde. Kalıntı'yı elde et: [gold]rastgele bir kalıntı[/gold]"
       },
       {
         "id": "FEATURED_ITEM_LOCKED",
@@ -5217,7 +5219,7 @@
           {
             "id": "FEATURED_ITEM",
             "title": "Wongo'nun Öne Çıkan Ürünü",
-            "description": "[red]200[/red] [gold]Altın[/gold] öde. Kalıntı'yı elde et: [gold]a random Relic[/gold]"
+            "description": "[red]200[/red] [gold]Altın[/gold] öde. Kalıntı'yı elde et: [gold]rastgele bir kalıntı[/gold]"
           },
           {
             "id": "FEATURED_ITEM_LOCKED",

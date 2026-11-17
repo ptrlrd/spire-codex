@@ -29,7 +29,7 @@
   {
     "id": "CHARACTER_SKILL_NECROBINDER1",
     "name": "Déjà mort",
-    "description": "Appliquer 999 Funeste à un seul ennemi.",
+    "description": "Appliquer 999 Fatalité à un seul ennemi.",
     "category": "character_skill",
     "character": "Necrobinder",
     "threshold": 999,

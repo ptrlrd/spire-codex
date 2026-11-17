@@ -180,12 +180,15 @@
    "title": "Zaczarowanie"
   },
   "MOCK_NO_UNPLAYABLE_AFFLICTION": {
+   "description": "",
    "title": "Mock No Unplayable Affliction"
   },
   "MOCK_SELF_DAMAGE_AFFLICTION": {
+   "description": "",
    "title": "Mock Self Damage Affliction"
   },
   "MOCK_USELESS_AFFLICTION": {
+   "description": "",
    "title": "Mock Useless Affliction"
   },
   "RINGING": {
@@ -814,6 +817,7 @@
    "title": "Pael"
   },
   "PROCEED": {
+   "description": "",
    "title": "Kontynuuj"
   },
   "TANX": {
@@ -1083,6 +1087,12 @@
   "THE_ARCHITECT": {
    "CONTINUE": "Kontynuuj",
    "RESPOND": "Odpowiedz",
+   "epithet": "",
+   "pages": {
+    "INITIAL": {
+     "description": ""
+    }
+   },
    "talk": {
     "DEFECT": {
      "0-0r": {
@@ -1771,6 +1781,7 @@
    "title": "Arsenał"
   },
   "ASCENDERS_BANE": {
+   "description": "",
    "title": "Zmora wyniesionego"
   },
   "ASHEN_STRIKE": {
@@ -2098,6 +2109,7 @@
    "title": "Gwiezdny płaszcz"
   },
   "CLUMSY": {
+   "description": "",
    "title": "Niezdarność"
   },
   "COLD_SNAP": {
@@ -2202,6 +2214,7 @@
    "title": "Zgniecenie"
   },
   "CURSE_OF_THE_BELL": {
+   "description": "",
    "title": "Klątwa dzwonu"
   },
   "DAGGER_SPRAY": {
@@ -2233,6 +2246,7 @@
    "title": "Zryw"
   },
   "DAZED": {
+   "description": "",
    "title": "Oszołomienie"
   },
   "DEADLY_POISON": {
@@ -2256,6 +2270,7 @@
    "title": "Pozbawienie sił"
   },
   "DEBRIS": {
+   "description": "",
    "title": "Gruz"
   },
   "DEBT": {
@@ -2474,6 +2489,7 @@
    "title": "Złe oko"
   },
   "EXPECT_A_FIGHT": {
+   "description": "Gain {CalculatedBlock} [gold]Block[/gold].\nGains {CalculationExtra} additional [gold]Block[/gold] for each [gold]Strength[/gold] you have.",
    "title": "Przygotowanie do walki"
   },
   "EXPERTISE": {
@@ -2589,6 +2605,7 @@
    "title": "Skupione uderzenie"
   },
   "FOLLY": {
+   "description": "",
    "title": "Głupota"
   },
   "FOOTWORK": {
@@ -2710,6 +2727,7 @@
    "title": "Stróż cmentarny"
   },
   "GREED": {
+   "description": "",
    "title": "Chciwość"
   },
   "GUARDS": {
@@ -2886,6 +2904,7 @@
    "title": "Wewnętrzny płomień"
   },
   "INJURY": {
+   "description": "",
    "title": "Kontuzja"
   },
   "INTERCEPT": {
@@ -3093,22 +3112,28 @@
    "title": "Nędza"
   },
   "MOCK_ATTACK_CARD": {
+   "description": "",
    "title": "Atak"
   },
   "MOCK_CURSE_CARD": {
+   "description": "",
    "title": "Klątwa"
   },
   "MOCK_POWER_CARD": {
+   "description": "",
    "title": "Moc"
   },
   "MOCK_QUEST_CARD": {
+   "description": "",
    "title": "Klątwa"
   },
   "MOCK_SKILL_CARD": {
+   "description": "",
    "discardSelectionPrompt": "Wybierz karty do Odrzucenia.",
    "title": "Umiejętność"
   },
   "MOCK_STATUS_CARD": {
+   "description": "",
    "title": "Stan"
   },
   "MODDED": {
@@ -3331,6 +3356,7 @@
    "title": "Uderzenie głowicą"
   },
   "POOR_SLEEP": {
+   "description": "",
    "title": "Kiepski sen"
   },
   "POUNCE": {
@@ -3712,6 +3738,7 @@
    "title": "Solarne uderzenie"
   },
   "SOOT": {
+   "description": "",
    "title": "Sadza"
   },
   "SOUL": {
@@ -3771,6 +3798,7 @@
    "title": "Łupy bitewne"
   },
   "SPORE_MIND": {
+   "description": "",
    "title": "Zarodnik"
   },
   "SPUR": {
@@ -4174,6 +4202,7 @@
    "title": "Przemijanie"
   },
   "WOUND": {
+   "description": "",
    "title": "Rana"
   },
   "WRAITH_FORM": {
@@ -4181,6 +4210,7 @@
    "title": "Widmo"
   },
   "WRITHE": {
+   "description": "",
    "title": "Zwijanie z bólu"
   },
   "WROUGHT_IN_WAR": {
@@ -4509,6 +4539,7 @@
    "title": "Przeszczep"
   },
   "INKY": {
+   "description": "This card applies [blue]{WeakPower}[/blue] [gold]Weak[/gold].",
    "extraCardText": "Nałóż [blue]{WeakPower}[/blue] pkt. [gold]Słabości[/gold]{TargetType, select, AllEnemies { na WSZYSTKICH przeciwników} other {}}.",
    "title": "Atrament"
   },
@@ -4517,6 +4548,7 @@
    "title": "Instynkt"
   },
   "MOCK_FREE_ENCHANTMENT": {
+   "description": "",
    "title": "Mock Free Enchantment"
   },
   "MOMENTUM": {
@@ -5368,25 +5400,101 @@
    "name": "Infekcja",
    "year": "1 201"
   },
+  "BLIGHT1": {
+   "name": "",
+   "year": ""
+  },
+  "BLIGHT2": {
+   "name": "",
+   "year": ""
+  },
+  "BLIGHT3": {
+   "name": "",
+   "year": ""
+  },
   "FLOURISH0": {
    "name": "Rozkwit",
    "year": "1 800"
+  },
+  "FLOURISH1": {
+   "name": "",
+   "year": ""
+  },
+  "FLOURISH2": {
+   "name": "",
+   "year": ""
+  },
+  "FLOURISH3": {
+   "name": "",
+   "year": ""
   },
   "INVITATION0": {
    "name": "Drzwi",
    "year": "2 733"
   },
+  "INVITATION1": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION2": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION3": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION4": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION5": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION6": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION7": {
+   "name": "",
+   "year": ""
+  },
   "PEACE0": {
    "name": "Koniec",
    "year": "3 000"
+  },
+  "PEACE1": {
+   "name": "",
+   "year": ""
   },
   "PREHISTORIA0": {
    "name": "Prehistoria",
    "year": "???"
   },
+  "PREHISTORIA1": {
+   "name": "",
+   "year": ""
+  },
+  "PREHISTORIA2": {
+   "name": "",
+   "year": ""
+  },
   "SEEDS0": {
    "name": "Ziarna",
    "year": "0"
+  },
+  "SEEDS1": {
+   "name": "",
+   "year": ""
+  },
+  "SEEDS2": {
+   "name": "",
+   "year": ""
+  },
+  "SEEDS3": {
+   "name": "",
+   "year": ""
   }
  },
  "events": {
@@ -5399,6 +5507,7 @@
     "ALL": {
      "options": {
       "EXIT_BATHS": {
+       "description": "",
        "title": "Wyjdź z wody"
       },
       "LINGER": {
@@ -5785,6 +5894,7 @@
      "description": "Padasz na twarz ze zmęczenia, więc robisz sobie drzemkę...\n\n...Gdy nagle czujesz, że coś się na tobie [gold][jitter]wierci[/jitter][/gold]!",
      "options": {
       "FIGHT": {
+       "description": "",
        "title": "Walcz!"
       }
      }
@@ -5969,6 +6079,7 @@
      "description": "Próbujesz [gold]{LastDishTitle}[/gold] i wszystko zjadasz.\n[green]Pychota![/green]",
      "options": {
       "LEAVE": {
+       "description": "",
        "title": "Wyjdź"
       }
      }
@@ -6307,6 +6418,7 @@
    "title": "Dostawca Mikstur"
   },
   "PROCEED": {
+   "description": "",
    "title": "Kontynuuj"
   },
   "PUNCH_OFF": {
@@ -6329,6 +6441,7 @@
      "description": "[gold]Konstrukty[/gold] odwracają się w twoją stronę i patrzą na ciebie groźnie!\n\nSzykujesz się do potyczki.",
      "options": {
       "FIGHT": {
+       "description": "",
        "title": "Walcz"
       }
      }
@@ -6482,6 +6595,7 @@
      "description": "Wskakujesz na stół i wymierzasz [red]rycerzowi[/red] mocnego [jitter]kopniaka[/jitter]!\n Rycerz wyje z bólu i przewraca się.\n\n[jitter][purple]*wszyscy zamierają z wrażenia*[/purple][/jitter]",
      "options": {
       "CONTINUE_FIGHT": {
+       "description": "",
        "title": "Kontynuuj"
       }
      }
@@ -6976,6 +7090,7 @@
      "description": "Nieznajomy patrzy na ciebie groźnie. Wygląda na to, że tylko jedno z was zatrzyma ten klucz.",
      "options": {
       "FIGHT": {
+       "description": "",
        "title": "Walcz"
       }
      }
@@ -7820,6 +7935,7 @@
   },
   "FORMAT_DAMAGE_MULTI": "{Damage}[font_size=18]x{Repeat}[/font_size]",
   "FORMAT_DAMAGE_SINGLE": "{Damage}",
+  "FORMAT_EMPTY": "",
   "FORMAT_STATUS_CARD_COUNT": "{CardCount}",
   "HEAL": {
    "description": "Ten przeciwnik zamierza [gold]przywrócić[/gold] swoje PŻ.",
@@ -8112,6 +8228,7 @@
      "body": "Wersja gry hosta nie zgadza się z twoją.\n{info}",
      "description": {
       "branchMismatch": "To prawdopodobnie dlatego, że jesteś na gałęzi Steam „{localBranch}”, a host na gałęzi „{remoteBranch}”.",
+      "modelDbMismatch": "More info: Our ModelDb hash is ''{localHash}'', but theirs is ''{remoteHash}''.",
       "versionMismatch": "Twoja wersja to „{localVersion}”, a wersja hosta to „{remoteVersion}”."
      }
     }
@@ -10225,6 +10342,7 @@
    "title": "Grom"
   },
   "MOCK_COMBAT_CLEANUP_ORB": {
+   "description": "",
    "title": "Mock Combat Cleanup"
   },
   "PLASMA_ORB": {
@@ -10409,6 +10527,7 @@
    "title": "Dar Mazaletha"
   },
   "MOCK_DISCARD_AND_ADD_SHIVS_POTION": {
+   "description": "",
    "title": "Mock Discard and Add Shivs Potion"
   },
   "OROBIC_ACID": {
@@ -11195,51 +11314,67 @@
    "title": "Pomagier"
   },
   "MOCK_CLONE_CARDS_ON_PLAY_POWER": {
+   "description": "",
    "title": "Duplikuj karty przy zagraniu"
   },
   "MOCK_DO_NOT_SCALE_IN_MULTIPLAYER_POWER": {
+   "description": "",
    "title": "Mock Do Not Scale in Multiplayer"
   },
   "MOCK_EXTRA_TURN_POWER": {
+   "description": "",
    "title": "Dodatkowa tura"
   },
   "MOCK_FREE_CARDS_POWER": {
+   "description": "",
    "title": "Darmowe karty"
   },
   "MOCK_GAIN_BLOCK_ON_ATTACK_POWER": {
+   "description": "",
    "title": "Zyskaj Blok przy Ataku"
   },
   "MOCK_INVINCIBLE_ON_DEATH_POWER": {
+   "description": "",
    "title": "Niezniszczalność po śmierci"
   },
   "MOCK_MODIFY_ENERGY_COST_POWER": {
+   "description": "",
    "title": "Zmień koszt Energii karty"
   },
   "MOCK_MODIFY_STAR_COST_POWER": {
+   "description": "",
    "title": "Zmień koszt Gwiazd karty"
   },
   "MOCK_PHASE_OBSERVER_POWER": {
+   "description": "",
    "title": "Mock Phase Observer"
   },
   "MOCK_PREVENT_DEATH_POWER": {
+   "description": "",
    "title": "Zapobieganie śmierci"
   },
   "MOCK_REMOVE_DRAWN_CARDS_FROM_COMBAT_POWER": {
+   "description": "",
    "title": "Usuń dobrane karty z walki"
   },
   "MOCK_RESET_COMBAT_ON_SHUFFLE_POWER": {
+   "description": "",
    "title": "Zresetowanie walki po przetasowaniu"
   },
   "MOCK_REVIVE_POWER": {
+   "description": "",
    "title": "Odrodzenie"
   },
   "MOCK_SCALE_IN_MULTIPLAYER_POWER": {
+   "description": "",
    "title": "Mock Scale in Multiplayer"
   },
   "MOCK_TEMPORARY_STRENGTH_LOSS": {
+   "description": "",
    "title": "Tymczasowa utrata Siły"
   },
   "MOCK_UNHITTABLE_POWER": {
+   "description": "",
    "title": "Mock Unhittable"
   },
   "MONARCHS_GAZE_POWER": {
@@ -13868,6 +14003,7 @@
   "TEXT_EFFECTS": "Efekty tekstu",
   "TEXT_EFFECTS_DESCRIPTION": "Przełącza efekty tekstu takie jak falowanie lub trzęsienie.",
   "TEXT_SIZE": "Rozmiar tekstu",
+  "TOAST_CANNOT_REMAP_INPUT": "Cannot set an input for {Hotkey} for {ControlType}.",
   "TOAST_FAST_MODE_OFF": "Walki i przejścia będą wolniejsze.",
   "TOAST_FAST_MODE_ON": "Walki i przejścia będą szybsze.",
   "TOAST_GAMEPLAY_DATA_OFF": "Dane rozgrywki i dzienniki błędów nie będą wysyłane.",

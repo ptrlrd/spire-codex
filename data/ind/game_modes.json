@@ -1,0 +1,38 @@
+[
+  {
+    "id": "STANDARD",
+    "name": "Standar",
+    "description": "Mulai perjalanan menaklukkan Spire!",
+    "multiplayer_description": "Mulai perjalanan menaklukkan Spire... bersama teman!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": null,
+    "max_ascension": 10
+  },
+  {
+    "id": "DAILY",
+    "name": "Harian",
+    "description": "Tantangan baru tersedia sehari sekali.\n\nBersaing dengan pemain lain untuk mendapat skor tertinggi!",
+    "multiplayer_description": "Tantangan baru tersedia sehari sekali.\n\nBersaing dengan pemain lain untuk mendapat skor tertinggi!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "Main sekali sebagai semua karakter dan kalahkan Babak 3 untuk membuka Harian.",
+    "max_ascension": 10
+  },
+  {
+    "id": "CUSTOM",
+    "name": "Kustom",
+    "description": "Atur perjalananmu sendiri dengan efek unik.",
+    "multiplayer_description": "Atur perjalanan multi pemain dengan efek unik.",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "Kalahkan Babak 3 tiga kali untuk membuka Permainan Kustom.",
+    "max_ascension": 10
+  }
+]

@@ -1,5 +1,16 @@
 [
   {
+    "id": "AMBERGRIS",
+    "name": "Ambergris",
+    "description": "Heal for [green]50%[/green] of your Max HP. If used in combat, take an extra turn.",
+    "description_raw": "Heal for [green]{HealPercent}%[/green] of your Max HP. If used in combat, take an extra turn.",
+    "rarity": "Event",
+    "image_url": "/static/images/potions/ambergris.webp",
+    "rarity_key": "Event",
+    "compendium_order": 60,
+    "pool": "event"
+  },
+  {
     "id": "ASHWATER",
     "name": "Ashwater",
     "description": "[gold]Exhaust[/gold] any number of cards in your [gold]Hand[/gold].",
@@ -293,7 +304,7 @@
     "rarity": "Event",
     "image_url": "/static/images/potions/foul_potion.webp",
     "rarity_key": "Event",
-    "compendium_order": 60,
+    "compendium_order": 61,
     "pool": "event"
   },
   {
@@ -359,7 +370,7 @@
     "rarity": "Event",
     "image_url": "/static/images/potions/glowwater_potion.webp",
     "rarity_key": "Event",
-    "compendium_order": 61,
+    "compendium_order": 62,
     "pool": "event"
   },
   {
@@ -502,7 +513,7 @@
     "rarity": "Token",
     "image_url": "/static/images/potions/potion_shaped_rock.webp",
     "rarity_key": "Token",
-    "compendium_order": 62,
+    "compendium_order": 63,
     "pool": "shared"
   },
   {

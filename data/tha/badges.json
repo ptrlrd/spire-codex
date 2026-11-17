@@ -58,6 +58,38 @@
     "image_url": "/static/images/badges/badge_curses.png"
   },
   {
+    "id": "DAMAGE_LEADER",
+    "name": "ผู้นำพาความเสียหาย",
+    "description": "สร้างความเสียหายใส่ศัตรูมากที่สุดในโหมดหลายคน",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "ผู้นำพาความเสียหาย",
+        "description": "สร้างความเสียหายใส่ศัตรูมากที่สุดในโหมดหลายคน"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": true,
+    "image_url": "/static/images/badges/badge_damage_leader.png"
+  },
+  {
+    "id": "DEBUFFER",
+    "name": "ผู้สร้างผลผิดปกติ",
+    "description": "สร้างผลผิดปกติมากที่สุดในโหมดหลายคน",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "ผู้สร้างผลผิดปกติ",
+        "description": "สร้างผลผิดปกติมากที่สุดในโหมดหลายคน"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": true,
+    "image_url": "/static/images/badges/badge_debuffer.png"
+  },
+  {
     "id": "DOUBLE_SNECKO",
     "name": "งุกแกคู่",
     "description": "ได้รับดวงตางุกแกทั้งของจริงและของปลอม",
@@ -98,6 +130,74 @@
     "requires_win": false,
     "multiplayer_only": false,
     "image_url": "/static/images/badges/badge_elite.png"
+  },
+  {
+    "id": "FAMISHED",
+    "name": "Famished",
+    "description": "ชนะโดยมี HP สูงสุดลดลงเหลือต่ำกว่า HP เริ่มต้น",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Famished",
+        "description": "ชนะโดยมี HP สูงสุดลดลงเหลือต่ำกว่า HP เริ่มต้น"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_famished.png"
+  },
+  {
+    "id": "GLUTTON",
+    "name": "Well Fed",
+    "description": "ชนะการเดินทางโดยมี HP สูงสุดเพิ่มขึ้น [blue]15[/blue] ขึ้นไป",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Well Fed",
+        "description": "ชนะการเดินทางโดยมี HP สูงสุดเพิ่มขึ้น [blue]15[/blue] ขึ้นไป"
+      },
+      {
+        "rarity": "silver",
+        "title": "Stuffed",
+        "description": "ชนะการเดินทางโดยมี HP สูงสุดเพิ่มขึ้น [blue]30[/blue] ขึ้นไป"
+      },
+      {
+        "rarity": "gold",
+        "title": "Glutton",
+        "description": "ชนะการเดินทางโดยมี HP สูงสุดในระดับบ้าบอ (เพิ่มขึ้น [blue]50[/blue] ขึ้นไป)"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_glutton.png"
+  },
+  {
+    "id": "HEALER",
+    "name": "Mender",
+    "description": "Mended an ally once.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Mender",
+        "description": "Mended an ally once."
+      },
+      {
+        "rarity": "silver",
+        "title": "Healer",
+        "description": "Mended an ally twice."
+      },
+      {
+        "rarity": "gold",
+        "title": "Doctor",
+        "description": "Mended allies over and over again (at least [blue]3[/blue] times)."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": true,
+    "image_url": "/static/images/badges/badge_healer.png"
   },
   {
     "id": "HIGHLANDER",
@@ -146,6 +246,64 @@
     "requires_win": false,
     "multiplayer_only": false,
     "image_url": "/static/images/badges/badge_ilikeshiny.png"
+  },
+  {
+    "id": "KACHING",
+    "name": "กรุ๊งกริ๊ง!",
+    "description": "ใช้จ่ายมากกว่า [blue]1,000[/blue] [gold]ทอง[/gold]ที่ร้านค้า",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "กรุ๊งกริ๊ง!",
+        "description": "ใช้จ่ายมากกว่า [blue]1,000[/blue] [gold]ทอง[/gold]ที่ร้านค้า"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_kaching.png"
+  },
+  {
+    "id": "MONEY_MONEY",
+    "name": "Money Money",
+    "description": "ชนะโดยมี [blue]200[/blue] [gold]ทอง[/gold]ขึ้นไป",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Money Money",
+        "description": "ชนะโดยมี [blue]200[/blue] [gold]ทอง[/gold]ขึ้นไป"
+      },
+      {
+        "rarity": "silver",
+        "title": "Rainin' Money",
+        "description": "ชนะโดยมี [blue]400[/blue] [gold]ทอง[/gold]ขึ้นไป"
+      },
+      {
+        "rarity": "gold",
+        "title": "I Like Gold",
+        "description": "ชนะโดยมี [blue]600[/blue] [gold]ทอง[/gold]ขึ้นไป"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_money_money.png"
+  },
+  {
+    "id": "MYSTERY_MACHINE",
+    "name": "Mystery Machine",
+    "description": "เดินทางเข้าห้อง ? จำนวน [blue]15[/blue] ห้องขึ้นไป",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Mystery Machine",
+        "description": "เดินทางเข้าห้อง ? จำนวน [blue]15[/blue] ห้องขึ้นไป"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_mystery_machine.png"
   },
   {
     "id": "PERFECT",
@@ -206,6 +364,32 @@
     "image_url": "/static/images/badges/badge_restless.png"
   },
   {
+    "id": "SPEEDY",
+    "name": "รวดเร็ว",
+    "description": "ชนะการเดินทางภายใน [blue]50[/blue] นาที",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "รวดเร็ว",
+        "description": "ชนะการเดินทางภายใน [blue]50[/blue] นาที"
+      },
+      {
+        "rarity": "silver",
+        "title": "รวดเร็วกว่า",
+        "description": "ชนะการเดินทางภายใน [blue]40[/blue] นาที"
+      },
+      {
+        "rarity": "gold",
+        "title": "รวดเร็วที่สุด",
+        "description": "ชนะการเดินทางภายใน [blue]30[/blue] นาที"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_speedy.png"
+  },
+  {
     "id": "TABLET",
     "name": "แผ่นจารึกแห่งความจริง",
     "description": "ชนะด้วย HP เพียงแค่ [blue]1[/blue]",
@@ -220,5 +404,47 @@
     "requires_win": true,
     "multiplayer_only": false,
     "image_url": "/static/images/badges/badge_tablet.png"
+  },
+  {
+    "id": "TEAM_PLAYER",
+    "name": "Team Player",
+    "description": "มีการ์ดสำหรับโหมดหลายคน [blue]3[/blue] ใบขึ้นไปในกองการ์ด",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Team Player",
+        "description": "มีการ์ดสำหรับโหมดหลายคน [blue]3[/blue] ใบขึ้นไปในกองการ์ด"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": true,
+    "image_url": "/static/images/badges/badge_team_player.png"
+  },
+  {
+    "id": "TINY_DECK",
+    "name": "Small Deck",
+    "description": "ชนะโดยมีการ์ดไม่เกิน [blue]20[/blue] ใบในกองการ์ด",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Small Deck",
+        "description": "ชนะโดยมีการ์ดไม่เกิน [blue]20[/blue] ใบในกองการ์ด"
+      },
+      {
+        "rarity": "silver",
+        "title": "Tiny Deck",
+        "description": "ชนะโดยมีการ์ดไม่เกิน [blue]10[/blue] ใบในกองการ์ด"
+      },
+      {
+        "rarity": "gold",
+        "title": "Miniscule",
+        "description": "ชนะโดยมีการ์ดไม่เกิน [blue]5[/blue] ใบในกองการ์ด"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_tiny_deck.png"
   }
 ]

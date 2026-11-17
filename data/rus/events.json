@@ -1076,7 +1076,7 @@
           {
             "id": "TAKE",
             "title": "TAKE",
-            "description": "Получить реликвию [gold]«a random Relic»[/gold]."
+            "description": "Получить реликвию [gold]«случайная реликвия»[/gold]."
           }
         ]
       },
@@ -1283,7 +1283,7 @@
     "name": "Торговец?!",
     "type": "Shared",
     "act": null,
-    "description": "A suspicious merchant offers 6 fake relics (drawn from a pool of 9) at 42–58 gold each. Throwing a [gold]Foul Potion[/gold] starts a fight against The Merchant??? (165 HP). Winning rewards [gold]The Merchant's Rug???[/gold] plus all unsold relics.",
+    "description": "Подозрительный торговец предлагает 6 поддельных реликвий (из пула в 9) по 42–58 золота за штуку. Бросок [gold]Foul Potion[/gold] начинает бой с The Merchant??? (165 ОЗ). Победа даёт [gold]The Merchant's Rug???[/gold] и все непроданные реликвии.",
     "preconditions": [
       "Act 2+",
       "Single player only",
@@ -1902,10 +1902,12 @@
       "SMALL_CAPSULE",
       "STONE_HUMIDIFIER",
       "CURSED_PEARL",
+      "DOWSING_ROD",
       "HEFTY_TABLET",
       "LARGE_CAPSULE",
       "LEAFY_POULTICE",
       "NEOWS_BONES",
+      "NEOWS_SACRIFICE",
       "PRECARIOUS_SHEARS",
       "SILKEN_TRESS",
       "SILVER_CRUCIBLE"
@@ -2261,10 +2263,10 @@
     "relics": [
       "ELECTRIC_SHRYMP",
       "GLASS_EYE",
-      "SAND_CASTLE",
       "ALCHEMICAL_COFFER",
       "DRIFTWOOD",
       "RADIANT_PEARL",
+      "SAND_CASTLE",
       "SEA_GLASS",
       "PRISMATIC_GEM",
       "TOUCH_OF_OROBAS",
@@ -2680,17 +2682,17 @@
       {
         "id": "TOP",
         "title": "Выбрать реликвию сверху",
-        "description": "Ему — [gold]one of your Relics[/gold], вам — [gold]a random Relic[/gold]."
+        "description": "Ему — [gold]одна из ваших реликвий[/gold], вам — [gold]случайная реликвия[/gold]."
       },
       {
         "id": "MIDDLE",
         "title": "Выбрать реликвию посередине",
-        "description": "Ему — [gold]one of your Relics[/gold], вам — [gold]a random Relic[/gold]."
+        "description": "Ему — [gold]одна из ваших реликвий[/gold], вам — [gold]случайная реликвия[/gold]."
       },
       {
         "id": "BOTTOM",
         "title": "Выбрать реликвию снизу",
-        "description": "Ему — [gold]one of your Relics[/gold], вам — [gold]a random Relic[/gold]."
+        "description": "Ему — [gold]одна из ваших реликвий[/gold], вам — [gold]случайная реликвия[/gold]."
       }
     ],
     "pages": [
@@ -2705,17 +2707,17 @@
           {
             "id": "TOP",
             "title": "Выбрать реликвию сверху",
-            "description": "Ему — [gold]one of your Relics[/gold], вам — [gold]a random Relic[/gold]."
+            "description": "Ему — [gold]одна из ваших реликвий[/gold], вам — [gold]случайная реликвия[/gold]."
           },
           {
             "id": "MIDDLE",
             "title": "Выбрать реликвию посередине",
-            "description": "Ему — [gold]one of your Relics[/gold], вам — [gold]a random Relic[/gold]."
+            "description": "Ему — [gold]одна из ваших реликвий[/gold], вам — [gold]случайная реликвия[/gold]."
           },
           {
             "id": "BOTTOM",
             "title": "Выбрать реликвию снизу",
-            "description": "Ему — [gold]one of your Relics[/gold], вам — [gold]a random Relic[/gold]."
+            "description": "Ему — [gold]одна из ваших реликвий[/gold], вам — [gold]случайная реликвия[/gold]."
           }
         ]
       }
@@ -2996,7 +2998,7 @@
       {
         "id": "OVERCOME",
         "title": "Превозмочь",
-        "description": "Удалить карту [red]«a random Card»[/red] из [gold]колоды[/gold]."
+        "description": "Удалить карту [red]«случайная карта»[/red] из [gold]колоды[/gold]."
       },
       {
         "id": "HOLD_ON_0",
@@ -3100,7 +3102,7 @@
           {
             "id": "OVERCOME",
             "title": "Превозмочь",
-            "description": "Удалить карту [red]«a random Card»[/red] из [gold]колоды[/gold]."
+            "description": "Удалить карту [red]«случайная карта»[/red] из [gold]колоды[/gold]."
           },
           {
             "id": "HOLD_ON_0",
@@ -3221,7 +3223,7 @@
       {
         "id": "LIFT",
         "title": "Выпить зелье и поднять камень",
-        "description": "[red]a random Potion[/red] покинет вас, но вы повысите макс. ОЗ на [blue]10[/blue]."
+        "description": "[red]случайное зелье[/red] покинет вас, но вы повысите макс. ОЗ на [blue]10[/blue]."
       },
       {
         "id": "LIFT_LOCKED",
@@ -3247,7 +3249,7 @@
           {
             "id": "LIFT",
             "title": "Выпить зелье и поднять камень",
-            "description": "[red]a random Potion[/red] покинет вас, но вы повысите макс. ОЗ на [blue]10[/blue]."
+            "description": "[red]случайное зелье[/red] покинет вас, но вы повысите макс. ОЗ на [blue]10[/blue]."
           },
           {
             "id": "LIFT_LOCKED",
@@ -3268,7 +3270,7 @@
       },
       {
         "id": "LIFT",
-        "description": "Возможно, [gold]a random Potion[/gold] поможет вам поднять камень? [jitter]Вы напрягаетесь изо всех сил[/jitter]!\n\nНо у вас ничего не выходит."
+        "description": "Возможно, [gold]случайное зелье[/gold] поможет вам поднять камень? [jitter]Вы напрягаетесь изо всех сил[/jitter]!\n\nНо у вас ничего не выходит."
       },
       {
         "id": "PUSH",
@@ -4802,6 +4804,11 @@
           "text": "Покоритель Шпиля в поисках величия? Хочу тебе кое-что предложить."
         },
         {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "{Visits}-й раз. Ты поднимаешься сюда уже в {Visits}-й раз."
+        },
+        {
           "order": "2-0r",
           "speaker": "ancient",
           "text": "Ты же понимаешь, это [sine]никогда[/sine] не кончится?"
@@ -5159,7 +5166,7 @@
       {
         "id": "FEATURED_ITEM",
         "title": "Акция от «Вонго»",
-        "description": "Заплатить [red]200[/red] [gold]золота[/gold] и получить реликвию [gold]«a random Relic»[/gold]."
+        "description": "Заплатить [red]200[/red] [gold]золота[/gold] и получить реликвию [gold]«случайная реликвия»[/gold]."
       },
       {
         "id": "FEATURED_ITEM_LOCKED",
@@ -5212,7 +5219,7 @@
           {
             "id": "FEATURED_ITEM",
             "title": "Акция от «Вонго»",
-            "description": "Заплатить [red]200[/red] [gold]золота[/gold] и получить реликвию [gold]«a random Relic»[/gold]."
+            "description": "Заплатить [red]200[/red] [gold]золота[/gold] и получить реликвию [gold]«случайная реликвия»[/gold]."
           },
           {
             "id": "FEATURED_ITEM_LOCKED",

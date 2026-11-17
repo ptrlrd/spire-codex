@@ -68,8 +68,8 @@
   {
     "id": "INKY",
     "name": "Atrament",
-    "description": "Karta zadaje dodatkowo [blue]1[/blue] pkt. obrażeń i nakłada [blue]1[/blue] pkt. [gold]Słabości[/gold].",
-    "description_raw": "Karta zadaje dodatkowo [blue]{Damage}[/blue] pkt. obrażeń i nakłada [blue]{WeakPower}[/blue] pkt. [gold]Słabości[/gold].",
+    "description": "This card applies [blue]1[/blue] [gold]Weak[/gold].",
+    "description_raw": "This card applies [blue]{WeakPower}[/blue] [gold]Weak[/gold].",
     "extra_card_text": "Nałóż [blue]1[/blue] pkt. [gold]Słabości[/gold].",
     "card_type": null,
     "applicable_to": null,

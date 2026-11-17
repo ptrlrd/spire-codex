@@ -9,7 +9,7 @@
     "monsters": [
       {
         "id": "AEONGLASS",
-        "name": "Clessica eonica"
+        "name": "Clessidra eonica"
       }
     ],
     "loss_text": "[b]The Adventurer[/b] ha infastidito a una [gold]Clessidra eonica[/gold], che non l'ha presa bene."
@@ -31,6 +31,16 @@
   },
   {
     "id": "BATTLEWORN_DUMMY_EVENT_ENCOUNTER",
+    "name": "Battleworn Dummy Event Encounter",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": null,
+    "loss_text": null
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_V1_ENCOUNTER",
     "name": "Manichino da allenamento martoriato",
     "room_type": "Monster",
     "is_weak": false,
@@ -40,17 +50,39 @@
       {
         "id": "BATTLE_FRIEND_V1",
         "name": "Partner da battaglia V1.0"
-      },
+      }
+    ],
+    "loss_text": "In qualche modo un [gold]Manichino da allenamento martoriato[/gold] ha ucciso [b]The Adventurer[/b]???"
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_V2_ENCOUNTER",
+    "name": "Manichino da allenamento martoriato",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
       {
         "id": "BATTLE_FRIEND_V2",
         "name": "Partner da battaglia V2.0"
-      },
+      }
+    ],
+    "loss_text": "In qualche modo un [gold]Manichino da allenamento martoriato[/gold] ha ucciso [b]The Adventurer[/b]???"
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_V3_ENCOUNTER",
+    "name": "Manichino da allenamento martoriato",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
       {
         "id": "BATTLE_FRIEND_V3",
         "name": "Partner da battaglia V3.0"
       }
     ],
-    "loss_text": "In qualche modo, un [gold]Manichino da allenamento martoriato[/gold] ha ucciso [b]The Adventurer[/b]."
+    "loss_text": "In qualche modo un [gold]Manichino da allenamento martoriato[/gold] ha ucciso [b]The Adventurer[/b]???"
   },
   {
     "id": "BOWLBUGS_NORMAL",
@@ -579,7 +611,7 @@
   },
   {
     "id": "KAISER_CRAB_BOSS",
-    "name": "Granchio reale",
+    "name": "Granchio kaiser",
     "room_type": "Boss",
     "is_weak": false,
     "act": "Act 2 - Hive",
@@ -594,7 +626,7 @@
         "name": "Razzo"
       }
     ],
-    "loss_text": "Il [gold]Granchio reale[/gold] ha colpito [b]The Adventurer[/b] da ogni lato."
+    "loss_text": "Il [gold]Granchio kaiser[/gold] ha colpito [b]The Adventurer[/b] da ogni lato."
   },
   {
     "id": "KNIGHTS_ELITE",
@@ -653,7 +685,7 @@
   },
   {
     "id": "LIVING_FOG_NORMAL",
-    "name": "Gas maligno",
+    "name": "Nebbia vivente",
     "room_type": "Monster",
     "is_weak": false,
     "act": "Act 1 - Underdocks",
@@ -668,7 +700,7 @@
         "name": "Nebbia vivente"
       }
     ],
-    "loss_text": "[b]The Adventurer[/b] non ha saputo sopportare il fetore del [gold]Gas maligno[/gold]."
+    "loss_text": "[b]The Adventurer[/b] non ha saputo sopportare il fetore della [gold]Nebbia vivente[/gold]."
   },
   {
     "id": "LOUSE_PROGENITOR_NORMAL",
@@ -884,7 +916,7 @@
   },
   {
     "id": "PUNCH_OFF_EVENT_ENCOUNTER",
-    "name": "Assemblaggi Pugili",
+    "name": "Assemblaggi pugili",
     "room_type": "Monster",
     "is_weak": false,
     "act": null,
@@ -895,7 +927,7 @@
         "name": "Assemblaggio pugile"
       }
     ],
-    "loss_text": "[b]The Adventurer[/b] ha interrotto un incontro tra due [gold]Assemblaggi Pugili[/gold]."
+    "loss_text": "[b]The Adventurer[/b] ha interrotto un incontro tra due [gold]Assemblaggi pugili[/gold]."
   },
   {
     "id": "QUEEN_BOSS",
@@ -1068,7 +1100,7 @@
   },
   {
     "id": "SLIMED_BERSERKER_NORMAL",
-    "name": "Berseker viscido",
+    "name": "Berserkr viscido",
     "room_type": "Monster",
     "is_weak": false,
     "act": "Act 3 - Glory",
@@ -1079,7 +1111,7 @@
         "name": "Berserkr viscido"
       }
     ],
-    "loss_text": "Un [gold]Berseker viscido[/gold] ha assorbito [b]The Adventurer[/b]."
+    "loss_text": "Un [gold]Berserkr viscido[/gold] ha assorbito [b]The Adventurer[/b]."
   },
   {
     "id": "SLIMES_NORMAL",
@@ -1145,7 +1177,10 @@
     "room_type": "Monster",
     "is_weak": false,
     "act": "Act 1 - Overgrowth",
-    "tags": null,
+    "tags": [
+      "Jaxfruit",
+      "Slimes"
+    ],
     "monsters": [
       {
         "id": "LEAF_SLIME_M",
@@ -1221,7 +1256,8 @@
     "is_weak": false,
     "act": "Act 1 - Overgrowth",
     "tags": [
-      "Mushroom"
+      "Mushroom",
+      "Jaxfruit"
     ],
     "monsters": [
       {

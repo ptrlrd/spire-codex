@@ -20,7 +20,7 @@
   {
     "id": "COOK",
     "name": "烹饪",
-    "description": "在[gold]休息处[/gold]从你的[gold]牌组[/gold]中[gold]移除[/gold][blue]2[/blue]张牌并获得[green]9[/green]点最大生命。",
+    "description": "在[gold]休息处[/gold]从你的[gold]牌组[/gold]中[gold]移除[/gold][blue]2[/blue]张牌并获得[green]5[/green]点最大生命。",
     "category": "mechanics"
   },
   {

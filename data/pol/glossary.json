@@ -20,7 +20,7 @@
   {
     "id": "COOK",
     "name": "Gotuj",
-    "description": "[gold]Usuń[/gold] [blue]2[/blue] karty z [gold]talii[/gold] i zyskaj [green]9[/green] maks. PŻ w [gold]Obozowisku[/gold].",
+    "description": "[gold]Usuń[/gold] [blue]2[/blue] karty z [gold]talii[/gold] i zyskaj [green]5[/green] maks. PŻ w [gold]Obozowisku[/gold].",
     "category": "mechanics"
   },
   {
@@ -38,7 +38,7 @@
   {
     "id": "DRAW_PILE",
     "name": "Stos rozgrywający",
-    "description": "Na początku każdej tury\ndobierasz stąd [blue]5[/blue] kart.\n\nKliknij, aby wyświetlić (potasowane) karty na stosie rozgrywającym.",
+    "description": "Na początku każdej tury\ndobierasz stąd [blue]5[/blue] kart.\n\nKliknij, aby wyświetlić (przetasowane) karty na stosie rozgrywającym.",
     "category": "zones"
   },
   {

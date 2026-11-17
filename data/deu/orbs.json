@@ -30,8 +30,8 @@
   {
     "id": "PLASMA_ORB",
     "name": "Plasma",
-    "description": "[gold]Passiv:[/gold] Erhalte zu Beginn deines Zuges [energy:1].\n[gold]Entladen:[/gold] Erhalte [energy:2].\nPlasma wird durch [gold]Focus[/gold] nicht beeinflusst.",
-    "description_raw": "[gold]Passiv:[/gold] Erhalte zu Beginn deines Zuges {energyPrefix:energyIcons(1)}.\n[gold]Entladen:[/gold] Erhalte {energyPrefix:energyIcons(2)}.\nPlasma wird durch [gold]Focus[/gold] nicht beeinflusst.",
+    "description": "[gold]Passiv:[/gold] Erhalte zu Beginn deines Zuges [energy:1].\n[gold]Entladen:[/gold] Erhalte [energy:2].\nPlasma wird durch [gold]Fokus[/gold] nicht beeinflusst.",
+    "description_raw": "[gold]Passiv:[/gold] Erhalte zu Beginn deines Zuges {energyPrefix:energyIcons(1)}.\n[gold]Entladen:[/gold] Erhalte {energyPrefix:energyIcons(2)}.\nPlasma wird durch [gold]Fokus[/gold] nicht beeinflusst.",
     "image_url": "/static/images/orbs/plasma_orb.png"
   }
 ]

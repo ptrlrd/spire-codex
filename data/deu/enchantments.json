@@ -68,9 +68,9 @@
   {
     "id": "INKY",
     "name": "Tintenbeschmiert",
-    "description": "Diese Karte fügt [blue]1[/blue] Schaden mehr zu und wendet [blue]1[/blue] [gold]Schwach[/gold] an.",
-    "description_raw": "Diese Karte fügt [blue]{Damage}[/blue] Schaden mehr zu und wendet [blue]{WeakPower}[/blue] [gold]Schwach[/gold] an.",
-    "extra_card_text": "Wende [blue]1[/blue] [gold]Schwach[/gold] an.",
+    "description": "Diese Karte wendet [blue]1[/blue] [gold]Schwach[/gold] an.",
+    "description_raw": "Diese Karte wendet [blue]{WeakPower}[/blue] [gold]Schwach[/gold] an.",
+    "extra_card_text": "Wende [blue]1[/blue] [gold]Schwach[/gold] an.",
     "card_type": null,
     "applicable_to": null,
     "is_stackable": false,

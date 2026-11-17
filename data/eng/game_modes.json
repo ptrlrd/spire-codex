@@ -1,0 +1,38 @@
+[
+  {
+    "id": "STANDARD",
+    "name": "Standard",
+    "description": "Embark on a quest to Slay the Spire!",
+    "multiplayer_description": "Embark on a quest to Slay the Spire... with friends!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": null,
+    "max_ascension": 10
+  },
+  {
+    "id": "DAILY",
+    "name": "Daily",
+    "description": "A new challenge is available once a day.\n\nCompete with other players for the highest score!",
+    "multiplayer_description": "A new challenge is available once a day.\n\nCompete with other groups for the highest score!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "Play a single run with all characters and beat Act 3 to unlock the Daily Run.",
+    "max_ascension": 10
+  },
+  {
+    "id": "CUSTOM",
+    "name": "Custom",
+    "description": "Customize your own run with unique modifiers.",
+    "multiplayer_description": "Customize your own multiplayer run with unique modifiers.",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "Beat Act 3 three times to unlock Custom Runs.",
+    "max_ascension": 10
+  }
+]

@@ -82,6 +82,10 @@
             "condition": null
           },
           {
+            "id": "DOWSING_ROD",
+            "condition": null
+          },
+          {
             "id": "HEFTY_TABLET",
             "condition": null
           },
@@ -95,6 +99,10 @@
           },
           {
             "id": "NEOWS_BONES",
+            "condition": null
+          },
+          {
+            "id": "NEOWS_SACRIFICE",
             "condition": null
           },
           {
@@ -271,10 +279,6 @@
             "condition": null
           },
           {
-            "id": "SAND_CASTLE",
-            "condition": null
-          },
-          {
             "id": "PRISMATIC_GEM",
             "condition": "33% chance (vs Sea Glass)"
           },
@@ -297,6 +301,10 @@
           },
           {
             "id": "RADIANT_PEARL",
+            "condition": null
+          },
+          {
+            "id": "SAND_CASTLE",
             "condition": null
           }
         ]

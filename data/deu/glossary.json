@@ -20,7 +20,7 @@
   {
     "id": "COOK",
     "name": "Kochen",
-    "description": "[gold]Entferne[/gold] an einem [gold]Lagerfeuer[/gold] [blue]2[/blue] Karten aus deinem [gold]Deck[/gold] und erhalte [green]9[/green] max. TP.",
+    "description": "[gold]Entferne[/gold] an einem [gold]Lagerfeuer[/gold] [blue]2[/blue] Karten aus deinem [gold]Deck[/gold] und erhalte [green]5[/green] max. TP.",
     "category": "mechanics"
   },
   {

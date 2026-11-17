@@ -2,8 +2,8 @@
   {
     "id": "CAULDRON",
     "name": "가마솥",
-    "description": "획득 시, 무작위 포션을 [blue]5[/blue]개 생성합니다.",
-    "description_raw": "획득 시, 무작위 포션을 [blue]{Potions}[/blue]개 생성합니다.",
+    "description": "획득 시, 무작위 [gold]포션[/gold]을 [blue]5[/blue]개 생성합니다.",
+    "description_raw": "획득 시, 무작위 [gold]포션[/gold]을 [blue]{Potions}[/blue]개 생성합니다.",
     "flavor": "[red]이 유물에 관한 자세한 내용은 추후 공개될 예정입니다...[/red]",
     "rarity": "상점 유물",
     "pool": "shared",
@@ -380,8 +380,8 @@
   {
     "id": "DISTINGUISHED_CAPE",
     "name": "기품 있는 망토",
-    "description": "획득 시, 최대 체력을 [blue]9[/blue] 잃습니다. [gold]덱[/gold]에 [gold]영체화[/gold]를 [blue]3[/blue]장 추가합니다.",
-    "description_raw": "획득 시, 최대 체력을 [blue]9[/blue] 잃습니다. [gold]덱[/gold]에 [gold]영체화[/gold]를 [blue]{Cards}[/blue]장 추가합니다.",
+    "description": "획득 시, [gold]덱[/gold]에 무작위 [red]저주[/red]를 [blue]2[/blue]장, [gold]영체화[/gold]를 [blue]3[/blue]장 추가합니다.",
+    "description_raw": "획득 시, [gold]덱[/gold]에 무작위 [red]저주[/red]를 [blue]{Curses}[/blue]장, [gold]영체화[/gold]를 [blue]{Cards}[/blue]장 추가합니다.",
     "flavor": "[red]이 유물에 관한 자세한 내용은 추후 공개될 예정입니다...[/red]",
     "rarity": "고대 유물",
     "pool": "shared",
@@ -407,7 +407,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 260
+    "compendium_order": 262
   },
   {
     "id": "POLLINOUS_CORE",
@@ -423,7 +423,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 261
+    "compendium_order": 263
   },
   {
     "id": "LEAFY_POULTICE",
@@ -464,7 +464,7 @@
   {
     "id": "FISHING_ROD",
     "name": "낚싯대",
-    "description": "일반 전투 [blue]{}[/blue]번 마다, [gold]덱[/gold]의 무작위 카드를 1장 [gold]강화[/gold]합니다.",
+    "description": "일반 전투 [blue]3[/blue]번 마다, [gold]덱[/gold]의 무작위 카드를 1장 [gold]강화[/gold]합니다.",
     "description_raw": "{Combats:choose(1):매 일반 전투마다|일반 전투 [blue]{}[/blue]번 마다}, [gold]덱[/gold]의 무작위 카드를 1장 [gold]강화[/gold]합니다.",
     "flavor": "[red]이 유물에 관한 자세한 내용은 추후 공개될 예정입니다...[/red]",
     "rarity": "고대 유물",
@@ -656,6 +656,22 @@
     "compendium_order": 174
   },
   {
+    "id": "NEOWS_SACRIFICE",
+    "name": "니오우의 희생",
+    "description": "획득 시, [gold]용연향[/gold]을 [blue]1[/blue]개 생성하고 [gold]덱[/gold]에 [red]죄책감[/red]을 [blue]1[/blue]장 추가합니다.",
+    "description_raw": "획득 시, [gold]용연향[/gold]을 [blue]1[/blue]개 생성하고 [gold]덱[/gold]에 [red]죄책감[/red]을 [blue]1[/blue]장 추가합니다.",
+    "flavor": "[red]이 유물에 관한 자세한 내용은 추후 공개될 예정입니다...[/red]",
+    "rarity": "고대 유물",
+    "pool": "shared",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/neows_sacrifice.webp",
+    "image_variants": null,
+    "name_variants": null,
+    "notes": null,
+    "rarity_key": "Ancient",
+    "compendium_order": 175
+  },
+  {
     "id": "NINJA_SCROLL",
     "name": "닌자 두루마리",
     "description": "매 전투 시작 시, [gold]단도[/gold]를 [blue]3[/blue]장 [gold]손[/gold]으로 가져옵니다.",
@@ -676,10 +692,26 @@
     "compendium_order": 134
   },
   {
+    "id": "DOWSING_ROD",
+    "name": "다우징 로드",
+    "description": "획득 시, [gold]덱[/gold]에 [gold]다우징[/gold]을 [blue]1[/blue]장 추가합니다.",
+    "description_raw": "획득 시, [gold]덱[/gold]에 [gold]다우징[/gold]을 [blue]1[/blue]장 추가합니다.",
+    "flavor": "[red]이 유물에 관한 자세한 내용은 추후 공개될 예정입니다...[/red]",
+    "rarity": "고대 유물",
+    "pool": "shared",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/dowsing_rod.webp",
+    "image_variants": null,
+    "name_variants": null,
+    "notes": null,
+    "rarity_key": "Ancient",
+    "compendium_order": 176
+  },
+  {
     "id": "DIAMOND_DIADEM",
     "name": "다이아몬드 왕관",
-    "description": "내 턴 동안 카드를 [blue]2[/blue]장 이하로 사용했다면, 적으로부터 받는 피해량이 절반이 됩니다.",
-    "description_raw": "내 턴 동안 카드를 [blue]{CardThreshold}[/blue]장 이하로 사용했다면, 적으로부터 받는 피해량이 절반이 됩니다.",
+    "description": "매 전투 시작 시 [gold]방어도[/gold]를 [blue]20[/blue] 얻습니다. [blue]두 번째[/blue] 턴 시작 시 [gold]방어도[/gold]가 사라지지 않습니다.",
+    "description_raw": "매 전투 시작 시 [gold]방어도[/gold]를 [blue]{Block}[/blue] 얻습니다. [blue]두 번째[/blue] 턴 시작 시 [gold]방어도[/gold]가 사라지지 않습니다.",
     "flavor": "[red]이 유물에 관한 자세한 내용은 추후 공개될 예정입니다...[/red]",
     "rarity": "고대 유물",
     "pool": "shared",
@@ -689,7 +721,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 175
+    "compendium_order": 177
   },
   {
     "id": "LUNAR_PASTRY",
@@ -749,7 +781,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 262
+    "compendium_order": 264
   },
   {
     "id": "MASSIVE_SCROLL",
@@ -765,7 +797,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 176
+    "compendium_order": 178
   },
   {
     "id": "LARGE_CAPSULE",
@@ -781,7 +813,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 177
+    "compendium_order": 179
   },
   {
     "id": "DATA_DISK",
@@ -857,7 +889,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 263
+    "compendium_order": 265
   },
   {
     "id": "DOLLYS_MIRROR",
@@ -913,7 +945,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 178
+    "compendium_order": 180
   },
   {
     "id": "SCROLL_BOXES",
@@ -929,7 +961,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 179
+    "compendium_order": 181
   },
   {
     "id": "TWISTED_FUNNEL",
@@ -965,13 +997,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 264
+    "compendium_order": 266
   },
   {
     "id": "TOASTY_MITTENS",
     "name": "따뜻한 장갑",
-    "description": "내 턴 시작 시, [gold]뽑을 카드 더미[/gold] 맨 위의 카드를 1장 [gold]소멸[/gold]시키고 [gold]힘[/gold]을 [blue]1[/blue] 얻습니다.",
-    "description_raw": "내 턴 시작 시, [gold]뽑을 카드 더미[/gold] 맨 위의 카드를 1장 [gold]소멸[/gold]시키고 [gold]힘[/gold]을 [blue]{StrengthPower}[/blue] 얻습니다.",
+    "description": "내 턴 시작 시, [gold]손[/gold]에 있는 카드를 [blue]1[/blue]장 [gold]소멸[/gold]시키고 [gold]힘[/gold]을 [blue]1[/blue] 얻습니다.",
+    "description_raw": "내 턴 시작 시, [gold]손[/gold]에 있는 카드를 [blue]1[/blue]장 [gold]소멸[/gold]시키고 [gold]힘[/gold]을 [blue]{StrengthPower}[/blue] 얻습니다.",
     "flavor": "[red]이 유물에 관한 자세한 내용은 추후 공개될 예정입니다...[/red]",
     "rarity": "고대 유물",
     "pool": "shared",
@@ -981,7 +1013,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 180
+    "compendium_order": 182
   },
   {
     "id": "STRAWBERRY",
@@ -1077,13 +1109,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 181
+    "compendium_order": 183
   },
   {
     "id": "REGALITE",
     "name": "리갈라이트",
-    "description": "카드를 생성할 때마다, [gold]방어도[/gold]를 [blue]2[/blue] 얻습니다.",
-    "description_raw": "카드를 생성할 때마다, [gold]방어도[/gold]를 [blue]{Block}[/blue] 얻습니다.",
+    "description": "매 턴마다 처음으로 카드를 생성할 때마다, [gold]방어도[/gold]를 [blue]4[/blue] 얻습니다.",
+    "description_raw": "매 턴마다 처음으로 카드를 생성할 때마다, [gold]방어도[/gold]를 [blue]{Block}[/blue] 얻습니다.",
     "flavor": "[red]이 유물에 관한 자세한 내용은 추후 공개될 예정입니다...[/red]",
     "rarity": "고급 유물",
     "pool": "regent",
@@ -1117,7 +1149,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 265
+    "compendium_order": 267
   },
   {
     "id": "LEES_WAFFLE",
@@ -1153,13 +1185,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 182
+    "compendium_order": 184
   },
   {
     "id": "SERE_TALON",
     "name": "말라비틀어진 발톱",
-    "description": "획득 시, [gold]덱[/gold]에 무작위 [red]저주[/red]를 [blue]2[/blue]장, [purple]염원[/purple]을 [blue]3[/blue]장 추가합니다.",
-    "description_raw": "획득 시, [gold]덱[/gold]에 무작위 [red]저주[/red]를 [blue]{Curses}[/blue]장, [purple]염원[/purple]을 [blue]{Wishes}[/blue]장 추가합니다.",
+    "description": "획득 시, 최대 체력을 [blue]9[/blue] 잃습니다. [gold]덱[/gold]에 [purple]염원[/purple]을 [blue]3[/blue]장 추가합니다.",
+    "description_raw": "획득 시, 최대 체력을 [blue]9[/blue] 잃습니다. [gold]덱[/gold]에 [purple]염원[/purple]을 [blue]{Wishes}[/blue]장 추가합니다.",
     "flavor": "[red]이 유물에 관한 자세한 내용은 추후 공개될 예정입니다...[/red]",
     "rarity": "고대 유물",
     "pool": "shared",
@@ -1169,7 +1201,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 183
+    "compendium_order": 185
   },
   {
     "id": "FAKE_MANGO",
@@ -1189,7 +1221,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 266
+    "compendium_order": 268
   },
   {
     "id": "MANGO",
@@ -1245,7 +1277,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 184
+    "compendium_order": 186
   },
   {
     "id": "UNCEASING_TOP",
@@ -1281,7 +1313,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 185
+    "compendium_order": 187
   },
   {
     "id": "METRONOME",
@@ -1337,12 +1369,12 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 186
+    "compendium_order": 188
   },
   {
     "id": "FUR_COAT",
     "name": "모피 코트",
-    "description": "획득 시, [blue]7[/blue]번의 무작위 전투에 표식을 남깁니다. 해당 방의 적은 체력이 [blue]1[/blue]이 됩니다.",
+    "description": "획득 시, [blue]8[/blue]번의 무작위 전투에 표식을 남깁니다. 해당 방의 적은 체력이 [blue]1[/blue]이 됩니다.",
     "description_raw": "획득 시, [blue]{Combats}[/blue]번의 무작위 전투에 표식을 남깁니다. 해당 방의 적은 체력이 [blue]1[/blue]이 됩니다.",
     "flavor": "[red]이 유물에 관한 자세한 내용은 추후 공개될 예정입니다...[/red]",
     "rarity": "고대 유물",
@@ -1353,7 +1385,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 187
+    "compendium_order": 189
   },
   {
     "id": "GORGET",
@@ -1409,7 +1441,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 267
+    "compendium_order": 269
   },
   {
     "id": "RAINBOW_RING",
@@ -1445,7 +1477,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 188
+    "compendium_order": 190
   },
   {
     "id": "MINI_REGENT",
@@ -1547,7 +1579,7 @@
     },
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 189
+    "compendium_order": 191
   },
   {
     "id": "DAUGHTER_OF_THE_WIND",
@@ -1563,7 +1595,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 268
+    "compendium_order": 270
   },
   {
     "id": "FIDDLE",
@@ -1579,7 +1611,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 190
+    "compendium_order": 192
   },
   {
     "id": "GLITTER",
@@ -1595,7 +1627,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 191
+    "compendium_order": 193
   },
   {
     "id": "SPARKLING_ROUGE",
@@ -1631,7 +1663,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 192
+    "compendium_order": 194
   },
   {
     "id": "PEAR",
@@ -1719,7 +1751,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 269
+    "compendium_order": 271
   },
   {
     "id": "VELVET_CHOKER",
@@ -1735,13 +1767,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 193
+    "compendium_order": 195
   },
   {
     "id": "BELT_BUCKLE",
     "name": "벨트 버클",
-    "description": "보유한 포션이 없는 동안, 추가 [gold]민첩[/gold]을 [blue]2[/blue] 지닙니다.",
-    "description_raw": "보유한 포션이 없는 동안, 추가 [gold]민첩[/gold]을 [blue]{DexterityPower}[/blue] 지닙니다.",
+    "description": "보유한 [gold]포션[/gold]이 없는 동안, 추가 [gold]민첩[/gold]을 [blue]2[/blue] 지닙니다.",
+    "description_raw": "보유한 [gold]포션[/gold]이 없는 동안, 추가 [gold]민첩[/gold]을 [blue]{DexterityPower}[/blue] 지닙니다.",
     "flavor": "[red]이 유물에 관한 자세한 내용은 추후 공개될 예정입니다...[/red]",
     "rarity": "상점 유물",
     "pool": "shared",
@@ -1811,7 +1843,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 194
+    "compendium_order": 196
   },
   {
     "id": "JEWELRY_BOX",
@@ -1827,7 +1859,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 195
+    "compendium_order": 197
   },
   {
     "id": "PRESERVED_FOG",
@@ -1843,13 +1875,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 196
+    "compendium_order": 198
   },
   {
     "id": "SILKEN_TRESS",
     "name": "부드러운 머리칼",
-    "description": "획득 시, 모든 [gold]골드[/gold]를 잃습니다. 처음 카드 보상의 모든 카드에 [purple]호화[/purple]를 [gold]인챈트[/gold]합니다.",
-    "description_raw": "획득 시, 모든 [gold]골드[/gold]를 잃습니다. 처음 카드 보상의 모든 카드에 [purple]호화[/purple]를 [gold]인챈트[/gold]합니다.",
+    "description": "획득 시, 모든 [gold]골드[/gold]를 잃습니다. 내 처음 카드 보상의 모든 카드에 [purple]호화[/purple]를 [gold]인챈트[/gold]합니다.",
+    "description_raw": "획득 시, 모든 [gold]골드[/gold]를 잃습니다. 내 처음 카드 보상의 모든 카드에 [purple]호화[/purple]를 [gold]인챈트[/gold]합니다.",
     "flavor": "[red]이 유물에 관한 자세한 내용은 추후 공개될 예정입니다...[/red]",
     "rarity": "고대 유물",
     "pool": "shared",
@@ -1859,7 +1891,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 197
+    "compendium_order": 199
   },
   {
     "id": "CRACKED_CORE",
@@ -1931,7 +1963,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 198
+    "compendium_order": 200
   },
   {
     "id": "BURNING_BLOOD",
@@ -1992,7 +2024,7 @@
   {
     "id": "RING_OF_THE_DRAKE",
     "name": "비룡의 반지",
-    "description": "첫 [blue]{}[/blue] 턴 시작 시, 카드를 추가로 [blue]2[/blue]장 뽑습니다.",
+    "description": "첫 [blue]3[/blue] 턴 시작 시, 카드를 추가로 [blue]2[/blue]장 뽑습니다.",
     "description_raw": "{Turns:choose(1):첫 번째 턴|첫 [blue]{}[/blue] 턴} 시작 시, 카드를 추가로 [blue]{Cards}[/blue]장 뽑습니다.",
     "flavor": "[red]이 유물에 관한 자세한 내용은 추후 공개될 예정입니다...[/red]",
     "rarity": "시작 유물",
@@ -2039,7 +2071,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 199
+    "compendium_order": 201
   },
   {
     "id": "SWORD_OF_JADE",
@@ -2055,7 +2087,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 270
+    "compendium_order": 272
   },
   {
     "id": "VITRUVIAN_MINION",
@@ -2091,7 +2123,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 200
+    "compendium_order": 202
   },
   {
     "id": "BING_BONG",
@@ -2107,7 +2139,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 271
+    "compendium_order": 273
   },
   {
     "id": "RADIANT_PEARL",
@@ -2123,7 +2155,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 201
+    "compendium_order": 203
   },
   {
     "id": "BREAD",
@@ -2179,7 +2211,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 272
+    "compendium_order": 274
   },
   {
     "id": "KUSARIGAMA",
@@ -2215,7 +2247,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 202
+    "compendium_order": 204
   },
   {
     "id": "TRI_BOOMERANG",
@@ -2231,7 +2263,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 203
+    "compendium_order": 205
   },
   {
     "id": "SHOVEL",
@@ -2287,7 +2319,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 273
+    "compendium_order": 275
   },
   {
     "id": "NEW_LEAF",
@@ -2303,7 +2335,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 204
+    "compendium_order": 206
   },
   {
     "id": "CHANDELIER",
@@ -2339,7 +2371,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "None",
-    "compendium_order": 295
+    "compendium_order": 297
   },
   {
     "id": "STONE_HUMIDIFIER",
@@ -2355,7 +2387,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 205
+    "compendium_order": 207
   },
   {
     "id": "STONE_CALENDAR",
@@ -2431,7 +2463,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 206
+    "compendium_order": 208
   },
   {
     "id": "UNSETTLING_LAMP",
@@ -2507,7 +2539,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 207
+    "compendium_order": 209
   },
   {
     "id": "WHISPERING_EARRING",
@@ -2523,7 +2555,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 208
+    "compendium_order": 210
   },
   {
     "id": "IRON_CLUB",
@@ -2539,7 +2571,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 209
+    "compendium_order": 211
   },
   {
     "id": "KUNAI",
@@ -2619,7 +2651,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 274
+    "compendium_order": 276
   },
   {
     "id": "SNECKO_EYE",
@@ -2635,7 +2667,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 210
+    "compendium_order": 212
   },
   {
     "id": "SNECKO_SKULL",
@@ -2660,8 +2692,8 @@
   {
     "id": "SOZU",
     "name": "시시오도시",
-    "description": "매 턴 시작 시, [energy:1]를 얻습니다. 더 이상 포션을 획득할 수 없습니다.",
-    "description_raw": "매 턴 시작 시, {Energy:energyIcons()}를 얻습니다. 더 이상 포션을 획득할 수 없습니다.",
+    "description": "매 턴 시작 시, [energy:1]를 얻습니다. 더 이상 [gold]포션[/gold]을 획득할 수 없습니다.",
+    "description_raw": "매 턴 시작 시, {Energy:energyIcons()}를 얻습니다. 더 이상 [gold]포션[/gold]을 획득할 수 없습니다.",
     "flavor": "[red]이 유물에 관한 자세한 내용은 추후 공개될 예정입니다...[/red]",
     "rarity": "고대 유물",
     "pool": "shared",
@@ -2671,7 +2703,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 211
+    "compendium_order": 213
   },
   {
     "id": "MEAL_TICKET",
@@ -2732,7 +2764,7 @@
   {
     "id": "DIVINE_DESTINY",
     "name": "신성한 운명",
-    "description": "매 전투 시작 시, [star:6]을 얻습니다.",
+    "description": "매 전투 시작 시, [star:7]을 얻습니다.",
     "description_raw": "매 전투 시작 시, {Stars:starIcons()}을 얻습니다.",
     "flavor": "[red]이 유물에 관한 자세한 내용은 추후 공개될 예정입니다...[/red]",
     "rarity": "시작 유물",
@@ -2779,13 +2811,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 275
+    "compendium_order": 277
   },
   {
     "id": "BEAUTIFUL_BRACELET",
     "name": "아름다운 팔찌",
-    "description": "획득 시, [gold]덱[/gold]에서 카드를 [blue]3[/blue]장 선택합니다. 그 카드에 [purple]신속[/purple]을 [blue]3[/blue] [gold]인챈트[/gold]합니다.",
-    "description_raw": "획득 시, [gold]덱[/gold]에서 카드를 [blue]{Cards}[/blue]장 선택합니다. 그 카드에 [purple]신속[/purple]을 [blue]3[/blue] [gold]인챈트[/gold]합니다.",
+    "description": "획득 시, [gold]덱[/gold]에 있는 무작위 카드 [blue]4[/blue]장에 [purple]신속[/purple]을 [blue]2[/blue] [gold]인챈트[/gold]합니다.",
+    "description_raw": "획득 시, [gold]덱[/gold]에 있는 무작위 카드 [blue]{Cards}[/blue]장에 [purple]신속[/purple]을 [blue]2[/blue] [gold]인챈트[/gold]합니다.",
     "flavor": "[red]이 유물에 관한 자세한 내용은 추후 공개될 예정입니다...[/red]",
     "rarity": "고대 유물",
     "pool": "shared",
@@ -2795,7 +2827,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 212
+    "compendium_order": 214
   },
   {
     "id": "ASTROLABE",
@@ -2811,7 +2843,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 213
+    "compendium_order": 215
   },
   {
     "id": "ICE_CREAM",
@@ -2876,8 +2908,8 @@
   {
     "id": "PHIAL_HOLSTER",
     "name": "약병 홀스터",
-    "description": "획득 시, 포션 슬롯을 [blue]1[/blue]개 얻고, 무작위 포션을 [blue]2[/blue]개 생성합니다.",
-    "description_raw": "획득 시, 포션 슬롯을 [blue]{PotionSlots}[/blue]개 얻고, 무작위 포션을 [blue]{Potions}[/blue]개 생성합니다.",
+    "description": "획득 시, 포션 슬롯을 [blue]1[/blue]개 얻고, 무작위 [gold]포션[/gold]을 [blue]2[/blue]개 생성합니다.",
+    "description_raw": "획득 시, 포션 슬롯을 [blue]{PotionSlots}[/blue]개 얻고, 무작위 [gold]포션[/gold]을 [blue]{Potions}[/blue]개 생성합니다.",
     "flavor": "[red]이 유물에 관한 자세한 내용은 추후 공개될 예정입니다...[/red]",
     "rarity": "고대 유물",
     "pool": "shared",
@@ -2887,7 +2919,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 214
+    "compendium_order": 216
   },
   {
     "id": "BLACK_BLOOD",
@@ -2939,7 +2971,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 276
+    "compendium_order": 278
   },
   {
     "id": "VERY_HOT_COCOA",
@@ -2955,13 +2987,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 215
+    "compendium_order": 217
   },
   {
     "id": "HISTORY_COURSE",
     "name": "역사 강의서",
-    "description": "내 턴 시작 시, 가장 최근에 사용한 공격이나 스킬 카드의 복사본을 사용합니다.",
-    "description_raw": "내 턴 시작 시, 가장 최근에 사용한 공격이나 스킬 카드의 복사본을 사용합니다.",
+    "description": "내 턴 시작 시, 가장 최근에 사용한 공격 카드의 복사본을 사용합니다.",
+    "description_raw": "내 턴 시작 시, 가장 최근에 사용한 공격 카드의 복사본을 사용합니다.",
     "flavor": "[red]이 유물에 관한 자세한 내용은 추후 공개될 예정입니다...[/red]",
     "rarity": "이벤트 유물",
     "pool": "shared",
@@ -2971,13 +3003,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 277
+    "compendium_order": 279
   },
   {
     "id": "ALCHEMICAL_COFFER",
     "name": "연금술 궤짝",
-    "description": "획득 시, 무작위 포션들로 채워진 포션 슬롯을 [blue]4[/blue]개 얻습니다.",
-    "description_raw": "획득 시, 무작위 포션들로 채워진 포션 슬롯을 [blue]{PotionSlots}[/blue]개 얻습니다.",
+    "description": "획득 시, 무작위 [gold]포션[/gold]들로 채워진 포션 슬롯을 [blue]4[/blue]개 얻습니다.",
+    "description_raw": "획득 시, 무작위 [gold]포션[/gold]들로 채워진 포션 슬롯을 [blue]{PotionSlots}[/blue]개 얻습니다.",
     "flavor": "[red]이 유물에 관한 자세한 내용은 추후 공개될 예정입니다...[/red]",
     "rarity": "고대 유물",
     "pool": "shared",
@@ -2987,7 +3019,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 216
+    "compendium_order": 218
   },
   {
     "id": "JUZU_BRACELET",
@@ -3023,7 +3055,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 217
+    "compendium_order": 219
   },
   {
     "id": "NUTRITIOUS_SOUP",
@@ -3039,12 +3071,12 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 218
+    "compendium_order": 220
   },
   {
     "id": "ETERNAL_FEATHER",
     "name": "영원의 깃털",
-    "description": "[gold]휴식 장소[/gold]에 진입 시, [gold]덱[/gold]에 있는 카드 [blue]{}[/blue]장마다 체력을 [green]3[/green] 회복합니다.",
+    "description": "[gold]휴식 장소[/gold]에 진입 시, [gold]덱[/gold]에 있는 카드 [blue]5[/blue]장마다 체력을 [green]3[/green] 회복합니다.",
     "description_raw": "[gold]휴식 장소[/gold]에 진입 시, [gold]덱[/gold]에 있는 {Cards:choose(1):카드 1장마다|카드 [blue]{}[/blue]장마다} 체력을 [green]{Heal}[/green] 회복합니다.",
     "flavor": "[red]이 유물에 관한 자세한 내용은 추후 공개될 예정입니다...[/red]",
     "rarity": "고급 유물",
@@ -3115,7 +3147,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 219
+    "compendium_order": 221
   },
   {
     "id": "BOOK_OF_FIVE_RINGS",
@@ -3151,7 +3183,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 220
+    "compendium_order": 222
   },
   {
     "id": "FAKE_ORICHALCUM",
@@ -3171,7 +3203,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 278
+    "compendium_order": 280
   },
   {
     "id": "ORICHALCUM",
@@ -3247,7 +3279,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 279
+    "compendium_order": 281
   },
   {
     "id": "ECTOPLASM",
@@ -3263,7 +3295,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 221
+    "compendium_order": 223
   },
   {
     "id": "DRAGON_FRUIT",
@@ -3328,8 +3360,8 @@
   {
     "id": "DELICATE_FROND",
     "name": "우아한 잎사귀",
-    "description": "매 전투 시작 시, 모든 빈 포션 슬롯을 무작위 포션으로 채웁니다.",
-    "description_raw": "매 전투 시작 시, 모든 빈 포션 슬롯을 무작위 포션으로 채웁니다.",
+    "description": "매 전투 시작 시, 모든 빈 포션 슬롯을 무작위 [gold]포션[/gold]으로 채웁니다.",
+    "description_raw": "매 전투 시작 시, 모든 빈 포션 슬롯을 무작위 [gold]포션[/gold]으로 채웁니다.",
     "flavor": "[red]이 유물에 관한 자세한 내용은 추후 공개될 예정입니다...[/red]",
     "rarity": "고대 유물",
     "pool": "shared",
@@ -3339,7 +3371,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 222
+    "compendium_order": 224
   },
   {
     "id": "GNARLED_HAMMER",
@@ -3375,7 +3407,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 280
+    "compendium_order": 282
   },
   {
     "id": "WONGOS_MYSTERY_TICKET",
@@ -3391,7 +3423,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 281
+    "compendium_order": 283
   },
   {
     "id": "INTIMIDATING_HELMET",
@@ -3467,7 +3499,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 223
+    "compendium_order": 225
   },
   {
     "id": "DRIFTWOOD",
@@ -3483,7 +3515,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 224
+    "compendium_order": 226
   },
   {
     "id": "FAKE_VENERABLE_TEA_SET",
@@ -3503,7 +3535,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 282
+    "compendium_order": 284
   },
   {
     "id": "VENERABLE_TEA_SET",
@@ -3559,7 +3591,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 225
+    "compendium_order": 227
   },
   {
     "id": "GALACTIC_DUST",
@@ -3584,7 +3616,7 @@
   {
     "id": "SIGNET_RING",
     "name": "인장 반지",
-    "description": "획득 시, [gold]골드[/gold]를 [blue]999[/blue] 얻습니다.",
+    "description": "획득 시, [gold]골드[/gold]를 [blue]888[/blue] 얻습니다.",
     "description_raw": "획득 시, [gold]골드[/gold]를 [blue]{Gold}[/blue] 얻습니다.",
     "flavor": "[red]이 유물에 관한 자세한 내용은 추후 공개될 예정입니다...[/red]",
     "rarity": "고대 유물",
@@ -3595,7 +3627,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 226
+    "compendium_order": 228
   },
   {
     "id": "LOST_COFFER",
@@ -3611,12 +3643,12 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 227
+    "compendium_order": 229
   },
   {
     "id": "EMBER_TEA",
     "name": "잉걸불 차",
-    "description": "다음 [blue]{}[/blue]번의 전투 시작 시, [gold]힘[/gold]을 [blue]2[/blue] 얻습니다.",
+    "description": "다음 [blue]5[/blue]번의 전투 시작 시, [gold]힘[/gold]을 [blue]2[/blue] 얻습니다.",
     "description_raw": "{Combats:choose(1):다음|다음 [blue]{}[/blue]번의} 전투 시작 시, [gold]힘[/gold]을 [blue]{StrengthPower}[/blue] 얻습니다.",
     "flavor": "[red]이 유물에 관한 자세한 내용은 추후 공개될 예정입니다...[/red]",
     "rarity": "이벤트 유물",
@@ -3627,7 +3659,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 283
+    "compendium_order": 285
   },
   {
     "id": "FORGOTTEN_SOUL",
@@ -3643,7 +3675,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 284
+    "compendium_order": 286
   },
   {
     "id": "SELF_FORMING_CLAY",
@@ -3684,8 +3716,8 @@
   {
     "id": "TINY_MAILBOX",
     "name": "작은 우편함",
-    "description": "[gold]휴식[/gold]을 취할 때마다, 무작위 포션을 [blue]2[/blue]개 생성합니다.",
-    "description_raw": "[gold]휴식[/gold]을 취할 때마다, 무작위 포션을 [blue]2[/blue]개 생성합니다.",
+    "description": "[gold]휴식[/gold]을 취할 때마다, 무작위 [gold]포션[/gold]을 [blue]2[/blue]개 생성합니다.",
+    "description_raw": "[gold]휴식[/gold]을 취할 때마다, 무작위 [gold]포션[/gold]을 [blue]2[/blue]개 생성합니다.",
     "flavor": "[red]이 유물에 관한 자세한 내용은 추후 공개될 예정입니다...[/red]",
     "rarity": "고급 유물",
     "pool": "shared",
@@ -3704,7 +3736,7 @@
   {
     "id": "TOY_BOX",
     "name": "장난감 상자",
-    "description": "획득 시, [gold]밀랍 유물[/gold]을 [blue]4[/blue]개 얻습니다. [blue]3[/blue]번의 전투마다 가장 왼쪽에 있는 [gold]밀랍 유물[/gold]이 녹아서 사라집니다.",
+    "description": "획득 시, [gold]밀랍 유물[/gold]을 [blue]5[/blue]개 얻습니다. [blue]3[/blue]번의 전투마다 가장 왼쪽에 있는 [gold]밀랍 유물[/gold]이 녹아서 사라집니다.",
     "description_raw": "획득 시, [gold]밀랍 유물[/gold]을 [blue]{Relics}[/blue]개 얻습니다. [blue]{Combats}[/blue]번의 전투마다 가장 왼쪽에 있는 [gold]밀랍 유물[/gold]이 녹아서 사라집니다.",
     "flavor": "[red]이 유물에 관한 자세한 내용은 추후 공개될 예정입니다...[/red]",
     "rarity": "고대 유물",
@@ -3719,7 +3751,7 @@
       "All wax relics melt after 12 total combats, then Toy Box is used up."
     ],
     "rarity_key": "Ancient",
-    "compendium_order": 228
+    "compendium_order": 230
   },
   {
     "id": "FUNERARY_MASK",
@@ -3775,7 +3807,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 285
+    "compendium_order": 287
   },
   {
     "id": "CURSED_PEARL",
@@ -3791,7 +3823,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 229
+    "compendium_order": 231
   },
   {
     "id": "PRAYER_WHEEL",
@@ -3827,7 +3859,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 230
+    "compendium_order": 232
   },
   {
     "id": "WAR_HAMMER",
@@ -3843,7 +3875,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 231
+    "compendium_order": 233
   },
   {
     "id": "PRECISE_SCISSORS",
@@ -3859,7 +3891,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 232
+    "compendium_order": 234
   },
   {
     "id": "PAPER_PHROG",
@@ -4047,7 +4079,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 286
+    "compendium_order": 288
   },
   {
     "id": "BIIIG_HUG",
@@ -4063,7 +4095,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 233
+    "compendium_order": 235
   },
   {
     "id": "STONE_CRACKER",
@@ -4219,7 +4251,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 234
+    "compendium_order": 236
   },
   {
     "id": "FESTIVE_POPPER",
@@ -4315,7 +4347,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 287
+    "compendium_order": 289
   },
   {
     "id": "CHEMICAL_X",
@@ -4371,7 +4403,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 235
+    "compendium_order": 237
   },
   {
     "id": "CROSSBOW",
@@ -4387,7 +4419,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 236
+    "compendium_order": 238
   },
   {
     "id": "CLAWS",
@@ -4403,7 +4435,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 237
+    "compendium_order": 239
   },
   {
     "id": "FAKE_STRIKE_DUMMY",
@@ -4423,7 +4455,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 288
+    "compendium_order": 290
   },
   {
     "id": "STRIKE_DUMMY",
@@ -4459,7 +4491,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 238
+    "compendium_order": 240
   },
   {
     "id": "ORRERY",
@@ -4515,7 +4547,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 239
+    "compendium_order": 241
   },
   {
     "id": "STURDY_CLAMP",
@@ -4591,12 +4623,12 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 240
+    "compendium_order": 242
   },
   {
     "id": "PAELS_WING",
     "name": "파엘의 날개",
-    "description": "카드 보상을 파엘에게 바칠 수 있습니다. [blue]{}[/blue]번 바칠 때마다, [gold]유물[/gold]을 1개 얻습니다.",
+    "description": "카드 보상을 파엘에게 바칠 수 있습니다. [blue]2[/blue]번 바칠 때마다, [gold]유물[/gold]을 1개 얻습니다.",
     "description_raw": "카드 보상을 파엘에게 바칠 수 있습니다. {Sacrifices:choose(1):바칠 때마다|[blue]{}[/blue]번 바칠 때마다}, [gold]유물[/gold]을 1개 얻습니다.",
     "flavor": "[red]이 유물에 관한 자세한 내용은 추후 공개될 예정입니다...[/red]",
     "rarity": "고대 유물",
@@ -4607,7 +4639,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 241
+    "compendium_order": 243
   },
   {
     "id": "PAELS_EYE",
@@ -4623,7 +4655,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 242
+    "compendium_order": 244
   },
   {
     "id": "PAELS_TEARS",
@@ -4639,7 +4671,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 243
+    "compendium_order": 245
   },
   {
     "id": "PAELS_CLAW",
@@ -4655,7 +4687,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 244
+    "compendium_order": 246
   },
   {
     "id": "PAELS_HORN",
@@ -4671,7 +4703,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 245
+    "compendium_order": 247
   },
   {
     "id": "PAELS_FLESH",
@@ -4687,7 +4719,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 246
+    "compendium_order": 248
   },
   {
     "id": "PAELS_TOOTH",
@@ -4703,7 +4735,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 247
+    "compendium_order": 249
   },
   {
     "id": "PAELS_GROWTH",
@@ -4719,7 +4751,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 248
+    "compendium_order": 250
   },
   {
     "id": "PAELS_BLOOD",
@@ -4735,7 +4767,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 249
+    "compendium_order": 251
   },
   {
     "id": "REPTILE_TRINKET",
@@ -4791,7 +4823,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 250
+    "compendium_order": 252
   },
   {
     "id": "PANTOGRAPH",
@@ -4907,7 +4939,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 251
+    "compendium_order": 253
   },
   {
     "id": "POTION_BELT",
@@ -4983,7 +5015,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 289
+    "compendium_order": 291
   },
   {
     "id": "PRISMATIC_GEM",
@@ -4999,7 +5031,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 252
+    "compendium_order": 254
   },
   {
     "id": "FAKE_BLOOD_VIAL",
@@ -5019,7 +5051,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 290
+    "compendium_order": 292
   },
   {
     "id": "BLOOD_VIAL",
@@ -5055,7 +5087,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 253
+    "compendium_order": 255
   },
   {
     "id": "WHITE_STAR",
@@ -5080,8 +5112,8 @@
   {
     "id": "WHITE_BEAST_STATUE",
     "name": "하얀 짐승 석상",
-    "description": "전투 보상에 포션이 항상 등장합니다.",
-    "description_raw": "전투 보상에 포션이 항상 등장합니다.",
+    "description": "전투 보상에 [gold]포션[/gold]이 항상 등장합니다.",
+    "description_raw": "전투 보상에 [gold]포션[/gold]이 항상 등장합니다.",
     "flavor": "[red]이 유물에 관한 자세한 내용은 추후 공개될 예정입니다...[/red]",
     "rarity": "희귀 유물",
     "pool": "shared",
@@ -5127,7 +5159,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 291
+    "compendium_order": 293
   },
   {
     "id": "FAKE_HAPPY_FLOWER",
@@ -5147,7 +5179,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 292
+    "compendium_order": 294
   },
   {
     "id": "HAPPY_FLOWER",
@@ -5199,7 +5231,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 293
+    "compendium_order": 295
   },
   {
     "id": "JOSS_PAPER",
@@ -5235,7 +5267,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 254
+    "compendium_order": 256
   },
   {
     "id": "PUMPKIN_CANDLE",
@@ -5251,7 +5283,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 255
+    "compendium_order": 257
   },
   {
     "id": "REGAL_PILLOW",
@@ -5287,7 +5319,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 256
+    "compendium_order": 258
   },
   {
     "id": "GOLDEN_COMPASS",
@@ -5303,12 +5335,12 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 257
+    "compendium_order": 259
   },
   {
     "id": "SEAL_OF_GOLD",
     "name": "황금 인장",
-    "description": "내 턴 시작 시, [gold]골드[/gold]를 [blue]5[/blue] 소모해 [energy:1]를 얻습니다.",
+    "description": "내 턴 시작 시, [gold]골드[/gold]를 [blue]3[/blue] 소모해 [energy:1]를 얻습니다.",
     "description_raw": "내 턴 시작 시, [gold]골드[/gold]를 [blue]{Gold}[/blue] 소모해 {Energy:energyIcons()}를 얻습니다.",
     "flavor": "[red]이 유물에 관한 자세한 내용은 추후 공개될 예정입니다...[/red]",
     "rarity": "고대 유물",
@@ -5319,7 +5351,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 258
+    "compendium_order": 260
   },
   {
     "id": "GOLDEN_PEARL",
@@ -5335,7 +5367,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 259
+    "compendium_order": 261
   },
   {
     "id": "POCKETWATCH",
@@ -5371,6 +5403,6 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 294
+    "compendium_order": 296
   }
 ]

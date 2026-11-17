@@ -68,8 +68,8 @@
   {
     "id": "INKY",
     "name": "Entintado",
-    "description": "Infliges [blue]1[/blue] de daño adicional y aplicas [blue]1[/blue] de [gold]debilitamiento[/gold].",
-    "description_raw": "Infliges [blue]{Damage}[/blue] de daño adicional y aplicas [blue]{WeakPower}[/blue] de [gold]debilitamiento[/gold].",
+    "description": "This card applies [blue]1[/blue] [gold]Weak[/gold].",
+    "description_raw": "This card applies [blue]{WeakPower}[/blue] [gold]Weak[/gold].",
     "extra_card_text": "Aplicas [blue]1[/blue] de [gold]debilitamiento[/gold].",
     "card_type": null,
     "applicable_to": null,

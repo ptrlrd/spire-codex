@@ -428,7 +428,7 @@
       },
       {
         "id": "RIP",
-        "description": "[jitter]Rimuovi violentemente la sanguisuga dalla tua testa[/jitter] e la scagli lontana.\n\nSenti una voce nella tua testa:\n[purple][sine]\"NOOOOOOoOoooooOOOOoooo....\""
+        "description": "[jitter]Rimuovi violentemente la sanguisuga dalla tua testa[/jitter] e la scagli lontana.\n\nSenti una voce nella tua testa:\n[purple][sine]\"NOOOOOOoOoooooOOOOoooo....\"[/sine][/purple]"
       },
       {
         "id": "SHARE_KNOWLEDGE",
@@ -1076,7 +1076,7 @@
           {
             "id": "TAKE",
             "title": "TAKE",
-            "description": "Ricevi [gold]a random Relic[/gold]."
+            "description": "Ricevi [gold]una reliquia casuale[/gold]."
           }
         ]
       },
@@ -1283,7 +1283,7 @@
     "name": "Il mercante???",
     "type": "Shared",
     "act": null,
-    "description": "A suspicious merchant offers 6 fake relics (drawn from a pool of 9) at 42–58 gold each. Throwing a [gold]Foul Potion[/gold] starts a fight against The Merchant??? (165 HP). Winning rewards [gold]The Merchant's Rug???[/gold] plus all unsold relics.",
+    "description": "Un mercante sospetto offre 6 reliquie false (da un pool di 9) a 42–58 oro ciascuna. Lanciare una [gold]Foul Potion[/gold] avvia uno scontro con The Merchant??? (165 PV). Vincere premia con [gold]The Merchant's Rug???[/gold] più tutte le reliquie invendute.",
     "preconditions": [
       "Act 2+",
       "Single player only",
@@ -1902,10 +1902,12 @@
       "SMALL_CAPSULE",
       "STONE_HUMIDIFIER",
       "CURSED_PEARL",
+      "DOWSING_ROD",
       "HEFTY_TABLET",
       "LARGE_CAPSULE",
       "LEAFY_POULTICE",
       "NEOWS_BONES",
+      "NEOWS_SACRIFICE",
       "PRECARIOUS_SHEARS",
       "SILKEN_TRESS",
       "SILVER_CRUCIBLE"
@@ -2261,10 +2263,10 @@
     "relics": [
       "ELECTRIC_SHRYMP",
       "GLASS_EYE",
-      "SAND_CASTLE",
       "ALCHEMICAL_COFFER",
       "DRIFTWOOD",
       "RADIANT_PEARL",
+      "SAND_CASTLE",
       "SEA_GLASS",
       "PRISMATIC_GEM",
       "TOUCH_OF_OROBAS",
@@ -2489,7 +2491,7 @@
     "name": "Scazzottata",
     "type": "Event",
     "act": "Underdocks",
-    "description": "Due [gold]Assemblaggi Pugili[/gold] sono impegnati in una lotta senza esclusione di colpi, ma in mezzo a loro scorgi un tesoro...\n\nVuoi provare a rubarlo?",
+    "description": "Due [gold]Assemblaggi pugili[/gold] sono impegnati in una lotta senza esclusione di colpi, ma in mezzo a loro scorgi un tesoro...\n\nVuoi provare a rubarlo?",
     "preconditions": null,
     "options": [
       {
@@ -2506,7 +2508,7 @@
     "pages": [
       {
         "id": "INITIAL",
-        "description": "Due [gold]Assemblaggi Pugili[/gold] sono impegnati in una lotta senza esclusione di colpi, ma in mezzo a loro scorgi un tesoro...\n\nVuoi provare a rubarlo?",
+        "description": "Due [gold]Assemblaggi pugili[/gold] sono impegnati in una lotta senza esclusione di colpi, ma in mezzo a loro scorgi un tesoro...\n\nVuoi provare a rubarlo?",
         "options": [
           {
             "id": "NAB",
@@ -2680,17 +2682,17 @@
       {
         "id": "TOP",
         "title": "Scegli quello in alto",
-        "description": "Scambia [gold]one of your Relics[/gold] con [gold]a random Relic[/gold]."
+        "description": "Scambia [gold]una delle tue reliquie[/gold] con [gold]una reliquia casuale[/gold]."
       },
       {
         "id": "MIDDLE",
         "title": "Scegli quello al centro",
-        "description": "Scambia [gold]one of your Relics[/gold] con [gold]a random Relic[/gold]."
+        "description": "Scambia [gold]una delle tue reliquie[/gold] con [gold]una reliquia casuale[/gold]."
       },
       {
         "id": "BOTTOM",
         "title": "Scegli quello in basso",
-        "description": "Scambia [gold]one of your Relics[/gold] con [gold]a random Relic[/gold]."
+        "description": "Scambia [gold]una delle tue reliquie[/gold] con [gold]una reliquia casuale[/gold]."
       }
     ],
     "pages": [
@@ -2705,17 +2707,17 @@
           {
             "id": "TOP",
             "title": "Scegli quello in alto",
-            "description": "Scambia [gold]one of your Relics[/gold] con [gold]a random Relic[/gold]."
+            "description": "Scambia [gold]una delle tue reliquie[/gold] con [gold]una reliquia casuale[/gold]."
           },
           {
             "id": "MIDDLE",
             "title": "Scegli quello al centro",
-            "description": "Scambia [gold]one of your Relics[/gold] con [gold]a random Relic[/gold]."
+            "description": "Scambia [gold]una delle tue reliquie[/gold] con [gold]una reliquia casuale[/gold]."
           },
           {
             "id": "BOTTOM",
             "title": "Scegli quello in basso",
-            "description": "Scambia [gold]one of your Relics[/gold] con [gold]a random Relic[/gold]."
+            "description": "Scambia [gold]una delle tue reliquie[/gold] con [gold]una reliquia casuale[/gold]."
           }
         ]
       }
@@ -2996,7 +2998,7 @@
       {
         "id": "OVERCOME",
         "title": "Oltrepassa",
-        "description": "La carta [red]a random Card[/red] viene rimossa dal tuo [gold]mazzo[/gold]."
+        "description": "La carta [red]una carta casuale[/red] viene rimossa dal tuo [gold]mazzo[/gold]."
       },
       {
         "id": "HOLD_ON_0",
@@ -3100,7 +3102,7 @@
           {
             "id": "OVERCOME",
             "title": "Oltrepassa",
-            "description": "La carta [red]a random Card[/red] viene rimossa dal tuo [gold]mazzo[/gold]."
+            "description": "La carta [red]una carta casuale[/red] viene rimossa dal tuo [gold]mazzo[/gold]."
           },
           {
             "id": "HOLD_ON_0",
@@ -3221,7 +3223,7 @@
       {
         "id": "LIFT",
         "title": "Bevi e solleva",
-        "description": "Perdi [red]a random Potion[/red]. I PV massimi aumentano di [blue]10[/blue]."
+        "description": "Perdi [red]una pozione casuale[/red]. I PV massimi aumentano di [blue]10[/blue]."
       },
       {
         "id": "LIFT_LOCKED",
@@ -3247,7 +3249,7 @@
           {
             "id": "LIFT",
             "title": "Bevi e solleva",
-            "description": "Perdi [red]a random Potion[/red]. I PV massimi aumentano di [blue]10[/blue]."
+            "description": "Perdi [red]una pozione casuale[/red]. I PV massimi aumentano di [blue]10[/blue]."
           },
           {
             "id": "LIFT_LOCKED",
@@ -3268,7 +3270,7 @@
       },
       {
         "id": "LIFT",
-        "description": "Bevi [gold]a random Potion[/gold] in un sol sorso e [jitter]sollevi la roccia con tutta la tua forza[/jitter]!\n\nNon succede nulla."
+        "description": "Bevi [gold]una pozione casuale[/gold] in un sol sorso e [jitter]sollevi la roccia con tutta la tua forza[/jitter]!\n\nNon succede nulla."
       },
       {
         "id": "PUSH",
@@ -4802,6 +4804,11 @@
           "text": "Cerchi la gloria nella Guglia? Ho delle proposte da farti..."
         },
         {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "{Visits}. Hai già messo piede qui {Visits} {Visits:plural:volta|volte}."
+        },
+        {
           "order": "2-0r",
           "speaker": "ancient",
           "text": "Sei consapevole che non ci sarà [sine]mai[/sine] fine a tutto questo?"
@@ -5159,7 +5166,7 @@
       {
         "id": "FEATURED_ITEM",
         "title": "Prodotto del momento di Wongo",
-        "description": "Paghi [red]200[/red] unità d'[gold]oro[/gold]. Ottieni [gold]a random Relic[/gold]."
+        "description": "Paghi [red]200[/red] unità d'[gold]oro[/gold]. Ottieni [gold]una reliquia casuale[/gold]."
       },
       {
         "id": "FEATURED_ITEM_LOCKED",
@@ -5212,7 +5219,7 @@
           {
             "id": "FEATURED_ITEM",
             "title": "Prodotto del momento di Wongo",
-            "description": "Paghi [red]200[/red] unità d'[gold]oro[/gold]. Ottieni [gold]a random Relic[/gold]."
+            "description": "Paghi [red]200[/red] unità d'[gold]oro[/gold]. Ottieni [gold]una reliquia casuale[/gold]."
           },
           {
             "id": "FEATURED_ITEM_LOCKED",

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "STANDARD",
+    "name": "Wyprawa",
+    "description": "Wyrusz na misję zdobycia Iglicy!",
+    "multiplayer_description": "Wyrusz na misję zdobycia Iglicy... ze znajomymi!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": null,
+    "max_ascension": 10
+  },
+  {
+    "id": "DAILY",
+    "name": "Wyzwanie Dnia",
+    "description": "Codziennie nowe wyzwanie.\n\nRywalizuj z innymi graczami o najwyższy wynik!",
+    "multiplayer_description": "Codziennie nowe wyzwanie.\n\nRywalizuj z innymi grupami graczy o najwyższy wynik!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "Ukończ Akt 3. i zagraj raz wszystkimi postaciami, aby odblokować Wyzwanie Dnia.",
+    "max_ascension": 10
+  },
+  {
+    "id": "CUSTOM",
+    "name": "Tryb Dowolny",
+    "description": "Dostosuj swoją wyprawę unikalnymi modyfikatorami.",
+    "multiplayer_description": "Dostosuj swoją wyprawę unikalnymi modyfikatorami.",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "Ukończ Akt 3. trzy razy, aby odblokować Tryb Dowolny.",
+    "max_ascension": 10
+  }
+]

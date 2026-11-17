@@ -31,7 +31,17 @@
   },
   {
     "id": "BATTLEWORN_DUMMY_EVENT_ENCOUNTER",
-    "name": "Потрепанный манекен",
+    "name": "Battleworn Dummy Event Encounter",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": null,
+    "loss_text": null
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_V1_ENCOUNTER",
+    "name": "Боевой тренажер",
     "room_type": "Monster",
     "is_weak": false,
     "act": null,
@@ -40,17 +50,39 @@
       {
         "id": "BATTLE_FRIEND_V1",
         "name": "Боевой тренажер 1.0"
-      },
+      }
+    ],
+    "loss_text": "[gold]{event}[/gold] неясным образом погубил {characterObject}."
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_V2_ENCOUNTER",
+    "name": "Боевой тренажер",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
       {
         "id": "BATTLE_FRIEND_V2",
         "name": "Боевой тренажер 2.0"
-      },
+      }
+    ],
+    "loss_text": "[gold]{event}[/gold] неясным образом погубил {characterObject}."
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_V3_ENCOUNTER",
+    "name": "Боевой тренажер",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
       {
         "id": "BATTLE_FRIEND_V3",
         "name": "Боевой тренажер 3.0"
       }
     ],
-    "loss_text": "[gold]Потрепанный манекен[/gold] загадочным образом одолел {characterObject}."
+    "loss_text": "[gold]{event}[/gold] неясным образом погубил {characterObject}."
   },
   {
     "id": "BOWLBUGS_NORMAL",
@@ -1145,7 +1177,10 @@
     "room_type": "Monster",
     "is_weak": false,
     "act": "Act 1 - Overgrowth",
-    "tags": null,
+    "tags": [
+      "Jaxfruit",
+      "Slimes"
+    ],
     "monsters": [
       {
         "id": "LEAF_SLIME_M",
@@ -1221,7 +1256,8 @@
     "is_weak": false,
     "act": "Act 1 - Overgrowth",
     "tags": [
-      "Mushroom"
+      "Mushroom",
+      "Jaxfruit"
     ],
     "monsters": [
       {

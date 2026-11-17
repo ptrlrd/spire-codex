@@ -428,7 +428,7 @@
       },
       {
         "id": "RIP",
-        "description": "당신은 [jitter]머리에서 거머리를 격렬하게 뜯어낸 뒤[/jitter] 저 멀리 던져버렸습니다!\n\n머릿속에서는 목소리가 들려옵니다:\n[purple][sine]“안돼애애애애애애애애애애애애애애....”"
+        "description": "당신은 [jitter]머리에서 거머리를 격렬하게 뜯어낸 뒤[/jitter] 저 멀리 던져버렸습니다!\n\n머릿속에서는 목소리가 들려옵니다:\n[purple][sine]“안돼애애애애애애애애애애애애애애....”[/sine][/purple]"
       },
       {
         "id": "SHARE_KNOWLEDGE",
@@ -1076,7 +1076,7 @@
           {
             "id": "TAKE",
             "title": "TAKE",
-            "description": "[gold]a random Relic[/gold]을(를) 받습니다."
+            "description": "[gold]무작위 유물[/gold]을(를) 받습니다."
           }
         ]
       },
@@ -1283,7 +1283,7 @@
     "name": "상?인",
     "type": "Shared",
     "act": null,
-    "description": "A suspicious merchant offers 6 fake relics (drawn from a pool of 9) at 42–58 gold each. Throwing a [gold]Foul Potion[/gold] starts a fight against The Merchant??? (165 HP). Winning rewards [gold]The Merchant's Rug???[/gold] plus all unsold relics.",
+    "description": "수상한 상인이 가짜 유물 6개(9개 풀에서 추첨)를 각각 42~58골드에 판매합니다. [gold]Foul Potion[/gold]을 던지면 The Merchant???(165 HP)와의 전투가 시작됩니다. 승리하면 [gold]The Merchant's Rug???[/gold]과 팔리지 않은 유물을 모두 얻습니다.",
     "preconditions": [
       "Act 2+",
       "Single player only",
@@ -1902,10 +1902,12 @@
       "SMALL_CAPSULE",
       "STONE_HUMIDIFIER",
       "CURSED_PEARL",
+      "DOWSING_ROD",
       "HEFTY_TABLET",
       "LARGE_CAPSULE",
       "LEAFY_POULTICE",
       "NEOWS_BONES",
+      "NEOWS_SACRIFICE",
       "PRECARIOUS_SHEARS",
       "SILKEN_TRESS",
       "SILVER_CRUCIBLE"
@@ -2261,10 +2263,10 @@
     "relics": [
       "ELECTRIC_SHRYMP",
       "GLASS_EYE",
-      "SAND_CASTLE",
       "ALCHEMICAL_COFFER",
       "DRIFTWOOD",
       "RADIANT_PEARL",
+      "SAND_CASTLE",
       "SEA_GLASS",
       "PRISMATIC_GEM",
       "TOUCH_OF_OROBAS",
@@ -2680,17 +2682,17 @@
       {
         "id": "TOP",
         "title": "위의 것을 가져간다",
-        "description": "[gold]one of your Relics[/gold]을(를) [gold]a random Relic[/gold](와)과 거래합니다."
+        "description": "[gold]보유한 유물 중 하나[/gold]을(를) [gold]무작위 유물[/gold](와)과 거래합니다."
       },
       {
         "id": "MIDDLE",
         "title": "중간 것을 가져간다",
-        "description": "[gold]one of your Relics[/gold]을(를) [gold]a random Relic[/gold](와)과 거래합니다."
+        "description": "[gold]보유한 유물 중 하나[/gold]을(를) [gold]무작위 유물[/gold](와)과 거래합니다."
       },
       {
         "id": "BOTTOM",
         "title": "아래의 것을 가져간다",
-        "description": "[gold]one of your Relics[/gold]을(를) [gold]a random Relic[/gold](와)과 거래합니다."
+        "description": "[gold]보유한 유물 중 하나[/gold]을(를) [gold]무작위 유물[/gold](와)과 거래합니다."
       }
     ],
     "pages": [
@@ -2705,17 +2707,17 @@
           {
             "id": "TOP",
             "title": "위의 것을 가져간다",
-            "description": "[gold]one of your Relics[/gold]을(를) [gold]a random Relic[/gold](와)과 거래합니다."
+            "description": "[gold]보유한 유물 중 하나[/gold]을(를) [gold]무작위 유물[/gold](와)과 거래합니다."
           },
           {
             "id": "MIDDLE",
             "title": "중간 것을 가져간다",
-            "description": "[gold]one of your Relics[/gold]을(를) [gold]a random Relic[/gold](와)과 거래합니다."
+            "description": "[gold]보유한 유물 중 하나[/gold]을(를) [gold]무작위 유물[/gold](와)과 거래합니다."
           },
           {
             "id": "BOTTOM",
             "title": "아래의 것을 가져간다",
-            "description": "[gold]one of your Relics[/gold]을(를) [gold]a random Relic[/gold](와)과 거래합니다."
+            "description": "[gold]보유한 유물 중 하나[/gold]을(를) [gold]무작위 유물[/gold](와)과 거래합니다."
           }
         ]
       }
@@ -2996,7 +2998,7 @@
       {
         "id": "OVERCOME",
         "title": "헤쳐 나간다",
-        "description": "[red]a random Card[/red](이)가 [gold]덱[/gold]에서 제거됩니다."
+        "description": "[red]무작위 카드[/red](이)가 [gold]덱[/gold]에서 제거됩니다."
       },
       {
         "id": "HOLD_ON_0",
@@ -3100,7 +3102,7 @@
           {
             "id": "OVERCOME",
             "title": "헤쳐 나간다",
-            "description": "[red]a random Card[/red](이)가 [gold]덱[/gold]에서 제거됩니다."
+            "description": "[red]무작위 카드[/red](이)가 [gold]덱[/gold]에서 제거됩니다."
           },
           {
             "id": "HOLD_ON_0",
@@ -3221,7 +3223,7 @@
       {
         "id": "LIFT",
         "title": "목을 축이고 들어올린다",
-        "description": "[red]a random Potion[/red]을(를) 잃습니다. 최대 체력을 [blue]10[/blue] 얻습니다."
+        "description": "[red]무작위 물약[/red]을(를) 잃습니다. 최대 체력을 [blue]10[/blue] 얻습니다."
       },
       {
         "id": "LIFT_LOCKED",
@@ -3247,7 +3249,7 @@
           {
             "id": "LIFT",
             "title": "목을 축이고 들어올린다",
-            "description": "[red]a random Potion[/red]을(를) 잃습니다. 최대 체력을 [blue]10[/blue] 얻습니다."
+            "description": "[red]무작위 물약[/red]을(를) 잃습니다. 최대 체력을 [blue]10[/blue] 얻습니다."
           },
           {
             "id": "LIFT_LOCKED",
@@ -3268,7 +3270,7 @@
       },
       {
         "id": "LIFT",
-        "description": "당신은 [gold]a random Potion[/gold] 병을 내려놓은 뒤, [jitter]온 힘을 다해 바위를 들어올렸습니다[/jitter]!!\n\n아무 일도 일어나지 않았습니다."
+        "description": "당신은 [gold]무작위 물약[/gold] 병을 내려놓은 뒤, [jitter]온 힘을 다해 바위를 들어올렸습니다[/jitter]!!\n\n아무 일도 일어나지 않았습니다."
       },
       {
         "id": "PUSH",
@@ -3755,7 +3757,7 @@
       {
         "id": "EMBER_TEA",
         "title": "잉걸불 차",
-        "description": "[gold]골드[/gold]를 [red]150[/red] 지불합니다. 다음 [blue]{}[/blue]번의 전투 시작 시, [gold]힘[/gold]을 [blue]2[/blue] 얻습니다."
+        "description": "[gold]골드[/gold]를 [red]150[/red] 지불합니다. 다음 [blue]5[/blue]번의 전투 시작 시, [gold]힘[/gold]을 [blue]2[/blue] 얻습니다."
       },
       {
         "id": "EMBER_TEA_LOCKED",
@@ -3790,7 +3792,7 @@
           {
             "id": "EMBER_TEA",
             "title": "잉걸불 차",
-            "description": "[gold]골드[/gold]를 [red]150[/red] 지불합니다. 다음 [blue]{}[/blue]번의 전투 시작 시, [gold]힘[/gold]을 [blue]2[/blue] 얻습니다."
+            "description": "[gold]골드[/gold]를 [red]150[/red] 지불합니다. 다음 [blue]5[/blue]번의 전투 시작 시, [gold]힘[/gold]을 [blue]2[/blue] 얻습니다."
           },
           {
             "id": "EMBER_TEA_LOCKED",
@@ -5164,7 +5166,7 @@
       {
         "id": "FEATURED_ITEM",
         "title": "웡고스 추천 상품",
-        "description": "[gold]골드[/gold]를 [red]200[/red] 지불합니다. [gold]a random Relic[/gold]을(를) 얻습니다."
+        "description": "[gold]골드[/gold]를 [red]200[/red] 지불합니다. [gold]무작위 유물[/gold]을(를) 얻습니다."
       },
       {
         "id": "FEATURED_ITEM_LOCKED",
@@ -5217,7 +5219,7 @@
           {
             "id": "FEATURED_ITEM",
             "title": "웡고스 추천 상품",
-            "description": "[gold]골드[/gold]를 [red]200[/red] 지불합니다. [gold]a random Relic[/gold]을(를) 얻습니다."
+            "description": "[gold]골드[/gold]를 [red]200[/red] 지불합니다. [gold]무작위 유물[/gold]을(를) 얻습니다."
           },
           {
             "id": "FEATURED_ITEM_LOCKED",

@@ -2,8 +2,8 @@
   {
     "id": "TOASTY_MITTENS",
     "name": "あったか手袋",
-    "description": "ターン開始時、[gold]山札[/gold]の一番上のカードを[gold]廃棄[/gold]し、[gold]筋力[/gold][blue]1[/blue]を得る。",
-    "description_raw": "ターン開始時、[gold]山札[/gold]の一番上のカードを[gold]廃棄[/gold]し、[gold]筋力[/gold][blue]{StrengthPower}[/blue]を得る。",
+    "description": "ターン開始時、[gold]手札[/gold]のカードを[blue]1[/blue]枚[gold]廃棄[/gold]し、[gold]筋力[/gold][blue]1[/blue]を得る。",
+    "description_raw": "ターン開始時、[gold]手札[/gold]のカードを[blue]1[/blue]枚[gold]廃棄[/gold]し、[gold]筋力[/gold][blue]{StrengthPower}[/blue]を得る。",
     "flavor": "[red]このレリックの詳細は今後明かされるはずだ……[/red]",
     "rarity": "レリック（エンシェント）",
     "pool": "shared",
@@ -40,7 +40,7 @@
   {
     "id": "TOY_BOX",
     "name": "おもちゃ箱",
-    "description": "取得時、[gold]おもちゃのレリック[/gold]を[blue]4[/blue]個入手する。[blue]3[/blue]回の戦闘ごとに、最も左にある[gold]おもちゃのレリック[/gold]が溶けて消える。",
+    "description": "取得時、[gold]おもちゃのレリック[/gold]を[blue]5[/blue]個入手する。[blue]3[/blue]回の戦闘ごとに、最も左にある[gold]おもちゃのレリック[/gold]が溶けて消える。",
     "description_raw": "取得時、[gold]おもちゃのレリック[/gold]を[blue]{Relics}[/blue]個入手する。[blue]{Combats}[/blue]回の戦闘ごとに、最も左にある[gold]おもちゃのレリック[/gold]が溶けて消える。",
     "flavor": "[red]このレリックの詳細は今後明かされるはずだ……[/red]",
     "rarity": "レリック（エンシェント）",
@@ -96,8 +96,8 @@
   {
     "id": "SOZU",
     "name": "ししおどし",
-    "description": "ターン開始時、[energy:1]を得る。ポーションを獲得できなくなる。",
-    "description_raw": "ターン開始時、{Energy:energyIcons()}を得る。ポーションを獲得できなくなる。",
+    "description": "ターン開始時、[energy:1]を得る。[gold]ポーション[/gold]を獲得できなくなる。",
+    "description_raw": "ターン開始時、{Energy:energyIcons()}を得る。[gold]ポーション[/gold]を獲得できなくなる。",
     "flavor": "[red]このレリックの詳細は今後明かされるはずだ……[/red]",
     "rarity": "レリック（エンシェント）",
     "pool": "shared",
@@ -327,7 +327,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 260
+    "compendium_order": 262
   },
   {
     "id": "STRAWBERRY",
@@ -399,7 +399,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 261
+    "compendium_order": 263
   },
   {
     "id": "WONGOS_MYSTERY_TICKET",
@@ -415,7 +415,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 262
+    "compendium_order": 264
   },
   {
     "id": "WAR_HAMMER",
@@ -507,7 +507,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 263
+    "compendium_order": 265
   },
   {
     "id": "MUSIC_BOX",
@@ -823,7 +823,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "None",
-    "compendium_order": 295
+    "compendium_order": 297
   },
   {
     "id": "THE_BOOT",
@@ -839,12 +839,12 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 264
+    "compendium_order": 266
   },
   {
     "id": "SIGNET_RING",
     "name": "シグネットリング",
-    "description": "取得時、[blue]999[/blue][gold]ゴールド[/gold]を獲得する。",
+    "description": "取得時、[blue]888[/blue][gold]ゴールド[/gold]を獲得する。",
     "description_raw": "取得時、[blue]{Gold}[/blue][gold]ゴールド[/gold]を獲得する。",
     "flavor": "[red]このレリックの詳細は今後明かされるはずだ……[/red]",
     "rarity": "レリック（エンシェント）",
@@ -937,7 +937,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 265
+    "compendium_order": 267
   },
   {
     "id": "STRIKE_DUMMY",
@@ -993,7 +993,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 266
+    "compendium_order": 268
   },
   {
     "id": "SNECKO_SKULL",
@@ -1054,8 +1054,8 @@
   {
     "id": "DIAMOND_DIADEM",
     "name": "ダイヤのティアラ",
-    "description": "1ターンの間にプレイしたカードが[blue]2[/blue]枚以下の場合、敵から受けるダメージが半分になる。",
-    "description_raw": "1ターンの間にプレイしたカードが[blue]{CardThreshold}[/blue]枚以下の場合、敵から受けるダメージが半分になる。",
+    "description": "[blue]20[/blue][gold]ブロック[/gold]を得た状態で戦闘を開始する。[blue]2[/blue]ターン目の開始時に[gold]ブロック[/gold]を失わない。",
+    "description_raw": "[blue]{Block}[/blue][gold]ブロック[/gold]を得た状態で戦闘を開始する。[blue]2[/blue]ターン目の開始時に[gold]ブロック[/gold]を失わない。",
     "flavor": "[red]このレリックの詳細は今後明かされるはずだ……[/red]",
     "rarity": "レリック（エンシェント）",
     "pool": "shared",
@@ -1066,6 +1066,22 @@
     "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 179
+  },
+  {
+    "id": "DOWSING_ROD",
+    "name": "ダウジングロッド",
+    "description": "取得時、[gold]ダウジング[/gold]を[blue]1[/blue]枚[gold]デッキ[/gold]に追加する。",
+    "description_raw": "取得時、[gold]ダウジング[/gold]を[blue]1[/blue]枚[gold]デッキ[/gold]に追加する。",
+    "flavor": "[red]このレリックの詳細は今後明かされるはずだ……[/red]",
+    "rarity": "レリック（エンシェント）",
+    "pool": "shared",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/dowsing_rod.webp",
+    "image_variants": null,
+    "name_variants": null,
+    "notes": null,
+    "rarity_key": "Ancient",
+    "compendium_order": 180
   },
   {
     "id": "TINGSHA",
@@ -1161,7 +1177,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 180
+    "compendium_order": 181
   },
   {
     "id": "DRAGON_FRUIT",
@@ -1217,7 +1233,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 267
+    "compendium_order": 269
   },
   {
     "id": "RING_OF_THE_DRAKE",
@@ -1269,7 +1285,23 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 181
+    "compendium_order": 182
+  },
+  {
+    "id": "NEOWS_SACRIFICE",
+    "name": "ネオーの供物",
+    "description": "取得時、[gold]竜涎香[/gold]を[blue]1[/blue]個入手し、[red]罪悪感[/red]を[blue]1[/blue]枚[gold]デッキ[/gold]に追加する。",
+    "description_raw": "取得時、[gold]竜涎香[/gold]を[blue]1[/blue]個入手し、[red]罪悪感[/red]を[blue]1[/blue]枚[gold]デッキ[/gold]に追加する。",
+    "flavor": "[red]このレリックの詳細は今後明かされるはずだ……[/red]",
+    "rarity": "レリック（エンシェント）",
+    "pool": "shared",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/neows_sacrifice.webp",
+    "image_variants": null,
+    "name_variants": null,
+    "notes": null,
+    "rarity_key": "Ancient",
+    "compendium_order": 183
   },
   {
     "id": "NEOWS_TORMENT",
@@ -1285,7 +1317,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 182
+    "compendium_order": 184
   },
   {
     "id": "NEOWS_BONES",
@@ -1301,7 +1333,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 183
+    "compendium_order": 185
   },
   {
     "id": "HAPPY_FLOWER",
@@ -1341,7 +1373,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 268
+    "compendium_order": 270
   },
   {
     "id": "HAND_DRILL",
@@ -1357,7 +1389,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 269
+    "compendium_order": 271
   },
   {
     "id": "BAG_OF_PREPARATION",
@@ -1409,7 +1441,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 184
+    "compendium_order": 186
   },
   {
     "id": "PAELS_TEARS",
@@ -1425,7 +1457,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 185
+    "compendium_order": 187
   },
   {
     "id": "PAELS_CLAW",
@@ -1441,7 +1473,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 186
+    "compendium_order": 188
   },
   {
     "id": "PAELS_EYE",
@@ -1457,7 +1489,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 187
+    "compendium_order": 189
   },
   {
     "id": "PAELS_WING",
@@ -1473,7 +1505,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 188
+    "compendium_order": 190
   },
   {
     "id": "PAELS_FLESH",
@@ -1489,7 +1521,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 189
+    "compendium_order": 191
   },
   {
     "id": "PAELS_LEGION",
@@ -1505,7 +1537,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 190
+    "compendium_order": 192
   },
   {
     "id": "PAELS_GROWTH",
@@ -1521,7 +1553,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 191
+    "compendium_order": 193
   },
   {
     "id": "PAELS_BLOOD",
@@ -1537,7 +1569,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 192
+    "compendium_order": 194
   },
   {
     "id": "PAELS_HORN",
@@ -1553,7 +1585,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 193
+    "compendium_order": 195
   },
   {
     "id": "PARRYING_SHIELD",
@@ -1669,7 +1701,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 194
+    "compendium_order": 196
   },
   {
     "id": "BIG_HAT",
@@ -1694,8 +1726,8 @@
   {
     "id": "BYRDPIP",
     "name": "ビャードのヒナ",
-    "description": "取得時、[gold]ビャードの急襲[/gold]を得る。戦闘中、[gold]ビャードのヒナ[/gold]が同行してくれる。",
-    "description_raw": "取得時、[gold]ビャードの急襲[/gold]を得る。戦闘中、[gold]ビャードのヒナ[/gold]が同行してくれる。",
+    "description": "取得時、[gold]ビャードの急襲[/gold]を得る。戦闘に[gold]ビャードのヒナ[/gold]がついてきてくれる。",
+    "description_raw": "取得時、[gold]ビャードの急襲[/gold]を得る。戦闘に[gold]ビャードのヒナ[/gold]がついてきてくれる。",
     "flavor": "[red]このレリックの詳細は今後明かされるはずだ……[/red]",
     "rarity": "レリック（イベント）",
     "pool": "shared",
@@ -1705,7 +1737,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 270
+    "compendium_order": 272
   },
   {
     "id": "BING_BONG",
@@ -1721,7 +1753,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 271
+    "compendium_order": 273
   },
   {
     "id": "BAG_OF_MARBLES",
@@ -1757,7 +1789,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 195
+    "compendium_order": 197
   },
   {
     "id": "FRESNEL_LENS",
@@ -1773,7 +1805,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 272
+    "compendium_order": 274
   },
   {
     "id": "BLACK_STAR",
@@ -1789,7 +1821,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 196
+    "compendium_order": 198
   },
   {
     "id": "BLACK_BLOOD",
@@ -1841,13 +1873,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 197
+    "compendium_order": 199
   },
   {
     "id": "BELT_BUCKLE",
     "name": "ベルトの留め具",
-    "description": "ポーションを持っていない間、追加で[gold]敏捷[/gold][blue]2[/blue]を得る。",
-    "description_raw": "ポーションを持っていない間、追加で[gold]敏捷[/gold][blue]{DexterityPower}[/blue]を得る。",
+    "description": "[gold]ポーション[/gold]を持っていない間、追加で[gold]敏捷[/gold][blue]2[/blue]を得る。",
+    "description_raw": "[gold]ポーション[/gold]を持っていない間、追加で[gold]敏捷[/gold][blue]{DexterityPower}[/blue]を得る。",
     "flavor": "[red]このレリックの詳細は今後明かされるはずだ……[/red]",
     "rarity": "レリック（ショップ）",
     "pool": "shared",
@@ -1877,7 +1909,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 198
+    "compendium_order": 200
   },
   {
     "id": "PEN_NIB",
@@ -1953,7 +1985,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 199
+    "compendium_order": 201
   },
   {
     "id": "POTION_BELT",
@@ -2033,7 +2065,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 273
+    "compendium_order": 275
   },
   {
     "id": "CLOAK_CLASP",
@@ -2089,7 +2121,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 274
+    "compendium_order": 276
   },
   {
     "id": "MINIATURE_TENT",
@@ -2165,7 +2197,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 275
+    "compendium_order": 277
   },
   {
     "id": "GLITTER",
@@ -2181,7 +2213,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 200
+    "compendium_order": 202
   },
   {
     "id": "LANTERN",
@@ -2241,7 +2273,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 276
+    "compendium_order": 278
   },
   {
     "id": "RUNIC_CAPACITOR",
@@ -2277,13 +2309,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 201
+    "compendium_order": 203
   },
   {
     "id": "REGALITE",
     "name": "レガライト",
-    "description": "カードを作成するたび、[blue]2[/blue][gold]ブロック[/gold]を得る。",
-    "description_raw": "カードを作成するたび、[blue]{Block}[/blue][gold]ブロック[/gold]を得る。",
+    "description": "毎ターン、初めてカードを作成したとき、[blue]4[/blue][gold]ブロック[/gold]を得る。",
+    "description_raw": "毎ターン、初めてカードを作成したとき、[blue]{Block}[/blue][gold]ブロック[/gold]を得る。",
     "flavor": "[red]このレリックの詳細は今後明かされるはずだ……[/red]",
     "rarity": "レリック（アンコモン）",
     "pool": "regent",
@@ -2353,7 +2385,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 277
+    "compendium_order": 279
   },
   {
     "id": "VAJRA",
@@ -2409,7 +2441,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 202
+    "compendium_order": 204
   },
   {
     "id": "TOUGH_BANDAGES",
@@ -2445,7 +2477,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 203
+    "compendium_order": 205
   },
   {
     "id": "UNDYING_SIGIL",
@@ -2541,7 +2573,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 204
+    "compendium_order": 206
   },
   {
     "id": "SYMBIOTIC_VIRUS",
@@ -2697,7 +2729,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 205
+    "compendium_order": 207
   },
   {
     "id": "OLD_COIN",
@@ -2753,7 +2785,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 278
+    "compendium_order": 280
   },
   {
     "id": "ARCHAIC_TOOTH",
@@ -2769,7 +2801,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 206
+    "compendium_order": 208
   },
   {
     "id": "CURSED_PEARL",
@@ -2785,7 +2817,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 207
+    "compendium_order": 209
   },
   {
     "id": "CALLING_BELL",
@@ -2801,7 +2833,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 208
+    "compendium_order": 210
   },
   {
     "id": "FAKE_MERCHANTS_RUG",
@@ -2817,7 +2849,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 279
+    "compendium_order": 281
   },
   {
     "id": "WHISPERING_EARRING",
@@ -2833,7 +2865,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 209
+    "compendium_order": 211
   },
   {
     "id": "LARGE_CAPSULE",
@@ -2849,7 +2881,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 210
+    "compendium_order": 212
   },
   {
     "id": "BIG_MUSHROOM",
@@ -2865,13 +2897,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 280
+    "compendium_order": 282
   },
   {
     "id": "CAULDRON",
     "name": "大釜",
-    "description": "取得時、ランダムなポーションを[blue]5[/blue]個調合する。",
-    "description_raw": "取得時、ランダムなポーションを[blue]{Potions}[/blue]個調合する。",
+    "description": "取得時、ランダムな[gold]ポーション[/gold]を[blue]5[/blue]個調合する。",
+    "description_raw": "取得時、ランダムな[gold]ポーション[/gold]を[blue]{Potions}[/blue]個調合する。",
     "flavor": "[red]このレリックの詳細は今後明かされるはずだ……[/red]",
     "rarity": "レリック（ショップ）",
     "pool": "shared",
@@ -2921,7 +2953,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 211
+    "compendium_order": 213
   },
   {
     "id": "INTIMIDATING_HELMET",
@@ -2977,7 +3009,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 212
+    "compendium_order": 214
   },
   {
     "id": "JEWELED_MASK",
@@ -2993,7 +3025,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 213
+    "compendium_order": 215
   },
   {
     "id": "BOUND_PHYLACTERY",
@@ -3025,13 +3057,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 214
+    "compendium_order": 216
   },
   {
     "id": "TINY_MAILBOX",
     "name": "小さなポスト",
-    "description": "[gold]休憩[/gold]するたび、ランダムなポーションを[blue]2[/blue]個獲得する。",
-    "description_raw": "[gold]休憩[/gold]するたび、ランダムなポーションを[blue]2[/blue]個獲得する。",
+    "description": "[gold]休憩[/gold]するたび、ランダムな[gold]ポーション[/gold]を[blue]2[/blue]個獲得する。",
+    "description_raw": "[gold]休憩[/gold]するたび、ランダムな[gold]ポーション[/gold]を[blue]2[/blue]個獲得する。",
     "flavor": "[red]このレリックの詳細は今後明かされるはずだ……[/red]",
     "rarity": "レリック（アンコモン）",
     "pool": "shared",
@@ -3083,7 +3115,7 @@
       "Both variants are functionally identical — same +31 Max HP effect — and the choice is permanent for a given save file. Use the toggle above to preview the one your save shows."
     ],
     "rarity_key": "Ancient",
-    "compendium_order": 215
+    "compendium_order": 217
   },
   {
     "id": "MASSIVE_SCROLL",
@@ -3099,7 +3131,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 216
+    "compendium_order": 218
   },
   {
     "id": "SCROLL_BOXES",
@@ -3115,13 +3147,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 217
+    "compendium_order": 219
   },
   {
     "id": "SERE_TALON",
     "name": "干からびた爪",
-    "description": "取得時、ランダムな[red]呪い[/red]を[blue]2[/blue]枚と、[purple]願い[/purple]を[blue]3[/blue]枚[gold]デッキ[/gold]に追加する。",
-    "description_raw": "取得時、ランダムな[red]呪い[/red]を[blue]{Curses}[/blue]枚と、[purple]願い[/purple]を[blue]{Wishes}[/blue]枚[gold]デッキ[/gold]に追加する。",
+    "description": "取得時、最大HPを[blue]9[/blue]失う。[purple]願い[/purple]を[blue]3[/blue]枚[gold]デッキ[/gold]に追加する。",
+    "description_raw": "取得時、最大HPを[blue]9[/blue]失う。[purple]願い[/purple]を[blue]{Wishes}[/blue]枚[gold]デッキ[/gold]に追加する。",
     "flavor": "[red]このレリックの詳細は今後明かされるはずだ……[/red]",
     "rarity": "レリック（エンシェント）",
     "pool": "shared",
@@ -3131,7 +3163,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 218
+    "compendium_order": 220
   },
   {
     "id": "LUCKY_FYSH",
@@ -3203,7 +3235,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 281
+    "compendium_order": 283
   },
   {
     "id": "DEMON_TONGUE",
@@ -3319,7 +3351,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 219
+    "compendium_order": 221
   },
   {
     "id": "SHURIKEN",
@@ -3535,7 +3567,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 220
+    "compendium_order": 222
   },
   {
     "id": "NUTRITIOUS_SOUP",
@@ -3551,7 +3583,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 221
+    "compendium_order": 223
   },
   {
     "id": "BOOKMARK",
@@ -3596,8 +3628,8 @@
   {
     "id": "HISTORY_COURSE",
     "name": "歴史学教程",
-    "description": "ターン開始時、最後にプレイしたアタックかスキルのコピーを1枚プレイする。",
-    "description_raw": "ターン開始時、最後にプレイしたアタックかスキルのコピーを1枚プレイする。",
+    "description": "ターン開始時、最後にプレイしたアタックのコピーを1枚プレイする。",
+    "description_raw": "ターン開始時、最後にプレイしたアタックのコピーを1枚プレイする。",
     "flavor": "[red]このレリックの詳細は今後明かされるはずだ……[/red]",
     "rarity": "レリック（イベント）",
     "pool": "shared",
@@ -3607,7 +3639,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 282
+    "compendium_order": 284
   },
   {
     "id": "TOXIC_EGG",
@@ -3632,7 +3664,7 @@
   {
     "id": "FUR_COAT",
     "name": "毛皮のコート",
-    "description": "取得時、ランダムな戦闘を[blue]7[/blue]箇所マークする。それらの部屋の敵のHPは[blue]1[/blue]になる。",
+    "description": "取得時、ランダムな戦闘を[blue]8[/blue]箇所マークする。それらの部屋の敵のHPは[blue]1[/blue]になる。",
     "description_raw": "取得時、ランダムな戦闘を[blue]{Combats}[/blue]箇所マークする。それらの部屋の敵のHPは[blue]1[/blue]になる。",
     "flavor": "[red]このレリックの詳細は今後明かされるはずだ……[/red]",
     "rarity": "レリック（エンシェント）",
@@ -3643,13 +3675,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 222
+    "compendium_order": 224
   },
   {
     "id": "DISTINGUISHED_CAPE",
     "name": "気高いケープ",
-    "description": "取得時、最大HPを[blue]9[/blue]失う。[gold]幻姿[/gold]を[blue]3[/blue]枚[gold]デッキ[/gold]に追加する。",
-    "description_raw": "取得時、最大HPを[blue]9[/blue]失う。[gold]幻姿[/gold]を[blue]{Cards}[/blue]枚[gold]デッキ[/gold]に追加する。",
+    "description": "取得時、ランダムな[red]呪い[/red]を[blue]2[/blue]枚と、[gold]幻姿[/gold]を[blue]3[/blue]枚[gold]デッキ[/gold]に追加する。",
+    "description_raw": "取得時、ランダムな[red]呪い[/red]を[blue]{Curses}[/blue]枚と、[gold]幻姿[/gold]を[blue]{Cards}[/blue]枚[gold]デッキ[/gold]に追加する。",
     "flavor": "[red]このレリックの詳細は今後明かされるはずだ……[/red]",
     "rarity": "レリック（エンシェント）",
     "pool": "shared",
@@ -3659,7 +3691,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 223
+    "compendium_order": 225
   },
   {
     "id": "MERCURY_HOURGLASS",
@@ -3775,7 +3807,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 224
+    "compendium_order": 226
   },
   {
     "id": "LAVA_LAMP",
@@ -3811,7 +3843,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 225
+    "compendium_order": 227
   },
   {
     "id": "MOLTEN_EGG",
@@ -3847,7 +3879,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 226
+    "compendium_order": 228
   },
   {
     "id": "EMBER_TEA",
@@ -3863,7 +3895,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 283
+    "compendium_order": 285
   },
   {
     "id": "TEA_OF_DISCOURTESY",
@@ -3879,7 +3911,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 284
+    "compendium_order": 286
   },
   {
     "id": "CANDELABRA",
@@ -3935,7 +3967,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 227
+    "compendium_order": 229
   },
   {
     "id": "ROYAL_STAMP",
@@ -3971,13 +4003,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 228
+    "compendium_order": 230
   },
   {
     "id": "WHITE_BEAST_STATUE",
     "name": "白き獣の像",
-    "description": "戦闘の報酬にポーションが必ず含まれるようになる。",
-    "description_raw": "戦闘の報酬にポーションが必ず含まれるようになる。",
+    "description": "戦闘の報酬に[gold]ポーション[/gold]が必ず含まれるようになる。",
+    "description_raw": "戦闘の報酬に[gold]ポーション[/gold]が必ず含まれるようになる。",
     "flavor": "[red]このレリックの詳細は今後明かされるはずだ……[/red]",
     "rarity": "レリック（レア）",
     "pool": "shared",
@@ -4047,7 +4079,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 285
+    "compendium_order": 287
   },
   {
     "id": "STONE_HUMIDIFIER",
@@ -4063,7 +4095,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 229
+    "compendium_order": 231
   },
   {
     "id": "PETRIFIED_TOAD",
@@ -4099,7 +4131,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 230
+    "compendium_order": 232
   },
   {
     "id": "WHETSTONE",
@@ -4135,12 +4167,12 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 231
+    "compendium_order": 233
   },
   {
     "id": "DIVINE_DESTINY",
     "name": "神授天命",
-    "description": "戦闘開始時、[star:6]を得る。",
+    "description": "戦闘開始時、[star:7]を得る。",
     "description_raw": "戦闘開始時、{Stars:starIcons()}を得る。",
     "flavor": "[red]このレリックの詳細は今後明かされるはずだ……[/red]",
     "rarity": "レリック（スターター）",
@@ -4203,7 +4235,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 232
+    "compendium_order": 234
   },
   {
     "id": "EMPTY_CAGE",
@@ -4219,7 +4251,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 233
+    "compendium_order": 235
   },
   {
     "id": "WINGED_BOOTS",
@@ -4235,7 +4267,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 234
+    "compendium_order": 236
   },
   {
     "id": "GNARLED_HAMMER",
@@ -4271,7 +4303,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 235
+    "compendium_order": 237
   },
   {
     "id": "STORYBOOK",
@@ -4287,7 +4319,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 236
+    "compendium_order": 238
   },
   {
     "id": "SCREAMING_FLAGON",
@@ -4312,8 +4344,8 @@
   {
     "id": "SILKEN_TRESS",
     "name": "絹の髪束",
-    "description": "取得時、すべての[gold]ゴールド[/gold]を失う。最初のカード報酬のすべてのカードに[purple]魅惑[/purple]を[gold]エンチャント[/gold]する。",
-    "description_raw": "取得時、すべての[gold]ゴールド[/gold]を失う。最初のカード報酬のすべてのカードに[purple]魅惑[/purple]を[gold]エンチャント[/gold]する。",
+    "description": "取得時、すべての[gold]ゴールド[/gold]を失う。あなたの最初のカード報酬のすべてのカードに[purple]魅惑[/purple]を[gold]エンチャント[/gold]する。",
+    "description_raw": "取得時、すべての[gold]ゴールド[/gold]を失う。あなたの最初のカード報酬のすべてのカードに[purple]魅惑[/purple]を[gold]エンチャント[/gold]する。",
     "flavor": "[red]このレリックの詳細は今後明かされるはずだ……[/red]",
     "rarity": "レリック（エンシェント）",
     "pool": "shared",
@@ -4323,13 +4355,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 237
+    "compendium_order": 239
   },
   {
     "id": "DELICATE_FROND",
     "name": "繊細な葉",
-    "description": "戦闘開始時、空のポーションスロットすべてをランダムなポーションで満たす",
-    "description_raw": "戦闘開始時、空のポーションスロットすべてをランダムなポーションで満たす",
+    "description": "戦闘開始時、空のポーションスロットすべてをランダムな[gold]ポーション[/gold]で満たす",
+    "description_raw": "戦闘開始時、空のポーションスロットすべてをランダムな[gold]ポーション[/gold]で満たす",
     "flavor": "[red]このレリックの詳細は今後明かされるはずだ……[/red]",
     "rarity": "レリック（エンシェント）",
     "pool": "shared",
@@ -4339,7 +4371,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 238
+    "compendium_order": 240
   },
   {
     "id": "SWORD_OF_JADE",
@@ -4355,7 +4387,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 286
+    "compendium_order": 288
   },
   {
     "id": "WING_CHARM",
@@ -4391,7 +4423,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 239
+    "compendium_order": 241
   },
   {
     "id": "BEATING_REMNANT",
@@ -4467,7 +4499,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 287
+    "compendium_order": 289
   },
   {
     "id": "FRAGRANT_MUSHROOM",
@@ -4483,7 +4515,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 288
+    "compendium_order": 290
   },
   {
     "id": "NEW_LEAF",
@@ -4499,7 +4531,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 240
+    "compendium_order": 242
   },
   {
     "id": "DINGY_RUG",
@@ -4535,13 +4567,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 241
+    "compendium_order": 243
   },
   {
     "id": "PHIAL_HOLSTER",
     "name": "薬瓶のホルスター",
-    "description": "取得時、ポーションのスロットを[blue]1[/blue]枠追加し、ランダムなポーションを[blue]2[/blue]個獲得する。",
-    "description_raw": "取得時、ポーションのスロットを[blue]{PotionSlots}[/blue]枠追加し、ランダムなポーションを[blue]{Potions}[/blue]個獲得する。",
+    "description": "取得時、ポーションスロットを[blue]1[/blue]枠追加し、ランダムな[gold]ポーション[/gold]を[blue]2[/blue]個獲得する。",
+    "description_raw": "取得時、ポーションスロットを[blue]{PotionSlots}[/blue]枠追加し、ランダムな[gold]ポーション[/gold]を[blue]{Potions}[/blue]個獲得する。",
     "flavor": "[red]このレリックの詳細は今後明かされるはずだ……[/red]",
     "rarity": "レリック（エンシェント）",
     "pool": "shared",
@@ -4551,7 +4583,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 242
+    "compendium_order": 244
   },
   {
     "id": "LEAFY_POULTICE",
@@ -4567,7 +4599,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 243
+    "compendium_order": 245
   },
   {
     "id": "RAINBOW_RING",
@@ -4663,7 +4695,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 289
+    "compendium_order": 291
   },
   {
     "id": "BLOOD_SOAKED_ROSE",
@@ -4679,7 +4711,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 244
+    "compendium_order": 246
   },
   {
     "id": "BOOK_REPAIR_KNIFE",
@@ -4771,7 +4803,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 245
+    "compendium_order": 247
   },
   {
     "id": "RED_SKULL",
@@ -4827,7 +4859,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 246
+    "compendium_order": 248
   },
   {
     "id": "LOST_WISP",
@@ -4843,7 +4875,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 290
+    "compendium_order": 292
   },
   {
     "id": "TOOLBOX",
@@ -4879,7 +4911,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 291
+    "compendium_order": 293
   },
   {
     "id": "CHOICES_PARADOX",
@@ -4895,7 +4927,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 247
+    "compendium_order": 249
   },
   {
     "id": "THE_COURIER",
@@ -4927,7 +4959,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 248
+    "compendium_order": 250
   },
   {
     "id": "GOLD_PLATED_CABLES",
@@ -4963,7 +4995,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 249
+    "compendium_order": 251
   },
   {
     "id": "SAI",
@@ -4979,7 +5011,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 250
+    "compendium_order": 252
   },
   {
     "id": "LEAD_PAPERWEIGHT",
@@ -4995,7 +5027,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 251
+    "compendium_order": 253
   },
   {
     "id": "SILVER_CRUCIBLE",
@@ -5011,7 +5043,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 252
+    "compendium_order": 254
   },
   {
     "id": "GALACTIC_DUST",
@@ -5036,8 +5068,8 @@
   {
     "id": "ALCHEMICAL_COFFER",
     "name": "錬金術の宝庫",
-    "description": "取得時、ランダムなポーションで満たされたポーションスロットを[blue]4[/blue]個得る。",
-    "description_raw": "取得時、ランダムなポーションで満たされたポーションスロットを[blue]{PotionSlots}[/blue]個得る。",
+    "description": "取得時、ランダムな[gold]ポーション[/gold]で満たされたポーションスロットを[blue]4[/blue]個得る。",
+    "description_raw": "取得時、ランダムな[gold]ポーション[/gold]で満たされたポーションスロットを[blue]{PotionSlots}[/blue]個得る。",
     "flavor": "[red]このレリックの詳細は今後明かされるはずだ……[/red]",
     "rarity": "レリック（エンシェント）",
     "pool": "shared",
@@ -5047,7 +5079,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 253
+    "compendium_order": 255
   },
   {
     "id": "KUSARIGAMA",
@@ -5103,7 +5135,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 292
+    "compendium_order": 294
   },
   {
     "id": "VEXING_PUZZLEBOX",
@@ -5139,7 +5171,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 254
+    "compendium_order": 256
   },
   {
     "id": "BRONZE_SCALES",
@@ -5215,7 +5247,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 293
+    "compendium_order": 295
   },
   {
     "id": "BONE_FLUTE",
@@ -5271,7 +5303,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 294
+    "compendium_order": 296
   },
   {
     "id": "REGAL_PILLOW",
@@ -5307,13 +5339,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 255
+    "compendium_order": 257
   },
   {
     "id": "BEAUTIFUL_BRACELET",
     "name": "麗しの腕輪",
-    "description": "取得時、[gold]デッキ[/gold]のカードを[blue]3[/blue]枚選ぶ。それらに[purple]スイフト[/purple][blue]3[/blue]を[gold]エンチャント[/gold]する。",
-    "description_raw": "取得時、[gold]デッキ[/gold]のカードを[blue]{Cards}[/blue]枚選ぶ。それらに[purple]スイフト[/purple][blue]3[/blue]を[gold]エンチャント[/gold]する。",
+    "description": "取得時、[gold]デッキ[/gold]のランダムなカード[blue]4[/blue]枚に[purple]スイフト[/purple][blue]2[/blue]を[gold]エンチャント[/gold]する。",
+    "description_raw": "取得時、[gold]デッキ[/gold]のランダムなカード[blue]{Cards}[/blue]枚に[purple]スイフト[/purple][blue]2[/blue]を[gold]エンチャント[/gold]する。",
     "flavor": "[red]このレリックの詳細は今後明かされるはずだ……[/red]",
     "rarity": "レリック（エンシェント）",
     "pool": "shared",
@@ -5323,12 +5355,12 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 256
+    "compendium_order": 258
   },
   {
     "id": "SEAL_OF_GOLD",
     "name": "黄金の印章",
-    "description": "ターン開始時、[blue]5[/blue][gold]ゴールド[/gold]を支払い、[energy:1]を得る。",
+    "description": "ターン開始時、[blue]3[/blue][gold]ゴールド[/gold]を支払い、[energy:1]を得る。",
     "description_raw": "ターン開始時、[blue]{Gold}[/blue][gold]ゴールド[/gold]を支払い、{Energy:energyIcons()}を得る。",
     "flavor": "[red]このレリックの詳細は今後明かされるはずだ……[/red]",
     "rarity": "レリック（エンシェント）",
@@ -5339,7 +5371,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 257
+    "compendium_order": 259
   },
   {
     "id": "GOLDEN_PEARL",
@@ -5355,7 +5387,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 258
+    "compendium_order": 260
   },
   {
     "id": "GOLDEN_COMPASS",
@@ -5371,6 +5403,6 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 259
+    "compendium_order": 261
   }
 ]

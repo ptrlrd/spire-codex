@@ -20,7 +20,7 @@
   {
     "id": "COOK",
     "name": "Cook",
-    "description": "[gold]Remove[/gold] [blue]2[/blue] cards from your [gold]Deck[/gold] and gain [green]9[/green] Max HP at a [gold]Rest Site[/gold].",
+    "description": "[gold]Remove[/gold] [blue]2[/blue] cards from your [gold]Deck[/gold] and gain [green]5[/green] Max HP at a [gold]Rest Site[/gold].",
     "category": "mechanics"
   },
   {

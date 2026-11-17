@@ -11,6 +11,17 @@
     "pool": "shared"
   },
   {
+    "id": "AMBERGRIS",
+    "name": "Амбра",
+    "description": "Восполняет [green]50%[/green] максимальных ОЗ. При использовании в бою дает дополнительный ход.",
+    "description_raw": "Восполняет [green]{HealPercent}%[/green] максимальных ОЗ. При использовании в бою дает дополнительный ход.",
+    "rarity": "Особое",
+    "image_url": "/static/images/potions/ambergris.webp",
+    "rarity_key": "Event",
+    "compendium_order": 60,
+    "pool": "event"
+  },
+  {
     "id": "LUCKY_TONIC",
     "name": "Бальзам удачи",
     "description": "Дает [blue]1[/blue] [gold]plural(ru):буфер[/gold].",
@@ -381,7 +392,7 @@
     "rarity": "Обозначение",
     "image_url": "/static/images/potions/potion_shaped_rock.webp",
     "rarity_key": "Token",
-    "compendium_order": 62,
+    "compendium_order": 63,
     "pool": "shared"
   },
   {
@@ -458,7 +469,7 @@
     "rarity": "Особое",
     "image_url": "/static/images/potions/foul_potion.webp",
     "rarity_key": "Event",
-    "compendium_order": 60,
+    "compendium_order": 61,
     "pool": "event"
   },
   {
@@ -590,7 +601,7 @@
     "rarity": "Особое",
     "image_url": "/static/images/potions/glowwater_potion.webp",
     "rarity_key": "Event",
-    "compendium_order": 61,
+    "compendium_order": 62,
     "pool": "event"
   },
   {

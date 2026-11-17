@@ -238,7 +238,7 @@
     "rarity": "Ficha",
     "image_url": "/static/images/potions/potion_shaped_rock.webp",
     "rarity_key": "Token",
-    "compendium_order": 62,
+    "compendium_order": 63,
     "pool": "shared"
   },
   {
@@ -669,6 +669,17 @@
     "rarity_key": "Uncommon",
     "compendium_order": 38,
     "pool": "ironclad"
+  },
+  {
+    "id": "AMBERGRIS",
+    "name": "Âmbar Cinzento",
+    "description": "Cure [green]50%[/green] de seus PV Máximos. Se usada em combate, realize um turno extra.",
+    "description_raw": "Cure [green]{HealPercent}%[/green] de seus PV Máximos. Se usada em combate, realize um turno extra.",
+    "rarity": "Evento",
+    "image_url": "/static/images/potions/ambergris.webp",
+    "rarity_key": "Event",
+    "compendium_order": 62,
+    "pool": "event"
   },
   {
     "id": "FYSH_OIL",

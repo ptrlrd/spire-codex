@@ -68,8 +68,8 @@
   {
     "id": "INKY",
     "name": "Encrée",
-    "description": "Cette carte inflige [blue]1[/blue] dégâts supplémentaires et applique [gold]Affaibli[/gold] ([blue]1[/blue]).",
-    "description_raw": "Cette carte inflige [blue]{Damage}[/blue] dégâts supplémentaires et applique [gold]Affaibli[/gold] ([blue]{WeakPower}[/blue]).",
+    "description": "This card applies [blue]1[/blue] [gold]Weak[/gold].",
+    "description_raw": "This card applies [blue]{WeakPower}[/blue] [gold]Weak[/gold].",
     "extra_card_text": "Appliquez [gold]Affaibli[/gold] ([blue]1[/blue]).",
     "card_type": null,
     "applicable_to": null,

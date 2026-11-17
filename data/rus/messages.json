@@ -180,12 +180,15 @@
    "title": "Сглаз"
   },
   "MOCK_NO_UNPLAYABLE_AFFLICTION": {
+   "description": "",
    "title": "Mock No Unplayable Affliction"
   },
   "MOCK_SELF_DAMAGE_AFFLICTION": {
+   "description": "",
    "title": "Mock Self Damage Affliction"
   },
   "MOCK_USELESS_AFFLICTION": {
+   "description": "",
    "title": "Mock Useless Affliction"
   },
   "RINGING": {
@@ -814,6 +817,7 @@
    "title": "Паэль"
   },
   "PROCEED": {
+   "description": "",
    "title": "Продолжить"
   },
   "TANX": {
@@ -1083,6 +1087,12 @@
   "THE_ARCHITECT": {
    "CONTINUE": "Далее",
    "RESPOND": "Ответить",
+   "epithet": "",
+   "pages": {
+    "INITIAL": {
+     "description": ""
+    }
+   },
    "talk": {
     "DEFECT": {
      "0-0r": {
@@ -1771,6 +1781,7 @@
    "title": "Арсенал"
   },
   "ASCENDERS_BANE": {
+   "description": "",
    "title": "Бремя возвышения"
   },
   "ASHEN_STRIKE": {
@@ -2098,6 +2109,7 @@
    "title": "Звездный плащ"
   },
   "CLUMSY": {
+   "description": "",
    "title": "Неуклюжесть"
   },
   "COLD_SNAP": {
@@ -2202,6 +2214,7 @@
    "title": "Надменность"
   },
   "CURSE_OF_THE_BELL": {
+   "description": "",
    "title": "Проклятие колокола"
   },
   "DAGGER_SPRAY": {
@@ -2233,6 +2246,7 @@
    "title": "Рывок"
   },
   "DAZED": {
+   "description": "",
    "title": "Головокружение"
   },
   "DEADLY_POISON": {
@@ -2256,6 +2270,7 @@
    "title": "Изнурение"
   },
   "DEBRIS": {
+   "description": "",
    "title": "Обломок"
   },
   "DEBT": {
@@ -2590,6 +2605,7 @@
    "title": "Фокусирующий удар"
   },
   "FOLLY": {
+   "description": "",
    "title": "Тщетность"
   },
   "FOOTWORK": {
@@ -2711,6 +2727,7 @@
    "title": "Хранитель усопших"
   },
   "GREED": {
+   "description": "",
    "title": "Алчность"
   },
   "GUARDS": {
@@ -2887,6 +2904,7 @@
    "title": "Воспламенение"
   },
   "INJURY": {
+   "description": "",
    "title": "Травма"
   },
   "INTERCEPT": {
@@ -3094,22 +3112,28 @@
    "title": "Страдания"
   },
   "MOCK_ATTACK_CARD": {
+   "description": "",
    "title": "Картонка атаки"
   },
   "MOCK_CURSE_CARD": {
+   "description": "",
    "title": "Картонка проклятия"
   },
   "MOCK_POWER_CARD": {
+   "description": "",
    "title": "Картонка таланта"
   },
   "MOCK_QUEST_CARD": {
+   "description": "",
    "title": "Картонка задания"
   },
   "MOCK_SKILL_CARD": {
+   "description": "",
    "discardSelectionPrompt": "Выберите карты, которые хотите сбросить.",
    "title": "Картонка навыка"
   },
   "MOCK_STATUS_CARD": {
+   "description": "",
    "title": "Картонка статуса"
   },
   "MODDED": {
@@ -3332,6 +3356,7 @@
    "title": "Удар эфесом"
   },
   "POOR_SLEEP": {
+   "description": "",
    "title": "Бессонница"
   },
   "POUNCE": {
@@ -3713,6 +3738,7 @@
    "title": "Солнечный удар"
   },
   "SOOT": {
+   "description": "",
    "title": "Сажа"
   },
   "SOUL": {
@@ -3772,6 +3798,7 @@
    "title": "Трофеи войны"
   },
   "SPORE_MIND": {
+   "description": "",
    "title": "Споровый разум"
   },
   "SPUR": {
@@ -4175,6 +4202,7 @@
    "title": "Усыхание"
   },
   "WOUND": {
+   "description": "",
    "title": "Рана"
   },
   "WRAITH_FORM": {
@@ -4182,6 +4210,7 @@
    "title": "Облик призрака"
   },
   "WRITHE": {
+   "description": "",
    "title": "Муки"
   },
   "WROUGHT_IN_WAR": {
@@ -4519,6 +4548,7 @@
    "title": "Инстинкт"
   },
   "MOCK_FREE_ENCHANTMENT": {
+   "description": "",
    "title": "Бесплатные чары только в мышеловке"
   },
   "MOMENTUM": {
@@ -5370,25 +5400,101 @@
    "name": "Заражение",
    "year": "1201"
   },
+  "BLIGHT1": {
+   "name": "",
+   "year": ""
+  },
+  "BLIGHT2": {
+   "name": "",
+   "year": ""
+  },
+  "BLIGHT3": {
+   "name": "",
+   "year": ""
+  },
   "FLOURISH0": {
    "name": "Процветание",
    "year": "1800"
+  },
+  "FLOURISH1": {
+   "name": "",
+   "year": ""
+  },
+  "FLOURISH2": {
+   "name": "",
+   "year": ""
+  },
+  "FLOURISH3": {
+   "name": "",
+   "year": ""
   },
   "INVITATION0": {
    "name": "Двери",
    "year": "2733"
   },
+  "INVITATION1": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION2": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION3": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION4": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION5": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION6": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION7": {
+   "name": "",
+   "year": ""
+  },
   "PEACE0": {
    "name": "Развязка",
    "year": "3000"
+  },
+  "PEACE1": {
+   "name": "",
+   "year": ""
   },
   "PREHISTORIA0": {
    "name": "Доисторическая эпоха",
    "year": "???"
   },
+  "PREHISTORIA1": {
+   "name": "",
+   "year": ""
+  },
+  "PREHISTORIA2": {
+   "name": "",
+   "year": ""
+  },
   "SEEDS0": {
    "name": "Семена",
    "year": "0"
+  },
+  "SEEDS1": {
+   "name": "",
+   "year": ""
+  },
+  "SEEDS2": {
+   "name": "",
+   "year": ""
+  },
+  "SEEDS3": {
+   "name": "",
+   "year": ""
   }
  },
  "events": {
@@ -5401,6 +5507,7 @@
     "ALL": {
      "options": {
       "EXIT_BATHS": {
+       "description": "",
        "title": "Выйти"
       },
       "LINGER": {
@@ -5787,6 +5894,7 @@
      "description": "Вы решаете прилечь и немного вздремнуть…\n\n…как вдруг на вас набрасывается [gold][jitter]нечто отвратительное[/jitter][/gold]!",
      "options": {
       "FIGHT": {
+       "description": "",
        "title": "В бой!"
       }
      }
@@ -5971,6 +6079,7 @@
      "description": "[gold]{LastDishTitle}[/gold] отправляется с конвейера прямиком к вам в рот.\n[green]Вкуснотища![/green]",
      "options": {
       "LEAVE": {
+       "description": "",
        "title": "Уйти"
       }
      }
@@ -6309,6 +6418,7 @@
    "title": "Перевозчик зелий"
   },
   "PROCEED": {
+   "description": "",
    "title": "Продолжить"
   },
   "PUNCH_OFF": {
@@ -6331,6 +6441,7 @@
      "description": "[gold]Агрегаты[/gold] с грозным видом поворачиваются к вам.\n\nВы сжимаете кулаки.",
      "options": {
       "FIGHT": {
+       "description": "",
        "title": "В бой!"
       }
      }
@@ -6484,6 +6595,7 @@
      "description": "Вы запрыгиваете на стол и [jitter]пинаете[/jitter] [red]рыцаря[/red] в лицо!\nРыцарь падает на землю с оглушительным визгом.\n\n[jitter][purple]*Гости такого не ожидали!*[/purple][/jitter]",
      "options": {
       "CONTINUE_FIGHT": {
+       "description": "",
        "title": "Продолжить"
       }
      }
@@ -6978,6 +7090,7 @@
      "description": "Похоже, в живых из вас останется только кто-то один.",
      "options": {
       "FIGHT": {
+       "description": "",
        "title": "В бой"
       }
      }
@@ -7822,6 +7935,7 @@
   },
   "FORMAT_DAMAGE_MULTI": "{Damage}[font_size=18]х{Repeat}[/font_size]",
   "FORMAT_DAMAGE_SINGLE": "{Damage}",
+  "FORMAT_EMPTY": "",
   "FORMAT_STATUS_CARD_COUNT": "{CardCount}",
   "HEAL": {
    "description": "Этот враг собирается [gold]восполнить ОЗ[/gold].",
@@ -10228,6 +10342,7 @@
    "title": "Сфера молнии"
   },
   "MOCK_COMBAT_CLEANUP_ORB": {
+   "description": "",
    "title": "Mock Combat Cleanup"
   },
   "PLASMA_ORB": {
@@ -10412,6 +10527,7 @@
    "title": "Дар Мазалета"
   },
   "MOCK_DISCARD_AND_ADD_SHIVS_POTION": {
+   "description": "",
    "title": "Mock Discard and Add Shivs Potion"
   },
   "OROBIC_ACID": {
@@ -11198,51 +11314,67 @@
    "title": "Прислужник"
   },
   "MOCK_CLONE_CARDS_ON_PLAY_POWER": {
+   "description": "",
    "title": "Копирование карт при розыгрыше для слабаков"
   },
   "MOCK_DO_NOT_SCALE_IN_MULTIPLAYER_POWER": {
+   "description": "",
    "title": "Mock Do Not Scale in Multiplayer"
   },
   "MOCK_EXTRA_TURN_POWER": {
+   "description": "",
    "title": "Mock Extra Turn"
   },
   "MOCK_FREE_CARDS_POWER": {
+   "description": "",
    "title": "Бесплатные карты только в мышеловке."
   },
   "MOCK_GAIN_BLOCK_ON_ATTACK_POWER": {
+   "description": "",
    "title": "Получение защиты при атаках для слабаков"
   },
   "MOCK_INVINCIBLE_ON_DEATH_POWER": {
+   "description": "",
    "title": "Неуязвимость после смерти для слабаков"
   },
   "MOCK_MODIFY_ENERGY_COST_POWER": {
+   "description": "",
    "title": "Изменение цены карт для слабаков"
   },
   "MOCK_MODIFY_STAR_COST_POWER": {
+   "description": "",
    "title": "Изменение требуемых звезд для слабаков"
   },
   "MOCK_PHASE_OBSERVER_POWER": {
+   "description": "",
    "title": "Mock Phase Observer"
   },
   "MOCK_PREVENT_DEATH_POWER": {
+   "description": "",
    "title": "Смерть для сильных"
   },
   "MOCK_REMOVE_DRAWN_CARDS_FROM_COMBAT_POWER": {
+   "description": "",
    "title": "Удаление добираемых карт из боя"
   },
   "MOCK_RESET_COMBAT_ON_SHUFFLE_POWER": {
+   "description": "",
    "title": "Тестовый сброс боя при замешивании"
   },
   "MOCK_REVIVE_POWER": {
+   "description": "",
    "title": "Воскрешение для слабаков"
   },
   "MOCK_SCALE_IN_MULTIPLAYER_POWER": {
+   "description": "",
    "title": "Mock Scale in Multiplayer"
   },
   "MOCK_TEMPORARY_STRENGTH_LOSS": {
+   "description": "",
    "title": "Временная потеря силы для… Для слабаков, да"
   },
   "MOCK_UNHITTABLE_POWER": {
+   "description": "",
    "title": "Mock Unhittable"
   },
   "MONARCHS_GAZE_POWER": {
@@ -13871,6 +14003,7 @@
   "TEXT_EFFECTS": "Эффекты текста",
   "TEXT_EFFECTS_DESCRIPTION": "Включите или отключите эффекты текста: например, волны или дрожащие буквы.",
   "TEXT_SIZE": "Размер текста",
+  "TOAST_CANNOT_REMAP_INPUT": "Cannot set an input for {Hotkey} for {ControlType}.",
   "TOAST_FAST_MODE_OFF": "Обычная скорость боевых действий и переходов между экранами.",
   "TOAST_FAST_MODE_ON": "Высокая скорость боевых действий и переходов между экранами.",
   "TOAST_GAMEPLAY_DATA_OFF": "Игровые метрики и отчеты об ошибках не отправятся в Mega Crit.",

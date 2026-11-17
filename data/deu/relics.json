@@ -42,8 +42,8 @@
   {
     "id": "ALCHEMICAL_COFFER",
     "name": "Alchemische Truhe",
-    "description": "Erhalte beim Aufheben [blue]4[/blue] Trankslots gefüllt mit zufälligen Tränken.",
-    "description_raw": "Erhalte beim Aufheben [blue]{PotionSlots}[/blue] Trankslots gefüllt mit zufälligen Tränken.",
+    "description": "Erhalte beim Aufheben [blue]4[/blue] Trankslots gefüllt mit zufälligen [gold]Tränken[/gold].",
+    "description_raw": "Erhalte beim Aufheben [blue]{PotionSlots}[/blue] Trankslots gefüllt mit zufälligen [gold]Tränken[/gold].",
     "flavor": "[red]Näheres zu diesem Relikt wird zukünftig aufgedeckt werden...[/red]",
     "rarity": "Ahnen-Relikt",
     "pool": "shared",
@@ -141,7 +141,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 260
+    "compendium_order": 262
   },
   {
     "id": "ARCHAIC_TOOTH",
@@ -313,7 +313,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 261
+    "compendium_order": 263
   },
   {
     "id": "PEAR",
@@ -441,7 +441,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 262
+    "compendium_order": 264
   },
   {
     "id": "LEAFY_POULTICE",
@@ -721,7 +721,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 263
+    "compendium_order": 265
   },
   {
     "id": "CHOSEN_CHEESE",
@@ -737,13 +737,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 264
+    "compendium_order": 266
   },
   {
     "id": "DIAMOND_DIADEM",
     "name": "Diamanten-Diadem",
-    "description": "Immer wenn du in einem Zug [blue]2[/blue] oder weniger Karten spielst, nimmst du den halben Schaden von Gegnern.",
-    "description_raw": "Immer wenn du in einem Zug [blue]{CardThreshold}[/blue] oder weniger Karten spielst, nimmst du den halben Schaden von Gegnern.",
+    "description": "Beginne den Kampf mit [blue]20[/blue] [gold]Block[/gold]. Dein [gold]Block[/gold] wird zu Beginn deines [blue]2.[/blue] Zuges nicht entfernt.",
+    "description_raw": "Beginne den Kampf mit [blue]{Block}[/blue] [gold]Block[/gold]. Dein [gold]Block[/gold] wird zu Beginn deines [blue]2.[/blue] Zuges nicht entfernt.",
     "flavor": "[red]Näheres zu diesem Relikt wird zukünftig aufgedeckt werden...[/red]",
     "rarity": "Ahnen-Relikt",
     "pool": "shared",
@@ -850,8 +850,8 @@
   {
     "id": "RING_OF_THE_DRAKE",
     "name": "Drachenring",
-    "description": "Ziehe zu Beginn deiner ersten [blue]3[/blue] Züge [blue]2[/blue] weitere Karten.",
-    "description_raw": "Ziehe zu Beginn {Turns:plural:deines ersten Zuges|deiner ersten [blue]{}[/blue] Züge} [blue]{Cards}[/blue] weitere {Cards:plural:Karte|Karten}.",
+    "description": "Ziehe zu Beginn deiner ersten [blue]3[/blue] Züge [blue]2[/blue] Karten mehr.",
+    "description_raw": "Ziehe zu Beginn {Turns:plural:deines ersten Zuges|deiner ersten [blue]{}[/blue] Züge} [blue]{Cards}[/blue] {Cards:plural:Karte|Karten} mehr.",
     "flavor": "[red]Näheres zu diesem Relikt wird zukünftig aufgedeckt werden...[/red]",
     "rarity": "Startrelikt",
     "pool": "silent",
@@ -897,7 +897,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 265
+    "compendium_order": 267
   },
   {
     "id": "DARKSTONE_PERIAPT",
@@ -913,7 +913,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 266
+    "compendium_order": 268
   },
   {
     "id": "DEMON_TONGUE",
@@ -938,8 +938,8 @@
   {
     "id": "SERE_TALON",
     "name": "Dürre Kralle",
-    "description": "Nimm beim Aufheben [blue]2[/blue] zufällige [red]Flüche[/red] und [blue]3[/blue] [purple]Wünsche[/purple] in dein [gold]Deck[/gold].",
-    "description_raw": "Nimm beim Aufheben [blue]{Curses}[/blue] zufällige [red]Flüche[/red] und [blue]{Wishes}[/blue] [purple]Wünsche[/purple] in dein [gold]Deck[/gold].",
+    "description": "Verliere beim Aufheben [blue]9[/blue] max. TP und nimm [blue]3[/blue] [purple]Wünsche[/purple] in dein [gold]Deck[/gold].",
+    "description_raw": "Verliere beim Aufheben [blue]9[/blue] max. TP und nimm [blue]{Wishes}[/blue] [purple]Wünsche[/purple] in dein [gold]Deck[/gold].",
     "flavor": "[red]Näheres zu diesem Relikt wird zukünftig aufgedeckt werden...[/red]",
     "rarity": "Ahnen-Relikt",
     "pool": "shared",
@@ -1246,8 +1246,8 @@
   {
     "id": "DELICATE_FROND",
     "name": "Filigraner Wedel",
-    "description": "Fülle zu Beginn jedes Kampfes alle leeren Trankslots mit zufälligen Tränken.",
-    "description_raw": "Fülle zu Beginn jedes Kampfes alle leeren Trankslots mit zufälligen Tränken.",
+    "description": "Fülle zu Beginn jedes Kampfes alle leeren Trankslots mit zufälligen [gold]Tränken[/gold].",
+    "description_raw": "Fülle zu Beginn jedes Kampfes alle leeren Trankslots mit zufälligen [gold]Tränken[/gold].",
     "flavor": "[red]Näheres zu diesem Relikt wird zukünftig aufgedeckt werden...[/red]",
     "rarity": "Ahnen-Relikt",
     "pool": "shared",
@@ -1345,7 +1345,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 267
+    "compendium_order": 269
   },
   {
     "id": "FRESNEL_LENS",
@@ -1361,7 +1361,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 268
+    "compendium_order": 270
   },
   {
     "id": "HAPPY_FLOWER",
@@ -1401,7 +1401,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 269
+    "compendium_order": 271
   },
   {
     "id": "SPARKLING_ROUGE",
@@ -1594,8 +1594,8 @@
   {
     "id": "HISTORY_COURSE",
     "name": "Geschichtskurs",
-    "description": "Spiele zu Beginn deines Zuges eine Kopie deiner zuletzt gespielten Angriffs- oder Fertigkeitskarte.",
-    "description_raw": "Spiele zu Beginn deines Zuges eine Kopie deiner zuletzt gespielten Angriffs- oder Fertigkeitskarte.",
+    "description": "Spiele zu Beginn deines Zuges eine Kopie deines zuletzt gespielten Angriffs.",
+    "description_raw": "Spiele zu Beginn deines Zuges eine Kopie deines zuletzt gespielten Angriffs.",
     "flavor": "[red]Näheres zu diesem Relikt wird zukünftig aufgedeckt werden...[/red]",
     "rarity": "Ereignis-Relikt",
     "pool": "shared",
@@ -1605,7 +1605,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 270
+    "compendium_order": 272
   },
   {
     "id": "MOLTEN_EGG",
@@ -1725,7 +1725,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 271
+    "compendium_order": 273
   },
   {
     "id": "LUCKY_FYSH",
@@ -1818,7 +1818,7 @@
   {
     "id": "SEAL_OF_GOLD",
     "name": "Goldsiegel",
-    "description": "Zahle zu Beginn deines Zuges [blue]5[/blue] [gold]Gold[/gold], um [energy:1] zu erhalten.",
+    "description": "Zahle zu Beginn deines Zuges [blue]3[/blue] [gold]Gold[/gold], um [energy:1] zu erhalten.",
     "description_raw": "Zahle zu Beginn deines Zuges [blue]{Gold}[/blue] [gold]Gold[/gold], um {Energy:energyIcons()} zu erhalten.",
     "flavor": "[red]Näheres zu diesem Relikt wird zukünftig aufgedeckt werden...[/red]",
     "rarity": "Ahnen-Relikt",
@@ -1901,7 +1901,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 272
+    "compendium_order": 274
   },
   {
     "id": "DIVINE_RIGHT",
@@ -1922,7 +1922,7 @@
   {
     "id": "DIVINE_DESTINY",
     "name": "Göttliches Schicksal",
-    "description": "Erhalte zu Beginn jedes Kampfes [star:6].",
+    "description": "Erhalte zu Beginn jedes Kampfes [star:7].",
     "description_raw": "Erhalte zu Beginn jedes Kampfes {Stars:starIcons()}.",
     "flavor": "[red]Näheres zu diesem Relikt wird zukünftig aufgedeckt werden...[/red]",
     "rarity": "Startrelikt",
@@ -1938,8 +1938,8 @@
   {
     "id": "BELT_BUCKLE",
     "name": "Gürtelschnalle",
-    "description": "Solange du keine Tränke hast, hast du [blue]2[/blue] [gold]Geschicklichkeit[/gold] mehr.",
-    "description_raw": "Solange du keine Tränke hast, hast du [blue]{DexterityPower}[/blue] [gold]Geschicklichkeit[/gold] mehr.",
+    "description": "Solange du keine [gold]Tränke[/gold] hast, hast du [blue]2[/blue] [gold]Geschicklichkeit[/gold] mehr.",
+    "description_raw": "Solange du keine [gold]Tränke[/gold] hast, hast du [blue]{DexterityPower}[/blue] [gold]Geschicklichkeit[/gold] mehr.",
     "flavor": "[red]Näheres zu diesem Relikt wird zukünftig aufgedeckt werden...[/red]",
     "rarity": "Laden-Relikt",
     "pool": "shared",
@@ -1989,7 +1989,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 273
+    "compendium_order": 275
   },
   {
     "id": "TOUGH_BANDAGES",
@@ -2050,8 +2050,8 @@
   {
     "id": "BEAUTIFUL_BRACELET",
     "name": "Hübsches Kettchen",
-    "description": "Wähle beim Aufheben [blue]3[/blue] Karten in deinem [gold]Deck[/gold]. [gold]Verzaubere[/gold] sie mit [purple]Flott[/purple] [blue]3[/blue].",
-    "description_raw": "Wähle beim Aufheben [blue]{Cards}[/blue] {Cards:plural:Karte|Karten} in deinem [gold]Deck[/gold]. [gold]Verzaubere[/gold] sie mit [purple]Flott[/purple] [blue]3[/blue].",
+    "description": "[gold]Verzaubere[/gold] beim Aufheben [blue]4[/blue] zufällige Karten in deinem [gold]Deck[/gold] mit [purple]Flott[/purple] [blue]2[/blue].",
+    "description_raw": "[gold]Verzaubere[/gold] beim Aufheben [blue]{Cards}[/blue] zufällige {Cards:plural:Karte|Karten} in deinem [gold]Deck[/gold] mit [purple]Flott[/purple] [blue]2[/blue].",
     "flavor": "[red]Näheres zu diesem Relikt wird zukünftig aufgedeckt werden...[/red]",
     "rarity": "Ahnen-Relikt",
     "pool": "shared",
@@ -2122,8 +2122,8 @@
   {
     "id": "KALEIDOSCOPE",
     "name": "Kaleidoskop",
-    "description": "Erhalte beim Aufheben [blue]2[/blue] Kartenbelohnungen von anderen Charakteren.",
-    "description_raw": "Erhalte beim Aufheben [blue]{Cards}[/blue] {Cards:plural:Kartenbelohnung|Kartenbelohnungen} von anderen Charakteren.",
+    "description": "Erhalte beim Aufheben [blue]2[/blue] Kartenbelohnungen von anderen Charakteren.",
+    "description_raw": "Erhalte beim Aufheben [blue]{Cards}[/blue] {Cards:plural:Kartenbelohnung|Kartenbelohnungen} von anderen Charakteren.",
     "flavor": "[red]Näheres zu diesem Relikt wird zukünftig aufgedeckt werden...[/red]",
     "rarity": "Ahnen-Relikt",
     "pool": "shared",
@@ -2158,8 +2158,8 @@
   {
     "id": "CAULDRON",
     "name": "Kessel",
-    "description": "Braut beim Aufheben [blue]5[/blue] zufällige Tränke.",
-    "description_raw": "Braut beim Aufheben [blue]{Potions}[/blue] {Potions:plural:zufälligen Trank|zufällige Tränke}.",
+    "description": "Braut beim Aufheben [blue]5[/blue] zufällige [gold]Tränke[/gold].",
+    "description_raw": "Braut beim Aufheben [blue]{Potions}[/blue] {Potions:plural:zufälligen [gold]Trank[/gold]|zufällige [gold]Tränke[/gold]}.",
     "flavor": "[red]Näheres zu diesem Relikt wird zukünftig aufgedeckt werden...[/red]",
     "rarity": "Laden-Relikt",
     "pool": "shared",
@@ -2313,7 +2313,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 274
+    "compendium_order": 276
   },
   {
     "id": "GNARLED_HAMMER",
@@ -2545,7 +2545,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 275
+    "compendium_order": 277
   },
   {
     "id": "PUMPKIN_CANDLE",
@@ -2695,7 +2695,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 276
+    "compendium_order": 278
   },
   {
     "id": "BOOKMARK",
@@ -2775,7 +2775,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 277
+    "compendium_order": 279
   },
   {
     "id": "CLOAK_CLASP",
@@ -2949,7 +2949,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 278
+    "compendium_order": 280
   },
   {
     "id": "MUMMIFIED_HAND",
@@ -3076,6 +3076,22 @@
     "compendium_order": 211
   },
   {
+    "id": "NEOWS_SACRIFICE",
+    "name": "Neows Opfer",
+    "description": "Beschaffe beim Aufheben [blue]1[/blue] [gold]Ambra[/gold] und nimm [blue]1[/blue] [red]Schuldgefühl[/red] in dein [gold]Deck[/gold].",
+    "description_raw": "Beschaffe beim Aufheben [blue]1[/blue] [gold]Ambra[/gold] und nimm [blue]1[/blue] [red]Schuldgefühl[/red] in dein [gold]Deck[/gold].",
+    "flavor": "[red]Näheres zu diesem Relikt wird zukünftig aufgedeckt werden...[/red]",
+    "rarity": "Ahnen-Relikt",
+    "pool": "shared",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/neows_sacrifice.webp",
+    "image_variants": null,
+    "name_variants": null,
+    "notes": null,
+    "rarity_key": "Ancient",
+    "compendium_order": 212
+  },
+  {
     "id": "NEOWS_TALISMAN",
     "name": "Neows Talisman",
     "description": "[gold]Verbessere[/gold] beim Aufheben [blue]1[/blue] deiner [gold]Schläge[/gold] und [blue]1[/blue] deiner [gold]Verteidigen[/gold].",
@@ -3089,7 +3105,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 212
+    "compendium_order": 213
   },
   {
     "id": "NEOWS_BONES",
@@ -3105,7 +3121,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 213
+    "compendium_order": 214
   },
   {
     "id": "NEW_LEAF",
@@ -3121,7 +3137,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 214
+    "compendium_order": 215
   },
   {
     "id": "NINJA_SCROLL",
@@ -3221,7 +3237,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 279
+    "compendium_order": 281
   },
   {
     "id": "PAELS_EYE",
@@ -3237,7 +3253,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 215
+    "compendium_order": 216
   },
   {
     "id": "PAELS_BLOOD",
@@ -3253,7 +3269,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 216
+    "compendium_order": 217
   },
   {
     "id": "PAELS_FLESH",
@@ -3269,7 +3285,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 217
+    "compendium_order": 218
   },
   {
     "id": "PAELS_WING",
@@ -3285,7 +3301,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 218
+    "compendium_order": 219
   },
   {
     "id": "PAELS_HORN",
@@ -3301,7 +3317,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 219
+    "compendium_order": 220
   },
   {
     "id": "PAELS_CLAW",
@@ -3317,7 +3333,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 220
+    "compendium_order": 221
   },
   {
     "id": "PAELS_LEGION",
@@ -3333,7 +3349,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 221
+    "compendium_order": 222
   },
   {
     "id": "PAELS_TEARS",
@@ -3349,7 +3365,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 222
+    "compendium_order": 223
   },
   {
     "id": "PAELS_GROWTH",
@@ -3365,7 +3381,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 223
+    "compendium_order": 224
   },
   {
     "id": "PAELS_TOOTH",
@@ -3381,7 +3397,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 224
+    "compendium_order": 225
   },
   {
     "id": "PANTOGRAPH",
@@ -3466,7 +3482,7 @@
   {
     "id": "FUR_COAT",
     "name": "Pelzmantel",
-    "description": "Markiere beim Aufheben [blue]7[/blue] zufällige Kämpfe. Gegner in diesen Räumen haben [blue]1[/blue] TP.",
+    "description": "Markiere beim Aufheben [blue]8[/blue] zufällige Kämpfe. Gegner in diesen Räumen haben [blue]1[/blue] TP.",
     "description_raw": "Markiere beim Aufheben [blue]{Combats}[/blue] zufällige Kämpfe. Gegner in diesen Räumen haben [blue]1[/blue] TP.",
     "flavor": "[red]Näheres zu diesem Relikt wird zukünftig aufgedeckt werden...[/red]",
     "rarity": "Ahnen-Relikt",
@@ -3477,7 +3493,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 225
+    "compendium_order": 226
   },
   {
     "id": "PENDULUM",
@@ -3522,8 +3538,8 @@
   {
     "id": "PHIAL_HOLSTER",
     "name": "Phiolenholster",
-    "description": "Erhalte beim Aufheben [blue]1[/blue] Trank-Slot und beschaffe [blue]2[/blue] zufällige Tränke.",
-    "description_raw": "Erhalte beim Aufheben [blue]{PotionSlots}[/blue] Trank-{PotionSlots:plural:Slot|Slots} und beschaffe [blue]{Potions}[/blue] {Potions:plural:zufälligen Trank|zufällige Tränke}.",
+    "description": "Erhalte beim Aufheben [blue]1[/blue] Trank-Slot und beschaffe [blue]2[/blue] zufällige [gold]Tränke[/gold].",
+    "description_raw": "Erhalte beim Aufheben [blue]{PotionSlots}[/blue] Trank-{PotionSlots:plural:Slot|Slots} und beschaffe [blue]{Potions}[/blue] {Potions:plural:zufälligen [gold]Trank[/gold]|zufällige [gold]Tränke[/gold]}.",
     "flavor": "[red]Näheres zu diesem Relikt wird zukünftig aufgedeckt werden...[/red]",
     "rarity": "Ahnen-Relikt",
     "pool": "shared",
@@ -3533,7 +3549,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 226
+    "compendium_order": 227
   },
   {
     "id": "ORRERY",
@@ -3609,7 +3625,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 280
+    "compendium_order": 282
   },
   {
     "id": "PRISMATIC_GEM",
@@ -3625,7 +3641,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 227
+    "compendium_order": 228
   },
   {
     "id": "PRECISE_SCISSORS",
@@ -3641,7 +3657,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 228
+    "compendium_order": 229
   },
   {
     "id": "MERCURY_HOURGLASS",
@@ -3686,8 +3702,8 @@
   {
     "id": "REGALITE",
     "name": "Regalit",
-    "description": "Immer wenn du eine Karte erzeugst, erhalte [blue]2[/blue] [gold]Block[/gold].",
-    "description_raw": "Immer wenn du eine Karte erzeugst, erhalte [blue]{Block}[/blue] [gold]Block[/gold].",
+    "description": "Wenn du zum ersten Mal in jedem Zug eine Karte erzeugst, erhalte [blue]4[/blue] [gold]Block[/gold].",
+    "description_raw": "Wenn du zum ersten Mal in jedem Zug eine Karte erzeugst, erhalte [blue]{Block}[/blue] [gold]Block[/gold].",
     "flavor": "[red]Näheres zu diesem Relikt wird zukünftig aufgedeckt werden...[/red]",
     "rarity": "Ungewöhnliches Relikt",
     "pool": "regent",
@@ -3737,7 +3753,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "None",
-    "compendium_order": 295
+    "compendium_order": 297
   },
   {
     "id": "REPTILE_TRINKET",
@@ -3833,7 +3849,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 229
+    "compendium_order": 230
   },
   {
     "id": "RUNIC_PYRAMID",
@@ -3849,7 +3865,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 230
+    "compendium_order": 231
   },
   {
     "id": "RUNIC_CAPACITOR",
@@ -3905,7 +3921,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 231
+    "compendium_order": 232
   },
   {
     "id": "VELVET_CHOKER",
@@ -3921,7 +3937,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 232
+    "compendium_order": 233
   },
   {
     "id": "SAND_CASTLE",
@@ -3937,7 +3953,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 233
+    "compendium_order": 234
   },
   {
     "id": "SHOVEL",
@@ -3962,8 +3978,8 @@
   {
     "id": "STRIKE_DUMMY",
     "name": "Schlag-Dummy",
-    "description": "Karten, die “Schlag” beinhalten, fügen [blue]3[/blue] Schaden mehr zu.",
-    "description_raw": "Karten, die “Schlag” beinhalten, fügen [blue]{ExtraDamage}[/blue] Schaden mehr zu.",
+    "description": "Karten, die „Schlag“ beinhalten, fügen [blue]3[/blue] Schaden mehr zu.",
+    "description_raw": "Karten, die „Schlag“ beinhalten, fügen [blue]{ExtraDamage}[/blue] Schaden mehr zu.",
     "flavor": "[red]Näheres zu diesem Relikt wird zukünftig aufgedeckt werden...[/red]",
     "rarity": "Gewöhnliches Relikt",
     "pool": "shared",
@@ -3982,8 +3998,8 @@
   {
     "id": "FAKE_STRIKE_DUMMY",
     "name": "Schlag-Dummy???",
-    "description": "Karten, die “Schlag” beinhalten, fügen [blue]1[/blue] Schaden mehr zu.",
-    "description_raw": "Karten, die “Schlag” beinhalten, fügen [blue]{ExtraDamage}[/blue] Schaden mehr zu.",
+    "description": "Karten, die „Schlag“ beinhalten, fügen [blue]1[/blue] Schaden mehr zu.",
+    "description_raw": "Karten, die „Schlag“ beinhalten, fügen [blue]{ExtraDamage}[/blue] Schaden mehr zu.",
     "flavor": "[red]Näheres zu diesem Relikt wird zukünftig aufgedeckt werden...[/red]",
     "rarity": "Ereignis-Relikt",
     "pool": "shared",
@@ -3997,7 +4013,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 281
+    "compendium_order": 283
   },
   {
     "id": "RING_OF_THE_SNAKE",
@@ -4069,7 +4085,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 234
+    "compendium_order": 235
   },
   {
     "id": "PEN_NIB",
@@ -4105,7 +4121,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 235
+    "compendium_order": 236
   },
   {
     "id": "BLACK_BLOOD",
@@ -4157,7 +4173,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 282
+    "compendium_order": 284
   },
   {
     "id": "SWORD_OF_STONE",
@@ -4173,7 +4189,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 283
+    "compendium_order": 285
   },
   {
     "id": "DINGY_RUG",
@@ -4198,8 +4214,8 @@
   {
     "id": "SILKEN_TRESS",
     "name": "Seidenlocke",
-    "description": "Verliere beim Aufheben alles [gold]Gold[/gold]. [gold]Verzaubere[/gold] alle Karten in der ersten Kartenbelohnung mit [purple]Schick[/purple].",
-    "description_raw": "Verliere beim Aufheben alles [gold]Gold[/gold]. [gold]Verzaubere[/gold] alle Karten in der ersten Kartenbelohnung mit [purple]Schick[/purple].",
+    "description": "Verliere beim Aufheben alles [gold]Gold[/gold]. [gold]Verzaubere[/gold] alle Karten in deiner ersten Kartenbelohnung mit [purple]Schick[/purple].",
+    "description_raw": "Verliere beim Aufheben alles [gold]Gold[/gold]. [gold]Verzaubere[/gold] alle Karten in deiner ersten Kartenbelohnung mit [purple]Schick[/purple].",
     "flavor": "[red]Näheres zu diesem Relikt wird zukünftig aufgedeckt werden...[/red]",
     "rarity": "Ahnen-Relikt",
     "pool": "shared",
@@ -4209,7 +4225,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 236
+    "compendium_order": 237
   },
   {
     "id": "SELF_FORMING_CLAY",
@@ -4294,7 +4310,7 @@
   {
     "id": "SIGNET_RING",
     "name": "Siegelring",
-    "description": "Erhalte beim Aufheben [blue]999[/blue] [gold]Gold[/gold].",
+    "description": "Erhalte beim Aufheben [blue]888[/blue] [gold]Gold[/gold].",
     "description_raw": "Erhalte beim Aufheben [blue]{Gold}[/blue] [gold]Gold[/gold].",
     "flavor": "[red]Näheres zu diesem Relikt wird zukünftig aufgedeckt werden...[/red]",
     "rarity": "Ahnen-Relikt",
@@ -4305,7 +4321,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 237
+    "compendium_order": 238
   },
   {
     "id": "SILVER_CRUCIBLE",
@@ -4321,7 +4337,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 238
+    "compendium_order": 239
   },
   {
     "id": "SNECKO_EYE",
@@ -4337,7 +4353,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 239
+    "compendium_order": 240
   },
   {
     "id": "FAKE_SNECKO_EYE",
@@ -4357,7 +4373,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 284
+    "compendium_order": 286
   },
   {
     "id": "SNECKO_SKULL",
@@ -4382,8 +4398,8 @@
   {
     "id": "SOZU",
     "name": "Sozu",
-    "description": "Erhalte zu Beginn jedes Zuges [energy:1]. Du kannst keine Tränke mehr bekommen.",
-    "description_raw": "Erhalte zu Beginn jedes Zuges {Energy:energyIcons()}. Du kannst keine Tränke mehr bekommen.",
+    "description": "Erhalte zu Beginn jedes Zuges [energy:1]. Du kannst keine [gold]Tränke[/gold] mehr bekommen.",
+    "description_raw": "Erhalte zu Beginn jedes Zuges {Energy:energyIcons()}. Du kannst keine [gold]Tränke[/gold] mehr bekommen.",
     "flavor": "[red]Näheres zu diesem Relikt wird zukünftig aufgedeckt werden...[/red]",
     "rarity": "Ahnen-Relikt",
     "pool": "shared",
@@ -4393,7 +4409,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 240
+    "compendium_order": 241
   },
   {
     "id": "MAW_BANK",
@@ -4409,7 +4425,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 285
+    "compendium_order": 287
   },
   {
     "id": "GAMBLING_CHIP",
@@ -4465,12 +4481,12 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 241
+    "compendium_order": 242
   },
   {
     "id": "TOY_BOX",
     "name": "Spielzeugkiste",
-    "description": "Erhalte beim Aufheben [blue]4[/blue] [gold]Wachsrelikte[/gold]. Nach je [blue]3[/blue] Kämpfen wird dein ganz linkes [gold]Wachsrelikt[/gold] wegschmelzen.",
+    "description": "Erhalte beim Aufheben [blue]5[/blue] [gold]Wachsrelikte[/gold]. Nach je [blue]3[/blue] Kämpfen wird dein ganz linkes [gold]Wachsrelikt[/gold] wegschmelzen.",
     "description_raw": "Erhalte beim Aufheben [blue]{Relics}[/blue] [gold]Wachs{Relics:plural:relikt|relikte}[/gold]. Nach je [blue]{Combats}[/blue] {Combats:plural:Kampf|Kämpfen} wird dein ganz linkes [gold]Wachsrelikt[/gold] wegschmelzen.",
     "flavor": "[red]Näheres zu diesem Relikt wird zukünftig aufgedeckt werden...[/red]",
     "rarity": "Ahnen-Relikt",
@@ -4485,7 +4501,7 @@
       "All wax relics melt after 12 total combats, then Toy Box is used up."
     ],
     "rarity_key": "Ancient",
-    "compendium_order": 242
+    "compendium_order": 243
   },
   {
     "id": "LOOMING_FRUIT",
@@ -4507,7 +4523,7 @@
       "Both variants are functionally identical — same +31 Max HP effect — and the choice is permanent for a given save file. Use the toggle above to preview the one your save shows."
     ],
     "rarity_key": "Ancient",
-    "compendium_order": 243
+    "compendium_order": 244
   },
   {
     "id": "SPIKED_GAUNTLETS",
@@ -4523,7 +4539,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 244
+    "compendium_order": 245
   },
   {
     "id": "DUSTY_TOME",
@@ -4539,7 +4555,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 245
+    "compendium_order": 246
   },
   {
     "id": "PHILOSOPHERS_STONE",
@@ -4555,7 +4571,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 246
+    "compendium_order": 247
   },
   {
     "id": "STONE_CRACKER",
@@ -4591,7 +4607,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 247
+    "compendium_order": 248
   },
   {
     "id": "STONE_CALENDAR",
@@ -4667,7 +4683,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 248
+    "compendium_order": 249
   },
   {
     "id": "BRILLIANT_SCARF",
@@ -4683,7 +4699,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 249
+    "compendium_order": 250
   },
   {
     "id": "POWER_CELL",
@@ -4739,7 +4755,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 250
+    "compendium_order": 251
   },
   {
     "id": "BAG_OF_PREPARATION",
@@ -4795,7 +4811,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 286
+    "compendium_order": 288
   },
   {
     "id": "FAKE_MERCHANTS_RUG",
@@ -4811,7 +4827,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 287
+    "compendium_order": 289
   },
   {
     "id": "TINGSHA",
@@ -4847,7 +4863,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 288
+    "compendium_order": 290
   },
   {
     "id": "TOXIC_EGG",
@@ -4903,7 +4919,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 289
+    "compendium_order": 291
   },
   {
     "id": "DRIFTWOOD",
@@ -4919,7 +4935,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 251
+    "compendium_order": 252
   },
   {
     "id": "TRI_BOOMERANG",
@@ -4935,7 +4951,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 252
+    "compendium_order": 253
   },
   {
     "id": "VENERABLE_TEA_SET",
@@ -4975,7 +4991,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 290
+    "compendium_order": 292
   },
   {
     "id": "VAJRA",
@@ -5011,7 +5027,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 253
+    "compendium_order": 254
   },
   {
     "id": "FORGOTTEN_SOUL",
@@ -5027,7 +5043,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 291
+    "compendium_order": 293
   },
   {
     "id": "LOST_COFFER",
@@ -5043,7 +5059,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 254
+    "compendium_order": 255
   },
   {
     "id": "LOST_WISP",
@@ -5059,7 +5075,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 292
+    "compendium_order": 294
   },
   {
     "id": "PETRIFIED_TOAD",
@@ -5124,8 +5140,8 @@
   {
     "id": "VITRUVIAN_MINION",
     "name": "Vitruvianischer Diener",
-    "description": "Karten, die “Diener” beinhalten, fügen doppelten Schaden zu und gewähren doppelten [gold]Block[/gold].",
-    "description_raw": "Karten, die “Diener” beinhalten, fügen doppelten Schaden zu und gewähren doppelten [gold]Block[/gold].",
+    "description": "Karten, die „Diener“ beinhalten, fügen doppelten Schaden zu und gewähren doppelten [gold]Block[/gold].",
+    "description_raw": "Karten, die „Diener“ beinhalten, fügen doppelten Schaden zu und gewähren doppelten [gold]Block[/gold].",
     "flavor": "[red]Näheres zu diesem Relikt wird zukünftig aufgedeckt werden...[/red]",
     "rarity": "Laden-Relikt",
     "pool": "regent",
@@ -5144,8 +5160,8 @@
   {
     "id": "DISTINGUISHED_CAPE",
     "name": "Vornehmer Umhang",
-    "description": "Verliere beim Aufheben [blue]9[/blue] max. TP. Nimm [blue]3[/blue] [gold]Apparieren[/gold] in dein [gold]Deck[/gold].",
-    "description_raw": "Verliere beim Aufheben [blue]9[/blue] max. TP. Nimm [blue]{Cards}[/blue] [gold]Apparieren[/gold] in dein [gold]Deck[/gold].",
+    "description": "Nimm beim Aufheben [blue]2[/blue] zufällige[red] Flüche[/red] und [blue]3[/blue] [gold]Apparieren[/gold] in dein [gold]Deck[/gold].",
+    "description_raw": "Nimm beim Aufheben [blue]{Curses}[/blue] zufällige[red] Flüche[/red] und [blue]{Cards}[/blue] [gold]Apparieren[/gold] in dein [gold]Deck[/gold].",
     "flavor": "[red]Näheres zu diesem Relikt wird zukünftig aufgedeckt werden...[/red]",
     "rarity": "Ahnen-Relikt",
     "pool": "shared",
@@ -5155,13 +5171,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 255
+    "compendium_order": 256
   },
   {
     "id": "WHITE_BEAST_STATUE",
     "name": "Weiße Bestienstatue",
-    "description": "Tränke werden nach jedem Kampf hinterlassen.",
-    "description_raw": "Tränke werden nach jedem Kampf hinterlassen.",
+    "description": "[gold]Tränke[/gold] werden nach jedem Kampf hinterlassen.",
+    "description_raw": "[gold]Tränke[/gold] werden nach jedem Kampf hinterlassen.",
     "flavor": "[red]Näheres zu diesem Relikt wird zukünftig aufgedeckt werden...[/red]",
     "rarity": "Seltenes Relikt",
     "pool": "shared",
@@ -5220,8 +5236,8 @@
   {
     "id": "TINY_MAILBOX",
     "name": "Winziger Briefkasten",
-    "description": "Beschaffe immer beim [gold]Ausruhen[/gold] [blue]2[/blue] zufällige Tränke.",
-    "description_raw": "Beschaffe immer beim [gold]Ausruhen[/gold] [blue]2[/blue] zufällige Tränke.",
+    "description": "Beschaffe immer beim [gold]Ausruhen[/gold] [blue]2[/blue] zufällige [gold]Tränke[/gold].",
+    "description_raw": "Beschaffe immer beim [gold]Ausruhen[/gold] [blue]2[/blue] zufällige [gold]Tränke[/gold].",
     "flavor": "[red]Näheres zu diesem Relikt wird zukünftig aufgedeckt werden...[/red]",
     "rarity": "Ungewöhnliches Relikt",
     "pool": "shared",
@@ -5259,7 +5275,7 @@
   },
   {
     "id": "WONGO_CUSTOMER_APPRECIATION_BADGE",
-    "name": "Wongo-Kunden-Würdigungs-Abzeichen",
+    "name": "Wongo-Kunden-Ehren-Abzeichen",
     "description": "Kein Effekt.",
     "description_raw": "Kein Effekt.",
     "flavor": "[red]Näheres zu diesem Relikt wird zukünftig aufgedeckt werden...[/red]",
@@ -5271,7 +5287,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 293
+    "compendium_order": 295
   },
   {
     "id": "WONGOS_MYSTERY_TICKET",
@@ -5287,7 +5303,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 294
+    "compendium_order": 296
   },
   {
     "id": "MASSIVE_SCROLL",
@@ -5303,7 +5319,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 256
+    "compendium_order": 257
   },
   {
     "id": "THROWING_AXE",
@@ -5319,13 +5335,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 257
+    "compendium_order": 258
   },
   {
     "id": "TOASTY_MITTENS",
     "name": "Wärmende Fäustlinge",
-    "description": "[gold]Erschöpfe[/gold] zu Beginn deines Zuges die oberste Karte deines [gold]Nachziehstapels[/gold] und erhalte [blue]1[/blue] [gold]Stärke[/gold].",
-    "description_raw": "[gold]Erschöpfe[/gold] zu Beginn deines Zuges die oberste Karte deines [gold]Nachziehstapels[/gold] und erhalte [blue]{StrengthPower}[/blue] [gold]Stärke[/gold].",
+    "description": "[gold]Erschöpfe[/gold] zu Beginn deines Zuges [blue]1[/blue] [gold]Handkarte[/gold] und erhalte [blue]1[/blue] [gold]Stärke[/gold].",
+    "description_raw": "[gold]Erschöpfe[/gold] zu Beginn deines Zuges [blue]1[/blue] [gold]Handkarte[/gold] und erhalte [blue]{StrengthPower}[/blue] [gold]Stärke[/gold].",
     "flavor": "[red]Näheres zu diesem Relikt wird zukünftig aufgedeckt werden...[/red]",
     "rarity": "Ahnen-Relikt",
     "pool": "shared",
@@ -5335,7 +5351,23 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 258
+    "compendium_order": 259
+  },
+  {
+    "id": "DOWSING_ROD",
+    "name": "Wünschelrute",
+    "description": "Nimm beim Aufheben [blue]1[/blue] [gold]Wünschelgang[/gold] in dein [gold]Deck[/gold].",
+    "description_raw": "Nimm beim Aufheben [blue]1[/blue] [gold]Wünschelgang[/gold] in dein [gold]Deck[/gold].",
+    "flavor": "[red]Näheres zu diesem Relikt wird zukünftig aufgedeckt werden...[/red]",
+    "rarity": "Ahnen-Relikt",
+    "pool": "shared",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/dowsing_rod.webp",
+    "image_variants": null,
+    "name_variants": null,
+    "notes": null,
+    "rarity_key": "Ancient",
+    "compendium_order": 260
   },
   {
     "id": "CENTENNIAL_PUZZLE",
@@ -5371,6 +5403,6 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 259
+    "compendium_order": 261
   }
 ]

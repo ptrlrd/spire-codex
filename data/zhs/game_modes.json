@@ -1,0 +1,38 @@
+[
+  {
+    "id": "STANDARD",
+    "name": "标准",
+    "description": "启程去屠戮这座高塔！",
+    "multiplayer_description": "启程...和朋友们一起屠戮这座高塔！",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": null,
+    "max_ascension": 10
+  },
+  {
+    "id": "DAILY",
+    "name": "每日挑战",
+    "description": "每天都有一次的全新挑战！\n\n和其他玩家一起比拼最高分吧！",
+    "multiplayer_description": "每天都有一次的全新挑战！\n\n和其他爬塔小队们一起比拼最高分吧！",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "以所有角色完成一局游戏并通关第三阶段来解锁每日挑战。",
+    "max_ascension": 10
+  },
+  {
+    "id": "CUSTOM",
+    "name": "自定义",
+    "description": "可以自行定制需要的特效和各种选项，充分体验游戏乐趣的模式。",
+    "multiplayer_description": "可以自行定制多人游戏中需要的特效和各种选项，充分体验游戏乐趣的模式。",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "通关第三阶段三次来解锁自定游戏",
+    "max_ascension": 10
+  }
+]

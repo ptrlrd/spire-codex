@@ -1,0 +1,38 @@
+[
+  {
+    "id": "STANDARD",
+    "name": "標準",
+    "description": "踏上殺戮尖塔的旅程！",
+    "multiplayer_description": "與好友一起踏上殺戮尖塔的旅程！",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": null,
+    "max_ascension": 10
+  },
+  {
+    "id": "DAILY",
+    "name": "每日挑戰",
+    "description": "每天都有一項全新挑戰。\n\n與其他玩家競逐最高分！",
+    "multiplayer_description": "每天都有一項全新挑戰。\n\n與其他隊伍競逐最高分！",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "使用所有角色各完成一局遊戲並完成第 3 幕，即可解鎖每日挑戰。",
+    "max_ascension": 10
+  },
+  {
+    "id": "CUSTOM",
+    "name": "自訂",
+    "description": "使用獨特的調整因子，自訂專屬遊戲。",
+    "multiplayer_description": "使用獨特的調整因子，自訂專屬多人遊戲。",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "完成第 3 幕三次，即可解鎖自訂模式。",
+    "max_ascension": 10
+  }
+]

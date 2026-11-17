@@ -1,5 +1,16 @@
 [
   {
+    "id": "AMBERGRIS",
+    "name": "Ambra",
+    "description": "Przywróć [green]50%[/green] swoich maks. PŻ. Rozegraj dodatkową turę w walce.",
+    "description_raw": "Przywróć [green]{HealPercent}%[/green] swoich maks. PŻ. Rozegraj dodatkową turę w walce.",
+    "rarity": "Unikalna",
+    "image_url": "/static/images/potions/ambergris.webp",
+    "rarity_key": "Event",
+    "compendium_order": 60,
+    "pool": "event"
+  },
+  {
     "id": "COLORLESS_POTION",
     "name": "Bezbarwna mikstura",
     "description": "Wybierz [blue]1[/blue] z [blue]3[/blue] losowych bezbarwnych kart i dodaj ją do [gold]ręki[/gold]. W tej turze jest darmowa.",
@@ -90,8 +101,8 @@
   {
     "id": "CLARITY",
     "name": "Ekstrakt krystaliczny",
-    "description": "Dobierz [blue]1[/blue] kartę. Na początku [blue]3[/blue] następnych tur dobierz [blue]1[/blue] dodatkową kartę.",
-    "description_raw": "Dobierz [blue]{Cards}[/blue] {Cards:plural:kartę|karty|kart}. Na początku {ClarityPower:plural:następnej tury|[blue]{}[/blue] następnych tur} dobierz [blue]1[/blue] dodatkową kartę.",
+    "description": "Dobierz [blue]1[/blue] kartę. Na początku swoich [blue]3[/blue] następnych tur|swoich [blue]3[/blue] następnych tur dobierz [blue]1[/blue] dodatkową kartę.",
+    "description_raw": "Dobierz [blue]{Cards}[/blue] {Cards:plural:kartę|karty|kart}. Na początku {ClarityPower:plural:swojej następnej tury|swoich [blue]{}[/blue] następnych tur|swoich [blue]{}[/blue] następnych tur} dobierz [blue]1[/blue] dodatkową kartę.",
     "rarity": "Niepospolita",
     "image_url": "/static/images/potions/clarity.webp",
     "rarity_key": "Uncommon",
@@ -194,7 +205,7 @@
     "rarity": "Specjalna",
     "image_url": "/static/images/potions/potion_shaped_rock.webp",
     "rarity_key": "Token",
-    "compendium_order": 62,
+    "compendium_order": 63,
     "pool": "shared"
   },
   {
@@ -277,8 +288,8 @@
   {
     "id": "GIGANTIFICATION_POTION",
     "name": "Mikstura olbrzyma",
-    "description": "Następna karta Ataku zadaje potrójne obrażenia.",
-    "description_raw": "Następna karta Ataku zadaje potrójne obrażenia.",
+    "description": "Twój następny Atak zadaje potrójne obrażenia.",
+    "description_raw": "Twój następny Atak zadaje potrójne obrażenia.",
     "rarity": "Rzadka",
     "image_url": "/static/images/potions/gigantification_potion.webp",
     "rarity_key": "Rare",
@@ -524,7 +535,7 @@
     "rarity": "Unikalna",
     "image_url": "/static/images/potions/foul_potion.webp",
     "rarity_key": "Event",
-    "compendium_order": 60,
+    "compendium_order": 61,
     "pool": "event"
   },
   {
@@ -607,8 +618,8 @@
   {
     "id": "POWDERED_DEMISE",
     "name": "Unicestwienie w proszku",
-    "description": "Przeciwnik traci [blue]9[/blue] PŻ na koniec swojej tury.",
-    "description_raw": "Przeciwnik traci [blue]{Demise}[/blue] PŻ na koniec swojej tury.",
+    "description": "Przeciwnik traci [blue]9[/blue] PŻ pod koniec swojej tury.",
+    "description_raw": "Przeciwnik traci [blue]{Demise}[/blue] PŻ pod koniec swojej tury.",
     "rarity": "Niepospolita",
     "image_url": "/static/images/potions/powdered_demise.webp",
     "rarity_key": "Uncommon",
@@ -678,7 +689,7 @@
     "rarity": "Unikalna",
     "image_url": "/static/images/potions/glowwater_potion.webp",
     "rarity_key": "Event",
-    "compendium_order": 61,
+    "compendium_order": 62,
     "pool": "event"
   },
   {

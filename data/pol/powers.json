@@ -50,6 +50,16 @@
     "image_url": "/static/images/powers/aggression_power.webp"
   },
   {
+    "id": "AMBERGRIS",
+    "name": "Ambra",
+    "description": "Po tej turze rozegraj dodatkową turę.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/ambergris_power.webp"
+  },
+  {
     "id": "ANTICIPATE",
     "name": "Temporary Dexterity",
     "description": "Zyskaj [gold]Zręczność[/gold] do końca tury.",
@@ -230,6 +240,16 @@
     "image_url": "/static/images/powers/burst_power.webp"
   },
   {
+    "id": "CACOPHONY",
+    "name": "Kakofonia",
+    "description": "Po dobraniu [blue]33[/blue] kart przez WSZYSTKICH graczy|kart przez WSZYSTKICH graczy, zadaj [blue][Amount][/blue] pkt. obrażeń przeciwnikowi.",
+    "description_raw": "Po dobraniu [blue]{Cards}[/blue] {Cards:plural:karty przez DOWOLNEGO gracza|kart przez WSZYSTKICH graczy|kart przez WSZYSTKICH graczy}, zadaj [blue]{Amount}[/blue] pkt. obrażeń przeciwnikowi.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/cacophony_power.webp"
+  },
+  {
     "id": "CALAMITY",
     "name": "Klęska",
     "description": "Kiedykolwiek zagrasz Atak, dodaj [blue]2[/blue] losowe Ataki|[blue]2[/blue] losowych Ataków do [gold]ręki[/gold].",
@@ -272,8 +292,8 @@
   {
     "id": "CHILD_OF_THE_STARS",
     "name": "Dziecko gwiazd",
-    "description": "Zyskaj [blue]1[/blue] pkt. [gold]Bloku[/gold] za każdą wydaną [star:1].",
-    "description_raw": "Zyskaj [blue]1[/blue] pkt. [gold]Bloku[/gold] za każdą wydaną {singleStarIcon}.",
+    "description": "Zyskaj [blue]2[/blue] pkt. [gold]Bloku[/gold] za każdą wydaną [star:1].",
+    "description_raw": "Zyskaj [blue]2[/blue] pkt. [gold]Bloku[/gold] za każdą wydaną {singleStarIcon}.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -298,6 +318,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/colossus_power.webp"
+  },
+  {
+    "id": "CONCOCT",
+    "name": "Toksyczne zagranie",
+    "description": "Kiedykolwiek zadasz niezablokowane obrażenia od ataku w tej turze, nałóż [blue]3[/blue] pkt. [gold]Trucizny[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/concoct_power.webp"
   },
   {
     "id": "CONFUSED",
@@ -331,7 +361,7 @@
   },
   {
     "id": "CONSUMING_SHADOW",
-    "name": "Nieokiełznana ciemność",
+    "name": "Otchłań ciemności",
     "description": "Pod koniec tury [gold]Wyładuj[/gold] [blue]2[/blue]  ostatnie Sfery|ostatnich Sfer.",
     "description_raw": "Pod koniec tury [gold]Wyładuj[/gold] {Amount:plural:|[blue]{}[/blue] } {Amount:plural:ostatnią Sferę|ostatnie Sfery|ostatnich Sfer}.",
     "type": "Buff",
@@ -422,8 +452,8 @@
   {
     "id": "CRIMSON_MANTLE",
     "name": "Karmazynowa osłona",
-    "description": "Na początku tury utrać [blue]0[/blue] PŻ i zyskaj [blue][Amount][/blue] pkt. [gold]Bloku[/gold].",
-    "description_raw": "Na początku tury utrać [blue]{SelfDamage}[/blue] PŻ i zyskaj [blue]{Amount}[/blue] pkt. [gold]Bloku[/gold].",
+    "description": "Na początku tury utrać PŻ i zyskaj [gold]Blok[/gold].",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -542,7 +572,7 @@
   {
     "id": "DEMON_FORM",
     "name": "Demon",
-    "description": "Na początku tury zyskaj [blue]2[/blue] pkt. [gold]Siły[/gold].",
+    "description": "Na początku tury zyskaj [blue]3[/blue] pkt. [gold]Siły[/gold].",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -562,22 +592,12 @@
   {
     "id": "DEXTERITY",
     "name": "Zręczność",
-    "description": "Zwiększa liczbę pkt. [gold]Bloku[/gold] otrzymywanych z kart o [blue][/blue] pkt.",
-    "description_raw": "{Amount:cond:<0?Zmniejsza|Zwiększa} liczbę pkt. [gold]Bloku[/gold] otrzymywanych z kart o [blue]{Amount:abs()}[/blue] pkt.",
+    "description": "Zwiększa [gold]Blok[/gold] otrzymywany z kart o [blue][/blue] pkt.",
+    "description_raw": "{Amount:cond:<0?Zmniejsza|Zwiększa} [gold]Blok[/gold] otrzymywany z kart o [blue]{Amount:abs()}[/blue] pkt.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": true,
     "image_url": "/static/images/powers/dexterity_power.webp"
-  },
-  {
-    "id": "DIAMOND_DIADEM",
-    "name": "Diamentowy diadem",
-    "description": "Przeciwnicy zadają [blue]50%[/blue] mniej obrażeń w tej turze.",
-    "description_raw": null,
-    "type": "Buff",
-    "stack_type": "Single",
-    "allow_negative": null,
-    "image_url": "/static/images/powers/diamond_diadem_power.webp"
   },
   {
     "id": "DIE_FOR_YOU",
@@ -652,8 +672,8 @@
   {
     "id": "ECHO_FORM",
     "name": "Echo",
-    "description": "W każdej turze pierwsze [blue]2[/blue] zagrane karty są zagrywane|pierwszych [blue]2[/blue] zagranych kart jest zagrywanych dwukrotnie.",
-    "description_raw": "W każdej turze {Amount:plural:pierwsza zagrana karta jest zagrywana|pierwsze [blue]{}[/blue] zagrane karty są zagrywane|pierwszych [blue]{}[/blue] zagranych kart jest zagrywanych} dwukrotnie.",
+    "description": "W każdej turze twoje pierwsze [blue]2[/blue] karty są zagrywane|twoich pierwszych [blue]2[/blue] kart jest zagrywanych dwukrotnie.",
+    "description_raw": "W każdej turze {Amount:plural:twoja pierwsza karta jest zagrywana|twoje pierwsze [blue]{}[/blue] karty są zagrywane|twoich pierwszych [blue]{}[/blue] kart jest zagrywanych} dwukrotnie.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -720,6 +740,16 @@
     "image_url": "/static/images/powers/escape_artist_power.webp"
   },
   {
+    "id": "FADE",
+    "name": "Temporary Dexterity",
+    "description": "Zyskaj [gold]Zręczność[/gold] do końca tury.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/fade_power.webp"
+  },
+  {
     "id": "FAN_OF_KNIVES",
     "name": "Wachlarz noży",
     "description": "[gold]Noże[/gold] zadają obrażenia WSZYSTKIM przeciwnikom.",
@@ -762,8 +792,8 @@
   {
     "id": "FERAL",
     "name": "Dzikus",
-    "description": "Gdy zagrasz Atak kosztujący 0[energy:1] pierwsze [blue]2[/blue] razy|pierwszych [blue]2[/blue] razy w tej turze, przywróć go do [gold]ręki[/gold].",
-    "description_raw": "Gdy zagrasz Atak kosztujący 0{energyPrefix:energyIcons(1)} {Amount:plural:po raz pierwszy|pierwsze [blue]{}[/blue] razy|pierwszych [blue]{}[/blue] razy} w tej turze, przywróć go do [gold]ręki[/gold].",
+    "description": "W każdej turze przywróć do [gold]ręki[/gold] twoje pierwsze [blue]2[/blue] Ataki kosztujące|twoich pierwszych [blue]2[/blue] Ataków kosztujących 0[energy:1].",
+    "description_raw": "W każdej turze przywróć do [gold]ręki[/gold] {Amount:plural:twój pierwszy Atak kosztujący|twoje pierwsze [blue]{}[/blue] Ataki kosztujące|twoich pierwszych [blue]{}[/blue] Ataków kosztujących} 0{energyPrefix:energyIcons(1)}.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -872,8 +902,8 @@
   {
     "id": "FREE_POWER",
     "name": "Darmowa Moc",
-    "description": "Następne [blue]2[/blue] zagrane Moce kosztują|Następnych [blue]2[/blue] zagranych Mocy kosztuje [blue]0[/blue] [energy:1].",
-    "description_raw": "{Amount:plural:Następna zagrana Moc kosztuje|Następne [blue]{}[/blue] zagrane Moce kosztują|Następnych [blue]{}[/blue] zagranych Mocy kosztuje} [blue]0[/blue] {energyPrefix:energyIcons(1)}.",
+    "description": "Twoje następne [blue]2[/blue] Moce kosztują|Twoich następnych [blue]2[/blue] Mocy kosztuje [blue]0[/blue] [energy:1].",
+    "description_raw": "{Amount:plural:Twoja następna Moc kosztuje|Twoje następne [blue]{}[/blue] Moce kosztują|Twoich następnych [blue]{}[/blue] Mocy kosztuje} [blue]0[/blue] {energyPrefix:energyIcons(1)}.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -882,8 +912,8 @@
   {
     "id": "FREE_SKILL",
     "name": "Darmowa Umiejętność",
-    "description": "Następne [blue]2[/blue] zagrane Umiejętności kosztują|Następnych [blue]2[/blue] zagranych Umiejętności kosztuje [blue]0[/blue] [energy:1].",
-    "description_raw": "{Amount:plural:Następna zagrana Umiejętność kosztuje|Następne [blue]{}[/blue] zagrane Umiejętności kosztują|Następnych [blue]{}[/blue] zagranych Umiejętności kosztuje} [blue]0[/blue] {energyPrefix:energyIcons(1)}.",
+    "description": "Twoje następne [blue]2[/blue] Umiejętności kosztują|Twoich następnych [blue]2[/blue] Umiejętności kosztuje [blue]0[/blue] [energy:1].",
+    "description_raw": "{Amount:plural:Twoja następna Umiejętność kosztuje|Twoje następne [blue]{}[/blue] Umiejętności kosztują|Twoich następnych [blue]{}[/blue] Umiejętności kosztuje} [blue]0[/blue] {energyPrefix:energyIcons(1)}.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -932,8 +962,8 @@
   {
     "id": "GIGANTIFICATION",
     "name": "Olbrzym",
-    "description": "Następne [blue]2[/blue] zagrane Ataki zadają|Następnych [blue]2[/blue] zagranych Ataków zadaje potrójne obrażenia.",
-    "description_raw": "{Amount:plural:Następny zagrany Atak zadaje|Następne [blue]{}[/blue] zagrane Ataki zadają|Następnych [blue]{}[/blue] zagranych Ataków zadaje} potrójne obrażenia.",
+    "description": "Twoje następne [blue]2[/blue] Ataki zadają|Twoich następnych [blue]2[/blue] Ataków zadaje potrójne obrażenia.",
+    "description_raw": "{Amount:plural:Twój następny Atak zadaje|Twoje następne [blue]{}[/blue] Ataki zadają|Twoich następnych [blue]{}[/blue] Ataków zadaje} potrójne obrażenia.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -952,8 +982,8 @@
   {
     "id": "GUARDED",
     "name": "Pod ochroną",
-    "description": "Otrzymujesz połowę mniej obrażeń od przeciwników.",
-    "description_raw": null,
+    "description": "Otrzymujesz [blue]50%[/blue] mniej obrażeń od przeciwników. Efekt zanika, jeżeli gracz [gold][Applier.StringValue][/gold] umrze.",
+    "description_raw": "Otrzymujesz [blue]{DamageDecrease:percentLess()}%[/blue] mniej obrażeń od przeciwników. Efekt zanika, jeżeli gracz [gold]{Applier.StringValue}[/gold] umrze.",
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
@@ -1002,8 +1032,8 @@
   {
     "id": "HARDENED_SHELL",
     "name": "Wzmocniona skorupa",
-    "description": "[gold]This creature[/gold] nie może utracić więcej niż [blue][Amount][/blue] PŻ w jednej turze.",
-    "description_raw": "[gold]{OwnerName}[/gold] nie może utracić więcej niż [blue]{Amount}[/blue] PŻ w jednej turze.",
+    "description": "W każdej turze [gold]this creature[/gold] nie może utracić więcej niż [blue][Amount][/blue] PŻ.",
+    "description_raw": "W każdej turze [gold]{OwnerName}[/gold] nie może utracić więcej niż [blue]{Amount}[/blue] PŻ.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1080,6 +1110,16 @@
     "image_url": "/static/images/powers/hex_power.webp"
   },
   {
+    "id": "HIBERNATE",
+    "name": "Hibernacja",
+    "description": "Przez następne [blue]2[/blue] tury|Przez następne [blue]2[/blue] tur WSZYSCY sojusznicy zyskują [gold]Blok[/gold] z twoich [gold]Sfer Mrozu[/gold].",
+    "description_raw": "{Amount:plural:W tej turze|Przez następne [blue]{}[/blue] tury|Przez następne [blue]{}[/blue] tur} WSZYSCY sojusznicy zyskują [gold]Blok[/gold] z twoich [gold]Sfer Mrozu[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hibernate_power.webp"
+  },
+  {
     "id": "HIGH_VOLTAGE",
     "name": "Wysokie napięcie",
     "description": "[gold]This creature[/gold] otrzymuje [blue][Amount][/blue] pkt. [gold]Siły[/gold] pod koniec swojej tury.",
@@ -1098,6 +1138,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/hotfix_power.webp"
+  },
+  {
+    "id": "HYPERBEAM_FOCUS_DOWN",
+    "name": "Temporary Focus Down",
+    "description": "Utrać [gold]Skupienie[/gold] pod koniec tury.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": null
   },
   {
     "id": "ILLUSION",
@@ -1120,6 +1170,16 @@
     "image_url": "/static/images/powers/imbalanced_power.webp"
   },
   {
+    "id": "IMITATION_LEARNING",
+    "name": "Patrz i ucz się",
+    "description": "Następne [blue]2[/blue] razy|Następnych [blue]2[/blue] razy, gdy gracz [gold][TargetPlayer][/gold] zagra Moc, ty zagrywasz jej kopię.",
+    "description_raw": "{Amount:plural:Następnym razem|Następne [blue]{}[/blue] razy|Następnych [blue]{}[/blue] razy}, gdy gracz [gold]{TargetPlayer}[/gold] zagra Moc, ty zagrywasz jej kopię.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/imitation_learning_power.webp"
+  },
+  {
     "id": "IMPROVEMENT",
     "name": "Usprawnienie",
     "description": "[gold]Ulepsz[/gold] losową kartę pod koniec walki.",
@@ -1132,8 +1192,8 @@
   {
     "id": "INFERNO",
     "name": "Piekło",
-    "description": "Na początku tury utrać [blue]0[/blue] PŻ. Kiedykolwiek utracisz PŻ podczas swojej tury, zadaj [blue][Amount][/blue] pkt. obrażeń WSZYSTKIM przeciwnikom.",
-    "description_raw": "Na początku tury utrać [blue]{SelfDamage}[/blue] PŻ. Kiedykolwiek utracisz PŻ podczas swojej tury, zadaj [blue]{Amount}[/blue] pkt. obrażeń WSZYSTKIM przeciwnikom.",
+    "description": "Na początku tury utrać [blue]1[/blue] PŻ. Kiedykolwiek utracisz PŻ podczas swojej tury, zadaj [blue]4[/blue] pkt. obrażeń WSZYSTKIM przeciwnikom.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1182,7 +1242,7 @@
   {
     "id": "ITERATION",
     "name": "Nowa wersja",
-    "description": "Gdy dobierzesz kartę Stanu po raz pierwszy w tej turze, dobierz więcej kart.",
+    "description": "Gdy dobierzesz kartę Stanu po raz pierwszy w każdej turze, dobierz więcej kart.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -1202,7 +1262,7 @@
   {
     "id": "JUGGLING",
     "name": "Żonglerka",
-    "description": "W każdej turze skopiuj co trzeci zagrany Atak i dodaj go do [gold]ręki[/gold].",
+    "description": "W każdej turze dodaj do [gold]ręki[/gold] kopię twojego trzeciego Ataku.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -1232,7 +1292,7 @@
   {
     "id": "LETHALITY",
     "name": "Śmiertelne uderzenie",
-    "description": "Twój pierwszy atak w każdej turze zadaje 50% więcej obrażeń.",
+    "description": "W każdej turze twój pierwszy atak zadaje 50% więcej obrażeń.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -1312,7 +1372,7 @@
   {
     "id": "MIND_ROT",
     "name": "Zgniły umysł",
-    "description": "Dobierz [blue]1[/blue] kartę mniej w każdej turze.",
+    "description": "W każdej turze dobierz [blue]1[/blue] kartę mniej.",
     "description_raw": null,
     "type": "Debuff",
     "stack_type": "Counter",
@@ -1352,8 +1412,8 @@
   {
     "id": "MONOLOGUE",
     "name": "Monolog",
-    "description": "Kiedykolwiek zagrasz kartę w tej turze, zyskaj [blue]1[/blue] pkt. [gold]Siły[/gold] w tej turze.\nAktualnie zyskano [blue]0[/blue] pkt. [gold]Siły[/gold].",
-    "description_raw": "Kiedykolwiek zagrasz kartę w tej turze, zyskaj [blue]{StrengthPower}[/blue] pkt. [gold]Siły[/gold] w tej turze.\nAktualnie zyskano [blue]{StrengthApplied}[/blue] pkt. [gold]Siły[/gold].",
+    "description": "Kiedykolwiek zagrasz kartę w tej turze, zyskaj [blue]1[/blue] pkt. [gold]Siły[/gold] do końca tury.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "None",
     "allow_negative": null,
@@ -1392,8 +1452,8 @@
   {
     "id": "NIGHTMARE",
     "name": "Koszmar",
-    "description": "W następnej turze dodaj do [gold]ręki[/gold] [blue]{}[/blue] kopie|kopii karty: [gold][Card][/gold].",
-    "description_raw": "W następnej turze dodaj do [gold]ręki[/gold] [blue]{}[/blue] {Amount:plural:kopię|kopie|kopii} karty: [gold]{Card}[/gold].",
+    "description": "W następnej turze dodaj do [gold]ręki[/gold] [blue]3[/blue] kopie wybranej karty.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1432,8 +1492,8 @@
   {
     "id": "NOSTALGIA",
     "name": "Nostalgia",
-    "description": "W każdej turze umieść pierwsze 2 zagrane karty|pierwszych 2 zagranych kart Ataku lub Umiejętności na szczycie [gold]stosu rozgrywającego[/gold].",
-    "description_raw": "W każdej turze umieść {Amount:plural:pierwszą zagraną kartę|pierwsze {} zagrane karty|pierwszych {} zagranych kart} Ataku lub Umiejętności na szczycie [gold]stosu rozgrywającego[/gold].",
+    "description": "W każdej turze twoje pierwsze 2 karty|twoich pierwszych 2 kart Ataku lub Umiejętności zostają umieszczone|zostaje umieszczonych na szczycie [gold]stosu rozgrywającego[/gold].",
+    "description_raw": "W każdej turze {Amount:plural:twoja pierwsza karta|twoje pierwsze {} karty|twoich pierwszych {} kart} Ataku lub Umiejętności {Amount:plural:zostaje umieszczona|zostają umieszczone|zostaje umieszczonych} na szczycie [gold]stosu rozgrywającego[/gold].",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1460,6 +1520,16 @@
     "image_url": "/static/images/powers/oblivion_power.webp"
   },
   {
+    "id": "ONE_FOR_ALL",
+    "name": "Jeden za wszystkich",
+    "description": "Ataki kosztujące [blue]0[/blue] [energy:1] zadają więcej obrażeń.",
+    "description_raw": "Ataki kosztujące [blue]0[/blue] {energyPrefix:energyIcons(1)} zadają więcej obrażeń.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/one_for_all_power.webp"
+  },
+  {
     "id": "ONE_TWO_PUNCH",
     "name": "Cios za ciosem",
     "description": "Następne [blue]2[/blue] Ataki zostaną zagrane|Następnych [blue]2[/blue] Ataków zostanie zagranych dwukrotnie.",
@@ -1478,16 +1548,6 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/orbit_power.webp"
-  },
-  {
-    "id": "OUTBREAK",
-    "name": "Pandemia",
-    "description": "Zadaj [blue][Amount][/blue] pkt. obrażeń WSZYSTKIM przeciwnikom po nałożeniu [gold]Trucizny[/gold] [blue]3[/blue] razy.",
-    "description_raw": "Zadaj [blue]{Amount}[/blue] pkt. obrażeń WSZYSTKIM przeciwnikom po nałożeniu [gold]Trucizny[/gold] [blue]{Repeat}[/blue] razy.",
-    "type": "Buff",
-    "stack_type": "Counter",
-    "allow_negative": null,
-    "image_url": "/static/images/powers/outbreak_power.webp"
   },
   {
     "id": "PAGESTORM",
@@ -1512,8 +1572,8 @@
   {
     "id": "PALE_BLUE_DOT",
     "name": "Blady, błękitny punkcik",
-    "description": "Po zagraniu co najmniej [blue]5[/blue] kart w jednej turze dobierz dodatkowo [blue][Amount][/blue] karty|kart na początku następnej tury.",
-    "description_raw": "Po zagraniu co najmniej [blue]{CardPlay}[/blue] kart w jednej turze dobierz dodatkowo [blue]{Amount}[/blue] {Amount:plural:kartę|karty|kart} na początku następnej tury.",
+    "description": "Gdy zagrasz co najmniej [blue]5[/blue] kart w jednej turze, dobierz dodatkowo [blue][Amount][/blue] karty|kart na początku następnej tury.",
+    "description_raw": "Gdy zagrasz co najmniej [blue]{CardPlay}[/blue] kart w jednej turze, dobierz dodatkowo [blue]{Amount}[/blue] {Amount:plural:kartę|karty|kart} na początku następnej tury.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1522,8 +1582,8 @@
   {
     "id": "PANACHE",
     "name": "Rozmach",
-    "description": "Po zagraniu [blue]5[/blue] kart|kart w tej turze zadaj obrażenia [blue][Amount][/blue] pkt. obrażeń WSZYSTKIM przeciwnikom.",
-    "description_raw": "Po zagraniu [blue]{CardsLeft}[/blue] {CardsLeft:plural:karty|kart|kart} w tej turze zadaj obrażenia [blue]{Amount}[/blue] pkt. obrażeń WSZYSTKIM przeciwnikom.",
+    "description": "Gdy zagrasz [blue]5[/blue] kart|kart w tej turze, zadaj obrażenia [blue][Amount][/blue] pkt. obrażeń WSZYSTKIM przeciwnikom.",
+    "description_raw": "Gdy zagrasz [blue]{CardsLeft}[/blue] {CardsLeft:plural:karty|kart|kart} w tej turze, zadaj obrażenia [blue]{Amount}[/blue] pkt. obrażeń WSZYSTKIM przeciwnikom.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1562,7 +1622,7 @@
   {
     "id": "PHANTOM_BLADES",
     "name": "Ostrza widmo",
-    "description": "[gold]Noże[/gold] otrzymują [gold]Zachowanie[/gold].\nW każdej turze pierwszy zagrany [gold]Nóż[/gold] zadaje dodatkowo [blue]9[/blue] pkt. obrażeń.",
+    "description": "[gold]Noże[/gold] otrzymują [gold]Zachowanie[/gold].\nW każdej turze twój pierwszy [gold]Nóż[/gold] zadaje dodatkowo [blue]9[/blue] pkt. obrażeń.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -1582,8 +1642,8 @@
   {
     "id": "PILLAR_OF_CREATION",
     "name": "Filar Wszechświata",
-    "description": "Kiedykolwiek stworzysz kartę, zyskaj [blue]5[/blue] pkt. [gold]Bloku[/gold].",
-    "description_raw": null,
+    "description": "Kiedykolwiek stworzysz kartę, zyskaj [blue][Amount][/blue] pkt. [gold]Bloku[/gold].",
+    "description_raw": "Kiedykolwiek stworzysz kartę, zyskaj [blue]{Amount}[/blue] pkt. [gold]Bloku[/gold].",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1702,8 +1762,8 @@
   {
     "id": "REAPER_FORM",
     "name": "Żniwiarz",
-    "description": "Kiedykolwiek zadasz obrażenia od Ataków, nałóż tyle samo pkt. [gold]Zagłady[/gold] [blue]2[/blue] razy|[blue]2[/blue] razy.",
-    "description_raw": "Kiedykolwiek zadasz obrażenia od Ataków, nałóż tyle samo pkt. [gold]Zagłady[/gold] {Amount:plural:|[blue]{}[/blue] razy|[blue]{}[/blue] razy}.",
+    "description": "Kiedykolwiek Ataki zadają obrażenia, nałóż tyle samo pkt. [gold]Zagłady[/gold] [blue]2[/blue] razy|[blue]2[/blue] razy.",
+    "description_raw": "Kiedykolwiek Ataki zadają obrażenia, nałóż tyle samo pkt. [gold]Zagłady[/gold] {Amount:plural:|[blue]{}[/blue] razy|[blue]{}[/blue] razy}.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1722,8 +1782,8 @@
   {
     "id": "REBOUND",
     "name": "Odbicie",
-    "description": "Umieść następne [blue]2[/blue] karty zagrane|następnych [blue]2[/blue] kart zagranych w tej turze na szczycie [gold]stosu rozgrywającego[/gold].",
-    "description_raw": "Umieść {Amount:plural:następną kartę zagraną|następne [blue]{}[/blue] karty zagrane|następnych [blue]{}[/blue] kart zagranych} w tej turze na szczycie [gold]stosu rozgrywającego[/gold].",
+    "description": "Twoje następne [blue]2[/blue] karty|Twoich następnych [blue]2[/blue] kart w tej turze zostają umieszczone|zostaje umieszczonych na szczycie [gold]stosu rozgrywającego[/gold].",
+    "description_raw": "{Amount:plural:Twoja następna karta|Twoje następne [blue]{}[/blue] karty|Twoich następnych [blue]{}[/blue] kart} w tej turze {Amount:plural:zostaje umieszczona|zostają umieszczone|zostaje umieszczonych} na szczycie [gold]stosu rozgrywającego[/gold].",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1962,8 +2022,8 @@
   {
     "id": "SKITTISH",
     "name": "Płochliwość",
-    "description": "Gdy [gold]this creature[/gold] otrzyma obrażenia po raz pierwszy w tej turze, otrzymuje [blue][Amount][/blue] pkt. [gold]Bloku[/gold].",
-    "description_raw": "Gdy [gold]{OwnerName}[/gold] otrzyma obrażenia po raz pierwszy w tej turze, otrzymuje [blue]{Amount}[/blue] pkt. [gold]Bloku[/gold].",
+    "description": "Gdy [gold]this creature[/gold] otrzyma obrażenia po raz pierwszy w każdej turze, otrzymuje [blue][Amount][/blue] pkt. [gold]Bloku[/gold].",
+    "description_raw": "Gdy [gold]{OwnerName}[/gold] otrzyma obrażenia po raz pierwszy w każdej turze, otrzymuje [blue]{Amount}[/blue] pkt. [gold]Bloku[/gold].",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1971,7 +2031,7 @@
   },
   {
     "id": "SLEIGHT_OF_FLESH",
-    "name": "Zręczność ciała",
+    "name": "Maltretowanie",
     "description": "Kiedykolwiek nałożysz osłabienie na przeciwnika, otrzymuje dodatkowo [blue]13[/blue] pkt. obrażeń.",
     "description_raw": null,
     "type": "Buff",
@@ -1983,7 +2043,7 @@
     "id": "SLIPPERY",
     "name": "Śliskość",
     "description": "Następne [blue]2[/blue] razy|Następnych [blue]2[/blue] razy gdy [gold]this creature[/gold] utraci PŻ, zamiast tego traci tylko [blue]1[/blue] PŻ.",
-    "description_raw": "{Amount:plural:Następny raz|Następne [blue]{}[/blue] razy|Następnych [blue]{}[/blue] razy} gdy [gold]{OwnerName}[/gold] utraci PŻ, zamiast tego traci tylko [blue]1[/blue] PŻ.",
+    "description_raw": "{Amount:plural:Następnym razem|Następne [blue]{}[/blue] razy|Następnych [blue]{}[/blue] razy} gdy [gold]{OwnerName}[/gold] utraci PŻ, zamiast tego traci tylko [blue]1[/blue] PŻ.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -2058,6 +2118,16 @@
     "stack_type": "Single",
     "allow_negative": null,
     "image_url": "/static/images/powers/soar_power.webp"
+  },
+  {
+    "id": "SOULBOUND",
+    "name": "Bratnia dusza",
+    "description": "Kiedykolwiek gracz [ApplierName] stworzy [gold]Duszę[/gold], dodaj [gold]Duszę[/gold] do twojego [gold]stosu kart odrzuconych[/gold].",
+    "description_raw": "Kiedykolwiek gracz {ApplierName} stworzy [gold]Duszę[/gold], dodaj [gold]Duszę[/gold] do twojego [gold]stosu kart odrzuconych[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/soulbound_power.webp"
   },
   {
     "id": "SPECTRUM_SHIFT",
@@ -2192,8 +2262,8 @@
   {
     "id": "SUBROUTINE",
     "name": "Podprogram",
-    "description": "Kiedykolwiek zagrasz Moc, zyskaj [blue]1[/blue] [energy:1].",
-    "description_raw": "Kiedykolwiek zagrasz Moc, zyskaj [blue]1[/blue] {energyPrefix:energyIcons(1)}.",
+    "description": "Kiedykolwiek zagrasz Moc, zyskaj [energy:1].",
+    "description_raw": "Kiedykolwiek zagrasz Moc, zyskaj {Amount:energyIcons()}.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -2302,8 +2372,8 @@
   {
     "id": "TANK",
     "name": "Ja tankuję!",
-    "description": "Otrzymujesz podwójne obrażenia od przeciwników. Sojusznicy otrzymują połowę mniej obrażeń od przeciwników.",
-    "description_raw": null,
+    "description": "Otrzymujesz [blue]50%[/blue] więcej obrażeń od przeciwników. Otrzymujesz [blue]50%[/blue] mniej obrażeń od przeciwników.",
+    "description_raw": "Otrzymujesz [blue]{DamageIncrease:percentMore()}%[/blue] więcej obrażeń od przeciwników. Otrzymujesz [blue]{DamageDecrease:percentLess()}%[/blue] mniej obrażeń od przeciwników.",
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
@@ -2422,7 +2492,7 @@
   {
     "id": "TRACKING",
     "name": "Tropienie",
-    "description": "[gold]Słabi[/gold] przeciwnicy otrzymują [blue]2[/blue] razy więcej obrażeń od Ataków.",
+    "description": "[gold]Słabi[/gold] przeciwnicy otrzymują [blue]50%[/blue] więcej obrażeń od Ataków.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -2450,10 +2520,20 @@
     "image_url": "/static/images/powers/tyranny_power.webp"
   },
   {
+    "id": "UNDERWORLD",
+    "name": "Zaświaty",
+    "description": "Kiedykolwiek inni gracze zadają obrażenia od ataków w tej turze, nałóż  [blue]2[/blue] razy tyle| [blue]2[/blue] razy tyle pkt. [gold]Zagłady[/gold].",
+    "description_raw": "Kiedykolwiek inni gracze zadają obrażenia od ataków w tej turze, nałóż {Amount:plural:tyle samo| [blue]{}[/blue] razy tyle| [blue]{}[/blue] razy tyle} pkt. [gold]Zagłady[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/underworld_power.webp"
+  },
+  {
     "id": "UNMOVABLE",
     "name": "Nie do ruszenia",
-    "description": "Gdy zyskasz [gold]Blok[/gold] z karty przez pierwsze [blue]2[/blue] razy w tej turze, podwój liczbę zyskanych pkt. [gold]Bloku[/gold].",
-    "description_raw": "Gdy zyskasz [gold]Blok[/gold] z karty {Amount:plural:po raz pierwszy|przez pierwsze [blue]{}[/blue] razy} w tej turze, podwój liczbę zyskanych pkt. [gold]Bloku[/gold].",
+    "description": "Gdy zyskasz [gold]Blok[/gold] z karty pierwsze [blue]2[/blue] razy|pierwszych [blue]2[/blue] razy w każdej turze, podwój liczbę zyskanych pkt. [gold]Bloku[/gold].",
+    "description_raw": "Gdy zyskasz [gold]Blok[/gold] z karty {Amount:plural:po raz pierwszy|pierwsze [blue]{}[/blue] razy|pierwszych [blue]{}[/blue] razy} w każdej turze, podwój liczbę zyskanych pkt. [gold]Bloku[/gold].",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -2462,7 +2542,7 @@
   {
     "id": "VEILPIERCER",
     "name": "Przekłucie",
-    "description": "Następna [gold]Eteryczna karta[/gold] kosztuje [blue]0[/blue].",
+    "description": "Twoja następna [gold]Eteryczna karta[/gold] kosztuje [blue]0[/blue].",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -2502,8 +2582,8 @@
   {
     "id": "VOID_FORM",
     "name": "Pustka",
-    "description": "W każdej turze pierwsze [blue]2[/blue] zagrane karty są darmowe|pierwszych [blue]2[/blue] zagranych kart jest darmowych.",
-    "description_raw": "W każdej turze {Amount:plural:pierwsza zagrana karta jest darmowa|pierwsze [blue]{}[/blue] zagrane karty są darmowe|pierwszych [blue]{}[/blue] zagranych kart jest darmowych}.",
+    "description": "W każdej turze twoje pierwsze [blue]2[/blue] karty są darmowe|twoich pierwszych [blue]2[/blue] kart jest darmowych.",
+    "description_raw": "W każdej turze {Amount:plural:twoja pierwsza karta jest darmowa|twoje pierwsze [blue]{}[/blue] karty są darmowe|twoich pierwszych [blue]{}[/blue] kart jest darmowych}.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -2542,17 +2622,17 @@
   {
     "id": "WELL_LAID_PLANS",
     "name": "Chytry plan",
-    "description": "Pod koniec tury [gold]Zachowaj[/gold] maksymalnie [blue]1[/blue] kartę.",
+    "description": "Nie odrzucasz już swojej [gold]ręki[/gold] pod koniec tury.",
     "description_raw": null,
     "type": "Buff",
-    "stack_type": "Counter",
+    "stack_type": "Single",
     "allow_negative": null,
     "image_url": "/static/images/powers/well_laid_plans_power.webp"
   },
   {
     "id": "WITHERING_PRESENCE",
     "name": "Wieczny byt",
-    "description": "Kiedykolwiek zagrasz [blue]6[/blue] kart, dodaj [gold]Przemijanie[/gold] do [gold]ręki[/gold].",
+    "description": "Co [blue]6[/blue] zagranych kart, dodaj [gold]Przemijanie[/gold] do [gold]ręki[/gold].",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",

@@ -68,8 +68,8 @@
   {
     "id": "INKY",
     "name": "Nanquim",
-    "description": "Esta carta causa [blue]1[/blue] de dano adicional e aplica [blue]1[/blue] de [gold]Fraqueza[/gold].",
-    "description_raw": "Esta carta causa [blue]{Damage}[/blue] de dano adicional e aplica [blue]{WeakPower}[/blue] de [gold]Fraqueza[/gold].",
+    "description": "Esta carta aplica [blue]1[/blue] de [gold]Fraqueza[/gold].",
+    "description_raw": "Esta carta aplica [blue]{WeakPower}[/blue] de [gold]Fraqueza[/gold].",
     "extra_card_text": "Aplique [blue]1[/blue] de [gold]Fraqueza[/gold].",
     "card_type": null,
     "applicable_to": null,

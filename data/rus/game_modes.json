@@ -1,0 +1,38 @@
+[
+  {
+    "id": "STANDARD",
+    "name": "Стандартная",
+    "description": "Отправьтесь в приключение и покорите Шпиль!",
+    "multiplayer_description": "Отправьтесь в приключение и покорите Шпиль… вместе с друзьями!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": null,
+    "max_ascension": 10
+  },
+  {
+    "id": "DAILY",
+    "name": "Ежедневная",
+    "description": "Новое испытание доступно каждый день!\n\nСоревнуйтесь с другими игроками за наибольшее количество очков!",
+    "multiplayer_description": "Новое испытание доступно каждый день!\n\nСоревнуйтесь с другими командами за наибольшее количество очков!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "Сыграйте вылазку за каждого персонажа и пройдите 3-й акт, чтобы открыть ежедневные вылазки.",
+    "max_ascension": 10
+  },
+  {
+    "id": "CUSTOM",
+    "name": "Нестандартная",
+    "description": "Создайте собственную вылазку с уникальными модификаторами.",
+    "multiplayer_description": "Создайте собственную совместную вылазку с уникальными модификаторами.",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "Пройдите 3-й акт, чтобы открыть пользовательские вылазки.",
+    "max_ascension": 10
+  }
+]

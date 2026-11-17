@@ -68,8 +68,8 @@
   {
     "id": "INKY",
     "name": "墨影",
-    "description": "这张牌额外造成[blue]1[/blue]点伤害，并造成[blue]1[/blue]层[gold]虚弱[/gold]。",
-    "description_raw": "这张牌额外造成[blue]{Damage}[/blue]点伤害，并造成[blue]{WeakPower}[/blue]层[gold]虚弱[/gold]。",
+    "description": "这张牌造成[blue]1[/blue]层[gold]虚弱[/gold]。",
+    "description_raw": "这张牌造成[blue]{WeakPower}[/blue]层[gold]虚弱[/gold]。",
     "extra_card_text": "造成[blue]1[/blue]层[gold]虚弱[/gold]。",
     "card_type": null,
     "applicable_to": null,
