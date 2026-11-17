@@ -524,3 +524,20 @@ def test_bare_upload_body_cap_covers_a_full_size_replay():
 
     assert any(p.match("/api/runs/replay") for p, _ in _BODY_LIMITS)
     assert any(p.match(f"/api/runs/{RUN_HASH}/replay") for p, _ in _BODY_LIMITS)
+
+
+def test_same_journal_from_another_compressor_is_a_duplicate(env):
+    runs, replays = env
+    raw = ("\n".join(_lines()) + "\n").encode("utf-8")
+    first, second = gzip.compress(raw, 9), gzip.compress(raw, 1)
+    assert first != second
+    assert _post(first).status_code == 200
+    again = _post(second)
+    assert again.status_code == 200 and again.json()["duplicate"] is True
+    assert bytes(replays.docs[RUN_HASH]["blob"]) == first
+    replays.docs[RUN_HASH].pop("content_sha256")
+    legacy = _post_bare(second)
+    assert legacy.status_code == 200 and legacy.json()["duplicate"] is True
+    changed = _post(_gz(_lines()[:-1]))
+    assert changed.status_code == 409
+    assert changed.json()["detail"]["code"] == "replay_exists"
