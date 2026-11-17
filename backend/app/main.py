@@ -751,7 +751,7 @@ _DEFAULT_BODY_BYTES = int(
 _BODY_LIMITS: tuple[tuple[re.Pattern[str], int], ...] = (
     (re.compile(r"^/api/auth/runs/upload/?$"), _MAX_BODY_BYTES),
     (
-        re.compile(r"^/api/runs/[^/]+/replay/?$"),
+        re.compile(r"^/api/runs/(?:[^/]+/)?replay/?$"),
         max(_DEFAULT_BODY_BYTES, 2 * REPLAY_MAX_GZ_BYTES),
     ),
     (re.compile(r"^/api/tierlists/[^/]+/?$"), 6 * 1024 * 1024),
