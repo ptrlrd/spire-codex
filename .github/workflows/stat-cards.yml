@@ -3,12 +3,8 @@ name: Stat cards
 on:
   workflow_dispatch:
     inputs:
-      beta_version:
-        description: "Beta version, e.g. v0.113.1 (blank = current beta)"
-        required: false
-        default: ""
-      main_version:
-        description: "Main version, e.g. v0.111.1 (blank = current main)"
+      versions:
+        description: "Versions to recap, comma separated, e.g. v0.109.1, v0.110.0 (blank = current beta and main)"
         required: false
         default: ""
 
@@ -42,10 +38,9 @@ jobs:
       - name: Render cards
         working-directory: tools/stat_cards
         env:
-          BETA_VERSION: ${{ inputs.beta_version }}
-          MAIN_VERSION: ${{ inputs.main_version }}
+          VERSIONS: ${{ inputs.versions }}
         run: |
-          node render.mjs "--beta=$BETA_VERSION" "--main=$MAIN_VERSION"
+          node render.mjs "--versions=$VERSIONS"
           cat out/summary.md >> "$GITHUB_STEP_SUMMARY"
 
       - uses: actions/upload-artifact@v7

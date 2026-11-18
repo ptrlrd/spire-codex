@@ -49,14 +49,18 @@ export function pickMainVersion(statVersions, betaVersion) {
 }
 
 async function resolveVersions() {
-  let beta = arg("beta");
-  let main = arg("main");
-  if (!beta) beta = (await getJson(`${API}/api/beta/version`)).beta_version || "";
-  if (!main) {
-    const listed = await getJson(`${API}/api/runs/versions`);
-    main = pickMainVersion(listed.stat_versions || [], beta);
-  }
-  return { beta, main };
+  const typed = arg("versions")
+    .split(/[\s,]+/)
+    .filter(Boolean)
+    .map((v) => (/^v/i.test(v) ? `v${v.slice(1)}` : `v${v}`));
+  if (typed.length) return [...new Set(typed)].map((version) => ({ version, channel: "" }));
+  const beta = (await getJson(`${API}/api/beta/version`)).beta_version || "";
+  const listed = await getJson(`${API}/api/runs/versions`);
+  const main = pickMainVersion(listed.stat_versions || [], beta);
+  return [
+    { version: beta, channel: "beta" },
+    { version: main, channel: "main" },
+  ].filter((v) => v.version);
 }
 
 async function bracketStats(bracket) {
@@ -88,6 +92,8 @@ async function epochArt(id) {
   }
 }
 
+const named = (channel, version) => (channel ? `${channel} ${version}` : version);
+const slug = (channel, version) => (channel ? `${channel}-${version}` : version);
 const rate = (row) => (row.runs ? (row.wins / row.runs) * 100 : 0);
 const pct = (row) => `${rate(row).toFixed(1)}%`;
 const num = (n) => n.toLocaleString("en-US");
@@ -186,11 +192,11 @@ async function modesCard(version, channel) {
   if (!rows.some((r) => r.id !== "standard" && r.runs)) return null;
   const hardest = [...rows].filter((r) => r.runs).sort((a, b) => rate(a) - rate(b))[0];
   return {
-    file: `modes-${channel}-${version}.png`,
-    tag: `Slay the Spire 2 · ${channel} ${version}`,
+    file: `modes-${slug(channel, version)}.png`,
+    tag: `Slay the Spire 2 · ${named(channel, version)}`,
     headline: hardest.runs >= MIN_HEADLINE_RUNS ? oneIn(hardest) : "Win rates by mode so far",
     sub: "Solo win rates by mode.",
-    foot: `Solo runs on ${channel} ${version} uploaded to Spire Codex, all characters and all players. Abandoned runs count as not won. Data through ${day(rows[0].data_through)}.`,
+    foot: `Solo runs on ${named(channel, version)} uploaded to Spire Codex, all characters and all players. Abandoned runs count as not won. Data through ${day(rows[0].data_through)}.`,
     rows,
   };
 }
@@ -210,26 +216,22 @@ async function charactersCard(version, channel) {
     }));
   if (!rows.length) return null;
   return {
-    file: `characters-${channel}-${version}.png`,
-    tag: `Slay the Spire 2 · ${channel} ${version}`,
+    file: `characters-${slug(channel, version)}.png`,
+    tag: `Slay the Spire 2 · ${named(channel, version)}`,
     headline: rows.every((r) => r.runs >= MIN_HEADLINE_RUNS)
       ? `${rows[0].label} wins most at Ascension 10`
       : "Ascension 10 win rates so far",
     sub: "Solo Ascension 10 win rate for each character.",
-    foot: `Solo standard Ascension 10 runs on ${channel} ${version} uploaded to Spire Codex, all players. Abandoned runs count as not won. Data through ${day(stats.data_through)}.`,
+    foot: `Solo standard Ascension 10 runs on ${named(channel, version)} uploaded to Spire Codex, all players. Abandoned runs count as not won. Data through ${day(stats.data_through)}.`,
     rows,
   };
 }
 
 async function main() {
-  const { beta, main: mainVersion } = await resolveVersions();
-  console.log(`beta ${beta || "(none)"}, main ${mainVersion || "(none)"}`);
+  const versions = await resolveVersions();
+  console.log(versions.map((v) => named(v.channel, v.version)).join(", "));
   const cards = [];
-  for (const [channel, version] of [
-    ["beta", beta],
-    ["main", mainVersion],
-  ]) {
-    if (!version) continue;
+  for (const { version, channel } of versions) {
     for (const build of [modesCard, charactersCard]) {
       const card = await build(version, channel);
       if (card) cards.push({ ...card, channel, version });
