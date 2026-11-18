@@ -23,6 +23,7 @@ Usage:
 Options:
   --game-version    The game's version string from Steam (e.g. "0.98.2")
   --build-id        Steam build ID (e.g. "22238966") — changes with each depot update
+  --game-patch      Game patch this release carries (e.g. "0.111.1"), shown on the site instead of the tag
   --date            Date of the update (defaults to today)
   --title           Human-readable title for this changelog entry
   --data-dir        Data directory to diff (default: "data") — use "data-beta" for beta
@@ -506,6 +507,7 @@ def main():
     fmt, argv = parse_named_arg(argv, "--format", "text")
     game_version, argv = parse_named_arg(argv, "--game-version", "")
     build_id, argv = parse_named_arg(argv, "--build-id", "")
+    game_patch, argv = parse_named_arg(argv, "--game-patch", "")
     date, argv = parse_named_arg(argv, "--date", "")
     title, argv = parse_named_arg(argv, "--title", "")
     data_dir_arg, argv = parse_named_arg(argv, "--data-dir", "")
@@ -576,6 +578,8 @@ def main():
             if not title:
                 title = f"Update {game_version}"
             changelog = build_json_output(results, game_version, build_id, date, title, old_label, new_label)
+            if game_patch:
+                changelog["game_patch"] = game_patch.lstrip("vV")
             # Save to changelogs directory — keyed by tag
             tag = changelog["tag"]
             out_path = output_dir / f"{tag}.json"

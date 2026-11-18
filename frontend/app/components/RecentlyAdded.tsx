@@ -16,6 +16,7 @@ interface RecentItem {
   id: string;
   name: string;
   version_tag: string;
+  game_patch?: string;
   version_date?: string;
   rarity?: string;
   type?: string;
@@ -59,7 +60,7 @@ export default async function RecentlyAdded({
   // Group by version so we can show "Added in vX.Y.Z" once per group
   const byVersion = new Map<string, RecentItem[]>();
   for (const item of items) {
-    const v = item.version_tag || "unknown";
+    const v = item.game_patch || item.version_tag || "unknown";
     if (!byVersion.has(v)) byVersion.set(v, []);
     byVersion.get(v)!.push(item);
   }
