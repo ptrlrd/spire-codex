@@ -1028,6 +1028,8 @@ export function buildScene(text: string): {
           },
           blitz: list(d.blitz).map((x) => ({
             entry: str(x.blitz_entry) ?? str(x.entry_class),
+            modelId: str(x.model_id),
+            amount: num(x.amount),
             status: str(x.status),
           })),
         };
@@ -1052,6 +1054,7 @@ export function buildScene(text: string): {
           id: str(d.id),
           label: str(d.kind),
           option: str(d.blitz_entry) ?? str(d.entry_class),
+          target: d.kind === "blitz" ? str(d.model_id) : undefined,
           n: num(d.cost_current),
         });
         break;

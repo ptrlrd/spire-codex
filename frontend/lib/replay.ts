@@ -10,6 +10,7 @@
 // absence is always "not known", never zero.
 
 import type { Coord, MapEdge, MapNode } from "@/app/[locale]/live/live-shared";
+import { displayName } from "./display-name";
 
 type Raw = Record<string, unknown>;
 
@@ -180,12 +181,26 @@ export interface BuyLine extends LineBase {
   entryClass?: string;
   /** Blitz only: the entry's MerchantEntryType, e.g. ColorlessCardReward. */
   blitzEntry?: string;
+  /** Blitz only: Card Enchant's enchantment or Prismatic's character. */
+  modelId?: string;
+  /** Blitz only: Card Enchant's enchantment amount. */
+  amount?: number;
 }
 
-/** "ColorlessCardReward" -> "Colorless Card Reward". */
-export function blitzEntryName(type: string): string {
+/**
+ * "ColorlessCardReward" -> "Colorless Card Reward"; with a variant,
+ * "CardEnchant", "SHARP", 2 -> "Card Enchant (Sharp 2)".
+ */
+export function blitzEntryName(
+  type: string,
+  modelId?: string,
+  amount?: number,
+): string {
   const bare = type.replace(/^BlitzMerchant/, "").replace(/Entry$/, "");
-  return bare.replace(/([a-z])([A-Z])/g, "$1 $2");
+  const name = bare.replace(/([a-z])([A-Z])/g, "$1 $2");
+  if (!modelId) return name;
+  const n = amount !== undefined && amount > 1 ? ` ${amount}` : "";
+  return `${name} (${displayName(modelId)}${n})`;
 }
 export interface ShopItem {
   slot: number;
@@ -211,6 +226,10 @@ export interface BlitzOffer {
   slot: number;
   entry?: string;
   entryClass?: string;
+  /** Card Enchant's enchantment or Prismatic's character. */
+  modelId?: string;
+  /** Card Enchant's enchantment amount. */
+  amount?: number;
   /** available, used or disabled */
   status?: string;
 }
@@ -721,6 +740,8 @@ function blitzOffers(v: unknown): BlitzOffer[] | undefined {
     slot: num(x.slot) ?? i,
     entry: str(x.blitz_entry),
     entryClass: str(x.entry_class),
+    modelId: str(x.model_id),
+    amount: count(x.amount),
     status: str(x.status),
   }));
 }
@@ -897,6 +918,8 @@ function narrow(raw: Raw): ReplayLine | undefined {
         entryId: int(raw.entry_id),
         entryClass: str(raw.entry_class),
         blitzEntry: str(raw.blitz_entry),
+        modelId: str(raw.model_id),
+        amount: count(raw.amount),
       };
     case "shop":
       return {

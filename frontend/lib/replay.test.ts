@@ -4167,3 +4167,67 @@ describe("blitz merchant offers", () => {
     expect(blitzOfferRows(floor!)).toEqual([]);
   });
 });
+
+describe("blitz offer variants", () => {
+  it("names a Card Enchant or Prismatic offer's variant", () => {
+    expect(blitzEntryName("CardEnchant", "SHARP", 2)).toBe(
+      "Card Enchant (Sharp 2)",
+    );
+    expect(blitzEntryName("CardEnchant", "SWIFT", 1)).toBe(
+      "Card Enchant (Swift)",
+    );
+    expect(blitzEntryName("PrismaticCardReward", "REGENT")).toBe(
+      "Prismatic Card Reward (Regent)",
+    );
+    expect(blitzEntryName("Potions")).toBe("Potions");
+  });
+
+  it("parses model_id and amount on offers and buys", () => {
+    const { lines } = parseReplayLines(
+      journal([
+        { t: "header", s: 0, ms: 0, floor: 0, act: 1, replay_version: 9 },
+        {
+          t: "shop",
+          s: 1,
+          ms: 1,
+          floor: 4,
+          act: 1,
+          cards: [],
+          relics: [],
+          potions: [],
+          blitz: [
+            {
+              slot: 0,
+              blitz_entry: "CardEnchant",
+              entry_class: "BlitzMerchantCardEnchantEntry",
+              model_id: "SHARP",
+              amount: 2,
+              status: "available",
+            },
+          ],
+        },
+        {
+          t: "buy",
+          s: 2,
+          ms: 2,
+          floor: 4,
+          act: 1,
+          purchase_id: 1,
+          kind: "blitz",
+          slot: 0,
+          blitz_entry: "CardEnchant",
+          model_id: "SHARP",
+          amount: 2,
+          cost_current: 0,
+          cost_resource: "gold",
+        },
+      ]),
+    );
+    const shop = lines.find((l): l is ShopLine => l.t === "shop");
+    expect(shop?.blitz?.[0]).toMatchObject({ modelId: "SHARP", amount: 2 });
+    expect(lines.find((l) => l.t === "buy")).toMatchObject({
+      modelId: "SHARP",
+      amount: 2,
+    });
+  });
+});

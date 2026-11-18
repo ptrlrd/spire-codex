@@ -112,7 +112,7 @@ function caption(step: SceneStep, cat: Catalog, t: TFn): string {
       return t("Shop");
     case "buy": {
       if (c.label === "blitz" && c.option)
-        return `${t("Bought")}: ${blitzEntryName(c.option)}`;
+        return `${t("Bought")}: ${blitzEntryName(c.option, c.target)}`;
       const name =
         c.label === "card"
           ? cardName(id, cat)

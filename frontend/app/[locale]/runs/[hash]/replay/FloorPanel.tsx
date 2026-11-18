@@ -388,7 +388,11 @@ function describeLine(
           ),
         };
       if (l.kind === "blitz" && (l.blitzEntry || l.entryClass)) {
-        const entry = blitzEntryName(l.blitzEntry ?? l.entryClass ?? "");
+        const entry = blitzEntryName(
+          l.blitzEntry ?? l.entryClass ?? "",
+          l.modelId,
+          l.amount,
+        );
         return plain(`${t("Bought")} ${entry}`);
       }
       return plain(
@@ -878,7 +882,11 @@ function ShopBlock({
               }`}
             >
               <span className="min-w-0 flex-1 truncate">
-                {blitzEntryName(offer.entry ?? offer.entryClass ?? "")}
+                {blitzEntryName(
+                  offer.entry ?? offer.entryClass ?? "",
+                  offer.modelId,
+                  offer.amount,
+                )}
               </span>
               {picked && <TakenBadge />}
             </li>
@@ -899,7 +907,11 @@ function ShopBlock({
             const label = removal
               ? `${t("Card removal")}${target ? `: ${cardName(target, cat)}` : ""}`
               : blitz
-                ? blitzEntryName(l.blitzEntry ?? l.entryClass ?? "")
+                ? blitzEntryName(
+                    l.blitzEntry ?? l.entryClass ?? "",
+                    l.modelId,
+                    l.amount,
+                  )
                 : itemName(l.kind, l.id ?? "", cat);
             return (
               <li
