@@ -118,7 +118,7 @@ function day(dataThrough) {
 
 function cardHtml(card) {
   const scale = Math.max(...card.rows.map(rate), 1) / 0.9;
-  const height = card.rows.length > 4 ? 94 : 168;
+  const height = { 4: 140, 5: 116 }[card.rows.length] ?? (card.rows.length > 5 ? 94 : 168);
   const compact = card.rows.length > 4;
   const rows = card.rows
     .map(
