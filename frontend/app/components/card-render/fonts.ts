@@ -84,7 +84,7 @@ function substitute(
 
 const FIRA = substitute(
   "GameFira",
-  "/fonts/game-sub/fira-sans-extra-condensed-regular-game.woff2",
+  "/static/images/card-render/fonts/fira-sans-extra-condensed-regular-game.woff2",
   45,
   13,
   0,
@@ -100,7 +100,7 @@ export const LANG_FONTS: Record<string, LangFont> = {
   pol: FIRA,
   jpn: substitute(
     "GameNotoJP",
-    "/fonts/game-sub/noto-sans-cjk-jp-regular-game.woff2",
+    "/static/images/card-render/fonts/noto-sans-cjk-jp-regular-game.woff2",
     56,
     16,
     0,
@@ -113,7 +113,7 @@ export const LANG_FONTS: Record<string, LangFont> = {
   ),
   kor: substitute(
     "GameGyeonggi",
-    "/fonts/game-sub/gyeonggi-cheonnyeon-batang-bold-game.woff2",
+    "/static/images/card-render/fonts/gyeonggi-cheonnyeon-batang-bold-game.woff2",
     39,
     10,
     1,
@@ -125,7 +125,7 @@ export const LANG_FONTS: Record<string, LangFont> = {
   ),
   tha: substitute(
     "GameThai",
-    "/fonts/game-sub/cs-chat-thai-ui-game.woff2",
+    "/static/images/card-render/fonts/cs-chat-thai-ui-game.woff2",
     46,
     11,
     2,
@@ -137,7 +137,7 @@ export const LANG_FONTS: Record<string, LangFont> = {
   ),
   zhs: substitute(
     "GameNotoMonoSC",
-    "/fonts/game-sub/noto-sans-mono-cjk-sc-regular-game.woff2",
+    "/static/images/card-render/fonts/noto-sans-mono-cjk-sc-regular-game.woff2",
     56,
     16,
     0,
@@ -150,7 +150,7 @@ export const LANG_FONTS: Record<string, LangFont> = {
   ),
   zht: substitute(
     "GameNotoMonoTC",
-    "/fonts/game-sub/noto-sans-mono-cjk-tc-regular-game.woff2",
+    "/static/images/card-render/fonts/noto-sans-mono-cjk-tc-regular-game.woff2",
     56,
     14,
     0,
@@ -163,7 +163,7 @@ export const LANG_FONTS: Record<string, LangFont> = {
   ),
   ara: substitute(
     "GameYamama",
-    "/fonts/game-sub/alyamama-regular-game.woff2",
+    "/static/images/card-render/fonts/alyamama-regular-game.woff2",
     44,
     26,
     0,

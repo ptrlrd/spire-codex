@@ -95,6 +95,7 @@ export function richText(
     last = re.lastIndex;
     const [, close, tag, arg] = m;
     if (tag === "energy" || tag === "star") {
+      if (split) flush();
       const [amount, flag] = (arg ?? "").split(":");
       const parsed = parseInt(amount, 10);
       const counted = amount !== "X" && amount !== "" && !Number.isNaN(parsed);
@@ -164,6 +165,7 @@ export function keywordLines(
   visible: string[],
   added: string[],
   period: string,
+  addedNames?: Record<string, string>,
 ) {
   const names = card.keywords ?? [];
   const keys =
@@ -174,7 +176,8 @@ export function keywordLines(
   const line = (k: string) => {
     const name = byKey.get(k);
     if (name && shown.has(name)) return `[gold]${name}[/gold]${period}`;
-    if (added.includes(k)) return `[gold]${k}[/gold]${period}`;
+    if (added.includes(k))
+      return `[gold]${addedNames?.[k] ?? k}[/gold]${period}`;
     return null;
   };
   return {

@@ -3,6 +3,7 @@ import path from "path";
 import { notFound } from "next/navigation";
 import type { Card } from "@/lib/api/types";
 import CardRender, { type CardEnchantment } from "@/app/components/CardRender";
+import { enchantedCardUrl, fullCardUrl, imageUrl } from "@/lib/image-url";
 import {
   ENCHANTMENT_RULES,
   enchantmentExtraText,
@@ -83,6 +84,24 @@ function loadEnchantment(
   };
 }
 
+function keywordNames(lang: string): Record<string, string> {
+  const p = path.join(
+    process.cwd(),
+    "..",
+    "data-beta",
+    "v0.113.0",
+    lang,
+    "keywords.json",
+  );
+  if (!fs.existsSync(p)) return {};
+  const list: Array<{ id: string; name: string }> = JSON.parse(
+    fs.readFileSync(p, "utf8"),
+  );
+  return Object.fromEntries(
+    list.map((k) => [k.id.charAt(0) + k.id.slice(1).toLowerCase(), k.name]),
+  );
+}
+
 function titleVariants(
   lang: string,
   id: string,
@@ -100,7 +119,11 @@ function titleVariants(
   return title && typeof title === "object" ? title : undefined;
 }
 
-const FONT_CSS = `@font-face{font-family:"GameFira";font-weight:400;src:url("/fonts/game-sub/fira-sans-extra-condensed-regular-game.woff2") format("woff2");}@font-face{font-family:"GameFira";font-weight:700;src:url("/fonts/game-sub/fira-sans-extra-condensed-regular-game.woff2") format("woff2");}@font-face{font-family:"GameNotoJP";font-weight:400;src:url("/fonts/game-sub/noto-sans-cjk-jp-regular-game.woff2") format("woff2");}@font-face{font-family:"GameNotoJP";font-weight:700;src:url("/fonts/game-sub/noto-sans-cjk-jp-regular-game.woff2") format("woff2");}@font-face{font-family:"GameGyeonggi";font-weight:400;src:url("/fonts/game-sub/gyeonggi-cheonnyeon-batang-bold-game.woff2") format("woff2");}@font-face{font-family:"GameGyeonggi";font-weight:700;src:url("/fonts/game-sub/gyeonggi-cheonnyeon-batang-bold-game.woff2") format("woff2");}@font-face{font-family:"GameThai";font-weight:400;src:url("/fonts/game-sub/cs-chat-thai-ui-game.woff2") format("woff2");}@font-face{font-family:"GameThai";font-weight:700;src:url("/fonts/game-sub/cs-chat-thai-ui-game.woff2") format("woff2");}@font-face{font-family:"GameNotoMonoSC";font-weight:400;src:url("/fonts/game-sub/noto-sans-mono-cjk-sc-regular-game.woff2") format("woff2");}@font-face{font-family:"GameNotoMonoSC";font-weight:700;src:url("/fonts/game-sub/noto-sans-mono-cjk-sc-regular-game.woff2") format("woff2");}@font-face{font-family:"GameNotoMonoTC";font-weight:400;src:url("/fonts/game-sub/noto-sans-mono-cjk-tc-regular-game.woff2") format("woff2");}@font-face{font-family:"GameNotoMonoTC";font-weight:700;src:url("/fonts/game-sub/noto-sans-mono-cjk-tc-regular-game.woff2") format("woff2");}@font-face{font-family:"GameYamama";font-weight:400;src:url("/fonts/game-sub/alyamama-regular-game.woff2") format("woff2");}@font-face{font-family:"GameYamama";font-weight:700;src:url("/fonts/game-sub/alyamama-regular-game.woff2") format("woff2");}`;
+const FONT_CSS =
+  `@font-face{font-family:"GameFira";font-weight:400;src:url("/fonts/game-sub/fira-sans-extra-condensed-regular-game.woff2") format("woff2");}@font-face{font-family:"GameFira";font-weight:700;src:url("/fonts/game-sub/fira-sans-extra-condensed-regular-game.woff2") format("woff2");}@font-face{font-family:"GameNotoJP";font-weight:400;src:url("/fonts/game-sub/noto-sans-cjk-jp-regular-game.woff2") format("woff2");}@font-face{font-family:"GameNotoJP";font-weight:700;src:url("/fonts/game-sub/noto-sans-cjk-jp-regular-game.woff2") format("woff2");}@font-face{font-family:"GameGyeonggi";font-weight:400;src:url("/fonts/game-sub/gyeonggi-cheonnyeon-batang-bold-game.woff2") format("woff2");}@font-face{font-family:"GameGyeonggi";font-weight:700;src:url("/fonts/game-sub/gyeonggi-cheonnyeon-batang-bold-game.woff2") format("woff2");}@font-face{font-family:"GameThai";font-weight:400;src:url("/fonts/game-sub/cs-chat-thai-ui-game.woff2") format("woff2");}@font-face{font-family:"GameThai";font-weight:700;src:url("/fonts/game-sub/cs-chat-thai-ui-game.woff2") format("woff2");}@font-face{font-family:"GameNotoMonoSC";font-weight:400;src:url("/fonts/game-sub/noto-sans-mono-cjk-sc-regular-game.woff2") format("woff2");}@font-face{font-family:"GameNotoMonoSC";font-weight:700;src:url("/fonts/game-sub/noto-sans-mono-cjk-sc-regular-game.woff2") format("woff2");}@font-face{font-family:"GameNotoMonoTC";font-weight:400;src:url("/fonts/game-sub/noto-sans-mono-cjk-tc-regular-game.woff2") format("woff2");}@font-face{font-family:"GameNotoMonoTC";font-weight:700;src:url("/fonts/game-sub/noto-sans-mono-cjk-tc-regular-game.woff2") format("woff2");}@font-face{font-family:"GameYamama";font-weight:400;src:url("/fonts/game-sub/alyamama-regular-game.woff2") format("woff2");}@font-face{font-family:"GameYamama";font-weight:700;src:url("/fonts/game-sub/alyamama-regular-game.woff2") format("woff2");}`.replaceAll(
+    "/fonts/game-sub/",
+    imageUrl("/static/images/card-render/fonts/"),
+  );
 
 const GRID: Array<[string, string[]]> = [
   [
@@ -191,7 +214,136 @@ const GRID: Array<[string, string[]]> = [
   ],
 ];
 
-function GridView() {
+const ALL_LANGS = [
+  "eng",
+  "ara",
+  "deu",
+  "esp",
+  "fra",
+  "ind",
+  "ita",
+  "jpn",
+  "kor",
+  "pol",
+  "ptb",
+  "rus",
+  "spa",
+  "tha",
+  "tur",
+  "zhs",
+  "zht",
+];
+const RENDER_VERSION = "0.113.0";
+
+function customGrid(sp: Record<string, string | undefined>) {
+  const filtered = sp.color || sp.rarity || sp.type;
+  if (!sp.cards && !sp.langs && !filtered) return GRID;
+  const up = sp.up === "1" ? "1" : "0";
+  const ench = sp.ench ? `:${sp.ench.toUpperCase()}` : "";
+  const list = (v: string) =>
+    v
+      .split(",")
+      .map((x) => x.trim())
+      .filter(Boolean);
+  if (filtered) {
+    const has = (want: string | undefined, got: unknown) =>
+      !want || list(want.toLowerCase()).includes(String(got).toLowerCase());
+    const ids = load("eng", true)
+      .filter(
+        (c) =>
+          has(sp.color, c.color) &&
+          has(sp.rarity, c.rarity) &&
+          has(sp.type, c.type),
+      )
+      .slice(0, Number(sp.limit ?? 120))
+      .map((c) => c.id);
+    const label = [sp.color, sp.rarity, sp.type].filter(Boolean).join(" ");
+    return (sp.langs ? list(sp.langs.toLowerCase()) : ["eng"]).map(
+      (l) =>
+        [
+          `${label} in ${l} (${ids.length})`,
+          ids.map((id) => `${l}:${id}:${up}${ench}`),
+        ] as [string, string[]],
+    );
+  }
+  const langs = sp.langs ? list(sp.langs.toLowerCase()) : ALL_LANGS;
+  return list((sp.cards ?? "BASH,OFFERING,DEMON_FORM").toUpperCase()).map(
+    (id) =>
+      [
+        `${id}${up === "1" ? "+" : ""}`,
+        langs.map((l) => `${l}:${id}:${up}${ench}`),
+      ] as [string, string[]],
+  );
+}
+
+const PRESETS: Array<[string, string]> = [
+  ["Mixed set", ""],
+  ["Fool", "color=fool"],
+  ["Ancients", "rarity=ancient"],
+  ["Ironclad", "color=ironclad"],
+  ["Silent", "color=silent"],
+  ["Defect", "color=defect"],
+  ["Necrobinder", "color=necrobinder"],
+  ["Regent", "color=regent"],
+  ["Colorless", "color=colorless"],
+  ["Curses and statuses", "color=curse,status"],
+  ["Tokens, events, quests", "color=token,event,quest"],
+  ["Powers", "type=power"],
+];
+
+function Presets({ sp }: { sp: Record<string, string | undefined> }) {
+  const keep = (extra: Record<string, string | undefined>) => {
+    const q = new URLSearchParams({ grid: "1" });
+    for (const k of ["color", "rarity", "type", "cards", "langs", "up"]) {
+      const v = k in extra ? extra[k] : sp[k];
+      if (v) q.set(k, v);
+    }
+    return `?${q.toString()}`;
+  };
+  const link = { color: "#e8c35a", marginRight: 14 };
+  const row = { fontSize: 13, marginBottom: 6 };
+  return (
+    <nav style={{ marginBottom: 12 }}>
+      <div style={row}>
+        {PRESETS.map(([name, q]) => (
+          <a
+            key={name}
+            style={link}
+            href={`?grid=1${q ? `&${q}` : ""}${sp.langs && q ? `&langs=${sp.langs}` : ""}${sp.up && q ? `&up=${sp.up}` : ""}`}
+          >
+            {name}
+          </a>
+        ))}
+      </div>
+      <div style={row}>
+        {ALL_LANGS.map((l) => (
+          <a key={l} style={link} href={keep({ langs: l })}>
+            {l}
+          </a>
+        ))}
+        <a style={link} href={keep({ langs: ALL_LANGS.join(",") })}>
+          all languages
+        </a>
+      </div>
+      <div style={row}>
+        <a style={link} href={keep({ up: undefined })}>
+          base
+        </a>
+        <a style={link} href={keep({ up: "1" })}>
+          upgraded
+        </a>
+      </div>
+    </nav>
+  );
+}
+
+function GridView({
+  grid,
+  sp,
+}: {
+  grid: Array<[string, string[]]>;
+  sp: Record<string, string | undefined>;
+}) {
   const cache: Record<string, Card[]> = {};
   return (
     <div
@@ -204,9 +356,11 @@ function GridView() {
     >
       <style>{FONT_CSS}</style>
       <div style={{ fontSize: 13, color: "#999", marginBottom: 8 }}>
-        HTML on the left, game render on the right. Beta v0.113.0 data.
+        HTML on the left, game render on the right. Beta v0.113.0 data. Pick
+        your own with ?grid=1&cards=BASH,ZAP&langs=jpn,kor&up=1&ench=SHARP
       </div>
-      {GRID.map(([heading, items]) => (
+      <Presets sp={sp} />
+      {grid.map(([heading, items]) => (
         <section key={heading}>
           <h2 style={{ fontSize: 20, margin: "28px 0 12px" }}>{heading}</h2>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 24 }}>
@@ -215,10 +369,16 @@ function GridView() {
               cache[lang] ??= load(lang, true);
               const card = cache[lang].find((c) => c.id === id);
               const level = Number(up) || 0;
-              const ref = `${lang}_${ench ? `ench_${ench.toLowerCase()}_` : ""}${id.toLowerCase()}${level ? "_upg" : ""}.webp`;
-              const hasRef = fs.existsSync(
-                path.join(process.cwd(), "public", "card-ref", ref),
-              );
+              const ref = ench
+                ? enchantedCardUrl(
+                    id,
+                    ench,
+                    !!level,
+                    "beta",
+                    lang,
+                    RENDER_VERSION,
+                  )
+                : fullCardUrl(id, !!level, "beta", lang, RENDER_VERSION);
               return (
                 <div key={item}>
                   <div style={{ fontSize: 12, color: "#aaa", marginBottom: 4 }}>
@@ -252,34 +412,15 @@ function GridView() {
                             titleVariants={titleVariants(lang, card.id)}
                             lang={lang}
                             enchantment={loadEnchantment(lang, ench, "1", card)}
+                            keywordNames={keywordNames(lang)}
                           />
                         ) : (
                           <span style={{ color: "red" }}>missing card</span>
                         )}
                       </div>
                     </div>
-                    {hasRef ? (
-                      /* eslint-disable-next-line @next/next/no-img-element */
-                      <img
-                        src={`/card-ref/${ref}`}
-                        alt=""
-                        width={400}
-                        height={520}
-                      />
-                    ) : (
-                      <div
-                        style={{
-                          width: 400,
-                          height: 520,
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          color: "#777",
-                        }}
-                      >
-                        no game render
-                      </div>
-                    )}
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={ref} alt="" width={400} height={520} />
                   </div>
                 </div>
               );
@@ -309,7 +450,13 @@ export default async function Page({
         ];
       })
     : PICKS;
-  if ((sp as { grid?: string }).grid === "1") return <GridView />;
+  if ((sp as { grid?: string }).grid === "1")
+    return (
+      <GridView
+        grid={customGrid(sp as Record<string, string | undefined>)}
+        sp={sp as Record<string, string | undefined>}
+      />
+    );
   const cache: Record<string, Card[]> = {};
   const one = (sp as { one?: string }).one;
   if (one) {
