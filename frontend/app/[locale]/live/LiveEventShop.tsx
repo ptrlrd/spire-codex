@@ -7,6 +7,7 @@
 // the full card / relic tooltip). Contract: markdown-docs/live-presence.md (v4).
 
 import { Link } from "@/i18n/navigation";
+import { useTryGameTranslations } from "@/lib/game-i18n";
 import { useT } from "@/lib/i18n";
 import { imageUrl } from "@/lib/image-url";
 import { blitzEntryName } from "@/lib/replay";
@@ -318,6 +319,7 @@ export function LiveShopPanel({
   bp: string;
 }) {
   const t = useT();
+  const gameT = useTryGameTranslations();
   const removal = shop.removal;
   return (
     <div className="rounded-lg border border-[var(--accent-gold)]/30 bg-[var(--bg-card)] p-4 space-y-3">
@@ -338,7 +340,7 @@ export function LiveShopPanel({
               }`}
             >
               <span className="min-w-0 flex-1 leading-tight">
-                {blitzEntryName(o.entry ?? "", o.modelId, o.amount)}
+                {blitzEntryName(o.entry ?? "", o.modelId, o.amount, gameT)}
               </span>
               {o.status === "used" && (
                 <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--accent-gold)]">

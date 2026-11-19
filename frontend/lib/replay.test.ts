@@ -4182,6 +4182,42 @@ describe("blitz offer variants", () => {
     expect(blitzEntryName("Potions")).toBe("Potions");
   });
 
+  it("uses the game's own title in the page's language when it has one", () => {
+    const pack: Record<string, string> = {
+      "merchant_room.MERCHANT.blitz.card_removal_entry.title":
+        "Kartenentfernungs-Dienst",
+      "merchant_room.MERCHANT.blitz.full_heal_and_max_hp_entry.title":
+        "Verfluchte Heilung",
+      "merchant_room.MERCHANT.blitz.card_enchant_entry.title": "{Enchantment}",
+      "merchant_room.MERCHANT.blitz.glam_entry.title":
+        "Verfluchtes {Enchantment}",
+      "merchant_room.MERCHANT.blitz.prismatic_card_reward_entry.title":
+        "{Character} Kartenbelohnung",
+      "enchantments.SHARP.title": "Scharf",
+      "enchantments.GLAM.title": "Schick",
+      "characters.REGENT.title": "Der Regent",
+    };
+    const gt = (key: string, values?: Record<string, string | number>) =>
+      pack[key]?.replace(/\{(\w+)\}/g, (_, k) => String(values?.[k] ?? k));
+    expect(blitzEntryName("CardRemoval", undefined, undefined, gt)).toBe(
+      "Kartenentfernungs-Dienst",
+    );
+    expect(blitzEntryName("FullHealAndMaxHp", undefined, undefined, gt)).toBe(
+      "Verfluchte Heilung",
+    );
+    expect(blitzEntryName("CardEnchant", "SHARP", 2, gt)).toBe("Scharf 2");
+    expect(blitzEntryName("Glam", undefined, undefined, gt)).toBe(
+      "Verfluchtes Schick",
+    );
+    expect(blitzEntryName("PrismaticCardReward", "REGENT", undefined, gt)).toBe(
+      "Der Regent Kartenbelohnung",
+    );
+    expect(
+      blitzEntryName("PrismaticCardReward", undefined, undefined, gt),
+    ).toBe("Prismatic Card Reward");
+    expect(blitzEntryName("Potions", undefined, undefined, gt)).toBe("Potions");
+  });
+
   it("parses model_id and amount on offers and buys", () => {
     const { lines } = parseReplayLines(
       journal([
