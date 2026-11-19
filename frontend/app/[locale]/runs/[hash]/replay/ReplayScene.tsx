@@ -258,42 +258,6 @@ export default function ReplayScene({
 
   return (
     <div className="space-y-3">
-      <LiveScene
-        p={step.p}
-        cat={live}
-        monsters={cat.monsters}
-        encounters={cat.encounters}
-        bp={bp}
-        height="min-h-[70vh]"
-      />
-      <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] px-3 py-2">
-        <div className="flex flex-wrap items-baseline justify-between gap-2">
-          <p className="text-sm font-semibold text-[var(--text-primary)]">
-            {caption(step, cat, t)}
-          </p>
-          <span className="text-xs tabular-nums text-[var(--text-muted)]">
-            {t("Step {n} of {total}", {
-              n: index - first + 1,
-              total: last - first + 1,
-            })}
-          </span>
-        </div>
-        {step.details.length > 0 && (
-          <ul className="mt-1 space-y-0.5 text-xs text-[var(--text-secondary)]">
-            {step.details.map((d, i) => (
-              <li key={i}>{detailText(d, cat, t)}</li>
-            ))}
-          </ul>
-        )}
-        {step.created.length > 0 && (
-          <p className="mt-1 text-xs text-[var(--text-muted)]">
-            {t("Created, pile not recorded")}:{" "}
-            {step.created
-              .map((x) => cardName(x.replace(/\+$/, ""), cat))
-              .join(", ")}
-          </p>
-        )}
-      </div>
       <div className="flex flex-wrap items-center gap-2">
         <button
           type="button"
@@ -344,6 +308,42 @@ export default function ReplayScene({
             </button>
           ))}
         </div>
+      </div>
+      <LiveScene
+        p={step.p}
+        cat={live}
+        monsters={cat.monsters}
+        encounters={cat.encounters}
+        bp={bp}
+        height="min-h-[70vh]"
+      />
+      <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] px-3 py-2">
+        <div className="flex flex-wrap items-baseline justify-between gap-2">
+          <p className="text-sm font-semibold text-[var(--text-primary)]">
+            {caption(step, cat, t)}
+          </p>
+          <span className="text-xs tabular-nums text-[var(--text-muted)]">
+            {t("Step {n} of {total}", {
+              n: index - first + 1,
+              total: last - first + 1,
+            })}
+          </span>
+        </div>
+        {step.details.length > 0 && (
+          <ul className="mt-1 space-y-0.5 text-xs text-[var(--text-secondary)]">
+            {step.details.map((d, i) => (
+              <li key={i}>{detailText(d, cat, t)}</li>
+            ))}
+          </ul>
+        )}
+        {step.created.length > 0 && (
+          <p className="mt-1 text-xs text-[var(--text-muted)]">
+            {t("Created, pile not recorded")}:{" "}
+            {step.created
+              .map((x) => cardName(x.replace(/\+$/, ""), cat))
+              .join(", ")}
+          </p>
+        )}
       </div>
       <p className="text-xs text-[var(--text-muted)]">
         {t("← → step through the replay · Space plays")}

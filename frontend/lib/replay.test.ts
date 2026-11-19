@@ -4267,3 +4267,40 @@ describe("blitz offer variants", () => {
     });
   });
 });
+
+describe("lines written between two acts", () => {
+  it("stay on the floor the run was standing on", () => {
+    const model = parseReplay(
+      journal([
+        { t: "header", s: 1, replay_version: 9, character: "IRONCLAD" },
+        { t: "room", s: 2, floor: 17, act: 1, kind: "boss", id: "B1" },
+        { t: "hp", s: 3, floor: 17, act: 1, dst: "player", d: -20, hp: 40 },
+        { t: "act", s: 4, floor: 17, act: 2, name: "HIVE" },
+        { t: "map_room", s: 5, floor: 17, act: 2 },
+        { t: "hp", s: 6, floor: 17, act: 2, dst: "player", d: 24, hp: 64 },
+        { t: "room", s: 7, floor: 18, act: 2, kind: "event", id: "OROBAS" },
+      ]),
+    );
+    expect(model.floors.map((f) => [f.floor, f.act])).toEqual([
+      [17, 1],
+      [18, 2],
+    ]);
+    expect(model.floors.find((f) => f.act === 2)?.floor).toBe(18);
+    expect(model.floors[0].hpAfter).toBe(64);
+  });
+
+  it("names each act when the act line comes before its map", () => {
+    const model = parseReplay(
+      journal([
+        { t: "header", s: 1, replay_version: 9, character: "IRONCLAD" },
+        { t: "act", s: 2, floor: 0, act: 1, name: "UNDERDOCKS" },
+        { t: "map", s: 3, floor: 0, act: 1, nodes: [] },
+        { t: "room", s: 4, floor: 17, act: 1, kind: "boss", id: "B1" },
+        { t: "act", s: 5, floor: 17, act: 2, name: "HIVE" },
+        { t: "map", s: 6, floor: 17, act: 2, nodes: [] },
+        { t: "room", s: 7, floor: 18, act: 2, kind: "event", id: "OROBAS" },
+      ]),
+    );
+    expect(model.actNames).toEqual({ 1: "UNDERDOCKS", 2: "HIVE" });
+  });
+});

@@ -1634,6 +1634,13 @@ export function parseReplay(text: string): ReplayModel {
       return current;
     const known = floors.find((x) => x.floor === line.floor && sameAct(x));
     if (known) return known;
+    if (
+      current &&
+      current.floor === line.floor &&
+      line.act !== undefined &&
+      line.act > current.act
+    )
+      return current;
     return newFloor(line.floor, line.act ?? current?.act ?? 1, line.s);
   };
   const snapshot = (
@@ -1657,7 +1664,10 @@ export function parseReplay(text: string): ReplayModel {
       case "header":
         continue;
       case "act": {
-        const a = lastMapAct ?? line.act ?? 1;
+        const a =
+          lastMapAct !== undefined && !(lastMapAct in actNames)
+            ? lastMapAct
+            : (line.act ?? 1);
         lastMapAct = undefined;
         actNames[a] = line.name ?? `Act ${a}`;
         continue;
