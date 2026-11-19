@@ -10,6 +10,7 @@
 // absence is always "not known", never zero.
 
 import type { Coord, MapEdge, MapNode } from "@/app/[locale]/live/live-shared";
+import { displayName } from "./display-name";
 
 type Raw = Record<string, unknown>;
 
@@ -172,6 +173,34 @@ export interface BuyLine extends LineBase {
   costCurrent?: number;
   costResource: string;
   goldOnHand?: number;
+  /** Pairs this buy with the buy_start row written before its rewards. */
+  purchaseId?: number;
+  /** The game's MerchantEntry.Id for the entry bought. */
+  entryId?: number;
+  /** The entry's class, e.g. BlitzMerchantColorlessCardRewardEntry. */
+  entryClass?: string;
+  /** Blitz only: the entry's MerchantEntryType, e.g. ColorlessCardReward. */
+  blitzEntry?: string;
+  /** Blitz only: Card Enchant's enchantment or Prismatic's character. */
+  modelId?: string;
+  /** Blitz only: Card Enchant's enchantment amount. */
+  amount?: number;
+}
+
+/**
+ * "ColorlessCardReward" -> "Colorless Card Reward"; with a variant,
+ * "CardEnchant", "SHARP", 2 -> "Card Enchant (Sharp 2)".
+ */
+export function blitzEntryName(
+  type: string,
+  modelId?: string,
+  amount?: number,
+): string {
+  const bare = type.replace(/^BlitzMerchant/, "").replace(/Entry$/, "");
+  const name = bare.replace(/([a-z])([A-Z])/g, "$1 $2");
+  if (!modelId) return name;
+  const n = amount !== undefined && amount > 1 ? ` ${amount}` : "";
+  return `${name} (${displayName(modelId)}${n})`;
 }
 export interface ShopItem {
   slot: number;
@@ -189,6 +218,24 @@ export interface ShopLine extends LineBase {
   cards: ShopItem[];
   relics: ShopItem[];
   potions: ShopItem[];
+  /** A Blitz merchant's offers, in the slot order a blitz buy names. */
+  blitz?: BlitzOffer[];
+  blitzChoicesLeft?: number;
+}
+export interface BlitzOffer {
+  slot: number;
+  entry?: string;
+  entryClass?: string;
+  /** Card Enchant's enchantment or Prismatic's character. */
+  modelId?: string;
+  /** Card Enchant's enchantment amount. */
+  amount?: number;
+  /** available, used or disabled */
+  status?: string;
+}
+export interface BlitzOfferRow {
+  offer: BlitzOffer;
+  picked: boolean;
 }
 export type ShelfKind = "card" | "relic" | "potion";
 export interface ShelfRow {
@@ -686,6 +733,19 @@ function shopItems(v: unknown): ShopItem[] {
   }));
 }
 
+function blitzOffers(v: unknown): BlitzOffer[] | undefined {
+  const rows = objects(v);
+  if (!rows.length) return undefined;
+  return rows.map((x, i) => ({
+    slot: num(x.slot) ?? i,
+    entry: str(x.blitz_entry),
+    entryClass: str(x.entry_class),
+    modelId: str(x.model_id),
+    amount: count(x.amount),
+    status: str(x.status),
+  }));
+}
+
 function narrow(raw: Raw): ReplayLine | undefined {
   const t = str(raw.t);
   const s = num(raw.s);
@@ -854,6 +914,12 @@ function narrow(raw: Raw): ReplayLine | undefined {
         costCurrent: num(raw.cost_current),
         costResource: str(raw.cost_resource) ?? "gold",
         goldOnHand: num(raw.gold_on_hand),
+        purchaseId: int(raw.purchase_id),
+        entryId: int(raw.entry_id),
+        entryClass: str(raw.entry_class),
+        blitzEntry: str(raw.blitz_entry),
+        modelId: str(raw.model_id),
+        amount: count(raw.amount),
       };
     case "shop":
       return {
@@ -865,6 +931,8 @@ function narrow(raw: Raw): ReplayLine | undefined {
         cards: shopItems(raw.cards),
         relics: shopItems(raw.relics),
         potions: shopItems(raw.potions),
+        blitz: blitzOffers(raw.blitz),
+        blitzChoicesLeft: count(raw.blitz_choices_left),
       };
     case "gold": {
       const gold = num(raw.gold);
@@ -1929,6 +1997,38 @@ export function shelfRows(floor: ReplayFloor): ShelfRow[] {
       );
     if (row) row.bought = true;
   }
+  return rows;
+}
+
+/**
+ * The offers a Blitz merchant made on this floor, each marked picked when a
+ * blitz buy names its slot (or, without a slot, its entry) or a later shop row
+ * reports it used.
+ */
+export function blitzOfferRows(floor: ReplayFloor): BlitzOfferRow[] {
+  const shops = floor.lines.filter((l): l is ShopLine => l.t === "shop");
+  const first = shops.find((s) => s.blitz?.length);
+  if (!first?.blitz) return [];
+  const rows = first.blitz.map((offer) => ({ offer, picked: false }));
+  for (const line of floor.lines) {
+    if (line.t !== "buy" || line.kind !== "blitz") continue;
+    const row =
+      line.slot !== undefined
+        ? rows.find((r) => r.offer.slot === line.slot)
+        : rows.find(
+            (r) =>
+              !r.picked &&
+              ((line.entryClass && r.offer.entryClass === line.entryClass) ||
+                (line.blitzEntry && r.offer.entry === line.blitzEntry)),
+          );
+    if (row) row.picked = true;
+  }
+  for (const shop of shops)
+    for (const offer of shop.blitz ?? [])
+      if (offer.status === "used") {
+        const row = rows.find((r) => r.offer.slot === offer.slot);
+        if (row) row.picked = true;
+      }
   return rows;
 }
 

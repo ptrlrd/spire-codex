@@ -1026,6 +1026,12 @@ export function buildScene(text: string): {
             cost: num(d.removal_cost),
             stocked: d.removal_stocked !== false,
           },
+          blitz: list(d.blitz).map((x) => ({
+            entry: str(x.blitz_entry) ?? str(x.entry_class),
+            modelId: str(x.model_id),
+            amount: num(x.amount),
+            status: str(x.status),
+          })),
         };
         screen = "merchant";
         shopFloor = floor;
@@ -1033,10 +1039,22 @@ export function buildScene(text: string): {
         break;
       }
       case "buy":
+        if (d.kind === "blitz" && shop?.blitz) {
+          const slot = num(d.slot);
+          if (slot !== undefined && shop.blitz[slot])
+            shop = {
+              ...shop,
+              blitz: shop.blitz.map((o, i) =>
+                i === slot ? { ...o, status: "used" } : o,
+              ),
+            };
+        }
         begin(d, {
           k: "buy",
           id: str(d.id),
           label: str(d.kind),
+          option: str(d.blitz_entry) ?? str(d.entry_class),
+          target: d.kind === "blitz" ? str(d.model_id) : undefined,
           n: num(d.cost_current),
         });
         break;
