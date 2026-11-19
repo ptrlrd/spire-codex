@@ -187,20 +187,53 @@ export interface BuyLine extends LineBase {
   amount?: number;
 }
 
+/** The game's own string for a key, or undefined when there is none. */
+export type BlitzGameT = (
+  key: string,
+  values?: Record<string, string | number>,
+) => string | undefined;
+
+/** Blitz entries whose game title is built around a model name. */
+const BLITZ_TITLE_MODEL: Record<string, "enchantments" | "characters"> = {
+  CardEnchant: "enchantments",
+  Glam: "enchantments",
+  PrismaticCardReward: "characters",
+};
+
 /**
- * "ColorlessCardReward" -> "Colorless Card Reward"; with a variant,
- * "CardEnchant", "SHARP", 2 -> "Card Enchant (Sharp 2)".
+ * The entry's title as the game shows it, in the page's language, when `gt`
+ * has the game's merchant strings. Without them: "ColorlessCardReward" ->
+ * "Colorless Card Reward"; with a variant, "CardEnchant", "SHARP", 2 ->
+ * "Card Enchant (Sharp 2)".
  */
 export function blitzEntryName(
   type: string,
   modelId?: string,
   amount?: number,
+  gt?: BlitzGameT,
 ): string {
   const bare = type.replace(/^BlitzMerchant/, "").replace(/Entry$/, "");
+  const n = amount !== undefined && amount > 1 ? ` ${amount}` : "";
+  const table = BLITZ_TITLE_MODEL[bare];
+  const model = modelId ?? (bare === "Glam" ? "GLAM" : undefined);
+  const modelName = model
+    ? (table && gt?.(`${table}.${model}.title`)) || displayName(model)
+    : undefined;
+  const snake = bare.replace(/([a-z0-9])([A-Z])/g, "$1_$2").toLowerCase();
+  const title =
+    table && !modelName
+      ? undefined
+      : gt?.(
+          `merchant_room.MERCHANT.blitz.${snake}_entry.title`,
+          modelName ? { Enchantment: modelName, Character: modelName } : {},
+        );
+  if (title) {
+    if (table) return `${title}${n}`;
+    return modelId ? `${title} (${modelName}${n})` : title;
+  }
   const name = bare.replace(/([a-z])([A-Z])/g, "$1 $2");
   if (!modelId) return name;
-  const n = amount !== undefined && amount > 1 ? ` ${amount}` : "";
-  return `${name} (${displayName(modelId)}${n})`;
+  return `${name} (${modelName}${n})`;
 }
 export interface ShopItem {
   slot: number;

@@ -392,6 +392,7 @@ function describeLine(
           l.blitzEntry ?? l.entryClass ?? "",
           l.modelId,
           l.amount,
+          cat.gt,
         );
         return plain(`${t("Bought")} ${entry}`);
       }
@@ -886,6 +887,7 @@ function ShopBlock({
                   offer.entry ?? offer.entryClass ?? "",
                   offer.modelId,
                   offer.amount,
+                  cat.gt,
                 )}
               </span>
               {picked && <TakenBadge />}
@@ -911,6 +913,7 @@ function ShopBlock({
                     l.blitzEntry ?? l.entryClass ?? "",
                     l.modelId,
                     l.amount,
+                    cat.gt,
                   )
                 : itemName(l.kind, l.id ?? "", cat);
             return (

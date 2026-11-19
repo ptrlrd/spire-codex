@@ -26,6 +26,7 @@ export const REPLAY_TABLES = [
   "monsters",
   "encounters",
   "events",
+  "merchant_room",
 ];
 
 export interface GameTranslator {
