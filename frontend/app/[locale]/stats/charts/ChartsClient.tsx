@@ -901,7 +901,7 @@ function ChartsClientInner() {
               ))}
             </select>
           )}
-          {spec?.kind === "blob" && (
+          {spec?.kind === "blob" && !spec?.modes && (
             <span className="text-xs text-[var(--text-muted)]">
               {t(
                 "Exact ascension and mode don't apply here; use the Bracket to slice by skill.",

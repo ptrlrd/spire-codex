@@ -166,7 +166,7 @@ CHARTS: dict[str, dict] = {
         "group": "Combat",
         "kind": "blob",
         "axis": {"x": "Floor", "y": "Avg % max HP lost"},
-        "desc": "Average share of max HP lost in combat at each floor. All ascensions and modes.",
+        "desc": "Average share of max HP lost in combat at each floor.",
     },
     "encounter-damage": {
         "modes": True,
@@ -176,7 +176,7 @@ CHARTS: dict[str, dict] = {
         "bars": True,
         "horizontal": True,
         "axis": {"x": "Encounter", "y": "Avg % max HP lost"},
-        "desc": "Encounters ranked by the average share of max HP they take per fight. All ascensions and modes.",
+        "desc": "Encounters ranked by the average share of max HP they take per fight.",
     },
     "encounter-turns": {
         "modes": True,
@@ -186,7 +186,7 @@ CHARTS: dict[str, dict] = {
         "bars": True,
         "horizontal": True,
         "axis": {"x": "Encounter", "y": "Avg turns per fight"},
-        "desc": "Encounters ranked by how many turns the fight takes. All ascensions and modes.",
+        "desc": "Encounters ranked by how many turns the fight takes.",
     },
     "encounter-histogram": {
         "modes": True,
@@ -196,7 +196,7 @@ CHARTS: dict[str, dict] = {
         "bars": True,
         "needs": ["encounter"],
         "axis": {"x": "% of max HP lost", "y": "% of fights"},
-        "desc": "Damage distribution for one encounter, in 5%-of-max-HP buckets. All ascensions and modes.",
+        "desc": "Damage distribution for one encounter, in 5%-of-max-HP buckets.",
     },
     "avg-win-time-daily": {
         "label": "Average win time by day",
