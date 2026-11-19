@@ -2690,7 +2690,7 @@ def _row_to_dict(doc: dict) -> dict:
 WINRATE_MIN_RUNS = 5
 
 
-_USER_WINRATES_KEY = "user_winrates:v2"
+_USER_WINRATES_KEY = "user_winrates:v3"
 _USER_WINRATES_STALE_KEY = "user_winrates:v2:stale"
 _USER_WINRATES_LOCK = "user_winrates:v2:lock"
 _USER_WINRATES_TTL_SECONDS = 3600
@@ -2800,6 +2800,8 @@ def _refresh_user_winrates(token: str) -> None:
                     "username_lower": {"$nin": [None, ""]},
                     "ascension": {"$gte": 0, "$lte": 10},
                     "character": {"$in": list(OFFICIAL_CHARACTERS)},
+                    "hidden": {"$ne": True},
+                    "deleted_at": None,
                 }
             },
             {
@@ -4191,6 +4193,7 @@ def get_user_picks(steam_id: str) -> dict[str, dict]:
                   ancient_choice nested in map_point_history.
     Keyed by entity id (uppercase bare, as stored)."""
     coll = _get_collection()
+    mine = {"steam_id": steam_id, "hidden": {"$ne": True}, "deleted_at": None}
 
     def tally(rows) -> dict[str, dict]:
         return {
@@ -4201,7 +4204,7 @@ def get_user_picks(steam_id: str) -> dict[str, dict]:
 
     cards = coll.aggregate(
         [
-            {"$match": {"steam_id": steam_id}},
+            {"$match": mine},
             {"$unwind": "$card_choices"},
             {
                 "$group": {
@@ -4223,7 +4226,7 @@ def get_user_picks(steam_id: str) -> dict[str, dict]:
     A = "$map_point_history"
     ancients = coll.aggregate(
         [
-            {"$match": {"steam_id": steam_id}},
+            {"$match": mine},
             {"$unwind": A},  # acts -> one act (a list of floors)
             {"$unwind": A},  # floors -> one floor (a dict)
             {"$unwind": f"{A}.player_stats"},

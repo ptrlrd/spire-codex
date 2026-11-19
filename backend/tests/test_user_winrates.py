@@ -274,3 +274,18 @@ def test_an_older_payload_never_replaces_a_newer_memo(monkeypatch):
     rdm._remember_user_winrates({"at": 300.0, "rates": ["not", "a", "map"]})
     assert rdm._user_winrates_memo == {"new": [2, 1]}
     assert rdm._user_winrates_built_at == 200.0
+
+
+def test_hidden_and_deleted_runs_stay_out_of_the_map(monkeypatch):
+    seen = []
+
+    class Recording(FakeColl):
+        def aggregate(self, pipeline, **kwargs):
+            seen.append(pipeline[0]["$match"])
+            return super().aggregate(pipeline, **kwargs)
+
+    _wire(monkeypatch, FakeCache(), Recording([{"_id": "p", "total": 5, "wins": 1}]))
+    rdm.get_user_winrates()
+    _settle()
+    assert seen[0]["hidden"] == {"$ne": True}
+    assert seen[0]["deleted_at"] is None
