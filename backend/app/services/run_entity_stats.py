@@ -2644,6 +2644,8 @@ def get_encounter_stats(
     bracket: str | None = None,
     build_id: str | None = None,
     encounters: list[str] | None = None,
+    game_mode: str | None = None,
+    dominion: str | None = None,
 ) -> dict[str, Any]:
     """Per-encounter combat stats for /api/runs/encounter-stats, rolled up
     from the precomputed snapshot cells for one content bracket. Same lifecycle
@@ -2660,12 +2662,9 @@ def get_encounter_stats(
 
     # bracket + build_id COMBINE (v20 keeps bracket x version buckets); a
     # bare version reads the legacy "ver:" bucket.
-    if build_id and bracket and bracket != "all":
-        key = f"{bracket}:{build_id}"
-    elif build_id:
-        key = f"ver:{build_id}"
-    else:
-        key = bracket
+    from .lake_stats import encounter_store_key
+
+    key = encounter_store_key(bracket, build_id, game_mode, dominion)
     # Lake path: the ingest-built encounter store carries the same finalized
     # per-bracket shape, refreshed every cycle — the snapshot below froze
     # when the rebuilder retired. Missing store or key falls through.
