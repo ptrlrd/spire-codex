@@ -153,6 +153,7 @@ interface ChartSpec {
   label: string;
   group: string;
   kind: "frame" | "blob";
+  modes?: boolean;
   needs: string[];
   splits: string[];
   scatter: boolean;
@@ -388,6 +389,24 @@ function ChartsClientInner() {
     const v = searchParams.get("mode");
     return v === null ? "standard" : v || "all";
   });
+  const [dominion, setDominion] = useState(() => {
+    const v = (searchParams.get("dominion") || "").toUpperCase();
+    return /^[A-Z0-9_]{1,64}$/.test(v) ? v : "";
+  });
+  const [dominions, setDominions] = useState<
+    { id: string; encounter_id: string; boss_name: string; name: string }[]
+  >([]);
+  useEffect(() => {
+    cachedFetch<{ id: string; dominions?: typeof dominions | null }[]>(
+      `${API}/api/game-modes?lang=${lang}&channel=all`,
+    )
+      .then((modes) =>
+        setDominions(
+          (modes || []).find((m) => m.id === "DREAD")?.dominions ?? [],
+        ),
+      )
+      .catch(() => setDominions([]));
+  }, [lang]);
   const [usernameInput, setUsernameInput] = useState(
     searchParams.get("user") || "",
   );
@@ -528,6 +547,7 @@ function ChartsClientInner() {
     if (bracket !== "all") p.set("bracket", bracket);
     if (buildId) p.set("version", buildId);
     if (gameMode !== "standard") p.set("mode", gameMode);
+    if (gameMode === "dread" && dominion) p.set("dominion", dominion);
     if (username) p.set("user", username);
     if (spec?.ma && avg) p.set("avg", "30");
     if (split !== "character" && spec?.splits.includes(split))
@@ -553,6 +573,7 @@ function ChartsClientInner() {
     bracket,
     buildId,
     gameMode,
+    dominion,
     username,
     split,
     avg,
@@ -579,8 +600,10 @@ function ChartsClientInner() {
       p.set("ascension", ascension);
     if (!spec.daily && bracket !== "all") p.set("bracket", bracket);
     if (buildId) p.set("build_id", buildId);
-    if (spec.kind === "frame" && !spec.daily && gameMode !== "all")
-      p.set("game_mode", gameMode);
+    const modes = !spec.daily && (spec.kind === "frame" || !!spec.modes);
+    if (modes && gameMode !== "all") p.set("game_mode", gameMode);
+    if (modes && spec.kind === "blob" && gameMode === "dread" && dominion)
+      p.set("dominion", dominion);
     if (username) p.set("username", username);
     if (spec.splits.includes(split) && split !== "character")
       p.set("split", split);
@@ -643,6 +666,7 @@ function ChartsClientInner() {
     bracket,
     buildId,
     gameMode,
+    dominion,
     username,
     split,
     stat,
@@ -665,6 +689,12 @@ function ChartsClientInner() {
   }, [meta]);
 
   const filtersLocked = spec?.kind === "blob" || spec?.daily;
+  const modesLocked = spec?.daily || (spec?.kind === "blob" && !spec?.modes);
+  const dominionPick =
+    spec?.kind === "blob" &&
+    !!spec?.modes &&
+    gameMode === "dread" &&
+    dominions.length > 0;
 
   return (
     <div>
@@ -826,7 +856,7 @@ function ChartsClientInner() {
             options={MODE_OPTS.map((o) => ({ ...o, label: t(o.label) }))}
             value={gameMode}
             onChange={setGameMode}
-            disabled={filtersLocked}
+            disabled={modesLocked}
           />
           <div
             className={filtersLocked ? "opacity-40 pointer-events-none" : ""}
@@ -894,6 +924,31 @@ function ChartsClientInner() {
             </label>
           )}
         </div>
+        {dominionPick && (
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+            <span className="text-xs text-[var(--text-muted)]">
+              {t("Dominions")}
+            </span>
+            <Pills
+              options={[
+                { value: "", label: t("All") },
+                ...dominions.map((d) => ({
+                  value: d.encounter_id,
+                  label: d.boss_name,
+                })),
+              ]}
+              value={dominion}
+              onChange={setDominion}
+            />
+          </div>
+        )}
+        {dominionPick && dominion && (
+          <p className="text-xs text-[var(--text-muted)]">
+            {t(
+              "A dominion comes from the act's boss, and a run only records a boss it reached, so this covers the fights before the boss in acts that got that far.",
+            )}
+          </p>
+        )}
         <p className="text-xs text-[var(--text-muted)]">
           {t("Cohort")}:{" "}
           {cohortLabel(

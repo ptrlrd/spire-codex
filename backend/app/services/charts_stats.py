@@ -1178,6 +1178,118 @@ def accumulate(
             )
 
 
+def scope_key(scope: str, bracket: str) -> str:
+    return scope if bracket == "all" else f"{scope}|{bracket}"
+
+
+def _fold_combat_floor(
+    targets: list[dict], floor: dict, floor_idx: int, char: str, players: int
+) -> None:
+    """One floor's combat cells (hp_floor, enc, enc_hist) into every
+    target, with the rules _accumulate_one applies."""
+    rooms = floor.get("rooms") or []
+    room = rooms[0] if rooms and isinstance(rooms[0], dict) else {}
+    if (room.get("room_type") or "").lower() not in _COMBAT_ROOMS:
+        return
+    model_id = room.get("model_id") or ""
+    enc = model_id.split(".", 1)[1] if model_id.startswith("ENCOUNTER.") else None
+    turns = room.get("turns_taken")
+    if enc and isinstance(turns, (int, float)) and turns >= 0:
+        for acc in targets:
+            ecell = acc["enc"].setdefault((char, players, enc), [0.0, 0, 0.0, 0])
+            ecell[2] += min(turns, 200)
+            ecell[3] += 1
+    for ps in floor.get("player_stats") or []:
+        if not isinstance(ps, dict):
+            continue
+        max_hp = ps.get("max_hp")
+        dmg = ps.get("damage_taken")
+        if not (isinstance(max_hp, (int, float)) and max_hp > 0):
+            continue
+        if not (isinstance(dmg, (int, float)) and dmg >= 0):
+            continue
+        pct = min(dmg / max_hp, 1.5)
+        bucket = min(int(pct * 100) // _HIST_BUCKET, _HIST_CAP // _HIST_BUCKET)
+        for acc in targets:
+            cell = acc["hp_floor"].setdefault((char, players, floor_idx), [0.0, 0])
+            cell[0] += pct
+            cell[1] += 1
+            if enc:
+                ecell = acc["enc"].setdefault((char, players, enc), [0.0, 0, 0.0, 0])
+                ecell[0] += pct
+                ecell[1] += 1
+                hkey = (players, enc, bucket)
+                acc["enc_hist"][hkey] = acc["enc_hist"].get(hkey, 0) + 1
+
+
+def _act_boss(act_floors) -> str | None:
+    boss = None
+    for floor in act_floors or []:
+        rooms = floor.get("rooms") if isinstance(floor, dict) else None
+        room = rooms[0] if rooms and isinstance(rooms[0], dict) else {}
+        model_id = room.get("model_id") or ""
+        if (room.get("room_type") or "").lower() == "boss" and model_id.startswith(
+            "ENCOUNTER."
+        ):
+            boss = model_id.split(".", 1)[1]
+    return boss
+
+
+def accumulate_combat(
+    acc: dict[str, Any],
+    blob: dict,
+    *,
+    brackets,
+    game_mode: str,
+    is_win: bool,
+    character: str,
+    player_count: int,
+    played: Any = None,
+) -> None:
+    """Fold one run's combat cells into its game mode's buckets
+    ("mode:dread", "mode:dread|a10:v0.113.1") and, for Dread, each act's
+    pre-boss fights into the dominion of the boss that act ended in
+    ("dom:AEONGLASS_BOSS"). Only the combat fields and the run count are
+    kept, so these buckets stay a fraction of a full bracket."""
+    keys = [b for b in brackets if b in acc]
+    if not keys:
+        return
+    char = _norm_char(character)
+    players = min(max(int(player_count or 1), 1), 4)
+    week = _epoch_day(played) // 7 if played else 0
+
+    def subs(scope: str) -> list[dict]:
+        out = [acc.setdefault(scope_key(scope, b), _new_acc_one()) for b in keys]
+        if week > 0 and scope not in counted:
+            counted.add(scope)
+            for sub in out:
+                _bump2(sub["week_totals"], week, is_win)
+        return out
+
+    counted: set[str] = set()
+    mode_subs = subs(f"mode:{game_mode}")
+    floor_idx = 0
+    for act_floors in blob.get("map_point_history") or []:
+        boss = _act_boss(act_floors) if game_mode == "dread" else None
+        dom_subs = subs(f"dom:{boss}") if boss else []
+        for floor in act_floors or []:
+            if not isinstance(floor, dict):
+                continue
+            floor_idx += 1
+            if floor_idx > _MAX_FLOOR:
+                return
+            rooms = floor.get("rooms") or []
+            room = rooms[0] if rooms and isinstance(rooms[0], dict) else {}
+            is_boss = (room.get("room_type") or "").lower() == "boss"
+            _fold_combat_floor(
+                mode_subs if is_boss else mode_subs + dom_subs,
+                floor,
+                floor_idx,
+                char,
+                players,
+            )
+
+
 def _accumulate_one(
     acc: dict[str, Any],
     blob: dict,
@@ -1784,9 +1896,11 @@ def enchant_winrate(stats: dict[str, Any]) -> list[dict]:
 _USER_BLOB_CAP = 1500
 
 
-def build_user_blob_stats(username: str) -> dict[str, Any]:
+def build_user_blob_stats(username: str, scope: str | None = None) -> dict[str, Any]:
     """Accumulate blob stats from one user's runs, newest first, capped.
-    Reads the same on-disk blobs the snapshot walk uses."""
+    Reads the same on-disk blobs the snapshot walk uses. `scope` narrows it
+    to one game mode ("mode:dread") or one dominion ("dom:KIN_BOSS"), with
+    the combat fields only."""
     u = (username or "").strip()
     if not u:
         return empty_one()
@@ -1809,6 +1923,7 @@ def build_user_blob_stats(username: str) -> dict[str, Any]:
                     "player_count": 1,
                     "submitted_at": 1,
                     "played_at": 1,
+                    "game_mode": 1,
                 },
             )
             .sort("submitted_at", -1)
@@ -1822,6 +1937,7 @@ def build_user_blob_stats(username: str) -> dict[str, Any]:
                 "player_count": d.get("player_count") or 1,
                 "submitted_at": d.get("submitted_at"),
                 "played_at": d.get("played_at"),
+                "game_mode": d.get("game_mode"),
             }
             for d in cursor
         ]
@@ -1832,8 +1948,8 @@ def build_user_blob_stats(username: str) -> dict[str, Any]:
             rows = [
                 dict(r)
                 for r in conn.execute(
-                    "SELECT run_hash, character, win, player_count, submitted_at"
-                    " FROM runs WHERE username_lower = ?"
+                    "SELECT run_hash, character, win, player_count, submitted_at,"
+                    " game_mode FROM runs WHERE username_lower = ?"
                     " ORDER BY id DESC LIMIT ?",
                     (u.lower(), _USER_BLOB_CAP),
                 )
@@ -1841,7 +1957,13 @@ def build_user_blob_stats(username: str) -> dict[str, Any]:
 
     # Single-bracket walk: the username is the filter, so content brackets don't
     # apply here. Use the per-bracket-free helpers directly.
+    from .game_modes import normalize_game_mode
+
     acc = _new_acc_one()
+    scoped: dict[str, Any] = {"all": acc}
+    want_mode = "dread" if (scope or "").startswith("dom:") else (scope or "")[5:]
+    if scope:
+        rows = [r for r in rows if normalize_game_mode(r.get("game_mode")) == want_mode]
     blob_map: dict[str, dict] = {}
     if os.environ.get("MONGO_URL", "").strip():
         from .runs_db_mongo import get_run_blobs
@@ -1859,6 +1981,18 @@ def build_user_blob_stats(username: str) -> dict[str, Any]:
             except Exception:
                 continue
         try:
+            if scope:
+                accumulate_combat(
+                    scoped,
+                    blob,
+                    brackets=["all"],
+                    game_mode=want_mode,
+                    is_win=bool(row["win"]),
+                    character=row["character"],
+                    player_count=row["player_count"],
+                    played=row.get("played_at") or row.get("submitted_at"),
+                )
+                continue
             _accumulate_one(
                 acc,
                 blob,
@@ -1869,4 +2003,6 @@ def build_user_blob_stats(username: str) -> dict[str, Any]:
             )
         except Exception:
             continue
+    if scope:
+        return _finalize_one(scoped.get(scope) or _new_acc_one())
     return _finalize_one(acc)

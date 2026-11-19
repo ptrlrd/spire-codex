@@ -161,6 +161,7 @@ CHARTS: dict[str, dict] = {
     },
     # ── Combat (blob) ──
     "hp-loss-by-floor": {
+        "modes": True,
         "label": "% max HP lost per fight floor",
         "group": "Combat",
         "kind": "blob",
@@ -168,6 +169,7 @@ CHARTS: dict[str, dict] = {
         "desc": "Average share of max HP lost in combat at each floor. All ascensions and modes.",
     },
     "encounter-damage": {
+        "modes": True,
         "label": "Encounter damage ranking",
         "group": "Combat",
         "kind": "blob",
@@ -177,6 +179,7 @@ CHARTS: dict[str, dict] = {
         "desc": "Encounters ranked by the average share of max HP they take per fight. All ascensions and modes.",
     },
     "encounter-turns": {
+        "modes": True,
         "label": "Slowest encounters (turns)",
         "group": "Combat",
         "kind": "blob",
@@ -186,6 +189,7 @@ CHARTS: dict[str, dict] = {
         "desc": "Encounters ranked by how many turns the fight takes. All ascensions and modes.",
     },
     "encounter-histogram": {
+        "modes": True,
         "label": "Encounter damage histogram",
         "group": "Combat",
         "kind": "blob",
@@ -316,6 +320,7 @@ def charts_meta(request: Request):
                 "label": c["label"],
                 "group": c["group"],
                 "kind": c["kind"],
+                "modes": bool(c.get("modes")) or c["kind"] == "frame",
                 "needs": c.get("needs", []),
                 "splits": c.get("splits", []),
                 "scatter": c.get("scatter", False),
@@ -437,6 +442,7 @@ def _chart_cache_key(
     entity,
     bracket=None,
     build_id=None,
+    dominion=None,
 ) -> str:
     """Redis key for one chart + filter combo. Shared by the live endpoint and
     the prewarmer so a warmed entry is a byte-for-byte hit on a real request."""
@@ -444,7 +450,7 @@ def _chart_cache_key(
         f"charts:{chart_key}:{players or ''}:{ascension if ascension is not None else ''}:"
         f"{game_mode or ''}:{(username or '').lower()}:{split}:{stat or ''}:{x or ''}:{y or ''}:"
         f"{(encounter or '').lower()}:{(event or '').lower()}:{etype or ''}:{(entity or '').lower()}:"
-        f"{bracket or ''}:{build_id or ''}"
+        f"{bracket or ''}:{build_id or ''}" + (f":dom={dominion}" if dominion else "")
     )
 
 
@@ -465,6 +471,7 @@ def _compute_chart(
     entity,
     bracket=None,
     build_id=None,
+    dominion=None,
 ) -> dict:
     """Build one chart payload (no caching). Raises HTTPException for invalid
     blob filters, same as the endpoint."""
@@ -491,19 +498,28 @@ def _compute_chart(
         # and/or game version — the v20 blob keeps bracket x version buckets),
         # or a per-user walk when username set (username is the filter; the
         # bracket doesn't apply there).
-        if ascension is not None or game_mode:
+        scope = (
+            f"dom:{dominion}"
+            if dominion
+            else f"mode:{game_mode}"
+            if game_mode
+            else None
+        )
+        if ascension is not None or (scope and not spec.get("modes")):
             raise HTTPException(
                 status_code=400,
                 detail="This chart covers all ascensions and modes; drop those filters.",
             )
         if username:
-            stats = cs.build_user_blob_stats(username)
+            stats = cs.build_user_blob_stats(username, scope)
         else:
             blob = get_charts_blob_stats()
             if bracket and build_id:
                 bkey = f"{bracket}:{build_id}"
             else:
                 bkey = build_id or bracket or "all"
+            if scope:
+                bkey = cs.scope_key(scope, bkey)
             if bkey == "all":
                 stats = blob.get("all") or cs.empty_one()
             else:
@@ -517,7 +533,9 @@ def _compute_chart(
         # Blob stats land with the first snapshot rebuild after a deploy;
         # until then the cells are missing entirely, which is different from
         # a filter matching nothing. Surface that so the page can say so.
-        if not username and not stats.get("week_totals"):
+        if not username and scope:
+            building = not any(k.startswith("mode:") for k in blob)
+        elif not username and not stats.get("week_totals"):
             building = True
 
     return {
@@ -529,6 +547,7 @@ def _compute_chart(
             "players": players,
             "ascension": ascension,
             "game_mode": game_mode,
+            "dominion": dominion,
             "username": username,
             "split": split,
             "stat": stat,
@@ -843,6 +862,15 @@ def get_chart(
         max_length=32,
         description="Game version (e.g. v0.107.1); combines with every other filter",
     ),
+    dominion: str | None = Query(
+        None,
+        max_length=64,
+        description=(
+            "Dread combat charts only: the encounter id of the act boss whose"
+            " dominion was active (e.g. AEONGLASS_BOSS). Covers the fights"
+            " before the boss in acts that reached it."
+        ),
+    ),
 ):
     """One pre-aggregated chart. See /api/charts/meta for the available
     charts, their filters, splits, and the run stats usable for stat/x/y.
@@ -872,6 +900,14 @@ def get_chart(
         raise HTTPException(status_code=400, detail="bad build_id")
     if not is_game_mode_filter(game_mode):
         raise HTTPException(status_code=400, detail="bad game_mode")
+    dominion = (dominion or "").strip().upper() or None
+    if dominion is not None:
+        if not re.fullmatch(r"[A-Z0-9_]{1,64}", dominion):
+            raise HTTPException(status_code=400, detail="bad dominion")
+        if game_mode not in (None, "", "dread") or not spec.get("modes"):
+            raise HTTPException(
+                status_code=400, detail="dominion only applies to dread combat charts"
+            )
     for name, value in (("stat", stat), ("x", x), ("y", y)):
         if value and value not in cs.STATS:
             raise HTTPException(status_code=400, detail=f"unknown {name} '{value}'")
@@ -899,6 +935,7 @@ def get_chart(
         entity,
         bracket,
         build_id,
+        dominion,
     )
     cached = app_cache.get_json(cache_key)
     if cached is not None:
@@ -921,6 +958,7 @@ def get_chart(
         entity,
         bracket,
         build_id,
+        dominion,
     )
     if payload["building"]:
         response.headers["Cache-Control"] = "no-store"

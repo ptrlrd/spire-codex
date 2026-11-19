@@ -171,3 +171,74 @@ def test_lake_charts_blob_matches_direct_accumulate(monkeypatch, tmp_path):
     with gzip.open(tmp_path / "charts_blob.prev.json.gz", "rt") as f:
         prev = json.load(f)
     assert norm(prev["all"]) == norm(expected["all"])
+
+
+def _combat(sub):
+    return {k: sorted(map(tuple, sub[k])) for k in ("hp_floor", "enc", "enc_hist")}
+
+
+def test_mode_buckets_hold_the_same_combat_cells_as_the_full_fold(
+    tmp_path, monkeypatch
+):
+    _write_lake(tmp_path)
+    from app.services import lake_stats
+
+    monkeypatch.setattr(charts_blob_lake, "LAKE_DIR", tmp_path)
+    monkeypatch.setattr(lake_stats, "LAKE_DIR", tmp_path)
+    monkeypatch.setattr(charts_blob_lake, "cube_versions", lambda: [])
+    blob = charts_blob_lake.build_charts_blob()
+    assert _combat(blob["mode:standard"]) == _combat(blob["all"])
+    assert _combat(blob["mode:standard|a10"]) == _combat(blob["a10"])
+    assert blob["mode:standard"]["week_totals"] == blob["all"]["week_totals"]
+    assert blob["mode:standard"]["traj"] == []
+    assert not [k for k in blob if k.startswith("dom:")]
+
+
+def _floor(room_type, enc, dmg):
+    return {
+        "rooms": [
+            {"room_type": room_type, "model_id": f"ENCOUNTER.{enc}", "turns_taken": 4}
+        ],
+        "player_stats": [{"max_hp": 100, "damage_taken": dmg}],
+    }
+
+
+def test_dread_fights_file_under_the_dominion_of_the_act_boss():
+    acc = charts_stats.new_accumulator()
+    history = [
+        [
+            _floor("monster", "JAW_WORM", 10),
+            _floor("boss", "VANTOM_BOSS", 30),
+            _floor("boss", "KIN_BOSS", 40),
+        ],
+        [_floor("monster", "JAW_WORM", 50)],
+    ]
+    charts_stats.accumulate_combat(
+        acc,
+        {"map_point_history": history},
+        brackets=["all", "a10", "v9"],
+        game_mode="dread",
+        is_win=False,
+        character="IRONCLAD",
+        player_count=1,
+        played=PLAYED,
+    )
+    assert "mode:dread|v9" not in acc
+    mode = charts_stats._finalize_one(acc["mode:dread|a10"])
+    assert sum(row[4] for row in mode["hp_floor"]) == 4
+    dom = charts_stats._finalize_one(acc["dom:KIN_BOSS"])
+    assert [(r[2], r[3], r[4]) for r in dom["enc"]] == [("JAW_WORM", 0.1, 1)]
+    assert sum(n for _wk, n, _w in dom["week_totals"]) == 1
+    assert "dom:VANTOM_BOSS" not in acc
+
+    standard = charts_stats.new_accumulator()
+    charts_stats.accumulate_combat(
+        standard,
+        {"map_point_history": history},
+        brackets=["all"],
+        game_mode="standard",
+        is_win=True,
+        character="IRONCLAD",
+        player_count=1,
+    )
+    assert set(standard) - set(charts_stats.new_accumulator()) == {"mode:standard"}
