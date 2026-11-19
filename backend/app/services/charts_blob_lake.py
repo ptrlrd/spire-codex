@@ -294,6 +294,16 @@ def build_charts_blob() -> dict | None:
                         player_count=int(pc),
                         played=played if isinstance(played, datetime) else None,
                     )
+                    charts_stats.accumulate_combat(
+                        acc,
+                        blob,
+                        brackets=brs,
+                        game_mode=cellv.split("|", 1)[0],
+                        is_win=bool(win),
+                        character=ch,
+                        player_count=int(pc),
+                        played=played if isinstance(played, datetime) else None,
+                    )
                     n += 1
     finally:
         try:
