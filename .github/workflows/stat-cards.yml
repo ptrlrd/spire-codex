@@ -1,0 +1,54 @@
+name: Stat cards
+
+on:
+  workflow_dispatch:
+    inputs:
+      versions:
+        description: "Versions to recap, comma separated, e.g. v0.109.1, v0.110.0 (blank = current beta and main)"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+jobs:
+  render:
+    name: Render stat cards
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          sparse-checkout: |
+            tools/stat_cards
+            frontend/public/fonts
+            frontend/public/spire-codex-white-final.png
+          sparse-checkout-cone-mode: false
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 26
+
+      - name: Install renderer
+        working-directory: tools/stat_cards
+        run: |
+          npm ci --no-audit --no-fund
+          npx playwright install --with-deps chromium
+
+      - name: Render cards
+        working-directory: tools/stat_cards
+        env:
+          VERSIONS: ${{ inputs.versions }}
+        run: |
+          node render.mjs "--versions=$VERSIONS"
+          cat out/summary.md >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: stat-cards
+          path: |
+            tools/stat_cards/out/*.png
+            tools/stat_cards/out/stats.json
+            tools/stat_cards/out/stats.csv
+          if-no-files-found: error
+          retention-days: 30
