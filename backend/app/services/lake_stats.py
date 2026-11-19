@@ -2644,6 +2644,50 @@ def _encounter_blob_keys(cell: str, recent: frozenset[str]) -> list[str]:
     return keys
 
 
+def _scoped(scope: str, keys: list[str]) -> list[str]:
+    return [scope] + [f"{scope}|{k}" for k in keys if k != "all"]
+
+
+def _encounter_scope_keys(
+    cell: str, recent: frozenset[str], dominion: str | None = None
+) -> list[str]:
+    """The base keys plus the same keys under the run's game mode
+    ("mode:dread|solo:v0.113.1") and, for a Dread fight whose act boss is
+    known, under that boss's dominion ("dom:AEONGLASS_BOSS|solo")."""
+    from .game_modes import is_game_mode
+
+    keys = _encounter_blob_keys(cell, recent)
+    if not keys:
+        return []
+    mode = cell.split("|", 1)[0]
+    out = list(keys)
+    if is_game_mode(mode):
+        out.extend(_scoped(f"mode:{mode}", keys))
+    if dominion and mode == "dread":
+        out.extend(_scoped(f"dom:{dominion}", keys))
+    return out
+
+
+def encounter_store_key(
+    bracket: str | None,
+    build_id: str | None,
+    game_mode: str | None = None,
+    dominion: str | None = None,
+) -> str:
+    if build_id and bracket and bracket != "all":
+        base = f"{bracket}:{build_id}"
+    elif build_id:
+        base = f"ver:{build_id}"
+    else:
+        base = bracket or "all"
+    scope = (
+        f"dom:{dominion}" if dominion else f"mode:{game_mode}" if game_mode else None
+    )
+    if scope is None:
+        return base
+    return scope if base == "all" else f"{scope}|{base}"
+
+
 # A (encounter, act, room_type) row needs this many appearances in the ALL
 # bracket to exist at all. Structurally weird runs (custom games starting at
 # a later act put that act's boss in their first act array) created ghost
@@ -2675,7 +2719,12 @@ def build_encounter_store(con=None) -> dict:
     carry the walk's exact semantics (per-location party damage summed to
     the room, 1-based acts, prefix-stripped encounter ids). A fatal is a
     visited room whose encounter matches the run's killer on a loss that
-    wasn't abandoned; an abandon in that fight counts as abandoned instead."""
+    wasn't abandoned; an abandon in that fight counts as abandoned instead.
+
+    A Dread act runs under the dominion of its boss (the second boss when
+    the act has two), and the run file only names a boss the run reached,
+    so a dominion slice holds the pre-boss fights of acts that were cleared
+    up to the boss and can never hold the fight a run died in."""
     from . import encounter_stats as es
 
     own = con is None
@@ -2693,10 +2742,25 @@ def build_encounter_store(con=None) -> dict:
         recent = frozenset(cube_versions())
         rows = con.execute(
             f"""
+            WITH act_boss AS (
+              SELECT fb.run_hash, fb.act,
+                arg_max(fb.encounter, fb.floor_idx) AS boss
+              FROM read_parquet('{LAKE_DIR}/floor_events.parquet') fb
+              SEMI JOIN (
+                SELECT run_hash FROM cells
+                WHERE lower(coalesce(game_mode, 'standard')) = 'dread'
+              ) d ON d.run_hash = fb.run_hash
+              WHERE fb.room_type = 'boss' AND fb.encounter IS NOT NULL
+                AND fb.encounter <> ''
+              GROUP BY 1, 2
+            )
             SELECT f.encounter, f.act, f.room_type, upper(e.character) AS ch,
               CASE WHEN coalesce(e.player_count, 1) > 1
                    THEN 'multi' ELSE 'solo' END AS mp,
               e.cell,
+              CASE WHEN f.room_type <> 'boss'
+                    AND lower(coalesce(e.game_mode, 'standard')) = 'dread'
+                   THEN b.boss END AS dom,
               count(*) AS total,
               count(*) FILTER (
                 NOT e.win AND NOT coalesce(e.was_abandoned, false)
@@ -2710,10 +2774,11 @@ def build_encounter_store(con=None) -> dict:
               ) AS abandoned
             FROM read_parquet('{LAKE_DIR}/floor_events.parquet') f
             JOIN cells e ON f.run_hash = e.run_hash
+            LEFT JOIN act_boss b ON b.run_hash = f.run_hash AND b.act = f.act
             WHERE f.room_type IN ('monster', 'elite', 'boss')
               AND f.encounter IS NOT NULL AND f.encounter <> ''
               AND f.act BETWEEN 1 AND 3
-            GROUP BY 1, 2, 3, 4, 5, 6
+            GROUP BY 1, 2, 3, 4, 5, 6, 7
             """
         ).fetchall()
         data_through = str(
@@ -2726,9 +2791,9 @@ def build_encounter_store(con=None) -> dict:
             con.close()
 
     accs: dict[str, dict] = {}
-    for enc, act, rt, ch, mp, cell, t, fa, d, tu, ab in rows:
+    for enc, act, rt, ch, mp, cell, dom, t, fa, d, tu, ab in rows:
         ck = (enc, act, rt, ch, mp)
-        for key in _encounter_blob_keys(cell, recent):
+        for key in _encounter_scope_keys(cell, recent, dom):
             cells = accs.setdefault(key, {})
             cur = cells.get(ck)
             if cur is None:

@@ -13,6 +13,7 @@ import {
   normalizeBracket,
 } from "@/lib/content-brackets";
 import { cohortLabel } from "@/app/[locale]/stats/_grid/bracket";
+import { GAME_MODES, isGameMode } from "@/lib/game-modes";
 import { replaceQuery } from "@/lib/replace-query";
 import { useFilterFetch, useFilterPage } from "@/lib/use-filter-fetch";
 import LoadFailed from "@/app/components/LoadFailed";
@@ -57,6 +58,25 @@ interface EncounterMeta {
   id: string;
   name: string;
 }
+
+interface Dominion {
+  id: string;
+  encounter_id: string;
+  boss_name: string;
+  name: string;
+}
+
+interface GameModeInfo {
+  id: string;
+  dominions?: Dominion[] | null;
+}
+
+const MODE_OPTIONS = [{ id: "all", label: "All modes" }, ...GAME_MODES];
+const DOMINION_PARAM = /^[A-Z0-9_]{1,64}$/;
+const CHIP =
+  "px-3 py-1 rounded-md text-sm border transition-colors border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--accent-gold)]/50";
+const CHIP_ON =
+  "px-3 py-1 rounded-md text-sm border transition-colors border-[var(--accent-gold)] text-[var(--accent-gold)] bg-[var(--accent-gold)]/10";
 
 const ROOM_TYPES = ["monster", "elite", "boss"] as const;
 const ROOM_LABELS: Record<string, string> = {
@@ -127,6 +147,28 @@ export default function EncounterStatsClient() {
     const raw = searchParams.get("bracket");
     return raw ? normalizeBracket(raw) : DEFAULT_SOLO_BRACKET;
   });
+  const [mode, setMode] = useState(() => {
+    const raw = searchParams.get("mode");
+    return raw === "all" || isGameMode(raw) ? raw : "standard";
+  });
+  const [dominion, setDominion] = useState(() => {
+    const raw = (searchParams.get("dominion") || "").toUpperCase();
+    return searchParams.get("mode") === "dread" && DOMINION_PARAM.test(raw)
+      ? raw
+      : "";
+  });
+  const [dominions, setDominions] = useState<Dominion[]>([]);
+  useEffect(() => {
+    cachedFetch<GameModeInfo[]>(
+      `${API}/api/game-modes?lang=${lang}&channel=all`,
+    )
+      .then((modes) =>
+        setDominions(
+          (modes || []).find((m) => m.id === "DREAD")?.dominions ?? [],
+        ),
+      )
+      .catch(() => setDominions([]));
+  }, [lang]);
   // Game versions the snapshot keeps encounter slices for; filters via the
   // endpoint's build_id param. Combines with the bracket (v20 snapshots
   // keep bracket x version buckets).
@@ -165,6 +207,8 @@ export default function EncounterStatsClient() {
       multiplayer,
       bracket,
       version,
+      mode,
+      dominion,
     ]),
     pageFromParam(searchParams.get("page")),
   );
@@ -178,6 +222,8 @@ export default function EncounterStatsClient() {
   if (multiplayer !== "any") statsParams.set("multiplayer", multiplayer);
   if (bracket !== "all") statsParams.set("bracket", bracket);
   if (version) statsParams.set("build_id", version);
+  if (mode !== "all") statsParams.set("game_mode", mode);
+  if (dominion) statsParams.set("dominion", dominion);
   statsParams.set("page", String(page));
   statsParams.set("limit", "50");
   const stats = useFilterFetch<EncounterResponse>(
@@ -198,10 +244,15 @@ export default function EncounterStatsClient() {
     if (multiplayer !== "any") p.set("multiplayer", multiplayer);
     if (bracket !== DEFAULT_SOLO_BRACKET) p.set("bracket", bracket);
     if (version) p.set("version", version);
+    if (mode !== "standard") p.set("mode", mode);
+    if (dominion) p.set("dominion", dominion);
     if (page !== 1) p.set("page", String(page));
     const qs = p.toString();
     replaceQuery(qs);
-  }, [acts, roomTypes, multiplayer, bracket, version, page]);
+  }, [acts, roomTypes, multiplayer, bracket, version, mode, dominion, page]);
+
+  const showDeaths = !dominion;
+  const nameSpan = showDeaths ? "col-span-4" : "col-span-8";
 
   function toggleExpanded(id: string) {
     setExpanded((prev) => toggle(prev, id));
@@ -357,12 +408,59 @@ export default function EncounterStatsClient() {
           })}
         </div>
 
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="text-sm text-[var(--text-muted)] w-20">
+            {t("Mode:")}
+          </span>
+          {MODE_OPTIONS.map((m) => (
+            <button
+              key={m.id}
+              onClick={() => {
+                setMode(m.id);
+                if (m.id !== "dread") setDominion("");
+              }}
+              aria-pressed={mode === m.id}
+              className={mode === m.id ? CHIP_ON : CHIP}
+            >
+              {t(m.label)}
+            </button>
+          ))}
+        </div>
+
+        {mode === "dread" && dominions.length > 0 && (
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-sm text-[var(--text-muted)] w-20">
+              {t("Dominion:")}
+            </span>
+            <button
+              onClick={() => setDominion("")}
+              aria-pressed={!dominion}
+              className={dominion ? CHIP : CHIP_ON}
+            >
+              {t("Any dominion")}
+            </button>
+            {dominions.map((d) => (
+              <button
+                key={d.id}
+                onClick={() => setDominion(d.encounter_id)}
+                aria-pressed={dominion === d.encounter_id}
+                title={d.name}
+                className={dominion === d.encounter_id ? CHIP_ON : CHIP}
+              >
+                {d.boss_name}
+              </button>
+            ))}
+          </div>
+        )}
+
         <p className="text-xs text-[var(--text-muted)]">
           {t("Cohort")}: {cohortLabel(bracket, t)}
-          {version ? `, ${version}` : ""} ·{" "}
-          {t(
-            "Encounter stats carry no game-mode axis, so every mode is included.",
-          )}
+          {version ? `, ${version}` : ""}
+          {dominion
+            ? ` · ${t(
+                "A dominion comes from the act's boss, and a run only records a boss it reached. These are the fights before the boss in acts that got that far, so deaths are not shown.",
+              )}`
+            : ""}
         </p>
 
         {statVersions.length > 0 && (
@@ -403,10 +501,14 @@ export default function EncounterStatsClient() {
         <>
           <div className="bg-[var(--bg-card)] border border-[var(--border-subtle)] rounded-lg overflow-x-auto">
             <div className="min-w-[720px] grid grid-cols-12 gap-2 px-4 py-2 text-xs uppercase tracking-wider text-[var(--text-muted)] border-b border-[var(--border-subtle)]">
-              <div className="col-span-4">{t("Encounter")}</div>
+              <div className={nameSpan}>{t("Encounter")}</div>
               <div className="col-span-2 text-right">{t("Runs")}</div>
-              <div className="col-span-2 text-right">{t("Fatal")}</div>
-              <div className="col-span-2 text-right">{t("Abandoned")}</div>
+              {showDeaths && (
+                <>
+                  <div className="col-span-2 text-right">{t("Fatal")}</div>
+                  <div className="col-span-2 text-right">{t("Abandoned")}</div>
+                </>
+              )}
               <div className="col-span-1 text-right">{t("Avg Dmg")}</div>
               <div className="col-span-1 text-right">{t("Avg Turns")}</div>
             </div>
@@ -431,7 +533,7 @@ export default function EncounterStatsClient() {
                     onClick={() => toggleExpanded(row.encounter_id)}
                     className="w-full grid grid-cols-12 gap-2 px-4 py-3 items-center text-sm hover:bg-[var(--bg-card-hover)] transition-colors text-left"
                   >
-                    <div className="col-span-4 flex items-center gap-2">
+                    <div className={`${nameSpan} flex items-center gap-2`}>
                       <span
                         className={`inline-block w-3 text-[var(--text-muted)] text-xs transition-transform ${isOpen ? "rotate-90" : ""}`}
                       >
@@ -454,18 +556,22 @@ export default function EncounterStatsClient() {
                     <div className="col-span-2 text-right tabular-nums">
                       {fmtN(row.total)}
                     </div>
-                    <div className="col-span-2 text-right tabular-nums">
-                      {fmtN(row.fatal)}
-                      <span className="text-xs text-[var(--text-muted)] ml-1">
-                        ({fatalPct}%)
-                      </span>
-                    </div>
-                    <div className="col-span-2 text-right tabular-nums">
-                      {fmtN(abandoned)}
-                      <span className="text-xs text-[var(--text-muted)] ml-1">
-                        ({abandonedPct}%)
-                      </span>
-                    </div>
+                    {showDeaths && (
+                      <>
+                        <div className="col-span-2 text-right tabular-nums">
+                          {fmtN(row.fatal)}
+                          <span className="text-xs text-[var(--text-muted)] ml-1">
+                            ({fatalPct}%)
+                          </span>
+                        </div>
+                        <div className="col-span-2 text-right tabular-nums">
+                          {fmtN(abandoned)}
+                          <span className="text-xs text-[var(--text-muted)] ml-1">
+                            ({abandonedPct}%)
+                          </span>
+                        </div>
+                      </>
+                    )}
                     <div className="col-span-1 text-right tabular-nums">
                       {row.avg_damage.toFixed(1)}
                     </div>
@@ -482,18 +588,24 @@ export default function EncounterStatsClient() {
                         </div>
                       ) : (
                         <div className="grid grid-cols-12 gap-2 text-xs">
-                          <div className="col-span-4 text-[var(--text-muted)] pb-1 border-b border-[var(--border-subtle)]">
+                          <div
+                            className={`${nameSpan} text-[var(--text-muted)] pb-1 border-b border-[var(--border-subtle)]`}
+                          >
                             {t("Character")}
                           </div>
                           <div className="col-span-2 text-right text-[var(--text-muted)] pb-1 border-b border-[var(--border-subtle)]">
                             {t("Runs")}
                           </div>
-                          <div className="col-span-2 text-right text-[var(--text-muted)] pb-1 border-b border-[var(--border-subtle)]">
-                            {t("Fatal")}
-                          </div>
-                          <div className="col-span-2 text-right text-[var(--text-muted)] pb-1 border-b border-[var(--border-subtle)]">
-                            {t("Abandoned")}
-                          </div>
+                          {showDeaths && (
+                            <>
+                              <div className="col-span-2 text-right text-[var(--text-muted)] pb-1 border-b border-[var(--border-subtle)]">
+                                {t("Fatal")}
+                              </div>
+                              <div className="col-span-2 text-right text-[var(--text-muted)] pb-1 border-b border-[var(--border-subtle)]">
+                                {t("Abandoned")}
+                              </div>
+                            </>
+                          )}
                           <div className="col-span-1 text-right text-[var(--text-muted)] pb-1 border-b border-[var(--border-subtle)]">
                             {t("Avg Dmg")}
                           </div>
@@ -502,35 +614,39 @@ export default function EncounterStatsClient() {
                           </div>
                           {row.characters.map((c) => (
                             <div className="contents" key={c.character}>
-                              <div className="col-span-4 pt-2 capitalize">
+                              <div className={`${nameSpan} pt-2 capitalize`}>
                                 {c.character.toLowerCase()}
                               </div>
                               <div className="col-span-2 pt-2 text-right tabular-nums">
                                 {fmtN(c.total)}
                               </div>
-                              <div className="col-span-2 pt-2 text-right tabular-nums">
-                                {c.fatal}
-                                <span className="text-[var(--text-muted)] ml-1">
-                                  (
-                                  {c.total
-                                    ? ((c.fatal / c.total) * 100).toFixed(1)
-                                    : "0"}
-                                  %)
-                                </span>
-                              </div>
-                              <div className="col-span-2 pt-2 text-right tabular-nums">
-                                {c.abandoned ?? 0}
-                                <span className="text-[var(--text-muted)] ml-1">
-                                  (
-                                  {c.total
-                                    ? (
-                                        ((c.abandoned ?? 0) / c.total) *
-                                        100
-                                      ).toFixed(1)
-                                    : "0"}
-                                  %)
-                                </span>
-                              </div>
+                              {showDeaths && (
+                                <>
+                                  <div className="col-span-2 pt-2 text-right tabular-nums">
+                                    {c.fatal}
+                                    <span className="text-[var(--text-muted)] ml-1">
+                                      (
+                                      {c.total
+                                        ? ((c.fatal / c.total) * 100).toFixed(1)
+                                        : "0"}
+                                      %)
+                                    </span>
+                                  </div>
+                                  <div className="col-span-2 pt-2 text-right tabular-nums">
+                                    {c.abandoned ?? 0}
+                                    <span className="text-[var(--text-muted)] ml-1">
+                                      (
+                                      {c.total
+                                        ? (
+                                            ((c.abandoned ?? 0) / c.total) *
+                                            100
+                                          ).toFixed(1)
+                                        : "0"}
+                                      %)
+                                    </span>
+                                  </div>
+                                </>
+                              )}
                               <div className="col-span-1 pt-2 text-right tabular-nums">
                                 {c.avg_damage.toFixed(1)}
                               </div>

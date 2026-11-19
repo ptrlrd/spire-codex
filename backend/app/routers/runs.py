@@ -889,6 +889,9 @@ def get_run_rank(request: Request, run_hash: str, category: str = "fastest"):
         return {"rank": ahead + 1, "category": category}
 
 
+_DOMINION_ID = re.compile(r"[A-Z0-9_]{1,64}")
+
+
 @router.get("/encounter-stats", tags=["Runs"])
 @limiter.limit(
     rate_limit_config.endpoint_limit("runs.get_encounter_stats_endpoint", "60/minute")
@@ -904,6 +907,8 @@ def get_encounter_stats_endpoint(
     bracket: str | None = None,
     build_id: str | None = None,
     encounter: str | None = None,
+    game_mode: str | None = None,
+    dominion: str | None = None,
 ):
     """Per-encounter combat stats over submitted runs.
 
@@ -930,6 +935,15 @@ def get_encounter_stats_endpoint(
         slice for (e.g. `v0.107.1`); an unknown version is a 400.
       * `encounter` — comma-separated encounter ids to keep (a monster
         page asks for just its own fights). Omit for all.
+      * `game_mode` — `standard`, `daily`, `custom`, `blitz` or `dread`.
+        Omit for every mode together. Combines with `bracket` and
+        `build_id`.
+      * `dominion` — Dread only: the encounter id of the act boss whose
+        dominion was active (e.g. `AEONGLASS_BOSS`). A run file names a
+        boss only once the run reaches it, so this covers the fights
+        before the boss in acts that got that far, and `fatal` and
+        `abandoned` are always 0 under it. Combines with `bracket` and
+        `build_id`; any `game_mode` other than `dread` is a 400.
 
     Each row contains the encounter's total appearances, fatal count,
     avg damage taken, avg turns, plus a `characters` array with the
@@ -948,6 +962,17 @@ def get_encounter_stats_endpoint(
         "wr75",
     ):
         raise HTTPException(status_code=400, detail="bad bracket")
+    if not is_game_mode_filter(game_mode):
+        raise HTTPException(status_code=400, detail="bad game_mode")
+    game_mode = game_mode or None
+    dominion = (dominion or "").strip().upper() or None
+    if dominion is not None:
+        if not _DOMINION_ID.fullmatch(dominion):
+            raise HTTPException(status_code=400, detail="bad dominion")
+        if game_mode not in (None, "dread"):
+            raise HTTPException(
+                status_code=400, detail="dominion only applies to dread"
+            )
 
     from ..services.run_entity_stats import (
         get_encounter_stats as _get_encounter_stats,
@@ -979,6 +1004,8 @@ def get_encounter_stats_endpoint(
         bracket=bracket,
         build_id=build_id,
         encounters=encounters,
+        game_mode=game_mode,
+        dominion=dominion,
     )
     # A not-yet-built snapshot answers empty; don't let the edge cache that
     # for an hour and keep serving zeros after the data lands.
