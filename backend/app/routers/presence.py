@@ -53,6 +53,9 @@ _INT_FIELDS = (
 _STR_FIELDS = (
     "character",
     "seed",
+    # "cleared" / "flagged" / "off" from the mod's competitive mode; the public
+    # views label the run and hold its seed back while it is on.
+    "competitive",
     "screen",
     "sts2_version",
     "username",
@@ -881,6 +884,16 @@ def _enrich_twitch(players: list[dict]) -> None:
         pass
 
 
+def _competitive_view(doc: dict) -> None:
+    """A competitive run keeps its seed off the public views, so it cannot be
+    loaded on a second machine while the run is still going."""
+    state = doc.get("competitive")
+    if state in ("cleared", "flagged"):
+        doc.pop("seed", None)
+    else:
+        doc.pop("competitive", None)
+
+
 @router.get("/active")
 def get_active(limit: int = 50):
     """Public roster of live runs (no deck detail), deepest first."""
@@ -888,6 +901,8 @@ def get_active(limit: int = 50):
     from ..services import presence_db
 
     players = presence_db.active(max(1, min(limit, 100)))
+    for player in players:
+        _competitive_view(player)
     _enrich_twitch(players)
     return {"count": len(players), "players": players}
 
@@ -921,5 +936,6 @@ def get_player(steam_id: str):
     doc = presence_db.get(digits)
     if not doc:
         raise HTTPException(status_code=404, detail="not live")
+    _competitive_view(doc)
     _enrich_twitch([doc])
     return doc

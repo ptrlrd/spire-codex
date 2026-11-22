@@ -228,6 +228,17 @@ def _ensure_indexes(coll) -> None:
         [("has_replay", ASCENDING), ("submitted_at", DESCENDING)],
         partialFilterExpression={"has_replay": True},
     )
+    # Runs a replay marked competitive are a small slice; the partial index
+    # backs the run browser's competitive filters and the lake's sidecar scan.
+    coll.create_index(
+        [
+            ("competitive", ASCENDING),
+            ("competitive_bracket", ASCENDING),
+            ("submitted_at", DESCENDING),
+        ],
+        name="competitive_bracket",
+        partialFilterExpression={"competitive": {"$exists": True}},
+    )
     coll.create_index(
         [("character", ASCENDING), ("win", ASCENDING), ("ascension", ASCENDING)]
     )
@@ -814,6 +825,15 @@ def _owner_kept_replay(run_hash: str, steam_id, user_id) -> bool:
         return False
 
 
+def _kept_competitive(run_hash: str) -> dict:
+    try:
+        from .replays_db import competitive_fields_for
+
+        return competitive_fields_for(run_hash)
+    except Exception:
+        return {}
+
+
 def _blob_collection():
     return _get_collection().database["run_blobs"]
 
@@ -1191,6 +1211,7 @@ def _submit_player_run(
         logger.info("re-upload of moderated run %s stays hidden", run_hash)
     if verified and _owner_kept_replay(run_hash, steam_id, linked_user_id):
         doc["has_replay"] = True
+        doc.update(_kept_competitive(run_hash))
     try:
         coll.insert_one(doc)
         if not doc.get("hidden"):
@@ -2585,6 +2606,8 @@ def _projection_row() -> dict:
         "build_id": 1,
         "hidden": 1,
         "has_replay": 1,
+        "competitive": 1,
+        "competitive_bracket": 1,
         "user_id": 1,
         "steam_id": 1,
         **_KEY_PICK_FIELDS,
@@ -2848,6 +2871,8 @@ def _run_filter(
     today: bool = False,
     include_hidden: bool = False,
     has_replay: bool | None = None,
+    competitive: str | None = None,
+    competitive_bracket: str | None = None,
 ) -> dict | None:
     """The Mongo match for the run browser's filters, or None when the
     winrate filter rules out every run."""
@@ -2858,6 +2883,10 @@ def _run_filter(
         q["has_replay"] = True
     elif has_replay is False:
         q["has_replay"] = {"$ne": True}
+    if competitive in ("cleared", "flagged"):
+        q["competitive"] = competitive
+    if competitive_bracket in ("a10_solo", "dread_solo"):
+        q["competitive_bracket"] = competitive_bracket
     if character:
         q["character"] = character.upper()
     if win == "true":
@@ -2977,6 +3006,8 @@ def list_runs(
     limit: int = 50,
     include_hidden: bool = False,
     has_replay: bool | None = None,
+    competitive: str | None = None,
+    competitive_bracket: str | None = None,
 ) -> dict:
     """Paginated, filterable run list. Mirrors the /api/runs/list SQLite path.
 
@@ -3003,6 +3034,8 @@ def list_runs(
         today=today,
         include_hidden=include_hidden,
         has_replay=has_replay,
+        competitive=competitive,
+        competitive_bracket=competitive_bracket,
     )
     if q is None:
         return {
@@ -4211,7 +4244,15 @@ def get_share_meta_for_hash(run_hash: str) -> dict:
     can banner runs excluded from leaderboards and aggregates."""
     doc = _get_collection().find_one(
         {"_id": run_hash},
-        {"username": 1, "hidden": 1, "hidden_reason": 1, "has_replay": 1},
+        {
+            "username": 1,
+            "hidden": 1,
+            "hidden_reason": 1,
+            "has_replay": 1,
+            "competitive": 1,
+            "competitive_bracket": 1,
+            "competitive_reasons": 1,
+        },
     )
     return {
         "exists": doc is not None,
@@ -4219,6 +4260,9 @@ def get_share_meta_for_hash(run_hash: str) -> dict:
         "hidden": bool((doc or {}).get("hidden")),
         "hidden_reason": (doc or {}).get("hidden_reason"),
         "has_replay": bool((doc or {}).get("has_replay")),
+        "competitive": (doc or {}).get("competitive"),
+        "competitive_bracket": (doc or {}).get("competitive_bracket"),
+        "competitive_reasons": (doc or {}).get("competitive_reasons") or [],
     }
 
 

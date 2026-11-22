@@ -423,6 +423,8 @@ def list_runs(
     shop: str | None = None,
     today: bool = False,
     has_replay: bool | None = None,
+    competitive: str | None = None,
+    competitive_bracket: str | None = None,
     steam_id: str | None = None,
     page: int = 1,
     limit: int = 50,
@@ -434,6 +436,10 @@ def list_runs(
     and anonymous runs never match.
 
     `has_replay=true` keeps only runs with a replay journal to watch.
+
+    `competitive=cleared` keeps runs whose replay passed the competitive
+    check (`flagged` keeps the ones that did not), and
+    `competitive_bracket=a10_solo|dread_solo` narrows to one bracket.
 
     `steam_id=<SteamID64>` lists the runs of the account linked to that Steam
     ID (what the in-game mod sends); an unknown Steam ID lists nothing rather
@@ -503,6 +509,10 @@ def list_runs(
             shop,
             int(today),
             "" if has_replay is None else int(has_replay),
+            competitive if competitive in ("cleared", "flagged") else "",
+            competitive_bracket
+            if competitive_bracket in ("a10_solo", "dread_solo")
+            else "",
             page,
             limit,
         )
@@ -533,6 +543,8 @@ def list_runs(
             shop=shop,
             today=today,
             has_replay=has_replay,
+            competitive=competitive,
+            competitive_bracket=competitive_bracket,
             page=page,
             limit=limit,
         )
@@ -1134,6 +1146,12 @@ def get_shared_run(run_hash: str, request: Request):
                 blob["hidden"] = True
                 blob["hidden_reason"] = meta.get("hidden_reason")
             blob["has_replay"] = bool(meta.get("has_replay"))
+            if meta.get("competitive"):
+                blob["competitive"] = {
+                    "state": meta["competitive"],
+                    "bracket": meta.get("competitive_bracket"),
+                    "reasons": meta.get("competitive_reasons") or [],
+                }
             return blob
 
         from ..services.runs_db import get_conn
@@ -1901,6 +1919,13 @@ def start_stats_refresher() -> None:
         # Stats aggregations run after the tick: its finalize pins the GIL and
         # pegs Mongo for minutes, so anything kicked before it just races it.
         _kick_side_job("home_stats", refresh_home_stats)
+
+        def _competitive_forfeits() -> None:
+            from ..services.competitive_starts import forfeit_stale
+
+            forfeit_stale()
+
+        _kick_side_job("competitive_forfeits", _competitive_forfeits)
         # Startup files -> run_blobs backfill, first leader cycle only.
         _maybe_kick_blob_backfill()
 

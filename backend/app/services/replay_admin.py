@@ -357,7 +357,9 @@ def soft_delete(run_hash: str) -> dict:
             raise AdminReplayError(404, "replay not found")
         if not doc.get("deleted_at"):
             raise _explain_conflict(run_hash, "deleting it")
-    replays_db._runs().update_many(_run_key(run_hash), {"$unset": {"has_replay": ""}})
+    replays_db._runs().update_many(
+        _run_key(run_hash), replays_db.run_update_after_delete(run_hash)
+    )
     return get_replay(run_hash)
 
 
@@ -366,7 +368,10 @@ def restore(run_hash: str) -> dict:
     if not coll.find_one({"_id": run_hash}, {"_id": 1}):
         raise AdminReplayError(404, "replay not found")
     coll.update_one({"_id": run_hash}, {"$set": {"deleted_at": None}})
-    replays_db._runs().update_many(_run_key(run_hash), {"$set": {"has_replay": True}})
+    replays_db._runs().update_many(
+        _run_key(run_hash),
+        {"$set": {"has_replay": True, **replays_db.competitive_fields_for(run_hash)}},
+    )
     return get_replay(run_hash)
 
 

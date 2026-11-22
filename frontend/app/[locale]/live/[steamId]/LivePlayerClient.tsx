@@ -54,6 +54,7 @@ import {
   type LivePlayer,
   type LiveSeat,
   type MonsterMap,
+  CompetitiveTag,
 } from "../live-shared";
 
 const POLL_MS = 4_000;
@@ -989,6 +990,7 @@ function LivePlayerBody() {
               </span>
             )}
             {p.is_partner && <PartnerBadge />}
+            <CompetitiveTag state={p.competitive} t={t} />
             {status === "ended" && (
               <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-[var(--bg-primary)] text-[var(--text-muted)] border border-[var(--border-subtle)]">
                 {t("run ended")}
