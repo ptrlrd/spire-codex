@@ -438,6 +438,18 @@ def main() -> None:
         print(f"player stats failed: {e}", flush=True)
     _mark("player_stats")
     try:
+        import user_winrates
+
+        rates = user_winrates.build()
+        print(
+            f"user winrates built ({rates['users']} players) "
+            f"in {rates['seconds']:.0f}s",
+            flush=True,
+        )
+    except Exception as e:
+        print(f"user winrates failed: {e}", flush=True)
+    _mark("user_winrates")
+    try:
         import seed_profiles
 
         t_seeds = time.time()
