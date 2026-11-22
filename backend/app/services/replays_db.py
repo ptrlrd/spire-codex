@@ -212,6 +212,72 @@ def check_header(header: dict, run_doc: dict, blob: dict | None, run_hash: str) 
     return idx
 
 
+COMPETITIVE_RUN_FIELDS = ("competitive", "competitive_bracket", "competitive_reasons")
+
+
+def competitive_run_fields(verdict: dict | None) -> dict:
+    """What a replay's competitive verdict puts on its run."""
+    if not verdict:
+        return {}
+    return {
+        "competitive": verdict.get("state"),
+        "competitive_bracket": verdict.get("bracket"),
+        "competitive_reasons": list(verdict.get("reasons") or []),
+    }
+
+
+def competitive_fields_for(run_hash: str) -> dict:
+    """The run fields from the verdict stored with a live replay."""
+    doc = _coll().find_one({"_id": run_hash, "deleted_at": None}, {"competitive": 1})
+    return competitive_run_fields((doc or {}).get("competitive"))
+
+
+def competitive_fields_after_delete(run_hash: str) -> dict:
+    """A competitive run stays in competitive when its replay is removed, as
+    flagged, so deleting the replay cannot erase a loss."""
+    doc = _coll().find_one({"_id": run_hash}, {"competitive": 1})
+    verdict = (doc or {}).get("competitive")
+    if not verdict:
+        return {}
+    reasons = list(verdict.get("reasons") or [])
+    if "replay_deleted" not in reasons:
+        reasons.append("replay_deleted")
+    return {
+        "competitive": "flagged",
+        "competitive_bracket": verdict.get("bracket"),
+        "competitive_reasons": reasons,
+    }
+
+
+def run_update_after_delete(run_hash: str) -> dict:
+    kept = competitive_fields_after_delete(run_hash)
+    if kept:
+        return {"$unset": {"has_replay": ""}, "$set": kept}
+    return {"$unset": {"has_replay": "", **{f: "" for f in COMPETITIVE_RUN_FIELDS}}}
+
+
+def _settle_start(user: dict, header: dict, run_hash: str, verdict):
+    from . import competitive_starts
+
+    try:
+        return competitive_starts.settle(user, header, run_hash, verdict)
+    except Exception as e:
+        logger.error(
+            "competitive start settle failed for %s: %s", run_hash, str(e)[:300]
+        )
+        return verdict
+
+
+def _judge(gz: bytes, run_doc: dict, blob: dict | None, run_hash: str) -> dict | None:
+    from . import replay_competitive
+
+    try:
+        return replay_competitive.judge(gz, run_doc, blob)
+    except Exception as e:
+        logger.error("competitive check failed for %s: %s", run_hash, str(e)[:300])
+        return None
+
+
 def owns_run(run_doc: dict, user: dict) -> bool:
     sid = str(user.get("steam_id") or "")
     if sid and str(run_doc.get("steam_id") or "") == sid:
@@ -242,7 +308,10 @@ def accept_upload(run_hash: str, gz: bytes, user: dict) -> dict:
     info = inspect_gzip(gz)
     from .runs_db_mongo import attribute_run_to, get_run_blob
 
-    player_idx = check_header(info["header"], run_doc, get_run_blob(run_hash), run_hash)
+    blob = get_run_blob(run_hash)
+    player_idx = check_header(info["header"], run_doc, blob, run_hash)
+    verdict = _judge(gz, run_doc, blob, run_hash)
+    verdict = _settle_start(user, info["header"], run_hash, verdict)
     if claim_sid:
         if not attribute_run_to(run_hash, user, _runs()):
             raise ReplayRejected(
@@ -250,7 +319,7 @@ def accept_upload(run_hash: str, gz: bytes, user: dict) -> dict:
             )
         run_doc = {**run_doc, "steam_id": claim_sid, "user_id": user.get("_id")}
     try:
-        return store_replay(run_hash, gz, info, run_doc, user, player_idx)
+        return store_replay(run_hash, gz, info, run_doc, user, player_idx, verdict)
     except PyMongoError as e:
         logger.error("replay storage failed for %s: %s", run_hash, str(e)[:300])
         raise ReplayRejected(503, "replay storage is unavailable", "storage")
@@ -301,7 +370,13 @@ def accept_upload_by_header(gz: bytes, user: dict) -> dict:
 
 
 def store_replay(
-    run_hash: str, gz: bytes, info: dict, run_doc: dict, user: dict, player_idx: int
+    run_hash: str,
+    gz: bytes,
+    info: dict,
+    run_doc: dict,
+    user: dict,
+    player_idx: int,
+    competitive: dict | None = None,
 ) -> dict:
     header = info["header"]
     now = datetime.now(timezone.utc)
@@ -336,6 +411,7 @@ def store_replay(
         "ingested_at": None,
         "exploder_version": None,
         "published": {},
+        "competitive": competitive,
     }
     coll = _coll()
     try:
@@ -345,13 +421,31 @@ def store_replay(
         if existing and _same_replay(existing, info):
             if existing.get("deleted_at"):
                 coll.update_one({"_id": run_hash}, {"$set": {"deleted_at": None}})
-            _runs().update_one({"_id": run_hash}, {"$set": {"has_replay": True}})
+            _runs().update_one(
+                {"_id": run_hash},
+                {
+                    "$set": {
+                        "has_replay": True,
+                        **competitive_run_fields(existing.get("competitive")),
+                    }
+                },
+            )
             return {"success": True, "duplicate": True, "run_hash": run_hash}
         raise ReplayRejected(
             409, "a different replay is already stored for this run", "replay_exists"
         )
-    _runs().update_one({"_id": run_hash}, {"$set": {"has_replay": True}})
-    return {"success": True, "run_hash": run_hash, "lines": info["lines"]}
+    _runs().update_one(
+        {"_id": run_hash},
+        {"$set": {"has_replay": True, **competitive_run_fields(competitive)}},
+    )
+    result = {"success": True, "run_hash": run_hash, "lines": info["lines"]}
+    if competitive:
+        result["competitive"] = {
+            "state": competitive.get("state"),
+            "bracket": competitive.get("bracket"),
+            "reasons": competitive.get("reasons"),
+        }
+    return result
 
 
 def _same_replay(existing: dict, info: dict) -> bool:
@@ -419,5 +513,5 @@ def delete_replay(run_hash: str, user: dict) -> bool:
         .modified_count
         > 0
     )
-    _runs().update_one({"_id": run_hash}, {"$unset": {"has_replay": ""}})
+    _runs().update_one({"_id": run_hash}, run_update_after_delete(run_hash))
     return removed

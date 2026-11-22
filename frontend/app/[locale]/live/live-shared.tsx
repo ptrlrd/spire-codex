@@ -227,6 +227,27 @@ export interface LivePet {
   owner?: number;
 }
 
+export function CompetitiveTag({
+  state,
+  t,
+}: {
+  state?: "cleared" | "flagged" | null;
+  t: (key: string) => string;
+}) {
+  if (state !== "cleared" && state !== "flagged") return null;
+  const tone =
+    state === "cleared"
+      ? "text-success border-success/40 bg-success/10"
+      : "text-danger border-danger/40 bg-danger/10";
+  return (
+    <span
+      className={`px-1.5 py-0.5 rounded text-[10px] font-bold border ${tone}`}
+    >
+      {t(state === "cleared" ? "Competitive" : "Competitive, not eligible")}
+    </span>
+  );
+}
+
 export interface LivePlayer {
   steam_id: string;
   username?: string | null;
@@ -240,6 +261,7 @@ export interface LivePlayer {
   gold?: number | null;
   screen?: string | null;
   seed?: string | null;
+  competitive?: "cleared" | "flagged" | null;
   player_count?: number | null;
   sts2_version?: string | null;
   started_at?: string | null;

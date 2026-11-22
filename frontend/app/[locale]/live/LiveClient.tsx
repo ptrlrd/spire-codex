@@ -43,6 +43,7 @@ import {
   withOrdinalKeys,
   type LivePlayer,
   type MonsterMap,
+  CompetitiveTag,
 } from "./live-shared";
 
 // The roster carries no ticker events, so the contract's 10-15s roster
@@ -95,6 +96,7 @@ function PlayerCard({
                 A{p.ascension}
               </span>
             )}
+            <CompetitiveTag state={p.competitive} t={t} />
             {(p.player_count ?? 1) > 1 && (
               <span className="text-[10px] text-[var(--text-muted)]">
                 {t("co-op ×{n}", { n: p.player_count ?? 0 })}

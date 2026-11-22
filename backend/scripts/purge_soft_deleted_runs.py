@@ -23,6 +23,12 @@ FIELDS = {
     "win": 1,
     "was_abandoned": 1,
     "ascension": 1,
+    "competitive": 1,
+    "competitive_bracket": 1,
+    "user_id": 1,
+    "steam_id": 1,
+    "seed": 1,
+    "played_at": 1,
 }
 
 

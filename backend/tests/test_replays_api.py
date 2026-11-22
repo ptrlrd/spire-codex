@@ -14,7 +14,7 @@ from fastapi.testclient import TestClient
 from pymongo.errors import DuplicateKeyError
 
 from app.main import app
-from app.services import auth_jwt, replays_db, runs_db_mongo
+from app.services import auth_jwt, competitive_starts, replays_db, runs_db_mongo
 
 SAMPLE = pathlib.Path(__file__).parent / "fixtures" / "sample-replay.jsonl"
 RUN_HASH = "abc123def4567890"
@@ -60,6 +60,14 @@ class FakeRuns:
             d[k] = v
         for k in update.get("$unset", {}):
             d.pop(k, None)
+
+
+class FakeStarts:
+    def find_one(self, flt, proj=None):
+        return None
+
+    def update_one(self, flt, update, upsert=False):
+        return None
 
 
 class FakeReplays:
@@ -114,6 +122,7 @@ def env(monkeypatch):
     }
     monkeypatch.setattr(replays_db, "_runs", lambda: runs)
     monkeypatch.setattr(replays_db, "_coll", lambda: replays)
+    monkeypatch.setattr(competitive_starts, "_starts", lambda: FakeStarts())
     monkeypatch.setattr(
         runs_db_mongo, "get_run_blob", lambda h: blob if h == RUN_HASH else None
     )
@@ -541,3 +550,89 @@ def test_same_journal_from_another_compressor_is_a_duplicate(env):
     changed = _post(_gz(_lines()[:-1]))
     assert changed.status_code == 409
     assert changed.json()["detail"]["code"] == "replay_exists"
+
+
+def _competitive_lines(**header):
+    lines = _lines()
+    h = json.loads(lines[0])
+    h.update({"competitive": True, "mods": [{"t": "m", "id": "SpireCodex"}], **header})
+    lines[0] = json.dumps(h, separators=(",", ":"))
+    return lines
+
+
+def test_a_competitive_replay_marks_the_run_cleared(env):
+    runs, replays = env
+    r = _post(_gz(_competitive_lines()))
+    assert r.status_code == 200, r.text
+    assert r.json()["competitive"] == {
+        "state": "cleared",
+        "bracket": "a10_solo",
+        "reasons": [],
+    }
+    assert runs.docs[RUN_HASH]["competitive"] == "cleared"
+    assert runs.docs[RUN_HASH]["competitive_bracket"] == "a10_solo"
+    assert replays.docs[RUN_HASH]["competitive"]["check_version"] == 1
+
+
+def test_a_competitive_replay_with_another_mod_marks_the_run_flagged(env):
+    runs, _ = env
+    mods = [{"t": "m", "id": "SpireCodex"}, {"t": "m", "id": "SpireOracle"}]
+    r = _post(_gz(_competitive_lines(mods=mods)))
+    assert r.status_code == 200, r.text
+    assert runs.docs[RUN_HASH]["competitive"] == "flagged"
+    assert runs.docs[RUN_HASH]["competitive_reasons"] == ["mods"]
+
+
+def test_an_ordinary_replay_leaves_the_run_unmarked(env):
+    runs, replays = env
+    r = _post(_gz())
+    assert r.status_code == 200, r.text
+    assert "competitive" not in r.json()
+    assert "competitive" not in runs.docs[RUN_HASH]
+    assert replays.docs[RUN_HASH]["competitive"] is None
+
+
+def test_deleting_a_competitive_replay_leaves_the_run_flagged(env):
+    runs, _ = env
+    assert _post(_gz(_competitive_lines())).status_code == 200
+    r = client.delete(
+        f"/api/runs/{RUN_HASH}/replay", headers={"Authorization": "Bearer me"}
+    )
+    assert r.status_code == 200, r.text
+    assert "has_replay" not in runs.docs[RUN_HASH]
+    assert runs.docs[RUN_HASH]["competitive"] == "flagged"
+    assert runs.docs[RUN_HASH]["competitive_bracket"] == "a10_solo"
+    assert runs.docs[RUN_HASH]["competitive_reasons"] == ["replay_deleted"]
+
+
+def test_deleting_an_ordinary_replay_leaves_no_competitive_mark(env):
+    runs, _ = env
+    assert _post(_gz()).status_code == 200
+    client.delete(
+        f"/api/runs/{RUN_HASH}/replay", headers={"Authorization": "Bearer me"}
+    )
+    assert "competitive" not in runs.docs[RUN_HASH]
+
+
+def test_the_run_list_filters_on_the_competitive_verdict():
+    q = runs_db_mongo._run_filter(competitive="cleared", competitive_bracket="a10_solo")
+    assert q["competitive"] == "cleared"
+    assert q["competitive_bracket"] == "a10_solo"
+    assert "competitive" not in runs_db_mongo._run_filter(competitive="anything")
+    assert runs_db_mongo._projection_row()["competitive"] == 1
+
+
+def test_the_mod_can_report_a_competitive_start(env, monkeypatch):
+    seen = {}
+    monkeypatch.setattr(
+        competitive_starts,
+        "record_start",
+        lambda user, body: seen.update(user=user, body=body) or {"success": True},
+    )
+    body = {"seed": "JXS4H48K2D", "start_time": 1781152879}
+    assert client.post("/api/runs/competitive/start", json=body).status_code == 401
+    r = client.post(
+        "/api/runs/competitive/start", json=body, headers={"Authorization": "Bearer me"}
+    )
+    assert r.status_code == 200, r.text
+    assert seen["body"] == body and seen["user"]["steam_id"] == ME["steam_id"]
