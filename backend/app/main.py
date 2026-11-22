@@ -48,6 +48,7 @@ from .routers import (
     ascensions,
     names,
     exports,
+    competitive,
     leaderboards,
     entity_history,
     update_history,
@@ -925,6 +926,7 @@ app.include_router(ascensions.router)
 app.include_router(names.router)
 app.include_router(exports.router)
 app.include_router(leaderboards.router)
+app.include_router(competitive.router)
 app.include_router(entity_history.router)
 app.include_router(update_history.router)
 app.include_router(ancient_pools.router)

@@ -22,6 +22,7 @@ STALE_WARN_SECONDS = 12 * 3600
 _PREV_ROTATE = {
     "charts_blob.json.gz": "charts_blob.prev.json.gz",
     "user_winrates.json": "user_winrates.prev.json",
+    "competitive_store.json": "competitive_store.prev.json",
 }
 
 

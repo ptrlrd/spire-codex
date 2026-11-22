@@ -26,6 +26,7 @@ SERVE_FILES = (
     "runs_export.jsonl.gz",
     "runs_export.json",
     "player_elo.json",
+    "competitive_store.json",
     "leaderboard.parquet",
     "player_stats.parquet",
     "user_winrates.json",

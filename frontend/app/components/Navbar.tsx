@@ -116,6 +116,7 @@ const NAV_GROUPS: NavGroup[] = [
       { href: "/stats/campfires", label: "Campfires" },
       { href: "/leaderboards", label: "Leaderboards" },
       { href: "/top-players", label: "Top Players" },
+      { href: "/competitive", label: "Competitive" },
       { href: "/tier-list", label: "Tier List" },
       { href: "/stats/scoring", label: "Scoring" },
       { href: "/runs", label: "Browse Runs" },

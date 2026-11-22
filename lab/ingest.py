@@ -96,13 +96,17 @@ def mark_cycle_started(generation_id: str, t0: float) -> None:
 
 
 def _sidecar_digest() -> str:
-    """Content hash of the two mutable sidecars, ignoring gzip headers
+    """Content hash of the mutable sidecars, ignoring gzip headers
     (they embed a timestamp, so identical content still differs on bytes)."""
     import gzip
     import hashlib
 
     h = hashlib.sha256()
-    for name in ("excluded_current.jsonl.gz", "run_scalars_current.jsonl.gz"):
+    for name in (
+        "excluded_current.jsonl.gz",
+        "run_scalars_current.jsonl.gz",
+        "competitive_current.jsonl.gz",
+    ):
         try:
             with gzip.open(LAKE / name, "rb") as f:
                 for chunk in iter(lambda: f.read(1 << 20), b""):
@@ -449,6 +453,18 @@ def main() -> None:
     except Exception as e:
         print(f"user winrates failed: {e}", flush=True)
     _mark("user_winrates")
+    try:
+        import competitive_store
+
+        comp = competitive_store.build()
+        print(
+            f"competitive store built ({comp['runs']} runs, {comp['forfeits']} forfeits) "
+            f"in {comp['seconds']:.0f}s",
+            flush=True,
+        )
+    except Exception as e:
+        print(f"competitive store failed: {e}", flush=True)
+    _mark("competitive_store")
     try:
         import seed_profiles
 
