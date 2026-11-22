@@ -69,6 +69,7 @@ const LANG_LIST_ROUTES = [
   "stats/shops",
   "stats/events",
   "top-players",
+  "competitive",
   "runs/submit",
   "compare",
   "changelog",
@@ -141,6 +142,11 @@ const STATIC_PAGES = [
   },
   {
     path: "/top-players",
+    priority: 0.7,
+    changeFrequency: "daily" as const,
+  },
+  {
+    path: "/competitive",
     priority: 0.7,
     changeFrequency: "daily" as const,
   },

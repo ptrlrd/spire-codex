@@ -64,6 +64,11 @@
     "keywords": ["compare", "comparison", "versus", "vs"]
   },
   {
+    "path": "/competitive",
+    "name": "Competitive",
+    "keywords": ["competitive"]
+  },
+  {
     "path": "/deck-builder",
     "name": "Deck Builder",
     "keywords": ["deck", "builder", "build", "planner", "preview"]

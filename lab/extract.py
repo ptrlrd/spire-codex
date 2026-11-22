@@ -80,6 +80,49 @@ def _refresh_excluded(coll) -> None:
     print(f"excluded sidecar refreshed: {n:,} hidden/deleted runs", flush=True)
 
 
+def _refresh_competitive(coll) -> None:
+    """Every run the replay judge marked inside a bracket, plus started runs
+    that never uploaded (forfeits). Full refresh: a verdict changes when a
+    replay is deleted, restored or judged again."""
+    n = 0
+    starts = coll.database["competitive_starts"]
+    starters = {
+        doc["run_hash"]: str(doc.get("user_id") or "")
+        for doc in starts.find(
+            {"run_hash": {"$ne": None}}, {"run_hash": 1, "user_id": 1}
+        )
+    }
+    tmp = pathlib.Path("/lake/competitive_current.jsonl.gz.tmp")
+    with gzip.open(tmp, "wt", encoding="utf-8") as out:
+        for doc in coll.find(
+            {"competitive": {"$exists": True}, "competitive_bracket": {"$ne": None}},
+            {"_id": 1, "competitive": 1, "competitive_bracket": 1},
+        ):
+            row = {
+                "run_hash": doc["_id"],
+                "state": doc.get("competitive"),
+                "bracket": doc.get("competitive_bracket"),
+                "user_id": starters.get(doc["_id"]) or None,
+            }
+            out.write(json.dumps(row) + "\n")
+            n += 1
+        for doc in starts.find(
+            {"state": "forfeit", "run_hash": None, "bracket": {"$ne": None}},
+            {"user_id": 1, "bracket": 1, "character": 1},
+        ):
+            row = {
+                "run_hash": None,
+                "state": "forfeit",
+                "bracket": doc.get("bracket"),
+                "user_id": str(doc.get("user_id") or ""),
+                "character": doc.get("character"),
+            }
+            out.write(json.dumps(row) + "\n")
+            n += 1
+    tmp.replace(pathlib.Path("/lake/competitive_current.jsonl.gz"))
+    print(f"competitive sidecar refreshed: {n:,} rows", flush=True)
+
+
 def _refresh_scalars(coll) -> None:
     """Frame inputs that exist only as doc scalars, plus the two mutable
     fields (username, hidden) the frame needs fresh. Full projection scan
@@ -132,6 +175,7 @@ def main() -> tuple[int, int]:
     coll = _get_collection()
     _refresh_excluded(coll)
     _refresh_scalars(coll)
+    _refresh_competitive(coll)
 
     query: dict = {}
     page = 0
