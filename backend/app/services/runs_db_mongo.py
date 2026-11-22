@@ -228,17 +228,6 @@ def _ensure_indexes(coll) -> None:
         [("has_replay", ASCENDING), ("submitted_at", DESCENDING)],
         partialFilterExpression={"has_replay": True},
     )
-    # Runs a replay marked competitive are a small slice; the partial index
-    # backs the run browser's competitive filters and the lake's sidecar scan.
-    coll.create_index(
-        [
-            ("competitive", ASCENDING),
-            ("competitive_bracket", ASCENDING),
-            ("submitted_at", DESCENDING),
-        ],
-        name="competitive_bracket",
-        partialFilterExpression={"competitive": {"$exists": True}},
-    )
     coll.create_index(
         [("character", ASCENDING), ("win", ASCENDING), ("ascension", ASCENDING)]
     )
@@ -3724,6 +3713,17 @@ def _background_index_specs() -> list[tuple[list, dict]]:
                 ("submitted_at", DESCENDING),
             ],
             {"name": USER_PLAYED_INDEX},
+        ),
+        (
+            [
+                ("competitive", ASCENDING),
+                ("competitive_bracket", ASCENDING),
+                ("submitted_at", DESCENDING),
+            ],
+            {
+                "name": "competitive_bracket",
+                "partialFilterExpression": {"competitive": {"$exists": True}},
+            },
         ),
     ]
 
