@@ -85,6 +85,13 @@ def _refresh_competitive(coll) -> None:
     that never uploaded (forfeits). Full refresh: a verdict changes when a
     replay is deleted, restored or judged again."""
     n = 0
+    starts = coll.database["competitive_starts"]
+    starters = {
+        doc["run_hash"]: str(doc.get("user_id") or "")
+        for doc in starts.find(
+            {"run_hash": {"$ne": None}}, {"run_hash": 1, "user_id": 1}
+        )
+    }
     tmp = pathlib.Path("/lake/competitive_current.jsonl.gz.tmp")
     with gzip.open(tmp, "wt", encoding="utf-8") as out:
         for doc in coll.find(
@@ -95,10 +102,10 @@ def _refresh_competitive(coll) -> None:
                 "run_hash": doc["_id"],
                 "state": doc.get("competitive"),
                 "bracket": doc.get("competitive_bracket"),
+                "user_id": starters.get(doc["_id"]) or None,
             }
             out.write(json.dumps(row) + "\n")
             n += 1
-        starts = coll.database["competitive_starts"]
         for doc in starts.find(
             {"state": "forfeit", "run_hash": None, "bracket": {"$ne": None}},
             {"user_id": 1, "bracket": 1, "character": 1},

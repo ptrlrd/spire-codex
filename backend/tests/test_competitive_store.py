@@ -71,6 +71,7 @@ def test_stage_builds_from_the_lake(tmp_path, monkeypatch):
         f"""COPY (SELECT * FROM (VALUES
           ('a', 'IRONCLAD', true, 1800, 'name-1', '1', TIMESTAMP '2026-11-20 20:00:00'),
           ('b', 'IRONCLAD', true, 1700, 'name-1', '1', TIMESTAMP '2026-11-20 21:00:00'),
+          ('c', 'IRONCLAD', false, 600, NULL, NULL, TIMESTAMP '2026-11-20 19:00:00'),
           ('h', 'IRONCLAD', true, 900, 'name-9', '9', TIMESTAMP '2026-11-20 21:00:00')
         ) t(run_hash, character, win, run_time, username, user_id, submitted_at))
         TO '{lake}/runs.parquet' (FORMAT parquet)"""
@@ -103,6 +104,7 @@ def test_stage_builds_from_the_lake(tmp_path, monkeypatch):
     rows = [
         {"run_hash": "a", "state": "cleared", "bracket": "a10_solo"},
         {"run_hash": "b", "state": "flagged", "bracket": "a10_solo"},
+        {"run_hash": "c", "state": "flagged", "bracket": "a10_solo", "user_id": "1"},
         {"run_hash": "h", "state": "cleared", "bracket": "a10_solo"},
         {
             "run_hash": None,
@@ -122,16 +124,16 @@ def test_stage_builds_from_the_lake(tmp_path, monkeypatch):
     monkeypatch.setattr(stage, "LAKE", lake)
     monkeypatch.setattr(store, "LAKE_DIR", lake)
     monkeypatch.setattr(stage, "_nondraftable", lambda: ({"STRIKE_IRONCLAD"}, set()))
-    assert stage.build()["runs"] == 2
+    assert stage.build()["runs"] == 3
     out = store.view(store.load(), "a10_solo")
-    assert (out["runs"], out["flagged"], out["forfeits"]) == (1, 1, 1)
+    assert (out["runs"], out["flagged"], out["forfeits"]) == (1, 2, 1)
     assert out["boards"]["wins"][0] == {
         "rank": 1,
         "username": "name-1",
         "character": "ironclad",
         "wins": 1,
-        "runs": 3,
-        "win_rate": 33.3,
+        "runs": 4,
+        "win_rate": 25.0,
         "best_time": 1800,
         "best_run": "a",
     }

@@ -48,11 +48,15 @@ def _rows(con, lake: str, marks: list[dict]) -> tuple[list[dict], list[tuple]]:
     from app.services.timeutil import pacific_date
 
     con.execute(
-        "CREATE TEMP TABLE marks (run_hash VARCHAR, state VARCHAR, bracket VARCHAR)"
+        "CREATE TEMP TABLE marks "
+        "(run_hash VARCHAR, state VARCHAR, bracket VARCHAR, user_id VARCHAR)"
     )
     con.executemany(
-        "INSERT INTO marks VALUES (?, ?, ?)",
-        [(m["run_hash"], m.get("state"), m.get("bracket")) for m in marks],
+        "INSERT INTO marks VALUES (?, ?, ?, ?)",
+        [
+            (m["run_hash"], m.get("state"), m.get("bracket"), m.get("user_id") or None)
+            for m in marks
+        ],
     )
     p = lambda name: f"read_parquet('{lake}/{name}.parquet')"  # noqa: E731
     scalars = ""
@@ -62,7 +66,8 @@ def _rows(con, lake: str, marks: list[dict]) -> tuple[list[dict], list[tuple]]:
         name = "coalesce(nullif(trim(s.username), ''), r.username)"
     con.execute(
         f"""CREATE TEMP TABLE pool AS
-        SELECT r.run_hash, nullif(trim(r.user_id), '') AS user_id,
+        SELECT r.run_hash,
+          coalesce(nullif(trim(r.user_id), ''), m.user_id) AS user_id,
           nullif(trim({name}), '') AS username, r.character,
           coalesce(r.win, false) AS win, r.run_time,
           coalesce(r.played_at, r.submitted_at) AS played,
@@ -72,6 +77,15 @@ def _rows(con, lake: str, marks: list[dict]) -> tuple[list[dict], list[tuple]]:
         {scalars}
         ANTI JOIN {_unlisted_runs_sql(lake)} x ON r.run_hash = x.run_hash
         WHERE r.character IN {official_characters_sql()}"""
+    )
+    con.execute(
+        f"""UPDATE pool SET username = n.username FROM (
+          SELECT r.user_id, arg_max(r.username, r.submitted_at) AS username
+          FROM {p("runs")} r
+          SEMI JOIN (SELECT user_id FROM pool WHERE username IS NULL) u
+            ON u.user_id = r.user_id
+          WHERE nullif(trim(r.username), '') IS NOT NULL GROUP BY 1
+        ) n WHERE pool.username IS NULL AND pool.user_id = n.user_id"""
     )
     cols = [
         "run_hash",
