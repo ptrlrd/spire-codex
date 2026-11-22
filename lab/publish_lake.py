@@ -28,6 +28,7 @@ SERVE_FILES = (
     "player_elo.json",
     "leaderboard.parquet",
     "player_stats.parquet",
+    "user_winrates.json",
     "seed_facts.parquet",
     "seed_profiles.parquet",
     "seed_facts_predicted.parquet",

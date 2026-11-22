@@ -19,7 +19,10 @@ LAKE = pathlib.Path(os.environ.get("LAKE_DIR", "/lake"))
 PULLED = "pulled.json"
 STALE_WARN_SECONDS = 12 * 3600
 
-_PREV_ROTATE = {"charts_blob.json.gz": "charts_blob.prev.json.gz"}
+_PREV_ROTATE = {
+    "charts_blob.json.gz": "charts_blob.prev.json.gz",
+    "user_winrates.json": "user_winrates.prev.json",
+}
 
 
 def plan_downloads(manifest_files: dict, applied_files: dict) -> list[str]:

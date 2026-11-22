@@ -37,6 +37,11 @@ def _stages():
 
         return stage.build()
 
+    def user_winrates():
+        import user_winrates as stage
+
+        return stage.build()
+
     def frame():
         from app.services.charts_stats import store_frame_parquet
 
@@ -74,6 +79,7 @@ def _stages():
         "replay_guard": replay_guard,
         "player_elo": player_elo,
         "player_stats": player_stats,
+        "user_winrates": user_winrates,
     }
 
 
