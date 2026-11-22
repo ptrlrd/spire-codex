@@ -81,6 +81,9 @@ class CountColl:
         return iter(())
 
 
+FOREGROUND_INDEXES = 40
+
+
 def _timeouts(stage):
     return count_budget_timeouts.labels(stage=stage)._value.get()
 
@@ -158,7 +161,31 @@ def test_background_indexes_survive_one_failed_build():
         runs_db_mongo.HIDDEN_WINS_INDEX,
         runs_db_mongo.STEAM_BEST_WIN_INDEX,
         runs_db_mongo.USER_PLAYED_INDEX,
+        "competitive_bracket",
     ]
+
+
+def test_no_new_index_is_built_before_the_first_request(monkeypatch):
+    """An index built on the startup path blocks every request until it is
+    done, and on the full runs collection that is an outage. New indexes go
+    in _background_index_specs."""
+    built = []
+
+    class Coll:
+        def create_index(self, keys, **kwargs):
+            built.append(kwargs.get("name") or keys)
+
+    class NoThread:
+        def __init__(self, *args, **kwargs):
+            pass
+
+        def start(self):
+            pass
+
+    monkeypatch.setattr(runs_db_mongo.threading, "Thread", NoThread)
+    runs_db_mongo._ensure_indexes(Coll())
+    assert len(built) == FOREGROUND_INDEXES
+    assert "competitive_bracket" not in built
 
 
 def test_capped_count_is_time_limited(cache_store):
