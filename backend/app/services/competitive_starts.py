@@ -73,6 +73,10 @@ def _count(value, cap: int) -> int:
     return max(0, min(int(value), cap))
 
 
+def _character(value) -> str | None:
+    return str(value or "")[:64].upper().removeprefix("CHARACTER.") or None
+
+
 def record_start(user: dict, body: dict) -> dict:
     """Idempotent: the mod sends it again each time the run is continued."""
     if not isinstance(body, dict):
@@ -91,7 +95,7 @@ def record_start(user: dict, body: dict) -> dict:
         "user_id": user.get("_id"),
         "seed": seed,
         "start_time": int(body["start_time"]),
-        "character": str(body.get("character") or "")[:64].upper() or None,
+        "character": _character(body.get("character")),
         "game_mode": game_mode or None,
         "ascension": ascension,
         "player_count": players,
@@ -110,6 +114,10 @@ def settle(
 ) -> dict | None:
     """Close the start a replay belongs to. A replay that claims the mode was
     never on, for a run that was started in it, is flagged as toggled."""
+    _starts().update_one(
+        {"_id": f"deleted:{run_hash}", "state": "forfeit"},
+        {"$set": {"state": "judged", "run_hash": run_hash}},
+    )
     key = start_id(user, header.get("seed"), header.get("start_time"))
     if key is None:
         return verdict
@@ -138,6 +146,51 @@ def settle(
         },
     )
     return verdict
+
+
+def run_removed(run: dict) -> None:
+    """A deleted run keeps its competitive loss. A flagged run, or a cleared
+    one that was not a win, turns its start into a forfeit; a run that never
+    had a start gets one written for it. A deleted cleared win just drops out."""
+    bracket = run.get("competitive_bracket")
+    if not run.get("competitive") or not bracket:
+        return
+    if run.get("competitive") == "cleared" and run.get("win"):
+        return
+    run_hash = str(run["_id"])
+    now = datetime.now(timezone.utc)
+    start = _starts().find_one({"run_hash": run_hash})
+    if start:
+        _starts().update_one(
+            {"_id": start["_id"]},
+            {
+                "$set": {
+                    "state": "forfeit",
+                    "run_hash": None,
+                    "deleted_run": run_hash,
+                    "settled_at": now,
+                }
+            },
+        )
+        return
+    _starts().update_one(
+        {"_id": f"deleted:{run_hash}"},
+        {
+            "$setOnInsert": {
+                "steam_id": str(run.get("steam_id") or "") or None,
+                "user_id": run.get("user_id"),
+                "seed": run.get("seed"),
+                "character": _character(run.get("character")),
+                "bracket": bracket,
+                "state": "forfeit",
+                "run_hash": None,
+                "deleted_run": run_hash,
+                "started_at": run.get("played_at") or now,
+                "settled_at": now,
+            }
+        },
+        upsert=True,
+    )
 
 
 def _run_for(start: dict) -> dict | None:

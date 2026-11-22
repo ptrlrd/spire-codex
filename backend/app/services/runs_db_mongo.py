@@ -4621,6 +4621,10 @@ def delete_run_permanently(run_hash: str, user: dict) -> dict:
             "win": 1,
             "was_abandoned": 1,
             "ascension": 1,
+            "competitive": 1,
+            "competitive_bracket": 1,
+            "seed": 1,
+            "played_at": 1,
         },
     )
     if not run:
@@ -4654,6 +4658,13 @@ def _remove_run(run: dict, guard: dict | None = None) -> bool:
     removed = _get_collection().delete_one({"_id": run_hash, **(guard or {})})
     if not removed.deleted_count:
         return False
+    if run.get("competitive"):
+        try:
+            from . import competitive_starts
+
+            competitive_starts.run_removed(run)
+        except Exception:
+            logger.warning("competitive forfeit failed for %s", run_hash, exc_info=True)
     if not run.get("hidden") and not run.get("deleted_at"):
         bump_stats_counters(run, -1)
     _blob_collection().delete_one({"_id": run_hash})

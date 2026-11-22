@@ -152,3 +152,78 @@ def test_a_late_replay_overwrites_a_forfeit(env):
     competitive_starts.forfeit_stale()
     competitive_starts.settle(ME, HEADER, "h1", {"state": "cleared"})
     assert starts.docs[KEY]["state"] == "judged"
+
+
+def test_deleting_a_flagged_run_turns_its_start_into_a_forfeit(env):
+    starts, _ = env
+    competitive_starts.record_start(ME, BODY)
+    competitive_starts.settle(ME, HEADER, "h1", {"state": "flagged"})
+    competitive_starts.run_removed(
+        {"_id": "h1", "competitive": "flagged", "competitive_bracket": "dread_solo"}
+    )
+    assert starts.docs[KEY]["state"] == "forfeit"
+    assert starts.docs[KEY]["run_hash"] is None
+    assert starts.docs[KEY]["deleted_run"] == "h1"
+
+
+def test_deleting_a_cleared_loss_is_still_a_loss(env):
+    starts, _ = env
+    competitive_starts.record_start(ME, BODY)
+    competitive_starts.settle(ME, HEADER, "h1", {"state": "cleared"})
+    competitive_starts.run_removed(
+        {
+            "_id": "h1",
+            "competitive": "cleared",
+            "competitive_bracket": "dread_solo",
+            "win": False,
+        }
+    )
+    assert starts.docs[KEY]["state"] == "forfeit"
+
+
+def test_deleting_a_cleared_win_just_drops_it(env):
+    starts, _ = env
+    competitive_starts.record_start(ME, BODY)
+    competitive_starts.settle(ME, HEADER, "h1", {"state": "cleared"})
+    competitive_starts.run_removed(
+        {
+            "_id": "h1",
+            "competitive": "cleared",
+            "competitive_bracket": "dread_solo",
+            "win": True,
+        }
+    )
+    assert starts.docs[KEY]["state"] == "judged"
+
+
+def test_deleting_a_flagged_run_with_no_start_writes_a_forfeit(env):
+    starts, _ = env
+    competitive_starts.run_removed(
+        {
+            "_id": "h9",
+            "competitive": "flagged",
+            "competitive_bracket": "a10_solo",
+            "user_id": ME["_id"],
+            "steam_id": ME["steam_id"],
+            "character": "CHARACTER.DEFECT",
+        }
+    )
+    doc = starts.docs["deleted:h9"]
+    assert doc["state"] == "forfeit" and doc["run_hash"] is None
+    assert doc["bracket"] == "a10_solo" and doc["character"] == "DEFECT"
+    competitive_starts.settle(ME, HEADER, "h9", {"state": "flagged"})
+    assert starts.docs["deleted:h9"]["state"] == "judged"
+
+
+def test_a_run_outside_the_brackets_leaves_nothing_behind(env):
+    starts, _ = env
+    competitive_starts.run_removed(
+        {"_id": "h1", "competitive": "flagged", "competitive_bracket": None}
+    )
+    assert starts.docs == {}
+
+
+def test_a_prefixed_character_is_stored_bare(env):
+    starts, _ = env
+    competitive_starts.record_start(ME, {**BODY, "character": "CHARACTER.IRONCLAD"})
+    assert starts.docs[KEY]["character"] == "IRONCLAD"
