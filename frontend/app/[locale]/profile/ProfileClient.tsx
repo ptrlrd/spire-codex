@@ -265,7 +265,7 @@ export default function ProfileClient() {
         `${summary.claimed} ${t("claimed")}, ${summary.duplicates} ${t("duplicates")}, ${summary.errors} ${t("errors")}`,
         summary.errors > 0 ? "error" : "success",
       );
-      if (summary.claimed > 0) {
+      if (summary.claimed > 0 || summary.duplicates > 0) {
         fetchRuns(1);
         setPage(1);
       }
