@@ -504,7 +504,7 @@ def test_presence_count_is_cached_and_publicly_cacheable(mongo_env, monkeypatch)
 
 
 def test_presence_roster_stays_uncached(mongo_env, monkeypatch):
-    monkeypatch.setattr(presence_db, "active", lambda limit: [])
+    monkeypatch.setattr(presence_db, "active", lambda limit, preview=False: [])
     r = client.get("/api/presence/active")
     assert r.json() == {"count": 0, "players": []}
     assert r.headers["cache-control"] == "no-store"
