@@ -120,6 +120,11 @@ export interface RawRun {
   player_index?: number;
   primary_hash?: string;
   has_replay?: boolean;
+  competitive?: {
+    state: "cleared" | "flagged";
+    bracket: string | null;
+    reasons: string[];
+  } | null;
   hidden?: boolean;
   hidden_reason?: string | null;
 }
@@ -225,6 +230,11 @@ export interface Run {
   player_index: number;
   primary_hash?: string;
   has_replay?: boolean;
+  competitive?: {
+    state: "cleared" | "flagged";
+    bracket: string | null;
+    reasons: string[];
+  } | null;
   hidden?: boolean;
   hidden_reason?: string | null;
 }
