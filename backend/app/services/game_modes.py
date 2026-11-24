@@ -18,6 +18,16 @@ def normalize_game_mode(value) -> str:
     return str(value or STANDARD).strip().lower() or STANDARD
 
 
+def is_custom_run(data: dict) -> bool:
+    """Whether a run file is a custom game. Before v0.113.0 custom was its
+    own game_mode; from v0.113.0 the file keeps its real mode and says
+    is_custom_game, so a custom Blitz run is still a Blitz run."""
+    return (
+        data.get("is_custom_game") is True
+        or normalize_game_mode(data.get("game_mode")) == "custom"
+    )
+
+
 def is_game_mode(value) -> bool:
     return value in _KNOWN
 

@@ -60,6 +60,7 @@ from pymongo.errors import (
 
 from ..metrics import count_budget_timeouts, db_operations, db_operation_duration
 from . import cache as app_cache
+from .game_modes import is_custom_run
 from .official_content import LIVE_CAST
 
 logger = logging.getLogger(__name__)
@@ -1137,6 +1138,7 @@ def _submit_player_run(
         "was_abandoned": was_abandoned,
         "ascension": data.get("ascension", 0),
         "game_mode": data.get("game_mode", "standard"),
+        "is_custom": is_custom_run(data),
         "player_count": player_count,
         "run_time": data.get("run_time", 0),
         "floors_reached": total_floors,
@@ -1386,6 +1388,23 @@ def backfill_played_at() -> int:
                 }
             }
         ],
+    )
+    return result.modified_count
+
+
+def backfill_is_custom() -> int:
+    """Backfill: stamp is_custom on stored custom runs, the way ingest now
+    does: the v0.113.0+ files that say raw.is_custom_game, and the older
+    ones stored as game_mode "custom". Only the custom runs are touched; a
+    missing is_custom reads as not custom. Idempotent. Returns the number
+    of docs stamped."""
+    coll = _get_collection()
+    result = coll.update_many(
+        {
+            "$or": [{"raw.is_custom_game": True}, {"game_mode": "custom"}],
+            "is_custom": {"$ne": True},
+        },
+        {"$set": {"is_custom": True}},
     )
     return result.modified_count
 
