@@ -1,0 +1,149 @@
+[
+  {
+    "id": "ALL_STAR",
+    "name": "Seleção Especial",
+    "description": "Inicie com [blue]5[/blue] cartas [gold]Incolores[/gold].",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "BIG_GAME_HUNTER",
+    "name": "Grande Caçada",
+    "description": "Elites se aglomeram no Pináculo e concedem recompensas de cartas [gold]Raras[/gold].",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "CURSED_RUN",
+    "name": "Partida Amaldiçoada",
+    "description": "No início de cada Ato, uma [red]Maldição[/red] aleatória é adicionada ao seu baralho.",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "DEADLY_EVENTS",
+    "name": "Eventos Mortais",
+    "description": "Salas desconhecidas agora podem conter Elites, mas também têm maior chance de conter Tesouros.",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "DRAFT",
+    "name": "Draft",
+    "description": "Escolha [blue]10[/blue] recompensas de cartas para substituir seu baralho inicial.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "FLIGHT",
+    "name": "Voo",
+    "description": "Você pode ignorar caminhos ao escolher a próxima sala no mapa.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "HOARDER",
+    "name": "Acúmulo",
+    "description": "Sempre que você adicionar uma carta ao seu baralho, adicione [blue]2[/blue] cópias adicionais. Você não pode mais remover cartas do seu baralho na loja do Mercador.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "INSANITY",
+    "name": "Insanidade",
+    "description": "Inicie a partida com um baralho de [blue]30[/blue] cartas aleatórias.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "MIDAS",
+    "name": "Midas",
+    "description": "Inimigos concedem [blue]200%[/blue] mais ouro, mas você não pode mais Forjar em [gold]Locais de Descanso[/gold].",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "MURDEROUS",
+    "name": "Violência",
+    "description": "Você inicia cada combate com [blue]3[/blue] de [gold]Força[/gold]. Todos os inimigos iniciam o combate com [blue]3[/blue] de [gold]Força[/gold].",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "NIGHT_TERRORS",
+    "name": "Terrores Noturnos",
+    "description": "Descansar em [gold]Locais de Descanso[/gold] cura todos os seus PV, mas custa [red]5[/red] PV Máximos.",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "SEALED_DECK",
+    "name": "Baralho Selado",
+    "description": "Escolha [blue]10[/blue] entre [blue]30[/blue] cartas para substituir seu baralho inicial.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "SPECIALIZED",
+    "name": "Especialização",
+    "description": "Inicie a partida com [blue]5[/blue] cópias de uma única carta.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "TERMINAL",
+    "name": "Terminal",
+    "description": "Sempre que você entrar em uma nova sala, perca [red]1[/red] PV Máximo. Inicie cada combate com [blue]5[/blue] de [gold]Blindagem[/gold].",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "VINTAGE",
+    "name": "Vintage",
+    "description": "Inimigos comuns concedem relíquias no lugar de cartas.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "CHARACTER_CARDS_IRONCLAD",
+    "name": "Cartas do Rígido",
+    "description": "Cartas do Rígido aparecerão em recompensas e lojas.",
+    "kind": "good",
+    "character": "IRONCLAD"
+  },
+  {
+    "id": "CHARACTER_CARDS_SILENT",
+    "name": "Cartas da Sorrateira",
+    "description": "Cartas da Sorrateira aparecerão em recompensas e lojas.",
+    "kind": "good",
+    "character": "SILENT"
+  },
+  {
+    "id": "CHARACTER_CARDS_DEFECT",
+    "name": "Cartas do Defeituoso",
+    "description": "Cartas do Defeituoso aparecerão em recompensas e lojas.",
+    "kind": "good",
+    "character": "DEFECT"
+  },
+  {
+    "id": "CHARACTER_CARDS_NECROBINDER",
+    "name": "Cartas da Necroartífice",
+    "description": "Cartas da Necroartífice aparecerão em recompensas e lojas.",
+    "kind": "good",
+    "character": "NECROBINDER"
+  },
+  {
+    "id": "CHARACTER_CARDS_REGENT",
+    "name": "Cartas do Regente",
+    "description": "Cartas do Regente aparecerão em recompensas e lojas.",
+    "kind": "good",
+    "character": "REGENT"
+  },
+  {
+    "id": "CHARACTER_CARDS_FOOL",
+    "name": "Cartas do Bufão",
+    "description": "Cartas do Bufão aparecerão em recompensas e lojas.",
+    "kind": "good",
+    "character": "FOOL"
+  }
+]

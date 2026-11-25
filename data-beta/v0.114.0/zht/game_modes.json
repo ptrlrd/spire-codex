@@ -1,0 +1,807 @@
+[
+  {
+    "id": "STANDARD",
+    "name": "標準",
+    "description": "踏上殺戮尖塔的旅程！",
+    "multiplayer_description": "與好友一起踏上殺戮尖塔的旅程！",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": null,
+    "max_ascension": 10
+  },
+  {
+    "id": "DAILY",
+    "name": "每日挑戰",
+    "description": "每天都有一項全新挑戰。\n\n與其他玩家競逐最高分！",
+    "multiplayer_description": "每天都有一項全新挑戰。\n\n與其他隊伍競逐最高分！",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "使用所有角色各進行一局遊戲並破完第 3 幕，即可解鎖每日挑戰。",
+    "max_ascension": 10
+  },
+  {
+    "id": "DREAD",
+    "name": "恐懼",
+    "description": "建築師設下的最高難度。\n\n只適合想考驗自己對尖塔的掌握程度的玩家。",
+    "multiplayer_description": "建築師設下的最高難度。\n\n只適合想考驗自己對尖塔的掌握程度的隊伍。",
+    "intro": "[gold]恐懼[/gold]是《殺戮尖塔》中最艱難的挑戰。",
+    "rules": [
+      "啟用所有晉階調整。",
+      "每幕結束時，將一張[purple]晉階者之禍[/purple]加入你的[gold]牌組[/gold]。",
+      "敵人會從即將面對的頭目獲得額外能力。",
+      "頭目變得更加強大。"
+    ],
+    "epoch_id": "DREAD_EPOCH",
+    "unlock_text": "已解鎖遊戲模式：恐懼。",
+    "unlock_info": "使用所有角色達到[red]晉階[/red] [blue]10[/blue]，即可揭示此紀元。",
+    "max_ascension": 10,
+    "dominions": [
+      {
+        "id": "AEONGLASS_DOMINION",
+        "encounter_id": "AEONGLASS_BOSS",
+        "boss_name": "永世沙漏",
+        "name": "永世沙漏的統御",
+        "description": "在你的回合開始時，將 [blue]1[/blue] 張[gold]凋萎[/gold]加入你的[gold]抽牌堆[/gold]頂部。"
+      },
+      {
+        "id": "CEREMONIAL_BEAST_DOMINION",
+        "encounter_id": "CEREMONIAL_BEAST_BOSS",
+        "boss_name": "儀式獸",
+        "name": "儀式獸的統御",
+        "description": "所有敵人獲得 [blue]1[/blue] 層[gold]儀式[/gold]。"
+      },
+      {
+        "id": "INSATIABLE_DOMINION",
+        "encounter_id": "THE_INSATIABLE_BOSS",
+        "boss_name": "無饜沙蟲",
+        "name": "無饜沙蟲的統御",
+        "description": "在你的回合結束時，依回合數受到傷害。"
+      },
+      {
+        "id": "KAISER_CRAB_DOMINION",
+        "encounter_id": "KAISER_CRAB_BOSS",
+        "boss_name": "帝皇蟹",
+        "name": "帝皇蟹的統御",
+        "description": "所有敵人獲得 [blue]{Plating}[/blue] 層[gold]鍍甲[/gold]。"
+      },
+      {
+        "id": "KIN_DOMINION",
+        "encounter_id": "THE_KIN_BOSS",
+        "boss_name": "眷族",
+        "name": "眷族的統御",
+        "description": "你以帶有 [red]2[/red] 層[gold]虛弱[/gold]與[gold]脆弱[/gold]的形式開始戰鬥。"
+      },
+      {
+        "id": "KNOWLEDGE_DEMON_DOMINION",
+        "encounter_id": "KNOWLEDGE_DEMON_BOSS",
+        "boss_name": "知識惡魔",
+        "name": "知識惡魔的統御",
+        "description": "戰鬥開始時，從 [blue]2[/blue] 項統御[red]禍殃[/red]中選擇 [blue]1[/blue] 項。"
+      },
+      {
+        "id": "LAGAVULIN_MATRIARCH_DOMINION",
+        "encounter_id": "LAGAVULIN_MATRIARCH_BOSS",
+        "boss_name": "樂加維林族母",
+        "name": "樂加維林族母的統御",
+        "description": "在你的第一回合結束時，失去 [red]1[/red] 層[gold]力量[/gold]與[gold]敏捷[/gold]。"
+      },
+      {
+        "id": "QUEEN_DOMINION",
+        "encounter_id": "QUEEN_BOSS",
+        "boss_name": "女王",
+        "name": "女王的統御",
+        "description": "在第 2 回合開始時，獲得 [red]3[/red] 層[gold]虛弱[/gold]、[gold]易傷[/gold]與[gold]脆弱[/gold]。"
+      },
+      {
+        "id": "SOUL_FYSH_DOMINION",
+        "encounter_id": "SOUL_FYSH_BOSS",
+        "boss_name": "靈魂異魚",
+        "name": "靈魂異魚的統御",
+        "description": "每場戰鬥開始時，將一張[gold]呼喚[/gold]洗入你的[gold]抽牌堆[/gold]。"
+      },
+      {
+        "id": "TEST_SUBJECT_DOMINION",
+        "encounter_id": "TEST_SUBJECT_BOSS",
+        "boss_name": "實驗體",
+        "name": "實驗體的統御",
+        "description": "所有敵人獲得 [blue]3[/blue] 層[gold]力量[/gold]。"
+      },
+      {
+        "id": "VANTOM_DOMINION",
+        "encounter_id": "VANTOM_BOSS",
+        "boss_name": "墨影幻靈",
+        "name": "墨影幻靈的統御",
+        "description": "普通敵人獲得 [blue]{NormalSlippery}[/blue] 層[gold]滑溜[/gold]。菁英獲得 [blue]{EliteSlippery}[/blue] 層[gold]滑溜[/gold]。"
+      },
+      {
+        "id": "WATERFALL_GIANT_DOMINION",
+        "encounter_id": "WATERFALL_GIANT_BOSS",
+        "boss_name": "瀑布巨獸",
+        "name": "瀑布巨獸的統御",
+        "description": "敵人死亡時會爆炸，造成傷害。"
+      }
+    ],
+    "rotating_streak": {
+      "name": "輪替連勝",
+      "description": "在[gold]輪替連勝[/gold]中，每次勝利後都會換成右邊的下一名角色。\n勝場會獨立計算為一組連勝，不再計入個別角色的連勝紀錄。"
+    }
+  },
+  {
+    "id": "BLITZ",
+    "name": "閃擊",
+    "description": "節奏更快、流程更精簡，適合想來趟短途旅程的玩家。",
+    "multiplayer_description": "節奏更快、流程更精簡，適合想來趟短途旅程的隊伍。",
+    "intro": "歡迎來到[green]閃擊[/green]模式！這種快速遊戲擁有獨立的晉階難度，由所有角色共用，並透過重大調整讓遊戲更著重於構築牌組。",
+    "rules": [
+      "每局開始時獲得卡牌。",
+      "每幕面對 [blue]4[/blue] 場遭遇。",
+      "[blue]商人[/blue]變得[sine]怪怪的[/sine]。",
+      "[gold]財寶箱[/gold]內含一件額外遺物。",
+      "沒有地圖。"
+    ],
+    "epoch_id": "BLITZ_EPOCH",
+    "unlock_text": "已解鎖遊戲模式：閃擊。",
+    "unlock_info": "進行一局晉階遊戲，即可解鎖閃擊模式。",
+    "max_ascension": 5,
+    "ascension_levels": [
+      "WearyTraveler",
+      "TightBelt",
+      "ToughEnemies",
+      "DeadlyEnemies",
+      "AscendersBane"
+    ],
+    "neow": {
+      "name": "閃擊",
+      "description": "選擇 [blue]3[/blue] 張牌加入你的[gold]牌組[/gold]。"
+    },
+    "merchant_entries": [
+      {
+        "id": "CARD_UPGRADE",
+        "name": "卡牌升級服務",
+        "description": "[gold]升級[/gold]你[gold]牌組[/gold]中的一張牌。",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/card_upgrade.webp"
+      },
+      {
+        "id": "UPGRADED_CARD_REWARD",
+        "name": "已升級卡牌獎勵",
+        "description": "獲得 [blue]1[/blue] 次[gold]已升級[/gold]卡牌獎勵。",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/upgraded_card_reward.webp"
+      },
+      {
+        "id": "RANDOM_UPGRADES",
+        "name": "隨機升級",
+        "description": "升級你[gold]牌組[/gold]中的 [blue]2[/blue] 張隨機卡牌。",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/random_upgrades.webp"
+      },
+      {
+        "id": "CARD_TRANSFORM",
+        "name": "卡牌轉化服務",
+        "description": "[gold]轉化[/gold]你[gold]牌組[/gold]中的一張牌。",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/card_transform.webp"
+      },
+      {
+        "id": "CARD_REMOVAL",
+        "name": "卡牌移除服務",
+        "description": "從你的[gold]牌組[/gold]中移除一張牌。",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/card_removal.webp"
+      },
+      {
+        "id": "CARD_REWARDS",
+        "name": "卡牌獎勵",
+        "description": "獲得 [blue]2[/blue] 次卡牌獎勵。",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/card_rewards.webp"
+      },
+      {
+        "id": "COLORLESS_CARD_REWARD",
+        "name": "無色卡牌獎勵",
+        "description": "獲得 [blue]1[/blue] 次[gold]無色[/gold]卡牌獎勵。",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/colorless_card_reward.webp"
+      },
+      {
+        "id": "POTIONS",
+        "name": "藥水",
+        "description": "獲得 [blue]1[/blue] 個藥水欄位，並取得 [blue]2[/blue] 瓶隨機藥水。",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/potions.webp"
+      },
+      {
+        "id": "CARD_ENCHANT",
+        "name": "Enchantment",
+        "description": "為一張牌[gold]附魔[/gold][purple]Enchantment[/purple]。",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/card_enchant.webp"
+      },
+      {
+        "id": "ENCHANTED_CARD_REWARD",
+        "name": "附魔卡牌獎勵",
+        "description": "獲得 [blue]1[/blue] 次[gold]已附魔[/gold]卡牌獎勵。",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/enchanted_card_reward.webp"
+      },
+      {
+        "id": "PRISMATIC_CARD_REWARD",
+        "name": "Character卡牌獎勵",
+        "description": "獲得 [blue]1[/blue] 次[gold]Character[/gold]卡牌獎勵。",
+        "cursed": false,
+        "rare": true,
+        "image_url": "/static/images/beta/v0.114.0/blitz/prismatic_card_reward.webp"
+      },
+      {
+        "id": "RARE_CARD_REWARD",
+        "name": "稀有卡牌獎勵",
+        "description": "獲得 [blue]1[/blue] 次稀有卡牌獎勵。",
+        "cursed": false,
+        "rare": true,
+        "image_url": "/static/images/beta/v0.114.0/blitz/rare_card_reward.webp"
+      },
+      {
+        "id": "UPGRADED_RARE_CARD",
+        "name": "已升級稀有牌",
+        "description": "獲得 [blue]1[/blue] 張隨機[gold]已升級[/gold]稀有牌。",
+        "cursed": false,
+        "rare": true,
+        "image_url": "/static/images/beta/v0.114.0/blitz/upgraded_rare_card.webp"
+      },
+      {
+        "id": "RELIC",
+        "name": "遺物",
+        "description": "獲得 [blue]1[/blue] 件隨機[gold]遺物[/gold]。",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/relic.webp"
+      },
+      {
+        "id": "GLAM",
+        "name": "受詛咒的華彩",
+        "description": "獲得 [red]1[/red] 張隨機[red]詛咒[/red]。\n為一張牌[gold]附魔[/gold][purple]華彩[/purple]。",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/glam.webp"
+      },
+      {
+        "id": "TWO_MORE_CHOICES",
+        "name": "受詛咒的選擇",
+        "description": "獲得 [red]1[/red] 張隨機[red]詛咒[/red]。\n商人允許你再購買兩項商品。",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/two_more_choices.webp"
+      },
+      {
+        "id": "CARD_REWARD_OF_EACH_RARITY",
+        "name": "受詛咒的卡牌獎勵",
+        "description": "獲得 [red]1[/red] 張隨機[red]詛咒[/red]。\n各獲得 [blue]1[/blue] 次[gold]普通[/gold]、[gold]罕見[/gold]與[gold]稀有[/gold]卡牌獎勵。",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/card_reward_of_each_rarity.webp"
+      },
+      {
+        "id": "UPGRADED_RARE_CARD_REWARD",
+        "name": "受詛咒的已升級稀有卡牌獎勵",
+        "description": "獲得 [red]1[/red] 張隨機[red]詛咒[/red]。\n獲得 [blue]1[/blue] 次[gold]已升級[/gold]稀有卡牌獎勵。",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/upgraded_rare_card_reward.webp"
+      },
+      {
+        "id": "TWO_RELICS",
+        "name": "受詛咒的遺物",
+        "description": "獲得 [red]1[/red] 張隨機[red]詛咒[/red]。\n獲得 [blue]2[/blue] 件隨機[gold]遺物[/gold]。",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/two_relics.webp"
+      },
+      {
+        "id": "FULL_HEAL_AND_MAX_HP",
+        "name": "受詛咒的治療",
+        "description": "獲得 [red]1[/red] 張隨機[red]詛咒[/red]。\n最大生命提高 [blue]6[/blue] 點，並恢復所有生命。",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/full_heal_and_max_hp.webp"
+      }
+    ],
+    "act_layout": [
+      "ANCIENT",
+      "MONSTER",
+      "MONSTER",
+      "SHOP",
+      "ELITE",
+      "TREASURE",
+      "REST_SITE",
+      "BOSS"
+    ],
+    "act_rooms": [
+      {
+        "type": "ANCIENT",
+        "name": "遠古之民",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_ancient.webp"
+      },
+      {
+        "type": "MONSTER",
+        "name": "敵人",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_monster.webp",
+        "easy": true
+      },
+      {
+        "type": "MONSTER",
+        "name": "敵人",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_monster.webp",
+        "easy": false
+      },
+      {
+        "type": "SHOP",
+        "name": "商人",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_shop.webp"
+      },
+      {
+        "type": "ELITE",
+        "name": "菁英",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_elite.webp"
+      },
+      {
+        "type": "TREASURE",
+        "name": "財寶",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_treasure.webp"
+      },
+      {
+        "type": "REST_SITE",
+        "name": "休息",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_rest_site.webp"
+      },
+      {
+        "type": "BOSS",
+        "name": "頭目",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_boss.webp"
+      }
+    ],
+    "weak_encounters_per_act": 1,
+    "floors_per_act": 8,
+    "encounters_per_act": 4,
+    "neow_details": {
+      "cards_offered": 10,
+      "cards_picked": 3,
+      "rarity_odds": {
+        "common": 0.55,
+        "uncommon": 0.4,
+        "rare": 0.05
+      },
+      "prompt": "任選 [blue]3[/blue] 張牌加入你的牌組。"
+    },
+    "merchant": {
+      "offers_shown": 6,
+      "normal_offers_shown": 5,
+      "cursed_offers_shown": 1,
+      "picks": 3,
+      "rare_offer_weight": 0.5,
+      "card_rarity_odds": {
+        "common": 0.4,
+        "uncommon": 0.5,
+        "rare": 0.1
+      },
+      "enchantments": [
+        {
+          "id": "SHARP",
+          "name": "鋒利",
+          "amount": 2
+        },
+        {
+          "id": "NIMBLE",
+          "name": "靈巧",
+          "amount": 3
+        },
+        {
+          "id": "ADROIT",
+          "name": "俐落",
+          "amount": 3
+        },
+        {
+          "id": "STEADY",
+          "name": "穩定",
+          "amount": 1
+        },
+        {
+          "id": "SWIFT",
+          "name": "迅捷",
+          "amount": 2
+        },
+        {
+          "id": "VIGOROUS",
+          "name": "活力",
+          "amount": 5
+        }
+      ],
+      "curses": [
+        {
+          "id": "CLUMSY",
+          "name": "笨拙"
+        },
+        {
+          "id": "DECAY",
+          "name": "腐朽"
+        },
+        {
+          "id": "DOUBT",
+          "name": "疑慮"
+        },
+        {
+          "id": "GUILTY",
+          "name": "愧疚"
+        },
+        {
+          "id": "INJURY",
+          "name": "受傷"
+        },
+        {
+          "id": "NORMALITY",
+          "name": "凡庸"
+        },
+        {
+          "id": "REGRET",
+          "name": "悔恨"
+        },
+        {
+          "id": "SHAME",
+          "name": "羞恥"
+        },
+        {
+          "id": "WRITHE",
+          "name": "掙扭"
+        }
+      ]
+    },
+    "rewards": [
+      {
+        "room": "MONSTER",
+        "card_rarity": "Common",
+        "card_choices": 3,
+        "relics": 0,
+        "potion": "after_first_fight",
+        "room_name": "敵人"
+      },
+      {
+        "room": "ELITE",
+        "card_rarity": "Uncommon",
+        "card_choices": 3,
+        "relics": 2,
+        "potion": null,
+        "room_name": "菁英"
+      },
+      {
+        "room": "BOSS",
+        "card_rarity": "Rare",
+        "card_choices": 3,
+        "relics": 0,
+        "potion": "always",
+        "final_boss": false,
+        "room_name": "頭目"
+      }
+    ],
+    "reward_upgrades_by_act": [
+      0,
+      1,
+      2
+    ],
+    "ascension_ladder": [
+      {
+        "level": 1,
+        "id": "WEARY_TRAVELER",
+        "name": "旅途勞頓",
+        "description": "遠古之民只會恢復你已損失生命的 [blue]80%[/blue]。"
+      },
+      {
+        "level": 2,
+        "id": "TIGHT_BELT",
+        "name": "收緊腰帶",
+        "description": "每局開始時，藥水欄位減少 [blue]1[/blue] 個。"
+      },
+      {
+        "level": 3,
+        "id": "TOUGH_ENEMIES",
+        "name": "強韌敵人",
+        "description": "所有敵人都更難擊敗。"
+      },
+      {
+        "level": 4,
+        "id": "DEADLY_ENEMIES",
+        "name": "致命敵人",
+        "description": "所有敵人的攻擊都更加致命。"
+      },
+      {
+        "level": 5,
+        "id": "ASCENDERS_BANE",
+        "name": "晉階者之禍",
+        "description": "每局開始時即[red]被詛咒[/red]。"
+      }
+    ],
+    "banned_cards": [
+      {
+        "id": "DEBT",
+        "name": "債務"
+      },
+      {
+        "id": "HAND_OF_GREED",
+        "name": "貪婪之手"
+      },
+      {
+        "id": "MY_SHINIES",
+        "name": "我的亮晶晶"
+      },
+      {
+        "id": "ROYALTIES",
+        "name": "王室權利金"
+      }
+    ],
+    "banned_relics": [
+      {
+        "id": "AMETHYST_AUBERGINE",
+        "name": "紫水晶茄子",
+        "image_url": "/static/images/beta/v0.114.0/relics/amethyst_aubergine.webp"
+      },
+      {
+        "id": "BLACK_STAR",
+        "name": "黑星",
+        "image_url": "/static/images/beta/v0.114.0/relics/black_star.webp"
+      },
+      {
+        "id": "BOOK_OF_FIVE_RINGS",
+        "name": "五輪書",
+        "image_url": "/static/images/beta/v0.114.0/relics/book_of_five_rings.webp"
+      },
+      {
+        "id": "BOWLER_HAT",
+        "name": "圓頂禮帽",
+        "image_url": "/static/images/beta/v0.114.0/relics/bowler_hat.webp"
+      },
+      {
+        "id": "CURSED_PEARL",
+        "name": "詛咒珍珠",
+        "image_url": "/static/images/beta/v0.114.0/relics/cursed_pearl.webp"
+      },
+      {
+        "id": "DOWSING_ROD",
+        "name": "探尋杖",
+        "image_url": "/static/images/beta/v0.114.0/relics/dowsing_rod.webp"
+      },
+      {
+        "id": "DRAGON_FRUIT",
+        "name": "火龍果",
+        "image_url": "/static/images/beta/v0.114.0/relics/dragon_fruit.webp"
+      },
+      {
+        "id": "DREAM_CATCHER",
+        "name": "捕夢網",
+        "image_url": "/static/images/beta/v0.114.0/relics/dream_catcher.webp"
+      },
+      {
+        "id": "DRIFTWOOD",
+        "name": "浮木",
+        "image_url": "/static/images/beta/v0.114.0/relics/driftwood.webp"
+      },
+      {
+        "id": "ECTOPLASM",
+        "name": "靈質",
+        "image_url": "/static/images/beta/v0.114.0/relics/ectoplasm.webp"
+      },
+      {
+        "id": "ETERNAL_FEATHER",
+        "name": "永恆羽毛",
+        "image_url": "/static/images/beta/v0.114.0/relics/eternal_feather.webp"
+      },
+      {
+        "id": "FISHING_ROD",
+        "name": "釣竿",
+        "image_url": "/static/images/beta/v0.114.0/relics/fishing_rod.webp"
+      },
+      {
+        "id": "FUR_COAT",
+        "name": "毛皮大衣",
+        "image_url": "/static/images/beta/v0.114.0/relics/fur_coat.webp"
+      },
+      {
+        "id": "GIRYA",
+        "name": "壺鈴",
+        "image_url": "/static/images/beta/v0.114.0/relics/girya.webp"
+      },
+      {
+        "id": "GOLDEN_COMPASS",
+        "name": "黃金羅盤",
+        "image_url": "/static/images/beta/v0.114.0/relics/golden_compass.webp"
+      },
+      {
+        "id": "GOLDEN_PEARL",
+        "name": "黃金珍珠",
+        "image_url": "/static/images/beta/v0.114.0/relics/golden_pearl.webp"
+      },
+      {
+        "id": "JUZU_BRACELET",
+        "name": "佛珠手環",
+        "image_url": "/static/images/beta/v0.114.0/relics/juzu_bracelet.webp"
+      },
+      {
+        "id": "LASTING_CANDY",
+        "name": "持久糖果",
+        "image_url": "/static/images/beta/v0.114.0/relics/lasting_candy.webp"
+      },
+      {
+        "id": "LORDS_PARASOL",
+        "name": "領主陽傘",
+        "image_url": "/static/images/beta/v0.114.0/relics/lords_parasol.webp"
+      },
+      {
+        "id": "LUCKY_FYSH",
+        "name": "幸運異魚",
+        "image_url": "/static/images/beta/v0.114.0/relics/lucky_fysh.webp"
+      },
+      {
+        "id": "MAW_BANK",
+        "name": "巨口撲滿",
+        "image_url": "/static/images/beta/v0.114.0/relics/maw_bank.webp"
+      },
+      {
+        "id": "MEAL_TICKET",
+        "name": "餐券",
+        "image_url": "/static/images/beta/v0.114.0/relics/meal_ticket.webp"
+      },
+      {
+        "id": "MEAT_CLEAVER",
+        "name": "剁肉刀",
+        "image_url": "/static/images/beta/v0.114.0/relics/meat_cleaver.webp"
+      },
+      {
+        "id": "MEMBERSHIP_CARD",
+        "name": "會員卡",
+        "image_url": "/static/images/beta/v0.114.0/relics/membership_card.webp"
+      },
+      {
+        "id": "MINIATURE_TENT",
+        "name": "微型帳篷",
+        "image_url": "/static/images/beta/v0.114.0/relics/miniature_tent.webp"
+      },
+      {
+        "id": "OLD_COIN",
+        "name": "古錢幣",
+        "image_url": "/static/images/beta/v0.114.0/relics/old_coin.webp"
+      },
+      {
+        "id": "PAELS_CLAW",
+        "name": "佩爾之爪",
+        "image_url": "/static/images/beta/v0.114.0/relics/paels_claw.webp"
+      },
+      {
+        "id": "PAELS_GROWTH",
+        "name": "佩爾的增生組織",
+        "image_url": "/static/images/beta/v0.114.0/relics/paels_growth.webp"
+      },
+      {
+        "id": "PAELS_WING",
+        "name": "佩爾之翼",
+        "image_url": "/static/images/beta/v0.114.0/relics/paels_wing.webp"
+      },
+      {
+        "id": "PLANISPHERE",
+        "name": "星座盤",
+        "image_url": "/static/images/beta/v0.114.0/relics/planisphere.webp"
+      },
+      {
+        "id": "PRAYER_WHEEL",
+        "name": "轉經輪",
+        "image_url": "/static/images/beta/v0.114.0/relics/prayer_wheel.webp"
+      },
+      {
+        "id": "PUMPKIN_CANDLE",
+        "name": "南瓜蠟燭",
+        "image_url": "/static/images/beta/v0.114.0/relics/pumpkin_candle.webp"
+      },
+      {
+        "id": "REGAL_PILLOW",
+        "name": "皇室枕頭",
+        "image_url": "/static/images/beta/v0.114.0/relics/regal_pillow.webp"
+      },
+      {
+        "id": "SEAL_OF_GOLD",
+        "name": "黃金印記",
+        "image_url": "/static/images/beta/v0.114.0/relics/seal_of_gold.webp"
+      },
+      {
+        "id": "SHOVEL",
+        "name": "鏟子",
+        "image_url": "/static/images/beta/v0.114.0/relics/shovel.webp"
+      },
+      {
+        "id": "SIGNET_RING",
+        "name": "印戒",
+        "image_url": "/static/images/beta/v0.114.0/relics/signet_ring.webp"
+      },
+      {
+        "id": "SILKEN_TRESS",
+        "name": "絲綢髮束",
+        "image_url": "/static/images/beta/v0.114.0/relics/silken_tress.webp"
+      },
+      {
+        "id": "STONE_HUMIDIFIER",
+        "name": "石製加濕器",
+        "image_url": "/static/images/beta/v0.114.0/relics/stone_humidifier.webp"
+      },
+      {
+        "id": "THE_COURIER",
+        "name": "送貨員",
+        "image_url": "/static/images/beta/v0.114.0/relics/the_courier.webp"
+      },
+      {
+        "id": "TINY_MAILBOX",
+        "name": "迷你郵箱",
+        "image_url": "/static/images/beta/v0.114.0/relics/tiny_mailbox.webp"
+      },
+      {
+        "id": "TOY_BOX",
+        "name": "玩具箱",
+        "image_url": "/static/images/beta/v0.114.0/relics/toy_box.webp"
+      },
+      {
+        "id": "VENERABLE_TEA_SET",
+        "name": "古老茶具組",
+        "image_url": "/static/images/beta/v0.114.0/relics/venerable_tea_set.webp"
+      },
+      {
+        "id": "WHITE_BEAST_STATUE",
+        "name": "白獸雕像",
+        "image_url": "/static/images/beta/v0.114.0/relics/white_beast_statue.webp"
+      },
+      {
+        "id": "WINGED_BOOTS",
+        "name": "有翼靴",
+        "image_url": "/static/images/beta/v0.114.0/relics/winged_boots.webp"
+      }
+    ],
+    "late_relics": {
+      "from_floor": 21,
+      "relics": [
+        {
+          "id": "FROZEN_EGG",
+          "name": "冰凍之蛋",
+          "image_url": "/static/images/beta/v0.114.0/relics/frozen_egg.webp"
+        },
+        {
+          "id": "MOLTEN_EGG",
+          "name": "熔火之蛋",
+          "image_url": "/static/images/beta/v0.114.0/relics/molten_egg.webp"
+        },
+        {
+          "id": "POTION_BELT",
+          "name": "藥水腰帶",
+          "image_url": "/static/images/beta/v0.114.0/relics/potion_belt.webp"
+        },
+        {
+          "id": "TOXIC_EGG",
+          "name": "毒素之蛋",
+          "image_url": "/static/images/beta/v0.114.0/relics/toxic_egg.webp"
+        },
+        {
+          "id": "WHITE_STAR",
+          "name": "白色星星",
+          "image_url": "/static/images/beta/v0.114.0/relics/white_star.webp"
+        }
+      ]
+    }
+  }
+]

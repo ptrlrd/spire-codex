@@ -1,0 +1,807 @@
+[
+  {
+    "id": "STANDARD",
+    "name": "スタンダード",
+    "description": "スパイアを攻略する冒険へ出かけよう！",
+    "multiplayer_description": "スパイアを攻略する冒険へ出かけよう！……フレンドと共に！",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": null,
+    "max_ascension": 10
+  },
+  {
+    "id": "DAILY",
+    "name": "デイリー",
+    "description": "1日に1回、新たなチャレンジに挑戦できる。\n\n世界中のプレイヤーと最高スコアを競い合おう！",
+    "multiplayer_description": "1日に1回、新たなチャレンジに挑戦できる。\n\n他のグループと最高スコアを競い合おう！",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "全キャラクターで1回ずつプレイし、第3層をクリアすると、デイリーチャレンジがアンロックされる。",
+    "max_ascension": 10
+  },
+  {
+    "id": "DREAD",
+    "name": "ドレッド",
+    "description": "アーキテクトが用意した最高難度。\n\nスパイアで培った実力を試したい者へ。",
+    "multiplayer_description": "アーキテクトが用意した最高難度。\n\nスパイアで培った実力を試したい者たちへ。",
+    "intro": "[gold]ドレッド[/gold]は『Slay the Spire』で挑戦できる\n最高難度のモードだ。",
+    "rules": [
+      "全アセンションの変更要素が有効になる。",
+      "各層のクリア時、[purple]アセンダーの災厄[/purple]を\n1枚[gold]デッキ[/gold]に追加する。",
+      "敵は次に登場するボスの能力を追加で得る。",
+      "ボスがさらに強くなる。"
+    ],
+    "epoch_id": "DREAD_EPOCH",
+    "unlock_text": "アンロックしたゲームモード：ドレッド",
+    "unlock_info": "すべてのキャラクターで[red]アセンション[/red][blue]10[/blue]に到達すると、この断章が明らかになる。",
+    "max_ascension": 10,
+    "dominions": [
+      {
+        "id": "AEONGLASS_DOMINION",
+        "encounter_id": "AEONGLASS_BOSS",
+        "boss_name": "永劫の砂時計",
+        "name": "永劫の砂時計の権能",
+        "description": "ターン開始時、[gold]衰微[/gold]を[blue]1[/blue]枚[gold]山札[/gold]の一番上に加える。"
+      },
+      {
+        "id": "CEREMONIAL_BEAST_DOMINION",
+        "encounter_id": "CEREMONIAL_BEAST_BOSS",
+        "boss_name": "儀式の獣",
+        "name": "儀式の獣の権能",
+        "description": "すべての敵が[gold]儀式[/gold][blue]1[/blue]を得る。"
+      },
+      {
+        "id": "INSATIABLE_DOMINION",
+        "encounter_id": "THE_INSATIABLE_BOSS",
+        "boss_name": "貪りの獣",
+        "name": "貪りの獣の権能",
+        "description": "ターン終了時、経過ターン数に応じたダメージを受ける。"
+      },
+      {
+        "id": "KAISER_CRAB_DOMINION",
+        "encounter_id": "KAISER_CRAB_BOSS",
+        "boss_name": "カイザークラブ",
+        "name": "カイザークラブの権能",
+        "description": "すべての敵が[gold]プレート[/gold][blue]{Plating}[/blue]を得る。"
+      },
+      {
+        "id": "KIN_DOMINION",
+        "encounter_id": "THE_KIN_BOSS",
+        "boss_name": "血族",
+        "name": "血族の権能",
+        "description": "戦闘開始時、[gold]脱力[/gold]と[gold]脆弱[/gold]をそれぞれ[red]2[/red]得る。"
+      },
+      {
+        "id": "KNOWLEDGE_DEMON_DOMINION",
+        "encounter_id": "KNOWLEDGE_DEMON_BOSS",
+        "boss_name": "知識の悪魔",
+        "name": "知識の悪魔の権能",
+        "description": "戦闘開始時、[blue]2[/blue]つの「権能の[red]災厄[/red]」から[blue]1[/blue]つを選ぶ。"
+      },
+      {
+        "id": "LAGAVULIN_MATRIARCH_DOMINION",
+        "encounter_id": "LAGAVULIN_MATRIARCH_BOSS",
+        "boss_name": "ラガヴーリン・メイトリアーク",
+        "name": "ラガヴーリン・メイトリアークの権能",
+        "description": "最初のターン終了時、[gold]筋力[/gold]と[gold]敏捷[/gold]をそれぞれ[red]1[/red]失う。"
+      },
+      {
+        "id": "QUEEN_DOMINION",
+        "encounter_id": "QUEEN_BOSS",
+        "boss_name": "クイーン",
+        "name": "クイーンの権能",
+        "description": "2ターン目の開始時、[gold]脱力[/gold]、[gold]弱体[/gold]、[gold]脆弱[/gold]をそれぞれ[red]3[/red]得る。"
+      },
+      {
+        "id": "SOUL_FYSH_DOMINION",
+        "encounter_id": "SOUL_FYSH_BOSS",
+        "boss_name": "ソウルフィッシュ",
+        "name": "ソウルフィッシュの権能",
+        "description": "戦闘開始時、[gold]誘い[/gold]を1枚[gold]山札[/gold]に加えてシャッフルする。"
+      },
+      {
+        "id": "TEST_SUBJECT_DOMINION",
+        "encounter_id": "TEST_SUBJECT_BOSS",
+        "boss_name": "実験体",
+        "name": "実験体の権能",
+        "description": "すべての敵が[gold]筋力[/gold][blue]3[/blue]を得る。"
+      },
+      {
+        "id": "VANTOM_DOMINION",
+        "encounter_id": "VANTOM_BOSS",
+        "boss_name": "ヴァントム",
+        "name": "ヴァントムの権能",
+        "description": "通常の敵が[gold]スリップ[/gold][blue]{NormalSlippery}[/blue]を得る。エリートは[gold]スリップ[/gold][blue]{EliteSlippery}[/blue]を得る。"
+      },
+      {
+        "id": "WATERFALL_GIANT_DOMINION",
+        "encounter_id": "WATERFALL_GIANT_BOSS",
+        "boss_name": "滝の巨人",
+        "name": "滝の巨人の権能",
+        "description": "敵は死亡すると爆発し、ダメージを与える。"
+      }
+    ],
+    "rotating_streak": {
+      "name": "ローテーション",
+      "description": "[gold]ローテーション[/gold]では、勝利するたびに使用キャラクターが右隣のキャラクターへ切り替わる。\n勝利数は別枠の連勝記録にカウントされ、各キャラクター個別の連勝記録には加算されない。"
+    }
+  },
+  {
+    "id": "BLITZ",
+    "name": "ブリッツ",
+    "description": "短い冒険を求めるプレイヤー向け。短時間で濃密なスパイア攻略に挑むモード。",
+    "multiplayer_description": "短い冒険を求めるグループ向け。短時間で濃密なスパイア攻略に挑むモード。",
+    "intro": "[green]ブリッツ[/green]モードへようこそ！ 短時間で楽しめるこのモードでは、通常とは別のアセンション難易度が全キャラクター共通で適用される。また、デッキ構築重視の大幅な変更が加えられている。",
+    "rules": [
+      "冒険の開始時にカードを受け取る。",
+      "各層では[blue]4[/blue]回の戦闘が発生する。",
+      "[blue]商人[/blue]の様子が[sine]おかしい[/sine]。",
+      "[gold]宝箱[/gold]から追加のレリックを1個獲得できる。",
+      "マップが存在しない。"
+    ],
+    "epoch_id": "BLITZ_EPOCH",
+    "unlock_text": "アンロックしたゲームモード：ブリッツ",
+    "unlock_info": "アセンションを1回プレイすると、ブリッツがアンロックされる。",
+    "max_ascension": 5,
+    "ascension_levels": [
+      "WearyTraveler",
+      "TightBelt",
+      "ToughEnemies",
+      "DeadlyEnemies",
+      "AscendersBane"
+    ],
+    "neow": {
+      "name": "ブリッツ",
+      "description": "[gold]デッキ[/gold]に追加するカードを[blue]3[/blue]枚選ぶ。"
+    },
+    "merchant_entries": [
+      {
+        "id": "CARD_UPGRADE",
+        "name": "カードアップグレードサービス",
+        "description": "[gold]デッキ[/gold]のカードを1枚[gold]アップグレード[/gold]する。",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/card_upgrade.webp"
+      },
+      {
+        "id": "UPGRADED_CARD_REWARD",
+        "name": "アップグレード済みカード報酬",
+        "description": "[gold]アップグレード済み[/gold]カード報酬を[blue]1[/blue]回受け取る。",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/upgraded_card_reward.webp"
+      },
+      {
+        "id": "RANDOM_UPGRADES",
+        "name": "ランダムアップグレード",
+        "description": "[gold]デッキ[/gold]のランダムなカード[blue]2[/blue]枚をアップグレードする。",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/random_upgrades.webp"
+      },
+      {
+        "id": "CARD_TRANSFORM",
+        "name": "カード変化サービス",
+        "description": "[gold]デッキ[/gold]のカードを1枚[gold]変化[/gold]させる。",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/card_transform.webp"
+      },
+      {
+        "id": "CARD_REMOVAL",
+        "name": "カード削除サービス",
+        "description": "[gold]デッキ[/gold]からカードを1枚削除する。",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/card_removal.webp"
+      },
+      {
+        "id": "CARD_REWARDS",
+        "name": "カード報酬",
+        "description": "カード報酬を[blue]2[/blue]回受け取る。",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/card_rewards.webp"
+      },
+      {
+        "id": "COLORLESS_CARD_REWARD",
+        "name": "無色カード報酬",
+        "description": "[gold]無色[/gold]のカード報酬を[blue]1[/blue]回受け取る。",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/colorless_card_reward.webp"
+      },
+      {
+        "id": "POTIONS",
+        "name": "ポーション",
+        "description": "ポーションスロットを[blue]1[/blue]つ増やし、ランダムなポーションを[blue]2[/blue]個入手する。",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/potions.webp"
+      },
+      {
+        "id": "CARD_ENCHANT",
+        "name": "Enchantment",
+        "description": "カード1枚に[purple]Enchantment[/purple]を[gold]付与[/gold]する。",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/card_enchant.webp"
+      },
+      {
+        "id": "ENCHANTED_CARD_REWARD",
+        "name": "エンチャント済みカード報酬",
+        "description": "[gold]エンチャント[/gold]済みカード報酬を[blue]1[/blue]回受け取る。",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/enchanted_card_reward.webp"
+      },
+      {
+        "id": "PRISMATIC_CARD_REWARD",
+        "name": "Characterのカード報酬",
+        "description": "[gold]Character[/gold]のカード報酬を[blue]1[/blue]回受け取る。",
+        "cursed": false,
+        "rare": true,
+        "image_url": "/static/images/beta/v0.114.0/blitz/prismatic_card_reward.webp"
+      },
+      {
+        "id": "RARE_CARD_REWARD",
+        "name": "レアカード報酬",
+        "description": "レアカード報酬を[blue]1[/blue]回受け取る。",
+        "cursed": false,
+        "rare": true,
+        "image_url": "/static/images/beta/v0.114.0/blitz/rare_card_reward.webp"
+      },
+      {
+        "id": "UPGRADED_RARE_CARD",
+        "name": "アップグレード済みレアカード",
+        "description": "ランダムな[gold]アップグレード済み[/gold]のレアカードを[blue]1[/blue]枚受け取る。",
+        "cursed": false,
+        "rare": true,
+        "image_url": "/static/images/beta/v0.114.0/blitz/upgraded_rare_card.webp"
+      },
+      {
+        "id": "RELIC",
+        "name": "レリック",
+        "description": "ランダムな[gold]レリック[/gold]を[blue]1[/blue]個獲得する。",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/relic.webp"
+      },
+      {
+        "id": "GLAM",
+        "name": "呪いの魅惑",
+        "description": "ランダムな[red]呪い[/red]を[red]1[/red]枚受け取る。\nカード1枚に[purple]魅惑[/purple]を[gold]付与[/gold]する。",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/glam.webp"
+      },
+      {
+        "id": "TWO_MORE_CHOICES",
+        "name": "呪いの選択肢",
+        "description": "ランダムな[red]呪い[/red]を[red]1[/red]枚受け取る。\n商人からさらに2点の商品を購入できるようになる。",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/two_more_choices.webp"
+      },
+      {
+        "id": "CARD_REWARD_OF_EACH_RARITY",
+        "name": "呪いのカード報酬",
+        "description": "ランダムな[red]呪い[/red]を[red]1[/red]枚受け取る。\n[gold]コモン[/gold]、[gold]アンコモン[/gold]、[gold]レア[/gold]のカード報酬をそれぞれ[blue]1[/blue]回受け取る。",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/card_reward_of_each_rarity.webp"
+      },
+      {
+        "id": "UPGRADED_RARE_CARD_REWARD",
+        "name": "呪いのアップグレード済みレアカード報酬",
+        "description": "ランダムな[red]呪い[/red]を[red]1[/red]枚受け取る。\n[gold]アップグレード済み[/gold]レアカードの報酬を[blue]1[/blue]回受け取る。",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/upgraded_rare_card_reward.webp"
+      },
+      {
+        "id": "TWO_RELICS",
+        "name": "呪いのレリック",
+        "description": "ランダムな[red]呪い[/red]を[red]1[/red]枚受け取る。\nランダムな[gold]レリック[/gold]を[blue]2[/blue]個獲得する。",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/two_relics.webp"
+      },
+      {
+        "id": "FULL_HEAL_AND_MAX_HP",
+        "name": "呪いの回復",
+        "description": "ランダムな[red]呪い[/red]を[red]1[/red]枚受け取る。\n最大HPを[blue]6[/blue]増加させ、HPをすべて回復する。",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/full_heal_and_max_hp.webp"
+      }
+    ],
+    "act_layout": [
+      "ANCIENT",
+      "MONSTER",
+      "MONSTER",
+      "SHOP",
+      "ELITE",
+      "TREASURE",
+      "REST_SITE",
+      "BOSS"
+    ],
+    "act_rooms": [
+      {
+        "type": "ANCIENT",
+        "name": "エンシェント",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_ancient.webp"
+      },
+      {
+        "type": "MONSTER",
+        "name": "敵",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_monster.webp",
+        "easy": true
+      },
+      {
+        "type": "MONSTER",
+        "name": "敵",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_monster.webp",
+        "easy": false
+      },
+      {
+        "type": "SHOP",
+        "name": "商人",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_shop.webp"
+      },
+      {
+        "type": "ELITE",
+        "name": "エリート",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_elite.webp"
+      },
+      {
+        "type": "TREASURE",
+        "name": "宝箱",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_treasure.webp"
+      },
+      {
+        "type": "REST_SITE",
+        "name": "休憩",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_rest_site.webp"
+      },
+      {
+        "type": "BOSS",
+        "name": "ボス",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_boss.webp"
+      }
+    ],
+    "weak_encounters_per_act": 1,
+    "floors_per_act": 8,
+    "encounters_per_act": 4,
+    "neow_details": {
+      "cards_offered": 10,
+      "cards_picked": 3,
+      "rarity_odds": {
+        "common": 0.55,
+        "uncommon": 0.4,
+        "rare": 0.05
+      },
+      "prompt": "デッキに追加するカードを[blue]3[/blue]枚選ぶ。"
+    },
+    "merchant": {
+      "offers_shown": 6,
+      "normal_offers_shown": 5,
+      "cursed_offers_shown": 1,
+      "picks": 3,
+      "rare_offer_weight": 0.5,
+      "card_rarity_odds": {
+        "common": 0.4,
+        "uncommon": 0.5,
+        "rare": 0.1
+      },
+      "enchantments": [
+        {
+          "id": "SHARP",
+          "name": "鋭利",
+          "amount": 2
+        },
+        {
+          "id": "NIMBLE",
+          "name": "身軽",
+          "amount": 3
+        },
+        {
+          "id": "ADROIT",
+          "name": "巧妙",
+          "amount": 3
+        },
+        {
+          "id": "STEADY",
+          "name": "安定性",
+          "amount": 1
+        },
+        {
+          "id": "SWIFT",
+          "name": "迅速",
+          "amount": 2
+        },
+        {
+          "id": "VIGOROUS",
+          "name": "活気",
+          "amount": 5
+        }
+      ],
+      "curses": [
+        {
+          "id": "CLUMSY",
+          "name": "不器用"
+        },
+        {
+          "id": "DECAY",
+          "name": "腐敗"
+        },
+        {
+          "id": "DOUBT",
+          "name": "疑念"
+        },
+        {
+          "id": "GUILTY",
+          "name": "罪悪感"
+        },
+        {
+          "id": "INJURY",
+          "name": "怪我"
+        },
+        {
+          "id": "NORMALITY",
+          "name": "凡庸"
+        },
+        {
+          "id": "REGRET",
+          "name": "後悔"
+        },
+        {
+          "id": "SHAME",
+          "name": "羞恥"
+        },
+        {
+          "id": "WRITHE",
+          "name": "苦悩"
+        }
+      ]
+    },
+    "rewards": [
+      {
+        "room": "MONSTER",
+        "card_rarity": "Common",
+        "card_choices": 3,
+        "relics": 0,
+        "potion": "after_first_fight",
+        "room_name": "敵"
+      },
+      {
+        "room": "ELITE",
+        "card_rarity": "Uncommon",
+        "card_choices": 3,
+        "relics": 2,
+        "potion": null,
+        "room_name": "エリート"
+      },
+      {
+        "room": "BOSS",
+        "card_rarity": "Rare",
+        "card_choices": 3,
+        "relics": 0,
+        "potion": "always",
+        "final_boss": false,
+        "room_name": "ボス"
+      }
+    ],
+    "reward_upgrades_by_act": [
+      0,
+      1,
+      2
+    ],
+    "ascension_ladder": [
+      {
+        "level": 1,
+        "id": "WEARY_TRAVELER",
+        "name": "疲れ果てた旅人",
+        "description": "エンシェントによる回復量が、減少HPの[blue]80%[/blue]に低下する。"
+      },
+      {
+        "level": 2,
+        "id": "TIGHT_BELT",
+        "name": "きつめのベルト",
+        "description": "ポーションスロットが[blue]1[/blue]つ少ない状態でプレイを開始する。"
+      },
+      {
+        "level": 3,
+        "id": "TOUGH_ENEMIES",
+        "name": "頑強なる敵",
+        "description": "すべての敵の耐久力が上昇する。"
+      },
+      {
+        "level": 4,
+        "id": "DEADLY_ENEMIES",
+        "name": "凶悪なる敵",
+        "description": "すべての敵の攻撃が激化する。"
+      },
+      {
+        "level": 5,
+        "id": "ASCENDERS_BANE",
+        "name": "アセンダーの災厄",
+        "description": "プレイ開始時、[red]呪い[/red]を受ける。"
+      }
+    ],
+    "banned_cards": [
+      {
+        "id": "DEBT",
+        "name": "負債"
+      },
+      {
+        "id": "HAND_OF_GREED",
+        "name": "強欲の手"
+      },
+      {
+        "id": "MY_SHINIES",
+        "name": "私のキラキラ！"
+      },
+      {
+        "id": "ROYALTIES",
+        "name": "ロイヤリティ"
+      }
+    ],
+    "banned_relics": [
+      {
+        "id": "AMETHYST_AUBERGINE",
+        "name": "アメジストのナス",
+        "image_url": "/static/images/beta/v0.114.0/relics/amethyst_aubergine.webp"
+      },
+      {
+        "id": "BLACK_STAR",
+        "name": "ブラックスター",
+        "image_url": "/static/images/beta/v0.114.0/relics/black_star.webp"
+      },
+      {
+        "id": "BOOK_OF_FIVE_RINGS",
+        "name": "五輪書",
+        "image_url": "/static/images/beta/v0.114.0/relics/book_of_five_rings.webp"
+      },
+      {
+        "id": "BOWLER_HAT",
+        "name": "山高帽",
+        "image_url": "/static/images/beta/v0.114.0/relics/bowler_hat.webp"
+      },
+      {
+        "id": "CURSED_PEARL",
+        "name": "呪いの真珠",
+        "image_url": "/static/images/beta/v0.114.0/relics/cursed_pearl.webp"
+      },
+      {
+        "id": "DOWSING_ROD",
+        "name": "ダウジングロッド",
+        "image_url": "/static/images/beta/v0.114.0/relics/dowsing_rod.webp"
+      },
+      {
+        "id": "DRAGON_FRUIT",
+        "name": "ドラゴンフルーツ",
+        "image_url": "/static/images/beta/v0.114.0/relics/dragon_fruit.webp"
+      },
+      {
+        "id": "DREAM_CATCHER",
+        "name": "ドリームキャッチャー",
+        "image_url": "/static/images/beta/v0.114.0/relics/dream_catcher.webp"
+      },
+      {
+        "id": "DRIFTWOOD",
+        "name": "流木",
+        "image_url": "/static/images/beta/v0.114.0/relics/driftwood.webp"
+      },
+      {
+        "id": "ECTOPLASM",
+        "name": "エクトプラズム",
+        "image_url": "/static/images/beta/v0.114.0/relics/ectoplasm.webp"
+      },
+      {
+        "id": "ETERNAL_FEATHER",
+        "name": "エターナルフェザー",
+        "image_url": "/static/images/beta/v0.114.0/relics/eternal_feather.webp"
+      },
+      {
+        "id": "FISHING_ROD",
+        "name": "釣り竿",
+        "image_url": "/static/images/beta/v0.114.0/relics/fishing_rod.webp"
+      },
+      {
+        "id": "FUR_COAT",
+        "name": "毛皮のコート",
+        "image_url": "/static/images/beta/v0.114.0/relics/fur_coat.webp"
+      },
+      {
+        "id": "GIRYA",
+        "name": "ケトルベル",
+        "image_url": "/static/images/beta/v0.114.0/relics/girya.webp"
+      },
+      {
+        "id": "GOLDEN_COMPASS",
+        "name": "黄金の羅針盤",
+        "image_url": "/static/images/beta/v0.114.0/relics/golden_compass.webp"
+      },
+      {
+        "id": "GOLDEN_PEARL",
+        "name": "黄金の真珠",
+        "image_url": "/static/images/beta/v0.114.0/relics/golden_pearl.webp"
+      },
+      {
+        "id": "JUZU_BRACELET",
+        "name": "数珠",
+        "image_url": "/static/images/beta/v0.114.0/relics/juzu_bracelet.webp"
+      },
+      {
+        "id": "LASTING_CANDY",
+        "name": "長持ちキャンディ",
+        "image_url": "/static/images/beta/v0.114.0/relics/lasting_candy.webp"
+      },
+      {
+        "id": "LORDS_PARASOL",
+        "name": "王のパラソル",
+        "image_url": "/static/images/beta/v0.114.0/relics/lords_parasol.webp"
+      },
+      {
+        "id": "LUCKY_FYSH",
+        "name": "幸運の魚",
+        "image_url": "/static/images/beta/v0.114.0/relics/lucky_fysh.webp"
+      },
+      {
+        "id": "MAW_BANK",
+        "name": "モーの貯金箱",
+        "image_url": "/static/images/beta/v0.114.0/relics/maw_bank.webp"
+      },
+      {
+        "id": "MEAL_TICKET",
+        "name": "お食事券",
+        "image_url": "/static/images/beta/v0.114.0/relics/meal_ticket.webp"
+      },
+      {
+        "id": "MEAT_CLEAVER",
+        "name": "肉切り包丁",
+        "image_url": "/static/images/beta/v0.114.0/relics/meat_cleaver.webp"
+      },
+      {
+        "id": "MEMBERSHIP_CARD",
+        "name": "会員カード",
+        "image_url": "/static/images/beta/v0.114.0/relics/membership_card.webp"
+      },
+      {
+        "id": "MINIATURE_TENT",
+        "name": "ミニテント",
+        "image_url": "/static/images/beta/v0.114.0/relics/miniature_tent.webp"
+      },
+      {
+        "id": "OLD_COIN",
+        "name": "古いコイン",
+        "image_url": "/static/images/beta/v0.114.0/relics/old_coin.webp"
+      },
+      {
+        "id": "PAELS_CLAW",
+        "name": "パエルの爪",
+        "image_url": "/static/images/beta/v0.114.0/relics/paels_claw.webp"
+      },
+      {
+        "id": "PAELS_GROWTH",
+        "name": "パエルの膿",
+        "image_url": "/static/images/beta/v0.114.0/relics/paels_growth.webp"
+      },
+      {
+        "id": "PAELS_WING",
+        "name": "パエルの翼",
+        "image_url": "/static/images/beta/v0.114.0/relics/paels_wing.webp"
+      },
+      {
+        "id": "PLANISPHERE",
+        "name": "星座早見盤",
+        "image_url": "/static/images/beta/v0.114.0/relics/planisphere.webp"
+      },
+      {
+        "id": "PRAYER_WHEEL",
+        "name": "マニ車",
+        "image_url": "/static/images/beta/v0.114.0/relics/prayer_wheel.webp"
+      },
+      {
+        "id": "PUMPKIN_CANDLE",
+        "name": "カボチャのキャンドル",
+        "image_url": "/static/images/beta/v0.114.0/relics/pumpkin_candle.webp"
+      },
+      {
+        "id": "REGAL_PILLOW",
+        "name": "高貴な枕",
+        "image_url": "/static/images/beta/v0.114.0/relics/regal_pillow.webp"
+      },
+      {
+        "id": "SEAL_OF_GOLD",
+        "name": "黄金の印章",
+        "image_url": "/static/images/beta/v0.114.0/relics/seal_of_gold.webp"
+      },
+      {
+        "id": "SHOVEL",
+        "name": "ショベル",
+        "image_url": "/static/images/beta/v0.114.0/relics/shovel.webp"
+      },
+      {
+        "id": "SIGNET_RING",
+        "name": "シグネットリング",
+        "image_url": "/static/images/beta/v0.114.0/relics/signet_ring.webp"
+      },
+      {
+        "id": "SILKEN_TRESS",
+        "name": "絹の髪束",
+        "image_url": "/static/images/beta/v0.114.0/relics/silken_tress.webp"
+      },
+      {
+        "id": "STONE_HUMIDIFIER",
+        "name": "石の加湿器",
+        "image_url": "/static/images/beta/v0.114.0/relics/stone_humidifier.webp"
+      },
+      {
+        "id": "THE_COURIER",
+        "name": "配達人",
+        "image_url": "/static/images/beta/v0.114.0/relics/the_courier.webp"
+      },
+      {
+        "id": "TINY_MAILBOX",
+        "name": "小さなポスト",
+        "image_url": "/static/images/beta/v0.114.0/relics/tiny_mailbox.webp"
+      },
+      {
+        "id": "TOY_BOX",
+        "name": "おもちゃ箱",
+        "image_url": "/static/images/beta/v0.114.0/relics/toy_box.webp"
+      },
+      {
+        "id": "VENERABLE_TEA_SET",
+        "name": "古びたティーセット",
+        "image_url": "/static/images/beta/v0.114.0/relics/venerable_tea_set.webp"
+      },
+      {
+        "id": "WHITE_BEAST_STATUE",
+        "name": "白き獣の像",
+        "image_url": "/static/images/beta/v0.114.0/relics/white_beast_statue.webp"
+      },
+      {
+        "id": "WINGED_BOOTS",
+        "name": "空飛ぶ靴",
+        "image_url": "/static/images/beta/v0.114.0/relics/winged_boots.webp"
+      }
+    ],
+    "late_relics": {
+      "from_floor": 21,
+      "relics": [
+        {
+          "id": "FROZEN_EGG",
+          "name": "凍った卵",
+          "image_url": "/static/images/beta/v0.114.0/relics/frozen_egg.webp"
+        },
+        {
+          "id": "MOLTEN_EGG",
+          "name": "溶融した卵",
+          "image_url": "/static/images/beta/v0.114.0/relics/molten_egg.webp"
+        },
+        {
+          "id": "POTION_BELT",
+          "name": "ポーションベルト",
+          "image_url": "/static/images/beta/v0.114.0/relics/potion_belt.webp"
+        },
+        {
+          "id": "TOXIC_EGG",
+          "name": "毒の卵",
+          "image_url": "/static/images/beta/v0.114.0/relics/toxic_egg.webp"
+        },
+        {
+          "id": "WHITE_STAR",
+          "name": "ホワイトスター",
+          "image_url": "/static/images/beta/v0.114.0/relics/white_star.webp"
+        }
+      ]
+    }
+  }
+]

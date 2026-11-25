@@ -1,0 +1,149 @@
+[
+  {
+    "id": "ALL_STAR",
+    "name": "Tenar",
+    "description": "Mulai dengan [blue]5[/blue] [gold]kartu tak-berwarna[/gold].",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "BIG_GAME_HUNTER",
+    "name": "Pemburu Hewan Besar",
+    "description": "Musuh Elit mengerumuni Spire dan menjatuhkan jarahan kartu [gold]Langka[/gold].",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "CURSED_RUN",
+    "name": "Perjalanan Terkutuk",
+    "description": "Pada awal setiap Babak, tambahkan [red]Kutukan[/red] acak ke dekmu.",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "DEADLY_EVENTS",
+    "name": "Event Berbahaya",
+    "description": "Ruang tak diketahui sekarang dapat berisi Elit, tapi juga lebih sering berisi Ruang Harta.",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "DRAFT",
+    "name": "Pemilihan",
+    "description": "Pilih [blue]10[/blue] pilihan kartu untuk mengganti dek awalanmu.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "FLIGHT",
+    "name": "Terbang",
+    "description": "Kamu bisa mengabaikan jalur saat memilih ruang yang akan kamu datangi selanjutnya.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "HOARDER",
+    "name": "Penimbun",
+    "description": "Setiap kali kamu menambahkan kartu ke dekmu, tambahkan [blue]2[/blue] salinan tambahan. Kamu tidak bisa lagi membuang kartu dari dekmu di Pedagang.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "INSANITY",
+    "name": "Kegilaan",
+    "description": "Mulai dengan dek acak dari [blue]30[/blue] kartu.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "MIDAS",
+    "name": "Midas",
+    "description": "Musuh menjatuhkan [blue]200%[/blue] lebih banyak emas, tapi kamu tidak bisa lagi melakukan Tingkatkan pada [gold]Peristirahatan[/gold].",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "MURDEROUS",
+    "name": "Haus Darah",
+    "description": "Kamu mulai setiap perlawanan dengan [blue]3[/blue] [gold]Kekuatan[/gold]. Semua musuh mulai perlawanan dengan [blue]3[/blue] [gold]Kekuatan[/gold].",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "NIGHT_TERRORS",
+    "name": "Terror Malam",
+    "description": "Rehat pada [gold]Peristirahatan[/gold] menyembuhkan seluruh HP kamu, tapi menghabiskan [red]5[/red] HP Maksimal.",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "SEALED_DECK",
+    "name": "Dek Tersegel",
+    "description": "Pilih [blue]10[/blue] dari [blue]30[/blue] kartu untuk mengganti dek awalanmu.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "SPECIALIZED",
+    "name": "Spesialis",
+    "description": "Mulai dengan [blue]5[/blue] kartu sama.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "TERMINAL",
+    "name": "Terminal",
+    "description": "Setiap kali kamu memasuki ruangan baru, hilangkan [red]1[/red] HP Maksimal. Mulai setiap perlawanan dengan [blue]5[/blue] [gold]Lapisan[/gold].",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "VINTAGE",
+    "name": "Jadul",
+    "description": "Musuh normal menjatuhkan pusaka bukan kartu.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "CHARACTER_CARDS_IRONCLAD",
+    "name": "Kartu Ironclad",
+    "description": "Kartu Ironclad sekarang akan muncul di pilihan dan toko.",
+    "kind": "good",
+    "character": "IRONCLAD"
+  },
+  {
+    "id": "CHARACTER_CARDS_SILENT",
+    "name": "Kartu Silent",
+    "description": "Kartu Silent sekarang akan muncul di pilihan dan toko.",
+    "kind": "good",
+    "character": "SILENT"
+  },
+  {
+    "id": "CHARACTER_CARDS_DEFECT",
+    "name": "Kartu Defect",
+    "description": "Kartu Defect sekarang akan muncul di pilihan dan toko.",
+    "kind": "good",
+    "character": "DEFECT"
+  },
+  {
+    "id": "CHARACTER_CARDS_NECROBINDER",
+    "name": "Kartu Necrobinder",
+    "description": "Kartu Necrobinder sekarang akan muncul di pilihan dan toko.",
+    "kind": "good",
+    "character": "NECROBINDER"
+  },
+  {
+    "id": "CHARACTER_CARDS_REGENT",
+    "name": "Kartu Regent",
+    "description": "Kartu Regent sekarang akan muncul di pilihan dan toko.",
+    "kind": "good",
+    "character": "REGENT"
+  },
+  {
+    "id": "CHARACTER_CARDS_FOOL",
+    "name": "Kartu Fool",
+    "description": "Kartu Fool sekarang akan muncul di pilihan dan toko.",
+    "kind": "good",
+    "character": "FOOL"
+  }
+]
