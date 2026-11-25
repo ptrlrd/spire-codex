@@ -178,47 +178,64 @@ def end(steam_id: str) -> None:
     _presence_coll().delete_one({"_id": steam_id})
 
 
-def active(limit: int = 50) -> list[dict]:
-    """Fresh live players, deepest run first. Excludes the heavy per-run detail
-    (deck/relics/potions, the event window, the map node/edge graph, the combat
+PREVIEW_CARDS = 5
+COMPETITIVE_STATES = ("cleared", "flagged")
+
+
+def active(limit: int = 50, preview: bool = False) -> list[dict]:
+    """Fresh live players, competitive runs first, then deepest run first.
+    Excludes the heavy per-run detail (deck/relics/potions, the event window, the map node/edge graph, the combat
     hand, the act route, loot, floor history, co-op seats, and the local player's
     powers): the
     per-player endpoint serves those for the live run view. Keeps path/pos so the
     roster can show a player's position on a mini progress indicator. The light
-    scalars (run_time/block/energy/damage/pile counts) stay for a richer card."""
+    scalars (run_time/block/energy/damage/pile counts) stay for a richer card.
+    With preview, each player also carries their relics and their last few cards,
+    so a roster page needs no request per player."""
     cutoff = datetime.now(timezone.utc) - timedelta(seconds=PRESENCE_TTL_SECONDS)
-    docs = (
+    fields = {
+        "deck": 0,
+        "relics": 0,
+        "potions": 0,
+        "events": 0,
+        "map": 0,
+        "reveals": 0,
+        "event": 0,
+        "shop": 0,
+        "rest": 0,
+        "death": 0,
+        "enemies": 0,
+        "hand": 0,
+        "draw_pile": 0,
+        "discard_pile": 0,
+        "exhaust_pile": 0,
+        "route": 0,
+        "loot": 0,
+        "floor_history": 0,
+        "players": 0,
+        "player_powers": 0,
+        "orbs": 0,
+        "pets": 0,
+    }
+    if preview:
+        fields.pop("relics")
+        fields["deck"] = {"$slice": -PREVIEW_CARDS}
+    fresh = {"updated_at": {"$gte": cutoff}}
+    order = [("total_floor", -1), ("updated_at", -1)]
+    marked = {"$in": list(COMPETITIVE_STATES)}
+    docs = list(
         _presence_coll()
-        .find(
-            {"updated_at": {"$gte": cutoff}},
-            {
-                "deck": 0,
-                "relics": 0,
-                "potions": 0,
-                "events": 0,
-                "map": 0,
-                "reveals": 0,
-                "event": 0,
-                "shop": 0,
-                "rest": 0,
-                "death": 0,
-                "enemies": 0,
-                "hand": 0,
-                "draw_pile": 0,
-                "discard_pile": 0,
-                "exhaust_pile": 0,
-                "route": 0,
-                "loot": 0,
-                "floor_history": 0,
-                "players": 0,
-                "player_powers": 0,
-                "orbs": 0,
-                "pets": 0,
-            },
-        )
-        .sort([("total_floor", -1), ("updated_at", -1)])
+        .find({**fresh, "competitive": marked}, fields)
+        .sort(order)
         .limit(limit)
     )
+    if len(docs) < limit:
+        docs += list(
+            _presence_coll()
+            .find({**fresh, "competitive": {"$nin": list(COMPETITIVE_STATES)}}, fields)
+            .sort(order)
+            .limit(limit - len(docs))
+        )
     return [_public(d) for d in docs]
 
 

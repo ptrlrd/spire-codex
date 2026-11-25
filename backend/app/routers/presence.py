@@ -3,7 +3,7 @@
 POST /api/presence            — heartbeat from the mod, Bearer JWT required (the verified
                                 steam_id keys the entry, so nobody can publish as someone
                                 else). Body {"ended": true} clears the entry.
-GET  /api/presence/active     — public roster of live runs (no deck detail), deepest first.
+GET  /api/presence/active     — public roster of live runs (no deck detail), competitive first, then deepest.
 GET  /api/presence/{steam_id} — one player's full live doc (deck/relics/potions) for a
                                 live run view. 404 when not live.
 """
@@ -895,12 +895,14 @@ def _competitive_view(doc: dict) -> None:
 
 
 @router.get("/active")
-def get_active(limit: int = 50):
-    """Public roster of live runs (no deck detail), deepest first."""
+def get_active(limit: int = 50, preview: bool = False):
+    """Public roster of live runs, competitive runs first, then deepest first.
+    No deck detail unless preview is set, which adds each player's relics and
+    last few cards."""
     _require_mongo()
     from ..services import presence_db
 
-    players = presence_db.active(max(1, min(limit, 100)))
+    players = presence_db.active(max(1, min(limit, 100)), preview)
     for player in players:
         _competitive_view(player)
     _enrich_twitch(players)
