@@ -1,6 +1,7 @@
-"""Stamp is_custom on stored custom runs: the v0.113.0+ files that keep their
-real game_mode and say is_custom_game, and the older game_mode "custom"
-runs. Idempotent.
+"""Stamp is_custom on stored custom runs: the v0.113.0+ saves that keep their
+real game_mode and say is_custom_game (read from run_blobs, walked in _id
+batches), and the older game_mode "custom" runs. Idempotent and safe to
+re-run if interrupted.
 
     python -m scripts.backfill_is_custom
 """
