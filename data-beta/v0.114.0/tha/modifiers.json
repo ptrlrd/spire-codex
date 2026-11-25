@@ -1,0 +1,149 @@
+[
+  {
+    "id": "ALL_STAR",
+    "name": "รวมดารา",
+    "description": "เริ่มต้นด้วย[gold]การ์ดไร้สี[/gold] [blue]5[/blue] ใบ",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "BIG_GAME_HUNTER",
+    "name": "นักล่าสัตว์ใหญ่",
+    "description": "ศัตรูลูกพี่ยกทัพบุกสไปร์ และดรอปรางวัลระดับ[gold]หายาก[/gold]",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "CURSED_RUN",
+    "name": "การเดินทางต้องสาป",
+    "description": "ตอนเริ่มต้นแต่ละองก์ เพิ่ม [red]คำสาป[/red] แบบสุ่มเข้ากองการ์ด",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "DEADLY_EVENTS",
+    "name": "เหตุการณ์เสี่ยงตาย",
+    "description": "ห้องปริศนาสามารถพบลูกพี่ได้ แต่ก็เพิ่มโอกาสการพบห้องสมบัติด้วย",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "DRAFT",
+    "name": "ดราฟต์",
+    "description": "เลือกการ์ด [blue]10[/blue] ใบจากรางวัลการ์ดเพื่อทำเป็นกองการ์ดเริ่มต้น",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "FLIGHT",
+    "name": "บินได้",
+    "description": "คุณสามารถข้ามไปยังห้องที่อยู่บนเส้นทางอื่นได้",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "HOARDER",
+    "name": "นักกักตุน",
+    "description": "ทุกครั้งที่คุณเพิ่มการ์ดเข้ากองการ์ด จะเพิ่มสำเนาอีก [blue]2[/blue] การ์ด คุณไม่สามารถใช้บริการกำจัดการ์ดออกจากกองการ์ดของพ่อค้าได้อีกต่อไป",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "INSANITY",
+    "name": "วิกลจริต",
+    "description": "เริ่มต้นด้วยกองการ์ดที่มี [blue]30[/blue] การ์ดแบบสุ่ม",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "MIDAS",
+    "name": "ไมดาส",
+    "description": "ศัตรูดรอปทองมากขึ้น [blue]200%[/blue] แต่คุณไม่สามารถตีบวกที่[gold]จุดพัก[/gold]ได้อีกต่อไป",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "MURDEROUS",
+    "name": "เจตนาฆ่า",
+    "description": "คุณเริ่มการต่อสู้ด้วย [blue]3[/blue] [gold]ความแข็งแรง[/gold] ศัตรูทั้งหมดเริ่มการต่อสู้ด้วย [blue]3[/blue] [gold]ความแข็งแรง[/gold]",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "NIGHT_TERRORS",
+    "name": "ฝันผวา",
+    "description": "การพักผ่อนที่[gold]จุดพัก[/gold]จะฟื้นฟู HP ทั้งหมด แต่ต้องจ่ายด้วย [red]5[/red] HP สูงสุด",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "SEALED_DECK",
+    "name": "กองการ์ดใหม่แกะกล่อง",
+    "description": "เลือก [blue]10[/blue] การ์ดจาก [blue]30[/blue] การ์ดเพื่อทำเป็นกองการ์ดเริ่มต้น",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "SPECIALIZED",
+    "name": "เชี่ยวชาญเป็นพิเศษ",
+    "description": "เริ่มต้นด้วย [blue]5[/blue] สำเนาของการ์ดเดียว",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "TERMINAL",
+    "name": "ระยะสุดท้าย",
+    "description": "ทุกครั้งที่เข้าห้องใหม่ เสีย [red]1[/red] HP สูงสุด เริ่มแต่ละการต่อสู้ด้วย [blue]5[/blue] [gold]เกราะโลหะ[/gold]",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "VINTAGE",
+    "name": "เก่าย้อนยุค",
+    "description": "ศัตรูปกติดรอปเครื่องรางแทนที่จะเป็นการ์ด",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "CHARACTER_CARDS_IRONCLAD",
+    "name": "การ์ดนักรบเกราะเหล็ก",
+    "description": "การ์ดนักรบเกราะเหล็กจะปรากฏในรางวัลและร้านค้าแล้ว",
+    "kind": "good",
+    "character": "IRONCLAD"
+  },
+  {
+    "id": "CHARACTER_CARDS_SILENT",
+    "name": "การ์ดนักฆ่าแห่งความเงียบ",
+    "description": "การ์ดนักฆ่าแห่งความเงียบจะปรากฏในรางวัลและร้านค้าแล้ว",
+    "kind": "good",
+    "character": "SILENT"
+  },
+  {
+    "id": "CHARACTER_CARDS_DEFECT",
+    "name": "การ์ดนักเวทแปรพักตร์",
+    "description": "การ์ดนักเวทแปรพักตร์จะปรากฏในรางวัลและร้านค้าแล้ว",
+    "kind": "good",
+    "character": "DEFECT"
+  },
+  {
+    "id": "CHARACTER_CARDS_NECROBINDER",
+    "name": "การ์ดนักปลุกผีผูกจิต",
+    "description": "การ์ดนักปลุกผีผูกจิตจะปรากฏในรางวัลและร้านค้าแล้ว",
+    "kind": "good",
+    "character": "NECROBINDER"
+  },
+  {
+    "id": "CHARACTER_CARDS_REGENT",
+    "name": "การ์ดนักษัตรประโคมฤกษ์",
+    "description": "การ์ดนักษัตรประโคมฤกษ์จะปรากฏในรางวัลและร้านค้าแล้ว",
+    "kind": "good",
+    "character": "REGENT"
+  },
+  {
+    "id": "CHARACTER_CARDS_FOOL",
+    "name": "Fool Cards",
+    "description": "Fool cards will now appear in rewards and shops.",
+    "kind": "good",
+    "character": "FOOL"
+  }
+]

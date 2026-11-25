@@ -1,0 +1,16 @@
+{
+  "gid": "1826992588597319",
+  "title": "Beta Hotfix Patch Notes - v0.99.1",
+  "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1826992588597319",
+  "is_external_url": true,
+  "author": "demileaf",
+  "contents": "Got a quick hotfix for our players on the beta branch--this is what it's all for, so thank you to everyone providing feedback! If you're interested in accessing the beta branch, please see the [url=https://steamcommunity.com/games/2868840/announcements/detail/502852451136700759]previous patch notes[/url].\n\n[h3]BUG FIXES:[/h3]\n\n- Fixed a softlock that could occur when a player dies to [b]Breakthrough[/b] card's self-HP loss in multiplayer\n- Fixed softlock at the end of the Architect event in multiplayer",
+  "feedlabel": "Community Announcements",
+  "feedname": "steam_community_announcements",
+  "feed_type": 1,
+  "tags": [
+    "patchnotes"
+  ],
+  "date": 1773464180,
+  "appid": 2868840
+}

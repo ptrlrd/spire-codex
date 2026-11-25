@@ -1,0 +1,75 @@
+{
+  "card_types": {
+    "Attack": "هجوم",
+    "Skill": "مهارة",
+    "Power": "قدرة",
+    "Status": "حالة",
+    "Curse": "عبء",
+    "Quest": "مهمة"
+  },
+  "card_rarities": {
+    "Basic": "أساسي",
+    "Common": "شائع",
+    "Uncommon": "غير شائع",
+    "Rare": "نادر",
+    "Ancient": "عتيق",
+    "Event": "حدث",
+    "Token": "رمز",
+    "Status": "حالة",
+    "Curse": "عبء",
+    "Quest": "مهمة"
+  },
+  "relic_rarities": {
+    "Starter": "أثر البداية",
+    "Common": "أثر شائع",
+    "Uncommon": "أثر غير شائع",
+    "Rare": "أثر نادر",
+    "Ancient": "أثر عتيق",
+    "Event": "أثر حدث",
+    "Shop": "أثر المتجر"
+  },
+  "potion_rarities": {
+    "Common": "شائع",
+    "Uncommon": "غير شائع",
+    "Rare": "نادر",
+    "Event": "حدث",
+    "Token": "رمز"
+  },
+  "keywords": {
+    "ETERNAL": "أبدية",
+    "ETHEREAL": "زائلة",
+    "EXHAUST": "استهلاك",
+    "INNATE": "فطرية",
+    "RETAIN": "احتفاظ",
+    "SLY": "مخادعة",
+    "UNPLAYABLE": "غير قابلة للعب"
+  },
+  "sections": {
+    "cards": "مكتبة البطاقات",
+    "characters": "Characters",
+    "relics": "مجموعة الآثار",
+    "monsters": "دليل الوحوش",
+    "potions": "مختبر الجرعات",
+    "enchantments": "Enchantments",
+    "encounters": "Encounters",
+    "events": "Events",
+    "powers": "Powers",
+    "timeline": "الخط الزمني",
+    "images": "Images",
+    "reference": "Reference"
+  },
+  "section_descs": {
+    "cards": "اعرض كل البطاقات التي واجهتها عبر البرج.",
+    "relics": "افحص مختلف الحُلي والآثار التي حصلت عليها خلال جولاتك.",
+    "monsters": "اعرض كل الأعداء الذين واجهتهم عبر البرج.",
+    "potions": "تفقّد الجرعات الكثيرة الموجودة أثناء تسلق البرج."
+  },
+  "character_names": {
+    "ironclad": "المدرع",
+    "silent": "الصامتة",
+    "defect": "المعيب",
+    "necrobinder": "رابطة الموتى",
+    "regent": "الوصي",
+    "fool": "Fool"
+  }
+}

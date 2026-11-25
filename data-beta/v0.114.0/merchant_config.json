@@ -1,0 +1,90 @@
+{
+  "card_removal": {
+    "base_cost": 75,
+    "inflation_ascension": {
+      "base_cost": 100,
+      "level": "Inflation",
+      "price_increase": 50
+    },
+    "price_increase": 25
+  },
+  "cards": {
+    "by_rarity": {
+      "Common": {
+        "base": 50,
+        "max": 52,
+        "min": 48
+      },
+      "Rare": {
+        "base": 150,
+        "max": 158,
+        "min": 142
+      },
+      "Uncommon": {
+        "base": 75,
+        "max": 79,
+        "min": 71
+      }
+    },
+    "colorless_markup": 1.15,
+    "on_sale_divisor": 2,
+    "variance": {
+      "max": 1.05,
+      "min": 0.95
+    }
+  },
+  "fake_merchant": {
+    "relic_cost": 50
+  },
+  "potions": {
+    "by_rarity": {
+      "Common": {
+        "base": 50,
+        "max": 52,
+        "min": 48
+      },
+      "Rare": {
+        "base": 100,
+        "max": 105,
+        "min": 95
+      },
+      "Uncommon": {
+        "base": 75,
+        "max": 79,
+        "min": 71
+      }
+    },
+    "variance": {
+      "max": 1.05,
+      "min": 0.95
+    }
+  },
+  "relics": {
+    "by_rarity": {
+      "Common": {
+        "base": 175,
+        "max": 201,
+        "min": 149
+      },
+      "Rare": {
+        "base": 275,
+        "max": 316,
+        "min": 234
+      },
+      "Shop": {
+        "base": 200,
+        "max": 230,
+        "min": 170
+      },
+      "Uncommon": {
+        "base": 225,
+        "max": 259,
+        "min": 191
+      }
+    },
+    "variance": {
+      "max": 1.15,
+      "min": 0.85
+    }
+  }
+}

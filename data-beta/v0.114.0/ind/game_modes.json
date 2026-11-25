@@ -1,0 +1,807 @@
+[
+  {
+    "id": "STANDARD",
+    "name": "Standar",
+    "description": "Mulai perjalanan menaklukkan Spire!",
+    "multiplayer_description": "Mulai perjalanan menaklukkan Spire... bersama teman!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": null,
+    "max_ascension": 10
+  },
+  {
+    "id": "DAILY",
+    "name": "Harian",
+    "description": "Tantangan baru tersedia sehari sekali.\n\nBersaing dengan pemain lain untuk mendapat skor tertinggi!",
+    "multiplayer_description": "Tantangan baru tersedia sehari sekali.\n\nBersaing dengan pemain lain untuk mendapat skor tertinggi!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "Main sekali sebagai semua karakter dan kalahkan Babak 3 untuk membuka Harian.",
+    "max_ascension": 10
+  },
+  {
+    "id": "DREAD",
+    "name": "Kelam",
+    "description": "Kesulitan tertinggi yang dihadirkan oleh sang Arsitek.\n\nHanya untuk mereka yang ingin menguji kemahiran mereka atas Spire.",
+    "multiplayer_description": "Kesulitan tertinggi yang dihadirkan oleh sang Arsitek.\n\nHanya untuk kelompok yang ingin menguji kemahiran mereka atas Spire.",
+    "intro": "[gold]Kelam[/gold] adalah tantangan tersulit yang ada di Slay the Spire.",
+    "rules": [
+      "Semua efek angkatan aktif.",
+      "Pada akhir setiap babak, sebuah [purple]Kutukan Pendaki[/purple] ditambahkan ke [gold]Dekmu[/gold].",
+      "Musuh mendapat kemampuan tambahan dari bos mendatang.",
+      "Bos lebih kuat lagi."
+    ],
+    "epoch_id": "DREAD_EPOCH",
+    "unlock_text": "Mode permainan terbuka: Kelam.",
+    "unlock_info": "Capai [red]Angkatan[/red] [blue]10[/blue] pada semua karakter untuk mengungkap Zaman ini.",
+    "max_ascension": 10,
+    "dominions": [
+      {
+        "id": "AEONGLASS_DOMINION",
+        "encounter_id": "AEONGLASS_BOSS",
+        "boss_name": "Aeonglass",
+        "name": "Kekuasaan Aeonglass",
+        "description": "Pada awal giliranmu, tambahkan [blue]1[/blue] [gold]Layu[/gold] ke atas [gold]Tumpukan Ambil[/gold] kamu."
+      },
+      {
+        "id": "CEREMONIAL_BEAST_DOMINION",
+        "encounter_id": "CEREMONIAL_BEAST_BOSS",
+        "boss_name": "Binatang Seremonial",
+        "name": "Kekuasaan Binatang Seremonial",
+        "description": "Semua musuh mendapat [blue]1[/blue] [gold]Ritual[/gold]."
+      },
+      {
+        "id": "INSATIABLE_DOMINION",
+        "encounter_id": "THE_INSATIABLE_BOSS",
+        "boss_name": "Yang Tak Terpuaskan",
+        "name": "Kekuasaan Yang Tak Terpuaskan",
+        "description": "Pada akhir giliranmu, dapatkan kerusakan berdasarkan jumlah giliran."
+      },
+      {
+        "id": "KAISER_CRAB_DOMINION",
+        "encounter_id": "KAISER_CRAB_BOSS",
+        "boss_name": "Kepiting Kaisar",
+        "name": "Kekuasaan Kepiting Kaisar",
+        "description": "Semua musuh mendapat [blue]{Plating}[/blue] [gold]Lapisan[/gold]."
+      },
+      {
+        "id": "KIN_DOMINION",
+        "encounter_id": "THE_KIN_BOSS",
+        "boss_name": "Sang Kin",
+        "name": "Kekuasaan Sang Kin",
+        "description": "Kamu memulai perlawanan dengan [red]2[/red] [gold]Lemah[/gold] dan [gold]Retak[/gold]."
+      },
+      {
+        "id": "KNOWLEDGE_DEMON_DOMINION",
+        "encounter_id": "KNOWLEDGE_DEMON_BOSS",
+        "boss_name": "Iblis Pengetahuan",
+        "name": "Kekuasaan Iblis Pengetahuan",
+        "description": "Pada awal perlawanan, pilih [blue]1[/blue] dari [blue]2[/blue] [red]Kutukan[/red] Kekuasaan."
+      },
+      {
+        "id": "LAGAVULIN_MATRIARCH_DOMINION",
+        "encounter_id": "LAGAVULIN_MATRIARCH_BOSS",
+        "boss_name": "Pemimpin Lagavulin",
+        "name": "Kekuasaan Pemimpin Lagavulin",
+        "description": "Pada akhir giliran pertamamu, [red]1[/red] [gold]Kekuatan[/gold] dan [gold]Ketangkasan[/gold] hilang."
+      },
+      {
+        "id": "QUEEN_DOMINION",
+        "encounter_id": "QUEEN_BOSS",
+        "boss_name": "Ratu",
+        "name": "Kekuasaan Ratu",
+        "description": "Pada awal giliran 2, dapatkan [red]3[/red] [gold]Lemah[/gold], [gold]Rentan[/gold] dan [gold]Retak[/gold]."
+      },
+      {
+        "id": "SOUL_FYSH_DOMINION",
+        "encounter_id": "SOUL_FYSH_BOSS",
+        "boss_name": "Ykan Jiwa",
+        "name": "Kekuasaan Ykan Jiwa",
+        "description": "Pada awal setiap perlawanan, kocok sebuah [gold]Hasut[/gold] ke [gold]Tumpukan Ambil[/gold] kamu."
+      },
+      {
+        "id": "TEST_SUBJECT_DOMINION",
+        "encounter_id": "TEST_SUBJECT_BOSS",
+        "boss_name": "Subjek Eksperimen",
+        "name": "Kekuasaan Subjek Eksperimen",
+        "description": "Semua musuh mendapat [blue]3[/blue] [gold]Kekuatan[/gold]."
+      },
+      {
+        "id": "VANTOM_DOMINION",
+        "encounter_id": "VANTOM_BOSS",
+        "boss_name": "Vantom",
+        "name": "Kekuasaan Vantom",
+        "description": "Musuh normal mendapat [blue]{NormalSlippery}[/blue] [gold]Licin[/gold]. Elit mendapat [blue]{EliteSlippery}[/blue] [gold]Licin[/gold]."
+      },
+      {
+        "id": "WATERFALL_GIANT_DOMINION",
+        "encounter_id": "WATERFALL_GIANT_BOSS",
+        "boss_name": "Raksasa Air Terjun",
+        "name": "Kekuasaan Raksasa Air Terjun",
+        "description": "Musuh meledak saat mati, melakukan kerusakan."
+      }
+    ],
+    "rotating_streak": {
+      "name": "Rentetan Bergantian",
+      "description": "Dalam sebuah [gold]Rentetan Bergantian[/gold], karakter berganti ke kanan setiap kali kamu menang.\nKemenangan dihitung dalam rentetan terpisah, dan tidak lagi terhitung pada masing-masing karakter."
+    }
+  },
+  {
+    "id": "BLITZ",
+    "name": "Kilat",
+    "description": "Perjalanan padat dan cepat bagi mereka yang ingin perjalanan lebih singkat.",
+    "multiplayer_description": "Perjalanan padat dan cepat bagi kelompok yang ingin perjalanan lebih singkat.",
+    "intro": "Selamat datang di mode [green]Kilat[/green]! Perjalanan cepat ini memiliki kesulitan Angkatan terpisah yang dimiliki semua karakter dan perubahan besar yang lebih berfokus pada penyusunan dek.",
+    "rules": [
+      "Terima kartu pada awal setiap perjalanan.",
+      "Hadapi [blue]4[/blue] perlawanan setiap Babak.",
+      "Si [blue]Pedagang[/blue] agak [sine]aneh[/sine].",
+      "[gold]Peti Harta[/gold] memiliki pusaka tambahan.",
+      "Tidak ada peta."
+    ],
+    "epoch_id": "BLITZ_EPOCH",
+    "unlock_text": "Mode permainan terbuka: Kilat.",
+    "unlock_info": "Mainkan satu Angkatan untuk membuka Kilat.",
+    "max_ascension": 5,
+    "ascension_levels": [
+      "WearyTraveler",
+      "TightBelt",
+      "ToughEnemies",
+      "DeadlyEnemies",
+      "AscendersBane"
+    ],
+    "neow": {
+      "name": "Kilat",
+      "description": "Pilih [blue]3[/blue] kartu untuk ditambahkan ke [gold]Dekmu[/gold]."
+    },
+    "merchant_entries": [
+      {
+        "id": "CARD_UPGRADE",
+        "name": "Jasa Peningkatan Kartu",
+        "description": "[gold]Tingkatkan[/gold] sebuah kartu dalam [gold]Dekmu[/gold].",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/card_upgrade.webp"
+      },
+      {
+        "id": "UPGRADED_CARD_REWARD",
+        "name": "Pilihan Kartu Ditingkatkan",
+        "description": "Dapatkan [blue]1[/blue] pilihan kartu [gold]Ditingkatkan[/gold]",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/upgraded_card_reward.webp"
+      },
+      {
+        "id": "RANDOM_UPGRADES",
+        "name": "Peningkatan Acak",
+        "description": "Tingkatkan [blue]2[/blue] kartu acak dalam [gold]Dekmu[/gold].",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/random_upgrades.webp"
+      },
+      {
+        "id": "CARD_TRANSFORM",
+        "name": "Jasa Transformasi Kartu",
+        "description": "[gold]Transformasikan[/gold] sebuah kartu dalam [gold]Dekmu[/gold].",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/card_transform.webp"
+      },
+      {
+        "id": "CARD_REMOVAL",
+        "name": "Jasa Pembuangan Kartu",
+        "description": "Buang sebuah kartu dari [gold]Dekmu[/gold].",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/card_removal.webp"
+      },
+      {
+        "id": "CARD_REWARDS",
+        "name": "Pilihan Kartu",
+        "description": "Dapatkan [blue]2[/blue] pilihan kartu.",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/card_rewards.webp"
+      },
+      {
+        "id": "COLORLESS_CARD_REWARD",
+        "name": "Pilihan Kartu Tak Berwarna",
+        "description": "Dapatkan [blue]1[/blue] pilihan kartu [gold]Tak Berwarna[/gold].",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/colorless_card_reward.webp"
+      },
+      {
+        "id": "POTIONS",
+        "name": "Ramuan",
+        "description": "Dapatkan [blue]1[/blue] tempat ramuan dan dapatkan [blue]2[/blue] ramuan acak.",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/potions.webp"
+      },
+      {
+        "id": "CARD_ENCHANT",
+        "name": "Enchantment",
+        "description": "Tambahkan [gold]Efek[/gold] [purple]Enchantment[/purple] ke sebuah kartu.",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/card_enchant.webp"
+      },
+      {
+        "id": "ENCHANTED_CARD_REWARD",
+        "name": "Pilihan Kartu Dengan Efek",
+        "description": "Dapatkan [blue]1[/blue] pilihan kartu dengan [gold]Efek[/gold].",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/enchanted_card_reward.webp"
+      },
+      {
+        "id": "PRISMATIC_CARD_REWARD",
+        "name": "Pilihan Kartu Character",
+        "description": "Dapatkan [blue]1[/blue] pilihan kartu [gold]Character[/gold].",
+        "cursed": false,
+        "rare": true,
+        "image_url": "/static/images/beta/v0.114.0/blitz/prismatic_card_reward.webp"
+      },
+      {
+        "id": "RARE_CARD_REWARD",
+        "name": "Pilihan Kartu Langka",
+        "description": "Dapatkan [blue]1[/blue] pilihan kartu langka.",
+        "cursed": false,
+        "rare": true,
+        "image_url": "/static/images/beta/v0.114.0/blitz/rare_card_reward.webp"
+      },
+      {
+        "id": "UPGRADED_RARE_CARD",
+        "name": "Kartu Langka Ditingkatkan",
+        "description": "Dapatkan [blue]1[/blue] kartu langka [gold]Ditingkatkan[/gold] acak.",
+        "cursed": false,
+        "rare": true,
+        "image_url": "/static/images/beta/v0.114.0/blitz/upgraded_rare_card.webp"
+      },
+      {
+        "id": "RELIC",
+        "name": "Pusaka",
+        "description": "Dapatkan [blue]1[/blue] [gold]Pusaka[/gold] acak.",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/relic.webp"
+      },
+      {
+        "id": "GLAM",
+        "name": "Efek Berkilau Terkutuk",
+        "description": "Dapatkan [red]1[/red] [red]Kutukan[/red] acak.\nTambahkan [gold]Efek[/gold] [purple]Berkilau[/purple] ke sebuah kartu.",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/glam.webp"
+      },
+      {
+        "id": "TWO_MORE_CHOICES",
+        "name": "Opsi Terkutuk",
+        "description": "Dapatkan [red]1[/red] [red]Kutukan[/red] acak.\nSi Pedagang mengizinkanmu membeli dua barangnya lagi.",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/two_more_choices.webp"
+      },
+      {
+        "id": "CARD_REWARD_OF_EACH_RARITY",
+        "name": "Pilihan Kartu Terkutuk",
+        "description": "Dapatkan [red]1[/red] [red]Kutukan[/red] acak.\nDapatkan [blue]1[/blue] pilihan kartu [gold]Biasa[/gold], [gold]Tidak Biasa[/gold] dan [gold]Langka[/gold].",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/card_reward_of_each_rarity.webp"
+      },
+      {
+        "id": "UPGRADED_RARE_CARD_REWARD",
+        "name": "Pilihan Kartu Langka Ditingkatkan Terkutuk",
+        "description": "Dapatkan [red]1[/red] [red]Kutukan[/red] acak.\nDapatkan [blue]1[/blue] pilihan kartu langka [gold]Ditingkatkan[/gold].",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/upgraded_rare_card_reward.webp"
+      },
+      {
+        "id": "TWO_RELICS",
+        "name": "Pusaka Terkutuk",
+        "description": "Dapatkan [red]1[/red] [red]Kutukan[/red] acak.\nDapatkan [blue]2[/blue] [gold]Pusaka[/gold] acak.",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/two_relics.webp"
+      },
+      {
+        "id": "FULL_HEAL_AND_MAX_HP",
+        "name": "Penyembuhan Terkutuk",
+        "description": "Dapatkan [red]1[/red] [red]Kutukan[/red] acak.\nNaikkan HP Maksimalmu sebesar [blue]6[/blue] dan sembuhkan semua HP kamu.",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/full_heal_and_max_hp.webp"
+      }
+    ],
+    "act_layout": [
+      "ANCIENT",
+      "MONSTER",
+      "MONSTER",
+      "SHOP",
+      "ELITE",
+      "TREASURE",
+      "REST_SITE",
+      "BOSS"
+    ],
+    "act_rooms": [
+      {
+        "type": "ANCIENT",
+        "name": "Ancient",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_ancient.webp"
+      },
+      {
+        "type": "MONSTER",
+        "name": "Musuh",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_monster.webp",
+        "easy": true
+      },
+      {
+        "type": "MONSTER",
+        "name": "Musuh",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_monster.webp",
+        "easy": false
+      },
+      {
+        "type": "SHOP",
+        "name": "Pedagang",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_shop.webp"
+      },
+      {
+        "type": "ELITE",
+        "name": "Elit",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_elite.webp"
+      },
+      {
+        "type": "TREASURE",
+        "name": "Harta",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_treasure.webp"
+      },
+      {
+        "type": "REST_SITE",
+        "name": "Istirahat",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_rest_site.webp"
+      },
+      {
+        "type": "BOSS",
+        "name": "Bos",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_boss.webp"
+      }
+    ],
+    "weak_encounters_per_act": 1,
+    "floors_per_act": 8,
+    "encounters_per_act": 4,
+    "neow_details": {
+      "cards_offered": 10,
+      "cards_picked": 3,
+      "rarity_odds": {
+        "common": 0.55,
+        "uncommon": 0.4,
+        "rare": 0.05
+      },
+      "prompt": "Pilih [blue]3[/blue] kartu manapun untuk ditambahkan ke Dekmu."
+    },
+    "merchant": {
+      "offers_shown": 6,
+      "normal_offers_shown": 5,
+      "cursed_offers_shown": 1,
+      "picks": 3,
+      "rare_offer_weight": 0.5,
+      "card_rarity_odds": {
+        "common": 0.4,
+        "uncommon": 0.5,
+        "rare": 0.1
+      },
+      "enchantments": [
+        {
+          "id": "SHARP",
+          "name": "Tajam",
+          "amount": 2
+        },
+        {
+          "id": "NIMBLE",
+          "name": "Lincah",
+          "amount": 3
+        },
+        {
+          "id": "ADROIT",
+          "name": "Cakap",
+          "amount": 3
+        },
+        {
+          "id": "STEADY",
+          "name": "Kokoh",
+          "amount": 1
+        },
+        {
+          "id": "SWIFT",
+          "name": "Cepat",
+          "amount": 2
+        },
+        {
+          "id": "VIGOROUS",
+          "name": "Bugar",
+          "amount": 5
+        }
+      ],
+      "curses": [
+        {
+          "id": "CLUMSY",
+          "name": "Ceroboh"
+        },
+        {
+          "id": "DECAY",
+          "name": "Busuk"
+        },
+        {
+          "id": "DOUBT",
+          "name": "Keraguan"
+        },
+        {
+          "id": "GUILTY",
+          "name": "Bersalah"
+        },
+        {
+          "id": "INJURY",
+          "name": "Cedera"
+        },
+        {
+          "id": "NORMALITY",
+          "name": "Normalisir"
+        },
+        {
+          "id": "REGRET",
+          "name": "Kesesalan"
+        },
+        {
+          "id": "SHAME",
+          "name": "Malu"
+        },
+        {
+          "id": "WRITHE",
+          "name": "Encok"
+        }
+      ]
+    },
+    "rewards": [
+      {
+        "room": "MONSTER",
+        "card_rarity": "Common",
+        "card_choices": 3,
+        "relics": 0,
+        "potion": "after_first_fight",
+        "room_name": "Musuh"
+      },
+      {
+        "room": "ELITE",
+        "card_rarity": "Uncommon",
+        "card_choices": 3,
+        "relics": 2,
+        "potion": null,
+        "room_name": "Elit"
+      },
+      {
+        "room": "BOSS",
+        "card_rarity": "Rare",
+        "card_choices": 3,
+        "relics": 0,
+        "potion": "always",
+        "final_boss": false,
+        "room_name": "Bos"
+      }
+    ],
+    "reward_upgrades_by_act": [
+      0,
+      1,
+      2
+    ],
+    "ascension_ladder": [
+      {
+        "level": 1,
+        "id": "WEARY_TRAVELER",
+        "name": "Pengembara Waspada",
+        "description": "Ancient hanya akan menyembuhkan [blue]80%[/blue] HP kamu yang habis."
+      },
+      {
+        "level": 2,
+        "id": "TIGHT_BELT",
+        "name": "Sabuk Ketat",
+        "description": "Mulai setiap perjalanan dengan [blue]1[/blue] lebih sedikit tempat ramuan."
+      },
+      {
+        "level": 3,
+        "id": "TOUGH_ENEMIES",
+        "name": "Musuh Kuat",
+        "description": "Semua musuh lebih sulit dibunuh."
+      },
+      {
+        "level": 4,
+        "id": "DEADLY_ENEMIES",
+        "name": "Musuh Berbahaya",
+        "description": "Semua musuh punya serangan lebih berbahaya."
+      },
+      {
+        "level": 5,
+        "id": "ASCENDERS_BANE",
+        "name": "Kutukan Pendaki",
+        "description": "Mulai setiap perjalanan dengan [red]Kutukan[/red]."
+      }
+    ],
+    "banned_cards": [
+      {
+        "id": "DEBT",
+        "name": "Utang"
+      },
+      {
+        "id": "HAND_OF_GREED",
+        "name": "Tangan Tamak"
+      },
+      {
+        "id": "MY_SHINIES",
+        "name": "Kilau-Kilauku"
+      },
+      {
+        "id": "ROYALTIES",
+        "name": "Royalti"
+      }
+    ],
+    "banned_relics": [
+      {
+        "id": "AMETHYST_AUBERGINE",
+        "name": "Terong Ametis",
+        "image_url": "/static/images/beta/v0.114.0/relics/amethyst_aubergine.webp"
+      },
+      {
+        "id": "BLACK_STAR",
+        "name": "Bintang Hitam",
+        "image_url": "/static/images/beta/v0.114.0/relics/black_star.webp"
+      },
+      {
+        "id": "BOOK_OF_FIVE_RINGS",
+        "name": "Buku Kelima Cicin",
+        "image_url": "/static/images/beta/v0.114.0/relics/book_of_five_rings.webp"
+      },
+      {
+        "id": "BOWLER_HAT",
+        "name": "Topi Bowling",
+        "image_url": "/static/images/beta/v0.114.0/relics/bowler_hat.webp"
+      },
+      {
+        "id": "CURSED_PEARL",
+        "name": "Mutiara Terkutuk",
+        "image_url": "/static/images/beta/v0.114.0/relics/cursed_pearl.webp"
+      },
+      {
+        "id": "DOWSING_ROD",
+        "name": "Tongkat Pelacak",
+        "image_url": "/static/images/beta/v0.114.0/relics/dowsing_rod.webp"
+      },
+      {
+        "id": "DRAGON_FRUIT",
+        "name": "Buah Naga",
+        "image_url": "/static/images/beta/v0.114.0/relics/dragon_fruit.webp"
+      },
+      {
+        "id": "DREAM_CATCHER",
+        "name": "Penangkap Mimpi",
+        "image_url": "/static/images/beta/v0.114.0/relics/dream_catcher.webp"
+      },
+      {
+        "id": "DRIFTWOOD",
+        "name": "Kayu Apung",
+        "image_url": "/static/images/beta/v0.114.0/relics/driftwood.webp"
+      },
+      {
+        "id": "ECTOPLASM",
+        "name": "Ektoplasma",
+        "image_url": "/static/images/beta/v0.114.0/relics/ectoplasm.webp"
+      },
+      {
+        "id": "ETERNAL_FEATHER",
+        "name": "Bulu Abadi",
+        "image_url": "/static/images/beta/v0.114.0/relics/eternal_feather.webp"
+      },
+      {
+        "id": "FISHING_ROD",
+        "name": "Pancing",
+        "image_url": "/static/images/beta/v0.114.0/relics/fishing_rod.webp"
+      },
+      {
+        "id": "FUR_COAT",
+        "name": "Mantel Bulu",
+        "image_url": "/static/images/beta/v0.114.0/relics/fur_coat.webp"
+      },
+      {
+        "id": "GIRYA",
+        "name": "Girya",
+        "image_url": "/static/images/beta/v0.114.0/relics/girya.webp"
+      },
+      {
+        "id": "GOLDEN_COMPASS",
+        "name": "Kompas Emas",
+        "image_url": "/static/images/beta/v0.114.0/relics/golden_compass.webp"
+      },
+      {
+        "id": "GOLDEN_PEARL",
+        "name": "Mutiara Emas",
+        "image_url": "/static/images/beta/v0.114.0/relics/golden_pearl.webp"
+      },
+      {
+        "id": "JUZU_BRACELET",
+        "name": "Tasbih",
+        "image_url": "/static/images/beta/v0.114.0/relics/juzu_bracelet.webp"
+      },
+      {
+        "id": "LASTING_CANDY",
+        "name": "Permen Tahan Lama",
+        "image_url": "/static/images/beta/v0.114.0/relics/lasting_candy.webp"
+      },
+      {
+        "id": "LORDS_PARASOL",
+        "name": "Payung Raja",
+        "image_url": "/static/images/beta/v0.114.0/relics/lords_parasol.webp"
+      },
+      {
+        "id": "LUCKY_FYSH",
+        "name": "Ykan Keberuntungan",
+        "image_url": "/static/images/beta/v0.114.0/relics/lucky_fysh.webp"
+      },
+      {
+        "id": "MAW_BANK",
+        "name": "Bank Mengganga",
+        "image_url": "/static/images/beta/v0.114.0/relics/maw_bank.webp"
+      },
+      {
+        "id": "MEAL_TICKET",
+        "name": "Kupon Makan",
+        "image_url": "/static/images/beta/v0.114.0/relics/meal_ticket.webp"
+      },
+      {
+        "id": "MEAT_CLEAVER",
+        "name": "Pisau Daging",
+        "image_url": "/static/images/beta/v0.114.0/relics/meat_cleaver.webp"
+      },
+      {
+        "id": "MEMBERSHIP_CARD",
+        "name": "Kartu Member",
+        "image_url": "/static/images/beta/v0.114.0/relics/membership_card.webp"
+      },
+      {
+        "id": "MINIATURE_TENT",
+        "name": "Tenda Mini",
+        "image_url": "/static/images/beta/v0.114.0/relics/miniature_tent.webp"
+      },
+      {
+        "id": "OLD_COIN",
+        "name": "Koin Tua",
+        "image_url": "/static/images/beta/v0.114.0/relics/old_coin.webp"
+      },
+      {
+        "id": "PAELS_CLAW",
+        "name": "Cakar Pael",
+        "image_url": "/static/images/beta/v0.114.0/relics/paels_claw.webp"
+      },
+      {
+        "id": "PAELS_GROWTH",
+        "name": "Benjolan Pael",
+        "image_url": "/static/images/beta/v0.114.0/relics/paels_growth.webp"
+      },
+      {
+        "id": "PAELS_WING",
+        "name": "Sayap Pael",
+        "image_url": "/static/images/beta/v0.114.0/relics/paels_wing.webp"
+      },
+      {
+        "id": "PLANISPHERE",
+        "name": "Peta Bintang",
+        "image_url": "/static/images/beta/v0.114.0/relics/planisphere.webp"
+      },
+      {
+        "id": "PRAYER_WHEEL",
+        "name": "Pilar Mantra",
+        "image_url": "/static/images/beta/v0.114.0/relics/prayer_wheel.webp"
+      },
+      {
+        "id": "PUMPKIN_CANDLE",
+        "name": "Lilin Labu",
+        "image_url": "/static/images/beta/v0.114.0/relics/pumpkin_candle.webp"
+      },
+      {
+        "id": "REGAL_PILLOW",
+        "name": "Bantal Bangsawan",
+        "image_url": "/static/images/beta/v0.114.0/relics/regal_pillow.webp"
+      },
+      {
+        "id": "SEAL_OF_GOLD",
+        "name": "Segel Emas",
+        "image_url": "/static/images/beta/v0.114.0/relics/seal_of_gold.webp"
+      },
+      {
+        "id": "SHOVEL",
+        "name": "Sekop",
+        "image_url": "/static/images/beta/v0.114.0/relics/shovel.webp"
+      },
+      {
+        "id": "SIGNET_RING",
+        "name": "Cincin Meterai",
+        "image_url": "/static/images/beta/v0.114.0/relics/signet_ring.webp"
+      },
+      {
+        "id": "SILKEN_TRESS",
+        "name": "Untaian Sutra",
+        "image_url": "/static/images/beta/v0.114.0/relics/silken_tress.webp"
+      },
+      {
+        "id": "STONE_HUMIDIFIER",
+        "name": "Batu Pelembab",
+        "image_url": "/static/images/beta/v0.114.0/relics/stone_humidifier.webp"
+      },
+      {
+        "id": "THE_COURIER",
+        "name": "Sang Kurir",
+        "image_url": "/static/images/beta/v0.114.0/relics/the_courier.webp"
+      },
+      {
+        "id": "TINY_MAILBOX",
+        "name": "Kotak Surat Kecil",
+        "image_url": "/static/images/beta/v0.114.0/relics/tiny_mailbox.webp"
+      },
+      {
+        "id": "TOY_BOX",
+        "name": "Kotak Mainan",
+        "image_url": "/static/images/beta/v0.114.0/relics/toy_box.webp"
+      },
+      {
+        "id": "VENERABLE_TEA_SET",
+        "name": "Seperangkat Teh Istimewa",
+        "image_url": "/static/images/beta/v0.114.0/relics/venerable_tea_set.webp"
+      },
+      {
+        "id": "WHITE_BEAST_STATUE",
+        "name": "Patung Binatang Putih",
+        "image_url": "/static/images/beta/v0.114.0/relics/white_beast_statue.webp"
+      },
+      {
+        "id": "WINGED_BOOTS",
+        "name": "Sepatu Bersayap",
+        "image_url": "/static/images/beta/v0.114.0/relics/winged_boots.webp"
+      }
+    ],
+    "late_relics": {
+      "from_floor": 21,
+      "relics": [
+        {
+          "id": "FROZEN_EGG",
+          "name": "Telur Beku",
+          "image_url": "/static/images/beta/v0.114.0/relics/frozen_egg.webp"
+        },
+        {
+          "id": "MOLTEN_EGG",
+          "name": "Telur Membara",
+          "image_url": "/static/images/beta/v0.114.0/relics/molten_egg.webp"
+        },
+        {
+          "id": "POTION_BELT",
+          "name": "Sabuk Ramuan",
+          "image_url": "/static/images/beta/v0.114.0/relics/potion_belt.webp"
+        },
+        {
+          "id": "TOXIC_EGG",
+          "name": "Telur Beracun",
+          "image_url": "/static/images/beta/v0.114.0/relics/toxic_egg.webp"
+        },
+        {
+          "id": "WHITE_STAR",
+          "name": "Bintang Putih",
+          "image_url": "/static/images/beta/v0.114.0/relics/white_star.webp"
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,46 @@
+[
+  {
+    "id": "CLONE",
+    "name": "Clonage"
+  },
+  {
+    "id": "COOK",
+    "name": "Cuisiner"
+  },
+  {
+    "id": "DIG",
+    "name": "Fouiller"
+  },
+  {
+    "id": "EVOLVE",
+    "name": "Évoluer"
+  },
+  {
+    "id": "HATCH",
+    "name": "Éclosion"
+  },
+  {
+    "id": "HEAL",
+    "name": "Repos"
+  },
+  {
+    "id": "KINDLE",
+    "name": "Raviver"
+  },
+  {
+    "id": "LIFT",
+    "name": "Entraînement"
+  },
+  {
+    "id": "MEND",
+    "name": "Soins"
+  },
+  {
+    "id": "RESTORE",
+    "name": "Restaurer"
+  },
+  {
+    "id": "SMITH",
+    "name": "Forger"
+  }
+]

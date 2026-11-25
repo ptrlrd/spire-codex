@@ -1,0 +1,149 @@
+[
+  {
+    "id": "ALL_STAR",
+    "name": "Scala di grigi",
+    "description": "inizi la partita con [blue]5[/blue] carte [gold]incolori[/gold].",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "BIG_GAME_HUNTER",
+    "name": "Caccia grossa",
+    "description": "la Guglia abbonda di Élite che offrono ricompense di carte [gold]Rare[/gold].",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "CURSED_RUN",
+    "name": "Sessione maledetta",
+    "description": "all'inizio di ogni Atto, aggiungi una carta [red]Maledizione[/red] casuale al tuo mazzo.",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "DEADLY_EVENTS",
+    "name": "Eventi mortali",
+    "description": "le stanze misteriose ora possono contenere Élite, ma è anche più probabile che possano contenere stanze del tesoro.",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "DRAFT",
+    "name": "Selezione",
+    "description": "scegli [blue]10[/blue] ricompense di carte con cui sostituire il tuo mazzo iniziale.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "FLIGHT",
+    "name": "Volo",
+    "description": "puoi ignorare i percorsi nella scelta della prossima stanza da esplorare.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "HOARDER",
+    "name": "Accumulo",
+    "description": "ogni volta che aggiungi una carta al tuo mazzo, ne aggiungi [blue]2[/blue] copie extra. Non puoi più rimuovere carte dal tuo mazzo presso il mercante.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "INSANITY",
+    "name": "Follia",
+    "description": "inizi la partita con un mazzo casuale di [blue]30[/blue] carte.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "MIDAS",
+    "name": "Re Mida",
+    "description": "i nemici ti fanno ottenere il [blue]200%[/blue] d'oro in più, ma non puoi più fabbricare nei [gold]luoghi di riposo[/gold].",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "MURDEROUS",
+    "name": "Battaglia sanguinaria",
+    "description": "inizi ogni combattimento con [blue]3[/blue] di [gold]Forza[/gold]. Tutti i nemici iniziano il combattimento con [blue]3[/blue] di [gold]Forza[/gold].",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "NIGHT_TERRORS",
+    "name": "Terrori notturni",
+    "description": "riposandoti presso i [gold]luoghi di riposo[/gold] recuperi tutti i tuoi PV, ma i tuoi PV massimi si riducono di [red]5[/red].",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "SEALED_DECK",
+    "name": "Mazzo sigillato",
+    "description": "scegli [blue]10[/blue] tra [blue]30[/blue] carte disponibili con cui sostituire il tuo mazzo iniziale.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "SPECIALIZED",
+    "name": "Specialista",
+    "description": "inizi con [blue]5[/blue] copie di una singola carta.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "TERMINAL",
+    "name": "Fine imminente",
+    "description": "ogni volta che entri in una nuova stanza, i tuoi PV massimi si riducono di [red]1[/red]. Inizi ogni combattimento con [blue]5[/blue] di [gold]Placcatura[/gold].",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "VINTAGE",
+    "name": "Vintage",
+    "description": "i nemici normali ti fanno ottenere reliquie invece di carte.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "CHARACTER_CARDS_IRONCLAD",
+    "name": "Carte dell'Ironclad",
+    "description": "le carte dell'Ironclad ora compariranno nelle ricompense e nei negozi.",
+    "kind": "good",
+    "character": "IRONCLAD"
+  },
+  {
+    "id": "CHARACTER_CARDS_SILENT",
+    "name": "Carte della Silent",
+    "description": "le carte della Silent ora compariranno nelle ricompense e nei negozi.",
+    "kind": "good",
+    "character": "SILENT"
+  },
+  {
+    "id": "CHARACTER_CARDS_DEFECT",
+    "name": "Carte di Defect",
+    "description": "le carte di Defect ora compariranno nelle ricompense e nei negozi.",
+    "kind": "good",
+    "character": "DEFECT"
+  },
+  {
+    "id": "CHARACTER_CARDS_NECROBINDER",
+    "name": "Carte della Necrobinder",
+    "description": "le carte della Necrobinder ora compariranno nelle ricompense e nei negozi.",
+    "kind": "good",
+    "character": "NECROBINDER"
+  },
+  {
+    "id": "CHARACTER_CARDS_REGENT",
+    "name": "Carte del Regent",
+    "description": "le carte del Regent ora compariranno nelle ricompense e nei negozi.",
+    "kind": "good",
+    "character": "REGENT"
+  },
+  {
+    "id": "CHARACTER_CARDS_FOOL",
+    "name": "Carte di Fool",
+    "description": "le carte di Fool ora compariranno nelle ricompense e nei negozi.",
+    "kind": "good",
+    "character": "FOOL"
+  }
+]
