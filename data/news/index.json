@@ -1,5 +1,24 @@
 [
   {
+    "gid": "1850460852979409",
+    "title": "Beta Patch Notes - v0.114.0",
+    "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1850460852979409",
+    "is_external_url": true,
+    "author": "demileaf",
+    "feedlabel": "Community Announcements",
+    "feedname": "steam_community_announcements",
+    "feed_type": 1,
+    "tags": [
+      "patchnotes",
+      "mod_reviewed",
+      "ModAct_1896160435_1795571311_0",
+      "mod_require_rereview",
+      "ModAct_1598046824_1795576455_4"
+    ],
+    "date": 1795570933,
+    "appid": 2868840
+  },
+  {
     "gid": "1849827110424075",
     "title": "Оглушительный успех Slay the Spire 2 в раннем доступе - 7,9 млн проданных копий и пик в 430 000 одновременных игроков",
     "url": "https://steamstore-a.akamaihd.net/news/externalpost/PlayGround.ru - официальная группа/1849827110424075",
@@ -829,11 +848,11 @@
   {
     "gid": "1828894815558353",
     "title": "Mega Crit are working on three new Slay the Spire 2 modes, just don't place any bets on them all making it in",
-    "url": "https://steamstore-a.akamaihd.net/news/externalpost/Rock, Paper, Shotgun/1828894815558353",
+    "url": "https://steamstore-a.akamaihd.net/news/externalpost/rps/1828894815558353",
     "is_external_url": true,
     "author": "",
     "feedlabel": "Rock, Paper, Shotgun",
-    "feedname": "Rock, Paper, Shotgun",
+    "feedname": "rps",
     "feed_type": 0,
     "tags": [],
     "date": 1775152948,
@@ -1417,11 +1436,11 @@
   {
     "gid": "1826362059922454",
     "title": "Prepare your decks once more, Slay the Spire 2 is now out in early access",
-    "url": "https://steamstore-a.akamaihd.net/news/externalpost/Rock, Paper, Shotgun/1826362059922454",
+    "url": "https://steamstore-a.akamaihd.net/news/externalpost/rps/1826362059922454",
     "is_external_url": true,
     "author": "",
     "feedlabel": "Rock, Paper, Shotgun",
-    "feedname": "Rock, Paper, Shotgun",
+    "feedname": "rps",
     "feed_type": 0,
     "tags": [],
     "date": 1772741026,
