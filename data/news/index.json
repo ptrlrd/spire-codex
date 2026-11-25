@@ -1,5 +1,18 @@
 [
   {
+    "gid": "1850460852981136",
+    "title": "Slay the Spire 2's new character faces big, sweeping changes in a fresh balance update",
+    "url": "https://steamstore-a.akamaihd.net/news/externalpost/PCGamesN/1850460852981136",
+    "is_external_url": true,
+    "author": "editor@pcgamesn.com",
+    "feedlabel": "PCGamesN",
+    "feedname": "PCGamesN",
+    "feed_type": 0,
+    "tags": [],
+    "date": 1795606672,
+    "appid": 2868840
+  },
+  {
     "gid": "1850460852979409",
     "title": "Beta Patch Notes - v0.114.0",
     "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1850460852979409",
@@ -13,7 +26,8 @@
       "mod_reviewed",
       "ModAct_1896160435_1795571311_0",
       "mod_require_rereview",
-      "ModAct_1598046824_1795576455_4"
+      "ModAct_1598046824_1795576455_4",
+      "ModAct_1598046824_1795579605_4"
     ],
     "date": 1795570933,
     "appid": 2868840
