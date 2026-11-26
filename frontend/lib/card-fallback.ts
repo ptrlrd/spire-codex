@@ -1,5 +1,5 @@
 import { displayName } from "./display-name";
-import { enchantedCardUrl, fullCardUrl, imageUrl } from "./image-url";
+import { fullCardUrl, imageUrl } from "./image-url";
 import { isBetaRow } from "./beta-row";
 
 export function safeCardId(id: string | null | undefined): boolean {
@@ -19,7 +19,6 @@ export function humanizeCardId(id: string | null | undefined): string {
 
 export interface CardImageChainOptions {
   upgraded?: boolean;
-  enchantment?: string | null;
   channel?: "stable" | "beta";
   lang?: string;
   art?: string | null;
@@ -30,7 +29,6 @@ export function cardImageChain(
   id: string,
   {
     upgraded = false,
-    enchantment,
     channel = "stable",
     lang,
     art,
@@ -40,29 +38,6 @@ export function cardImageChain(
   const urls: string[] = [];
   if (safeCardId(id)) {
     const lower = id.toLowerCase();
-    if (enchantment && safeCardId(enchantment)) {
-      urls.push(
-        enchantedCardUrl(
-          lower,
-          enchantment,
-          upgraded,
-          channel,
-          lang,
-          betaVersion,
-        ),
-      );
-      if (lang)
-        urls.push(
-          enchantedCardUrl(
-            lower,
-            enchantment,
-            upgraded,
-            channel,
-            undefined,
-            betaVersion,
-          ),
-        );
-    }
     urls.push(fullCardUrl(lower, upgraded, channel, lang, betaVersion));
     if (lang)
       urls.push(fullCardUrl(lower, upgraded, channel, undefined, betaVersion));

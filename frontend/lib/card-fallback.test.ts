@@ -34,23 +34,19 @@ describe("safeCardId", () => {
 });
 
 describe("cardImageChain", () => {
-  it("tries enchanted, localized, english, beta, then portrait art", () => {
+  it("tries localized, english, beta, then portrait art", () => {
     const chain = cardImageChain("Strike_Ironclad", {
-      enchantment: "sharp",
       lang: "deu",
       art: "/static/images/cards/strike.png",
     });
-    expect(chain[0]).toMatch(
-      /stable\/deu\/ench\/sharp\/strike_ironclad\.webp$/,
-    );
-    expect(chain[1]).toMatch(/stable\/ench\/sharp\/strike_ironclad\.webp$/);
-    expect(chain[2]).toMatch(/cards-full\/stable\/deu\/strike_ironclad\.webp$/);
-    expect(chain[3]).toMatch(/cards-full\/stable\/strike_ironclad\.webp$/);
-    expect(chain[4]).toMatch(
+    expect(chain[0]).toMatch(/cards-full\/stable\/deu\/strike_ironclad\.webp$/);
+    expect(chain[1]).toMatch(/cards-full\/stable\/strike_ironclad\.webp$/);
+    expect(chain[2]).toMatch(
       /cards-full\/beta\/.*\/deu\/strike_ironclad\.webp$/,
     );
-    expect(chain[5]).toMatch(/cards-full\/beta\/[^/]+\/strike_ironclad\.webp$/);
-    expect(chain[6]).toMatch(/strike\.png$/);
+    expect(chain[3]).toMatch(/cards-full\/beta\/[^/]+\/strike_ironclad\.webp$/);
+    expect(chain[4]).toMatch(/strike\.png$/);
+    expect(chain.some((u) => u.includes("/ench/"))).toBe(false);
     expect(new Set(chain).size).toBe(chain.length);
   });
 

@@ -11,6 +11,7 @@ export interface StackEntry {
   id: string;
   upgraded: boolean;
   enchantment?: string;
+  enchantmentAmount?: number;
   count: number;
   /** Earliest floor a copy in this stack joined the deck; absent on runs
    * recorded before the game wrote it. */
@@ -61,6 +62,7 @@ export function stackCards(
         id,
         upgraded,
         enchantment,
+        enchantmentAmount: card.enchantment?.amount,
         count: 1,
         floor,
         first: index,
