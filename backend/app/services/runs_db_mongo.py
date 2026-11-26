@@ -93,6 +93,7 @@ _HIDDEN_BROWSE_KEYS = (
 _HIDDEN_BROWSE_FIELDS = frozenset(_HIDDEN_BROWSE_KEYS)
 STEAM_BEST_WIN_INDEX = "steam_win_runtime"
 USER_PLAYED_INDEX = "user_played_submitted"
+BUILD_EXPORT_INDEX = "build_submitted_id"
 LIST_MAX_TIME_MS = 4000
 COUNT_FALLBACK_MAX_TIME_MS = 3000
 _GLOBAL_WINS_KEY = "seed_rank:global_wins"
@@ -3724,6 +3725,10 @@ def _background_index_specs() -> list[tuple[list, dict]]:
                 "name": "competitive_bracket",
                 "partialFilterExpression": {"competitive": {"$exists": True}},
             },
+        ),
+        (
+            [("build_id", ASCENDING), ("submitted_at", ASCENDING), ("_id", ASCENDING)],
+            {"name": BUILD_EXPORT_INDEX},
         ),
     ]
 

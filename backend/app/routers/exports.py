@@ -12,6 +12,7 @@ from pathlib import Path
 from fastapi import APIRouter, Depends, HTTPException, Query, Request
 from fastapi.responses import RedirectResponse, StreamingResponse
 from pymongo import ASCENDING
+from pymongo.errors import ExecutionTimeout
 
 from ..dependencies import VALID_LANGUAGES, shared_limiter
 from ..services import rate_limit_config
@@ -54,6 +55,7 @@ OFFICIAL_CHARACTERS = LIVE_CAST
 # Upper bound on a single page so one request can't ask for the whole corpus
 # while still claiming the cheap (paginated) rate-limit cost.
 MAX_PAGE_LIMIT = 50000
+PAGE_QUERY_TIMEOUT_MS = 60_000
 
 VERSION_RE = re.compile(r"^v\d+(\.\d+)*(-rc\.\d+)?$")
 
@@ -191,8 +193,15 @@ def _page_hashes(start, end, cursor, limit, version: str | None = None):
     ).sort([("submitted_at", ASCENDING), ("_id", ASCENDING)])
     if limit is not None:
         finder = finder.limit(limit + 1)  # one extra row probes for a next page
+        finder = finder.max_time_ms(PAGE_QUERY_TIMEOUT_MS)
     try:
         docs = list(finder)
+    except ExecutionTimeout:
+        raise HTTPException(
+            status_code=503,
+            detail="export page took too long, retry with a smaller limit or window",
+            headers={"Retry-After": "60"},
+        ) from None
     finally:
         finder.close()
 
