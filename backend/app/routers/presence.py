@@ -9,6 +9,7 @@ GET  /api/presence/{steam_id} — one player's full live doc (deck/relics/potion
 """
 
 import os
+import threading
 import time
 
 from fastapi import APIRouter, HTTPException, Request, Response
@@ -894,19 +895,34 @@ def _competitive_view(doc: dict) -> None:
         doc.pop("competitive", None)
 
 
+_ROSTER_TTL_SECONDS = 5
+_roster_lock = threading.Lock()
+
+
 @router.get("/active")
 def get_active(limit: int = 50, preview: bool = False):
     """Public roster of live runs, competitive runs first, then deepest first.
     No deck detail unless preview is set, which adds each player's relics and
-    last few cards."""
+    last few cards. Cached for a few seconds."""
     _require_mongo()
-    from ..services import presence_db
+    limit = max(1, min(limit, 100))
+    key = f"presence:roster:{limit}:{int(preview)}"
+    cached = app_cache.get_json(key)
+    if isinstance(cached, dict):
+        return cached
+    with _roster_lock:
+        cached = app_cache.get_json(key)
+        if isinstance(cached, dict):
+            return cached
+        from ..services import presence_db
 
-    players = presence_db.active(max(1, min(limit, 100)), preview)
-    for player in players:
-        _competitive_view(player)
-    _enrich_twitch(players)
-    return {"count": len(players), "players": players}
+        players = presence_db.active(limit, preview)
+        for player in players:
+            _competitive_view(player)
+        _enrich_twitch(players)
+        out = {"count": len(players), "players": players}
+        app_cache.set_json(key, out, ttl_seconds=_ROSTER_TTL_SECONDS)
+    return out
 
 
 @router.get("/count")
