@@ -124,6 +124,7 @@ def live(monkeypatch):
         app_cache, "set_json", lambda k, v, ttl_seconds=None: store.__setitem__(k, v)
     )
     coll = Coll(DOCS)
+    coll.cache = store
     monkeypatch.setattr(runs_db_mongo, "_get_collection", lambda: coll)
     return coll
 
@@ -340,6 +341,8 @@ def test_rank_pool_is_the_runs_own_board(live, monkeypatch):
     assert all(q["player_count"] == 2 and q["game_mode"] == "standard" for q in scoped)
     assert scoped[0]["ascension"] == {"$gte": 0, "$lte": 10}
     live.docs = live.docs + [_seat("faster_duo", "REGENT", 20, "V", 2)]
+    assert runs_db_mongo.get_run_rank("d1")["rank"] == 1
+    live.cache.pop("run_rank:fastest:d1")
     assert runs_db_mongo.get_run_rank("d1")["rank"] == 2
     assert runs_db_mongo.get_run_rank("fast_modded") == {"rank": None}
     assert runs_db_mongo.get_run_rank("x1") == {"rank": None}

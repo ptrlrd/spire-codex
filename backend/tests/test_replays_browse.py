@@ -82,6 +82,15 @@ class FakeColl:
         self.queries.append(q)
         return sum(1 for d in self.docs if self._ok(d, q))
 
+    def aggregate(self, pipeline, **kwargs):
+        match = pipeline[0]["$match"]
+        self.queries.append(match)
+        counts = {}
+        for d in self.docs:
+            if self._ok(d, match):
+                counts[d.get("character")] = counts.get(d.get("character"), 0) + 1
+        return [{"_id": k, "n": v} for k, v in counts.items()]
+
 
 def test_summary_counts_visible_replay_runs(env, monkeypatch):
     coll = FakeColl(

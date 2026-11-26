@@ -1569,7 +1569,13 @@ def my_picks(request: Request, response: Response):
         raise HTTPException(status_code=401, detail="invalid token")
 
     response.headers["Cache-Control"] = "private, max-age=60"
-    return get_user_picks(steam_id)
+    cache_key = f"user_picks:{steam_id}"
+    cached = app_cache.get_json(cache_key)
+    if isinstance(cached, dict):
+        return cached
+    out = get_user_picks(steam_id)
+    app_cache.set_json(cache_key, out, ttl_seconds=60)
+    return out
 
 
 def _section_cache_control(response: Response) -> None:

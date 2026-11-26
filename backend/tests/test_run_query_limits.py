@@ -162,6 +162,7 @@ def test_background_indexes_survive_one_failed_build():
         runs_db_mongo.STEAM_BEST_WIN_INDEX,
         runs_db_mongo.USER_PLAYED_INDEX,
         "competitive_bracket",
+        runs_db_mongo.BUILD_EXPORT_INDEX,
     ]
 
 
