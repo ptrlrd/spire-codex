@@ -1,5 +1,21 @@
 [
   {
+    "gid": "1850460852987470",
+    "title": "Slay the Spire 2: For Your Consideration",
+    "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1850460852987470",
+    "is_external_url": true,
+    "author": "demileaf",
+    "feedlabel": "Community Announcements",
+    "feedname": "steam_community_announcements",
+    "feed_type": 1,
+    "tags": [
+      "steam_award_nomination_request",
+      "mod_hide_library_overview"
+    ],
+    "date": 1795733842,
+    "appid": 2868840
+  },
+  {
     "gid": "1850460852982646",
     "title": "Шут в Slay the Spire 2 оказался слишком сильным - Mega Crit ослабила персонажа патчем",
     "url": "https://steamstore-a.akamaihd.net/news/externalpost/PlayGround.ru - официальная группа/1850460852982646",
@@ -51,9 +67,10 @@
       "patchnotes",
       "mod_reviewed",
       "ModAct_1896160435_1795571311_0",
-      "mod_require_rereview",
       "ModAct_1598046824_1795576455_4",
-      "ModAct_1598046824_1795579605_4"
+      "ModAct_1598046824_1795579605_4",
+      "ModAct_1598046824_1795581000_4",
+      "mod_require_rereview"
     ],
     "date": 1795570933,
     "appid": 2868840
