@@ -5,6 +5,8 @@ import { Link } from "@/i18n/navigation";
 import RichDescription from "@/app/components/RichDescription";
 import { imageUrl } from "@/lib/image-url";
 import CardImage from "@/app/components/CardImage";
+import EnchantedCard from "@/app/components/EnchantedCard";
+import type { Card } from "@/lib/api/types";
 import { displayName } from "@/lib/display-name";
 import { useTryGameTranslations } from "@/lib/game-i18n";
 
@@ -105,13 +107,21 @@ export function CardPill({
             above ? "bottom-full mb-2" : "top-full mt-2"
           }`}
         >
-          <CardImage
-            id={cardId}
-            upgraded={!!upgraded}
-            enchantment={enchantment}
-            art={info?.image_url}
-            className="w-40 h-auto drop-shadow-[0_8px_24px_rgba(0,0,0,0.7)]"
-          />
+          {enchantment && info ? (
+            <EnchantedCard
+              card={info as unknown as Card}
+              enchantment={enchantment}
+              upgraded={!!upgraded}
+              className="block aspect-[400/520] w-40 drop-shadow-[0_8px_24px_rgba(0,0,0,0.7)]"
+            />
+          ) : (
+            <CardImage
+              id={cardId}
+              upgraded={!!upgraded}
+              art={info?.image_url}
+              className="w-40 h-auto drop-shadow-[0_8px_24px_rgba(0,0,0,0.7)]"
+            />
+          )}
         </span>
       )}
     </PillLink>

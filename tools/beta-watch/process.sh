@@ -144,7 +144,7 @@ fi
 # vs the previous beta, ignoring image/url fields that move every version).
 # The injection export trigger (GENERATING_CARD_RENDERS.md) accepts this
 # list, so a render pass only redoes these instead of the full catalog x
-# 14 languages x enchant matrix. Unchanged renders copy forward on R2:
+# 14 languages. Unchanged renders copy forward on R2:
 #   aws --profile r2 s3 sync s3://spire-codex/cards-full/beta/<prev>/ \
 #     s3://spire-codex/cards-full/beta/<new>/ --endpoint-url "$R2_ENDPOINT"
 if [ -n "$PREV" ] && [ -f "$REPO/data-beta/$PREV/eng/cards.json" ]; then

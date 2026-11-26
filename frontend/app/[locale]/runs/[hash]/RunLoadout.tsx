@@ -1,6 +1,8 @@
 "use client";
 
 import CardImage from "@/app/components/CardImage";
+import EnchantedCard from "@/app/components/EnchantedCard";
+import type { Card } from "@/lib/api/types";
 import type { Player } from "@/lib/api/run/types";
 import { stackCards, type StackEntry } from "@/lib/deck-stack";
 import { useTryGameTranslations } from "@/lib/game-i18n";
@@ -285,15 +287,24 @@ export function RunDeck({
                     >
                       <span className="relative block">
                         <span className="block overflow-hidden">
-                          <CardImage
-                            id={entry.id}
-                            upgraded={entry.upgraded}
-                            enchantment={entry.enchantment}
-                            art={info?.image_url}
-                            alt=""
-                            className="block w-full h-auto scale-[1.22]"
-                            fallbackClassName="w-full"
-                          />
+                          {entry.enchantment && info ? (
+                            <EnchantedCard
+                              card={info as unknown as Card}
+                              enchantment={entry.enchantment}
+                              amount={entry.enchantmentAmount}
+                              upgraded={entry.upgraded}
+                              className="block aspect-[400/520] w-full scale-[1.22]"
+                            />
+                          ) : (
+                            <CardImage
+                              id={entry.id}
+                              upgraded={entry.upgraded}
+                              art={info?.image_url}
+                              alt=""
+                              className="block w-full h-auto scale-[1.22]"
+                              fallbackClassName="w-full"
+                            />
+                          )}
                         </span>
                         {entry.count > 1 && (
                           <span className="absolute -top-1 -right-1 min-w-7 rounded-full border border-[var(--accent-gold)] bg-[var(--bg-primary)] px-1.5 py-0.5 text-center text-sm font-bold leading-none text-[var(--accent-gold)]">

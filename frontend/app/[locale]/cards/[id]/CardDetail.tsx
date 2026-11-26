@@ -30,12 +30,13 @@ import EntityDraftRecs from "@/app/components/EntityDraftRecs";
 import EntitySummary from "@/app/components/EntitySummary";
 import type { EntitySummaryData } from "@/lib/entity-summary";
 import type { DraftRecs, Pairings, RelatedGroup } from "@/lib/entity-links";
-import { imageUrl, fullCardUrl, enchantedCardUrl } from "@/lib/image-url";
+import { imageUrl, fullCardUrl } from "@/lib/image-url";
 import EntityRunStats, {
   type EntityStats,
 } from "@/app/components/EntityRunStats";
 import EntityVersionSelect from "@/app/components/EntityVersionSelect";
 import CardRenderSlot from "@/app/components/CardRenderSlot";
+import { useCardEnchantment } from "@/app/components/EnchantedCard";
 import HoverTooltip from "@/app/components/HoverTooltip";
 import { useChannel, useBetaPrefix } from "@/lib/api/prefix.client";
 import { useBetaRenderVersion } from "@/app/components/BetaRenderVersionProvider";
@@ -345,6 +346,12 @@ export default function CardDetail({
   // Enchantments this card can take (server-passed, from the render manifest)
   // + their localized name/description for the Enchantments section + switcher.
   const cardEnchantments = initialEnchantments ?? [];
+  const { enchantment: enchRender } = useCardEnchantment(
+    selectedEnch !== "none" && cardEnchantments.includes(selectedEnch)
+      ? selectedEnch
+      : null,
+    card,
+  );
   const [enchMeta, setEnchMeta] = useState<
     Record<string, { id: string; name: string }>
   >(() =>
@@ -636,26 +643,16 @@ export default function CardDetail({
   const useEnglishRender =
     failedRender === localizedRender && englishRender !== localizedRender;
   const plainRender = useEnglishRender ? englishRender : localizedRender;
-  const renderSrc = enchActive
-    ? enchantedCardUrl(
-        card.id.toLowerCase(),
-        selectedEnch,
-        isUpgraded,
-        channel,
-        lang,
-        betaRenderVersion,
-      )
-    : betaArt || variantImg || cardImgFailed
-      ? imageUrl(imgUrl)
-      : plainRender;
+  const renderSrc =
+    betaArt || variantImg || cardImgFailed ? imageUrl(imgUrl) : plainRender;
 
   const htmlRender =
-    !!pickedVersion &&
-    pickedVersion !== betaVersion &&
-    !enchActive &&
-    !betaArt &&
-    !variantImg &&
-    renderKey(card) !== renderKey(currentCard);
+    enchActive ||
+    (!!pickedVersion &&
+      pickedVersion !== betaVersion &&
+      !betaArt &&
+      !variantImg &&
+      renderKey(card) !== renderKey(currentCard));
   const renderKeywordNames = Object.fromEntries(
     Object.values(keywordData).map((k) => [
       k.id.charAt(0) + k.id.slice(1).toLowerCase(),
@@ -1083,6 +1080,7 @@ export default function CardDetail({
                 keywordNames={
                   renderLang === lang ? renderKeywordNames : undefined
                 }
+                enchantment={enchActive ? enchRender : undefined}
                 label={t("{name} - Slay the Spire 2", {
                   name: `${card.name}${isUpgraded ? "+" : ""}`,
                 })}
@@ -1096,21 +1094,8 @@ export default function CardDetail({
                   name: `${card.name}${isUpgraded ? "+" : ""}`,
                 })}
                 crossOrigin="anonymous"
-                onError={(e) => {
-                  const el = e.currentTarget;
-                  if (enchActive) {
-                    if (!el.dataset.fb) {
-                      el.dataset.fb = "1";
-                      el.src = enchantedCardUrl(
-                        card.id.toLowerCase(),
-                        selectedEnch,
-                        false,
-                        channel,
-                        lang,
-                        betaRenderVersion,
-                      );
-                    }
-                  } else if (!betaArt && !variantImg) {
+                onError={() => {
+                  if (!betaArt && !variantImg) {
                     if (!useEnglishRender && englishRender !== localizedRender)
                       setFailedRender(localizedRender);
                     else setCardImgFailed(true);

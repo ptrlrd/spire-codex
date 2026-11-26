@@ -100,11 +100,10 @@ describe("beta render urls", () => {
     ]);
     const chain = cardImageChain("abundance", {
       channel: "beta",
-      enchantment: "sharp",
       lang: "deu",
       betaVersion: "0.120.0",
     });
-    expect(chain.length).toBe(4);
+    expect(chain.length).toBe(2);
     expect(chain.every((u) => u.includes("/beta/0.120.0/"))).toBe(true);
     const stable = cardImageChain("abundance", { betaVersion: "0.120.0" });
     expect(stable.at(-1)).toContain("/cards-full/beta/0.120.0/abundance.webp");

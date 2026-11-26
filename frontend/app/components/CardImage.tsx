@@ -45,7 +45,6 @@ export function CardFallback({
 export default function CardImage({
   id,
   upgraded = false,
-  enchantment,
   channel = "stable",
   art,
   lang: langOverride,
@@ -57,7 +56,6 @@ export default function CardImage({
 }: {
   id: string;
   upgraded?: boolean;
-  enchantment?: string | null;
   channel?: "stable" | "beta";
   art?: string | null;
   lang?: string;
@@ -72,7 +70,6 @@ export default function CardImage({
   const betaVersion = useBetaRenderVersion();
   const chain = cardImageChain(id, {
     upgraded,
-    enchantment,
     channel,
     lang,
     art,
