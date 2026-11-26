@@ -61,3 +61,11 @@ def test_slow_page_returns_503(monkeypatch):
     with pytest.raises(HTTPException) as err:
         exports._page_hashes(None, None, None, 200, "v0.111.0")
     assert err.value.status_code == 503
+    assert err.value.headers == {"Retry-After": "60"}
+
+
+def test_unbounded_window_is_time_limited_too(monkeypatch):
+    coll = _Coll()
+    monkeypatch.setattr(runs_db_mongo, "_get_collection", lambda: coll)
+    exports._page_hashes(None, None, None, None, "v0.111.0")
+    assert coll.cursor.max_ms == exports.UNBOUNDED_QUERY_TIMEOUT_MS

@@ -56,6 +56,7 @@ OFFICIAL_CHARACTERS = LIVE_CAST
 # while still claiming the cheap (paginated) rate-limit cost.
 MAX_PAGE_LIMIT = 50000
 PAGE_QUERY_TIMEOUT_MS = 60_000
+UNBOUNDED_QUERY_TIMEOUT_MS = 120_000
 
 VERSION_RE = re.compile(r"^v\d+(\.\d+)*(-rc\.\d+)?$")
 
@@ -180,9 +181,6 @@ def _page_hashes(start, end, cursor, limit, version: str | None = None):
     (submitted_at, _id); next_cursor is None unless a bounded page is full
     and at least one more run follows it. `version` pins the match to one
     build_id."""
-    """Return (ordered_hashes, next_cursor). Runs are ordered by
-    (submitted_at, _id); next_cursor is None unless a bounded page is full
-    and at least one more run follows it."""
     from ..services.runs_db_mongo import _get_collection
 
     coll = _get_collection()
@@ -193,7 +191,9 @@ def _page_hashes(start, end, cursor, limit, version: str | None = None):
     ).sort([("submitted_at", ASCENDING), ("_id", ASCENDING)])
     if limit is not None:
         finder = finder.limit(limit + 1)  # one extra row probes for a next page
-        finder = finder.max_time_ms(PAGE_QUERY_TIMEOUT_MS)
+    finder = finder.max_time_ms(
+        PAGE_QUERY_TIMEOUT_MS if limit is not None else UNBOUNDED_QUERY_TIMEOUT_MS
+    )
     try:
         docs = list(finder)
     except ExecutionTimeout:
@@ -396,6 +396,9 @@ def export_runs(
       runs that have no ``submitted_at``. Omit both to receive the whole corpus.
     * ``X-Next-Cursor`` is in the CORS ``Access-Control-Expose-Headers`` list,
       so browser clients can read it too; non-browser clients never needed it.
+    * A request that runs too long returns ``503`` with ``Retry-After: 60``.
+      It is not the end of the data: retry the same ``cursor`` after the
+      delay, or with a smaller ``limit`` or window.
     * With no params at all the response is a 302 to the daily static dump
       (``/exports/runs-latest.jsonl.gz``, built once a day, same line shape);
       ``/api/exports/runs/manifest`` says when it was generated. Only until

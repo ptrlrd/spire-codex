@@ -98,6 +98,7 @@ LIST_MAX_TIME_MS = 4000
 COUNT_FALLBACK_MAX_TIME_MS = 3000
 _GLOBAL_WINS_KEY = "seed_rank:global_wins"
 _GLOBAL_WINS_TTL_SECONDS = 300
+_RUN_RANK_TTL_SECONDS = 600
 
 
 def _today_daily_seed_match() -> dict:
@@ -3832,6 +3833,11 @@ def get_run_rank(run_hash: str, category: str = "fastest") -> dict:
     except Exception:
         logger.warning("lake rank failed", exc_info=True)
 
+    board = "highest_ascension" if category == "highest_ascension" else "fastest"
+    cache_key = f"run_rank:{board}:{run_hash}"
+    cached = app_cache.get_json(cache_key)
+    if isinstance(cached, int) and not isinstance(cached, bool):
+        return {"rank": cached, "category": category}
     scope = {"win": {"$in": [True, 1]}, **bucket}
     asc = row.get("ascension") or 0
     if category == "highest_ascension":
@@ -3849,6 +3855,7 @@ def get_run_rank(run_hash: str, category: str = "fastest") -> dict:
         ahead = _count_visible(
             coll, {**scope, "run_time": {"$lt": row.get("run_time", 0)}}
         )
+    app_cache.set_json(cache_key, ahead + 1, ttl_seconds=_RUN_RANK_TTL_SECONDS)
     return {"rank": ahead + 1, "category": category}
 
 
@@ -3859,6 +3866,18 @@ def _global_win_total(coll) -> int:
     total = _count_visible(coll, {"win": {"$in": [True, 1]}})
     app_cache.set_json(_GLOBAL_WINS_KEY, total, ttl_seconds=_GLOBAL_WINS_TTL_SECONDS)
     return total
+
+
+def _global_wins_ahead(coll, run_time: int) -> int:
+    key = f"seed_rank:ahead:{run_time}"
+    cached = app_cache.get_json(key)
+    if isinstance(cached, int) and not isinstance(cached, bool):
+        return cached
+    ahead = _count_visible(
+        coll, {"win": {"$in": [True, 1]}, "run_time": {"$lt": run_time}}
+    )
+    app_cache.set_json(key, ahead, ttl_seconds=_GLOBAL_WINS_TTL_SECONDS)
+    return ahead
 
 
 @_instrument("seed_rank_for")
@@ -3911,16 +3930,7 @@ def seed_rank_for(steam_id: str | None, seed: str, run_hash: str | None = None) 
         )
         global_total = _global_win_total(coll)
         if best and global_total:
-            global_rank = (
-                _count_visible(
-                    coll,
-                    {
-                        "win": {"$in": [True, 1]},
-                        "run_time": {"$lt": best.get("run_time", 0)},
-                    },
-                )
-                + 1
-            )
+            global_rank = _global_wins_ahead(coll, best.get("run_time", 0)) + 1
             global_total = max(global_total, global_rank)
             percentile = round(global_rank * 100.0 / global_total, 1)
     else:
