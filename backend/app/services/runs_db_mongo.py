@@ -60,6 +60,7 @@ from pymongo.errors import (
 
 from ..metrics import count_budget_timeouts, db_operations, db_operation_duration
 from . import cache as app_cache
+from .game_modes import is_custom_run
 from .official_content import LIVE_CAST
 
 logger = logging.getLogger(__name__)
@@ -1139,6 +1140,7 @@ def _submit_player_run(
         "was_abandoned": was_abandoned,
         "ascension": data.get("ascension", 0),
         "game_mode": data.get("game_mode", "standard"),
+        "is_custom": is_custom_run(data),
         "player_count": player_count,
         "run_time": data.get("run_time", 0),
         "floors_reached": total_floors,
@@ -1390,6 +1392,58 @@ def backfill_played_at() -> int:
         ],
     )
     return result.modified_count
+
+
+def backfill_is_custom(batch: int = 500) -> int:
+    """Backfill: stamp is_custom on stored custom runs, the way ingest now
+    does. The v0.113.0+ saves keep their real game_mode and say
+    is_custom_game; run docs don't carry the save, so the flag is read from
+    run_blobs (keyed by the same hash as the run doc) in _id order, a batch
+    at a time. The older runs stored as game_mode "custom" are stamped with
+    one indexed update. Only custom runs are touched; a missing is_custom
+    reads as not custom. Idempotent. Returns the number of docs stamped."""
+    coll = _get_collection()
+    stamped = coll.update_many(
+        {"game_mode": "custom", "is_custom": {"$ne": True}},
+        {"$set": {"is_custom": True}},
+    ).modified_count
+
+    blobs = _blob_collection()
+    last = None
+    scanned = 0
+    started = time.time()
+    while True:
+        flt = {"_id": {"$gt": last}} if last is not None else {}
+        docs = list(
+            blobs.find(flt, {"_id": 1, "blob.is_custom_game": 1})
+            .sort("_id", ASCENDING)
+            .limit(batch)
+        )
+        if not docs:
+            break
+        last = docs[-1]["_id"]
+        scanned += len(docs)
+        hashes = [
+            d["_id"]
+            for d in docs
+            if (d.get("blob") or {}).get("is_custom_game") is True
+        ]
+        if hashes:
+            stamped += coll.update_many(
+                {"_id": {"$in": hashes}, "is_custom": {"$ne": True}},
+                {"$set": {"is_custom": True}},
+            ).modified_count
+        if scanned % (batch * 100) == 0:
+            logger.info(
+                "is_custom backfill: %d blobs scanned, %d stamped, %.0fs",
+                scanned,
+                stamped,
+                time.time() - started,
+            )
+    logger.info(
+        "is_custom backfill: done, %d blobs scanned, %d stamped", scanned, stamped
+    )
+    return stamped
 
 
 def backfill_username_lower() -> int:
