@@ -1,0 +1,34 @@
+# Load into the Prometheus or Mimir ruler that receives the boxes' node
+# metrics. Alertmanager routes on the severity label.
+groups:
+  - name: spire-codex-disk
+    rules:
+      - alert: DiskSpaceLow
+        expr: |
+          (node_filesystem_avail_bytes{mountpoint=~"/|/var/www/spire-codex/lake", fstype!~"tmpfs|overlay"} < 25 * 1024^3) >= 10 * 1024^3
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "{{ $labels.mountpoint }} has {{ $value | humanize1024 }}B free"
+          description: "Under 25 GB free on {{ $labels.mountpoint }} ({{ if $labels.host }}{{ $labels.host }}{{ else }}{{ $labels.instance }}{{ end }})."
+
+      - alert: DiskSpaceCritical
+        expr: |
+          node_filesystem_avail_bytes{mountpoint=~"/|/var/www/spire-codex/lake", fstype!~"tmpfs|overlay"} < 10 * 1024^3
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "{{ $labels.mountpoint }} has {{ $value | humanize1024 }}B free"
+          description: "Under 10 GB free on {{ $labels.mountpoint }} ({{ if $labels.host }}{{ $labels.host }}{{ else }}{{ $labels.instance }}{{ end }})."
+
+      - alert: LakeMountMissing
+        expr: |
+          absent(node_filesystem_size_bytes{mountpoint="/var/www/spire-codex/lake"})
+        for: 10m
+        labels:
+          severity: critical
+        annotations:
+          summary: "The lake volume is not mounted"
+          description: "No filesystem is mounted at /var/www/spire-codex/lake, so the lake is writing to the root disk or the box stopped reporting."
