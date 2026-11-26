@@ -1503,38 +1503,59 @@ console.log(relics.map(r => r.name));`}</code>
 
         <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5 mt-4">
           <h3 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">
-            {t("Enchanted card renders")}
+            {t("Building enchanted cards")}
           </h3>
           <p className="text-[var(--text-secondary)] mb-3">
             {t(
-              "Every card is also rendered with each enchantment it can legally take, exactly as the in-game enchant preview draws it (badge, amount, and added card text). The URLs follow one pattern:",
+              "Pre-rendered enchanted card images are no longer updated. An enchanted card is the base card image with a badge on top, so it can be built from three public files:",
             )}
           </p>
           <pre className="bg-[var(--bg-primary)] rounded-lg p-4 text-xs text-[var(--text-secondary)] overflow-x-auto">
-            <code>{`https://cdn.spire-codex.com/cards-full/stable/ench/{enchantment}/{card}.webp        // English, base
-https://cdn.spire-codex.com/cards-full/stable/ench/{enchantment}/{card}_upg.webp    // English, upgraded
-https://cdn.spire-codex.com/cards-full/stable/{lang}/ench/{enchantment}/{card}.webp // localized
+            <code>{`image_url_card / image_url_card_upg                      // base card, 400x520, from /api/cards
+https://cdn.spire-codex.com/card-render/enchant_tab.png  // badge frame
+https://cdn.spire-codex.com/enchantments/{id}.webp       // icon, lowercase id from /api/enchantments`}</code>
+          </pre>
+          <pre className="bg-[var(--bg-primary)] rounded-lg p-4 text-xs text-[var(--text-secondary)] overflow-x-auto mt-3">
+            <code>{`<div class="ench-card">
+  <img class="base" src="https://cdn.spire-codex.com/cards-full/stable/bash.webp">
+  <img class="tab"  src="https://cdn.spire-codex.com/card-render/enchant_tab.png">
+  <img class="icon" src="https://cdn.spire-codex.com/enchantments/sharp.webp">
+  <!-- only Adroit, Momentum, Nimble, Sharp, Swift and Vigorous show an amount -->
+  <span class="amount">3</span>
+</div>
 
-// e.g. Anger with Corrupted, in Japanese:
-https://cdn.spire-codex.com/cards-full/stable/jpn/ench/corrupted/anger.webp`}</code>
+<style>
+  .ench-card { position: relative; width: 400px; aspect-ratio: 400 / 520; container-type: inline-size; }
+  .ench-card img { position: absolute; }
+  .ench-card .base { inset: 0; width: 100%; }
+  .ench-card .tab  { left: 11.1%; top: 22.1%; width: 17.8%; }
+  .ench-card .icon { left: 14.5%; top: 23.8%; width: 8.75%; }
+  .ench-card .amount {
+    position: absolute; left: 22.25%; top: 27.9%; transform: translateX(-50%);
+    font: 700 4.25cqw/1 Kreon, serif; color: #fff6e2;
+    -webkit-text-stroke: 1cqw #090f1c; paint-order: stroke fill;
+  }
+</style>`}</code>
           </pre>
           <ul className="text-sm text-[var(--text-secondary)] space-y-1.5 mt-3">
             <li>
-              <code className="text-[var(--accent-gold)]">{`{enchantment}`}</code>{" "}
-              / <code className="text-[var(--accent-gold)]">{`{card}`}</code>:{" "}
               {t(
-                "lowercase ids from /api/enchantments and /api/cards (e.g. sharp, corrupted, sown).",
+                "On cards with a star cost the badge sits lower: use top 30.8% for the frame, 32.5% for the icon and 36.6% for the amount.",
               )}
             </li>
             <li>
               {t(
-                "Only valid card and enchantment combinations exist (the export uses the game's own applicability rules), so an invalid combo is a 404. The card_type / applicable_to fields on /api/enchantments describe which cards qualify.",
-              )}
-            </li>
-            <li>
-              {t(
-                "Base and upgraded variants exist for every combo, in all 14 languages, with the enchantment text fully localized.",
-              )}
+                "Some enchantments also add a line of card text ({field} on {endpoint}). The image has no room to add it, so show it next to the card, or draw the whole card with the open source React card, which sets the text in place:",
+                { field: "extra_card_text", endpoint: "/api/enchantments" },
+              )}{" "}
+              <a
+                href="https://github.com/ptrlrd/spire-codex/blob/main/frontend/app/components/CardRender.tsx"
+                className="text-[var(--accent-gold)] hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                CardRender.tsx
+              </a>
             </li>
           </ul>
         </div>
