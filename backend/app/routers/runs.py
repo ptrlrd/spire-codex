@@ -2223,16 +2223,16 @@ def get_similar_runs(
     if result is None:
         response.headers["Cache-Control"] = "no-store"
         return empty
-    from ..services import data_service
+    from ..services.run_vectors import full_catalog
 
     try:
         cards = {
             str(c.get("id", "")).upper(): c.get("name")
-            for c in data_service.load_cards(lang)
+            for c in full_catalog("cards", lang)
         }
         relics = {
             str(r.get("id", "")).upper(): r.get("name")
-            for r in data_service.load_relics(lang)
+            for r in full_catalog("relics", lang)
         }
     except Exception:
         cards, relics = {}, {}
@@ -2294,16 +2294,16 @@ def get_archetypes(
             return last_good
         response.headers["Cache-Control"] = "no-store"
         return {"available": False, "characters": {}}
-    from ..services import data_service
+    from ..services.run_vectors import full_catalog
 
     try:
         cards = {
             str(c.get("id", "")).upper(): c.get("name")
-            for c in data_service.load_cards(lang)
+            for c in full_catalog("cards", lang)
         }
         relics = {
             str(r.get("id", "")).upper(): r.get("name")
-            for r in data_service.load_relics(lang)
+            for r in full_catalog("relics", lang)
         }
     except Exception:
         cards, relics = {}, {}
@@ -2792,16 +2792,16 @@ def get_encounter_builds(
     if rows is None or not any(r["deaths"] for r in rows):
         response.headers["Cache-Control"] = "no-store"
         return {"available": False, "encounter": enc, "builds": []}
-    from ..services import data_service
+    from ..services.run_vectors import full_catalog
 
     try:
         card_names = {
             str(c.get("id", "")).upper(): c.get("name")
-            for c in data_service.load_cards(lang)
+            for c in full_catalog("cards", lang)
         }
         relic_names = {
             str(r.get("id", "")).upper(): r.get("name")
-            for r in data_service.load_relics(lang)
+            for r in full_catalog("relics", lang)
         }
     except Exception:
         card_names, relic_names = {}, {}
@@ -2872,16 +2872,16 @@ def get_deck_advisor(
     if recs is None:
         response.headers["Cache-Control"] = "no-store"
         return {"available": False, "items": []}
-    from ..services import data_service
+    from ..services.run_vectors import full_catalog
 
     try:
         card_names = {
             str(c.get("id", "")).upper(): c.get("name")
-            for c in data_service.load_cards(lang)
+            for c in full_catalog("cards", lang)
         }
         relic_names = {
             str(r.get("id", "")).upper(): r.get("name")
-            for r in data_service.load_relics(lang)
+            for r in full_catalog("relics", lang)
         }
     except Exception:
         card_names, relic_names = {}, {}
@@ -2954,16 +2954,16 @@ def get_pick_coach(
         except Exception:
             logger.warning("pick coach lift blend failed", exc_info=True)
 
-    from ..services import data_service
+    from ..services.run_vectors import full_catalog
 
     try:
         card_names = {
             str(c.get("id", "")).upper(): c.get("name")
-            for c in data_service.load_cards(lang)
+            for c in full_catalog("cards", lang)
         }
         relic_names = {
             str(r.get("id", "")).upper(): r.get("name")
-            for r in data_service.load_relics(lang)
+            for r in full_catalog("relics", lang)
         }
     except Exception:
         card_names, relic_names = {}, {}

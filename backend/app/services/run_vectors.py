@@ -43,13 +43,22 @@ def available() -> bool:
     return (_vec_dir() / "vocab.json").exists()
 
 
-def _build_vocab() -> list[str]:
+def full_catalog(entity: str, lang: str = "eng") -> list[dict]:
+    """Main rows plus the ones only the current beta has, since beta runs
+    are in the vectors too."""
     from . import data_service
 
-    cards = {str(c.get("id", "")).upper() for c in data_service.load_cards("eng")}
-    relics = {
-        f"R:{str(r.get('id', '')).upper()}" for r in data_service.load_relics("eng")
-    }
+    load = data_service.load_cards if entity == "cards" else data_service.load_relics
+    token = data_service.current_channel.set("all")
+    try:
+        return load(lang)
+    finally:
+        data_service.current_channel.reset(token)
+
+
+def _build_vocab() -> list[str]:
+    cards = {str(c.get("id", "")).upper() for c in full_catalog("cards")}
+    relics = {f"R:{str(r.get('id', '')).upper()}" for r in full_catalog("relics")}
     return sorted(cards - {""}) + sorted(relics - {"R:"})
 
 
@@ -803,10 +812,8 @@ def _nondraftable() -> frozenset[str]:
     global _nondraftable_cache
     if _nondraftable_cache is None:
         try:
-            from . import data_service
-
             terms: set[str] = {"ASCENDERS_BANE"}
-            for c in data_service.load_cards("eng"):
+            for c in full_catalog("cards"):
                 # Basic = starters; Quest/Curse = granted by events and
                 # ancients, never drafted (Spoils Map was naming archetypes).
                 if (
@@ -817,7 +824,7 @@ def _nondraftable() -> frozenset[str]:
                     or c.get("type_key") == "Curse"
                 ):
                     terms.add(str(c.get("id", "")).upper())
-            for r in data_service.load_relics("eng"):
+            for r in full_catalog("relics"):
                 if "Starter" in str(r.get("rarity") or ""):
                     terms.add(f"R:{str(r.get('id', '')).upper()}")
             _nondraftable_cache = frozenset(terms - {""})
