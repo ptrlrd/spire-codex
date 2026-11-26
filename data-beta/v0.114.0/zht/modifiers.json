@@ -1,0 +1,149 @@
+[
+  {
+    "id": "ALL_STAR",
+    "name": "全明星",
+    "description": "開始時擁有 [blue]5[/blue] 張[gold]無色[/gold]牌。",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "BIG_GAME_HUNTER",
+    "name": "巨獸獵手",
+    "description": "菁英敵人充斥尖塔，並掉落[gold]稀有[/gold]卡牌獎勵。",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "CURSED_RUN",
+    "name": "詛咒之旅",
+    "description": "每一幕開始時，將一張隨機[red]詛咒[/red]加入你的牌組。",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "DEADLY_EVENTS",
+    "name": "致命事件",
+    "description": "未知房間現在可能出現菁英，但也更有可能是財寶房。",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "DRAFT",
+    "name": "選牌",
+    "description": "從 [blue]10[/blue] 次卡牌獎勵中選牌，取代你的起始牌組。",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "FLIGHT",
+    "name": "飛行",
+    "description": "選擇下一個要前往的房間時，你可以無視路徑限制。",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "HOARDER",
+    "name": "囤積者",
+    "description": "每當你將一張牌加入牌組時，再加入 [blue]2[/blue] 張相同的牌。你無法再透過商人從牌組中移除卡牌。",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "INSANITY",
+    "name": "精神錯亂",
+    "description": "起始牌組由隨機 [blue]30[/blue] 張卡牌組成。",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "MIDAS",
+    "name": "點金手",
+    "description": "敵人掉落的金幣增加 [blue]200%[/blue]，但你無法再於[gold]休息處[/gold]鍛造。",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "MURDEROUS",
+    "name": "殺氣騰騰",
+    "description": "每場戰鬥開始時，你擁有 [blue]3[/blue] 層[gold]力量[/gold]。所有敵人也擁有 [blue]3[/blue] 層[gold]力量[/gold]。",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "NIGHT_TERRORS",
+    "name": "暗夜驚魂",
+    "description": "在[gold]休息處[/gold]休息會完全恢復生命，但會失去 [red]5[/red] 點最大生命。",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "SEALED_DECK",
+    "name": "現開牌組",
+    "description": "從 [blue]30[/blue] 張牌中選擇 [blue]10[/blue] 張，取代你的起始牌組。",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "SPECIALIZED",
+    "name": "專精",
+    "description": "開始時擁有 [blue]5[/blue] 張相同的牌。",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "TERMINAL",
+    "name": "身患絕症",
+    "description": "每當你進入新房間時，失去 [red]1[/red] 點最大生命。每場戰鬥開始時，擁有 [blue]5[/blue] 層[gold]鍍甲[/gold]。",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "VINTAGE",
+    "name": "古董",
+    "description": "普通敵人會掉落遺物而非卡牌。",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "CHARACTER_CARDS_IRONCLAD",
+    "name": "鐵甲戰士卡牌",
+    "description": "鐵甲戰士的卡牌現在會出現在獎勵與商店中。",
+    "kind": "good",
+    "character": "IRONCLAD"
+  },
+  {
+    "id": "CHARACTER_CARDS_SILENT",
+    "name": "寂靜獵手卡牌",
+    "description": "寂靜獵手的卡牌現在會出現在獎勵與商店中。",
+    "kind": "good",
+    "character": "SILENT"
+  },
+  {
+    "id": "CHARACTER_CARDS_DEFECT",
+    "name": "故障機器人卡牌",
+    "description": "故障機器人的卡牌現在會出現在獎勵與商店中。",
+    "kind": "good",
+    "character": "DEFECT"
+  },
+  {
+    "id": "CHARACTER_CARDS_NECROBINDER",
+    "name": "縛亡者卡牌",
+    "description": "縛亡者的卡牌現在會出現在獎勵與商店中。",
+    "kind": "good",
+    "character": "NECROBINDER"
+  },
+  {
+    "id": "CHARACTER_CARDS_REGENT",
+    "name": "儲君卡牌",
+    "description": "儲君的卡牌現在會出現在獎勵與商店中。",
+    "kind": "good",
+    "character": "REGENT"
+  },
+  {
+    "id": "CHARACTER_CARDS_FOOL",
+    "name": "愚者卡牌",
+    "description": "愚者的卡牌現在會出現在獎勵與商店中。",
+    "kind": "good",
+    "character": "FOOL"
+  }
+]

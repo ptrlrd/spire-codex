@@ -1,0 +1,2662 @@
+{
+  "app_id": 2868840,
+  "game_version": "0.114.0",
+  "build_id": "26909018",
+  "tag": "0.114.0",
+  "date": "2026-11-24",
+  "title": "Beta Patch Notes - v0.114.0",
+  "from_ref": "data-beta/v0.113.1/eng",
+  "to_ref": "data-beta/v0.114.0/eng",
+  "summary": {
+    "added": 2,
+    "removed": 2,
+    "changed": 69
+  },
+  "categories": [
+    {
+      "id": "cards",
+      "name": "Cards",
+      "old_count": 716,
+      "new_count": 717,
+      "added": [
+        {
+          "id": "OPTIMISM",
+          "name": "Optimism",
+          "cost": 1,
+          "type": "Skill",
+          "rarity": "Rare"
+        },
+        {
+          "id": "TWIN_SHOT",
+          "name": "Twin Shot",
+          "cost": 1,
+          "damage": 7,
+          "type": "Attack",
+          "rarity": "Common"
+        }
+      ],
+      "removed": [
+        {
+          "id": "RAPID_SHOT",
+          "name": "Rapid Shot"
+        }
+      ],
+      "changed": [
+        {
+          "id": "ALL_IS_WELL",
+          "name": "All Is Well",
+          "changes": [
+            {
+              "field": "upgrade.alliswellpower",
+              "old": "+1",
+              "new": "+2"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Whenever you create a [gold]Sadness[/gold], gain 5 [gold]Block[/gold].",
+              "new": "Whenever you create a [gold]Sadness[/gold], gain 6 [gold]Block[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "ARCHERY",
+          "name": "Archery",
+          "changes": [
+            {
+              "field": "description",
+              "old": "At the start of your turn, gain 4 [gold]Aim[/gold].",
+              "new": "At the start of your turn, gain 6 [gold]Aim[/gold]."
+            },
+            {
+              "field": "powers_applied[0].amount",
+              "old": "4",
+              "new": "6"
+            },
+            {
+              "field": "rarity",
+              "old": "Uncommon",
+              "new": "Rare"
+            },
+            {
+              "field": "rarity_key",
+              "old": "Uncommon",
+              "new": "Rare"
+            },
+            {
+              "field": "upgrade.aimpower",
+              "old": "+1",
+              "new": "+2"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "At the start of your turn, gain 5 [gold]Aim[/gold].",
+              "new": "At the start of your turn, gain 8 [gold]Aim[/gold]."
+            },
+            {
+              "field": "vars.Aim",
+              "old": "4",
+              "new": "6"
+            },
+            {
+              "field": "vars.AimPower",
+              "old": "4",
+              "new": "6"
+            }
+          ]
+        },
+        {
+          "id": "ARROW_STAB",
+          "name": "Arrow Stab",
+          "changes": [
+            {
+              "field": "cost",
+              "old": "1",
+              "new": "2"
+            },
+            {
+              "field": "damage",
+              "old": "9",
+              "new": "13"
+            },
+            {
+              "field": "description",
+              "old": "Deal 9 damage.\nIf you have an [gold]Arrow[/gold], put a card that can [gold]S...",
+              "new": "Deal 13 damage.\nGain 6 [gold]Aim[/gold]."
+            },
+            {
+              "field": "description_raw",
+              "old": "Deal {Damage:diff()} damage.\nIf you have an [gold]Arrow[/gold], put a card th...",
+              "new": "Deal {Damage:diff()} damage.\nGain {AimPower:diff()} [gold]Aim[/gold]."
+            },
+            {
+              "field": "powers_applied[0].amount",
+              "old": "none",
+              "new": "6"
+            },
+            {
+              "field": "powers_applied[0].power",
+              "old": "none",
+              "new": "Aim"
+            },
+            {
+              "field": "powers_applied[0].power_key",
+              "old": "none",
+              "new": "Aim"
+            },
+            {
+              "field": "upgrade.aimpower",
+              "old": "none",
+              "new": "+2"
+            },
+            {
+              "field": "upgrade.damage",
+              "old": "+3",
+              "new": "+2"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Deal 12 damage.\nIf you have an [gold]Arrow[/gold], put a card that can [gold]...",
+              "new": "Deal 15 damage.\nGain 8 [gold]Aim[/gold]."
+            },
+            {
+              "field": "vars.Aim",
+              "old": "none",
+              "new": "6"
+            },
+            {
+              "field": "vars.AimPower",
+              "old": "none",
+              "new": "6"
+            },
+            {
+              "field": "vars.Damage",
+              "old": "9",
+              "new": "13"
+            }
+          ]
+        },
+        {
+          "id": "BOUNCE",
+          "name": "Bounce",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Gain 10 [gold]Stretch[/gold].\nAt the start of your next turn, return this to ...",
+              "new": "Gain 8 [gold]Stretch[/gold].\nAt the start of your next turn, return this to y..."
+            },
+            {
+              "field": "powers_applied[0].amount",
+              "old": "10",
+              "new": "8"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Gain 13 [gold]Stretch[/gold].\nAt the start of your next turn, return this to ...",
+              "new": "Gain 11 [gold]Stretch[/gold].\nAt the start of your next turn, return this to ..."
+            },
+            {
+              "field": "vars.Stretch",
+              "old": "10",
+              "new": "8"
+            },
+            {
+              "field": "vars.StretchPower",
+              "old": "10",
+              "new": "8"
+            }
+          ]
+        },
+        {
+          "id": "CHO_BARBS",
+          "name": "Cho Barbs",
+          "changes": [
+            {
+              "field": "block",
+              "old": "7",
+              "new": "8"
+            },
+            {
+              "field": "description",
+              "old": "Gain 7 [gold]Block[/gold].\nGain 3 [gold]Thorns[/gold] this turn.",
+              "new": "Gain 8 [gold]Block[/gold].\nGain 2 [gold]Thorns[/gold] this turn."
+            },
+            {
+              "field": "powers_applied[0].amount",
+              "old": "3",
+              "new": "2"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Gain 9 [gold]Block[/gold].\nGain 4 [gold]Thorns[/gold] this turn.",
+              "new": "Gain 10 [gold]Block[/gold].\nGain 3 [gold]Thorns[/gold] this turn."
+            },
+            {
+              "field": "vars.Block",
+              "old": "7",
+              "new": "8"
+            },
+            {
+              "field": "vars.ChoBarbs",
+              "old": "3",
+              "new": "2"
+            },
+            {
+              "field": "vars.ChoBarbsPower",
+              "old": "3",
+              "new": "2"
+            }
+          ]
+        },
+        {
+          "id": "CHO_CHORUS",
+          "name": "Cho Chorus",
+          "changes": [
+            {
+              "field": "block",
+              "old": "12",
+              "new": "14"
+            },
+            {
+              "field": "description",
+              "old": "Gain 12 [gold]Block[/gold].\nPlay ALL “Wah” and “Ki” cards in your [gold]Hand[...",
+              "new": "Gain 14 [gold]Block[/gold].\nPlay ALL “Wah” and “Ki” cards in your [gold]Hand[..."
+            },
+            {
+              "field": "upgrade.block",
+              "old": "+3",
+              "new": "+4"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Gain 15 [gold]Block[/gold].\nPlay ALL “Wah” and “Ki” cards in your [gold]Hand[...",
+              "new": "Gain 18 [gold]Block[/gold].\nPlay ALL “Wah” and “Ki” cards in your [gold]Hand[..."
+            },
+            {
+              "field": "vars.Block",
+              "old": "12",
+              "new": "14"
+            }
+          ]
+        },
+        {
+          "id": "CHO_FIRM",
+          "name": "Cho Firm",
+          "changes": [
+            {
+              "field": "block",
+              "old": "6",
+              "new": "5"
+            },
+            {
+              "field": "description",
+              "old": "Gain 6 [gold]Block[/gold].\nIf you have an [gold]Arrow[/gold], gain [gold]Bloc...",
+              "new": "Gain 5 [gold]Block[/gold].\nIf you have an [gold]Arrow[/gold], gain [gold]Bloc..."
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Gain 8 [gold]Block[/gold].\nIf you have an [gold]Arrow[/gold], gain [gold]Bloc...",
+              "new": "Gain 7 [gold]Block[/gold].\nIf you have an [gold]Arrow[/gold], gain [gold]Bloc..."
+            },
+            {
+              "field": "vars.Block",
+              "old": "6",
+              "new": "5"
+            }
+          ]
+        },
+        {
+          "id": "CHO_READY",
+          "name": "Cho Ready",
+          "changes": [
+            {
+              "field": "block",
+              "old": "8",
+              "new": "7"
+            },
+            {
+              "field": "description",
+              "old": "Gain 8 [gold]Block[/gold].\n Gain 3 [gold]Aim[/gold].",
+              "new": "Gain 7 [gold]Block[/gold].\n Gain 3 [gold]Aim[/gold]."
+            },
+            {
+              "field": "upgrade.aimpower",
+              "old": "+2",
+              "new": "+1"
+            },
+            {
+              "field": "upgrade.block",
+              "old": "+3",
+              "new": "+2"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Gain 11 [gold]Block[/gold].\n Gain 5 [gold]Aim[/gold].",
+              "new": "Gain 9 [gold]Block[/gold].\n Gain 4 [gold]Aim[/gold]."
+            },
+            {
+              "field": "vars.Block",
+              "old": "8",
+              "new": "7"
+            }
+          ]
+        },
+        {
+          "id": "DEATH",
+          "name": "Death",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Apply 75 [gold]Doom[/gold].",
+              "new": "Apply 66 [gold]Doom[/gold]."
+            },
+            {
+              "field": "powers_applied[0].amount",
+              "old": "75",
+              "new": "66"
+            },
+            {
+              "field": "upgrade.doom",
+              "old": "+24",
+              "new": "+15"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Apply 99 [gold]Doom[/gold].",
+              "new": "Apply 81 [gold]Doom[/gold]."
+            },
+            {
+              "field": "vars.Doom",
+              "old": "75",
+              "new": "66"
+            },
+            {
+              "field": "vars.DoomPower",
+              "old": "75",
+              "new": "66"
+            }
+          ]
+        },
+        {
+          "id": "ENCORE",
+          "name": "Encore",
+          "changes": [
+            {
+              "field": "description_raw",
+              "old": "Gain {Energy:energyIcons()}.\nDraw {Cards:diff()} cards.\nYou can only play {En...",
+              "new": "Gain {Energy:energyIcons()}.\nDraw {Cards:diff()} {Cards:plural:card|cards}.\nY..."
+            }
+          ]
+        },
+        {
+          "id": "ENSEMBLE",
+          "name": "Ensemble",
+          "changes": [
+            {
+              "field": "description",
+              "old": "The next 4 cards played by other players are free to play.",
+              "new": "The next 4 cards played by other players cost 0 [energy:1]."
+            },
+            {
+              "field": "description_raw",
+              "old": "The next {Cards:plural:card|{:diff()} cards} played by {Cards:plural:another ...",
+              "new": "The next {Cards:plural:card|{:diff()} cards} played by {Cards:plural:another ..."
+            },
+            {
+              "field": "upgrade_description",
+              "old": "The next 5 cards played by other players are free to play.",
+              "new": "The next 5 cards played by other players cost 0 [energy:1]."
+            }
+          ]
+        },
+        {
+          "id": "EXPLOSIVE_ARROWS",
+          "name": "Explosive Arrows",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Whenever you [gold]Impale[/gold] an enemy, deal 6 damage to ALL enemies.",
+              "new": "Whenever you [gold]Impale[/gold] an enemy, deal 8 damage to ALL enemies."
+            },
+            {
+              "field": "powers_applied[0].amount",
+              "old": "6",
+              "new": "8"
+            },
+            {
+              "field": "rarity",
+              "old": "Rare",
+              "new": "Uncommon"
+            },
+            {
+              "field": "rarity_key",
+              "old": "Rare",
+              "new": "Uncommon"
+            },
+            {
+              "field": "upgrade.explosivearrowspower",
+              "old": "+2",
+              "new": "+3"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Whenever you [gold]Impale[/gold] an enemy, deal 8 damage to ALL enemies.",
+              "new": "Whenever you [gold]Impale[/gold] an enemy, deal 11 damage to ALL enemies."
+            },
+            {
+              "field": "vars.ExplosiveArrows",
+              "old": "6",
+              "new": "8"
+            },
+            {
+              "field": "vars.ExplosiveArrowsPower",
+              "old": "6",
+              "new": "8"
+            }
+          ]
+        },
+        {
+          "id": "FLORESCENCE",
+          "name": "Florescence",
+          "changes": [
+            {
+              "field": "cost",
+              "old": "0",
+              "new": "1"
+            },
+            {
+              "field": "description",
+              "old": "[gold]Exhaust[/gold] ALL of your cards that [gold]Shoot[/gold] and create [go...",
+              "new": "Choose a card in your [gold]Hand[/gold] to [gold]Transform[/gold] into [gold]..."
+            },
+            {
+              "field": "description_raw",
+              "old": "[gold]Exhaust[/gold] ALL of your cards that [gold]Shoot[/gold] and create [go...",
+              "new": "Choose a card in your [gold]Hand[/gold] to [gold]Transform[/gold] into [gold]..."
+            },
+            {
+              "field": "keywords[0]",
+              "old": "Exhaust",
+              "new": "none"
+            },
+            {
+              "field": "keywords_key[0]",
+              "old": "Exhaust",
+              "new": "none"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "[gold]Exhaust[/gold] ALL of your cards that [gold]Shoot[/gold] and create [go...",
+              "new": "Choose a card in your [gold]Hand[/gold] to [gold]Transform[/gold] into [gold]..."
+            }
+          ]
+        },
+        {
+          "id": "GROWTH",
+          "name": "Growth",
+          "changes": [
+            {
+              "field": "block",
+              "old": "none",
+              "new": "8"
+            },
+            {
+              "field": "damage",
+              "old": "0",
+              "new": "none"
+            },
+            {
+              "field": "description",
+              "old": "[gold]Exhaust[/gold] ALL [gold]Sadness[/gold] in your [gold]Hand[/gold].\nGain...",
+              "new": "Gain 8 [gold]Block[/gold].\n[gold]Transform[/gold] 1 random [gold]Sadness[/gol..."
+            },
+            {
+              "field": "description_raw",
+              "old": "[gold]Exhaust[/gold] ALL [gold]Sadness[/gold] in your [gold]Hand[/gold].\nGain...",
+              "new": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Transform[/gold] 1 random [gold..."
+            },
+            {
+              "field": "upgrade.block",
+              "old": "none",
+              "new": "+3"
+            },
+            {
+              "field": "upgrade.calculationextra",
+              "old": "+2",
+              "new": "none"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "[gold]Exhaust[/gold] ALL [gold]Sadness[/gold] in your [gold]Hand[/gold].\nGain...",
+              "new": "Gain 11 [gold]Block[/gold].\n[gold]Transform[/gold] 1 random [gold]Sadness[/go..."
+            },
+            {
+              "field": "vars.Block",
+              "old": "none",
+              "new": "8"
+            },
+            {
+              "field": "vars.CalculationBase",
+              "old": "0",
+              "new": "none"
+            },
+            {
+              "field": "vars.CalculationExtra",
+              "old": "4",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "HARMONIC_SHIELD",
+          "name": "Harmonic Shield",
+          "changes": [
+            {
+              "field": "block",
+              "old": "0",
+              "new": "4"
+            },
+            {
+              "field": "description",
+              "old": "Gain 5 [gold]Block[/gold] for each [gold]Melody[/gold] you have.",
+              "new": "Gain 4 [gold]Block[/gold].\nGain 4 additional [gold]Block[/gold] for each [gol..."
+            },
+            {
+              "field": "description_raw",
+              "old": "Gain {CalculationExtra:diff()} [gold]Block[/gold] for each [gold]Melody[/gold...",
+              "new": "Gain {CalculatedBlock:diff()} [gold]Block[/gold].\nGain {CalculationExtra:diff..."
+            },
+            {
+              "field": "upgrade.calculationbase",
+              "old": "none",
+              "new": "+2"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Gain 7 [gold]Block[/gold] for each [gold]Melody[/gold] you have.",
+              "new": "Gain 6 [gold]Block[/gold].\nGain 6 additional [gold]Block[/gold] for each [gol..."
+            },
+            {
+              "field": "vars.CalculationBase",
+              "old": "0",
+              "new": "4"
+            },
+            {
+              "field": "vars.CalculationExtra",
+              "old": "5",
+              "new": "4"
+            }
+          ]
+        },
+        {
+          "id": "HEAVY_SHOT",
+          "name": "Heavy Shot",
+          "changes": [
+            {
+              "field": "damage",
+              "old": "20",
+              "new": "16"
+            },
+            {
+              "field": "description",
+              "old": "[gold]Shoot[/gold] an [gold]Arrow[/gold] to deal 20 damage.\n[gold]Aim[/gold] ...",
+              "new": "[gold]Shoot[/gold] an [gold]Arrow[/gold] to deal 16 damage.\n[gold]Aim[/gold] ..."
+            },
+            {
+              "field": "rarity",
+              "old": "Common",
+              "new": "Uncommon"
+            },
+            {
+              "field": "rarity_key",
+              "old": "Common",
+              "new": "Uncommon"
+            },
+            {
+              "field": "upgrade.aimmultiplier",
+              "old": "none",
+              "new": "+1"
+            },
+            {
+              "field": "upgrade.damage",
+              "old": "+5",
+              "new": "+1"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "[gold]Shoot[/gold] an [gold]Arrow[/gold] to deal 25 damage.\n[gold]Aim[/gold] ...",
+              "new": "[gold]Shoot[/gold] an [gold]Arrow[/gold] to deal 17 damage.\n[gold]Aim[/gold] ..."
+            },
+            {
+              "field": "vars.AimMultiplier",
+              "old": "2",
+              "new": "3"
+            },
+            {
+              "field": "vars.Damage",
+              "old": "20",
+              "new": "16"
+            }
+          ]
+        },
+        {
+          "id": "HONING",
+          "name": "Honing",
+          "changes": [
+            {
+              "field": "description",
+              "old": "[gold]Arrows[/gold] deal 50% additional damage.",
+              "new": "[gold]Arrows[/gold] deal double damage."
+            },
+            {
+              "field": "description_raw",
+              "old": "[gold]Arrows[/gold] deal {HoningPower:diff()}% additional damage.",
+              "new": "[gold]Arrows[/gold] deal double damage."
+            },
+            {
+              "field": "powers_applied[0].amount",
+              "old": "50",
+              "new": "100"
+            },
+            {
+              "field": "vars.Honing",
+              "old": "50",
+              "new": "100"
+            },
+            {
+              "field": "vars.HoningPower",
+              "old": "50",
+              "new": "100"
+            }
+          ]
+        },
+        {
+          "id": "JEST",
+          "name": "Jest",
+          "changes": [
+            {
+              "field": "block",
+              "old": "14",
+              "new": "15"
+            },
+            {
+              "field": "description",
+              "old": "Gain 14 [gold]Block[/gold].\nAdd 1 [gold]Sadness[/gold] into your [gold]Hand[/...",
+              "new": "Gain 15 [gold]Block[/gold].\nAdd 1 [gold]Sadness[/gold] into your [gold]Hand[/..."
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Gain 18 [gold]Block[/gold].\nAdd 1 [gold]Sadness[/gold] into your [gold]Hand[/...",
+              "new": "Gain 19 [gold]Block[/gold].\nAdd 1 [gold]Sadness[/gold] into your [gold]Hand[/..."
+            },
+            {
+              "field": "vars.Block",
+              "old": "14",
+              "new": "15"
+            }
+          ]
+        },
+        {
+          "id": "KI_REST",
+          "name": "Ki Rest",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Next turn, gain [energy:5].\nIf you have a [gold]Wah Melody[/gold] or [gold]Ch...",
+              "new": "Next turn, gain [energy:4].\nIf you have a [gold]Wah Melody[/gold] or [gold]Ch..."
+            },
+            {
+              "field": "energy_gain",
+              "old": "5",
+              "new": "4"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Next turn, gain [energy:6].\nIf you have a [gold]Wah Melody[/gold] or [gold]Ch...",
+              "new": "Next turn, gain [energy:5].\nIf you have a [gold]Wah Melody[/gold] or [gold]Ch..."
+            },
+            {
+              "field": "vars.Energy",
+              "old": "5",
+              "new": "4"
+            }
+          ]
+        },
+        {
+          "id": "KI_VERSE",
+          "name": "Ki Verse",
+          "changes": [
+            {
+              "field": "description",
+              "old": "The next “Wah”, “Cho”, or “Ki” card you play this turn is played an additiona...",
+              "new": "The next “Wah” or “Cho” card you play this turn is played an additional time."
+            },
+            {
+              "field": "description_raw",
+              "old": "The next{KiVersePower:plural:| {:diff()}} “Wah”, “Cho”, or “Ki” {KiVersePower...",
+              "new": "The next{KiVersePower:plural:| {:diff()}} “Wah” or “Cho” {KiVersePower:plural..."
+            },
+            {
+              "field": "upgrade_description",
+              "old": "The next 2 “Wah”, “Cho”, or “Ki” cards you play this turn are played an addit...",
+              "new": "The next 2 “Wah” or “Cho” cards you play this turn are played an additional t..."
+            }
+          ]
+        },
+        {
+          "id": "LULLABY",
+          "name": "Lullaby",
+          "changes": [
+            {
+              "field": "cost",
+              "old": "0",
+              "new": "1"
+            },
+            {
+              "field": "description",
+              "old": "When you gain every [gold]Melody[/gold], gain 20 [gold]Block[/gold].",
+              "new": "When you gain every [gold]Melody[/gold], gain 12 [gold]Block[/gold]."
+            },
+            {
+              "field": "powers_applied[0].amount",
+              "old": "20",
+              "new": "12"
+            },
+            {
+              "field": "upgrade.add_innate",
+              "old": "yes",
+              "new": "none"
+            },
+            {
+              "field": "upgrade.lullabypower",
+              "old": "none",
+              "new": "+4"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "When you gain every [gold]Melody[/gold], gain 16 [gold]Block[/gold]."
+            },
+            {
+              "field": "vars.Lullaby",
+              "old": "20",
+              "new": "12"
+            },
+            {
+              "field": "vars.LullabyPower",
+              "old": "20",
+              "new": "12"
+            }
+          ]
+        },
+        {
+          "id": "MELODIC_SHOT",
+          "name": "Melodic Shot",
+          "changes": [
+            {
+              "field": "upgrade.cost",
+              "old": "0",
+              "new": "none"
+            },
+            {
+              "field": "upgrade.damage",
+              "old": "+1",
+              "new": "+2"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "[gold]Shoot[/gold] an [gold]Arrow[/gold] to deal 13 damage.\nHits an additiona...",
+              "new": "[gold]Shoot[/gold] an [gold]Arrow[/gold] to deal 14 damage.\nHits an additiona..."
+            }
+          ]
+        },
+        {
+          "id": "MOTIF",
+          "name": "Motif",
+          "changes": [
+            {
+              "field": "rarity",
+              "old": "Uncommon",
+              "new": "Rare"
+            },
+            {
+              "field": "rarity_key",
+              "old": "Uncommon",
+              "new": "Rare"
+            }
+          ]
+        },
+        {
+          "id": "MYTHIC_FORM",
+          "name": "Mythic Form",
+          "changes": [
+            {
+              "field": "can_be_generated_in_combat",
+              "old": "no",
+              "new": "none"
+            },
+            {
+              "field": "description_raw",
+              "old": "At the start of your turn, add a random{IfUpgraded:show: Upgraded|} [gold]Tar...",
+              "new": "At the start of your turn, add a random [gold]Tarot[/gold] card into your [go..."
+            },
+            {
+              "field": "keywords[0]",
+              "old": "none",
+              "new": "Ethereal"
+            },
+            {
+              "field": "keywords_key[0]",
+              "old": "none",
+              "new": "Ethereal"
+            },
+            {
+              "field": "upgrade.description_changed",
+              "old": "yes",
+              "new": "none"
+            },
+            {
+              "field": "upgrade.remove_ethereal",
+              "old": "none",
+              "new": "yes"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "At the start of your turn, add a random Upgraded [gold]Tarot[/gold] card into...",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "MY_SHINIES",
+          "name": "My Shinies",
+          "changes": [
+            {
+              "field": "damage",
+              "old": "1",
+              "new": "2"
+            },
+            {
+              "field": "description",
+              "old": "Deal 1 damage for every 20 [gold]Gold[/gold] you have.",
+              "new": "Deal 2 damage. Hits an additional time for every 25 [gold]Gold[/gold] you have."
+            },
+            {
+              "field": "description_raw",
+              "old": "Deal {Damage:diff()} damage for every {Gold:diff()} [gold]Gold[/gold] you hav...",
+              "new": "Deal {Damage:diff()} damage. Hits an additional time for every {Gold:diff()} ..."
+            },
+            {
+              "field": "upgrade.damage",
+              "old": "none",
+              "new": "+1"
+            },
+            {
+              "field": "upgrade.gold",
+              "old": "-10",
+              "new": "none"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Deal 1 damage for every 10 [gold]Gold[/gold] you have.",
+              "new": "Deal 3 damage. Hits an additional time for every 25 [gold]Gold[/gold] you have."
+            },
+            {
+              "field": "vars.CalculationBase",
+              "old": "0",
+              "new": "1"
+            },
+            {
+              "field": "vars.Damage",
+              "old": "1",
+              "new": "2"
+            },
+            {
+              "field": "vars.Gold",
+              "old": "20",
+              "new": "25"
+            }
+          ]
+        },
+        {
+          "id": "NAIL",
+          "name": "Nail",
+          "changes": [
+            {
+              "field": "description",
+              "old": "If the enemy is [gold]Impaled[/gold], Deal 20 damage and apply 2 [gold]Weak[/...",
+              "new": "If the enemy is [gold]Impaled[/gold], deal 20 damage and apply 2 [gold]Weak[/..."
+            },
+            {
+              "field": "description_raw",
+              "old": "If the enemy is [gold]Impaled[/gold], Deal {Damage:diff()} damage and apply {...",
+              "new": "If the enemy is [gold]Impaled[/gold], deal {Damage:diff()} damage and apply {..."
+            },
+            {
+              "field": "upgrade_description",
+              "old": "If the enemy is [gold]Impaled[/gold], Deal 25 damage and apply 3 [gold]Weak[/...",
+              "new": "If the enemy is [gold]Impaled[/gold], deal 25 damage and apply 3 [gold]Weak[/..."
+            }
+          ]
+        },
+        {
+          "id": "PUNCH_OF_JOY",
+          "name": "Punch of Joy",
+          "changes": [
+            {
+              "field": "cards_draw",
+              "old": "none",
+              "new": "1"
+            },
+            {
+              "field": "damage",
+              "old": "13",
+              "new": "14"
+            },
+            {
+              "field": "description",
+              "old": "Deal 13 damage.\n[gold]Transform[/gold] 1 random [gold]Sadness[/gold] in your ...",
+              "new": "Deal 14 damage.\n[gold]Transform[/gold] 1 random [gold]Sadness[/gold] in your ..."
+            },
+            {
+              "field": "description_raw",
+              "old": "Deal {Damage:diff()} damage.\n[gold]Transform[/gold] 1 random [gold]Sadness[/g...",
+              "new": "Deal {Damage:diff()} damage.\n[gold]Transform[/gold] {Cards:diff()} random [go..."
+            },
+            {
+              "field": "upgrade.cards",
+              "old": "none",
+              "new": "+1"
+            },
+            {
+              "field": "upgrade.damage",
+              "old": "+4",
+              "new": "+2"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Deal 17 damage.\n[gold]Transform[/gold] 1 random [gold]Sadness[/gold] in your ...",
+              "new": "Deal 16 damage.\n[gold]Transform[/gold] 2 random [gold]Sadness[/gold] in your ..."
+            },
+            {
+              "field": "vars.Cards",
+              "old": "none",
+              "new": "1"
+            },
+            {
+              "field": "vars.Damage",
+              "old": "13",
+              "new": "14"
+            }
+          ]
+        },
+        {
+          "id": "QUIETUS",
+          "name": "Quietus",
+          "changes": [
+            {
+              "field": "description",
+              "old": "This turn, your next [gold]Shot[/gold] deals double damage but the [gold]Arro...",
+              "new": "This turn, your next [gold]Shot[/gold] deals double damage."
+            },
+            {
+              "field": "description_raw",
+              "old": "This turn, your next [gold]Shot[/gold] deals {IfUpgraded:show:triple|double} ...",
+              "new": "This turn, your next [gold]Shot[/gold] deals {IfUpgraded:show:triple|double} ..."
+            },
+            {
+              "field": "upgrade_description",
+              "old": "This turn, your next [gold]Shot[/gold] deals triple damage but the [gold]Arro...",
+              "new": "This turn, your next [gold]Shot[/gold] deals triple damage."
+            }
+          ]
+        },
+        {
+          "id": "QUIVER",
+          "name": "Quiver",
+          "changes": [
+            {
+              "field": "rarity",
+              "old": "Rare",
+              "new": "Uncommon"
+            },
+            {
+              "field": "rarity_key",
+              "old": "Rare",
+              "new": "Uncommon"
+            },
+            {
+              "field": "upgrade.add_innate",
+              "old": "none",
+              "new": "yes"
+            },
+            {
+              "field": "upgrade.repeat",
+              "old": "+1",
+              "new": "none"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Gain 2 additional [gold]Arrows[/gold].",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "RECALL",
+          "name": "Recall",
+          "changes": [
+            {
+              "field": "cost",
+              "old": "1",
+              "new": "0"
+            },
+            {
+              "field": "description",
+              "old": "If the enemy is [gold]Impaled[/gold], [gold]Dislodge[/gold] and put a card fr...",
+              "new": "If the enemy is [gold]Impaled[/gold], [gold]Dislodge[/gold]."
+            },
+            {
+              "field": "description_raw",
+              "old": "If the enemy is [gold]Impaled[/gold], [gold]Dislodge[/gold] and put a card fr...",
+              "new": "If the enemy is [gold]Impaled[/gold], [gold]Dislodge[/gold]."
+            },
+            {
+              "field": "keywords[0]",
+              "old": "none",
+              "new": "Exhaust"
+            },
+            {
+              "field": "keywords[1]",
+              "old": "none",
+              "new": "Retain"
+            },
+            {
+              "field": "keywords_key[0]",
+              "old": "none",
+              "new": "Exhaust"
+            },
+            {
+              "field": "keywords_key[1]",
+              "old": "none",
+              "new": "Retain"
+            },
+            {
+              "field": "upgrade.cost",
+              "old": "0",
+              "new": "none"
+            },
+            {
+              "field": "upgrade.remove_exhaust",
+              "old": "none",
+              "new": "yes"
+            }
+          ]
+        },
+        {
+          "id": "REPEAT_SHOT",
+          "name": "Repeat Shot",
+          "changes": [
+            {
+              "field": "damage",
+              "old": "15",
+              "new": "13"
+            },
+            {
+              "field": "description",
+              "old": "[gold]Shoot[/gold] an [gold]Arrow[/gold] to deal 15 damage X times.",
+              "new": "[gold]Shoot[/gold] an [gold]Arrow[/gold] to deal 13 damage X times."
+            },
+            {
+              "field": "upgrade.damage",
+              "old": "+5",
+              "new": "+3"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "[gold]Shoot[/gold] an [gold]Arrow[/gold] to deal 20 damage X times.",
+              "new": "[gold]Shoot[/gold] an [gold]Arrow[/gold] to deal 16 damage X times."
+            },
+            {
+              "field": "vars.Damage",
+              "old": "15",
+              "new": "13"
+            }
+          ]
+        },
+        {
+          "id": "SELF_DEPRECATE",
+          "name": "Self Deprecate",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Add a [gold]Sadness[/gold] to your [gold]Hand[/gold].\nAdd 2 [gold]Joy[/gold] ...",
+              "new": "Add a [gold]Sadness[/gold] to your [gold]Hand[/gold].\nAdd 1 [gold]Joy[/gold] ..."
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Add a [gold]Sadness[/gold] to your [gold]Hand[/gold].\nAdd 3 [gold]Joy[/gold] ...",
+              "new": "Add a [gold]Sadness[/gold] to your [gold]Hand[/gold].\nAdd 2 [gold]Joy[/gold] ..."
+            },
+            {
+              "field": "vars.Joy",
+              "old": "2",
+              "new": "1"
+            }
+          ]
+        },
+        {
+          "id": "SERRATED_ARROWS",
+          "name": "Serrated Arrows",
+          "changes": [
+            {
+              "field": "description",
+              "old": "[gold]Impaled[/gold] enemies take 25% more damage from your Attacks.",
+              "new": "[gold]Impaled[/gold] enemies take 50% more damage from your Attacks."
+            },
+            {
+              "field": "powers_applied[0].amount",
+              "old": "25",
+              "new": "50"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "[gold]Impaled[/gold] enemies take 50% more damage from your Attacks.",
+              "new": "[gold]Impaled[/gold] enemies take 75% more damage from your Attacks."
+            },
+            {
+              "field": "vars.SerratedArrows",
+              "old": "25",
+              "new": "50"
+            },
+            {
+              "field": "vars.SerratedArrowsPower",
+              "old": "25",
+              "new": "50"
+            }
+          ]
+        },
+        {
+          "id": "SHOW_OFF",
+          "name": "Show Off",
+          "changes": [
+            {
+              "field": "cost",
+              "old": "1",
+              "new": "0"
+            }
+          ]
+        },
+        {
+          "id": "SIMPLETON",
+          "name": "Simpleton",
+          "changes": [
+            {
+              "field": "upgrade.cost",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "upgrade.simpletonpower",
+              "old": "none",
+              "new": "+1"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "At the end of your turn, play the 2 least expensive cards in your [gold]Hand[..."
+            }
+          ]
+        },
+        {
+          "id": "SONG_PATH",
+          "name": "Song Path",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Whenever you gain a [gold]Cho Melody[/gold], gain 5 [gold]Block[/gold].",
+              "new": "Whenever you gain a [gold]Cho Melody[/gold], gain 4 [gold]Block[/gold]."
+            },
+            {
+              "field": "powers_applied[0].amount",
+              "old": "5",
+              "new": "4"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Whenever you gain a [gold]Cho Melody[/gold], gain 7 [gold]Block[/gold].",
+              "new": "Whenever you gain a [gold]Cho Melody[/gold], gain 6 [gold]Block[/gold]."
+            },
+            {
+              "field": "vars.SongPath",
+              "old": "5",
+              "new": "4"
+            },
+            {
+              "field": "vars.SongPathPower",
+              "old": "5",
+              "new": "4"
+            }
+          ]
+        },
+        {
+          "id": "SORROWFUL_STRIKE",
+          "name": "Sorrowful Strike",
+          "changes": [
+            {
+              "field": "cards_draw",
+              "old": "2",
+              "new": "1"
+            },
+            {
+              "field": "description",
+              "old": "Deal 13 damage.\nAdd 2 [gold]Sadness[/gold] into your [gold]Hand[/gold].",
+              "new": "Deal 13 damage.\nAdd 1 [gold]Sadness[/gold] into your [gold]Hand[/gold]."
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Deal 17 damage.\nAdd 2 [gold]Sadness[/gold] into your [gold]Hand[/gold].",
+              "new": "Deal 17 damage.\nAdd 1 [gold]Sadness[/gold] into your [gold]Hand[/gold]."
+            },
+            {
+              "field": "vars.Cards",
+              "old": "2",
+              "new": "1"
+            }
+          ]
+        },
+        {
+          "id": "TEMPERANCE",
+          "name": "Temperance",
+          "changes": [
+            {
+              "field": "block",
+              "old": "30",
+              "new": "20"
+            },
+            {
+              "field": "description",
+              "old": "Gain 30 [gold]Block[/gold].",
+              "new": "Gain 20 [gold]Block[/gold]."
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Gain 35 [gold]Block[/gold].",
+              "new": "Gain 25 [gold]Block[/gold]."
+            },
+            {
+              "field": "vars.Block",
+              "old": "30",
+              "new": "20"
+            }
+          ]
+        },
+        {
+          "id": "THE_EMPEROR",
+          "name": "The Emperor",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Gain [energy:7].",
+              "new": "Gain [energy:3]."
+            },
+            {
+              "field": "energy_gain",
+              "old": "7",
+              "new": "3"
+            },
+            {
+              "field": "upgrade.energy",
+              "old": "+2",
+              "new": "+1"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Gain [energy:9].",
+              "new": "Gain [energy:4]."
+            },
+            {
+              "field": "vars.Energy",
+              "old": "7",
+              "new": "3"
+            }
+          ]
+        },
+        {
+          "id": "THE_HERMIT",
+          "name": "The Hermit",
+          "changes": [
+            {
+              "field": "cards_draw",
+              "old": "2",
+              "new": "3"
+            },
+            {
+              "field": "description",
+              "old": "Discard a card.\nDraw 2 cards.\nDiscarded [gold]Curses[/gold] are [gold]Exhaust...",
+              "new": "Discard a card.\nDraw 3 cards.\nDiscarded [gold]Curses[/gold] are [gold]Exhaust..."
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Discard a card.\nDraw 3 cards.\nDiscarded [gold]Curses[/gold] are [gold]Exhaust...",
+              "new": "Discard a card.\nDraw 4 cards.\nDiscarded [gold]Curses[/gold] are [gold]Exhaust..."
+            },
+            {
+              "field": "vars.Cards",
+              "old": "2",
+              "new": "3"
+            }
+          ]
+        },
+        {
+          "id": "THE_HIEROPHANT",
+          "name": "The Hierophant",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Add 3 random Colorless cards into your [gold]Hand[/gold].\nThey cost 1 less [e...",
+              "new": "Add 3 random Colorless cards into your [gold]Hand[/gold]."
+            },
+            {
+              "field": "description_raw",
+              "old": "Add {Cards:diff()} random Colorless {Cards:plural:card|cards} into your [gold...",
+              "new": "Add {Cards:diff()} random Colorless {Cards:plural:card|cards} into your [gold..."
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Add 4 random Colorless cards into your [gold]Hand[/gold].\nThey cost 1 less [e...",
+              "new": "Add 4 random Colorless cards into your [gold]Hand[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "THE_SHOT",
+          "name": "The Shot",
+          "changes": [
+            {
+              "field": "cost",
+              "old": "1",
+              "new": "0"
+            },
+            {
+              "field": "damage",
+              "old": "0",
+              "new": "20"
+            },
+            {
+              "field": "description",
+              "old": "[gold]Shoot[/gold] an [gold]Arrow[/gold] to deal 10 damage for each card [gol...",
+              "new": "[gold]Shoot[/gold] an [gold]Arrow[/gold] to deal 20 damage."
+            },
+            {
+              "field": "description_raw",
+              "old": "[gold]Shoot[/gold] an [gold]Arrow[/gold] to deal {ExtraDamage:diff()} damage ...",
+              "new": "[gold]Shoot[/gold] an [gold]Arrow[/gold] to deal {Damage:diff()} damage."
+            },
+            {
+              "field": "keywords[0]",
+              "old": "none",
+              "new": "Exhaust"
+            },
+            {
+              "field": "keywords_key[0]",
+              "old": "none",
+              "new": "Exhaust"
+            },
+            {
+              "field": "spawns_cards[0]",
+              "old": "FLORESCENCE",
+              "new": "none"
+            },
+            {
+              "field": "upgrade.damage",
+              "old": "none",
+              "new": "+5"
+            },
+            {
+              "field": "upgrade.extradamage",
+              "old": "+3",
+              "new": "none"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "[gold]Shoot[/gold] an [gold]Arrow[/gold] to deal 13 damage for each card [gol...",
+              "new": "[gold]Shoot[/gold] an [gold]Arrow[/gold] to deal 25 damage."
+            },
+            {
+              "field": "vars.CalculatedDamage",
+              "old": "0",
+              "new": "none"
+            },
+            {
+              "field": "vars.CalculationBase",
+              "old": "0",
+              "new": "none"
+            },
+            {
+              "field": "vars.Damage",
+              "old": "none",
+              "new": "20"
+            },
+            {
+              "field": "vars.ExtraDamage",
+              "old": "10",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "THE_SUN",
+          "name": "The Sun",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Draw 2 cards.\nGain [energy:2].\nAdd a [gold]Soot[/gold] into your [gold]Discar...",
+              "new": "Draw 2 cards.\nGain [energy:2].\nAdd 2 [gold]Soot[/gold] into your [gold]Draw P..."
+            },
+            {
+              "field": "description_raw",
+              "old": "Draw {Cards:diff()} cards.\nGain {Energy:energyIcons()}.\nAdd a [gold]Soot[/gol...",
+              "new": "Draw {Cards:diff()} cards.\nGain {Energy:energyIcons()}.\nAdd 2 [gold]Soot[/gol..."
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Draw 3 cards.\nGain [energy:3].\nAdd a [gold]Soot[/gold] into your [gold]Discar...",
+              "new": "Draw 3 cards.\nGain [energy:3].\nAdd 2 [gold]Soot[/gold] into your [gold]Draw P..."
+            }
+          ]
+        },
+        {
+          "id": "THE_TOWER",
+          "name": "The Tower",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Deal 2 damage for each floor traveled.",
+              "new": "Deal 1 damage for each floor traveled."
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Deal 3 damage for each floor traveled.",
+              "new": "Deal 2 damage for each floor traveled."
+            },
+            {
+              "field": "vars.ExtraDamage",
+              "old": "2",
+              "new": "1"
+            }
+          ]
+        },
+        {
+          "id": "TRICK_SHOT",
+          "name": "Trick Shot",
+          "changes": [
+            {
+              "field": "cards_draw",
+              "old": "none",
+              "new": "2"
+            },
+            {
+              "field": "description",
+              "old": "[gold]Shoot[/gold] an [gold]Arrow[/gold] to deal 12 damage and return this ca...",
+              "new": "[gold]Shoot[/gold] an [gold]Arrow[/gold] to deal 12 damage and draw 2 cards."
+            },
+            {
+              "field": "description_raw",
+              "old": "[gold]Shoot[/gold] an [gold]Arrow[/gold] to deal {Damage:diff()} damage and r...",
+              "new": "[gold]Shoot[/gold] an [gold]Arrow[/gold] to deal {Damage:diff()} damage and d..."
+            },
+            {
+              "field": "upgrade.cards",
+              "old": "none",
+              "new": "+1"
+            },
+            {
+              "field": "upgrade.damage",
+              "old": "+3",
+              "new": "+2"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "[gold]Shoot[/gold] an [gold]Arrow[/gold] to deal 15 damage and return this ca...",
+              "new": "[gold]Shoot[/gold] an [gold]Arrow[/gold] to deal 14 damage and draw 3 cards."
+            },
+            {
+              "field": "vars.Cards",
+              "old": "none",
+              "new": "2"
+            }
+          ]
+        },
+        {
+          "id": "TUNE",
+          "name": "Tune",
+          "changes": [
+            {
+              "field": "cards_draw",
+              "old": "none",
+              "new": "1"
+            },
+            {
+              "field": "cost",
+              "old": "2",
+              "new": "1"
+            },
+            {
+              "field": "description",
+              "old": "At the end of your turn, if you have a [gold]Ki Melody[/gold], the next card ...",
+              "new": "Whenever you gain a [gold]Ki Melody[/gold], [gold]Upgrade[/gold] a random car..."
+            },
+            {
+              "field": "description_raw",
+              "old": "At the end of your turn, if you have a [gold]Ki Melody[/gold], the next card ...",
+              "new": "Whenever you gain a [gold]Ki Melody[/gold], [gold]Upgrade[/gold] {Cards:choos..."
+            },
+            {
+              "field": "energy_gain",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "upgrade.cards",
+              "old": "none",
+              "new": "+1"
+            },
+            {
+              "field": "upgrade.cost",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Whenever you gain a [gold]Ki Melody[/gold], [gold]Upgrade[/gold] 2 random car..."
+            },
+            {
+              "field": "vars.Cards",
+              "old": "none",
+              "new": "1"
+            },
+            {
+              "field": "vars.Energy",
+              "old": "1",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "UPROOT",
+          "name": "Uproot",
+          "changes": [
+            {
+              "field": "cost",
+              "old": "1",
+              "new": "0"
+            }
+          ]
+        },
+        {
+          "id": "VIOLENT_CHORD",
+          "name": "Violent Chord",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Whenever you gain a [gold]Wah Melody[/gold], deal 9 damage to ALL enemies.",
+              "new": "Whenever you gain a [gold]Wah Melody[/gold], deal 7 damage to ALL enemies."
+            },
+            {
+              "field": "powers_applied[0].amount",
+              "old": "9",
+              "new": "7"
+            },
+            {
+              "field": "upgrade.violentchordpower",
+              "old": "+3",
+              "new": "+2"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Whenever you gain a [gold]Wah Melody[/gold], deal 12 damage to ALL enemies.",
+              "new": "Whenever you gain a [gold]Wah Melody[/gold], deal 9 damage to ALL enemies."
+            },
+            {
+              "field": "vars.ViolentChord",
+              "old": "9",
+              "new": "7"
+            },
+            {
+              "field": "vars.ViolentChordPower",
+              "old": "9",
+              "new": "7"
+            }
+          ]
+        },
+        {
+          "id": "VITRIOL",
+          "name": "Vitriol",
+          "changes": [
+            {
+              "field": "cards_draw",
+              "old": "none",
+              "new": "2"
+            },
+            {
+              "field": "description",
+              "old": "Apply 2 [gold]Weak[/gold].\nAdd a [gold]Sadness[/gold] into your [gold]Hand[/g...",
+              "new": "Apply 2 [gold]Weak[/gold].\nAdd 2 [gold]Sadness[/gold] into your [gold]Hand[/g..."
+            },
+            {
+              "field": "description_raw",
+              "old": "Apply {WeakPower:diff()} [gold]Weak[/gold].\nAdd a [gold]Sadness[/gold] into y...",
+              "new": "Apply {WeakPower:diff()} [gold]Weak[/gold].\nAdd {Cards:diff()} [gold]Sadness[..."
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Apply 3 [gold]Weak[/gold].\nAdd a [gold]Sadness[/gold] into your [gold]Hand[/g...",
+              "new": "Apply 3 [gold]Weak[/gold].\nAdd 2 [gold]Sadness[/gold] into your [gold]Hand[/g..."
+            },
+            {
+              "field": "vars.Cards",
+              "old": "none",
+              "new": "2"
+            }
+          ]
+        },
+        {
+          "id": "WAH_CHO_KI",
+          "name": "Wah Cho Ki",
+          "changes": [
+            {
+              "field": "block",
+              "old": "9",
+              "new": "8"
+            },
+            {
+              "field": "cost",
+              "old": "1",
+              "new": "2"
+            },
+            {
+              "field": "damage",
+              "old": "9",
+              "new": "8"
+            },
+            {
+              "field": "description",
+              "old": "Gain 9 [gold]Block[/gold].\nDeal 9 damage.\nDraw 1 card.",
+              "new": "Deal 8 damage.\nGain 8 [gold]Block[/gold].\nDraw 1 card."
+            },
+            {
+              "field": "description_raw",
+              "old": "Gain {Block:diff()} [gold]Block[/gold].\nDeal {Damage:diff()} damage.\nDraw {Ca...",
+              "new": "Deal {Damage:diff()} damage.\nGain {Block:diff()} [gold]Block[/gold].\nDraw {Ca..."
+            },
+            {
+              "field": "upgrade.block",
+              "old": "+3",
+              "new": "+2"
+            },
+            {
+              "field": "upgrade.damage",
+              "old": "+3",
+              "new": "+2"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Gain 12 [gold]Block[/gold].\nDeal 12 damage.\nDraw 2 cards.",
+              "new": "Deal 10 damage.\nGain 10 [gold]Block[/gold].\nDraw 2 cards."
+            },
+            {
+              "field": "vars.Block",
+              "old": "9",
+              "new": "8"
+            },
+            {
+              "field": "vars.Damage",
+              "old": "9",
+              "new": "8"
+            }
+          ]
+        },
+        {
+          "id": "WAH_HAMMER",
+          "name": "Wah Hammer",
+          "changes": [
+            {
+              "field": "upgrade.damage",
+              "old": "+3",
+              "new": "+2"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Deal 12 damage.\nDeals double damage to [gold]Impaled[/gold] enemies.",
+              "new": "Deal 11 damage.\nDeals double damage to [gold]Impaled[/gold] enemies."
+            }
+          ]
+        },
+        {
+          "id": "WAH_KI",
+          "name": "Wah Ki",
+          "changes": [
+            {
+              "field": "cards_draw",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "damage",
+              "old": "2",
+              "new": "3"
+            },
+            {
+              "field": "description",
+              "old": "Deal 2 damage 2 times.\nNext turn, gain [energy:1] and draw 1 card.",
+              "new": "Deal 3 damage 2 times.\nPut a card from your [gold]Discard Pile[/gold] on top ..."
+            },
+            {
+              "field": "description_raw",
+              "old": "Deal {Damage:diff()} damage {HitCount:diff()} {HitCount:plural:time|times}.\nN...",
+              "new": "Deal {Damage:diff()} damage {HitCount:diff()} {HitCount:plural:time|times}.\nP..."
+            },
+            {
+              "field": "energy_gain",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "upgrade.damage",
+              "old": "+2",
+              "new": "+1"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Deal 4 damage 2 times.\nNext turn, gain [energy:1] and draw 1 card.",
+              "new": "Deal 4 damage 2 times.\nPut a card from your [gold]Discard Pile[/gold] on top ..."
+            },
+            {
+              "field": "vars.Cards",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "vars.Damage",
+              "old": "2",
+              "new": "3"
+            },
+            {
+              "field": "vars.Energy",
+              "old": "1",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "WAH_SYMPHONY",
+          "name": "Wah Symphony",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Deal 6 damage to ALL enemies.\nDeals 4 additional damage for ALL your cards co...",
+              "new": "Deal 6 damage to ALL enemies.\nDeals 4 additional damage for ALL your cards co..."
+            },
+            {
+              "field": "description_raw",
+              "old": "Deal {CalculatedDamage:diff()} damage to ALL enemies.\nDeals {ExtraDamage:diff...",
+              "new": "Deal {CalculatedDamage:diff()} damage to ALL enemies.\nDeals {ExtraDamage:diff..."
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Deal 6 damage to ALL enemies.\nDeals 6 additional damage for ALL your cards co...",
+              "new": "Deal 6 damage to ALL enemies.\nDeals 6 additional damage for ALL your cards co..."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "characters",
+      "name": "Characters",
+      "old_count": 6,
+      "new_count": 6,
+      "changed": [
+        {
+          "id": "FOOL",
+          "name": "The Fool",
+          "changes": [
+            {
+              "field": "dialogues[0].ancient",
+              "old": "none",
+              "new": "DARV"
+            },
+            {
+              "field": "dialogues[0].ancient_name",
+              "old": "none",
+              "new": "Darv"
+            },
+            {
+              "field": "dialogues[0].lines[0].order",
+              "old": "none",
+              "new": "0"
+            },
+            {
+              "field": "dialogues[0].lines[0].speaker",
+              "old": "none",
+              "new": "ancient"
+            },
+            {
+              "field": "dialogues[0].lines[0].text",
+              "old": "none",
+              "new": "What are ya hidin’ under there huh?"
+            },
+            {
+              "field": "dialogues[1].ancient",
+              "old": "none",
+              "new": "DARV"
+            },
+            {
+              "field": "dialogues[1].ancient_name",
+              "old": "none",
+              "new": "Darv"
+            },
+            {
+              "field": "dialogues[1].lines[0].order",
+              "old": "none",
+              "new": "0"
+            },
+            {
+              "field": "dialogues[1].lines[0].speaker",
+              "old": "none",
+              "new": "ancient"
+            },
+            {
+              "field": "dialogues[1].lines[0].text",
+              "old": "none",
+              "new": "So, what are ya supposed to be?"
+            },
+            {
+              "field": "dialogues[1].lines[1].order",
+              "old": "none",
+              "new": "1"
+            },
+            {
+              "field": "dialogues[1].lines[1].speaker",
+              "old": "none",
+              "new": "char"
+            },
+            {
+              "field": "dialogues[1].lines[1].text",
+              "old": "none",
+              "new": "“Ki”"
+            },
+            {
+              "field": "dialogues[1].lines[2].order",
+              "old": "none",
+              "new": "2"
+            },
+            {
+              "field": "dialogues[1].lines[2].speaker",
+              "old": "none",
+              "new": "ancient"
+            },
+            {
+              "field": "dialogues[1].lines[2].text",
+              "old": "none",
+              "new": "Hah! Haven’t heard anyone talk like that in a while."
+            },
+            {
+              "field": "dialogues[2].ancient",
+              "old": "none",
+              "new": "DARV"
+            },
+            {
+              "field": "dialogues[2].ancient_name",
+              "old": "none",
+              "new": "Darv"
+            },
+            {
+              "field": "dialogues[2].lines[0].order",
+              "old": "none",
+              "new": "0"
+            },
+            {
+              "field": "dialogues[2].lines[0].speaker",
+              "old": "none",
+              "new": "ancient"
+            },
+            {
+              "field": "dialogues[2].lines[0].text",
+              "old": "none",
+              "new": "Hey [green]sprout[/green], I’ve got just the thing for ya!"
+            },
+            {
+              "field": "dialogues[3].ancient",
+              "old": "none",
+              "new": "NEOW"
+            },
+            {
+              "field": "dialogues[3].ancient_name",
+              "old": "none",
+              "new": "Neow"
+            },
+            {
+              "field": "dialogues[3].lines[0].order",
+              "old": "none",
+              "new": "0"
+            },
+            {
+              "field": "dialogues[3].lines[0].speaker",
+              "old": "none",
+              "new": "ancient"
+            },
+            {
+              "field": "dialogues[3].lines[0].text",
+              "old": "none",
+              "new": "[sine]..face.. your... ...destiny....[/sine]"
+            },
+            {
+              "field": "dialogues[3].lines[1].order",
+              "old": "none",
+              "new": "1"
+            },
+            {
+              "field": "dialogues[3].lines[1].speaker",
+              "old": "none",
+              "new": "char"
+            },
+            {
+              "field": "dialogues[3].lines[1].text",
+              "old": "none",
+              "new": "[gold]“Ki...!”[/gold]"
+            },
+            {
+              "field": "dialogues[4].ancient",
+              "old": "none",
+              "new": "NEOW"
+            },
+            {
+              "field": "dialogues[4].ancient_name",
+              "old": "none",
+              "new": "Neow"
+            },
+            {
+              "field": "dialogues[4].lines[0].order",
+              "old": "none",
+              "new": "0"
+            },
+            {
+              "field": "dialogues[4].lines[0].speaker",
+              "old": "none",
+              "new": "ancient"
+            },
+            {
+              "field": "dialogues[4].lines[0].text",
+              "old": "none",
+              "new": "[sine]...you can.... still....\n..grow... ...[/sine]"
+            },
+            {
+              "field": "dialogues[5].ancient",
+              "old": "none",
+              "new": "NEOW"
+            },
+            {
+              "field": "dialogues[5].ancient_name",
+              "old": "none",
+              "new": "Neow"
+            },
+            {
+              "field": "dialogues[5].lines[0].order",
+              "old": "none",
+              "new": "0"
+            },
+            {
+              "field": "dialogues[5].lines[0].speaker",
+              "old": "none",
+              "new": "ancient"
+            },
+            {
+              "field": "dialogues[5].lines[0].text",
+              "old": "none",
+              "new": "[sine]...he... cast you..\n..aside....[/sine]"
+            },
+            {
+              "field": "dialogues[5].lines[1].order",
+              "old": "none",
+              "new": "1"
+            },
+            {
+              "field": "dialogues[5].lines[1].speaker",
+              "old": "none",
+              "new": "char"
+            },
+            {
+              "field": "dialogues[5].lines[1].text",
+              "old": "none",
+              "new": "[blue]“Cho...”[/blue]"
+            },
+            {
+              "field": "dialogues[6].ancient",
+              "old": "none",
+              "new": "THE_ARCHITECT"
+            },
+            {
+              "field": "dialogues[6].ancient_name",
+              "old": "none",
+              "new": "The Architect"
+            },
+            {
+              "field": "dialogues[6].lines[0].order",
+              "old": "none",
+              "new": "0"
+            },
+            {
+              "field": "dialogues[6].lines[0].speaker",
+              "old": "none",
+              "new": "ancient"
+            },
+            {
+              "field": "dialogues[6].lines[0].text",
+              "old": "none",
+              "new": "Who are you supposed to be?"
+            },
+            {
+              "field": "dialogues[6].lines[1].order",
+              "old": "none",
+              "new": "1"
+            },
+            {
+              "field": "dialogues[6].lines[1].speaker",
+              "old": "none",
+              "new": "char"
+            },
+            {
+              "field": "dialogues[6].lines[1].text",
+              "old": "none",
+              "new": "“Cho!”"
+            },
+            {
+              "field": "dialogues[6].lines[2].order",
+              "old": "none",
+              "new": "2"
+            },
+            {
+              "field": "dialogues[6].lines[2].speaker",
+              "old": "none",
+              "new": "ancient"
+            },
+            {
+              "field": "dialogues[6].lines[2].text",
+              "old": "none",
+              "new": "You confuse me."
+            },
+            {
+              "field": "dialogues[7].ancient",
+              "old": "none",
+              "new": "THE_ARCHITECT"
+            },
+            {
+              "field": "dialogues[7].ancient_name",
+              "old": "none",
+              "new": "The Architect"
+            },
+            {
+              "field": "dialogues[7].lines[0].order",
+              "old": "none",
+              "new": "0"
+            },
+            {
+              "field": "dialogues[7].lines[0].speaker",
+              "old": "none",
+              "new": "ancient"
+            },
+            {
+              "field": "dialogues[7].lines[0].text",
+              "old": "none",
+              "new": "Returned again?\nIs this Neow’s doing?"
+            },
+            {
+              "field": "dialogues[7].lines[1].order",
+              "old": "none",
+              "new": "1"
+            },
+            {
+              "field": "dialogues[7].lines[1].speaker",
+              "old": "none",
+              "new": "char"
+            },
+            {
+              "field": "dialogues[7].lines[1].text",
+              "old": "none",
+              "new": "“Wah!”"
+            },
+            {
+              "field": "dialogues[7].lines[2].order",
+              "old": "none",
+              "new": "2"
+            },
+            {
+              "field": "dialogues[7].lines[2].speaker",
+              "old": "none",
+              "new": "ancient"
+            },
+            {
+              "field": "dialogues[7].lines[2].text",
+              "old": "none",
+              "new": "Ridiculous."
+            },
+            {
+              "field": "dialogues[8].ancient",
+              "old": "none",
+              "new": "THE_ARCHITECT"
+            },
+            {
+              "field": "dialogues[8].ancient_name",
+              "old": "none",
+              "new": "The Architect"
+            },
+            {
+              "field": "dialogues[8].lines[0].order",
+              "old": "none",
+              "new": "0"
+            },
+            {
+              "field": "dialogues[8].lines[0].speaker",
+              "old": "none",
+              "new": "ancient"
+            },
+            {
+              "field": "dialogues[8].lines[0].text",
+              "old": "none",
+              "new": "You carry a familiar scent..."
+            },
+            {
+              "field": "dialogues[8].lines[1].order",
+              "old": "none",
+              "new": "1"
+            },
+            {
+              "field": "dialogues[8].lines[1].speaker",
+              "old": "none",
+              "new": "char"
+            },
+            {
+              "field": "dialogues[8].lines[1].text",
+              "old": "none",
+              "new": "“Ki!”"
+            },
+            {
+              "field": "dialogues[8].lines[2].order",
+              "old": "none",
+              "new": "2"
+            },
+            {
+              "field": "dialogues[8].lines[2].speaker",
+              "old": "none",
+              "new": "ancient"
+            },
+            {
+              "field": "dialogues[8].lines[2].text",
+              "old": "none",
+              "new": "Could it be? No..."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "events",
+      "name": "Events",
+      "old_count": 71,
+      "new_count": 71,
+      "changed": [
+        {
+          "id": "DARV",
+          "name": "Darv",
+          "changes": [
+            {
+              "field": "dialogue.Fool[0].order",
+              "old": "none",
+              "new": "0-0r"
+            },
+            {
+              "field": "dialogue.Fool[0].speaker",
+              "old": "none",
+              "new": "ancient"
+            },
+            {
+              "field": "dialogue.Fool[0].text",
+              "old": "none",
+              "new": "What are ya hidin’ under there huh?"
+            },
+            {
+              "field": "dialogue.Fool[1].order",
+              "old": "none",
+              "new": "1-0"
+            },
+            {
+              "field": "dialogue.Fool[1].speaker",
+              "old": "none",
+              "new": "ancient"
+            },
+            {
+              "field": "dialogue.Fool[1].text",
+              "old": "none",
+              "new": "So, what are ya supposed to be?"
+            },
+            {
+              "field": "dialogue.Fool[2].order",
+              "old": "none",
+              "new": "1-1"
+            },
+            {
+              "field": "dialogue.Fool[2].speaker",
+              "old": "none",
+              "new": "character"
+            },
+            {
+              "field": "dialogue.Fool[2].text",
+              "old": "none",
+              "new": "“Ki”"
+            },
+            {
+              "field": "dialogue.Fool[3].order",
+              "old": "none",
+              "new": "1-2"
+            },
+            {
+              "field": "dialogue.Fool[3].speaker",
+              "old": "none",
+              "new": "ancient"
+            },
+            {
+              "field": "dialogue.Fool[3].text",
+              "old": "none",
+              "new": "Hah! Haven’t heard anyone talk like that in a while."
+            },
+            {
+              "field": "dialogue.Fool[4].order",
+              "old": "none",
+              "new": "2-0r"
+            },
+            {
+              "field": "dialogue.Fool[4].speaker",
+              "old": "none",
+              "new": "ancient"
+            },
+            {
+              "field": "dialogue.Fool[4].text",
+              "old": "none",
+              "new": "Hey [green]sprout[/green], I’ve got just the thing for ya!"
+            }
+          ]
+        },
+        {
+          "id": "NEOW",
+          "name": "Neow",
+          "changes": [
+            {
+              "field": "dialogue.Fool[0].order",
+              "old": "none",
+              "new": "0-0"
+            },
+            {
+              "field": "dialogue.Fool[0].speaker",
+              "old": "none",
+              "new": "ancient"
+            },
+            {
+              "field": "dialogue.Fool[0].text",
+              "old": "none",
+              "new": "[sine]..face.. your... ...destiny....[/sine]"
+            },
+            {
+              "field": "dialogue.Fool[1].order",
+              "old": "none",
+              "new": "0-1"
+            },
+            {
+              "field": "dialogue.Fool[1].speaker",
+              "old": "none",
+              "new": "character"
+            },
+            {
+              "field": "dialogue.Fool[1].text",
+              "old": "none",
+              "new": "[gold]“Ki...!”[/gold]"
+            },
+            {
+              "field": "dialogue.Fool[2].order",
+              "old": "none",
+              "new": "1-0r"
+            },
+            {
+              "field": "dialogue.Fool[2].speaker",
+              "old": "none",
+              "new": "ancient"
+            },
+            {
+              "field": "dialogue.Fool[2].text",
+              "old": "none",
+              "new": "[sine]...you can.... still....\n..grow... ...[/sine]"
+            },
+            {
+              "field": "dialogue.Fool[3].order",
+              "old": "none",
+              "new": "2-0"
+            },
+            {
+              "field": "dialogue.Fool[3].speaker",
+              "old": "none",
+              "new": "ancient"
+            },
+            {
+              "field": "dialogue.Fool[3].text",
+              "old": "none",
+              "new": "[sine]...he... cast you..\n..aside....[/sine]"
+            },
+            {
+              "field": "dialogue.Fool[4].order",
+              "old": "none",
+              "new": "2-1"
+            },
+            {
+              "field": "dialogue.Fool[4].speaker",
+              "old": "none",
+              "new": "character"
+            },
+            {
+              "field": "dialogue.Fool[4].text",
+              "old": "none",
+              "new": "[blue]“Cho...”[/blue]"
+            }
+          ]
+        },
+        {
+          "id": "THE_ARCHITECT",
+          "name": "The Architect",
+          "changes": [
+            {
+              "field": "dialogue.Fool[0].text",
+              "old": "TEMP: Who are you supposed to be?",
+              "new": "Who are you supposed to be?"
+            },
+            {
+              "field": "dialogue.Fool[1].text",
+              "old": "TEMP: ...",
+              "new": "“Cho!”"
+            },
+            {
+              "field": "dialogue.Fool[2].text",
+              "old": "TEMP: Come back again later.",
+              "new": "You confuse me."
+            },
+            {
+              "field": "dialogue.Fool[3].order",
+              "old": "none",
+              "new": "1-0r"
+            },
+            {
+              "field": "dialogue.Fool[3].speaker",
+              "old": "none",
+              "new": "ancient"
+            },
+            {
+              "field": "dialogue.Fool[3].text",
+              "old": "none",
+              "new": "Returned again?\nIs this Neow’s doing?"
+            },
+            {
+              "field": "dialogue.Fool[4].order",
+              "old": "none",
+              "new": "1-1r"
+            },
+            {
+              "field": "dialogue.Fool[4].speaker",
+              "old": "none",
+              "new": "character"
+            },
+            {
+              "field": "dialogue.Fool[4].text",
+              "old": "none",
+              "new": "“Wah!”"
+            },
+            {
+              "field": "dialogue.Fool[5].order",
+              "old": "none",
+              "new": "1-2r"
+            },
+            {
+              "field": "dialogue.Fool[5].speaker",
+              "old": "none",
+              "new": "ancient"
+            },
+            {
+              "field": "dialogue.Fool[5].text",
+              "old": "none",
+              "new": "Ridiculous."
+            },
+            {
+              "field": "dialogue.Fool[6].order",
+              "old": "none",
+              "new": "2-0"
+            },
+            {
+              "field": "dialogue.Fool[6].speaker",
+              "old": "none",
+              "new": "ancient"
+            },
+            {
+              "field": "dialogue.Fool[6].text",
+              "old": "none",
+              "new": "You carry a familiar scent..."
+            },
+            {
+              "field": "dialogue.Fool[7].order",
+              "old": "none",
+              "new": "2-1"
+            },
+            {
+              "field": "dialogue.Fool[7].speaker",
+              "old": "none",
+              "new": "character"
+            },
+            {
+              "field": "dialogue.Fool[7].text",
+              "old": "none",
+              "new": "“Ki!”"
+            },
+            {
+              "field": "dialogue.Fool[8].order",
+              "old": "none",
+              "new": "2-2"
+            },
+            {
+              "field": "dialogue.Fool[8].speaker",
+              "old": "none",
+              "new": "ancient"
+            },
+            {
+              "field": "dialogue.Fool[8].text",
+              "old": "none",
+              "new": "Could it be? No..."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "powers",
+      "name": "Powers",
+      "old_count": 304,
+      "new_count": 303,
+      "removed": [
+        {
+          "id": "FREE_CARD",
+          "name": "Free Card"
+        }
+      ],
+      "changed": [
+        {
+          "id": "ARCHERY",
+          "name": "Archery",
+          "changes": [
+            {
+              "field": "description",
+              "old": "At the start of your turn, gain [blue]4[/blue] [gold]Aim[/gold].",
+              "new": "At the start of your turn, gain [blue]6[/blue] [gold]Aim[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "DAMPEN",
+          "name": "Dampen",
+          "changes": [
+            {
+              "field": "description",
+              "old": "While Magi Knight is alive, ALL your cards are [gold]Downgraded[/gold].",
+              "new": "While Magi Knight is alive, ALL your cards are fully [gold]Downgraded[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "ENSEMBLE",
+          "name": "Ensemble",
+          "changes": [
+            {
+              "field": "description",
+              "old": "The next [blue]2[/blue] cards played by other players are free to play.",
+              "new": "The next [blue]2[/blue] cards played by other players cost 0 [energy:1]."
+            },
+            {
+              "field": "description_raw",
+              "old": "The next {Amount:plural:card|[blue]{}[/blue] cards} played by {Amount:plural:...",
+              "new": "The next {Amount:plural:card|[blue]{}[/blue] cards} played by {Amount:plural:..."
+            }
+          ]
+        },
+        {
+          "id": "EXPLOSIVE_ARROWS",
+          "name": "Explosive Arrows",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Whenever you [gold]Impale[/gold] an enemy, deal [blue]6[/blue] damage to ALL ...",
+              "new": "Whenever you [gold]Impale[/gold] an enemy, deal [blue]8[/blue] damage to ALL ..."
+            }
+          ]
+        },
+        {
+          "id": "HARD_TO_KILL",
+          "name": "Hard to Kill",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Reduce all damage taken and HP lost by [gold]this creature[/gold] to [blue][A...",
+              "new": "Reduce all HP lost by [gold]this creature[/gold] to [blue][Amount][/blue]."
+            },
+            {
+              "field": "description_raw",
+              "old": "Reduce all damage taken and HP lost by [gold]{OwnerName}[/gold] to [blue]{Amo...",
+              "new": "Reduce all HP lost by [gold]{OwnerName}[/gold] to [blue]{Amount}[/blue]."
+            }
+          ]
+        },
+        {
+          "id": "HONING",
+          "name": "Honing",
+          "changes": [
+            {
+              "field": "description",
+              "old": "[gold]Arrows[/gold] deal [blue]50%[/blue] additional damage.",
+              "new": "[gold]Arrows[/gold] deal double damage."
+            }
+          ]
+        },
+        {
+          "id": "KI_VERSE",
+          "name": "Ki Verse",
+          "changes": [
+            {
+              "field": "description",
+              "old": "The next [blue]2[/blue] “Wah”, “Cho”, or “Ki” cards you play this turn are pl...",
+              "new": "The next [blue]2[/blue] “Wah” or “Cho” cards you play this turn are played an..."
+            },
+            {
+              "field": "description_raw",
+              "old": "The next{Amount:plural:| [blue]{}[/blue]} “Wah”, “Cho”, or “Ki” {Amount:plura...",
+              "new": "The next{Amount:plural:| [blue]{}[/blue]} “Wah” or “Cho” {Amount:plural:card|..."
+            }
+          ]
+        },
+        {
+          "id": "QUIETUS",
+          "name": "Quietus",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Your next [gold]Shot[/gold] this turn deals [blue]2[/blue] times more damage ...",
+              "new": "Your next [gold]Shot[/gold] this turn deals [blue]2[/blue] times more damage."
+            }
+          ]
+        },
+        {
+          "id": "SONG_PATH",
+          "name": "Song Path",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Whenever you gain a [gold]Cho Melody[/gold], gain [blue]5[/blue] [gold]Block[...",
+              "new": "Whenever you gain a [gold]Cho Melody[/gold], gain [blue]4[/blue] [gold]Block[..."
+            }
+          ]
+        },
+        {
+          "id": "TUNE",
+          "name": "Tune",
+          "changes": [
+            {
+              "field": "description",
+              "old": "At the end of your turn, if you have a [gold]Ki Melody[/gold], the next [blue...",
+              "new": "Whenever you gain a [gold]Ki Melody[/gold], [gold]Upgrade[/gold] a random car..."
+            },
+            {
+              "field": "description_raw",
+              "old": "At the end of your turn, if you have a [gold]Ki Melody[/gold], the next {Amou...",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "VIOLENT_CHORD",
+          "name": "Violent Chord",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Whenever you gain a [gold]Wah Melody[/gold], deal [blue]9[/blue] damage to AL...",
+              "new": "Whenever you gain a [gold]Wah Melody[/gold], deal [blue]7[/blue] damage to AL..."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "epochs",
+      "name": "Epochs",
+      "old_count": 66,
+      "new_count": 66,
+      "changed": [
+        {
+          "id": "FOOL2_EPOCH",
+          "name": "What Am I?",
+          "changes": [
+            {
+              "field": "unlocks_cards[1]",
+              "old": "QUIVER",
+              "new": "HONING"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "steam_url": "https://store.steampowered.com/news/app/2868840/view/1850460852979409",
+  "notes": "Thank you for all of your feedback over the past couple of weeks on our BIG beta patch! This beta patch is a mostly Fool-centric one, with lots of reworks, changes, nerfs, buffs, and even a brand new card! There are also a few art additions and tons of bug fixes. We'll be focusing more on polishing up Dread in the future, so keep the feedback coming!\n\n[h3]CONTENT & BALANCE:[/h3]\n[b]Enemies:[/b]\n[list]\n[*]Changed [b]Hard to Kill[/b] power: now only counts HP loss, not damage to Block (meaning this power does not work on blocked damage)\n[/list]\n[b]Colorless Cards:[/b]\n[list]\n[*]Reworked [b]My Shinies[/b] card: \"Deal 1 damage for every 20(10) Gold you have.\" → \"Deal 2(3) damage. Hits an additional time for every 25 gold you have.\"\n[/list]\n[b]Fool:[/b]\n[list]\n[*]The Fool's \"What Am I?\" Epoch now unlocks Honing instead of Quiver\n[*]Added new card, [b]Optimism[/b]: Rare - Skill - Cost 1 - \"Exhaust ALL Sadness in your Hand. Draw 1 card for each card Exhausted. Exhaust(no longer Exhausts).\"\n[*]Reworked [b]Growth[/b] card: \"Exhaust ALL Sadness in your Hand. Gain 4(6) Stretch for each card Exhausted.\" → \"Gain 8(11) Block. Transform 1 random Sadness in your hand into a copy of this card.\"\n[*]Reworked [b]Arrow Stab[/b] card: Common - Attack - Cost 1 - \"Deal 9(12) damage. If you have an Arrow, put a card that can Shoot from your Discard Pile into your Hand.\" → Common - Attack - Cost 2 - \"Deal 13(15) damage. Gain 6(8) Aim.\"\n[*]Reworked [b]Florescence[/b] card: Rare - Skill - Cost 0 - \"Exhaust ALL of your cards that Shoot and create The Shot(+). Exhaust.\" → Rare - Skill - Cost 1 - \"Choose a card in your hand to Transform into The Shot(+).\"\n[*]Reworked [b]The Shot[/b] card: \"Shoot an Arrow to deal 10(13) damage for each card Exhausted by Florescence.\" → \"Shoot an Arrow to deal 20(25) damage. Exhaust.\"\n[*]Reworked [b]Tune[/b] card: Uncommon - Power - Cost 2(1) - \"At the end of your turn, if you have a Ki Melody, the next card you play costs 0 Fool Energy.\" → Uncommon - Power - Cost 1 - \"Whenever you gain a Ki melody, Upgrade 1(2) random card(s) in your Hand.\"\n[*]Reworked [b]Rapid Shot[/b] card into [b]Twin Shot[/b]: Uncommon - Attack - Cost 1 - \"Shoot an Arrow to deal 3 damage 3(4) times.\" → Common - Attack - Cost 1 - \"Shoot an Arrow to deal 7(10) damage twice.\"\n[*]Changed [b]Mythic Form[/b] card:\n[list]\n[*]Now has Ethereal\n[*]Upgrade now loses Ethereal instead of upgrading tarot cards\n[/list]\n[*]Nerfed [b]Cho Ready[/b] card:\n[list]\n[*]Block gain decreased from 8(11) → 8(10)\n[*]Aim decreased from 3(5) → 3(4)\n[/list]\n[*]Buffed [b]Uproot[/b] card: cost decreased from 1 → 0\n[*]Changed [b]Heavy Shot[/b] card:\n[list]\n[*]Rarity increased from Common → Uncommon\n[*]Damage decreased from 20(25) → 16(17)\n[*]Aim effect increased from 2 → 3(4) times\n[/list]\n[*]Buffed [b]Punch of Joy[/b] card:\n[list]\n[*]Damage increased from 13(17) → 14(18)\n[*]Sadness statuses transformed by upgrade increased from 1 → 2\n[/list]\n[*]Changed [b]Motif[/b] and [b]Explosive Arrows[/b] cards: swapped rarity\n[*]Buffed [b]Explosive Arrows[/b] card: damage increased from 6(8) → 8(11)\n[*]Nerfed [b]Lullaby[/b] card:\n[list]\n[*]Cost increased from 0 → 1\n[*]No longer gains Innate on upgrade\n[*]Block gain decreased from 20 → 12(16)\n[/list]\n[*]Nerfed [b]Wah Hammer[/b] card: damage decreased from 9(12) → 9(11)\n[*]Nerfed [b]Repeat Shot[/b] card: damage decreased from 15(20) → 13(16)\n[*]Nerfed [b]Wah Symphony[/b] card: no longer counts \"Wah\" cards\n[*]Reworked [b]Recall[/b] card: Common - Skill - Cost 1(0) - \"If the enemy is Impaled, Dislodge and put a card from your Discard Pile on top of your Draw Pile.\" → Common - Skill - Cost 0 - \"Retain. If the enemy is Impaled, Dislodge. Exhaust. (Lose Exhaust.)\"\n[*]Reworked [b]Trick Shot[/b] card: \"Shoot an Arrow to deal 12(15) damage and return this card to your Hand.\" → \"Shoot an Arrow to deal 12(14) damage and draw 2(3) cards.\"\n[*]Nerfed [b]Violent Chord[/b] card: damage decreased from 9(12) → 7(9)\n[*]Reworked [b]Harmonic Shield[/b] card: \"Gain 5(7) Block for each melody you have.\" → \"Gain 4(6) block. Gain 4(6) additional block for each melody you have.\"\n[*]Nerfed [b]Song Path[/b] card: Block gain decreased from 5(7) → 4(6)\n[*]Nerfed [b]Vitriol[/b] card: Sadness increased from 1 → 2\n[*]Nerfed [b]Cho Firm[/b] card: Block gain decreased from 6(8) → 5(7)\n[*]Changed [b]Cho Barbs[/b] card:\n[list]\n[*]Block gain increased from 7(9) → 8(10)\n[*]Thorns decreased from 3(4) → 2(3)\n[/list]\n[*]Nerfed [b]Cho Ready[/b]: Block gain decreased from 8(11) → 7(9)\n[*]Nerfed [b]Bounce[/b] card: Stretch decreased from 10(13) → 8(11)\n[*]Buffed [b]Sorrowful Strike[/b] card: Sadness decreased from 2 → 1\n[*]Changed [b]Archery[/b] card:\n[list]\n[*]Aim increased from 4(5) → 6(8)\n[*]Rarity increased from Uncommon → Rare\n[/list]\n[*]Changed [b]Melodic Shot[/b] card:\n[list]\n[*]Upgrade no longer reduces Energy cost\n[*]Upgrade now increases damage from 12(13) → 12(14)\n[/list]\n[*]Reworked [b]Wah Ki[/b] card: \"Deal 4 damage 2(4) times. Next turn, gain 1 Energy and draw 1 card.\" → \"Deal 3(4) damage 2 times. Put a card from your Discard Pile on top of your Draw Pile.\"\n[*]Nerfed [b]Self Deprecate[/b] card: Joy decreased from 2(3) → 1(2)\n[*]Nerfed [b]Ki Rest[/b] card: Energy gain decreased from 5(6) → 4(5)\n[*]Buffed [b]Jest[/b] card: Block gain increased from 14(18) → 15(19)\n[*]Buffed [b]Serrated Arrows[/b] card: Impaled enemy extra damage increased from 25%(50%) → 50%(75%)\n[*]Buffed [b]Cho Chorus[/b] card: Block increased from 12(15) → 14(18)\n[*]Buffed [b]Quietus[/b] card: no longer destroys the Arrow it shoots\n[*]Nerfed [b]Wah Cho Ki[/b] card:\n[list]\n[*]Damage and Block gain decreased from 9(12) → 8(10)\n[*]Cost increased from 1 → 2\n[/list]\n[*]Changed [b]Quiver[/b] card:\n[list]\n[*]Upgrade changed from +1 Arrow → gains Innate\n[*]Rarity decreased from Rare → Uncommon\n[/list]\n[*]Nerfed [b]Ki Verse[/b] card: no longer affects \"Ki\" cards\n[*]Buffed [b]Show Off[/b] card: Energy cost decreased from 1 → 0\n[*]Changed [b]Simpleton[/b] card: upgrade changed from cost reduction → play 1(2) cards\n[*]Buffed [b]All Is Well[/b] card: Block gain increased from 4(5) → 4(6)\n[*]Buffed [b]Honing[/b] card: \"Arrows deal 50% additional damage.\" → \"Arrows deal double damage.\"\n[*]Nerfed [b]The Hierophant[/b] tarot card: no longer has the cost reduction\n[*]Nerfed [b]The Emperor[/b] tarot card: Energy gain decreased from 7(9) → 3(4)\n[*]Nerfed [b]The Tower[/b] tarot card: damage decreased from 2(3) → 1(2)\n[*]Nerfed [b]Temperance[/b] tarot card: Block decreased from 30(35) → 20(25)\n[*]Nerfed [b]The Sun[/b] tarot card: now puts 2 Soot into your Draw Pile instead of 1 into your Discard Pile\n[*]Buffed [b]The Hermit[/b] tarot card: card draw increased from 2(3) → 3(4)\n[*]Nerfed [b]Death[/b] tarot card: Doom decreased from 75(99) → 66(81)\n[/list]\n[b]Multiplayer:[/b]\n[list]\n[*]In Blitz, you now take two relics, just like in singleplayer\n[/list]\n\n[h3]USER INTERFACE & EXPERIENCE:[/h3]\n[list]\n[*]Damage previews now accurately reflect damage numbers when targeting Hardened Shell\n[/list]\n\n[h3]ART:[/h3]\n[list]\n[*]Added rest site animations for The Fool\n[*]Added Epoch art for:\n[list]\n[*]Cultists\n[*]We Need A Hero\n[*]Tricked\n[/list]\n[*]Added beta portrait art for Optimism\n[*]Added icon for Mythic Form power\n[/list]\n\n[h3]WRITING:[/h3]\n[list]\n[*]Added a bit of banter between The Fool and The Architect, Neow, and Darv (more interactions coming later)\n[*]Added a line break to [b]Harmonic Shield[/b] card's description\n[*]Reworded Ensemble card from \"free to play\" to \"cost 0 E\"\n[*]Fixed typo in [b]Nail[/b] card description\n[/list]\n\n[h3]BUG FIXES:[/h3]\n[b]General:[/b]\n[list]\n[*]If you remove or transform all your cards enchanted with Clone, the clone rest site option no longer shows up\n[*]Fixed a Block card with Adroit enchantment counting as 2 separate Block gains to the Unmovable power\n[*]Can no longer change ascension via controller hotkeys in custom Dread screen\n[*]Fixed hovertip of the initial Blitz shop token not appearing when using controller\n[*]Hotkeys no longer press buttons on menus that are closed or hidden, and the pause menu keeps blocking hotkeys after you inspect a card or relic from it\n[*]Hotkeys no longer reach the screen behind an open popup or error message\n[*]A tutorial that couldn't appear because another popup was already open now shows later instead of being skipped for good\n[*]Older runs no longer disappear from Run History after playing on another computer or reinstalling Steam\n[/list]\n[b]Enemies:[/b]\n[list]\n[*]Fixed the impaled arrow on [b]Test Subject[/b] being very small\n[*]Fixed controller nav breaking if you are hovering over the [b]Fat Gremlin[/b] when it runs away\n[/list]\n[b]Potions & Relics:[/b]\n[list]\n[*]Fixed Fool potion/relic outlines in the potion and relic compendiums\n[/list]\n[b]Events:[/b]\n[list]\n[*]An event that runs into an error now lets you proceed instead of leaving you stuck in the room\n[*][b]Dingy Dagger[/b] card is only downgraded once at the Reflections and Welcome to Wongo's events\n[*][b]Wuppy[/b] no longer reduces [b]Melancholy[/b] card's cost if it is dead at the start of combat\n[/list]\n[b]Fool:[/b]\n[list]\n[*]Fool is now included in Bestiary stats\n[*]Fixed [b]Cho Chorus[/b] not triggering the autoplayed [b]Wah Blast[/b] double hit effect\n[*]Adroit enchantment on [b]Bounce[/b] card no longer adds the [b]Stretch[/b] that Bounce just gave to its Block\n[*]The Fool tarot can no longer play unplayable cards\n[*]Fixed [b]Timber[/b] card's AOE damage not being affected by gigantification potion\n[*]Fixed [b]Blot out the Sky[/b] card generating no Arrow cards for non-Fool characters\n[*]Fixed [b]Mythic Form[/b] card being unable to be created by Power Potions\n[*]Fixed an Arrow being lost for the rest of combat when its target died before the Arrow hit\n[*]Fixed [b]Conductor's Baton[/b] relic including hovertip of its own power\n[*]Fixed Fool's Arrow UI blocking Crusher's power hitbox\n[/list]\n[b]Multiplayer:[/b]\n[list]\n[*]Fixed tooltips for Kaiser Crab and Vantom displaying incorrect numbers\n[*]Fixed Fool's [b]Ensemble[/b] card decrementing multiple times from cards that have replay\n[*]Selecting Random while you don't have it unlocked as the host in multiplayer no longer makes the ascension picker disappear forever\n[*]Fixed hotkeys not working after losing connection to a Blitz or Dread lobby while its info popup was open\n[/list]\n\n[h3]PERFORMANCE:[/h3]\n[list]\n[*]Optimized character rest site resolutions\n[*]Reduce GPU load from various VFX\n[/list]"
+}

@@ -81,7 +81,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 260
+    "compendium_order": 262
   },
   {
     "id": "ASTROLABE",
@@ -174,7 +174,7 @@
   {
     "id": "DIVINE_DESTINY",
     "name": "Boskie przeznaczenie",
-    "description": "Na początku każdej walki zyskaj [star:6].",
+    "description": "Na początku każdej walki zyskaj [star:7].",
     "description_raw": "Na początku każdej walki zyskaj {Stars:starIcons()}.",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Startowy Artefakt",
@@ -257,7 +257,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 261
+    "compendium_order": 263
   },
   {
     "id": "BLESSED_ANTLER",
@@ -338,8 +338,8 @@
   {
     "id": "TOASTY_MITTENS",
     "name": "Ciepłe rękawiczki",
-    "description": "Na początku tury [gold]Wyczerp[/gold] kartę na szczycie [gold]stosu rozgrywającego[/gold] i zyskaj [blue]1[/blue] pkt. [gold]Siły[/gold].",
-    "description_raw": "Na początku tury [gold]Wyczerp[/gold] kartę na szczycie [gold]stosu rozgrywającego[/gold] i zyskaj [blue]{StrengthPower}[/blue] pkt. [gold]Siły[/gold].",
+    "description": "Na początku tury [gold]Wyczerp[/gold] [blue]1[/blue] kartę ze swojej [gold]ręki[/gold] i zyskaj [blue]1[/blue] pkt. [gold]Siły[/gold].",
+    "description_raw": "Na początku tury [gold]Wyczerp[/gold] [blue]1[/blue] kartę ze swojej [gold]ręki[/gold] i zyskaj [blue]{StrengthPower}[/blue] pkt. [gold]Siły[/gold].",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Starożytny Artefakt",
     "pool": "shared",
@@ -354,8 +354,8 @@
   {
     "id": "BRILLIANT_SCARF",
     "name": "Ciepły szalik",
-    "description": "W każdej turze [blue]5.[/blue] karta zagrana z ręki jest darmowa.",
-    "description_raw": "W każdej turze [blue]5.[/blue] karta zagrana z ręki jest darmowa.",
+    "description": "W każdej turze [blue]5.[/blue] karta zagrana z twojej ręki jest darmowa.",
+    "description_raw": "W każdej turze [blue]5.[/blue] karta zagrana z twojej ręki jest darmowa.",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Starożytny Artefakt",
     "pool": "shared",
@@ -478,8 +478,8 @@
   {
     "id": "EMOTION_CHIP",
     "name": "Czip emocji",
-    "description": "Jeżeli w poprzedniej turze utracono PŻ, aktywuj umiejętność bierną każdej Sfery na początku tury.",
-    "description_raw": "Jeżeli w poprzedniej turze utracono PŻ, aktywuj umiejętność bierną każdej Sfery na początku tury.",
+    "description": "Jeżeli w poprzedniej turze utracono PŻ, aktywuj umiejętność bierną wszystkich Sfer na początku twojej tury.",
+    "description_raw": "Jeżeli w poprzedniej turze utracono PŻ, aktywuj umiejętność bierną wszystkich Sfer na początku twojej tury.",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Rzadki Artefakt",
     "pool": "defect",
@@ -509,13 +509,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 262
+    "compendium_order": 264
   },
   {
     "id": "DELICATE_FROND",
     "name": "Delikatny liść",
-    "description": "Wypełnij wszystkie puste miejsca na miksturę losowymi miksturami na początku każdej walki.",
-    "description_raw": "Wypełnij wszystkie puste miejsca na miksturę losowymi miksturami na początku każdej walki.",
+    "description": "Wypełnij wszystkie puste miejsca na miksturę losowymi [gold]Miksturami[/gold] na początku każdej walki.",
+    "description_raw": "Wypełnij wszystkie puste miejsca na miksturę losowymi [gold]Miksturami[/gold] na początku każdej walki.",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Starożytny Artefakt",
     "pool": "shared",
@@ -541,13 +541,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "None",
-    "compendium_order": 295
+    "compendium_order": 297
   },
   {
     "id": "DIAMOND_DIADEM",
     "name": "Diamentowy diadem",
-    "description": "Kiedykolwiek zagrasz maksymalnie [blue]2[/blue] karty w jednej turze, przeciwnicy zadają ci połowę mniej obrażeń.",
-    "description_raw": "Kiedykolwiek zagrasz maksymalnie [blue]{CardThreshold}[/blue] karty w jednej turze, przeciwnicy zadają ci połowę mniej obrażeń.",
+    "description": "Zaczynasz walkę z [blue]20[/blue] pkt. [gold]Bloku[/gold]. [gold]Blok[/gold] nie zostaje usunięty na początku twojej [blue]2.[/blue] tury.",
+    "description_raw": "Zaczynasz walkę z [blue]{Block}[/blue] pkt. [gold]Bloku[/gold]. [gold]Blok[/gold] nie zostaje usunięty na początku twojej [blue]2.[/blue] tury.",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Starożytny Artefakt",
     "pool": "shared",
@@ -573,7 +573,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 263
+    "compendium_order": 265
   },
   {
     "id": "VAJRA",
@@ -641,7 +641,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 264
+    "compendium_order": 266
   },
   {
     "id": "LASTING_CANDY",
@@ -737,7 +737,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 265
+    "compendium_order": 267
   },
   {
     "id": "BONE_FLUTE",
@@ -762,7 +762,7 @@
   {
     "id": "FUR_COAT",
     "name": "Futrzany płaszcz",
-    "description": "Przy podniesieniu zaznacz na mapie [blue]7[/blue] losowych pomieszczeń z przeciwnikami. W tych pomieszczeniach przeciwnicy mają [blue]1[/blue] PŻ.",
+    "description": "Przy podniesieniu zaznacz na mapie [blue]8[/blue] losowych pomieszczeń z przeciwnikami. W tych pomieszczeniach przeciwnicy mają [blue]1[/blue] PŻ.",
     "description_raw": "Przy podniesieniu zaznacz na mapie [blue]{Combats}[/blue] losowych pomieszczeń z przeciwnikami. W tych pomieszczeniach przeciwnicy mają [blue]1[/blue] PŻ.",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Starożytny Artefakt",
@@ -778,8 +778,8 @@
   {
     "id": "GALACTIC_DUST",
     "name": "Galaktyczny pył",
-    "description": "Po wydaniu [blue]10[/blue] [star:1] zyskaj [blue]10[/blue] pkt. [gold]Bloku[/gold].",
-    "description_raw": "Po wydaniu [blue]{Stars}[/blue] {singleStarIcon} zyskaj [blue]{Block}[/blue] pkt. [gold]Bloku[/gold].",
+    "description": "Co [blue]10[/blue] wydanych [star:1] zyskaj [blue]10[/blue] pkt. [gold]Bloku[/gold].",
+    "description_raw": "Co [blue]{Stars}[/blue] wydanych {singleStarIcon} zyskaj [blue]{Block}[/blue] pkt. [gold]Bloku[/gold].",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Niepospolity Artefakt",
     "pool": "regent",
@@ -873,7 +873,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 266
+    "compendium_order": 268
   },
   {
     "id": "PEAR",
@@ -925,7 +925,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 267
+    "compendium_order": 269
   },
   {
     "id": "BONE_TEA",
@@ -941,7 +941,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 268
+    "compendium_order": 270
   },
   {
     "id": "CHOICES_PARADOX",
@@ -1002,8 +1002,8 @@
   {
     "id": "SILKEN_TRESS",
     "name": "Jedwabny warkocz",
-    "description": "Przy podniesieniu rzuć [gold]Zaklęcie[/gold] [purple]Dwakroć[/purple] na wszystkie karty w następnych łupach.",
-    "description_raw": "Przy podniesieniu rzuć [gold]Zaklęcie[/gold] [purple]Dwakroć[/purple] na wszystkie karty w następnych łupach.",
+    "description": "Przy podniesieniu utrać całe [gold]Złoto[/gold]. Rzuć [gold]Zaklęcie[/gold] [purple]Dwakroć[/purple] na wszystkie karty w następnych łupach.",
+    "description_raw": "Przy podniesieniu utrać całe [gold]Złoto[/gold]. Rzuć [gold]Zaklęcie[/gold] [purple]Dwakroć[/purple] na wszystkie karty w następnych łupach.",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Starożytny Artefakt",
     "pool": "shared",
@@ -1038,8 +1038,8 @@
   {
     "id": "PHIAL_HOLSTER",
     "name": "Kabura na fiolki",
-    "description": "Przy podniesieniu zyskaj [blue]1[/blue] miejsce na miksturę i otrzymaj [blue]2[/blue] losowe mikstury|losowych mikstur.",
-    "description_raw": "Przy podniesieniu zyskaj [blue]{PotionSlots}[/blue] {PotionSlots:plural:miejsce na miksturę|miejsca na misktury|miejsc na misktury} i otrzymaj [blue]{Potions}[/blue] {Potions:plural:losową miksturę|losowe mikstury|losowych mikstur}.",
+    "description": "Przy podniesieniu zyskaj [blue]1[/blue] miejsce na miksturę i otrzymaj [blue]2[/blue] losowe [gold]Mikstury[/gold]|losowych [gold]Mikstur[/gold].",
+    "description_raw": "Przy podniesieniu zyskaj [blue]{PotionSlots}[/blue] {PotionSlots:plural:miejsce na miksturę|miejsca na misktury|miejsc na misktury} i otrzymaj [blue]{Potions}[/blue] {Potions:plural:losową [gold]Miksturę[/gold]|losowe [gold]Mikstury[/gold]|losowych [gold]Mikstur[/gold]}.",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Starożytny Artefakt",
     "pool": "shared",
@@ -1070,8 +1070,8 @@
   {
     "id": "TUNING_FORK",
     "name": "Kamerton",
-    "description": "Po zagraniu [blue]10[/blue] Umiejętności zyskaj [blue]7[/blue] pkt. [gold]Bloku[/gold].",
-    "description_raw": "Po zagraniu [blue]{Cards}[/blue] Umiejętności zyskaj [blue]{Block}[/blue] pkt. [gold]Bloku[/gold].",
+    "description": "Kiedykolwiek zagrasz [blue]10[/blue] Umiejętności, zyskaj [blue]7[/blue] pkt. [gold]Bloku[/gold].",
+    "description_raw": "Kiedykolwiek zagrasz [blue]{Cards}[/blue] Umiejętności, zyskaj [blue]{Block}[/blue] pkt. [gold]Bloku[/gold].",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Niepospolity Artefakt",
     "pool": "shared",
@@ -1137,7 +1137,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 269
+    "compendium_order": 271
   },
   {
     "id": "STONE_HUMIDIFIER",
@@ -1354,8 +1354,8 @@
   {
     "id": "CAULDRON",
     "name": "Kociołek",
-    "description": "Przy podniesieniu przyrządza [blue]5[/blue] losowe mikstury|losowych mikstur.",
-    "description_raw": "Przy podniesieniu przyrządza [blue]{Potions}[/blue] {Potions:plural:losową miksturę|losowe mikstury|losowych mikstur}.",
+    "description": "Przy podniesieniu przyrządza [blue]5[/blue] losowe [gold]Mikstury[/gold]|losowych [gold]Mikstur[/gold].",
+    "description_raw": "Przy podniesieniu przyrządza [blue]{Potions}[/blue] {Potions:plural:losową [gold]Miksturę[/gold]|losowe [gold]Mikstury[/gold]|losowych [gold]Mikstur[/gold]}.",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Zakupiony Artefakt",
     "pool": "shared",
@@ -1441,7 +1441,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 270
+    "compendium_order": 272
   },
   {
     "id": "CAPTAINS_WHEEL",
@@ -1581,13 +1581,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 271
+    "compendium_order": 273
   },
   {
     "id": "BOOK_OF_FIVE_RINGS",
     "name": "Księga pięciu kręgów",
-    "description": "Po dodaniu [blue]5[/blue] karty|kart do [gold]talii[/gold], przywróć [green]20[/green] PŻ.",
-    "description_raw": "Po dodaniu [blue]{Cards}[/blue] {Cards:plural:kartę|karty|kart} do [gold]talii[/gold], przywróć [green]{Heal}[/green] PŻ.",
+    "description": "Co [blue]5[/blue] karty dodane|kart dodanych do [gold]talii[/gold], przywróć [green]20[/green] PŻ.",
+    "description_raw": "Co [blue]{Cards}[/blue] {Cards:plural:kartę dodaną|karty dodane|kart dodanych} do [gold]talii[/gold], przywróć [green]{Heal}[/green] PŻ.",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Pospolity Artefakt",
     "pool": "shared",
@@ -1606,8 +1606,8 @@
   {
     "id": "KUNAI",
     "name": "Kunai",
-    "description": "Po zagraniu [blue]3[/blue] Ataków w jednej turze zyskaj [blue]1[/blue] pkt. [gold]Zręczności[/gold].",
-    "description_raw": "Po zagraniu [blue]{Cards}[/blue] Ataków w jednej turze zyskaj [blue]{DexterityPower}[/blue] pkt. [gold]Zręczności[/gold].",
+    "description": "Kiedykolwiek zagrasz [blue]3[/blue] Ataki w jednej turze, zyskaj [blue]1[/blue] pkt. [gold]Zręczności[/gold].",
+    "description_raw": "Kiedykolwiek zagrasz [blue]{Cards}[/blue] Ataki w jednej turze, zyskaj [blue]{DexterityPower}[/blue] pkt. [gold]Zręczności[/gold].",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Rzadki Artefakt",
     "pool": "shared",
@@ -1637,7 +1637,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 272
+    "compendium_order": 274
   },
   {
     "id": "THE_COURIER",
@@ -1658,8 +1658,8 @@
   {
     "id": "KUSARIGAMA",
     "name": "Kusarigama",
-    "description": "Po zagraniu [blue]3[/blue] Ataków|Ataków w jednej turze, zadaj [blue]6[/blue] pkt. obrażeń losowemu przeciwnikowi.",
-    "description_raw": "Po zagraniu [blue]{Cards}[/blue] {Cards:plural:Ataku|Ataków|Ataków} w jednej turze, zadaj [blue]{Damage}[/blue] pkt. obrażeń losowemu przeciwnikowi.",
+    "description": "Kiedykolwiek zagrasz [blue]3[/blue] Ataki|Ataków w jednej turze, zadaj [blue]6[/blue] pkt. obrażeń losowemu przeciwnikowi.",
+    "description_raw": "Kiedykolwiek zagrasz [blue]{Cards}[/blue] {Cards:plural:Atak|Ataki|Ataków} w jednej turze, zadaj [blue]{Damage}[/blue] pkt. obrażeń losowemu przeciwnikowi.",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Niepospolity Artefakt",
     "pool": "shared",
@@ -1861,7 +1861,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 273
+    "compendium_order": 275
   },
   {
     "id": "MANGO",
@@ -1901,7 +1901,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 274
+    "compendium_order": 276
   },
   {
     "id": "JEWELED_MASK",
@@ -2030,8 +2030,8 @@
   {
     "id": "MINI_REGENT",
     "name": "Mini Monarcha",
-    "description": "Gdy wydasz [star:1] po raz pierwszy w tej turze, zyskaj [blue]1[/blue] pkt. [gold]Siły[/gold].",
-    "description_raw": "Gdy wydasz {singleStarIcon} po raz pierwszy w tej turze, zyskaj [blue]{StrengthPower}[/blue] pkt. [gold]Siły[/gold].",
+    "description": "Gdy wydasz [star:1] po raz pierwszy w każdej turze, zyskaj [blue]1[/blue] pkt. [gold]Siły[/gold].",
+    "description_raw": "Gdy wydasz {singleStarIcon} po raz pierwszy w każdej turze, zyskaj [blue]{StrengthPower}[/blue] pkt. [gold]Siły[/gold].",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Rzadki Artefakt",
     "pool": "regent",
@@ -2197,7 +2197,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 275
+    "compendium_order": 277
   },
   {
     "id": "PAELS_GROWTH",
@@ -2245,7 +2245,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 276
+    "compendium_order": 278
   },
   {
     "id": "PRECARIOUS_SHEARS",
@@ -2326,8 +2326,8 @@
   {
     "id": "NUNCHAKU",
     "name": "Nunczako",
-    "description": "Po zagraniu [blue]10[/blue] Ataków zyskaj [energy:1].",
-    "description_raw": "Po zagraniu [blue]{Cards}[/blue] Ataków zyskaj {Energy:energyIcons()}.",
+    "description": "Kiedykolwiek zagrasz [blue]10[/blue] Ataków, zyskaj [energy:1].",
+    "description_raw": "Kiedykolwiek zagrasz [blue]{Cards}[/blue] Ataków, zyskaj {Energy:energyIcons()}.",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Niepospolity Artefakt",
     "pool": "shared",
@@ -2397,7 +2397,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 277
+    "compendium_order": 279
   },
   {
     "id": "NUTRITIOUS_OYSTER",
@@ -2505,7 +2505,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 278
+    "compendium_order": 280
   },
   {
     "id": "LEAFY_POULTICE",
@@ -2561,7 +2561,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 279
+    "compendium_order": 281
   },
   {
     "id": "REPTILE_TRINKET",
@@ -2606,8 +2606,8 @@
   {
     "id": "RAZOR_TOOTH",
     "name": "Ostry ząb",
-    "description": "Po zagraniu karty Ataku lub Umiejętności [gold]Ulepsz[/gold] ją na czas walki.",
-    "description_raw": "Po zagraniu karty Ataku lub Umiejętności [gold]Ulepsz[/gold] ją na czas walki.",
+    "description": "Kiedykolwiek zagrasz kartę Ataku lub Umiejętności, [gold]Ulepsz[/gold] ją na czas walki.",
+    "description_raw": "Kiedykolwiek zagrasz kartę Ataku lub Umiejętności, [gold]Ulepsz[/gold] ją na czas walki.",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Rzadki Artefakt",
     "pool": "shared",
@@ -2626,8 +2626,8 @@
   {
     "id": "LETTER_OPENER",
     "name": "Otwieracz do listów",
-    "description": "Po zagraniu [blue]3[/blue] Umiejętności w jednej turze zadaj [blue]5[/blue] pkt. obrażeń WSZYSTKIM przeciwnikom.",
-    "description_raw": "Po zagraniu [blue]{Cards}[/blue] Umiejętności w jednej turze zadaj [blue]{Damage}[/blue] pkt. obrażeń WSZYSTKIM przeciwnikom.",
+    "description": "Kiedykolwiek zagrasz [blue]3[/blue] Umiejętności w jednej turze, zadaj [blue]5[/blue] pkt. obrażeń WSZYSTKIM przeciwnikom.",
+    "description_raw": "Kiedykolwiek zagrasz [blue]{Cards}[/blue] Umiejętności w jednej turze, zadaj [blue]{Damage}[/blue] pkt. obrażeń WSZYSTKIM przeciwnikom.",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Niepospolity Artefakt",
     "pool": "shared",
@@ -2646,8 +2646,8 @@
   {
     "id": "ORNAMENTAL_FAN",
     "name": "Ozdobny wachlarz",
-    "description": "Po zagraniu [blue]3[/blue] Ataków w jednej turze zyskaj [blue]4[/blue] pkt. [gold]Bloku[/gold].",
-    "description_raw": "Po zagraniu [blue]{Cards}[/blue] Ataków w jednej turze zyskaj [blue]{Block}[/blue] pkt. [gold]Bloku[/gold].",
+    "description": "Kiedykolwiek zagrasz [blue]3[/blue] Ataków w jednej turze, zyskaj [blue]4[/blue] pkt. [gold]Bloku[/gold].",
+    "description_raw": "Kiedykolwiek zagrasz [blue]{Cards}[/blue] Ataków w jednej turze, zyskaj [blue]{Block}[/blue] pkt. [gold]Bloku[/gold].",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Niepospolity Artefakt",
     "pool": "shared",
@@ -2677,7 +2677,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 280
+    "compendium_order": 282
   },
   {
     "id": "PANTOGRAPH",
@@ -2702,8 +2702,8 @@
   {
     "id": "JOSS_PAPER",
     "name": "Papier Joss",
-    "description": "Po [gold]Wyczerpaniu[/gold] [blue]5[/blue] kart dobierz [blue]1[/blue] kartę.",
-    "description_raw": "Po [gold]Wyczerpaniu[/gold] [blue]{ExhaustAmount}[/blue] kart dobierz [blue]{Cards}[/blue] {Cards:plural:kartę|karty|kart}.",
+    "description": "Co [blue]5[/blue] razy, gdy [gold]Wyczerpiesz[/gold] kartę, dobierz [blue]1[/blue] kartę.",
+    "description_raw": "Co [blue]{ExhaustAmount}[/blue] razy, gdy [gold]Wyczerpiesz[/gold] kartę, dobierz [blue]{Cards}[/blue] {Cards:plural:kartę|karty|kart}.",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Niepospolity Artefakt",
     "pool": "shared",
@@ -2809,7 +2809,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 281
+    "compendium_order": 283
   },
   {
     "id": "CLAWS",
@@ -2861,7 +2861,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 282
+    "compendium_order": 284
   },
   {
     "id": "RING_OF_THE_DRAKE",
@@ -2918,8 +2918,8 @@
   {
     "id": "BEAUTIFUL_BRACELET",
     "name": "Piękna bransoletka",
-    "description": "Przy podniesieniu wybierz [blue]3[/blue] karty|kart z [gold]talii[/gold]. Rzuć na nie [gold]Zaklęcie[/gold] [purple]Sprint[/purple] [blue]3[/blue].",
-    "description_raw": "Przy podniesieniu wybierz [blue]{Cards}[/blue] {Cards:plural:kartę|karty|kart} z [gold]talii[/gold]. Rzuć na nie [gold]Zaklęcie[/gold] [purple]Sprint[/purple] [blue]3[/blue].",
+    "description": "Przy podniesieniu wybierz [blue]4[/blue] karty|kart z [gold]talii[/gold]. Rzuć na nie [gold]Zaklęcie[/gold] [purple]Sprint[/purple] [blue]2[/blue].",
+    "description_raw": "Przy podniesieniu wybierz [blue]{Cards}[/blue] {Cards:plural:kartę|karty|kart} z [gold]talii[/gold]. Rzuć na nie [gold]Zaklęcie[/gold] [purple]Sprint[/purple] [blue]2[/blue].",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Starożytny Artefakt",
     "pool": "shared",
@@ -2934,8 +2934,8 @@
   {
     "id": "ORRERY",
     "name": "Planetarium",
-    "description": "Przy podniesieniu zyskaj [blue]5[/blue] karty|kart z łupów.",
-    "description_raw": "Przy podniesieniu zyskaj [blue]{Cards}[/blue] {Cards:plural:kartę|karty|kart} z łupów.",
+    "description": "Przy podniesieniu zyskaj [blue]5[/blue] karty|kart w łupach.",
+    "description_raw": "Przy podniesieniu zyskaj [blue]{Cards}[/blue] {Cards:plural:kartę|karty|kart} w łupach.",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Zakupiony Artefakt",
     "pool": "shared",
@@ -2974,8 +2974,8 @@
   {
     "id": "HISTORY_COURSE",
     "name": "Podręcznik do historii",
-    "description": "Na początku tury zagraj kopię ostatniej zagranej karty Ataku lub Umiejetności.",
-    "description_raw": "Na początku tury zagraj kopię ostatniej zagranej karty Ataku lub Umiejetności.",
+    "description": "Na początku tury zagraj kopię twojego ostatniego zagranego Ataku.",
+    "description_raw": "Na początku tury zagraj kopię twojego ostatniego zagranego Ataku.",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Specjalny Artefakt",
     "pool": "shared",
@@ -2985,7 +2985,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 283
+    "compendium_order": 285
   },
   {
     "id": "POMANDER",
@@ -3082,8 +3082,8 @@
   {
     "id": "MUSIC_BOX",
     "name": "Pozytywka",
-    "description": "W każdej turze stwórz [gold]Eteryczną[/gold] kopię pierwszego zagranego Ataku.",
-    "description_raw": "W każdej turze stwórz [gold]Eteryczną[/gold] kopię pierwszego zagranego Ataku.",
+    "description": "W każdej turze stwórz [gold]Eteryczną[/gold] kopię twojego pierwszego Ataku.",
+    "description_raw": "W każdej turze stwórz [gold]Eteryczną[/gold] kopię twojego pierwszego Ataku.",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Starożytny Artefakt",
     "pool": "shared",
@@ -3116,6 +3116,22 @@
     "compendium_order": 67
   },
   {
+    "id": "NEOWS_SACRIFICE",
+    "name": "Poświęcenie Neow",
+    "description": "Przy podniesieniu przyrządź [blue]1[/blue] [gold]Ambrę[/gold] i dodaj [blue]1[/blue] [red]Poczucie winy[/red] do [gold]talii[/gold].",
+    "description_raw": "Przy podniesieniu przyrządź [blue]1[/blue] [gold]Ambrę[/gold] i dodaj [blue]1[/blue] [red]Poczucie winy[/red] do [gold]talii[/gold].",
+    "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
+    "rarity": "Starożytny Artefakt",
+    "pool": "shared",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/neows_sacrifice.webp",
+    "image_variants": null,
+    "name_variants": null,
+    "notes": null,
+    "rarity_key": "Ancient",
+    "compendium_order": 208
+  },
+  {
     "id": "PRECISE_SCISSORS",
     "name": "Precyzyjne nożyczki",
     "description": "Przy podniesieniu usuń [blue]1[/blue] kartę z [gold]talii[/gold].",
@@ -3129,7 +3145,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 208
+    "compendium_order": 209
   },
   {
     "id": "SLING_OF_COURAGE",
@@ -3185,13 +3201,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 209
+    "compendium_order": 210
   },
   {
     "id": "PRISMATIC_GEM",
     "name": "Pryzmatyczny klejnot",
-    "description": "Zyskaj [energy:1] na początku każdej tury. Od teraz karty z łupów zawierają również karty o różnych kolorach.",
-    "description_raw": "Zyskaj {Energy:energyIcons()} na początku każdej tury. Od teraz karty z łupów zawierają również karty o różnych kolorach.",
+    "description": "Zyskaj [energy:1] na początku każdej tury. Od teraz karty w łupach zawierają również karty o różnych kolorach.",
+    "description_raw": "Zyskaj {Energy:energyIcons()} na początku każdej tury. Od teraz karty w łupach zawierają również karty o różnych kolorach.",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Starożytny Artefakt",
     "pool": "shared",
@@ -3201,7 +3217,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 210
+    "compendium_order": 211
   },
   {
     "id": "CURSED_PEARL",
@@ -3217,7 +3233,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 211
+    "compendium_order": 212
   },
   {
     "id": "CALLING_BELL",
@@ -3233,7 +3249,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 212
+    "compendium_order": 213
   },
   {
     "id": "YUMMY_COOKIE",
@@ -3255,7 +3271,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 213
+    "compendium_order": 214
   },
   {
     "id": "INTIMIDATING_HELMET",
@@ -3311,7 +3327,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 284
+    "compendium_order": 286
   },
   {
     "id": "JEWELRY_BOX",
@@ -3327,12 +3343,12 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 214
+    "compendium_order": 215
   },
   {
     "id": "TOY_BOX",
     "name": "Pudełko na zabawki",
-    "description": "Przy podniesieniu otrzymaj [blue]4[/blue] [gold]Artefakty z wosku|Artefaktów z wosku[/gold]. Pierwszy po lewej [gold]Artefakt z wosku[/gold] rozpływa się co [blue]3[/blue] walki|walk.",
+    "description": "Przy podniesieniu otrzymaj [blue]5[/blue] [gold]Artefakty z wosku|Artefaktów z wosku[/gold]. Pierwszy po lewej [gold]Artefakt z wosku[/gold] rozpływa się co [blue]3[/blue] walki|walk.",
     "description_raw": "Przy podniesieniu otrzymaj [blue]{Relics}[/blue] [gold]{Relics:plural:Artefakt z wosku|Artefakty z wosku|Artefaktów z wosku}[/gold]. Pierwszy po lewej [gold]Artefakt z wosku[/gold] rozpływa się co [blue]{Combats}[/blue] {Combats:plural:walkę|walki|walk}.",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Starożytny Artefakt",
@@ -3347,7 +3363,7 @@
       "All wax relics melt after 12 total combats, then Toy Box is used up."
     ],
     "rarity_key": "Ancient",
-    "compendium_order": 215
+    "compendium_order": 216
   },
   {
     "id": "SCROLL_BOXES",
@@ -3363,7 +3379,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 216
+    "compendium_order": 217
   },
   {
     "id": "EMPTY_CAGE",
@@ -3379,7 +3395,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 217
+    "compendium_order": 218
   },
   {
     "id": "PANDORAS_BOX",
@@ -3395,7 +3411,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 218
+    "compendium_order": 219
   },
   {
     "id": "CRACKED_CORE",
@@ -3452,8 +3468,8 @@
   {
     "id": "REGALITE",
     "name": "Regalit",
-    "description": "Kiedykolwiek stworzysz kartę, zyskaj [blue]2[/blue] pkt. [gold]Bloku[/gold].",
-    "description_raw": "Kiedykolwiek stworzysz kartę, zyskaj [blue]{Block}[/blue] pkt. [gold]Bloku[/gold].",
+    "description": "Gdy stworzysz kartę po raz pierwszy w każdej turze, zyskaj [blue]4[/blue] pkt. [gold]Bloku[/gold].",
+    "description_raw": "Gdy stworzysz kartę po raz pierwszy w każdej turze, zyskaj [blue]{Block}[/blue] pkt. [gold]Bloku[/gold].",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Niepospolity Artefakt",
     "pool": "regent",
@@ -3483,7 +3499,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 219
+    "compendium_order": 220
   },
   {
     "id": "BURNING_STICKS",
@@ -3519,7 +3535,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 220
+    "compendium_order": 221
   },
   {
     "id": "RUNIC_CAPACITOR",
@@ -3591,7 +3607,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 221
+    "compendium_order": 222
   },
   {
     "id": "GREMLIN_HORN",
@@ -3633,7 +3649,23 @@
       "Both variants are functionally identical — same +31 Max HP effect — and the choice is permanent for a given save file. Use the toggle above to preview the one your save shows."
     ],
     "rarity_key": "Ancient",
-    "compendium_order": 222
+    "compendium_order": 223
+  },
+  {
+    "id": "DOWSING_ROD",
+    "name": "Różdżka",
+    "description": "Przy podniesieniu dodaj [blue]1[/blue] [gold]Źródło[/gold] do [gold]talii[/gold].",
+    "description_raw": "Przy podniesieniu dodaj [blue]1[/blue] [gold]Źródło[/gold] do [gold]talii[/gold].",
+    "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
+    "rarity": "Starożytny Artefakt",
+    "pool": "shared",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/dowsing_rod.webp",
+    "image_variants": null,
+    "name_variants": null,
+    "notes": null,
+    "rarity_key": "Ancient",
+    "compendium_order": 224
   },
   {
     "id": "SAI",
@@ -3649,7 +3681,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 223
+    "compendium_order": 225
   },
   {
     "id": "BAG_OF_MARBLES",
@@ -3725,13 +3757,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 285
+    "compendium_order": 287
   },
   {
     "id": "SHURIKEN",
     "name": "Shuriken",
-    "description": "Po zagraniu [blue]3[/blue] Ataków w jednej turze zyskaj [blue]1[/blue] pkt. [gold]Siły[/gold].",
-    "description_raw": "Po zagraniu [blue]{Cards}[/blue] Ataków w jednej turze zyskaj [blue]{StrengthPower}[/blue] pkt. [gold]Siły[/gold].",
+    "description": "Kiedykolwiek zagrasz [blue]3[/blue] Ataków w jednej turze, zyskaj [blue]1[/blue] pkt. [gold]Siły[/gold].",
+    "description_raw": "Kiedykolwiek zagrasz [blue]{Cards}[/blue] Ataków w jednej turze, zyskaj [blue]{StrengthPower}[/blue] pkt. [gold]Siły[/gold].",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Rzadki Artefakt",
     "pool": "shared",
@@ -3790,8 +3822,8 @@
   {
     "id": "PAELS_WING",
     "name": "Skrzydło Paela",
-    "description": "Możesz ofiarować Paelowi karty z łupów. Po złożeniu [blue]2[/blue] ofiar|[blue]2[/blue] ofiar zyskaj losowy [gold]Artefakt[/gold].",
-    "description_raw": "Możesz ofiarować Paelowi karty z łupów. Po złożeniu {Sacrifices:plural:ofiary|[blue]{}[/blue] ofiar|[blue]{}[/blue] ofiar} zyskaj losowy [gold]Artefakt[/gold].",
+    "description": "Możesz ofiarować Paelowi karty w łupach. Co [blue]2[/blue] ofiary|[blue]2[/blue] ofiar zyskaj losowy [gold]Artefakt[/gold].",
+    "description_raw": "Możesz ofiarować Paelowi karty w łupach. Co {Sacrifices:plural:ofiarę|[blue]{}[/blue] ofiary|[blue]{}[/blue] ofiar} zyskaj losowy [gold]Artefakt[/gold].",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Starożytny Artefakt",
     "pool": "shared",
@@ -3801,13 +3833,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 224
+    "compendium_order": 226
   },
   {
     "id": "TINY_MAILBOX",
     "name": "Skrzyneczka na listy",
-    "description": "Kiedykolwiek [gold]Odpoczywasz[/gold], otrzymaj [blue]2[/blue] losowe mikstury.",
-    "description_raw": "Kiedykolwiek [gold]Odpoczywasz[/gold], otrzymaj [blue]2[/blue] losowe mikstury.",
+    "description": "Kiedykolwiek [gold]Odpoczywasz[/gold], przyrządź [blue]2[/blue] losowe [gold]Mikstury[/gold].",
+    "description_raw": "Kiedykolwiek [gold]Odpoczywasz[/gold], przyrządź [blue]2[/blue] losowe [gold]Mikstury[/gold].",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Niepospolity Artefakt",
     "pool": "shared",
@@ -3846,8 +3878,8 @@
   {
     "id": "FIDDLE",
     "name": "Skrzypce",
-    "description": "Na początku tury dobierz dodatkowo [blue]2[/blue] karty|kart. Nie możesz już dobierać kart w swojej turze.",
-    "description_raw": "Na początku tury dobierz dodatkowo [blue]{Cards}[/blue] {Cards:plural:kartę|karty|kart}. Nie możesz już dobierać kart w swojej turze.",
+    "description": "Na początku każdej tury dobierz dodatkowo [blue]2[/blue] karty|kart. Nie możesz już dobierać kart w swojej turze.",
+    "description_raw": "Na początku każdej tury dobierz dodatkowo [blue]{Cards}[/blue] {Cards:plural:kartę|karty|kart}. Nie możesz już dobierać kart w swojej turze.",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Starożytny Artefakt",
     "pool": "shared",
@@ -3857,7 +3889,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 225
+    "compendium_order": 227
   },
   {
     "id": "TWISTED_FUNNEL",
@@ -3913,13 +3945,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 286
+    "compendium_order": 288
   },
   {
     "id": "SOZU",
     "name": "Sozu",
-    "description": "Zyskaj [energy:1] na początku każdej tury. Nie możesz już zdobywać mikstur.",
-    "description_raw": "Zyskaj {Energy:energyIcons()} na początku każdej tury. Nie możesz już zdobywać mikstur.",
+    "description": "Zyskaj [energy:1] na początku każdej tury. Nie możesz już otrzymywać [gold]Mikstur[/gold].",
+    "description_raw": "Zyskaj {Energy:energyIcons()} na początku każdej tury. Nie możesz już otrzymywać [gold]Mikstur[/gold].",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Starożytny Artefakt",
     "pool": "shared",
@@ -3929,7 +3961,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 226
+    "compendium_order": 228
   },
   {
     "id": "HELICAL_DART",
@@ -3954,8 +3986,8 @@
   {
     "id": "BELT_BUCKLE",
     "name": "Sprzączka paska",
-    "description": "Kiedy nie masz żadnych mikstur, zyskaj dodatkowo [blue]2[/blue] pkt. [gold]Zręczności[/gold].",
-    "description_raw": "Kiedy nie masz żadnych mikstur, zyskaj dodatkowo [blue]{DexterityPower}[/blue] pkt. [gold]Zręczności[/gold].",
+    "description": "Gdy nie masz żadnych [gold]Mikstur[/gold], zyskaj dodatkowo [blue]2[/blue] pkt. [gold]Zręczności[/gold].",
+    "description_raw": "Gdy nie masz żadnych [gold]Mikstur[/gold], zyskaj dodatkowo [blue]{DexterityPower}[/blue] pkt. [gold]Zręczności[/gold].",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Zakupiony Artefakt",
     "pool": "shared",
@@ -3985,13 +4017,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 227
+    "compendium_order": 229
   },
   {
     "id": "PEN_NIB",
     "name": "Stalówka",
-    "description": "Co [blue]10.[/blue] zagrany Atak zadaje podwójne obrażenia.",
-    "description_raw": "Co [blue]10.[/blue] zagrany Atak zadaje podwójne obrażenia.",
+    "description": "Twój każdy [blue]10.[/blue] Atak zadaje podwójne obrażenia.",
+    "description_raw": "Twój każdy [blue]10.[/blue] Atak zadaje podwójne obrażenia.",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Niepospolity Artefakt",
     "pool": "shared",
@@ -4021,13 +4053,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 228
+    "compendium_order": 230
   },
   {
     "id": "WHITE_BEAST_STATUE",
     "name": "Statuetka białej bestii",
-    "description": "Mikstury zawsze pojawiają się w łupach.",
-    "description_raw": "Mikstury zawsze pojawiają się w łupach.",
+    "description": "[gold]Mikstury[/gold] zawsze pojawiają się w łupach.",
+    "description_raw": "[gold]Mikstury[/gold] zawsze pojawiają się w łupach.",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Rzadki Artefakt",
     "pool": "shared",
@@ -4066,7 +4098,7 @@
   {
     "id": "SIGNET_RING",
     "name": "Sygnet",
-    "description": "Przy podniesieniu zyskaj [blue]999[/blue] szt. [gold]Złota[/gold].",
+    "description": "Przy podniesieniu zyskaj [blue]888[/blue] szt. [gold]Złota[/gold].",
     "description_raw": "Przy podniesieniu zyskaj [blue]{Gold}[/blue] szt. [gold]Złota[/gold].",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Starożytny Artefakt",
@@ -4077,7 +4109,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 229
+    "compendium_order": 231
   },
   {
     "id": "SYMBIOTIC_VIRUS",
@@ -4113,13 +4145,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 230
+    "compendium_order": 232
   },
   {
     "id": "ALCHEMICAL_COFFER",
     "name": "Szkatułka alchemika",
-    "description": "Przy podniesieniu zyskaj [blue]4[/blue] miejsca na mikstury i wypełnij je losowymi miksturami.",
-    "description_raw": "Przy podniesieniu zyskaj [blue]{PotionSlots}[/blue] miejsca na mikstury i wypełnij je losowymi miksturami.",
+    "description": "Przy podniesieniu zyskaj [blue]4[/blue] miejsca na mikstury i wypełnij je losowymi [gold]Miksturami[/gold].",
+    "description_raw": "Przy podniesieniu zyskaj [blue]{PotionSlots}[/blue] miejsca na mikstury i wypełnij je losowymi [gold]Miksturami[/gold].",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Starożytny Artefakt",
     "pool": "shared",
@@ -4129,7 +4161,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 231
+    "compendium_order": 233
   },
   {
     "id": "GLASS_EYE",
@@ -4145,7 +4177,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 232
+    "compendium_order": 234
   },
   {
     "id": "SEA_GLASS",
@@ -4167,7 +4199,7 @@
     },
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 233
+    "compendium_order": 235
   },
   {
     "id": "ODDLY_SMOOTH_STONE",
@@ -4203,7 +4235,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 234
+    "compendium_order": 236
   },
   {
     "id": "BOUND_PHYLACTERY",
@@ -4255,7 +4287,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 235
+    "compendium_order": 237
   },
   {
     "id": "HAPPY_FLOWER",
@@ -4295,7 +4327,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 287
+    "compendium_order": 289
   },
   {
     "id": "VITRUVIAN_MINION",
@@ -4331,7 +4363,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 236
+    "compendium_order": 238
   },
   {
     "id": "NEOWS_TALISMAN",
@@ -4347,7 +4379,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 237
+    "compendium_order": 239
   },
   {
     "id": "PARRYING_SHIELD",
@@ -4383,7 +4415,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 238
+    "compendium_order": 240
   },
   {
     "id": "TINGSHA",
@@ -4408,8 +4440,8 @@
   {
     "id": "PAELS_FLESH",
     "name": "Tkanka Paela",
-    "description": "Od początku [blue]3.[/blue] tury zyskujesz dodatkowy [energy:1].",
-    "description_raw": "Od początku [blue]3.[/blue] tury zyskujesz dodatkowy {Energy:energyIcons()}.",
+    "description": "Zyskaj dodatkowy [energy:1] na początku [blue]3.[/blue] tury i w każdej kolejnej turze.",
+    "description_raw": "Zyskaj dodatkowy {Energy:energyIcons()} na początku [blue]3.[/blue] tury i w każdej kolejnej turze.",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Starożytny Artefakt",
     "pool": "shared",
@@ -4419,7 +4451,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 239
+    "compendium_order": 241
   },
   {
     "id": "TOXIC_EGG",
@@ -4444,8 +4476,8 @@
   {
     "id": "THROWING_AXE",
     "name": "Topór bojowy",
-    "description": "W każdej walce pierwsza zagrana karta jest zagrywana dwukrotnie.",
-    "description_raw": "W każdej walce pierwsza zagrana karta jest zagrywana dwukrotnie.",
+    "description": "W każdej walce twoja pierwsza karta jest zagrywana dwukrotnie.",
+    "description_raw": "W każdej walce twoja pierwsza karta jest zagrywana dwukrotnie.",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Starożytny Artefakt",
     "pool": "shared",
@@ -4455,7 +4487,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 240
+    "compendium_order": 242
   },
   {
     "id": "BAG_OF_PREPARATION",
@@ -4551,7 +4583,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 241
+    "compendium_order": 243
   },
   {
     "id": "GHOST_SEED",
@@ -4587,7 +4619,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 242
+    "compendium_order": 244
   },
   {
     "id": "PENDULUM",
@@ -4643,7 +4675,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 243
+    "compendium_order": 245
   },
   {
     "id": "BIG_MUSHROOM",
@@ -4659,7 +4691,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 288
+    "compendium_order": 290
   },
   {
     "id": "BIG_HAT",
@@ -4695,7 +4727,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 289
+    "compendium_order": 291
   },
   {
     "id": "WING_CHARM",
@@ -4751,13 +4783,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 290
+    "compendium_order": 292
   },
   {
     "id": "SERE_TALON",
     "name": "Wyschnięte szpony",
-    "description": "Przy podniesieniu dodaj [blue]2[/blue] losowe [red]Klątwy[/red] i [blue]3[/blue] [purple]Życzenia[/purple] do [gold]talii[/gold].",
-    "description_raw": "Przy podniesieniu dodaj [blue]{Curses}[/blue] losowe [red]Klątwy[/red] i [blue]{Wishes}[/blue] [purple]Życzenia[/purple] do [gold]talii[/gold].",
+    "description": "Przy podniesieniu utrać [blue]9[/blue] maks. PŻ. Dodaj [blue]3[/blue] [purple]Życzenia[/purple] do [gold]talii[/gold].",
+    "description_raw": "Przy podniesieniu utrać [blue]9[/blue] maks. PŻ. Dodaj [blue]{Wishes}[/blue] [purple]Życzenia[/purple] do [gold]talii[/gold].",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Starożytny Artefakt",
     "pool": "shared",
@@ -4767,7 +4799,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 244
+    "compendium_order": 246
   },
   {
     "id": "FESTIVE_POPPER",
@@ -4832,8 +4864,8 @@
   {
     "id": "FISHING_ROD",
     "name": "Wędka",
-    "description": "Co [blue]3[/blue] zwykłe walki|[blue]3[/blue] zwykłych walk, [gold]Ulepsz[/gold] losową kartę w [gold]talii[/gold].",
-    "description_raw": "Co {Combats:plural:zwykłą walkę|[blue]{}[/blue] zwykłe walki|[blue]{}[/blue] zwykłych walk}, [gold]Ulepsz[/gold] losową kartę w [gold]talii[/gold].",
+    "description": "Co [blue]3[/blue] zwykłe walki|[blue]3[/blue] zwykłych walk [gold]Ulepsz[/gold] losową kartę w [gold]talii[/gold].",
+    "description_raw": "Co {Combats:plural:zwykłą walkę|[blue]{}[/blue] zwykłe walki|[blue]{}[/blue] zwykłych walk} [gold]Ulepsz[/gold] losową kartę w [gold]talii[/gold].",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Starożytny Artefakt",
     "pool": "shared",
@@ -4843,7 +4875,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 245
+    "compendium_order": 247
   },
   {
     "id": "LOST_COFFER",
@@ -4859,7 +4891,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 246
+    "compendium_order": 248
   },
   {
     "id": "LOST_WISP",
@@ -4875,7 +4907,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 291
+    "compendium_order": 293
   },
   {
     "id": "DUSTY_TOME",
@@ -4891,13 +4923,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 247
+    "compendium_order": 249
   },
   {
     "id": "BOOKMARK",
     "name": "Zakładka",
-    "description": "Na początku każdej tury zredukuj koszt losowej [gold]Zachowanej[/gold] karty o [blue]1[/blue] aż do zagrania.",
-    "description_raw": "Na początku każdej tury zredukuj koszt losowej [gold]Zachowanej[/gold] karty o [blue]1[/blue] aż do zagrania.",
+    "description": "Pod koniec każdej tury zredukuj koszt losowej [gold]Zachowanej[/gold] karty o [blue]1[/blue] aż do zagrania.",
+    "description_raw": "Pod koniec każdej tury zredukuj koszt losowej [gold]Zachowanej[/gold] karty o [blue]1[/blue] aż do zagrania.",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Rzadki Artefakt",
     "pool": "necrobinder",
@@ -4927,7 +4959,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 248
+    "compendium_order": 250
   },
   {
     "id": "FROZEN_EGG",
@@ -4963,7 +4995,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 292
+    "compendium_order": 294
   },
   {
     "id": "POLLINOUS_CORE",
@@ -4979,7 +5011,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 293
+    "compendium_order": 295
   },
   {
     "id": "STORYBOOK",
@@ -4995,7 +5027,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 249
+    "compendium_order": 251
   },
   {
     "id": "DRIFTWOOD",
@@ -5011,7 +5043,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 250
+    "compendium_order": 252
   },
   {
     "id": "POCKETWATCH",
@@ -5047,7 +5079,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 251
+    "compendium_order": 253
   },
   {
     "id": "PERMAFROST",
@@ -5092,8 +5124,8 @@
   {
     "id": "DISTINGUISHED_CAPE",
     "name": "Znakomity płaszcz",
-    "description": "Przy podniesieniu utrać [blue]9[/blue] maks. PŻ. Dodaj [blue]3[/blue] [gold]Duchy|Duchów[/gold] do [gold]talii[/gold].",
-    "description_raw": "Przy podniesieniu utrać [blue]9[/blue] maks. PŻ. Dodaj [blue]{Cards}[/blue] [gold]{Cards:plural:Ducha|Duchy|Duchów}[/gold] do [gold]talii[/gold].",
+    "description": "Przy podniesieniu dodaj [blue]2[/blue] losowe [red]Klątwy[/red] i [blue]3[/blue] [gold]Duchy|Duchów[/gold] do [gold]talii[/gold].",
+    "description_raw": "Przy podniesieniu dodaj [blue]{Curses}[/blue] losowe [red]Klątwy[/red] i [blue]{Cards}[/blue] [gold]{Cards:plural:Ducha|Duchy|Duchów}[/gold] do [gold]talii[/gold].",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Starożytny Artefakt",
     "pool": "shared",
@@ -5103,7 +5135,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 252
+    "compendium_order": 254
   },
   {
     "id": "RUINED_HELMET",
@@ -5179,7 +5211,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 253
+    "compendium_order": 255
   },
   {
     "id": "GOLDEN_PEARL",
@@ -5195,12 +5227,12 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 254
+    "compendium_order": 256
   },
   {
     "id": "SEAL_OF_GOLD",
     "name": "Złota pieczęć",
-    "description": "Na początku tury wydaj [blue]5[/blue] szt. [gold]Złota[/gold], aby otrzymać [energy:1].",
+    "description": "Na początku tury wydaj [blue]3[/blue] szt. [gold]Złota[/gold], aby otrzymać [energy:1].",
     "description_raw": "Na początku tury wydaj [blue]{Gold}[/blue] szt. [gold]Złota[/gold], aby otrzymać {Energy:energyIcons()}.",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Starożytny Artefakt",
@@ -5211,7 +5243,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 255
+    "compendium_order": 257
   },
   {
     "id": "GOLDEN_COMPASS",
@@ -5227,7 +5259,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 256
+    "compendium_order": 258
   },
   {
     "id": "DREAM_CATCHER",
@@ -5243,13 +5275,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 294
+    "compendium_order": 296
   },
   {
     "id": "SHOVEL",
     "name": "Łopata",
-    "description": "Możesz kopać w [gold]Obozowiskach[/gold], aby zdobywać losowe [gold]Artefakty[/gold].",
-    "description_raw": "Możesz kopać w [gold]Obozowiskach[/gold], aby zdobywać losowe [gold]Artefakty[/gold].",
+    "description": "Możesz kopać w [gold]Obozowiskach[/gold], aby otrzymywać losowe [gold]Artefakty[/gold].",
+    "description_raw": "Możesz kopać w [gold]Obozowiskach[/gold], aby otrzymywać losowe [gold]Artefakty[/gold].",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Rzadki Artefakt",
     "pool": "shared",
@@ -5299,7 +5331,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 257
+    "compendium_order": 259
   },
   {
     "id": "PUMPKIN_CANDLE",
@@ -5315,13 +5347,13 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 258
+    "compendium_order": 260
   },
   {
     "id": "IRON_CLUB",
     "name": "Żelazna maczuga",
-    "description": "Po zagraniu [blue]4[/blue] kart|kart, dobierz [blue]1[/blue] kartę.",
-    "description_raw": "Po zagraniu [blue]{Cards}[/blue] {Cards:plural:karty|kart|kart}, dobierz [blue]1[/blue] kartę.",
+    "description": "Co [blue]4[/blue] zagrane karty|zagranych kart dobierz [blue]1[/blue] kartę.",
+    "description_raw": "Co [blue]{Cards}[/blue] {Cards:plural:zagraną kartę|zagrane karty|zagranych kart} dobierz [blue]1[/blue] kartę.",
     "flavor": "[red]Szczegóły tego artefaktu zostaną ujawnione w przyszłości...[/red]",
     "rarity": "Starożytny Artefakt",
     "pool": "shared",
@@ -5331,7 +5363,7 @@
     "name_variants": null,
     "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 259
+    "compendium_order": 261
   },
   {
     "id": "GAMBLING_CHIP",

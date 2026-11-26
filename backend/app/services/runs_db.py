@@ -12,6 +12,7 @@ import sqlite3
 from contextlib import contextmanager
 from pathlib import Path
 
+from .game_modes import is_custom_run
 from .official_content import LIVE_CAST
 
 OFFICIAL_CHARACTERS = LIVE_CAST
@@ -73,6 +74,7 @@ def init_db():
                 was_abandoned INTEGER NOT NULL DEFAULT 0,
                 ascension INTEGER NOT NULL DEFAULT 0,
                 game_mode TEXT NOT NULL DEFAULT 'standard',
+                is_custom INTEGER NOT NULL DEFAULT 0,
                 player_count INTEGER NOT NULL DEFAULT 1,
                 run_time INTEGER NOT NULL DEFAULT 0,
                 floors_reached INTEGER NOT NULL DEFAULT 0,
@@ -138,6 +140,7 @@ def init_db():
             ("username", "TEXT"),
             ("username_lower", "TEXT"),
             ("build_id", "TEXT"),
+            ("is_custom", "INTEGER NOT NULL DEFAULT 0"),
         ]:
             try:
                 conn.execute(f"ALTER TABLE runs ADD COLUMN {col} {coltype}")
@@ -328,8 +331,9 @@ def _submit_player_run(
             """
             INSERT INTO runs (run_hash, seed, character, win, was_abandoned, ascension, game_mode,
                               player_count, run_time, floors_reached, acts_completed, killed_by,
-                              deck_size, relic_count, username, username_lower, build_id)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                              deck_size, relic_count, username, username_lower, build_id,
+                              is_custom)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """,
             (
                 run_hash,
@@ -349,6 +353,7 @@ def _submit_player_run(
                 username,
                 username.lower() if username else None,
                 data.get("build_id"),
+                int(is_custom_run(data)),
             ),
         )
         run_id = cursor.lastrowid

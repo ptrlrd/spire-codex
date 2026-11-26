@@ -31,7 +31,17 @@
   },
   {
     "id": "BATTLEWORN_DUMMY_EVENT_ENCOUNTER",
-    "name": "muñeco de entrenamiento maltrecho",
+    "name": "Battleworn Dummy Event Encounter",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": null,
+    "loss_text": null
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_V1_ENCOUNTER",
+    "name": "Muñeco desgastado",
     "room_type": "Monster",
     "is_weak": false,
     "act": null,
@@ -40,17 +50,39 @@
       {
         "id": "BATTLE_FRIEND_V1",
         "name": "Amigo de batalla V1.0"
-      },
+      }
+    ],
+    "loss_text": "¿¿¿[b]The Adventurer[/b] de alguna manera cayó frente a [gold]Muñeco desgastado[/gold]???"
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_V2_ENCOUNTER",
+    "name": "Muñeco desgastado",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
       {
         "id": "BATTLE_FRIEND_V2",
         "name": "Amigo de batalla V2.0"
-      },
+      }
+    ],
+    "loss_text": "¿¿¿[b]The Adventurer[/b] de alguna manera cayó frente a [gold]Muñeco desgastado[/gold]???"
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_V3_ENCOUNTER",
+    "name": "Muñeco desgastado",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
       {
         "id": "BATTLE_FRIEND_V3",
         "name": "Amigo de batalla V3.0"
       }
     ],
-    "loss_text": "De alguna forma, un [gold]muñeco de entrenamiento maltrecho[/gold] mató a [b]The Adventurer[/b]."
+    "loss_text": "¿¿¿[b]The Adventurer[/b] de alguna manera cayó frente a [gold]Muñeco desgastado[/gold]???"
   },
   {
     "id": "BOWLBUGS_NORMAL",
@@ -653,7 +685,7 @@
   },
   {
     "id": "LIVING_FOG_NORMAL",
-    "name": "gas malvado",
+    "name": "niebla viviente",
     "room_type": "Monster",
     "is_weak": false,
     "act": "Act 1 - Underdocks",
@@ -668,7 +700,7 @@
         "name": "Niebla viviente"
       }
     ],
-    "loss_text": "[b]The Adventurer[/b] no soportó el hedor del [gold]gas malvado[/gold]."
+    "loss_text": "[b]The Adventurer[/b] no soportó el hedor del [gold]niebla viviente[/gold]."
   },
   {
     "id": "LOUSE_PROGENITOR_NORMAL",
@@ -1145,7 +1177,10 @@
     "room_type": "Monster",
     "is_weak": false,
     "act": "Act 1 - Overgrowth",
-    "tags": null,
+    "tags": [
+      "Jaxfruit",
+      "Slimes"
+    ],
     "monsters": [
       {
         "id": "LEAF_SLIME_M",
@@ -1221,7 +1256,8 @@
     "is_weak": false,
     "act": "Act 1 - Overgrowth",
     "tags": [
-      "Mushroom"
+      "Mushroom",
+      "Jaxfruit"
     ],
     "monsters": [
       {
@@ -1252,7 +1288,7 @@
   },
   {
     "id": "SOUL_NEXUS_ELITE",
-    "name": "nexo del alma",
+    "name": "nexo anímico",
     "room_type": "Elite",
     "is_weak": false,
     "act": "Act 3 - Glory",
@@ -1263,7 +1299,7 @@
         "name": "Nexo anímico"
       }
     ],
-    "loss_text": "Un [gold]nexo del alma[/gold] mató a [b]The Adventurer[/b] en un campo de batalla olvidado."
+    "loss_text": "Un [gold]nexo anímico[/gold] mató a [b]The Adventurer[/b] en un campo de batalla olvidado."
   },
   {
     "id": "SPINY_TOAD_NORMAL",

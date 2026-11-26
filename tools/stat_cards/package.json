@@ -1,0 +1,11 @@
+{
+  "name": "spire-codex-stat-cards",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "render": "node render.mjs"
+  },
+  "dependencies": {
+    "playwright": "1.63.0"
+  }
+}

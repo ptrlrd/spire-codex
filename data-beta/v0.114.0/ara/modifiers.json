@@ -1,0 +1,149 @@
+[
+  {
+    "id": "ALL_STAR",
+    "name": "نجم شامل",
+    "description": "ابدأ بـ [blue]5[/blue] [gold]بطاقات عديمة اللون[/gold].",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "BIG_GAME_HUNTER",
+    "name": "صياد الوحوش",
+    "description": "أعداء النخبة يكثرون في البرج ويُسقطون مكافآت أفضل.",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "CURSED_RUN",
+    "name": "الركضة المثقلة",
+    "description": "في بداية كل فصل، أضف [red]عبء[/red] عشوائية إلى مجموعتك.",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "DEADLY_EVENTS",
+    "name": "أحداث قاتلة",
+    "description": "الغرف المجهولة قد تحتوي الآن على نخب، لكن تزيد أيضًا فرصة ظهور غرف الكنز.",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "DRAFT",
+    "name": "درافت",
+    "description": "اختر [blue]10[/blue] من [gold]مكافآت البطاقات[/gold] لاستبدال مجموعتك الابتدائية.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "FLIGHT",
+    "name": "تحليق",
+    "description": "يمكنك تجاهل المسارات عند اختيار الغرفة التالية.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "HOARDER",
+    "name": "المكتنز",
+    "description": "كلما أضفت بطاقة إلى مجموعتك، أضف [blue]نسختين[/blue] إضافيتين. لم يعد بإمكانك إزالة البطاقات عند التاجر.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "INSANITY",
+    "name": "جنون",
+    "description": "ابدأ بمجموعة عشوائية من [blue]30[/blue] بطاقة.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "MIDAS",
+    "name": "ميداس",
+    "description": "الأعداء يسقطون [blue]200%[/blue] ذهب أكثر، لكن لا يمكنك الحدادة في [gold]مواقع الراحة[/gold].",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "MURDEROUS",
+    "name": "دموي",
+    "description": "تبدأ كل معركة بـ [blue]3[/blue] [gold]قوة[/gold]. جميع الأعداء يبدأون أيضًا بـ [blue]3[/blue] [gold]قوة[/gold].",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "NIGHT_TERRORS",
+    "name": "كوابيس الليل",
+    "description": "الراحة في [gold]مواقع الراحة[/gold] تعالج كل صحتك، لكنها تكلف [red]5[/red] صحة قصوى.",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "SEALED_DECK",
+    "name": "مجموعة مختومة",
+    "description": "اختر [blue]10[/blue] من أصل [blue]30[/blue] بطاقة لاستبدال مجموعتك الابتدائية.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "SPECIALIZED",
+    "name": "متخصص",
+    "description": "ابدأ بـ [blue]5[/blue] نسخ من بطاقة واحدة.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "TERMINAL",
+    "name": "حرِج",
+    "description": "كلما دخلت غرفة جديدة، اخسر [red]1[/red] صحة قصوى. ابدأ كل معركة بـ [blue]5[/blue] [gold]تدريع[/gold].",
+    "kind": "bad",
+    "character": null
+  },
+  {
+    "id": "VINTAGE",
+    "name": "عتيق",
+    "description": "الأعداء العاديون يسقطون آثارًا بدلًا من البطاقات.",
+    "kind": "good",
+    "character": null
+  },
+  {
+    "id": "CHARACTER_CARDS_IRONCLAD",
+    "name": "بطاقات المدرع",
+    "description": "بطاقات المدرع ستظهر الآن في المكافآت والمتاجر.",
+    "kind": "good",
+    "character": "IRONCLAD"
+  },
+  {
+    "id": "CHARACTER_CARDS_SILENT",
+    "name": "بطاقات الصامتة",
+    "description": "بطاقات الصامتة ستظهر الآن في المكافآت والمتاجر.",
+    "kind": "good",
+    "character": "SILENT"
+  },
+  {
+    "id": "CHARACTER_CARDS_DEFECT",
+    "name": "بطاقات المعيب",
+    "description": "بطاقات المعيب ستظهر الآن في المكافآت والمتاجر.",
+    "kind": "good",
+    "character": "DEFECT"
+  },
+  {
+    "id": "CHARACTER_CARDS_NECROBINDER",
+    "name": "بطاقات رابطة الموتى",
+    "description": "بطاقات رابطة الموتى ستظهر الآن في المكافآت والمتاجر.",
+    "kind": "good",
+    "character": "NECROBINDER"
+  },
+  {
+    "id": "CHARACTER_CARDS_REGENT",
+    "name": "بطاقات الوصي",
+    "description": "بطاقات الوصي ستظهر الآن في المكافآت والمتاجر.",
+    "kind": "good",
+    "character": "REGENT"
+  },
+  {
+    "id": "CHARACTER_CARDS_FOOL",
+    "name": "Fool Cards",
+    "description": "Fool cards will now appear in rewards and shops.",
+    "kind": "good",
+    "character": "FOOL"
+  }
+]

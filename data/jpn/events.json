@@ -814,7 +814,7 @@
         {
           "order": "2-0",
           "speaker": "ancient",
-          "text": "お前さんのあの重い剣、まだオレが預かってるぜ…… だが、修復できるヤツが誰一人見つからねぇんだ。"
+          "text": "お前さんのあの重たい剣、まだオレが預かってるぜ…… だが、修復できるヤツが誰一人見つからねぇんだ。"
         },
         {
           "order": "2-1",
@@ -925,7 +925,7 @@
         {
           "order": "2-2",
           "speaker": "ancient",
-          "text": "最後の決戦か何からしいな。よし、お前さんの装備を整えてやろう！"
+          "text": "“最後の決戦”だか何からしいな。よし、お前さんの装備を整えてやろう！"
         }
       ],
       "First Visit": [
@@ -1076,7 +1076,7 @@
           {
             "id": "TAKE",
             "title": "TAKE",
-            "description": "[gold]a random Relic[/gold]を獲得する。"
+            "description": "[gold]ランダムなレリック[/gold]を獲得する。"
           }
         ]
       },
@@ -1283,7 +1283,7 @@
     "name": "商人（？ ）",
     "type": "Shared",
     "act": null,
-    "description": "A suspicious merchant offers 6 fake relics (drawn from a pool of 9) at 42–58 gold each. Throwing a [gold]Foul Potion[/gold] starts a fight against The Merchant??? (165 HP). Winning rewards [gold]The Merchant's Rug???[/gold] plus all unsold relics.",
+    "description": "怪しい商人が偽のレリック6個（9個のプールから抽選）を各42〜58ゴールドで販売する。[gold]Foul Potion[/gold]を投げつけるとThe Merchant???（165HP）との戦闘が始まる。勝利すると[gold]The Merchant's Rug???[/gold]と売れ残ったレリックがすべて手に入る。",
     "preconditions": [
       "Act 2+",
       "Single player only",
@@ -1645,7 +1645,7 @@
     "name": "モーフィックの木立",
     "type": "Event",
     "act": "Act 1 - Overgrowth",
-    "description": "[green]水晶の木々[/green]が生い茂る木立ちに入ると、木々が[jitter]興奮したように震え[/jitter]始めた！\n木々の中から[aqua]モーフィック[/aqua]の群れが[jitter]飛び出し[/jitter]、[sine]挨拶と歓迎の言葉[/sine]の声であなたを迎える。\n\nその中の一体の[aqua]モーフィック[/aqua]だけが隅でそわそわしており、明らかに他の者たちほど社交的ではないようだ。\n\n群れの方に向かうか、それとも独りぼっちの方に近づこうか？",
+    "description": "[green]水晶の木々[/green]が生い茂る木立ちに入ると、木々が[jitter]興奮したように震え[/jitter]始めた！\n木々の中から[aqua]モーフィック[/aqua]の群れが[jitter]飛び出し[/jitter]、[sine]挨拶と歓迎[/sine]の声であなたを迎える。\n\nその中の一体の[aqua]モーフィック[/aqua]だけ、隅の方でそわそわしている。他のに比べると、明らかに社交的ではないようだ。\n\n群れか、ひとりぼっちか。どちらに近づこうか？",
     "preconditions": [
       "Requires 100+ gold"
     ],
@@ -1657,7 +1657,7 @@
       },
       {
         "id": "LONER",
-        "title": "独りぼっち",
+        "title": "ひとりぼっち",
         "description": "最大HPが[green]5[/green]増加。"
       }
     ],
@@ -1668,7 +1668,7 @@
       },
       {
         "id": "INITIAL",
-        "description": "[green]水晶の木々[/green]が生い茂る木立ちに入ると、木々が[jitter]興奮したように震え[/jitter]始めた！\n木々の中から[aqua]モーフィック[/aqua]の群れが[jitter]飛び出し[/jitter]、[sine]挨拶と歓迎の言葉[/sine]の声であなたを迎える。\n\nその中の一体の[aqua]モーフィック[/aqua]だけが隅でそわそわしており、明らかに他の者たちほど社交的ではないようだ。\n\n群れの方に向かうか、それとも独りぼっちの方に近づこうか？",
+        "description": "[green]水晶の木々[/green]が生い茂る木立ちに入ると、木々が[jitter]興奮したように震え[/jitter]始めた！\n木々の中から[aqua]モーフィック[/aqua]の群れが[jitter]飛び出し[/jitter]、[sine]挨拶と歓迎[/sine]の声であなたを迎える。\n\nその中の一体の[aqua]モーフィック[/aqua]だけ、隅の方でそわそわしている。他のに比べると、明らかに社交的ではないようだ。\n\n群れか、ひとりぼっちか。どちらに近づこうか？",
         "options": [
           {
             "id": "GROUP",
@@ -1677,7 +1677,7 @@
           },
           {
             "id": "LONER",
-            "title": "独りぼっち",
+            "title": "ひとりぼっち",
             "description": "最大HPが[green]5[/green]増加。"
           }
         ]
@@ -1902,10 +1902,12 @@
       "SMALL_CAPSULE",
       "STONE_HUMIDIFIER",
       "CURSED_PEARL",
+      "DOWSING_ROD",
       "HEFTY_TABLET",
       "LARGE_CAPSULE",
       "LEAFY_POULTICE",
       "NEOWS_BONES",
+      "NEOWS_SACRIFICE",
       "PRECARIOUS_SHEARS",
       "SILKEN_TRESS",
       "SILVER_CRUCIBLE"
@@ -2261,10 +2263,10 @@
     "relics": [
       "ELECTRIC_SHRYMP",
       "GLASS_EYE",
-      "SAND_CASTLE",
       "ALCHEMICAL_COFFER",
       "DRIFTWOOD",
       "RADIANT_PEARL",
+      "SAND_CASTLE",
       "SEA_GLASS",
       "PRISMATIC_GEM",
       "TOUCH_OF_OROBAS",
@@ -2489,7 +2491,7 @@
     "name": "パンチ対決",
     "type": "Event",
     "act": "Underdocks",
-    "description": "2体の[gold]パンチ・コンストラクト[/gold]が殴り合っており、その間にいくつかのお宝が落ちているのが見える……\n\n盗み取ってみるか？",
+    "description": "2体の[gold]ボクシングロボ[/gold]が殴り合っている。その間には、いくつかのお宝が落ちているようだ……\n\n盗み取ってみるか？",
     "preconditions": null,
     "options": [
       {
@@ -2506,7 +2508,7 @@
     "pages": [
       {
         "id": "INITIAL",
-        "description": "2体の[gold]パンチ・コンストラクト[/gold]が殴り合っており、その間にいくつかのお宝が落ちているのが見える……\n\n盗み取ってみるか？",
+        "description": "2体の[gold]ボクシングロボ[/gold]が殴り合っている。その間には、いくつかのお宝が落ちているようだ……\n\n盗み取ってみるか？",
         "options": [
           {
             "id": "NAB",
@@ -2522,7 +2524,7 @@
       },
       {
         "id": "I_CAN_TAKE_THEM",
-        "description": "[gold]コンストラクト[/gold]たちは威嚇するようにこちらを振り向いた！\n\nあなたは拳を構えた。",
+        "description": "[gold]ロボット[/gold]たちは威嚇するようにこちらを振り向いた！\n\nあなたは拳を構えた。",
         "options": [
           {
             "id": "FIGHT",
@@ -2680,17 +2682,17 @@
       {
         "id": "TOP",
         "title": "一番上の品を選ぶ",
-        "description": "[gold]one of your Relics[/gold]を[gold]a random Relic[/gold]と交換する。"
+        "description": "[gold]所持しているレリックの1つ[/gold]を[gold]ランダムなレリック[/gold]と交換する。"
       },
       {
         "id": "MIDDLE",
         "title": "真ん中の品を選ぶ",
-        "description": "[gold]one of your Relics[/gold]を[gold]a random Relic[/gold]と交換する。"
+        "description": "[gold]所持しているレリックの1つ[/gold]を[gold]ランダムなレリック[/gold]と交換する。"
       },
       {
         "id": "BOTTOM",
         "title": "一番下の品を選ぶ",
-        "description": "[gold]one of your Relics[/gold]を[gold]a random Relic[/gold]と交換する。"
+        "description": "[gold]所持しているレリックの1つ[/gold]を[gold]ランダムなレリック[/gold]と交換する。"
       }
     ],
     "pages": [
@@ -2705,17 +2707,17 @@
           {
             "id": "TOP",
             "title": "一番上の品を選ぶ",
-            "description": "[gold]one of your Relics[/gold]を[gold]a random Relic[/gold]と交換する。"
+            "description": "[gold]所持しているレリックの1つ[/gold]を[gold]ランダムなレリック[/gold]と交換する。"
           },
           {
             "id": "MIDDLE",
             "title": "真ん中の品を選ぶ",
-            "description": "[gold]one of your Relics[/gold]を[gold]a random Relic[/gold]と交換する。"
+            "description": "[gold]所持しているレリックの1つ[/gold]を[gold]ランダムなレリック[/gold]と交換する。"
           },
           {
             "id": "BOTTOM",
             "title": "一番下の品を選ぶ",
-            "description": "[gold]one of your Relics[/gold]を[gold]a random Relic[/gold]と交換する。"
+            "description": "[gold]所持しているレリックの1つ[/gold]を[gold]ランダムなレリック[/gold]と交換する。"
           }
         ]
       }
@@ -2996,7 +2998,7 @@
       {
         "id": "OVERCOME",
         "title": "乗り越える",
-        "description": "[gold]デッキ[/gold]から[red]a random Card[/red]が失われる。"
+        "description": "[gold]デッキ[/gold]から[red]ランダムなカード[/red]が失われる。"
       },
       {
         "id": "HOLD_ON_0",
@@ -3100,7 +3102,7 @@
           {
             "id": "OVERCOME",
             "title": "乗り越える",
-            "description": "[gold]デッキ[/gold]から[red]a random Card[/red]が失われる。"
+            "description": "[gold]デッキ[/gold]から[red]ランダムなカード[/red]が失われる。"
           },
           {
             "id": "HOLD_ON_0",
@@ -3221,7 +3223,7 @@
       {
         "id": "LIFT",
         "title": "ポーションを飲んで持ち上げる",
-        "description": "[red]a random Potion[/red]を失う。 最大HPが[blue]10[/blue]増加。"
+        "description": "[red]ランダムなポーション[/red]を失う。 最大HPが[blue]10[/blue]増加。"
       },
       {
         "id": "LIFT_LOCKED",
@@ -3247,7 +3249,7 @@
           {
             "id": "LIFT",
             "title": "ポーションを飲んで持ち上げる",
-            "description": "[red]a random Potion[/red]を失う。 最大HPが[blue]10[/blue]増加。"
+            "description": "[red]ランダムなポーション[/red]を失う。 最大HPが[blue]10[/blue]増加。"
           },
           {
             "id": "LIFT_LOCKED",
@@ -3268,7 +3270,7 @@
       },
       {
         "id": "LIFT",
-        "description": "[gold]a random Potion[/gold]を一気に飲み干し、[jitter]ありったけの力で持ち上げる[/jitter]！！\n\nビクともしない。"
+        "description": "[gold]ランダムなポーション[/gold]を一気に飲み干し、[jitter]ありったけの力で持ち上げる[/jitter]！！\n\nビクともしない。"
       },
       {
         "id": "PUSH",
@@ -4238,7 +4240,7 @@
     "name": "未来のポーション？",
     "type": "Shared",
     "act": null,
-    "description": "角を曲がると、かすかな地響きを感じる。 そこには、巨大な回転する装置があった！\nいくつかの投入口を備えており、液体を高度に圧縮し、服用可能な錠剤に変換するようだ。\n\nポーションを、ほんの小さな一口サイズに変えてしまうというアイデアには不安を覚える。 だが、何事もまずは試してみるべきか？",
+    "description": "角を曲がると、かすかな地響きを感じる。 そこにあったのは、巨大な回転する装置だった！\nいくつかの投入口が備えたそれは、液体を高度に圧縮し、服用可能な錠剤に変換するようだ。\n\nポーションを、ほんの小さな一口サイズに変えてしまうというアイデアには不安を覚える。 だが、何事もまずは試してみるべきか？",
     "preconditions": null,
     "options": [
       {
@@ -4274,7 +4276,7 @@
       },
       {
         "id": "INITIAL",
-        "description": "角を曲がると、かすかな地響きを感じる。 そこには、巨大な回転する装置があった！\nいくつかの投入口を備えており、液体を高度に圧縮し、服用可能な錠剤に変換するようだ。\n\nポーションを、ほんの小さな一口サイズに変えてしまうというアイデアには不安を覚える。 だが、何事もまずは試してみるべきか？",
+        "description": "角を曲がると、かすかな地響きを感じる。 そこにあったのは、巨大な回転する装置だった！\nいくつかの投入口が備えたそれは、液体を高度に圧縮し、服用可能な錠剤に変換するようだ。\n\nポーションを、ほんの小さな一口サイズに変えてしまうというアイデアには不安を覚える。 だが、何事もまずは試してみるべきか？",
         "options": [
           {
             "id": "POTION_COMMON",
@@ -4942,7 +4944,7 @@
         {
           "order": "2-2",
           "speaker": "ancient",
-          "text": "取引の義務を果たさないおつもりで？\nならば、別の契約はいかがでしょう？ そちらもオススメですよ。"
+          "text": "取引の義務を果たさないおつもりで？\nならば、更なる契約を結ばれるのはいかがでしょう？ こちらもオススメですよ。"
         }
       ],
       "Silent": [
@@ -5164,7 +5166,7 @@
       {
         "id": "FEATURED_ITEM",
         "title": "ウォンゴのおすすめ商品",
-        "description": "[red]200[/red][gold]ゴールド[/gold]を支払う。 [gold]a random Relic[/gold]を獲得する。"
+        "description": "[red]200[/red][gold]ゴールド[/gold]を支払う。 [gold]ランダムなレリック[/gold]を獲得する。"
       },
       {
         "id": "FEATURED_ITEM_LOCKED",
@@ -5217,7 +5219,7 @@
           {
             "id": "FEATURED_ITEM",
             "title": "ウォンゴのおすすめ商品",
-            "description": "[red]200[/red][gold]ゴールド[/gold]を支払う。 [gold]a random Relic[/gold]を獲得する。"
+            "description": "[red]200[/red][gold]ゴールド[/gold]を支払う。 [gold]ランダムなレリック[/gold]を獲得する。"
           },
           {
             "id": "FEATURED_ITEM_LOCKED",

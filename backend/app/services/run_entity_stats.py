@@ -59,6 +59,23 @@ def ensure_known_bracket(bracket: str | None) -> str:
     raise UnknownBracket(b)
 
 
+def split_bracket_character(bracket: str | None) -> tuple[str | None, str | None]:
+    """(bracket, CHARACTER) for a bracket carrying a character part
+    ("solo:standard:fool" -> ("solo:standard", "FOOL")); (bracket, None)
+    without one. Two characters in one bracket is UnknownBracket."""
+    b = (bracket or "").strip()
+    if not b:
+        return bracket, None
+    try:
+        from .lake_stats import _split_character
+    except Exception:
+        return bracket, None
+    rest, character = _split_character(b)
+    if rest is None:
+        raise UnknownBracket(b)
+    return rest, (character.upper() if character else None)
+
+
 _USING_MONGO = bool(os.environ.get("MONGO_URL", "").strip())
 
 logger = logging.getLogger(__name__)
@@ -2627,6 +2644,8 @@ def get_encounter_stats(
     bracket: str | None = None,
     build_id: str | None = None,
     encounters: list[str] | None = None,
+    game_mode: str | None = None,
+    dominion: str | None = None,
 ) -> dict[str, Any]:
     """Per-encounter combat stats for /api/runs/encounter-stats, rolled up
     from the precomputed snapshot cells for one content bracket. Same lifecycle
@@ -2643,12 +2662,9 @@ def get_encounter_stats(
 
     # bracket + build_id COMBINE (v20 keeps bracket x version buckets); a
     # bare version reads the legacy "ver:" bucket.
-    if build_id and bracket and bracket != "all":
-        key = f"{bracket}:{build_id}"
-    elif build_id:
-        key = f"ver:{build_id}"
-    else:
-        key = bracket
+    from .lake_stats import encounter_store_key
+
+    key = encounter_store_key(bracket, build_id, game_mode, dominion)
     # Lake path: the ingest-built encounter store carries the same finalized
     # per-bracket shape, refreshed every cycle — the snapshot below froze
     # when the rebuilder retired. Missing store or key falls through.
@@ -2695,6 +2711,7 @@ def get_all_entity_scores(
     act: int | None = None,
     bracket: str | None = None,
     min_character_picks: int = 30,
+    bracket_character: str | None = None,
 ) -> dict[str, dict[str, Any]]:
     """All entities of one type, keyed by ID, with score + counts + elo.
 
@@ -2720,6 +2737,11 @@ def get_all_entity_scores(
     inflated; comparing act-mates against each other cancels that out. Modded
     relic ids and relics with fewer than `_ACT_MIN_PICKS` acquisitions in the
     act are omitted (a relic rarely grabbed that act is survivorship noise).
+
+    `bracket_character` is the character part of a bracket
+    ("solo:standard:fool"): every entry then comes from that character's
+    seats in the bracket, graded against that character's own baseline,
+    with no fallback to wider numbers.
     """
     _maybe_rebuild()
     if act is not None:
@@ -2736,16 +2758,28 @@ def get_all_entity_scores(
     # mode with the other axes. Elo comes from the all-runs store (it isn't
     # refit per bracket in the lake). Unknown brackets or a missing cube
     # fall through to the snapshot buckets below.
-    if bracket:
+    bchar = (bracket_character or "").strip().upper() or None
+    if bracket or bchar:
+        lake_bracket = bracket or "all"
+        char_entries: dict | None = None
         try:
             from . import lake_stats
 
-            fold = lake_stats.entity_bracket_fold(entity_type, bracket)
+            fold = lake_stats.entity_bracket_fold(entity_type, lake_bracket)
+            if fold and bchar:
+                cfold = lake_stats.entity_character_fold(entity_type, lake_bracket)
+                char_entries = {
+                    eid: chars[bchar]
+                    for eid, chars in (cfold or {}).items()
+                    if chars.get(bchar) and chars[bchar][0]
+                }
         except Exception:
             fold = None
             logger.warning("lake entity cube fold failed", exc_info=True)
+        if bchar and not fold:
+            return {}
         if fold:
-            entries = fold["entries"]
+            entries = char_entries if bchar else fold["entries"]
             btot = fold["total_runs"]
             base_p = sum(pw[0] for pw in entries.values())
             base_w = sum(pw[1] for pw in entries.values())
@@ -2758,11 +2792,15 @@ def get_all_entity_scores(
             bmap = None
             if entity_type in ("cards", "relics"):
                 try:
-                    bmap = (
-                        lake_stats.bracket_elo_for(bracket)
-                        if entity_type == "cards"
-                        else lake_stats.bracket_elo_for(bracket, entity_type)
-                    )
+                    if bchar:
+                        bmap = (
+                            lake_stats.bracket_elo_for(lake_bracket, entity_type, bchar)
+                            or {}
+                        )
+                    elif entity_type == "cards":
+                        bmap = lake_stats.bracket_elo_for(bracket)
+                    else:
+                        bmap = lake_stats.bracket_elo_for(bracket, entity_type)
                 except Exception:
                     bmap = None
             cube_out: dict[str, dict[str, Any]] = {}

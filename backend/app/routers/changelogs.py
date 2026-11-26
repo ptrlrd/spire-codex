@@ -87,7 +87,8 @@ def recent_additions(
       days from today (default 7). Pass 0 to disable the time filter.
 
     Each item is enriched with `version`, `version_tag`, and `version_date` so the
-    UI can render a "Added in vX.Y.Z" badge.
+    UI can render a "Added in vX.Y.Z" badge. `game_patch` is the game's own
+    patch number when the changelog carried a game update, else empty.
     """
     logs = _load_changelogs()[:max_versions]
     if max_age_days > 0:
@@ -108,6 +109,7 @@ def recent_additions(
         for log in logs:
             tag = log.get("tag") or log.get("game_version", "")
             date = log.get("date", "")
+            patch = log.get("game_patch") or ""
             for cat in log.get("categories", []):
                 if cat.get("id") != target_type:
                     continue
@@ -116,6 +118,7 @@ def recent_additions(
                         {
                             **item,
                             "version_tag": tag,
+                            "game_patch": patch,
                             "version_date": date,
                         }
                     )

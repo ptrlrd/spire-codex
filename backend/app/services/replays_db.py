@@ -29,7 +29,7 @@ REPLAY_DB_NAME = os.environ.get("REPLAY_DB_NAME", "spire_replays")
 MAX_GZ_BYTES = int(os.environ.get("REPLAY_MAX_GZ_BYTES", "") or 2 * 1024 * 1024)
 MAX_RAW_BYTES = int(os.environ.get("REPLAY_MAX_RAW_BYTES", "") or 16 * 1024 * 1024)
 MAX_LINES = int(os.environ.get("REPLAY_MAX_LINES", "") or 200_000)
-KNOWN_REPLAY_VERSIONS = frozenset({1, 2, 3, 4, 5, 6, 7, 8})
+KNOWN_REPLAY_VERSIONS = frozenset({1, 2, 3, 4, 5, 6, 7, 8, 9})
 GZIP_MAGIC = b"\x1f\x8b"
 
 _coll_cache = None
@@ -98,11 +98,13 @@ def inspect_gzip(gz: bytes) -> dict:
         raise ReplayRejected(415, "replay must be gzip", "not_gzip")
     d = zlib.decompressobj(16 + zlib.MAX_WBITS)
     state = {"raw": 0, "lines": 0, "header": None, "buf": b"", "last": b""}
+    content = hashlib.sha256()
 
     def account(out: bytes) -> None:
         if not out:
             return
         state["raw"] += len(out)
+        content.update(out)
         if state["raw"] > MAX_RAW_BYTES:
             raise ReplayRejected(
                 413, "replay over the decompressed size cap", "too_large"
@@ -155,6 +157,7 @@ def inspect_gzip(gz: bytes) -> dict:
         "lines": lines,
         "raw_bytes": state["raw"],
         "sha256": hashlib.sha256(gz).hexdigest(),
+        "content_sha256": content.hexdigest(),
     }
 
 
@@ -209,6 +212,72 @@ def check_header(header: dict, run_doc: dict, blob: dict | None, run_hash: str) 
     return idx
 
 
+COMPETITIVE_RUN_FIELDS = ("competitive", "competitive_bracket", "competitive_reasons")
+
+
+def competitive_run_fields(verdict: dict | None) -> dict:
+    """What a replay's competitive verdict puts on its run."""
+    if not verdict:
+        return {}
+    return {
+        "competitive": verdict.get("state"),
+        "competitive_bracket": verdict.get("bracket"),
+        "competitive_reasons": list(verdict.get("reasons") or []),
+    }
+
+
+def competitive_fields_for(run_hash: str) -> dict:
+    """The run fields from the verdict stored with a live replay."""
+    doc = _coll().find_one({"_id": run_hash, "deleted_at": None}, {"competitive": 1})
+    return competitive_run_fields((doc or {}).get("competitive"))
+
+
+def competitive_fields_after_delete(run_hash: str) -> dict:
+    """A competitive run stays in competitive when its replay is removed, as
+    flagged, so deleting the replay cannot erase a loss."""
+    doc = _coll().find_one({"_id": run_hash}, {"competitive": 1})
+    verdict = (doc or {}).get("competitive")
+    if not verdict:
+        return {}
+    reasons = list(verdict.get("reasons") or [])
+    if "replay_deleted" not in reasons:
+        reasons.append("replay_deleted")
+    return {
+        "competitive": "flagged",
+        "competitive_bracket": verdict.get("bracket"),
+        "competitive_reasons": reasons,
+    }
+
+
+def run_update_after_delete(run_hash: str) -> dict:
+    kept = competitive_fields_after_delete(run_hash)
+    if kept:
+        return {"$unset": {"has_replay": ""}, "$set": kept}
+    return {"$unset": {"has_replay": "", **{f: "" for f in COMPETITIVE_RUN_FIELDS}}}
+
+
+def _settle_start(user: dict, header: dict, run_hash: str, verdict):
+    from . import competitive_starts
+
+    try:
+        return competitive_starts.settle(user, header, run_hash, verdict)
+    except Exception as e:
+        logger.error(
+            "competitive start settle failed for %s: %s", run_hash, str(e)[:300]
+        )
+        return verdict
+
+
+def _judge(gz: bytes, run_doc: dict, blob: dict | None, run_hash: str) -> dict | None:
+    from . import replay_competitive
+
+    try:
+        return replay_competitive.judge(gz, run_doc, blob)
+    except Exception as e:
+        logger.error("competitive check failed for %s: %s", run_hash, str(e)[:300])
+        return None
+
+
 def owns_run(run_doc: dict, user: dict) -> bool:
     sid = str(user.get("steam_id") or "")
     if sid and str(run_doc.get("steam_id") or "") == sid:
@@ -239,7 +308,10 @@ def accept_upload(run_hash: str, gz: bytes, user: dict) -> dict:
     info = inspect_gzip(gz)
     from .runs_db_mongo import attribute_run_to, get_run_blob
 
-    player_idx = check_header(info["header"], run_doc, get_run_blob(run_hash), run_hash)
+    blob = get_run_blob(run_hash)
+    player_idx = check_header(info["header"], run_doc, blob, run_hash)
+    verdict = _judge(gz, run_doc, blob, run_hash)
+    verdict = _settle_start(user, info["header"], run_hash, verdict)
     if claim_sid:
         if not attribute_run_to(run_hash, user, _runs()):
             raise ReplayRejected(
@@ -247,14 +319,64 @@ def accept_upload(run_hash: str, gz: bytes, user: dict) -> dict:
             )
         run_doc = {**run_doc, "steam_id": claim_sid, "user_id": user.get("_id")}
     try:
-        return store_replay(run_hash, gz, info, run_doc, user, player_idx)
+        return store_replay(run_hash, gz, info, run_doc, user, player_idx, verdict)
     except PyMongoError as e:
         logger.error("replay storage failed for %s: %s", run_hash, str(e)[:300])
         raise ReplayRejected(503, "replay storage is unavailable", "storage")
 
 
+def find_run_for(header: dict, user: dict) -> str:
+    """The uploader's run a replay header describes, for uploads that come
+    without a run hash. Candidates share the seed; the first one this account
+    owns (or is hinted to) whose stored data matches the header wins."""
+    from .runs_db_mongo import get_run_blob
+
+    seed = str(header.get("seed") or "")
+    if not seed:
+        raise ReplayRejected(400, "replay header has no seed", "bad_header")
+    docs = list(_runs().find({"seed": seed}, _RUN_FIELDS).limit(200))
+    docs = [d for d in docs if not d.get("deleted_at")]
+    if not docs:
+        raise ReplayRejected(404, "run not found; upload the run first", "not_found")
+    sid = str(user.get("steam_id") or "")
+    mine = [
+        d
+        for d in docs
+        if owns_run(d, user)
+        or (
+            sid
+            and not d.get("user_id")
+            and not d.get("steam_id")
+            and str(d.get("steam_id_hint") or "") == sid
+        )
+    ]
+    if not mine:
+        raise ReplayRejected(403, "this run belongs to another player", "not_owner")
+    last: ReplayRejected | None = None
+    for doc in mine:
+        run_hash = str(doc["_id"])
+        try:
+            check_header(header, doc, get_run_blob(run_hash), run_hash)
+        except ReplayRejected as e:
+            last = e
+            continue
+        return run_hash
+    raise last or ReplayRejected(404, "run not found", "not_found")
+
+
+def accept_upload_by_header(gz: bytes, user: dict) -> dict:
+    info = inspect_gzip(gz)
+    return accept_upload(find_run_for(info["header"], user), gz, user)
+
+
 def store_replay(
-    run_hash: str, gz: bytes, info: dict, run_doc: dict, user: dict, player_idx: int
+    run_hash: str,
+    gz: bytes,
+    info: dict,
+    run_doc: dict,
+    user: dict,
+    player_idx: int,
+    competitive: dict | None = None,
 ) -> dict:
     header = info["header"]
     now = datetime.now(timezone.utc)
@@ -262,6 +384,7 @@ def store_replay(
         "_id": run_hash,
         "blob": Binary(gz),
         "sha256": info["sha256"],
+        "content_sha256": info["content_sha256"],
         "gz_bytes": len(gz),
         "raw_bytes": info["raw_bytes"],
         "lines": info["lines"],
@@ -288,22 +411,57 @@ def store_replay(
         "ingested_at": None,
         "exploder_version": None,
         "published": {},
+        "competitive": competitive,
     }
     coll = _coll()
     try:
         coll.insert_one(doc)
     except DuplicateKeyError:
-        existing = coll.find_one({"_id": run_hash}, {"sha256": 1, "deleted_at": 1})
-        if existing and existing.get("sha256") == info["sha256"]:
+        existing = coll.find_one({"_id": run_hash})
+        if existing and _same_replay(existing, info):
             if existing.get("deleted_at"):
                 coll.update_one({"_id": run_hash}, {"$set": {"deleted_at": None}})
-            _runs().update_one({"_id": run_hash}, {"$set": {"has_replay": True}})
+            _runs().update_one(
+                {"_id": run_hash},
+                {
+                    "$set": {
+                        "has_replay": True,
+                        **competitive_run_fields(existing.get("competitive")),
+                    }
+                },
+            )
             return {"success": True, "duplicate": True, "run_hash": run_hash}
         raise ReplayRejected(
             409, "a different replay is already stored for this run", "replay_exists"
         )
-    _runs().update_one({"_id": run_hash}, {"$set": {"has_replay": True}})
-    return {"success": True, "run_hash": run_hash, "lines": info["lines"]}
+    _runs().update_one(
+        {"_id": run_hash},
+        {"$set": {"has_replay": True, **competitive_run_fields(competitive)}},
+    )
+    result = {"success": True, "run_hash": run_hash, "lines": info["lines"]}
+    if competitive:
+        result["competitive"] = {
+            "state": competitive.get("state"),
+            "bracket": competitive.get("bracket"),
+            "reasons": competitive.get("reasons"),
+        }
+    return result
+
+
+def _same_replay(existing: dict, info: dict) -> bool:
+    """Whether a stored replay holds the same journal as an upload. Two
+    compressors turn one journal into different gzip bytes, so the stored
+    bytes only settle it when they are equal; otherwise the decompressed
+    content decides."""
+    if existing.get("sha256") == info["sha256"]:
+        return True
+    stored = existing.get("content_sha256")
+    if not stored and existing.get("blob"):
+        try:
+            stored = inspect_gzip(bytes(existing["blob"]))["content_sha256"]
+        except ReplayRejected:
+            stored = None
+    return bool(stored) and stored == info["content_sha256"]
 
 
 def replay_visible(run_hash: str) -> bool:
@@ -311,6 +469,19 @@ def replay_visible(run_hash: str) -> bool:
     if doc is None or doc.get("hidden") or doc.get("deleted_at"):
         return False
     return True
+
+
+def kept_replay_for(run_hash: str, steam_id, user_id) -> bool:
+    """Whether a stored replay for this run hash belongs to the same owner."""
+    doc = _coll().find_one(
+        {"_id": run_hash, "deleted_at": None}, {"steam_id": 1, "user_id": 1}
+    )
+    if not doc:
+        return False
+    sid = str(steam_id or "")
+    if sid and str(doc.get("steam_id") or "") == sid:
+        return True
+    return bool(user_id) and str(doc.get("user_id") or "") == str(user_id)
 
 
 def replay_sha(run_hash: str) -> str | None:
@@ -342,5 +513,5 @@ def delete_replay(run_hash: str, user: dict) -> bool:
         .modified_count
         > 0
     )
-    _runs().update_one({"_id": run_hash}, {"$unset": {"has_replay": ""}})
+    _runs().update_one({"_id": run_hash}, run_update_after_delete(run_hash))
     return removed

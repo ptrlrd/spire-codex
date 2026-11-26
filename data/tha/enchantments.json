@@ -67,9 +67,9 @@
   },
   {
     "id": "INKY",
-    "name": "อาบหมึก",
-    "description": "การ์ดนี้สร้างความเสียหายเพิ่ม [blue]1[/blue] และสร้าง [blue]1[/blue] [gold]ความอ่อนแอ[/gold]",
-    "description_raw": "การ์ดนี้สร้างความเสียหายเพิ่ม [blue]{Damage}[/blue] และสร้าง [blue]{WeakPower}[/blue] [gold]ความอ่อนแอ[/gold]",
+    "name": "มนตร์อาบหมึก",
+    "description": "This card applies [blue]1[/blue] [gold]Weak[/gold].",
+    "description_raw": "This card applies [blue]{WeakPower}[/blue] [gold]Weak[/gold].",
     "extra_card_text": "สร้าง [blue]1[/blue] [gold]ความอ่อนแอ[/gold]",
     "card_type": null,
     "applicable_to": null,

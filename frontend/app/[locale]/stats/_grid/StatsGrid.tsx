@@ -69,27 +69,6 @@ const PHONE_THIRD: ColKey[] = [
   "n",
 ];
 
-function RowArt({ row, card }: { row: GridRow; card: boolean }) {
-  if (!row.imageUrl)
-    return (
-      <span aria-hidden className={card ? "w-10 shrink-0" : "w-8 shrink-0"} />
-    );
-  return (
-    <img
-      src={imageUrl(row.imageUrl)}
-      alt=""
-      width={card ? 40 : 32}
-      height={32}
-      loading="lazy"
-      className={
-        card
-          ? "h-8 w-10 shrink-0 rounded object-cover"
-          : "h-8 w-8 shrink-0 object-contain"
-      }
-    />
-  );
-}
-
 function LiftBar({ value, scale }: { value: number | null; scale: number }) {
   const width =
     value === null ? 0 : Math.min(50, (Math.abs(value) / scale) * 50);
@@ -324,7 +303,6 @@ export default function StatsGrid({ data }: { data: GridData }) {
   } | null>(null);
 
   const hasWins = rows.some((r) => r.wins !== null);
-  const hasArt = rows.some((r) => r.imageUrl);
   const columns: Column[] = orderColumns(
     cfg.columns.filter((key) => (key === "wl" ? hasWins : true)),
     order,
@@ -807,7 +785,6 @@ export default function StatsGrid({ data }: { data: GridData }) {
       {index + 1}
     </span>
   );
-  const isCard = (r: GridRow) => kind === "cards" || r.group === "cards";
   const cell = (col: Column, r: GridRow, index: number) => {
     switch (col.key) {
       case "name":
@@ -822,7 +799,6 @@ export default function StatsGrid({ data }: { data: GridData }) {
             >
               <div className="flex min-h-11 items-center gap-2 sm:min-h-0">
                 {rank(index)}
-                <RowArt row={r} card />
                 <div className="flex min-w-0 flex-wrap items-center gap-x-2">
                   <span className="inline-flex items-center gap-1.5">
                     {r.href ? (
@@ -892,7 +868,6 @@ export default function StatsGrid({ data }: { data: GridData }) {
           >
             <div className="flex min-h-11 items-center gap-2 sm:min-h-0">
               {rank(index)}
-              {hasArt && <RowArt row={r} card={isCard(r)} />}
               <div className="flex min-w-0 flex-wrap items-center gap-x-2">
                 {r.href ? (
                   <Link
@@ -1456,7 +1431,6 @@ export default function StatsGrid({ data }: { data: GridData }) {
                     key={g.key}
                     name={g.name}
                     href={g.href ? `${bp}${g.href}` : null}
-                    art={cfg.grouped ? g.rows[0].imageUrl : null}
                     open={open}
                     totalLabel={
                       cfg.grouped
@@ -1558,7 +1532,6 @@ function RowGroup({
 function GroupBlock({
   name,
   href,
-  art,
   open,
   totalLabel,
   rows,
@@ -1568,7 +1541,6 @@ function GroupBlock({
 }: {
   name: string;
   href: string | null;
-  art: string | null;
   open: Set<string>;
   totalLabel: string;
   rows: GridRow[];
@@ -1585,16 +1557,6 @@ function GroupBlock({
           className="px-3 py-1.5 text-sm font-semibold text-[var(--text-secondary)]"
         >
           <span className="inline-flex flex-wrap items-center gap-x-2">
-            {art && (
-              <img
-                src={imageUrl(art)}
-                alt=""
-                width={28}
-                height={28}
-                loading="lazy"
-                className="h-7 w-7 shrink-0 rounded object-cover"
-              />
-            )}
             {href ? (
               <Link
                 prefetch={false}

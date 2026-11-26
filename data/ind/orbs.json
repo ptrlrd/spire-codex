@@ -1,0 +1,37 @@
+[
+  {
+    "id": "DARK_ORB",
+    "name": "Gelap",
+    "description": "[gold]Pasif:[/gold] Pada akhir giliran, naikkan kerusakan Bola ini sebesar [blue]6[/blue].\n[gold]Picu:[/gold] Lakukan [blue]6[/blue] kerusakan ke musuh dengan HP paling sedikit.",
+    "description_raw": "[gold]Pasif:[/gold] Pada akhir giliran, naikkan kerusakan Bola ini sebesar [blue]{Passive}[/blue].\n[gold]Picu:[/gold] Lakukan [blue]{Evoke}[/blue] kerusakan ke musuh dengan HP paling sedikit.",
+    "image_url": "/static/images/orbs/dark_orb.png"
+  },
+  {
+    "id": "FROST_ORB",
+    "name": "Es",
+    "description": "[gold]Pasif:[/gold] Pada akhir giliran, dapatkan [blue]2[/blue] [gold]Blok[/gold].\n[gold]Picu:[/gold] Dapatkan [blue]5[/blue] [gold]Blok[/gold].",
+    "description_raw": "[gold]Pasif:[/gold] Pada akhir giliran, dapatkan [blue]{Passive}[/blue] [gold]Blok[/gold].\n[gold]Picu:[/gold] Dapatkan [blue]{Evoke}[/blue] [gold]Blok[/gold].",
+    "image_url": "/static/images/orbs/frost_orb.png"
+  },
+  {
+    "id": "GLASS_ORB",
+    "name": "Kaca",
+    "description": "[gold]Pasif:[/gold] Pada akhir giliran, lakukan [blue]4[/blue] kerusakan ke SEMUA musuh dan kurangi nilai bola ini sebanyak [blue]1[/blue].\n[gold]Picu:[/gold] Lakukan [blue]8[/blue] kerusakan ke SEMUA musuh.",
+    "description_raw": "[gold]Pasif:[/gold] Pada akhir giliran, lakukan [blue]{Passive}[/blue] kerusakan ke SEMUA musuh dan kurangi nilai bola ini sebanyak [blue]1[/blue].\n[gold]Picu:[/gold] Lakukan [blue]{Evoke}[/blue] kerusakan ke SEMUA musuh.",
+    "image_url": "/static/images/orbs/glass_orb.png"
+  },
+  {
+    "id": "LIGHTNING_ORB",
+    "name": "Petir",
+    "description": "[gold]Pasif:[/gold] Pada akhir giliran, lakukan [blue]3[/blue] kerusakan ke musuh acak.\n[gold]Picu:[/gold] Lakukan [blue]8[/blue] kerusakan ke musuh acak.",
+    "description_raw": "[gold]Pasif:[/gold] Pada akhir giliran, lakukan [blue]{Passive}[/blue] kerusakan ke musuh acak.\n[gold]Picu:[/gold] Lakukan [blue]{Evoke}[/blue] kerusakan ke musuh acak.",
+    "image_url": "/static/images/orbs/lightning_orb.png"
+  },
+  {
+    "id": "PLASMA_ORB",
+    "name": "Plasma",
+    "description": "[gold]Pasif:[/gold] Pada awal giliran,\ndapatkan [energy:1].\n[gold]Picu:[/gold] Dapatkan [energy:2].\n[gold]Focus[/gold] tidak memiliki efek pada Plasma.",
+    "description_raw": "[gold]Pasif:[/gold] Pada awal giliran,\ndapatkan {energyPrefix:energyIcons(1)}.\n[gold]Picu:[/gold] Dapatkan {energyPrefix:energyIcons(2)}.\n[gold]Focus[/gold] tidak memiliki efek pada Plasma.",
+    "image_url": "/static/images/orbs/plasma_orb.png"
+  }
+]

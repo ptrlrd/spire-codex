@@ -1,0 +1,807 @@
+[
+  {
+    "id": "STANDARD",
+    "name": "Wyprawa",
+    "description": "Wyrusz na misję zdobycia Iglicy!",
+    "multiplayer_description": "Wyrusz na misję zdobycia Iglicy... ze znajomymi!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": null,
+    "max_ascension": 10
+  },
+  {
+    "id": "DAILY",
+    "name": "Wyzwanie Dnia",
+    "description": "Codziennie nowe wyzwanie.\n\nRywalizuj z innymi graczami o najwyższy wynik!",
+    "multiplayer_description": "Codziennie nowe wyzwanie.\n\nRywalizuj z innymi grupami graczy o najwyższy wynik!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "Ukończ Akt 3. i zagraj raz wszystkimi postaciami, aby odblokować Wyzwanie Dnia.",
+    "max_ascension": 10
+  },
+  {
+    "id": "DREAD",
+    "name": "Groza",
+    "description": "Arcytrudne wyzwanie zaprojektowane przez Architekta.\n\nTylko dla mistrzów zdobywania Iglicy.",
+    "multiplayer_description": "Arcytrudne wyzwanie zaprojektowane przez Architekta.\n\nTylko dla mistrzów zdobywania Iglicy.",
+    "intro": "[gold]Groza[/gold] to najtrudniejsze wyzwanie w Slay the Spire.",
+    "rules": [
+      "Wszystkie modyfikatory Wyniesienia są aktywne.",
+      "Pod koniec każdego Aktu [purple]Zmora wyniesionego[/purple] zostaje dodana do twojej [gold]talii[/gold].",
+      "Przeciwnicy zyskują dodatkowe umiejętności od nadchodzącego bossa.",
+      "Bossowie są jeszcze silniejsi."
+    ],
+    "epoch_id": "DREAD_EPOCH",
+    "unlock_text": "Odblokowano tryb gry: Groza.",
+    "unlock_info": "Ukończ [blue]10.[/blue] poziom [red]Wyniesienia[/red] na wszystkich postaciach, aby odkryć tę Epokę.",
+    "max_ascension": 10,
+    "dominions": [
+      {
+        "id": "AEONGLASS_DOMINION",
+        "encounter_id": "AEONGLASS_BOSS",
+        "boss_name": "Wieczny Obserwator",
+        "name": "Dominacja Bossa: Wieczny Obserwator",
+        "description": "Na początku tury umieść [blue]1[/blue] [gold]Przemijanie[/gold] na szczycie [gold]stosu rozgrywającego[/gold]."
+      },
+      {
+        "id": "CEREMONIAL_BEAST_DOMINION",
+        "encounter_id": "CEREMONIAL_BEAST_BOSS",
+        "boss_name": "Leśny Stróż",
+        "name": "Dominacja Bossa: Leśny Stróż",
+        "description": "Wszyscy przeciwnicy zyskują [blue]1[/blue] pkt. [gold]Rytuału[/gold]."
+      },
+      {
+        "id": "INSATIABLE_DOMINION",
+        "encounter_id": "THE_INSATIABLE_BOSS",
+        "boss_name": "Nienasycony",
+        "name": "Dominacja Bossa: Nienasycony",
+        "description": "Pod koniec tury otrzymaj obrażenia równe liczbie tur."
+      },
+      {
+        "id": "KAISER_CRAB_DOMINION",
+        "encounter_id": "KAISER_CRAB_BOSS",
+        "boss_name": "Krab Cesarski",
+        "name": "Dominacja Bossa: Krab Cesarski",
+        "description": "Wszyscy przeciwnicy zyskują [blue]{Plating}[/blue] pkt. [gold]Opancerzenia[/gold]."
+      },
+      {
+        "id": "KIN_DOMINION",
+        "encounter_id": "THE_KIN_BOSS",
+        "boss_name": "Kapłan",
+        "name": "Dominacja Bossa: Kapłan",
+        "description": "Rozpoczynasz walkę z [red]2[/red] pkt. [gold]Słabości[/gold] i [gold]Kruchości[/gold]."
+      },
+      {
+        "id": "KNOWLEDGE_DEMON_DOMINION",
+        "encounter_id": "KNOWLEDGE_DEMON_BOSS",
+        "boss_name": "Demon Wiedzy",
+        "name": "Dominacja Bossa: Demon Wiedzy",
+        "description": "Na początku walki wybierz [blue]1[/blue] z [blue]2[/blue] [red]Dominacji[/red]."
+      },
+      {
+        "id": "LAGAVULIN_MATRIARCH_DOMINION",
+        "encounter_id": "LAGAVULIN_MATRIARCH_BOSS",
+        "boss_name": "Matka Lagavulinów",
+        "name": "Dominacja Bossa: Matka Lagavulinów",
+        "description": "Pod koniec pierwszej tury utrać [blue]1[/blue] pkt. [gold]Siły[/gold] i [gold]Zręczności[/gold]."
+      },
+      {
+        "id": "QUEEN_DOMINION",
+        "encounter_id": "QUEEN_BOSS",
+        "boss_name": "Królowa",
+        "name": "Dominacja Bossa: Królowa",
+        "description": "Na początku 2. tury zyskaj [red]3[/red] pkt. [gold]Słabości[/gold], [gold]Wrażliwości[/gold] i [gold]Kruchości[/gold]."
+      },
+      {
+        "id": "SOUL_FYSH_DOMINION",
+        "encounter_id": "SOUL_FYSH_BOSS",
+        "boss_name": "Dusza Rypki",
+        "name": "Dominacja Bossa: Dusza Rypki",
+        "description": "Na początku każdej walki wtasuj [gold]Zgubę[/gold] do [gold]stosu rozgrywającego[/gold]."
+      },
+      {
+        "id": "TEST_SUBJECT_DOMINION",
+        "encounter_id": "TEST_SUBJECT_BOSS",
+        "boss_name": "Eksperyment",
+        "name": "Dominacja Bossa: Eksperyment",
+        "description": "Wszyscy przeciwnicy zyskują [blue]3[/blue] pkt. [gold]Siły[/gold]."
+      },
+      {
+        "id": "VANTOM_DOMINION",
+        "encounter_id": "VANTOM_BOSS",
+        "boss_name": "Fantom",
+        "name": "Dominacja Bossa: Fantom",
+        "description": "Zwykli przeciwnicy zyskują [blue]{NormalSlippery}[/blue] pkt. [gold]Śliskości[/gold]. Elitarni przeciwnicy zyskują [blue]{EliteSlippery}[/blue] pkt. [gold]Śliskości[/gold]."
+      },
+      {
+        "id": "WATERFALL_GIANT_DOMINION",
+        "encounter_id": "WATERFALL_GIANT_BOSS",
+        "boss_name": "Kaskadowy Olbrzym",
+        "name": "Dominacja Bossa: Kaskadowy Olbrzym",
+        "description": "Przeciwnicy wybuchają i zadają obrażenia przy uśmierceniu."
+      }
+    ],
+    "rotating_streak": {
+      "name": "Seria rotacyjna",
+      "description": "W [gold]Serii rotacyjnej[/gold] każde zwycięstwo przesuwa cię o jedną postać na prawo.\nZwycięstwa są liczone w osobnej serii i nie liczą się do pojedynczych postaci."
+    }
+  },
+  {
+    "id": "BLITZ",
+    "name": "Sztorm",
+    "description": "Szybka, dynamiczna wyprawa dla poszukiwaczy krótkich przygód.",
+    "multiplayer_description": "Szybka, dynamiczna wyprawa dla poszukiwaczy krótkich przygód.",
+    "intro": "Witaj w trybie [green]Sztormu[/green]! Wyprawy w tym trybie skupiają się głównie na budowaniu talii i mają osobne poziomy Wyniesienia, które są współdzielone między wszystkimi postaciami.",
+    "rules": [
+      "Otrzymujesz karty na początku każdej tury.",
+      "Toczysz [blue]4[/blue] walki w każdym Akcie.",
+      "[blue]Handlarz[/blue] zachowuje się [sine]dziwnie[/sine].",
+      "[gold]Skarby[/gold] zawierają dodatkowy artefakt.",
+      "Nie ma mapy."
+    ],
+    "epoch_id": "BLITZ_EPOCH",
+    "unlock_text": "Odblokowano nowy tryb gry: Sztorm",
+    "unlock_info": "Rozegraj jedną wyprawę z Wyniesieniem, aby odblokować Sztorm.",
+    "max_ascension": 5,
+    "ascension_levels": [
+      "WearyTraveler",
+      "TightBelt",
+      "ToughEnemies",
+      "DeadlyEnemies",
+      "AscendersBane"
+    ],
+    "neow": {
+      "name": "Sztorm",
+      "description": "Wybierz [blue]3[/blue] karty i dodaj je do [gold]talii[/gold]."
+    },
+    "merchant_entries": [
+      {
+        "id": "CARD_UPGRADE",
+        "name": "Ulepszanie kart",
+        "description": "[gold]Ulepsz[/gold] kartę w [gold]talii[/gold].",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/card_upgrade.webp"
+      },
+      {
+        "id": "UPGRADED_CARD_REWARD",
+        "name": "Ulepszone łupy",
+        "description": "Otrzymaj [blue]1[/blue] [gold]Ulepszoną[/gold] kartę z łupów.",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/upgraded_card_reward.webp"
+      },
+      {
+        "id": "RANDOM_UPGRADES",
+        "name": "Losowe ulepszenia",
+        "description": "[gold]Ulepsz[/gold] [blue]2[/blue] losowe karty w [gold]talii[/gold].",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/random_upgrades.webp"
+      },
+      {
+        "id": "CARD_TRANSFORM",
+        "name": "Zmiana kart",
+        "description": "[gold]Zmień[/gold] kartę w [gold]talii[/gold].",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/card_transform.webp"
+      },
+      {
+        "id": "CARD_REMOVAL",
+        "name": "Usuwanie kart",
+        "description": "Usuń kartę z [gold]talii[/gold].",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/card_removal.webp"
+      },
+      {
+        "id": "CARD_REWARDS",
+        "name": "Łupy",
+        "description": "Otrzymaj [blue]2[/blue] karty z łupów.",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/card_rewards.webp"
+      },
+      {
+        "id": "COLORLESS_CARD_REWARD",
+        "name": "Bezbarwne łupy",
+        "description": "Otrzymaj [blue]1[/blue] [gold]bezbarwną[/gold] kartę z łupów.",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/colorless_card_reward.webp"
+      },
+      {
+        "id": "POTIONS",
+        "name": "Mikstury",
+        "description": "Otrzymaj [blue]1[/blue] miejsce na miksturę i przyrządź [blue]2[/blue] losowe mikstury.",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/potions.webp"
+      },
+      {
+        "id": "CARD_ENCHANT",
+        "name": "Enchantment",
+        "description": "Rzuć [gold]Zaklęcie[/gold] na kartę z [purple]Enchantment[/purple].",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/card_enchant.webp"
+      },
+      {
+        "id": "ENCHANTED_CARD_REWARD",
+        "name": "Zaklęte łupy",
+        "description": "Otrzymaj [blue]1[/blue] kartę z łupów z [gold]Zaklęciem[/gold].",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/enchanted_card_reward.webp"
+      },
+      {
+        "id": "PRISMATIC_CARD_REWARD",
+        "name": "Łupy: Character",
+        "description": "Otrzymaj [blue]1[/blue] kartę z łupów z talii innej postaci: [gold]Character[/gold].",
+        "cursed": false,
+        "rare": true,
+        "image_url": "/static/images/beta/v0.114.0/blitz/prismatic_card_reward.webp"
+      },
+      {
+        "id": "RARE_CARD_REWARD",
+        "name": "Rzadkie łupy",
+        "description": "Otrzymaj [blue]1[/blue] rzadką kartę z łupów.",
+        "cursed": false,
+        "rare": true,
+        "image_url": "/static/images/beta/v0.114.0/blitz/rare_card_reward.webp"
+      },
+      {
+        "id": "UPGRADED_RARE_CARD",
+        "name": "Ulepszone rzadkie łupy",
+        "description": "Otrzymaj [blue]1[/blue] losową [gold]Ulepszoną[/gold] rzadką kartę.",
+        "cursed": false,
+        "rare": true,
+        "image_url": "/static/images/beta/v0.114.0/blitz/upgraded_rare_card.webp"
+      },
+      {
+        "id": "RELIC",
+        "name": "Artefakt",
+        "description": "Otrzymaj [blue]1[/blue] losowy [gold]Artefakt[/gold].",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/relic.webp"
+      },
+      {
+        "id": "GLAM",
+        "name": "Przeklęte zaklęcie: Dwakroć",
+        "description": "Otrzymaj [red]1[/red] losową [red]Klątwę[/red].\nRzuć [gold]Zaklęcie[/gold] na kartę z zaklęciem: [purple]Dwakroć[/purple].",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/glam.webp"
+      },
+      {
+        "id": "TWO_MORE_CHOICES",
+        "name": "Przeklęte wybory",
+        "description": "Otrzymaj [red]1[/red] losową [red]Klątwę[/red].\nHandlarz pozwala ci kupić jeszcze dwa towary.",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/two_more_choices.webp"
+      },
+      {
+        "id": "CARD_REWARD_OF_EACH_RARITY",
+        "name": "Przeklęte łupy",
+        "description": "Otrzymaj [red]1[/red] losową [red]Klątwę[/red].\nOtrzymaj [blue]1[/blue] [gold]Pospolitą[/gold], [gold]Niepospolitą[/gold] oraz [gold]Rzadką[/gold] kartę z łupów.",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/card_reward_of_each_rarity.webp"
+      },
+      {
+        "id": "UPGRADED_RARE_CARD_REWARD",
+        "name": "Przeklęte ulepszone rzadkie łupy",
+        "description": "Otrzymaj [red]1[/red] losową [red]Klątwę[/red].\nOtrzymaj [blue]1[/blue] [gold]Ulepszoną[/gold] rzadką kartę z łupów.",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/upgraded_rare_card_reward.webp"
+      },
+      {
+        "id": "TWO_RELICS",
+        "name": "Przeklęte artefakty",
+        "description": "Otrzymaj [red]1[/red] losową [red]Klątwę[/red].\nOtrzymaj [blue]2[/blue] losowe [gold]Artefakty[/gold].",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/two_relics.webp"
+      },
+      {
+        "id": "FULL_HEAL_AND_MAX_HP",
+        "name": "Przeklęte leczenie",
+        "description": "Otrzymaj [red]1[/red] losową [red]Klątwę[/red].\nZwiększ maks. PŻ o [blue]6[/blue] pkt. i przywróć wszystkie PŻ.",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/full_heal_and_max_hp.webp"
+      }
+    ],
+    "act_layout": [
+      "ANCIENT",
+      "MONSTER",
+      "MONSTER",
+      "SHOP",
+      "ELITE",
+      "TREASURE",
+      "REST_SITE",
+      "BOSS"
+    ],
+    "act_rooms": [
+      {
+        "type": "ANCIENT",
+        "name": "Starożytny",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_ancient.webp"
+      },
+      {
+        "type": "MONSTER",
+        "name": "Przeciwnik",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_monster.webp",
+        "easy": true
+      },
+      {
+        "type": "MONSTER",
+        "name": "Przeciwnik",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_monster.webp",
+        "easy": false
+      },
+      {
+        "type": "SHOP",
+        "name": "Handlarz",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_shop.webp"
+      },
+      {
+        "type": "ELITE",
+        "name": "Elitarny",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_elite.webp"
+      },
+      {
+        "type": "TREASURE",
+        "name": "Skarb",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_treasure.webp"
+      },
+      {
+        "type": "REST_SITE",
+        "name": "Obozowisko",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_rest_site.webp"
+      },
+      {
+        "type": "BOSS",
+        "name": "Boss",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_boss.webp"
+      }
+    ],
+    "weak_encounters_per_act": 1,
+    "floors_per_act": 8,
+    "encounters_per_act": 4,
+    "neow_details": {
+      "cards_offered": 10,
+      "cards_picked": 3,
+      "rarity_odds": {
+        "common": 0.55,
+        "uncommon": 0.4,
+        "rare": 0.05
+      },
+      "prompt": "Wybierz [blue]3[/blue] karty i dodaj je do [gold]talii[/gold]."
+    },
+    "merchant": {
+      "offers_shown": 6,
+      "normal_offers_shown": 5,
+      "cursed_offers_shown": 1,
+      "picks": 3,
+      "rare_offer_weight": 0.5,
+      "card_rarity_odds": {
+        "common": 0.4,
+        "uncommon": 0.5,
+        "rare": 0.1
+      },
+      "enchantments": [
+        {
+          "id": "SHARP",
+          "name": "Szlifierka",
+          "amount": 2
+        },
+        {
+          "id": "NIMBLE",
+          "name": "Zwinność",
+          "amount": 3
+        },
+        {
+          "id": "ADROIT",
+          "name": "Spryt",
+          "amount": 3
+        },
+        {
+          "id": "STEADY",
+          "name": "Pewnik",
+          "amount": 1
+        },
+        {
+          "id": "SWIFT",
+          "name": "Sprint",
+          "amount": 2
+        },
+        {
+          "id": "VIGOROUS",
+          "name": "Werwa",
+          "amount": 5
+        }
+      ],
+      "curses": [
+        {
+          "id": "CLUMSY",
+          "name": "Niezdarność"
+        },
+        {
+          "id": "DECAY",
+          "name": "Rozkład"
+        },
+        {
+          "id": "DOUBT",
+          "name": "Zwątpienie"
+        },
+        {
+          "id": "GUILTY",
+          "name": "Poczucie winy"
+        },
+        {
+          "id": "INJURY",
+          "name": "Kontuzja"
+        },
+        {
+          "id": "NORMALITY",
+          "name": "Normalność"
+        },
+        {
+          "id": "REGRET",
+          "name": "Żal"
+        },
+        {
+          "id": "SHAME",
+          "name": "Wstyd"
+        },
+        {
+          "id": "WRITHE",
+          "name": "Zwijanie z bólu"
+        }
+      ]
+    },
+    "rewards": [
+      {
+        "room": "MONSTER",
+        "card_rarity": "Common",
+        "card_choices": 3,
+        "relics": 0,
+        "potion": "after_first_fight",
+        "room_name": "Przeciwnik"
+      },
+      {
+        "room": "ELITE",
+        "card_rarity": "Uncommon",
+        "card_choices": 3,
+        "relics": 2,
+        "potion": null,
+        "room_name": "Elitarny"
+      },
+      {
+        "room": "BOSS",
+        "card_rarity": "Rare",
+        "card_choices": 3,
+        "relics": 0,
+        "potion": "always",
+        "final_boss": false,
+        "room_name": "Boss"
+      }
+    ],
+    "reward_upgrades_by_act": [
+      0,
+      1,
+      2
+    ],
+    "ascension_ladder": [
+      {
+        "level": 1,
+        "id": "WEARY_TRAVELER",
+        "name": "Strudzony podróżnik",
+        "description": "Starożytni przywracają tylko [blue]80%[/blue] brakujących PŻ."
+      },
+      {
+        "level": 2,
+        "id": "TIGHT_BELT",
+        "name": "Ciasny pas",
+        "description": "Zaczynasz wyprawę z [blue]1[/blue] miejscem na miksturę mniej."
+      },
+      {
+        "level": 3,
+        "id": "TOUGH_ENEMIES",
+        "name": "Wytrzymali przeciwnicy",
+        "description": "Wszyscy przeciwnicy są wytrzymalsi."
+      },
+      {
+        "level": 4,
+        "id": "DEADLY_ENEMIES",
+        "name": "Zabójczy przeciwnicy",
+        "description": "Wszyscy przeciwnicy zadają większe obrażenia."
+      },
+      {
+        "level": 5,
+        "id": "ASCENDERS_BANE",
+        "name": "Zmora wyniesionego",
+        "description": "Zaczynasz wyprawę z [red]Klątwą[/red]."
+      }
+    ],
+    "banned_cards": [
+      {
+        "id": "DEBT",
+        "name": "Dług"
+      },
+      {
+        "id": "HAND_OF_GREED",
+        "name": "Łapczywość"
+      },
+      {
+        "id": "MY_SHINIES",
+        "name": "Kto bogatemu zabroni?"
+      },
+      {
+        "id": "ROYALTIES",
+        "name": "Danina"
+      }
+    ],
+    "banned_relics": [
+      {
+        "id": "AMETHYST_AUBERGINE",
+        "name": "Ametystowy bakłażan",
+        "image_url": "/static/images/beta/v0.114.0/relics/amethyst_aubergine.webp"
+      },
+      {
+        "id": "BLACK_STAR",
+        "name": "Czarna gwiazda",
+        "image_url": "/static/images/beta/v0.114.0/relics/black_star.webp"
+      },
+      {
+        "id": "BOOK_OF_FIVE_RINGS",
+        "name": "Księga pięciu kręgów",
+        "image_url": "/static/images/beta/v0.114.0/relics/book_of_five_rings.webp"
+      },
+      {
+        "id": "BOWLER_HAT",
+        "name": "Melonik",
+        "image_url": "/static/images/beta/v0.114.0/relics/bowler_hat.webp"
+      },
+      {
+        "id": "CURSED_PEARL",
+        "name": "Przeklęta perła",
+        "image_url": "/static/images/beta/v0.114.0/relics/cursed_pearl.webp"
+      },
+      {
+        "id": "DOWSING_ROD",
+        "name": "Różdżka",
+        "image_url": "/static/images/beta/v0.114.0/relics/dowsing_rod.webp"
+      },
+      {
+        "id": "DRAGON_FRUIT",
+        "name": "Smoczy owoc",
+        "image_url": "/static/images/beta/v0.114.0/relics/dragon_fruit.webp"
+      },
+      {
+        "id": "DREAM_CATCHER",
+        "name": "Łapacz snów",
+        "image_url": "/static/images/beta/v0.114.0/relics/dream_catcher.webp"
+      },
+      {
+        "id": "DRIFTWOOD",
+        "name": "Zbutwiałe drewno",
+        "image_url": "/static/images/beta/v0.114.0/relics/driftwood.webp"
+      },
+      {
+        "id": "ECTOPLASM",
+        "name": "Ektoplazma",
+        "image_url": "/static/images/beta/v0.114.0/relics/ectoplasm.webp"
+      },
+      {
+        "id": "ETERNAL_FEATHER",
+        "name": "Wieczne pióro",
+        "image_url": "/static/images/beta/v0.114.0/relics/eternal_feather.webp"
+      },
+      {
+        "id": "FISHING_ROD",
+        "name": "Wędka",
+        "image_url": "/static/images/beta/v0.114.0/relics/fishing_rod.webp"
+      },
+      {
+        "id": "FUR_COAT",
+        "name": "Futrzany płaszcz",
+        "image_url": "/static/images/beta/v0.114.0/relics/fur_coat.webp"
+      },
+      {
+        "id": "GIRYA",
+        "name": "Giria",
+        "image_url": "/static/images/beta/v0.114.0/relics/girya.webp"
+      },
+      {
+        "id": "GOLDEN_COMPASS",
+        "name": "Złoty kompas",
+        "image_url": "/static/images/beta/v0.114.0/relics/golden_compass.webp"
+      },
+      {
+        "id": "GOLDEN_PEARL",
+        "name": "Złota perła",
+        "image_url": "/static/images/beta/v0.114.0/relics/golden_pearl.webp"
+      },
+      {
+        "id": "JUZU_BRACELET",
+        "name": "Bransoletka Juzu",
+        "image_url": "/static/images/beta/v0.114.0/relics/juzu_bracelet.webp"
+      },
+      {
+        "id": "LASTING_CANDY",
+        "name": "Długotrwałe cukierki",
+        "image_url": "/static/images/beta/v0.114.0/relics/lasting_candy.webp"
+      },
+      {
+        "id": "LORDS_PARASOL",
+        "name": "Parasol arystokraty",
+        "image_url": "/static/images/beta/v0.114.0/relics/lords_parasol.webp"
+      },
+      {
+        "id": "LUCKY_FYSH",
+        "name": "Rypka na szczęście",
+        "image_url": "/static/images/beta/v0.114.0/relics/lucky_fysh.webp"
+      },
+      {
+        "id": "MAW_BANK",
+        "name": "Paszczurowa skarbonka",
+        "image_url": "/static/images/beta/v0.114.0/relics/maw_bank.webp"
+      },
+      {
+        "id": "MEAL_TICKET",
+        "name": "Kartka żywnościowa",
+        "image_url": "/static/images/beta/v0.114.0/relics/meal_ticket.webp"
+      },
+      {
+        "id": "MEAT_CLEAVER",
+        "name": "Tasak",
+        "image_url": "/static/images/beta/v0.114.0/relics/meat_cleaver.webp"
+      },
+      {
+        "id": "MEMBERSHIP_CARD",
+        "name": "Karta członkowska",
+        "image_url": "/static/images/beta/v0.114.0/relics/membership_card.webp"
+      },
+      {
+        "id": "MINIATURE_TENT",
+        "name": "Miniaturowy namiot",
+        "image_url": "/static/images/beta/v0.114.0/relics/miniature_tent.webp"
+      },
+      {
+        "id": "OLD_COIN",
+        "name": "Antyczna moneta",
+        "image_url": "/static/images/beta/v0.114.0/relics/old_coin.webp"
+      },
+      {
+        "id": "PAELS_CLAW",
+        "name": "Szpona Paela",
+        "image_url": "/static/images/beta/v0.114.0/relics/paels_claw.webp"
+      },
+      {
+        "id": "PAELS_GROWTH",
+        "name": "Narośl Paela",
+        "image_url": "/static/images/beta/v0.114.0/relics/paels_growth.webp"
+      },
+      {
+        "id": "PAELS_WING",
+        "name": "Skrzydło Paela",
+        "image_url": "/static/images/beta/v0.114.0/relics/paels_wing.webp"
+      },
+      {
+        "id": "PLANISPHERE",
+        "name": "Planisfera",
+        "image_url": "/static/images/beta/v0.114.0/relics/planisphere.webp"
+      },
+      {
+        "id": "PRAYER_WHEEL",
+        "name": "Młynek modlitewny",
+        "image_url": "/static/images/beta/v0.114.0/relics/prayer_wheel.webp"
+      },
+      {
+        "id": "PUMPKIN_CANDLE",
+        "name": "Świeczka dyniowa",
+        "image_url": "/static/images/beta/v0.114.0/relics/pumpkin_candle.webp"
+      },
+      {
+        "id": "REGAL_PILLOW",
+        "name": "Królewska poduszka",
+        "image_url": "/static/images/beta/v0.114.0/relics/regal_pillow.webp"
+      },
+      {
+        "id": "SEAL_OF_GOLD",
+        "name": "Złota pieczęć",
+        "image_url": "/static/images/beta/v0.114.0/relics/seal_of_gold.webp"
+      },
+      {
+        "id": "SHOVEL",
+        "name": "Łopata",
+        "image_url": "/static/images/beta/v0.114.0/relics/shovel.webp"
+      },
+      {
+        "id": "SIGNET_RING",
+        "name": "Sygnet",
+        "image_url": "/static/images/beta/v0.114.0/relics/signet_ring.webp"
+      },
+      {
+        "id": "SILKEN_TRESS",
+        "name": "Jedwabny warkocz",
+        "image_url": "/static/images/beta/v0.114.0/relics/silken_tress.webp"
+      },
+      {
+        "id": "STONE_HUMIDIFIER",
+        "name": "Kamienny nawilżacz",
+        "image_url": "/static/images/beta/v0.114.0/relics/stone_humidifier.webp"
+      },
+      {
+        "id": "THE_COURIER",
+        "name": "Kurier",
+        "image_url": "/static/images/beta/v0.114.0/relics/the_courier.webp"
+      },
+      {
+        "id": "TINY_MAILBOX",
+        "name": "Skrzyneczka na listy",
+        "image_url": "/static/images/beta/v0.114.0/relics/tiny_mailbox.webp"
+      },
+      {
+        "id": "TOY_BOX",
+        "name": "Pudełko na zabawki",
+        "image_url": "/static/images/beta/v0.114.0/relics/toy_box.webp"
+      },
+      {
+        "id": "VENERABLE_TEA_SET",
+        "name": "Serwis do herbaty",
+        "image_url": "/static/images/beta/v0.114.0/relics/venerable_tea_set.webp"
+      },
+      {
+        "id": "WHITE_BEAST_STATUE",
+        "name": "Statuetka białej bestii",
+        "image_url": "/static/images/beta/v0.114.0/relics/white_beast_statue.webp"
+      },
+      {
+        "id": "WINGED_BOOTS",
+        "name": "Uskrzydlone buty",
+        "image_url": "/static/images/beta/v0.114.0/relics/winged_boots.webp"
+      }
+    ],
+    "late_relics": {
+      "from_floor": 21,
+      "relics": [
+        {
+          "id": "FROZEN_EGG",
+          "name": "Zamrożone jajo",
+          "image_url": "/static/images/beta/v0.114.0/relics/frozen_egg.webp"
+        },
+        {
+          "id": "MOLTEN_EGG",
+          "name": "Ogniste jajo",
+          "image_url": "/static/images/beta/v0.114.0/relics/molten_egg.webp"
+        },
+        {
+          "id": "POTION_BELT",
+          "name": "Pas na mikstury",
+          "image_url": "/static/images/beta/v0.114.0/relics/potion_belt.webp"
+        },
+        {
+          "id": "TOXIC_EGG",
+          "name": "Toksyczne jajo",
+          "image_url": "/static/images/beta/v0.114.0/relics/toxic_egg.webp"
+        },
+        {
+          "id": "WHITE_STAR",
+          "name": "Biała gwiazda",
+          "image_url": "/static/images/beta/v0.114.0/relics/white_star.webp"
+        }
+      ]
+    }
+  }
+]

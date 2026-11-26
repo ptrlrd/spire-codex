@@ -428,7 +428,7 @@
       },
       {
         "id": "RIP",
-        "description": "You violently [jitter]rip the leech off your head[/jitter] and chuck it far far away!\n\nThere's a voice in your head:\n[purple][sine]“NOOOOOOoOoooooOOOOoooo....”"
+        "description": "You violently [jitter]rip the leech off your head[/jitter] and chuck it far far away!\n\nThere's a voice in your head:\n[purple][sine]“NOOOOOOoOoooooOOOOoooo....”[/sine][/purple]"
       },
       {
         "id": "SHARE_KNOWLEDGE",
@@ -1902,10 +1902,12 @@
       "SMALL_CAPSULE",
       "STONE_HUMIDIFIER",
       "CURSED_PEARL",
+      "DOWSING_ROD",
       "HEFTY_TABLET",
       "LARGE_CAPSULE",
       "LEAFY_POULTICE",
       "NEOWS_BONES",
+      "NEOWS_SACRIFICE",
       "PRECARIOUS_SHEARS",
       "SILKEN_TRESS",
       "SILVER_CRUCIBLE"
@@ -2261,10 +2263,10 @@
     "relics": [
       "ELECTRIC_SHRYMP",
       "GLASS_EYE",
-      "SAND_CASTLE",
       "ALCHEMICAL_COFFER",
       "DRIFTWOOD",
       "RADIANT_PEARL",
+      "SAND_CASTLE",
       "SEA_GLASS",
       "PRISMATIC_GEM",
       "TOUCH_OF_OROBAS",

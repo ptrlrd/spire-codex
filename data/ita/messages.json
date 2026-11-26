@@ -180,12 +180,15 @@
    "title": "Maleficio"
   },
   "MOCK_NO_UNPLAYABLE_AFFLICTION": {
+   "description": "",
    "title": "Mock No Unplayable Affliction"
   },
   "MOCK_SELF_DAMAGE_AFFLICTION": {
+   "description": "",
    "title": "Mock Self Damage Affliction"
   },
   "MOCK_USELESS_AFFLICTION": {
+   "description": "",
    "title": "Mock Useless Affliction"
   },
   "RINGING": {
@@ -814,6 +817,7 @@
    "title": "Pael"
   },
   "PROCEED": {
+   "description": "",
    "title": "Prosegui"
   },
   "TANX": {
@@ -1083,6 +1087,12 @@
   "THE_ARCHITECT": {
    "CONTINUE": "Continua",
    "RESPOND": "Rispondi",
+   "epithet": "",
+   "pages": {
+    "INITIAL": {
+     "description": ""
+    }
+   },
    "talk": {
     "DEFECT": {
      "0-0r": {
@@ -1771,6 +1781,7 @@
    "title": "Arsenale"
   },
   "ASCENDERS_BANE": {
+   "description": "",
    "title": "Cruccio dell''Asceso"
   },
   "ASHEN_STRIKE": {
@@ -2098,6 +2109,7 @@
    "title": "Mantello Stellare"
   },
   "CLUMSY": {
+   "description": "",
    "title": "Impacciato"
   },
   "COLD_SNAP": {
@@ -2202,6 +2214,7 @@
    "title": "Schiacciatutto"
   },
   "CURSE_OF_THE_BELL": {
+   "description": "",
    "title": "Campanella Maledetta"
   },
   "DAGGER_SPRAY": {
@@ -2233,6 +2246,7 @@
    "title": "Scatto"
   },
   "DAZED": {
+   "description": "",
    "title": "Disorientato"
   },
   "DEADLY_POISON": {
@@ -2256,6 +2270,7 @@
    "title": "Deperimento"
   },
   "DEBRIS": {
+   "description": "",
    "title": "Rottami"
   },
   "DEBT": {
@@ -2474,6 +2489,7 @@
    "title": "Occhio Malvagio"
   },
   "EXPECT_A_FIGHT": {
+   "description": "Gain {CalculatedBlock} [gold]Block[/gold].\nGains {CalculationExtra} additional [gold]Block[/gold] for each [gold]Strength[/gold] you have.",
    "title": "Combattimento Imminente"
   },
   "EXPERTISE": {
@@ -2589,6 +2605,7 @@
    "title": "Colpo Focalizzato"
   },
   "FOLLY": {
+   "description": "",
    "title": "Capriccio"
   },
   "FOOTWORK": {
@@ -2710,6 +2727,7 @@
    "title": "Guardiana della Tomba"
   },
   "GREED": {
+   "description": "",
    "title": "Avidità"
   },
   "GUARDS": {
@@ -2886,6 +2904,7 @@
    "title": "Animo Ardente"
   },
   "INJURY": {
+   "description": "",
    "title": "Lesione"
   },
   "INTERCEPT": {
@@ -3093,22 +3112,28 @@
    "title": "Squallore"
   },
   "MOCK_ATTACK_CARD": {
+   "description": "",
    "title": "Carta Attacco di prova"
   },
   "MOCK_CURSE_CARD": {
+   "description": "",
    "title": "Carta Maledizione di prova"
   },
   "MOCK_POWER_CARD": {
+   "description": "",
    "title": "Carta Potere di prova"
   },
   "MOCK_QUEST_CARD": {
+   "description": "",
    "title": "Carta Missione di prova"
   },
   "MOCK_SKILL_CARD": {
+   "description": "",
    "discardSelectionPrompt": "Seleziona delle carte da scartare.",
    "title": "Carta Abilità di prova"
   },
   "MOCK_STATUS_CARD": {
+   "description": "",
    "title": "Carta Stato di prova"
   },
   "MODDED": {
@@ -3331,6 +3356,7 @@
    "title": "Colpo d''Elsa"
   },
   "POOR_SLEEP": {
+   "description": "",
    "title": "Mancanza di Sonno"
   },
   "POUNCE": {
@@ -3712,6 +3738,7 @@
    "title": "Colpo Solare"
   },
   "SOOT": {
+   "description": "",
    "title": "Fuliggine"
   },
   "SOUL": {
@@ -3771,6 +3798,7 @@
    "title": "Bottino di Battaglia"
   },
   "SPORE_MIND": {
+   "description": "",
    "title": "Spora Cerebrale"
   },
   "SPUR": {
@@ -4174,6 +4202,7 @@
    "title": "Deterioramento"
   },
   "WOUND": {
+   "description": "",
    "title": "Ferita"
   },
   "WRAITH_FORM": {
@@ -4181,6 +4210,7 @@
    "title": "Forma Spettrale"
   },
   "WRITHE": {
+   "description": "",
    "title": "Convulsioni"
   },
   "WROUGHT_IN_WAR": {
@@ -4509,6 +4539,7 @@
    "title": "Infusione"
   },
   "INKY": {
+   "description": "This card applies [blue]{WeakPower}[/blue] [gold]Weak[/gold].",
    "extraCardText": "Applichi [blue]{WeakPower}[/blue] di [gold]Debolezza[/gold]{TargetType, select, AllEnemies { a TUTTI i nemici} other {}}.",
    "title": "Inchiostratura"
   },
@@ -4517,6 +4548,7 @@
    "title": "Istinto"
   },
   "MOCK_FREE_ENCHANTMENT": {
+   "description": "",
    "title": "Mock Free Enchantment"
   },
   "MOMENTUM": {
@@ -5368,25 +5400,101 @@
    "name": "Infezione",
    "year": "1201"
   },
+  "BLIGHT1": {
+   "name": "",
+   "year": ""
+  },
+  "BLIGHT2": {
+   "name": "",
+   "year": ""
+  },
+  "BLIGHT3": {
+   "name": "",
+   "year": ""
+  },
   "FLOURISH0": {
    "name": "Fioritura",
    "year": "1800"
+  },
+  "FLOURISH1": {
+   "name": "",
+   "year": ""
+  },
+  "FLOURISH2": {
+   "name": "",
+   "year": ""
+  },
+  "FLOURISH3": {
+   "name": "",
+   "year": ""
   },
   "INVITATION0": {
    "name": "Porte",
    "year": "2733"
   },
+  "INVITATION1": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION2": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION3": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION4": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION5": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION6": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION7": {
+   "name": "",
+   "year": ""
+  },
   "PEACE0": {
    "name": "La Fine",
    "year": "3000"
+  },
+  "PEACE1": {
+   "name": "",
+   "year": ""
   },
   "PREHISTORIA0": {
    "name": "Preistoria",
    "year": "???"
   },
+  "PREHISTORIA1": {
+   "name": "",
+   "year": ""
+  },
+  "PREHISTORIA2": {
+   "name": "",
+   "year": ""
+  },
   "SEEDS0": {
    "name": "Genesi",
    "year": "0"
+  },
+  "SEEDS1": {
+   "name": "",
+   "year": ""
+  },
+  "SEEDS2": {
+   "name": "",
+   "year": ""
+  },
+  "SEEDS3": {
+   "name": "",
+   "year": ""
   }
  },
  "events": {
@@ -5399,6 +5507,7 @@
     "ALL": {
      "options": {
       "EXIT_BATHS": {
+       "description": "",
        "title": "Esci dalle pozze"
       },
       "LINGER": {
@@ -5785,6 +5894,7 @@
      "description": "La stanchezza ti assale e schiacci un pisolino...\n\nAll''improvviso ti risvegli perché [gold][jitter]qualcosa si contorce[/jitter][/gold] sopra di te!",
      "options": {
       "FIGHT": {
+       "description": "",
        "title": "Combatti!"
       }
      }
@@ -5969,6 +6079,7 @@
      "description": "[gold]{LastDishTitle}[/gold], ottima scelta! Prendi questa squisitezza direttamente dal nastro e la mangi con gusto.\n[green]Che bontà![/green]",
      "options": {
       "LEAVE": {
+       "description": "",
        "title": "Vai via"
       }
      }
@@ -6307,6 +6418,7 @@
    "title": "Addetto alle consegne di pozioni"
   },
   "PROCEED": {
+   "description": "",
    "title": "Prosegui"
   },
   "PUNCH_OFF": {
@@ -6329,6 +6441,7 @@
      "description": "Gli [gold]Assemblaggi[/gold] si voltano verso di te con sguardo minaccioso!\n\nAlzi i pugni e ti prepari a combattere.",
      "options": {
       "FIGHT": {
+       "description": "",
        "title": "Combatti"
       }
      }
@@ -6482,6 +6595,7 @@
      "description": "Salti sul tavolo e dai un [jitter]calcio[/jitter] in faccia al [red]signore della guerra[/red]!\nIl signore della guerra emette un urlo inquietante e crolla a terra.\n\n[jitter][purple]*tutti i presenti sussultano*[/purple][/jitter]",
      "options": {
       "CONTINUE_FIGHT": {
+       "description": "",
        "title": "Prosegui"
       }
      }
@@ -6976,6 +7090,7 @@
      "description": "Lo sconosciuto ti fissa con uno sguardo minaccioso. Sembra che solo una persona riuscirà a uscire da qui con la chiave.",
      "options": {
       "FIGHT": {
+       "description": "",
        "title": "Combatti"
       }
      }
@@ -7820,6 +7935,7 @@
   },
   "FORMAT_DAMAGE_MULTI": "{Damage}[font_size=18]x{Repeat}[/font_size]",
   "FORMAT_DAMAGE_SINGLE": "{Damage}",
+  "FORMAT_EMPTY": "",
   "FORMAT_STATUS_CARD_COUNT": "{CardCount}",
   "HEAL": {
    "description": "Questo nemico si appresta a [gold]curarsi[/gold].",
@@ -10226,6 +10342,7 @@
    "title": "Elettroglobo"
   },
   "MOCK_COMBAT_CLEANUP_ORB": {
+   "description": "",
    "title": "Mock Combat Cleanup"
   },
   "PLASMA_ORB": {
@@ -10410,6 +10527,7 @@
    "title": "Regalo di Mazaleth"
   },
   "MOCK_DISCARD_AND_ADD_SHIVS_POTION": {
+   "description": "",
    "title": "Mock Discard and Add Shivs Potion"
   },
   "OROBIC_ACID": {
@@ -11196,51 +11314,67 @@
    "title": "Seguace"
   },
   "MOCK_CLONE_CARDS_ON_PLAY_POWER": {
+   "description": "",
    "title": "Clonazione delle carte (test)"
   },
   "MOCK_DO_NOT_SCALE_IN_MULTIPLAYER_POWER": {
+   "description": "",
    "title": "Mock Do Not Scale in Multiplayer"
   },
   "MOCK_EXTRA_TURN_POWER": {
+   "description": "",
    "title": "Mock Extra Turn"
   },
   "MOCK_FREE_CARDS_POWER": {
+   "description": "",
    "title": "Carte senza costo (test)"
   },
   "MOCK_GAIN_BLOCK_ON_ATTACK_POWER": {
+   "description": "",
    "title": "Ottieni blocco all''attacco (test)"
   },
   "MOCK_INVINCIBLE_ON_DEATH_POWER": {
+   "description": "",
    "title": "Invincibile alla morte (test)"
   },
   "MOCK_MODIFY_ENERGY_COST_POWER": {
+   "description": "",
    "title": "Costo Energia modificato (test)"
   },
   "MOCK_MODIFY_STAR_COST_POWER": {
+   "description": "",
    "title": "Costo Stella modificato (test)"
   },
   "MOCK_PHASE_OBSERVER_POWER": {
+   "description": "",
    "title": "Mock Phase Observer"
   },
   "MOCK_PREVENT_DEATH_POWER": {
+   "description": "",
    "title": "Prevenzione morte (test)"
   },
   "MOCK_REMOVE_DRAWN_CARDS_FROM_COMBAT_POWER": {
+   "description": "",
    "title": "Rimozione carte pescate dal combattimento (test)"
   },
   "MOCK_RESET_COMBAT_ON_SHUFFLE_POWER": {
+   "description": "",
    "title": "Ripristino combattimento quando si mescola il mazzo (test)"
   },
   "MOCK_REVIVE_POWER": {
+   "description": "",
    "title": "Rinascita (test)"
   },
   "MOCK_SCALE_IN_MULTIPLAYER_POWER": {
+   "description": "",
    "title": "Mock Scale in Multiplayer"
   },
   "MOCK_TEMPORARY_STRENGTH_LOSS": {
+   "description": "",
    "title": "Perdita Forza temporanea (test)"
   },
   "MOCK_UNHITTABLE_POWER": {
+   "description": "",
    "title": "Mock Unhittable"
   },
   "MONARCHS_GAZE_POWER": {
@@ -11595,6 +11729,7 @@
   },
   "SLOW_POWER": {
    "description": "In questo turno, ogni volta che giochi una carta, questo nemico riceve il [blue]10%[/blue] di danno in più dalle carte Attacco.",
+   "smartDescription": "Whenever you play a card, {OnPlayer, select, true {you receive} other {this enemy receives}} [blue]10%[/blue] more damage from Attacks this turn.{SlowAmount, plural, =0 {} other { (Receives [blue]{DisplayAmount}%[/blue] more damage)}}",
    "title": "Rallentamento"
   },
   "SLUMBER_POWER": {
@@ -12152,6 +12287,7 @@
    "title": "Bastoncini Ardenti"
   },
   "BYRDPIP": {
+   "description": "Upon pickup, gain the card [gold]Byrd Swoop[/gold]. A [gold]Byrdpip[/gold] will accompany you in battles.",
    "flavor": "[red]I dettagli di questa reliquia verranno rivelati in futuro...[/red]",
    "title": "Gryfoncino"
   },
@@ -13867,6 +14003,7 @@
   "TEXT_EFFECTS": "Effetti di testo",
   "TEXT_EFFECTS_DESCRIPTION": "Scegli se attivare gli effetti di testo, come l''ondulazione e il tremolio del testo.",
   "TEXT_SIZE": "Dimensione del testo",
+  "TOAST_CANNOT_REMAP_INPUT": "Cannot set an input for {Hotkey} for {ControlType}.",
   "TOAST_FAST_MODE_OFF": "Le azioni dei combattimenti e le transizioni tra le schermate saranno più lente.",
   "TOAST_FAST_MODE_ON": "Le azioni dei combattimenti e le transizioni tra le schermate saranno più rapide.",
   "TOAST_GAMEPLAY_DATA_OFF": "I dati di gioco e i registri degli errori non verranno inviati.",

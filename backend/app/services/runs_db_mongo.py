@@ -60,6 +60,7 @@ from pymongo.errors import (
 
 from ..metrics import count_budget_timeouts, db_operations, db_operation_duration
 from . import cache as app_cache
+from .game_modes import is_custom_run
 from .official_content import LIVE_CAST
 
 logger = logging.getLogger(__name__)
@@ -93,10 +94,12 @@ _HIDDEN_BROWSE_KEYS = (
 _HIDDEN_BROWSE_FIELDS = frozenset(_HIDDEN_BROWSE_KEYS)
 STEAM_BEST_WIN_INDEX = "steam_win_runtime"
 USER_PLAYED_INDEX = "user_played_submitted"
+BUILD_EXPORT_INDEX = "build_submitted_id"
 LIST_MAX_TIME_MS = 4000
 COUNT_FALLBACK_MAX_TIME_MS = 3000
 _GLOBAL_WINS_KEY = "seed_rank:global_wins"
 _GLOBAL_WINS_TTL_SECONDS = 300
+_RUN_RANK_TTL_SECONDS = 600
 
 
 def _today_daily_seed_match() -> dict:
@@ -803,6 +806,26 @@ def submit_run(
     return out
 
 
+def _owner_kept_replay(run_hash: str, steam_id, user_id) -> bool:
+    if not (steam_id or user_id):
+        return False
+    try:
+        from .replays_db import kept_replay_for
+
+        return kept_replay_for(run_hash, steam_id, user_id)
+    except Exception:
+        return False
+
+
+def _kept_competitive(run_hash: str) -> dict:
+    try:
+        from .replays_db import competitive_fields_for
+
+        return competitive_fields_for(run_hash)
+    except Exception:
+        return {}
+
+
 def _blob_collection():
     return _get_collection().database["run_blobs"]
 
@@ -1117,6 +1140,7 @@ def _submit_player_run(
         "was_abandoned": was_abandoned,
         "ascension": data.get("ascension", 0),
         "game_mode": data.get("game_mode", "standard"),
+        "is_custom": is_custom_run(data),
         "player_count": player_count,
         "run_time": data.get("run_time", 0),
         "floors_reached": total_floors,
@@ -1178,6 +1202,9 @@ def _submit_player_run(
         doc["hidden"] = True
         doc["hidden_reason"] = tombstone_reason
         logger.info("re-upload of moderated run %s stays hidden", run_hash)
+    if verified and _owner_kept_replay(run_hash, steam_id, linked_user_id):
+        doc["has_replay"] = True
+        doc.update(_kept_competitive(run_hash))
     try:
         coll.insert_one(doc)
         if not doc.get("hidden"):
@@ -1365,6 +1392,58 @@ def backfill_played_at() -> int:
         ],
     )
     return result.modified_count
+
+
+def backfill_is_custom(batch: int = 500) -> int:
+    """Backfill: stamp is_custom on stored custom runs, the way ingest now
+    does. The v0.113.0+ saves keep their real game_mode and say
+    is_custom_game; run docs don't carry the save, so the flag is read from
+    run_blobs (keyed by the same hash as the run doc) in _id order, a batch
+    at a time. The older runs stored as game_mode "custom" are stamped with
+    one indexed update. Only custom runs are touched; a missing is_custom
+    reads as not custom. Idempotent. Returns the number of docs stamped."""
+    coll = _get_collection()
+    stamped = coll.update_many(
+        {"game_mode": "custom", "is_custom": {"$ne": True}},
+        {"$set": {"is_custom": True}},
+    ).modified_count
+
+    blobs = _blob_collection()
+    last = None
+    scanned = 0
+    started = time.time()
+    while True:
+        flt = {"_id": {"$gt": last}} if last is not None else {}
+        docs = list(
+            blobs.find(flt, {"_id": 1, "blob.is_custom_game": 1})
+            .sort("_id", ASCENDING)
+            .limit(batch)
+        )
+        if not docs:
+            break
+        last = docs[-1]["_id"]
+        scanned += len(docs)
+        hashes = [
+            d["_id"]
+            for d in docs
+            if (d.get("blob") or {}).get("is_custom_game") is True
+        ]
+        if hashes:
+            stamped += coll.update_many(
+                {"_id": {"$in": hashes}, "is_custom": {"$ne": True}},
+                {"$set": {"is_custom": True}},
+            ).modified_count
+        if scanned % (batch * 100) == 0:
+            logger.info(
+                "is_custom backfill: %d blobs scanned, %d stamped, %.0fs",
+                scanned,
+                stamped,
+                time.time() - started,
+            )
+    logger.info(
+        "is_custom backfill: done, %d blobs scanned, %d stamped", scanned, stamped
+    )
+    return stamped
 
 
 def backfill_username_lower() -> int:
@@ -2572,6 +2651,8 @@ def _projection_row() -> dict:
         "build_id": 1,
         "hidden": 1,
         "has_replay": 1,
+        "competitive": 1,
+        "competitive_bracket": 1,
         "user_id": 1,
         "steam_id": 1,
         **_KEY_PICK_FIELDS,
@@ -2677,147 +2758,54 @@ def _row_to_dict(doc: dict) -> dict:
 WINRATE_MIN_RUNS = 5
 
 
-_USER_WINRATES_KEY = "user_winrates:v2"
-_USER_WINRATES_STALE_KEY = "user_winrates:v2:stale"
-_USER_WINRATES_LOCK = "user_winrates:v2:lock"
-_USER_WINRATES_TTL_SECONDS = 3600
-_USER_WINRATES_STALE_TTL_SECONDS = 24 * 3600
-_USER_WINRATES_LOCK_TTL_SECONDS = 30 * 60
-_USER_WINRATES_MAX_QUERY_MS = 20 * 60 * 1000
+USER_WINRATES_NAME = "user_winrates.json"
+USER_WINRATES_PREV_NAME = "user_winrates.prev.json"
 _USER_WINRATES_RECHECK_SECONDS = 15
-_USER_WINRATES_RETRY_SECONDS = 120
-_user_winrates_memo: dict[str, list[int]] | None = None
-_user_winrates_built_at = 0.0
+_user_winrates_memo: dict[str, list[int]] = {}
+_user_winrates_stamp: tuple | None = None
 _user_winrates_checked_at = float("-inf")
-_user_winrates_failed_at = float("-inf")
 _user_winrates_state = threading.Lock()
-_user_winrates_inflight = threading.Lock()
 
 
 def get_user_winrates() -> dict[str, list[int]]:
-    """Per-username [total runs, wins], never computed inside a request.
+    """Per-username [total runs, wins], read from the file the lake stage
+    lab/user_winrates.py writes each ingest cycle. Nothing here queries the
+    database. The file is checked at most every 15 s per process; when the
+    current one is missing or unreadable the previous generation's is
+    used, and with neither the map is empty.
 
-    The aggregation walks every named run in the collection, which takes
-    minutes at the current size, so the map lives in Redis with its build
-    time: a fresh copy for an hour and a stale copy for a day. Callers get
-    the newest copy this process knows about (Redis is consulted at most
-    every 15 s per process); once that copy is an hour old one background
-    thread per process (and, through the Redis lock, one process at a time)
-    rebuilds it. Until the first build lands the map is empty. Anonymous
-    runs (no username) are excluded; abandoned runs count as losses,
+    Keyed by lowercased username so the keys compose with the
+    case-insensitive username_lower filters that consume this map.
+    Anonymous runs are left out and abandoned runs count as losses,
     matching the profile-page win rate.
-
-    Keyed by username_lower (not display username) so the keys compose with the
-    case-insensitive username_lower filters that consume this map (list /
-    leaderboard winrate filters); otherwise mixed-case users would silently
-    drop out.
     """
-    global _user_winrates_checked_at
+    global _user_winrates_memo, _user_winrates_stamp, _user_winrates_checked_at
     now = time.monotonic()
     with _user_winrates_state:
         if now - _user_winrates_checked_at < _USER_WINRATES_RECHECK_SECONDS:
-            return _user_winrates_memo or {}
+            return _user_winrates_memo
         _user_winrates_checked_at = now
-    payload = app_cache.get_json(_USER_WINRATES_KEY)
-    if payload is None:
-        payload = app_cache.get_json(_USER_WINRATES_STALE_KEY)
-    if payload is not None:
-        _remember_user_winrates(payload)
-    if time.time() - _user_winrates_built_at >= _USER_WINRATES_TTL_SECONDS:
-        _start_user_winrates_refresh()
-    return _user_winrates_memo or {}
-
-
-def _remember_user_winrates(payload: Any) -> None:
-    global _user_winrates_memo, _user_winrates_built_at
-    try:
-        built_at = float(payload["at"])
-        rates = payload["rates"]
-    except (KeyError, TypeError, ValueError):
-        return
-    if not isinstance(rates, dict):
-        return
-    with _user_winrates_state:
-        if built_at > _user_winrates_built_at:
+    lake = Path(os.environ.get("LAKE_DIR", "/lake"))
+    for name in (USER_WINRATES_NAME, USER_WINRATES_PREV_NAME):
+        path = lake / name
+        try:
+            st = path.stat()
+        except OSError:
+            continue
+        stamp = (name, st.st_mtime_ns, st.st_size)
+        if stamp == _user_winrates_stamp:
+            return _user_winrates_memo
+        try:
+            rates = json.loads(path.read_text(encoding="utf-8"))["rates"]
+        except (OSError, ValueError, KeyError, TypeError):
+            continue
+        if not isinstance(rates, dict):
+            continue
+        with _user_winrates_state:
             _user_winrates_memo = rates
-            _user_winrates_built_at = built_at
-
-
-def _start_user_winrates_refresh() -> None:
-    if time.monotonic() - _user_winrates_failed_at < _USER_WINRATES_RETRY_SECONDS:
-        return
-    if not _user_winrates_inflight.acquire(blocking=False):
-        return
-    token = secrets.token_hex(16)
-    try:
-        if not app_cache.acquire_lock(
-            _USER_WINRATES_LOCK, _USER_WINRATES_LOCK_TTL_SECONDS, token
-        ):
-            _user_winrates_inflight.release()
-            return
-        threading.Thread(
-            target=_refresh_user_winrates,
-            args=(token,),
-            daemon=True,
-            name="user-winrates",
-        ).start()
-    except Exception:
-        app_cache.release_lock(_USER_WINRATES_LOCK, token)
-        _user_winrates_inflight.release()
-        logger.warning("user winrates refresh could not start", exc_info=True)
-
-
-def _refresh_user_winrates(token: str) -> None:
-    """Rebuild the map under the locks the caller took, publish it under the
-    fresh and stale keys, and always release both locks."""
-    global _user_winrates_failed_at
-    try:
-        payload = app_cache.get_json(_USER_WINRATES_KEY)
-        if payload is not None:
-            _remember_user_winrates(payload)
-            if time.time() - _user_winrates_built_at < _USER_WINRATES_TTL_SECONDS:
-                return
-        coll = _get_collection()
-        pipeline = [
-            # Official content only: A11+ and modded-character runs aren't real skill
-            # signal, so they must not count toward the win rate that gates the
-            # winrate:xx brackets on /list and the leaderboards.
-            {
-                "$match": {
-                    "username_lower": {"$nin": [None, ""]},
-                    "ascension": {"$gte": 0, "$lte": 10},
-                    "character": {"$in": list(OFFICIAL_CHARACTERS)},
-                }
-            },
-            {
-                "$group": {
-                    "_id": "$username_lower",
-                    "total": {"$sum": 1},
-                    "wins": {"$sum": {"$cond": [{"$in": ["$win", [True, 1]]}, 1, 0]}},
-                }
-            },
-        ]
-        rates: dict[str, list[int]] = {}
-        for row in coll.aggregate(
-            pipeline, allowDiskUse=True, maxTimeMS=_USER_WINRATES_MAX_QUERY_MS
-        ):
-            rates[str(row["_id"])] = [int(row["total"]), int(row["wins"])]
-        payload = {"at": time.time(), "rates": rates}
-        app_cache.set_json(
-            _USER_WINRATES_KEY, payload, ttl_seconds=_USER_WINRATES_TTL_SECONDS
-        )
-        app_cache.set_json(
-            _USER_WINRATES_STALE_KEY,
-            payload,
-            ttl_seconds=_USER_WINRATES_STALE_TTL_SECONDS,
-        )
-        _remember_user_winrates(payload)
-    except Exception:
-        _user_winrates_failed_at = time.monotonic()
-        logger.warning("user winrates refresh failed", exc_info=True)
-    finally:
-        app_cache.release_lock(_USER_WINRATES_LOCK, token)
-        _user_winrates_inflight.release()
+            _user_winrates_stamp = stamp
+        return rates
+    return _user_winrates_memo
 
 
 def _is_time_limit(exc: Exception) -> bool:
@@ -2928,6 +2916,8 @@ def _run_filter(
     today: bool = False,
     include_hidden: bool = False,
     has_replay: bool | None = None,
+    competitive: str | None = None,
+    competitive_bracket: str | None = None,
 ) -> dict | None:
     """The Mongo match for the run browser's filters, or None when the
     winrate filter rules out every run."""
@@ -2938,6 +2928,10 @@ def _run_filter(
         q["has_replay"] = True
     elif has_replay is False:
         q["has_replay"] = {"$ne": True}
+    if competitive in ("cleared", "flagged"):
+        q["competitive"] = competitive
+    if competitive_bracket in ("a10_solo", "dread_solo"):
+        q["competitive_bracket"] = competitive_bracket
     if character:
         q["character"] = character.upper()
     if win == "true":
@@ -3057,6 +3051,8 @@ def list_runs(
     limit: int = 50,
     include_hidden: bool = False,
     has_replay: bool | None = None,
+    competitive: str | None = None,
+    competitive_bracket: str | None = None,
 ) -> dict:
     """Paginated, filterable run list. Mirrors the /api/runs/list SQLite path.
 
@@ -3083,6 +3079,8 @@ def list_runs(
         today=today,
         include_hidden=include_hidden,
         has_replay=has_replay,
+        competitive=competitive,
+        competitive_bracket=competitive_bracket,
     )
     if q is None:
         return {
@@ -3772,6 +3770,21 @@ def _background_index_specs() -> list[tuple[list, dict]]:
             ],
             {"name": USER_PLAYED_INDEX},
         ),
+        (
+            [
+                ("competitive", ASCENDING),
+                ("competitive_bracket", ASCENDING),
+                ("submitted_at", DESCENDING),
+            ],
+            {
+                "name": "competitive_bracket",
+                "partialFilterExpression": {"competitive": {"$exists": True}},
+            },
+        ),
+        (
+            [("build_id", ASCENDING), ("submitted_at", ASCENDING), ("_id", ASCENDING)],
+            {"name": BUILD_EXPORT_INDEX},
+        ),
     ]
 
 
@@ -3874,6 +3887,11 @@ def get_run_rank(run_hash: str, category: str = "fastest") -> dict:
     except Exception:
         logger.warning("lake rank failed", exc_info=True)
 
+    board = "highest_ascension" if category == "highest_ascension" else "fastest"
+    cache_key = f"run_rank:{board}:{run_hash}"
+    cached = app_cache.get_json(cache_key)
+    if isinstance(cached, int) and not isinstance(cached, bool):
+        return {"rank": cached, "category": category}
     scope = {"win": {"$in": [True, 1]}, **bucket}
     asc = row.get("ascension") or 0
     if category == "highest_ascension":
@@ -3891,6 +3909,7 @@ def get_run_rank(run_hash: str, category: str = "fastest") -> dict:
         ahead = _count_visible(
             coll, {**scope, "run_time": {"$lt": row.get("run_time", 0)}}
         )
+    app_cache.set_json(cache_key, ahead + 1, ttl_seconds=_RUN_RANK_TTL_SECONDS)
     return {"rank": ahead + 1, "category": category}
 
 
@@ -3901,6 +3920,18 @@ def _global_win_total(coll) -> int:
     total = _count_visible(coll, {"win": {"$in": [True, 1]}})
     app_cache.set_json(_GLOBAL_WINS_KEY, total, ttl_seconds=_GLOBAL_WINS_TTL_SECONDS)
     return total
+
+
+def _global_wins_ahead(coll, run_time: int) -> int:
+    key = f"seed_rank:ahead:{run_time}"
+    cached = app_cache.get_json(key)
+    if isinstance(cached, int) and not isinstance(cached, bool):
+        return cached
+    ahead = _count_visible(
+        coll, {"win": {"$in": [True, 1]}, "run_time": {"$lt": run_time}}
+    )
+    app_cache.set_json(key, ahead, ttl_seconds=_GLOBAL_WINS_TTL_SECONDS)
+    return ahead
 
 
 @_instrument("seed_rank_for")
@@ -3953,16 +3984,7 @@ def seed_rank_for(steam_id: str | None, seed: str, run_hash: str | None = None) 
         )
         global_total = _global_win_total(coll)
         if best and global_total:
-            global_rank = (
-                _count_visible(
-                    coll,
-                    {
-                        "win": {"$in": [True, 1]},
-                        "run_time": {"$lt": best.get("run_time", 0)},
-                    },
-                )
-                + 1
-            )
+            global_rank = _global_wins_ahead(coll, best.get("run_time", 0)) + 1
             global_total = max(global_total, global_rank)
             percentile = round(global_rank * 100.0 / global_total, 1)
     else:
@@ -4178,6 +4200,7 @@ def get_user_picks(steam_id: str) -> dict[str, dict]:
                   ancient_choice nested in map_point_history.
     Keyed by entity id (uppercase bare, as stored)."""
     coll = _get_collection()
+    mine = {"steam_id": steam_id, "hidden": {"$ne": True}, "deleted_at": None}
 
     def tally(rows) -> dict[str, dict]:
         return {
@@ -4188,7 +4211,7 @@ def get_user_picks(steam_id: str) -> dict[str, dict]:
 
     cards = coll.aggregate(
         [
-            {"$match": {"steam_id": steam_id}},
+            {"$match": mine},
             {"$unwind": "$card_choices"},
             {
                 "$group": {
@@ -4210,7 +4233,7 @@ def get_user_picks(steam_id: str) -> dict[str, dict]:
     A = "$map_point_history"
     ancients = coll.aggregate(
         [
-            {"$match": {"steam_id": steam_id}},
+            {"$match": mine},
             {"$unwind": A},  # acts -> one act (a list of floors)
             {"$unwind": A},  # floors -> one floor (a dict)
             {"$unwind": f"{A}.player_stats"},
@@ -4290,7 +4313,15 @@ def get_share_meta_for_hash(run_hash: str) -> dict:
     can banner runs excluded from leaderboards and aggregates."""
     doc = _get_collection().find_one(
         {"_id": run_hash},
-        {"username": 1, "hidden": 1, "hidden_reason": 1, "has_replay": 1},
+        {
+            "username": 1,
+            "hidden": 1,
+            "hidden_reason": 1,
+            "has_replay": 1,
+            "competitive": 1,
+            "competitive_bracket": 1,
+            "competitive_reasons": 1,
+        },
     )
     return {
         "exists": doc is not None,
@@ -4298,6 +4329,9 @@ def get_share_meta_for_hash(run_hash: str) -> dict:
         "hidden": bool((doc or {}).get("hidden")),
         "hidden_reason": (doc or {}).get("hidden_reason"),
         "has_replay": bool((doc or {}).get("has_replay")),
+        "competitive": (doc or {}).get("competitive"),
+        "competitive_bracket": (doc or {}).get("competitive_bracket"),
+        "competitive_reasons": (doc or {}).get("competitive_reasons") or [],
     }
 
 
@@ -4656,6 +4690,10 @@ def delete_run_permanently(run_hash: str, user: dict) -> dict:
             "win": 1,
             "was_abandoned": 1,
             "ascension": 1,
+            "competitive": 1,
+            "competitive_bracket": 1,
+            "seed": 1,
+            "played_at": 1,
         },
     )
     if not run:
@@ -4689,6 +4727,13 @@ def _remove_run(run: dict, guard: dict | None = None) -> bool:
     removed = _get_collection().delete_one({"_id": run_hash, **(guard or {})})
     if not removed.deleted_count:
         return False
+    if run.get("competitive"):
+        try:
+            from . import competitive_starts
+
+            competitive_starts.run_removed(run)
+        except Exception:
+            logger.warning("competitive forfeit failed for %s", run_hash, exc_info=True)
     if not run.get("hidden") and not run.get("deleted_at"):
         bump_stats_counters(run, -1)
     _blob_collection().delete_one({"_id": run_hash})

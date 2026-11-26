@@ -43,13 +43,22 @@ def available() -> bool:
     return (_vec_dir() / "vocab.json").exists()
 
 
-def _build_vocab() -> list[str]:
+def full_catalog(entity: str, lang: str = "eng") -> list[dict]:
+    """Main rows plus the ones only the current beta has, since beta runs
+    are in the vectors too."""
     from . import data_service
 
-    cards = {str(c.get("id", "")).upper() for c in data_service.load_cards("eng")}
-    relics = {
-        f"R:{str(r.get('id', '')).upper()}" for r in data_service.load_relics("eng")
-    }
+    load = data_service.load_cards if entity == "cards" else data_service.load_relics
+    token = data_service.current_channel.set("all")
+    try:
+        return load(lang)
+    finally:
+        data_service.current_channel.reset(token)
+
+
+def _build_vocab() -> list[str]:
+    cards = {str(c.get("id", "")).upper() for c in full_catalog("cards")}
+    relics = {f"R:{str(r.get('id', '')).upper()}" for r in full_catalog("relics")}
     return sorted(cards - {""}) + sorted(relics - {"R:"})
 
 
@@ -402,6 +411,10 @@ def _spherical_kmeans(mat, k: int, iters: int = 25, seed: int = 0):
     return labels, centers, dists
 
 
+MEMBER_CARDS = 12
+MEMBER_RELICS = 6
+
+
 def _cluster_shard(character: str, mat, meta: list, vocab_list: list[str], k: int):
     vocab_index = {t: i for i, t in enumerate(vocab_list)}
     import numpy as np
@@ -425,16 +438,22 @@ def _cluster_shard(character: str, mat, meta: list, vocab_list: list[str], k: in
             if idx is not None:
                 lift[idx] = 0
         top = np.argsort(lift)[::-1]
-        cards, relics = [], []
+        member_cards, member_relics = [], []
         for idx in top:
-            if lift[idx] <= 1.0 or (len(cards) >= 3 and len(relics) >= 2):
+            if lift[idx] <= 1.0 or (
+                len(member_cards) >= MEMBER_CARDS
+                and len(member_relics) >= MEMBER_RELICS
+            ):
                 break
             term = vocab_list[idx]
+            entry = [term.removeprefix("R:"), round(float(lift[idx]), 2)]
             if term.startswith("R:"):
-                if len(relics) < 2:
-                    relics.append(term[2:])
-            elif len(cards) < 3:
-                cards.append(term)
+                if len(member_relics) < MEMBER_RELICS:
+                    member_relics.append(entry)
+            elif len(member_cards) < MEMBER_CARDS:
+                member_cards.append(entry)
+        cards = [m[0] for m in member_cards[:3]]
+        relics = [m[0] for m in member_relics[:2]]
         member_idx = np.flatnonzero(mask)
         win_members = member_idx[wins[member_idx] == 1]
         pool = win_members if win_members.size else member_idx
@@ -455,6 +474,8 @@ def _cluster_shard(character: str, mat, meta: list, vocab_list: list[str], k: in
                 "win_rate": round(float(wins[mask].mean()) * 100, 1) if size else 0.0,
                 "defining_cards": cards,
                 "defining_relics": relics,
+                "cards": member_cards,
+                "relics": member_relics,
                 "example_runs": [meta[int(i)]["hash"] for i in examples],
                 "versions": by_ver,
             }
@@ -803,10 +824,8 @@ def _nondraftable() -> frozenset[str]:
     global _nondraftable_cache
     if _nondraftable_cache is None:
         try:
-            from . import data_service
-
             terms: set[str] = {"ASCENDERS_BANE"}
-            for c in data_service.load_cards("eng"):
+            for c in full_catalog("cards"):
                 # Basic = starters; Quest/Curse = granted by events and
                 # ancients, never drafted (Spoils Map was naming archetypes).
                 if (
@@ -817,7 +836,7 @@ def _nondraftable() -> frozenset[str]:
                     or c.get("type_key") == "Curse"
                 ):
                     terms.add(str(c.get("id", "")).upper())
-            for r in data_service.load_relics("eng"):
+            for r in full_catalog("relics"):
                 if "Starter" in str(r.get("rarity") or ""):
                     terms.add(f"R:{str(r.get('id', '')).upper()}")
             _nondraftable_cache = frozenset(terms - {""})

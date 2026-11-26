@@ -4,6 +4,8 @@ import os
 
 from fastapi import APIRouter
 
+from ..services.replay_competitive import approved_mods
+
 router = APIRouter(prefix="/api/mod", tags=["Mod"])
 
 
@@ -15,9 +17,13 @@ def latest_mod_version():
     and shows an "update available" or "untested game build" line in its overlay. Values
     come from env vars so they can be bumped after a game patch without a code change
     (restart the backend to pick them up).
+
+    `competitive_approved_mods` lists the mod ids a competitive run may have
+    loaded besides Spire Codex itself. It is empty until some are approved.
     """
     return {
         "version": os.getenv("MOD_LATEST_VERSION", "v0.1.0"),
         "url": os.getenv("MOD_DOWNLOAD_URL", "https://spire-codex.com"),
         "sts2_tested": os.getenv("MOD_STS2_TESTED", "v0.103.3"),
+        "competitive_approved_mods": approved_mods(),
     }

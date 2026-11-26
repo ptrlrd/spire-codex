@@ -1,0 +1,16 @@
+{
+  "gid": "1826362059922807",
+  "title": "Hotfix Patch Notes - v0.98.1",
+  "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1826362059922807",
+  "is_external_url": true,
+  "author": "demileaf",
+  "contents": "Happy Slay the Spire 2 launch day everyone! We have a day 1 hotfix for various issues and softlocks that players have reported. Thank you all for your feedback! For those who don't know, you can submit feedback in-game by pressing F2 or through the settings menu.\n\n[h3]BUG FIXES:[/h3]\n\n[list]\n[*]Fixed an issue where, if you played your first run in multiplayer and disconnected after defeating the Act 1 boss, you would be unable to start a new run or enter the Timeline screen\n[*]Fixed crash from fast card play when card play is cancelled during targeting\n[*]Fixed crash when displaying untranslated text for languages with complex plural rules\n[*]Fixed intermittent crash with non-English languages\n[*]Fixed localization-related crash in Japanese [b]Knife Trap[/b] translation referencing non-existent Damage variable\n[*]Fixed unsupported Steam languages showing all text as W's instead of falling back to English\n[/list]",
+  "feedlabel": "Community Announcements",
+  "feedname": "steam_community_announcements",
+  "feed_type": 1,
+  "tags": [
+    "patchnotes"
+  ],
+  "date": 1772758585,
+  "appid": 2868840
+}

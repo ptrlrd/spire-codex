@@ -50,6 +50,16 @@
     "image_url": "/static/images/powers/aggression_power.webp"
   },
   {
+    "id": "AMBERGRIS",
+    "name": "Амбра",
+    "description": "У вас есть дополнительный ход.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/ambergris_power.webp"
+  },
+  {
     "id": "ANTICIPATE",
     "name": "Temporary Dexterity",
     "description": "Дает [gold]ловкость[/gold] на этот ход.",
@@ -82,8 +92,8 @@
   {
     "id": "ASLEEP",
     "name": "Сон",
-    "description": "Проснется, если потеряет ОЗ, либо спустя [blue]{}[/blue] хода.",
-    "description_raw": "Проснется, если потеряет ОЗ, либо {Amount:plural(ru):в следующем ходу|спустя [blue]{}[/blue] хода|спустя [blue]{}[/blue] ходов}.",
+    "description": "В РАЗРАБОТКЕ",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -182,8 +192,8 @@
   {
     "id": "BLUR",
     "name": "Неуловимость",
-    "description": "[gold]Защита[/gold] не пропадет в начале {} следующих ходов.",
-    "description_raw": "[gold]Защита[/gold] не пропадет в начале {Amount:plural(ru):следующего хода|{} следующих ходов|{} следующих ходов}.",
+    "description": "[gold]Защита[/gold] не пропадет в начале следующего хода.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -202,8 +212,8 @@
   {
     "id": "BUFFER",
     "name": "Буфер",
-    "description": "Предотвращает потерю ОЗ [blue]{}[/blue] раза.",
-    "description_raw": "Предотвращает {Amount:plural(ru):следующую потерю ОЗ|потерю ОЗ [blue]{}[/blue] раза|[blue]{}[/blue] раз}.",
+    "description": "Предотвращает следующую потерю ОЗ.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -222,18 +232,28 @@
   {
     "id": "BURST",
     "name": "Прилив сил",
-    "description": "[blue]{}[/blue] следующих разыгранных в этом ходу Навыка разыгрываются дополнительный раз.",
-    "description_raw": "{Amount:plural(ru):Следующий разыгранный в этом ходу Навык разыгрывается|[blue]{}[/blue] следующих разыгранных в этом ходу Навыка разыгрываются|[blue]{}[/blue] следующих разыгранных в этом ходу Навыков разыгрываются} дополнительный раз.",
+    "description": "Следующий разыгранный в этом ходу Навык разыгрывается дополнительный раз.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/burst_power.webp"
   },
   {
+    "id": "CACOPHONY",
+    "name": "Какофония",
+    "description": "Наносит урон случайному врагу за каждые 33 карты, взятые ВСЕМИ игроками.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/cacophony_power.webp"
+  },
+  {
     "id": "CALAMITY",
     "name": "Смерч",
-    "description": "Добавляет в [gold]руку[/gold] [blue]{}[/blue] случайные Атаки, когда вы разыгрываете Атаку.",
-    "description_raw": "Добавляет в [gold]руку[/gold] {Amount:plural(ru):случайную Атаку|[blue]{}[/blue] случайные Атаки|[blue]{}[/blue] случайных Атак}, когда вы разыгрываете Атаку.",
+    "description": "Добавляет в [gold]руку[/gold] случайную Атаку, когда вы разыгрываете Атаку.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -272,8 +292,8 @@
   {
     "id": "CHILD_OF_THE_STARS",
     "name": "Дитя звезд",
-    "description": "Дает по [blue]1[/blue] [gold]защиты[/gold] за каждую потраченную [star:1].",
-    "description_raw": "Дает по [blue]1[/blue] [gold]защиты[/gold] за каждую потраченную {singleStarIcon}.",
+    "description": "Дает по [blue]2[/blue] [gold]защиты[/gold] за каждую потраченную [star:1].",
+    "description_raw": "Дает по [blue]2[/blue] [gold]защиты[/gold] за каждую потраченную {singleStarIcon}.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -282,8 +302,8 @@
   {
     "id": "CLARITY",
     "name": "Ясность",
-    "description": "Вы добираете [blue]1[/blue] дополнительную карту в начале [blue]{}[/blue] следующих ходов.",
-    "description_raw": "Вы {Amount:plural(ru):доберете|добираете|добираете} [blue]1[/blue] дополнительную карту в начале {Amount:plural(ru):следующего хода|[blue]{}[/blue] следующих ходов|[blue]{}[/blue] следующих ходов}.",
+    "description": "Вы доберете [blue]1[/blue] дополнительную карту в начале следующего хода.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -292,12 +312,22 @@
   {
     "id": "COLOSSUS",
     "name": "Колосс",
-    "description": "Вы получаете на [blue]50%[/blue] меньше урона от [gold]уязвимых[/gold] врагов в течение [blue]{}[/blue] ходов.",
-    "description_raw": "Вы получаете на [blue]{DamageDecrease:percentLess()}%[/blue] меньше урона от [gold]уязвимых[/gold] врагов {Amount:plural(ru):в этом ходу|в течение [blue]{}[/blue] ходов|в течение [blue]{}[/blue] ходов}.",
+    "description": "Вы получаете на [blue]50%[/blue] меньше урона от [gold]уязвимых[/gold] врагов в этом ходу.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/colossus_power.webp"
+  },
+  {
+    "id": "CONCOCT",
+    "name": "Варево",
+    "description": "Накладывает на врага [blue]3[/blue] [gold]яда[/gold], когда вы наносите урон по его ОЗ Атаками в этом ходу.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/concoct_power.webp"
   },
   {
     "id": "CONFUSED",
@@ -312,8 +342,8 @@
   {
     "id": "CONQUEROR",
     "name": "Завоевание",
-    "description": "[gold]This creature[/gold] получает двойной урон от [gold]Клинка монарха[/gold] в течение [blue]{}[/blue] ходов.",
-    "description_raw": "[gold]{OwnerName}[/gold] получает двойной урон от [gold]Клинка монарха[/gold] {Amount:plural(ru):в этом ходу|в течение [blue]{}[/blue] ходов|в течение [blue]{}[/blue] ходов}.",
+    "description": "[gold]Клинок монарха[/gold] наносит двойной урон по цели в этом ходу.",
+    "description_raw": null,
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -332,8 +362,8 @@
   {
     "id": "CONSUMING_SHADOW",
     "name": "Ненасытная тень",
-    "description": "[gold]Разряжает[/gold] [blue]{}[/blue] сферы слева в конце хода.",
-    "description_raw": "[gold]Разряжает[/gold] {Amount:plural(ru):левую сферу|[blue]{}[/blue] сферы слева|[blue]{}[/blue] сфер слева} в конце хода.",
+    "description": "[gold]Разряжает[/gold] левую сферу в конце хода.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -412,8 +442,8 @@
   {
     "id": "CREATIVE_AI",
     "name": "Находчивый ИИ",
-    "description": "Добавляет в [gold]руку[/gold] [blue]{}[/blue] случайных Таланта в начале хода.",
-    "description_raw": "Добавляет в [gold]руку[/gold] {Amount:plural(ru):случайный Талант|[blue]{}[/blue] случайных Таланта|[blue]{}[/blue] случайных Талантов} в начале хода.",
+    "description": "Добавляет в [gold]руку[/gold] случайный Талант в начале хода.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -422,8 +452,8 @@
   {
     "id": "CRIMSON_MANTLE",
     "name": "Алая мантия",
-    "description": "Вы теряете [blue]0[/blue] ОЗ и получаете [blue][Amount][/blue] [gold]защиты[/gold] в начале хода.",
-    "description_raw": "Вы теряете [blue]{SelfDamage}[/blue] ОЗ и получаете [blue]{Amount}[/blue] [gold]защиты[/gold] в начале хода.",
+    "description": "Вы теряете ОЗ и получаете [gold]защиту[/gold] в начале хода.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -512,8 +542,8 @@
   {
     "id": "DEBILITATE",
     "name": "Изнурение",
-    "description": "[gold]Уязвимость[/gold] и [gold]слабость[/gold] в два раза эффективнее в течение [blue]{}[/blue] ходов.",
-    "description_raw": "[gold]Уязвимость[/gold] и [gold]слабость[/gold] в два раза эффективнее {Amount:plural(ru):в этом ходу|в течение [blue]{}[/blue] ходов|в течение [blue]{}[/blue] ходов}.",
+    "description": "[gold]Уязвимость[/gold] и [gold]слабость[/gold] в два раза эффективнее в течение [blue]2[/blue] ходов.",
+    "description_raw": null,
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -542,7 +572,7 @@
   {
     "id": "DEMON_FORM",
     "name": "Облик демона",
-    "description": "Дает [blue]2[/blue] [gold]силы[/gold] в начале хода.",
+    "description": "Дает [blue]3[/blue] [gold]силы[/gold] в начале хода.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -568,16 +598,6 @@
     "stack_type": "Counter",
     "allow_negative": true,
     "image_url": "/static/images/powers/dexterity_power.webp"
-  },
-  {
-    "id": "DIAMOND_DIADEM",
-    "name": "Алмазная диадема",
-    "description": "Враги наносят на [blue]50%[/blue] меньше урона в этом ходу.",
-    "description_raw": null,
-    "type": "Buff",
-    "stack_type": "Single",
-    "allow_negative": null,
-    "image_url": "/static/images/powers/diamond_diadem_power.webp"
   },
   {
     "id": "DIE_FOR_YOU",
@@ -612,8 +632,8 @@
   {
     "id": "DOUBLE_DAMAGE",
     "name": "Двойной урон",
-    "description": "Атаки наносят двойной урон в течение [blue]{}[/blue] ходов.",
-    "description_raw": "Атаки наносят двойной урон {Amount:plural(ru):в этом ходу|в течение [blue]{}[/blue] ходов|в течение [blue]{}[/blue] ходов}.",
+    "description": "Атаки наносят двойной урон в этом ходу.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -632,8 +652,8 @@
   {
     "id": "DUPLICATION",
     "name": "Удвоение",
-    "description": "[blue]{}[/blue] следующие карты разыгрываются дополнительный раз.",
-    "description_raw": "{Amount:plural(ru):Следующая карта разыгрывается|[blue]{}[/blue] следующие карты разыгрываются|[blue]{}[/blue] следующих карт разыгрываются} дополнительный раз.",
+    "description": "Следующая карта разыгрывается дополнительный раз.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -652,8 +672,8 @@
   {
     "id": "ECHO_FORM",
     "name": "Облик эхо",
-    "description": "[blue]{}[/blue] первые карты в ходу разыгрываются дополнительный раз.",
-    "description_raw": "{Amount:plural(ru):Первая в ходу карта разыгрывается|[blue]{}[/blue] первые карты в ходу разыгрываются|[blue]{}[/blue] первых карт в ходу разыгрываются} дополнительный раз.",
+    "description": "Первая в ходу карта разыгрывается дополнительный раз.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -712,12 +732,22 @@
   {
     "id": "ESCAPE_ARTIST",
     "name": "Побег",
-    "description": "Сбежит из боя в в конце [blue]{}-го[/blue] хода.",
-    "description_raw": "Сбежит из боя в {Amount:plural(ru):этом ходу|в конце [blue]{}-го[/blue] хода|в конце [blue]{}-го[/blue] хода}.",
+    "description": "Сбежит из боя в конце 4-го хода.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/escape_artist_power.webp"
+  },
+  {
+    "id": "FADE",
+    "name": "Temporary Dexterity",
+    "description": "Дает [gold]ловкость[/gold] на этот ход.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/fade_power.webp"
   },
   {
     "id": "FAN_OF_KNIVES",
@@ -762,8 +792,8 @@
   {
     "id": "FERAL",
     "name": "Дикость",
-    "description": "Возвращает [blue]{}[/blue] первые разыгранные за ход Атаки с ценой 0[energy:1] в [gold]руку[/gold] каждый ход.",
-    "description_raw": "Возвращает {Amount:plural(ru):первую разыгранную за ход Атаку|[blue]{}[/blue] первые разыгранные за ход Атаки|[blue]{}[/blue] первых разыгранных за ход Атак} с ценой 0{energyPrefix:energyIcons(1)} в [gold]руку[/gold] каждый ход.",
+    "description": "Возвращает первую разыгранную за ход Атаку с ценой 0[energy:1] в [gold]руку[/gold] каждый ход.",
+    "description_raw": "Возвращает первую разыгранную за ход Атаку с ценой 0{energyPrefix:energyIcons(1)} в [gold]руку[/gold] каждый ход.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -862,8 +892,8 @@
   {
     "id": "FREE_ATTACK",
     "name": "Бесплатная Атака",
-    "description": "Следующие [blue]{}[/blue] разыгранные Атаки стоят [blue]0[/blue] [energy:1].",
-    "description_raw": "{Amount:plural(ru):Следующая разыгранная Атака стоит|Следующие [blue]{}[/blue] разыгранные Атаки стоят|Следующие [blue]{}[/blue] разыгранных Атак стоят} [blue]0[/blue] {energyPrefix:energyIcons(1)}.",
+    "description": "Следующая разыгранная Атака стоит [blue]0[/blue] [energy:1].",
+    "description_raw": "Следующая разыгранная Атака стоит [blue]0[/blue] {energyPrefix:energyIcons(1)}.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -872,8 +902,8 @@
   {
     "id": "FREE_POWER",
     "name": "Бесплатный Талант",
-    "description": "Следующие [blue]{}[/blue] разыгранных Таланта стоят [blue]0[/blue] [energy:1].",
-    "description_raw": "{Amount:plural(ru):Следующий разыгранный Талант стоит|Следующие [blue]{}[/blue] разыгранных Таланта стоят|Следующие [blue]{}[/blue] разыгранных Талантов стоят} [blue]0[/blue] {energyPrefix:energyIcons(1)}.",
+    "description": "Следующий разыгранный Талант стоит [blue]0[/blue] [energy:1].",
+    "description_raw": "Следующий разыгранный Талант стоит [blue]0[/blue] {energyPrefix:energyIcons(1)}.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -882,8 +912,8 @@
   {
     "id": "FREE_SKILL",
     "name": "Бесплатный Навык",
-    "description": "Следующие [blue]{}[/blue] разыгранных Навыка стоят [blue]0[/blue] [energy:1].",
-    "description_raw": "{Amount:plural(ru):Следующий разыгранный Навык стоит|Следующие [blue]{}[/blue] разыгранных Навыка стоят|Следующие [blue]{}[/blue] разыгранных Навыков стоят} [blue]0[/blue] {energyPrefix:energyIcons(1)}.",
+    "description": "Следующий разыгранный Навык стоит [blue]0[/blue] [energy:1].",
+    "description_raw": "Следующий разыгранный Навык стоит [blue]0[/blue] {energyPrefix:energyIcons(1)}.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -932,8 +962,8 @@
   {
     "id": "GIGANTIFICATION",
     "name": "Гигантизм",
-    "description": "Следующие [blue]{}[/blue] разыгранные Атаки наносят тройной урон.",
-    "description_raw": "{Amount:plural(ru):Следующая разыгранная Атака наносит|Следующие [blue]{}[/blue] разыгранные Атаки наносят|Следующие [blue]{}[/blue] разыгранных Атак наносят} тройной урон.",
+    "description": "Следующая разыгранная Атака наносит тройной урона.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -952,8 +982,8 @@
   {
     "id": "GUARDED",
     "name": "Заступник",
-    "description": "Вы получаете от врагов 50% урона.",
-    "description_raw": null,
+    "description": "Вы получаете от врагов на [blue]50%[/blue] меньше урона. Пропадет, если [gold][Applier.StringValue][/gold] погибнет.",
+    "description_raw": "Вы получаете от врагов на [blue]{DamageDecrease:percentLess()}%[/blue] меньше урона. Пропадет, если [gold]{Applier.StringValue}[/gold] погибнет.",
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
@@ -1012,8 +1042,8 @@
   {
     "id": "HATCH",
     "name": "Птенец",
-    "description": "Вылупится в конце {}-го хода.",
-    "description_raw": "Вылупится в конце {Amount:plural(ru):хода|{}-го хода|{}-го хода}.",
+    "description": "Вылупится в конце [blue]X[/blue]-го хода.",
+    "description_raw": "Вылупится в конце X-го хода.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1080,6 +1110,16 @@
     "image_url": "/static/images/powers/hex_power.webp"
   },
   {
+    "id": "HIBERNATE",
+    "name": "Спячка",
+    "description": "В этом ходу ваши [gold]сферы льда[/gold] дают [gold]защиту[/gold] ВСЕМ игрокам.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hibernate_power.webp"
+  },
+  {
     "id": "HIGH_VOLTAGE",
     "name": "Высокое напряжение",
     "description": "[gold]This creature[/gold] получает [blue][Amount][/blue] [gold]силы[/gold] в конце своего хода.",
@@ -1098,6 +1138,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/hotfix_power.webp"
+  },
+  {
+    "id": "HYPERBEAM_FOCUS_DOWN",
+    "name": "Temporary Focus Down",
+    "description": "Вы теряете [gold]фокус[/gold] в этом ходу.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": null
   },
   {
     "id": "ILLUSION",
@@ -1120,6 +1170,16 @@
     "image_url": "/static/images/powers/imbalanced_power.webp"
   },
   {
+    "id": "IMITATION_LEARNING",
+    "name": "Имитационное обучение",
+    "description": "Когда другой игрок разыгрывает Талант, вы разыгрываете его копию.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/imitation_learning_power.webp"
+  },
+  {
     "id": "IMPROVEMENT",
     "name": "Развитие",
     "description": "[gold]Улучшает[/gold] случайную карту в конце боя.",
@@ -1132,8 +1192,8 @@
   {
     "id": "INFERNO",
     "name": "Кромешный ад",
-    "description": "Вы теряете [blue]0[/blue] ОЗ в начале хода. Наносит [blue][Amount][/blue] урона ВСЕМ врагам, когда вы теряете ОЗ в свой ход.",
-    "description_raw": "Вы теряете [blue]{SelfDamage}[/blue] ОЗ в начале хода. Наносит [blue]{Amount}[/blue] урона ВСЕМ врагам, когда вы теряете ОЗ в свой ход.",
+    "description": "Вы теряете [blue]1[/blue] ОЗ в начале хода. Наносит [blue]4[/blue] урона ВСЕМ врагам, когда вы теряете ОЗ в свой ход.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1152,8 +1212,8 @@
   {
     "id": "INFINITE_BLADES",
     "name": "Бесконечные клинки",
-    "description": "Добавляет в [gold]руку[/gold] [blue]{}[/blue] [gold]«Заточки»[/gold] в начале хода.",
-    "description_raw": "Добавляет в [gold]руку[/gold] {Amount:plural(ru):[gold]«Заточку»[/gold]|[blue]{}[/blue] [gold]«Заточки»[/gold]|[blue]{}[/blue] [gold]«Заточек»[/gold]} в начале хода.",
+    "description": "Добавляет в [gold]руку[/gold] [gold]«Заточку»[/gold] в начале хода.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1242,8 +1302,8 @@
   {
     "id": "LIGHTNING_ROD",
     "name": "Громоотвод",
-    "description": "[gold]Заряжает[/gold] [blue]1[/blue] [gold]сферу молнии[/gold] в начале [blue]{}[/blue] следующих ходов.",
-    "description_raw": "[gold]Заряжает[/gold] [blue]1[/blue] [gold]сферу молнии[/gold] в начале {Amount:plural(ru):следующего хода|[blue]{}[/blue] следующих ходов|[blue]{}[/blue] следующих ходов}.",
+    "description": "[gold]Заряжает[/gold] [blue]1[/blue] [gold]сферу молнии[/gold] в начале [blue]2[/blue] следующих ходов.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1302,8 +1362,8 @@
   {
     "id": "MAYHEM",
     "name": "Беспредел",
-    "description": "Вы разыгрываете [blue]{}[/blue] карты с верха [gold]стопки добора[/gold] в начале хода.",
-    "description_raw": "Вы разыгрываете {Amount:plural(ru):карту|[blue]{}[/blue] карты|[blue]{}[/blue] карт} с верха [gold]стопки добора[/gold] в начале хода.",
+    "description": "Вы разыгрываете карту с верха [gold]стопки добора[/gold] в начале хода.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1352,8 +1412,8 @@
   {
     "id": "MONOLOGUE",
     "name": "Монолог",
-    "description": "Дает [blue]1[/blue] [gold]силы[/gold] на этот ход, когда вы разыгрываете карту.\nСейчас дает [blue]0[/blue] [gold]силы[/gold].",
-    "description_raw": "Дает [blue]{StrengthPower}[/blue] [gold]силы[/gold] на этот ход, когда вы разыгрываете карту.\nСейчас дает [blue]{StrengthApplied}[/blue] [gold]силы[/gold].",
+    "description": "Дает [blue]1[/blue] [gold]силы[/gold] на этот ход, когда вы разыгрываете карту.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "None",
     "allow_negative": null,
@@ -1362,8 +1422,8 @@
   {
     "id": "NECRO_MASTERY",
     "name": "Высшая некромантия",
-    "description": "Когда [gold]Костя[/gold] теряет ОЗ, ВСЕ враги теряют [blue]в {} раза больше[/blue].",
-    "description_raw": "Когда [gold]Костя[/gold] теряет ОЗ, ВСЕ враги теряют {Amount:plural(ru):столько же|[blue]в {} раза больше[/blue]|[blue]в {} раз больше[/blue]}.",
+    "description": "Когда [gold]Костя[/gold] теряет ОЗ, ВСЕ враги теряют столько же.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1392,8 +1452,8 @@
   {
     "id": "NIGHTMARE",
     "name": "Кошмар",
-    "description": "Добавит в [gold]руку[/gold] [blue]{}[/blue] карты [gold]«[Card]»[/gold] в начале следующего хода.",
-    "description_raw": "Добавит в [gold]руку[/gold] {Amount:plural(ru):карту|[blue]{}[/blue] карты|[blue]{}[/blue] карт} [gold]«{Card}»[/gold] в начале следующего хода.",
+    "description": "Добавит [blue]3[/blue] копии выбранной карты в [gold]руку[/gold] в начале следующего хода.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1402,8 +1462,8 @@
   {
     "id": "NO_BLOCK",
     "name": "Без защиты",
-    "description": "Карты не дают [gold]защиту[/gold] в течение [blue]{}[/blue] ходов.",
-    "description_raw": "{Amount:plural(ru):В этом ходу карты|Карты|Карты} не дают [gold]защиту[/gold]{Amount:plural(ru):| в течение [blue]{}[/blue] ходов| в течение [blue]{}[/blue] ходов}.",
+    "description": "Карты не дают [gold]защиту[/gold].",
+    "description_raw": null,
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1432,8 +1492,8 @@
   {
     "id": "NOSTALGIA",
     "name": "Ностальгия",
-    "description": "{} первых разыгранных за ход Атаки или Навыка кладутся на верх [gold]стопки добора[/gold].",
-    "description_raw": "{Amount:plural(ru):Первая разыгранная за ход Атака или Навык кладется|{} первых разыгранных за ход Атаки или Навыка кладутся|{} первых разыгранных за ход Атак или Навыков кладутся} на верх [gold]стопки добора[/gold].",
+    "description": "Кладет первую Атаку или первый Навык за ход на верх [gold]стопки добора[/gold].",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1460,10 +1520,20 @@
     "image_url": "/static/images/powers/oblivion_power.webp"
   },
   {
+    "id": "ONE_FOR_ALL",
+    "name": "Один за всех",
+    "description": "Ваши атаки стоимостью [blue]0[/blue] [energy:1] наносят увеличенный урон.",
+    "description_raw": "Ваши атаки стоимостью [blue]0[/blue] {energyPrefix:energyIcons(1)} наносят увеличенный урон.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/one_for_all_power.webp"
+  },
+  {
     "id": "ONE_TWO_PUNCH",
     "name": "Комбо",
-    "description": "Следующие [blue]{}[/blue] Атаки в этом ходу разыгрываются дополнительный раз.",
-    "description_raw": "{Amount:plural(ru):Следующая Атака в этом ходу разыгрывается|Следующие [blue]{}[/blue] Атаки в этом ходу разыгрываются|Следующие [blue]{}[/blue] Атак в этом ходу разыгрываются} дополнительный раз.",
+    "description": "Следующая Атака в этом ходу разыгрывается дополнительный раз.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1478,16 +1548,6 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/orbit_power.webp"
-  },
-  {
-    "id": "OUTBREAK",
-    "name": "Эпидемия",
-    "description": "Наносит [blue][Amount][/blue] урона ВСЕМ врагам за каждый [blue]3-й[/blue] раз, когда вы накладываете [gold]яд[/gold].",
-    "description_raw": "Наносит [blue]{Amount}[/blue] урона ВСЕМ врагам за каждый [blue]{Repeat}-й[/blue] раз, когда вы накладываете [gold]яд[/gold].",
-    "type": "Buff",
-    "stack_type": "Counter",
-    "allow_negative": null,
-    "image_url": "/static/images/powers/outbreak_power.webp"
   },
   {
     "id": "PAGESTORM",
@@ -1582,8 +1642,8 @@
   {
     "id": "PILLAR_OF_CREATION",
     "name": "Основа мироздания",
-    "description": "Дает [blue]5[/blue] [gold]защиты[/gold], когда вы создаете карту.",
-    "description_raw": null,
+    "description": "Дает [blue][Amount][/blue] [gold]защиты[/gold], когда вы создаете карту.",
+    "description_raw": "Дает [blue]{Amount}[/blue] [gold]защиты[/gold], когда вы создаете карту.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1662,8 +1722,8 @@
   {
     "id": "RADIANCE",
     "name": "Теплота",
-    "description": "Дает [energy:1] в течение [blue]{}[/blue] ходов.",
-    "description_raw": "{Amount:plural(ru):Даст|Дает|Дает} {Energy:energyIcons()} {Amount:plural(ru):в следующем ходу|в течение [blue]{}[/blue] ходов|в течение [blue]{}[/blue] ходов}.",
+    "description": "Даст [blue]1[/blue] дополнительную [gold]энергию[/gold] в начале хода.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1702,8 +1762,8 @@
   {
     "id": "REAPER_FORM",
     "name": "Облик жнеца",
-    "description": "Атаки накладывают [gold]злой рок[/gold] [blue]в {} раза[/blue] по ОЗ цели урона.",
-    "description_raw": "Атаки накладывают [gold]злой рок[/gold]{Amount:plural(ru):, равный нанесенному| [blue]в {} раза[/blue]| [blue]в {} раз[/blue] больше нанесенного} по ОЗ цели {Amount:plural(ru):урону|урона|урона}.",
+    "description": "Атаки накладывают [gold]злой рок[/gold], равный нанесенному по ОЗ цели урону.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1722,8 +1782,8 @@
   {
     "id": "REBOUND",
     "name": "Откат",
-    "description": "Кладет следующие [blue]{}[/blue] разыгранные карты на верх [gold]стопки добора[/gold].",
-    "description_raw": "Кладет {Amount:plural(ru):следующую разыгранную карту|следующие [blue]{}[/blue] разыгранные карты|следующие [blue]{}[/blue] разыгранных карт} на верх [gold]стопки добора[/gold].",
+    "description": "Следующая разыгранная карта кладется на верх [gold]стопки добора[/gold].",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1732,8 +1792,8 @@
   {
     "id": "REFLECT",
     "name": "Отражение",
-    "description": "Урон, от которого вы [gold]защищаетесь[/gold], в течение [blue]{}[/blue] ходов наносится врагу.",
-    "description_raw": "Урон, от которого вы [gold]защищаетесь[/gold], {Amount:plural(ru):в этом ходу|в течение [blue]{}[/blue] ходов|в течение [blue]{}[/blue] ходов} наносится врагу.",
+    "description": "Урон, от которого вы [gold]защищаетесь[/gold], наносится врагу.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1762,8 +1822,8 @@
   {
     "id": "RETAIN_HAND",
     "name": "Постоянство",
-    "description": "Вы [gold]оставляете[/gold] карты в [gold]руке[/gold]в течение [blue]{}[/blue] ходов.",
-    "description_raw": "Вы [gold]оставляете[/gold] карты в [gold]руке[/gold]{Amount:plural(ru):в этом ходу|в течение [blue]{}[/blue] ходов|в течение [blue]{}[/blue] ходов}.",
+    "description": "Вы [gold]оставляете[/gold] карты в [gold]руке[/gold] в течение [blue]2[/blue] ходов.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1822,8 +1882,8 @@
   {
     "id": "SANDPIT",
     "name": "Зыбучие пески",
-    "description": "Через [blue]{}[/blue] хода вы погибнете в пасти [gold]Проглота[/gold].",
-    "description_raw": "{Amount:plural(ru):Когда наступит ход [gold]Проглота[/gold], |Через [blue]{}[/blue] хода |Через [blue]{}[/blue] ходов }вы погибнете {Amount:plural(ru):в его пасти|в пасти [gold]Проглота[/gold]|в пасти [gold]Проглота[/gold]}.",
+    "description": "Способность Проглота.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1892,8 +1952,8 @@
   {
     "id": "SHADOW_STEP",
     "name": "Шаг в тень",
-    "description": "Следующие [blue]{}[/blue] хода Атаки будут наносить двойной урон.",
-    "description_raw": "{Amount:plural(ru):В следующем ходу|Следующие [blue]{}[/blue] хода|Следующие [blue]{}[/blue] ходов} Атаки будут наносить двойной урон.",
+    "description": "В следующем ходу Атаки будут наносить двойной урон.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1902,8 +1962,8 @@
   {
     "id": "SHADOWMELD",
     "name": "Бой с тенью",
-    "description": "Удваивает получаемую в этом ходу [gold]защиту[/gold] [blue]{}[/blue] раза.",
-    "description_raw": "Удваивает получаемую в этом ходу [gold]защиту[/gold]{Amount:plural(ru):| [blue]{}[/blue] раза| [blue]{}[/blue] раз}.",
+    "description": "Удваивает получаемую в этом ходу [gold]защиту[/gold].",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1952,8 +2012,8 @@
   {
     "id": "SIGNAL_BOOST",
     "name": "Усиленный сигнал",
-    "description": "Следующие [blue]{}[/blue] Таланта разыгрываются дополнительный раз.",
-    "description_raw": "{Amount:plural(ru):Следующий Талант разыгрывается|Следующие [blue]{}[/blue] Таланта разыгрываются|Следующие [blue]{}[/blue] Талантов разыгрываются} дополнительный раз.",
+    "description": "Следующий Талант разыгрывается дополнительный раз.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1982,8 +2042,8 @@
   {
     "id": "SLIPPERY",
     "name": "Изворотливость",
-    "description": "Следующие [blue]{}[/blue] раза, когда [gold]this creature[/gold] теряет ОЗ, отнимается только [blue]1[/blue] ОЗ.",
-    "description_raw": "{Amount:plural(ru):Следующий раз|Следующие [blue]{}[/blue] раза|Следующие [blue]{}[/blue] раз}, когда [gold]{OwnerName}[/gold] {Amount:plural(ru):потеряет|теряет|теряет} ОЗ, отнимается только [blue]1[/blue] ОЗ.",
+    "description": "Понижает следующую потерю ОЗ до [blue]1[/blue].",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -2002,8 +2062,8 @@
   {
     "id": "SLOW",
     "name": "Медлительность",
-    "description": "Получает на [blue]10%[/blue] больше урона от Атак в этом ходу после того, как вы разыгрываете карту.|",
-    "description_raw": "{OnPlayer:Вы получаете|Получает} на [blue]10%[/blue] больше урона от Атак в этом ходу после того, как{OnPlayer:| вы} разыгрываете карту.{Amount:plural:||}",
+    "description": "Получает на [blue]10%[/blue] больше урона от Атак в этом ходу, когда вы разыгрываете карты.",
+    "description_raw": null,
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -2058,6 +2118,16 @@
     "stack_type": "Single",
     "allow_negative": null,
     "image_url": "/static/images/powers/soar_power.webp"
+  },
+  {
+    "id": "SOULBOUND",
+    "name": "Связь душ",
+    "description": "Когда [ApplierName] создает [gold]«Душу»[/gold], добавляет [gold]«Душу»[/gold] в вашу [gold]стопку добора[/gold].",
+    "description_raw": "Когда {ApplierName} создает [gold]«Душу»[/gold], добавляет [gold]«Душу»[/gold] в вашу [gold]стопку добора[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/soulbound_power.webp"
   },
   {
     "id": "SPECTRUM_SHIFT",
@@ -2192,8 +2262,8 @@
   {
     "id": "SUBROUTINE",
     "name": "Вторичный процесс",
-    "description": "Дает [blue]1[/blue] [energy:1], когда вы разыгрываете Талант.",
-    "description_raw": "Дает [blue]1[/blue] {energyPrefix:energyIcons(1)}, когда вы разыгрываете Талант.",
+    "description": "Дает [energy:1], когда вы разыгрываете Талант.",
+    "description_raw": "Дает {Amount:energyIcons()}, когда вы разыгрываете Талант.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -2292,8 +2362,8 @@
   {
     "id": "TANGLED",
     "name": "Путы",
-    "description": "Атаки стоят на [energy:1] больше в течение {} ходов.",
-    "description_raw": "Атаки стоят на {Amount:energyIcons()} больше {Amount:plural(ru):в этом ходу|в течение {} ходов|в течение {} ходов}.",
+    "description": "В этом ходу Атаки стоят на [blue]1[/blue] [gold]энергии[/gold] больше.",
+    "description_raw": null,
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -2302,8 +2372,8 @@
   {
     "id": "TANK",
     "name": "Танк",
-    "description": "Вы получаете двойной урон от атак. Другие игроки получают половину урона от атак.",
-    "description_raw": null,
+    "description": "Вы получаете на [blue]50%[/blue] больше урона от вражеских атак. Другие игроки — на [blue]50%[/blue] меньше урона.",
+    "description_raw": "Вы получаете на [blue]{DamageIncrease:percentMore()}%[/blue] больше урона от вражеских атак. Другие игроки — на [blue]{DamageDecrease:percentLess()}%[/blue] меньше урона.",
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
@@ -2422,7 +2492,7 @@
   {
     "id": "TRACKING",
     "name": "Следопыт",
-    "description": "[gold]Слабые[/gold] враги получают от Атак [blue]200%[/blue] урона.",
+    "description": "[gold]Слабые[/gold] враги получают на [blue]50%[/blue] больше урона от Атак.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -2432,8 +2502,8 @@
   {
     "id": "TRASH_TO_TREASURE",
     "name": "Алмаз среди камней",
-    "description": "[gold]Заряжает[/gold] [blue]{}[/blue] случайные сферы, когда вы создаете Статус.",
-    "description_raw": "[gold]Заряжает[/gold] {Amount:plural(ru):случайную сферу|[blue]{}[/blue] случайные сферы|[blue]{}[/blue] случайных сфер}, когда вы создаете Статус.",
+    "description": "[gold]Заряжает[/gold] [blue]1[/blue] случайную сферу, когда вы создаете Статус.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -2442,12 +2512,22 @@
   {
     "id": "TYRANNY",
     "name": "Тирания",
-    "description": "Вы добираете [blue]{}[/blue] карты, а затем [gold]сжигаете[/gold] [blue]{}[/blue] карты в [gold]руке[/gold] в начале хода.",
-    "description_raw": "Вы добираете {Amount:plural(ru):[blue]{}[/blue] карту|[blue]{}[/blue] карты|[blue]{}[/blue] карт}, а затем [gold]сжигаете[/gold] {Amount:plural(ru):[blue]{}[/blue] карту|[blue]{}[/blue] карты|[blue]{}[/blue] карт} в [gold]руке[/gold] в начале хода.",
+    "description": "Вы добираете [blue]1[/blue] карту, а затем [gold]сжигаете[/gold] [blue]1[/blue] карту в [gold]руке[/gold] в начале хода.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/tyranny_power.webp"
+  },
+  {
+    "id": "UNDERWORLD",
+    "name": "Царство мертвых",
+    "description": "Атаки других игроков в этом ходу накладывают [gold]злой рок[/gold], равный нанесенному урону.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/underworld_power.webp"
   },
   {
     "id": "UNMOVABLE",
@@ -2462,8 +2542,8 @@
   {
     "id": "VEILPIERCER",
     "name": "Разоблачение",
-    "description": "Следующие [blue]{}[/blue] разыгранные [gold]эфирные[/gold] карты стоят [blue]0[/blue].",
-    "description_raw": "{Amount:plural(ru):Следующая разыгранная [gold]эфирная[/gold] карта стоит|Следующие [blue]{}[/blue] разыгранные [gold]эфирные[/gold] карты стоят|Следующие [blue]{}[/blue] разыгранных [gold]эфирных[/gold] карт стоят} [blue]0[/blue].",
+    "description": "Следующая [gold]эфирная[/gold] карта стоит [blue]0[/blue].",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -2502,8 +2582,8 @@
   {
     "id": "VOID_FORM",
     "name": "Облик бездны",
-    "description": "Первые [blue]{}[/blue] карты в ходу разыгрываются бесплатно.",
-    "description_raw": "{Amount:plural(ru):Первая карта в ходу разыгрывается|Первые [blue]{}[/blue] карты в ходу разыгрываются|Первые [blue]{}[/blue] карт в ходу разыгрываются} бесплатно.",
+    "description": "Первые [blue]2[/blue] карты в ходу разыгрываются бесплатно.",
+    "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -2542,10 +2622,10 @@
   {
     "id": "WELL_LAID_PLANS",
     "name": "Все по плану",
-    "description": "Вы сможете [gold]оставить[/gold] до [blue]1[/blue] карты в конце хода.",
+    "description": "Вы не сбрасываете карты в конце хода.",
     "description_raw": null,
     "type": "Buff",
-    "stack_type": "Counter",
+    "stack_type": "Single",
     "allow_negative": null,
     "image_url": "/static/images/powers/well_laid_plans_power.webp"
   },

@@ -1,6 +1,8 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import {
+  blitzEntryName,
+  blitzOfferRows,
   captureIsComplete,
   combatCounts,
   hasMapPositions,
@@ -4039,5 +4041,266 @@ describe("shelfRows", () => {
       ["FERAL", true],
       ["ANCHOR", false],
     ]);
+  });
+});
+
+describe("blitz merchant buys", () => {
+  const entry = {
+    floor: 4,
+    act: 1,
+    purchase_id: 1,
+    kind: "blitz",
+    slot: 2,
+    entry_id: 7,
+    entry_class: "BlitzMerchantColorlessCardRewardEntry",
+    blitz_entry: "ColorlessCardReward",
+    cost_current: 0,
+    cost_resource: "gold",
+    gold_on_hand: 99,
+  };
+  const text = journal([
+    { t: "header", s: 0, ms: 0, floor: 0, act: 1, replay_version: 8 },
+    { t: "buy_start", s: 1, ms: 1, ...entry },
+    { t: "buy", s: 2, ms: 2, ...entry },
+  ]);
+
+  it("keeps the entry identity on a buy line", () => {
+    const { lines, malformed } = parseReplayLines(text);
+    expect(malformed).toBe(0);
+    expect(lines.find((l) => l.t === "buy")).toMatchObject({
+      kind: "blitz",
+      slot: 2,
+      purchaseId: 1,
+      entryId: 7,
+      entryClass: "BlitzMerchantColorlessCardRewardEntry",
+      blitzEntry: "ColorlessCardReward",
+    });
+  });
+
+  it("reads a buy_start line as unknown rather than failing", () => {
+    const { lines } = parseReplayLines(text);
+    expect(lines.find((l) => l.s === 1)?.t).toBe("unknown");
+  });
+
+  it("names a blitz entry for display", () => {
+    expect(blitzEntryName("ColorlessCardReward")).toBe("Colorless Card Reward");
+    expect(blitzEntryName("BlitzMerchantTwoRelicsEntry")).toBe("Two Relics");
+  });
+});
+
+describe("blitz merchant offers", () => {
+  const offer = (slot: number, entry: string, status: string) => ({
+    slot,
+    blitz_entry: entry,
+    entry_class: `BlitzMerchant${entry}Entry`,
+    status,
+  });
+  const shop = (s: number, statuses: string[]) => ({
+    t: "shop",
+    s,
+    ms: s,
+    floor: 4,
+    act: 1,
+    gold: 99,
+    cards: [],
+    relics: [],
+    potions: [],
+    blitz: [
+      offer(0, "UpgradedRareCard", statuses[0]),
+      offer(1, "ColorlessCardReward", statuses[1]),
+      offer(2, "Relic", statuses[2]),
+      offer(3, "Glam", statuses[3]),
+    ],
+    blitz_choices_left: 3,
+  });
+  const text = journal([
+    { t: "header", s: 0, ms: 0, floor: 0, act: 1, replay_version: 8 },
+    { t: "room", s: 1, ms: 1, floor: 4, act: 1, kind: "merchant" },
+    shop(2, ["available", "available", "available", "available"]),
+    {
+      t: "buy",
+      s: 3,
+      ms: 3,
+      floor: 4,
+      act: 1,
+      kind: "blitz",
+      slot: 1,
+      blitz_entry: "ColorlessCardReward",
+      cost_current: 0,
+      cost_resource: "gold",
+    },
+    shop(4, ["used", "used", "available", "available"]),
+  ]);
+
+  it("parses the offers on a shop line", () => {
+    const { lines } = parseReplayLines(text);
+    const first = lines.find((l): l is ShopLine => l.t === "shop");
+    expect(first?.blitz).toHaveLength(4);
+    expect(first?.blitz?.[3]).toMatchObject({
+      slot: 3,
+      entry: "Glam",
+      entryClass: "BlitzMerchantGlamEntry",
+      status: "available",
+    });
+    expect(first?.blitzChoicesLeft).toBe(3);
+  });
+
+  it("marks an offer picked by a buy's slot or a later used status", () => {
+    const floor = parseReplay(text).floors.find((f) => f.floor === 4)!;
+    expect(blitzOfferRows(floor).map((r) => [r.offer.entry, r.picked])).toEqual(
+      [
+        ["UpgradedRareCard", true],
+        ["ColorlessCardReward", true],
+        ["Relic", false],
+        ["Glam", false],
+      ],
+    );
+  });
+
+  it("has no offers at a normal merchant", () => {
+    const shopJournal = readFileSync(
+      new URL("../../backend/tests/fixtures/v2-shop.jsonl", import.meta.url),
+      "utf-8",
+    );
+    const floor = parseReplay(shopJournal).floors.find((f) => f.shop);
+    expect(floor).toBeDefined();
+    expect(blitzOfferRows(floor!)).toEqual([]);
+  });
+});
+
+describe("blitz offer variants", () => {
+  it("names a Card Enchant or Prismatic offer's variant", () => {
+    expect(blitzEntryName("CardEnchant", "SHARP", 2)).toBe(
+      "Card Enchant (Sharp 2)",
+    );
+    expect(blitzEntryName("CardEnchant", "SWIFT", 1)).toBe(
+      "Card Enchant (Swift)",
+    );
+    expect(blitzEntryName("PrismaticCardReward", "REGENT")).toBe(
+      "Prismatic Card Reward (Regent)",
+    );
+    expect(blitzEntryName("Potions")).toBe("Potions");
+  });
+
+  it("uses the game's own title in the page's language when it has one", () => {
+    const pack: Record<string, string> = {
+      "merchant_room.MERCHANT.blitz.card_removal_entry.title":
+        "Kartenentfernungs-Dienst",
+      "merchant_room.MERCHANT.blitz.full_heal_and_max_hp_entry.title":
+        "Verfluchte Heilung",
+      "merchant_room.MERCHANT.blitz.card_enchant_entry.title": "{Enchantment}",
+      "merchant_room.MERCHANT.blitz.glam_entry.title":
+        "Verfluchtes {Enchantment}",
+      "merchant_room.MERCHANT.blitz.prismatic_card_reward_entry.title":
+        "{Character} Kartenbelohnung",
+      "enchantments.SHARP.title": "Scharf",
+      "enchantments.GLAM.title": "Schick",
+      "characters.REGENT.title": "Der Regent",
+    };
+    const gt = (key: string, values?: Record<string, string | number>) =>
+      pack[key]?.replace(/\{(\w+)\}/g, (_, k) => String(values?.[k] ?? k));
+    expect(blitzEntryName("CardRemoval", undefined, undefined, gt)).toBe(
+      "Kartenentfernungs-Dienst",
+    );
+    expect(blitzEntryName("FullHealAndMaxHp", undefined, undefined, gt)).toBe(
+      "Verfluchte Heilung",
+    );
+    expect(blitzEntryName("CardEnchant", "SHARP", 2, gt)).toBe("Scharf 2");
+    expect(blitzEntryName("Glam", undefined, undefined, gt)).toBe(
+      "Verfluchtes Schick",
+    );
+    expect(blitzEntryName("PrismaticCardReward", "REGENT", undefined, gt)).toBe(
+      "Der Regent Kartenbelohnung",
+    );
+    expect(
+      blitzEntryName("PrismaticCardReward", undefined, undefined, gt),
+    ).toBe("Prismatic Card Reward");
+    expect(blitzEntryName("Potions", undefined, undefined, gt)).toBe("Potions");
+  });
+
+  it("parses model_id and amount on offers and buys", () => {
+    const { lines } = parseReplayLines(
+      journal([
+        { t: "header", s: 0, ms: 0, floor: 0, act: 1, replay_version: 9 },
+        {
+          t: "shop",
+          s: 1,
+          ms: 1,
+          floor: 4,
+          act: 1,
+          cards: [],
+          relics: [],
+          potions: [],
+          blitz: [
+            {
+              slot: 0,
+              blitz_entry: "CardEnchant",
+              entry_class: "BlitzMerchantCardEnchantEntry",
+              model_id: "SHARP",
+              amount: 2,
+              status: "available",
+            },
+          ],
+        },
+        {
+          t: "buy",
+          s: 2,
+          ms: 2,
+          floor: 4,
+          act: 1,
+          purchase_id: 1,
+          kind: "blitz",
+          slot: 0,
+          blitz_entry: "CardEnchant",
+          model_id: "SHARP",
+          amount: 2,
+          cost_current: 0,
+          cost_resource: "gold",
+        },
+      ]),
+    );
+    const shop = lines.find((l): l is ShopLine => l.t === "shop");
+    expect(shop?.blitz?.[0]).toMatchObject({ modelId: "SHARP", amount: 2 });
+    expect(lines.find((l) => l.t === "buy")).toMatchObject({
+      modelId: "SHARP",
+      amount: 2,
+    });
+  });
+});
+
+describe("lines written between two acts", () => {
+  it("stay on the floor the run was standing on", () => {
+    const model = parseReplay(
+      journal([
+        { t: "header", s: 1, replay_version: 9, character: "IRONCLAD" },
+        { t: "room", s: 2, floor: 17, act: 1, kind: "boss", id: "B1" },
+        { t: "hp", s: 3, floor: 17, act: 1, dst: "player", d: -20, hp: 40 },
+        { t: "act", s: 4, floor: 17, act: 2, name: "HIVE" },
+        { t: "map_room", s: 5, floor: 17, act: 2 },
+        { t: "hp", s: 6, floor: 17, act: 2, dst: "player", d: 24, hp: 64 },
+        { t: "room", s: 7, floor: 18, act: 2, kind: "event", id: "OROBAS" },
+      ]),
+    );
+    expect(model.floors.map((f) => [f.floor, f.act])).toEqual([
+      [17, 1],
+      [18, 2],
+    ]);
+    expect(model.floors.find((f) => f.act === 2)?.floor).toBe(18);
+    expect(model.floors[0].hpAfter).toBe(64);
+  });
+
+  it("names each act when the act line comes before its map", () => {
+    const model = parseReplay(
+      journal([
+        { t: "header", s: 1, replay_version: 9, character: "IRONCLAD" },
+        { t: "act", s: 2, floor: 0, act: 1, name: "UNDERDOCKS" },
+        { t: "map", s: 3, floor: 0, act: 1, nodes: [] },
+        { t: "room", s: 4, floor: 17, act: 1, kind: "boss", id: "B1" },
+        { t: "act", s: 5, floor: 17, act: 2, name: "HIVE" },
+        { t: "map", s: 6, floor: 17, act: 2, nodes: [] },
+        { t: "room", s: 7, floor: 18, act: 2, kind: "event", id: "OROBAS" },
+      ]),
+    );
+    expect(model.actNames).toEqual({ 1: "UNDERDOCKS", 2: "HIVE" });
   });
 });

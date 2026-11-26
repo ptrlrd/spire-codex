@@ -180,12 +180,15 @@
    "title": "受咒"
   },
   "MOCK_NO_UNPLAYABLE_AFFLICTION": {
+   "description": "",
    "title": "Mock No Unplayable Affliction"
   },
   "MOCK_SELF_DAMAGE_AFFLICTION": {
+   "description": "",
    "title": "Mock Self Damage Affliction"
   },
   "MOCK_USELESS_AFFLICTION": {
+   "description": "",
    "title": "Mock Useless Affliction"
   },
   "RINGING": {
@@ -814,6 +817,7 @@
    "title": "佩爾"
   },
   "PROCEED": {
+   "description": "",
    "title": "繼續"
   },
   "TANX": {
@@ -1083,6 +1087,12 @@
   "THE_ARCHITECT": {
    "CONTINUE": "繼續",
    "RESPOND": "回應",
+   "epithet": "",
+   "pages": {
+    "INITIAL": {
+     "description": ""
+    }
+   },
    "talk": {
     "DEFECT": {
      "0-0r": {
@@ -1771,6 +1781,7 @@
    "title": "武器庫"
   },
   "ASCENDERS_BANE": {
+   "description": "",
    "title": "晉階者之禍"
   },
   "ASHEN_STRIKE": {
@@ -2098,6 +2109,7 @@
    "title": "群星斗篷"
   },
   "CLUMSY": {
+   "description": "",
    "title": "笨拙"
   },
   "COLD_SNAP": {
@@ -2202,6 +2214,7 @@
    "title": "下砸"
   },
   "CURSE_OF_THE_BELL": {
+   "description": "",
    "title": "鈴鐺詛咒"
   },
   "DAGGER_SPRAY": {
@@ -2233,6 +2246,7 @@
    "title": "衝刺"
   },
   "DAZED": {
+   "description": "",
    "title": "暈眩"
   },
   "DEADLY_POISON": {
@@ -2256,6 +2270,7 @@
    "title": "摧殘"
   },
   "DEBRIS": {
+   "description": "",
    "title": "殘骸"
   },
   "DEBT": {
@@ -2590,6 +2605,7 @@
    "title": "集中打擊"
   },
   "FOLLY": {
+   "description": "",
    "title": "愚行"
   },
   "FOOTWORK": {
@@ -2711,6 +2727,7 @@
    "title": "墓穴守衛"
   },
   "GREED": {
+   "description": "",
    "title": "貪婪"
   },
   "GUARDS": {
@@ -2887,6 +2904,7 @@
    "title": "燃燒"
   },
   "INJURY": {
+   "description": "",
    "title": "受傷"
   },
   "INTERCEPT": {
@@ -3094,22 +3112,28 @@
    "title": "苦難"
   },
   "MOCK_ATTACK_CARD": {
+   "description": "",
    "title": "Mock Attack Card"
   },
   "MOCK_CURSE_CARD": {
+   "description": "",
    "title": "Mock Curse Card"
   },
   "MOCK_POWER_CARD": {
+   "description": "",
    "title": "Mock Power Card"
   },
   "MOCK_QUEST_CARD": {
+   "description": "",
    "title": "Mock Quest Card"
   },
   "MOCK_SKILL_CARD": {
+   "description": "",
    "discardSelectionPrompt": "選擇要丟棄的牌。",
    "title": "Mock Skill Card"
   },
   "MOCK_STATUS_CARD": {
+   "description": "",
    "title": "Mock Status Card"
   },
   "MODDED": {
@@ -3332,6 +3356,7 @@
    "title": "劍柄打擊"
   },
   "POOR_SLEEP": {
+   "description": "",
    "title": "輾轉難眠"
   },
   "POUNCE": {
@@ -3713,6 +3738,7 @@
    "title": "太陽打擊"
   },
   "SOOT": {
+   "description": "",
    "title": "煙灰"
   },
   "SOUL": {
@@ -3772,6 +3798,7 @@
    "title": "征戰所得"
   },
   "SPORE_MIND": {
+   "description": "",
    "title": "孢子心智"
   },
   "SPUR": {
@@ -4175,6 +4202,7 @@
    "title": "凋萎"
   },
   "WOUND": {
+   "description": "",
    "title": "傷口"
   },
   "WRAITH_FORM": {
@@ -4182,6 +4210,7 @@
    "title": "幽魂形態"
   },
   "WRITHE": {
+   "description": "",
    "title": "掙扭"
   },
   "WROUGHT_IN_WAR": {
@@ -4519,6 +4548,7 @@
    "title": "本能"
   },
   "MOCK_FREE_ENCHANTMENT": {
+   "description": "",
    "title": "Mock Free Enchantment"
   },
   "MOMENTUM": {
@@ -5370,25 +5400,101 @@
    "name": "感染",
    "year": "1,201"
   },
+  "BLIGHT1": {
+   "name": "",
+   "year": ""
+  },
+  "BLIGHT2": {
+   "name": "",
+   "year": ""
+  },
+  "BLIGHT3": {
+   "name": "",
+   "year": ""
+  },
   "FLOURISH0": {
    "name": "繁盛",
    "year": "1,800"
+  },
+  "FLOURISH1": {
+   "name": "",
+   "year": ""
+  },
+  "FLOURISH2": {
+   "name": "",
+   "year": ""
+  },
+  "FLOURISH3": {
+   "name": "",
+   "year": ""
   },
   "INVITATION0": {
    "name": "門扉",
    "year": "2,733"
   },
+  "INVITATION1": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION2": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION3": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION4": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION5": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION6": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION7": {
+   "name": "",
+   "year": ""
+  },
   "PEACE0": {
    "name": "終焉",
    "year": "3,000"
+  },
+  "PEACE1": {
+   "name": "",
+   "year": ""
   },
   "PREHISTORIA0": {
    "name": "史前時代",
    "year": "？？？"
   },
+  "PREHISTORIA1": {
+   "name": "",
+   "year": ""
+  },
+  "PREHISTORIA2": {
+   "name": "",
+   "year": ""
+  },
   "SEEDS0": {
    "name": "種子",
    "year": "0"
+  },
+  "SEEDS1": {
+   "name": "",
+   "year": ""
+  },
+  "SEEDS2": {
+   "name": "",
+   "year": ""
+  },
+  "SEEDS3": {
+   "name": "",
+   "year": ""
   }
  },
  "events": {
@@ -5401,6 +5507,7 @@
     "ALL": {
      "options": {
       "EXIT_BATHS": {
+       "description": "",
        "title": "離開浴場"
       },
       "LINGER": {
@@ -5787,6 +5894,7 @@
      "description": "你累得要死，於是睡了一會兒……\n\n……卻被趴在身上[gold][jitter]不斷蠕動的某種東西[/jitter][/gold]驚醒！",
      "options": {
       "FIGHT": {
+       "description": "",
        "title": "戰鬥！"
       }
      }
@@ -5971,6 +6079,7 @@
      "description": "你從輸送帶上拿起[gold]{LastDishTitle}[/gold]，狼吞虎嚥地吃了下去。\n[green]好吃！[/green]",
      "options": {
       "LEAVE": {
+       "description": "",
        "title": "離開"
       }
      }
@@ -6309,6 +6418,7 @@
    "title": "藥水送貨員"
   },
   "PROCEED": {
+   "description": "",
    "title": "繼續"
   },
   "PUNCH_OFF": {
@@ -6331,6 +6441,7 @@
      "description": "[gold]構造體[/gold]氣勢洶洶地轉向你！\n\n你擺出拳擊架勢。",
      "options": {
       "FIGHT": {
+       "description": "",
        "title": "戰鬥"
       }
      }
@@ -6484,6 +6595,7 @@
      "description": "你跳上桌子，一腳[jitter]踢[/jitter]中[red]軍閥騎士[/red]的臉！\n騎士發出了令人膽寒的尖叫然後倒了下去。\n\n[jitter][purple]*眾人倒抽一口氣*[/purple][/jitter]",
      "options": {
       "CONTINUE_FIGHT": {
+       "description": "",
        "title": "繼續"
       }
      }
@@ -6978,6 +7090,7 @@
      "description": "陌生人一臉凶狠地瞪著你。看來你們之中只有一人能帶著鑰匙離開這裡。",
      "options": {
       "FIGHT": {
+       "description": "",
        "title": "戰鬥"
       }
      }
@@ -7822,6 +7935,7 @@
   },
   "FORMAT_DAMAGE_MULTI": "{Damage}[font_size=18]x{Repeat}[/font_size]",
   "FORMAT_DAMAGE_SINGLE": "{Damage}",
+  "FORMAT_EMPTY": "",
   "FORMAT_STATUS_CARD_COUNT": "{CardCount}",
   "HEAL": {
    "description": "此敵人意圖[gold]治療[/gold]。",
@@ -10228,6 +10342,7 @@
    "title": "閃電"
   },
   "MOCK_COMBAT_CLEANUP_ORB": {
+   "description": "",
    "title": "Mock Combat Cleanup"
   },
   "PLASMA_ORB": {
@@ -10412,6 +10527,7 @@
    "title": "馬札勒斯的贈禮"
   },
   "MOCK_DISCARD_AND_ADD_SHIVS_POTION": {
+   "description": "",
    "title": "Mock Discard and Add Shivs Potion"
   },
   "OROBIC_ACID": {
@@ -11198,51 +11314,67 @@
    "title": "手下"
   },
   "MOCK_CLONE_CARDS_ON_PLAY_POWER": {
+   "description": "",
    "title": "Mock Clone Cards on Play"
   },
   "MOCK_DO_NOT_SCALE_IN_MULTIPLAYER_POWER": {
+   "description": "",
    "title": "Mock Do Not Scale in Multiplayer"
   },
   "MOCK_EXTRA_TURN_POWER": {
+   "description": "",
    "title": "Mock Extra Turn"
   },
   "MOCK_FREE_CARDS_POWER": {
+   "description": "",
    "title": "Mock Free Cards"
   },
   "MOCK_GAIN_BLOCK_ON_ATTACK_POWER": {
+   "description": "",
    "title": "Mock Gain Block on Attack"
   },
   "MOCK_INVINCIBLE_ON_DEATH_POWER": {
+   "description": "",
    "title": "Mock Invincible on Death"
   },
   "MOCK_MODIFY_ENERGY_COST_POWER": {
+   "description": "",
    "title": "Mock Modify Energy Cost"
   },
   "MOCK_MODIFY_STAR_COST_POWER": {
+   "description": "",
    "title": "Mock Modify Star Cost"
   },
   "MOCK_PHASE_OBSERVER_POWER": {
+   "description": "",
    "title": "Mock Phase Observer"
   },
   "MOCK_PREVENT_DEATH_POWER": {
+   "description": "",
    "title": "Mock Prevent Death"
   },
   "MOCK_REMOVE_DRAWN_CARDS_FROM_COMBAT_POWER": {
+   "description": "",
    "title": "Mock Remove Drawn Cards from Combat"
   },
   "MOCK_RESET_COMBAT_ON_SHUFFLE_POWER": {
+   "description": "",
    "title": "Mock Reset Combat on Shuffle"
   },
   "MOCK_REVIVE_POWER": {
+   "description": "",
    "title": "Mock Revive"
   },
   "MOCK_SCALE_IN_MULTIPLAYER_POWER": {
+   "description": "",
    "title": "Mock Scale in Multiplayer"
   },
   "MOCK_TEMPORARY_STRENGTH_LOSS": {
+   "description": "",
    "title": "Mock Temporary Strength Loss"
   },
   "MOCK_UNHITTABLE_POWER": {
+   "description": "",
    "title": "Mock Unhittable"
   },
   "MONARCHS_GAZE_POWER": {
@@ -13871,6 +14003,7 @@
   "TEXT_EFFECTS": "文字效果",
   "TEXT_EFFECTS_DESCRIPTION": "控制是否啟用波浪或抖動等文字效果。",
   "TEXT_SIZE": "文字大小",
+  "TOAST_CANNOT_REMAP_INPUT": "Cannot set an input for {Hotkey} for {ControlType}.",
   "TOAST_FAST_MODE_OFF": "戰鬥動作與畫面轉場將會減慢。",
   "TOAST_FAST_MODE_ON": "戰鬥動作與畫面轉場將會加快。",
   "TOAST_GAMEPLAY_DATA_OFF": "不會上傳遊戲指標與錯誤記錄。",

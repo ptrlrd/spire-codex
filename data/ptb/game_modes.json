@@ -1,0 +1,38 @@
+[
+  {
+    "id": "STANDARD",
+    "name": "Padrão",
+    "description": "Embarque em uma jornada para Destruir o Pináculo!",
+    "multiplayer_description": "Embarque em uma jornada para Destruir o Pináculo... com amigos!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": null,
+    "max_ascension": 10
+  },
+  {
+    "id": "DAILY",
+    "name": "Partida Diária",
+    "description": "Um novo desafio fica disponível uma vez por dia.\n\nDispute com outros jogadores pela maior pontuação!",
+    "multiplayer_description": "Um novo desafio fica disponível uma vez por dia.\n\nDispute com outros grupos pela maior pontuação!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "Jogue uma partida com cada personagem e conclua o Ato 3 para desbloquear Partidas Diárias.",
+    "max_ascension": 10
+  },
+  {
+    "id": "CUSTOM",
+    "name": "Personalizado",
+    "description": "Personalize suas próprias partidas com modificadores exclusivos.",
+    "multiplayer_description": "Personalize suas próprias partidas de multijogador com modificadores exclusivos.",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "Conclua o Ato 3 três vezes para desbloquear Partidas Personalizadas.",
+    "max_ascension": 10
+  }
+]

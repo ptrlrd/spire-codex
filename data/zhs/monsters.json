@@ -14,8 +14,8 @@
         "intent": "Attack + Defend",
         "block": 33,
         "damage": {
-          "normal": 26,
-          "ascension": 32
+          "normal": 22,
+          "ascension": 26
         }
       },
       {
@@ -36,8 +36,8 @@
     ],
     "damage_values": {
       "Ebb": {
-        "normal": 26,
-        "ascension": 32
+        "normal": 22,
+        "ascension": 26
       },
       "EyeLasers": {
         "normal": 11,
@@ -88,6 +88,7 @@
       ],
       "description": "消退 → 眼部激光 → 加大力度 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/aeonglass.webp",
     "beta_image_url": null
   },
@@ -131,6 +132,7 @@
       ],
       "description": "Always uses 无"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/architect.webp",
     "beta_image_url": null
   },
@@ -183,6 +185,7 @@
       ],
       "description": "Always uses 致命射击"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/assassin_ruby_raider.webp",
     "beta_image_url": null
   },
@@ -271,6 +274,7 @@
       ],
       "description": "Swing 1 → Swing 2 → 大力挥舞 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/axe_ruby_raider.webp",
     "beta_image_url": null
   },
@@ -301,8 +305,8 @@
         "name": "两连击",
         "intent": "Attack",
         "damage": {
-          "normal": 9,
-          "ascension": 10,
+          "normal": 10,
+          "ascension": 11,
           "hit_count": 2
         }
       },
@@ -323,20 +327,20 @@
           }
         ],
         "damage": {
-          "normal": 12,
-          "ascension": 14
+          "normal": 14,
+          "ascension": 18
         }
       }
     ],
     "damage_values": {
       "OneTwo": {
-        "normal": 9,
-        "ascension": 10,
+        "normal": 10,
+        "ascension": 11,
         "hit_count": 2
       },
       "HammerUppercut": {
-        "normal": 12,
-        "ascension": 14
+        "normal": 14,
+        "ascension": 18
       }
     },
     "block_values": null,
@@ -349,7 +353,12 @@
         "is_weak": false
       }
     ],
-    "innate_powers": null,
+    "innate_powers": [
+      {
+        "power_id": "STOCK",
+        "amount": 2
+      }
+    ],
     "attack_pattern": {
       "type": "cycle",
       "initial_move": "BOOT_UP",
@@ -372,6 +381,7 @@
       ],
       "description": "Always uses 启动"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/axebot.webp",
     "beta_image_url": null
   },
@@ -394,7 +404,7 @@
     "block_values": null,
     "encounters": [
       {
-        "encounter_id": "BATTLEWORN_DUMMY_EVENT_ENCOUNTER",
+        "encounter_id": "BATTLEWORN_DUMMY_EVENT_V1_ENCOUNTER",
         "encounter_name": "历战假人",
         "room_type": "Monster",
         "act": null,
@@ -420,6 +430,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/battle_friend_v1.webp",
     "beta_image_url": null
   },
@@ -442,7 +453,7 @@
     "block_values": null,
     "encounters": [
       {
-        "encounter_id": "BATTLEWORN_DUMMY_EVENT_ENCOUNTER",
+        "encounter_id": "BATTLEWORN_DUMMY_EVENT_V2_ENCOUNTER",
         "encounter_name": "历战假人",
         "room_type": "Monster",
         "act": null,
@@ -468,6 +479,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/battle_friend_v2.webp",
     "beta_image_url": null
   },
@@ -490,7 +502,7 @@
     "block_values": null,
     "encounters": [
       {
-        "encounter_id": "BATTLEWORN_DUMMY_EVENT_ENCOUNTER",
+        "encounter_id": "BATTLEWORN_DUMMY_EVENT_V3_ENCOUNTER",
         "encounter_name": "历战假人",
         "room_type": "Monster",
         "act": null,
@@ -516,6 +528,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/battle_friend_v3.webp",
     "beta_image_url": null
   },
@@ -576,6 +589,7 @@
       ],
       "description": "Always uses 啃咬"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/bowlbug_egg.webp",
     "beta_image_url": null
   },
@@ -665,6 +679,7 @@
       ],
       "description": "撕扯 → 强化 → Thrash2 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/bowlbug_nectar.webp",
     "beta_image_url": null
   },
@@ -751,6 +766,7 @@
       ],
       "description": "Starts with 头槌"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/bowlbug_rock.webp",
     "beta_image_url": null
   },
@@ -828,6 +844,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/bowlbug_silk.webp",
     "beta_image_url": null
   },
@@ -896,6 +913,7 @@
       ],
       "description": "Always uses 殴打"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/brute_ruby_raider.webp",
     "beta_image_url": null
   },
@@ -927,7 +945,7 @@
       },
       {
         "id": "SLEEP_MOVE_2",
-        "name": "Sleep Move 2",
+        "name": "沉睡",
         "intent": "Sleep"
       },
       {
@@ -1067,21 +1085,24 @@
     ],
     "attack_pattern": {
       "type": "cycle",
-      "initial_move": null,
+      "initial_move": "SWOOP",
       "states": [
         {
           "id": "PECK_MOVE",
           "type": "move",
-          "move_id": "PECK"
+          "move_id": "PECK",
+          "next": "SWOOP_MOVE"
         },
         {
           "id": "SWOOP_MOVE",
           "type": "move",
-          "move_id": "SWOOP"
+          "move_id": "SWOOP",
+          "next": "PECK_MOVE"
         }
       ],
-      "description": ""
+      "description": "飞扑 → 啄击 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/byrdonis.webp",
     "beta_image_url": null
   },
@@ -1117,6 +1138,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/byrdpip.webp",
     "beta_image_url": null
   },
@@ -1351,6 +1373,7 @@
       ],
       "description": "跺地 → 横冲直撞 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/ceremonial_beast.webp",
     "beta_image_url": null
   },
@@ -1426,6 +1449,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/chomper.webp",
     "beta_image_url": null
   },
@@ -1528,6 +1552,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/corpse_slug.webp",
     "beta_image_url": null
   },
@@ -1590,6 +1615,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/crossbow_ruby_raider.webp",
     "beta_image_url": null
   },
@@ -1741,12 +1767,13 @@
       ],
       "description": "撕扯 → 巨化打击 → 虫蛰 → 适应 → 戒备打击 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/crusher.webp",
     "beta_image_url": null
   },
   {
     "id": "CUBEX_CONSTRUCT",
-    "name": "立柱构造体",
+    "name": "方柱构装体",
     "type": "Normal",
     "min_hp": 65,
     "max_hp": null,
@@ -1783,7 +1810,7 @@
       },
       {
         "id": "REPEATER_BLAST_MOVE_2",
-        "name": "Repeater Blast Move 2",
+        "name": "重复轰击",
         "intent": "Attack + Buff",
         "powers": [
           {
@@ -1871,8 +1898,9 @@
           "next": "REPEATER_BLAST_MOVE"
         }
       ],
-      "description": "蓄能 → 重复轰击 → Repeater Blast Move 2 → 排出 → repeat"
+      "description": "蓄能 → 重复轰击 → 重复轰击 → 排出 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/cubex_construct.webp",
     "beta_image_url": null
   },
@@ -2079,6 +2107,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/decimillipede.webp",
     "beta_image_url": null
   },
@@ -2156,7 +2185,7 @@
     "type": "Elite",
     "min_hp": 145,
     "max_hp": null,
-    "min_hp_ascension": 155,
+    "min_hp_ascension": 165,
     "max_hp_ascension": null,
     "moves": [
       {
@@ -2164,6 +2193,11 @@
         "name": "喷射信息素",
         "intent": "Buff",
         "powers": [
+          {
+            "power_id": "STRENGTH",
+            "target": "self",
+            "amount": 2
+          },
           {
             "power_id": "PERSONAL_HIVE",
             "target": "self",
@@ -2173,11 +2207,6 @@
             "power_id": "STRENGTH",
             "target": "self",
             "amount": 1
-          },
-          {
-            "power_id": "STRENGTH",
-            "target": "self",
-            "amount": 2
           }
         ]
       },
@@ -2252,6 +2281,7 @@
       ],
       "description": "Always uses 蜜——蜂——！"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/entomancer.webp",
     "beta_image_url": null
   },
@@ -2261,8 +2291,8 @@
     "type": "Normal",
     "min_hp": 24,
     "max_hp": 28,
-    "min_hp_ascension": 25,
-    "max_hp_ascension": 29,
+    "min_hp_ascension": 26,
+    "max_hp_ascension": 30,
     "moves": [
       {
         "id": "SKITTER",
@@ -2391,6 +2421,7 @@
       ],
       "description": "then random: 忙乱 (no repeat), 啃食 (no repeat); then conditional: 忙乱 (if in first slot) / 啃食 (if in second slot) / 激怒 (if in third slot) / Rand (if in fourth slot)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/exoskeleton.webp",
     "beta_image_url": null
   },
@@ -2439,6 +2470,7 @@
       ],
       "description": "Always uses 牵制"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/eye_with_teeth.webp",
     "beta_image_url": null
   },
@@ -2551,6 +2583,7 @@
       ],
       "description": "then random: 组装, 组装打击; then conditional: Rand (if can fabricate) / 瓦解 (if cannot fabricate)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/fabricator.webp",
     "beta_image_url": null
   },
@@ -2577,7 +2610,8 @@
         "name": "喷吐硬币",
         "intent": "Attack",
         "damage": {
-          "normal": 2
+          "normal": 2,
+          "hit_count": 8
         }
       },
       {
@@ -2861,6 +2895,7 @@
       ],
       "description": "Starts with 撞击"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/flail_knight.webp",
     "beta_image_url": null
   },
@@ -2978,6 +3013,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/flyconid.webp",
     "beta_image_url": null
   },
@@ -3103,8 +3139,9 @@
           ]
         }
       ],
-      "description": "Starts with 虚幻孢子, then random: Swipe Random (no repeat, 40%), Headbutt (no repeat, 60%)"
+      "description": "Opens with 虚幻孢子. Every turn after that it picks Swipe Random 40 percent of the time or Headbutt 60 percent of the time. An attack never repeats back to back."
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/fogmog.webp",
     "beta_image_url": null
   },
@@ -3219,6 +3256,7 @@
       ],
       "description": "Starts with 缠上"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/fossil_stalker.webp",
     "beta_image_url": null
   },
@@ -3354,6 +3392,7 @@
       ],
       "description": "Starts: 吐舌 → 惩恶一击 → 为了女王; then conditional: 吐舌 (if HasBeetleCharged || CurrentHp >= MaxHp / 2) / 甲虫冲锋 (if !HasBeetleCharged && CurrentHp < MaxHp / 2)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/frog_knight.webp",
     "beta_image_url": null
   },
@@ -3444,6 +3483,7 @@
       ],
       "description": "Always uses First Acid Goop"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/fuzzy_wurm_crawler.webp",
     "beta_image_url": null
   },
@@ -3500,6 +3540,7 @@
       ],
       "description": "Always uses 爆炸"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/gas_bomb.webp",
     "beta_image_url": null
   },
@@ -3583,7 +3624,8 @@
     "innate_powers": [
       {
         "power_id": "GALVANIC",
-        "amount": 6
+        "amount": 6,
+        "amount_ascension": 8
       }
     ],
     "attack_pattern": {
@@ -3611,6 +3653,7 @@
       ],
       "description": "电击掌 → 生成闪电 → Galvanic Burst → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/orb_head.webp",
     "beta_image_url": null
   },
@@ -3767,6 +3810,7 @@
       ],
       "description": "Always uses 守护"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/guardbot.webp",
     "beta_image_url": null
   },
@@ -3852,11 +3896,13 @@
         {
           "id": "HAUNT_MOVE",
           "type": "move",
-          "move_id": "HAUNT"
+          "move_id": "HAUNT",
+          "next": "SWIPE_MOVE"
         }
       ],
-      "description": "Always uses 纠缠"
+      "description": "纠缠 → 扫击 → 践踏 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/haunted_ship.webp",
     "beta_image_url": null
   },
@@ -3958,6 +4004,7 @@
       ],
       "description": "Starts with 嫩化黏液"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/hunter_killer.webp",
     "beta_image_url": null
   },
@@ -4084,6 +4131,7 @@
       ],
       "description": "刺击 → 辐射 → 旋风 → 脉动 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/infested_prism.webp",
     "beta_image_url": null
   },
@@ -4219,6 +4267,7 @@
       ],
       "description": "Starts: 旋风 → 刺击; then random: 刺击, 旋风 (no repeat); then random: 锐利凝视 (no repeat), 旋风 (no repeat)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/inklet.webp",
     "beta_image_url": null
   },
@@ -4315,6 +4364,7 @@
       ],
       "description": "力量之舞 → 快斩 → 回旋镖 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/kin_follower.webp",
     "beta_image_url": null
   },
@@ -4723,6 +4773,7 @@
       ],
       "description": "Starts with 沉睡"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/lagavulin_matriarch.webp",
     "beta_image_url": null
   },
@@ -4790,21 +4841,24 @@
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
-      "initial_move": null,
+      "initial_move": "STICKY_SHOT",
       "states": [
         {
           "id": "CLUMP_SHOT",
           "type": "move",
-          "move_id": "CLUMP_SHOT"
+          "move_id": "CLUMP_SHOT",
+          "next": "STICKY_SHOT"
         },
         {
           "id": "STICKY_SHOT",
           "type": "move",
-          "move_id": "STICKY_SHOT"
+          "move_id": "STICKY_SHOT",
+          "next": "CLUMP_SHOT"
         }
       ],
-      "description": ""
+      "description": "黏糊射击 → 团块射击 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/leaf_slime_m.webp",
     "beta_image_url": null
   },
@@ -4892,6 +4946,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/leaf_slime_s.webp",
     "beta_image_url": null
   },
@@ -4989,6 +5044,7 @@
       ],
       "description": "先进毒气 → 膨胀 → 超级毒气爆炸 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/living_smog.webp",
     "beta_image_url": null
   },
@@ -5084,6 +5140,7 @@
       ],
       "description": "Starts with 盾击; then conditional: 盾击 (if has allies) / 砸击 (if no allies)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/living_shield.webp",
     "beta_image_url": null
   },
@@ -5185,6 +5242,7 @@
       ],
       "description": "Always uses 吐网炮"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/louse_progenitor.webp",
     "beta_image_url": null
   },
@@ -5299,6 +5357,7 @@
       ],
       "description": "强力护盾 → 抑制 → 撞击 → Prep → 魔法炸弹 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/magi_knight.webp",
     "beta_image_url": null
   },
@@ -5416,6 +5475,7 @@
       ],
       "description": "Starts with 爪击; then random: 狂乱撕扯 (no repeat), 怒吼 (once), 爪击 (no repeat)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/mawler.webp",
     "beta_image_url": null
   },
@@ -5440,7 +5500,11 @@
       {
         "id": "FLAMETHROWER",
         "name": "喷火器",
-        "intent": "Status"
+        "intent": "Attack + Status",
+        "damage": {
+          "normal": 8,
+          "ascension": 12
+        }
       },
       {
         "id": "WINDUP",
@@ -5469,6 +5533,10 @@
       "Charge": {
         "normal": 25,
         "ascension": 30
+      },
+      "Flamethrower": {
+        "normal": 8,
+        "ascension": 12
       },
       "HeavyCleave": {
         "normal": 35,
@@ -5639,6 +5707,7 @@
       ],
       "description": "then conditional: 浓毒 (if in first slot) / 吸吮 (if in second slot)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/myte.webp",
     "beta_image_url": null
   },
@@ -5754,6 +5823,7 @@
       ],
       "description": "then conditional: 顶撞 (if alone) / 哈气 (if not in front) / Slice (if in front)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/nibbit.webp",
     "beta_image_url": null
   },
@@ -5789,6 +5859,7 @@
       ],
       "description": "Always uses 噪音"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/noisebot.webp",
     "beta_image_url": null
   },
@@ -5824,6 +5895,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/osty.webp",
     "beta_image_url": null
   },
@@ -5952,6 +6024,7 @@
       ],
       "description": "Starts: 产卵 → 猛砸 → 嫩化; then conditional: 产卵 (if can lay) / 高营养糊糊 (if cannot lay)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/ovicopter.webp",
     "beta_image_url": null
   },
@@ -6069,6 +6142,7 @@
       ],
       "description": "法官审查 → 猛啄袭击 → 飞法行为 → 裁决 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/owl_magistrate.webp",
     "beta_image_url": null
   },
@@ -6104,6 +6178,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/paels_legion.webp",
     "beta_image_url": "/static/images/monsters/beta/paels_legion.webp"
   },
@@ -6161,6 +6236,7 @@
       ],
       "description": "Always uses 砸击"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/parafright.webp",
     "beta_image_url": null
   },
@@ -6298,6 +6374,7 @@
       ],
       "description": "then conditional: 猛晃 (if in first slot) / 啃咬 (if in second slot) / 甩动 (if in third slot) / 变大 (if in fourth slot)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/phantasmal_gardener.webp",
     "beta_image_url": null
   },
@@ -6373,6 +6450,7 @@
       ],
       "description": "Starts: 感染 → 甩动"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/phrog_parasite.webp",
     "beta_image_url": null
   },
@@ -6482,6 +6560,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/punch_construct.webp",
     "beta_image_url": null
   },
@@ -6799,6 +6878,7 @@
       ],
       "description": "瞄准十字 → 精准光束 → 蓄能 → 激光 → 重新充能 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/rocket.webp",
     "beta_image_url": null
   },
@@ -6907,6 +6987,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/scroll_of_biting.webp",
     "beta_image_url": null
   },
@@ -7004,6 +7085,7 @@
       ],
       "description": "海洋踢 → 回旋踢 → 吐泡泡 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/seapunk.webp",
     "beta_image_url": null
   },
@@ -7072,6 +7154,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/sewer_clam.webp",
     "beta_image_url": null
   },
@@ -7161,6 +7244,7 @@
       ],
       "description": "缩小 → 大啃 → 践踏 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/shrinker_beetle.webp",
     "beta_image_url": null
   },
@@ -7184,7 +7268,7 @@
       },
       {
         "id": "ZOOM_MOVE_2",
-        "name": "Zoom Move 2",
+        "name": "猛冲",
         "intent": "Attack",
         "damage": {
           "normal": 14,
@@ -7278,8 +7362,9 @@
           "next": "ZOOM_MOVE"
         }
       ],
-      "description": "猛冲 → Zoom Move 2 → 惯性 → 穿刺戳击 → repeat"
+      "description": "猛冲 → 猛冲 → 惯性 → 穿刺戳击 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/skulkling_colomy.webp",
     "beta_image_url": null
   },
@@ -7385,6 +7470,7 @@
       ],
       "description": "Always uses 喷吐脓水"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/slimed_berserker.webp",
     "beta_image_url": null
   },
@@ -7485,6 +7571,7 @@
       ],
       "description": "Starts with 缠身"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/slithering_strangler.webp",
     "beta_image_url": null
   },
@@ -7599,6 +7686,7 @@
       ],
       "description": "Starts with 喷油"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/sludge_spinner.webp",
     "beta_image_url": null
   },
@@ -7683,6 +7771,7 @@
       ],
       "description": "Starts with 打鼾"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/slumbering_beetle.webp",
     "beta_image_url": null
   },
@@ -7749,6 +7838,7 @@
       ],
       "description": "Always uses 能量球"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/snapping_jaxfruit.webp",
     "beta_image_url": null
   },
@@ -7810,6 +7900,7 @@
       ],
       "description": "Always uses 醒来"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/sneaky_gremlin.webp",
     "beta_image_url": null
   },
@@ -7833,7 +7924,7 @@
         "intent": "Attack",
         "damage": {
           "normal": 16,
-          "ascension": 17
+          "ascension": 18
         }
       },
       {
@@ -7877,7 +7968,7 @@
     "damage_values": {
       "DeGas": {
         "normal": 16,
-        "ascension": 17
+        "ascension": 18
       },
       "Scream": {
         "normal": 13,
@@ -7936,6 +8027,7 @@
       ],
       "description": "呼唤 → 排气 → 凝视 → 消逝 → 尖叫 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/soul_fysh.webp",
     "beta_image_url": null
   },
@@ -8067,6 +8159,7 @@
       ],
       "description": "Starts with 灵魂灼烧; then random: 灵魂灼烧 (no repeat), 大漩涡 (no repeat), 汲取生命 (no repeat)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/soul_nexus.webp",
     "beta_image_url": null
   },
@@ -8163,6 +8256,7 @@
       ],
       "description": "Starts: 恶咒 → 灵魂斩击"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/spectral_knight.webp",
     "beta_image_url": null
   },
@@ -8252,6 +8346,7 @@
       ],
       "description": "伸出尖刺 → 尖刺爆破 → 吐舌 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/spiny_toad.webp",
     "beta_image_url": null
   },
@@ -8303,6 +8398,7 @@
       ],
       "description": "Always uses 戳刺"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/stabbot.webp",
     "beta_image_url": null
   },
@@ -8418,6 +8514,7 @@
       ],
       "description": "撞击 → 撕扯 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/terror_eel.webp",
     "beta_image_url": null
   },
@@ -8619,6 +8716,7 @@
       ],
       "description": "Starts: 噬咬 → 颅骨重击; then conditional: 多次爪击 (if respawns < 2) / 撕碎 (if respawns >= 2)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/test_subject.webp",
     "beta_image_url": null
   },
@@ -8709,6 +8807,7 @@
       ],
       "description": "砸击 → 光束 → 弹幕 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/the_adversary_placeholder.webp",
     "beta_image_url": null
   },
@@ -8799,6 +8898,7 @@
       ],
       "description": "冲击 → 火焰光束 → 弹幕 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/the_adversary_placeholder.webp",
     "beta_image_url": null
   },
@@ -8889,6 +8989,7 @@
       ],
       "description": "猛击 → 火焰光束 → 弹幕 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/the_adversary_placeholder.webp",
     "beta_image_url": null
   },
@@ -8954,6 +9055,7 @@
       ],
       "description": "Always uses 瘴气"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/the_forgotten.webp",
     "beta_image_url": null
   },
@@ -8983,7 +9085,7 @@
       },
       {
         "id": "THRASH_MOVE_2",
-        "name": "Thrash Move 2",
+        "name": "撕扯",
         "intent": "Attack",
         "damage": {
           "normal": 8,
@@ -9070,8 +9172,9 @@
           "next": "THRASH_MOVE_2"
         }
       ],
-      "description": "液化地面 → 撕扯 → 前扑啃咬 → 分泌唾液 → Thrash Move 2 → repeat"
+      "description": "液化地面 → 撕扯 → 前扑啃咬 → 分泌唾液 → 撕扯 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/the_insatiable.webp",
     "beta_image_url": null
   },
@@ -9147,6 +9250,7 @@
       ],
       "description": "Always uses 致残雾霾"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/the_lost.webp",
     "beta_image_url": null
   },
@@ -9251,6 +9355,7 @@
       ],
       "description": "Starts with 幻象"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/the_obscura.webp",
     "beta_image_url": null
   },
@@ -9375,6 +9480,7 @@
       ],
       "description": "偷盗 → 振翅 → 帽子戏法 → 抢夺 → 逃跑 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/thieving_hopper.webp",
     "beta_image_url": null
   },
@@ -9480,6 +9586,7 @@
       ],
       "description": "then conditional: 旋转 (if not in front) / 带刺 (if in front)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/toadpole.webp",
     "beta_image_url": null
   },
@@ -9493,12 +9600,12 @@
     "max_hp_ascension": null,
     "moves": [
       {
-        "id": "TACKLE",
-        "name": "冲撞",
+        "id": "STRONG_TACKLE",
+        "name": "强力冲撞",
         "intent": "Attack",
         "damage": {
-          "normal": 18,
-          "ascension": 19
+          "normal": 26,
+          "ascension": 32
         }
       },
       {
@@ -9506,8 +9613,8 @@
         "name": "Tackle 2",
         "intent": "Attack",
         "damage": {
-          "normal": 18,
-          "ascension": 19
+          "normal": 26,
+          "ascension": 32
         }
       },
       {
@@ -9526,7 +9633,7 @@
         "intent": "Attack",
         "damage": {
           "normal": 14,
-          "ascension": 15
+          "ascension": 16
         }
       },
       {
@@ -9535,18 +9642,22 @@
         "intent": "Attack",
         "damage": {
           "normal": 14,
-          "ascension": 15
+          "ascension": 16
         }
       }
     ],
     "damage_values": {
+      "StrongTackle": {
+        "normal": 26,
+        "ascension": 32
+      },
       "Tackle": {
         "normal": 18,
-        "ascension": 19
+        "ascension": 22
       },
       "WeakTackle": {
         "normal": 14,
-        "ascension": 15
+        "ascension": 16
       },
       "SoulBeam": {
         "normal": 8,
@@ -9572,12 +9683,12 @@
     ],
     "attack_pattern": {
       "type": "cycle",
-      "initial_move": "TACKLE",
+      "initial_move": "STRONG_TACKLE",
       "states": [
         {
-          "id": "TACKLE_MOVE",
+          "id": "STRONG_TACKLE_MOVE",
           "type": "move",
-          "move_id": "TACKLE",
+          "move_id": "STRONG_TACKLE",
           "next": "TACKLE_2_MOVE"
         },
         {
@@ -9605,8 +9716,9 @@
           "next": "BEAM_MOVE"
         }
       ],
-      "description": "冲撞 → Tackle 2 → 光束 → Tackle 3 → Tackle 4 → repeat"
+      "description": "强力冲撞 → Tackle 2 → 光束 → Tackle 3 → Tackle 4 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/amalgam.webp",
     "beta_image_url": null
   },
@@ -9668,6 +9780,7 @@
       ],
       "description": "Always uses 孵化"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/tough_egg.webp",
     "beta_image_url": null
   },
@@ -9739,6 +9852,7 @@
       ],
       "description": "Always uses 追踪"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/tracker_ruby_raider.webp",
     "beta_image_url": null
   },
@@ -9784,7 +9898,7 @@
       },
       {
         "id": "DIZZY",
-        "name": "Dizzy",
+        "name": "昏头转向",
         "intent": "Stun"
       }
     ],
@@ -9847,6 +9961,7 @@
       ],
       "description": "啃咬 → 钻洞 → 下方攻击 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/tunneler.webp",
     "beta_image_url": null
   },
@@ -9871,7 +9986,7 @@
       },
       {
         "id": "UNLOAD_MOVE_2",
-        "name": "Unload Move 2",
+        "name": "弹雨！",
         "intent": "Attack",
         "damage": {
           "normal": 3,
@@ -9933,8 +10048,9 @@
           "next": "UNLOAD_MOVE"
         }
       ],
-      "description": "弹雨！ → Unload Move 2 → 装弹 → repeat"
+      "description": "弹雨！ → 弹雨！ → 装弹 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/turret_operator.webp",
     "beta_image_url": null
   },
@@ -10029,6 +10145,7 @@
       ],
       "description": "Starts with 黏糊射击"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/twig_slime_m.webp",
     "beta_image_url": null
   },
@@ -10095,6 +10212,7 @@
       ],
       "description": "Always uses 冲撞"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/twig_slime_s.webp",
     "beta_image_url": null
   },
@@ -10205,6 +10323,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/two_tailed_rat.webp",
     "beta_image_url": null
   },
@@ -10321,6 +10440,7 @@
       ],
       "description": "墨迹 → 墨水长枪 → 肢解 → 准备 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/vantom.webp",
     "beta_image_url": null
   },
@@ -10420,6 +10540,7 @@
       ],
       "description": "挥击 → 紧绕藤蔓 → 大啃 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/vine_shambler.webp",
     "beta_image_url": null
   },
@@ -10617,6 +10738,7 @@
       ],
       "description": "增压 → 践踏 → 撞击 → 虹吸 → 压力炮 → 增压 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/waterfall_giant.webp",
     "beta_image_url": null
   },
@@ -10727,6 +10849,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/wriggler.webp",
     "beta_image_url": null
   },
@@ -10776,6 +10899,7 @@
       ],
       "description": "Always uses 电击"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/zapbot.webp",
     "beta_image_url": null
   },
@@ -10866,6 +10990,7 @@
         "is_weak": false
       }
     ],
+    "quotes": null,
     "image_url": "/static/images/monsters/decimillipede_segment_back.png"
   },
   {
@@ -10955,6 +11080,7 @@
         "is_weak": false
       }
     ],
+    "quotes": null,
     "image_url": "/static/images/monsters/decimillipede_segment_front.png"
   },
   {
@@ -11044,6 +11170,7 @@
         "is_weak": false
       }
     ],
+    "quotes": null,
     "image_url": "/static/images/monsters/decimillipede_segment_middle.png"
   },
   {
@@ -11108,6 +11235,7 @@
         "is_weak": false
       }
     ],
+    "quotes": null,
     "image_url": "/static/images/monsters/flail_knight.png"
   }
 ]

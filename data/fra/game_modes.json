@@ -1,0 +1,38 @@
+[
+  {
+    "id": "STANDARD",
+    "name": "Standard",
+    "description": "Commencez l'aventure pour venir à bout de la Tour !",
+    "multiplayer_description": "Commencez l'aventure pour venir à bout de la Tour... avec des amis !",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": null,
+    "max_ascension": 10
+  },
+  {
+    "id": "DAILY",
+    "name": "Défi du jour",
+    "description": "Un nouveau défi est disponible chaque jour.\n\nMesurez votre score final aux autres joueurs !",
+    "multiplayer_description": "Un nouveau défi est disponible chaque jour.\n\nMesurez votre score final aux autres équipes du monde !",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "Jouez une partie avec chacun des personnages et triomphez de l'Acte 3 pour débloquer les Défis du jour.",
+    "max_ascension": 10
+  },
+  {
+    "id": "CUSTOM",
+    "name": "Personnalisé",
+    "description": "Personnalisez votre partie avec des affixes uniques.",
+    "multiplayer_description": "Personnalisez votre partie multijoueur avec des affixes uniques.",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "Triomphez de l'Acte 3 trois fois pour débloquer les parties personnalisées.",
+    "max_ascension": 10
+  }
+]

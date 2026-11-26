@@ -132,16 +132,35 @@ def replays_summary(request: Request, response: Response):
     cached = app_cache.get_json("replays_summary")
     if cached is not None:
         return cached
+    last_good = app_cache.get_json("replays_summary:last")
+    if not app_cache.acquire_lock("replays_summary:lock", ttl_seconds=120):
+        if last_good is not None:
+            return last_good
+        response.headers["Cache-Control"] = "no-store"
+        return {"total": 0, "by_character": {}}
+    from pymongo.errors import PyMongoError
+
     from ..services.runs_db_mongo import _get_collection
 
-    coll = _get_collection()
-    base = {"has_replay": True, "hidden": {"$ne": True}}
+    try:
+        counts = {
+            row["_id"]: row["n"]
+            for row in _get_collection().aggregate(
+                [
+                    {"$match": {"has_replay": True, "hidden": {"$ne": True}}},
+                    {"$group": {"_id": "$character", "n": {"$sum": 1}}},
+                ],
+                maxTimeMS=60_000,
+            )
+        }
+    except PyMongoError:
+        if last_good is None:
+            raise
+        return last_good
     out = {
-        "total": coll.count_documents(base),
-        "by_character": {
-            c: coll.count_documents({**base, "character": c})
-            for c in official_characters_ordered()
-        },
+        "total": sum(counts.values()),
+        "by_character": {c: counts.get(c, 0) for c in official_characters_ordered()},
     }
-    app_cache.set_json("replays_summary", out, ttl_seconds=300)
+    app_cache.set_json("replays_summary", out, ttl_seconds=900)
+    app_cache.set_json("replays_summary:last", out, ttl_seconds=86400)
     return out

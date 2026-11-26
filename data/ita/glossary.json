@@ -20,7 +20,7 @@
   {
     "id": "COOK",
     "name": "Cucina",
-    "description": "[gold]Rimuovi[/gold] [blue]2[/blue] carte dal tuo [gold]mazzo[/gold] e ottieni [green]9[/green] PV massimi presso un [gold]luogo di riposo[/gold].",
+    "description": "[gold]Rimuovi[/gold] [blue]2[/blue] carte dal tuo [gold]mazzo[/gold] e ottieni [green]5[/green] PV massimi presso un [gold]luogo di riposo[/gold].",
     "category": "mechanics"
   },
   {

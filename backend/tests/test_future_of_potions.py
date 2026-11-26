@@ -24,6 +24,12 @@ def test_choose_branch_fills_in_the_value():
     assert resolve_description(raw, {"Rarity": "Token"}) == "Token-Trank"
 
 
+def test_choose_branch_formats_its_own_variable():
+    raw = "Upgrade {Cards:choose(1):a|{:diff()}} random {Cards:plural:card|cards}."
+    assert resolve_description(raw, {"Cards": 1}) == "Upgrade a random card."
+    assert resolve_description(raw, {"Cards": 2}) == "Upgrade 2 random cards."
+
+
 def test_parser_builds_one_option_per_rarity(tmp_path):
     ui = {
         f"POTION_RARITY.{r}": r.title()

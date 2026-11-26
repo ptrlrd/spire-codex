@@ -125,3 +125,54 @@ describe("buildScene on an older journal", () => {
     expect(steps.every((s) => s.p.hand === undefined)).toBe(true);
   });
 });
+
+describe("blitz merchant in the scene", () => {
+  const offer = (slot: number, entry: string) => ({
+    slot,
+    blitz_entry: entry,
+    entry_class: `BlitzMerchant${entry}Entry`,
+    status: "available",
+  });
+  const text = [
+    { t: "header", s: 0, ms: 0, floor: 0, act: 1, replay_version: 8 },
+    { t: "room", s: 1, ms: 1, floor: 4, act: 1, kind: "merchant" },
+    {
+      t: "shop",
+      s: 2,
+      ms: 2,
+      floor: 4,
+      act: 1,
+      gold: 99,
+      cards: [],
+      relics: [],
+      potions: [],
+      blitz: [offer(0, "UpgradedRareCard"), offer(1, "Potions")],
+    },
+    {
+      t: "buy",
+      s: 3,
+      ms: 3,
+      floor: 4,
+      act: 1,
+      kind: "blitz",
+      slot: 0,
+      blitz_entry: "UpgradedRareCard",
+      cost_current: 0,
+      cost_resource: "gold",
+    },
+  ]
+    .map((l) => JSON.stringify(l))
+    .join("\n");
+
+  it("lists the offers and marks a pick used from its buy on", () => {
+    const { steps } = buildScene(text);
+    const buy = steps.find((s) => s.caption.k === "buy");
+    expect(buy?.p.shop?.blitz).toEqual([
+      { entry: "UpgradedRareCard", status: "used" },
+      { entry: "Potions", status: "available" },
+    ]);
+    const before = steps.filter((s) => s.s < (buy?.s ?? 0) && s.p.shop);
+    for (const s of before)
+      expect(s.p.shop?.blitz?.[0]?.status).toBe("available");
+  });
+});

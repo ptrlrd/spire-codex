@@ -1,5 +1,16 @@
 [
   {
+    "id": "AMBERGRIS",
+    "name": "Akamber",
+    "description": "Maksimum CP'nin [green]%50[/green] kadarını iyileştir. Savaş esnasında kullanılırsa fazladan bir tur elde edersin.",
+    "description_raw": "Maksimum CP'nin [green]%{HealPercent}[/green] kadarını iyileştir. Savaş esnasında kullanılırsa fazladan bir tur elde edersin.",
+    "rarity": "Etkinlik",
+    "image_url": "/static/images/potions/ambergris.webp",
+    "rarity_key": "Event",
+    "compendium_order": 60,
+    "pool": "event"
+  },
+  {
     "id": "SOLDIERS_STEW",
     "name": "Askerin Karışımı",
     "description": "[gold]Saldırı[/gold] içeren tüm kartlar bu savaş boyunca [blue]1[/blue] [gold]Yeniden Oyna[/gold] elde eder.",
@@ -249,7 +260,7 @@
     "rarity": "Etkinlik",
     "image_url": "/static/images/potions/glowwater_potion.webp",
     "rarity_key": "Event",
-    "compendium_order": 60,
+    "compendium_order": 61,
     "pool": "event"
   },
   {
@@ -634,7 +645,7 @@
     "rarity": "Token",
     "image_url": "/static/images/potions/potion_shaped_rock.webp",
     "rarity_key": "Token",
-    "compendium_order": 62,
+    "compendium_order": 63,
     "pool": "shared"
   },
   {
@@ -645,7 +656,7 @@
     "rarity": "Etkinlik",
     "image_url": "/static/images/potions/foul_potion.webp",
     "rarity_key": "Event",
-    "compendium_order": 61,
+    "compendium_order": 62,
     "pool": "event"
   },
   {

@@ -180,12 +180,15 @@
    "title": "呪詛"
   },
   "MOCK_NO_UNPLAYABLE_AFFLICTION": {
+   "description": "",
    "title": "[テスト用]プレイ不可の災禍なし"
   },
   "MOCK_SELF_DAMAGE_AFFLICTION": {
+   "description": "",
    "title": "[テスト用] 自傷の災禍"
   },
   "MOCK_USELESS_AFFLICTION": {
+   "description": "",
    "title": "[テスト用] 無用な災禍"
   },
   "RINGING": {
@@ -814,6 +817,7 @@
    "title": "パエル"
   },
   "PROCEED": {
+   "description": "",
    "title": "進む"
   },
   "TANX": {
@@ -1083,6 +1087,12 @@
   "THE_ARCHITECT": {
    "CONTINUE": "続ける",
    "RESPOND": "返答する",
+   "epithet": "",
+   "pages": {
+    "INITIAL": {
+     "description": ""
+    }
+   },
    "talk": {
     "DEFECT": {
      "0-0r": {
@@ -1771,6 +1781,7 @@
    "title": "武器庫"
   },
   "ASCENDERS_BANE": {
+   "description": "",
    "title": "アセンダーの災厄"
   },
   "ASHEN_STRIKE": {
@@ -2098,6 +2109,7 @@
    "title": "星の外套"
   },
   "CLUMSY": {
+   "description": "",
    "title": "不器用"
   },
   "COLD_SNAP": {
@@ -2202,6 +2214,7 @@
    "title": "重圧"
   },
   "CURSE_OF_THE_BELL": {
+   "description": "",
    "title": "鐘の呪い"
   },
   "DAGGER_SPRAY": {
@@ -2233,6 +2246,7 @@
    "title": "ダッシュ"
   },
   "DAZED": {
+   "description": "",
    "title": "めまい"
   },
   "DEADLY_POISON": {
@@ -2256,6 +2270,7 @@
    "title": "衰弱"
   },
   "DEBRIS": {
+   "description": "",
    "title": "デブリ"
   },
   "DEBT": {
@@ -2590,6 +2605,7 @@
    "title": "フォーカスストライク"
   },
   "FOLLY": {
+   "description": "",
    "title": "愚行"
   },
   "FOOTWORK": {
@@ -2711,6 +2727,7 @@
    "title": "墓守"
   },
   "GREED": {
+   "description": "",
    "title": "強欲"
   },
   "GUARDS": {
@@ -2887,6 +2904,7 @@
    "title": "発火"
   },
   "INJURY": {
+   "description": "",
    "title": "怪我"
   },
   "INTERCEPT": {
@@ -3094,22 +3112,28 @@
    "title": "ミザリー"
   },
   "MOCK_ATTACK_CARD": {
+   "description": "",
    "title": "テスト用アタック"
   },
   "MOCK_CURSE_CARD": {
+   "description": "",
    "title": "テスト用呪い"
   },
   "MOCK_POWER_CARD": {
+   "description": "",
    "title": "テスト用パワー"
   },
   "MOCK_QUEST_CARD": {
+   "description": "",
    "title": "テスト用クエストカード"
   },
   "MOCK_SKILL_CARD": {
+   "description": "",
    "discardSelectionPrompt": "捨てるカードを選ぶ。",
    "title": "テスト用スキル"
   },
   "MOCK_STATUS_CARD": {
+   "description": "",
    "title": "テスト用状態異常"
   },
   "MODDED": {
@@ -3332,6 +3356,7 @@
    "title": "ポンメルストライク"
   },
   "POOR_SLEEP": {
+   "description": "",
    "title": "寝不足"
   },
   "POUNCE": {
@@ -3713,6 +3738,7 @@
    "title": "ソーラーストライク"
   },
   "SOOT": {
+   "description": "",
    "title": "すす"
   },
   "SOUL": {
@@ -3772,6 +3798,7 @@
    "title": "戦利品"
   },
   "SPORE_MIND": {
+   "description": "",
    "title": "菌糸の汚染"
   },
   "SPUR": {
@@ -4175,6 +4202,7 @@
    "title": "衰微"
   },
   "WOUND": {
+   "description": "",
    "title": "負傷"
   },
   "WRAITH_FORM": {
@@ -4182,6 +4210,7 @@
    "title": "死霊化"
   },
   "WRITHE": {
+   "description": "",
    "title": "苦悩"
   },
   "WROUGHT_IN_WAR": {
@@ -4519,6 +4548,7 @@
    "title": "本能"
   },
   "MOCK_FREE_ENCHANTMENT": {
+   "description": "",
    "title": "[テスト用]無料エンチャント"
   },
   "MOMENTUM": {
@@ -5370,25 +5400,101 @@
    "name": "感染の時代",
    "year": "1,201"
   },
+  "BLIGHT1": {
+   "name": "",
+   "year": ""
+  },
+  "BLIGHT2": {
+   "name": "",
+   "year": ""
+  },
+  "BLIGHT3": {
+   "name": "",
+   "year": ""
+  },
   "FLOURISH0": {
    "name": "繁栄の時代",
    "year": "1,800"
+  },
+  "FLOURISH1": {
+   "name": "",
+   "year": ""
+  },
+  "FLOURISH2": {
+   "name": "",
+   "year": ""
+  },
+  "FLOURISH3": {
+   "name": "",
+   "year": ""
   },
   "INVITATION0": {
    "name": "扉の時代",
    "year": "2,733"
   },
+  "INVITATION1": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION2": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION3": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION4": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION5": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION6": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION7": {
+   "name": "",
+   "year": ""
+  },
   "PEACE0": {
    "name": "終焉",
    "year": "3,000"
+  },
+  "PEACE1": {
+   "name": "",
+   "year": ""
   },
   "PREHISTORIA0": {
    "name": "先史時代",
    "year": "???"
   },
+  "PREHISTORIA1": {
+   "name": "",
+   "year": ""
+  },
+  "PREHISTORIA2": {
+   "name": "",
+   "year": ""
+  },
   "SEEDS0": {
    "name": "種子の時代",
    "year": "0"
+  },
+  "SEEDS1": {
+   "name": "",
+   "year": ""
+  },
+  "SEEDS2": {
+   "name": "",
+   "year": ""
+  },
+  "SEEDS3": {
+   "name": "",
+   "year": ""
   }
  },
  "events": {
@@ -5401,6 +5507,7 @@
     "ALL": {
      "options": {
       "EXIT_BATHS": {
+       "description": "",
        "title": "浴場を出る"
       },
       "LINGER": {
@@ -5787,6 +5894,7 @@
      "description": "死ぬほど疲れていたあなたは、仮眠をとることにした……\n\n…… が、体の上で[gold][jitter]何かがうごめく[/jitter][/gold]気配に叩き起こされた！",
      "options": {
       "FIGHT": {
+       "description": "",
        "title": "戦う！"
       }
      }
@@ -5971,6 +6079,7 @@
      "description": "あなたはレーンから[gold]{LastDishTitle}[/gold]を取り、一気に平らげた。\n[green]ウマい！ [/green]",
      "options": {
       "LEAVE": {
+       "description": "",
        "title": "立ち去る"
       }
      }
@@ -6309,6 +6418,7 @@
    "title": "ポーションの運び屋"
   },
   "PROCEED": {
+   "description": "",
    "title": "続ける"
   },
   "PUNCH_OFF": {
@@ -6331,6 +6441,7 @@
      "description": "[gold]ロボット[/gold]たちは威嚇するようにこちらを振り向いた！\n\nあなたは拳を構えた。",
      "options": {
       "FIGHT": {
+       "description": "",
        "title": "戦う"
       }
      }
@@ -6484,6 +6595,7 @@
      "description": "あなたはテーブルに飛び乗り、[red]武将の騎士[/red]の顔面を[jitter]蹴り飛ばした[/jitter]！\n 騎士は恐ろしい悲鳴を上げ、倒れ込む。\n\n[jitter][purple]全員が息を呑んだ。 [/purple][/jitter]",
      "options": {
       "CONTINUE_FIGHT": {
+       "description": "",
        "title": "続ける"
       }
      }
@@ -6978,6 +7090,7 @@
      "description": "見知らぬ騎士はあなたを威嚇するように見つめた。 この場から鍵を持って出られるのは一人だけのようだ。",
      "options": {
       "FIGHT": {
+       "description": "",
        "title": "戦う"
       }
      }
@@ -7822,6 +7935,7 @@
   },
   "FORMAT_DAMAGE_MULTI": "{Damage}[font_size=18]x{Repeat}[/font_size]",
   "FORMAT_DAMAGE_SINGLE": "{Damage}",
+  "FORMAT_EMPTY": "",
   "FORMAT_STATUS_CARD_COUNT": "{CardCount}",
   "HEAL": {
    "description": "[gold]回復[/gold]する。",
@@ -10228,6 +10342,7 @@
    "title": "ライトニング"
   },
   "MOCK_COMBAT_CLEANUP_ORB": {
+   "description": "",
    "title": "テスト用戦闘クリーンナップ"
   },
   "PLASMA_ORB": {
@@ -10412,6 +10527,7 @@
    "title": "マザレスの贈り物"
   },
   "MOCK_DISCARD_AND_ADD_SHIVS_POTION": {
+   "description": "",
    "title": "テスト用ディスカード＆ナイフ追加ポーション"
   },
   "OROBIC_ACID": {
@@ -11198,51 +11314,67 @@
    "title": "ミニオン"
   },
   "MOCK_CLONE_CARDS_ON_PLAY_POWER": {
+   "description": "",
    "title": "テスト用クローンカード"
   },
   "MOCK_DO_NOT_SCALE_IN_MULTIPLAYER_POWER": {
+   "description": "",
    "title": "テスト用マルチプレイスケール停止"
   },
   "MOCK_EXTRA_TURN_POWER": {
+   "description": "",
    "title": "テスト用追加ターン"
   },
   "MOCK_FREE_CARDS_POWER": {
+   "description": "",
    "title": "テスト用フリーカード"
   },
   "MOCK_GAIN_BLOCK_ON_ATTACK_POWER": {
+   "description": "",
    "title": "テスト用アタックブロック"
   },
   "MOCK_INVINCIBLE_ON_DEATH_POWER": {
+   "description": "",
    "title": "テスト用死亡時無敵"
   },
   "MOCK_MODIFY_ENERGY_COST_POWER": {
+   "description": "",
    "title": "テスト用エナジーコスト変更"
   },
   "MOCK_MODIFY_STAR_COST_POWER": {
+   "description": "",
    "title": "テスト用スターコスト変更"
   },
   "MOCK_PHASE_OBSERVER_POWER": {
+   "description": "",
    "title": "テスト用フェーズ監視"
   },
   "MOCK_PREVENT_DEATH_POWER": {
+   "description": "",
    "title": "テスト用死亡回避"
   },
   "MOCK_REMOVE_DRAWN_CARDS_FROM_COMBAT_POWER": {
+   "description": "",
    "title": "テスト用戦闘中に引いたカードを削除"
   },
   "MOCK_RESET_COMBAT_ON_SHUFFLE_POWER": {
+   "description": "",
    "title": "テスト用シャッフル時戦闘リセット"
   },
   "MOCK_REVIVE_POWER": {
+   "description": "",
    "title": "テスト用復活"
   },
   "MOCK_SCALE_IN_MULTIPLAYER_POWER": {
+   "description": "",
    "title": "テスト用マルチプレイスケール"
   },
   "MOCK_TEMPORARY_STRENGTH_LOSS": {
+   "description": "",
    "title": "テスト用一時的筋力低下"
   },
   "MOCK_UNHITTABLE_POWER": {
+   "description": "",
    "title": "テスト用命中回避"
   },
   "MONARCHS_GAZE_POWER": {
@@ -13871,6 +14003,7 @@
   "TEXT_EFFECTS": "テキストエフェクト",
   "TEXT_EFFECTS_DESCRIPTION": "テキストが波打ったり揺れたりするエフェクトを有効にするかを設定する。",
   "TEXT_SIZE": "文字サイズ",
+  "TOAST_CANNOT_REMAP_INPUT": "Cannot set an input for {Hotkey} for {ControlType}.",
   "TOAST_FAST_MODE_OFF": "戦闘アクションと画面の切り替え速度が元に戻った。",
   "TOAST_FAST_MODE_ON": "戦闘アクションと画面の切り替えが高速化された。",
   "TOAST_GAMEPLAY_DATA_OFF": "ゲームプレイデータとエラーログがMega Critに送信されるようになった。",

@@ -1,0 +1,556 @@
+[
+  {
+    "id": "DARV",
+    "name": "Darv",
+    "description": "The Hoarder",
+    "pools": [
+      {
+        "name": "Relic Pool",
+        "relics": [
+          {
+            "id": "ASTROLABE",
+            "condition": null
+          },
+          {
+            "id": "BLACK_STAR",
+            "condition": null
+          },
+          {
+            "id": "CALLING_BELL",
+            "condition": null
+          },
+          {
+            "id": "EMPTY_CAGE",
+            "condition": null
+          },
+          {
+            "id": "PANDORAS_BOX",
+            "condition": null
+          },
+          {
+            "id": "RUNIC_PYRAMID",
+            "condition": null
+          },
+          {
+            "id": "SNECKO_EYE",
+            "condition": null
+          },
+          {
+            "id": "ECTOPLASM",
+            "condition": null
+          },
+          {
+            "id": "SOZU",
+            "condition": null
+          },
+          {
+            "id": "PHILOSOPHERS_STONE",
+            "condition": null
+          },
+          {
+            "id": "VELVET_CHOKER",
+            "condition": null
+          }
+        ]
+      },
+      {
+        "name": "Dusty Tome",
+        "relics": [
+          {
+            "id": "DUSTY_TOME",
+            "condition": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "NEOW",
+    "name": "Neow",
+    "description": "Mother of Resurrection (Exiled)",
+    "pools": [
+      {
+        "name": "Curse Pool",
+        "relics": [
+          {
+            "id": "CURSED_PEARL",
+            "condition": null
+          },
+          {
+            "id": "DOWSING_ROD",
+            "condition": null
+          },
+          {
+            "id": "HEFTY_TABLET",
+            "condition": null
+          },
+          {
+            "id": "LARGE_CAPSULE",
+            "condition": null
+          },
+          {
+            "id": "LEAFY_POULTICE",
+            "condition": null
+          },
+          {
+            "id": "NEOWS_BONES",
+            "condition": null
+          },
+          {
+            "id": "NEOWS_SACRIFICE",
+            "condition": null
+          },
+          {
+            "id": "PRECARIOUS_SHEARS",
+            "condition": null
+          },
+          {
+            "id": "SILKEN_TRESS",
+            "condition": null
+          },
+          {
+            "id": "SILVER_CRUCIBLE",
+            "condition": null
+          }
+        ]
+      },
+      {
+        "name": "Positive Pool",
+        "relics": [
+          {
+            "id": "ARCANE_SCROLL",
+            "condition": null
+          },
+          {
+            "id": "BOOMING_CONCH",
+            "condition": null
+          },
+          {
+            "id": "FISHING_ROD",
+            "condition": null
+          },
+          {
+            "id": "GOLDEN_PEARL",
+            "condition": null
+          },
+          {
+            "id": "KALEIDOSCOPE",
+            "condition": null
+          },
+          {
+            "id": "LEAD_PAPERWEIGHT",
+            "condition": null
+          },
+          {
+            "id": "LOST_COFFER",
+            "condition": null
+          },
+          {
+            "id": "MASSIVE_SCROLL",
+            "condition": null
+          },
+          {
+            "id": "NEOWS_TORMENT",
+            "condition": null
+          },
+          {
+            "id": "NEW_LEAF",
+            "condition": null
+          },
+          {
+            "id": "PHIAL_HOLSTER",
+            "condition": null
+          },
+          {
+            "id": "PRECISE_SCISSORS",
+            "condition": null
+          },
+          {
+            "id": "SCROLL_BOXES",
+            "condition": null
+          },
+          {
+            "id": "WINGED_BOOTS",
+            "condition": null
+          },
+          {
+            "id": "LAVA_ROCK",
+            "condition": null
+          },
+          {
+            "id": "NEOWS_TALISMAN",
+            "condition": null
+          },
+          {
+            "id": "NUTRITIOUS_OYSTER",
+            "condition": null
+          },
+          {
+            "id": "POMANDER",
+            "condition": null
+          },
+          {
+            "id": "SMALL_CAPSULE",
+            "condition": null
+          },
+          {
+            "id": "STONE_HUMIDIFIER",
+            "condition": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "NONUPEIPE",
+    "name": "Nonupeipe",
+    "description": "Serendipity Incarnate",
+    "pools": [
+      {
+        "name": "Relic Pool",
+        "relics": [
+          {
+            "id": "BLESSED_ANTLER",
+            "condition": null
+          },
+          {
+            "id": "BRILLIANT_SCARF",
+            "condition": null
+          },
+          {
+            "id": "DELICATE_FROND",
+            "condition": null
+          },
+          {
+            "id": "DIAMOND_DIADEM",
+            "condition": null
+          },
+          {
+            "id": "FUR_COAT",
+            "condition": null
+          },
+          {
+            "id": "GLITTER",
+            "condition": null
+          },
+          {
+            "id": "JEWELRY_BOX",
+            "condition": null
+          },
+          {
+            "id": "LOOMING_FRUIT",
+            "condition": null
+          },
+          {
+            "id": "SIGNET_RING",
+            "condition": null
+          },
+          {
+            "id": "BEAUTIFUL_BRACELET",
+            "condition": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "OROBAS",
+    "name": "Orobas",
+    "description": "Living Rainbow",
+    "pools": [
+      {
+        "name": "Pool 1",
+        "relics": [
+          {
+            "id": "ELECTRIC_SHRYMP",
+            "condition": null
+          },
+          {
+            "id": "GLASS_EYE",
+            "condition": null
+          },
+          {
+            "id": "PRISMATIC_GEM",
+            "condition": null
+          },
+          {
+            "id": "SEA_GLASS",
+            "condition": null
+          }
+        ]
+      },
+      {
+        "name": "Pool 2",
+        "relics": [
+          {
+            "id": "ALCHEMICAL_COFFER",
+            "condition": null
+          },
+          {
+            "id": "DRIFTWOOD",
+            "condition": null
+          },
+          {
+            "id": "RADIANT_PEARL",
+            "condition": null
+          },
+          {
+            "id": "SAND_CASTLE",
+            "condition": null
+          }
+        ]
+      },
+      {
+        "name": "Pool 3",
+        "relics": [
+          {
+            "id": "TOUCH_OF_OROBAS",
+            "condition": null
+          },
+          {
+            "id": "ARCHAIC_TOOTH",
+            "condition": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "PAEL",
+    "name": "Pael",
+    "description": "Melting Dragon",
+    "pools": [
+      {
+        "name": "Pool 1",
+        "relics": [
+          {
+            "id": "PAELS_FLESH",
+            "condition": null
+          },
+          {
+            "id": "PAELS_HORN",
+            "condition": null
+          },
+          {
+            "id": "PAELS_TEARS",
+            "condition": null
+          }
+        ]
+      },
+      {
+        "name": "Pool 2",
+        "relics": [
+          {
+            "id": "PAELS_WING",
+            "condition": null
+          },
+          {
+            "id": "PAELS_CLAW",
+            "condition": null
+          },
+          {
+            "id": "PAELS_TOOTH",
+            "condition": null
+          },
+          {
+            "id": "PAELS_GROWTH",
+            "condition": null
+          }
+        ]
+      },
+      {
+        "name": "Pool 3",
+        "relics": [
+          {
+            "id": "PAELS_EYE",
+            "condition": null
+          },
+          {
+            "id": "PAELS_BLOOD",
+            "condition": null
+          },
+          {
+            "id": "PAELS_LEGION",
+            "condition": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "TANX",
+    "name": "Tanx",
+    "description": "Khimera King",
+    "pools": [
+      {
+        "name": "Relic Pool",
+        "relics": [
+          {
+            "id": "CLAWS",
+            "condition": null
+          },
+          {
+            "id": "CROSSBOW",
+            "condition": null
+          },
+          {
+            "id": "IRON_CLUB",
+            "condition": null
+          },
+          {
+            "id": "MEAT_CLEAVER",
+            "condition": null
+          },
+          {
+            "id": "SAI",
+            "condition": null
+          },
+          {
+            "id": "SPIKED_GAUNTLETS",
+            "condition": null
+          },
+          {
+            "id": "TANXS_WHISTLE",
+            "condition": null
+          },
+          {
+            "id": "THROWING_AXE",
+            "condition": null
+          },
+          {
+            "id": "WAR_HAMMER",
+            "condition": null
+          },
+          {
+            "id": "TRI_BOOMERANG",
+            "condition": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "TEZCATARA",
+    "name": "Tezcatara",
+    "description": "It Which Feeds the Fire",
+    "pools": [
+      {
+        "name": "Pool 1",
+        "relics": [
+          {
+            "id": "VERY_HOT_COCOA",
+            "condition": null
+          },
+          {
+            "id": "YUMMY_COOKIE",
+            "condition": null
+          },
+          {
+            "id": "NUTRITIOUS_SOUP",
+            "condition": null
+          }
+        ]
+      },
+      {
+        "name": "Pool 2",
+        "relics": [
+          {
+            "id": "BIIIG_HUG",
+            "condition": null
+          },
+          {
+            "id": "STORYBOOK",
+            "condition": null
+          },
+          {
+            "id": "TOASTY_MITTENS",
+            "condition": null
+          }
+        ]
+      },
+      {
+        "name": "Pool 3",
+        "relics": [
+          {
+            "id": "GOLDEN_COMPASS",
+            "condition": null
+          },
+          {
+            "id": "PUMPKIN_CANDLE",
+            "condition": null
+          },
+          {
+            "id": "TOY_BOX",
+            "condition": null
+          },
+          {
+            "id": "SEAL_OF_GOLD",
+            "condition": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "VAKUU",
+    "name": "Vakuu",
+    "description": "The First Demon",
+    "pools": [
+      {
+        "name": "Pool 1",
+        "relics": [
+          {
+            "id": "BLOOD_SOAKED_ROSE",
+            "condition": null
+          },
+          {
+            "id": "WHISPERING_EARRING",
+            "condition": null
+          },
+          {
+            "id": "FIDDLE",
+            "condition": null
+          }
+        ]
+      },
+      {
+        "name": "Pool 2",
+        "relics": [
+          {
+            "id": "PRESERVED_FOG",
+            "condition": null
+          },
+          {
+            "id": "SERE_TALON",
+            "condition": null
+          },
+          {
+            "id": "DISTINGUISHED_CAPE",
+            "condition": null
+          }
+        ]
+      },
+      {
+        "name": "Pool 3",
+        "relics": [
+          {
+            "id": "CHOICES_PARADOX",
+            "condition": null
+          },
+          {
+            "id": "MUSIC_BOX",
+            "condition": null
+          },
+          {
+            "id": "LORDS_PARASOL",
+            "condition": null
+          },
+          {
+            "id": "JEWELED_MASK",
+            "condition": null
+          }
+        ]
+      }
+    ]
+  }
+]

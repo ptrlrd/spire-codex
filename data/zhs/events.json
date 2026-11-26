@@ -428,7 +428,7 @@
       },
       {
         "id": "RIP",
-        "description": "你暴力地将[jitter]它从头上扯了下来[/jitter]，并狠狠地把它丢得远远的！\n\n你的脑海中响起一个声音：\n[purple][sine]“不~~~~~~~~~~~~…”"
+        "description": "你暴力地将[jitter]它从头上扯了下来[/jitter]，并狠狠地把它丢得远远的！\n\n你的脑海中响起一个声音：\n[purple][sine]“不~~~~~~~~~~~~…”[/sine][/purple]"
       },
       {
         "id": "SHARE_KNOWLEDGE",
@@ -1076,7 +1076,7 @@
           {
             "id": "TAKE",
             "title": "TAKE",
-            "description": "获得[gold]a random Relic[/gold]。"
+            "description": "获得[gold]一件随机遗物[/gold]。"
           }
         ]
       },
@@ -1283,7 +1283,7 @@
     "name": "商人？？？",
     "type": "Shared",
     "act": null,
-    "description": "A suspicious merchant offers 6 fake relics (drawn from a pool of 9) at 42–58 gold each. Throwing a [gold]Foul Potion[/gold] starts a fight against The Merchant??? (165 HP). Winning rewards [gold]The Merchant's Rug???[/gold] plus all unsold relics.",
+    "description": "一名可疑商人以每件42–58金币的价格出售6件假遗物（从9件的池中抽取）。投掷[gold]Foul Potion[/gold]会触发与The Merchant???（165点生命）的战斗。获胜可获得[gold]The Merchant's Rug???[/gold]以及所有未售出的遗物。",
     "preconditions": [
       "Act 2+",
       "Single player only",
@@ -1902,10 +1902,12 @@
       "SMALL_CAPSULE",
       "STONE_HUMIDIFIER",
       "CURSED_PEARL",
+      "DOWSING_ROD",
       "HEFTY_TABLET",
       "LARGE_CAPSULE",
       "LEAFY_POULTICE",
       "NEOWS_BONES",
+      "NEOWS_SACRIFICE",
       "PRECARIOUS_SHEARS",
       "SILKEN_TRESS",
       "SILVER_CRUCIBLE"
@@ -2261,10 +2263,10 @@
     "relics": [
       "ELECTRIC_SHRYMP",
       "GLASS_EYE",
-      "SAND_CASTLE",
       "ALCHEMICAL_COFFER",
       "DRIFTWOOD",
       "RADIANT_PEARL",
+      "SAND_CASTLE",
       "SEA_GLASS",
       "PRISMATIC_GEM",
       "TOUCH_OF_OROBAS",
@@ -2680,17 +2682,17 @@
       {
         "id": "TOP",
         "title": "拿上面那件",
-        "description": "用[gold]one of your Relics[/gold]换[gold]a random Relic[/gold]。"
+        "description": "用[gold]你的一件遗物[/gold]换[gold]一件随机遗物[/gold]。"
       },
       {
         "id": "MIDDLE",
         "title": "拿中间这件",
-        "description": "用[gold]one of your Relics[/gold]换[gold]a random Relic[/gold]。"
+        "description": "用[gold]你的一件遗物[/gold]换[gold]一件随机遗物[/gold]。"
       },
       {
         "id": "BOTTOM",
         "title": "拿下面那件",
-        "description": "用[gold]one of your Relics[/gold]换[gold]a random Relic[/gold]。"
+        "description": "用[gold]你的一件遗物[/gold]换[gold]一件随机遗物[/gold]。"
       }
     ],
     "pages": [
@@ -2705,17 +2707,17 @@
           {
             "id": "TOP",
             "title": "拿上面那件",
-            "description": "用[gold]one of your Relics[/gold]换[gold]a random Relic[/gold]。"
+            "description": "用[gold]你的一件遗物[/gold]换[gold]一件随机遗物[/gold]。"
           },
           {
             "id": "MIDDLE",
             "title": "拿中间这件",
-            "description": "用[gold]one of your Relics[/gold]换[gold]a random Relic[/gold]。"
+            "description": "用[gold]你的一件遗物[/gold]换[gold]一件随机遗物[/gold]。"
           },
           {
             "id": "BOTTOM",
             "title": "拿下面那件",
-            "description": "用[gold]one of your Relics[/gold]换[gold]a random Relic[/gold]。"
+            "description": "用[gold]你的一件遗物[/gold]换[gold]一件随机遗物[/gold]。"
           }
         ]
       }
@@ -2996,7 +2998,7 @@
       {
         "id": "OVERCOME",
         "title": "跨越",
-        "description": "[red]a random Card[/red]将从你的[gold]牌组[/gold]中被移除。"
+        "description": "[red]一张随机卡牌[/red]将从你的[gold]牌组[/gold]中被移除。"
       },
       {
         "id": "HOLD_ON_0",
@@ -3100,7 +3102,7 @@
           {
             "id": "OVERCOME",
             "title": "跨越",
-            "description": "[red]a random Card[/red]将从你的[gold]牌组[/gold]中被移除。"
+            "description": "[red]一张随机卡牌[/red]将从你的[gold]牌组[/gold]中被移除。"
           },
           {
             "id": "HOLD_ON_0",
@@ -3221,7 +3223,7 @@
       {
         "id": "LIFT",
         "title": "喝药抬起",
-        "description": "失去[red]a random Potion[/red]。获得[blue]10[/blue]最大生命。"
+        "description": "失去[red]一瓶随机药水[/red]。获得[blue]10[/blue]最大生命。"
       },
       {
         "id": "LIFT_LOCKED",
@@ -3247,7 +3249,7 @@
           {
             "id": "LIFT",
             "title": "喝药抬起",
-            "description": "失去[red]a random Potion[/red]。获得[blue]10[/blue]最大生命。"
+            "description": "失去[red]一瓶随机药水[/red]。获得[blue]10[/blue]最大生命。"
           },
           {
             "id": "LIFT_LOCKED",
@@ -3268,7 +3270,7 @@
       },
       {
         "id": "LIFT",
-        "description": "你一口闷了[gold]a random Potion[/gold]，然后[jitter]用全身的力气试图抬起那块石头[/jitter]！！\n\n什么也没发生。"
+        "description": "你一口闷了[gold]一瓶随机药水[/gold]，然后[jitter]用全身的力气试图抬起那块石头[/jitter]！！\n\n什么也没发生。"
       },
       {
         "id": "PUSH",
@@ -4802,6 +4804,11 @@
           "text": "在尖塔中追寻荣耀是么？我倒是有一些提案可以给你……"
         },
         {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "{Visits}次。你已经来过这里{Visits}次。"
+        },
+        {
           "order": "2-0r",
           "speaker": "ancient",
           "text": "你知道这[sine]永远不会[/sine]结束，是吧？"
@@ -5159,7 +5166,7 @@
       {
         "id": "FEATURED_ITEM",
         "title": "旺购的特选商品",
-        "description": "支付[red]200[/red][gold]金币[/gold]。获得[gold]a random Relic[/gold]。"
+        "description": "支付[red]200[/red][gold]金币[/gold]。获得[gold]一件随机遗物[/gold]。"
       },
       {
         "id": "FEATURED_ITEM_LOCKED",
@@ -5212,7 +5219,7 @@
           {
             "id": "FEATURED_ITEM",
             "title": "旺购的特选商品",
-            "description": "支付[red]200[/red][gold]金币[/gold]。获得[gold]a random Relic[/gold]。"
+            "description": "支付[red]200[/red][gold]金币[/gold]。获得[gold]一件随机遗物[/gold]。"
           },
           {
             "id": "FEATURED_ITEM_LOCKED",

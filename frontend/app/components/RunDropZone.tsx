@@ -15,14 +15,17 @@ interface RunDropZoneProps {
   onFiles: (files: FileList) => void;
   uploading?: boolean;
   uploadProgress?: UploadProgress | null;
+  replays?: boolean;
 }
 
 export default function RunDropZone({
   onFiles,
   uploading,
   uploadProgress,
+  replays,
 }: RunDropZoneProps) {
   const t = useT();
+  const accept = replays ? ".run,.jsonl" : ".run,.json";
   const [isDragging, setIsDragging] = useState(false);
   const dragCounter = useRef(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -75,7 +78,7 @@ export default function RunDropZone({
         ref={fileInputRef}
         type="file"
         multiple
-        accept=".run,.json"
+        accept={accept}
         className="hidden"
         onChange={(e) => {
           if (e.target.files) onFiles(e.target.files);
@@ -98,7 +101,9 @@ export default function RunDropZone({
         </p>
       ) : (
         <p className="text-[var(--text-primary)] font-medium mb-3">
-          {t("Drop .run files here or click to browse")}
+          {replays
+            ? t("Drop run and replay files here or click to browse")
+            : t("Drop .run files here or click to browse")}
         </p>
       )}
 
@@ -128,7 +133,7 @@ export default function RunDropZone({
             <input
               type="file"
               multiple
-              accept=".run,.json"
+              accept={accept}
               className="hidden"
               onChange={(e) => {
                 if (e.target.files) onFiles(e.target.files);
@@ -179,7 +184,7 @@ export default function RunDropZone({
       )}
 
       <hr className="border-[var(--border-subtle)] my-4" />
-      <RunFileHelp />
+      <RunFileHelp replays={replays} />
     </div>
   );
 }

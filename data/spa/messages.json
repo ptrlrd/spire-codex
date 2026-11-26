@@ -180,12 +180,15 @@
    "title": "Embrujada"
   },
   "MOCK_NO_UNPLAYABLE_AFFLICTION": {
+   "description": "",
    "title": "Mock No Unplayable Affliction"
   },
   "MOCK_SELF_DAMAGE_AFFLICTION": {
+   "description": "",
    "title": "Mock Self Damage Affliction"
   },
   "MOCK_USELESS_AFFLICTION": {
+   "description": "",
    "title": "Mock Useless Affliction"
   },
   "RINGING": {
@@ -814,6 +817,7 @@
    "title": "Pael"
   },
   "PROCEED": {
+   "description": "",
    "title": "Continuar"
   },
   "TANX": {
@@ -1083,6 +1087,12 @@
   "THE_ARCHITECT": {
    "CONTINUE": "Continuar",
    "RESPOND": "Responder",
+   "epithet": "",
+   "pages": {
+    "INITIAL": {
+     "description": ""
+    }
+   },
    "talk": {
     "DEFECT": {
      "0-0r": {
@@ -1771,6 +1781,7 @@
    "title": "Arsenal"
   },
   "ASCENDERS_BANE": {
+   "description": "",
    "title": "Perdición del ascendente"
   },
   "ASHEN_STRIKE": {
@@ -2098,6 +2109,7 @@
    "title": "Capa estelar"
   },
   "CLUMSY": {
+   "description": "",
    "title": "Torpeza"
   },
   "COLD_SNAP": {
@@ -2202,6 +2214,7 @@
    "title": "Aplastar"
   },
   "CURSE_OF_THE_BELL": {
+   "description": "",
    "title": "Maldición de la Campana"
   },
   "DAGGER_SPRAY": {
@@ -2233,6 +2246,7 @@
    "title": "Correr"
   },
   "DAZED": {
+   "description": "",
    "title": "Desorientación"
   },
   "DEADLY_POISON": {
@@ -2256,6 +2270,7 @@
    "title": "Debilitar"
   },
   "DEBRIS": {
+   "description": "",
    "title": "Escombros"
   },
   "DEBT": {
@@ -2474,6 +2489,7 @@
    "title": "Ojo del Mal"
   },
   "EXPECT_A_FIGHT": {
+   "description": "Gain {CalculatedBlock} [gold]Block[/gold].\nGains {CalculationExtra} additional [gold]Block[/gold] for each [gold]Strength[/gold] you have.",
    "title": "Listo para la reyerta"
   },
   "EXPERTISE": {
@@ -2589,6 +2605,7 @@
    "title": "Golpe preciso"
   },
   "FOLLY": {
+   "description": "",
    "title": "Futilidad"
   },
   "FOOTWORK": {
@@ -2710,6 +2727,7 @@
    "title": "Guardiana de la tumba"
   },
   "GREED": {
+   "description": "",
    "title": "Codicia"
   },
   "GUARDS": {
@@ -2886,6 +2904,7 @@
    "title": "Avivar"
   },
   "INJURY": {
+   "description": "",
    "title": "Lesión"
   },
   "INTERCEPT": {
@@ -3093,22 +3112,28 @@
    "title": "Miseria"
   },
   "MOCK_ATTACK_CARD": {
+   "description": "",
    "title": "Mock Attack Card"
   },
   "MOCK_CURSE_CARD": {
+   "description": "",
    "title": "Mock Curse Card"
   },
   "MOCK_POWER_CARD": {
+   "description": "",
    "title": "Mock Power Card"
   },
   "MOCK_QUEST_CARD": {
+   "description": "",
    "title": "Mock Quest Card"
   },
   "MOCK_SKILL_CARD": {
+   "description": "",
    "discardSelectionPrompt": "Selecciona qué cartas Descartar.",
    "title": "Mock Skill Card"
   },
   "MOCK_STATUS_CARD": {
+   "description": "",
    "title": "Mock Status Card"
   },
   "MODDED": {
@@ -3331,6 +3356,7 @@
    "title": "Golpe de empuñadura"
   },
   "POOR_SLEEP": {
+   "description": "",
    "title": "Insomnio"
   },
   "POUNCE": {
@@ -3712,6 +3738,7 @@
    "title": "Golpe solar"
   },
   "SOOT": {
+   "description": "",
    "title": "Hollín"
   },
   "SOUL": {
@@ -3771,6 +3798,7 @@
    "title": "Botín de guerra"
   },
   "SPORE_MIND": {
+   "description": "",
    "title": "Espora cerebral"
   },
   "SPUR": {
@@ -4174,6 +4202,7 @@
    "title": "Deteriorar"
   },
   "WOUND": {
+   "description": "",
    "title": "Herida"
   },
   "WRAITH_FORM": {
@@ -4181,6 +4210,7 @@
    "title": "Forma espectral"
   },
   "WRITHE": {
+   "description": "",
    "title": "Retorcimiento"
   },
   "WROUGHT_IN_WAR": {
@@ -4509,6 +4539,7 @@
    "title": "Infusión"
   },
   "INKY": {
+   "description": "This card applies [blue]{WeakPower}[/blue] [gold]Weak[/gold].",
    "extraCardText": "Aplica [blue]{WeakPower}[/blue] de [gold]Debilidad[/gold]{TargetType, select, AllEnemies { a TODOS los enemigos} other {}}.",
    "title": "Tinta"
   },
@@ -4517,6 +4548,7 @@
    "title": "Instinto"
   },
   "MOCK_FREE_ENCHANTMENT": {
+   "description": "",
    "title": "Mock Free Enchantment"
   },
   "MOMENTUM": {
@@ -5368,25 +5400,101 @@
    "name": "Infección",
    "year": "1201"
   },
+  "BLIGHT1": {
+   "name": "",
+   "year": ""
+  },
+  "BLIGHT2": {
+   "name": "",
+   "year": ""
+  },
+  "BLIGHT3": {
+   "name": "",
+   "year": ""
+  },
   "FLOURISH0": {
    "name": "Prosperidad",
    "year": "1800"
+  },
+  "FLOURISH1": {
+   "name": "",
+   "year": ""
+  },
+  "FLOURISH2": {
+   "name": "",
+   "year": ""
+  },
+  "FLOURISH3": {
+   "name": "",
+   "year": ""
   },
   "INVITATION0": {
    "name": "Puertas",
    "year": "2733"
   },
+  "INVITATION1": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION2": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION3": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION4": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION5": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION6": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION7": {
+   "name": "",
+   "year": ""
+  },
   "PEACE0": {
    "name": "El fin",
    "year": "3000"
+  },
+  "PEACE1": {
+   "name": "",
+   "year": ""
   },
   "PREHISTORIA0": {
    "name": "Prehistoria",
    "year": "???"
   },
+  "PREHISTORIA1": {
+   "name": "",
+   "year": ""
+  },
+  "PREHISTORIA2": {
+   "name": "",
+   "year": ""
+  },
   "SEEDS0": {
    "name": "Semillas",
    "year": "0"
+  },
+  "SEEDS1": {
+   "name": "",
+   "year": ""
+  },
+  "SEEDS2": {
+   "name": "",
+   "year": ""
+  },
+  "SEEDS3": {
+   "name": "",
+   "year": ""
   }
  },
  "events": {
@@ -5399,6 +5507,7 @@
     "ALL": {
      "options": {
       "EXIT_BATHS": {
+       "description": "",
        "title": "Salir de la poza"
       },
       "LINGER": {
@@ -5785,6 +5894,7 @@
      "description": "El cansancio te fuerza a echarte una siesta...\n\n... ¡de la que despiertas al notar cómo [gold][jitter]algo se retuerce[/jitter][/gold] encima de ti!",
      "options": {
       "FIGHT": {
+       "description": "",
        "title": "¡Luchar!"
       }
      }
@@ -5969,6 +6079,7 @@
      "description": "¡[gold]{LastDishTitle}[/gold]! Coges esta exquisitez de la cinta transportadora y la engulles con decisión.\n[green]¡Está de escándalo![/green]",
      "options": {
       "LEAVE": {
+       "description": "",
        "title": "Marcharse"
       }
      }
@@ -6307,6 +6418,7 @@
    "title": "Repartidor de pociones"
   },
   "PROCEED": {
+   "description": "",
    "title": "Continuar"
   },
   "PUNCH_OFF": {
@@ -6329,6 +6441,7 @@
      "description": "¡Los [gold]Constructos[/gold] se giran hacia ti con aire amenazador!\n\nTe preparas para las tortas.",
      "options": {
       "FIGHT": {
+       "description": "",
        "title": "Pelear"
       }
      }
@@ -6482,6 +6595,7 @@
      "description": "¡Saltas encima de la mesa y le pegas una [jitter]patada[/jitter] en la cara\nal [red]señor de la guerra[/red]!\nEl caballero deja escapar un grito y se desploma.\n\n[jitter][purple]Todos sueltan un grito ahogado.[/purple][/jitter]",
      "options": {
       "CONTINUE_FIGHT": {
+       "description": "",
        "title": "Continuar"
       }
      }
@@ -6976,6 +7090,7 @@
      "description": "El caballero te mira con cara de pocos amigos. Parece que solo uno de los dos saldrá de aquí con la llave.",
      "options": {
       "FIGHT": {
+       "description": "",
        "title": "Luchar"
       }
      }
@@ -7614,6 +7729,8 @@
   "DISCOVERY_HEADER_EPOCH": "Épocas descubiertas",
   "DISCOVERY_HEADER_POTION": "Pociones descubiertas",
   "DISCOVERY_HEADER_RELIC": "Reliquias descubiertas",
+  "ENCOUNTER_QUOTE_LEFT": "“",
+  "ENCOUNTER_QUOTE_RIGHT": "”",
   "QUOTES": {
    "00": "Qué sensación más familiar...",
    "01": "Hora de la siesta.",
@@ -7818,6 +7935,7 @@
   },
   "FORMAT_DAMAGE_MULTI": "{Damage}[font_size=18]x{Repeat}[/font_size]",
   "FORMAT_DAMAGE_SINGLE": "{Damage}",
+  "FORMAT_EMPTY": "",
   "FORMAT_STATUS_CARD_COUNT": "{CardCount}",
   "HEAL": {
    "description": "Este enemigo tiene la intención de [gold]Curarse[/gold].",
@@ -10224,6 +10342,7 @@
    "title": "Relámpago"
   },
   "MOCK_COMBAT_CLEANUP_ORB": {
+   "description": "",
    "title": "Mock Combat Cleanup"
   },
   "PLASMA_ORB": {
@@ -10408,6 +10527,7 @@
    "title": "Regalo de Mazaleth"
   },
   "MOCK_DISCARD_AND_ADD_SHIVS_POTION": {
+   "description": "",
    "title": "Mock Discard and Add Shivs Potion"
   },
   "OROBIC_ACID": {
@@ -11194,51 +11314,67 @@
    "title": "Esbirro"
   },
   "MOCK_CLONE_CARDS_ON_PLAY_POWER": {
+   "description": "",
    "title": "Prueba Clona cartas al jugarse"
   },
   "MOCK_DO_NOT_SCALE_IN_MULTIPLAYER_POWER": {
+   "description": "",
    "title": "Mock Do Not Scale in Multiplayer"
   },
   "MOCK_EXTRA_TURN_POWER": {
+   "description": "",
    "title": "Mock Extra Turn"
   },
   "MOCK_FREE_CARDS_POWER": {
+   "description": "",
    "title": "Prueba Cartas gratis"
   },
   "MOCK_GAIN_BLOCK_ON_ATTACK_POWER": {
+   "description": "",
    "title": "Prueba Gana Bloqueo al usar un Ataque"
   },
   "MOCK_INVINCIBLE_ON_DEATH_POWER": {
+   "description": "",
    "title": "Prueba Invencible al morir"
   },
   "MOCK_MODIFY_ENERGY_COST_POWER": {
+   "description": "",
    "title": "Prueba Modificar coste de Energía"
   },
   "MOCK_MODIFY_STAR_COST_POWER": {
+   "description": "",
    "title": "Prueba Modificar coste de estrellas"
   },
   "MOCK_PHASE_OBSERVER_POWER": {
+   "description": "",
    "title": "Mock Phase Observer"
   },
   "MOCK_PREVENT_DEATH_POWER": {
+   "description": "",
    "title": "Prueba prevenir muerte"
   },
   "MOCK_REMOVE_DRAWN_CARDS_FROM_COMBAT_POWER": {
+   "description": "",
    "title": "Mock Remove Drawn Cards from Combat"
   },
   "MOCK_RESET_COMBAT_ON_SHUFFLE_POWER": {
+   "description": "",
    "title": "Mock Reset Combat on Shuffle"
   },
   "MOCK_REVIVE_POWER": {
+   "description": "",
    "title": "Prueba revivir"
   },
   "MOCK_SCALE_IN_MULTIPLAYER_POWER": {
+   "description": "",
    "title": "Mock Scale in Multiplayer"
   },
   "MOCK_TEMPORARY_STRENGTH_LOSS": {
+   "description": "",
    "title": "Prueba pérdida temporal de Fuerza"
   },
   "MOCK_UNHITTABLE_POWER": {
+   "description": "",
    "title": "Mock Unhittable"
   },
   "MONARCHS_GAZE_POWER": {
@@ -13867,6 +14003,7 @@
   "TEXT_EFFECTS": "Efectos de texto",
   "TEXT_EFFECTS_DESCRIPTION": "Activa o desactiva efectos de texto como la ondulación o el temblor.",
   "TEXT_SIZE": "Tamaño del texto",
+  "TOAST_CANNOT_REMAP_INPUT": "Cannot set an input for {Hotkey} for {ControlType}.",
   "TOAST_FAST_MODE_OFF": "las acciones de combate y transiciones de pantalla serán más lentas.",
   "TOAST_FAST_MODE_ON": "Las acciones de combate y transiciones de pantalla serán más rápidas.",
   "TOAST_GAMEPLAY_DATA_OFF": "No se enviarán las métricas del juego ni los informes de errores.",

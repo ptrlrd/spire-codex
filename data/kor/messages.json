@@ -180,12 +180,15 @@
    "title": "주박"
   },
   "MOCK_NO_UNPLAYABLE_AFFLICTION": {
+   "description": "",
    "title": "가짜 비사용불가 고난"
   },
   "MOCK_SELF_DAMAGE_AFFLICTION": {
+   "description": "",
    "title": "가짜 자가 피해 고난"
   },
   "MOCK_USELESS_AFFLICTION": {
+   "description": "",
    "title": "가짜 무쓸모 고난"
   },
   "RINGING": {
@@ -814,6 +817,7 @@
    "title": "파엘"
   },
   "PROCEED": {
+   "description": "",
    "title": "진행"
   },
   "TANX": {
@@ -1083,6 +1087,12 @@
   "THE_ARCHITECT": {
    "CONTINUE": "계속",
    "RESPOND": "대응",
+   "epithet": "",
+   "pages": {
+    "INITIAL": {
+     "description": ""
+    }
+   },
    "talk": {
     "DEFECT": {
      "0-0r": {
@@ -1771,6 +1781,7 @@
    "title": "무기고"
   },
   "ASCENDERS_BANE": {
+   "description": "",
    "title": "등반자의 골칫거리"
   },
   "ASHEN_STRIKE": {
@@ -2098,6 +2109,7 @@
    "title": "별의 망토"
   },
   "CLUMSY": {
+   "description": "",
    "title": "서투름"
   },
   "COLD_SNAP": {
@@ -2202,6 +2214,7 @@
    "title": "지면 파쇄"
   },
   "CURSE_OF_THE_BELL": {
+   "description": "",
    "title": "방울의 저주"
   },
   "DAGGER_SPRAY": {
@@ -2233,6 +2246,7 @@
    "title": "돌진"
   },
   "DAZED": {
+   "description": "",
    "title": "어지러움"
   },
   "DEADLY_POISON": {
@@ -2256,6 +2270,7 @@
    "title": "쇠락"
   },
   "DEBRIS": {
+   "description": "",
    "title": "잔해"
   },
   "DEBT": {
@@ -2590,6 +2605,7 @@
    "title": "밀집 타격"
   },
   "FOLLY": {
+   "description": "",
    "title": "어리석음"
   },
   "FOOTWORK": {
@@ -2711,6 +2727,7 @@
    "title": "무덤지기"
   },
   "GREED": {
+   "description": "",
    "title": "탐욕"
   },
   "GUARDS": {
@@ -2887,6 +2904,7 @@
    "title": "발화"
   },
   "INJURY": {
+   "description": "",
    "title": "상처"
   },
   "INTERCEPT": {
@@ -3094,22 +3112,28 @@
    "title": "비참함"
   },
   "MOCK_ATTACK_CARD": {
+   "description": "",
    "title": "가짜 공격 카드"
   },
   "MOCK_CURSE_CARD": {
+   "description": "",
    "title": "가짜 저주 카드"
   },
   "MOCK_POWER_CARD": {
+   "description": "",
    "title": "가짜 파워 카드"
   },
   "MOCK_QUEST_CARD": {
+   "description": "",
    "title": "가짜 퀘스트 카드"
   },
   "MOCK_SKILL_CARD": {
+   "description": "",
    "discardSelectionPrompt": "버릴 카드를 선택하세요.",
    "title": "가짜 스킬 카드"
   },
   "MOCK_STATUS_CARD": {
+   "description": "",
    "title": "가짜 상태이상 카드"
   },
   "MODDED": {
@@ -3332,6 +3356,7 @@
    "title": "폼멜 타격"
   },
   "POOR_SLEEP": {
+   "description": "",
    "title": "수면 부족"
   },
   "POUNCE": {
@@ -3512,6 +3537,7 @@
    "title": "날뛰기"
   },
   "ROCKET_PUNCH": {
+   "description": "Deal {Damage} damage.\nDraw {Cards} card.\nWhenever you create a Status, reduce this card''s cost by 1 [E] until played.",
    "title": "로켓 펀치"
   },
   "ROLLING_BOULDER": {
@@ -3712,6 +3738,7 @@
    "title": "태양의 타격"
   },
   "SOOT": {
+   "description": "",
    "title": "그을음"
   },
   "SOUL": {
@@ -3771,6 +3798,7 @@
    "title": "전투의 성과"
   },
   "SPORE_MIND": {
+   "description": "",
    "title": "포자 잠식"
   },
   "SPUR": {
@@ -4174,6 +4202,7 @@
    "title": "시듦"
   },
   "WOUND": {
+   "description": "",
    "title": "부상"
   },
   "WRAITH_FORM": {
@@ -4181,6 +4210,7 @@
    "title": "유령의 형상"
   },
   "WRITHE": {
+   "description": "",
    "title": "몸부림"
   },
   "WROUGHT_IN_WAR": {
@@ -4518,6 +4548,7 @@
    "title": "본능"
   },
   "MOCK_FREE_ENCHANTMENT": {
+   "description": "",
    "title": "가짜 무료 인챈트"
   },
   "MOMENTUM": {
@@ -5369,25 +5400,101 @@
    "name": "감염",
    "year": "1,201"
   },
+  "BLIGHT1": {
+   "name": "",
+   "year": ""
+  },
+  "BLIGHT2": {
+   "name": "",
+   "year": ""
+  },
+  "BLIGHT3": {
+   "name": "",
+   "year": ""
+  },
   "FLOURISH0": {
    "name": "번영",
    "year": "1,800"
+  },
+  "FLOURISH1": {
+   "name": "",
+   "year": ""
+  },
+  "FLOURISH2": {
+   "name": "",
+   "year": ""
+  },
+  "FLOURISH3": {
+   "name": "",
+   "year": ""
   },
   "INVITATION0": {
    "name": "문",
    "year": "2,733"
   },
+  "INVITATION1": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION2": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION3": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION4": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION5": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION6": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION7": {
+   "name": "",
+   "year": ""
+  },
   "PEACE0": {
    "name": "끝",
    "year": "3,000"
+  },
+  "PEACE1": {
+   "name": "",
+   "year": ""
   },
   "PREHISTORIA0": {
    "name": "선사시대",
    "year": "???"
   },
+  "PREHISTORIA1": {
+   "name": "",
+   "year": ""
+  },
+  "PREHISTORIA2": {
+   "name": "",
+   "year": ""
+  },
   "SEEDS0": {
    "name": "씨앗",
    "year": "0"
+  },
+  "SEEDS1": {
+   "name": "",
+   "year": ""
+  },
+  "SEEDS2": {
+   "name": "",
+   "year": ""
+  },
+  "SEEDS3": {
+   "name": "",
+   "year": ""
   }
  },
  "events": {
@@ -5400,6 +5507,7 @@
     "ALL": {
      "options": {
       "EXIT_BATHS": {
+       "description": "",
        "title": "탕에서 나간다"
       },
       "LINGER": {
@@ -5786,6 +5894,7 @@
      "description": "당신은 몰려오는 피로를 이기지 못하고, 잠시 잠에 듭니다...\n\n...하지만 이내 몸 위에서 [gold][jitter]무언가가 꿈틀거리는 감각[/jitter][/gold]에 의해 잠에서 깨어납니다!",
      "options": {
       "FIGHT": {
+       "description": "",
        "title": "싸운다!"
       }
      }
@@ -5970,6 +6079,7 @@
      "description": "당신은 [gold]{LastDishTitle}[/gold] 접시를 가져온 뒤, 허겁지겁 먹어치웠습니다.\n[green]맛있네요![/green]",
      "options": {
       "LEAVE": {
+       "description": "",
        "title": "떠난다"
       }
      }
@@ -6308,6 +6418,7 @@
    "title": "포션 배달원"
   },
   "PROCEED": {
+   "description": "",
    "title": "계속"
   },
   "PUNCH_OFF": {
@@ -6330,6 +6441,7 @@
      "description": "[gold]구조체들[/gold]이 위협적으로 당신을 향해 돌아섭니다!\n\n당신은 싸울 준비를 합니다.",
      "options": {
       "FIGHT": {
+       "description": "",
        "title": "전투"
       }
      }
@@ -6483,6 +6595,7 @@
      "description": "당신은 테이블 위로 뛰어올라 [red]군벌 기사[/red]의 얼굴을 [jitter]걷어찹니다[/jitter]!\n기사는 잊혀지지 않을 비명을 지르며 쓰러집니다.\n\n[jitter][purple]*모두 입을 틀어막는다*[/purple][/jitter]",
      "options": {
       "CONTINUE_FIGHT": {
+       "description": "",
        "title": "계속"
       }
      }
@@ -6977,6 +7090,7 @@
      "description": "낯선 사람은 살기 어린 시선으로 당신을 바라봅니다. 열쇠를 가지고 이곳을 떠날 수 있는 건 오직 한 명뿐인 것 같습니다.",
      "options": {
       "FIGHT": {
+       "description": "",
        "title": "싸운다"
       }
      }
@@ -7821,6 +7935,7 @@
   },
   "FORMAT_DAMAGE_MULTI": "{Damage}[font_size=18]x{Repeat}[/font_size]",
   "FORMAT_DAMAGE_SINGLE": "{Damage}",
+  "FORMAT_EMPTY": "",
   "FORMAT_STATUS_CARD_COUNT": "{CardCount}",
   "HEAL": {
    "description": "이 적은 체력을 [gold]회복[/gold]하려고 합니다.",
@@ -10227,6 +10342,7 @@
    "title": "전기"
   },
   "MOCK_COMBAT_CLEANUP_ORB": {
+   "description": "",
    "title": "가짜 전투 정리"
   },
   "PLASMA_ORB": {
@@ -10411,6 +10527,7 @@
    "title": "마잘레스의 선물"
   },
   "MOCK_DISCARD_AND_ADD_SHIVS_POTION": {
+   "description": "",
    "title": "가짜 버리기 후 단도 추가 포션"
   },
   "OROBIC_ACID": {
@@ -11197,51 +11314,67 @@
    "title": "하수인"
   },
   "MOCK_CLONE_CARDS_ON_PLAY_POWER": {
+   "description": "",
    "title": "가짜 사용 시 카드 복제"
   },
   "MOCK_DO_NOT_SCALE_IN_MULTIPLAYER_POWER": {
+   "description": "",
    "title": "가짜 멀티플레이 스케일 미적용"
   },
   "MOCK_EXTRA_TURN_POWER": {
+   "description": "",
    "title": "가짜 추가 턴"
   },
   "MOCK_FREE_CARDS_POWER": {
+   "description": "",
    "title": "가짜 무료 카드"
   },
   "MOCK_GAIN_BLOCK_ON_ATTACK_POWER": {
+   "description": "",
    "title": "가짜 공격 시 방어도 획득"
   },
   "MOCK_INVINCIBLE_ON_DEATH_POWER": {
+   "description": "",
    "title": "가짜 죽음에 면역"
   },
   "MOCK_MODIFY_ENERGY_COST_POWER": {
+   "description": "",
    "title": "가짜 에너지 비용 조정"
   },
   "MOCK_MODIFY_STAR_COST_POWER": {
+   "description": "",
    "title": "가짜 별 비용 조정"
   },
   "MOCK_PHASE_OBSERVER_POWER": {
+   "description": "",
    "title": "가짜 페이즈 관찰자"
   },
   "MOCK_PREVENT_DEATH_POWER": {
+   "description": "",
    "title": "가짜 죽음 방지"
   },
   "MOCK_REMOVE_DRAWN_CARDS_FROM_COMBAT_POWER": {
+   "description": "",
    "title": "가짜 전투 시 카드 뽑기 제거"
   },
   "MOCK_RESET_COMBAT_ON_SHUFFLE_POWER": {
+   "description": "",
    "title": "가짜 섞을 시 전투 초기화"
   },
   "MOCK_REVIVE_POWER": {
+   "description": "",
    "title": "가짜 부활"
   },
   "MOCK_SCALE_IN_MULTIPLAYER_POWER": {
+   "description": "",
    "title": "가짜 멀티플레이 스케일 적용"
   },
   "MOCK_TEMPORARY_STRENGTH_LOSS": {
+   "description": "",
    "title": "가짜 일시적인 힘 손실"
   },
   "MOCK_UNHITTABLE_POWER": {
+   "description": "",
    "title": "가짜 적중 당하지 않음"
   },
   "MONARCHS_GAZE_POWER": {
@@ -12021,6 +12154,7 @@
   },
   "BEAUTIFUL_BRACELET": {
    "description": "획득 시, [gold]덱[/gold]에 있는 무작위 카드 [blue]{Cards}[/blue]장에 [purple]신속[/purple]을 [blue]2[/blue] [gold]인챈트[/gold]합니다.",
+   "eventDescription": "[gold]Enchant[/gold] [blue]{Cards}[/blue] random card in your [gold]Deck[/gold] with [purple]Swift {Swift}[/purple].",
    "flavor": "[red]이 유물에 관한 자세한 내용은 추후 공개될 예정입니다...[/red]",
    "title": "아름다운 팔찌"
   },
@@ -13869,6 +14003,7 @@
   "TEXT_EFFECTS": "텍스트 효과",
   "TEXT_EFFECTS_DESCRIPTION": "물결치거나 흔들리는 텍스트와 같은 텍스트 효과의 사용 여부를 설정합니다.",
   "TEXT_SIZE": "글자 크기",
+  "TOAST_CANNOT_REMAP_INPUT": "Cannot set an input for {Hotkey} for {ControlType}.",
   "TOAST_FAST_MODE_OFF": "전투 행동 및 화면 전환이 더 느려집니다.",
   "TOAST_FAST_MODE_ON": "전투 행동 및 화면 전환이 더 빨라집니다.",
   "TOAST_GAMEPLAY_DATA_OFF": "게임플레이 지표와 오류 로그가 업로드되지 않습니다.",

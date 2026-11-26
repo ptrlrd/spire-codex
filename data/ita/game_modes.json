@@ -1,0 +1,38 @@
+[
+  {
+    "id": "STANDARD",
+    "name": "Partita standard",
+    "description": "Parti alla conquista della Guglia!",
+    "multiplayer_description": "Parti alla conquista della Guglia... insieme ai tuoi amici!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": null,
+    "max_ascension": 10
+  },
+  {
+    "id": "DAILY",
+    "name": "Sfida giornaliera",
+    "description": "Ogni giorno c'è una nuova sfida.\n\nCompeti con gli altri giocatori per ottenere il punteggio più alto!",
+    "multiplayer_description": "Ogni giorno c'è una nuova sfida.\n\nCompeti con gli altri gruppi per ottenere il punteggio più alto!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "Gioca una partita con tutti i personaggi e completa l'Atto 3 per sbloccare la sfida giornaliera.",
+    "max_ascension": 10
+  },
+  {
+    "id": "CUSTOM",
+    "name": "Partita personalizzata",
+    "description": "Personalizza la tua partita con modificatori unici.",
+    "multiplayer_description": "Personalizza la tua partita multigiocatore con modificatori unici.",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "Completa l'Atto 3 tre volte per sbloccare le partite personalizzate.",
+    "max_ascension": 10
+  }
+]

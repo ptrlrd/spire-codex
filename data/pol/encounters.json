@@ -31,6 +31,16 @@
   },
   {
     "id": "BATTLEWORN_DUMMY_EVENT_ENCOUNTER",
+    "name": "Battleworn Dummy Event Encounter",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": null,
+    "loss_text": null
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_V1_ENCOUNTER",
     "name": "Drewnobot",
     "room_type": "Monster",
     "is_weak": false,
@@ -40,11 +50,33 @@
       {
         "id": "BATTLE_FRIEND_V1",
         "name": "Drewnobot V1.0"
-      },
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] jakimś cudem {characterGender:choose(masculine|feminine|neutral):zginął|zginęła|zginął} w walce z [gold]Drewnobotem[/gold]???"
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_V2_ENCOUNTER",
+    "name": "Drewnobot",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
       {
         "id": "BATTLE_FRIEND_V2",
         "name": "Drewnobot V2.0"
-      },
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] jakimś cudem {characterGender:choose(masculine|feminine|neutral):zginął|zginęła|zginął} w walce z [gold]Drewnobotem[/gold]???"
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_V3_ENCOUNTER",
+    "name": "Drewnobot",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
       {
         "id": "BATTLE_FRIEND_V3",
         "name": "Drewnobot V3.0"
@@ -404,11 +436,11 @@
       },
       {
         "id": "LEAF_SLIME_M",
-        "name": "Liściowy Śluzak"
+        "name": "Śluzak"
       },
       {
         "id": "TWIG_SLIME_M",
-        "name": "Gałęziowy Śluzak"
+        "name": "Śluzak"
       }
     ],
     "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został wchłonięty|została wchłonięta przez|został wchłonięty} przez [gold]Musznicę[/gold]."
@@ -653,7 +685,7 @@
   },
   {
     "id": "LIVING_FOG_NORMAL",
-    "name": "Nieprzyjemny Gaz",
+    "name": "Żywa Mgła",
     "room_type": "Monster",
     "is_weak": false,
     "act": "Act 1 - Underdocks",
@@ -668,7 +700,7 @@
         "name": "Żywa Mgła"
       }
     ],
-    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):nie mógł|nie mogła|nie mógł} znieść smrodu [gold]Nieprzyjemnego Gazu[/gold]."
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):nie mógł|nie mogła|nie mógł} znieść smrodu [gold]Żywej Mgły[/gold]."
   },
   {
     "id": "LOUSE_PROGENITOR_NORMAL",
@@ -1093,19 +1125,19 @@
     "monsters": [
       {
         "id": "LEAF_SLIME_M",
-        "name": "Liściowy Śluzak"
+        "name": "Śluzak"
       },
       {
         "id": "LEAF_SLIME_S",
-        "name": "Liściowe Śluzątko"
+        "name": "Śluzątko"
       },
       {
         "id": "TWIG_SLIME_M",
-        "name": "Gałęziowy Śluzak"
+        "name": "Śluzak"
       },
       {
         "id": "TWIG_SLIME_S",
-        "name": "Gałęziowe Śluzątko"
+        "name": "Śluzątko"
       }
     ],
     "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został pokonany|została pokonana|został pokonany} przez masę [gold]Śluzaków[/gold]."
@@ -1122,19 +1154,19 @@
     "monsters": [
       {
         "id": "LEAF_SLIME_M",
-        "name": "Liściowy Śluzak"
+        "name": "Śluzak"
       },
       {
         "id": "LEAF_SLIME_S",
-        "name": "Liściowe Śluzątko"
+        "name": "Śluzątko"
       },
       {
         "id": "TWIG_SLIME_M",
-        "name": "Gałęziowy Śluzak"
+        "name": "Śluzak"
       },
       {
         "id": "TWIG_SLIME_S",
-        "name": "Gałęziowe Śluzątko"
+        "name": "Śluzątko"
       }
     ],
     "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został pokonany|została pokonana|został pokonany} przez grupkę [gold]Śluzaków[/gold]."
@@ -1145,15 +1177,18 @@
     "room_type": "Monster",
     "is_weak": false,
     "act": "Act 1 - Overgrowth",
-    "tags": null,
+    "tags": [
+      "Jaxfruit",
+      "Slimes"
+    ],
     "monsters": [
       {
         "id": "LEAF_SLIME_M",
-        "name": "Liściowy Śluzak"
+        "name": "Śluzak"
       },
       {
         "id": "LEAF_SLIME_S",
-        "name": "Liściowe Śluzątko"
+        "name": "Śluzątko"
       },
       {
         "id": "SLITHERING_STRANGLER",
@@ -1165,11 +1200,11 @@
       },
       {
         "id": "TWIG_SLIME_M",
-        "name": "Gałęziowy Śluzak"
+        "name": "Śluzak"
       },
       {
         "id": "TWIG_SLIME_S",
-        "name": "Gałęziowe Śluzątko"
+        "name": "Śluzątko"
       }
     ],
     "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został uduszony|została uduszona|został uduszony} przez [gold]Dusiciela[/gold]."
@@ -1221,7 +1256,8 @@
     "is_weak": false,
     "act": "Act 1 - Overgrowth",
     "tags": [
-      "Mushroom"
+      "Mushroom",
+      "Jaxfruit"
     ],
     "monsters": [
       {
@@ -1388,7 +1424,7 @@
     "monsters": [
       {
         "id": "PARAFRIGHT",
-        "name": "Straszydło"
+        "name": "Iluzja"
       },
       {
         "id": "THE_OBSCURA",

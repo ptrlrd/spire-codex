@@ -20,7 +20,7 @@
   {
     "id": "COOK",
     "name": "Cocinar",
-    "description": "[gold]Elimina[/gold] [blue]2[/blue] cartas de tu [gold]Mazo[/gold] y gana [green]9[/green] PV máx. en los [gold]Lugares de descanso[/gold].",
+    "description": "[gold]Elimina[/gold] [blue]2[/blue] cartas de tu [gold]Mazo[/gold] y gana [green]5[/green] PV máx. en los [gold]Lugares de descanso[/gold].",
     "category": "mechanics"
   },
   {

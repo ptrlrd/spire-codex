@@ -1,0 +1,38 @@
+[
+  {
+    "id": "STANDARD",
+    "name": "일반",
+    "description": "첨탑을 무찌르기 위한\n탐험을 시작하세요!",
+    "multiplayer_description": "첨탑을 무찌르기 위한\n탐험을 시작하세요...\n친구와 함께!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": null,
+    "max_ascension": 10
+  },
+  {
+    "id": "DAILY",
+    "name": "일일 도전",
+    "description": "하루에 한 번 새로운\n도전을 진행할 수 있습니다.\n\n다른 플레이어들과\n최고 점수를 두고서\n경쟁해보세요!",
+    "multiplayer_description": "하루에 한 번 새로운\n도전을 진행할 수 있습니다.\n\n다른 그룹들과 최고 점수를 두고서 경쟁해보세요!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "일일 도전을 해금하려면 모든 캐릭터로 한 번씩 플레이하고 3막을 클리어하세요.",
+    "max_ascension": 10
+  },
+  {
+    "id": "CUSTOM",
+    "name": "커스텀",
+    "description": "특별한 모드를 통해 원하는 방식으로 도전해보세요.",
+    "multiplayer_description": "특별한 모드를 통해\n여러 사람과 함께 원하는\n형태로 도전해보세요.",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "커스텀 도전을 해금하려면 3막을 3번 클리어하세요.",
+    "max_ascension": 10
+  }
+]

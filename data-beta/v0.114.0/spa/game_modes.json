@@ -1,0 +1,807 @@
+[
+  {
+    "id": "STANDARD",
+    "name": "Estándar",
+    "description": "¡Embárcate en una misión para completar la Torre!",
+    "multiplayer_description": "¡Embárcate en una misión para completar la Torre... con amigos!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": null,
+    "max_ascension": 10
+  },
+  {
+    "id": "DAILY",
+    "name": "Diaria",
+    "description": "Cada día te espera un nuevo desafío.\n\n¡Compite contra otros jugadores para ascender en la clasificación!",
+    "multiplayer_description": "Cada día te espera un nuevo desafío.\n\n¡Compite contra otros grupos para ascender en la clasificación!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "Juega una partida con todos los personajes y completa el Acto 3 para desbloquear la partida diaria.",
+    "max_ascension": 10
+  },
+  {
+    "id": "DREAD",
+    "name": "Pesadilla",
+    "description": "La dificultad máxima, ideada por el Arquitecto.\n\nSolo para aquellos que deseen poner a prueba su maestría en la Torre.",
+    "multiplayer_description": "La dificultad máxima, ideada por el Arquitecto.\n\nSolo para grupos que deseen poner a prueba su maestría en la Torre.",
+    "intro": "El modo [gold]Pesadilla[/gold] es el desafío más duro disponible en Slay the Spire 2.",
+    "rules": [
+      "Todos los modificadores de Ascensión están activados.",
+      "Al final de cada Acto, se añade una [purple]Perdición del ascendente[/purple] a tu [gold]Mazo[/gold].",
+      "Los enemigos obtienen habilidades adicionales del próximo jefe.",
+      "Los jefes son aún más fuertes."
+    ],
+    "epoch_id": "DREAD_EPOCH",
+    "unlock_text": "Modo de juego desbloqueado: Pesadilla.",
+    "unlock_info": "Alcanza la [red]Ascensión[/red] [blue]10[/blue] con todos los personajes para revelar esta Época.",
+    "max_ascension": 10,
+    "dominions": [
+      {
+        "id": "AEONGLASS_DOMINION",
+        "encounter_id": "AEONGLASS_BOSS",
+        "boss_name": "Clepsamia eónica",
+        "name": "Dominio de Clepsamia eónica",
+        "description": "Al comienzo de tu turno, añade [blue]1[/blue] [gold]Deteriorar[/gold] a la parte superior de tu [gold]Pila de robo[/gold]."
+      },
+      {
+        "id": "CEREMONIAL_BEAST_DOMINION",
+        "encounter_id": "CEREMONIAL_BEAST_BOSS",
+        "boss_name": "Bestia ceremonial",
+        "name": "Dominio de Bestia ceremonial",
+        "description": "Todos los enemigos ganan [blue]1[/blue] de [gold]Ritual[/gold]."
+      },
+      {
+        "id": "INSATIABLE_DOMINION",
+        "encounter_id": "THE_INSATIABLE_BOSS",
+        "boss_name": "El Insaciable",
+        "name": "Dominio de El Insaciable",
+        "description": "Al final de tu turno, recibes daño igual al número de turnos."
+      },
+      {
+        "id": "KAISER_CRAB_DOMINION",
+        "encounter_id": "KAISER_CRAB_BOSS",
+        "boss_name": "Cangrejo káiser",
+        "name": "Dominio de Cangrejo káiser",
+        "description": "Todos los enemigos ganan [blue]{Plating}[/blue] de [gold]Blindaje[/gold]."
+      },
+      {
+        "id": "KIN_DOMINION",
+        "encounter_id": "THE_KIN_BOSS",
+        "boss_name": "La Estirpe",
+        "name": "Dominio de La Estirpe",
+        "description": "Comienza cada combate con [red]2[/red] de [gold]Debilidad[/gold] y [gold]Fragilidad[/gold]."
+      },
+      {
+        "id": "KNOWLEDGE_DEMON_DOMINION",
+        "encounter_id": "KNOWLEDGE_DEMON_BOSS",
+        "boss_name": "Demonio del saber",
+        "name": "Dominio de Demonio del saber",
+        "description": "Al comienzo del combate, elige [blue]1[/blue] de entre [blue]2[/blue] [red]Perdiciones[/red] de dominio."
+      },
+      {
+        "id": "LAGAVULIN_MATRIARCH_DOMINION",
+        "encounter_id": "LAGAVULIN_MATRIARCH_BOSS",
+        "boss_name": "Matriarca lagavulín",
+        "name": "Dominio de Matriarca lagavulín",
+        "description": "Al final de tu primer turno, pierde [red]1[/red] de [gold]Fuerza[/gold] y [gold]Destreza[/gold]."
+      },
+      {
+        "id": "QUEEN_DOMINION",
+        "encounter_id": "QUEEN_BOSS",
+        "boss_name": "La Reina",
+        "name": "Dominio de La Reina",
+        "description": "Al comienzo del turno 2, obtén [red]3[/red] de [gold]Debilidad[/gold], [gold]Vulnerabilidad[/gold] y [gold]Fragilidad[/gold]."
+      },
+      {
+        "id": "SOUL_FYSH_DOMINION",
+        "encounter_id": "SOUL_FYSH_BOSS",
+        "boss_name": "Peth alma",
+        "name": "Dominio de Peth alma",
+        "description": "Al comienzo de cada combate, baraja una carta de [gold]Llamada[/gold] en tu [gold]Pila de robo[/gold]."
+      },
+      {
+        "id": "TEST_SUBJECT_DOMINION",
+        "encounter_id": "TEST_SUBJECT_BOSS",
+        "boss_name": "Sujeto de pruebas",
+        "name": "Dominio de Sujeto de pruebas",
+        "description": "Todos los enemigos ganan [blue]3[/blue] de [gold]Fuerza[/gold]."
+      },
+      {
+        "id": "VANTOM_DOMINION",
+        "encounter_id": "VANTOM_BOSS",
+        "boss_name": "Tintasma",
+        "name": "Dominio de Tintasma",
+        "description": "Los enemigos normales ganan [blue]{NormalSlippery}[/blue] de [gold]Escurridizo[/gold]. Los élites ganan [blue]{EliteSlippery}[/blue] de [gold]Escurridizo[/gold]."
+      },
+      {
+        "id": "WATERFALL_GIANT_DOMINION",
+        "encounter_id": "WATERFALL_GIANT_BOSS",
+        "boss_name": "Cataronte",
+        "name": "Dominio de Cataronte",
+        "description": "Los enemigos explotan al morir, infligiendo daño."
+      }
+    ],
+    "rotating_streak": {
+      "name": "Racha de rotación",
+      "description": "En una [gold]Racha de rotación[/gold], cada victoria supone avanzar al personaje a la derecha.\nLa victorias se cuentan en una racha distinta, y ya no cuentan para rachas individuales de cada personaje."
+    }
+  },
+  {
+    "id": "BLITZ",
+    "name": "Relámpago",
+    "description": "Partidas rápidas e intensas para aquellos que buscan una aventura más corta.",
+    "multiplayer_description": "Partidas rápidas e intensas para grupos que buscan una aventura más corta.",
+    "intro": "¡Te damos la bienvenida al modo [green]Relámpago[/green]! Estas partidas rápidas tienen sus propios niveles de dificultad de Ascensión compartidos entre todos los personajes, y cuentan con cambios importantes que se centran más en la construcción de mazos.",
+    "rules": [
+      "Recibes cartas al comienzo de cada partida.",
+      "Te enfrentas a [blue]4[/blue] encuentros por cada Acto.",
+      "El [blue]Comerciante[/blue] es algo [sine]rarete[/sine].",
+      "Los [gold]cofres del tesoro[/gold] contienen una reliquia adicional.",
+      "No hay mapa."
+    ],
+    "epoch_id": "BLITZ_EPOCH",
+    "unlock_text": "Modo de juego desbloqueado: Relámpago.",
+    "unlock_info": "Juega una partida de Ascensión para desbloquear el modo Relámpago.",
+    "max_ascension": 5,
+    "ascension_levels": [
+      "WearyTraveler",
+      "TightBelt",
+      "ToughEnemies",
+      "DeadlyEnemies",
+      "AscendersBane"
+    ],
+    "neow": {
+      "name": "Relámpago",
+      "description": "Elige [blue]3[/blue] cartas y añádelas a tu [gold]Mazo[/gold]."
+    },
+    "merchant_entries": [
+      {
+        "id": "CARD_UPGRADE",
+        "name": "Servicio de mejora de cartas",
+        "description": "[gold]Mejora[/gold] una carta de tu [gold]Mazo[/gold].",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/card_upgrade.webp"
+      },
+      {
+        "id": "UPGRADED_CARD_REWARD",
+        "name": "Recompensa de cartas mejorada",
+        "description": "Recibe [blue]1[/blue] recompensa de cartas [gold]Mejorada[/gold].",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/upgraded_card_reward.webp"
+      },
+      {
+        "id": "RANDOM_UPGRADES",
+        "name": "Mejoras aleatorias",
+        "description": "Mejora [blue]2[/blue] cartas aleatorias de tu [gold]Mazo[/gold].",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/random_upgrades.webp"
+      },
+      {
+        "id": "CARD_TRANSFORM",
+        "name": "Servicio de transformación de cartas",
+        "description": "[gold]Transforma[/gold] una carta de tu [gold]Mazo[/gold].",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/card_transform.webp"
+      },
+      {
+        "id": "CARD_REMOVAL",
+        "name": "Servicio de eliminación de cartas",
+        "description": "Elimina una carta de tu [gold]Mazo[/gold].",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/card_removal.webp"
+      },
+      {
+        "id": "CARD_REWARDS",
+        "name": "Recompensas de cartas",
+        "description": "Recibe [blue]2[/blue] recompensas de cartas.",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/card_rewards.webp"
+      },
+      {
+        "id": "COLORLESS_CARD_REWARD",
+        "name": "Recompensa de cartas incolora",
+        "description": "Recibe [blue]1[/blue] recompensa de cartas [gold]Incolora[/gold].",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/colorless_card_reward.webp"
+      },
+      {
+        "id": "POTIONS",
+        "name": "Pociones",
+        "description": "Gana [blue]1[/blue] espacio de poción y obtén [blue]2[/blue] pociones aleatorias.",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/potions.webp"
+      },
+      {
+        "id": "CARD_ENCHANT",
+        "name": "Enchantment",
+        "description": "[gold]Encanta[/gold] una carta con [purple]Enchantment[/purple].",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/card_enchant.webp"
+      },
+      {
+        "id": "ENCHANTED_CARD_REWARD",
+        "name": "Recompensa de cartas encantadas",
+        "description": "Recibe [blue]1[/blue] recompensa de cartas [gold]Encantada[/gold].",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/enchanted_card_reward.webp"
+      },
+      {
+        "id": "PRISMATIC_CARD_REWARD",
+        "name": "Recompensa de cartas de Character",
+        "description": "Recibe [blue]1[/blue] recompensa de cartas de [gold]Character[/gold].",
+        "cursed": false,
+        "rare": true,
+        "image_url": "/static/images/beta/v0.114.0/blitz/prismatic_card_reward.webp"
+      },
+      {
+        "id": "RARE_CARD_REWARD",
+        "name": "Recompensa de cartas rara",
+        "description": "Recibe [blue]1[/blue] recompensa de cartas rara.",
+        "cursed": false,
+        "rare": true,
+        "image_url": "/static/images/beta/v0.114.0/blitz/rare_card_reward.webp"
+      },
+      {
+        "id": "UPGRADED_RARE_CARD",
+        "name": "Carta rara mejorada",
+        "description": "Recibe [blue]1[/blue] carta rara [gold]Mejorada[/gold] aleatoria.",
+        "cursed": false,
+        "rare": true,
+        "image_url": "/static/images/beta/v0.114.0/blitz/upgraded_rare_card.webp"
+      },
+      {
+        "id": "RELIC",
+        "name": "Reliquia",
+        "description": "Obtén [blue]1[/blue] [gold]Reliquia[/gold] aleatoria.",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/relic.webp"
+      },
+      {
+        "id": "GLAM",
+        "name": "Glamour con Maldición",
+        "description": "Recibe [red]1[/red] [red]Maldición[/red] aleatoria.\n[gold]Encanta[/gold] una carta con [purple]Glamour[/purple].",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/glam.webp"
+      },
+      {
+        "id": "TWO_MORE_CHOICES",
+        "name": "Elecciones malditas",
+        "description": "Recibe [red]1[/red] [red]Maldición[/red] aleatoria.\nEl Comerciante te permite comprar dos artículos más.",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/two_more_choices.webp"
+      },
+      {
+        "id": "CARD_REWARD_OF_EACH_RARITY",
+        "name": "Recompensa de cartas maldita",
+        "description": "Recibe [red]1[/red] [red]Maldición[/red] aleatoria.\nRecibe [blue]1[/blue] recompensa de cartas [gold]común[/gold], [gold]infrecuente[/gold] y [gold]rara[/gold].",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/card_reward_of_each_rarity.webp"
+      },
+      {
+        "id": "UPGRADED_RARE_CARD_REWARD",
+        "name": "Recompensa de cartas raras mejoradas maldita",
+        "description": "Recibe [red]1[/red] [red]Maldición[/red] aleatoria.\nRecibe [blue]1[/blue] recompensa de cartas raras [gold]Mejorada[/gold].",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/upgraded_rare_card_reward.webp"
+      },
+      {
+        "id": "TWO_RELICS",
+        "name": "Reliquias malditas",
+        "description": "Recibe [red]1[/red] [red]Maldición[/red] aleatoria.\nObtén [blue]2[/blue] [gold]Reliquias[/gold] aleatorias.",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/two_relics.webp"
+      },
+      {
+        "id": "FULL_HEAL_AND_MAX_HP",
+        "name": "Curación maldita",
+        "description": "Recibe [red]1[/red] [red]Maldición[/red] aleatoria.\nAumenta tus PV máx. en [blue]6[/blue] y recupera todos tus PV.",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/full_heal_and_max_hp.webp"
+      }
+    ],
+    "act_layout": [
+      "ANCIENT",
+      "MONSTER",
+      "MONSTER",
+      "SHOP",
+      "ELITE",
+      "TREASURE",
+      "REST_SITE",
+      "BOSS"
+    ],
+    "act_rooms": [
+      {
+        "type": "ANCIENT",
+        "name": "Antiguo",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_ancient.webp"
+      },
+      {
+        "type": "MONSTER",
+        "name": "Enemigo",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_monster.webp",
+        "easy": true
+      },
+      {
+        "type": "MONSTER",
+        "name": "Enemigo",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_monster.webp",
+        "easy": false
+      },
+      {
+        "type": "SHOP",
+        "name": "Comerciante",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_shop.webp"
+      },
+      {
+        "type": "ELITE",
+        "name": "Élite",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_elite.webp"
+      },
+      {
+        "type": "TREASURE",
+        "name": "Tesoro",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_treasure.webp"
+      },
+      {
+        "type": "REST_SITE",
+        "name": "Descanso",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_rest_site.webp"
+      },
+      {
+        "type": "BOSS",
+        "name": "Jefe",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_boss.webp"
+      }
+    ],
+    "weak_encounters_per_act": 1,
+    "floors_per_act": 8,
+    "encounters_per_act": 4,
+    "neow_details": {
+      "cards_offered": 10,
+      "cards_picked": 3,
+      "rarity_odds": {
+        "common": 0.55,
+        "uncommon": 0.4,
+        "rare": 0.05
+      },
+      "prompt": "Selecciona [blue]3[/blue] cartas para añadirlas a tu Mazo."
+    },
+    "merchant": {
+      "offers_shown": 6,
+      "normal_offers_shown": 5,
+      "cursed_offers_shown": 1,
+      "picks": 3,
+      "rare_offer_weight": 0.5,
+      "card_rarity_odds": {
+        "common": 0.4,
+        "uncommon": 0.5,
+        "rare": 0.1
+      },
+      "enchantments": [
+        {
+          "id": "SHARP",
+          "name": "Filo",
+          "amount": 2
+        },
+        {
+          "id": "NIMBLE",
+          "name": "Agilidad",
+          "amount": 3
+        },
+        {
+          "id": "ADROIT",
+          "name": "Hábil",
+          "amount": 3
+        },
+        {
+          "id": "STEADY",
+          "name": "Firmeza",
+          "amount": 1
+        },
+        {
+          "id": "SWIFT",
+          "name": "Rapidez",
+          "amount": 2
+        },
+        {
+          "id": "VIGOROUS",
+          "name": "Robustez",
+          "amount": 5
+        }
+      ],
+      "curses": [
+        {
+          "id": "CLUMSY",
+          "name": "Torpeza"
+        },
+        {
+          "id": "DECAY",
+          "name": "Descomposición"
+        },
+        {
+          "id": "DOUBT",
+          "name": "Duda"
+        },
+        {
+          "id": "GUILTY",
+          "name": "Culpabilidad"
+        },
+        {
+          "id": "INJURY",
+          "name": "Lesión"
+        },
+        {
+          "id": "NORMALITY",
+          "name": "Normalidad"
+        },
+        {
+          "id": "REGRET",
+          "name": "Remordimientos"
+        },
+        {
+          "id": "SHAME",
+          "name": "Vergüenza"
+        },
+        {
+          "id": "WRITHE",
+          "name": "Retorcimiento"
+        }
+      ]
+    },
+    "rewards": [
+      {
+        "room": "MONSTER",
+        "card_rarity": "Common",
+        "card_choices": 3,
+        "relics": 0,
+        "potion": "after_first_fight",
+        "room_name": "Enemigo"
+      },
+      {
+        "room": "ELITE",
+        "card_rarity": "Uncommon",
+        "card_choices": 3,
+        "relics": 2,
+        "potion": null,
+        "room_name": "Élite"
+      },
+      {
+        "room": "BOSS",
+        "card_rarity": "Rare",
+        "card_choices": 3,
+        "relics": 0,
+        "potion": "always",
+        "final_boss": false,
+        "room_name": "Jefe"
+      }
+    ],
+    "reward_upgrades_by_act": [
+      0,
+      1,
+      2
+    ],
+    "ascension_ladder": [
+      {
+        "level": 1,
+        "id": "WEARY_TRAVELER",
+        "name": "Viaje agotador",
+        "description": "Los Antiguos solo curan un [blue]80 %[/blue] de los PV que has perdido."
+      },
+      {
+        "level": 2,
+        "id": "TIGHT_BELT",
+        "name": "Cinturón apretado",
+        "description": "Comienza la partida con [blue]1[/blue] espacio de poción menos."
+      },
+      {
+        "level": 3,
+        "id": "TOUGH_ENEMIES",
+        "name": "Enemigos resistentes",
+        "description": "Todos los enemigos son más resistentes."
+      },
+      {
+        "level": 4,
+        "id": "DEADLY_ENEMIES",
+        "name": "Enemigos letales",
+        "description": "Todos los enemigos tienen ataques más poderosos."
+      },
+      {
+        "level": 5,
+        "id": "ASCENDERS_BANE",
+        "name": "Perdición del ascendente",
+        "description": "Comienza la partida con una [red]Maldición[/red]."
+      }
+    ],
+    "banned_cards": [
+      {
+        "id": "DEBT",
+        "name": "Deuda"
+      },
+      {
+        "id": "HAND_OF_GREED",
+        "name": "Mano avariciosa"
+      },
+      {
+        "id": "MY_SHINIES",
+        "name": "Mi tesoro"
+      },
+      {
+        "id": "ROYALTIES",
+        "name": "Diezmo"
+      }
+    ],
+    "banned_relics": [
+      {
+        "id": "AMETHYST_AUBERGINE",
+        "name": "Berenjena de amatista",
+        "image_url": "/static/images/beta/v0.114.0/relics/amethyst_aubergine.webp"
+      },
+      {
+        "id": "BLACK_STAR",
+        "name": "Estrella negra",
+        "image_url": "/static/images/beta/v0.114.0/relics/black_star.webp"
+      },
+      {
+        "id": "BOOK_OF_FIVE_RINGS",
+        "name": "El libro de los cinco anillos",
+        "image_url": "/static/images/beta/v0.114.0/relics/book_of_five_rings.webp"
+      },
+      {
+        "id": "BOWLER_HAT",
+        "name": "Bombín",
+        "image_url": "/static/images/beta/v0.114.0/relics/bowler_hat.webp"
+      },
+      {
+        "id": "CURSED_PEARL",
+        "name": "Perla maldita",
+        "image_url": "/static/images/beta/v0.114.0/relics/cursed_pearl.webp"
+      },
+      {
+        "id": "DOWSING_ROD",
+        "name": "Vara de zahorí",
+        "image_url": "/static/images/beta/v0.114.0/relics/dowsing_rod.webp"
+      },
+      {
+        "id": "DRAGON_FRUIT",
+        "name": "Fruta de dragón",
+        "image_url": "/static/images/beta/v0.114.0/relics/dragon_fruit.webp"
+      },
+      {
+        "id": "DREAM_CATCHER",
+        "name": "Atrapasueños",
+        "image_url": "/static/images/beta/v0.114.0/relics/dream_catcher.webp"
+      },
+      {
+        "id": "DRIFTWOOD",
+        "name": "Madera de naufragio",
+        "image_url": "/static/images/beta/v0.114.0/relics/driftwood.webp"
+      },
+      {
+        "id": "ECTOPLASM",
+        "name": "Ectoplasma",
+        "image_url": "/static/images/beta/v0.114.0/relics/ectoplasm.webp"
+      },
+      {
+        "id": "ETERNAL_FEATHER",
+        "name": "Pluma eterna",
+        "image_url": "/static/images/beta/v0.114.0/relics/eternal_feather.webp"
+      },
+      {
+        "id": "FISHING_ROD",
+        "name": "Caña de pescar",
+        "image_url": "/static/images/beta/v0.114.0/relics/fishing_rod.webp"
+      },
+      {
+        "id": "FUR_COAT",
+        "name": "Abrigo de piel",
+        "image_url": "/static/images/beta/v0.114.0/relics/fur_coat.webp"
+      },
+      {
+        "id": "GIRYA",
+        "name": "Girya",
+        "image_url": "/static/images/beta/v0.114.0/relics/girya.webp"
+      },
+      {
+        "id": "GOLDEN_COMPASS",
+        "name": "Brújula dorada",
+        "image_url": "/static/images/beta/v0.114.0/relics/golden_compass.webp"
+      },
+      {
+        "id": "GOLDEN_PEARL",
+        "name": "Perla dorada",
+        "image_url": "/static/images/beta/v0.114.0/relics/golden_pearl.webp"
+      },
+      {
+        "id": "JUZU_BRACELET",
+        "name": "Brazalete juzu",
+        "image_url": "/static/images/beta/v0.114.0/relics/juzu_bracelet.webp"
+      },
+      {
+        "id": "LASTING_CANDY",
+        "name": "Caramelo duradero",
+        "image_url": "/static/images/beta/v0.114.0/relics/lasting_candy.webp"
+      },
+      {
+        "id": "LORDS_PARASOL",
+        "name": "Sombrilla del Señor",
+        "image_url": "/static/images/beta/v0.114.0/relics/lords_parasol.webp"
+      },
+      {
+        "id": "LUCKY_FYSH",
+        "name": "Peth de la suerte",
+        "image_url": "/static/images/beta/v0.114.0/relics/lucky_fysh.webp"
+      },
+      {
+        "id": "MAW_BANK",
+        "name": "Hucha de fauces",
+        "image_url": "/static/images/beta/v0.114.0/relics/maw_bank.webp"
+      },
+      {
+        "id": "MEAL_TICKET",
+        "name": "Cupón de restaurante",
+        "image_url": "/static/images/beta/v0.114.0/relics/meal_ticket.webp"
+      },
+      {
+        "id": "MEAT_CLEAVER",
+        "name": "Cuchillo de carnicero",
+        "image_url": "/static/images/beta/v0.114.0/relics/meat_cleaver.webp"
+      },
+      {
+        "id": "MEMBERSHIP_CARD",
+        "name": "Carné de socio",
+        "image_url": "/static/images/beta/v0.114.0/relics/membership_card.webp"
+      },
+      {
+        "id": "MINIATURE_TENT",
+        "name": "Minitienda de campaña",
+        "image_url": "/static/images/beta/v0.114.0/relics/miniature_tent.webp"
+      },
+      {
+        "id": "OLD_COIN",
+        "name": "Moneda antigua",
+        "image_url": "/static/images/beta/v0.114.0/relics/old_coin.webp"
+      },
+      {
+        "id": "PAELS_CLAW",
+        "name": "Garra de Pael",
+        "image_url": "/static/images/beta/v0.114.0/relics/paels_claw.webp"
+      },
+      {
+        "id": "PAELS_GROWTH",
+        "name": "Tumor de Pael",
+        "image_url": "/static/images/beta/v0.114.0/relics/paels_growth.webp"
+      },
+      {
+        "id": "PAELS_WING",
+        "name": "Ala de Pael",
+        "image_url": "/static/images/beta/v0.114.0/relics/paels_wing.webp"
+      },
+      {
+        "id": "PLANISPHERE",
+        "name": "Planisferio",
+        "image_url": "/static/images/beta/v0.114.0/relics/planisphere.webp"
+      },
+      {
+        "id": "PRAYER_WHEEL",
+        "name": "Rueda de oración",
+        "image_url": "/static/images/beta/v0.114.0/relics/prayer_wheel.webp"
+      },
+      {
+        "id": "PUMPKIN_CANDLE",
+        "name": "Vela de calabaza",
+        "image_url": "/static/images/beta/v0.114.0/relics/pumpkin_candle.webp"
+      },
+      {
+        "id": "REGAL_PILLOW",
+        "name": "Almohada real",
+        "image_url": "/static/images/beta/v0.114.0/relics/regal_pillow.webp"
+      },
+      {
+        "id": "SEAL_OF_GOLD",
+        "name": "Sello de oro",
+        "image_url": "/static/images/beta/v0.114.0/relics/seal_of_gold.webp"
+      },
+      {
+        "id": "SHOVEL",
+        "name": "Pala",
+        "image_url": "/static/images/beta/v0.114.0/relics/shovel.webp"
+      },
+      {
+        "id": "SIGNET_RING",
+        "name": "Anillo de sello",
+        "image_url": "/static/images/beta/v0.114.0/relics/signet_ring.webp"
+      },
+      {
+        "id": "SILKEN_TRESS",
+        "name": "Mechón sedoso",
+        "image_url": "/static/images/beta/v0.114.0/relics/silken_tress.webp"
+      },
+      {
+        "id": "STONE_HUMIDIFIER",
+        "name": "Humidificador de piedra",
+        "image_url": "/static/images/beta/v0.114.0/relics/stone_humidifier.webp"
+      },
+      {
+        "id": "THE_COURIER",
+        "name": "Repartidor",
+        "image_url": "/static/images/beta/v0.114.0/relics/the_courier.webp"
+      },
+      {
+        "id": "TINY_MAILBOX",
+        "name": "Buzón diminuto",
+        "image_url": "/static/images/beta/v0.114.0/relics/tiny_mailbox.webp"
+      },
+      {
+        "id": "TOY_BOX",
+        "name": "Caja de juguetes",
+        "image_url": "/static/images/beta/v0.114.0/relics/toy_box.webp"
+      },
+      {
+        "id": "VENERABLE_TEA_SET",
+        "name": "Set de té venerable",
+        "image_url": "/static/images/beta/v0.114.0/relics/venerable_tea_set.webp"
+      },
+      {
+        "id": "WHITE_BEAST_STATUE",
+        "name": "Estatua de bestia blanca",
+        "image_url": "/static/images/beta/v0.114.0/relics/white_beast_statue.webp"
+      },
+      {
+        "id": "WINGED_BOOTS",
+        "name": "Botas aladas",
+        "image_url": "/static/images/beta/v0.114.0/relics/winged_boots.webp"
+      }
+    ],
+    "late_relics": {
+      "from_floor": 21,
+      "relics": [
+        {
+          "id": "FROZEN_EGG",
+          "name": "Huevo congelado",
+          "image_url": "/static/images/beta/v0.114.0/relics/frozen_egg.webp"
+        },
+        {
+          "id": "MOLTEN_EGG",
+          "name": "Huevo fundido",
+          "image_url": "/static/images/beta/v0.114.0/relics/molten_egg.webp"
+        },
+        {
+          "id": "POTION_BELT",
+          "name": "Cinturón de pociones",
+          "image_url": "/static/images/beta/v0.114.0/relics/potion_belt.webp"
+        },
+        {
+          "id": "TOXIC_EGG",
+          "name": "Huevo tóxico",
+          "image_url": "/static/images/beta/v0.114.0/relics/toxic_egg.webp"
+        },
+        {
+          "id": "WHITE_STAR",
+          "name": "Estrella blanca",
+          "image_url": "/static/images/beta/v0.114.0/relics/white_star.webp"
+        }
+      ]
+    }
+  }
+]

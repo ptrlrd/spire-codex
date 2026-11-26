@@ -1,0 +1,46 @@
+[
+  {
+    "id": "CLONE",
+    "name": "Clonar"
+  },
+  {
+    "id": "COOK",
+    "name": "Cozinhar"
+  },
+  {
+    "id": "DIG",
+    "name": "Cavar"
+  },
+  {
+    "id": "EVOLVE",
+    "name": "Evoluir"
+  },
+  {
+    "id": "HATCH",
+    "name": "Chocar"
+  },
+  {
+    "id": "HEAL",
+    "name": "Descansar"
+  },
+  {
+    "id": "KINDLE",
+    "name": "Acender"
+  },
+  {
+    "id": "LIFT",
+    "name": "Treinar"
+  },
+  {
+    "id": "MEND",
+    "name": "Restaurar"
+  },
+  {
+    "id": "RESTORE",
+    "name": "Restaurar"
+  },
+  {
+    "id": "SMITH",
+    "name": "Forjar"
+  }
+]

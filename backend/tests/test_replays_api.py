@@ -14,7 +14,7 @@ from fastapi.testclient import TestClient
 from pymongo.errors import DuplicateKeyError
 
 from app.main import app
-from app.services import auth_jwt, replays_db, runs_db_mongo
+from app.services import auth_jwt, competitive_starts, replays_db, runs_db_mongo
 
 SAMPLE = pathlib.Path(__file__).parent / "fixtures" / "sample-replay.jsonl"
 RUN_HASH = "abc123def4567890"
@@ -44,6 +44,14 @@ class FakeRuns:
         d = self.docs.get(flt["_id"])
         return dict(d) if d else None
 
+    def find(self, flt, proj=None):
+        rows = [
+            dict(d)
+            for d in self.docs.values()
+            if all(d.get(k) == v for k, v in flt.items())
+        ]
+        return type("C", (), {"limit": lambda self, n: rows[:n]})()
+
     def update_one(self, flt, update):
         d = self.docs.get(flt["_id"])
         if d is None:
@@ -52,6 +60,14 @@ class FakeRuns:
             d[k] = v
         for k in update.get("$unset", {}):
             d.pop(k, None)
+
+
+class FakeStarts:
+    def find_one(self, flt, proj=None):
+        return None
+
+    def update_one(self, flt, update, upsert=False):
+        return None
 
 
 class FakeReplays:
@@ -85,6 +101,7 @@ def env(monkeypatch):
         {
             RUN_HASH: {
                 "_id": RUN_HASH,
+                "seed": "JXS4H48K2D",
                 "steam_id": ME["steam_id"],
                 "user_id": ObjectId(ME["_id"]),
                 "character": "IRONCLAD",
@@ -105,6 +122,7 @@ def env(monkeypatch):
     }
     monkeypatch.setattr(replays_db, "_runs", lambda: runs)
     monkeypatch.setattr(replays_db, "_coll", lambda: replays)
+    monkeypatch.setattr(competitive_starts, "_starts", lambda: FakeStarts())
     monkeypatch.setattr(
         runs_db_mongo, "get_run_blob", lambda h: blob if h == RUN_HASH else None
     )
@@ -200,14 +218,14 @@ def test_header_must_match_the_run(env):
 def test_every_shipped_replay_version_passes_the_header_check():
     from app.services import replays_db
 
-    for version in (1, 2, 3, 4, 5, 6, 7, 8):
+    for version in (1, 2, 3, 4, 5, 6, 7, 8, 9):
         header = json.dumps(
             {"t": "header", "replay_version": version, "seed": "S"}
         ).encode()
         assert replays_db._parse_header(header)["replay_version"] == version
     with pytest.raises(replays_db.ReplayRejected) as rejected:
         replays_db._parse_header(
-            json.dumps({"t": "header", "replay_version": 9}).encode()
+            json.dumps({"t": "header", "replay_version": 10}).encode()
         )
     assert rejected.value.code == "bad_header"
 
@@ -474,3 +492,147 @@ def test_rejected_replay_does_not_claim_the_hinted_run(env):
     assert runs.docs[RUN_HASH]["steam_id_hint"] == ME["steam_id"]
     assert _post(_gz()).status_code == 200
     assert runs.docs[RUN_HASH]["user_id"] == ObjectId(ME["_id"])
+
+
+def _post_bare(body, token="me"):
+    h = {"Content-Encoding": "gzip", "Content-Type": "application/x-ndjson"}
+    if token:
+        h["Authorization"] = f"Bearer {token}"
+    return client.post("/api/runs/replay", content=body, headers=h)
+
+
+def test_bare_upload_finds_the_run_from_the_header(env):
+    runs, replays = env
+    body = _gz()
+    r = _post_bare(body)
+    assert r.status_code == 200, r.text
+    assert r.json()["run_hash"] == RUN_HASH
+    assert r.json()["url"].endswith(f"/runs/{RUN_HASH}/replay")
+    assert bytes(replays.docs[RUN_HASH]["blob"]) == body
+    assert runs.docs[RUN_HASH]["has_replay"] is True
+    again = _post_bare(body)
+    assert again.status_code == 200 and again.json()["duplicate"] is True
+
+
+def test_bare_upload_needs_auth_an_owned_run_and_a_matching_header(env):
+    assert _post_bare(_gz(), token=None).status_code == 401
+    other = _post_bare(_gz(), token="other")
+    assert other.status_code == 403
+    assert other.json()["detail"]["code"] == "not_owner"
+    unknown = _post_bare(_gz(header_patch={"seed": "NOSUCHSEED"}))
+    assert unknown.status_code == 404
+    assert unknown.json()["detail"]["code"] == "not_found"
+    wrong_start = _post_bare(_gz(header_patch={"start_time": 1}))
+    assert wrong_start.status_code == 409
+    assert wrong_start.json()["detail"]["code"] == "header_mismatch"
+    assert _post_bare(b"not gzip").status_code == 415
+
+
+def test_bare_upload_body_cap_covers_a_full_size_replay():
+    from app.main import _BODY_LIMITS
+
+    assert any(p.match("/api/runs/replay") for p, _ in _BODY_LIMITS)
+    assert any(p.match(f"/api/runs/{RUN_HASH}/replay") for p, _ in _BODY_LIMITS)
+
+
+def test_same_journal_from_another_compressor_is_a_duplicate(env):
+    runs, replays = env
+    raw = ("\n".join(_lines()) + "\n").encode("utf-8")
+    first, second = gzip.compress(raw, 9), gzip.compress(raw, 1)
+    assert first != second
+    assert _post(first).status_code == 200
+    again = _post(second)
+    assert again.status_code == 200 and again.json()["duplicate"] is True
+    assert bytes(replays.docs[RUN_HASH]["blob"]) == first
+    replays.docs[RUN_HASH].pop("content_sha256")
+    legacy = _post_bare(second)
+    assert legacy.status_code == 200 and legacy.json()["duplicate"] is True
+    changed = _post(_gz(_lines()[:-1]))
+    assert changed.status_code == 409
+    assert changed.json()["detail"]["code"] == "replay_exists"
+
+
+def _competitive_lines(**header):
+    lines = _lines()
+    h = json.loads(lines[0])
+    h.update({"competitive": True, "mods": [{"t": "m", "id": "SpireCodex"}], **header})
+    lines[0] = json.dumps(h, separators=(",", ":"))
+    return lines
+
+
+def test_a_competitive_replay_marks_the_run_cleared(env):
+    runs, replays = env
+    r = _post(_gz(_competitive_lines()))
+    assert r.status_code == 200, r.text
+    assert r.json()["competitive"] == {
+        "state": "cleared",
+        "bracket": "a10_solo",
+        "reasons": [],
+    }
+    assert runs.docs[RUN_HASH]["competitive"] == "cleared"
+    assert runs.docs[RUN_HASH]["competitive_bracket"] == "a10_solo"
+    assert replays.docs[RUN_HASH]["competitive"]["check_version"] == 1
+
+
+def test_a_competitive_replay_with_another_mod_marks_the_run_flagged(env):
+    runs, _ = env
+    mods = [{"t": "m", "id": "SpireCodex"}, {"t": "m", "id": "SpireOracle"}]
+    r = _post(_gz(_competitive_lines(mods=mods)))
+    assert r.status_code == 200, r.text
+    assert runs.docs[RUN_HASH]["competitive"] == "flagged"
+    assert runs.docs[RUN_HASH]["competitive_reasons"] == ["mods"]
+
+
+def test_an_ordinary_replay_leaves_the_run_unmarked(env):
+    runs, replays = env
+    r = _post(_gz())
+    assert r.status_code == 200, r.text
+    assert "competitive" not in r.json()
+    assert "competitive" not in runs.docs[RUN_HASH]
+    assert replays.docs[RUN_HASH]["competitive"] is None
+
+
+def test_deleting_a_competitive_replay_leaves_the_run_flagged(env):
+    runs, _ = env
+    assert _post(_gz(_competitive_lines())).status_code == 200
+    r = client.delete(
+        f"/api/runs/{RUN_HASH}/replay", headers={"Authorization": "Bearer me"}
+    )
+    assert r.status_code == 200, r.text
+    assert "has_replay" not in runs.docs[RUN_HASH]
+    assert runs.docs[RUN_HASH]["competitive"] == "flagged"
+    assert runs.docs[RUN_HASH]["competitive_bracket"] == "a10_solo"
+    assert runs.docs[RUN_HASH]["competitive_reasons"] == ["replay_deleted"]
+
+
+def test_deleting_an_ordinary_replay_leaves_no_competitive_mark(env):
+    runs, _ = env
+    assert _post(_gz()).status_code == 200
+    client.delete(
+        f"/api/runs/{RUN_HASH}/replay", headers={"Authorization": "Bearer me"}
+    )
+    assert "competitive" not in runs.docs[RUN_HASH]
+
+
+def test_the_run_list_filters_on_the_competitive_verdict():
+    q = runs_db_mongo._run_filter(competitive="cleared", competitive_bracket="a10_solo")
+    assert q["competitive"] == "cleared"
+    assert q["competitive_bracket"] == "a10_solo"
+    assert "competitive" not in runs_db_mongo._run_filter(competitive="anything")
+    assert runs_db_mongo._projection_row()["competitive"] == 1
+
+
+def test_the_mod_can_report_a_competitive_start(env, monkeypatch):
+    seen = {}
+    monkeypatch.setattr(
+        competitive_starts,
+        "record_start",
+        lambda user, body: seen.update(user=user, body=body) or {"success": True},
+    )
+    body = {"seed": "JXS4H48K2D", "start_time": 1781152879}
+    assert client.post("/api/runs/competitive/start", json=body).status_code == 401
+    r = client.post(
+        "/api/runs/competitive/start", json=body, headers={"Authorization": "Bearer me"}
+    )
+    assert r.status_code == 200, r.text
+    assert seen["body"] == body and seen["user"]["steam_id"] == ME["steam_id"]

@@ -1,0 +1,51 @@
+[
+  {
+    "id": "BOUND",
+    "name": "Terhubung",
+    "description": "Hanya [blue]1[/blue] kartu [gold]Terhubung[/gold] yang bisa dimainkan dalam setiap giliran. Kartu tidak lagi [gold]Terhubung[/gold] di akhir giliran.",
+    "extra_card_text": "Terhubung",
+    "is_stackable": false
+  },
+  {
+    "id": "ENTANGLED",
+    "name": "Terjerat",
+    "description": "Menghabiskan satu lebih [energy:1].",
+    "extra_card_text": "Terjerat",
+    "is_stackable": false
+  },
+  {
+    "id": "GALVANIZED",
+    "name": "Menyetrum",
+    "description": "Mendapat [blue]X[/blue] kerusakan saat kartu ini dimainkan.",
+    "extra_card_text": "Dapatkan X kerusakan.",
+    "is_stackable": true
+  },
+  {
+    "id": "HEXED",
+    "name": "Terkutuk",
+    "description": "Tambahkan [gold]Rapuh[/gold] ke kartu ini.",
+    "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
+    "id": "RINGING",
+    "name": "Berdengung",
+    "description": "Kamu hanya bisa memainkan [blue]1[/blue] kartu di giliran ini.",
+    "extra_card_text": "Berdengung.",
+    "is_stackable": false
+  },
+  {
+    "id": "SMOG",
+    "name": "Asap",
+    "description": "Kamu tidak bisa memainkan [gold]Teknik[/gold] tambahan giliran ini. Hilang pada akhir giliran.",
+    "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
+    "id": "TAINTED",
+    "name": "Noda",
+    "description": "Dapatkan [blue]X[/blue] [gold]Noda[/gold] saat dimainkan.",
+    "extra_card_text": "Dapatkan X Noda.",
+    "is_stackable": true
+  }
+]

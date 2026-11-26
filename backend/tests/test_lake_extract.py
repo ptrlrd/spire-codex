@@ -66,6 +66,7 @@ def test_staged_runs_carry_their_own_seat(tmp_path, monkeypatch):
     monkeypatch.setattr(mod, "_get_collection", lambda: _Coll(docs))
     monkeypatch.setattr(mod, "_refresh_excluded", lambda coll: None)
     monkeypatch.setattr(mod, "_refresh_scalars", lambda coll: None)
+    monkeypatch.setattr(mod, "_refresh_competitive", lambda coll: None)
     monkeypatch.setattr(
         mod, "get_run_blobs", lambda ids: {h: json.loads(json.dumps(blob)) for h in ids}
     )

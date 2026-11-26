@@ -1,0 +1,450 @@
+[
+  {
+    "id": "BIG_DECK",
+    "name": "Dek Besar",
+    "description": "Menang dengan dek berisi [blue]40[/blue] atau lebih kartu.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Dek Besar",
+        "description": "Menang dengan dek berisi [blue]40[/blue] atau lebih kartu."
+      },
+      {
+        "rarity": "silver",
+        "title": "Dek Raksasa",
+        "description": "Menang dengan dek berisi [blue]60[/blue] atau lebih kartu."
+      },
+      {
+        "rarity": "gold",
+        "title": "Dek Monster",
+        "description": "Menang dengan dek berisi [blue]100[/blue] atau lebih kartu."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_big_deck.png"
+  },
+  {
+    "id": "CCCCOMBO",
+    "name": "K-k-k-kombo",
+    "description": "Mainkan [blue]20[/blue] kartu dalam satu giliran.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "K-k-k-kombo",
+        "description": "Mainkan [blue]20[/blue] kartu dalam satu giliran."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_ccccombo.png"
+  },
+  {
+    "id": "CURSES",
+    "name": "Terkutuk!",
+    "description": "Menang dengan [blue]5[/blue] atau lebih [red]Kutukan[/red].",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Terkutuk!",
+        "description": "Menang dengan [blue]5[/blue] atau lebih [red]Kutukan[/red]."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_curses.png"
+  },
+  {
+    "id": "DAMAGE_LEADER",
+    "name": "Pemimpin Serangan",
+    "description": "Berikan serangan paling banyak kepada musuh di multi pemain.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Pemimpin Serangan",
+        "description": "Berikan serangan paling banyak kepada musuh di multi pemain."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": true,
+    "image_url": "/static/images/badges/badge_damage_leader.png"
+  },
+  {
+    "id": "DEBUFFER",
+    "name": "Pemberi Efek",
+    "description": "Terapkan Efek paling banyak di multi pemain.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Pemberi Efek",
+        "description": "Terapkan Efek paling banyak di multi pemain."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": true,
+    "image_url": "/static/images/badges/badge_debuffer.png"
+  },
+  {
+    "id": "DOUBLE_SNECKO",
+    "name": "Snecko Ganda",
+    "description": "Dapatkan kedua mata Snecko yang asli dan yang palsu.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Snecko Ganda",
+        "description": "Dapatkan kedua mata Snecko yang asli dan yang palsu."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_double_snecko.png"
+  },
+  {
+    "id": "ELITE",
+    "name": "Pemburu Elit",
+    "description": "Bunuh [blue]3[/blue] atau lebih Elit.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Pemburu Elit",
+        "description": "Bunuh [blue]3[/blue] atau lebih Elit."
+      },
+      {
+        "rarity": "silver",
+        "title": "Pembunuh Elit",
+        "description": "Bunuh [blue]6[/blue] atau lebih Elit."
+      },
+      {
+        "rarity": "gold",
+        "title": "Pembasmi Elit",
+        "description": "Bunuh [blue]9[/blue] atau lebih Elit."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_elite.png"
+  },
+  {
+    "id": "FAMISHED",
+    "name": "Kelaparan",
+    "description": "Menang dengan HP Maksimal terkurangi menjadi lebih sedikit dari setengah HP awalanmu.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Kelaparan",
+        "description": "Menang dengan HP Maksimal terkurangi menjadi lebih sedikit dari setengah HP awalanmu."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_famished.png"
+  },
+  {
+    "id": "GLUTTON",
+    "name": "Puas",
+    "description": "Menang dengan HP Maksimal ditambah sebanyak [blue]15[/blue] atau lebih.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Puas",
+        "description": "Menang dengan HP Maksimal ditambah sebanyak [blue]15[/blue] atau lebih."
+      },
+      {
+        "rarity": "silver",
+        "title": "Kenyang",
+        "description": "Menang dengan HP Maksimal ditambah sebanyak [blue]30[/blue] atau lebih."
+      },
+      {
+        "rarity": "gold",
+        "title": "Rakus",
+        "description": "Menang dengan HP Maksimal sangat tinggi (ditambah [blue]50[/blue] atau lebih)."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_glutton.png"
+  },
+  {
+    "id": "HEALER",
+    "name": "Perawat",
+    "description": "Rawat seorang teman sekali.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Perawat",
+        "description": "Rawat seorang teman sekali."
+      },
+      {
+        "rarity": "silver",
+        "title": "Penyembuh",
+        "description": "Rawat seorang teman dua kali."
+      },
+      {
+        "rarity": "gold",
+        "title": "Dokter",
+        "description": "Rawat seorang teman lagi dan lagi (setidaknya [blue]3[/blue] kali)."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": true,
+    "image_url": "/static/images/badges/badge_healer.png"
+  },
+  {
+    "id": "HIGHLANDER",
+    "name": "Tidak Berulang",
+    "description": "Menang dengan dek dimana tidak ada dua kartu sama (tidak termasuk Awalan).",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Tidak Berulang",
+        "description": "Menang dengan dek dimana tidak ada dua kartu sama (tidak termasuk Awalan)."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_highlander.png"
+  },
+  {
+    "id": "HONED",
+    "name": "Mahir",
+    "description": "Menang dengan dek dimana [blue]5[/blue] atau lebih kartunya sama (tidak termasuk Awalan).",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Mahir",
+        "description": "Menang dengan dek dimana [blue]5[/blue] atau lebih kartunya sama (tidak termasuk Awalan)."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_honed.png"
+  },
+  {
+    "id": "ILIKESHINY",
+    "name": "Kusuka Kilauan",
+    "description": "Kumpulkan [blue]25[/blue] atau lebih pusaka.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Kusuka Kilauan",
+        "description": "Kumpulkan [blue]25[/blue] atau lebih pusaka."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_ilikeshiny.png"
+  },
+  {
+    "id": "KACHING",
+    "name": "Krincing!",
+    "description": "Habiskan lebih dari [blue]1,000[/blue] [gold]Emas[/gold] di Pedagang.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Krincing!",
+        "description": "Habiskan lebih dari [blue]1,000[/blue] [gold]Emas[/gold] di Pedagang."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_kaching.png"
+  },
+  {
+    "id": "MONEY_MONEY",
+    "name": "Uang Uang",
+    "description": "Menang dengan [blue]200[/blue] atau lebih [gold]Emas[/gold].",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Uang Uang",
+        "description": "Menang dengan [blue]200[/blue] atau lebih [gold]Emas[/gold]."
+      },
+      {
+        "rarity": "silver",
+        "title": "Hujan Emas",
+        "description": "Menang dengan [blue]400[/blue] atau lebih [gold]Emas[/gold]."
+      },
+      {
+        "rarity": "gold",
+        "title": "Aku Suka Emas",
+        "description": "Menang dengan [blue]600[/blue] atau lebih [gold]Emas[/gold]."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_money_money.png"
+  },
+  {
+    "id": "MYSTERY_MACHINE",
+    "name": "Mesin Misteri",
+    "description": "Datangi [blue]15[/blue] atau lebih ruang ? .",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Mesin Misteri",
+        "description": "Datangi [blue]15[/blue] atau lebih ruang ? ."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_mystery_machine.png"
+  },
+  {
+    "id": "PERFECT",
+    "name": "Tak Tergores",
+    "description": "Kalahkan satu bos tanpa kehilangan HP.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Tak Tergores",
+        "description": "Kalahkan satu bos tanpa kehilangan HP."
+      },
+      {
+        "rarity": "silver",
+        "title": "Terbaik",
+        "description": "Kalahkan [blue]2[/blue] bos tanpa kehilangan HP."
+      },
+      {
+        "rarity": "gold",
+        "title": "Sempurna",
+        "description": "Kalahkan [blue]3[/blue] bos tanpa kehilangan HP."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_perfect.png"
+  },
+  {
+    "id": "RESTFUL",
+    "name": "Cukup Istirahat",
+    "description": "Menang dengan selalu rehat di setiap Peristirahatan.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Cukup Istirahat",
+        "description": "Menang dengan selalu rehat di setiap Peristirahatan."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_restful.png"
+  },
+  {
+    "id": "RESTLESS",
+    "name": "Kurang Istirahat",
+    "description": "Menang tanpa rehat sekalipun.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Kurang Istirahat",
+        "description": "Menang tanpa rehat sekalipun."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_restless.png"
+  },
+  {
+    "id": "SPEEDY",
+    "name": "Cepat",
+    "description": "Menang kurang dari [blue]50[/blue] menit.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Cepat",
+        "description": "Menang kurang dari [blue]50[/blue] menit."
+      },
+      {
+        "rarity": "silver",
+        "title": "Lebih Cepat",
+        "description": "Menang kurang dari [blue]40[/blue] menit."
+      },
+      {
+        "rarity": "gold",
+        "title": "Tercepat",
+        "description": "Menang kurang dari [blue]30[/blue] menit."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_speedy.png"
+  },
+  {
+    "id": "TABLET",
+    "name": "Lempeng Kebenaran",
+    "description": "Menang dengan hanya [blue]1[/blue] HP Maksimal.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Lempeng Kebenaran",
+        "description": "Menang dengan hanya [blue]1[/blue] HP Maksimal."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_tablet.png"
+  },
+  {
+    "id": "TEAM_PLAYER",
+    "name": "Pemain Tim",
+    "description": "Dek berisi [blue]3[/blue] atau lebih kartu khusus multi pemain.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Pemain Tim",
+        "description": "Dek berisi [blue]3[/blue] atau lebih kartu khusus multi pemain."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": true,
+    "image_url": "/static/images/badges/badge_team_player.png"
+  },
+  {
+    "id": "TINY_DECK",
+    "name": "Dek Kecil",
+    "description": "Menang dengan dek berisi [blue]20[/blue] atau lebih sedikit kartu.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Dek Kecil",
+        "description": "Menang dengan dek berisi [blue]20[/blue] atau lebih sedikit kartu."
+      },
+      {
+        "rarity": "silver",
+        "title": "Dek Mungil",
+        "description": "Menang dengan dek berisi [blue]10[/blue] atau lebih sedikit kartu."
+      },
+      {
+        "rarity": "gold",
+        "title": "Minimalis",
+        "description": "Menang dengan dek berisi [blue]5[/blue] atau lebih sedikit kartu."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_tiny_deck.png"
+  }
+]

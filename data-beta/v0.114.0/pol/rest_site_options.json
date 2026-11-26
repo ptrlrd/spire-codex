@@ -1,0 +1,46 @@
+[
+  {
+    "id": "CLONE",
+    "name": "Duplikuj"
+  },
+  {
+    "id": "COOK",
+    "name": "Gotuj"
+  },
+  {
+    "id": "DIG",
+    "name": "Kop"
+  },
+  {
+    "id": "EVOLVE",
+    "name": "Ewoluuj"
+  },
+  {
+    "id": "HATCH",
+    "name": "Wykluj"
+  },
+  {
+    "id": "HEAL",
+    "name": "Odpocznij"
+  },
+  {
+    "id": "KINDLE",
+    "name": "Rozpal"
+  },
+  {
+    "id": "LIFT",
+    "name": "Ćwicz"
+  },
+  {
+    "id": "MEND",
+    "name": "Ulecz"
+  },
+  {
+    "id": "RESTORE",
+    "name": "Przywróć"
+  },
+  {
+    "id": "SMITH",
+    "name": "Ulepsz"
+  }
+]

@@ -3,12 +3,13 @@
 POST /api/presence            — heartbeat from the mod, Bearer JWT required (the verified
                                 steam_id keys the entry, so nobody can publish as someone
                                 else). Body {"ended": true} clears the entry.
-GET  /api/presence/active     — public roster of live runs (no deck detail), deepest first.
+GET  /api/presence/active     — public roster of live runs (no deck detail), competitive first, then deepest.
 GET  /api/presence/{steam_id} — one player's full live doc (deck/relics/potions) for a
                                 live run view. 404 when not live.
 """
 
 import os
+import threading
 import time
 
 from fastapi import APIRouter, HTTPException, Request, Response
@@ -53,6 +54,9 @@ _INT_FIELDS = (
 _STR_FIELDS = (
     "character",
     "seed",
+    # "cleared" / "flagged" / "off" from the mod's competitive mode; the public
+    # views label the run and hold its seed back while it is on.
+    "competitive",
     "screen",
     "sts2_version",
     "username",
@@ -881,15 +885,44 @@ def _enrich_twitch(players: list[dict]) -> None:
         pass
 
 
-@router.get("/active")
-def get_active(limit: int = 50):
-    """Public roster of live runs (no deck detail), deepest first."""
-    _require_mongo()
-    from ..services import presence_db
+def _competitive_view(doc: dict) -> None:
+    """A competitive run keeps its seed off the public views, so it cannot be
+    loaded on a second machine while the run is still going."""
+    state = doc.get("competitive")
+    if state in ("cleared", "flagged"):
+        doc.pop("seed", None)
+    else:
+        doc.pop("competitive", None)
 
-    players = presence_db.active(max(1, min(limit, 100)))
-    _enrich_twitch(players)
-    return {"count": len(players), "players": players}
+
+_ROSTER_TTL_SECONDS = 5
+_roster_lock = threading.Lock()
+
+
+@router.get("/active")
+def get_active(limit: int = 50, preview: bool = False):
+    """Public roster of live runs, competitive runs first, then deepest first.
+    No deck detail unless preview is set, which adds each player's relics and
+    last few cards. Cached for a few seconds."""
+    _require_mongo()
+    limit = max(1, min(limit, 100))
+    key = f"presence:roster:{limit}:{int(preview)}"
+    cached = app_cache.get_json(key)
+    if isinstance(cached, dict):
+        return cached
+    with _roster_lock:
+        cached = app_cache.get_json(key)
+        if isinstance(cached, dict):
+            return cached
+        from ..services import presence_db
+
+        players = presence_db.active(limit, preview)
+        for player in players:
+            _competitive_view(player)
+        _enrich_twitch(players)
+        out = {"count": len(players), "players": players}
+        app_cache.set_json(key, out, ttl_seconds=_ROSTER_TTL_SECONDS)
+    return out
 
 
 @router.get("/count")
@@ -921,5 +954,6 @@ def get_player(steam_id: str):
     doc = presence_db.get(digits)
     if not doc:
         raise HTTPException(status_code=404, detail="not live")
+    _competitive_view(doc)
     _enrich_twitch([doc])
     return doc

@@ -26,6 +26,7 @@ from ..services.runs_db import (
 )
 from ..services import cache as app_cache
 from ..services.run_entity_stats import (
+    split_bracket_character,
     UnknownBracket,
     ensure_known_bracket,
     full_walk_in_progress as entity_stats_full_walk_in_progress,
@@ -422,6 +423,8 @@ def list_runs(
     shop: str | None = None,
     today: bool = False,
     has_replay: bool | None = None,
+    competitive: str | None = None,
+    competitive_bracket: str | None = None,
     steam_id: str | None = None,
     page: int = 1,
     limit: int = 50,
@@ -433,6 +436,10 @@ def list_runs(
     and anonymous runs never match.
 
     `has_replay=true` keeps only runs with a replay journal to watch.
+
+    `competitive=cleared` keeps runs whose replay passed the competitive
+    check (`flagged` keeps the ones that did not), and
+    `competitive_bracket=a10_solo|dread_solo` narrows to one bracket.
 
     `steam_id=<SteamID64>` lists the runs of the account linked to that Steam
     ID (what the in-game mod sends); an unknown Steam ID lists nothing rather
@@ -502,6 +509,10 @@ def list_runs(
             shop,
             int(today),
             "" if has_replay is None else int(has_replay),
+            competitive if competitive in ("cleared", "flagged") else "",
+            competitive_bracket
+            if competitive_bracket in ("a10_solo", "dread_solo")
+            else "",
             page,
             limit,
         )
@@ -532,6 +543,8 @@ def list_runs(
             shop=shop,
             today=today,
             has_replay=has_replay,
+            competitive=competitive,
+            competitive_bracket=competitive_bracket,
             page=page,
             limit=limit,
         )
@@ -888,6 +901,9 @@ def get_run_rank(request: Request, run_hash: str, category: str = "fastest"):
         return {"rank": ahead + 1, "category": category}
 
 
+_DOMINION_ID = re.compile(r"[A-Z0-9_]{1,64}")
+
+
 @router.get("/encounter-stats", tags=["Runs"])
 @limiter.limit(
     rate_limit_config.endpoint_limit("runs.get_encounter_stats_endpoint", "60/minute")
@@ -903,6 +919,8 @@ def get_encounter_stats_endpoint(
     bracket: str | None = None,
     build_id: str | None = None,
     encounter: str | None = None,
+    game_mode: str | None = None,
+    dominion: str | None = None,
 ):
     """Per-encounter combat stats over submitted runs.
 
@@ -929,6 +947,15 @@ def get_encounter_stats_endpoint(
         slice for (e.g. `v0.107.1`); an unknown version is a 400.
       * `encounter` — comma-separated encounter ids to keep (a monster
         page asks for just its own fights). Omit for all.
+      * `game_mode` — `standard`, `daily`, `custom`, `blitz` or `dread`.
+        Omit for every mode together. Combines with `bracket` and
+        `build_id`.
+      * `dominion` — Dread only: the encounter id of the act boss whose
+        dominion was active (e.g. `AEONGLASS_BOSS`). A run file names a
+        boss only once the run reaches it, so this covers the fights
+        before the boss in acts that got that far, and `fatal` and
+        `abandoned` are always 0 under it. Combines with `bracket` and
+        `build_id`; any `game_mode` other than `dread` is a 400.
 
     Each row contains the encounter's total appearances, fatal count,
     avg damage taken, avg turns, plus a `characters` array with the
@@ -947,6 +974,17 @@ def get_encounter_stats_endpoint(
         "wr75",
     ):
         raise HTTPException(status_code=400, detail="bad bracket")
+    if not is_game_mode_filter(game_mode):
+        raise HTTPException(status_code=400, detail="bad game_mode")
+    game_mode = game_mode or None
+    dominion = (dominion or "").strip().upper() or None
+    if dominion is not None:
+        if not _DOMINION_ID.fullmatch(dominion):
+            raise HTTPException(status_code=400, detail="bad dominion")
+        if game_mode not in (None, "dread"):
+            raise HTTPException(
+                status_code=400, detail="dominion only applies to dread"
+            )
 
     from ..services.run_entity_stats import (
         get_encounter_stats as _get_encounter_stats,
@@ -978,6 +1016,8 @@ def get_encounter_stats_endpoint(
         bracket=bracket,
         build_id=build_id,
         encounters=encounters,
+        game_mode=game_mode,
+        dominion=dominion,
     )
     # A not-yet-built snapshot answers empty; don't let the edge cache that
     # for an hour and keep serving zeros after the data lands.
@@ -1106,6 +1146,12 @@ def get_shared_run(run_hash: str, request: Request):
                 blob["hidden"] = True
                 blob["hidden_reason"] = meta.get("hidden_reason")
             blob["has_replay"] = bool(meta.get("has_replay"))
+            if meta.get("competitive"):
+                blob["competitive"] = {
+                    "state": meta["competitive"],
+                    "bracket": meta.get("competitive_bracket"),
+                    "reasons": meta.get("competitive_reasons") or [],
+                }
             return blob
 
         from ..services.runs_db import get_conn
@@ -1359,6 +1405,7 @@ def get_entity_scores(
     # pass through even though the snapshot's validator doesn't know them;
     # anything neither side knows is a 400, never a silent all-runs answer.
     try:
+        bracket, bchar = split_bracket_character(bracket)
         brk = ensure_known_bracket(bracket)
     except UnknownBracket as e:
         raise HTTPException(status_code=400, detail=f"unknown bracket: {e}")
@@ -1367,14 +1414,21 @@ def get_entity_scores(
     # Redis layer (5min TTL): hit constantly by tier-list pages and detail
     # sort columns. Key carries every response-shaping param.
     cache_key = app_cache.entity_scores_key(
-        entity_type, act=act, character=char, bracket=brk
+        entity_type,
+        act=act,
+        character=char,
+        bracket=f"{brk or 'all'}|char:{bchar}" if bchar else brk,
     )
     cached = app_cache.get_json(cache_key)
     if cached is not None:
         result = cached
     else:
         result = get_all_entity_scores(
-            entity_type, character=char, act=act, bracket=brk
+            entity_type,
+            character=char,
+            act=act,
+            bracket=brk,
+            bracket_character=bchar,
         )
         # While the snapshot is rebuilding (post-deploy), the result is an empty
         # shell; caching it would extend the gap past the rebuild for everyone.
@@ -1515,7 +1569,13 @@ def my_picks(request: Request, response: Response):
         raise HTTPException(status_code=401, detail="invalid token")
 
     response.headers["Cache-Control"] = "private, max-age=60"
-    return get_user_picks(steam_id)
+    cache_key = f"user_picks:{steam_id}"
+    cached = app_cache.get_json(cache_key)
+    if isinstance(cached, dict):
+        return cached
+    out = get_user_picks(steam_id)
+    app_cache.set_json(cache_key, out, ttl_seconds=60)
+    return out
 
 
 def _section_cache_control(response: Response) -> None:
@@ -1660,9 +1720,11 @@ def get_entity_metrics(
             detail=f"entity_type must be one of {sorted(_ENTITY_STATS_TYPES)}",
         )
     try:
+        bracket, bchar = split_bracket_character(bracket)
         bracket = ensure_known_bracket(bracket)
     except UnknownBracket as e:
         raise HTTPException(status_code=400, detail=f"unknown bracket: {e}")
+    character = character or bchar
     # Snapshot refreshes at most every 10 min; let edges/clients cache it.
     # Except while a post-deploy rebuild runs: an empty table cached at the
     # edge would outlive the rebuild.
@@ -1863,6 +1925,13 @@ def start_stats_refresher() -> None:
         # Stats aggregations run after the tick: its finalize pins the GIL and
         # pegs Mongo for minutes, so anything kicked before it just races it.
         _kick_side_job("home_stats", refresh_home_stats)
+
+        def _competitive_forfeits() -> None:
+            from ..services.competitive_starts import forfeit_stale
+
+            forfeit_stale()
+
+        _kick_side_job("competitive_forfeits", _competitive_forfeits)
         # Startup files -> run_blobs backfill, first leader cycle only.
         _maybe_kick_blob_backfill()
 
@@ -2160,16 +2229,16 @@ def get_similar_runs(
     if result is None:
         response.headers["Cache-Control"] = "no-store"
         return empty
-    from ..services import data_service
+    from ..services.run_vectors import full_catalog
 
     try:
         cards = {
             str(c.get("id", "")).upper(): c.get("name")
-            for c in data_service.load_cards(lang)
+            for c in full_catalog("cards", lang)
         }
         relics = {
             str(r.get("id", "")).upper(): r.get("name")
-            for r in data_service.load_relics(lang)
+            for r in full_catalog("relics", lang)
         }
     except Exception:
         cards, relics = {}, {}
@@ -2212,6 +2281,8 @@ def get_archetypes(
 
     Only clusters with 50+ runs and at least one defining card are listed;
     shares still count every run, so they don't sum to 100.
+    `cards` and `relics` are the wider set each archetype leans on, strongest
+    first, for tagging a card or relic with the builds it belongs to.
     `available` is false until the first build exists. Cached for 10 minutes."""
     cache_key = f"archetypes:{lang}"
     cached = app_cache.get_json(cache_key)
@@ -2231,22 +2302,26 @@ def get_archetypes(
             return last_good
         response.headers["Cache-Control"] = "no-store"
         return {"available": False, "characters": {}}
-    from ..services import data_service
+    from ..services.run_vectors import full_catalog
 
     try:
         cards = {
             str(c.get("id", "")).upper(): c.get("name")
-            for c in data_service.load_cards(lang)
+            for c in full_catalog("cards", lang)
         }
         relics = {
             str(r.get("id", "")).upper(): r.get("name")
-            for r in data_service.load_relics(lang)
+            for r in full_catalog("relics", lang)
         }
     except Exception:
         cards, relics = {}, {}
 
     def _name(catalog: dict, eid: str) -> str:
         return catalog.get(eid) or eid.replace("_", " ").title()
+
+    def _members(catalog: dict, stored, defining: list) -> list[dict]:
+        pairs = stored if stored is not None else [[i, None] for i in defining]
+        return [{"id": i, "name": _name(catalog, i), "lift": lift} for i, lift in pairs]
 
     def _ver_key(v: str):
         try:
@@ -2318,6 +2393,8 @@ def get_archetypes(
                         {"id": i, "name": _name(relics, i)}
                         for i in c["defining_relics"]
                     ],
+                    "cards": _members(cards, c.get("cards"), c["defining_cards"]),
+                    "relics": _members(relics, c.get("relics"), c["defining_relics"]),
                     "example_runs": c["example_runs"],
                 }
             )
@@ -2729,16 +2806,16 @@ def get_encounter_builds(
     if rows is None or not any(r["deaths"] for r in rows):
         response.headers["Cache-Control"] = "no-store"
         return {"available": False, "encounter": enc, "builds": []}
-    from ..services import data_service
+    from ..services.run_vectors import full_catalog
 
     try:
         card_names = {
             str(c.get("id", "")).upper(): c.get("name")
-            for c in data_service.load_cards(lang)
+            for c in full_catalog("cards", lang)
         }
         relic_names = {
             str(r.get("id", "")).upper(): r.get("name")
-            for r in data_service.load_relics(lang)
+            for r in full_catalog("relics", lang)
         }
     except Exception:
         card_names, relic_names = {}, {}
@@ -2809,16 +2886,16 @@ def get_deck_advisor(
     if recs is None:
         response.headers["Cache-Control"] = "no-store"
         return {"available": False, "items": []}
-    from ..services import data_service
+    from ..services.run_vectors import full_catalog
 
     try:
         card_names = {
             str(c.get("id", "")).upper(): c.get("name")
-            for c in data_service.load_cards(lang)
+            for c in full_catalog("cards", lang)
         }
         relic_names = {
             str(r.get("id", "")).upper(): r.get("name")
-            for r in data_service.load_relics(lang)
+            for r in full_catalog("relics", lang)
         }
     except Exception:
         card_names, relic_names = {}, {}
@@ -2891,16 +2968,16 @@ def get_pick_coach(
         except Exception:
             logger.warning("pick coach lift blend failed", exc_info=True)
 
-    from ..services import data_service
+    from ..services.run_vectors import full_catalog
 
     try:
         card_names = {
             str(c.get("id", "")).upper(): c.get("name")
-            for c in data_service.load_cards(lang)
+            for c in full_catalog("cards", lang)
         }
         relic_names = {
             str(r.get("id", "")).upper(): r.get("name")
-            for r in data_service.load_relics(lang)
+            for r in full_catalog("relics", lang)
         }
     except Exception:
         card_names, relic_names = {}, {}

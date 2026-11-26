@@ -68,8 +68,8 @@
   {
     "id": "INKY",
     "name": "Inky",
-    "description": "This card deals [blue]1[/blue] additional damage and applies [blue]1[/blue] [gold]Weak[/gold].",
-    "description_raw": "This card deals [blue]{Damage}[/blue] additional damage and applies [blue]{WeakPower}[/blue] [gold]Weak[/gold].",
+    "description": "This card applies [blue]1[/blue] [gold]Weak[/gold].",
+    "description_raw": "This card applies [blue]{WeakPower}[/blue] [gold]Weak[/gold].",
     "extra_card_text": "Apply [blue]1[/blue] [gold]Weak[/gold].",
     "card_type": null,
     "applicable_to": null,

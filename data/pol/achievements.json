@@ -10,7 +10,7 @@
   },
   {
     "id": "CHARACTER_SKILL_IRONCLAD1",
-    "name": "Pakt spełniony",
+    "name": "Spełnienie paktu",
     "description": "Wyczerp 20 kart w jednej walce.",
     "category": "character_skill",
     "character": "Ironclad",
@@ -164,7 +164,7 @@
   {
     "id": "NO_RELIC_WIN",
     "name": "Niepotrzebne klamoty",
-    "description": "Wygraj bez zdobywania żadnych Artefaktów.",
+    "description": "Wygraj bez otrzymywania żadnych Artefaktów.",
     "category": "run",
     "character": null,
     "threshold": null,

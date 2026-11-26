@@ -112,7 +112,7 @@
   {
     "id": "BEETLE_JUICE",
     "name": "딱정벌레 주스",
-    "description": "다음 [blue]{}[/blue]턴 동안 적이 가하는 공격의 피해량이 [blue]30%[/blue] 감소합니다.",
+    "description": "다음 [blue]4[/blue]턴 동안 적이 가하는 공격의 피해량이 [blue]30%[/blue] 감소합니다.",
     "description_raw": "{Repeat:choose(1):다음 턴에|다음 [blue]{}[/blue]턴 동안} 적이 가하는 공격의 피해량이 [blue]{DamageDecrease}%[/blue] 감소합니다.",
     "rarity": "희귀",
     "image_url": "/static/images/potions/beetle_juice.webp",
@@ -134,7 +134,7 @@
   {
     "id": "CLARITY",
     "name": "명확성 추출물",
-    "description": "카드를 [blue]1[/blue]장 뽑습니다. 다음 [blue]{}[/blue]턴 시작 시, 카드를 추가로 [blue]1[/blue]장 뽑습니다.",
+    "description": "카드를 [blue]1[/blue]장 뽑습니다. 다음 [blue]3[/blue]턴 시작 시, 카드를 추가로 [blue]1[/blue]장 뽑습니다.",
     "description_raw": "카드를 [blue]{Cards}[/blue]장 뽑습니다. 다음 {ClarityPower:choose(1):턴|[blue]{}[/blue]턴} 시작 시, 카드를 추가로 [blue]1[/blue]장 뽑습니다.",
     "rarity": "고급",
     "image_url": "/static/images/potions/clarity.webp",
@@ -506,6 +506,17 @@
     "pool": "regent"
   },
   {
+    "id": "AMBERGRIS",
+    "name": "용연향",
+    "description": "최대 체력의 [green]50%[/green]를 회복합니다. 전투 중에 사용했다면, 추가 턴을 진행합니다.",
+    "description_raw": "최대 체력의 [green]{HealPercent}%[/green]를 회복합니다. 전투 중에 사용했다면, 추가 턴을 진행합니다.",
+    "rarity": "이벤트",
+    "image_url": "/static/images/potions/ambergris.webp",
+    "rarity_key": "Event",
+    "compendium_order": 62,
+    "pool": "event"
+  },
+  {
     "id": "COSMIC_CONCOCTION",
     "name": "우주적 혼합물",
     "description": "[gold]강화[/gold]된 무색 카드를 [blue]3[/blue]장 [gold]손[/gold]으로 가져옵니다.",
@@ -634,7 +645,7 @@
     "rarity": "토큰",
     "image_url": "/static/images/potions/potion_shaped_rock.webp",
     "rarity_key": "Token",
-    "compendium_order": 62,
+    "compendium_order": 63,
     "pool": "shared"
   },
   {

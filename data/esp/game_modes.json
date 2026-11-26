@@ -1,0 +1,38 @@
+[
+  {
+    "id": "STANDARD",
+    "name": "Estándar",
+    "description": "¡Embárcate en una misión para conquistar la Torre!",
+    "multiplayer_description": "Embárcate en una misión para conquistar la Torre... ¡con tus camaradas!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": null,
+    "max_ascension": 10
+  },
+  {
+    "id": "DAILY",
+    "name": "Diaria",
+    "description": "Hay un nuevo desafío disponible cada día.\n\n¡Compite contra otras personas por lograr la puntación más alta!",
+    "multiplayer_description": "Hay un nuevo desafío disponible cada día.\n\n¡Compite contra otros equipos por lograr la puntación más alta!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "Juega una sola partida con todos los personajes y completa el acto 3 para desbloquear las «Partidas diarias».",
+    "max_ascension": 10
+  },
+  {
+    "id": "CUSTOM",
+    "name": "Personalizada",
+    "description": "Personaliza tu partida con modificadores únicos.",
+    "multiplayer_description": "Personaliza tu partida de modo cooperativo con modificadores únicos.",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "Completa el acto 3 tres veces para desbloquear las «Partidas personalizadas».",
+    "max_ascension": 10
+  }
+]

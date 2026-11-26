@@ -14,8 +14,8 @@
         "intent": "Attack + Defend",
         "block": 33,
         "damage": {
-          "normal": 26,
-          "ascension": 32
+          "normal": 22,
+          "ascension": 26
         }
       },
       {
@@ -36,8 +36,8 @@
     ],
     "damage_values": {
       "Ebb": {
-        "normal": 26,
-        "ascension": 32
+        "normal": 22,
+        "ascension": 26
       },
       "EyeLasers": {
         "normal": 11,
@@ -88,6 +88,7 @@
       ],
       "description": "감쇠 → 눈 레이저 → 강도 증가 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/aeonglass.webp",
     "beta_image_url": null
   },
@@ -131,6 +132,7 @@
       ],
       "description": "Always uses 가만히 있기"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/architect.webp",
     "beta_image_url": null
   },
@@ -183,6 +185,7 @@
       ],
       "description": "Always uses 결정타"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/assassin_ruby_raider.webp",
     "beta_image_url": null
   },
@@ -271,6 +274,7 @@
       ],
       "description": "Swing 1 → Swing 2 → 크게 휘두르기 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/axe_ruby_raider.webp",
     "beta_image_url": null
   },
@@ -301,8 +305,8 @@
         "name": "좌우 연타",
         "intent": "Attack",
         "damage": {
-          "normal": 9,
-          "ascension": 10,
+          "normal": 10,
+          "ascension": 11,
           "hit_count": 2
         }
       },
@@ -323,20 +327,20 @@
           }
         ],
         "damage": {
-          "normal": 12,
-          "ascension": 14
+          "normal": 14,
+          "ascension": 18
         }
       }
     ],
     "damage_values": {
       "OneTwo": {
-        "normal": 9,
-        "ascension": 10,
+        "normal": 10,
+        "ascension": 11,
         "hit_count": 2
       },
       "HammerUppercut": {
-        "normal": 12,
-        "ascension": 14
+        "normal": 14,
+        "ascension": 18
       }
     },
     "block_values": null,
@@ -349,7 +353,12 @@
         "is_weak": false
       }
     ],
-    "innate_powers": null,
+    "innate_powers": [
+      {
+        "power_id": "STOCK",
+        "amount": 2
+      }
+    ],
     "attack_pattern": {
       "type": "cycle",
       "initial_move": "BOOT_UP",
@@ -372,6 +381,7 @@
       ],
       "description": "Always uses 시동"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/axebot.webp",
     "beta_image_url": null
   },
@@ -394,7 +404,7 @@
     "block_values": null,
     "encounters": [
       {
-        "encounter_id": "BATTLEWORN_DUMMY_EVENT_ENCOUNTER",
+        "encounter_id": "BATTLEWORN_DUMMY_EVENT_V1_ENCOUNTER",
         "encounter_name": "전투로 손상된 훈련 인형",
         "room_type": "Monster",
         "act": null,
@@ -420,6 +430,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/battle_friend_v1.webp",
     "beta_image_url": null
   },
@@ -442,7 +453,7 @@
     "block_values": null,
     "encounters": [
       {
-        "encounter_id": "BATTLEWORN_DUMMY_EVENT_ENCOUNTER",
+        "encounter_id": "BATTLEWORN_DUMMY_EVENT_V2_ENCOUNTER",
         "encounter_name": "전투로 손상된 훈련 인형",
         "room_type": "Monster",
         "act": null,
@@ -468,6 +479,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/battle_friend_v2.webp",
     "beta_image_url": null
   },
@@ -490,7 +502,7 @@
     "block_values": null,
     "encounters": [
       {
-        "encounter_id": "BATTLEWORN_DUMMY_EVENT_ENCOUNTER",
+        "encounter_id": "BATTLEWORN_DUMMY_EVENT_V3_ENCOUNTER",
         "encounter_name": "전투로 손상된 훈련 인형",
         "room_type": "Monster",
         "act": null,
@@ -516,6 +528,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/battle_friend_v3.webp",
     "beta_image_url": null
   },
@@ -576,6 +589,7 @@
       ],
       "description": "Always uses 물기"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/bowlbug_egg.webp",
     "beta_image_url": null
   },
@@ -665,6 +679,7 @@
       ],
       "description": "난동부리기 → 이로운 효과 → Thrash2 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/bowlbug_nectar.webp",
     "beta_image_url": null
   },
@@ -751,6 +766,7 @@
       ],
       "description": "Starts with 박치기"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/bowlbug_rock.webp",
     "beta_image_url": null
   },
@@ -828,6 +844,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/bowlbug_silk.webp",
     "beta_image_url": null
   },
@@ -896,6 +913,7 @@
       ],
       "description": "Always uses 때리기"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/brute_ruby_raider.webp",
     "beta_image_url": null
   },
@@ -927,7 +945,7 @@
       },
       {
         "id": "SLEEP_MOVE_2",
-        "name": "Sleep Move 2",
+        "name": "수면",
         "intent": "Sleep"
       },
       {
@@ -1067,21 +1085,24 @@
     ],
     "attack_pattern": {
       "type": "cycle",
-      "initial_move": null,
+      "initial_move": "SWOOP",
       "states": [
         {
           "id": "PECK_MOVE",
           "type": "move",
-          "move_id": "PECK"
+          "move_id": "PECK",
+          "next": "SWOOP_MOVE"
         },
         {
           "id": "SWOOP_MOVE",
           "type": "move",
-          "move_id": "SWOOP"
+          "move_id": "SWOOP",
+          "next": "PECK_MOVE"
         }
       ],
-      "description": ""
+      "description": "급습 → 쪼기 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/byrdonis.webp",
     "beta_image_url": null
   },
@@ -1117,6 +1138,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/byrdpip.webp",
     "beta_image_url": null
   },
@@ -1351,6 +1373,7 @@
       ],
       "description": "발구르기 → 파헤치기 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/ceremonial_beast.webp",
     "beta_image_url": null
   },
@@ -1426,6 +1449,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/chomper.webp",
     "beta_image_url": null
   },
@@ -1528,6 +1552,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/corpse_slug.webp",
     "beta_image_url": null
   },
@@ -1590,6 +1615,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/crossbow_ruby_raider.webp",
     "beta_image_url": null
   },
@@ -1741,6 +1767,7 @@
       ],
       "description": "난동부리기 → 확대 타격 → 벌레 쏘기 → 적응 → 수호의 타격 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/crusher.webp",
     "beta_image_url": null
   },
@@ -1783,7 +1810,7 @@
       },
       {
         "id": "REPEATER_BLAST_MOVE_2",
-        "name": "Repeater Blast Move 2",
+        "name": "연발 사격",
         "intent": "Attack + Buff",
         "powers": [
           {
@@ -1871,8 +1898,9 @@
           "next": "REPEATER_BLAST_MOVE"
         }
       ],
-      "description": "충전 → 연발 사격 → Repeater Blast Move 2 → 방출 → repeat"
+      "description": "충전 → 연발 사격 → 연발 사격 → 방출 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/cubex_construct.webp",
     "beta_image_url": null
   },
@@ -2079,6 +2107,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/decimillipede.webp",
     "beta_image_url": null
   },
@@ -2156,7 +2185,7 @@
     "type": "Elite",
     "min_hp": 145,
     "max_hp": null,
-    "min_hp_ascension": 155,
+    "min_hp_ascension": 165,
     "max_hp_ascension": null,
     "moves": [
       {
@@ -2164,6 +2193,11 @@
         "name": "페로몬 뱉기",
         "intent": "Buff",
         "powers": [
+          {
+            "power_id": "STRENGTH",
+            "target": "self",
+            "amount": 2
+          },
           {
             "power_id": "PERSONAL_HIVE",
             "target": "self",
@@ -2173,11 +2207,6 @@
             "power_id": "STRENGTH",
             "target": "self",
             "amount": 1
-          },
-          {
-            "power_id": "STRENGTH",
-            "target": "self",
-            "amount": 2
           }
         ]
       },
@@ -2252,6 +2281,7 @@
       ],
       "description": "Always uses 버어어얼이다!"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/entomancer.webp",
     "beta_image_url": null
   },
@@ -2261,8 +2291,8 @@
     "type": "Normal",
     "min_hp": 24,
     "max_hp": 28,
-    "min_hp_ascension": 25,
-    "max_hp_ascension": 29,
+    "min_hp_ascension": 26,
+    "max_hp_ascension": 30,
     "moves": [
       {
         "id": "SKITTER",
@@ -2391,6 +2421,7 @@
       ],
       "description": "then random: 뛰어다니기 (no repeat), 턱 깨물기 (no repeat); then conditional: 뛰어다니기 (if in first slot) / 턱 깨물기 (if in second slot) / 격분 (if in third slot) / Rand (if in fourth slot)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/exoskeleton.webp",
     "beta_image_url": null
   },
@@ -2439,6 +2470,7 @@
       ],
       "description": "Always uses 혼란시키기"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/eye_with_teeth.webp",
     "beta_image_url": null
   },
@@ -2551,6 +2583,7 @@
       ],
       "description": "then random: 조립, 조립 타격; then conditional: Rand (if can fabricate) / 해체 (if cannot fabricate)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/fabricator.webp",
     "beta_image_url": null
   },
@@ -2577,7 +2610,8 @@
         "name": "동전 분출",
         "intent": "Attack",
         "damage": {
-          "normal": 2
+          "normal": 2,
+          "hit_count": 8
         }
       },
       {
@@ -2861,6 +2895,7 @@
       ],
       "description": "Starts with 들이받기"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/flail_knight.webp",
     "beta_image_url": null
   },
@@ -2978,6 +3013,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/flyconid.webp",
     "beta_image_url": null
   },
@@ -3103,8 +3139,9 @@
           ]
         }
       ],
-      "description": "Starts with 환각 포자, then random: Swipe Random (no repeat, 40%), Headbutt (no repeat, 60%)"
+      "description": "Opens with 환각 포자. Every turn after that it picks Swipe Random 40 percent of the time or Headbutt 60 percent of the time. An attack never repeats back to back."
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/fogmog.webp",
     "beta_image_url": null
   },
@@ -3219,6 +3256,7 @@
       ],
       "description": "Starts with 들러붙기"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/fossil_stalker.webp",
     "beta_image_url": null
   },
@@ -3354,6 +3392,7 @@
       ],
       "description": "Starts: 혓바닥 채찍 → 악을 처단한다 → 여왕님을 위해; then conditional: 혓바닥 채찍 (if HasBeetleCharged || CurrentHp >= MaxHp / 2) / 딱정벌레 돌진 (if !HasBeetleCharged && CurrentHp < MaxHp / 2)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/frog_knight.webp",
     "beta_image_url": null
   },
@@ -3444,6 +3483,7 @@
       ],
       "description": "Always uses First Acid Goop"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/fuzzy_wurm_crawler.webp",
     "beta_image_url": null
   },
@@ -3500,6 +3540,7 @@
       ],
       "description": "Always uses 폭발"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/gas_bomb.webp",
     "beta_image_url": null
   },
@@ -3583,7 +3624,8 @@
     "innate_powers": [
       {
         "power_id": "GALVANIC",
-        "amount": 6
+        "amount": 6,
+        "amount_ascension": 8
       }
     ],
     "attack_pattern": {
@@ -3611,6 +3653,7 @@
       ],
       "description": "깜짝 따귀 → 전기 영창 → Galvanic Burst → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/orb_head.webp",
     "beta_image_url": null
   },
@@ -3767,6 +3810,7 @@
       ],
       "description": "Always uses 보호"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/guardbot.webp",
     "beta_image_url": null
   },
@@ -3852,11 +3896,13 @@
         {
           "id": "HAUNT_MOVE",
           "type": "move",
-          "move_id": "HAUNT"
+          "move_id": "HAUNT",
+          "next": "SWIPE_MOVE"
         }
       ],
-      "description": "Always uses 출몰"
+      "description": "출몰 → 밀쳐내기 → 발구르기 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/haunted_ship.webp",
     "beta_image_url": null
   },
@@ -3958,6 +4004,7 @@
       ],
       "description": "Starts with 연약화 끈적이"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/hunter_killer.webp",
     "beta_image_url": null
   },
@@ -4084,6 +4131,7 @@
       ],
       "description": "찌르기 → 방출 → 소용돌이 → 맥박 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/infested_prism.webp",
     "beta_image_url": null
   },
@@ -4219,6 +4267,7 @@
       ],
       "description": "Starts: 소용돌이 → 잽; then random: 잽, 소용돌이 (no repeat); then random: 날카로운 시선 (no repeat), 소용돌이 (no repeat)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/inklet.webp",
     "beta_image_url": null
   },
@@ -4315,6 +4364,7 @@
       ],
       "description": "강화의 춤 → 전광석화 → 부메랑 투척 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/kin_follower.webp",
     "beta_image_url": null
   },
@@ -4723,6 +4773,7 @@
       ],
       "description": "Starts with 수면"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/lagavulin_matriarch.webp",
     "beta_image_url": null
   },
@@ -4790,21 +4841,24 @@
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
-      "initial_move": null,
+      "initial_move": "STICKY_SHOT",
       "states": [
         {
           "id": "CLUMP_SHOT",
           "type": "move",
-          "move_id": "CLUMP_SHOT"
+          "move_id": "CLUMP_SHOT",
+          "next": "STICKY_SHOT"
         },
         {
           "id": "STICKY_SHOT",
           "type": "move",
-          "move_id": "STICKY_SHOT"
+          "move_id": "STICKY_SHOT",
+          "next": "CLUMP_SHOT"
         }
       ],
-      "description": ""
+      "description": "끈적 발사 → 덤불 발사 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/leaf_slime_m.webp",
     "beta_image_url": null
   },
@@ -4892,6 +4946,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/leaf_slime_s.webp",
     "beta_image_url": null
   },
@@ -4989,6 +5044,7 @@
       ],
       "description": "가스 축적 → 부풀기 → 가스 대폭발 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/living_smog.webp",
     "beta_image_url": null
   },
@@ -5084,6 +5140,7 @@
       ],
       "description": "Starts with 방패 찍기; then conditional: 방패 찍기 (if has allies) / 후려치기 (if no allies)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/living_shield.webp",
     "beta_image_url": null
   },
@@ -5185,6 +5242,7 @@
       ],
       "description": "Always uses 거미줄 분사"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/louse_progenitor.webp",
     "beta_image_url": null
   },
@@ -5299,6 +5357,7 @@
       ],
       "description": "파워 실드 → 위축 → 들이받기 → Prep → 마법 폭탄 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/magi_knight.webp",
     "beta_image_url": null
   },
@@ -5416,6 +5475,7 @@
       ],
       "description": "Starts with 잡아찢기; then random: 날뛰기 (no repeat), 포효 (once), 잡아찢기 (no repeat)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/mawler.webp",
     "beta_image_url": null
   },
@@ -5440,7 +5500,11 @@
       {
         "id": "FLAMETHROWER",
         "name": "화염 방사",
-        "intent": "Status"
+        "intent": "Attack + Status",
+        "damage": {
+          "normal": 8,
+          "ascension": 12
+        }
       },
       {
         "id": "WINDUP",
@@ -5469,6 +5533,10 @@
       "Charge": {
         "normal": 25,
         "ascension": 30
+      },
+      "Flamethrower": {
+        "normal": 8,
+        "ascension": 12
       },
       "HeavyCleave": {
         "normal": 35,
@@ -5639,6 +5707,7 @@
       ],
       "description": "then conditional: 유독성 풍요 (if in first slot) / 빨아 먹기 (if in second slot)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/myte.webp",
     "beta_image_url": null
   },
@@ -5754,6 +5823,7 @@
       ],
       "description": "then conditional: 박치기 (if alone) / 쉭쉭대기 (if not in front) / Slice (if in front)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/nibbit.webp",
     "beta_image_url": null
   },
@@ -5789,6 +5859,7 @@
       ],
       "description": "Always uses 소음"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/noisebot.webp",
     "beta_image_url": null
   },
@@ -5824,6 +5895,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/osty.webp",
     "beta_image_url": null
   },
@@ -5952,6 +6024,7 @@
       ],
       "description": "Starts: 알 낳기 → 후려치기 → 연약화; then conditional: 알 낳기 (if can lay) / 영양 보충 (if cannot lay)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/ovicopter.webp",
     "beta_image_url": null
   },
@@ -6069,6 +6142,7 @@
       ],
       "description": "판관의 조사 → 기습 쪼기 → 심판의 비행 → 판결 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/owl_magistrate.webp",
     "beta_image_url": null
   },
@@ -6104,6 +6178,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/paels_legion.webp",
     "beta_image_url": "/static/images/monsters/beta/paels_legion.webp"
   },
@@ -6161,6 +6236,7 @@
       ],
       "description": "Always uses 내려찍기"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/parafright.webp",
     "beta_image_url": null
   },
@@ -6298,6 +6374,7 @@
       ],
       "description": "then conditional: 마구 휘두르기 (if in first slot) / 물기 (if in second slot) / 휘둘러치기 (if in third slot) / 늘리기 (if in fourth slot)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/phantasmal_gardener.webp",
     "beta_image_url": null
   },
@@ -6373,6 +6450,7 @@
       ],
       "description": "Starts: 감염시키기 → 휘둘러치기"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/phrog_parasite.webp",
     "beta_image_url": null
   },
@@ -6482,6 +6560,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/punch_construct.webp",
     "beta_image_url": null
   },
@@ -6799,6 +6878,7 @@
       ],
       "description": "십자선 조준 → 정밀 광선 → 충전 → 레이저 → 재충전 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/rocket.webp",
     "beta_image_url": null
   },
@@ -6907,6 +6987,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/scroll_of_biting.webp",
     "beta_image_url": null
   },
@@ -7004,6 +7085,7 @@
       ],
       "description": "바다 차기 → 돌려차기 → 거품 뿜기 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/seapunk.webp",
     "beta_image_url": null
   },
@@ -7072,6 +7154,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/sewer_clam.webp",
     "beta_image_url": null
   },
@@ -7161,6 +7244,7 @@
       ],
       "description": "압축 → 물어뜯기 → 발구르기 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/shrinker_beetle.webp",
     "beta_image_url": null
   },
@@ -7184,7 +7268,7 @@
       },
       {
         "id": "ZOOM_MOVE_2",
-        "name": "Zoom Move 2",
+        "name": "급가속",
         "intent": "Attack",
         "damage": {
           "normal": 14,
@@ -7278,8 +7362,9 @@
           "next": "ZOOM_MOVE"
         }
       ],
-      "description": "급가속 → Zoom Move 2 → 관성 → 꿰뚫는 찌르기 → repeat"
+      "description": "급가속 → 급가속 → 관성 → 꿰뚫는 찌르기 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/skulkling_colomy.webp",
     "beta_image_url": null
   },
@@ -7385,6 +7470,7 @@
       ],
       "description": "Always uses 체액 토하기"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/slimed_berserker.webp",
     "beta_image_url": null
   },
@@ -7485,6 +7571,7 @@
       ],
       "description": "Starts with 조이기"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/slithering_strangler.webp",
     "beta_image_url": null
   },
@@ -7599,6 +7686,7 @@
       ],
       "description": "Starts with 기름 분사"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/sludge_spinner.webp",
     "beta_image_url": null
   },
@@ -7683,6 +7771,7 @@
       ],
       "description": "Starts with 코 골기"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/slumbering_beetle.webp",
     "beta_image_url": null
   },
@@ -7749,6 +7838,7 @@
       ],
       "description": "Always uses 에너지 구체"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/snapping_jaxfruit.webp",
     "beta_image_url": null
   },
@@ -7810,6 +7900,7 @@
       ],
       "description": "Always uses 기상"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/sneaky_gremlin.webp",
     "beta_image_url": null
   },
@@ -7833,7 +7924,7 @@
         "intent": "Attack",
         "damage": {
           "normal": 16,
-          "ascension": 17
+          "ascension": 18
         }
       },
       {
@@ -7847,7 +7938,7 @@
       },
       {
         "id": "FADE",
-        "name": "사라지기",
+        "name": "희미해지기",
         "intent": "Buff",
         "powers": [
           {
@@ -7877,7 +7968,7 @@
     "damage_values": {
       "DeGas": {
         "normal": 16,
-        "ascension": 17
+        "ascension": 18
       },
       "Scream": {
         "normal": 13,
@@ -7934,8 +8025,9 @@
           "next": "BECKON_MOVE"
         }
       ],
-      "description": "유인 → 가스 방출 → 응시 → 사라지기 → 절규 → repeat"
+      "description": "유인 → 가스 방출 → 응시 → 희미해지기 → 절규 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/soul_fysh.webp",
     "beta_image_url": null
   },
@@ -8067,6 +8159,7 @@
       ],
       "description": "Starts with 영혼 연소; then random: 영혼 연소 (no repeat), 대재앙 (no repeat), 생명 흡수 (no repeat)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/soul_nexus.webp",
     "beta_image_url": null
   },
@@ -8163,6 +8256,7 @@
       ],
       "description": "Starts: 주술 → 영혼 참격"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/spectral_knight.webp",
     "beta_image_url": null
   },
@@ -8252,6 +8346,7 @@
       ],
       "description": "튀어나오는 가시 → 가시 폭발 → 혓바닥 채찍 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/spiny_toad.webp",
     "beta_image_url": null
   },
@@ -8303,6 +8398,7 @@
       ],
       "description": "Always uses 찌르기"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/stabbot.webp",
     "beta_image_url": null
   },
@@ -8418,6 +8514,7 @@
       ],
       "description": "충돌 → 난동부리기 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/terror_eel.webp",
     "beta_image_url": null
   },
@@ -8619,6 +8716,7 @@
       ],
       "description": "Starts: 물기 → 두개골 강타; then conditional: 발톱 연타 (if respawns < 2) / 찢어발기기 (if respawns >= 2)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/test_subject.webp",
     "beta_image_url": null
   },
@@ -8709,6 +8807,7 @@
       ],
       "description": "후려치기 → 광선 → 집중포화 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/the_adversary_placeholder.webp",
     "beta_image_url": null
   },
@@ -8799,6 +8898,7 @@
       ],
       "description": "충돌 → 화염 광선 → 집중포화 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/the_adversary_placeholder.webp",
     "beta_image_url": null
   },
@@ -8889,6 +8989,7 @@
       ],
       "description": "강타 → 화염 광선 → 집중포화 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/the_adversary_placeholder.webp",
     "beta_image_url": null
   },
@@ -8954,6 +9055,7 @@
       ],
       "description": "Always uses 불쾌한 기운"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/the_forgotten.webp",
     "beta_image_url": null
   },
@@ -8983,7 +9085,7 @@
       },
       {
         "id": "THRASH_MOVE_2",
-        "name": "Thrash Move 2",
+        "name": "난동부리기",
         "intent": "Attack",
         "damage": {
           "normal": 8,
@@ -9070,8 +9172,9 @@
           "next": "THRASH_MOVE_2"
         }
       ],
-      "description": "대지 뒤틀기 → 난동부리기 → 덮쳐 물기 → 군침 흘리기 → Thrash Move 2 → repeat"
+      "description": "대지 뒤틀기 → 난동부리기 → 덮쳐 물기 → 군침 흘리기 → 난동부리기 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/the_insatiable.webp",
     "beta_image_url": null
   },
@@ -9147,6 +9250,7 @@
       ],
       "description": "Always uses 쇠약의 안개"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/the_lost.webp",
     "beta_image_url": null
   },
@@ -9251,6 +9355,7 @@
       ],
       "description": "Starts with 환상"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/the_obscura.webp",
     "beta_image_url": null
   },
@@ -9375,6 +9480,7 @@
       ],
       "description": "절도 → 파닥거리기 → 해트트릭 → 낚아채기 → 도망 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/thieving_hopper.webp",
     "beta_image_url": null
   },
@@ -9480,6 +9586,7 @@
       ],
       "description": "then conditional: 선회 (if not in front) / 가시 세우기 (if in front)"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/toadpole.webp",
     "beta_image_url": null
   },
@@ -9493,12 +9600,12 @@
     "max_hp_ascension": null,
     "moves": [
       {
-        "id": "TACKLE",
-        "name": "태클",
+        "id": "STRONG_TACKLE",
+        "name": "강력 태클",
         "intent": "Attack",
         "damage": {
-          "normal": 18,
-          "ascension": 19
+          "normal": 26,
+          "ascension": 32
         }
       },
       {
@@ -9506,8 +9613,8 @@
         "name": "Tackle 2",
         "intent": "Attack",
         "damage": {
-          "normal": 18,
-          "ascension": 19
+          "normal": 26,
+          "ascension": 32
         }
       },
       {
@@ -9526,7 +9633,7 @@
         "intent": "Attack",
         "damage": {
           "normal": 14,
-          "ascension": 15
+          "ascension": 16
         }
       },
       {
@@ -9535,18 +9642,22 @@
         "intent": "Attack",
         "damage": {
           "normal": 14,
-          "ascension": 15
+          "ascension": 16
         }
       }
     ],
     "damage_values": {
+      "StrongTackle": {
+        "normal": 26,
+        "ascension": 32
+      },
       "Tackle": {
         "normal": 18,
-        "ascension": 19
+        "ascension": 22
       },
       "WeakTackle": {
         "normal": 14,
-        "ascension": 15
+        "ascension": 16
       },
       "SoulBeam": {
         "normal": 8,
@@ -9572,12 +9683,12 @@
     ],
     "attack_pattern": {
       "type": "cycle",
-      "initial_move": "TACKLE",
+      "initial_move": "STRONG_TACKLE",
       "states": [
         {
-          "id": "TACKLE_MOVE",
+          "id": "STRONG_TACKLE_MOVE",
           "type": "move",
-          "move_id": "TACKLE",
+          "move_id": "STRONG_TACKLE",
           "next": "TACKLE_2_MOVE"
         },
         {
@@ -9605,8 +9716,9 @@
           "next": "BEAM_MOVE"
         }
       ],
-      "description": "태클 → Tackle 2 → 광선 → Tackle 3 → Tackle 4 → repeat"
+      "description": "강력 태클 → Tackle 2 → 광선 → Tackle 3 → Tackle 4 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/amalgam.webp",
     "beta_image_url": null
   },
@@ -9668,6 +9780,7 @@
       ],
       "description": "Always uses 부화"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/tough_egg.webp",
     "beta_image_url": null
   },
@@ -9739,6 +9852,7 @@
       ],
       "description": "Always uses 추적하기"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/tracker_ruby_raider.webp",
     "beta_image_url": null
   },
@@ -9784,7 +9898,7 @@
       },
       {
         "id": "DIZZY",
-        "name": "Dizzy",
+        "name": "어지러움",
         "intent": "Stun"
       }
     ],
@@ -9847,6 +9961,7 @@
       ],
       "description": "물기 → 땅굴 파기 → 하단 공격 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/tunneler.webp",
     "beta_image_url": null
   },
@@ -9871,7 +9986,7 @@
       },
       {
         "id": "UNLOAD_MOVE_2",
-        "name": "Unload Move 2",
+        "name": "탄약 제거!",
         "intent": "Attack",
         "damage": {
           "normal": 3,
@@ -9933,8 +10048,9 @@
           "next": "UNLOAD_MOVE"
         }
       ],
-      "description": "탄약 제거! → Unload Move 2 → 재장전 → repeat"
+      "description": "탄약 제거! → 탄약 제거! → 재장전 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/turret_operator.webp",
     "beta_image_url": null
   },
@@ -10029,6 +10145,7 @@
       ],
       "description": "Starts with 끈적 발사"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/twig_slime_m.webp",
     "beta_image_url": null
   },
@@ -10095,6 +10212,7 @@
       ],
       "description": "Always uses 태클"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/twig_slime_s.webp",
     "beta_image_url": null
   },
@@ -10205,6 +10323,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/two_tailed_rat.webp",
     "beta_image_url": null
   },
@@ -10321,6 +10440,7 @@
       ],
       "description": "잉크 투척 → 잉크 창 → 토막내기 → 준비 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/vantom.webp",
     "beta_image_url": null
   },
@@ -10420,6 +10540,7 @@
       ],
       "description": "밀쳐내기 → 덩굴 휘감기 → 물어뜯기 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/vine_shambler.webp",
     "beta_image_url": null
   },
@@ -10617,6 +10738,7 @@
       ],
       "description": "가압 → 발구르기 → 들이받기 → 흡수 → 압축포 → 압력 상승 → repeat"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/waterfall_giant.webp",
     "beta_image_url": null
   },
@@ -10727,6 +10849,7 @@
       ],
       "description": ""
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/wriggler.webp",
     "beta_image_url": null
   },
@@ -10776,6 +10899,7 @@
       ],
       "description": "Always uses 파지직"
     },
+    "quotes": null,
     "image_url": "/static/images/monsters/zapbot.webp",
     "beta_image_url": null
   },
@@ -10866,6 +10990,7 @@
         "is_weak": false
       }
     ],
+    "quotes": null,
     "image_url": "/static/images/monsters/decimillipede_segment_back.png"
   },
   {
@@ -10955,6 +11080,7 @@
         "is_weak": false
       }
     ],
+    "quotes": null,
     "image_url": "/static/images/monsters/decimillipede_segment_front.png"
   },
   {
@@ -11044,6 +11170,7 @@
         "is_weak": false
       }
     ],
+    "quotes": null,
     "image_url": "/static/images/monsters/decimillipede_segment_middle.png"
   },
   {
@@ -11108,6 +11235,7 @@
         "is_weak": false
       }
     ],
+    "quotes": null,
     "image_url": "/static/images/monsters/flail_knight.png"
   }
 ]

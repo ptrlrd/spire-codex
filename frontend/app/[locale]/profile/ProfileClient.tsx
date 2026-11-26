@@ -37,7 +37,7 @@ interface Run {
 
 interface UploadResult {
   filename: string;
-  status: "claimed" | "duplicate" | "error";
+  status: "claimed" | "duplicate" | "error" | "replay added";
   detail?: string;
   run_hash?: string;
 }
@@ -130,11 +130,14 @@ export default function ProfileClient() {
   const UPLOAD_CHUNK = 10;
 
   const handleUpload = async (files: FileList | File[]) => {
-    const all = Array.from(files);
-    if (!all.length) return;
+    const picked = Array.from(files);
+    if (!picked.length) return;
+    const isReplay = (f: File) => /\.jsonl$/i.test(f.name);
+    const all = picked.filter((f) => !isReplay(f));
+    const replayFiles = picked.filter(isReplay);
     setUploading(true);
     setUploadResults(null);
-    const progress = { total: all.length, done: 0, dupes: 0, errors: 0 };
+    const progress = { total: picked.length, done: 0, dupes: 0, errors: 0 };
     setUploadProgress({ ...progress });
     const results: UploadResult[] = [];
     const summary = { claimed: 0, duplicates: 0, errors: 0 };
@@ -190,6 +193,71 @@ export default function ProfileClient() {
       setUploadResults([...results]);
     }
 
+    const sendReplay = async (file: File): Promise<Response | null> => {
+      const gz = await new Response(
+        file.stream().pipeThrough(new CompressionStream("gzip")),
+      ).blob();
+      for (let attempt = 0; attempt < 3; attempt++) {
+        let res: Response | null = null;
+        try {
+          res = await fetch(`${API_BASE}/api/runs/replay`, {
+            method: "POST",
+            credentials: "include",
+            body: gz,
+          });
+        } catch {
+          res = null;
+        }
+        if (res && res.status !== 429 && res.status < 500) return res;
+        if (attempt === 2) return res;
+        await new Promise((r) =>
+          setTimeout(r, res?.status === 429 ? 20000 : 1500 * (attempt + 1)),
+        );
+      }
+      return null;
+    };
+
+    for (const file of replayFiles) {
+      if (signedOut) break;
+      let res: Response | null = null;
+      try {
+        res = await sendReplay(file);
+      } catch {
+        res = null;
+      }
+      if (res?.ok) {
+        const data = await res.json();
+        if (data.duplicate) {
+          results.push({ filename: file.name, status: "duplicate" });
+          summary.duplicates += 1;
+        } else {
+          results.push({
+            filename: file.name,
+            status: "replay added",
+            run_hash: data.run_hash,
+          });
+          summary.claimed += 1;
+        }
+      } else if (res?.status === 401) {
+        signedOut = true;
+      } else {
+        const err = res ? await res.json().catch(() => null) : null;
+        const detail =
+          res?.status === 413
+            ? t("Too many files or file too large")
+            : err?.detail?.message ||
+              (typeof err?.detail === "string" ? err.detail : null) ||
+              (res ? t("Upload failed") : t("Network error during upload"));
+        results.push({ filename: file.name, status: "error", detail });
+        summary.errors += 1;
+      }
+      progress.done += 1;
+      progress.dupes = summary.duplicates;
+      progress.errors = summary.errors;
+      setUploadProgress({ ...progress });
+      setUploadResults([...results]);
+    }
+
     if (signedOut) {
       toast(t("Please sign in to upload runs"), "error");
     } else {
@@ -197,7 +265,7 @@ export default function ProfileClient() {
         `${summary.claimed} ${t("claimed")}, ${summary.duplicates} ${t("duplicates")}, ${summary.errors} ${t("errors")}`,
         summary.errors > 0 ? "error" : "success",
       );
-      if (summary.claimed > 0) {
+      if (summary.claimed > 0 || summary.duplicates > 0) {
         fetchRuns(1);
         setPage(1);
       }
@@ -412,13 +480,14 @@ export default function ProfileClient() {
         />
       </section>
 
-      {/* Claim Runs */}
+      {/* Upload runs and replays */}
       <section>
         <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">
-          {t("Claim Runs")}
+          {t("Upload Runs and Replays")}
         </h2>
         <RunDropZone
           onFiles={(files) => handleUpload(files)}
+          replays
           uploading={uploading}
           uploadProgress={uploadProgress}
         />
@@ -429,7 +498,7 @@ export default function ProfileClient() {
               <div
                 key={i}
                 className={`text-xs px-3 py-1.5 rounded flex items-center justify-between ${
-                  r.status === "claimed"
+                  r.status === "claimed" || r.status === "replay added"
                     ? "bg-success/10 text-success"
                     : r.status === "duplicate"
                       ? "bg-warning/10 text-warning"

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "STANDARD",
+    "name": "Standart",
+    "description": "Spire’ı katletmek için yolculuğa çık!",
+    "multiplayer_description": "Spire’ı katletmek için arkadaşlarınla bir yolculuğa çık!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": null,
+    "max_ascension": 10
+  },
+  {
+    "id": "DAILY",
+    "name": "Günlük",
+    "description": "Her gün yeni bir meydan okuma sizi bekliyor.\n\nEn yüksek puan için diğer oyuncularla yarış!",
+    "multiplayer_description": "Her gün yeni bir meydan okuma sizi bekliyor.\n\nEn yüksek puan için diğer gruplarla yarışın!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "Günlük Oyun'un kilidini açmak için tüm karakterlerle bir oyun oyna ve 3. Sahne'yi tamamla.",
+    "max_ascension": 10
+  },
+  {
+    "id": "CUSTOM",
+    "name": "Özel",
+    "description": "Eşsiz kurallar ile kendi oyununuzu tasarlayın.",
+    "multiplayer_description": "Eşsiz kurallar ile kendi çok oyunculu oyununuzu tasarlayın.",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "Özel Oyunların kilidini açmak için 3. Sahne'yi üç kez tamamla.",
+    "max_ascension": 10
+  }
+]

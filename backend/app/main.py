@@ -48,6 +48,7 @@ from .routers import (
     ascensions,
     names,
     exports,
+    competitive,
     leaderboards,
     entity_history,
     update_history,
@@ -751,7 +752,7 @@ _DEFAULT_BODY_BYTES = int(
 _BODY_LIMITS: tuple[tuple[re.Pattern[str], int], ...] = (
     (re.compile(r"^/api/auth/runs/upload/?$"), _MAX_BODY_BYTES),
     (
-        re.compile(r"^/api/runs/[^/]+/replay/?$"),
+        re.compile(r"^/api/runs/(?:[^/]+/)?replay/?$"),
         max(_DEFAULT_BODY_BYTES, 2 * REPLAY_MAX_GZ_BYTES),
     ),
     (re.compile(r"^/api/tierlists/[^/]+/?$"), 6 * 1024 * 1024),
@@ -925,6 +926,7 @@ app.include_router(ascensions.router)
 app.include_router(names.router)
 app.include_router(exports.router)
 app.include_router(leaderboards.router)
+app.include_router(competitive.router)
 app.include_router(entity_history.router)
 app.include_router(update_history.router)
 app.include_router(ancient_pools.router)

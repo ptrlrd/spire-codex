@@ -43,6 +43,7 @@ import {
   withOrdinalKeys,
   type LivePlayer,
   type MonsterMap,
+  CompetitiveTag,
 } from "./live-shared";
 
 // The roster carries no ticker events, so the contract's 10-15s roster
@@ -50,7 +51,7 @@ import {
 const POLL_MS = 12_000;
 const RECENT_CARDS = 5;
 // Bounds the per-player detail fan-out (see the poll below).
-const ROSTER_LIMIT = 24;
+const ROSTER_LIMIT = 100;
 
 function PlayerCard({
   p,
@@ -95,6 +96,7 @@ function PlayerCard({
                 A{p.ascension}
               </span>
             )}
+            <CompetitiveTag state={p.competitive} t={t} />
             {(p.player_count ?? 1) > 1 && (
               <span className="text-[10px] text-[var(--text-muted)]">
                 {t("co-op ×{n}", { n: p.player_count ?? 0 })}
@@ -249,6 +251,7 @@ function LiveRoster() {
   const t = useT();
   const [players, setPlayers] = useState<LivePlayer[] | null>(null);
   const [stale, setStale] = useState(false);
+  const [onlyCompetitive, setOnlyCompetitive] = useState(false);
   const cardData = useIdMap<CardInfo>("/api/cards");
   const relicData = useIdMap<RelicInfo>("/api/relics");
   const characterNames = useCharacterNames();
@@ -260,28 +263,14 @@ function LiveRoster() {
 
   usePoll(async (isCurrent) => {
     try {
-      // Cap the roster: the page shows recent cards + relics per player, which
-      // means one detail fetch each (an N+1). Capping the roster bounds that
-      // fan-out; a live count beyond this is vanishingly rare and the deepest
-      // runs sort first anyway.
-      const r = await fetch(`${API}/api/presence/active?limit=${ROSTER_LIMIT}`);
+      // One request: preview adds each player's relics and last few cards,
+      // and the roster lists competitive runs first, then the deepest.
+      const r = await fetch(
+        `${API}/api/presence/active?limit=${ROSTER_LIMIT}&preview=1`,
+      );
       if (!r.ok) throw new Error(`active ${r.status}`);
       const data: { players?: LivePlayer[] } = await r.json();
-      const roster = data.players ?? [];
-      // The roster carries identity + progress only; deck/relics live on the
-      // per-player doc, so fetch those in parallel and fall back to the roster
-      // entry if one fetch fails.
-      const detailed = await Promise.all(
-        roster.map(async (p) => {
-          try {
-            const dr = await fetch(`${API}/api/presence/${p.steam_id}`);
-            if (!dr.ok) return p;
-            return { ...p, ...(await dr.json()) } as LivePlayer;
-          } catch {
-            return p;
-          }
-        }),
-      );
+      const detailed = data.players ?? [];
       if (!isCurrent()) return;
       setPlayers(detailed);
       setStale(false);
@@ -291,6 +280,15 @@ function LiveRoster() {
       setPlayers((prev) => prev ?? []);
     }
   }, POLL_MS);
+
+  const competitiveCount = (players ?? []).filter(
+    (p) => p.competitive === "cleared" || p.competitive === "flagged",
+  ).length;
+  const filtering = onlyCompetitive && competitiveCount > 0;
+  const shown = (players ?? []).filter(
+    (p) =>
+      !filtering || p.competitive === "cleared" || p.competitive === "flagged",
+  );
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -307,6 +305,21 @@ function LiveRoster() {
         {stale ? ` · ${t("last refresh failed, retrying")}` : ""}
       </p>
 
+      {competitiveCount > 0 && (
+        <button
+          type="button"
+          aria-pressed={onlyCompetitive}
+          onClick={() => setOnlyCompetitive((v) => !v)}
+          className={`mb-4 px-3 py-1.5 rounded text-xs font-semibold border transition-colors ${
+            onlyCompetitive
+              ? "text-success border-success/40 bg-success/10"
+              : "text-[var(--text-secondary)] border-[var(--border-subtle)] hover:border-[var(--border-accent)]"
+          }`}
+        >
+          {t("Competitive only")} · {competitiveCount}
+        </button>
+      )}
+
       {players === null && (
         <p className="text-sm text-[var(--text-muted)]">
           {t("Loading the roster...")}
@@ -319,7 +332,7 @@ function LiveRoster() {
       )}
       {players !== null && players.length > 0 && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {players.map((p) => (
+          {shown.map((p) => (
             <PlayerCard
               key={p.steam_id}
               p={p}

@@ -24,6 +24,7 @@ import { characterTitle, seatStats } from "./run-names";
 import { RankChip, SeedStanding, useRunStanding } from "./RunStanding";
 import RunPath, { type RunOutcome } from "./RunPath";
 import { RunDeck, RunRelics } from "./RunLoadout";
+import { CompetitiveTag } from "../../live/live-shared";
 
 export type { PotionInfo };
 
@@ -197,6 +198,14 @@ export default function RunSummary({
                 >
                   {charName}
                 </span>
+              )}
+              {ownSeat && run.competitive && (
+                <Link
+                  href={`${bp}/competitive`}
+                  className="self-center text-base font-normal leading-none"
+                >
+                  <CompetitiveTag state={run.competitive.state} t={t} />
+                </Link>
               )}
             </h1>
             {killedBy && (

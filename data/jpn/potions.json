@@ -216,7 +216,7 @@
     "rarity": "トークン",
     "image_url": "/static/images/potions/potion_shaped_rock.webp",
     "rarity_key": "Token",
-    "compendium_order": 62,
+    "compendium_order": 63,
     "pool": "shared"
   },
   {
@@ -691,5 +691,16 @@
     "rarity_key": "Uncommon",
     "compendium_order": 39,
     "pool": "necrobinder"
+  },
+  {
+    "id": "AMBERGRIS",
+    "name": "龍涎香",
+    "description": "最大HPの[green]50%[/green]を回復する。戦闘中に使用した場合、追加のターンを得る。",
+    "description_raw": "最大HPの[green]{HealPercent}%[/green]を回復する。戦闘中に使用した場合、追加のターンを得る。",
+    "rarity": "ポーション（イベント）",
+    "image_url": "/static/images/potions/ambergris.webp",
+    "rarity_key": "Event",
+    "compendium_order": 62,
+    "pool": "event"
   }
 ]

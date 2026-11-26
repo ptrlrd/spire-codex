@@ -1,0 +1,200 @@
+[
+  {
+    "id": "ALL_CARDS_UPGRADED",
+    "name": "完美牌組",
+    "description": "使用所有卡牌皆已升級的牌組完成一局遊戲。",
+    "category": "run",
+    "character": null,
+    "threshold": null,
+    "condition": "Win with a fully-upgraded deck"
+  },
+  {
+    "id": "CHARACTER_SKILL_IRONCLAD1",
+    "name": "契約已履行",
+    "description": "在一場戰鬥中消耗 20 張牌。",
+    "category": "character_skill",
+    "character": "Ironclad",
+    "threshold": 20,
+    "condition": "Exhaust 20 cards in a single combat"
+  },
+  {
+    "id": "CHARACTER_SKILL_IRONCLAD2",
+    "name": "千鈞之刃",
+    "description": "一擊造成 999 點傷害。",
+    "category": "character_skill",
+    "character": "Ironclad",
+    "threshold": 999,
+    "condition": "Deal 999+ damage in a single hit"
+  },
+  {
+    "id": "CHARACTER_SKILL_NECROBINDER1",
+    "name": "已經死了",
+    "description": "對單一敵人施加 999 層惡兆。",
+    "category": "character_skill",
+    "character": "Necrobinder",
+    "threshold": 999,
+    "condition": "Apply 999+ Doom to a single enemy"
+  },
+  {
+    "id": "CHARACTER_SKILL_NECROBINDER2",
+    "name": "牛奶",
+    "description": "使奧斯提獲得 50 層力量。",
+    "category": "character_skill",
+    "character": "Necrobinder",
+    "threshold": 50,
+    "condition": "Apply 50+ Strength to Osty"
+  },
+  {
+    "id": "CHARACTER_SKILL_REGENT1",
+    "name": "配得上君王的劍",
+    "description": "鑄造出一把能造成至少 999 點傷害的君王之劍。",
+    "category": "character_skill",
+    "character": "Regent",
+    "threshold": 999,
+    "condition": "Forge a Sovereign Blade with 999+ base damage"
+  },
+  {
+    "id": "CHARACTER_SKILL_REGENT2",
+    "name": "群日凌空",
+    "description": "同時擁有 20 顆輝星。",
+    "category": "character_skill",
+    "character": "Regent",
+    "threshold": 20,
+    "condition": "Have 20+ Stars at once"
+  },
+  {
+    "id": "CHARACTER_SKILL_SILENT1",
+    "name": "奇巧伎倆",
+    "description": "透過單張牌的奇巧打出 5 張牌。",
+    "category": "character_skill",
+    "character": "Silent",
+    "threshold": 5,
+    "condition": "Play 5 cards via Sly off a single card play"
+  },
+  {
+    "id": "CHARACTER_SKILL_SILENT2",
+    "name": "幾滴就好",
+    "description": "對單一敵人施加 99 層中毒。",
+    "category": "character_skill",
+    "character": "Silent",
+    "threshold": 99,
+    "condition": "Apply 99+ Poison to a single enemy"
+  },
+  {
+    "id": "DEFEAT_GLORY_ENEMIES",
+    "name": "榮耀",
+    "description": "擊敗榮耀中的所有敵人。",
+    "category": "combat",
+    "character": null,
+    "threshold": null,
+    "condition": "Defeat every enemy in the Glory"
+  },
+  {
+    "id": "DEFEAT_HIVE_ENEMIES",
+    "name": "蟲巢",
+    "description": "擊敗蟲巢中的所有敵人。",
+    "category": "combat",
+    "character": null,
+    "threshold": null,
+    "condition": "Defeat every enemy in the Hive"
+  },
+  {
+    "id": "DEFEAT_ONE_BOSS",
+    "name": "征途第一步",
+    "description": "擊敗一名頭目。",
+    "category": "combat",
+    "character": null,
+    "threshold": null,
+    "condition": "Defeat a boss"
+  },
+  {
+    "id": "DEFEAT_OVERGROWTH_ENEMIES",
+    "name": "密林",
+    "description": "擊敗密林中的所有敵人。",
+    "category": "combat",
+    "character": null,
+    "threshold": null,
+    "condition": "Defeat every enemy in the Overgrowth"
+  },
+  {
+    "id": "DEFEAT_UNDERDOCKS_ENEMIES",
+    "name": "暗港",
+    "description": "擊敗暗港中的所有敵人。",
+    "category": "combat",
+    "character": null,
+    "threshold": null,
+    "condition": "Defeat every enemy in the Underdocks"
+  },
+  {
+    "id": "DEFECT_WIN",
+    "name": "故障機器人",
+    "description": "使用故障機器人完成一局遊戲。",
+    "category": "character_win",
+    "character": "Defect",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "FLOOR_TEN_THOUSAND",
+    "name": "好多樓梯",
+    "description": "攀登 10,000 個樓層。",
+    "category": "collection",
+    "character": null,
+    "threshold": 10000,
+    "condition": "Climb 10,000 floors total"
+  },
+  {
+    "id": "IRONCLAD_WIN",
+    "name": "鐵甲戰士",
+    "description": "使用鐵甲戰士完成一局遊戲。",
+    "category": "character_win",
+    "character": "Ironclad",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "NECROBINDER_WIN",
+    "name": "縛亡者",
+    "description": "使用縛亡者完成一局遊戲。",
+    "category": "character_win",
+    "character": "Necrobinder",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "NO_RELIC_WIN",
+    "name": "不必要的雜物",
+    "description": "在不取得任何遺物的情況下完成一局遊戲。",
+    "category": "run",
+    "character": null,
+    "threshold": null,
+    "condition": "Win without obtaining any relics"
+  },
+  {
+    "id": "PLAY20_CARDS_SINGLE_TURN",
+    "name": "打牌真有趣",
+    "description": "在單一回合中打出 20 張牌。",
+    "category": "combat",
+    "character": null,
+    "threshold": 20,
+    "condition": "Play 20 cards in a single turn"
+  },
+  {
+    "id": "REGENT_WIN",
+    "name": "儲君",
+    "description": "使用儲君完成一局遊戲。",
+    "category": "character_win",
+    "character": "Regent",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "SILENT_WIN",
+    "name": "寂靜獵手",
+    "description": "使用寂靜獵手完成一局遊戲。",
+    "category": "character_win",
+    "character": "Silent",
+    "threshold": null,
+    "condition": null
+  }
+]

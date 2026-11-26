@@ -601,7 +601,7 @@
     "rarity": "Ficha",
     "image_url": "/static/images/potions/potion_shaped_rock.webp",
     "rarity_key": "Token",
-    "compendium_order": 62,
+    "compendium_order": 63,
     "pool": "shared"
   },
   {
@@ -691,5 +691,16 @@
     "rarity_key": "Rare",
     "compendium_order": 59,
     "pool": "shared"
+  },
+  {
+    "id": "AMBERGRIS",
+    "name": "Ámbar gris",
+    "description": "Recupera un [green]50 %[/green] de tus PV máx. Si se usa en combate, juega un turno extra.",
+    "description_raw": "Recupera un [green]{HealPercent} %[/green] de tus PV máx. Si se usa en combate, juega un turno extra.",
+    "rarity": "de Evento",
+    "image_url": "/static/images/potions/ambergris.webp",
+    "rarity_key": "Event",
+    "compendium_order": 62,
+    "pool": "event"
   }
 ]

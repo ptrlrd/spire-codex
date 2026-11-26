@@ -180,12 +180,15 @@
    "title": "Büyülenmiş"
   },
   "MOCK_NO_UNPLAYABLE_AFFLICTION": {
+   "description": "",
    "title": "Mock No Unplayable Affliction"
   },
   "MOCK_SELF_DAMAGE_AFFLICTION": {
+   "description": "",
    "title": "Mock Self Damage Affliction"
   },
   "MOCK_USELESS_AFFLICTION": {
+   "description": "",
    "title": "Mock Useless Affliction"
   },
   "RINGING": {
@@ -814,6 +817,7 @@
    "title": "Pael"
   },
   "PROCEED": {
+   "description": "",
    "title": "Devam Et"
   },
   "TANX": {
@@ -1083,6 +1087,12 @@
   "THE_ARCHITECT": {
    "CONTINUE": "Devam Et",
    "RESPOND": "Cevap Ver",
+   "epithet": "",
+   "pages": {
+    "INITIAL": {
+     "description": ""
+    }
+   },
    "talk": {
     "DEFECT": {
      "0-0r": {
@@ -1771,6 +1781,7 @@
    "title": "Cephanelik"
   },
   "ASCENDERS_BANE": {
+   "description": "",
    "title": "Yükselenin Belası"
   },
   "ASHEN_STRIKE": {
@@ -2098,6 +2109,7 @@
    "title": "Yıldızların Pelerini"
   },
   "CLUMSY": {
+   "description": "",
    "title": "Sakar"
   },
   "COLD_SNAP": {
@@ -2202,6 +2214,7 @@
    "title": "Ez"
   },
   "CURSE_OF_THE_BELL": {
+   "description": "",
    "title": "Çanın Laneti"
   },
   "DAGGER_SPRAY": {
@@ -2233,6 +2246,7 @@
    "title": "Atıl"
   },
   "DAZED": {
+   "description": "",
    "title": "Sersemlemiş"
   },
   "DEADLY_POISON": {
@@ -2256,6 +2270,7 @@
    "title": "Bitkinleştir"
   },
   "DEBRIS": {
+   "description": "",
    "title": "Moloz"
   },
   "DEBT": {
@@ -2590,6 +2605,7 @@
    "title": "Odaklanmış Saldırı"
   },
   "FOLLY": {
+   "description": "",
    "title": "Aptallık"
   },
   "FOOTWORK": {
@@ -2711,6 +2727,7 @@
    "title": "Mezar Muhafızı"
   },
   "GREED": {
+   "description": "",
    "title": "Açgözlülük"
   },
   "GUARDS": {
@@ -2887,6 +2904,7 @@
    "title": "Alevlendir"
   },
   "INJURY": {
+   "description": "",
    "title": "Yaralanma"
   },
   "INTERCEPT": {
@@ -3094,22 +3112,28 @@
    "title": "Sefalet"
   },
   "MOCK_ATTACK_CARD": {
+   "description": "",
    "title": "Sahte Atak Kartı"
   },
   "MOCK_CURSE_CARD": {
+   "description": "",
    "title": "Sahte Lanet Kartı"
   },
   "MOCK_POWER_CARD": {
+   "description": "",
    "title": "Sahte Güç Kartı"
   },
   "MOCK_QUEST_CARD": {
+   "description": "",
    "title": "Sahte Görev Kartı"
   },
   "MOCK_SKILL_CARD": {
+   "description": "",
    "discardSelectionPrompt": "Elinden çıkarmak için kartları seç.",
    "title": "Sahte Beceri Kartı"
   },
   "MOCK_STATUS_CARD": {
+   "description": "",
    "title": "Sahte Durum Kartı"
   },
   "MODDED": {
@@ -3332,6 +3356,7 @@
    "title": "Kabza Saldırısı"
   },
   "POOR_SLEEP": {
+   "description": "",
    "title": "Uykusuzluk"
   },
   "POUNCE": {
@@ -3713,6 +3738,7 @@
    "title": "Güneş Saldırısı"
   },
   "SOOT": {
+   "description": "",
    "title": "İs"
   },
   "SOUL": {
@@ -3772,6 +3798,7 @@
    "title": "Savaş Ganimetleri"
   },
   "SPORE_MIND": {
+   "description": "",
    "title": "Zihin İstilası"
   },
   "SPUR": {
@@ -4175,6 +4202,7 @@
    "title": "Solma"
   },
   "WOUND": {
+   "description": "",
    "title": "Yara"
   },
   "WRAITH_FORM": {
@@ -4182,6 +4210,7 @@
    "title": "Hayalet Formu"
   },
   "WRITHE": {
+   "description": "",
    "title": "Kıvranma"
   },
   "WROUGHT_IN_WAR": {
@@ -4519,6 +4548,7 @@
    "title": "İçgüdü"
   },
   "MOCK_FREE_ENCHANTMENT": {
+   "description": "",
    "title": "Sahte Ücretsiz Büyüleme"
   },
   "MOMENTUM": {
@@ -5370,25 +5400,101 @@
    "name": "Enfeksiyon",
    "year": "1201"
   },
+  "BLIGHT1": {
+   "name": "",
+   "year": ""
+  },
+  "BLIGHT2": {
+   "name": "",
+   "year": ""
+  },
+  "BLIGHT3": {
+   "name": "",
+   "year": ""
+  },
   "FLOURISH0": {
    "name": "Refah",
    "year": "1800"
+  },
+  "FLOURISH1": {
+   "name": "",
+   "year": ""
+  },
+  "FLOURISH2": {
+   "name": "",
+   "year": ""
+  },
+  "FLOURISH3": {
+   "name": "",
+   "year": ""
   },
   "INVITATION0": {
    "name": "Kapılar",
    "year": "2733"
   },
+  "INVITATION1": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION2": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION3": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION4": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION5": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION6": {
+   "name": "",
+   "year": ""
+  },
+  "INVITATION7": {
+   "name": "",
+   "year": ""
+  },
   "PEACE0": {
    "name": "Son",
    "year": "3000"
+  },
+  "PEACE1": {
+   "name": "",
+   "year": ""
   },
   "PREHISTORIA0": {
    "name": "Tarih Öncesi",
    "year": "???"
   },
+  "PREHISTORIA1": {
+   "name": "",
+   "year": ""
+  },
+  "PREHISTORIA2": {
+   "name": "",
+   "year": ""
+  },
   "SEEDS0": {
    "name": "Tohumlar",
    "year": "0"
+  },
+  "SEEDS1": {
+   "name": "",
+   "year": ""
+  },
+  "SEEDS2": {
+   "name": "",
+   "year": ""
+  },
+  "SEEDS3": {
+   "name": "",
+   "year": ""
   }
  },
  "events": {
@@ -5401,6 +5507,7 @@
     "ALL": {
      "options": {
       "EXIT_BATHS": {
+       "description": "",
        "title": "Havuzlardan Ayrıl"
       },
       "LINGER": {
@@ -5787,6 +5894,7 @@
      "description": "Yorgunluktan ölmüşsündür ve biraz kestirirsin...\n\n...ta ki üstünde [gold][jitter]kımıldanıp duran bir şey[/jitter][/gold] seni uyandırana kadar!",
      "options": {
       "FIGHT": {
+       "description": "",
        "title": "Savaş!"
       }
      }
@@ -5971,6 +6079,7 @@
      "description": "Konveyör banttan bir [gold]{LastDishTitle}[/gold] alır ve hızla yersin.\n[green]Lezzetliymiş![/green]",
      "options": {
       "LEAVE": {
+       "description": "",
        "title": "Ayrıl"
       }
      }
@@ -6309,6 +6418,7 @@
    "title": "İksir Kuryesi"
   },
   "PROCEED": {
+   "description": "",
    "title": "Devam Et"
   },
   "PUNCH_OFF": {
@@ -6331,6 +6441,7 @@
      "description": "[gold]Yapılar[/gold] tehditkâr bir şekilde sana döner!\n\nYumruklarını hazırlarsın.",
      "options": {
       "FIGHT": {
+       "description": "",
        "title": "Savaş"
       }
      }
@@ -6484,6 +6595,7 @@
      "description": "Masaya atlar ve [red]bir savaş beyinin[/red] yüzüne [jitter]tekmeyi basarsın[/jitter]!\nŞövalye tüyler ürpertici bir çığlık atar ve yere yığılır.\n\n[jitter][purple]*herkes şaşkın kalır*[/purple][/jitter]",
      "options": {
       "CONTINUE_FIGHT": {
+       "description": "",
        "title": "Devam Et"
       }
      }
@@ -6978,6 +7090,7 @@
      "description": "Yabancı, sana tehditkâr bir bakış atar. Görünüşe göre buradan yalnızca biriniz anahtarla ayrılabilecek.",
      "options": {
       "FIGHT": {
+       "description": "",
        "title": "Savaş"
       }
      }
@@ -7822,6 +7935,7 @@
   },
   "FORMAT_DAMAGE_MULTI": "{Damage}[font_size=18]x{Repeat}[/font_size]",
   "FORMAT_DAMAGE_SINGLE": "{Damage}",
+  "FORMAT_EMPTY": "",
   "FORMAT_STATUS_CARD_COUNT": "{CardCount}",
   "HEAL": {
    "description": "Bu düşman [gold]İyileştirmeyi[/gold] amaçlıyor.",
@@ -10228,6 +10342,7 @@
    "title": "Yıldırım"
   },
   "MOCK_COMBAT_CLEANUP_ORB": {
+   "description": "",
    "title": "Mock Combat Cleanup"
   },
   "PLASMA_ORB": {
@@ -10412,6 +10527,7 @@
    "title": "Mazaleth''in Hediyesi"
   },
   "MOCK_DISCARD_AND_ADD_SHIVS_POTION": {
+   "description": "",
    "title": "Sahte Elden Çıkarma ve Kama İksiri Ekleme"
   },
   "OROBIC_ACID": {
@@ -11198,51 +11314,67 @@
    "title": "Yancı"
   },
   "MOCK_CLONE_CARDS_ON_PLAY_POWER": {
+   "description": "",
    "title": "Sahte Kart Oynandığında Kopyala"
   },
   "MOCK_DO_NOT_SCALE_IN_MULTIPLAYER_POWER": {
+   "description": "",
    "title": "Mock Do Not Scale in Multiplayer"
   },
   "MOCK_EXTRA_TURN_POWER": {
+   "description": "",
    "title": "Sahte Fazladan Sıra"
   },
   "MOCK_FREE_CARDS_POWER": {
+   "description": "",
    "title": "Sahte Ücretsiz Kart"
   },
   "MOCK_GAIN_BLOCK_ON_ATTACK_POWER": {
+   "description": "",
    "title": "Sahte Saldırdığında Blok Elde Et"
   },
   "MOCK_INVINCIBLE_ON_DEATH_POWER": {
+   "description": "",
    "title": "Sahte Öldüğünde Dokunulmazlık"
   },
   "MOCK_MODIFY_ENERGY_COST_POWER": {
+   "description": "",
    "title": "Sahte Enerji Maliyetini Düzenle"
   },
   "MOCK_MODIFY_STAR_COST_POWER": {
+   "description": "",
    "title": "Sahte Yıldız Maliyetini Düzenle"
   },
   "MOCK_PHASE_OBSERVER_POWER": {
+   "description": "",
    "title": "Mock Phase Observer"
   },
   "MOCK_PREVENT_DEATH_POWER": {
+   "description": "",
    "title": "Sahte Ölümü Engelle"
   },
   "MOCK_REMOVE_DRAWN_CARDS_FROM_COMBAT_POWER": {
+   "description": "",
    "title": "Mock Remove Drawn Cards from Combat"
   },
   "MOCK_RESET_COMBAT_ON_SHUFFLE_POWER": {
+   "description": "",
    "title": "Mock Reset Combat on Shuffle"
   },
   "MOCK_REVIVE_POWER": {
+   "description": "",
    "title": "Sahte Yeniden Canlanma"
   },
   "MOCK_SCALE_IN_MULTIPLAYER_POWER": {
+   "description": "",
    "title": "Mock Scale in Multiplayer"
   },
   "MOCK_TEMPORARY_STRENGTH_LOSS": {
+   "description": "",
    "title": "Sahte Geçici Kuvvet Kaybı"
   },
   "MOCK_UNHITTABLE_POWER": {
+   "description": "",
    "title": "Sahte Vurulamaz"
   },
   "MONARCHS_GAZE_POWER": {
@@ -13871,6 +14003,7 @@
   "TEXT_EFFECTS": "Metin Efektleri",
   "TEXT_EFFECTS_DESCRIPTION": "Dalgalı veya titrek yazı gibi metin efektlerinin aktif olup olmadığını kontrol eder.",
   "TEXT_SIZE": "Metin Boyutu",
+  "TOAST_CANNOT_REMAP_INPUT": "Cannot set an input for {Hotkey} for {ControlType}.",
   "TOAST_FAST_MODE_OFF": "Savaş eylemleri ve ekran geçişleri daha yavaş gerçekleşir.",
   "TOAST_FAST_MODE_ON": "Savaş eylemleri ve ekran geçişleri daha hızlı gerçekleşir.",
   "TOAST_GAMEPLAY_DATA_OFF": "Oyun istatistikleri ve hata kayıtları gönderilmeyecek.",

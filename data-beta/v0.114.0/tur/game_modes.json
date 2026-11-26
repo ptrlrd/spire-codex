@@ -1,0 +1,807 @@
+[
+  {
+    "id": "STANDARD",
+    "name": "Standart",
+    "description": "Spire’ı katletmek için yolculuğa çık!",
+    "multiplayer_description": "Spire’ı katletmek için arkadaşlarınla bir yolculuğa çık!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": null,
+    "max_ascension": 10
+  },
+  {
+    "id": "DAILY",
+    "name": "Günlük",
+    "description": "Her gün yeni bir meydan okuma sizi bekliyor.\n\nEn yüksek puan için diğer oyuncularla yarış!",
+    "multiplayer_description": "Her gün yeni bir meydan okuma sizi bekliyor.\n\nEn yüksek puan için diğer gruplarla yarışın!",
+    "intro": null,
+    "rules": null,
+    "epoch_id": null,
+    "unlock_text": null,
+    "unlock_info": "Günlük Oyun'un kilidini açmak için tüm karakterlerle bir oyun oyna ve 3. Sahne'yi tamamla.",
+    "max_ascension": 10
+  },
+  {
+    "id": "DREAD",
+    "name": "Dehşet",
+    "description": "Mimar'ın ortaya koyduğu en üst düzey zorluk.\n\nYalnızca Spire'daki ustalığını sınamak isteyenler için.",
+    "multiplayer_description": "Mimar'ın ortaya koyduğu en üst düzey zorluk.\n\nYalnızca Spire'daki ustalığını sınamak isteyen gruplar için.",
+    "intro": "[gold]Dehşet[/gold], Slay the Spire'daki en zorlu mücadeledir.",
+    "rules": [
+      "Tüm Yükseliş kuralları etkinleştirildi.",
+      "Her Sahne'nin sonunda [gold]Deste[/gold]'ne bir [purple]Yükselenin Belası[/purple] eklenir.",
+      "Düşmanlar, bölümün sonundaki Boss'un becerilerini elde eder.",
+      "Boss'lar daha da güçlü hâle gelir."
+    ],
+    "epoch_id": "DREAD_EPOCH",
+    "unlock_text": "Açılan oyun modu: Dehşet.",
+    "unlock_info": "Bu Çağ'ı açmak için [red]Yükseliş[/red] [blue]10[/blue]'a tüm karakterler ile ulaş.",
+    "max_ascension": 10,
+    "dominions": [
+      {
+        "id": "AEONGLASS_DOMINION",
+        "encounter_id": "AEONGLASS_BOSS",
+        "boss_name": "Ebedi Kum Saati",
+        "name": "Ebedi Kum Saati Hakimiyeti",
+        "description": "Turunun başında [gold]Çekme Deste[/gold]'nin en üstüne [blue]1[/blue] [gold]Solma[/gold] ekle."
+      },
+      {
+        "id": "CEREMONIAL_BEAST_DOMINION",
+        "encounter_id": "CEREMONIAL_BEAST_BOSS",
+        "boss_name": "Mukaddes Yaratık",
+        "name": "Mukaddes Yaratık Hakimiyeti",
+        "description": "Tüm düşmanlar [blue]1[/blue] [gold]Ritüel[/gold] elde eder."
+      },
+      {
+        "id": "INSATIABLE_DOMINION",
+        "encounter_id": "THE_INSATIABLE_BOSS",
+        "boss_name": "Doyumsuz",
+        "name": "Doyumsuz Hakimiyeti",
+        "description": "Turunun sonunda tur sayısına bağlı olarak hasar al."
+      },
+      {
+        "id": "KAISER_CRAB_DOMINION",
+        "encounter_id": "KAISER_CRAB_BOSS",
+        "boss_name": "Kayzer Yengeç",
+        "name": "Kayzer Yengeç Hakimiyeti",
+        "description": "All enemies gain [blue]{Plating}[/blue] [gold]Plating[/gold]."
+      },
+      {
+        "id": "KIN_DOMINION",
+        "encounter_id": "THE_KIN_BOSS",
+        "boss_name": "Kabile",
+        "name": "Kabile Hakimiyeti",
+        "description": "Savaşa [red]2[/red] [gold]Zayıf[/gold] ve [gold]Kırılgan[/gold] ile başlarsın."
+      },
+      {
+        "id": "KNOWLEDGE_DEMON_DOMINION",
+        "encounter_id": "KNOWLEDGE_DEMON_BOSS",
+        "boss_name": "Bilgi Şeytanı",
+        "name": "Bilgi Şeytanı Hakimiyeti",
+        "description": "Savaşın başında [blue]2[/blue] Hakimiyet [red]Belası[/red]ndan [blue]1[/blue] tanesini seç."
+      },
+      {
+        "id": "LAGAVULIN_MATRIARCH_DOMINION",
+        "encounter_id": "LAGAVULIN_MATRIARCH_BOSS",
+        "boss_name": "Anne Lagavulin",
+        "name": "Anne Lagavulin Hakimiyeti",
+        "description": "İlk turunun sonunda [red]1[/red] [gold]Kuvvet[/gold] ve [gold]Beceriklilik[/gold] kaybet."
+      },
+      {
+        "id": "QUEEN_DOMINION",
+        "encounter_id": "QUEEN_BOSS",
+        "boss_name": "Kraliçe",
+        "name": "Kraliçe Hakimiyeti",
+        "description": "2. turunun başlangıcında [red]3[/red] [gold]Zayıf[/gold], [gold]Savunmasız[/gold] ve [gold]Kırılgan[/gold] elde et."
+      },
+      {
+        "id": "SOUL_FYSH_DOMINION",
+        "encounter_id": "SOUL_FYSH_BOSS",
+        "boss_name": "Ruh Baluğu",
+        "name": "Ruh Baluğu Hakimiyeti",
+        "description": "Her savaşın başında [gold]Çekme Deste[/gold]'ne bir [gold]Çağrı[/gold] karıştır."
+      },
+      {
+        "id": "TEST_SUBJECT_DOMINION",
+        "encounter_id": "TEST_SUBJECT_BOSS",
+        "boss_name": "Denek",
+        "name": "Denek Hakimiyeti",
+        "description": "Tüm düşmanlar [blue]3[/blue] [gold]Kuvvet[/gold] elde eder."
+      },
+      {
+        "id": "VANTOM_DOMINION",
+        "encounter_id": "VANTOM_BOSS",
+        "boss_name": "Vantom",
+        "name": "Vantom Hakimiyeti",
+        "description": "Normal enemies gain [blue]{NormalSlippery}[/blue] [gold]Slippery[/gold]. Elites gain [blue]{EliteSlippery}[/blue] [gold]Slippery[/gold]."
+      },
+      {
+        "id": "WATERFALL_GIANT_DOMINION",
+        "encounter_id": "WATERFALL_GIANT_BOSS",
+        "boss_name": "Akarsu Devi",
+        "name": "Akarsu Devi Hakimiyeti",
+        "description": "Düşmanlar öldüklerinde patlayarak hasar verir."
+      }
+    ],
+    "rotating_streak": {
+      "name": "Dönüşümlü Seri",
+      "description": "[gold]Dönüşümlü Seri[/gold] sırasında kazandığın her zafer, seni sağdaki bir sonraki karaktere geçirir.\nGalibiyetler ayrı bir seride takip edilir ve artık karakterlerin kendi galibiyet serilerine eklenmez."
+    }
+  },
+  {
+    "id": "BLITZ",
+    "name": "Sürat",
+    "description": "Daha kısa bir yolculuk arayanlar için hızlı ve kısa süren oyunlar.",
+    "multiplayer_description": "Daha kısa bir yolculuk arayan gruplar için hızlı ve kısa süren oyunlar.",
+    "intro": "[green]Sürat[/green] moduna hoş geldin! Bu kısa oyunlarda, tüm karakterlerin ortak kullandığı ayrı bir Yükseliş zorluğu ve deste kurmayı ön plana çıkaran köklü değişiklikler bulunuyor.",
+    "rules": [
+      "Her oyunun başında kart alırsın.",
+      "Her Sahne'de [blue]4[/blue] karşılaşmaya girersin.",
+      "[blue]Tüccar[/blue] biraz [sine]tuhaftır[/sine].",
+      "[gold]Hazine Sandıkları[/gold] fazladan bir kalıntı içerir.",
+      "Harita yoktur."
+    ],
+    "epoch_id": "BLITZ_EPOCH",
+    "unlock_text": "Açılan oyun modu: Sürat.",
+    "unlock_info": "Sürat modunu açmak için bir Yükseliş oyunu oyna.",
+    "max_ascension": 5,
+    "ascension_levels": [
+      "WearyTraveler",
+      "TightBelt",
+      "ToughEnemies",
+      "DeadlyEnemies",
+      "AscendersBane"
+    ],
+    "neow": {
+      "name": "Sürat",
+      "description": "[gold]Deste[/gold]'ne eklemek için [blue]3[/blue] kart seç."
+    },
+    "merchant_entries": [
+      {
+        "id": "CARD_UPGRADE",
+        "name": "Kart Geliştirme Servisi",
+        "description": "[gold]Deste[/gold]'ndeki bir kartı [gold]Geliştir[/gold].",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/card_upgrade.webp"
+      },
+      {
+        "id": "UPGRADED_CARD_REWARD",
+        "name": "Geliştirilmiş Kart Ödülü",
+        "description": "[blue]1[/blue] adet [gold]Geliştirilmiş[/gold] kart ödülü elde et.",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/upgraded_card_reward.webp"
+      },
+      {
+        "id": "RANDOM_UPGRADES",
+        "name": "Rastgele Geliştirme",
+        "description": "[gold]Deste[/gold]'ndeki rastgele [blue]2[/blue] kartı geliştir.",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/random_upgrades.webp"
+      },
+      {
+        "id": "CARD_TRANSFORM",
+        "name": "Kart Dönüştürme Servisi",
+        "description": "[gold]Deste[/gold]'ndeki bir kartı [gold]Dönüştür[/gold].",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/card_transform.webp"
+      },
+      {
+        "id": "CARD_REMOVAL",
+        "name": "Kart Kaldırma Servisi",
+        "description": "[gold]Deste[/gold]'nden bir kartı kaldır.",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/card_removal.webp"
+      },
+      {
+        "id": "CARD_REWARDS",
+        "name": "Kart Ödülleri",
+        "description": "[blue]2[/blue] kart ödülü elde et.",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/card_rewards.webp"
+      },
+      {
+        "id": "COLORLESS_CARD_REWARD",
+        "name": "Renksiz Kart Ödülü",
+        "description": "[blue]1[/blue] [gold]Renksiz[/gold] kart ödülü elde et.",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/colorless_card_reward.webp"
+      },
+      {
+        "id": "POTIONS",
+        "name": "İksirler",
+        "description": "[blue]1[/blue] iksir yuvası ve rastgele [blue]2[/blue] iksir elde et.",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/potions.webp"
+      },
+      {
+        "id": "CARD_ENCHANT",
+        "name": "Enchantment",
+        "description": "Bir kartı [purple]Enchantment[/purple] ile [gold]Büyüle[/gold].",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/card_enchant.webp"
+      },
+      {
+        "id": "ENCHANTED_CARD_REWARD",
+        "name": "Büyülenmiş Kart Ödülü",
+        "description": "[gold]Büyülenmiş[/gold] [blue]1[/blue] adet kart ödülü elde et.",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/enchanted_card_reward.webp"
+      },
+      {
+        "id": "PRISMATIC_CARD_REWARD",
+        "name": "Character Kart Ödülü",
+        "description": "[blue]1[/blue] [gold]Character[/gold] kart ödülü elde et.",
+        "cursed": false,
+        "rare": true,
+        "image_url": "/static/images/beta/v0.114.0/blitz/prismatic_card_reward.webp"
+      },
+      {
+        "id": "RARE_CARD_REWARD",
+        "name": "Nadir Kart Ödülü",
+        "description": "[blue]1[/blue] nadir kart ödülü elde et.",
+        "cursed": false,
+        "rare": true,
+        "image_url": "/static/images/beta/v0.114.0/blitz/rare_card_reward.webp"
+      },
+      {
+        "id": "UPGRADED_RARE_CARD",
+        "name": "Geliştirilmiş Nadir Kart",
+        "description": "[blue]1[/blue] adet [gold]Geliştirilmiş[/gold] rastgele bir nadir kart elde et.",
+        "cursed": false,
+        "rare": true,
+        "image_url": "/static/images/beta/v0.114.0/blitz/upgraded_rare_card.webp"
+      },
+      {
+        "id": "RELIC",
+        "name": "Kalıntı",
+        "description": "Rastgele [blue]1[/blue] [gold]Kalıntı[/gold] elde et.",
+        "cursed": false,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/relic.webp"
+      },
+      {
+        "id": "GLAM",
+        "name": "Lanetli Cazibeli",
+        "description": "Rastgele [red]1[/red] [red]Lanet[/red] elde et.\nBir kartı [purple]Cazibeli[/purple] ile [gold]Büyüle[/gold].",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/glam.webp"
+      },
+      {
+        "id": "TWO_MORE_CHOICES",
+        "name": "Lanetli Tercihler",
+        "description": "Rastgele [red]1[/red] [red]Lanet[/red] elde et.\nTüccar'dan iki ürün daha satın alabilirsin.",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/two_more_choices.webp"
+      },
+      {
+        "id": "CARD_REWARD_OF_EACH_RARITY",
+        "name": "Lanetli Kart Ödülleri",
+        "description": "Rastgele [red]1[/red] [red]Lanet[/red] elde et.\n[blue]1[/blue] [gold]Yaygın[/gold], [gold]Az Yaygın[/gold] ve [gold]Nadir[/gold] kart ödülü elde et.",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/card_reward_of_each_rarity.webp"
+      },
+      {
+        "id": "UPGRADED_RARE_CARD_REWARD",
+        "name": "Lanetli Geliştirilmiş Nadir Kart Ödülü",
+        "description": "Rastgele [red]1[/red] [red]Lanet[/red] elde et.\n[blue]1[/blue] adet [gold]Geliştirilmiş[/gold] nadir kart ödülü elde et.",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/upgraded_rare_card_reward.webp"
+      },
+      {
+        "id": "TWO_RELICS",
+        "name": "Lanetli Kalıntılar",
+        "description": "Rastgele [red]1[/red] [red]Lanet[/red] elde et.\nRastgele [blue]2[/blue] [gold]Kalıntı[/gold] elde et.",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/two_relics.webp"
+      },
+      {
+        "id": "FULL_HEAL_AND_MAX_HP",
+        "name": "Lanetli İyileştirme",
+        "description": "Rastgele [red]1[/red] [red]Lanet[/red] elde et.\nMaksimum CP'ni [blue]6[/blue] artır ve tüm CP'ni iyileştir.",
+        "cursed": true,
+        "rare": false,
+        "image_url": "/static/images/beta/v0.114.0/blitz/full_heal_and_max_hp.webp"
+      }
+    ],
+    "act_layout": [
+      "ANCIENT",
+      "MONSTER",
+      "MONSTER",
+      "SHOP",
+      "ELITE",
+      "TREASURE",
+      "REST_SITE",
+      "BOSS"
+    ],
+    "act_rooms": [
+      {
+        "type": "ANCIENT",
+        "name": "Kadim",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_ancient.webp"
+      },
+      {
+        "type": "MONSTER",
+        "name": "Düşman",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_monster.webp",
+        "easy": true
+      },
+      {
+        "type": "MONSTER",
+        "name": "Düşman",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_monster.webp",
+        "easy": false
+      },
+      {
+        "type": "SHOP",
+        "name": "Tüccar",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_shop.webp"
+      },
+      {
+        "type": "ELITE",
+        "name": "Elit",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_elite.webp"
+      },
+      {
+        "type": "TREASURE",
+        "name": "Hazine",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_treasure.webp"
+      },
+      {
+        "type": "REST_SITE",
+        "name": "Dinlenme",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_rest_site.webp"
+      },
+      {
+        "type": "BOSS",
+        "name": "Boss",
+        "image_url": "/static/images/beta/v0.114.0/blitz/room_boss.webp"
+      }
+    ],
+    "weak_encounters_per_act": 1,
+    "floors_per_act": 8,
+    "encounters_per_act": 4,
+    "neow_details": {
+      "cards_offered": 10,
+      "cards_picked": 3,
+      "rarity_odds": {
+        "common": 0.55,
+        "uncommon": 0.4,
+        "rare": 0.05
+      },
+      "prompt": "Deste'ne eklemek için herhangi [blue]3[/blue] kart seç."
+    },
+    "merchant": {
+      "offers_shown": 6,
+      "normal_offers_shown": 5,
+      "cursed_offers_shown": 1,
+      "picks": 3,
+      "rare_offer_weight": 0.5,
+      "card_rarity_odds": {
+        "common": 0.4,
+        "uncommon": 0.5,
+        "rare": 0.1
+      },
+      "enchantments": [
+        {
+          "id": "SHARP",
+          "name": "Keskin",
+          "amount": 2
+        },
+        {
+          "id": "NIMBLE",
+          "name": "Atik",
+          "amount": 3
+        },
+        {
+          "id": "ADROIT",
+          "name": "Becerikli",
+          "amount": 3
+        },
+        {
+          "id": "STEADY",
+          "name": "Sabit",
+          "amount": 1
+        },
+        {
+          "id": "SWIFT",
+          "name": "Hızlı",
+          "amount": 2
+        },
+        {
+          "id": "VIGOROUS",
+          "name": "Güçlü",
+          "amount": 5
+        }
+      ],
+      "curses": [
+        {
+          "id": "CLUMSY",
+          "name": "Sakar"
+        },
+        {
+          "id": "DECAY",
+          "name": "Çürüme"
+        },
+        {
+          "id": "DOUBT",
+          "name": "Kuşku"
+        },
+        {
+          "id": "GUILTY",
+          "name": "Suçlu"
+        },
+        {
+          "id": "INJURY",
+          "name": "Yaralanma"
+        },
+        {
+          "id": "NORMALITY",
+          "name": "Sıradanlık"
+        },
+        {
+          "id": "REGRET",
+          "name": "Pişmanlık"
+        },
+        {
+          "id": "SHAME",
+          "name": "Utanç"
+        },
+        {
+          "id": "WRITHE",
+          "name": "Kıvranma"
+        }
+      ]
+    },
+    "rewards": [
+      {
+        "room": "MONSTER",
+        "card_rarity": "Common",
+        "card_choices": 3,
+        "relics": 0,
+        "potion": "after_first_fight",
+        "room_name": "Düşman"
+      },
+      {
+        "room": "ELITE",
+        "card_rarity": "Uncommon",
+        "card_choices": 3,
+        "relics": 2,
+        "potion": null,
+        "room_name": "Elit"
+      },
+      {
+        "room": "BOSS",
+        "card_rarity": "Rare",
+        "card_choices": 3,
+        "relics": 0,
+        "potion": "always",
+        "final_boss": false,
+        "room_name": "Boss"
+      }
+    ],
+    "reward_upgrades_by_act": [
+      0,
+      1,
+      2
+    ],
+    "ascension_ladder": [
+      {
+        "level": 1,
+        "id": "WEARY_TRAVELER",
+        "name": "Yorgun Yolcu",
+        "description": "Kadimler eksik canının sadece [blue]%80[/blue]'ini iyileştirir."
+      },
+      {
+        "level": 2,
+        "id": "TIGHT_BELT",
+        "name": "Dar Kemer",
+        "description": "Her oyuna [blue]1[/blue] eksik iksir yuvası ile başla."
+      },
+      {
+        "level": 3,
+        "id": "TOUGH_ENEMIES",
+        "name": "Dayanıklı Düşmanlar",
+        "description": "Tüm düşmanları öldürmek daha zor hale gelir."
+      },
+      {
+        "level": 4,
+        "id": "DEADLY_ENEMIES",
+        "name": "Ölümcül Düşmanlar",
+        "description": "Tüm düşmanların saldırıları daha ölümcül olur."
+      },
+      {
+        "level": 5,
+        "id": "ASCENDERS_BANE",
+        "name": "Yükselenin Belası",
+        "description": "Her oyuna [red]Lanetli[/red] başla."
+      }
+    ],
+    "banned_cards": [
+      {
+        "id": "DEBT",
+        "name": "Borç"
+      },
+      {
+        "id": "HAND_OF_GREED",
+        "name": "Açgözlülüğün Eli"
+      },
+      {
+        "id": "MY_SHINIES",
+        "name": "Paracıklarım"
+      },
+      {
+        "id": "ROYALTIES",
+        "name": "Kraliyet Haracı"
+      }
+    ],
+    "banned_relics": [
+      {
+        "id": "AMETHYST_AUBERGINE",
+        "name": "Ametist Patlıcan",
+        "image_url": "/static/images/beta/v0.114.0/relics/amethyst_aubergine.webp"
+      },
+      {
+        "id": "BLACK_STAR",
+        "name": "Kara Yıldız",
+        "image_url": "/static/images/beta/v0.114.0/relics/black_star.webp"
+      },
+      {
+        "id": "BOOK_OF_FIVE_RINGS",
+        "name": "Beş Çember Kitabı",
+        "image_url": "/static/images/beta/v0.114.0/relics/book_of_five_rings.webp"
+      },
+      {
+        "id": "BOWLER_HAT",
+        "name": "Melon Şapka",
+        "image_url": "/static/images/beta/v0.114.0/relics/bowler_hat.webp"
+      },
+      {
+        "id": "CURSED_PEARL",
+        "name": "Lanetli İnci",
+        "image_url": "/static/images/beta/v0.114.0/relics/cursed_pearl.webp"
+      },
+      {
+        "id": "DOWSING_ROD",
+        "name": "Arayış Çubuğu",
+        "image_url": "/static/images/beta/v0.114.0/relics/dowsing_rod.webp"
+      },
+      {
+        "id": "DRAGON_FRUIT",
+        "name": "Ejder Meyvesi",
+        "image_url": "/static/images/beta/v0.114.0/relics/dragon_fruit.webp"
+      },
+      {
+        "id": "DREAM_CATCHER",
+        "name": "Rüya Kapanı",
+        "image_url": "/static/images/beta/v0.114.0/relics/dream_catcher.webp"
+      },
+      {
+        "id": "DRIFTWOOD",
+        "name": "Sürüklenmiş Odun",
+        "image_url": "/static/images/beta/v0.114.0/relics/driftwood.webp"
+      },
+      {
+        "id": "ECTOPLASM",
+        "name": "Ektoplazma",
+        "image_url": "/static/images/beta/v0.114.0/relics/ectoplasm.webp"
+      },
+      {
+        "id": "ETERNAL_FEATHER",
+        "name": "Ebedi Tüy",
+        "image_url": "/static/images/beta/v0.114.0/relics/eternal_feather.webp"
+      },
+      {
+        "id": "FISHING_ROD",
+        "name": "Balık Oltası",
+        "image_url": "/static/images/beta/v0.114.0/relics/fishing_rod.webp"
+      },
+      {
+        "id": "FUR_COAT",
+        "name": "Kürk Palto",
+        "image_url": "/static/images/beta/v0.114.0/relics/fur_coat.webp"
+      },
+      {
+        "id": "GIRYA",
+        "name": "Girya",
+        "image_url": "/static/images/beta/v0.114.0/relics/girya.webp"
+      },
+      {
+        "id": "GOLDEN_COMPASS",
+        "name": "Altın Pusula",
+        "image_url": "/static/images/beta/v0.114.0/relics/golden_compass.webp"
+      },
+      {
+        "id": "GOLDEN_PEARL",
+        "name": "Altın İnci",
+        "image_url": "/static/images/beta/v0.114.0/relics/golden_pearl.webp"
+      },
+      {
+        "id": "JUZU_BRACELET",
+        "name": "Juzu Bileziği",
+        "image_url": "/static/images/beta/v0.114.0/relics/juzu_bracelet.webp"
+      },
+      {
+        "id": "LASTING_CANDY",
+        "name": "Dayanıklı Şeker",
+        "image_url": "/static/images/beta/v0.114.0/relics/lasting_candy.webp"
+      },
+      {
+        "id": "LORDS_PARASOL",
+        "name": "Lord'un Şemsiyesi",
+        "image_url": "/static/images/beta/v0.114.0/relics/lords_parasol.webp"
+      },
+      {
+        "id": "LUCKY_FYSH",
+        "name": "Şanslı Baluk",
+        "image_url": "/static/images/beta/v0.114.0/relics/lucky_fysh.webp"
+      },
+      {
+        "id": "MAW_BANK",
+        "name": "Çene Kumbara",
+        "image_url": "/static/images/beta/v0.114.0/relics/maw_bank.webp"
+      },
+      {
+        "id": "MEAL_TICKET",
+        "name": "Yemek Fişi",
+        "image_url": "/static/images/beta/v0.114.0/relics/meal_ticket.webp"
+      },
+      {
+        "id": "MEAT_CLEAVER",
+        "name": "Satır",
+        "image_url": "/static/images/beta/v0.114.0/relics/meat_cleaver.webp"
+      },
+      {
+        "id": "MEMBERSHIP_CARD",
+        "name": "Üyelik Kartı",
+        "image_url": "/static/images/beta/v0.114.0/relics/membership_card.webp"
+      },
+      {
+        "id": "MINIATURE_TENT",
+        "name": "Minyatür Çadır",
+        "image_url": "/static/images/beta/v0.114.0/relics/miniature_tent.webp"
+      },
+      {
+        "id": "OLD_COIN",
+        "name": "Eski Sikke",
+        "image_url": "/static/images/beta/v0.114.0/relics/old_coin.webp"
+      },
+      {
+        "id": "PAELS_CLAW",
+        "name": "Pael'in Pençesi",
+        "image_url": "/static/images/beta/v0.114.0/relics/paels_claw.webp"
+      },
+      {
+        "id": "PAELS_GROWTH",
+        "name": "Pael'in Oluşumu",
+        "image_url": "/static/images/beta/v0.114.0/relics/paels_growth.webp"
+      },
+      {
+        "id": "PAELS_WING",
+        "name": "Pael'in Kanatları",
+        "image_url": "/static/images/beta/v0.114.0/relics/paels_wing.webp"
+      },
+      {
+        "id": "PLANISPHERE",
+        "name": "Planisfer",
+        "image_url": "/static/images/beta/v0.114.0/relics/planisphere.webp"
+      },
+      {
+        "id": "PRAYER_WHEEL",
+        "name": "Dua Çarkı",
+        "image_url": "/static/images/beta/v0.114.0/relics/prayer_wheel.webp"
+      },
+      {
+        "id": "PUMPKIN_CANDLE",
+        "name": "Balkabağı Mumu",
+        "image_url": "/static/images/beta/v0.114.0/relics/pumpkin_candle.webp"
+      },
+      {
+        "id": "REGAL_PILLOW",
+        "name": "Kraliyet Yastığı",
+        "image_url": "/static/images/beta/v0.114.0/relics/regal_pillow.webp"
+      },
+      {
+        "id": "SEAL_OF_GOLD",
+        "name": "Altın Mührü",
+        "image_url": "/static/images/beta/v0.114.0/relics/seal_of_gold.webp"
+      },
+      {
+        "id": "SHOVEL",
+        "name": "Kürek",
+        "image_url": "/static/images/beta/v0.114.0/relics/shovel.webp"
+      },
+      {
+        "id": "SIGNET_RING",
+        "name": "Mühür Yüzüğü",
+        "image_url": "/static/images/beta/v0.114.0/relics/signet_ring.webp"
+      },
+      {
+        "id": "SILKEN_TRESS",
+        "name": "İpeksi Bukle",
+        "image_url": "/static/images/beta/v0.114.0/relics/silken_tress.webp"
+      },
+      {
+        "id": "STONE_HUMIDIFIER",
+        "name": "Taş Nemlendirici",
+        "image_url": "/static/images/beta/v0.114.0/relics/stone_humidifier.webp"
+      },
+      {
+        "id": "THE_COURIER",
+        "name": "Kurye",
+        "image_url": "/static/images/beta/v0.114.0/relics/the_courier.webp"
+      },
+      {
+        "id": "TINY_MAILBOX",
+        "name": "Küçük Posta Kutusu",
+        "image_url": "/static/images/beta/v0.114.0/relics/tiny_mailbox.webp"
+      },
+      {
+        "id": "TOY_BOX",
+        "name": "Oyuncak Kutusu",
+        "image_url": "/static/images/beta/v0.114.0/relics/toy_box.webp"
+      },
+      {
+        "id": "VENERABLE_TEA_SET",
+        "name": "Kıymetli Çay Takımı",
+        "image_url": "/static/images/beta/v0.114.0/relics/venerable_tea_set.webp"
+      },
+      {
+        "id": "WHITE_BEAST_STATUE",
+        "name": "Beyaz Yaratık Heykeli",
+        "image_url": "/static/images/beta/v0.114.0/relics/white_beast_statue.webp"
+      },
+      {
+        "id": "WINGED_BOOTS",
+        "name": "Kanatlı Botlar",
+        "image_url": "/static/images/beta/v0.114.0/relics/winged_boots.webp"
+      }
+    ],
+    "late_relics": {
+      "from_floor": 21,
+      "relics": [
+        {
+          "id": "FROZEN_EGG",
+          "name": "Donmuş Yumurta",
+          "image_url": "/static/images/beta/v0.114.0/relics/frozen_egg.webp"
+        },
+        {
+          "id": "MOLTEN_EGG",
+          "name": "Erimiş Yumurta",
+          "image_url": "/static/images/beta/v0.114.0/relics/molten_egg.webp"
+        },
+        {
+          "id": "POTION_BELT",
+          "name": "İksir Kemeri",
+          "image_url": "/static/images/beta/v0.114.0/relics/potion_belt.webp"
+        },
+        {
+          "id": "TOXIC_EGG",
+          "name": "Zehirli Yumurta",
+          "image_url": "/static/images/beta/v0.114.0/relics/toxic_egg.webp"
+        },
+        {
+          "id": "WHITE_STAR",
+          "name": "Beyaz Yıldız",
+          "image_url": "/static/images/beta/v0.114.0/relics/white_star.webp"
+        }
+      ]
+    }
+  }
+]

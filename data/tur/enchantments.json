@@ -68,8 +68,8 @@
   {
     "id": "INKY",
     "name": "Mürekkepli",
-    "description": "Bu kart fazladan [blue]1[/blue] hasar verir ve [blue]1[/blue] [gold]Zayıf[/gold] uygular.",
-    "description_raw": "Bu kart fazladan [blue]{Damage}[/blue] hasar verir ve [blue]{WeakPower}[/blue] [gold]Zayıf[/gold] uygular.",
+    "description": "Bu kart [blue]1[/blue] [gold]Zayıf[/gold] uygular.",
+    "description_raw": "Bu kart [blue]{WeakPower}[/blue] [gold]Zayıf[/gold] uygular.",
     "extra_card_text": "[blue]1[/blue] [gold]Zayıf[/gold] uygula.",
     "card_type": null,
     "applicable_to": null,

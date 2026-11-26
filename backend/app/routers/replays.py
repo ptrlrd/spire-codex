@@ -1,5 +1,6 @@
 """Replay upload, playback, and removal. See services/replays_db.py."""
 
+import json
 import os
 import re
 
@@ -8,6 +9,7 @@ from starlette.concurrency import run_in_threadpool
 
 from ..dependencies import shared_limiter
 from ..services import rate_limit_config
+from ..services import competitive_starts
 from ..services import replays_db
 from ..services.auth_jwt import require_user
 from ..services.replays_db import MAX_GZ_BYTES, ReplayRejected
@@ -56,6 +58,54 @@ def _raise(e: ReplayRejected) -> None:
     )
 
 
+def _gzip_body(request: Request, body: bytes) -> None:
+    encoding = request.headers.get("content-encoding", "").lower()
+    if encoding not in ("", "gzip") or not body.startswith(replays_db.GZIP_MAGIC):
+        raise HTTPException(status_code=415, detail="Body must be gzip NDJSON")
+
+
+def _with_url(result: dict) -> dict:
+    site_base = os.environ.get("PUBLIC_SITE_BASE", "https://spire-codex.com").rstrip(
+        "/"
+    )
+    result["url"] = f"{site_base}/runs/{result['run_hash']}/replay"
+    return result
+
+
+@router.post("/competitive/start", tags=["Runs"])
+@limiter.limit(
+    rate_limit_config.endpoint_limit("replays.competitive_start", "30/minute")
+)
+async def competitive_start(request: Request):
+    """The mod reports that a run began with competitive mode on, so a run
+    that never sends a clean replay still counts as a competitive loss."""
+    user = require_user(request)
+    raw = await _read_capped(request, 4096)
+    try:
+        body = json.loads(raw or b"{}")
+    except ValueError:
+        raise HTTPException(status_code=400, detail="body must be JSON")
+    try:
+        return await run_in_threadpool(competitive_starts.record_start, user, body)
+    except competitive_starts.BadStart as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+
+@router.post("/replay", tags=["Runs"])
+@limiter.limit(rate_limit_config.endpoint_limit("replays.upload_bare", "30/minute"))
+async def upload_replay_by_header(request: Request):
+    """Store a gzipped NDJSON replay without naming the run. The run is found
+    among your uploaded runs from the replay's own seed and start time."""
+    user = require_user(request)
+    body = await _read_capped(request, MAX_GZ_BYTES)
+    _gzip_body(request, body)
+    try:
+        result = await run_in_threadpool(replays_db.accept_upload_by_header, body, user)
+    except ReplayRejected as e:
+        _raise(e)
+    return _with_url(result)
+
+
 @router.post("/{run_hash}/replay", tags=["Runs"])
 @limiter.limit(rate_limit_config.endpoint_limit("replays.upload", "30/minute"))
 async def upload_replay(run_hash: str, request: Request):
@@ -63,18 +113,12 @@ async def upload_replay(run_hash: str, request: Request):
     first; the replay is matched against it and rejected on mismatch."""
     user = require_user(request)
     body = await _read_capped(request, MAX_GZ_BYTES)
-    encoding = request.headers.get("content-encoding", "").lower()
-    if encoding not in ("", "gzip") or not body.startswith(replays_db.GZIP_MAGIC):
-        raise HTTPException(status_code=415, detail="Body must be gzip NDJSON")
+    _gzip_body(request, body)
     try:
         result = await run_in_threadpool(replays_db.accept_upload, run_hash, body, user)
     except ReplayRejected as e:
         _raise(e)
-    site_base = os.environ.get("PUBLIC_SITE_BASE", "https://spire-codex.com").rstrip(
-        "/"
-    )
-    result["url"] = f"{site_base}/runs/{run_hash}/replay"
-    return result
+    return _with_url(result)
 
 
 @router.get("/{run_hash}/replay", tags=["Runs"])
