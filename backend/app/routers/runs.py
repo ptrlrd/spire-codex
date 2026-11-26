@@ -2281,6 +2281,8 @@ def get_archetypes(
 
     Only clusters with 50+ runs and at least one defining card are listed;
     shares still count every run, so they don't sum to 100.
+    `cards` and `relics` are the wider set each archetype leans on, strongest
+    first, for tagging a card or relic with the builds it belongs to.
     `available` is false until the first build exists. Cached for 10 minutes."""
     cache_key = f"archetypes:{lang}"
     cached = app_cache.get_json(cache_key)
@@ -2316,6 +2318,10 @@ def get_archetypes(
 
     def _name(catalog: dict, eid: str) -> str:
         return catalog.get(eid) or eid.replace("_", " ").title()
+
+    def _members(catalog: dict, stored, defining: list) -> list[dict]:
+        pairs = stored if stored is not None else [[i, None] for i in defining]
+        return [{"id": i, "name": _name(catalog, i), "lift": lift} for i, lift in pairs]
 
     def _ver_key(v: str):
         try:
@@ -2387,6 +2393,8 @@ def get_archetypes(
                         {"id": i, "name": _name(relics, i)}
                         for i in c["defining_relics"]
                     ],
+                    "cards": _members(cards, c.get("cards"), c["defining_cards"]),
+                    "relics": _members(relics, c.get("relics"), c["defining_relics"]),
                     "example_runs": c["example_runs"],
                 }
             )

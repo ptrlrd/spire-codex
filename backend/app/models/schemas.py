@@ -660,6 +660,14 @@ class ArchetypeEntity(BaseModel):
     name: str
 
 
+class ArchetypeMember(BaseModel):
+    id: str
+    name: str
+    lift: float | None = Field(
+        description="How much more this shows up in the archetype than in the character's average run. Null until the next nightly build."
+    )
+
+
 class ArchetypeTrend(BaseModel):
     version: str = Field(description="Newest tracked game version.")
     delta: float = Field(
@@ -680,6 +688,12 @@ class Archetype(BaseModel):
     win_rate: float = Field(description="Win rate, 0-100.")
     defining_cards: list[ArchetypeEntity]
     defining_relics: list[ArchetypeEntity]
+    cards: list[ArchetypeMember] = Field(
+        description="Up to 12 cards the archetype leans on, strongest first. Starts with the defining cards."
+    )
+    relics: list[ArchetypeMember] = Field(
+        description="Up to 6 relics the archetype leans on, strongest first."
+    )
     example_runs: list[str] = Field(description="Run hashes, open at /runs/{hash}.")
     trend: ArchetypeTrend | None = Field(
         description="Null until two game versions each have 200+ runs for the character."
