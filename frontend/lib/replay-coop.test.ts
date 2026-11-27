@@ -13,6 +13,7 @@ describe("a v10 co-op journal shows the uploader's own run", () => {
     expect(isTeammateRow({ t: "draw_order", mine: false })).toBe(true);
     expect(isTeammateRow({ t: "peer_msg", msg: "RewardSelectedMessage" })).toBe(true);
     expect(isTeammateRow({ t: "peer_deck", player_slot: 1, mine: false })).toBe(true);
+    expect(isTeammateRow({ t: "peer_shop", player_slot: 1, mine: false })).toBe(true);
     expect(isTeammateRow({ t: "decision", mine: true, player_slot: 0 })).toBe(false);
     expect(isTeammateRow({ t: "decision" })).toBe(false);
     // rows that carried mine:false before v10 are left to their readers
