@@ -1,6 +1,6 @@
 "use client";
 
-import { useT } from "@/lib/i18n";
+import { useT, type TFn } from "@/lib/i18n";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Link, useRouter } from "@/i18n/navigation";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
@@ -34,6 +34,21 @@ interface RunInsight {
   seedTotal: number | null;
 }
 
+function missingMessage(t: TFn, fields: string): string {
+  return fields.trim() === "map_point_history"
+    ? t(
+        "No floor history in this file. That usually means the run ended before the first room.",
+      )
+    : t("The run file is missing data: {fields}", { fields });
+}
+
+function rejectionMessage(t: TFn, reason: string): string {
+  if (reason === "not a run file") return t("Not a Slay the Spire 2 run file.");
+  const missing = reason.match(/missing(?: or empty)? fields: (.+)$/);
+  if (missing) return missingMessage(t, missing[1]);
+  return t("The server could not take this file: {reason}", { reason });
+}
+
 export default function SubmitRunClient() {
   const t = useT();
   const router = useRouter();
@@ -51,6 +66,9 @@ export default function SubmitRunClient() {
     errors: number;
   } | null>(null);
   const [insight, setInsight] = useState<RunInsight | null>(null);
+  const [rejected, setRejected] = useState<
+    { filename: string; message: string }[]
+  >([]);
   const uploadInFlight = useRef(false);
 
   function isValidRunFile(data: any): boolean {
@@ -120,6 +138,7 @@ export default function SubmitRunClient() {
       setUploadProgress({ total, done: 0, dupes: 0, errors: 0 });
       setError("");
       setInsight(null);
+      setRejected([]);
 
       let done = 0,
         dupes = 0,
@@ -143,8 +162,14 @@ export default function SubmitRunClient() {
       for (const file of Array.from(files)) {
         try {
           const text = await file.text();
-          const data = JSON.parse(text);
-          if (!isValidRunFile(data)) {
+          let data: any = null;
+          try {
+            data = JSON.parse(text);
+          } catch {}
+          if (!data || typeof data !== "object") {
+            errors++;
+            failures.push({ filename: file.name, reason: "not a run file" });
+          } else if (!isValidRunFile(data)) {
             errors++;
             failures.push({
               filename: file.name,
@@ -172,7 +197,7 @@ export default function SubmitRunClient() {
               errors++;
               failures.push({
                 filename: file.name,
-                reason: `backend ${res.status}: ${result?.detail || "unknown"}`,
+                reason: `backend ${res.status}: ${typeof result?.detail === "string" ? result.detail : "unknown"}`,
                 schema: data?.schema_version,
                 build: data?.build_id,
               });
@@ -187,7 +212,7 @@ export default function SubmitRunClient() {
           errors++;
           failures.push({
             filename: file.name,
-            reason: `exception: ${e instanceof Error ? e.message : "parse/network error"}`,
+            reason: `exception: ${e instanceof Error ? e.message : "network error"}`,
           });
         }
         done++;
@@ -195,6 +220,15 @@ export default function SubmitRunClient() {
       }
 
       if (failures.length > 0) {
+        setRejected(
+          failures.map((f) => ({
+            filename: f.filename,
+            message: rejectionMessage(
+              t,
+              f.reason.replace(/^backend \d+: /, ""),
+            ),
+          })),
+        );
         reportInvalidRuns(failures);
       }
 
@@ -216,7 +250,7 @@ export default function SubmitRunClient() {
       }
       uploadInFlight.current = false;
     },
-    [username, bp, router],
+    [username, bp, router, t],
   );
 
   const fetchRuns = useCallback(async () => {
@@ -290,6 +324,27 @@ export default function SubmitRunClient() {
       )}
 
       <RunDropZone onFiles={handleFileUpload} uploadProgress={uploadProgress} />
+
+      {rejected.length > 0 && (
+        <div className="rounded-lg border border-danger/40 bg-danger/10 p-4">
+          <p className="text-sm font-semibold text-[var(--text-primary)] mb-2">
+            {t("These files were not uploaded:")}
+          </p>
+          <ul className="space-y-1.5 text-sm">
+            {rejected.map((f, i) => (
+              <li key={`${f.filename}-${i}`}>
+                <span className="font-mono text-[var(--text-primary)] break-all">
+                  {f.filename}
+                </span>
+                <span className="text-[var(--text-secondary)]">
+                  {" "}
+                  {f.message}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       {insight && (
         <div
