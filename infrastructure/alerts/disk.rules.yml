@@ -1,11 +1,11 @@
-# Load into the Prometheus or Mimir ruler that receives the boxes' node
-# metrics. Alertmanager routes on the severity label.
+# Reference copy. The live rules are a PrometheusRule in the homelab repo,
+# which scrapes the serving box as host="spire-codex".
 groups:
   - name: spire-codex-disk
     rules:
       - alert: DiskSpaceLow
         expr: |
-          (node_filesystem_avail_bytes{mountpoint=~"/|/var/www/spire-codex/lake", fstype!~"tmpfs|overlay"} < 25 * 1024^3) >= 10 * 1024^3
+          (node_filesystem_avail_bytes{host="spire-codex", mountpoint=~"/|/var/www/spire-codex/lake", fstype!~"tmpfs|overlay"} < 25 * 1024^3) >= 10 * 1024^3
         for: 10m
         labels:
           severity: warning
@@ -15,7 +15,7 @@ groups:
 
       - alert: DiskSpaceCritical
         expr: |
-          node_filesystem_avail_bytes{mountpoint=~"/|/var/www/spire-codex/lake", fstype!~"tmpfs|overlay"} < 10 * 1024^3
+          node_filesystem_avail_bytes{host="spire-codex", mountpoint=~"/|/var/www/spire-codex/lake", fstype!~"tmpfs|overlay"} < 10 * 1024^3
         for: 5m
         labels:
           severity: critical
@@ -25,7 +25,7 @@ groups:
 
       - alert: LakeMountMissing
         expr: |
-          absent(node_filesystem_size_bytes{mountpoint="/var/www/spire-codex/lake"})
+          absent(node_filesystem_size_bytes{host="spire-codex", mountpoint="/var/www/spire-codex/lake"})
         for: 10m
         labels:
           severity: critical
