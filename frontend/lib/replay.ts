@@ -11,6 +11,7 @@
 
 import type { Coord, MapEdge, MapNode } from "@/app/[locale]/live/live-shared";
 import { displayName } from "./display-name";
+import { isTeammateRow } from "./replay-coop";
 
 type Raw = Record<string, unknown>;
 
@@ -1175,6 +1176,7 @@ export function parseReplayLines(text: string): {
       const obj: unknown = JSON.parse(line);
       if (!obj || typeof obj !== "object" || Array.isArray(obj))
         throw new Error("not a record");
+      if (isTeammateRow(obj as Raw)) return;
       let typed = narrow(obj as Raw);
       if (!typed && isRecoveryMarker(obj as Raw)) {
         const after = narrow({

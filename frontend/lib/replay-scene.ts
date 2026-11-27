@@ -22,6 +22,8 @@ import type {
   MapNode,
 } from "@/app/[locale]/live/live-shared";
 
+import { isTeammateRow } from "./replay-coop";
+
 type Raw = Record<string, unknown>;
 
 export interface StepDetail {
@@ -185,7 +187,13 @@ export function buildScene(text: string): {
     if (!row.trim()) continue;
     try {
       const v: unknown = JSON.parse(row);
-      if (v && typeof v === "object" && !Array.isArray(v)) lines.push(v as Raw);
+      if (
+        v &&
+        typeof v === "object" &&
+        !Array.isArray(v) &&
+        !isTeammateRow(v as Raw)
+      )
+        lines.push(v as Raw);
     } catch {
       // a malformed line is counted by the timeline parser, not here
     }
