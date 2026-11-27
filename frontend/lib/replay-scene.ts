@@ -187,7 +187,12 @@ export function buildScene(text: string): {
     if (!row.trim()) continue;
     try {
       const v: unknown = JSON.parse(row);
-      if (v && typeof v === "object" && !Array.isArray(v) && !isTeammateRow(v as Raw))
+      if (
+        v &&
+        typeof v === "object" &&
+        !Array.isArray(v) &&
+        !isTeammateRow(v as Raw)
+      )
         lines.push(v as Raw);
     } catch {
       // a malformed line is counted by the timeline parser, not here
