@@ -254,12 +254,16 @@ def test_non_gzip_bodies_are_rejected(env):
     assert r.status_code == 400
 
 
-def test_hidden_and_deleted_runs_404_on_get(env):
+def test_hidden_runs_serve_their_replay(env):
     runs, _ = env
     assert _post(_gz()).status_code == 200
     runs.docs[RUN_HASH]["hidden"] = True
-    assert client.get(f"/api/runs/{RUN_HASH}/replay").status_code == 404
-    runs.docs[RUN_HASH].pop("hidden")
+    assert client.get(f"/api/runs/{RUN_HASH}/replay").status_code == 200
+
+
+def test_deleted_and_missing_runs_404_on_get(env):
+    runs, _ = env
+    assert _post(_gz()).status_code == 200
     runs.docs[RUN_HASH]["deleted_at"] = "2026-09-04"
     assert client.get(f"/api/runs/{RUN_HASH}/replay").status_code == 404
     assert client.get("/api/runs/0000000000000000/replay").status_code == 404

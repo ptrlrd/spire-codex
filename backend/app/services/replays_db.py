@@ -465,10 +465,8 @@ def _same_replay(existing: dict, info: dict) -> bool:
 
 
 def replay_visible(run_hash: str) -> bool:
-    doc = _runs().find_one({"_id": run_hash}, {"hidden": 1, "deleted_at": 1})
-    if doc is None or doc.get("hidden") or doc.get("deleted_at"):
-        return False
-    return True
+    doc = _runs().find_one({"_id": run_hash}, {"deleted_at": 1})
+    return doc is not None and not doc.get("deleted_at")
 
 
 def kept_replay_for(run_hash: str, steam_id, user_id) -> bool:
