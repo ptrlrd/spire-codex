@@ -30,7 +30,7 @@ import EntityDraftRecs from "@/app/components/EntityDraftRecs";
 import EntitySummary from "@/app/components/EntitySummary";
 import type { EntitySummaryData } from "@/lib/entity-summary";
 import type { DraftRecs, Pairings, RelatedGroup } from "@/lib/entity-links";
-import { imageUrl, fullCardUrl } from "@/lib/image-url";
+import { imageUrl } from "@/lib/image-url";
 import EntityRunStats, {
   type EntityStats,
 } from "@/app/components/EntityRunStats";
@@ -39,12 +39,10 @@ import CardRenderSlot from "@/app/components/CardRenderSlot";
 import { useCardEnchantment } from "@/app/components/EnchantedCard";
 import HoverTooltip from "@/app/components/HoverTooltip";
 import { useChannel, useBetaPrefix } from "@/lib/api/prefix.client";
-import { useBetaRenderVersion } from "@/app/components/BetaRenderVersionProvider";
 import BetaDiffNotice from "@/app/components/BetaDiffNotice";
 import { characterHref } from "@/lib/link-targets";
 import "@/app/card-revamp.css";
 import { useBracketParam } from "@/lib/use-bracket-param";
-import { useBetaChanged } from "@/lib/use-beta-changed";
 import { SPINE_TEXT } from "@/lib/character-colors";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -250,25 +248,6 @@ export interface CardCatalogs {
   enchantments?: { id: string; name: string }[];
 }
 
-function renderKey(card: Card | null): string {
-  if (!card) return "";
-  return JSON.stringify([
-    card.name,
-    card.description,
-    card.upgrade_description,
-    card.cost,
-    card.is_x_cost,
-    card.star_cost,
-    card.is_x_star_cost,
-    card.type,
-    card.rarity,
-    card.color,
-    card.keywords,
-    card.upgrade,
-    card.vars,
-  ]);
-}
-
 export default function CardDetail({
   initialCard,
   initialEnchantments,
@@ -298,16 +277,11 @@ export default function CardDetail({
   const t = useT();
 
   const bp = useBetaPrefix();
-  const pageChannel = useChannel();
-  const betaRenderVersion = useBetaRenderVersion();
-  const [pickedVersion, setPickedVersion] = useState("");
+  const [, setPickedVersion] = useState("");
   const pickedRef = useRef("");
   const [currentCard, setCurrentCard] = useState<Card | null>(
     initialCard ?? null,
   );
-  const betaVersion = useBetaChanged("cards").version;
-  const channel =
-    pickedVersion && pickedVersion === betaVersion ? "beta" : pageChannel;
   const [card, setCard] = useState<Card | null>(initialCard ?? null);
   const [spawnedCards, setSpawnedCards] = useState<RelatedCard[]>(
     initialCatalogs?.spawnedCards ?? [],
@@ -317,8 +291,6 @@ export default function CardDetail({
   const [upgraded, setUpgraded] = useState(false);
   const [betaArt, setBetaArt] = useState(false);
   const [creators, setCreators] = useState<{ id: string; name: string }[]>([]);
-  const [cardImgFailed, setCardImgFailed] = useState(false);
-  const [failedRender, setFailedRender] = useState("");
   const [selectedVariant, setSelectedVariant] = useState<string | null>(null);
   // Enchantment chosen in the infobox variant switcher ("none" = plain render).
   const [selectedEnch, setSelectedEnch] = useState<string>("none");
@@ -623,36 +595,8 @@ export default function CardDetail({
       : null;
   const enchActive =
     selectedEnch !== "none" && cardEnchantments.includes(selectedEnch);
-  // Infobox render: enchanted render > raw artwork (detail / beta / variant /
-  // failed full render) > full engine render. Mirrors the old image logic while
-  // driving off the new variant switcher.
-  const localizedRender = fullCardUrl(
-    card.id.toLowerCase(),
-    isUpgraded,
-    channel,
-    lang,
-    betaRenderVersion,
-  );
-  const englishRender = fullCardUrl(
-    card.id.toLowerCase(),
-    isUpgraded,
-    channel,
-    "eng",
-    betaRenderVersion,
-  );
-  const useEnglishRender =
-    failedRender === localizedRender && englishRender !== localizedRender;
-  const plainRender = useEnglishRender ? englishRender : localizedRender;
-  const renderSrc =
-    betaArt || variantImg || cardImgFailed ? imageUrl(imgUrl) : plainRender;
-
-  const htmlRender =
-    enchActive ||
-    (!!pickedVersion &&
-      pickedVersion !== betaVersion &&
-      !betaArt &&
-      !variantImg &&
-      renderKey(card) !== renderKey(currentCard));
+  const renderSrc = imageUrl(imgUrl);
+  const htmlRender = !betaArt && !variantImg;
   const renderKeywordNames = Object.fromEntries(
     Object.values(keywordData).map((k) => [
       k.id.charAt(0) + k.id.slice(1).toLowerCase(),
@@ -1094,13 +1038,6 @@ export default function CardDetail({
                   name: `${card.name}${isUpgraded ? "+" : ""}`,
                 })}
                 crossOrigin="anonymous"
-                onError={() => {
-                  if (!betaArt && !variantImg) {
-                    if (!useEnglishRender && englishRender !== localizedRender)
-                      setFailedRender(localizedRender);
-                    else setCardImgFailed(true);
-                  }
-                }}
               />
             )}
 

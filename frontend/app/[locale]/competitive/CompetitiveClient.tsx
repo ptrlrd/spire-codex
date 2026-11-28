@@ -6,7 +6,9 @@ import { Link } from "@/i18n/navigation";
 import { useGameLocale, useT, useFormatNumber } from "@/lib/i18n";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { fmtDateTimePacific } from "@/lib/pacific";
-import { fullCardUrl, imageUrl } from "@/lib/image-url";
+import { imageUrl } from "@/lib/image-url";
+import CardRenderSlot from "@/app/components/CardRenderSlot";
+import type { Card } from "@/lib/api/types";
 import CharacterTag, { characterName } from "@/app/components/CharacterTag";
 import { PlayerBadge } from "@/app/components/SupporterBadge";
 import { replaceQuery } from "@/lib/replace-query";
@@ -397,13 +399,17 @@ export default function CompetitiveClient() {
                     href={`/cards/${c.id.toLowerCase()}`}
                     className="group text-center"
                   >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={fullCardUrl(c.id, false, "stable", lang)}
-                      alt={cards[c.id]?.name ?? c.id}
-                      loading="lazy"
-                      className="block w-full transition-transform group-hover:-translate-y-0.5"
-                    />
+                    {cards[c.id] ? (
+                      <CardRenderSlot
+                        card={cards[c.id] as unknown as Card}
+                        upgraded={false}
+                        lang={lang}
+                        label={cards[c.id].name}
+                        className="block aspect-[400/520] w-full transition-transform group-hover:-translate-y-0.5"
+                      />
+                    ) : (
+                      <span className="block aspect-[400/520] w-full" />
+                    )}
                     <span className="mt-1 block text-sm tabular-nums text-[var(--text-secondary)]">
                       {t("{n}% of runs", { n: c.share.toFixed(1) })}
                     </span>

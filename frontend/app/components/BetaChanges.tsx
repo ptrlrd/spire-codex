@@ -3,10 +3,10 @@
 import { useEffect, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { fullCardUrl } from "@/lib/image-url";
+import type { Card } from "@/lib/api/types";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { useGameLocale, useT, type TFn } from "@/lib/i18n";
-import { useBetaRenderVersion } from "./BetaRenderVersionProvider";
+import CardRenderSlot from "./CardRenderSlot";
 import RichDescription from "./RichDescription";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -81,7 +81,6 @@ export default function BetaChanges({
 }) {
   const t = useT();
   const lang = useGameLocale();
-  const betaRenderVersion = useBetaRenderVersion();
   const [diff, setDiff] = useState<BetaDiff | null>(null);
   const [pair, setPair] = useState<{ main: Entity; beta: Entity } | null>(null);
   const inBetaSection = useBetaPrefix() === "/beta";
@@ -156,24 +155,18 @@ export default function BetaChanges({
               <div className="flex gap-3">
                 {(["stable", "beta"] as const).map((channel) => (
                   <figure key={channel} className="w-[112px]">
-                    <img
-                      src={fullCardUrl(
-                        id,
-                        false,
-                        channel,
-                        lang,
-                        betaRenderVersion,
-                      )}
-                      alt={`${String(pair.main.name ?? id)} (${
+                    <CardRenderSlot
+                      card={
+                        (channel === "beta"
+                          ? pair.beta
+                          : pair.main) as unknown as Card
+                      }
+                      upgraded={false}
+                      lang={lang}
+                      label={`${String(pair.main.name ?? id)} (${
                         channel === "beta" ? t("Beta") : t("Main")
                       })`}
-                      width={112}
-                      className="h-auto w-full"
-                      loading="lazy"
-                      onError={(e) => {
-                        const fig = e.currentTarget.parentElement;
-                        if (fig) fig.style.display = "none";
-                      }}
+                      className="block aspect-[400/520] w-full"
                     />
                     <figcaption
                       className={`mt-0.5 text-center font-semibold ${
